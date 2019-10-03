@@ -1,0 +1,16 @@
+.signup {
+  .container {
+    flex-grow: 0;
+    &:last-child {
+      flex-grow: 1;
+      margin-left: 0.5em;
+      margin-right: 0.5em;
+    }
+  }
+
+  .tabs a {
+    &:first-child {
+      margin: 0 2em;
+    }
+  }
+}

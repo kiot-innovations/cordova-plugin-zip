@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CustomIntervalPicker Component renders without crashing 1`] = `
+<div
+  className="cusint"
+>
+  <div
+    className="columns is-flex level"
+  >
+    <ButtonSelect
+      label="START_DATE"
+      onAction={[Function]}
+      onClear={[Function]}
+      value={null}
+    />
+    <ButtonSelect
+      label="END_DATE"
+      onAction={[Function]}
+      onClear={[Function]}
+      value={null}
+    />
+  </div>
+</div>
+`;

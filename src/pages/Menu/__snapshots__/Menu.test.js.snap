@@ -1,0 +1,35 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Menu page renders without crashing 1`] = `
+<ModalLayout
+  className="menu-modal"
+  imageHeader={
+    <SunPowerImage
+      inverse={true}
+    />
+  }
+>
+  <BlockGrid>
+    <BlockItem
+      icon={<ForwardRef(SvgSettingsIcon) />}
+      title="SETTINGS"
+      to="/settings"
+    />
+    <BlockItem
+      icon={<ForwardRef(SvgHelpIcon) />}
+      title="HELP_CENTER"
+      to="/menu/help-center"
+    />
+    <BlockItem
+      icon={<ForwardRef(SvgLearningIcon) />}
+      title="LEARNING_CENTER"
+      to="/menu/learning-center"
+    />
+  </BlockGrid>
+  <div
+    className="mt-50 mb-20 pl-10 pr-10"
+  >
+    <SocialFooter />
+  </div>
+</ModalLayout>
+`;

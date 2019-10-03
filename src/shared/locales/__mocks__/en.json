@@ -1,0 +1,5 @@
+{
+    "TEST_1": "Testing string",
+    "TESTING_REPLACE_1": "Test replace {0} strings",
+    "TESTING_REPLACE_2": "Test replace {0} strings and {1} params"
+}

@@ -1,0 +1,296 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Period Selector Menu component renders without crashing 1`] = `
+Object {
+  "component": <BrowserRouter
+    keyLength={0}
+  >
+    <Router
+      history={
+        Object {
+          "action": "POP",
+          "block": [Function],
+          "createHref": [Function],
+          "go": [Function],
+          "goBack": [Function],
+          "goForward": [Function],
+          "length": 1,
+          "listen": [Function],
+          "location": Object {
+            "hash": "",
+            "pathname": "/",
+            "search": "",
+            "state": undefined,
+          },
+          "push": [Function],
+          "replace": [Function],
+        }
+      }
+    >
+      <Provider
+        store={
+          Object {
+            "clearActions": [Function],
+            "dispatch": [Function],
+            "getActions": [Function],
+            "getState": [Function],
+            "replaceReducer": [Function],
+            "subscribe": [Function],
+          }
+        }
+      >
+        <PeriodSelectorMenu
+          options={
+            Array [
+              Object {
+                "id": 1,
+                "text": "HISTORY_DAY_VIEW",
+                "value": "DAY",
+              },
+              Object {
+                "id": 2,
+                "text": "HISTORY_WEEK_VIEW",
+                "value": "WEEK",
+              },
+              Object {
+                "id": 3,
+                "text": "HISTORY_MONTH_VIEW",
+                "value": "MONTH",
+              },
+              Object {
+                "id": 4,
+                "text": "HISTORY_YEAR_VIEW",
+                "value": "YEAR",
+              },
+              Object {
+                "id": 5,
+                "text": "HISTORY_LIFETIME_VIEW",
+                "value": "LIFETIME",
+              },
+              Object {
+                "disabled": true,
+                "id": 6,
+                "text": "HISTORY_CUSTOM_DATES_VIEW",
+                "value": "CUSTOM",
+              },
+            ]
+          }
+        >
+          <div
+            className="period-selector"
+          >
+            <h1
+              className="is-uppercase"
+              onClick={[Function]}
+            >
+              HISTORY_DAY_VIEW
+            </h1>
+            <ForwardRef(SvgChevron)
+              className="chevronDown"
+              onClick={[Function]}
+            >
+              <svg
+                className="chevronDown"
+                onClick={[Function]}
+              >
+                chevron.svg
+              </svg>
+            </ForwardRef(SvgChevron)>
+          </div>
+          <OverlayModalLayout>
+            <Portal
+              containerInfo={
+                <div>
+                  <div
+                    class="modal"
+                  >
+                    <div
+                      class="modal-background"
+                    />
+                    <div
+                      class="modal-content overlay-modal-layout is-half"
+                    >
+                      <div
+                        class="modal-header is-flex"
+                      >
+                        <h2 />
+                      </div>
+                      <div
+                        class="modal-body is-flex"
+                      >
+                        <div
+                          class="modal-select-options"
+                        >
+                          <div
+                            class="modal-option date-option is-flex"
+                          >
+                            <span
+                              class="option-text pt-15 pb-15 pl-10 pr-10"
+                            >
+                              HISTORY_DAY_VIEW
+                            </span>
+                          </div>
+                          <div
+                            class="modal-option date-option is-flex"
+                          >
+                            <span
+                              class="option-text pt-15 pb-15 pl-10 pr-10"
+                            >
+                              HISTORY_WEEK_VIEW
+                            </span>
+                          </div>
+                          <div
+                            class="modal-option date-option is-flex"
+                          >
+                            <span
+                              class="option-text pt-15 pb-15 pl-10 pr-10"
+                            >
+                              HISTORY_MONTH_VIEW
+                            </span>
+                          </div>
+                          <div
+                            class="modal-option date-option is-flex"
+                          >
+                            <span
+                              class="option-text pt-15 pb-15 pl-10 pr-10"
+                            >
+                              HISTORY_YEAR_VIEW
+                            </span>
+                          </div>
+                          <div
+                            class="modal-option date-option is-flex"
+                          >
+                            <span
+                              class="option-text pt-15 pb-15 pl-10 pr-10"
+                            >
+                              HISTORY_LIFETIME_VIEW
+                            </span>
+                          </div>
+                          <div
+                            class="modal-option date-option is-flex disabled"
+                          >
+                            <span
+                              class="option-text pt-15 pb-15 pl-10 pr-10"
+                            >
+                              HISTORY_CUSTOM_DATES_VIEW
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              }
+            >
+              <Modal
+                className="is-half"
+                id="modal-root"
+              >
+                <div
+                  className="modal"
+                >
+                  <div
+                    className="modal-background"
+                    onClick={[Function]}
+                  />
+                  <div
+                    className="modal-content overlay-modal-layout is-half"
+                  >
+                    <div
+                      className="modal-header is-flex"
+                    >
+                      <h2 />
+                    </div>
+                    <div
+                      className="modal-body is-flex"
+                    >
+                      <div
+                        className="modal-select-options"
+                      >
+                        <div
+                          className="modal-option date-option is-flex"
+                          key="1"
+                          onClick={[Function]}
+                        >
+                          <span
+                            className="option-text pt-15 pb-15 pl-10 pr-10"
+                          >
+                            HISTORY_DAY_VIEW
+                          </span>
+                        </div>
+                        <div
+                          className="modal-option date-option is-flex"
+                          key="2"
+                          onClick={[Function]}
+                        >
+                          <span
+                            className="option-text pt-15 pb-15 pl-10 pr-10"
+                          >
+                            HISTORY_WEEK_VIEW
+                          </span>
+                        </div>
+                        <div
+                          className="modal-option date-option is-flex"
+                          key="3"
+                          onClick={[Function]}
+                        >
+                          <span
+                            className="option-text pt-15 pb-15 pl-10 pr-10"
+                          >
+                            HISTORY_MONTH_VIEW
+                          </span>
+                        </div>
+                        <div
+                          className="modal-option date-option is-flex"
+                          key="4"
+                          onClick={[Function]}
+                        >
+                          <span
+                            className="option-text pt-15 pb-15 pl-10 pr-10"
+                          >
+                            HISTORY_YEAR_VIEW
+                          </span>
+                        </div>
+                        <div
+                          className="modal-option date-option is-flex"
+                          key="5"
+                          onClick={[Function]}
+                        >
+                          <span
+                            className="option-text pt-15 pb-15 pl-10 pr-10"
+                          >
+                            HISTORY_LIFETIME_VIEW
+                          </span>
+                        </div>
+                        <div
+                          className="modal-option date-option is-flex disabled"
+                          key="6"
+                          onClick={[Function]}
+                        >
+                          <span
+                            className="option-text pt-15 pb-15 pl-10 pr-10"
+                          >
+                            HISTORY_CUSTOM_DATES_VIEW
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </Modal>
+            </Portal>
+          </OverlayModalLayout>
+        </PeriodSelectorMenu>
+      </Provider>
+    </Router>
+  </BrowserRouter>,
+  "store": Object {
+    "clearActions": [Function],
+    "dispatch": [Function],
+    "getActions": [Function],
+    "getState": [Function],
+    "replaceReducer": [Function],
+    "subscribe": [Function],
+  },
+}
+`;

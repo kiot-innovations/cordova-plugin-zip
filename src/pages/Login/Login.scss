@@ -1,0 +1,61 @@
+@import "../../styles/variables";
+
+.login {
+  .container {
+    flex-grow: 0;
+    &:last-child {
+      flex-grow: 1;
+      margin-left: 0.5em;
+      margin-right: 0.5em;
+    }
+  }
+
+  .tabs a {
+    &:first-child {
+      margin: 0 2em;
+    }
+  }
+
+  .rememeber-me {
+    text-align: left;
+
+    label {
+      font-size: 1rem;
+      line-height: 1rem;
+      letter-spacing: 0.05em;
+      color: $white-text-default;
+      opacity: 0.5;
+
+      input {
+        margin-right: 0.375rem;
+      }
+    }
+  }
+
+  .link {
+    font-size: $font-size;
+    line-height: 1rem;
+    text-align: center;
+    letter-spacing: $letter-spacing-default;
+    text-transform: uppercase;
+  }
+
+  .error-message {
+    font-size: $font-size;
+    line-height: 1rem;
+    text-align: center;
+    letter-spacing: $letter-spacing-default;
+    text-transform: uppercase;
+    color: $orange-default;
+    animation: fade 0.4s ease;
+  }
+
+  @keyframes fade {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+}

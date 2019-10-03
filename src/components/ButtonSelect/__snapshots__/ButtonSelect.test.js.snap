@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ButtonSelect Component renders without crashing 1`] = `
+<div
+  className="stor tags has-addons"
+>
+  <button
+    className="tag has-text-white is-size-6"
+  />
+  <button
+    className="tag has-text-white is-size-6 has-text-primary"
+    disabled={true}
+  >
+    <span>
+      ×
+    </span>
+  </button>
+</div>
+`;

@@ -1,0 +1,64 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SelectSolarSelfSupply component renders without crashing 1`] = `
+<ModalSelect
+  className="cost-savings is-seven-eighths"
+  footer={
+    <div
+      className="backup-warning pr-20 pl-20 mb-30"
+    >
+      <span
+        className="highlighted"
+      >
+        BACKUP_MAX
+      </span>
+      <span>
+        BACKUP_WARNING
+      </span>
+    </div>
+  }
+  header="CHOOSE_BACKUP_RESERVE_AMOUNT"
+  modalId="modal-solar-self-supply-root"
+  onClick={[Function]}
+  options={
+    Array [
+      Object {
+        "id": 1,
+        "text": "ZERO_BACKUP_SOLAR",
+        "textLeft": "0%",
+        "value": 0,
+      },
+      Object {
+        "id": 2,
+        "text": "TEN_BACKUP_SOLAR",
+        "textLeft": "10%",
+        "value": 1,
+      },
+      Object {
+        "id": 3,
+        "text": "TWENTY_BACKUP_SOLAR",
+        "textLeft": "20%",
+        "value": 2,
+      },
+      Object {
+        "id": 4,
+        "text": "THIRTY_BACKUP_SOLAR",
+        "textLeft": "30%",
+        "value": 3,
+      },
+      Object {
+        "id": 5,
+        "text": "FORTY_BACKUP_SOLAR",
+        "textLeft": "40%",
+        "value": 4,
+      },
+      Object {
+        "id": 6,
+        "text": "FIFTY_BACKUP_SOLAR",
+        "textLeft": "50%",
+        "value": 5,
+      },
+    ]
+  }
+/>
+`;

@@ -1,0 +1,34 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Profile Label component renders without crashing 1`] = `
+<div
+  className="profile-label"
+>
+  <div
+    className="text pt-20 pb-20"
+  >
+    <h2
+      className="is-uppercase is-size-7"
+    />
+    <h2
+      className="mt-5"
+    />
+  </div>
+  <div
+    className="edit"
+  >
+    <Link
+      to={
+        Object {
+          "pathname": undefined,
+          "state": Object {
+            "from": null,
+          },
+        }
+      }
+    >
+      <ForwardRef(SvgEdit) />
+    </Link>
+  </div>
+</div>
+`;

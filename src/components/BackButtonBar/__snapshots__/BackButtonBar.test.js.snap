@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BackButtonBar component renders without crashing 1`] = `
+<nav
+  aria-label="main navigation"
+  className="back-button-bar navbar"
+  role="navigation"
+>
+  <div
+    className="navbar-brand"
+  >
+    <BackButton
+      classNames="mt-10 mb-10"
+    />
+  </div>
+</nav>
+`;

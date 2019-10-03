@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NewProducts page renders without crashing 1`] = `
+<ModalLayout
+  className="new-products-modal"
+  hasBackButton={true}
+  title="NEW_PRODUCTS"
+/>
+`;

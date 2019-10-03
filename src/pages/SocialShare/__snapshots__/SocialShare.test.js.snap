@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SocialShare page renders without crashing 1`] = `
+<ModalLayout
+  className="social-share-modal"
+  hasBackButton={true}
+  title="SOCIAL_SHARE"
+/>
+`;

@@ -1,0 +1,90 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`HelpCenter page renders without crashing 1`] = `
+<ModalLayout
+  className="help-center-modal"
+  hasBackButton={true}
+  title="HELP_CENTER"
+>
+  <div
+    className="help-center container columns full-height is-flex has-text-centered"
+  >
+    <div
+      className="column is-hidden-mobile"
+    />
+    <div
+      className="column"
+    >
+      <BlockGrid>
+        <BlockItem
+          className="full-width-title"
+          icon={<ForwardRef(SvgLiveChatIcon) />}
+          title="LIVE_CHAT"
+          to="/help/live-chat"
+        />
+        <BlockItem
+          icon={<ForwardRef(SvgFaqIcon) />}
+          title="FAQ"
+          to="/help/faq"
+        />
+        <BlockItem
+          className="full-width-title"
+          icon={<ForwardRef(SvgDocumentsIcon) />}
+          title="DOCUMENTS"
+          to="/help/documents"
+        />
+        <BlockItem
+          icon={<ForwardRef(SvgSubmitARequestIcon) />}
+          title="SUBMIT_A_REQUEST"
+          to="/help/submit-a-request"
+        />
+      </BlockGrid>
+    </div>
+    <div
+      className="column"
+    >
+      <div
+        className="call-us mb-30 hero"
+      >
+        <span
+          className="mb-10"
+        >
+          OR_CALL_US
+          :
+        </span>
+        <div
+          className="columns is-flex"
+        >
+          <div>
+            <ForwardRef(SvgPhone) />
+          </div>
+          <div
+            className="is-size-6 ml-20"
+          >
+            <div
+              className="mb-5"
+            >
+              <a
+                className="has-text-weight-normal"
+                href="tel:18007867693"
+              >
+                1-800-sunpower
+              </a>
+            </div>
+            <div
+              className="has-text-left"
+            >
+              <a
+                className="has-text-weight-normal"
+                href="tel:18007867693"
+              >
+                1-800-786-7693
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ModalLayout>
+`;

@@ -1,0 +1,23 @@
+@import "../../styles/variables";
+
+.radio-button {
+  .is-checkradio[type="radio"].is-medium + label {
+    padding-left: 1.875rem;
+    padding-right: 0;
+    margin-right: 0;
+
+    &::before,
+    &:before {
+      background-color: $gray-border-default;
+    }
+  }
+
+  .radio-description {
+    font-weight: $bold-text;
+    font-size: $font-size-big;
+    line-height: 20px;
+    letter-spacing: 0.03em;
+    vertical-align: top;
+    color: $black;
+  }
+}

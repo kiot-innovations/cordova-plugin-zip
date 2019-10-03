@@ -1,0 +1,35 @@
+@import "../../styles/variables";
+
+.lifetime-savings {
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  .icons-container {
+    width: 100%;
+    justify-content: center;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+
+    svg:first-child {
+      margin-left: auto;
+      margin-right: auto;
+      grid-column-start: 2;
+    }
+
+    svg:last-child {
+      margin-left: auto;
+      grid-column-start: 3;
+    }
+  }
+
+  &-title {
+    letter-spacing: $letter-spacing-default;
+    margin-top: 1em;
+  }
+
+  &-bounty {
+    font-weight: bold;
+    color: $sunpower-blue;
+  }
+}

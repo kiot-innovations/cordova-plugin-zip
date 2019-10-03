@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Backup Amount component renders without crashing 1`] = `
+<div
+  className="backup-amount pr-40 pl-40"
+>
+  <div
+    className="backup-amount-top"
+  >
+    <div
+      className="backup-amount-qty"
+    >
+      <h1
+        className="is-size-2 mb-10"
+      >
+        5
+      </h1>
+      <h1>
+        BACKUP_AMOUNT_UNIT
+      </h1>
+    </div>
+    <div
+      className="backup-amount-text"
+    >
+      <h1
+        className="is-uppercase"
+      >
+        BACKUP_AMOUNT_TEXT
+      </h1>
+    </div>
+  </div>
+</div>
+`;

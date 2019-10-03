@@ -1,0 +1,10 @@
+@import "../../styles/variables";
+
+.back-button-bar {
+  margin: 0 !important;
+  background-color: transparent !important;
+
+  svg {
+    cursor: pointer;
+  }
+}

@@ -1,0 +1,172 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`WifiSettings page renders without crashing 1`] = `
+<ModalLayout
+  className="wifi-settings-modal"
+  hasBackButton={true}
+  title="WIFI_SETTINGS"
+>
+  <ModalItem
+    className="fit-screen pt-0"
+    paddingLeft=""
+    paddingRight=""
+  >
+    <div
+      className="wifi-status-container pr-30 pl-30 is-flex"
+    >
+      <div
+        className="icon-container is-flex"
+      >
+        <ForwardRef(SvgWifiIcon)
+          height="27"
+          width="35"
+        />
+      </div>
+      <div
+        className="wifi-status pr-20 pl-20 is-flex"
+      >
+        <h2>
+          WIFI_STATUS
+        </h2>
+        <span
+          className="success"
+        >
+          CONNECTED
+        </span>
+      </div>
+      <div
+        className="icon-container is-flex"
+      >
+        <Link
+          to={
+            Object {
+              "pathname": "/menu/about-wifi",
+              "state": Object {
+                "from": undefined,
+              },
+            }
+          }
+        >
+          <ForwardRef(SvgInfoIcon)
+            className="info-btn"
+          />
+        </Link>
+      </div>
+    </div>
+    <div
+      className="wifi-networks-selector pr-10 pl-10 is-flex"
+    >
+      <div
+        className="wifi-networks-container mt-30 is-flex"
+      >
+        <div
+          className="network-header mb-10 is-flex"
+        >
+          <h3
+            className="title is-6"
+          >
+            NETWORKS
+          </h3>
+          <span
+            className="btn-scan"
+            onClick={[Function]}
+          >
+            SCAN
+          </span>
+        </div>
+        <div
+          className="network-grid"
+        >
+          <ScrollableGrid>
+            <ScrollableGridItem
+              key="14:ed:bb:87:15:86"
+              leftIcon={false}
+              onClick={[Function]}
+              paddingLeft="pl-30"
+              rightIcon={<WifiSignalIcon />}
+              text="ATT65PQc2w"
+            />
+            <ScrollableGridItem
+              key="14:35:8b:0f:5b:ac"
+              leftIcon={<ForwardRef(SvgActiveIcon) />}
+              onClick={[Function]}
+              paddingLeft="pl-10"
+              rightIcon={<WifiSignalIcon />}
+              text="BabyGorilla"
+            />
+            <ScrollableGridItem
+              key="c8:d7:19:b0:3c:55"
+              leftIcon={false}
+              onClick={[Function]}
+              paddingLeft="pl-30"
+              rightIcon={<WifiSignalIcon />}
+              text="BrownShark"
+            />
+          </ScrollableGrid>
+        </div>
+      </div>
+      <div
+        className="wifi-networks-form mt-10 pr-10 pl-10 is-flex"
+      >
+        <form
+          className="control"
+          onSubmit={[Function]}
+        >
+          <div
+            className="column"
+          >
+            <TextField
+              className="input-light"
+              disabled={true}
+              input={
+                Object {
+                  "name": "networkName",
+                  "onBlur": [Function],
+                  "onChange": [Function],
+                  "onFocus": [Function],
+                  "value": "",
+                }
+              }
+              meta={Object {}}
+              placeholder="PLACEHOLDER_NETWORK_NAME"
+            />
+            <PasswordToggle
+              className="input-light"
+              input={
+                Object {
+                  "name": "password",
+                  "onBlur": [Function],
+                  "onChange": [Function],
+                  "onFocus": [Function],
+                  "value": "",
+                }
+              }
+              meta={Object {}}
+              placeholder="PLACEHOLDER_PASSWORD"
+            />
+          </div>
+          <div
+            className="column"
+          >
+            <div
+              className="field is-grouped is-grouped-centered"
+            >
+              <p
+                className="control"
+              >
+                <button
+                  className="button is-uppercase is-primary"
+                  disabled={false}
+                  type="submit"
+                >
+                  CONNECT
+                </button>
+              </p>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </ModalItem>
+</ModalLayout>
+`;

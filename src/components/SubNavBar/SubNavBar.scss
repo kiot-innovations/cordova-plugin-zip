@@ -1,0 +1,30 @@
+@import "../../styles/variables";
+
+.sub-nav-bar {
+  background-color: $navbar-black !important;
+  top: 3rem !important;
+  padding: 5px;
+  margin: 0 !important;
+  min-height: 2rem !important;
+
+  .tabs {
+    min-height: 2rem !important;
+
+    li {
+      font-weight: bold;
+      font-size: $font-size;
+      line-height: 1rem;
+      text-align: center;
+      letter-spacing: $letter-spacing-big;
+      flex-grow: 1;
+
+      a:not(.active):hover {
+        color: $white;
+      }
+
+      a:focus {
+        outline: none;
+      }
+    }
+  }
+}

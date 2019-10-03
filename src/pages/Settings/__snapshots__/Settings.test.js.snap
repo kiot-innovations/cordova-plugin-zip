@@ -1,0 +1,34 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Settings page renders without crashing 1`] = `
+<ModalLayout
+  className="menu-modal"
+  hasBackButton={true}
+  imageHeader={
+    <SunPowerImage
+      inverse={true}
+    />
+  }
+>
+  <BlockGrid>
+    <BlockItem
+      className="full-width-title"
+      icon={<ForwardRef(SvgWifiIcon) />}
+      label="CONNECTED"
+      labelState="success"
+      title="WIFI_SETTINGS"
+      to="/menu/wifi-settings"
+    />
+    <BlockItem
+      icon={<ForwardRef(SvgBatteryIcon) />}
+      title="BATTERY_SETTINGS"
+      to="/menu/battery-settings"
+    />
+  </BlockGrid>
+  <div
+    className="mt-50 mb-20 pl-10 pr-10"
+  >
+    <SocialFooter />
+  </div>
+</ModalLayout>
+`;

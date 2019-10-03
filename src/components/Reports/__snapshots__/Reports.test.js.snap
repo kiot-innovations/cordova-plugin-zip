@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Reports Component (from Profile page) renders without crashing 1`] = `
+<div
+  className="reports content"
+>
+  <h6
+    className="has-text-weight-light has-text-grey heading"
+  >
+    REPORTS_TITLE
+  </h6>
+  <h6
+    className="title mb-0"
+  >
+    REPORTS_TEXT
+  </h6>
+  <div
+    className="has-text-primary mb-10"
+  >
+    _
+  </div>
+  <p
+    className="has-text-black"
+  >
+    REPORTS_DESCRIPTION
+  </p>
+  <button
+    className="button is-primary is-fullwidth is-uppercase"
+  >
+    REPORTS_BTN_TEXT
+  </button>
+</div>
+`;

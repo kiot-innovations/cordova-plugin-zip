@@ -1,0 +1,56 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SelectReservesTimer component renders without crashing 1`] = `
+<ModalSelect
+  className="cost-savings is-seven-eighths"
+  footer={
+    <div
+      className="backup-warning pr-20 pl-20 mb-30"
+    >
+      <span>
+        BATTERY_RESERVE_WARNING_1
+      </span>
+      <span
+        className="highlighted"
+      >
+        BATTERY_RESERVE_WARNING_2
+      </span>
+      <span>
+        BATTERY_RESERVE_WARNING_3
+      </span>
+    </div>
+  }
+  header="CHOOSE_BACKUP_RESERVE_AMOUNT"
+  modalId="modal-reserves-timer"
+  onClick={[Function]}
+  options={
+    Array [
+      Object {
+        "id": 1,
+        "text": "ONE_DAY",
+        "value": 0,
+      },
+      Object {
+        "id": 2,
+        "text": "TWO_DAYS",
+        "value": 1,
+      },
+      Object {
+        "id": 3,
+        "text": "THREE_DAYS",
+        "value": 2,
+      },
+      Object {
+        "id": 4,
+        "text": "FOUR_DAYS",
+        "value": 3,
+      },
+      Object {
+        "id": 5,
+        "text": "FIVE_DAYS",
+        "value": 4,
+      },
+    ]
+  }
+/>
+`;

@@ -1,0 +1,64 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SelectCostSaving component renders without crashing 1`] = `
+<ModalSelect
+  className="cost-savings is-seven-eighths"
+  footer={
+    <div
+      className="backup-warning pr-20 pl-20 mb-30"
+    >
+      <span
+        className="highlighted"
+      >
+        BACKUP_MAX
+      </span>
+      <span>
+        BACKUP_WARNING
+      </span>
+    </div>
+  }
+  header="CHOOSE_BACKUP_RESERVE_AMOUNT"
+  modalId="modal-cost-saving-root"
+  onClick={[Function]}
+  options={
+    Array [
+      Object {
+        "id": 1,
+        "text": "ZERO_BACKUP",
+        "textLeft": "0%",
+        "value": 0,
+      },
+      Object {
+        "id": 2,
+        "text": "TEN_BACKUP",
+        "textLeft": "10%",
+        "value": 2,
+      },
+      Object {
+        "id": 3,
+        "text": "TWENTY_BACKUP",
+        "textLeft": "20%",
+        "value": 4,
+      },
+      Object {
+        "id": 4,
+        "text": "THIRTY_BACKUP",
+        "textLeft": "30%",
+        "value": 6,
+      },
+      Object {
+        "id": 5,
+        "text": "FORTY_BACKUP",
+        "textLeft": "40%",
+        "value": 8,
+      },
+      Object {
+        "id": 6,
+        "text": "FIFTY_BACKUP",
+        "textLeft": "50%",
+        "value": 10,
+      },
+    ]
+  }
+/>
+`;

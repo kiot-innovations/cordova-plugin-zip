@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PartnerProgram page renders without crashing 1`] = `
+<ModalLayout
+  className="partner-program-modal"
+  hasBackButton={true}
+  title="PARTNER_PROGRAM"
+/>
+`;

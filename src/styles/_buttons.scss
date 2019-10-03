@@ -1,0 +1,10 @@
+@import "variables";
+
+.button {
+  font-size: $font-size;
+  border-radius: 3px;
+  height: 36px;
+  padding: 0 60px;
+  letter-spacing: $letter-spacing-default;
+  font-weight: 600;
+}

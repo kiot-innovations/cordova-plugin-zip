@@ -1,0 +1,41 @@
+@import "../../styles/variables";
+
+.stor {
+  &.tags:not(:last-child) {
+    margin-bottom: 0;
+  }
+  &.tags:last-child {
+    margin-bottom: 0;
+  }
+  .tag {
+    background: $dark;
+
+    cursor: pointer;
+
+    &:disabled span {
+      color: $gray-text-default;
+    }
+
+    &:not(body):not(:first-of-type) {
+      padding-left: 7px;
+      padding-right: 10px;
+      padding-top: 0;
+    }
+
+    &:first-of-type {
+      border-top-left-radius: 20px;
+      border-bottom-left-radius: 20px;
+      border: 1px solid $navbar-white;
+    }
+    &:last-of-type {
+      border-top-right-radius: 20px;
+      border-bottom-right-radius: 20px;
+      border: 1px solid $navbar-white;
+      border-left: none;
+      span {
+        font-size: $font-size-huge;
+        line-height: 0;
+      }
+    }
+  }
+}

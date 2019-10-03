@@ -1,0 +1,37 @@
+@import "../../styles/variables";
+
+.tabs {
+  ul {
+    border-bottom: none !important;
+
+    li {
+      opacity: 0.3;
+      font-size: $font-size;
+      letter-spacing: $letter-spacing-big;
+      a {
+        display: inline-block;
+        color: $white;
+        padding: 0 0 5px 0;
+        font-weight: $bold-text;
+        border-bottom: none;
+        text-transform: uppercase;
+
+        &:not(.active):hover {
+          color: $white;
+        }
+
+        &:focus {
+          outline: none;
+        }
+      }
+
+      &.is-active {
+        opacity: 1;
+        a {
+          color: $white;
+          border-bottom: 2px solid $orange-default;
+        }
+      }
+    }
+  }
+}

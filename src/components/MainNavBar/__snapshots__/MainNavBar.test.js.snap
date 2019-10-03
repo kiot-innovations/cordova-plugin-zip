@@ -1,0 +1,157 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MainNavBar component hides bell notification if there are no alerts 1`] = `
+<nav
+  aria-label="main navigation"
+  className="main-nav-bar navbar"
+  role="navigation"
+>
+  <div
+    className="header-container columns is-mobile"
+  >
+    <div
+      className="column"
+    >
+      <Link
+        className="link"
+        to={
+          Object {
+            "pathname": "/menu",
+            "state": Object {
+              "from": "/",
+            },
+          }
+        }
+      >
+        <ForwardRef(SvgHamburgerMenu) />
+      </Link>
+    </div>
+    <div
+      className="column is-two-thirds header is-flex"
+    >
+      <h1
+        className="navbar-header"
+      >
+        home
+      </h1>
+    </div>
+    <div
+      className="column actions"
+    >
+      <Link
+        to={
+          Object {
+            "pathname": "/notifications",
+            "state": Object {
+              "from": "/",
+            },
+          }
+        }
+      >
+        <div
+          className="alerts-bell pr-5"
+        >
+          <ForwardRef(SvgAlerts) />
+          <div
+            className="is-hidden"
+          />
+        </div>
+      </Link>
+      <Link
+        to={
+          Object {
+            "pathname": "/profile",
+            "state": Object {
+              "from": "/",
+            },
+          }
+        }
+      >
+        <div
+          className="pl-5"
+        >
+          <ForwardRef(SvgProfile) />
+        </div>
+      </Link>
+    </div>
+  </div>
+</nav>
+`;
+
+exports[`MainNavBar component renders without crashing 1`] = `
+<nav
+  aria-label="main navigation"
+  className="main-nav-bar navbar"
+  role="navigation"
+>
+  <div
+    className="header-container columns is-mobile"
+  >
+    <div
+      className="column"
+    >
+      <Link
+        className="link"
+        to={
+          Object {
+            "pathname": "/menu",
+            "state": Object {
+              "from": "/",
+            },
+          }
+        }
+      >
+        <ForwardRef(SvgHamburgerMenu) />
+      </Link>
+    </div>
+    <div
+      className="column is-two-thirds header is-flex"
+    >
+      <h1
+        className="navbar-header"
+      >
+        true's home
+      </h1>
+    </div>
+    <div
+      className="column actions"
+    >
+      <Link
+        to={
+          Object {
+            "pathname": "/notifications",
+            "state": Object {
+              "from": "/",
+            },
+          }
+        }
+      >
+        <div
+          className="alerts-bell pr-5"
+        >
+          <ForwardRef(SvgAlerts) />
+          <div
+            className="has-alerts"
+          />
+        </div>
+      </Link>
+      <Link
+        to={
+          Object {
+            "pathname": "/profile",
+            "state": Object {
+              "from": "/",
+            },
+          }
+        }
+      >
+        <div
+          className="pl-5"
+        >
+          <ForwardRef(SvgProfile) />
+        </div>
+      </Link>
+    </div>
+  </div>
+</nav>
+`;

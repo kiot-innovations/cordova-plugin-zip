@@ -1,0 +1,26 @@
+@import "../../styles/variables";
+
+section.notifications {
+  letter-spacing: $letter-spacing-big;
+  padding-bottom: 1em !important;
+  justify-content: initial;
+
+  .label {
+    color: $gray-text-alt2;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    font-weight: $regular-text;
+  }
+
+  .no-notifications {
+    font-size: 0.75rem;
+    color: $gray-text-alt;
+    line-height: 1rem;
+
+    h2,
+    .dash {
+      text-transform: uppercase;
+      font-weight: $bold-text;
+    }
+  }
+}

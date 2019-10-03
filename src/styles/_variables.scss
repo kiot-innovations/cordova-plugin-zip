@@ -1,0 +1,68 @@
+$white: #ffffff;
+$black: #15202e;
+$light-black: #283b4e;
+$gray-background-default: #f8f8f8;
+$white-text-default: #c5cdd3;
+$gray-text-default: rgba(197, 205, 211, 0.5);
+$gray-shadow-default: rgba(228, 233, 236, 0.5);
+$gray-text-alt: #c4c7c7;
+$gray-text-alt2: #838b98;
+$gray-text-alt3: #98a3a3;
+$gray-border-default: #dfe2e4;
+$blue-default: #54b8ee;
+$yellow-default: #ffe600;
+$orange-default: #f7921e;
+$orange-dark: #cb6113;
+$navbar-black: #0c1724;
+$navbar-white: rgba(255, 255, 255, 0.2);
+$navbar-whiter: rgba(255, 255, 255, 0.05);
+$success-green: #7bb053;
+$error-red: #f00101;
+$sunpower-blue: #92bccd;
+$dark: #2f465b;
+
+$bold-text: 700;
+$regular-text: 400;
+$light-text: 300;
+$font-size: 0.75rem;
+$font-size-medium: 0.875rem;
+$font-size-big: 1rem;
+$font-size-huge: 1.4rem;
+$letter-spacing-default: 0.1em;
+$letter-spacing-none: 0;
+$letter-spacing-big: 0.25em;
+
+// Bulma overrides
+$primary: $orange-default;
+$link: $orange-default;
+$link-active: $link;
+$link-hover: darken($orange-default, 7%);
+$link-focus: $link-hover;
+$text: $black;
+$primary-invert: $black;
+
+$progress-bar-background-color: $black;
+$progress-border-radius: 0;
+
+$navbar-height: 5rem;
+
+$control-border-width: 2px;
+$control-height: 3em;
+$control-line-height: 1.5;
+$control-padding-vertical: calc(0.375em - #{$control-border-width});
+$control-padding-horizontal: calc(0.625em - #{$control-border-width});
+
+// Bulma switch overrides
+$switch-paddle-offset: 0.05rem;
+$switch-background: $gray-border-default;
+$switch-focus: none;
+
+// Bulma checkradio overrides
+$checkbox-border: none;
+$checkradio-focus: none;
+$checkbox-block-background: $gray-border-default;
+$checkbox-radius: 0.84375rem;
+$checkbox-checked-width: 0.75rem;
+
+// bulma notification overrides
+$radius-10: 10px;

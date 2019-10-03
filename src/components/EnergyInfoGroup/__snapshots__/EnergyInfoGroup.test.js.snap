@@ -1,0 +1,62 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EnergyInfoGroup Component renders without crashing 1`] = `
+<section>
+  <div
+    className="mb-10"
+    key="Home-0"
+  >
+    <EnergyInfo
+      color="white"
+      icon={<ForwardRef(SvgHomeWhite) />}
+      text="Consumption"
+      title="Home"
+      unit="kWh"
+      value="10.3"
+      when="today"
+    />
+  </div>
+  <div
+    className="mb-10"
+    key="Solar-1"
+  >
+    <EnergyInfo
+      color="warning"
+      icon={<ForwardRef(SvgSolarPanel) />}
+      text="Production"
+      title="Solar"
+      unit="kWh"
+      value="5.0"
+      when="today"
+    />
+  </div>
+  <div
+    className="mb-10"
+    key="Grid-2"
+  >
+    <EnergyInfo
+      color="info"
+      icon={<ForwardRef(SvgGrid) />}
+      text="Usage"
+      title="Grid"
+      unit="kWh"
+      value="2.3"
+      when="today"
+    />
+  </div>
+  <div
+    className="mb-10"
+    key="Battery-3"
+  >
+    <EnergyInfo
+      color="primary"
+      icon={<ForwardRef(SvgBattery) />}
+      text="Charged"
+      title="Battery"
+      unit="kWh"
+      value="3.0"
+      when="today"
+    />
+  </div>
+</section>
+`;

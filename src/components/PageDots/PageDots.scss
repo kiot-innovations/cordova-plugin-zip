@@ -1,0 +1,23 @@
+@import "../../styles/variables";
+
+.page-dots {
+  .dot {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border: 1px solid $gray-text-alt2;
+    border-radius: 100%;
+    margin-right: 10px;
+    &:last-child {
+      margin-right: 0;
+    }
+
+    &.previous {
+      background: $gray-text-alt2;
+    }
+
+    &.selected {
+      border-color: $white;
+    }
+  }
+}

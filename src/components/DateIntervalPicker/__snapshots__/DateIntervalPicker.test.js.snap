@@ -1,0 +1,73 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`History View Date Scroller component Render a interval in day delta 1`] = `
+<div
+  className="date-scroller"
+>
+  <ForwardRef(SvgChevron)
+    onClick={[Function]}
+  />
+  <h3
+    className="interval-text is-3 is-uppercase"
+  >
+    Monday December 31, 2018
+  </h3>
+  <ForwardRef(SvgChevron)
+    onClick={[Function]}
+  />
+</div>
+`;
+
+exports[`History View Date Scroller component Render a interval in month delta 1`] = `
+<div
+  className="date-scroller"
+>
+  <ForwardRef(SvgChevron)
+    onClick={[Function]}
+  />
+  <h3
+    className="interval-text is-3 is-uppercase"
+  >
+    December, 2018
+  </h3>
+  <ForwardRef(SvgChevron)
+    onClick={[Function]}
+  />
+</div>
+`;
+
+exports[`History View Date Scroller component Render a interval in week delta 1`] = `
+<div
+  className="date-scroller"
+>
+  <ForwardRef(SvgChevron)
+    onClick={[Function]}
+  />
+  <h3
+    className="interval-text is-3 is-uppercase"
+  >
+    Sun, 12/30 - Sat, 1/05
+  </h3>
+  <ForwardRef(SvgChevron)
+    onClick={[Function]}
+  />
+</div>
+`;
+
+exports[`History View Date Scroller component Render a interval in year delta 1`] = `
+<div
+  className="date-scroller"
+>
+  <ForwardRef(SvgChevron)
+    onClick={[Function]}
+  />
+  <h3
+    className="interval-text is-3 is-uppercase"
+  >
+    2018
+  </h3>
+  <ForwardRef(SvgChevron)
+    onClick={[Function]}
+  />
+</div>
+`;

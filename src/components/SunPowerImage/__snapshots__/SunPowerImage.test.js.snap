@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SunPowerImage component renders the inverse version without crashing 1`] = `
+<figure
+  className="logo-container"
+>
+  <ForwardRef(SvgLogoMobile) />
+</figure>
+`;
+
+exports[`SunPowerImage component renders without crashing 1`] = `
+<figure
+  className="logo-container"
+>
+  <ForwardRef(SvgLogoMobileBlack) />
+</figure>
+`;

@@ -1,0 +1,8 @@
+@import "../../styles/variables";
+
+.reports {
+  letter-spacing: $letter-spacing-default;
+  h6.title.mb-0 {
+    margin-bottom: 0 !important;
+  }
+}

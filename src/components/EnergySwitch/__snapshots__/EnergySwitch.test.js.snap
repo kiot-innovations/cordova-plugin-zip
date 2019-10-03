@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Energy switch renders without crashing 1`] = `
+<div
+  className="energy-switch is-flex"
+>
+  <div
+    className="selected-label selected--1"
+  />
+  <div
+    className="entries is-flex pt-8 pb-8"
+  />
+</div>
+`;

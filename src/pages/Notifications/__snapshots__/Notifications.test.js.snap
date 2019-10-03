@@ -1,0 +1,125 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Notifications page renders without crashing 1`] = `
+<ModalLayout
+  className="notifications"
+  onClose={[Function]}
+  title="NOTIFICATIONS"
+>
+  <div
+    className="label"
+  >
+    MOST_RECENT
+  </div>
+  <ModalNotification
+    date={"2019-09-22T15:16:00.000Z"}
+    id={999}
+    key="999"
+    removable={false}
+  >
+    <div
+      className="is-flex level file is-centered pl-20 pr-20"
+    >
+      <div
+        className="mr-5"
+      >
+        <ForwardRef(SvgRainCloud) />
+      </div>
+      <span
+        className="has-text-centered is-size-6 has-text-weight-bold has-text-black"
+      >
+        ALERT_TITLE_TYPE_999
+      </span>
+    </div>
+    <div>
+      ALERT_TITLE_DESCRIPTION_999
+    </div>
+  </ModalNotification>
+  <ModalNotification
+    date={"2019-05-04T16:55:00.000Z"}
+    id={86772640}
+    key="86772640"
+    removable={true}
+  >
+    <div
+      className="is-flex level file is-centered pl-20 pr-20"
+    >
+      <span
+        className="has-text-centered is-size-6 has-text-weight-bold has-text-black"
+      >
+        ALERT_TITLE_TYPE_2
+      </span>
+    </div>
+    <div>
+      ALERT_TITLE_DESCRIPTION_2
+    </div>
+  </ModalNotification>
+  <ModalNotification
+    date={"2018-05-04T16:55:00.000Z"}
+    id={86772644}
+    key="86772644"
+    removable={true}
+  >
+    <div
+      className="is-flex level file is-centered pl-20 pr-20"
+    >
+      <span
+        className="has-text-centered is-size-6 has-text-weight-bold has-text-black"
+      >
+        ALERT_TITLE_TYPE_4
+      </span>
+    </div>
+    <div>
+      ALERT_TITLE_DESCRIPTION_4
+    </div>
+  </ModalNotification>
+  <ModalNotification
+    date={"2017-05-04T16:55:00.000Z"}
+    id={86772642}
+    key="86772642"
+    removable={true}
+  >
+    <div
+      className="is-flex level file is-centered pl-20 pr-20"
+    >
+      <span
+        className="has-text-centered is-size-6 has-text-weight-bold has-text-black"
+      >
+        ALERT_TITLE_TYPE_1
+      </span>
+    </div>
+    <div>
+      ALERT_TITLE_DESCRIPTION_1
+    </div>
+  </ModalNotification>
+  <div
+    className="label"
+  >
+    OLDER
+  </div>
+  <ModalNotification
+    date={"2019-08-22T05:00:00.000Z"}
+    id={998}
+    key="998"
+    removable={false}
+  >
+    <div
+      className="is-flex level file is-centered pl-20 pr-20"
+    >
+      <div
+        className="mr-5"
+      >
+        <ForwardRef(SvgRainCloud) />
+      </div>
+      <span
+        className="has-text-centered is-size-6 has-text-weight-bold has-text-black"
+      >
+        ALERT_TITLE_TYPE_999
+      </span>
+    </div>
+    <div>
+      ALERT_TITLE_DESCRIPTION_999
+    </div>
+  </ModalNotification>
+</ModalLayout>
+`;

@@ -1,0 +1,87 @@
+@import "../../styles/variables";
+
+section.wifi-settings-modal {
+  padding-bottom: 1.5625rem !important;
+  padding-right: 0.5rem !important;
+  padding-left: 0.5rem !important;
+
+  .wifi-status-container {
+    height: 5rem;
+    border-bottom: 2px dashed $gray-border-default;
+
+    .icon-container {
+      align-content: center;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .wifi-status {
+      flex-direction: column;
+      flex-grow: 1;
+      justify-content: center;
+
+      h2,
+      span {
+        font-size: $font-size;
+        line-height: 1rem;
+        text-align: left;
+        letter-spacing: $letter-spacing-default;
+        color: $black;
+        text-transform: uppercase;
+
+        &.success {
+          color: $success-green;
+        }
+
+        &.warn {
+          color: $orange-default;
+        }
+
+        &.error {
+          color: $error-red;
+        }
+      }
+
+      h2 {
+        font-weight: $bold-text;
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  .wifi-networks-selector {
+    flex-direction: column;
+
+    .wifi-networks-container {
+      flex-grow: 1;
+      flex-direction: column;
+
+      .network-header {
+        h3 {
+          font-weight: $bold-text;
+          line-height: 1.1875rem;
+          letter-spacing: $letter-spacing-big;
+          margin-bottom: 0;
+          flex-grow: 1;
+        }
+
+        .btn-scan {
+          text-transform: uppercase;
+          font-weight: $bold-text;
+          font-size: $font-size-big;
+          line-height: 1.1875rem;
+          letter-spacing: $letter-spacing-default;
+          color: $orange-default;
+          cursor: pointer;
+        }
+      }
+    }
+
+    .wifi-networks-form {
+      .input-light {
+        margin: 0;
+        height: 3.3125rem;
+      }
+    }
+  }
+}

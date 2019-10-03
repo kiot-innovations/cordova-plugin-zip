@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ProgressBar component renders different sizes 1`] = `
+<progress
+  className="progress is-primary is-medium"
+  max="100"
+  value={0}
+/>
+`;
+
+exports[`ProgressBar component renders indefinite state if we pass value null 1`] = `
+<progress
+  className="progress is-primary is-small"
+  max="100"
+  value={null}
+/>
+`;
+
+exports[`ProgressBar component renders without crashing 1`] = `
+<progress
+  className="progress is-primary is-small"
+  max="100"
+  value={0}
+/>
+`;

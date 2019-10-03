@@ -1,0 +1,22 @@
+@import "../../styles/variables";
+
+.profile-label {
+  display: flex;
+  border-bottom: 1px $gray-text-alt dashed;
+  .text {
+    width: 90%;
+    h2:first-child{
+      color: $gray-text-alt3;
+    }
+
+    h2:last-child {
+      color: $black;
+    }
+  }
+  .edit {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}

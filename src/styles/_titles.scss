@@ -1,0 +1,19 @@
+@import "variables";
+
+.title h1 {
+  color: $white;
+  letter-spacing: $letter-spacing-default;
+  font-weight: $bold-text;
+}
+
+.subtitle h2 {
+  color: $gray-text-alt;
+  letter-spacing: $letter-spacing-default;
+  font-weight: $bold-text;
+}
+
+.dots h2 {
+  color: $black;
+  letter-spacing: $letter-spacing-default;
+  font-weight: $bold-text;
+}

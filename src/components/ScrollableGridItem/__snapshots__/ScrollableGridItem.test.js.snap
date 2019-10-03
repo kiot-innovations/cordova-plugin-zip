@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ScrollableGridItem component renders without crashing 1`] = `
+<div
+  className="scrollable-grid-item pl-30 pr-30 is-flex"
+  onClick={[Function]}
+>
+  <span
+    className="item-text is-flex"
+  />
+</div>
+`;

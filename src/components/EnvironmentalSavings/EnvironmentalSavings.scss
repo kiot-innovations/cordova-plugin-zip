@@ -1,0 +1,68 @@
+@import '../../styles/variables';
+
+.env-savings {
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  .icons-container {
+    width: 100%;
+    display: flex;
+    justify-items: center;
+    .actions {
+      flex: 1;
+      text-align: right;
+      svg:last-child {
+        margin-left: 0.5em;
+      }
+    }
+  }
+
+  .separator.is-dotted.is-gray-alt {
+    width: 85%;
+  }
+
+  &-tons {
+    font-weight: $bold-text;
+    color: $success-green;
+    margin-top: 1em;
+  }
+
+  &-desc1 {
+    color: $white;
+    font-weight: $bold-text;
+    letter-spacing: $letter-spacing-big;
+    margin-top: 1em;
+    white-space: nowrap;
+  }
+
+  &-desc2 {
+    letter-spacing: $letter-spacing-big;
+    white-space: nowrap;
+  }
+
+  &-item {
+    display: flex;
+    width: 90%;
+    align-items: center;
+    margin: 0.5em 0;
+
+    &-icon {
+      width: 4em;
+      text-align: center;
+      margin-right: 1em;
+    }
+
+    h1:first-child {
+      font-weight: $bold-text;
+      color: $white;
+      letter-spacing: $letter-spacing-big;
+      white-space: nowrap;
+    }
+
+    h1:last-child {
+      letter-spacing: $letter-spacing-default;
+      white-space: nowrap;
+    }
+  }
+}

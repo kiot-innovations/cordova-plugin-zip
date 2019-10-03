@@ -1,0 +1,21 @@
+{
+  "extends": ["eslint:recommended", "react-app", "plugin:prettier/recommended"],
+  "plugins": ["prettier"],
+  "rules": {
+    "prettier/prettier": "error",
+    "no-unused-vars": 2,
+    "eqeqeq": "error",
+    "no-console": [
+      "error",
+      {
+        "allow": ["info", "error", "warn"]
+      }
+    ],
+    "no-debugger": "error"
+  },
+  "globals": {
+    "mountWithProvider": true,
+    "nextTick": true,
+    "reducerTester": true
+  }
+}

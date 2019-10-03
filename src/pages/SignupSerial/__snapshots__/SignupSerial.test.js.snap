@@ -1,0 +1,131 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SignupSerial page redirects if we are logged in 1`] = `
+<Redirect
+  to="/"
+/>
+`;
+
+exports[`SignupSerial page redirects if we don't have a previous signup state 1`] = `
+<Redirect
+  to="/"
+/>
+`;
+
+exports[`SignupSerial page renders without crashing 1`] = `
+<section
+  className="signup-serial section has-bar full-min-height is-flex"
+>
+  <BackButtonBar
+    to="/sign-up"
+  />
+  <div
+    className="container is-spaced mt-0 has-text-centered subtitle is-6"
+  >
+    <img
+      alt="Welcome"
+      className="mb-25"
+      src="serial-icon.png"
+    />
+    <h2>
+      WELCOME
+       
+      random name
+      .
+    </h2>
+  </div>
+  <div
+    className="container is-spaced mt-0 dots title is-5"
+  >
+    <h2>
+      ---
+    </h2>
+  </div>
+  <div
+    className="container is-spaced mt-0 has-text-centered title is-6"
+  >
+    <h1>
+      MATCH_SERIAL
+    </h1>
+  </div>
+  <div
+    className="container is-spaced mt-20 has-text-centered"
+  >
+    <Link
+      className="link"
+      to={
+        Object {
+          "pathname": "/help/serial",
+          "state": Object {
+            "signUpState": Object {
+              "email": "email@email.com",
+              "name": "random name",
+              "phoneNumber": "12345123",
+            },
+          },
+        }
+      }
+    >
+      SERIAL_HELP
+    </Link>
+  </div>
+  <div
+    className="container is-flex mt-35"
+  >
+    <form
+      className="control"
+      onSubmit={[Function]}
+    >
+      <div
+        className="container columns full-height is-flex has-text-centered"
+      >
+        <div
+          className="column is-hidden-mobile"
+        />
+        <div
+          className="column"
+        >
+          <AsyncTextField
+            input={
+              Object {
+                "name": "serial",
+                "onBlur": [Function],
+                "onChange": [Function],
+                "onFocus": [Function],
+                "value": "",
+              }
+            }
+            loading={false}
+            meta={
+              Object {
+                "error": false,
+              }
+            }
+            placeholder="PLACEHOLDER_SERIAL"
+            type="text"
+          />
+        </div>
+        <div
+          className="column"
+        >
+          <div
+            className="field is-grouped is-grouped-centered"
+          >
+            <p
+              className="control"
+            >
+              <button
+                className="button is-primary"
+                disabled={false}
+                type="submit"
+              >
+                BTN_NEXT
+              </button>
+            </p>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</section>
+`;

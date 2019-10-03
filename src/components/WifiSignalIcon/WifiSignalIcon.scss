@@ -1,0 +1,13 @@
+@import "../../styles/variables";
+
+.wifi-icon {
+  rect {
+    &.has-signal {
+      fill: $success-green;
+    }
+
+    &.no-signal {
+      fill: $gray-text-alt;
+    }
+  }
+}

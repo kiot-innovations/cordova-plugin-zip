@@ -1,0 +1,60 @@
+@import "../../styles/variables";
+
+.main-nav-bar {
+  background-color: $navbar-black !important;
+  padding-top: 5px;
+  min-height: 3rem !important;
+
+  .header-container {
+    margin: 0 !important;
+    flex-grow: 1;
+    justify-content: space-between;
+
+    > div:first-of-type {
+      max-width: 50px;
+    }
+
+    .header {
+      align-items: center;
+      justify-content: center;
+      font-size: $font-size !important;
+      line-height: 0.75rem !important;
+
+      .navbar-header {
+        font-weight: $bold-text;
+        letter-spacing: $letter-spacing-big;
+        color: $white;
+        text-transform: uppercase;
+      }
+    }
+
+    .actions {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      padding-right: 22px;
+      padding-left: 0;
+      min-width: 72px;
+      max-width: 80px;
+
+      svg {
+        flex-grow: 1;
+      }
+    }
+
+    .alerts-bell {
+      position: relative;
+    }
+
+    .has-alerts {
+      width: 12px;
+      height: 12px;
+      top: 0;
+      right: 0;
+      border-radius: 100%;
+      border: 2px solid $white;
+      position: absolute;
+      background: $orange-default;
+    }
+  }
+}

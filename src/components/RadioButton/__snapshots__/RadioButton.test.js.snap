@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SwitchButton page renders without crashing 1`] = `
+<div
+  className="field radio-button"
+>
+  <input
+    className="is-checkradio is-medium"
+    id="radio-default"
+    type="radio"
+  />
+</div>
+`;

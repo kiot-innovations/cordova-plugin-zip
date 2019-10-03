@@ -1,0 +1,80 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BatteryStats Component renders without crashing 1`] = `
+<section>
+  <h6
+    className="is-uppercase is-size-7 has-text-centered"
+  >
+    Historical list of
+  </h6>
+  <h6
+    className="is-uppercase has-text-weight-bold has-text-centered has-text-white"
+  >
+    Power outages & energy used to power home
+  </h6>
+  <div
+    className="container mt-20"
+  >
+    <div
+      className="mb-10"
+      key="Sep, 09/20/19,-0"
+    >
+      <EnergyInfo
+        color="primary"
+        high={true}
+        icon={<PoweringIcon />}
+        text="08:54 hrs"
+        title="Sep, 09/20/19,"
+        unit="kWh"
+        value="5.7"
+        when="3h 21m"
+      />
+    </div>
+    <div
+      className="mb-10"
+      key="Sep, 09/21/19,-1"
+    >
+      <EnergyInfo
+        color="primary"
+        high={true}
+        icon={<PoweringIcon />}
+        text="08:54 hrs"
+        title="Sep, 09/21/19,"
+        unit="kWh"
+        value="43.2"
+        when="16h 3m"
+      />
+    </div>
+    <div
+      className="mb-10"
+      key="Sep, 09/23/19,-2"
+    >
+      <EnergyInfo
+        color="primary"
+        high={true}
+        icon={<PoweringIcon />}
+        text="08:54 hrs"
+        title="Sep, 09/23/19,"
+        unit="kWh"
+        value="3.0"
+        when="16h 3m"
+      />
+    </div>
+    <div
+      className="mb-10"
+      key="Sep, 09/26/19,-3"
+    >
+      <EnergyInfo
+        color="primary"
+        high={true}
+        icon={<PoweringIcon />}
+        text="08:54 hrs"
+        title="Sep, 09/26/19,"
+        unit="kWh"
+        value="23.2"
+        when="3h 2m"
+      />
+    </div>
+  </div>
+</section>
+`;

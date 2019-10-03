@@ -1,0 +1,56 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EnergyInfo Component renders without crashing 1`] = `
+<section
+  className="energy-info pl-20 pt-10 pr-10 pb-15 has-background-dark"
+>
+  <article
+    className="columns is-flex"
+  >
+    <div
+      className="column"
+    >
+      <span
+        className="is-size-7 has-text-white"
+      >
+        <strong
+          className="has-text-white mr-5"
+        >
+          Home
+        </strong>
+        <span
+          className=""
+        >
+          Consumption
+        </span>
+      </span>
+      <div
+        className="info mt-20 has-text-white is-size-4"
+      >
+        <span
+          className="is-size-3 mr-5 has-text-weight-light"
+        >
+          10.30
+        </span>
+        <span
+          className="has-text-white is-size-4"
+        >
+          kWh
+        </span>
+      </div>
+    </div>
+    <div
+      className="column has-text-centered is-flex level tile is-vertical pr-0"
+    >
+      <div
+        className="is-uppercase has-text-centered is-size-7"
+      >
+        today
+      </div>
+      <div>
+        <ForwardRef(SvgHomeWhite) />
+      </div>
+    </div>
+  </article>
+</section>
+`;

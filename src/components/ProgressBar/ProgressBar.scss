@@ -1,0 +1,7 @@
+@import "../../styles/variables";
+
+.progress {
+  &.is-small {
+    height: 0.3rem !important;
+  }
+}

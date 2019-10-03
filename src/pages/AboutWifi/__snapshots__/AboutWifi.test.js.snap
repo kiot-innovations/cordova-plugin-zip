@@ -1,0 +1,59 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AboutWifi page renders without crashing 1`] = `
+<ModalLayout
+  className="about-wifi"
+  title="ABOUT_WIFI"
+>
+  <ModalItem
+    className="fit-screen pl-10 pr-10"
+  >
+    <div
+      className="mb-30"
+    >
+      <h5
+        className="title is-7"
+      >
+        MY_WIFI_QUESTION1
+      </h5>
+      <p>
+        MY_WIFI_ANSWER1
+      </p>
+    </div>
+    <div
+      className="mb-30"
+    >
+      <h5
+        className="title is-7"
+      >
+        MY_WIFI_QUESTION2
+      </h5>
+      <div>
+        <ol>
+          <li>
+            MY_WIFI_ANSWER2_PT1
+          </li>
+          <li>
+            MY_WIFI_ANSWER2_PT2
+          </li>
+          <li>
+            MY_WIFI_ANSWER2_PT3
+          </li>
+        </ol>
+      </div>
+    </div>
+    <div
+      className="mb-30"
+    >
+      <h5
+        className="title is-7"
+      >
+        MY_WIFI_QUESTION3
+      </h5>
+      <p>
+        MY_WIFI_ANSWER3
+      </p>
+    </div>
+  </ModalItem>
+</ModalLayout>
+`;

@@ -1,0 +1,47 @@
+@import "../../styles/variables";
+
+.modal-notification {
+  letter-spacing: $letter-spacing-big;
+  padding: 0;
+
+  header {
+    border-bottom: 1px solid $gray-background-default;
+
+    .date,
+    .time {
+      color: $gray-text-alt2;
+      flex-grow: 1;
+      padding: 12px;
+      font-size: 12px;
+      line-height: 1rem;
+    }
+
+    .date {
+      font-weight: $bold-text;
+    }
+  }
+
+  .description {
+    font-size: 1rem;
+    color: $gray-text-alt2;
+  }
+
+  .modal-footer {
+    border-top: 1px solid $gray-background-default;
+    justify-content: center;
+
+    button {
+      height: auto !important;
+      border: none;
+      border-radius: 0;
+      background: $white;
+      color: $gray-text-alt;
+      flex-grow: 1;
+      padding: 16px;
+      font-size: 0.75rem;
+      font-weight: $bold-text;
+      text-transform: uppercase;
+      cursor: pointer;
+    }
+  }
+}

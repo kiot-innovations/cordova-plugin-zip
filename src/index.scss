@@ -1,0 +1,110 @@
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:300,400,700&display=swap");
+@import "./styles/variables";
+@import "bulma";
+@import "~bulma-switch/src/sass/index.sass";
+@import "~bulma-checkradio/src/sass/index.sass";
+@import "~bulma-calendar/src/sass/index.sass";
+@import "./styles/buttons";
+@import "./styles/form";
+@import "./styles/titles";
+@import "./styles/separator";
+
+$sizes: (0, 2, 3, 5, 8, 10, 15, 20, 25, 30, 35, 40, 45, 50, 75, 100);
+$positions: ("top", "left", "bottom", "right");
+
+// Use these as
+// <div class="mt-10">This div has top margin 10px</div>
+
+@each $size in $sizes {
+  @each $position in $positions {
+    .m#{str-slice($position, 0, 1)}-#{$size} {
+      margin-#{$position}: $size + px;
+    }
+    .p#{str-slice($position, 0, 1)}-#{$size} {
+      padding-#{$position}: $size + px;
+    }
+  }
+}
+
+* {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  height: 100%;
+}
+
+html,
+body {
+  margin: 0;
+  overflow-x: hidden;
+}
+
+body {
+  font-family: "Open Sans", sans-serif;
+  color: $gray-text-default;
+  line-height: 22px;
+  letter-spacing: 0.05em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: linear-gradient(180deg, #426078 0%, #0a1421 35%);
+}
+
+button {
+  outline: none;
+}
+
+.full-height {
+  height: 100%;
+}
+
+.full-min-height {
+  min-height: 100vh;
+}
+
+.section {
+  &.is-flex {
+    flex-direction: column;
+    padding-bottom: 0;
+  }
+
+  &.has-bar {
+    padding-top: 6rem;
+  }
+
+  .sub-section {
+    padding-right: 1.5rem;
+    padding-left: 1.5rem;
+  }
+}
+
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+.navbar-brand {
+  width: 100%;
+  display: flex;
+  padding: 0 1.5rem;
+  align-items: center;
+}
+
+a:hover {
+  color: $orange-dark;
+}
+
+.scale90{
+  transform: scale(0.9);
+}
+
+.scale85{
+  transform: scale(0.85);
+}
+
+.scale80{
+  transform: scale(0.8);
+}

@@ -1,0 +1,45 @@
+@import '../../styles/variables';
+
+.switch-button {
+  display: flex;
+  justify-items: center;
+  vertical-align: middle;
+  &-label {
+    display: block;
+    font-size: $font-size;
+    margin-right: 12px;
+    color: $gray-text-alt2;
+  }
+  .switch[type='checkbox'].is-rounded + label {
+    display: block;
+    width: auto;
+    padding-left: 3rem;
+
+    &::after,
+    &:after {
+      box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    }
+
+    span {
+      position: absolute;
+      top: 6px;
+      font-size: 9px;
+      line-height: 12px;
+      letter-spacing: 0.03em;
+      color: $gray-background-default;
+      text-transform: uppercase;
+
+      &.on {
+        left: 7px;
+      }
+
+      &.off {
+        right: 5px;
+      }
+    }
+  }
+  .column {
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
