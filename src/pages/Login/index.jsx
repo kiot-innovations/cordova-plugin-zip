@@ -3,11 +3,11 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Redirect, Link } from 'react-router-dom'
 import { useForm, useField } from 'react-final-form-hooks'
 import paths from '../Router/paths'
-import { performLogin } from '../../state/actions/auth'
 import Tabs from '../../components/Tabs'
 import Logo from '../../components/Logo'
 import TextField from '../../components/TextField'
 import PasswordToggle from '../../components/PasswordToggle'
+import { performLogin } from '../../state/actions/auth'
 import { trimObject } from '../../shared/trim'
 import { useI18n } from '../../shared/i18n'
 
@@ -43,6 +43,7 @@ function Login({ isLoggedIn = false, location }) {
   if (isLoggedIn) {
     return <Redirect to={paths.ROOT} />
   }
+
   const loginClassName = `button is-primary${submitting ? ' is-loading' : ''}`
 
   return (

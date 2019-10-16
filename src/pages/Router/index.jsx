@@ -3,7 +3,10 @@ import { useSelector } from 'react-redux'
 import { Route, Switch } from 'react-router-dom'
 import moment from 'moment-timezone'
 import paths from './paths'
+import Home from '../Home'
 import Login from '../Login'
+import NotFound from '../NotFound'
+import PrivateRoute from '../PrivateRoute'
 
 import { withTracker } from '../../shared/ga'
 
@@ -22,11 +25,22 @@ function RouterComponent() {
   return (
     <Router>
       <Switch>
-        <Route
+        <PrivateRoute
           exact
           path={paths.ROOT}
+          component={withTracker(Home)}
+          isLoggedIn={isLoggedIn}
+        />
+        <Route
+          exact
+          path={paths.LOGIN}
           component={withTracker(props => (
             <Login {...props} isLoggedIn={isLoggedIn} />
+          ))}
+        />
+        <Route
+          component={withTracker(props => (
+            <NotFound {...props} isLoggedIn={isLoggedIn} />
           ))}
         />
       </Switch>
