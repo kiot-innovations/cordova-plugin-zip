@@ -1,9 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`Faq page renders without crashing 1`] = `
-<ModalLayout
-  className="faq-modal"
-  hasBackButton={true}
-  title="FAQ"
-/>
-`;
