@@ -5,7 +5,7 @@ import { useForm, useField } from 'react-final-form-hooks'
 
 import Tabs from '@sunpower/tabs'
 import Logo from '@sunpower/sunpowerimage'
-import TextField from '../../components/TextField'
+import TextField from '@sunpower/textfield'
 import PasswordToggle from '../../components/PasswordToggle'
 
 import { performLogin } from '../../state/actions/auth'
