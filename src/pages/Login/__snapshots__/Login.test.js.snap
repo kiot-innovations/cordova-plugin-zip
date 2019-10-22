@@ -24,111 +24,111 @@ exports[`Login page redirects if we are logged in 1`] = `
 
 exports[`Login page renders without crashing 1`] = `
 <section
-  className="login section full-min-height is-flex"
+  className="login section full-min-height is-flex level"
 >
   <div
-    className="container mt-50"
+    className="container"
   >
     <Component />
-  </div>
-  <div
-    className="container mt-50"
-  >
-    <Component
-      tabs={
-        Array [
-          Object {
-            "active": true,
-            "title": "TAB_TITLE_LOGIN",
-            "url": "/login",
-          },
-        ]
-      }
-    />
-  </div>
-  <div
-    className="container is-flex mt-75"
-  >
-    <form
-      className="control"
-      onSubmit={[Function]}
+    <h1
+      className="is-uppercase has-text-white heading"
     >
-      <div
-        className="container columns full-height is-flex has-text-centered"
-      >
-        <div
-          className="column is-hidden-mobile"
+      EnergyLink Connect
+    </h1>
+  </div>
+  <form
+    className="control"
+    onSubmit={[Function]}
+  >
+    <div
+      className="container full-height has-text-centered pb-20"
+    >
+      <div>
+        <Component
+          autoComplete="email"
+          input={
+            Object {
+              "name": "username",
+              "onBlur": [Function],
+              "onChange": [Function],
+              "onFocus": [Function],
+              "value": "",
+            }
+          }
+          meta={Object {}}
+          placeholder="PLACEHOLDER_EMAIL"
+          type="email"
+        />
+        <PasswordToggle
+          autoComplete="current-password"
+          input={
+            Object {
+              "name": "password",
+              "onBlur": [Function],
+              "onChange": [Function],
+              "onFocus": [Function],
+              "value": "",
+            }
+          }
+          meta={Object {}}
+          placeholder="PLACEHOLDER_PASSWORD"
         />
         <div
-          className="column"
+          className="field is-dark"
         >
-          <Component
-            autoComplete="email"
-            input={
-              Object {
-                "name": "username",
-                "onBlur": [Function],
-                "onChange": [Function],
-                "onFocus": [Function],
-                "value": "",
-              }
-            }
-            meta={Object {}}
-            placeholder="PLACEHOLDER_EMAIL"
-            type="email"
-          />
-          <PasswordToggle
-            autoComplete="current-password"
-            input={
-              Object {
-                "name": "password",
-                "onBlur": [Function],
-                "onChange": [Function],
-                "onFocus": [Function],
-                "value": "",
-              }
-            }
-            meta={Object {}}
-            placeholder="PLACEHOLDER_PASSWORD"
-          />
-          <div
-            className="field is-dark"
+          <p
+            className="control rememeber-me"
           >
-            <p
-              className="control rememeber-me"
+            <label
+              className="checkbox"
             >
-              <label
-                className="checkbox"
-              >
-                <input
-                  name="isPersistent"
-                  onBlur={[Function]}
-                  onChange={[Function]}
-                  onFocus={[Function]}
-                  type="checkbox"
-                  value=""
-                />
-                REMEMBER_ME
-              </label>
-            </p>
-          </div>
+              <input
+                name="isPersistent"
+                onBlur={[Function]}
+                onChange={[Function]}
+                onFocus={[Function]}
+                type="checkbox"
+                value=""
+              />
+              REMEMBER_ME
+            </label>
+          </p>
         </div>
-        <div
-          className="column has-text-centered"
+      </div>
+      <div
+        className="has-text-centered forgot"
+      >
+        <Link
+          className="link"
+          to={
+            Object {
+              "pathname": "/forgot-password",
+            }
+          }
         >
+          FORGOT_PASSWORD
+        </Link>
+      </div>
+      <div>
+        <div
+          className="mb-30"
+        >
+          <p>
+            NO_ACCOUNT
+          </p>
           <Link
             className="link"
             to={
               Object {
-                "pathname": "/forgot-password",
+                "pathname": undefined,
               }
             }
           >
-            FORGOT_PASSWORD
+            GET_ASSISTANCE
           </Link>
         </div>
         <div
-          className="column"
+          className="mt-10"
         >
           <div
             className="field is-grouped is-grouped-centered"
@@ -147,7 +147,7 @@ exports[`Login page renders without crashing 1`] = `
           </div>
         </div>
       </div>
-    </form>
-  </div>
+    </div>
+  </form>
 </section>
 `;

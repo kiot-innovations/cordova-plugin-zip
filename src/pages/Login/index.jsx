@@ -1,9 +1,9 @@
 import React from 'react'
+import clsx from 'clsx'
 import { useDispatch, useSelector } from 'react-redux'
 import { Redirect, Link } from 'react-router-dom'
 import { useForm, useField } from 'react-final-form-hooks'
 
-import Tabs from '@sunpower/tabs'
 import Logo from '@sunpower/sunpowerimage'
 import TextField from '@sunpower/textfield'
 import PasswordToggle from '../../components/PasswordToggle'
@@ -46,60 +46,72 @@ function Login({ isLoggedIn = false, location }) {
     return <Redirect to={paths.ROOT} />
   }
 
-  const loginClassName = `button is-primary${submitting ? ' is-loading' : ''}`
+  const loginClassName = clsx('button', 'is-primary', {
+    'is-loading': submitting
+  })
+
+  const ROUTES = {
+    FORGOT: { pathname: paths.FORGOT_PASSWORD },
+    ASSISTANCE: { pathname: paths.GET_ASSISTANCE }
+  }
 
   return (
-    <section className="login section full-min-height is-flex">
-      <div className="container mt-50">
+    <section className="login section full-min-height is-flex level">
+      <div className="container">
         <Logo />
+        <h1 className="is-uppercase has-text-white heading">
+          EnergyLink Connect
+        </h1>
       </div>
-      <div className="container mt-50">
-        <Tabs
-          tabs={[
-            { title: t('TAB_TITLE_LOGIN'), active: true, url: paths.LOGIN }
-          ]}
-        />
-      </div>
-      <div className="container is-flex mt-75">
-        <form className="control" onSubmit={handleSubmit}>
-          <div className="container columns full-height is-flex has-text-centered">
-            <div className="column is-hidden-mobile"></div>
-            <div className="column">
-              <TextField
-                input={username.input}
-                meta={username.meta}
-                placeholder={t('PLACEHOLDER_EMAIL')}
-                type="email"
-                autoComplete="email"
-              />
-              <PasswordToggle
-                input={password.input}
-                meta={password.meta}
-                placeholder={t('PLACEHOLDER_PASSWORD')}
-                autoComplete="current-password"
-              />
-              <div className="field is-dark">
-                <p className="control rememeber-me">
-                  <label className="checkbox">
-                    <input {...isPersistent.input} type="checkbox" />
-                    {t('REMEMBER_ME')}
-                  </label>
-                </p>
-              </div>
+
+      <form className="control" onSubmit={handleSubmit}>
+        <div className="container full-height has-text-centered pb-20">
+          <div>
+            <TextField
+              input={username.input}
+              meta={username.meta}
+              placeholder={t('PLACEHOLDER_EMAIL')}
+              type="email"
+              autoComplete="email"
+            />
+            <PasswordToggle
+              input={password.input}
+              meta={password.meta}
+              placeholder={t('PLACEHOLDER_PASSWORD')}
+              autoComplete="current-password"
+            />
+            <div className="field is-dark">
+              <p className="control rememeber-me">
+                <label className="checkbox">
+                  <input {...isPersistent.input} type="checkbox" />
+                  {t('REMEMBER_ME')}
+                </label>
+              </p>
             </div>
-            <div className="column has-text-centered">
-              <Link className="link" to={{ pathname: paths.FORGOT_PASSWORD }}>
-                {t('FORGOT_PASSWORD')}
+          </div>
+
+          <div className="has-text-centered forgot">
+            <Link className="link" to={ROUTES.FORGOT}>
+              {t('FORGOT_PASSWORD')}
+            </Link>
+            {err && err.status ? (
+              <p id="error-message" className="error-message mt-20">
+                {t('WRONG_CREDENTIALS')}
+              </p>
+            ) : (
+              ''
+            )}
+          </div>
+
+          <div>
+            <div className="mb-30">
+              <p>{t('NO_ACCOUNT')}</p>
+              <Link className="link" to={ROUTES.ASSISTANCE}>
+                {t('GET_ASSISTANCE')}
               </Link>
-              {err && err.status ? (
-                <p id="error-message" className="error-message mt-20">
-                  {t('WRONG_CREDENTIALS')}
-                </p>
-              ) : (
-                ''
-              )}
             </div>
-            <div className="column">
+
+            <div className="mt-10">
               <div className="field is-grouped is-grouped-centered">
                 <p className="control">
                   <button
@@ -113,8 +125,8 @@ function Login({ isLoggedIn = false, location }) {
               </div>
             </div>
           </div>
-        </form>
-      </div>
+        </div>
+      </form>
     </section>
   )
 }
