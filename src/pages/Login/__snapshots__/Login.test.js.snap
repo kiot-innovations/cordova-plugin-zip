@@ -29,22 +29,18 @@ exports[`Login page renders without crashing 1`] = `
   <div
     className="container mt-50"
   >
-    <Logo />
+    <Component />
   </div>
   <div
     className="container mt-50"
   >
-    <Tabs
+    <Component
       tabs={
         Array [
           Object {
             "active": true,
             "title": "TAB_TITLE_LOGIN",
             "url": "/login",
-          },
-          Object {
-            "title": "TAB_TITLE_SIGNUP",
-            "url": "/sign-up",
           },
         ]
       }

@@ -1,7 +1,5 @@
 import { createAction } from 'redux-act'
 import { getUser } from './user'
-import { stopPollingAlerts } from './alerts'
-import { stopPollingEnergyData } from './energy-data'
 import { httpPost, httpDelete, httpGet } from '../../shared/fetch'
 import { trimObject } from '../../shared/trim'
 
@@ -65,8 +63,6 @@ export const logout = () => {
   return async (dispatch, getState) => {
     const state = getState()
     await httpDelete('/session', state)
-    dispatch(stopPollingAlerts())
-    dispatch(stopPollingEnergyData())
     dispatch(LOGOUT())
   }
 }

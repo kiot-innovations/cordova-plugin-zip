@@ -1,5 +1,0 @@
-export { ReactComponent as FacebookIcon } from './facebook-icon.svg'
-export { ReactComponent as TwitterIcon } from './twitter-icon.svg'
-export { ReactComponent as LinkedinIcon } from './linkedin-icon.svg'
-export { ReactComponent as YoutubeIcon } from './youtube-icon.svg'
-export { ReactComponent as InstagramIcon } from './instagram-icon.svg'
