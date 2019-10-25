@@ -1,9 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`LearningCenter page renders without crashing 1`] = `
-<ModalLayout
-  className="learning-center-modal"
-  hasBackButton={true}
-  title="LEARNING_CENTER"
-/>
-`;

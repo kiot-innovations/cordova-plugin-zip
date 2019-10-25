@@ -2,14 +2,16 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Redirect, Link } from 'react-router-dom'
 import { useForm, useField } from 'react-final-form-hooks'
-import paths from '../Router/paths'
-import { performLogin } from '../../state/actions/auth'
-import Tabs from '../../components/Tabs'
-import Logo from '../../components/Logo'
-import TextField from '../../components/TextField'
+
+import Tabs from '@sunpower/tabs'
+import Logo from '@sunpower/sunpowerimage'
+import TextField from '@sunpower/textfield'
 import PasswordToggle from '../../components/PasswordToggle'
+
+import { performLogin } from '../../state/actions/auth'
 import { trimObject } from '../../shared/trim'
 import { useI18n } from '../../shared/i18n'
+import paths from '../Router/paths'
 
 import './Login.scss'
 
@@ -43,6 +45,7 @@ function Login({ isLoggedIn = false, location }) {
   if (isLoggedIn) {
     return <Redirect to={paths.ROOT} />
   }
+
   const loginClassName = `button is-primary${submitting ? ' is-loading' : ''}`
 
   return (
@@ -53,8 +56,7 @@ function Login({ isLoggedIn = false, location }) {
       <div className="container mt-50">
         <Tabs
           tabs={[
-            { title: t('TAB_TITLE_LOGIN'), active: true, url: paths.LOGIN },
-            { title: t('TAB_TITLE_SIGNUP'), url: paths.SIGNUP }
+            { title: t('TAB_TITLE_LOGIN'), active: true, url: paths.LOGIN }
           ]}
         />
       </div>

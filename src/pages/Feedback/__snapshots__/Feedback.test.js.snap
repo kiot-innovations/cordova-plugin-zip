@@ -1,9 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`Feedback page renders without crashing 1`] = `
-<ModalLayout
-  className="feedback-modal"
-  hasBackButton={true}
-  title="GIVE_US_FEEDBACK"
-/>
-`;

@@ -1,9 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`SubmitARequest page renders without crashing 1`] = `
-<ModalLayout
-  className="submit-a-request-modal"
-  hasBackButton={true}
-  title="SUBMIT_A_REQUEST"
-/>
-`;

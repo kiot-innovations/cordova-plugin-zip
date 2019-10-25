@@ -8,7 +8,7 @@ import ReactGA from 'react-ga'
 import { configureStore } from './state/store'
 import Router from './pages/Router'
 
-import './index.scss'
+import '@sunpower/theme-dark'
 
 const { store, persistor } = configureStore({})
 

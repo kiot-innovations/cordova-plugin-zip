@@ -1,9 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`Tabs component renders without crashing 1`] = `
-<div
-  className="tabs container is-centered"
->
-  <ul />
-</div>
-`;
