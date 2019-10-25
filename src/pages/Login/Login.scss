@@ -1,6 +1,15 @@
 @import "@sunpower/theme-dark/styles/_variables.scss";
 
 .login {
+  h1.heading {
+    font-size: 14px;
+  }
+
+  .forgot {
+    margin-bottom: 20%;
+    margin-top: 30px;
+  }
+
   .container {
     flex-grow: 0;
     &:last-child {

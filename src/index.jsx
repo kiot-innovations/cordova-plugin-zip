@@ -13,8 +13,12 @@ import '@sunpower/theme-dark'
 const { store, persistor } = configureStore({})
 
 const GAproperty = process.env.REACT_APP_IS_MOBILE
-  ? (process.env.NODE_ENV === 'production' ? 'UA-144696103-4' : 'UA-144696103-4') // eslint-disable-line
-  : (process.env.NODE_ENV === 'production' ? 'UA-144696103-1' : 'UA-144696103-2') // eslint-disable-line
+  ? process.env.NODE_ENV === 'production'
+    ? 'UA-150756685-2'
+    : 'UA-150756685-1' // eslint-disable-line
+  : process.env.NODE_ENV === 'production'
+  ? 'UA-150756685-2'
+  : 'UA-150756685-1' // eslint-disable-line
 
 ReactGA.initialize(GAproperty)
 ReactGA.set({ checkProtocolTask: null })
