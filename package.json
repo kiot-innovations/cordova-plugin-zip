@@ -1,6 +1,6 @@
 {
   "name": "sunpower-cm2",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "SunPower Connect",
   "author": "SunPower Corporation",
   "private": true,
@@ -14,10 +14,10 @@
     "build-storybook": "build-storybook -s public"
   },
   "dependencies": {
-    "@sunpower/tabs": "^0.1.0",
-    "@sunpower/textfield": "^0.1.0",
-    "@sunpower/theme-dark": "^0.1.0",
-    "@sunpower/sunpowerimage": "^0.1.0",
+    "@sunpower/tabs": "^0.1.1",
+    "@sunpower/textfield": "^0.1.1",
+    "@sunpower/theme-dark": "^0.1.1",
+    "@sunpower/sunpowerimage": "^0.1.1",
     "bulma": "^0.7.5",
     "bulma-calendar": "github:leszekszpunar/bulma-calendar",
     "bulma-checkradio": "^1.1.1",
