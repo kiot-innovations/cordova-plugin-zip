@@ -5,8 +5,8 @@ import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
 import { PersistGate } from 'redux-persist/integration/react'
 import ReactGA from 'react-ga'
+import Router from './routes'
 import { configureStore } from './state/store'
-import Router from './pages/Router'
 
 import '@sunpower/theme-dark'
 
