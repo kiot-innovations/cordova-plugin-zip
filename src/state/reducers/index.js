@@ -14,7 +14,7 @@ export default combineReducers({
       key: 'user',
       storage,
       version: storesVersions.userReducer,
-      blacklist: ['err']
+      blacklist: ['err', 'isAuthenticating']
     },
     userReducer
   ),

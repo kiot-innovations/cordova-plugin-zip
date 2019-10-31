@@ -29,7 +29,7 @@ function AppRoutes() {
     const authOb = pathOr({ userId: -1 }, lookup, state)
     return {
       isAuthenticated: gte(authOb.userId, 0),
-      isAuthenticating: authOb.isAuthenticating
+      isAuthenticating: pathOr(false, ['user'], state)
     }
   })
 

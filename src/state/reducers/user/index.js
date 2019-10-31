@@ -18,20 +18,38 @@ import {
 } from '../../actions/user'
 
 const initialState = {
-  auth: { isAuthenticating: true },
+  auth: {},
   data: {},
   isUpdatingUser: false
 }
 
 export const userReducer = createReducer(
   {
-    [LOGIN_INIT]: state => ({ ...state, auth: {} }),
-    [LOGIN_SUCCESS]: (state, payload) => ({ ...state, auth: payload }),
-    [LOGIN_ERROR]: (state, payload) => ({ ...state, err: payload }),
+    [LOGIN_INIT]: state => ({
+      ...state,
+      auth: {},
+      isAuthenticating: true
+    }),
+    [LOGIN_SUCCESS]: (state, payload) => ({
+      ...state,
+      auth: { ...payload },
+      isAuthenticating: false
+    }),
+    [LOGIN_ERROR]: (state, payload) => ({
+      ...state,
+      err: { ...payload },
+      isAuthenticating: false
+    }),
     [GET_USER_INIT]: state => ({ ...state, data: {} }),
-    [GET_USER_SUCCESS]: (state, payload) => ({ ...state, data: payload }),
+    [GET_USER_SUCCESS]: (state, payload) => ({
+      ...state,
+      data: payload
+    }),
     [UPDATE_USER_INIT]: state => ({ ...state, isUpdatingUser: true }),
-    [UPDATE_USER_SUCCESS]: state => ({ ...state, isUpdatingUser: false }),
+    [UPDATE_USER_SUCCESS]: state => ({
+      ...state,
+      isUpdatingUser: false
+    }),
     [UPDATE_USER_ERROR]: state => ({ ...state, isUpdatingUser: false }),
     [LOGOUT]: () => initialState,
     [VALIDATE_SESSION_INIT]: state => ({

@@ -33,7 +33,7 @@ function validate(values, t) {
 function Login() {
   const t = useI18n()
   const dispatch = useDispatch()
-  const { form, handleSubmit, submitting } = useForm({
+  const { form, handleSubmit } = useForm({
     onSubmit: onSubmit(dispatch),
     validate: values => validate(values, t)
   })
@@ -41,6 +41,7 @@ function Login() {
   const password = useField('password', form)
   const isPersistent = useField('isPersistent', form)
   const err = useSelector(state => state.user.err)
+  const submitting = useSelector(state => state.user.isAuthenticating)
 
   const loginClassName = clsx('button', 'is-primary', {
     'is-loading': submitting
@@ -113,7 +114,7 @@ function Login() {
                   <button
                     className={loginClassName}
                     type="submit"
-                    disabled={submitting}
+                    disabled={!!submitting}
                   >
                     {t('BTN_LOGIN')}
                   </button>

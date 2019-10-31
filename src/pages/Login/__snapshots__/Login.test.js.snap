@@ -16,136 +16,6 @@ exports[`Login page displays an error if we submit without filling the username 
 </span>
 `;
 
-exports[`Login page redirects if we are logged in 1`] = `
-<section
-  className="login section full-min-height is-flex level"
->
-  <div
-    className="container"
-  >
-    <Component />
-    <h1
-      className="is-uppercase has-text-white heading"
-    >
-      EnergyLink Connect
-    </h1>
-  </div>
-  <form
-    className="control"
-    onSubmit={[Function]}
-  >
-    <div
-      className="container full-height has-text-centered pb-20"
-    >
-      <div>
-        <Component
-          autoComplete="email"
-          input={
-            Object {
-              "name": "username",
-              "onBlur": [Function],
-              "onChange": [Function],
-              "onFocus": [Function],
-              "value": "",
-            }
-          }
-          meta={Object {}}
-          placeholder="PLACEHOLDER_EMAIL"
-          type="email"
-        />
-        <PasswordToggle
-          autoComplete="current-password"
-          input={
-            Object {
-              "name": "password",
-              "onBlur": [Function],
-              "onChange": [Function],
-              "onFocus": [Function],
-              "value": "",
-            }
-          }
-          meta={Object {}}
-          placeholder="PLACEHOLDER_PASSWORD"
-        />
-        <div
-          className="field is-dark"
-        >
-          <p
-            className="control rememeber-me"
-          >
-            <label
-              className="checkbox"
-            >
-              <input
-                name="isPersistent"
-                onBlur={[Function]}
-                onChange={[Function]}
-                onFocus={[Function]}
-                type="checkbox"
-                value=""
-              />
-              REMEMBER_ME
-            </label>
-          </p>
-        </div>
-      </div>
-      <div
-        className="has-text-centered forgot"
-      >
-        <Link
-          className="link"
-          to={
-            Object {
-              "pathname": "/forgot",
-            }
-          }
-        >
-          FORGOT_PASSWORD
-        </Link>
-      </div>
-      <div>
-        <div
-          className="mb-30"
-        >
-          <p>
-            NO_ACCOUNT
-          </p>
-          <Link
-            className="link"
-            to={
-              Object {
-                "pathname": "/assistance",
-              }
-            }
-          >
-            GET_ASSISTANCE
-          </Link>
-        </div>
-        <div
-          className="mt-10"
-        >
-          <div
-            className="field is-grouped is-grouped-centered"
-          >
-            <p
-              className="control"
-            >
-              <button
-                className="button is-primary"
-                disabled={false}
-                type="submit"
-              >
-                BTN_LOGIN
-              </button>
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </form>
-</section>
-`;
-
 exports[`Login page renders without crashing 1`] = `
 <section
   className="login section full-min-height is-flex level"
@@ -261,8 +131,8 @@ exports[`Login page renders without crashing 1`] = `
               className="control"
             >
               <button
-                className="button is-primary"
-                disabled={false}
+                className="button is-primary is-loading"
+                disabled={true}
                 type="submit"
               >
                 BTN_LOGIN
