@@ -9,14 +9,16 @@ function Layout(props) {
   return (
     <>
       <Header />
-      <Switch>
-        <AppliedRoute
-          exact
-          path="/"
-          component={withTracker(Home)}
-          props={props}
-        />
-      </Switch>
+      <div className="ml-10 mr-10 mt-10 mb-10">
+        <Switch>
+          <AppliedRoute
+            exact
+            path="/"
+            component={withTracker(Home)}
+            props={props}
+          />
+        </Switch>
+      </div>
     </>
   )
 }
