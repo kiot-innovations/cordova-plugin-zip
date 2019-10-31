@@ -7,4 +7,10 @@ describe('Header Component', () => {
     const component = shallow(<Header />)
     expect(component).toMatchSnapshot()
   })
+
+  test('Renders text instead of logo', () => {
+    const component = shallow(<Header text="ADDRESS" />)
+    expect(component.find('.text').text()).toBe('ADDRESS')
+    expect(component).toMatchSnapshot()
+  })
 })

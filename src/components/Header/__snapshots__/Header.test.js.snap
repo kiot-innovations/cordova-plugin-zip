@@ -5,8 +5,24 @@ exports[`Header Component Renders correctly 1`] = `
   className="header is-flex level"
 >
   <span
-    className="sp-menu"
+    className="sp sp-menu"
   />
   <Component />
+</header>
+`;
+
+exports[`Header Component Renders text instead of logo 1`] = `
+<header
+  className="header is-flex level"
+>
+  <span
+    className="sp sp-menu"
+  />
+  <span
+    className="text has-text-white"
+    title="ADDRESS"
+  >
+    ADDRESS
+  </span>
 </header>
 `;
