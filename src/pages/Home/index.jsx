@@ -2,6 +2,7 @@ import React from 'react'
 import Textfield from '@sunpower/textfield'
 import { useI18n } from 'shared/i18n'
 import './Home.scss'
+import { paths } from 'routes/paths'
 
 function Home() {
   const t = useI18n()
@@ -17,7 +18,7 @@ function Home() {
       </div>
       <section>
         <p>{t('CS_NOT_FOUND')}</p>
-        <a className="link is-uppercase">
+        <a className="link is-uppercase" href={paths.PROTECTED.CREATE_SITE}>
           <small>{t('CREATE_SITE')}</small>
         </a>
       </section>

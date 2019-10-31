@@ -5,5 +5,6 @@ export const paths = {
   },
   LOGIN: '/login',
   FORGOT_PASSWORD: '/forgot',
-  GET_ASSISTANCE: '/assistance'
+  GET_ASSISTANCE: '/assistance',
+  CREATE_SITE: '/create-site'
 }
