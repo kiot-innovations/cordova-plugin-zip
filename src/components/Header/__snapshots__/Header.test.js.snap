@@ -7,7 +7,7 @@ exports[`Header Component Renders correctly 1`] = `
   <span
     className="sp sp-menu"
   />
-  <Component />
+  <SunPowerImage />
 </header>
 `;
 

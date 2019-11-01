@@ -8,21 +8,18 @@ exports[`Home component render correctly 1`] = `
     className="section"
   >
     <span
-      className="sp-map has-text-white"
+      className="sp sp-map has-text-white"
     />
     <h6
       className="is-uppercase mt-20 mb-20"
     >
       SELECT_SITE
     </h6>
-    <form
-      action=""
-    >
-      <Component
-        input={Object {}}
-        meta={Object {}}
-      />
-    </form>
+    <SelectField
+      notFoundText="NOT_FOUND"
+      onSearch={[Function]}
+      onSelect={[Function]}
+    />
   </div>
   <section>
     <p>

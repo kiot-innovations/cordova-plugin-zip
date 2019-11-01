@@ -14,5 +14,6 @@
   "WRONG_CREDENTIALS": "Wrong username or password",
   "SELECT_SITE": "Select customer site",
   "CS_NOT_FOUND": "Can’t find the customer’s site?",
-  "CREATE_SITE": "Create site"
+  "CREATE_SITE": "Create site",
+  "NOT_FOUND": "Nothing found"
 }
