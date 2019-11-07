@@ -5,14 +5,12 @@ import { linkTo } from '@storybook/addon-links'
 
 const Welcome = () => (
   <div className="card has-background-white has-text-black">
-    <p className>Here you can find stories regarding ELH Components.</p>
+    <p className>Here you can find stories regarding CM2 Components.</p>
 
-    <button className="button is-info " onClick={linkTo('Reports')}>
-      clic here to see a Report
+    <button className="button is-info " onClick={linkTo('Header')}>
+      Click here to see a Header
     </button>
   </div>
 )
 
-storiesOf('1/Welcome', module).add('to ELH Playground', () => (
-  <Welcome showApp={linkTo('Button')} />
-))
+storiesOf('1/Welcome', module).add('to CM2 Playground', () => <Welcome />)

@@ -3,7 +3,7 @@ import { addParameters } from '@storybook/react';
 import { withProvider } from './decorators';
 import suntheme from './suntheme';
 
-import '../src/index.scss';
+import '@sunpower/theme-dark';
 
 addParameters({
   options: {

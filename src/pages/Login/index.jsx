@@ -1,17 +1,17 @@
 import React from 'react'
 import clsx from 'clsx'
 import { useDispatch, useSelector } from 'react-redux'
-import { Redirect, Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { useForm, useField } from 'react-final-form-hooks'
 
 import Logo from '@sunpower/sunpowerimage'
 import TextField from '@sunpower/textfield'
-import PasswordToggle from '../../components/PasswordToggle'
+import PasswordToggle from 'components/PasswordToggle'
 
-import { performLogin } from '../../state/actions/auth'
-import { trimObject } from '../../shared/trim'
-import { useI18n } from '../../shared/i18n'
-import paths from '../Router/paths'
+import { performLogin } from 'state/actions/auth'
+import { trimObject } from 'shared/trim'
+import { useI18n } from 'shared/i18n'
+import { paths } from 'routes/paths'
 
 import './Login.scss'
 
@@ -30,10 +30,10 @@ function validate(values, t) {
   return errors
 }
 
-function Login({ isLoggedIn = false, location }) {
+function Login() {
   const t = useI18n()
   const dispatch = useDispatch()
-  const { form, handleSubmit, submitting } = useForm({
+  const { form, handleSubmit } = useForm({
     onSubmit: onSubmit(dispatch),
     validate: values => validate(values, t)
   })
@@ -41,10 +41,7 @@ function Login({ isLoggedIn = false, location }) {
   const password = useField('password', form)
   const isPersistent = useField('isPersistent', form)
   const err = useSelector(state => state.user.err)
-
-  if (isLoggedIn) {
-    return <Redirect to={paths.ROOT} />
-  }
+  const submitting = useSelector(state => state.user.isAuthenticating)
 
   const loginClassName = clsx('button', 'is-primary', {
     'is-loading': submitting
@@ -117,7 +114,7 @@ function Login({ isLoggedIn = false, location }) {
                   <button
                     className={loginClassName}
                     type="submit"
-                    disabled={submitting}
+                    disabled={!!submitting}
                   >
                     {t('BTN_LOGIN')}
                   </button>

@@ -26,11 +26,6 @@ describe('Login page', () => {
     expect(component).toMatchSnapshot()
   })
 
-  it('redirects if we are logged in', () => {
-    const component = shallow(<Login isLoggedIn="true" />)
-    expect(component).toMatchSnapshot()
-  })
-
   it('displays an error if we submit without filling', () => {
     const { component } = mountWithProvider(<Login />)({})
 

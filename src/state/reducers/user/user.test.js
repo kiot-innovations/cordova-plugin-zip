@@ -11,7 +11,8 @@ describe('User reducer', () => {
 
   it('empties the auth state when LOGIN_INIT action is fired', () => {
     reducerTest({ auth: { some: 'existing data' } }, authActions.LOGIN_INIT(), {
-      auth: {}
+      auth: {},
+      isAuthenticating: true
     })
   })
 
@@ -27,7 +28,7 @@ describe('User reducer', () => {
     reducerTest(
       { more: 'other data', auth: 'existing data' },
       authActions.LOGIN_SUCCESS(userData),
-      { more: 'other data', auth: userData }
+      { more: 'other data', auth: userData, isAuthenticating: false }
     )
   })
 
@@ -41,7 +42,7 @@ describe('User reducer', () => {
     reducerTest(
       { more: 'other data', err: 'existing data' },
       authActions.LOGIN_ERROR(userData),
-      { more: 'other data', err: userData }
+      { more: 'other data', err: userData, isAuthenticating: false }
     )
   })
 

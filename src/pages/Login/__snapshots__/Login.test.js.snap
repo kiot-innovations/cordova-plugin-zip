@@ -16,12 +16,6 @@ exports[`Login page displays an error if we submit without filling the username 
 </span>
 `;
 
-exports[`Login page redirects if we are logged in 1`] = `
-<Redirect
-  to="/"
-/>
-`;
-
 exports[`Login page renders without crashing 1`] = `
 <section
   className="login section full-min-height is-flex level"
@@ -102,7 +96,7 @@ exports[`Login page renders without crashing 1`] = `
           className="link"
           to={
             Object {
-              "pathname": "/forgot-password",
+              "pathname": "/forgot",
             }
           }
         >
@@ -120,7 +114,7 @@ exports[`Login page renders without crashing 1`] = `
             className="link"
             to={
               Object {
-                "pathname": undefined,
+                "pathname": "/assistance",
               }
             }
           >
@@ -137,8 +131,8 @@ exports[`Login page renders without crashing 1`] = `
               className="control"
             >
               <button
-                className="button is-primary"
-                disabled={false}
+                className="button is-primary is-loading"
+                disabled={true}
                 type="submit"
               >
                 BTN_LOGIN

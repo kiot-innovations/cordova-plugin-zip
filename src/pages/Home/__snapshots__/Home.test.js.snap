@@ -1,0 +1,40 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Home component render correctly 1`] = `
+<section
+  className="home is-flex has-text-centered"
+>
+  <div
+    className="section"
+  >
+    <span
+      className="sp-map has-text-white"
+    />
+    <h6
+      className="is-uppercase mt-20 mb-20"
+    >
+      SELECT_SITE
+    </h6>
+    <form
+      action=""
+    >
+      <Component
+        input={Object {}}
+        meta={Object {}}
+      />
+    </form>
+  </div>
+  <section>
+    <p>
+      CS_NOT_FOUND
+    </p>
+    <a
+      className="link is-uppercase"
+    >
+      <small>
+        CREATE_SITE
+      </small>
+    </a>
+  </section>
+</section>
+`;
