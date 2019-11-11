@@ -5,3 +5,8 @@ export const trimObject = obj => {
     }))
     .reduce((acc, kv) => ({ ...acc, ...kv }), {})
 }
+
+export const trimString = (str, count, suffix = '...') =>
+  str != null && str !== '' && str.length > count
+    ? `${str.trim().substring(0, count)}${suffix}`
+    : str

@@ -4,14 +4,16 @@
   background: $black;
   height: 60px;
   position: relative;
-  svg {
+  .text, svg {
     margin: auto;
   }
-  span {
+  .text {
+    font-size: $font-size-medium;
+  }
+  .sp {
     font-size: 22px;
     position: absolute;
     padding: 18px;
-    color: $white;
   }
 }
 

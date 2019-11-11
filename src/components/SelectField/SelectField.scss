@@ -1,0 +1,11 @@
+.field {
+  & > .search__menu {
+    margin-top: -2px;
+    border-top: 1px solid rgba(218, 222, 225, 0.386);
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+  }
+  .search__control {
+    height: 46px;
+  }
+}
