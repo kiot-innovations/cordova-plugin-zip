@@ -23,7 +23,7 @@ exports[`Login page renders without crashing 1`] = `
   <div
     className="container"
   >
-    <SunPowerImage />
+    <Component />
     <h1
       className="is-uppercase has-text-white heading"
     >

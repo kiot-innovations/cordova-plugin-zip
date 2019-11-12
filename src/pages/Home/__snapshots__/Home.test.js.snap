@@ -25,13 +25,14 @@ exports[`Home component render correctly 1`] = `
     <p>
       CS_NOT_FOUND
     </p>
-    <a
+    <Link
       className="link is-uppercase"
+      to="/create-site"
     >
       <small>
         CREATE_SITE
       </small>
-    </a>
+    </Link>
   </section>
 </section>
 `;

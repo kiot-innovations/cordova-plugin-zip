@@ -1,4 +1,5 @@
 import React from 'react'
+import clsx from 'clsx'
 import { components } from 'react-select'
 import AsyncSelect from 'react-select/async'
 
@@ -26,7 +27,8 @@ const Option = props => (
 const selectComponents = { DropdownIndicator, IndicatorSeparator, Option }
 
 function SelectField(props) {
-  const { notFoundText, onSearch, onSelect } = props
+  const { notFoundText, onSearch, onSelect, className, autoFocus } = props
+  const classes = clsx('field', className)
 
   return (
     <AsyncSelect
@@ -34,9 +36,9 @@ function SelectField(props) {
       placeholder=""
       onChange={onSelect}
       loadOptions={onSearch}
-      className="field"
+      className={classes}
       classNamePrefix="search"
-      autoFocus
+      autoFocus={autoFocus}
       components={selectComponents}
       noOptionsMessage={() => notFoundText}
       theme={theme => ({
