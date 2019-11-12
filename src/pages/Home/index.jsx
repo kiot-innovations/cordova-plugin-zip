@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import { useI18n } from 'shared/i18n'
 import { paths } from 'routes/paths'
 import SelectField from 'components/SelectField'
@@ -36,9 +37,9 @@ function Home() {
       </div>
       <section>
         <p>{t('CS_NOT_FOUND')}</p>
-        <a className="link is-uppercase" href={paths.PROTECTED.CREATE_SITE}>
+        <Link to={paths.PROTECTED.CREATE_SITE} className="link is-uppercase">
           <small>{t('CREATE_SITE')}</small>
-        </a>
+        </Link>
       </section>
     </section>
   )

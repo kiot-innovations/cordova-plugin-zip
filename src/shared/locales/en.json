@@ -15,5 +15,13 @@
   "SELECT_SITE": "Select customer site",
   "CS_NOT_FOUND": "Can’t find the customer’s site?",
   "CREATE_SITE": "Create site",
-  "NOT_FOUND": "Nothing found"
+  "NOT_FOUND": "Nothing found",
+  "SITE_NAME": "Site Name",
+  "ADDRESS": "Address",
+  "APT": "Apt or Unit No.",
+  "CITY": "City",
+  "STATE": "State",
+  "POSTAL_CODE": "Postal Code",
+  "CREATE": "Create",
+  "CANCEL": "Cancel"
 }
