@@ -18,7 +18,7 @@ exports[`Login page displays an error if we submit without filling the username 
 
 exports[`Login page renders without crashing 1`] = `
 <section
-  className="login section full-min-height is-flex level"
+  className="login section full-min-height is-flex space-around pt-0"
 >
   <div
     className="container"
