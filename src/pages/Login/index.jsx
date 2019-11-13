@@ -53,7 +53,7 @@ function Login() {
   }
 
   return (
-    <section className="login section full-min-height is-flex level">
+    <section className="login section full-min-height is-flex space-around pt-0">
       <div className="container">
         <Logo />
         <h1 className="is-uppercase has-text-white heading">

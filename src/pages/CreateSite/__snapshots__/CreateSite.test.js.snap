@@ -5,12 +5,11 @@ exports[`CreateSite component render correctly 1`] = `
   className="is-flex tile is-vertical section pt-0"
 >
   <h1
-    className="has-text-centered is-uppercase has-text-weight-bold mb-50 pb-20"
+    className="has-text-centered is-uppercase has-text-weight-bold mb-50 pb-15"
   >
     CREATE_SITE
   </h1>
   <form
-    className="mt-20 pt-20"
     onSubmit={[Function]}
   >
     <article
