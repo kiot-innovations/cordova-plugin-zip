@@ -24,11 +24,11 @@ function CreateSite() {
 
   return (
     <section className="is-flex tile is-vertical section pt-0">
-      <h1 className="has-text-centered is-uppercase has-text-weight-bold mb-50 pb-15">
+      <h1 className="has-text-centered is-uppercase has-text-weight-bold mb-50 pb-20">
         {t('CREATE_SITE')}
       </h1>
 
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className="mt-20 pt-20">
         <article className="mb-15">
           <label htmlFor="siteName" className="has-text-white">
             {t('SITE_NAME')}
