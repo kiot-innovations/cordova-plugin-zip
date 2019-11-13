@@ -2,7 +2,9 @@
 
 exports[`Layout component render correctly 1`] = `
 <Fragment>
-  <Header />
+  <Header
+    onClick={[Function]}
+  />
   <div
     className="ml-10 mr-10 mt-10 mb-10"
   >
@@ -17,6 +19,12 @@ exports[`Layout component render correctly 1`] = `
         component={[Function]}
         exact={true}
         path="/create-site"
+        props={Object {}}
+      />
+      <_default
+        component={[Function]}
+        exact={true}
+        path="/menu"
         props={Object {}}
       />
     </Switch>

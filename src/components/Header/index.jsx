@@ -7,10 +7,10 @@ import './Header.scss'
 
 const getCount = window => (window.innerWidth > 375 ? 35 : 30)
 
-function Header({ text }) {
+function Header({ text, onClick }) {
   return (
     <header className="header is-flex level">
-      <span className="sp sp-menu" />
+      <span className="sp sp-menu" onClick={onClick} role="button" />
       {either(
         isNil(text),
         <Logo />,

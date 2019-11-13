@@ -23,5 +23,10 @@
   "STATE": "State",
   "POSTAL_CODE": "Postal Code",
   "CREATE": "Create",
-  "CANCEL": "Cancel"
+  "CANCEL": "Cancel",
+  "LOGOUT": "Logout",
+  "CHANGE_ADDRESS": "Change Address",
+  "MANAGE_FIRMWARES": "Manage Firmwares",
+  "VERSION_INFORMATION": "Version Information",
+  "GIVE_FEEDBACK": "Give us Feedback"
 }
