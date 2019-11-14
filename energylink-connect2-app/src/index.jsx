@@ -22,11 +22,20 @@ const GAproperty = process.env.REACT_APP_IS_MOBILE
 
 ReactGA.initialize(GAproperty)
 ReactGA.set({ checkProtocolTask: null })
-ReactDOM.render(
-  <Provider store={store}>
-    <PersistGate persistor={persistor}>
-      <Router />
-    </PersistGate>
-  </Provider>,
-  document.getElementById('root')
-)
+
+const startApp = () => {
+  ReactDOM.render(
+    <Provider store={store}>
+      <PersistGate persistor={persistor}>
+        <Router />
+      </PersistGate>
+    </Provider>,
+    document.getElementById('root')
+  )
+}
+
+if(!window.cordova) {
+  startApp()
+} else {
+  document.addEventListener('deviceready', startApp, false)
+}

@@ -1,99 +1,31 @@
 {
-  "name": "sunpower-cm2",
-  "version": "0.1.1",
-  "description": "SunPower Connect",
-  "author": "SunPower Corporation",
-  "private": true,
+  "name": "com.sunpower.elc.v2",
+  "displayName": "energylinkConnect2",
+  "version": "1.0.0",
+  "description": "A sample Apache Cordova application that responds to the deviceready event.",
+  "main": "index.js",
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "build.ci": "eslint src && cross-env CI=true react-scripts test && cross-env NODE_ENV=production react-scripts build",
-    "test": "cross-env SKIP_PREFLIGHT_CHECK=true react-scripts test",
-    "lint": "eslint --fix src",
-    "storybook": "start-storybook -p 9009 -s public",
-    "build-storybook": "build-storybook -s public"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "keywords": [
+    "ecosystem:cordova"
+  ],
+  "author": "Apache Cordova Team",
+  "license": "Apache-2.0",
   "dependencies": {
-    "@sunpower/sunpowerimage": "^0.1.0",
-    "@sunpower/tabs": "^0.1.0",
-    "@sunpower/textfield": "^0.1.0",
-    "@sunpower/tile": "^0.1.0",
-    "@sunpower/theme-dark": "^0.1.0",
-    "bulma": "^0.7.5",
-    "bulma-calendar": "github:leszekszpunar/bulma-calendar",
-    "bulma-checkradio": "^1.1.1",
-    "bulma-switch": "^2.0.0",
-    "clsx": "^1.0.4",
-    "final-form": "^4.18.2",
-    "html2canvas": "^1.0.0-rc.3",
-    "moment": "^2.24.0",
-    "moment-timezone": "^0.5.26",
-    "ramda": "^0.26.1",
-    "react": "^16.9.0",
-    "react-click-outside": "github:tj/react-click-outside",
-    "react-dom": "^16.9.0",
-    "react-final-form-hooks": "^2.0.1",
-    "react-ga": "^2.6.0",
-    "react-redux": "^7.1.0",
-    "react-router-dom": "^5.0.1",
-    "react-select": "^3.0.8",
-    "recharts": "^1.7.1",
-    "redux": "^4.0.2",
-    "redux-act": "^1.7.7",
-    "redux-mock-store": "^1.5.3",
-    "redux-persist": "^5.10.0",
-    "redux-thunk": "^2.3.0",
-    "unfetch": "^4.1.0"
+    "cordova-android": "^8.1.0",
+    "cordova-ios": "^5.0.1"
   },
   "devDependencies": {
-    "@storybook/addon-actions": "^5.1.11",
-    "@storybook/addon-links": "^5.1.11",
-    "@storybook/addon-viewport": "^5.1.11",
-    "@storybook/addons": "^5.1.11",
-    "@storybook/react": "^5.1.11",
-    "cross-env": "^5.2.0",
-    "deep-freeze": "0.0.1",
-    "enzyme": "^3.10.0",
-    "enzyme-adapter-react-16": "^1.14.0",
-    "enzyme-to-json": "^3.3.5",
-    "eslint-config-prettier": "^6.0.0",
-    "eslint-plugin-prettier": "^3.1.0",
-    "husky": "^3.0.0",
-    "lint-staged": "^8.2.1",
-    "node-sass": "^4.12.0",
-    "prettier": "^1.18.2",
-    "react-scripts": "3.0.1"
+    "cordova-plugin-whitelist": "^1.3.4"
   },
-  "eslintConfig": {
-    "extends": "react-app"
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
+  "cordova": {
+    "plugins": {
+      "cordova-plugin-whitelist": {}
+    },
+    "platforms": [
+      "ios",
+      "android"
     ]
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "cross-env CI=true npm test && lint-staged"
-    }
-  },
-  "lint-staged": {
-    "*.{js,jsx}": [
-      "eslint --fix",
-      "git add"
-    ]
-  },
-  "jest": {
-    "snapshotSerializers": [
-      "enzyme-to-json/serializer"
-    ],
-    "resetMocks": true
   }
 }
