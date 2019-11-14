@@ -1,0 +1,45 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PVS connection successful component render correctly 1`] = `
+<div
+  className="tile is-flex is-vertical has-text-centered pvs-connection-success-screen page-height"
+>
+  <span
+    className="is-uppercase has-text-weight-bold mb-40"
+  >
+    CONNECTION_SUCCESS
+  </span>
+  <span
+    className="sp-pvs has-text-white mb-30"
+  />
+  <span
+    className="mb-20"
+  >
+    CONNECTED_TO
+  </span>
+  <div
+    className="tile is-vertical is-flex has-text-white is-uppercase is-size-7 is-bold is-text"
+  >
+    <span>
+      PVS6 SN:
+    </span>
+    <span>
+      ZT184585000549A0020
+    </span>
+  </div>
+  <span
+    className="mr-40 ml-40 mt-40 is-size-6"
+  >
+    VERIFY_SERIAL_PVS_CONN_SUCCESS
+  </span>
+  <div
+    className="is-flex auto"
+  >
+    <button
+      className="button is-primary is-uppercase is-center mt-50"
+    >
+      CONTINUE
+    </button>
+  </div>
+</div>
+`;
