@@ -9,6 +9,7 @@ import Menu from 'pages/Menu'
 
 import { withTracker } from 'shared/ga'
 import { paths } from 'routes/paths'
+import PvsConnectionSuccessful from 'pages/PvsConnectionSuccessful'
 
 function Layout(props) {
   return (
@@ -20,6 +21,12 @@ function Layout(props) {
             exact
             path="/"
             component={withTracker(Home)}
+            props={props}
+          />
+          <AppliedRoute
+            exact
+            path={paths.PROTECTED.PVS_CONNECTION_SUCCESS}
+            component={withTracker(PvsConnectionSuccessful)}
             props={props}
           />
           <AppliedRoute

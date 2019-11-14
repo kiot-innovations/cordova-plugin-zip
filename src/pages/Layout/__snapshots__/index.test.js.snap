@@ -18,6 +18,12 @@ exports[`Layout component render correctly 1`] = `
       <_default
         component={[Function]}
         exact={true}
+        path="/pvs-connection-success"
+        props={Object {}}
+      />
+      <_default
+        component={[Function]}
+        exact={true}
         path="/create-site"
         props={Object {}}
       />
