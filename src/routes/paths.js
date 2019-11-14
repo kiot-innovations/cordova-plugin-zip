@@ -6,8 +6,7 @@ export const paths = {
     MANAGE_FIRMWARES: '/manage-firwares',
     VERSION_INFORMATION: '/version-information',
     GIVE_FEEDBACK: '/give-feedback',
-    PVS_CONNECTION_SUCCESS: '/pvs-connection-success',
-    CREATE_SITE: '/create-site'
+    PVS_CONNECTION_SUCCESS: '/pvs-connection-success'
   },
   LOGIN: '/login',
   LOGOUT: '/logout',

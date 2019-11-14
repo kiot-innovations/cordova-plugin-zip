@@ -25,15 +25,11 @@
   "SELECT_SITE": "Select customer site",
   "SITE_NAME": "Site Name",
   "STATE": "State",
-  "POSTAL_CODE": "Postal Code",
-  "CREATE": "Create",
-  "CANCEL": "Cancel",
   "LOGOUT": "Logout",
   "CHANGE_ADDRESS": "Change Address",
   "MANAGE_FIRMWARES": "Manage Firmwares",
   "VERSION_INFORMATION": "Version Information",
-  "GIVE_FEEDBACK": "Give us Feedback"
-  "TAB_TITLE_LOGIN": "Login",
+  "GIVE_FEEDBACK": "Give us Feedback",
   "VERIFY_SERIAL_PVS_CONN_SUCCESS": "Please verify that the serial number above matches with the device you’re communicating before continuing",
   "WRONG_CREDENTIALS": "Wrong username or password"
 }
