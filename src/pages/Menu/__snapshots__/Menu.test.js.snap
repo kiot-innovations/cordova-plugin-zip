@@ -1,0 +1,58 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Menu Page render correctly 1`] = `
+<section
+  className="is-flex tile is-vertical level page-height"
+>
+  <article
+    className="is-flex space-around flow-wrap"
+  >
+    <div
+      className="mb-30"
+      key="CHANGE_ADDRESS"
+    >
+      <Component
+        icon="sp-map"
+        onClick={[Function]}
+        text="CHANGE_ADDRESS"
+      />
+    </div>
+    <div
+      className="mb-30"
+      key="MANAGE_FIRMWARES"
+    >
+      <Component
+        icon="sp-update"
+        onClick={[Function]}
+        text="MANAGE_FIRMWARES"
+      />
+    </div>
+    <div
+      className="mb-30"
+      key="VERSION_INFORMATION"
+    >
+      <Component
+        icon="sp-info"
+        onClick={[Function]}
+        text="VERSION_INFORMATION"
+      />
+    </div>
+    <div
+      className="mb-30"
+      key="GIVE_FEEDBACK"
+    >
+      <Component
+        icon="sp-feedback"
+        onClick={[Function]}
+        text="GIVE_FEEDBACK"
+      />
+    </div>
+  </article>
+  <Link
+    className="has-text-centered is-uppercase mb-10"
+    to="/logout"
+  >
+    LOGOUT
+  </Link>
+</section>
+`;

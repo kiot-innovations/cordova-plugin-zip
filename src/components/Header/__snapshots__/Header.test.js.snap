@@ -6,6 +6,7 @@ exports[`Header Component Renders correctly 1`] = `
 >
   <span
     className="sp sp-menu"
+    role="button"
   />
   <Component />
 </header>
@@ -17,6 +18,7 @@ exports[`Header Component Renders text instead of logo 1`] = `
 >
   <span
     className="sp sp-menu"
+    role="button"
   />
   <span
     className="text has-text-white"

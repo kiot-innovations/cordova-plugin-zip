@@ -5,6 +5,7 @@ import Header from 'components/Header'
 
 import Home from 'pages/Home'
 import CreateSite from 'pages/CreateSite'
+import Menu from 'pages/Menu'
 
 import { withTracker } from 'shared/ga'
 import { paths } from 'routes/paths'
@@ -13,7 +14,7 @@ import PvsConnectionSuccessful from 'pages/PvsConnectionSuccessful'
 function Layout(props) {
   return (
     <>
-      <Header />
+      <Header onClick={toggleMenu(paths.PROTECTED.MENU, props.history)} />
       <div className="ml-10 mr-10 mt-10 mb-10">
         <Switch>
           <AppliedRoute
@@ -34,6 +35,12 @@ function Layout(props) {
             component={withTracker(CreateSite)}
             props={props}
           />
+          <AppliedRoute
+            exact
+            path={paths.PROTECTED.MENU}
+            component={withTracker(Menu)}
+            props={props}
+          />
         </Switch>
       </div>
     </>
@@ -41,3 +48,6 @@ function Layout(props) {
 }
 
 export default Layout
+
+const toggleMenu = (path, history) => () =>
+  history.location.pathname === path ? history.goBack() : history.push(path)
