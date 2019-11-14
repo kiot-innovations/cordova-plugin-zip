@@ -22,7 +22,7 @@ exports[`Menu Page render correctly 1`] = `
       key="MANAGE_FIRMWARES"
     >
       <Component
-        icon="sp-map"
+        icon="sp-update"
         onClick={[Function]}
         text="MANAGE_FIRMWARES"
       />
@@ -32,7 +32,7 @@ exports[`Menu Page render correctly 1`] = `
       key="VERSION_INFORMATION"
     >
       <Component
-        icon="sp-map"
+        icon="sp-info"
         onClick={[Function]}
         text="VERSION_INFORMATION"
       />
@@ -42,7 +42,7 @@ exports[`Menu Page render correctly 1`] = `
       key="GIVE_FEEDBACK"
     >
       <Component
-        icon="sp-map"
+        icon="sp-feedback"
         onClick={[Function]}
         text="GIVE_FEEDBACK"
       />
