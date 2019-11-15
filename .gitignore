@@ -2,3 +2,5 @@ node_modules
 plugins
 platforms
 www/*
+build/
+.DS_Store
