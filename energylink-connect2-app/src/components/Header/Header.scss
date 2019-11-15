@@ -1,0 +1,23 @@
+@import '@sunpower/theme-dark/styles/_variables.scss';
+
+.header {
+  background: $black;
+  height: 60px;
+  position: relative;
+  .text, svg {
+    margin: auto;
+  }
+  .text {
+    font-size: $font-size-medium;
+  }
+  .sp {
+    font-size: 22px;
+    position: absolute;
+    padding: 18px;
+  }
+  figure.logo-container {
+    margin: 0 auto;
+    margin-top: 16px;
+  }
+}
+
