@@ -1,11 +1,10 @@
 import React, { useLayoutEffect } from 'react'
-import { Route, Switch } from 'react-router-dom'
-import paths from './paths'
-import { useRouter } from 'hooks'
-import { animated, useTransition } from 'react-spring'
-import { routeAuthorization, setLayout } from 'hocs'
 import { useSelector } from 'react-redux'
+import { Route, Switch } from 'react-router-dom'
+import { animated, useTransition } from 'react-spring'
+import { useRouter } from 'hooks'
 import { withTracker } from 'shared/ga'
+import { routeAuthorization, setLayout } from 'hocs'
 import {
   CreateSite,
   Home,
@@ -14,7 +13,7 @@ import {
   NotFound,
   PvsConnectionSuccessful
 } from 'pages'
-
+import paths from './paths'
 const mapComponents = {
   [paths.PROTECTED.CREATE_SITE.path]: CreateSite,
   [paths.PROTECTED.GIVE_FEEDBACK.path]: null,

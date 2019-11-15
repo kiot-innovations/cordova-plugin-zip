@@ -15,7 +15,7 @@ const paths = {
       path: '/create-site',
       header: true
     },
-    MENU: { path: '/menu' },
+    MENU: { path: '/menu', header: true },
     MANAGE_FIRMWARES: { path: '/manage-firmwares' },
     VERSION_INFORMATION: { path: '/version-information' },
     GIVE_FEEDBACK: { path: '/give-feedback' },

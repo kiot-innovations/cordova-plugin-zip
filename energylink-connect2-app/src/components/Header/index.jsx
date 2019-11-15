@@ -2,10 +2,13 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 import Logo from '@sunpower/sunpowerimage'
 import isNil from 'ramda/src/isNil'
+import { useTransition, animated } from 'react-spring'
 import { trimString } from 'shared/trim'
 import { either } from 'shared/utils'
+import { toggleRoute } from 'shared/routing'
+import { useRouter } from 'hooks'
+import paths from 'routes/paths'
 import './Header.scss'
-import { useTransition, animated } from 'react-spring'
 
 const getCount = window => (window.innerWidth > 375 ? 35 : 30)
 
@@ -16,6 +19,7 @@ const Header = ({ text }) => {
     enter: { maxHeight: 90, opacity: 1, marginBottom: '1.5rem' },
     leave: { maxHeight: 0, opacity: 0, marginBottom: '0rem' }
   })
+  const { history } = useRouter()
   return grow.map(
     ({ item, props, key }) =>
       item && (
@@ -24,7 +28,11 @@ const Header = ({ text }) => {
           style={props}
           key={key}
         >
-          <span className="sp sp-menu" />
+          <span
+            className="sp sp-menu"
+            onClick={toggleRoute(paths.PROTECTED.MENU.path, history)}
+            role="button"
+          />
           {either(
             isNil(text),
             <Logo />,
