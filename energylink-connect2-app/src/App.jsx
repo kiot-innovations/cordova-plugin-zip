@@ -1,10 +1,10 @@
 import React from 'react'
 import { Provider } from 'react-redux'
 import { PersistGate } from 'redux-persist/integration/react'
-import Header from './components/Header'
-import Routes from './routes'
-import Footer from './components/footer/Footer'
-import { configureStore } from './state/store'
+import Header from 'components/Header'
+import Routes from 'routes'
+import Footer from 'components/Footer/Footer'
+import { configureStore } from 'state/store'
 
 const { store, persistor } = configureStore({})
 

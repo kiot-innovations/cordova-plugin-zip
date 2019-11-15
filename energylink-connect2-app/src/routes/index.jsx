@@ -14,6 +14,7 @@ import {
   PvsConnectionSuccessful
 } from 'pages'
 import paths from './paths'
+
 const mapComponents = {
   [paths.PROTECTED.CREATE_SITE.path]: CreateSite,
   [paths.PROTECTED.GIVE_FEEDBACK.path]: null,
