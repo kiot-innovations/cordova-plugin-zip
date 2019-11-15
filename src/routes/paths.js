@@ -1,9 +1,31 @@
+import { CreateSite, Home, Login } from 'pages'
+
 export const paths = {
   PROTECTED: {
-    ROOT: '/',
-    CREATE_SITE: '/create-site'
+    ROOT: {
+      path: '/',
+      component: Home,
+      header: true,
+      footer: true
+    },
+    CREATE_SITE: {
+      path: '/create-site',
+      component: CreateSite,
+      header: true
+    }
   },
-  LOGIN: '/login',
-  FORGOT_PASSWORD: '/forgot',
-  GET_ASSISTANCE: '/assistance'
+  UNPROTECTED: {
+    LOGIN: {
+      path: '/login',
+      component: Login
+    },
+    FORGOT_PASSWORD: {
+      path: '/forgot',
+      component: Home
+    },
+    GET_ASSISTANCE: {
+      path: '/assistance',
+      component: Home
+    }
+  }
 }

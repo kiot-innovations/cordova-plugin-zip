@@ -1,0 +1,14 @@
+.custom-layout {
+  position: absolute;
+  width: 100vw;
+  .fill-parent{
+    width: 100%;
+    height: 100%;
+  }
+}
+.with-footer {
+  height: calc(100vh - 160px);
+}
+.without-footer {
+  height: calc(100vh - 130px);
+}

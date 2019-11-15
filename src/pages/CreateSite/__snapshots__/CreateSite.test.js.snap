@@ -2,10 +2,10 @@
 
 exports[`CreateSite component render correctly 1`] = `
 <section
-  className="is-flex tile is-vertical section pt-0"
+  className="is-flex tile is-vertical section pt-0 fill-parent"
 >
   <h1
-    className="has-text-centered is-uppercase has-text-weight-bold mb-50 pb-20"
+    className="has-text-centered is-uppercase has-text-weight-bold  pb-20"
   >
     CREATE_SITE
   </h1>

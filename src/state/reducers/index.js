@@ -7,8 +7,10 @@ import { userReducer } from './user'
 import { languageReducer } from './language'
 import { globalReducer } from './global'
 import { storesVersions } from './migrations'
+import ui from './ui'
 
 export default combineReducers({
+  ui,
   user: persistReducer(
     {
       key: 'user',

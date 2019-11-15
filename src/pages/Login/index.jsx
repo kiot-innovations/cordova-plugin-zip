@@ -48,8 +48,8 @@ function Login() {
   })
 
   const ROUTES = {
-    FORGOT: { pathname: paths.FORGOT_PASSWORD },
-    ASSISTANCE: { pathname: paths.GET_ASSISTANCE }
+    FORGOT: { pathname: paths.UNPROTECTED.FORGOT_PASSWORD.path },
+    ASSISTANCE: { pathname: paths.UNPROTECTED.GET_ASSISTANCE.path }
   }
 
   return (

@@ -5,10 +5,11 @@ import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
 import { PersistGate } from 'redux-persist/integration/react'
 import ReactGA from 'react-ga'
-import Router from './routes'
+import Routes from './routes'
 import { configureStore } from './state/store'
-
+import Header from 'components/Header'
 import '@sunpower/theme-dark'
+import Footer from 'components/footer/Footer'
 
 const { store, persistor } = configureStore({})
 
@@ -22,10 +23,19 @@ const GAproperty = process.env.REACT_APP_IS_MOBILE
 
 ReactGA.initialize(GAproperty)
 ReactGA.set({ checkProtocolTask: null })
+
+const Router = process.env.REACT_APP_IS_MOBILE
+  ? require('react-router-dom').HashRouter
+  : require('react-router-dom').BrowserRouter
+
 ReactDOM.render(
   <Provider store={store}>
     <PersistGate persistor={persistor}>
-      <Router />
+      <Router>
+        <Header />
+        <Routes />
+        <Footer />
+      </Router>
     </PersistGate>
   </Provider>,
   document.getElementById('root')
