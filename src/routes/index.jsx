@@ -6,6 +6,7 @@ import { animated, useTransition } from 'react-spring'
 import { NotFound } from 'pages'
 import { routeAuthorization, setLayout } from 'hocs'
 import { useSelector } from 'react-redux'
+import { withTracker } from 'shared/ga'
 
 function AppRoutes() {
   const { location } = useRouter()
@@ -32,7 +33,7 @@ function AppRoutes() {
                 false,
                 isLoggedIn,
                 state
-              )(setLayout(header, footer, state)(component))}
+              )(setLayout(header, footer, state)(withTracker(component)))}
             />
           )
         )}
@@ -46,7 +47,7 @@ function AppRoutes() {
                 true,
                 isLoggedIn,
                 state
-              )(setLayout(header, footer, state)(component))}
+              )(setLayout(header, footer, state)(withTracker(component)))}
             />
           )
         )}
