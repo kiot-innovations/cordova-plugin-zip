@@ -19,7 +19,6 @@ function AppRoutes() {
     window.scrollTo(0, 0)
   })
   const isLoggedIn = useSelector(({ user }) => user.auth.userId)
-
   return fadeIn.map(({ item, props, key, state }) => (
     <animated.div key={key} style={props}>
       <Switch location={item}>

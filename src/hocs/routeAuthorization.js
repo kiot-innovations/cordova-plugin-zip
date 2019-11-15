@@ -23,13 +23,21 @@ export default (
   animationState
 ) => ChildrenComponent => {
   const HocComponent = ({ ...props }) => {
-    if (isProtected && !isLoggedIn && animationState === 'enter')
+    if (
+      isProtected &&
+      !isLoggedIn &&
+      (animationState === 'enter' || animationState === 'update')
+    )
       return (
         <Redirect
           to={`/login?redirect=${props.location.pathname}${props.location.search}`}
         />
       )
-    if (!isProtected && isLoggedIn && animationState === 'enter') {
+    if (
+      !isProtected &&
+      isLoggedIn &&
+      (animationState === 'enter' || animationState === 'update')
+    ) {
       const redirect = querystring('redirect')
       return (
         <Redirect to={redirect === '' || redirect === null ? '/' : redirect} />
