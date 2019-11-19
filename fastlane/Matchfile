@@ -1,0 +1,9 @@
+app_identifier(["com.sunpower.energylink.commissioning2"])
+git_url("git@github.com:SunPower/firmware-mobile-certificates.git")
+storage_mode("git")
+
+# available types: appstore, adhoc, enterprise, development
+type("appstore")
+
+keychain_password(ENV["KEYCHAIN_PASSWORD"])
+team_id("YWBF6F2KK8")

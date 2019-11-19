@@ -1,0 +1,4 @@
+app_identifier "com.sunpower.energylink.commissioning2"
+apple_id "developer_support@sunpowercorp.com"
+json_key_file "google-play-credentials.key"
+team_id "YWBF6F2KK8"
