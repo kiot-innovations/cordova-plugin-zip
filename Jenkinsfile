@@ -33,6 +33,7 @@ pipeline {
                 sh "env | sort"
                 sh "npm install"
                 sh "npm rebuild node-sass"
+                sh "bundle install --deployment"
                 sh "security unlock -p ${KEYCHAIN_PASSWORD} ~/Library/Keychains/login.keychain;"
             }
         }
@@ -42,6 +43,20 @@ pipeline {
                 sh "cd energylink-connect2-app && npm install"
                 sh "cd energylink-connect2-app && CI=1 npm run test"
                 sh "cd energylink-connect2-app && npm run build"
+            }
+        }
+
+        stage('android') {
+            steps {
+                sh "npx phonegap prepare android"
+                sh "bundle exec fastlane android build"
+            }
+        }
+
+        stage('ios') {
+            steps {
+                sh "npx phonegap prepare ios"
+                sh "bundle exec fastlane ios build"
             }
         }
     }

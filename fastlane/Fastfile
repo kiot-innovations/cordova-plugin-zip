@@ -1,0 +1,41 @@
+platform :android do
+    lane :build do
+        cordova(
+            platform: "android",
+            keystore_path: ENV.fetch("KEYSTORE_PATH", "./upload-keystore.jks"),
+            keystore_password: ENV.fetch("KEYSTORE_PASSWORD", "my-password-123"),
+            keystore_alias: ENV.fetch("KEYSTORE_ALIAS", "key0")
+        )
+    end
+
+    lane :release do
+        upload_to_play_store(
+            apk: "./platforms/android/app/build/outputs/apk/release/app-release.apk",
+            json_key: ENV.fetch("PLAY_STORE_API_CRED", "./google-api.json"),
+            package_name: CredentialsManager::AppfileConfig.try_fetch_value(:app_identifier),
+            track: "beta"
+        )
+    end
+end
+
+platform :ios do
+    lane :build do
+        sync_code_signing(
+            readonly: true
+        )
+        automatic_code_signing(
+            path:           "./platforms/ios/EnergyLinkConnect2.xcodeproj",
+            team_id:        CredentialsManager::AppfileConfig.try_fetch_value(:team_id),
+            profile_name:   "match AppStore #{CredentialsManager::AppfileConfig.try_fetch_value(:app_identifier)}"
+        )
+        cordova(platform: "ios")
+    end
+
+    lane :release do
+        upload_to_testflight(
+            ipa:                "./platforms/ios/build/device/EnergyLinkConnect2.ipa",
+            skip_submission:    true,
+            skip_waiting_for_build_processing: true
+        )
+    end
+end
