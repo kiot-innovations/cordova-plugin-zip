@@ -11,7 +11,7 @@ import PasswordToggle from 'components/PasswordToggle'
 import { performLogin } from 'state/actions/auth'
 import { trimObject } from 'shared/trim'
 import { useI18n } from 'shared/i18n'
-import { paths } from 'routes/paths'
+import paths from 'routes/paths'
 
 import './Login.scss'
 
@@ -48,8 +48,8 @@ function Login() {
   })
 
   const ROUTES = {
-    FORGOT: { pathname: paths.FORGOT_PASSWORD },
-    ASSISTANCE: { pathname: paths.GET_ASSISTANCE }
+    FORGOT: { pathname: paths.UNPROTECTED.FORGOT_PASSWORD.path },
+    ASSISTANCE: { pathname: paths.UNPROTECTED.GET_ASSISTANCE.path }
   }
 
   return (

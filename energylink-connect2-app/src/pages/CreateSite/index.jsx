@@ -5,7 +5,7 @@ import { useI18n } from 'shared/i18n'
 import { useForm, useField } from 'react-final-form-hooks'
 import TextField from '@sunpower/textfield'
 import SelectField from 'components/SelectField'
-import { paths } from 'routes/paths'
+import paths from 'routes/paths'
 
 function CreateSite() {
   const t = useI18n()
@@ -23,8 +23,8 @@ function CreateSite() {
   const postalCode = useField('postalCode', form)
 
   return (
-    <section className="is-flex tile is-vertical section pt-0">
-      <h1 className="has-text-centered is-uppercase has-text-weight-bold mb-50 pb-20">
+    <section className="is-flex tile is-vertical section pt-0 fill-parent">
+      <h1 className="has-text-centered is-uppercase has-text-weight-bold  pb-20">
         {t('CREATE_SITE')}
       </h1>
 
@@ -117,7 +117,7 @@ function CreateSite() {
             {t('CREATE')}
           </button>
 
-          <Link to={paths.PROTECTED.ROOT}>{t('CANCEL')}</Link>
+          <Link to={paths.PROTECTED.ROOT.path}>{t('CANCEL')}</Link>
         </div>
       </form>
     </section>

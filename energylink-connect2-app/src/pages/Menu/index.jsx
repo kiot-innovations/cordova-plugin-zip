@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import Tile from '@sunpower/tile'
 import menuItems from 'components/Header/menuItems'
-import { paths } from 'routes/paths'
+import paths from 'routes/paths'
 import { useI18n } from 'shared/i18n'
 
 function Menu(props) {
@@ -20,7 +20,10 @@ function Menu(props) {
           </div>
         ))}
       </article>
-      <Link to={paths.LOGOUT} className="has-text-centered is-uppercase mb-10">
+      <Link
+        to={paths.PROTECTED.LOGOUT.path}
+        className="has-text-centered is-uppercase mb-10"
+      >
         {t('LOGOUT')}
       </Link>
     </section>
