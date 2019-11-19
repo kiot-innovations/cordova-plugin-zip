@@ -25,18 +25,9 @@ exports[`Collapsible Component Renders Correctly 1`] = `
         className="chevron"
         onClick={[Function]}
       >
-        <svg
-          fill="none"
-          height="13"
-          viewBox="0 0 25 13"
-          width="25"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M23.953 0c-.268 0-.535.098-.74.294L12.5 10.576 1.786.296a1.077 1.077 0 00-1.48 0 .975.975 0 000 1.42l11.454 10.99c.196.188.462.294.74.294.278 0 .544-.106.74-.294L24.693 1.714a.975.975 0 000-1.42 1.066 1.066 0 00-.74-.294z"
-            fill="#F7921E"
-          />
-        </svg>
+        <span
+          className="sp-chevron-up"
+        />
       </div>
     </div>
   </div>

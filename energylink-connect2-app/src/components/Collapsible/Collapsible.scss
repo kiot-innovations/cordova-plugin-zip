@@ -1,5 +1,7 @@
+@import '~@sunpower/theme-dark/styles/variables';
+
 .collapsible{
-  background-color: #c4c4c420;
+  background-color: $silver-sand4;
   text-align: left;
   padding: 1.2em 1em;
   max-height: 200px;
@@ -22,10 +24,12 @@
     .chevron{
       transition: 0.3s all ease-in-out;
       cursor: pointer;
+      transform: rotate(180deg);
+      color: $sun;
     }
 
     .down{
-      transform: rotate(180deg);
+      transform: rotate(0deg);
     }
   }
 
