@@ -8,9 +8,6 @@ import '@sunpower/theme-dark';
 addParameters({
   options: {
     theme: suntheme,
-  },
-  viewport: {
-    defaultViewport: 'iphone6'
   }
 })
 
