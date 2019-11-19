@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { useI18n } from 'shared/i18n'
-import { paths } from 'routes/paths'
+import paths from 'routes/paths'
 import SelectField from 'components/SelectField'
 import './Home.scss'
 
@@ -25,7 +25,7 @@ function Home() {
   }
 
   return (
-    <section className="home is-flex has-text-centered">
+    <section className="home is-flex has-text-centered fill-parent">
       <div className="section">
         <span className="sp sp-map has-text-white" />
         <h6 className="is-uppercase mt-20 mb-20">{t('SELECT_SITE')}</h6>
@@ -37,7 +37,10 @@ function Home() {
       </div>
       <section>
         <p>{t('CS_NOT_FOUND')}</p>
-        <Link to={paths.PROTECTED.CREATE_SITE} className="link is-uppercase">
+        <Link
+          to={paths.PROTECTED.CREATE_SITE.path}
+          className="link is-uppercase"
+        >
           <small>{t('CREATE_SITE')}</small>
         </Link>
       </section>
