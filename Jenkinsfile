@@ -33,12 +33,15 @@ pipeline {
                 sh "env | sort"
                 sh "npm install"
                 sh "npm rebuild node-sass"
-
-                dir("energylink-connect2-app") {
-                    sh "npm install"
-                }
-
                 sh "security unlock -p ${KEYCHAIN_PASSWORD} ~/Library/Keychains/login.keychain;"
+            }
+        }
+
+        stage('native-app') {
+            steps {
+                sh "cd energylink-connect2-app && npm install"
+                sh "cd energylink-connect2-app && CI=1 npm run test"
+                sh "cd energylink-connect2-app && npm run build"
             }
         }
     }
