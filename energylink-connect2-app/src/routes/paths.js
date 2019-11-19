@@ -8,8 +8,7 @@ const paths = {
   PROTECTED: {
     ROOT: {
       path: '/',
-      header: true,
-      footer: true
+      header: true
     },
     CREATE_SITE: {
       path: '/create-site',
