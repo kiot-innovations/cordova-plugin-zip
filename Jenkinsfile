@@ -59,5 +59,22 @@ pipeline {
                 sh "bundle exec fastlane ios build"
             }
         }
+
+        stage('release') {
+            when {
+                // Release only for git tags in format X.Y.Z
+                tag pattern: "^\\d+\\.\\d+\\.\\d+\$", comparator: "REGEXP"
+            }
+            steps {
+                sh "bundle exec fastlane android release"
+                sh "bundle exec fastlane ios release"
+            }
+        }
+    }
+
+    post {
+        always {
+            sh "rm -rf platforms"
+        }
     }
 }
