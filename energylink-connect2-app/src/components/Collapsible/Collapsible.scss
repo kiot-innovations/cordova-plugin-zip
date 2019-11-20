@@ -1,6 +1,6 @@
 @import '~@sunpower/theme-dark/styles/variables';
 
-.collapsible{
+.collapsible {
   background-color: $silver-sand4;
   text-align: left;
   padding: 1.2em 1em;
@@ -9,45 +9,44 @@
   letter-spacing: 0;
   border-radius: 5px;
 
-  &-header{
-    color: #fff;
+  &-header {
+    color: $white;
     font-size: 18px;
     display: grid;
     grid-template-columns: 70% 20% 1fr;
     margin-bottom: 5px;
   }
 
-  &-trigger{
+  &-trigger {
     text-align: center;
 
-    .chevron{
+    .chevron {
       transition: 0.3s all ease-in-out;
       cursor: pointer;
       transform: rotate(180deg);
       color: $sun;
     }
 
-    .down{
+    .down {
       transform: rotate(0deg);
     }
   }
 
-  &-actions{
+  &-actions {
     text-align: right;
     padding-right: 10px;
   }
-  &-content{
+  &-content {
     transition: max-height 0.2s ease-out;
   }
 
-  .collapsed{
+  .collapsed {
     max-height: 0;
     overflow: hidden;
   }
 
-  .expanded{
+  .expanded {
     max-height: 130px;
     overflow-y: scroll;
   }
-
 }
