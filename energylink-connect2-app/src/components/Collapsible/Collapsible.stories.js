@@ -1,13 +1,15 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
+import { action } from '@storybook/addon-actions'
 
 import Collapsible from '.'
 
 const title = '555 Home Street, San Jose, California'
 
-const actions = () => (
+const actions = (
   <div className="actions">
-    <span className="sp-signal" />
+    <span className="sp-stop is-size-4 pr-20" onClick={action('stop')} />
+    <span className="sp-download is-size-4" onClick={action('download')} />
   </div>
 )
 
