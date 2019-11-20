@@ -3,7 +3,8 @@
 .collapsible {
   background-color: $silver-sand4;
   text-align: left;
-  padding: 1.2em 1em;
+  padding: $font-size-big;
+  padding-bottom: $font-size;
   max-height: 200px;
   font-family: BlinkMacSystemFont;
   letter-spacing: 0;
