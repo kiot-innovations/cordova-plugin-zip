@@ -3,12 +3,16 @@ import { Link } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { useI18n } from 'shared/i18n'
 import { useForm, useField } from 'react-final-form-hooks'
-import { paths } from 'routes/paths'
+import paths from 'routes/paths'
 import './InventoryCounts.scss'
 
 function createSelectField(t, translation, field) {
   const options = [...Array(21).keys()].map(number => {
-    return <option value={number}>{number}</option>
+    return (
+      <option key={number} value={number}>
+        {number}
+      </option>
+    )
   })
 
   return (
@@ -16,7 +20,12 @@ function createSelectField(t, translation, field) {
       <label htmlFor="modules" className="has-text-white">
         {t(translation)}
       </label>
-      <select input={field.input} meta={field.meta} className="input mt-5">
+      <select
+        key={field}
+        input={field.input}
+        meta={field.meta}
+        className="input mt-5"
+      >
         {options}
       </select>
     </div>
@@ -66,10 +75,10 @@ function InventoryCount() {
             className="button is-primary is-uppercase mb-15"
             type="submit"
           >
-            {t('CREATE')}
+            {t('DONE')}
           </button>
 
-          <Link to={paths.PROTECTED.ROOT}>{t('BACK')}</Link>
+          <Link to={paths.PROTECTED.ROOT.path}>{t('CANCEL')}</Link>
         </div>
       </form>
     </section>
