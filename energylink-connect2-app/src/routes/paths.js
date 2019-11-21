@@ -22,7 +22,8 @@ const paths = {
       path: '/pvs-connection-success',
       header: true
     },
-    LOGOUT: { path: '/logout' }
+    LOGOUT: { path: '/logout' },
+    INVENTORY_COUNT: { path: '/inventory-count', header: true }
   },
   UNPROTECTED: {
     LOGIN: {

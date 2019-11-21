@@ -14,6 +14,7 @@ import {
   PvsConnectionSuccessful
 } from 'pages'
 import paths from './paths'
+import InventoryCount from '../pages/InventoryCount'
 
 const mapComponents = {
   [paths.PROTECTED.CREATE_SITE.path]: CreateSite,
@@ -24,6 +25,7 @@ const mapComponents = {
   [paths.PROTECTED.PVS_CONNECTION_SUCCESS.path]: PvsConnectionSuccessful,
   [paths.PROTECTED.ROOT.path]: Home,
   [paths.PROTECTED.VERSION_INFORMATION.path]: null,
+  [paths.PROTECTED.INVENTORY_COUNT]: InventoryCount,
   [paths.UNPROTECTED.LOGIN.path]: Login,
   [paths.UNPROTECTED.FORGOT_PASSWORD.path]: null,
   [paths.UNPROTECTED.GET_ASSISTANCE.path]: null

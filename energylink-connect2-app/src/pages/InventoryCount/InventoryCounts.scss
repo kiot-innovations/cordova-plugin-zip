@@ -1,0 +1,12 @@
+.form-container{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-column-gap: 1em;
+  grid-row-gap: 1em;
+
+  .form-input{
+    font-family: BlinkMacSystemFont, 'Open Sans', sans-serif;
+    letter-spacing: 0;
+    font-weight: bold;
+  }
+}
