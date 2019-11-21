@@ -33,6 +33,11 @@ exports[`Layout component render correctly 1`] = `
         path="/menu"
         props={Object {}}
       />
+      <_default
+        component={[Function]}
+        exact={true}
+        props={Object {}}
+      />
     </Switch>
   </div>
 </Fragment>
