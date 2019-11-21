@@ -1,0 +1,38 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Collapsible Component Renders Correctly 1`] = `
+<div
+  className="collapsible"
+>
+  <div
+    className="collapsible-header"
+  >
+    <div
+      className="collapsible-title"
+    >
+      <span />
+      <span>
+        Collapsible Title
+      </span>
+    </div>
+    <div
+      className="collapsible-actions"
+    />
+    <div
+      className="collapsible-trigger"
+    >
+      <div
+        className="chevron"
+        onClick={[Function]}
+      >
+        <span
+          className="sp-chevron-up"
+        />
+      </div>
+    </div>
+  </div>
+  <div
+    className="collapsible-content collapsed"
+  />
+</div>
+`;
