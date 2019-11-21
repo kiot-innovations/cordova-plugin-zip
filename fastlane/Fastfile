@@ -13,6 +13,7 @@ platform :android do
             apk: "./platforms/android/app/build/outputs/apk/release/app-release.apk",
             json_key: ENV.fetch("PLAY_STORE_API_CRED", "./google-api.json"),
             package_name: CredentialsManager::AppfileConfig.try_fetch_value(:app_identifier),
+            release_status: "draft",
             track: "beta"
         )
     end
