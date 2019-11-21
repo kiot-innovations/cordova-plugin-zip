@@ -6,6 +6,7 @@ import Header from 'components/Header'
 import Home from 'pages/Home'
 import CreateSite from 'pages/CreateSite'
 import Menu from 'pages/Menu'
+import InventoryCount from 'pages/InventoryCount'
 
 import { withTracker } from 'shared/ga'
 import { paths } from 'routes/paths'
@@ -39,6 +40,12 @@ function Layout(props) {
             exact
             path={paths.PROTECTED.MENU}
             component={withTracker(Menu)}
+            props={props}
+          />
+          <AppliedRoute
+            exact
+            path={paths.INVENTORY_COUNT}
+            component={withTracker(InventoryCount)}
             props={props}
           />
         </Switch>
