@@ -57,9 +57,9 @@ function CreateSite() {
     })
     setInitialValues({
       siteName: siteName.input.value,
-      city: data.locality,
-      postalCode: data.postal_code,
-      state: data.administrative_area_level_1,
+      city: parsedData.locality,
+      postalCode: parsedData.postal_code,
+      state: parsedData.administrative_area_level_1,
       lat,
       lng
     })
