@@ -15,9 +15,11 @@ import { useRouter } from 'hooks'
 import { withTracker } from 'shared/ga'
 import { routeAuthorization, setLayout } from 'hocs'
 import paths from './paths'
+import BillOfMaterials from '../pages/BillOfMaterials'
 import InventoryCount from '../pages/InventoryCount'
 
 const mapComponents = {
+  [paths.PROTECTED.BILL_OF_MATERIALS.path]: BillOfMaterials,
   [paths.PROTECTED.CREATE_SITE.path]: CreateSite,
   [paths.PROTECTED.GIVE_FEEDBACK.path]: null,
   [paths.PROTECTED.LOGOUT.path]: null,

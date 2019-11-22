@@ -1,0 +1,72 @@
+@import '@sunpower/theme-dark/styles/_variables.scss';
+
+.right-now {
+  h1 {
+    text-align: center;
+    color: $white;
+    font-weight: $bold-text;
+    letter-spacing: $letter-spacing-big;
+  }
+
+  .power-cycle {
+    display: flex;
+    height: 360px;
+    justify-content: center;
+    background-image: url("assets/ellipse.png");
+    background-repeat: no-repeat;
+    background-position: center center;
+    .left-column {
+      display: flex;
+      align-items: center;
+    }
+    .central-column {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .right-column {
+      display: flex;
+      align-items: center;
+    }
+    .battery-level {
+      color: $white;
+      font-size: $font-size;
+      font-weight: $bold-text;
+    }
+    .arrow-unit {
+      font-size: 0.55em;
+      font-weight: bold;
+    }
+    .arrow-value {
+      font-size: 0.75em;
+      font-weight: bold;
+    }
+
+    .hub-state {
+      font-size: $font-size;
+      font-weight: bold;
+      letter-spacing: 0;
+    }
+
+    .solar-square {
+      animation-delay: 0.3s;
+    }
+
+    .hub-square {
+      animation-delay: 0.3s;
+    }
+
+    .storage-square {
+      animation-delay: 0.3s;
+    }
+
+    .grid-square {
+      animation-delay: 0.6s;
+    }
+
+    .arrow {
+      animation-delay: 1s;
+    }
+  }
+}

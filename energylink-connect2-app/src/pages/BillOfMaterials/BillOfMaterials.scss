@@ -1,0 +1,22 @@
+@import '@sunpower/theme-dark/styles/_variables.scss';
+.home {
+  > div > img {
+    border: 3px solid $white;
+    border-radius: 5px;
+  }
+  .bill-of-materials {
+    width: 90%;
+    border-collapse: collapse;
+    border-style: hidden;
+    border-bottom: 1px dashed $athens-transparent;
+    td {
+      border-top: 1px dashed $athens-transparent;
+      border-bottom: 1px dashed $athens-transparent;
+    }
+    tr {
+      td:first-child {
+        width: 80%;
+      }
+    }
+  }
+}

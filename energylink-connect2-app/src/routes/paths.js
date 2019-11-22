@@ -6,6 +6,11 @@
  */
 const paths = {
   PROTECTED: {
+    BILL_OF_MATERIALS: {
+      path: '/bill-of-materials',
+      header: true,
+      footer: true
+    },
     ROOT: {
       path: '/',
       header: true
