@@ -42,5 +42,7 @@
   "TRANSFER_SWITCHES": "Transfer Switches",
   "GCM": "GCM",
   "BATTERIES": "Batteries",
-  "MET_STATION": "Met Station"
+  "MET_STATION": "Met Station",
+  "FIRMWARE": "Firmware Management",
+  "FIRMWARE_PREV": "Previous stable builds"
 }

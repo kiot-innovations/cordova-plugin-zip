@@ -5,7 +5,7 @@
   text-align: left;
   padding: $font-size-big;
   padding-bottom: $font-size;
-  max-height: 200px;
+  max-height: 270px;
   font-family: BlinkMacSystemFont;
   letter-spacing: 0;
   border-radius: 5px;
@@ -47,7 +47,7 @@
   }
 
   .expanded {
-    max-height: 130px;
+    max-height: 200px;
     overflow-y: scroll;
   }
 }

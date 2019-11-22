@@ -2,8 +2,14 @@ import React, { useState } from 'react'
 import clsx from 'clsx'
 import './Collapsible.scss'
 
-function Collapsible({ icon, title = 'Collapsible Title', actions, children }) {
-  const [expand, setExpand] = useState(false)
+function Collapsible({
+  icon,
+  title = 'Collapsible Title',
+  actions,
+  children,
+  expanded = false
+}) {
+  const [expand, setExpand] = useState(expanded)
 
   const toggle = () => {
     setExpand(!expand)
