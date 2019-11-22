@@ -31,5 +31,8 @@
   "VERSION_INFORMATION": "Version Information",
   "GIVE_FEEDBACK": "Give us Feedback",
   "VERIFY_SERIAL_PVS_CONN_SUCCESS": "Please verify that the serial number above matches with the device you’re communicating before continuing",
-  "WRONG_CREDENTIALS": "Wrong username or password"
+  "WRONG_CREDENTIALS": "Wrong username or password",
+  "FIRMWARE": "Firmware Management",
+  "FIRMWARE_PREV": "Previous stable builds",
+  "DONE": "Done"
 }
