@@ -33,33 +33,36 @@ function CreateSite() {
   const postalCode = useField('postalCode', form)
   useField('lat', form)
   useField('lng', form)
-  const handleSelect = address => {
-    geocodeByAddress(address.value)
-      .then(({ address_components, geometry }) => ({
-        data: address_components.map(elem => ({
-          name: elem.long_name,
-          type: elem.types.shift()
-        })),
-        lat: geometry.location.lat(),
-        lng: geometry.location.lng()
-      }))
-      .then(({ data, lng, lat }) => {
-        const parsedData = {}
-        data.forEach(elem => {
-          parsedData[elem.type] = elem.name
-        })
-        return { data: parsedData, lat, lng }
-      })
-      .then(({ data, lat, lng }) => {
-        setInitialValues({
-          siteName: siteName.input.value,
-          city: data.locality,
-          postalCode: data.postal_code,
-          state: data.administrative_area_level_1,
-          lat,
-          lng
-        })
-      })
+  /**
+   * All this handle is just to populate all the fields
+   * @param address
+   */
+  const handleSelect = async address => {
+    const { address_components, geometry } = await geocodeByAddress(
+      address.value
+    )
+    //Address separated as objects
+    const data = address_components.map(elem => ({
+      name: elem.long_name,
+      type: elem.types.shift()
+    }))
+
+    const lat = geometry.location.lat()
+    const lng = geometry.location.lng()
+
+    //parsed data so we can uise it in the setState
+    const parsedData = {}
+    data.forEach(elem => {
+      parsedData[elem.type] = elem.name
+    })
+    setInitialValues({
+      siteName: siteName.input.value,
+      city: data.locality,
+      postalCode: data.postal_code,
+      state: data.administrative_area_level_1,
+      lat,
+      lng
+    })
   }
 
   return (
