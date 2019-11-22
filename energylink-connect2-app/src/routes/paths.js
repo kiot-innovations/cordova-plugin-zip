@@ -6,6 +6,11 @@
  */
 const paths = {
   PROTECTED: {
+    BILL_OF_MATERIALS: {
+      path: '/bill-of-materials',
+      header: true,
+      footer: true
+    },
     ROOT: {
       path: '/',
       header: true
@@ -15,14 +20,15 @@ const paths = {
       header: true
     },
     MENU: { path: '/menu', header: true },
-    MANAGE_FIRMWARES: { path: '/manage-firmwares' },
+    MANAGE_FIRMWARES: { path: '/manage-firmwares', header: true },
     VERSION_INFORMATION: { path: '/version-information' },
     GIVE_FEEDBACK: { path: '/give-feedback' },
     PVS_CONNECTION_SUCCESS: {
       path: '/pvs-connection-success',
       header: true
     },
-    LOGOUT: { path: '/logout' }
+    LOGOUT: { path: '/logout' },
+    INVENTORY_COUNT: { path: '/inventory-count', header: true }
   },
   UNPROTECTED: {
     LOGIN: {

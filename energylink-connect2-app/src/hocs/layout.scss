@@ -4,10 +4,12 @@
   .fill-parent{
     width: 100%;
     height: 100%;
+    overflow-x: hidden;
   }
 }
 .with-footer {
-  height: calc(100vh - 210px);
+  height: calc(100vh - 150px);
+  overflow-y: auto;
 }
 .without-footer {
   height: calc(100vh - 130px);

@@ -1,0 +1,53 @@
+@import '~@sunpower/theme-dark/styles/variables';
+
+.collapsible {
+  background-color: $silver-sand4;
+  text-align: left;
+  padding: $font-size-big;
+  padding-bottom: $font-size;
+  max-height: 270px;
+  font-family: BlinkMacSystemFont;
+  letter-spacing: 0;
+  border-radius: 5px;
+
+  &-header {
+    color: $white;
+    font-size: 18px;
+    display: grid;
+    grid-template-columns: 70% 20% 1fr;
+    margin-bottom: 5px;
+  }
+
+  &-trigger {
+    text-align: center;
+
+    .chevron {
+      transition: 0.3s all ease-in-out;
+      cursor: pointer;
+      transform: rotate(180deg);
+      color: $sun;
+    }
+
+    .down {
+      transform: rotate(0deg);
+    }
+  }
+
+  &-actions {
+    text-align: right;
+    padding-right: 10px;
+  }
+  &-content {
+    transition: max-height 0.2s ease-out;
+  }
+
+  .collapsed {
+    max-height: 0;
+    overflow: hidden;
+  }
+
+  .expanded {
+    max-height: 200px;
+    overflow-y: scroll;
+  }
+}

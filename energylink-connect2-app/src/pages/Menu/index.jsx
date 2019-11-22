@@ -9,7 +9,7 @@ function Menu(props) {
   const t = useI18n()
   return (
     <section className="is-flex tile is-vertical level page-height">
-      <article className="is-flex space-around flow-wrap">
+      <article className="is-flex space-around flow-wrap mt-15">
         {menuItems.map(menuItem => (
           <div className="mb-30" key={menuItem.text}>
             <Tile

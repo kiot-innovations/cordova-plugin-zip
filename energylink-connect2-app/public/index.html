@@ -18,9 +18,8 @@
     under the License.
 -->
 <html lang="en">
-
-<head>
-  <!--
+  <head>
+    <!--
     Customize this policy to fit your own app's needs. For more guidance, see:
         https://github.com/apache/cordova-plugin-whitelist/blob/master/README.md#content-security-policy
     Some notes:
@@ -29,22 +28,30 @@
         * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
             * Enable inline JS: add 'unsafe-inline' to default-src
   -->
-  <meta charset="utf-8" />
-  <meta http-equiv="Content-Security-Policy"
-         content="default-src *; font-src 'self' data: fonts.gstatic.com;
+    <meta charset="utf-8" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src *; font-src 'self' data: https://fonts.gstatic.com;
                   style-src * 'self' 'unsafe-inline' 'unsafe-eval';
-                  script-src * 'self' 'unsafe-inline' 'unsafe-eval';">
-  <meta name="format-detection" content="telephone=no">
-  <meta name="msapplication-tap-highlight" content="no">
-  <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, viewport-cover=fit">
-  <meta name="theme-color" content="#15202e" />
-  <!--
+                  script-src * 'self' 'unsafe-inline' 'unsafe-eval';
+                  object-src 'self' blob:;
+                  worker-src 'self'  blob:;
+                  img-src 'self' data: https://www.google-analytics.com https://maps.googleapis.com;"
+    />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, viewport-fit=cover"
+    />
+    <meta name="theme-color" content="#15202e" />
+    <!--
       manifest.json provides metadata used when your web app is installed on a
       user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
     -->
-  <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-  <!--
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <!--
       Notice the use of %PUBLIC_URL% in the tags above.
       It will be replaced with the URL of the `public` folder during the build.
       Only files inside the `public` folder can be referenced from the HTML.
@@ -53,15 +60,17 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
-  <title>SunPower</title>
-</head>
+    <title>SunPower</title>
+  </head>
 
-<body class="full-min-height">
-  <noscript>You need to enable JavaScript to run this app.</noscript>
-  <div id="root" class="full-min-height"></div>
-  <div id="modal-root"></div>
-  <script type="text/javascript" src="cordova.js"></script>
-  <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=places&key=%REACT_APP_MAPS_API_KEY%"></script>
-</body>
-
+  <body class="full-min-height">
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root" class="full-min-height"></div>
+    <div id="modal-root"></div>
+    <script type="text/javascript" src="cordova.js"></script>
+    <script
+      type="text/javascript"
+      src="https://maps.googleapis.com/maps/api/js?libraries=places&key=%REACT_APP_MAPS_API_KEY%"
+    ></script>
+  </body>
 </html>
