@@ -7,7 +7,7 @@ import TextField from '@sunpower/textfield'
 import SelectField from 'components/SelectField'
 import paths from 'routes/paths'
 import PlacesAutocomplete from 'react-places-autocomplete'
-import { geocodeByAddress } from 'shared/utils'
+import { geocodeByAddress, getGeocodeData } from 'shared/utils'
 
 function CreateSite() {
   const [initialValues, setInitialValues] = useState({
@@ -38,23 +38,8 @@ function CreateSite() {
    * @param address
    */
   const handleSelect = async address => {
-    const { address_components, geometry } = await geocodeByAddress(
-      address.value
-    )
-    //Address separated as objects
-    const data = address_components.map(elem => ({
-      name: elem.long_name,
-      type: elem.types.shift()
-    }))
-
-    const lat = geometry.location.lat()
-    const lng = geometry.location.lng()
-
-    //parsed data so we can uise it in the setState
-    const parsedData = {}
-    data.forEach(elem => {
-      parsedData[elem.type] = elem.name
-    })
+    const geocodeData = await geocodeByAddress(address.value)
+    const { parsedData, lat, lng } = getGeocodeData(geocodeData)
     setInitialValues({
       siteName: siteName.input.value,
       city: parsedData.locality,
