@@ -36,7 +36,8 @@
                   script-src * 'self' 'unsafe-inline' 'unsafe-eval';
                   object-src 'self' blob:;
                   worker-src 'self'  blob:;
-                  img-src 'self' data: https://www.google-analytics.com https://maps.googleapis.com;"/>
+                  img-src 'self' data: https://www.google-analytics.com https://maps.googleapis.com;"
+    />
     <meta name="format-detection" content="telephone=no" />
     <meta name="msapplication-tap-highlight" content="no" />
     <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico" />
@@ -67,5 +68,9 @@
     <div id="root" class="full-min-height"></div>
     <div id="modal-root"></div>
     <script type="text/javascript" src="cordova.js"></script>
+    <script
+      type="text/javascript"
+      src="https://maps.googleapis.com/maps/api/js?libraries=places&key=%REACT_APP_MAPS_API_KEY%"
+    ></script>
   </body>
 </html>
