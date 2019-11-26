@@ -73,9 +73,7 @@ exports[`BillOfMaterials component render correctly 1`] = `
                 </span>
                 <span
                   className="has-text-white mb-10 is-capitalized"
-                >
-                  Cindy Solar
-                </span>
+                />
               </div>
               <div
                 className="tile is-flex is-vertical"
@@ -87,9 +85,7 @@ exports[`BillOfMaterials component render correctly 1`] = `
                 </span>
                 <span
                   className="has-text-white mb-10"
-                >
-                  My house
-                </span>
+                />
               </div>
             </div>
             <div
@@ -105,17 +101,15 @@ exports[`BillOfMaterials component render correctly 1`] = `
                 </span>
                 <span
                   className="has-text-white mb-10"
-                >
-                  555-555-5555
-                </span>
+                />
               </div>
               <div
-                className="tile is-flex is-vertical"
+                className="tile is-flex is-vertical is-hidden"
               >
                 <span
                   className=" is-uppercase is-size-7"
                 >
-                  HIDDEN:
+                  UTILITY:
                 </span>
                 <span
                   className="has-text-white mb-10"
@@ -128,185 +122,24 @@ exports[`BillOfMaterials component render correctly 1`] = `
           <section
             className="mb-50"
           >
-            <span
+            <Link
               className="is-block is-full-width has-text-centered is-bold mb-30 has-text-weight-bold"
+              to="/inventory-count"
             >
-              INVENTORY
-            </span>
-            <table
-              className="bill-of-materials auto mb-50"
-            >
-              <thead>
-                <tr>
-                  <th
-                    className="is-uppercase pl-10 has-text-white is-size-7"
-                  >
-                    item
-                  </th>
-                  <th
-                    className="is-uppercase pl-10 has-text-white is-size-7"
-                  >
-                    qty
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr
-                  key="56629"
+              <LinkAnchor
+                className="is-block is-full-width has-text-centered is-bold mb-30 has-text-weight-bold"
+                href="/inventory-count"
+                navigate={[Function]}
+              >
+                <a
+                  className="is-block is-full-width has-text-centered is-bold mb-30 has-text-weight-bold"
+                  href="/inventory-count"
+                  onClick={[Function]}
                 >
-                  <td
-                    className="pl-20 pt-10 pb-10 pr-10 has-text-white"
-                  >
-                    56629
-                  </td>
-                  <td
-                    className=" pt-10 has-text-centered has-text-white"
-                  >
-                    1
-                  </td>
-                </tr>
-                <tr
-                  key="56628"
-                >
-                  <td
-                    className="pl-20 pt-10 pb-10 pr-10 has-text-white"
-                  >
-                    56628
-                  </td>
-                  <td
-                    className=" pt-10 has-text-centered has-text-white"
-                  >
-                    1
-                  </td>
-                </tr>
-                <tr
-                  key="56619"
-                >
-                  <td
-                    className="pl-20 pt-10 pb-10 pr-10 has-text-white"
-                  >
-                    56619
-                  </td>
-                  <td
-                    className=" pt-10 has-text-centered has-text-white"
-                  >
-                    1
-                  </td>
-                </tr>
-                <tr
-                  key="56620"
-                >
-                  <td
-                    className="pl-20 pt-10 pb-10 pr-10 has-text-white"
-                  >
-                    56620
-                  </td>
-                  <td
-                    className=" pt-10 has-text-centered has-text-white"
-                  >
-                    1
-                  </td>
-                </tr>
-                <tr
-                  key="56621"
-                >
-                  <td
-                    className="pl-20 pt-10 pb-10 pr-10 has-text-white"
-                  >
-                    56621
-                  </td>
-                  <td
-                    className=" pt-10 has-text-centered has-text-white"
-                  >
-                    1
-                  </td>
-                </tr>
-                <tr
-                  key="56622"
-                >
-                  <td
-                    className="pl-20 pt-10 pb-10 pr-10 has-text-white"
-                  >
-                    56622
-                  </td>
-                  <td
-                    className=" pt-10 has-text-centered has-text-white"
-                  >
-                    1
-                  </td>
-                </tr>
-                <tr
-                  key="56623"
-                >
-                  <td
-                    className="pl-20 pt-10 pb-10 pr-10 has-text-white"
-                  >
-                    56623
-                  </td>
-                  <td
-                    className=" pt-10 has-text-centered has-text-white"
-                  >
-                    1
-                  </td>
-                </tr>
-                <tr
-                  key="56624"
-                >
-                  <td
-                    className="pl-20 pt-10 pb-10 pr-10 has-text-white"
-                  >
-                    56624
-                  </td>
-                  <td
-                    className=" pt-10 has-text-centered has-text-white"
-                  >
-                    1
-                  </td>
-                </tr>
-                <tr
-                  key="56625"
-                >
-                  <td
-                    className="pl-20 pt-10 pb-10 pr-10 has-text-white"
-                  >
-                    56625
-                  </td>
-                  <td
-                    className=" pt-10 has-text-centered has-text-white"
-                  >
-                    1
-                  </td>
-                </tr>
-                <tr
-                  key="56626"
-                >
-                  <td
-                    className="pl-20 pt-10 pb-10 pr-10 has-text-white"
-                  >
-                    56626
-                  </td>
-                  <td
-                    className=" pt-10 has-text-centered has-text-white"
-                  >
-                    1
-                  </td>
-                </tr>
-                <tr
-                  key="56627"
-                >
-                  <td
-                    className="pl-20 pt-10 pb-10 pr-10 has-text-white"
-                  >
-                    56627
-                  </td>
-                  <td
-                    className=" pt-10 has-text-centered has-text-white"
-                  >
-                    1
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+                  ADD_INVENTORY
+                </a>
+              </LinkAnchor>
+            </Link>
           </section>
           <section
             className="is-flex file level space-around section pt-0 mb-20"
@@ -726,7 +559,7 @@ exports[`BillOfMaterials component render correctly 1`] = `
             <span
               className="is-uppercase has-text-white block"
             >
-              noticed something wrong?
+              SOMETHING_WRONG
             </span>
             <Link
               className="is-bold"
@@ -742,7 +575,7 @@ exports[`BillOfMaterials component render correctly 1`] = `
                   href="/"
                   onClick={[Function]}
                 >
-                  SEND A REPORT
+                  SEND_A_REPORT
                 </a>
               </LinkAnchor>
             </Link>

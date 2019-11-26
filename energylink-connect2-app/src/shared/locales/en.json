@@ -4,7 +4,12 @@
   "HUB_PRODUCING": "Producing",
   "HUB_CONSUMING": "Consuming",
   "INVENTORY": "Inventory",
+  "ADD_INVENTORY": "Add Inventory",
+  "EDIT": "Edit",
+  "ITEM": "Item",
+  "QUANTITY": "Qty",
   "HIDDEN": "Hidden",
+  "UTILITY": "Utility",
   "PHONE": "Phone",
   "NAME": "Name",
   "APT": "Apt/Unit No.",
@@ -51,5 +56,7 @@
   "BATTERIES": "Batteries",
   "MET_STATION": "Met Station",
   "FIRMWARE": "Firmware Management",
-  "FIRMWARE_PREV": "Previous stable builds"
+  "FIRMWARE_PREV": "Previous stable builds",
+  "SOMETHING_WRONG": "Noticed something wrong?",
+  "SEND_A_REPORT": "Send a report"
 }

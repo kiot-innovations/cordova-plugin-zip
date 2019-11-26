@@ -3,7 +3,7 @@ import { persistReducer } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
 
 import { userReducer } from './user'
-
+import { inventoryReducer } from './inventory'
 import { languageReducer } from './language'
 import { globalReducer } from './global'
 import { storesVersions } from './migrations'
@@ -29,6 +29,7 @@ export default combineReducers({
     languageReducer
   ),
 
-  global: globalReducer
+  global: globalReducer,
+  inventory: inventoryReducer
   // Add reducers here
 })
