@@ -42,11 +42,12 @@ function CreateSite() {
     const { parsedData, lat, lng } = getGeocodeData(geocodeData)
     setInitialValues({
       siteName: siteName.input.value,
-      city: parsedData.locality,
+      city: parsedData.locality || parsedData.political,
       postalCode: parsedData.postal_code,
       state: parsedData.administrative_area_level_1,
       lat,
-      lng
+      lng,
+      address: address.value
     })
   }
 
@@ -178,5 +179,5 @@ function CreateSite() {
 export default CreateSite
 
 function onSubmit(dispatch) {
-  return values => null
+  return console.info
 }

@@ -25,7 +25,6 @@ export function getGeocodeData({ address_components, geometry }) {
 
   const lat = geometry.location.lat()
   const lng = geometry.location.lng()
-
   //parsed data so we can uise it in the setState
   const parsedData = {}
   data.forEach(elem => {
