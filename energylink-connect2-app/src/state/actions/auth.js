@@ -2,6 +2,7 @@ import { createAction } from 'redux-act'
 import { getUser } from './user'
 import { httpPost, httpDelete, httpGet } from '../../shared/fetch'
 import { trimObject } from '../../shared/trim'
+import { fetchInventory } from './inventory'
 
 export const WORKFLOW_TYPES = {
   SELF: 1,
@@ -24,6 +25,7 @@ export const performLogin = values => {
       }
       dispatch(LOGIN_SUCCESS(response.data))
       dispatch(getUser())
+      dispatch(fetchInventory())
     } catch (err) {
       dispatch(LOGIN_ERROR(err))
     }

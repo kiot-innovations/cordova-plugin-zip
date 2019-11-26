@@ -6,30 +6,29 @@ import paths from '../../routes/paths'
 import RightNow from '../../components/RightNow'
 import { useI18n } from '../../shared/i18n'
 
-const BillOfMaterials = () => {
-  const data = useSelector(({ user }) => ({
+function drawTable(t, inventory) {
+  return Object.keys(inventory).map(key => {
+    return (
+      <tr key={key}>
+        <td className="pl-10 pt-10 pb-10 pr-10 has-text-white">{t(key)}</td>
+        <td className="pt-10 has-text-centered has-text-white">
+          {inventory[key]}
+        </td>
+      </tr>
+    )
+  })
+}
+
+function BillOfMaterials() {
+  const data = useSelector(({ user, inventory }) => ({
     address: user.data.AddressName,
     phone: user.data.phoneNumber,
     name: `${user.data.firstName} ${user.data.lastName}`,
-    bof: [
-      { num: 56629, description: 'PVS', qty: 1 },
-      {
-        num: 56628,
-        description: 'This will be a super long text to see how it behaves',
-        qty: 1
-      },
-      { num: 56619, description: 'PVS', qty: 1 },
-      { num: 56620, description: 'PVS', qty: 1 },
-      { num: 56621, description: 'PVS', qty: 1 },
-      { num: 56622, description: 'PVS', qty: 1 },
-      { num: 56623, description: 'PVS', qty: 1 },
-      { num: 56624, description: 'PVS', qty: 1 },
-      { num: 56625, description: 'PVS', qty: 1 },
-      { num: 56626, description: 'PVS', qty: 1 },
-      { num: 56627, description: 'PVS', qty: 1 }
-    ]
+    bom: inventory.bom
   }))
+
   const t = useI18n()
+
   return (
     <main className="fill-parent pl-10 pr-10 home">
       <div className="pl-20 pr-20 mb-20">
@@ -61,48 +60,47 @@ const BillOfMaterials = () => {
             <span className=" is-uppercase is-size-7">{`${t('PHONE')}:`}</span>
             <span className="has-text-white mb-10">{data.phone}</span>
           </div>
-          <div className="tile is-flex is-vertical">
-            <span className=" is-uppercase is-size-7">{`${t('HIDDEN')}:`}</span>
+          <div className="tile is-flex is-vertical is-hidden">
+            <span className=" is-uppercase is-size-7">{`${t(
+              'UTILITY'
+            )}:`}</span>
             <span className="has-text-white mb-10">PG&E</span>
           </div>
         </div>
       </section>
       <section className="mb-50">
-        <span className="is-block is-full-width has-text-centered is-bold mb-30 has-text-weight-bold">
-          {t('INVENTORY')}
-        </span>
-        {data.bof.length !== 0 ? (
-          <table className="bill-of-materials auto mb-50">
-            <thead>
-              <tr>
-                <th className="is-uppercase pl-10 has-text-white is-size-7">
-                  item
-                </th>
+        {data.bom ? (
+          <div>
+            <span className="is-block is-full-width has-text-centered is-bold mb-5 has-text-weight-bold">
+              {t('INVENTORY')}
+            </span>
+            <Link
+              to={paths.PROTECTED.INVENTORY_COUNT.path}
+              className="is-block is-full-width has-text-centered is-bold mb-30 has-text-weight-bold"
+            >
+              {t('EDIT')}
+            </Link>
+            <table className="bill-of-materials auto mb-50">
+              <thead>
+                <tr>
+                  <th className="is-uppercase pl-10 has-text-white is-size-7">
+                    {t('ITEM')}
+                  </th>
 
-                <th className="is-uppercase pl-10 has-text-white is-size-7">
-                  qty
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              {data.bof.map(({ num, description, qty }) => (
-                <tr key={num}>
-                  <td className="pl-20 pt-10 pb-10 pr-10 has-text-white">
-                    {num}
-                  </td>
-                  <td className=" pt-10 has-text-centered has-text-white">
-                    {qty}
-                  </td>
+                  <th className="is-uppercase pl-10 has-text-white is-size-7">
+                    {t('QUANTITY')}
+                  </th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>{drawTable(t, data.bom)}</tbody>
+            </table>
+          </div>
         ) : (
           <Link
-            to={paths.PROTECTED.BILL_OF_MATERIALS.path}
+            to={paths.PROTECTED.INVENTORY_COUNT.path}
             className="is-block is-full-width has-text-centered is-bold mb-30 has-text-weight-bold"
           >
-            Add Inventory
+            {t('ADD_INVENTORY')}
           </Link>
         )}
       </section>
@@ -111,10 +109,10 @@ const BillOfMaterials = () => {
       </section>
       <section className="is-flex file level space-around section pt-0 mb-20">
         <span className="is-uppercase has-text-white block">
-          noticed something wrong?
+          {t('SOMETHING_WRONG')}
         </span>
         <Link to={paths.PROTECTED.ROOT.path} className="is-bold">
-          SEND A REPORT
+          {t('SEND_A_REPORT')}
         </Link>
       </section>
     </main>

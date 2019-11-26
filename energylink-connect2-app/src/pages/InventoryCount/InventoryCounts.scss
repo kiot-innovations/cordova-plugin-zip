@@ -1,3 +1,10 @@
+.inventory-count{
+  height: 100%;
+  padding-left: 2em;
+  padding-right: 2em;
+  display: grid;
+}
+
 .form-container{
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -9,4 +16,8 @@
     letter-spacing: 0;
     font-weight: bold;
   }
+}
+
+.vertical-scroll{
+  overflow-y: scroll;
 }
