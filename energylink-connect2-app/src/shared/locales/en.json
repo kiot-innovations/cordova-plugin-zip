@@ -58,5 +58,8 @@
   "FIRMWARE": "Firmware Management",
   "FIRMWARE_PREV": "Previous stable builds",
   "SOMETHING_WRONG": "Noticed something wrong?",
-  "SEND_A_REPORT": "Send a report"
+  "SEND_A_REPORT": "Send a report",
+  "404_TITLE": "Sorry,",
+  "404_TEXT": "There's nothing here",
+  "404_BACK": "Back to Home"
 }

@@ -21,16 +21,16 @@ import InventoryCount from '../pages/InventoryCount'
 const mapComponents = {
   [paths.PROTECTED.BILL_OF_MATERIALS.path]: BillOfMaterials,
   [paths.PROTECTED.CREATE_SITE.path]: CreateSite,
-  [paths.PROTECTED.GIVE_FEEDBACK.path]: null,
-  [paths.PROTECTED.LOGOUT.path]: null,
+  [paths.PROTECTED.GIVE_FEEDBACK.path]: NotFound,
+  [paths.PROTECTED.LOGOUT.path]: NotFound,
   [paths.PROTECTED.MANAGE_FIRMWARES.path]: Firmwares,
   [paths.PROTECTED.MENU.path]: Menu,
   [paths.PROTECTED.PVS_CONNECTION_SUCCESS.path]: PvsConnectionSuccessful,
   [paths.PROTECTED.ROOT.path]: Home,
-  [paths.PROTECTED.VERSION_INFORMATION.path]: null,
+  [paths.PROTECTED.VERSION_INFORMATION.path]: NotFound,
   [paths.PROTECTED.INVENTORY_COUNT.path]: InventoryCount,
-  [paths.UNPROTECTED.FORGOT_PASSWORD.path]: null,
-  [paths.UNPROTECTED.GET_ASSISTANCE.path]: null,
+  [paths.UNPROTECTED.FORGOT_PASSWORD.path]: NotFound,
+  [paths.UNPROTECTED.GET_ASSISTANCE.path]: NotFound,
   [paths.UNPROTECTED.LOGIN.path]: Login
 }
 

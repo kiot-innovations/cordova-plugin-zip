@@ -1,0 +1,45 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NotFound Page render correctly 1`] = `
+<Fragment>
+  <header
+    className="not-found is-flex file level is-marginless"
+  >
+    <div
+      className="auto"
+    >
+      <Component />
+    </div>
+  </header>
+  <section
+    className="section is-flex level"
+  >
+    <h6
+      className="has-text-centered has-text-white"
+    />
+    <div
+      className="ops has-text-centered"
+    >
+      <h1
+        className="is-size-1"
+      >
+        404_TITLE
+      </h1>
+      <p
+        className="section"
+      >
+        404_TEXT
+      </p>
+    </div>
+    <div
+      className="mb-40"
+    >
+      <Link
+        to="/"
+      >
+        404_BACK
+      </Link>
+    </div>
+  </section>
+</Fragment>
+`;

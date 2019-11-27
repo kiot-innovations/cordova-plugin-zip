@@ -1,0 +1,13 @@
+@import '@sunpower/theme-dark/styles/_variables.scss';
+
+.not-found {
+  background: $black;
+  height: 70px;
+  & > .logo-container {
+    margin: auto;
+  }
+
+  & + .section {
+    height: calc(100vh - 70px);
+  }
+}
