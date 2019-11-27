@@ -22,13 +22,14 @@ function createSelectField(t, translation, changeHandler, inventory) {
   })
 
   return (
-    <div className="form-input">
-      <label htmlFor="modules" className="has-text-white">
+    <div key={translation} className="form-input">
+      <label htmlFor={translation} className="has-text-white">
         {t(translation)}
       </label>
       <select
         key={translation}
         name={translation}
+        id={translation}
         className="input mt-5"
         onChange={changeHandler}
         value={inventory[translation]}
@@ -49,7 +50,8 @@ function InventoryCount() {
   const [toBom, setToBom] = useState(false)
 
   const changeHandler = e => {
-    setInventory({ ...inventory, [e.target.name]: e.target.value })
+    inventory[e.target.name] = e.target.value
+    setInventory({ ...inventory })
   }
 
   const fields = Object.keys(inventory).map(key => {

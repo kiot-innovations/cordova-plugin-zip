@@ -17,15 +17,17 @@ exports[`Inventory Count page renders correctly 1`] = `
     >
       <div
         className="form-input"
+        key="bom"
       >
         <label
           className="has-text-white"
-          htmlFor="modules"
+          htmlFor="bom"
         >
           BOM
         </label>
         <select
           className="input mt-5"
+          id="bom"
           key="bom"
           name="bom"
           onChange={[Function]}
@@ -641,15 +643,17 @@ exports[`Inventory Count page renders correctly 1`] = `
       </div>
       <div
         className="form-input"
+        key="fetchingInventory"
       >
         <label
           className="has-text-white"
-          htmlFor="modules"
+          htmlFor="fetchingInventory"
         >
           FETCHINGINVENTORY
         </label>
         <select
           className="input mt-5"
+          id="fetchingInventory"
           key="fetchingInventory"
           name="fetchingInventory"
           onChange={[Function]}
@@ -1253,15 +1257,17 @@ exports[`Inventory Count page renders correctly 1`] = `
       </div>
       <div
         className="form-input"
+        key="savingInventory"
       >
         <label
           className="has-text-white"
-          htmlFor="modules"
+          htmlFor="savingInventory"
         >
           SAVINGINVENTORY
         </label>
         <select
           className="input mt-5"
+          id="savingInventory"
           key="savingInventory"
           name="savingInventory"
           onChange={[Function]}
