@@ -1,5 +1,5 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React, { useState } from 'react'
+import { Link, Redirect } from 'react-router-dom'
 import { useI18n } from 'shared/i18n'
 import paths from 'routes/paths'
 import SelectField from 'components/SelectField'
@@ -7,6 +7,8 @@ import './Home.scss'
 
 function Home() {
   const t = useI18n()
+
+  const [toSiteOverview, setToSiteOverview] = useState(false)
 
   const options = [
     { value: '1', label: '555 Home Street, San Jose, Ca' },
@@ -26,12 +28,15 @@ function Home() {
 
   return (
     <section className="home is-flex has-text-centered fill-parent">
+      {toSiteOverview ? (
+        <Redirect to={paths.PROTECTED.BILL_OF_MATERIALS.path} />
+      ) : null}
       <div className="section">
         <span className="sp sp-map has-text-white" />
         <h6 className="is-uppercase mt-20 mb-20">{t('SELECT_SITE')}</h6>
         <SelectField
           onSearch={filterRemote}
-          onSelect={console.info}
+          onSelect={() => setToSiteOverview(true)}
           notFoundText={notFoundText}
         />
       </div>
