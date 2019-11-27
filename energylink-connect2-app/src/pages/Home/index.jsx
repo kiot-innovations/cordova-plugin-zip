@@ -1,9 +1,35 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { useI18n } from 'shared/i18n'
+import Swagger from 'swagger-client'
 import paths from 'routes/paths'
 import SelectField from 'components/SelectField'
 import './Home.scss'
+
+Swagger('http://consolemock.p2e.io:10011/v1/edp/swagger/edp-api-auth').then(
+  client => {
+    client.apis.default.get_v1_auth_user().then(
+      function(result) {},
+      function(err) {}
+    )
+  }
+)
+
+Swagger(
+  'http://consolemock.p2e.io:10011/v1/edp/swagger/edp-api-device'
+).then(client => {})
+
+Swagger(
+  'http://consolemock.p2e.io:10011/v1/edp/swagger/edp-api-party'
+).then(client => {})
+
+Swagger(
+  'http://consolemock.p2e.io:10011/v1/edp/swagger/edp-api-search'
+).then(client => {})
+
+Swagger(
+  'http://consolemock.p2e.io:10011/v1/edp/swagger/edp-api-site'
+).then(client => {})
 
 function Home() {
   const t = useI18n()
