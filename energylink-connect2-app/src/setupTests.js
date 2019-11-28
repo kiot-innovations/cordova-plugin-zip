@@ -6,6 +6,8 @@ import deepFreeze from 'deep-freeze'
 import configureStore from 'redux-mock-store'
 import { BrowserRouter as Router } from 'react-router-dom'
 import thunk from 'redux-thunk'
+import { TestScheduler } from 'rxjs/testing'
+import { ActionsObservable } from 'redux-observable'
 
 configure({ adapter: new Adapter() })
 
@@ -19,6 +21,40 @@ global.reducerTester = reducer => (currentState, action, expectedState) => {
 }
 
 const mockedStore = (initial = {}) => configureStore([thunk])(initial)
+
+// Use this to test epics
+global.epicTester = epic => (
+  inputMarble,
+  expectedMarble,
+  inputValues,
+  expectedValues,
+  state,
+  maxFrames
+) => {
+  const ts = new TestScheduler((actual, expected) => {
+    expect(actual).toEqual(expected)
+  })
+
+  const action$ = new ActionsObservable(
+    ts.createHotObservable(inputMarble, inputValues)
+  )
+  const state$ = {
+    value: state
+  }
+  const outputAction = epic(action$, state$, ts)
+
+  ts.expectObservable(outputAction).toBe(expectedMarble, expectedValues)
+
+  if (maxFrames) {
+    ts.maxFrames = maxFrames
+  }
+
+  ts.flush()
+}
+
+// Use this to add N time frames for epic tests
+global.addTimeFrames = (milliseconds, value = '') =>
+  `${'-'.repeat(milliseconds / 10)}${value}`
 
 // Use this to test mounted components w/ store connection
 global.mountWithProvider = children => initialState => {

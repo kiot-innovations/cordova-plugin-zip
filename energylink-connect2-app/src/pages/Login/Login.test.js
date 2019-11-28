@@ -13,7 +13,7 @@ describe('Login page', () => {
 
     jest.spyOn(reactRedux, 'useDispatch').mockImplementation(() => dispatchMock)
     jest.spyOn(reactRedux, 'useSelector').mockImplementation(jest.fn)
-    jest.spyOn(authActions, 'performLogin').mockImplementation(jest.fn)
+    jest.spyOn(authActions, 'LOGIN_INIT').mockImplementation(jest.fn)
     jest
       .spyOn(i18n, 'useI18n')
       .mockImplementation(path => (key, ...params) =>
@@ -73,7 +73,7 @@ describe('Login page', () => {
 
     component.find('form').simulate('submit')
 
-    expect(authActions.performLogin).toBeCalledWith({
+    expect(authActions.LOGIN_INIT).toBeCalledWith({
       password: 'random pw',
       username: 'test@email.com'
     })
