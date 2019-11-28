@@ -23,7 +23,7 @@ function Home() {
 
     setTimeout(() => {
       cb(no)
-    }, 2000)
+    }, 1000)
   }
 
   return (
