@@ -1,3 +1,5 @@
+@import '~@sunpower/theme-dark/styles/variables';
+
 .inventory-count{
   height: 100%;
   padding-left: 2em;
@@ -12,7 +14,7 @@
   grid-row-gap: 1em;
 
   .form-input{
-    font-family: BlinkMacSystemFont, 'Open Sans', sans-serif;
+    font-family: $font;
     letter-spacing: 0;
     font-weight: bold;
   }
