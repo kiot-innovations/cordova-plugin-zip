@@ -8,7 +8,7 @@ import Logo from '@sunpower/sunpowerimage'
 import TextField from '@sunpower/textfield'
 import PasswordToggle from 'components/PasswordToggle'
 
-import { performLogin } from 'state/actions/auth'
+import { LOGIN_INIT } from 'state/actions/auth'
 import { trimObject } from 'shared/trim'
 import { useI18n } from 'shared/i18n'
 import paths from 'routes/paths'
@@ -16,7 +16,7 @@ import paths from 'routes/paths'
 import './Login.scss'
 
 function onSubmit(dispatch) {
-  return values => dispatch(performLogin(trimObject(values)))
+  return values => dispatch(LOGIN_INIT(trimObject(values)))
 }
 
 function validate(values, t) {
