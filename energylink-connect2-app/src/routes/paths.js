@@ -27,6 +27,11 @@ const paths = {
       path: '/pvs-connection-success',
       header: true
     },
+    CONNECT_TO_PVS: {
+      path: '/connect-to-pvs',
+      header: true,
+      footer: true
+    },
     LOGOUT: { path: '/logout' },
     INVENTORY_COUNT: { path: '/inventory-count', header: true }
   },

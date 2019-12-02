@@ -14,7 +14,7 @@ export default [
   {
     icon: 'sp-info',
     text: 'VERSION_INFORMATION',
-    to: paths.PROTECTED.VERSION_INFORMATION.path
+    to: paths.PROTECTED.CONNECT_TO_PVS.path
   },
   {
     icon: 'sp-feedback',

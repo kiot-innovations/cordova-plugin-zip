@@ -61,5 +61,6 @@
   "SEND_A_REPORT": "Send a report",
   "404_TITLE": "Sorry,",
   "404_TEXT": "There's nothing here",
-  "404_BACK": "Back to Home"
+  "404_BACK": "Back to Home",
+  "LOOK_FOR_QR": "Look for the QR code on PVS"
 }
