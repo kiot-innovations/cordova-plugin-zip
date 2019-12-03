@@ -3,6 +3,7 @@ import { createEpicMiddleware } from 'redux-observable'
 import { persistStore } from 'redux-persist'
 import rootReducer from './reducers'
 import rootEpic from './epics'
+import thunk from 'redux-thunk'
 
 const epicMiddleware = createEpicMiddleware()
 
@@ -12,7 +13,7 @@ export function configureStore(initialState) {
   const composeEnhancers =
     window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 
-  // middlewares.push(applyMiddleware(thunk))
+  middlewares.push(applyMiddleware(thunk))
   middlewares.push(applyMiddleware(epicMiddleware))
 
   const store = createStore(

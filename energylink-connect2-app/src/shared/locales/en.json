@@ -61,5 +61,7 @@
   "SEND_A_REPORT": "Send a report",
   "404_TITLE": "Sorry,",
   "404_TEXT": "There's nothing here",
-  "404_BACK": "Back to Home"
+  "404_BACK": "Back to Home",
+  "FIRMWARE_ERROR_FOUND": "I ran into an error downloading the file",
+  "TRY_AGAIN": "Try again"
 }

@@ -1,5 +1,4 @@
 import React from 'react'
-import { shallow } from 'enzyme'
 import * as reactRedux from 'react-redux'
 import Firmwares from '.'
 import * as i18n from 'shared/i18n'
@@ -17,7 +16,12 @@ describe('Firmwares component', () => {
   })
 
   test('render correctly', () => {
-    const component = shallow(<Firmwares />)
-    expect(component).toMatchSnapshot()
+    const { component } = mountWithProvider(<Firmwares />)({
+      fileDownloader: {
+        progress: { progress: 0, lastProgress: 0 },
+        fileInfo: { name: 'test-file.zip' }
+      }
+    })
+    expect(component.html()).toMatchSnapshot()
   })
 })

@@ -4,7 +4,6 @@ import ReactDOM from 'react-dom'
 import ReactGA from 'react-ga'
 import '@sunpower/theme-dark'
 import App from './App'
-import setupAPI from 'shared/api'
 
 const GAproperty = process.env.REACT_APP_IS_MOBILE
   ? process.env.NODE_ENV === 'production'
@@ -18,7 +17,6 @@ ReactGA.initialize(GAproperty)
 ReactGA.set({ checkProtocolTask: null })
 
 const startApp = () => {
-  setupAPI()
   ReactDOM.render(<App />, document.getElementById('root'))
 }
 
