@@ -69,6 +69,11 @@ pipeline {
                 sh "bundle exec fastlane android release"
                 sh "bundle exec fastlane ios release"
             }
+            post {
+                success {
+                    sh "./devops/slack_notification.sh"
+                }
+            }
         }
     }
 
