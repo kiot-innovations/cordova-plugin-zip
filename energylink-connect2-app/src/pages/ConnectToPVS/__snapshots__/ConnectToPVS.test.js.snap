@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Connect to PVS page render correctly 1`] = `
+<div
+  className="is-vertical has-text-centered"
+>
+  <span
+    className="is-uppercase has-text-weight-bold mb-40"
+  >
+    LOOK_FOR_QR
+  </span>
+  <div
+    className="example-image mt-20 mb-20"
+  >
+    <span>
+      EXAMPLE_IMAGE
+    </span>
+    <img
+      className="mt-15"
+      src="example.png"
+    />
+  </div>
+  <button
+    className="button is-primary"
+    onClick={[Function]}
+  >
+    START_SCAN
+  </button>
+</div>
+`;
