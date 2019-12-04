@@ -9,6 +9,7 @@ import Home from 'pages/Home'
 import Login from 'pages/Login'
 import Menu from 'pages/Menu'
 import NotFound from 'pages/NotFound'
+import ConnectToPVS from 'pages/ConnectToPVS'
 import PvsConnectionSuccessful from 'pages/PvsConnectionSuccessful'
 
 import { useRouter } from 'hooks'
@@ -29,6 +30,7 @@ const mapComponents = {
   [paths.PROTECTED.ROOT.path]: Home,
   [paths.PROTECTED.VERSION_INFORMATION.path]: NotFound,
   [paths.PROTECTED.INVENTORY_COUNT.path]: InventoryCount,
+  [paths.PROTECTED.CONNECT_TO_PVS.path]: ConnectToPVS,
   [paths.UNPROTECTED.FORGOT_PASSWORD.path]: NotFound,
   [paths.UNPROTECTED.GET_ASSISTANCE.path]: NotFound,
   [paths.UNPROTECTED.LOGIN.path]: Login
