@@ -38,12 +38,7 @@
       "cordova-plugin-camera": {},
       "cordova-plugin-network-information": {},
       "cordova-plugin-file": {},
-      "cordova-plugin-file-downloader": {},
-      "platforms": [
-        "android",
-        "ios",
-        "browser"
-      ]
+      "cordova-plugin-file-downloader": {}
     }
   }
 }
