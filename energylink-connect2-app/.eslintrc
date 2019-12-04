@@ -16,6 +16,9 @@
   "globals": {
     "mountWithProvider": true,
     "nextTick": true,
-    "reducerTester": true
+    "reducerTester": true,
+    "cordova": true,
+    "epicTester": true,
+    "addTimeFrames": true
   }
 }
