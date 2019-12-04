@@ -8,6 +8,7 @@ import { languageReducer } from './language'
 import { globalReducer } from './global'
 import { storesVersions } from './migrations'
 import ui from './ui'
+import fileDownloader from './fileDownloader'
 
 export default combineReducers({
   ui,
@@ -28,7 +29,7 @@ export default combineReducers({
     },
     languageReducer
   ),
-
+  fileDownloader,
   global: globalReducer,
   inventory: inventoryReducer
   // Add reducers here

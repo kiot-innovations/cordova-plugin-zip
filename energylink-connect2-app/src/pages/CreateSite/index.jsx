@@ -93,10 +93,19 @@ function CreateSite() {
               <SelectField
                 onSearch={async newAddress => {
                   getInputProps().onChange({ target: { value: newAddress } })
-                  return suggestions.map(elem => ({
-                    value: elem.description,
-                    label: elem.description
-                  }))
+                  return suggestions
+                    .filter(elem => {
+                      const country = elem.terms.pop().value
+                      return (
+                        country === 'USA' ||
+                        country === 'Mexico' ||
+                        country === 'Canada'
+                      )
+                    })
+                    .map(elem => ({
+                      value: elem.description,
+                      label: elem.description
+                    }))
                 }} //load options
                 onSelect={handleSelect} //onchange
                 className="mt-10"
