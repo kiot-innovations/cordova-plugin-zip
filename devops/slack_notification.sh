@@ -32,7 +32,7 @@ validate_env JENKINS_URL
 validate_env PROJECT_NAME
 validate_env SLACK_WEBHOOK_URL
 
-readonly slack_channel="cm2-dev"
+readonly slack_channel="cm2-builds"
 readonly build_url="${JENKINS_URL}/blue/organizations/jenkins/$PROJECT_NAME/detail/$(urlencode "${BRANCH_NAME}")/$BUILD_ID"
 
 
