@@ -1,7 +1,7 @@
 import React from 'react'
 import ExampleImage from './assets/example.png'
 import { useI18n } from 'shared/i18n'
-import { decodeQRData, scanBarcodes } from '../../shared/utils'
+import { decodeQRData, scanBarcodes } from '../../shared/scanning'
 
 function ConnectToPVS() {
   const t = useI18n()
