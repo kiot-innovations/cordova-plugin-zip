@@ -8,7 +8,6 @@ export const scanBarcodes = (success, fail) => {
       }
     },
     function(error) {
-      alert('Scanning failed: ' + error)
       fail(error)
     },
     {
