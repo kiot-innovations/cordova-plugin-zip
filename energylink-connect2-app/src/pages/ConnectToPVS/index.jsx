@@ -1,17 +1,18 @@
 import React from 'react'
 import ExampleImage from './assets/example.png'
 import { useI18n } from 'shared/i18n'
-import { scanBarcodes } from '../../shared/utils'
-import CryptoJS from 'crypto-js'
+import { decodeQRData, scanBarcodes } from '../../shared/utils'
 
 function ConnectToPVS() {
   const t = useI18n()
 
   const onSuccess = data => {
-    let trimData = data.replace(/\s+/g, '')
-    let QRdata = CryptoJS.AES.decrypt(trimData, process.env.REACT_APP_WIFIKEY)
-    let wifiData = QRdata.toString(CryptoJS.enc.Utf8)
-    alert(wifiData)
+    let wifiData = decodeQRData(data)
+    if (wifiData.length > 0) {
+      alert(wifiData)
+    } else {
+      alert('Please scan a valid PVS6 QR Code')
+    }
   }
 
   const onFail = err => {

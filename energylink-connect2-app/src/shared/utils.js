@@ -1,3 +1,5 @@
+import CryptoJS from 'crypto-js'
+
 export const either = (condition, whenTrue, whenFalse) =>
   condition ? whenTrue : whenFalse
 
@@ -57,4 +59,11 @@ export const scanBarcodes = (success, fail) => {
       disableSuccessBeep: false // iOS and Android
     }
   )
+}
+
+export const decodeQRData = data => {
+  let trimData = data.replace(/\s+/g, '')
+  let QRdata = CryptoJS.AES.decrypt(trimData, process.env.REACT_APP_WIFIKEY)
+  let result = QRdata.toString(CryptoJS.enc.Utf8)
+  return result
 }
