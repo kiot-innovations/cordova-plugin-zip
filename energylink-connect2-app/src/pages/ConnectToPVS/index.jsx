@@ -11,7 +11,7 @@ function ConnectToPVS() {
     if (wifiData.length > 0) {
       alert(wifiData)
     } else {
-      alert('Please scan a valid PVS6 QR Code')
+      alert(t('INVALID_QRCODE'))
     }
   }
 

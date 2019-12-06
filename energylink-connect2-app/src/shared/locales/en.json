@@ -66,5 +66,6 @@
   "EXAMPLE_IMAGE": "Example image",
   "START_SCAN": "Start scanning",
   "FIRMWARE_ERROR_FOUND": "I ran into an error downloading the file",
-  "TRY_AGAIN": "Try again"
+  "TRY_AGAIN": "Try again",
+  "INVALID_QRCODE": "Please scan a valid PVS6 QR Code"
 }
