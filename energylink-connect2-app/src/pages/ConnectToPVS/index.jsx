@@ -2,12 +2,29 @@ import React from 'react'
 import ExampleImage from './assets/example.png'
 import { useI18n } from 'shared/i18n'
 import { scanBarcodes } from '../../shared/utils'
+import { connectTo } from '../../state/actions/network'
+import { useDispatch } from 'react-redux'
 
 function ConnectToPVS() {
   const t = useI18n()
+  const dispatch = useDispatch()
+
+  const generatePwd = sn => {
+    let lastIndex = sn.length
+    let pwd = sn.substring(2, 6) + sn.substring(lastIndex - 4, lastIndex)
+    return pwd
+  }
+
+  const connectToWifi = (ssid, pwd) => {
+    dispatch(connectTo(ssid, pwd))
+  }
 
   const onSuccess = data => {
-    alert(data.text)
+    let qrData = data.split('|')
+    let serialn = qrData[0]
+    let ssid = qrData[1]
+    let pwd = generatePwd(serialn)
+    connectToWifi(ssid, pwd)
   }
 
   const onFail = err => {
