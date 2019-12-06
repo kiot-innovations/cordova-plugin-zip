@@ -7,7 +7,14 @@ function ConnectToPVS() {
   const t = useI18n()
 
   const onSuccess = data => {
-    let wifiData = decodeQRData(data)
+    let wifiData
+
+    try {
+      wifiData = decodeQRData(data)
+    } catch {
+      wifiData = ''
+    }
+
     if (wifiData.length > 0) {
       alert(wifiData)
     } else {
