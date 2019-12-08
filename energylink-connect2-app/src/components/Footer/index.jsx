@@ -1,10 +1,13 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 import { animated, useTransition } from 'react-spring'
+import { useHistory } from 'react-router-dom'
+import paths from 'routes/paths'
 import Nav from '@sunpower/nav'
 import './footer.scss'
 
 const Footer = () => {
+  const history = useHistory()
   const showFooter = useSelector(({ ui }) => ui.footer)
   const grow = useTransition(!!showFooter, null, {
     from: { maxHeight: 0, opacity: 0 },
@@ -12,16 +15,22 @@ const Footer = () => {
     leave: { maxHeight: 0, opacity: 0 }
   })
 
+  function redirect(path) {
+    history.push(path)
+  }
+
   const navBarItems = [
     {
       icon: 'sp-home',
       text: 'Home',
-      onClick: () => {}
+      onClick: () => redirect(paths.PROTECTED.BILL_OF_MATERIALS.path),
+      active:
+        history.location.pathname === paths.PROTECTED.BILL_OF_MATERIALS.path
     },
     {
       icon: 'sp-list',
       text: 'List',
-      onClick: () => {}
+      onClick: () => redirect(paths.PROTECTED.CONNECT_TO_PVS.path)
     },
     {
       icon: 'sp-signal',

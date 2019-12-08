@@ -1,7 +1,7 @@
 import React from 'react'
 import ExampleImage from './assets/example.png'
 import { useI18n } from 'shared/i18n'
-import { scanBarcodes } from '../../shared/utils'
+import { decodeQRData, scanBarcodes } from '../../shared/scanning'
 import { connectTo } from '../../state/actions/network'
 import { useDispatch } from 'react-redux'
 
@@ -20,11 +20,23 @@ function ConnectToPVS() {
   }
 
   const onSuccess = data => {
-    let qrData = data.split('|')
-    let serialn = qrData[0]
-    let ssid = qrData[1]
-    let pwd = generatePwd(serialn)
-    connectToWifi(ssid, pwd)
+    let wifiData
+
+    try {
+      wifiData = decodeQRData(data)
+    } catch {
+      wifiData = ''
+    }
+
+    if (wifiData.length > 0) {
+      let qrData = wifiData.split('|')
+      let serialn = qrData[0]
+      let ssid = qrData[1]
+      let pwd = generatePwd(serialn)
+      connectToWifi(ssid, pwd)
+    } else {
+      alert(t('INVALID_QRCODE'))
+    }
   }
 
   const onFail = err => {
@@ -38,7 +50,11 @@ function ConnectToPVS() {
       </span>
       <div className="example-image mt-20 mb-20">
         <span>{t('EXAMPLE_IMAGE')}</span>
-        <img className="mt-15" src={ExampleImage} />
+        <img
+          className="mt-15"
+          src={ExampleImage}
+          alt={t('EXAMPLE_QR_IMAGE_ALT')}
+        />
       </div>
       <button
         className="button is-primary"
