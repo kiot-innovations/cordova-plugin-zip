@@ -1,13 +1,26 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import ExampleImage from './assets/example.png'
 import { useI18n } from 'shared/i18n'
 import { decodeQRData, scanBarcodes } from '../../shared/scanning'
 import { connectTo } from '../../state/actions/network'
-import { useDispatch } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
+import { useHistory } from 'react-router-dom'
+import paths from 'routes/paths'
 
 function ConnectToPVS() {
   const t = useI18n()
   const dispatch = useDispatch()
+  const history = useHistory()
+  const connectionState = useSelector(state => state.network)
+
+  useEffect(() => {
+    if (connectionState.connected) {
+      history.push(paths.PROTECTED.PVS_CONNECTION_SUCCESS.path)
+    }
+    if (!connectionState.connecting && connectionState.err) {
+      alert('An error occured while connecting to the PVS. Please try again.')
+    }
+  }, [connectionState, history])
 
   const generatePwd = sn => {
     let lastIndex = sn.length

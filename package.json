@@ -44,6 +44,9 @@
       "cordova-plugin-file-downloader": {},
       "wifiwizard2": {},
       "cordova-plugin-device": {}
-    }
+    },
+    "platforms": [
+      "ios"
+    ]
   }
 }

@@ -6,8 +6,9 @@ import {
 } from '../../actions/network'
 
 const initialState = {
-  currentSSID: '',
-  connecting: false
+  connected: false,
+  connecting: false,
+  err: ''
 }
 
 export const networkReducer = createReducer(
@@ -16,9 +17,9 @@ export const networkReducer = createReducer(
       ...state,
       connecting: true
     }),
-    [PVS_CONNECTION_SUCCESS]: (state, payload) => ({
+    [PVS_CONNECTION_SUCCESS]: state => ({
       ...state,
-      currentSSID: payload
+      connected: true
     }),
     [PVS_CONNECTION_ERROR]: (state, payload) => ({
       ...state,
