@@ -5,17 +5,21 @@ export const PVS_CONNECTION_SUCCESS = createAction('PVS_CONNECTION_SUCCESS')
 export const PVS_CONNECTION_ERROR = createAction('PVS_CONNECTION_ERROR')
 
 export const connectTo = (ssid, password) => {
-  return dispatch => {
+  return async dispatch => {
     dispatch(PVS_CONNECTION_INIT())
     if (window.device.platform === 'iOS') {
-      window.WifiWizard2.iOSConnectNetwork(ssid, password)
-        .then(dispatch(PVS_CONNECTION_SUCCESS(ssid)))
+      await window.WifiWizard2.iOSConnectNetwork(ssid, password)
+        .then(() => {
+          dispatch(PVS_CONNECTION_SUCCESS(ssid))
+        })
         .catch(err => {
           dispatch(PVS_CONNECTION_ERROR(err))
         })
     } else {
       window.WifiWizard2.connect(ssid, true, password, 'WPA', false)
-        .then(dispatch(PVS_CONNECTION_SUCCESS(ssid)))
+        .then(() => {
+          dispatch(PVS_CONNECTION_SUCCESS(ssid))
+        })
         .catch(err => {
           dispatch(PVS_CONNECTION_ERROR(err))
         })

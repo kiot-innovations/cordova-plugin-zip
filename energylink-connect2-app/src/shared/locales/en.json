@@ -68,5 +68,6 @@
   "FIRMWARE_ERROR_FOUND": "I ran into an error downloading the file",
   "TRY_AGAIN": "Try again",
   "INVALID_QRCODE": "Please scan a valid PVS6 QR Code",
-  "EXAMPLE_QR_IMAGE_ALT": "PVS QR code example"
+  "EXAMPLE_QR_IMAGE_ALT": "PVS QR code example",
+  "PVS_SN_TEXT": "PVS6 SN:"
 }

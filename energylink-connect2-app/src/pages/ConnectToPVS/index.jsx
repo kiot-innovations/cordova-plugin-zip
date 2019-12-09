@@ -6,21 +6,32 @@ import { connectTo } from '../../state/actions/network'
 import { useSelector, useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import paths from 'routes/paths'
+import { saveSerialNumber } from '../../state/actions/pvs'
 
-function ConnectToPVS() {
+function ConnectToPVS({ animationState }) {
   const t = useI18n()
   const dispatch = useDispatch()
   const history = useHistory()
   const connectionState = useSelector(state => state.network)
 
   useEffect(() => {
-    if (connectionState.connected) {
+    if (
+      !connectionState.connecting &&
+      connectionState.connected &&
+      animationState !== 'leave'
+    ) {
       history.push(paths.PROTECTED.PVS_CONNECTION_SUCCESS.path)
     }
     if (!connectionState.connecting && connectionState.err) {
       alert('An error occured while connecting to the PVS. Please try again.')
     }
-  }, [connectionState, history])
+  }, [
+    animationState,
+    connectionState.connected,
+    connectionState.connecting,
+    connectionState.err,
+    history
+  ])
 
   const generatePassword = serialNumber => {
     let lastIndex = serialNumber.length
@@ -48,6 +59,7 @@ function ConnectToPVS() {
       let serialNumber = qrData[0]
       let ssid = qrData[1]
       let password = generatePassword(serialNumber)
+      dispatch(saveSerialNumber(serialNumber))
       connectToWifi(ssid, password)
     } else {
       alert(t('INVALID_QRCODE'))

@@ -6,6 +6,7 @@ import { userReducer } from './user'
 import { inventoryReducer } from './inventory'
 import { languageReducer } from './language'
 import { networkReducer } from './network'
+import { pvsReducer } from './pvs'
 import { globalReducer } from './global'
 import { storesVersions } from './migrations'
 import ui from './ui'
@@ -33,6 +34,7 @@ export default combineReducers({
   fileDownloader,
   global: globalReducer,
   inventory: inventoryReducer,
-  network: networkReducer
+  network: networkReducer,
+  pvs: pvsReducer
   // Add reducers here
 })
