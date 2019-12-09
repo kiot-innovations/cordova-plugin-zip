@@ -22,10 +22,12 @@ function ConnectToPVS() {
     }
   }, [connectionState, history])
 
-  const generatePwd = sn => {
-    let lastIndex = sn.length
-    let pwd = sn.substring(2, 6) + sn.substring(lastIndex - 4, lastIndex)
-    return pwd
+  const generatePassword = serialNumber => {
+    let lastIndex = serialNumber.length
+    let password =
+      serialNumber.substring(2, 6) +
+      serialNumber.substring(lastIndex - 4, lastIndex)
+    return password
   }
 
   const connectToWifi = (ssid, pwd) => {
@@ -43,10 +45,10 @@ function ConnectToPVS() {
 
     if (wifiData.length > 0) {
       let qrData = wifiData.split('|')
-      let serialn = qrData[0]
+      let serialNumber = qrData[0]
       let ssid = qrData[1]
-      let pwd = generatePwd(serialn)
-      connectToWifi(ssid, pwd)
+      let password = generatePassword(serialNumber)
+      connectToWifi(ssid, password)
     } else {
       alert(t('INVALID_QRCODE'))
     }
