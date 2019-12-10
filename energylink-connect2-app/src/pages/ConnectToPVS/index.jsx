@@ -21,7 +21,7 @@ function ConnectToPVS() {
       </span>
       <div className="example-image mt-20 mb-20">
         <span>{t('EXAMPLE_IMAGE')}</span>
-        <img className="mt-15" src={ExampleImage} />
+        <img className="mt-15" src={ExampleImage} alt="" />
       </div>
       <button
         className="button is-primary"

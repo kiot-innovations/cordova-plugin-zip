@@ -16,6 +16,7 @@ exports[`Connect to PVS page render correctly 1`] = `
       EXAMPLE_IMAGE
     </span>
     <img
+      alt=""
       className="mt-15"
       src="example.png"
     />
