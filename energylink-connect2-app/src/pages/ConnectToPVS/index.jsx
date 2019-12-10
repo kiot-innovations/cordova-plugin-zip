@@ -1,13 +1,25 @@
 import React from 'react'
 import ExampleImage from './assets/example.png'
 import { useI18n } from 'shared/i18n'
-import { scanBarcodes } from '../../shared/utils'
+import { decodeQRData, scanBarcodes } from '../../shared/scanning'
 
 function ConnectToPVS() {
   const t = useI18n()
 
   const onSuccess = data => {
-    alert(data.text)
+    let wifiData
+
+    try {
+      wifiData = decodeQRData(data)
+    } catch {
+      wifiData = ''
+    }
+
+    if (wifiData.length > 0) {
+      alert(wifiData)
+    } else {
+      alert(t('INVALID_QRCODE'))
+    }
   }
 
   const onFail = err => {
@@ -21,7 +33,11 @@ function ConnectToPVS() {
       </span>
       <div className="example-image mt-20 mb-20">
         <span>{t('EXAMPLE_IMAGE')}</span>
-        <img className="mt-15" src={ExampleImage} alt="" />
+        <img
+          className="mt-15"
+          src={ExampleImage}
+          alt={t('EXAMPLE_QR_IMAGE_ALT')}
+        />
       </div>
       <button
         className="button is-primary"
