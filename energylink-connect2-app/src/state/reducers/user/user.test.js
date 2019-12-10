@@ -1,4 +1,3 @@
-import * as authActions from '../../actions/auth'
 import * as userActions from '../../actions/user'
 import { userReducer } from '.'
 
@@ -7,43 +6,6 @@ describe('User reducer', () => {
 
   it('returns the initial state', () => {
     reducerTest({}, {}, {})
-  })
-
-  it('empties the auth state when LOGIN_INIT action is fired', () => {
-    reducerTest({ auth: { some: 'existing data' } }, authActions.LOGIN_INIT(), {
-      auth: {},
-      isAuthenticating: true
-    })
-  })
-
-  it('populates the auth state when LOGIN_SUCCESS action is fired', () => {
-    const userData = {
-      addressId: 11781,
-      expiresEpm: 1562765292686,
-      isKiosk: false,
-      tokenID: 'eed32654-57b0-4349-da71-a6993f3a7a92',
-      userId: 262029
-    }
-
-    reducerTest(
-      { more: 'other data', auth: 'existing data' },
-      authActions.LOGIN_SUCCESS(userData),
-      { more: 'other data', auth: userData, isAuthenticating: false }
-    )
-  })
-
-  it('populates the auth state when LOGIN_ERROR actions is fired', () => {
-    const userData = {
-      err: {
-        status: 401
-      }
-    }
-
-    reducerTest(
-      { more: 'other data', err: 'existing data' },
-      authActions.LOGIN_ERROR(userData),
-      { more: 'other data', err: userData, isAuthenticating: false }
-    )
   })
 
   it('empties the data state when GET_USER_INIT action is fired', () => {

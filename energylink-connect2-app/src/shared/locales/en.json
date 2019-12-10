@@ -1,4 +1,5 @@
 {
+  "APP_NAME": "EnergyLink Connect",
   "ADDRESS": "Address",
   "CUSTOMER_INFORMATION": "Customer information",
   "HUB_PRODUCING": "Producing",
@@ -14,6 +15,7 @@
   "NAME": "Name",
   "APT": "Apt/Unit No.",
   "BTN_LOGIN": "Login",
+  "BTN_LOGOUT": "Logout",
   "BTN_UPDATE": "Update",
   "CANCEL": "Cancel",
   "DONE": "Done",
