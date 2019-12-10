@@ -48,6 +48,9 @@
         "ANDROID_HOST": " ",
         "ANDROID_PATHPREFIX": "/"
       }
-    }
+    },
+    "platforms": [
+      "ios"
+    ]
   }
 }
