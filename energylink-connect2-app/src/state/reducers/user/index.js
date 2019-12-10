@@ -4,6 +4,7 @@ import {
   LOGIN_INIT,
   LOGOUT,
   LOGIN_ERROR,
+  SET_TOKEN,
   VALIDATE_SESSION_INIT,
   VALIDATE_SESSION_SUCCESS,
   VALIDATE_SESSION_ERROR
@@ -25,21 +26,27 @@ const initialState = {
 
 export const userReducer = createReducer(
   {
-    [LOGIN_INIT]: state => ({
+    [LOGIN_INIT]: (state, payload) => ({
       ...state,
-      auth: {},
-      isAuthenticating: true
+      isAuthenticating: true,
+      auth: { ...state.auth, state: payload.state, nonce: payload.nonce }
     }),
     [LOGIN_SUCCESS]: (state, payload) => ({
       ...state,
-      auth: { ...payload },
+      auth: { ...state.auth, ...payload.auth },
+      data: { ...payload.data },
       isAuthenticating: false
     }),
     [LOGIN_ERROR]: (state, payload) => ({
       ...state,
-      err: { ...payload },
-      isAuthenticating: false
+      initialState,
+      err: { ...payload }
     }),
+    [SET_TOKEN]: (state, payload) => ({
+      ...state,
+      auth: { ...state.auth, id_token: payload }
+    }),
+
     [GET_USER_INIT]: state => ({ ...state, data: {} }),
     [GET_USER_SUCCESS]: (state, payload) => ({
       ...state,
