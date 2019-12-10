@@ -46,7 +46,8 @@
       "cordova-plugin-device": {}
     },
     "platforms": [
-      "ios"
+      "ios",
+      "android"
     ]
   }
 }

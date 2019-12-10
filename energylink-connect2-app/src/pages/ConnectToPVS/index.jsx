@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react'
 import ExampleImage from './assets/example.png'
 import { useI18n } from 'shared/i18n'
-import { decodeQRData, scanBarcodes } from '../../shared/scanning'
-import { connectTo } from '../../state/actions/network'
+import { decodeQRData, scanBarcodes } from 'shared/scanning'
+import { connectTo } from 'state/actions/network'
 import { useSelector, useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import paths from 'routes/paths'
-import { saveSerialNumber } from '../../state/actions/pvs'
+import { saveSerialNumber } from 'state/actions/pvs'
 
 function ConnectToPVS({ animationState }) {
   const t = useI18n()
