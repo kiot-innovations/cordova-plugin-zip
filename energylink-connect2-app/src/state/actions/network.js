@@ -25,7 +25,7 @@ export const connectTo = (ssid, password) => {
   }
 }
 
-export const clearErr = () => {
+export const clearPVSErr = () => {
   return async dispatch => {
     dispatch(PVS_CLEAR_ERROR())
   }

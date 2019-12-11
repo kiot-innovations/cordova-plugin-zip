@@ -2,7 +2,7 @@ import React, { useCallback, useState, useEffect } from 'react'
 import ExampleImage from './assets/example.png'
 import { useI18n } from 'shared/i18n'
 import { decodeQRData, scanBarcodes } from 'shared/scanning'
-import { clearErr, connectTo } from 'state/actions/network'
+import { clearPVSErr, connectTo } from 'state/actions/network'
 import { useSelector, useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import paths from 'routes/paths'
@@ -26,10 +26,9 @@ function ConnectToPVS({ animationState }) {
     }
 
     if (wifiData.length > 0) {
-      let qrData = wifiData.split('|')
-      let serialNumber = qrData[0]
-      let ssid = qrData[1]
-      let password = generatePassword(serialNumber)
+      const qrData = wifiData.split('|')
+      const [serialNumber, ssid] = qrData
+      const password = generatePassword(serialNumber)
       dispatch(saveSerialNumber(serialNumber))
       connectToWifi(ssid, password)
     } else {
@@ -54,8 +53,8 @@ function ConnectToPVS({ animationState }) {
       history.push(paths.PROTECTED.PVS_CONNECTION_SUCCESS.path)
     }
     if (!connectionState.connecting && connectionState.err) {
-      dispatch(clearErr())
-      alert('An error occured while connecting to the PVS. Please try again.')
+      dispatch(clearPVSErr())
+      alert(t('PVS_CONN_ERROR'))
     }
   }, [
     scanning,
@@ -65,7 +64,8 @@ function ConnectToPVS({ animationState }) {
     connectionState.err,
     history,
     onSuccess,
-    dispatch
+    dispatch,
+    t
   ])
 
   const generatePassword = serialNumber => {
