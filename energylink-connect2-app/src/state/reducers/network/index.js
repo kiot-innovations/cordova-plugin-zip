@@ -2,7 +2,8 @@ import { createReducer } from 'redux-act'
 import {
   PVS_CONNECTION_INIT,
   PVS_CONNECTION_SUCCESS,
-  PVS_CONNECTION_ERROR
+  PVS_CONNECTION_ERROR,
+  PVS_CLEAR_ERROR
 } from '../../actions/network'
 
 const initialState = {
@@ -29,6 +30,9 @@ export const networkReducer = createReducer(
       err: payload,
       connected: false,
       connecting: false
+    }),
+    [PVS_CLEAR_ERROR]: state => ({
+      initialState
     })
   },
   initialState
