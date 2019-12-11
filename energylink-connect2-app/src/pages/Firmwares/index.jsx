@@ -27,7 +27,7 @@ function Firmwares() {
     downloadFile()
   }, [dispatch, downloadFile])
   return (
-    <section className="is-flex tile is-vertical pt-0 pr-10 pl-10 fill-parent">
+    <section className="is-flex tile is-vertical pt-0 pr-10 pl-10 full-height">
       <h1 className="has-text-centered is-uppercase pb-20">{t('FIRMWARE')}</h1>
       {fileInfo.error !== '' ? (
         <>

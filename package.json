@@ -18,10 +18,12 @@
     "cordova-browser": "^6.0.0",
     "cordova-ios": "^5.0.1",
     "cordova-plugin-device": "^2.0.3",
+    "cordova-plugin-customurlscheme": "^5.0.0",
     "cordova-plugin-file": "^6.0.2",
     "cordova-plugin-file-downloader": "^0.4.0",
     "cordova-plugin-file-md5": "^0.3.3",
     "cordova-plugin-file-transfer": "^1.7.1",
+    "cordova-plugin-inappbrowser": "^3.1.0",
     "cordova-plugin-network-information": "^2.0.2",
     "cordova-plugin-wifiwizard2": "git+https://github.com/tripflex/wifiwizard2.git",
     "cordova-plugin-zip": "^3.1.0",
@@ -42,8 +44,14 @@
       "cordova-plugin-network-information": {},
       "cordova-plugin-file": {},
       "cordova-plugin-file-downloader": {},
+      "cordova-plugin-inappbrowser": {},
       "wifiwizard2": {},
-      "cordova-plugin-device": {}
+      "cordova-plugin-customurlscheme": {
+        "URL_SCHEME": "elc2",
+        "ANDROID_SCHEME": " ",
+        "ANDROID_HOST": " ",
+        "ANDROID_PATHPREFIX": "/"
+      }
     },
     "platforms": [
       "ios",

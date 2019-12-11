@@ -12,7 +12,7 @@ exports[`NotFound Page render correctly 1`] = `
     </div>
   </header>
   <section
-    className="section is-flex level"
+    className="home is-flex level full-height"
   >
     <h6
       className="has-text-centered has-text-white"

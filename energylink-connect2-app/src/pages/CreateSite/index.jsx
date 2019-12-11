@@ -67,7 +67,7 @@ function CreateSite() {
       }
     >
       {({ getInputProps, suggestions }) => (
-        <section className="is-flex tile is-vertical section pt-0 fill-parent">
+        <section className="is-flex tile is-vertical section pt-0 full-height">
           <h1 className="has-text-centered is-uppercase has-text-weight-bold  pb-20">
             {t('CREATE_SITE')}
           </h1>
@@ -95,7 +95,7 @@ function CreateSite() {
                   getInputProps().onChange({ target: { value: newAddress } })
                   return suggestions
                     .filter(elem => {
-                      const country = elem.terms.pop().value
+                      const country = elem.terms.slice(-1)[0].value
                       return (
                         country === 'USA' ||
                         country === 'Mexico' ||

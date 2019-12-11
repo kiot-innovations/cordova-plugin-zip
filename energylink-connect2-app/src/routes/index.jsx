@@ -2,7 +2,7 @@ import React, { useLayoutEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { Route, Switch } from 'react-router-dom'
 import { animated, useTransition } from 'react-spring'
-
+import { useDispatch } from 'react-redux'
 import CreateSite from 'pages/CreateSite'
 import Firmwares from 'pages/Firmwares'
 import Home from 'pages/Home'
@@ -18,6 +18,8 @@ import { routeAuthorization, setLayout } from 'hocs'
 import paths from './paths'
 import BillOfMaterials from '../pages/BillOfMaterials'
 import InventoryCount from '../pages/InventoryCount'
+import Logout from 'pages/Logout'
+import { deviceResumeListener } from 'state/actions/mobile'
 
 const mapComponents = {
   [paths.PROTECTED.BILL_OF_MATERIALS.path]: BillOfMaterials,
@@ -33,7 +35,8 @@ const mapComponents = {
   [paths.PROTECTED.CONNECT_TO_PVS.path]: ConnectToPVS,
   [paths.UNPROTECTED.FORGOT_PASSWORD.path]: NotFound,
   [paths.UNPROTECTED.GET_ASSISTANCE.path]: NotFound,
-  [paths.UNPROTECTED.LOGIN.path]: Login
+  [paths.UNPROTECTED.LOGIN.path]: Login,
+  [paths.UNPROTECTED.LOGOUT.path]: Logout
 }
 
 /**
@@ -42,6 +45,9 @@ const mapComponents = {
  * @constructor
  */
 function AppRoutes() {
+  const dispatch = useDispatch()
+  dispatch(deviceResumeListener())
+
   const { location } = useRouter()
   const fadeIn = useTransition(location, loc => loc.pathname, {
     from: { opacity: 0, transform: 'translate(100%,0)' },
@@ -52,7 +58,8 @@ function AppRoutes() {
   useLayoutEffect(() => {
     window.scrollTo(0, 0)
   })
-  const isLoggedIn = useSelector(({ user }) => user.auth.userId)
+
+  const isLoggedIn = useSelector(({ user }) => user.auth.access_token)
   return fadeIn.map(({ item, props, key, state }) => (
     <animated.div key={key} style={props}>
       <Switch location={item}>
