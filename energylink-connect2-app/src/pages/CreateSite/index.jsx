@@ -8,6 +8,7 @@ import SelectField from 'components/SelectField'
 import paths from 'routes/paths'
 import PlacesAutocomplete from 'react-places-autocomplete'
 import { geocodeByAddress, getGeocodeData } from 'shared/utils'
+import { path } from 'ramda'
 
 function CreateSite() {
   const [initialValues, setInitialValues] = useState({
@@ -95,7 +96,10 @@ function CreateSite() {
                   getInputProps().onChange({ target: { value: newAddress } })
                   return suggestions
                     .filter(elem => {
-                      const country = elem.terms.pop().value
+                      const country = path(
+                        ['terms', elem.terms.length - 1, 'value'],
+                        elem
+                      )
                       return (
                         country === 'USA' ||
                         country === 'Mexico' ||

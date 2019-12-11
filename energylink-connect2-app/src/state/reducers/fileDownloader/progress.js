@@ -15,7 +15,7 @@ export default createReducer(
       progress: payload.progress,
       lastProgress: state.progress
     }),
-    [DOWNLOAD_SUCCESS]: (state, payload) => ({
+    [DOWNLOAD_SUCCESS]: () => ({
       progress: 100,
       lastProgress: 0
     }),

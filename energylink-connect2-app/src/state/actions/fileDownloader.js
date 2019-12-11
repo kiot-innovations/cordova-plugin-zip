@@ -3,6 +3,7 @@ import { createAction } from 'redux-act'
 export const GET_FILE = createAction('[ FILE MANAGER ] GET FILE')
 export const GET_LUA_FILE = createAction('[ FILE MANAGER ] GET LUA FILE')
 export const GET_FILE_ERROR = createAction('[ FILE MANAGER ] GET FILE ERROR')
+export const SET_FILE_NAME = createAction('[ FILE MANAGER ] SET FILE NAME')
 
 export const DOWNLOAD_FILE = createAction('[ FILE MANAGER ] DOWNLOAD FILE')
 export const DOWNLOAD_PROGRESS = createAction(
@@ -29,16 +30,18 @@ async function getVersionNumber() {
     const fileURL =
       'https://fw-assets-pvs6-dev.dev-edp.sunpower.com/staging-prod-adama/249/fwup/fwup.lua'
     const fileNameArr = fileURL.split('/').slice(-3)
-    const fileName = `${fileNameArr.shift()}-${fileNameArr.pop()}`
-    return { fileName, fileURL }
+    const version = fileNameArr[0]
+    const fileName = fileNameArr.pop()
+    const luaFileName = `${version}-${fileName}`
+    return { luaFileName, fileURL, version }
   } catch (e) {
     throw new Error(ERROR_CODES.getVersionInfo)
   }
 }
 
-async function getLuaFile(fileName, fileUrl, dispatch) {
+async function getPersistentFile(fileName, fileUrl, dispatch) {
   return new Promise((resolve, reject) => {
-    console.log('get lua file',fileName)
+    console.log('get lua file', fileName)
     const type = window.PERSISTENT
     const size = 5 * 1024 * 1024
 
@@ -49,16 +52,19 @@ async function getLuaFile(fileName, fileUrl, dispatch) {
         function(fileEntry) {
           fileEntry.file(
             file => {
-              console.log(file)
               resolve(file)
             },
-            () => {
-              downlandLuaFile(fileName, fileUrl, dispatch)
+            e => {
+              console.log('ERROR gETTING THIS TO WORK', e)
               reject(new Error(ERROR_CODES.noLuaFile))
             }
           )
         },
-        () => reject(new Error(ERROR_CODES.getLuaFile))
+        e => {
+          console.warn('FILES', e)
+          downlandLuaFile(fileName, fileUrl, dispatch)
+          reject(new Error(ERROR_CODES.getLuaFile))
+        }
       )
     }
 
@@ -71,10 +77,15 @@ async function getLuaFile(fileName, fileUrl, dispatch) {
 export function getFile() {
   return async function(dispatch) {
     try {
-      const { fileURL, fileName } = await getVersionNumber()
-      console.log({ fileURL, fileName })
-      const luaFile = await getLuaFile(fileName, fileURL, dispatch)
+      const { fileURL, luaFileName, version } = await getVersionNumber()
+      console.log({ fileURL, luaFileName })
+      dispatch(SET_FILE_NAME(luaFileName))
+      const luaFile = await getPersistentFile(luaFileName, fileURL, dispatch)
       console.log(luaFile)
+      const fileSystemURL = await parseLuaFile(luaFileName, dispatch)
+      removeEventListeners()
+      await getPersistentFile(`${version}-fs.tgz`, fileSystemURL, dispatch)
+      dispatch(DOWNLOAD_SUCCESS())
     } catch (error) {
       console.log('I ran into an error', error)
       switch (error.message) {
@@ -92,10 +103,8 @@ export function getFile() {
 function parseLuaFile(fileName, dispatch) {
   return new Promise((resolve, reject) => {
     console.log('PARSING LUA FILE')
-    debugger
     const type = window.PERSISTENT
     const size = 5 * 1024 * 1024
-
     function successCallback(fs) {
       fs.root.getFile(
         `firmware/${fileName}`,
@@ -131,10 +140,8 @@ function parseLuaFile(fileName, dispatch) {
                   getIntegerData(sizeRegex, this.result) / 1000000
                 ).toFixed(2)
                 const fileUrl = getStringData(urlRegex, this.result)
-                debugger
+                dispatch(SET_FILES_SIZE(size))
                 resolve(fileUrl)
-                dispatch(SET_FILES_SIZE({ size }))
-                downlandFsRootFile(fileUrl)
               }
               reader.readAsText(file)
             },
@@ -149,18 +156,20 @@ function parseLuaFile(fileName, dispatch) {
   })
 }
 
-async function downlandFsRootFile() {}
 
 function downloadProgress(event, dispatch) {
   // event.data[0] is the percentage of the download
   // event.data[1] is the name of the file
-  return dispatch(
-    DOWNLOAD_PROGRESS({ progress: event.data[0], fileName: event.data[1] })
-  )
+  return dispatch(DOWNLOAD_PROGRESS({ progress: event.data[0] }))
 }
 
 function downlandLuaFile(fileName, fileUrl, dispatch) {
-  window.downloader.init({ folder: 'firmware', wifiOnly: true })
+  console.log('INIT DOWNLOAD')
+  window.downloader.init({ folder: 'firmware' })
+  document.addEventListener('DOWNLOADER_downloadProgress', e => {
+    downloadProgress(e, dispatch)
+  })
+
   document.addEventListener('DOWNLOADER_downloadSuccess', e =>
     downloadSuccess(e, dispatch)
   )
@@ -179,7 +188,6 @@ export const abortDownload = () => dispatch => {
 }
 
 function downloadSuccess(event, dispatch) {
-  dispatch(DOWNLOAD_SUCCESS(event.data[0]))
   dispatch(getFile())
   removeEventListeners()
 }
