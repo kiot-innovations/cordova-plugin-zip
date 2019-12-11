@@ -2,7 +2,7 @@
 
 exports[`Menu Page render correctly 1`] = `
 <section
-  className="is-flex tile is-vertical level page-height"
+  className="is-flex tile is-vertical level full-height"
 >
   <article
     className="is-flex space-around flow-wrap mt-15"

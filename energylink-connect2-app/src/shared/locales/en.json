@@ -1,4 +1,5 @@
 {
+  "APP_NAME": "EnergyLink Connect",
   "ADDRESS": "Address",
   "CUSTOMER_INFORMATION": "Customer information",
   "HUB_PRODUCING": "Producing",
@@ -14,6 +15,7 @@
   "NAME": "Name",
   "APT": "Apt/Unit No.",
   "BTN_LOGIN": "Login",
+  "BTN_LOGOUT": "Logout",
   "BTN_UPDATE": "Update",
   "CANCEL": "Cancel",
   "DONE": "Done",
@@ -66,5 +68,9 @@
   "EXAMPLE_IMAGE": "Example image",
   "START_SCAN": "Start scanning",
   "FIRMWARE_ERROR_FOUND": "An error occurred while downloading the file, please try again",
-  "TRY_AGAIN": "Try again"
+  "TRY_AGAIN": "Try again",
+  "INVALID_QRCODE": "Please scan a valid PVS6 QR Code",
+  "EXAMPLE_QR_IMAGE_ALT": "PVS QR code example",
+  "PVS_SN_TEXT": "PVS6 SN:",
+  "PVS_CONN_ERROR": "An error occured while connecting to the PVS, or you canceled the connection. Please try again."
 }

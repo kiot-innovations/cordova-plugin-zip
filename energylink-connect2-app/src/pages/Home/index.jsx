@@ -27,7 +27,7 @@ function Home() {
   }
 
   return (
-    <section className="home is-flex has-text-centered fill-parent">
+    <section className="home is-flex has-text-centered full-height">
       {toSiteOverview ? (
         <Redirect to={paths.PROTECTED.BILL_OF_MATERIALS.path} />
       ) : null}

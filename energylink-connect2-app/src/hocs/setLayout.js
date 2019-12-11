@@ -24,7 +24,7 @@ const setLayout = (
         'without-footer': !footer
       })}
     >
-      <ChildComponent {...props} />
+      <ChildComponent {...props} animationState={animationState} />
     </div>
   )
 }

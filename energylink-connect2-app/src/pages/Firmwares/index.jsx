@@ -6,7 +6,10 @@ import { animated, useSpring } from 'react-spring'
 import * as fileDownloaderActions from 'state/actions/fileDownloader'
 import clsx from 'clsx'
 
-function Firmwares() {
+function Firmwares({ animationState }) {
+  useEffect(() => {
+    console.log(animationState)
+  }, [])
   const t = useI18n()
   const dispatch = useDispatch()
   const { progress, lastProgress, fileInfo } = useSelector(
@@ -19,12 +22,14 @@ function Firmwares() {
     from: { value: lastProgress },
     to: { value: progress }
   })
-  const downloadFile = () => dispatch(fileDownloaderActions.getFile())
+  const downloadFile = useCallback(() =>
+    dispatch(fileDownloaderActions.getFile())
+  )
   useEffect(() => {
     downloadFile()
-  }, [dispatch])
+  }, [dispatch, downloadFile])
   return (
-    <section className="is-flex tile is-vertical pt-0 pr-10 pl-10 fill-parent">
+    <section className="is-flex tile is-vertical pt-0 pr-10 pl-10 full-height">
       <h1 className="has-text-centered is-uppercase pb-20">{t('FIRMWARE')}</h1>
       <Collapsible
         title={fileInfo.name}

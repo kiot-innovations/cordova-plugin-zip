@@ -1,5 +1,4 @@
 import React from 'react'
-import { shallow } from 'enzyme'
 import PvsConnectionSuccessful from '.'
 import * as i18n from 'shared/i18n'
 
@@ -13,7 +12,11 @@ describe('PVS connection successful component', () => {
   })
 
   test('render correctly', () => {
-    const component = shallow(<PvsConnectionSuccessful />)
+    const { component } = mountWithProvider(<PvsConnectionSuccessful />)({
+      pvs: {
+        serialNumber: 'ZT123123123009'
+      }
+    })
     expect(component).toMatchSnapshot()
   })
 })

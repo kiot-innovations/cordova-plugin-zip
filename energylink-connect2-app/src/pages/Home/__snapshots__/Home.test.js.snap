@@ -2,7 +2,7 @@
 
 exports[`Home component render correctly 1`] = `
 <section
-  className="home is-flex has-text-centered fill-parent"
+  className="home is-flex has-text-centered full-height"
 >
   <div
     className="section"

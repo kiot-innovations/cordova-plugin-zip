@@ -30,7 +30,7 @@ function BillOfMaterials() {
   const t = useI18n()
 
   return (
-    <main className="fill-parent pl-10 pr-10 home">
+    <main className="full-height pl-10 pr-10 home">
       <div className="pl-20 pr-20 mb-20">
         <img
           src={`https://maps.googleapis.com/maps/api/staticmap?center=20.6881818,-103.4218501&zoom=21&size=800x800&key=${process.env.REACT_APP_MAPS_API_KEY}&maptype=satellite`}

@@ -20,6 +20,8 @@ pipeline {
         NVM_DIR             = "/Users/admin/.nvm"
         PATH                = "/Users/admin/.gem/ruby/${RUBY_VERSION}/bin:/Users/admin/.nvm/versions/node/v${NVM_VERSION}/bin:/usr/local/android-sdk-linux/platform-tools:${PATH}"
         PLAY_STORE_API_CRED = credentials("google-play-store-api-credentials-json")
+        PROJECT_NAME        = "${env.JOB_NAME.split('/')[0]}"
+        SLACK_WEBHOOK_URL   = credentials('slack-webhook-url')
     }
 
     options {
