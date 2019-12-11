@@ -16,7 +16,7 @@ function NotFound() {
           <Logo />
         </div>
       </header>
-      <section className="section is-flex level">
+      <section className="home is-flex level full-height">
         <h6 className="has-text-centered has-text-white"></h6>
         <div className="ops has-text-centered">
           <h1 className="is-size-1">{t('404_TITLE')}</h1>
