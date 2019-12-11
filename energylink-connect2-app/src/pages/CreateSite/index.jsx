@@ -95,7 +95,7 @@ function CreateSite() {
                   getInputProps().onChange({ target: { value: newAddress } })
                   return suggestions
                     .filter(elem => {
-                      const country = elem.terms.pop().value
+                      const country = elem.terms.slice(-1)[0].value
                       return (
                         country === 'USA' ||
                         country === 'Mexico' ||
