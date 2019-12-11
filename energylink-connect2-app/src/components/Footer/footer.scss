@@ -1,6 +1,9 @@
+@import '~@sunpower/theme-dark/styles/variables';
+
 .custom-footer {
   position: absolute;
   bottom: 10px;
   width: 100vw;
   height: 70px;
+  background-color: $dark-blue;
 }
