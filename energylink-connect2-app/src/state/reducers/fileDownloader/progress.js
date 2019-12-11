@@ -3,17 +3,23 @@ import {
   DOWNLOAD_SUCCESS,
   GET_FILE
 } from 'state/actions/fileDownloader'
+import { createReducer } from 'redux-act'
 
 const initialState = {
   progress: 0,
   lastProgress: 0
 }
-
-export default function(state = initialState, action) {
-  const { payload, type } = action
-  if (type === [DOWNLOAD_PROGRESS])
-    return { progress: payload.progress, lastProgress: state.progress }
-  if (type === [DOWNLOAD_SUCCESS]) return { progress: 100, lastProgress: 0 }
-  if (type === [GET_FILE]) return { progress: 100, lastProgress: 0 }
-  return state
-}
+export default createReducer(
+  {
+    [DOWNLOAD_PROGRESS]: (state, payload) => ({
+      progress: payload.progress,
+      lastProgress: state.progress
+    }),
+    [DOWNLOAD_SUCCESS]: (state, payload) => ({
+      progress: 100,
+      lastProgress: 0
+    }),
+    [GET_FILE]: (state, payload) => ({ progress: 100, lastProgress: 0 })
+  },
+  initialState
+)

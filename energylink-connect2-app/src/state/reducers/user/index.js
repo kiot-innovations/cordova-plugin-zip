@@ -1,25 +1,35 @@
 import { createReducer } from 'redux-act'
 import {
-  LOGIN_SUCCESS,
-  LOGIN_INIT,
-  LOGOUT,
   LOGIN_ERROR,
+  LOGIN_INIT,
+  LOGIN_SUCCESS,
+  LOGOUT,
+  VALIDATE_SESSION_ERROR,
   VALIDATE_SESSION_INIT,
-  VALIDATE_SESSION_SUCCESS,
-  VALIDATE_SESSION_ERROR
+  VALIDATE_SESSION_SUCCESS
 } from '../../actions/auth'
 
 import {
   GET_USER_INIT,
   GET_USER_SUCCESS,
+  UPDATE_USER_ERROR,
   UPDATE_USER_INIT,
-  UPDATE_USER_SUCCESS,
-  UPDATE_USER_ERROR
+  UPDATE_USER_SUCCESS
 } from '../../actions/user'
 
 const initialState = {
-  auth: {},
-  data: {},
+  auth: {
+    userId: '123'
+  },
+  data: {
+    userId: 137954,
+    addressId: 84471,
+    addresses: [84471],
+    accountId: null,
+    username: 'fwtestbanks@test.com',
+    tokenID: '47c925c5-660b-457f-ac00-e6d67b8a0d15',
+    expiresEpm: 1576004257375
+  },
   isUpdatingUser: false
 }
 

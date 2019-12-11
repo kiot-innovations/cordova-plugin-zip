@@ -7,7 +7,7 @@ import { createReducer } from 'redux-act'
 
 const initialState = {
   name: 'PVS6 FW 3.1',
-  size: (Math.random() * 50).toFixed(2),
+  size: 0,
   error: ''
 }
 

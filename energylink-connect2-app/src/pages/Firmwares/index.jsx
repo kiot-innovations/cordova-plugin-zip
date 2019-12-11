@@ -15,29 +15,28 @@ function Firmwares() {
       fileInfo: fileDownloader.fileInfo
     })
   )
-  const downloadFile = useCallback(() => {
-    dispatch(fileDownloaderActions.getFile())
-  }, [dispatch])
   const springProgress = useSpring({
     from: { value: lastProgress },
     to: { value: progress }
   })
-
+  const downloadFile = () => dispatch(fileDownloaderActions.getFile())
   useEffect(() => {
     downloadFile()
-  }, [dispatch, downloadFile])
+  }, [dispatch])
   return (
     <section className="is-flex tile is-vertical pt-0 pr-10 pl-10 fill-parent">
       <h1 className="has-text-centered is-uppercase pb-20">{t('FIRMWARE')}</h1>
       <Collapsible
         title={fileInfo.name}
         actions={
-          <span
-            className={clsx('is-size-4', {
-              'sp-stop': !fileInfo.error,
-              'sp-download': !!fileInfo.error
-            })}
-          />
+          !fileInfo.error ? (
+            <span
+              className={'is-size-4 sp-stop'}
+              onClick={() => console.log('STOP DOWNLOAD')}
+            />
+          ) : (
+            <span className={'is-size-4 sp-download'} onClick={downloadFile} />
+          )
         }
         expanded
       >
@@ -48,14 +47,12 @@ function Firmwares() {
         ) : (
           <>
             <p>This update contains the following fixes:</p>
-
             <ul>
               <li>-Changelog item 1</li>
               <li>-Changelog item 2</li>
               <li>-Changelog item 3</li>
               <li>-Changelog item 4</li>
             </ul>
-
             <section className="mt-20 mb-10">
               <p className="mb-5">
                 <span className="mr-10 has-text-white has-text-weight-bold">
@@ -68,7 +65,6 @@ function Firmwares() {
                   </span>
                 )}
               </p>
-
               {progress !== 100 && (
                 <animated.progress
                   className="progress is-tiny is-white"
