@@ -21,7 +21,8 @@ const setLayout = (
       className={clsx({
         'custom-layout': true,
         'with-footer': footer,
-        'without-footer': !footer
+        'without-footer': !footer,
+        'without-header': !header
       })}
     >
       <ChildComponent {...props} animationState={animationState} />
