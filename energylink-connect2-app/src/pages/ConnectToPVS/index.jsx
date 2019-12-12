@@ -15,26 +15,36 @@ function ConnectToPVS({ animationState }) {
   const connectionState = useSelector(state => state.network)
   const [scanning, setScanning] = useState(false)
 
-  const onSuccess = useCallback(data => {
-    setScanning(false)
-    let wifiData
+  const connectToWifi = useCallback(
+    (ssid, pwd) => {
+      dispatch(connectTo(ssid, pwd))
+    },
+    [dispatch]
+  )
 
-    try {
-      wifiData = decodeQRData(data)
-    } catch {
-      wifiData = ''
-    }
+  const onSuccess = useCallback(
+    data => {
+      setScanning(false)
+      let wifiData
 
-    if (wifiData.length > 0) {
-      const qrData = wifiData.split('|')
-      const [serialNumber, ssid] = qrData
-      const password = generatePassword(serialNumber)
-      dispatch(saveSerialNumber(serialNumber))
-      connectToWifi(ssid, password)
-    } else {
-      alert(t('INVALID_QRCODE'))
-    }
-  })
+      try {
+        wifiData = decodeQRData(data)
+      } catch {
+        wifiData = ''
+      }
+
+      if (wifiData.length > 0) {
+        const qrData = wifiData.split('|')
+        const [serialNumber, ssid] = qrData
+        const password = generatePassword(serialNumber)
+        dispatch(saveSerialNumber(serialNumber))
+        connectToWifi(ssid, password)
+      } else {
+        alert(t('INVALID_QRCODE'))
+      }
+    },
+    [dispatch, t, connectToWifi]
+  )
 
   const onFail = err => {
     alert(err)
@@ -74,10 +84,6 @@ function ConnectToPVS({ animationState }) {
       serialNumber.substring(2, 6) +
       serialNumber.substring(lastIndex - 4, lastIndex)
     return password
-  }
-
-  const connectToWifi = (ssid, pwd) => {
-    dispatch(connectTo(ssid, pwd))
   }
 
   return (
