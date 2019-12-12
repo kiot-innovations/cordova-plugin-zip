@@ -15,8 +15,10 @@
   ],
   "dependencies": {
     "cordova-android": "^8.1.0",
-    "cordova-plugin-customurlscheme": "^5.0.0",
+    "cordova-browser": "^6.0.0",
+    "cordova-ios": "^5.0.1",
     "cordova-plugin-device": "^2.0.3",
+    "cordova-plugin-customurlscheme": "^5.0.0",
     "cordova-plugin-file": "^6.0.2",
     "cordova-plugin-file-downloader": "^0.4.0",
     "cordova-plugin-file-md5": "^0.3.3",
@@ -52,6 +54,7 @@
       }
     },
     "platforms": [
+      "ios",
       "android"
     ]
   }

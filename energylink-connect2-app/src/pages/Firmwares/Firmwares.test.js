@@ -10,7 +10,7 @@ describe('Firmwares component', () => {
     jest.spyOn(reactRedux, 'useDispatch').mockImplementation(() => dispatchMock)
     jest
       .spyOn(i18n, 'useI18n')
-      .mockImplementation(() => (key, ...params) =>
+      .mockImplementation(path => (key, ...params) =>
         `${key.toUpperCase()} ${params.join('_')}`.trim()
       )
   })
@@ -19,7 +19,7 @@ describe('Firmwares component', () => {
     const { component } = mountWithProvider(<Firmwares />)({
       fileDownloader: {
         progress: { progress: 0, lastProgress: 0 },
-        fileInfo: { name: 'test-file.zip', error: '' }
+        fileInfo: { name: 'test-file.zip' }
       }
     })
     expect(component.html()).toMatchSnapshot()

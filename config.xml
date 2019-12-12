@@ -72,4 +72,5 @@
     <edit-config file="*-Info.plist" mode="merge" target="NSPhotoLibraryUsageDescription">
         <string>need photo library access to get pictures from there</string>
     </edit-config>
+    <engine name="ios" spec="~4.5.5" />
 </widget>

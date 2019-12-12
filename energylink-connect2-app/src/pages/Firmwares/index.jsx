@@ -4,8 +4,12 @@ import { useI18n } from 'shared/i18n'
 import { useDispatch, useSelector } from 'react-redux'
 import { animated, useSpring } from 'react-spring'
 import * as fileDownloaderActions from 'state/actions/fileDownloader'
+import clsx from 'clsx'
 
 function Firmwares({ animationState }) {
+  useEffect(() => {
+    console.log(animationState)
+  }, [])
   const t = useI18n()
   const dispatch = useDispatch()
   const { progress, lastProgress, fileInfo } = useSelector(
@@ -18,13 +22,12 @@ function Firmwares({ animationState }) {
     from: { value: lastProgress },
     to: { value: progress }
   })
-  const downloadFile = useCallback(
-    () => dispatch(fileDownloaderActions.getFile()),
-    [dispatch]
+  const downloadFile = useCallback(() =>
+    dispatch(fileDownloaderActions.getFile())
   )
   useEffect(() => {
-    if (animationState === 'enter') downloadFile()
-  }, [dispatch, downloadFile, animationState])
+    downloadFile()
+  }, [dispatch, downloadFile])
   return (
     <section className="is-flex tile is-vertical pt-0 pr-10 pl-10 full-height">
       <h1 className="has-text-centered is-uppercase pb-20">{t('FIRMWARE')}</h1>
@@ -34,7 +37,7 @@ function Firmwares({ animationState }) {
           !fileInfo.error ? (
             <span
               className={'is-size-4 sp-stop'}
-              onClick={() => dispatch(fileDownloaderActions.abortDownload())}
+              onClick={() => console.log('STOP DOWNLOAD')}
             />
           ) : (
             <span className={'is-size-4 sp-download'} onClick={downloadFile} />
