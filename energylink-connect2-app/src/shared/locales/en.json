@@ -67,7 +67,7 @@
   "LOOK_FOR_QR": "Look for the QR code on PVS",
   "EXAMPLE_IMAGE": "Example image",
   "START_SCAN": "Start scanning",
-  "FIRMWARE_ERROR_FOUND": "I ran into an error downloading the file",
+  "FIRMWARE_ERROR_FOUND": "An error occurred while downloading the file, please try again",
   "TRY_AGAIN": "Try again",
   "INVALID_QRCODE": "Please scan a valid PVS6 QR Code",
   "EXAMPLE_QR_IMAGE_ALT": "PVS QR code example",

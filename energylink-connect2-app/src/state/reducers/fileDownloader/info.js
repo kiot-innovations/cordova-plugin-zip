@@ -1,13 +1,15 @@
 import {
   DOWNLOAD_PROGRESS,
   GET_FILE,
-  GET_FILE_ERROR
-} from '../../actions/fileDownloader'
+  GET_FILE_ERROR,
+  SET_FILE_NAME,
+  SET_FILES_SIZE
+} from 'state/actions/fileDownloader'
 import { createReducer } from 'redux-act'
 
 const initialState = {
-  name: 'Waiting...',
-  size: (Math.random() * 50).toFixed(2),
+  name: 'PVS6 FW 3.1',
+  size: 0,
   error: ''
 }
 
@@ -18,9 +20,10 @@ export default createReducer(
       size: (payload.size / 1000000).toFixed(2),
       error: ''
     }),
+    [SET_FILE_NAME]: (state, name) => ({ ...state, name }),
+    [SET_FILES_SIZE]: (state, size) => ({ ...state, size }),
     [DOWNLOAD_PROGRESS]: (state, payload) => ({
       ...state,
-      name: payload.fileName,
       error: ''
     }),
     [GET_FILE_ERROR]: (state, { error }) => ({ ...state, error })
