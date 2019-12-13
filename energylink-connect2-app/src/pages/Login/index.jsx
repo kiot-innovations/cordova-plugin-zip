@@ -27,7 +27,7 @@ function Login() {
   }, [dispatch])
 
   return (
-    <section className="login section full-min-height is-flex">
+    <section className="login section full-height is-flex">
       <div className="container has-text-centered pb-20">
         <Logo />
         <h1 className="is-uppercase has-text-white heading">{t('APP_NAME')}</h1>
