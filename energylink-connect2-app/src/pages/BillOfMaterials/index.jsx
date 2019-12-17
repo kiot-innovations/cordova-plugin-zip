@@ -104,7 +104,7 @@ function BillOfMaterials() {
           </Link>
         )}
       </section>
-      <section className="is-flex file level space-around section pt-0 mb-20">
+      <section className="is-flex file level space-around section pt-0 mb-20 is-clipped">
         <RightNow />
       </section>
       <section className="is-flex file level space-around section pt-0">
