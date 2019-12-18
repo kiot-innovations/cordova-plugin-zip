@@ -1,19 +1,15 @@
 import { createAction } from 'redux-act'
 import { getApiFirmware } from 'shared/api'
 
-export const GET_FILE = createAction('[ FILE MANAGER ] GET FILE')
-export const GET_FILE_ERROR = createAction('[ FILE MANAGER ] GET FILE ERROR')
-export const SET_FILE_NAME = createAction('[ FILE MANAGER ] SET FILE NAME')
+export const GET_FILE = createAction('GET FILE')
+export const GET_FILE_ERROR = createAction('GET FILE ERROR')
+export const SET_FILE_NAME = createAction('SET FILE NAME')
 
-export const DOWNLOAD_PROGRESS = createAction(
-  '[ FILE MANAGER ] UPDATE DOWNLOAD PROGRESS'
-)
-export const ABORT_DOWNLOAD = createAction('[ FILE MANAGER ] ABORT DOWNLOAD')
-export const DOWNLOAD_SUCCESS = createAction(
-  '[ FILE MANAGER ] DOWNLOAD SUCCESS'
-)
+export const DOWNLOAD_PROGRESS = createAction('UPDATE DOWNLOAD PROGRESS')
+export const ABORT_DOWNLOAD = createAction('ABORT DOWNLOAD')
+export const DOWNLOAD_SUCCESS = createAction('DOWNLOAD SUCCESS')
 
-export const SET_FILES_SIZE = createAction('[ FILE MANAGER ] SET DOWNLOAD SIZE')
+export const SET_FILES_SIZE = createAction('SET DOWNLOAD SIZE')
 const ERROR_CODES = {
   getVersionInfo: 'getVersionInfo',
   getLuaFile: 'getLuaFile',
@@ -93,7 +89,7 @@ export function getFile() {
 }
 
 function parseLuaFile(fileName, dispatch) {
-  return new Promise((resolve) => {
+  return new Promise(resolve => {
     const type = window.PERSISTENT
     const size = 5 * 1024 * 1024
     function successCallback(fs) {
@@ -173,7 +169,7 @@ function removeEventListeners() {
 
 export const abortDownload = () => dispatch => {
   window.downloader.abort()
-  dispatch(ABORT_DOWNLOAD() )
+  dispatch(ABORT_DOWNLOAD())
 }
 
 function downloadSuccess(event, dispatch) {

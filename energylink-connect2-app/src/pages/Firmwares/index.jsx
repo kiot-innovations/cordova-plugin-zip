@@ -48,24 +48,15 @@ function Firmwares({ animationState }) {
           </>
         ) : (
           <>
-            <p>This update contains the following fixes:</p>
-            <ul>
-              <li>-Changelog item 1</li>
-              <li>-Changelog item 2</li>
-              <li>-Changelog item 3</li>
-              <li>-Changelog item 4</li>
-            </ul>
             <section className="mt-20 mb-10">
               <p className="mb-5">
                 <span className="mr-10 has-text-white has-text-weight-bold">
                   {progress}%
                 </span>
                 {progress === 100 ? 'Downloaded' : 'Downloading'}
-                {progress === 100 && (
-                  <span className="is-pulled-right has-text-white has-text-weight-bold">
-                    {fileInfo.size}mb
-                  </span>
-                )}
+                <span className="is-pulled-right has-text-white has-text-weight-bold">
+                  {fileInfo.size}mb
+                </span>
               </p>
               {progress !== 100 && (
                 <animated.progress
