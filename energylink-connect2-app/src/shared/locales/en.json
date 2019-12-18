@@ -73,7 +73,7 @@
   "EXAMPLE_QR_IMAGE_ALT": "PVS QR code example",
   "PVS_SN_TEXT": "PVS6 SN:",
   "PVS_CONN_ERROR": "An error occured while connecting to the PVS, or you canceled the connection. Please try again.",
-  "HTTP_ERROR": "Couldn't finish Login in. An error happened with the request"
+  "HTTP_ERROR": "Couldn't finish Login in. An error happened with the request",
   "DOWNLOADING": "downloading",
   "DOWNLOADED": "downloaded"
 }
