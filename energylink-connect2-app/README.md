@@ -75,3 +75,30 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/tr
 
 To run storybook in the port `9009`:
 `npm run storybook`
+
+# Authentication
+
+On Redux we will have the `user` object with this structure:
+```
+user: {
+  auth: {
+    {
+    "access_token": "super_long_string_here",
+    "refresh_token": "LzVsRwLn4rJdWrCtHtIe4MV6smnYQC27LDrch6wKOC",
+    "token_type": "Bearer",
+    "expires_in": 28799
+    }
+  },
+  data: {
+    "name": "Pyotr Tchaikovsky",
+    "sub": "spwr_dev_adm@outlook.com",
+    "userGroup": "Customer",
+    "email": "spwr_dev_adm@outlook.com",
+    "uniqueId": "bb118107-802a-4d77-9e57-d71eda6ed8c1",
+    "exp": 1576642407,
+    "scope": [],
+    "client_id": "CM2Mobile"
+  }
+}
+```
+In order to do API calls, use the `user.auth.access_token` value

@@ -1,5 +1,4 @@
 import * as modalActions from '../../actions/modal'
-import * as authActions from '../../actions/auth'
 import * as userActions from '../../actions/user'
 import * as mobileActions from '../../actions/mobile'
 
@@ -49,34 +48,6 @@ describe('Global reducer', () => {
           isActive: true,
           modalId: 'custom-modal'
         }
-      }
-    )
-  })
-
-  it('sets the isAccountCreated flag to false when CREATE_ACCOUNT_INIT action is fired', () => {
-    reducerTest(
-      {
-        some: 'existing data',
-        isAccountCreated: true
-      },
-      authActions.CREATE_ACCOUNT_INIT(),
-      {
-        some: 'existing data',
-        isAccountCreated: false
-      }
-    )
-  })
-
-  it('sets the isAccountCreated flag to true when CREATE_ACCOUNT_SUCCESS action is fired', () => {
-    reducerTest(
-      {
-        some: 'existing data',
-        isAccountCreated: false
-      },
-      authActions.CREATE_ACCOUNT_SUCCESS(),
-      {
-        some: 'existing data',
-        isAccountCreated: true
       }
     )
   })
