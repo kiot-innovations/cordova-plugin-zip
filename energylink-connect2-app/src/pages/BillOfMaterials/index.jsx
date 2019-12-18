@@ -107,7 +107,7 @@ function BillOfMaterials() {
       <section className="is-flex file level space-around section pt-0 mb-20">
         <RightNow />
       </section>
-      <section className="is-flex file level space-around section pt-0 mb-20">
+      <section className="is-flex file level space-around section pt-0">
         <span className="is-uppercase has-text-white block">
           {t('SOMETHING_WRONG')}
         </span>

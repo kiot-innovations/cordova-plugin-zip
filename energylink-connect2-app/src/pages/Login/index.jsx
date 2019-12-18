@@ -16,10 +16,11 @@ function Login() {
   const dispatch = useDispatch()
 
   const auth = useSelector(state => state.user.auth)
-  const submitting = useSelector(state => state.user.submitting)
+  const isAuthenticating = useSelector(state => state.user.isAuthenticating)
+  const error = useSelector(state => state.user.err)
 
   const loginClassName = clsx('button', 'is-primary', {
-    'is-loading': submitting
+    'is-loading': isAuthenticating
   })
 
   useEffect(() => {
@@ -27,7 +28,7 @@ function Login() {
   }, [dispatch])
 
   return (
-    <section className="login section full-min-height is-flex">
+    <section className="login section full-height is-flex">
       <div className="container has-text-centered pb-20">
         <Logo />
         <h1 className="is-uppercase has-text-white heading">{t('APP_NAME')}</h1>
@@ -47,7 +48,7 @@ function Login() {
               <button
                 type="button"
                 className={loginClassName}
-                disabled={!!submitting}
+                disabled={!!isAuthenticating}
                 onClick={onSubmit(dispatch)}
               >
                 {!auth.access_token ? t('BTN_LOGIN') : t('BTN_LOGOUT')}
@@ -55,6 +56,12 @@ function Login() {
             </p>
           </div>
         </div>
+
+        {error && error.message ? (
+          <div className="error-message mb-10 mt-10">
+            <p className="pl-20 pr-20">{t(error.message)}</p>
+          </div>
+        ) : null}
       </div>
     </section>
   )
