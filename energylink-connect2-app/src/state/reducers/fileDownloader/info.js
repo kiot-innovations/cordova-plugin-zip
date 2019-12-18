@@ -8,7 +8,7 @@ import {
 import { createReducer } from 'redux-act'
 
 const initialState = {
-  name: 'PVS6 FW 3.1',
+  name: '',
   size: 0,
   error: ''
 }

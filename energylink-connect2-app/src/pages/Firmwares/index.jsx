@@ -32,10 +32,13 @@ function Firmwares({ animationState }) {
         title={fileInfo.name}
         actions={
           !fileInfo.error ? (
-            <span
-              className={'is-size-4 sp-stop'}
-              onClick={() => dispatch(fileDownloaderActions.abortDownload())}
-            />
+            progress !== 0 &&
+            progress !== 100 && (
+              <span
+                className={'is-size-4 sp-stop'}
+                onClick={() => dispatch(fileDownloaderActions.abortDownload())}
+              />
+            )
           ) : (
             <span className={'is-size-4 sp-download'} onClick={downloadFile} />
           )
@@ -53,7 +56,7 @@ function Firmwares({ animationState }) {
                 <span className="mr-10 has-text-white has-text-weight-bold">
                   {progress}%
                 </span>
-                {progress === 100 ? 'Downloaded' : 'Downloading'}
+                {progress === 100 ? t('DOWNLOADED') : t('DOWNLOADING')}
                 <span className="is-pulled-right has-text-white has-text-weight-bold">
                   {fileInfo.size}mb
                 </span>

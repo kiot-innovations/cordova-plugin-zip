@@ -83,7 +83,7 @@ export function getFile() {
             error: 'I ran into an error getting the PVS filename'
           })
         )
-      }
+      } else dispatch(GET_FILE_ERROR({ error: error.message }))
     }
   }
 }
