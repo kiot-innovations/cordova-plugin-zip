@@ -67,11 +67,13 @@
   "LOOK_FOR_QR": "Look for the QR code on PVS",
   "EXAMPLE_IMAGE": "Example image",
   "START_SCAN": "Start scanning",
-  "FIRMWARE_ERROR_FOUND": "I ran into an error downloading the file",
+  "FIRMWARE_ERROR_FOUND": "An error occurred while downloading the file, please try again",
   "TRY_AGAIN": "Try again",
   "INVALID_QRCODE": "Please scan a valid PVS6 QR Code",
   "EXAMPLE_QR_IMAGE_ALT": "PVS QR code example",
   "PVS_SN_TEXT": "PVS6 SN:",
   "PVS_CONN_ERROR": "An error occured while connecting to the PVS, or you canceled the connection. Please try again.",
-  "HTTP_ERROR": "Couldn't finish Login in. An error happened with the request"
+  "HTTP_ERROR": "Couldn't finish Login in. An error happened with the request",
+  "DOWNLOADING": "downloading",
+  "DOWNLOADED": "downloaded"
 }
