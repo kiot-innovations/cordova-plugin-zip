@@ -30,6 +30,7 @@
     </platform>
     <platform name="ios">
         <preference name="UseSwiftLanguageVersion" value="5" />
+        <preference name="DisallowOverscroll" value="true" />
         <allow-intent href="itms:*" />
         <allow-intent href="itms-apps:*" />
         <config-file mode="add" parent="ITSAppUsesNonExemptEncryption" target="*-Info.plist">
