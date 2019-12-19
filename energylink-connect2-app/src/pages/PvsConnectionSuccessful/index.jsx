@@ -2,10 +2,17 @@ import React from 'react'
 import { useI18n } from 'shared/i18n'
 import './PvsConnectionSuccessful.scss'
 import { useSelector } from 'react-redux'
+import { useHistory } from 'react-router-dom'
+import paths from 'routes/paths'
 
 const PvsConnectionSuccessful = () => {
   const t = useI18n()
   const serialNumber = useSelector(state => state.pvs.serialNumber)
+  const history = useHistory()
+
+  const goToScanLabels = () => {
+    history.push(paths.PROTECTED.SCAN_LABELS.path)
+  }
 
   return (
     <div className="tile is-flex is-vertical has-text-centered pvs-connection-success-screen page-height">
@@ -22,7 +29,10 @@ const PvsConnectionSuccessful = () => {
         {t('VERIFY_SERIAL_PVS_CONN_SUCCESS')}
       </span>
       <div className="is-flex auto">
-        <button className="button is-primary is-uppercase is-center mt-50">
+        <button
+          className="button is-primary is-uppercase is-center mt-50"
+          onClick={goToScanLabels}
+        >
           {t('CONTINUE')}
         </button>
       </div>

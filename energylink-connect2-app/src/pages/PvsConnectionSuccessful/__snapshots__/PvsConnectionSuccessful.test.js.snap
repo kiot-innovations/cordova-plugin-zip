@@ -75,6 +75,7 @@ exports[`PVS connection successful component render correctly 1`] = `
           >
             <button
               className="button is-primary is-uppercase is-center mt-50"
+              onClick={[Function]}
             >
               CONTINUE
             </button>

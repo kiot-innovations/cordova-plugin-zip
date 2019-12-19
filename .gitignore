@@ -5,3 +5,5 @@ www/*
 !www/res/
 build/
 .DS_Store
+
+.idea

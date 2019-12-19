@@ -35,7 +35,6 @@ async function getVersionNumber() {
 
 async function getPersistentFile(fileName, fileUrl, dispatch) {
   return new Promise((resolve, reject) => {
-    console.log('get lua file', fileName)
     const type = window.PERSISTENT
     const size = 5 * 1024 * 1024
 

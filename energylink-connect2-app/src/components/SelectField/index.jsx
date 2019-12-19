@@ -48,7 +48,7 @@ function SelectField(props) {
           primary50: '#0a1421',
           primary25: '#0a1421',
           primary: 'transparent',
-          neutral0: '#15202E',
+          neutral0: '#2f465b',
           neutral90: 'white',
           neutral70: 'white',
           neutral80: 'white'

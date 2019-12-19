@@ -11,13 +11,14 @@ import Menu from 'pages/Menu'
 import NotFound from 'pages/NotFound'
 import ConnectToPVS from 'pages/ConnectToPVS'
 import PvsConnectionSuccessful from 'pages/PvsConnectionSuccessful'
+import BillOfMaterials from 'pages/BillOfMaterials'
+import InventoryCount from 'pages/InventoryCount'
+import ScanLabels from 'pages/ScanLabels'
 
 import { useRouter } from 'hooks'
 import { withTracker } from 'shared/ga'
 import { routeAuthorization, setLayout } from 'hocs'
 import paths from './paths'
-import BillOfMaterials from '../pages/BillOfMaterials'
-import InventoryCount from '../pages/InventoryCount'
 import Logout from 'pages/Logout'
 import { deviceResumeListener } from 'state/actions/mobile'
 
@@ -33,6 +34,7 @@ const mapComponents = {
   [paths.PROTECTED.VERSION_INFORMATION.path]: NotFound,
   [paths.PROTECTED.INVENTORY_COUNT.path]: InventoryCount,
   [paths.PROTECTED.CONNECT_TO_PVS.path]: ConnectToPVS,
+  [paths.PROTECTED.SCAN_LABELS.path]: ScanLabels,
   [paths.UNPROTECTED.FORGOT_PASSWORD.path]: NotFound,
   [paths.UNPROTECTED.GET_ASSISTANCE.path]: NotFound,
   [paths.UNPROTECTED.LOGIN.path]: Login,

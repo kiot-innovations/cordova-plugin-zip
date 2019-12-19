@@ -32,6 +32,11 @@ const paths = {
       header: true,
       footer: true
     },
+    SCAN_LABELS: {
+      path: '/scan-labels',
+      header: true,
+      footer: true
+    },
     LOGOUT: { path: '/logout' },
     INVENTORY_COUNT: { path: '/inventory-count', header: true }
   },
