@@ -1,0 +1,42 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Modal Component Renders Correctly 1`] = `
+<div
+  className="modal is-active"
+>
+  <div
+    className="modal-background"
+  />
+  <div
+    className="modal-content"
+  >
+    <button
+      aria-label="close"
+      className="modal-close is-medium"
+    />
+    <div
+      className="modal-bar"
+    >
+      <div
+        className="modal-title mb-15"
+      >
+        <div>
+          <h1>
+            Title
+          </h1>
+          <h2>
+            Subtitle
+          </h2>
+        </div>
+      </div>
+    </div>
+    <div
+      className="modal-body"
+    >
+      <h1>
+        Content
+      </h1>
+    </div>
+  </div>
+</div>
+`;

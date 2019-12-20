@@ -1,0 +1,39 @@
+@import '~@sunpower/theme-dark/styles/variables';
+
+.modal {
+  font-family: $font;
+  letter-spacing: 0;
+  transition: 0.3s all ease-in-out;
+}
+
+.modal-background {
+  background-color: $loblolly-transparent !important;
+}
+
+.modal-content {
+  background-color: $dark;
+  border-radius: 10px;
+  padding: 1em;
+  width: 90%;
+  position: relative;
+
+  .modal-bar {
+    display: grid;
+    grid-template-columns: 10% 1fr 10%;
+  }
+  .modal-title {
+    text-align: center;
+    grid-column-start: 2;
+  }
+
+  .modal-close-container {
+    grid-column-start: 3;
+  }
+
+  .modal-close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 10px;
+  }
+}
