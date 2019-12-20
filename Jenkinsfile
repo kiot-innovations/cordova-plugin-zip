@@ -22,6 +22,8 @@ pipeline {
         PLAY_STORE_API_CRED = credentials("google-play-store-api-credentials-json")
         PROJECT_NAME        = "${env.JOB_NAME.split('/')[0]}"
         SLACK_WEBHOOK_URL   = credentials('slack-webhook-url')
+
+        ENVFILE_PASSWORD    = credentials('energylink-connect2-envfile-password')
     }
 
     options {
@@ -44,6 +46,8 @@ pipeline {
             steps {
                 sh "cd energylink-connect2-app && npm install"
                 sh "cd energylink-connect2-app && CI=1 npm run test"
+
+                sh "openssl aes-256-cbc -d -a -salt -k '${ENVFILE_PASSWORD}' -in energylink-connect2-app/.env.enc -out energylink-connect2-app/.env"
                 sh "cd energylink-connect2-app && npm run build"
             }
         }
