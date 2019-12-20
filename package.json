@@ -1,7 +1,7 @@
 {
   "name": "com.sunpower.energylink.commissioning2",
   "displayName": "EnergylinkConnect2",
-  "version": "1.0.0",
+  "version": "0.28.2",
   "description": "SunPower EnergyLink Connect 2",
   "author": "SunPower Corporation",
   "private": true,
