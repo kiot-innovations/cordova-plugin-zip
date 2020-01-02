@@ -29,12 +29,17 @@ const Footer = () => {
     },
     {
       icon: 'sp-list',
-      text: 'List',
+      text: 'Install',
       onClick: () => redirect(paths.PROTECTED.CONNECT_TO_PVS.path)
     },
     {
       icon: 'sp-signal',
-      text: 'Commission',
+      text: 'Configure',
+      onClick: () => {}
+    },
+    {
+      icon: 'sp-data',
+      text: 'Data',
       onClick: () => {}
     }
   ]
