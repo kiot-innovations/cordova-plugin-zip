@@ -86,7 +86,7 @@ pipeline {
     post {
         always {
             sh "rm -rf platforms"
-            sh "rm .env"
+            sh "rm -f  energylink-connect2-app/.env"
         }
     }
 }
