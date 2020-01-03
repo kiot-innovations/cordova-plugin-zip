@@ -86,6 +86,7 @@ pipeline {
     post {
         always {
             sh "rm -rf platforms"
+            sh "rm .env"
         }
     }
 }
