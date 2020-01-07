@@ -10,7 +10,8 @@ const initialState = {
   connected: false,
   connecting: false,
   err: '',
-  SSID: ''
+  SSID: '',
+  password: ''
 }
 
 export const networkReducer = createReducer(
@@ -19,9 +20,10 @@ export const networkReducer = createReducer(
       ...state,
       connecting: true
     }),
-    [PVS_CONNECTION_SUCCESS]: (state, payload) => ({
+    [PVS_CONNECTION_SUCCESS]: (state, ssid, password) => ({
       ...state,
-      SSID: payload,
+      SSID: ssid,
+      password: password,
       connected: true,
       connecting: false
     }),
