@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Link, Redirect } from 'react-router-dom'
 import { useI18n } from 'shared/i18n'
 import paths from 'routes/paths'
-import SelectField from 'components/SelectField'
+import SearchField from 'components/SearchField'
 import './Home.scss'
 
 function Home() {
@@ -34,7 +34,8 @@ function Home() {
       <div className="section">
         <span className="sp sp-map has-text-white" />
         <h6 className="is-uppercase mt-20 mb-20">{t('SELECT_SITE')}</h6>
-        <SelectField
+        <SearchField
+          autoFocus
           onSearch={filterRemote}
           onSelect={() => setToSiteOverview(true)}
           notFoundText={notFoundText}

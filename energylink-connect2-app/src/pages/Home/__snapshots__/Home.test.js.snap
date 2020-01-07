@@ -16,6 +16,7 @@ exports[`Home component render correctly 1`] = `
       SELECT_SITE
     </h6>
     <SelectField
+      autoFocus={true}
       notFoundText="NOT_FOUND"
       onSearch={[Function]}
       onSelect={[Function]}
