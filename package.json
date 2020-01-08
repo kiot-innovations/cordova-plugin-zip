@@ -40,7 +40,9 @@
     "plugins": {
       "cordova-plugin-whitelist": {},
       "cordova-uxcam": {},
-      "phonegap-plugin-barcodescanner": {},
+      "phonegap-plugin-barcodescanner": {
+        "ANDROID_SUPPORT_V4_VERSION": "27.+"
+      },
       "cordova-plugin-camera": {
         "ANDROID_SUPPORT_V4_VERSION": "27.+"
       },
@@ -50,7 +52,10 @@
       "cordova-plugin-inappbrowser": {},
       "wifiwizard2": {},
       "cordova-plugin-customurlscheme": {
-        "URL_SCHEME": "com.sunpower.elc2"
+        "URL_SCHEME": "com.sunpower.elc2",
+        "ANDROID_SCHEME": " ",
+        "ANDROID_HOST": " ",
+        "ANDROID_PATHPREFIX": "/"
       }
     },
     "platforms": [

@@ -1,11 +1,11 @@
-import { from, timer } from 'rxjs'
 import { ofType } from 'redux-observable'
+import { from, timer } from 'rxjs'
+import { switchMap, takeUntil } from 'rxjs/operators'
 import {
-  PVS_CONNECTION_SUCCESS,
   STOP_NETWORK_POLLING,
-  connectTo
-} from '../../actions/network'
-import { takeUntil, switchMap } from 'rxjs/operators'
+  PVS_CONNECTION_SUCCESS,
+  PVS_CONNECTION_INIT
+} from 'state/actions/network'
 
 const fetchSSID = () => window.WifiWizard2.getConnectedSSID()
 
@@ -18,9 +18,12 @@ export const networkPollingEpic = (action$, state$) => {
         takeUntil(stopPolling$),
         switchMap(() =>
           from(fetchSSID()).pipe(
-            switchMap(currentSSID => {
+            switchMap(async currentSSID => {
               if (!currentSSID)
-                connectTo(state$.network.SSID, state$.network.password)
+                return PVS_CONNECTION_INIT({
+                  ssid: state$.network.SSID,
+                  password: state$.network.password
+                })
             })
           )
         )

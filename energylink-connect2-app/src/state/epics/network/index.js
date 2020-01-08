@@ -1,3 +1,4 @@
 import { networkPollingEpic } from './networkEpic'
+import connectToEpic from './connectToEpic'
 
-export default [networkPollingEpic]
+export default [networkPollingEpic, connectToEpic]
