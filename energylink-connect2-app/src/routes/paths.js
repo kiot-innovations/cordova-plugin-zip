@@ -43,7 +43,8 @@ const paths = {
       footer: true
     },
     LOGOUT: { path: '/logout' },
-    INVENTORY_COUNT: { path: '/inventory-count', header: true }
+    INVENTORY_COUNT: { path: '/inventory-count', header: true },
+    DATA: { path: '/data', header: true, footer: true }
   },
   UNPROTECTED: {
     LOGIN: {

@@ -40,7 +40,8 @@ const Footer = () => {
     {
       icon: 'sp-data',
       text: 'Data',
-      onClick: () => {}
+      onClick: () => redirect(paths.PROTECTED.DATA.path),
+      active: history.location.pathname === paths.PROTECTED.DATA.path
     }
   ]
 
