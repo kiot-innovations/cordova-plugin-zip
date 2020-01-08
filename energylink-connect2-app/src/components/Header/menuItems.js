@@ -19,6 +19,6 @@ export default [
   {
     icon: 'sp-feedback',
     text: 'GIVE_FEEDBACK',
-    to: paths.PROTECTED.GIVE_FEEDBACK.path
+    to: paths.PROTECTED.SYSTEM_CONFIGURATION.path
   }
 ]
