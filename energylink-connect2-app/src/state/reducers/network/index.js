@@ -16,14 +16,14 @@ const initialState = {
 
 export const networkReducer = createReducer(
   {
-    [PVS_CONNECTION_INIT]: state => ({
-      ...state,
-      connecting: true
-    }),
-    [PVS_CONNECTION_SUCCESS]: (state, ssid, password) => ({
+    [PVS_CONNECTION_INIT]: (state, { ssid, password }) => ({
       ...state,
       SSID: ssid,
       password: password,
+      connecting: true
+    }),
+    [PVS_CONNECTION_SUCCESS]: state => ({
+      ...state,
       connected: true,
       connecting: false
     }),

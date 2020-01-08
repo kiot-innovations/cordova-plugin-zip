@@ -11,9 +11,9 @@ describe('Network Reducer', () => {
 
   it('populates the reducer state after PVS_CONNECTION_SUCCESS action is fired', () => {
     reducerTest(
-      { connected: false, connecting: false, SSID: '', err: '' },
-      networkActions.PVS_CONNECTION_SUCCESS('Sunpower12345'),
-      { connected: true, connecting: false, SSID: 'Sunpower12345', err: '' }
+      { connected: false, connecting: false, err: '' },
+      networkActions.PVS_CONNECTION_SUCCESS(),
+      { connected: true, connecting: false, err: '' }
     )
   })
 })
