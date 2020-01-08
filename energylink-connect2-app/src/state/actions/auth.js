@@ -1,8 +1,20 @@
 import { createAction } from 'redux-act'
-import { equals, head, prop } from 'ramda'
+import {
+  pipe,
+  equals,
+  head,
+  last,
+  prop,
+  merge,
+  omit,
+  identity,
+  converge,
+  useWith
+} from 'ramda'
 import { fetchInventory } from './inventory'
 import { getFile } from './fileDownloader'
 import authClient from 'shared/auth/sdk'
+import { httpGet } from 'shared/fetch'
 
 export const LOGIN_INIT = createAction('LOGIN_INIT')
 export const LOGIN_SUCCESS = createAction('LOGIN_SUCCESS')
@@ -10,8 +22,13 @@ export const LOGIN_ERROR = createAction('LOGIN_ERROR')
 export const LOGOUT = createAction('LOGOUT')
 
 export const requestLogin = () => {
-  return dispatch => {
+  return (dispatch, state) => {
     try {
+      const token =
+        'eyJhbGciOiJIUzI1NiIsImtpZCI6IkFGQTk3OTJDRjZDNEMzM0FEOUU5RDhCNjU4MDRGNEM5In0.eyJuYW1lIjoiTHVkd2lnIEJlZXRob3ZlbiIsInN1YiI6InNwd3JfdGVzdF9zdXBlcl9hZG1Ab3V0bG9vay5jb20iLCJ1c2VyR3JvdXAiOiJDdXN0b21lciIsImVtYWlsIjoic3B3cl90ZXN0X3N1cGVyX2FkbUBvdXRsb29rLmNvbSIsInVuaXF1ZUlkIjoiMzBhODIxMzAtNjBlYS00MTlmLWJlOTctYTU0YTM5NzBiZjZkIiwiZXhwIjoxNTc4NTQ3NjE1LCJzY29wZSI6W10sImNsaWVudF9pZCI6IkNNMk1vYmlsZSJ9.iNcRldxP45JkpeQrVFRxgPvMRhudsCOVc8TKAh56YZg'
+
+      dispatch(handleUserProfile({ access_token: token }))
+
       let state = authClient.generateRandomValue()
       dispatch(LOGIN_INIT({ state }))
       authClient.authorizeOAuth(state)
@@ -50,12 +67,27 @@ export const handleLoginFromPing = URL => {
   }
 }
 
+const discardUserPropsFromAPIResponse = pipe(
+  prop('data'),
+  omit(['userId', 'displayName', 'email'])
+)
+
+const merge_EDP_PING_Response = useWith(merge, [
+  discardUserPropsFromAPIResponse,
+  identity
+])
+
+const buildUser = converge(merge_EDP_PING_Response, [head, last])
+
 export const handleUserProfile = (tokenInfo = {}) => {
   return dispatch => {
     try {
       const { access_token } = tokenInfo
-      authClient
-        .getUserInfoOAuth(access_token)
+      Promise.all([
+        httpGet('/auth/user', null, access_token),
+        authClient.getUserInfoOAuth(access_token)
+      ])
+        .then(buildUser)
         .then(user => {
           const payload = { data: user, auth: tokenInfo }
           dispatch(LOGIN_SUCCESS(payload))
