@@ -38,7 +38,12 @@ const paths = {
       footer: true
     },
     LOGOUT: { path: '/logout' },
-    INVENTORY_COUNT: { path: '/inventory-count', header: true }
+    INVENTORY_COUNT: { path: '/inventory-count', header: true },
+    SYSTEM_CONFIGURATION: {
+      path: '/system-configuration',
+      header: true,
+      footer: true
+    }
   },
   UNPROTECTED: {
     LOGIN: {

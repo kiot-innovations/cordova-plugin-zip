@@ -13,7 +13,7 @@ function SystemConfiguration() {
   // const { modules, meters } = useSelector(mapStateToProps)
   // const dispatch = useDispatch()
   return (
-    <div className="fill-parent is-flex tile is-vertical has-text-centered system-config">
+    <div className="fill-parent is-flex tile is-vertical has-text-centered system-config pl-10 pr-10">
       <span className="is-uppercase has-text-weight-bold mb-20">
         System Configuration
       </span>

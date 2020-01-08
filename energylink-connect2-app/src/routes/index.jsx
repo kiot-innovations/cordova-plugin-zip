@@ -14,6 +14,7 @@ import PvsConnectionSuccessful from 'pages/PvsConnectionSuccessful'
 import BillOfMaterials from 'pages/BillOfMaterials'
 import InventoryCount from 'pages/InventoryCount'
 import ScanLabels from 'pages/ScanLabels'
+import SystemConfiguration from 'pages/SystemConfiguration'
 
 import { useRouter } from 'hooks'
 import { withTracker } from 'shared/ga'
@@ -35,6 +36,7 @@ const mapComponents = {
   [paths.PROTECTED.INVENTORY_COUNT.path]: InventoryCount,
   [paths.PROTECTED.CONNECT_TO_PVS.path]: ConnectToPVS,
   [paths.PROTECTED.SCAN_LABELS.path]: ScanLabels,
+  [paths.PROTECTED.SYSTEM_CONFIGURATION.path]: SystemConfiguration,
   [paths.UNPROTECTED.FORGOT_PASSWORD.path]: NotFound,
   [paths.UNPROTECTED.GET_ASSISTANCE.path]: NotFound,
   [paths.UNPROTECTED.LOGIN.path]: Login,

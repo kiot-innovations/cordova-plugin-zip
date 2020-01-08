@@ -16,7 +16,8 @@ function SelectField(props) {
     autoFocus,
     options,
     defaultValue,
-    placeholder
+    placeholder,
+    isSearchable
   } = props
 
   const classes = clsx('field', className)
@@ -31,6 +32,7 @@ function SelectField(props) {
     components: selectComponents,
     options,
     defaultValue,
+    isSearchable,
     noOptionsMessage: () => notFoundText,
     theme: theme => ({
       ...theme,
