@@ -80,5 +80,20 @@
   "BULK_SCAN_HINT": "Use Bulk Scan to get all the equipment in one shot",
   "BULK_SCAN": "Bulk Scan",
   "CANT_FIND_INVERTERS": "Can't find all my inverters",
-  "OPENING_CAMERA": "Opening camera..."
+  "OPENING_CAMERA": "Opening camera...",
+  "SYSTEM_CONFIGURATION": "System Configuration",
+  "GRID_BEHAVIOR": "Grid Behavior",
+  "GRID_PROFILE": "Grid Profile",
+  "CUSTOMER_SELF_SUPPLY": "Customer Self Supply",
+  "GRID_VOLTAJE": "Grid Voltaje",
+  "METER_CT": "Meter / CT",
+  "CONSUMPTION_CT": "Consumption CT",
+  "RATED_CURRENT": "Rated Current",
+  "PRODUCTION_CT": "Production CT",
+  "NETWORK": "Network",
+  "SELECT_NETWORK": "Select Network",
+  "STORAGE": "Storage",
+  "PASSWORD": "Password",
+  "USE_WPS": "Use WPS",
+  "CONNECT": "Connect"
 }
