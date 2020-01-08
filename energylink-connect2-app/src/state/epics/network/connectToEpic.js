@@ -1,8 +1,7 @@
 import { pathOr } from 'ramda'
 import { ofType } from 'redux-observable'
-import { mergeMap, tap } from 'rxjs/operators'
+import { mergeMap } from 'rxjs/operators'
 import {
-  PVS_CONNECTION_ERROR,
   PVS_CONNECTION_INIT,
   PVS_CONNECTION_SUCCESS
 } from 'state/actions/network'
@@ -13,9 +12,6 @@ const WPA = 'WPA'
 const connectToEpic = action$ =>
   action$.pipe(
     ofType(PVS_CONNECTION_INIT.getType()),
-    tap(() => {
-      console.log('CONNECTION INIT', action$)
-    }),
     mergeMap(async action => {
       const ssid = pathOr('', ['payload', 'ssid'], action)
       const password = pathOr('', ['payload', 'password'], action)
@@ -27,7 +23,7 @@ const connectToEpic = action$ =>
         }
         return PVS_CONNECTION_SUCCESS()
       } catch (err) {
-        return PVS_CONNECTION_ERROR(err)
+        return PVS_CONNECTION_INIT({ ssid: ssid, password: password })
       }
     })
   )

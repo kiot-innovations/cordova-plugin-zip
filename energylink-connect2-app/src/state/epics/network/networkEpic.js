@@ -21,15 +21,15 @@ export const networkPollingEpic = (action$, state$) => {
       timer(0, 500).pipe(
         takeUntil(stopPolling$),
         switchMap(() => from(fetchSSID())),
-        map(() => {
-          return { type: 'DEVICE IS CONNECTED' }
+        map(ssid => {
+          return { type: 'DEVICE_IS_CONNECTED' }
         }),
-        catchError(async () =>
-          PVS_CONNECTION_INIT({
-            ssid: state.network.ssid,
+        catchError(async () => {
+          return PVS_CONNECTION_INIT({
+            ssid: state.network.SSID,
             password: state.network.password
           })
-        )
+        })
       )
     )
   )
