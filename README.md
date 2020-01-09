@@ -74,5 +74,6 @@ git push origin X.Y.Z
 3. Jenkins will build and release a new version (X.Y.Z) of the application
 
 # Login Credentials
-username: spwr_dev_super_adm@outlook.com
-password: ThisisIt01
+## Partner Account
+username: test.createuser7@gmail.com
+password: Sunshine12
