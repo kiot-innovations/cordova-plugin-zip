@@ -11,6 +11,11 @@ const paths = {
       header: true,
       footer: true
     },
+    DEVICES: {
+      path: '/devices',
+      header: true,
+      footer: true
+    },
     ROOT: {
       path: '/',
       header: true

@@ -1,15 +1,20 @@
 import Swagger from 'swagger-client'
 
-let apiAuth, apiDevice, apiParty, apiSearch, apiSite, apiFirmware
+let apiDevice, apiParty, apiSearch, apiSite, apiFirmware, apiPVS
 
 export async function getApiFirmware() {
   if (!apiFirmware)
     apiFirmware = await Swagger(process.env.REACT_APP_SWAGGER_FIRMWARE)
   return apiFirmware
 }
-export async function getApiAuth() {
-  if (!apiAuth) apiAuth = await Swagger(process.env.REACT_APP_SWAGGER_AUTH)
-  return apiAuth
+export async function getApiPVS() {
+  if (!apiPVS)
+    try {
+      apiPVS = await Swagger(process.env.REACT_APP_PVS_ADDRESS)
+    } catch (e) {
+      throw Error("I'm not able to reach a PVS")
+    }
+  return apiPVS
 }
 export async function getApiDevice() {
   if (!apiDevice)

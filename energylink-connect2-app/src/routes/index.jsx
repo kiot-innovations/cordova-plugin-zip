@@ -14,6 +14,7 @@ import PvsConnectionSuccessful from 'pages/PvsConnectionSuccessful'
 import BillOfMaterials from 'pages/BillOfMaterials'
 import InventoryCount from 'pages/InventoryCount'
 import ScanLabels from 'pages/ScanLabels'
+import Devices from 'pages/devices'
 
 import { useRouter } from 'hooks'
 import { withTracker } from 'shared/ga'
@@ -23,6 +24,7 @@ import Logout from 'pages/Logout'
 import { deviceResumeListener } from 'state/actions/mobile'
 
 const mapComponents = {
+  [paths.PROTECTED.DEVICES.path]: Devices,
   [paths.PROTECTED.BILL_OF_MATERIALS.path]: BillOfMaterials,
   [paths.PROTECTED.CREATE_SITE.path]: CreateSite,
   [paths.PROTECTED.GIVE_FEEDBACK.path]: NotFound,

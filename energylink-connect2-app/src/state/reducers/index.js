@@ -11,6 +11,7 @@ import { globalReducer } from './global'
 import { storesVersions } from './migrations'
 import ui from './ui'
 import fileDownloader from './fileDownloader'
+import devicesReducer from './devices'
 
 export default combineReducers({
   ui,
@@ -35,6 +36,7 @@ export default combineReducers({
   global: globalReducer,
   inventory: inventoryReducer,
   network: networkReducer,
-  pvs: pvsReducer
+  pvs: pvsReducer,
+  devices: devicesReducer
   // Add reducers here
 })

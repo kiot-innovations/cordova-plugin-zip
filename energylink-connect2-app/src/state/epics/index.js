@@ -1,6 +1,5 @@
 import { combineEpics } from 'redux-observable'
+import discoverDeviceEpic from './devices/discoverDevices'
+import networkPollingEpics from './network'
 
-// import auth from './auth'
-import networkPollingEpic from './network'
-
-export default combineEpics(...networkPollingEpic)
+export default combineEpics(...networkPollingEpics,discoverDeviceEpic)

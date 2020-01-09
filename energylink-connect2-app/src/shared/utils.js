@@ -32,3 +32,6 @@ export function getGeocodeData({ address_components, geometry }) {
   })
   return { parsedData, lat, lng }
 }
+export function capitalizeString(str = '') {
+  return str.charAt(0).toUpperCase() + str.substring(1)
+}
