@@ -21,7 +21,7 @@ export const networkPollingEpic = (action$, state$) => {
       timer(0, 500).pipe(
         takeUntil(stopPolling$),
         switchMap(() => from(fetchSSID())),
-        map(ssid => {
+        map(() => {
           return { type: 'DEVICE_IS_CONNECTED' }
         }),
         catchError(async () => {
