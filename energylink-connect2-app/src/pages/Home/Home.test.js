@@ -1,5 +1,4 @@
 import React from 'react'
-import { shallow } from 'enzyme'
 import Home from '.'
 import * as i18n from 'shared/i18n'
 
@@ -13,7 +12,9 @@ describe('Home component', () => {
   })
 
   test('render correctly', () => {
-    const component = shallow(<Home />)
+    const component = mountWithProvider(<Home />)({
+      site: {}
+    })
     expect(component).toMatchSnapshot()
   })
 })
