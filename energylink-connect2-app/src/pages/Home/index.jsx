@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { Link, Redirect } from 'react-router-dom'
 import { useI18n } from 'shared/i18n'
 import { useDispatch, useSelector } from 'react-redux'
-import { path, pathOr, test, join, values, pick, compose } from 'ramda'
+import { path, pathOr, test, join, values, pick, prop, compose } from 'ramda'
 
 import paths from 'routes/paths'
 import SelectField from 'components/SelectField'
@@ -14,7 +14,8 @@ import { either } from 'shared/utils'
 const getString = compose(
   join(' '),
   values,
-  pick(['site_addr_nm', 'st_addr_lbl'])
+  pick(['site_addr_nm', 'st_addr_lbl']),
+  prop('_source')
 )
 
 function Home() {
@@ -38,7 +39,7 @@ function Home() {
     const results = sitesValues.filter(matchValue).map(value => ({
       label: getString(value),
       value: getString(value),
-      site: value
+      site: pick(['_source'], value)
     }))
 
     cb(results)
