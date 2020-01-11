@@ -11,6 +11,12 @@ import { GET_SITES_INIT, SET_SITE } from 'state/actions/site'
 import './Home.scss'
 import { either } from 'shared/utils'
 
+const getString = compose(
+  join(' '),
+  values,
+  pick(['site_addr_nm', 'st_addr_lbl'])
+)
+
 function Home() {
   const t = useI18n()
   const dispatch = useDispatch()
@@ -18,8 +24,6 @@ function Home() {
   const { isFetching, sites, site, error } = useSelector(path(['site']))
   const found = pathOr(0, ['items', 'recordsCount'], sites)
   const errorMessage = path(['data', 'message'], error)
-
-  console.info(sites, found)
 
   useEffect(() => {
     dispatch(GET_SITES_INIT())
@@ -30,16 +34,11 @@ function Home() {
   const filterSites = (inputValue, cb) => {
     const sitesValues = pathOr([], ['items', 'hits'], sites)
 
-    const getString = compose(
-      join(' '),
-      values,
-      pick(['site_addr_nm', 'st_addr_lbl'])
-    )
-
     const matchValue = compose(test(new RegExp(inputValue, 'ig')), getString)
     const results = sitesValues.filter(matchValue).map(value => ({
       label: getString(value),
-      value: getString(value)
+      value: getString(value),
+      site: value
     }))
 
     cb(results)
@@ -58,7 +57,7 @@ function Home() {
 
         <SelectField
           onSearch={filterSites}
-          onSelect={site => dispatch(SET_SITE(site))}
+          onSelect={({ site }) => dispatch(SET_SITE(site))}
           notFoundText={notFoundText}
         />
 

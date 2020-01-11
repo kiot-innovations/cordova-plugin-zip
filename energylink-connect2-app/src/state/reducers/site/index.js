@@ -10,7 +10,7 @@ import {
 const initialState = {
   fetchSites: false,
   sites: null, // { items: { recordsCount, hits } }
-  site: null,
+  site: null, // {  }
   error: null
 }
 
