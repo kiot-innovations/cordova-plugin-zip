@@ -21,6 +21,11 @@ export const LOGIN_SUCCESS = createAction('LOGIN_SUCCESS')
 export const LOGIN_ERROR = createAction('LOGIN_ERROR')
 export const LOGOUT = createAction('LOGOUT')
 
+const ROLES = {
+  PARTNER: 'partner',
+  PARTNER_PRO: 'partner_pro'
+}
+
 export const requestLogin = () => {
   return (dispatch, state) => {
     try {
@@ -86,9 +91,14 @@ export const handleUserProfile = (tokenInfo = {}) => {
         .then(buildUser)
         .then(user => {
           const payload = { data: user, auth: tokenInfo }
-          dispatch(LOGIN_SUCCESS(payload))
-          dispatch(fetchInventory())
-          dispatch(getFile())
+          const ug = user.userGroup.toLowerCase()
+          if (ug !== ROLES.PARTNER && ug !== ROLES.PARTNER_PRO) {
+            dispatch(LOGIN_ERROR({ message: 'INVALID_ROLE' }))
+          } else {
+            dispatch(LOGIN_SUCCESS(payload))
+            dispatch(fetchInventory())
+            dispatch(getFile())
+          }
         })
         .catch(error => {
           console.error(error)

@@ -12,6 +12,7 @@ import { storesVersions } from './migrations'
 import { siteReducer } from './site'
 import ui from './ui'
 import fileDownloader from './fileDownloader'
+import devicesReducer from './devices'
 
 export default combineReducers({
   ui,
@@ -37,6 +38,7 @@ export default combineReducers({
   inventory: inventoryReducer,
   network: networkReducer,
   pvs: pvsReducer,
-  site: siteReducer
+  site: siteReducer,
+  devices: devicesReducer
   // Add reducers here
 })

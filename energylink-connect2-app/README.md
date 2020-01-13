@@ -4,6 +4,17 @@
 npm i
 ```
 
+
+## How to manage our encrypted keys
+
+First of all, to decrypt the file, you need to run the command.
+`openssl aes-256-cbc -d -a -salt -in .env.enc -out .env.development`
+using the password that was given to you.
+
+if you need to update the encrypted file, you will need to encrypt the file again with the command
+`openssl aes-256-cbc -a -salt -in .env.development -out .env.enc`,
+and to manage all the conflicts pf the file decrypt toe `.env.enc` to another location,
+compare the differences and update the encrypted data with both files.
 ## Available Scripts
 
 In the project directory, you can run:

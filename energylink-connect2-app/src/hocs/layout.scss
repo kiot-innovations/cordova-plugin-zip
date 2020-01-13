@@ -10,7 +10,7 @@
   }
 }
 .with-footer {
-  height: calc(100vh - (175px + 2*env(safe-area-inset-bottom)));
+  height: calc(100vh - (175px + 2 * env(safe-area-inset-bottom)));
   overflow-y: auto;
 }
 .without-footer {
@@ -23,7 +23,7 @@
 body {
   padding-top: constant(safe-area-inset-top); /* iOS 11.0 */
   padding-top: env(safe-area-inset-top); /* iOS 11.2 */
-  overflow:scroll;
+  overflow: scroll;
   -webkit-overflow-scrolling: touch;
 }
 

@@ -1,25 +1,25 @@
 @import '~@sunpower/theme-dark/styles/variables';
 
-.inventory-count{
+.inventory-count {
   height: 100%;
   padding-left: 2em;
   padding-right: 2em;
   display: grid;
 }
 
-.form-container{
+.form-container {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-column-gap: 1em;
   grid-row-gap: 1em;
 
-  .form-input{
+  .form-input {
     font-family: $font;
     letter-spacing: 0;
     font-weight: bold;
   }
 }
 
-.vertical-scroll{
+.vertical-scroll {
   overflow-y: scroll;
 }
