@@ -62,7 +62,7 @@ function SystemConfiguration() {
           <div className="field is-horizontal mb-15">
             <div className="field-label">
               <label htmlFor="siteName" className="label has-text-white">
-                {t('GRID_VOLTAJE')}
+                {t('GRID_VOLTAGE')}
               </label>
             </div>
             <div className="field-body">
