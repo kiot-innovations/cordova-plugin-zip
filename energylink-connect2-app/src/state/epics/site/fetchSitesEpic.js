@@ -20,7 +20,6 @@ export const fetchSitesEpic = (action$, state$) => {
 
       return from(promise).pipe(
         map(response => {
-          console.info(response, 'response')
           return response.status === 200
             ? siteActions.GET_SITES_SUCCESS(response.data)
             : siteActions.GET_SITES_ERROR(response)
