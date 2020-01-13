@@ -11,9 +11,22 @@ describe('Home component', () => {
       )
   })
 
-  test('render correctly', () => {
+  test('renders correctly', () => {
     const component = mountWithProvider(<Home />)({
-      site: {}
+      site: {
+        sites: [],
+        isFetching: false
+      }
+    })
+    expect(component).toMatchSnapshot()
+  })
+
+  test('renders correctly when there are sites available', () => {
+    const component = mountWithProvider(<Home />)({
+      site: {
+        sites: { items: { recordsCount: 10 } },
+        isFetching: false
+      }
     })
     expect(component).toMatchSnapshot()
   })
