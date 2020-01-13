@@ -1,3 +1,3 @@
 import { fetchSitesEpic } from './fetchSitesEpic'
 
-export default [fetchSitesEpic]
+export default fetchSitesEpic
