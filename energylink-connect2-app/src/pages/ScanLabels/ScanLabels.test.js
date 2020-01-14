@@ -1,7 +1,6 @@
 import React from 'react'
 import ScanLabels from '.'
 import * as i18n from 'shared/i18n'
-import { shallow } from 'enzyme'
 
 describe('Bulk Scan screen', () => {
   beforeEach(() => {
@@ -13,7 +12,12 @@ describe('Bulk Scan screen', () => {
   })
 
   test('renders correctly', () => {
-    const component = shallow(<ScanLabels />)
+    const { component } = mountWithProvider(<ScanLabels />)({
+      pvs: {
+        serialNumbers: [],
+        fetchingSN: false
+      }
+    })
     expect(component).toMatchSnapshot()
   })
 })
