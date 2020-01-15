@@ -61,7 +61,7 @@ export async function getPFile(fileName, errorCallback) {
 async function getPersistentFile(fileName, fileUrl, dispatch) {
   return new Promise((resolve, reject) => {
     const errorCallback = () => {
-      downlandLuaFile(fileName, fileUrl, dispatch)
+      downloadLuaFile(fileName, fileUrl, dispatch)
       reject(new Error(ERROR_CODES.getLuaFile))
     }
     getPFile(fileName, errorCallback)
@@ -153,7 +153,7 @@ function downloadProgress(event, dispatch) {
   return dispatch(DOWNLOAD_PROGRESS({ progress: event.data[0] }))
 }
 
-function downlandLuaFile(fileName, fileUrl, dispatch) {
+function downloadLuaFile(fileName, fileUrl, dispatch) {
   window.downloader.init({ folder: 'firmware' })
   document.addEventListener('DOWNLOADER_downloadProgress', e => {
     downloadProgress(e, dispatch)
