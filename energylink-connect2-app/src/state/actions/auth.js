@@ -83,7 +83,6 @@ export const handleUserProfile = (tokenInfo = {}) => {
   return dispatch => {
     try {
       const { access_token } = tokenInfo
-      console.info(access_token)
       Promise.all([
         httpGet('/auth/user', null, access_token),
         authClient.getUserInfoOAuth(access_token)

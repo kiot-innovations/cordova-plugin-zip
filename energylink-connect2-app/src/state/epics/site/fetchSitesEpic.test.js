@@ -1,8 +1,9 @@
 import * as siteActions from '../../actions/site'
 import { throwError } from 'rxjs'
+import { sitesMock } from './sitesMock'
 
 describe('Fetch Sites Epic', () => {
-  const mockData = { some: 'data' }
+  const mockData = sitesMock
   const fetchMock = {}
   let epicTest
   let fetchSitesEpic

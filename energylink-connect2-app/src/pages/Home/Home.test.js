@@ -24,7 +24,7 @@ describe('Home component', () => {
   test('renders correctly when there are sites available', () => {
     const component = mountWithProvider(<Home />)({
       site: {
-        sites: { items: { recordsCount: 10 } },
+        sites: { items: { totalSitesFound: 10 } },
         isFetching: false
       }
     })

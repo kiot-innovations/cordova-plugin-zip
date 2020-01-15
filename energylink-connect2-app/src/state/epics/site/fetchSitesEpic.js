@@ -4,6 +4,7 @@ import { catchError, mergeMap, map } from 'rxjs/operators'
 import { path } from 'ramda'
 import { httpGet } from 'shared/fetch'
 import * as siteActions from 'state/actions/site'
+import { sitesMock } from './sitesMock'
 
 export const fetchSitesEpic = (action$, state$) => {
   return action$.pipe(
@@ -21,7 +22,7 @@ export const fetchSitesEpic = (action$, state$) => {
       return from(promise).pipe(
         map(response => {
           return response.status === 200
-            ? siteActions.GET_SITES_SUCCESS(response.data)
+            ? siteActions.GET_SITES_SUCCESS(sitesMock)
             : siteActions.GET_SITES_ERROR(response)
         }),
         catchError(error => of(siteActions.GET_SITES_ERROR(error)))

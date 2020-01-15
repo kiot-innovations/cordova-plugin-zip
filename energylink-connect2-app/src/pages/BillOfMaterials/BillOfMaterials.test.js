@@ -22,10 +22,13 @@ describe('BillOfMaterials component', () => {
     const { component } = mountWithProvider(<BillOfMaterials />)({
       user: {
         data: {
-          AddressName: 'My house',
-          phoneNumber: '555-555-5555',
-          firstName: 'Cindy',
-          lastName: 'Solar'
+          phone: '555-555-5555',
+          name: 'Solar Cindy'
+        }
+      },
+      site: {
+        site: {
+          address: '123 St Ave'
         }
       }
     })

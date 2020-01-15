@@ -1,7 +1,9 @@
 import React, { useEffect } from 'react'
-import { Link, Redirect } from 'react-router-dom'
-import { useI18n } from 'shared/i18n'
+import { Link } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
+
+import { useI18n } from 'shared/i18n'
 import { path, pathOr, test, join, values, pick, prop, compose } from 'ramda'
 
 import paths from 'routes/paths'
@@ -18,12 +20,29 @@ const getString = compose(
   prop('_source')
 )
 
+const buildSite = site => ({
+  address: `${site.site_addr_nm} ${site.st_addr_lbl}`,
+  city: site.city_id,
+  state: site.st_id,
+  lat_deg: site.lat_deg,
+  long_deg: site.long_deg
+})
+
+const setSite = (history, dispatch) => site => {
+  dispatch(SET_SITE(site))
+  history.push(paths.PROTECTED.BILL_OF_MATERIALS.path)
+}
+
 function Home() {
   const t = useI18n()
   const dispatch = useDispatch()
+  const history = useHistory()
 
-  const { isFetching, sites, site, error } = useSelector(path(['site']))
-  const found = pathOr(0, ['items', 'recordsCount'], sites)
+  const isFetching = useSelector(state => state.site.isFetching)
+  const sites = useSelector(state => state.site.sites)
+  const error = useSelector(state => state.site.error)
+
+  const found = pathOr(0, ['items', 'totalSitesFound'], sites)
   const errorMessage = path(['data', 'message'], error)
 
   useEffect(() => {
@@ -39,7 +58,7 @@ function Home() {
     const results = sitesValues.filter(matchValue).map(value => ({
       label: getString(value),
       value: getString(value),
-      site: pick(['_source'], value)
+      site: buildSite(value._source)
     }))
 
     cb(results)
@@ -47,18 +66,13 @@ function Home() {
 
   return (
     <section className="home is-flex has-text-centered full-height">
-      {either(
-        site != null,
-        <Redirect to={paths.PROTECTED.BILL_OF_MATERIALS.path} />
-      )}
-
       <div className="section">
         <span className="sp sp-map has-text-white" />
         <h6 className="is-uppercase mt-20 mb-20">{t('SELECT_SITE')}</h6>
 
         <SelectField
           onSearch={filterSites}
-          onSelect={({ site }) => dispatch(SET_SITE(site))}
+          onSelect={compose(setSite(history, dispatch), prop('site'))}
           notFoundText={notFoundText}
         />
 

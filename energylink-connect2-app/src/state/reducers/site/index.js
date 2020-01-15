@@ -9,18 +9,20 @@ import {
 
 const initialState = {
   fetchSites: false,
-  sites: null, // { items: { recordsCount, hits } }
-  site: null,
+  sites: null, // { items: { totalSitesFound, hits } }
+  site: null, // { address, city, state, lat_deg, long_dev }
   error: null
 }
 
 export const siteReducer = createReducer(
   {
     [GET_SITES_INIT]: (state, payload) => ({
+      ...state,
       fetchSites: true
     }),
 
     [GET_SITES_SUCCESS]: (state, payload) => ({
+      ...state,
       fetchSites: false,
       sites: payload
     }),

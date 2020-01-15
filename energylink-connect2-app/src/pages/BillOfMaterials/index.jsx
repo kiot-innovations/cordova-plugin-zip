@@ -1,10 +1,10 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
-import './BillOfMaterials.scss'
 import paths from '../../routes/paths'
 import RightNow from '../../components/RightNow'
 import { useI18n } from '../../shared/i18n'
+import './BillOfMaterials.scss'
 
 function drawTable(t, inventory) {
   return Object.keys(inventory).map(key => {
@@ -20,14 +20,15 @@ function drawTable(t, inventory) {
 }
 
 function BillOfMaterials() {
+  const t = useI18n()
+
   const data = useSelector(({ user, inventory }) => ({
-    address: user.data.AddressName,
-    phone: user.data.phoneNumber,
-    name: `${user.data.firstName} ${user.data.lastName}`,
+    phone: user.data.phone,
+    name: user.data.name,
     bom: inventory.bom
   }))
 
-  const t = useI18n()
+  const { address } = useSelector(state => state.site.site)
 
   return (
     <main className="full-height pl-10 pr-10 home">
@@ -52,7 +53,7 @@ function BillOfMaterials() {
           </div>
           <div className="tile is-flex is-vertical">
             <span className="is-uppercase is-size-7">{`${t('ADDRESS')}:`}</span>
-            <span className="has-text-white mb-10">{data.address}</span>
+            <span className="has-text-white mb-10">{address}</span>
           </div>
         </div>
         <div className="is-flex is-vertical tile is-center pr-40">
