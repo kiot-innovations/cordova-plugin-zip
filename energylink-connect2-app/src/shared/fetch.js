@@ -79,3 +79,15 @@ const parseResponse = res => {
         }))
         .catch(err => console.error(err))
 }
+
+export const postBinary = (
+  body,
+  URL = 'https://dev-serial-numbers-scanner.dev-edp.sunpower.com/scan'
+) =>
+  fetch(URL, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/octet-stream'
+    },
+    body
+  })

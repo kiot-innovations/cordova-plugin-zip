@@ -1,6 +1,6 @@
 import Swagger from 'swagger-client'
 
-let apiDevice, apiParty, apiSearch, apiSite, apiFirmware, apiPVS
+let apiDevice, apiParty, apiSearch, apiSite, apiFirmware, apiPVS, apiScanSN
 
 export async function getApiFirmware() {
   if (!apiFirmware)
@@ -33,4 +33,9 @@ export async function getApiSearch() {
 export async function getApiSite() {
   if (!apiSite) apiSite = await Swagger(process.env.REACT_APP_SWAGGER_SITE)
   return apiSite
+}
+export async function getApiScanSN() {
+  if (!apiScanSN)
+    apiScanSN = await Swagger(process.env.REACT_APP_SCAN_SERIAL_NUMBERS)
+  return apiScanSN
 }
