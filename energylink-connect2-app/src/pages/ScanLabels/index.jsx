@@ -32,7 +32,7 @@ function ScanLabels() {
   }
 
   const cameraOptions = {
-    quality: 80,
+    quality: 50,
     sourceType: 1,
     destinationType: 1
   }
