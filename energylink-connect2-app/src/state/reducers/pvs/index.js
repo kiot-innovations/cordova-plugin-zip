@@ -18,6 +18,7 @@ const initialState = {
 export const pvsReducer = createReducer(
   {
     [SAVE_PVS_SN]: (state, payload) => ({
+      ...state,
       serialNumber: payload
     }),
 
