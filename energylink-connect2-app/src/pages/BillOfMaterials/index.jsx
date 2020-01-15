@@ -23,9 +23,12 @@ function BillOfMaterials() {
   const t = useI18n()
 
   const data = useSelector(({ user, inventory }) => ({
-    phone: user.data.phone,
+    address: user.data.AddressName,
+    phone: user.data.phoneNumber,
     name: user.data.name,
-    bom: inventory.bom
+    bom: inventory.bom,
+    lat_deg: 20.6881818,
+    long_deg: -103.4218501
   }))
 
   const { address } = useSelector(state => state.site.site)
@@ -34,7 +37,7 @@ function BillOfMaterials() {
     <main className="full-height pl-10 pr-10 home">
       <div className="pl-20 pr-20 mb-20">
         <img
-          src={`https://maps.googleapis.com/maps/api/staticmap?center=20.6881818,-103.4218501&zoom=21&size=800x800&key=${process.env.REACT_APP_MAPS_API_KEY}&maptype=satellite`}
+          src={`https://maps.googleapis.com/maps/api/staticmap?center=${data.lat_deg},${data.long_deg}&zoom=21&size=800x800&key=${process.env.REACT_APP_MAPS_API_KEY}&maptype=satellite`}
           title=""
           alt=""
           className="is-fullwidth"

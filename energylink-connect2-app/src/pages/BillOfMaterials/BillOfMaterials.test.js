@@ -9,9 +9,11 @@ describe('BillOfMaterials component', () => {
   beforeEach(() => {
     dispatchMock = jest.fn()
     jest.spyOn(reactRedux, 'useDispatch').mockImplementation(() => dispatchMock)
-    jest
-      .spyOn(reactRedux, 'useSelector')
-      .mockImplementation(() => ({ MODULES: 0 }))
+    jest.spyOn(reactRedux, 'useSelector').mockImplementation(() => ({
+      MODULES: 0,
+      lat_deg: 20.6881818,
+      long_deg: -103.4218501
+    }))
     jest
       .spyOn(i18n, 'useI18n')
       .mockImplementation(path => (key, ...params) =>
