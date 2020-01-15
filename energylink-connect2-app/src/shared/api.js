@@ -37,6 +37,5 @@ export async function getApiSite() {
 export async function getApiScanSN() {
   if (!apiScanSN)
     apiScanSN = await Swagger(process.env.REACT_APP_SCAN_SERIAL_NUMBERS)
-  console.info(apiScanSN)
   return apiScanSN
 }
