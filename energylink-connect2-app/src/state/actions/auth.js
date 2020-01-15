@@ -11,7 +11,7 @@ export const LOGOUT = createAction('LOGOUT')
 
 const ROLES = {
   PARTNER: 'partner',
-  PARTNER_PRO: 'partner_pro',
+  PARTNER_PRO: 'partner_pro'
 }
 
 export const requestLogin = () => {
