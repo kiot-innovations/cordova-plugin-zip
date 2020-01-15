@@ -18,7 +18,7 @@ const ERROR_CODES = {
   parseLuaFile: 'parseLuaFile'
 }
 
-async function getVersionNumber() {
+export async function getFirmwareVersionNumber() {
   try {
     const swagger = await getApiFirmware()
     const response = await swagger.apis.pvs6.firmwareUpdate({ fwver: 0 })
@@ -32,12 +32,10 @@ async function getVersionNumber() {
     throw new Error(ERROR_CODES.getVersionInfo)
   }
 }
-
-async function getPersistentFile(fileName, fileUrl, dispatch) {
+export async function getPFile(fileName, errorCallback) {
   return new Promise((resolve, reject) => {
     const type = window.PERSISTENT
     const size = 5 * 1024 * 1024
-
     function successCallback(fs) {
       fs.root.getFile(
         `firmware/${fileName}`,
@@ -52,23 +50,30 @@ async function getPersistentFile(fileName, fileUrl, dispatch) {
             }
           )
         },
-        () => {
-          downlandLuaFile(fileName, fileUrl, dispatch)
-          reject(new Error(ERROR_CODES.getLuaFile))
-        }
+        errorCallback
       )
     }
-
     window.requestFileSystem(type, size, successCallback, () =>
       reject(new Error(ERROR_CODES.getLuaFile))
     )
+  })
+}
+async function getPersistentFile(fileName, fileUrl, dispatch) {
+  return new Promise((resolve, reject) => {
+    const errorCallback = () => {
+      downloadLuaFile(fileName, fileUrl, dispatch)
+      reject(new Error(ERROR_CODES.getLuaFile))
+    }
+    getPFile(fileName, errorCallback)
+      .then(resolve)
+      .catch(reject)
   })
 }
 
 export function getFile() {
   return async function(dispatch) {
     try {
-      const { fileURL, luaFileName, version } = await getVersionNumber()
+      const { fileURL, luaFileName, version } = await getFirmwareVersionNumber()
       dispatch(SET_FILE_NAME(luaFileName))
       await getPersistentFile(luaFileName, fileURL, dispatch)
       const fileSystemURL = await parseLuaFile(luaFileName, dispatch)
@@ -148,7 +153,7 @@ function downloadProgress(event, dispatch) {
   return dispatch(DOWNLOAD_PROGRESS({ progress: event.data[0] }))
 }
 
-function downlandLuaFile(fileName, fileUrl, dispatch) {
+function downloadLuaFile(fileName, fileUrl, dispatch) {
   window.downloader.init({ folder: 'firmware' })
   document.addEventListener('DOWNLOADER_downloadProgress', e => {
     downloadProgress(e, dispatch)
