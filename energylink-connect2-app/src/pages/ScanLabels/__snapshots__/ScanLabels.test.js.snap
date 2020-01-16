@@ -50,7 +50,7 @@ exports[`Bulk Scan screen renders correctly 1`] = `
             aria-busy={false}
           >
             <div
-              className="scan-labels is-vertical has-text-centered"
+              className="scan-labels is-vertical has-text-centered pl-10 pr-10"
             >
               <span
                 className="is-uppercase has-text-weight-bold"
