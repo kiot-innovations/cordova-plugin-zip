@@ -30,7 +30,13 @@ const paths = {
     GIVE_FEEDBACK: { path: '/give-feedback' },
     PVS_CONNECTION_SUCCESS: {
       path: '/pvs-connection-success',
-      header: true
+      header: true,
+      footer: true
+    },
+    INSTALL_SUCCESS: {
+      path: '/install-success',
+      header: true,
+      footer: true
     },
     CONNECT_TO_PVS: {
       path: '/connect-to-pvs',

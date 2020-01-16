@@ -1,0 +1,11 @@
+@import '~@sunpower/theme-dark/styles/variables';
+
+.install-success-screen {
+  .sp-pvs {
+    font-size: 7rem;
+  }
+  .configure-button {
+    color: $sun;
+    letter-spacing: 0.25rem;
+  }
+}
