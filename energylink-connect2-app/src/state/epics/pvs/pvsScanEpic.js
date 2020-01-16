@@ -8,10 +8,7 @@ export const pvsScanEpic = action$ =>
   action$.pipe(
     ofType(pvsActions.GET_SN_INIT.getType()),
     mergeMap(({ payload }) => {
-      const promise = fetch(payload)
-        .then(res => res.blob())
-        .then(postBinary)
-        .then(r => r.json())
+      const promise = postBinary(payload).then(r => r.json())
 
       return from(promise).pipe(
         map(response => {
