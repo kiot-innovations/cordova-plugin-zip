@@ -6,9 +6,9 @@ const withHaderAnimation = Child => {
   const HOC = childProps => {
     const showHeader = useSelector(({ ui }) => ui.header)
     const grow = useTransition(!!showHeader, null, {
-      from: { maxHeight: 0, opacity: 0, marginBottom: '0' },
-      enter: { maxHeight: 90, opacity: 1, marginBottom: '0' },
-      leave: { maxHeight: 0, opacity: 0, marginBottom: '0' }
+      from: { maxHeight: 0, opacity: 0 },
+      enter: { maxHeight: 90, opacity: 1 },
+      leave: { maxHeight: 0, opacity: 0 }
     })
     return grow.map(
       ({ item, props, key }) =>
