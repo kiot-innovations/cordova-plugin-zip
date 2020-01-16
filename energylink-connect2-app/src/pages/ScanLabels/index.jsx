@@ -18,8 +18,6 @@ function ScanLabels() {
     state => state.pvs
   )
 
-  console.info(serialNumbers, fetchingSN, takenImage)
-
   const cameraSuccess = photo => {
     setOpeningCamera(false)
     dispatch(SET_TAKEN_IMAGE(photo))
@@ -46,7 +44,7 @@ function ScanLabels() {
 
   return (
     <BlockUI tag="div" blocking={openingCamera} message={t('OPENING_CAMERA')}>
-      <div className="scan-labels is-vertical has-text-centered">
+      <div className="scan-labels is-vertical has-text-centered pl-10 pr-10">
         <span className="is-uppercase has-text-weight-bold">
           {t('SCAN_EQUIPMENT')}
         </span>
