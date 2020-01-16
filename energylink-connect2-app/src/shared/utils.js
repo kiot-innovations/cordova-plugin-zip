@@ -1,4 +1,4 @@
-export const either = (condition, whenTrue, whenFalse) =>
+export const either = (condition, whenTrue, whenFalse = null) =>
   condition ? whenTrue : whenFalse
 
 /**

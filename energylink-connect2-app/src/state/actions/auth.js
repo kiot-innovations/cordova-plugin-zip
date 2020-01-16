@@ -1,8 +1,20 @@
 import { createAction } from 'redux-act'
-import { equals, head, prop } from 'ramda'
+import {
+  pipe,
+  equals,
+  head,
+  last,
+  prop,
+  merge,
+  omit,
+  identity,
+  converge,
+  useWith
+} from 'ramda'
 import { fetchInventory } from './inventory'
 import { getFile } from './fileDownloader'
 import authClient from 'shared/auth/sdk'
+import { httpGet } from 'shared/fetch'
 
 export const LOGIN_INIT = createAction('LOGIN_INIT')
 export const LOGIN_SUCCESS = createAction('LOGIN_SUCCESS')
@@ -15,7 +27,7 @@ const ROLES = {
 }
 
 export const requestLogin = () => {
-  return dispatch => {
+  return (dispatch, state) => {
     try {
       let state = authClient.generateRandomValue()
       dispatch(LOGIN_INIT({ state }))
@@ -55,12 +67,27 @@ export const handleLoginFromPing = URL => {
   }
 }
 
+const discardUserPropsFromAPIResponse = pipe(
+  prop('data'),
+  omit(['userId', 'displayName', 'email'])
+)
+
+const merge_EDP_PING_Response = useWith(merge, [
+  discardUserPropsFromAPIResponse,
+  identity
+])
+
+const buildUser = converge(merge_EDP_PING_Response, [head, last])
+
 export const handleUserProfile = (tokenInfo = {}) => {
   return dispatch => {
     try {
       const { access_token } = tokenInfo
-      authClient
-        .getUserInfoOAuth(access_token)
+      Promise.all([
+        httpGet('/auth/user', null, access_token),
+        authClient.getUserInfoOAuth(access_token)
+      ])
+        .then(buildUser)
         .then(user => {
           const payload = { data: user, auth: tokenInfo }
           const ug = user.userGroup.toLowerCase()

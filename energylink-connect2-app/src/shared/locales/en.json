@@ -86,7 +86,10 @@
 	"ADD-DEVICES": "add devices",
 	"STORAGE": "storage",
 	"MICRO-INVERTERS": "microinverters",
-  "INVALID_ROLE": "You are not authorized to use this app",
+	"INVALID_ROLE": "You are not authorized to use this app",
+	"FETCH_SITE_ERROR": "Error happened during fetch",
+  "FETCHING_SITES": "Fetching sites...",
+  "FOUND_SITES": "Customer Sites: {0}",
   "SCANNING_SN": "Scanning Serial Numbers...",
   "FOUND_SN": "Found {0} Serial Numbers"
 }

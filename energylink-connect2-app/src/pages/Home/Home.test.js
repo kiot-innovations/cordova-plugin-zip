@@ -1,5 +1,4 @@
 import React from 'react'
-import { shallow } from 'enzyme'
 import Home from '.'
 import * as i18n from 'shared/i18n'
 
@@ -12,8 +11,23 @@ describe('Home component', () => {
       )
   })
 
-  test('render correctly', () => {
-    const component = shallow(<Home />)
+  test('renders correctly', () => {
+    const component = mountWithProvider(<Home />)({
+      site: {
+        sites: [],
+        isFetching: false
+      }
+    })
+    expect(component).toMatchSnapshot()
+  })
+
+  test('renders correctly when there are sites available', () => {
+    const component = mountWithProvider(<Home />)({
+      site: {
+        sites: { items: { totalSitesFound: 10 } },
+        isFetching: false
+      }
+    })
     expect(component).toMatchSnapshot()
   })
 })
