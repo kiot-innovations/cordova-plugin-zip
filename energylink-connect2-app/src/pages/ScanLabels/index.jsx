@@ -54,7 +54,10 @@ function ScanLabels() {
         </span>
         <div className="barcode-icon">
           {takenImage ? (
-            <img src={takenImage} alt="Scanned Codes" />
+            <img
+              src={'data:image/jpeg;base64,' + takenImage}
+              alt="Scanned Codes"
+            />
           ) : (
             <BarcodeIcon />
           )}
