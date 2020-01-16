@@ -21,9 +21,7 @@ export const fetchSitesEpic = (action$, state$) => {
 
       return from(promise).pipe(
         map(response => {
-          return response.status === 200
-            ? siteActions.GET_SITES_SUCCESS(sitesMock)
-            : siteActions.GET_SITES_ERROR(response)
+          return siteActions.GET_SITES_SUCCESS(sitesMock)
         }),
         catchError(error => of(siteActions.GET_SITES_ERROR(error)))
       )
