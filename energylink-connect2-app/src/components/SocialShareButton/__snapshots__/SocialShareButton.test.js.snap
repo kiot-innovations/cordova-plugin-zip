@@ -1,0 +1,50 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SocialShareButton component renders without crashing 1`] = `
+<Fragment>
+  <ForwardRef(SvgShareIcon)
+    className="share-icon"
+    onClick={[Function]}
+  />
+  <OverlayModalLayout
+    header="SHARE_THIS_SECTION"
+  >
+    <div
+      className="share-container"
+    >
+      <div
+        className="share-item is-flex"
+      >
+        <ForwardRef(SvgEmailIcon) />
+        <h3>
+          Email
+        </h3>
+      </div>
+      <div
+        className="share-item is-flex"
+      >
+        <ForwardRef(SvgTextIcon) />
+        <h3>
+          Text
+        </h3>
+      </div>
+      <div
+        className="share-item is-flex"
+      >
+        <ForwardRef(SvgFacebookIcon) />
+        <h3>
+          Facebook
+        </h3>
+      </div>
+      <div
+        className="share-item is-flex"
+      >
+        <ForwardRef(SvgTwitterIcon) />
+        <h3>
+          Twitter
+        </h3>
+      </div>
+    </div>
+  </OverlayModalLayout>
+</Fragment>
+`;

@@ -1,0 +1,262 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EnergyMix component renders properly 1`] = `
+<div
+  className="energy-mix-container columns  is-mobile is-multiline is-variable is-1"
+  id="energy-mix-container"
+>
+  <div
+    className="column is-8"
+  >
+    <h6
+      className="title is-uppercase is-6"
+    >
+      TODAYS_ENERGY_MIX
+    </h6>
+    <h6
+      className="subtitle is-uppercase is-6"
+    >
+      AS_OF_TIME_TODAY 04:00AM
+    </h6>
+  </div>
+  <div
+    className="column is-4 is-flex icons ignore-in-share"
+  >
+    <SocialShareButton
+      beforeShare={[Function]}
+    />
+    <ForwardRef(SvgInfo)
+      className="ml-10"
+      onClick={[Function]}
+    />
+  </div>
+  <div
+    className="column is-full"
+  >
+    <h6
+      className="percentage is-uppercase is-6 mb-10"
+    >
+      SOLAR
+       
+      <b>
+        53.49
+        %
+      </b>
+    </h6>
+    <EnergyMix
+      date={"2019-10-09T11:00:00.000Z"}
+      grid={1}
+      homeUsage={4.3}
+      solar={2.3}
+      storage={1}
+    />
+  </div>
+  <div
+    className="column is-4 is-flex energy-source"
+  >
+    <ForwardRef(SvgSolarPanel) />
+    <p
+      className="is-uppercase energy-source-label solar mt-8"
+    >
+      FROM
+       
+      SOLAR
+    </p>
+    <p
+      className="energy-source-info yellow mt-5"
+    >
+      2.30
+       
+      <br />
+       
+      KWH
+    </p>
+  </div>
+  <div
+    className="column is-4 is-flex energy-source"
+  >
+    <ForwardRef(SvgBattery) />
+    <p
+      className="is-uppercase energy-source-label battery mt-8"
+    >
+      FROM
+       
+      BATTERY
+    </p>
+    <p
+      className="energy-source-info orange mt-5"
+    >
+      1.00
+       
+      <br />
+       
+      KWH
+    </p>
+  </div>
+  <div
+    className="column is-4 is-flex energy-source"
+  >
+    <ForwardRef(SvgGrid) />
+    <p
+      className="is-uppercase energy-source-label grid mt-8"
+    >
+      FROM
+       
+      GRID
+    </p>
+    <p
+      className="energy-source-info blue mt-5"
+    >
+      1.00
+       
+      <br />
+       
+      KWH
+    </p>
+  </div>
+  <OverlayModalLayout
+    className=""
+    header="ENERGY_MIX_INFO_LABEL"
+    id="em-info"
+  >
+    <div
+      className="section has-text-black content"
+    >
+      ENERGYMIXTEXT
+    </div>
+  </OverlayModalLayout>
+</div>
+`;
+
+exports[`EnergyMix component renders the energy mix chart 1`] = `
+<PieChart
+  barCategoryGap="10%"
+  barGap={4}
+  className="energy-mix-chart"
+  cx="50%"
+  cy="50%"
+  endAngle={360}
+  height={195}
+  innerRadius={0}
+  layout="centric"
+  margin={
+    Object {
+      "bottom": 5,
+      "left": 5,
+      "right": 5,
+      "top": 5,
+    }
+  }
+  outerRadius="80%"
+  reverseStackOrder={false}
+  stackOffset="none"
+  startAngle={0}
+  width={195}
+>
+  <Pie
+    animationBegin={400}
+    animationDuration={1500}
+    animationEasing="ease"
+    blendStroke={true}
+    cx="50%"
+    cy="50%"
+    data={
+      Array [
+        Object {
+          "value": 1,
+        },
+        Object {
+          "value": 1,
+        },
+        Object {
+          "value": 2.3,
+        },
+      ]
+    }
+    dataKey="value"
+    endAngle={360}
+    fill="#808080"
+    hide={false}
+    innerRadius={83}
+    isAnimationActive={true}
+    labelLine={true}
+    legendType="rect"
+    minAngle={0}
+    nameKey="name"
+    outerRadius={95}
+    paddingAngle={0}
+    startAngle={-180}
+    stroke="#fff"
+  >
+    <Cell
+      fill="#2B93CC"
+      filter="url(#filter0_i)"
+      key="cell-0"
+    />
+    <Cell
+      fill="#F7921E"
+      filter="url(#filter0_i)"
+      key="cell-1"
+    />
+    <Cell
+      fill="#FFE600"
+      filter="url(#filter0_i)"
+      key="cell-2"
+    />
+    <Label
+      content={[Function]}
+      homeUsage="4.30"
+      offset={0}
+      position="center"
+      t={[Function]}
+    />
+  </Pie>
+  <defs>
+    <filter
+      colorInterpolationFilters="sRGB"
+      filterUnits="userSpaceOnUse"
+      id="filter0_i"
+      x="0.5"
+      y="0.807617"
+    >
+      <feFlood
+        floodOpacity="0"
+        result="BackgroundImageFix"
+      />
+      <feBlend
+        in="SourceGraphic"
+        in2="BackgroundImageFix"
+        mode="normal"
+        result="shape"
+      />
+      <feColorMatrix
+        in="SourceAlpha"
+        result="hardAlpha"
+        type="matrix"
+        values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+      />
+      <feOffset
+        dy="4"
+      />
+      <feGaussianBlur
+        stdDeviation="2"
+      />
+      <feComposite
+        in2="hardAlpha"
+        k2="-1"
+        k3="1"
+        operator="arithmetic"
+      />
+      <feColorMatrix
+        type="matrix"
+        values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"
+      />
+      <feBlend
+        in2="shape"
+        mode="normal"
+        result="effect1_innerShadow"
+      />
+    </filter>
+  </defs>
+</PieChart>
+`;

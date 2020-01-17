@@ -91,5 +91,8 @@
   "FETCHING_SITES": "Fetching sites...",
   "FOUND_SITES": "Customer Sites: {0}",
   "SCANNING_SN": "Scanning Serial Numbers...",
-  "FOUND_SN": "Found {0} Serial Numbers"
+  "FOUND_SN": "Found {0} Serial Numbers",
+  "RIGHT_NOW": "Right Now",
+  "ENERGY_MIX": "Today's Energy Mix",
+  "AS_OF_TIME_TODAY": "As of {0} • today"
 }
