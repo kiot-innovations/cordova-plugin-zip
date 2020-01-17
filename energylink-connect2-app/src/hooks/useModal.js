@@ -2,9 +2,15 @@ import React, { useEffect, useState } from 'react'
 import Modal from 'components/Modal'
 import * as ReactDOM from 'react-dom'
 
-const useModal = (animationState, content, title, dismissable) => {
+const useModal = (
+  animationState,
+  content,
+  title,
+  initialVisible = true,
+  dismissable = true
+) => {
   const modalRoot = document.getElementById('modal-root')
-  const [modalVisible, setModal] = useState(true)
+  const [modalVisible, setModal] = useState(initialVisible)
   const toggleModal = () => {
     setModal(!modalVisible)
   }
@@ -14,17 +20,15 @@ const useModal = (animationState, content, title, dismissable) => {
     }
   }, [animationState])
   const modal = (
-    <>
-      <Modal
-        display={modalVisible}
-        close={toggleModal}
-        title={title}
-        dismissable={dismissable}
-      >
-        {content}
-      </Modal>
-    </>
+    <Modal
+      display={modalVisible}
+      close={toggleModal}
+      title={title}
+      dismissable={dismissable}
+    >
+      {content}
+    </Modal>
   )
-  return ReactDOM.createPortal(modal, modalRoot)
+  return { modal: ReactDOM.createPortal(modal, modalRoot), toggleModal }
 }
 export default useModal
