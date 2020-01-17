@@ -8,7 +8,6 @@ import BlockUI from 'react-block-ui'
 import 'react-block-ui/style.css'
 import './ScanLabels.scss'
 import { GET_SN_INIT, SET_TAKEN_IMAGE } from 'state/actions/pvs'
-import { b64toBlob } from 'shared/utils'
 
 function ScanLabels() {
   const t = useI18n()
@@ -23,9 +22,8 @@ function ScanLabels() {
 
   const cameraSuccess = photo => {
     setOpeningCamera(false)
-    const photoBlob = b64toBlob(photo)
     dispatch(SET_TAKEN_IMAGE(photo))
-    dispatch(GET_SN_INIT(photoBlob))
+    dispatch(GET_SN_INIT(photo))
   }
 
   const cameraError = () => {

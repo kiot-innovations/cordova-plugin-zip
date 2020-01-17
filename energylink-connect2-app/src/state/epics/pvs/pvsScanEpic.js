@@ -3,12 +3,14 @@ import { of, from } from 'rxjs'
 import { catchError, mergeMap, map } from 'rxjs/operators'
 import * as pvsActions from 'state/actions/pvs'
 import { postBinary } from 'shared/fetch'
+import { b64toBlob } from '../../../shared/utils'
 
 export const pvsScanEpic = action$ =>
   action$.pipe(
     ofType(pvsActions.GET_SN_INIT.getType()),
     mergeMap(({ payload }) => {
-      const promise = postBinary(payload).then(r => r.json())
+      const photoBlob = b64toBlob(payload)
+      const promise = postBinary(photoBlob).then(r => r.json())
 
       return from(promise).pipe(
         map(response => {
