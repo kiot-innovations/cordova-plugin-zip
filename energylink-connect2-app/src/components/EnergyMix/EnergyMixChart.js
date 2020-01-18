@@ -41,7 +41,7 @@ export default function EnergyMix({
   grid = 0,
   solar = 0,
   homeUsage = 0,
-  isAnimated = false
+  isAnimated = true
 }) {
   const t = useI18n()
   const chartData = [

@@ -6,7 +6,7 @@ exports[`SocialShareButton component renders without crashing 1`] = `
     className="share-icon"
     onClick={[Function]}
   />
-  <OverlayModalLayout
+  <_default
     header="SHARE_THIS_SECTION"
   >
     <div
@@ -45,6 +45,6 @@ exports[`SocialShareButton component renders without crashing 1`] = `
         </h3>
       </div>
     </div>
-  </OverlayModalLayout>
+  </_default>
 </Fragment>
 `;

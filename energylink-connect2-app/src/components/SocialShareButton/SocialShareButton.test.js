@@ -4,6 +4,8 @@ import SocialShareButton from '.'
 import * as reactRedux from 'react-redux'
 import * as i18n from '../../shared/i18n'
 
+jest.mock('../OverlayModalLayout')
+
 describe('SocialShareButton component', () => {
   let dispatchMock
   let selectorSpy
