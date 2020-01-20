@@ -93,9 +93,9 @@
   "SCANNING_SN": "Scanning Serial Numbers...",
   "FOUND_SN": "Found {0} Serial Numbers",
   "NOT_NOW": "not now",
-  "INSTALL_SUCCESS": "install successful",
+  "INSTALL_SUCCESS": "Install successful",
   "INSTALL_SUBTITLE": "Please take a picture for your records of the module layout diagram before leaving the site",
   "TURN_OF_SOLAR": "turn off the solar breakers",
-  "YOU_CAN": "you can now",
+  "YOU_CAN": "You can now",
   "CONFIGURE": "configure"
 }
