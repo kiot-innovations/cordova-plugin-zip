@@ -1,9 +1,10 @@
 import { ofType } from 'redux-observable'
-import { from, timer } from 'rxjs'
-import { switchMap, takeUntil, tap } from 'rxjs/operators'
+import { from, of, timer } from 'rxjs'
+import { catchError, switchMap, takeUntil, tap } from 'rxjs/operators'
 import { getApiPVS } from 'shared/api'
 import {
   DISCOVER_COMPLETE,
+  DISCOVER_ERROR,
   DISCOVER_INIT,
   DISCOVER_UPDATE
 } from 'state/actions/devices'
@@ -42,11 +43,12 @@ const scanDevicesEpic = action$ => {
         takeUntil(stopPolling$),
         switchMap(() =>
           from(fetchDiscovery()).pipe(
-            switchMap(async response => {
-              return response.progress.complete
+            switchMap(async response =>
+              response.progress.complete
                 ? DISCOVER_COMPLETE(response.devices)
                 : DISCOVER_UPDATE(response.devices)
-            })
+            ),
+            catchError(error => of(DISCOVER_ERROR.asError(error.message)))
           )
         )
       )
