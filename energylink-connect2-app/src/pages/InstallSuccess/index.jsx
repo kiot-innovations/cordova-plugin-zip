@@ -1,7 +1,7 @@
-import useModal from 'hooks/useModal'
 import React from 'react'
-import './InstallSuccess.scss'
+import useModal from 'hooks/useModal'
 import { useI18n } from 'shared/i18n'
+import './InstallSuccess.scss'
 
 const modalContent = (
   <span className="has-text-white">Turn off the breakers before leaving</span>
