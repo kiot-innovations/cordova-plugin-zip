@@ -6,6 +6,7 @@ import { useDispatch } from 'react-redux'
 import CreateSite from 'pages/CreateSite'
 import Firmwares from 'pages/Firmwares'
 import Home from 'pages/Home'
+import Data from 'pages/Data'
 import Login from 'pages/Login'
 import Menu from 'pages/Menu'
 import NotFound from 'pages/NotFound'
@@ -28,6 +29,7 @@ const mapComponents = {
   [paths.PROTECTED.BILL_OF_MATERIALS.path]: BillOfMaterials,
   [paths.PROTECTED.CREATE_SITE.path]: CreateSite,
   [paths.PROTECTED.GIVE_FEEDBACK.path]: NotFound,
+  [paths.PROTECTED.DATA.path]: Data,
   [paths.PROTECTED.LOGOUT.path]: NotFound,
   [paths.PROTECTED.MANAGE_FIRMWARES.path]: Firmwares,
   [paths.PROTECTED.MENU.path]: Menu,

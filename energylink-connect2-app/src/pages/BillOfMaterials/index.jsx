@@ -2,7 +2,6 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import paths from '../../routes/paths'
-import RightNow from '../../components/RightNow'
 import { useI18n } from '../../shared/i18n'
 import './BillOfMaterials.scss'
 
@@ -107,9 +106,6 @@ function BillOfMaterials() {
             {t('ADD_INVENTORY')}
           </Link>
         )}
-      </section>
-      <section className="is-flex file level space-around section pt-0 mb-20 is-clipped">
-        <RightNow />
       </section>
       <section className="is-flex file level space-around section pt-0">
         <span className="is-uppercase has-text-white block">
