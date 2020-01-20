@@ -81,9 +81,11 @@ const Devices = ({ animationState }) => {
                       </span>
                       {elem.SERIAL}
                     </span>
-                    <span>{elem.MODEL}</span>
+                    <span>
+                      {elem.MODEL} <span className="sp-pencil is-gray" />
+                    </span>
                   </div>
-                  <span className="sp-grid has-text-white is-size-3 mr-10" />
+                  <span className="sp-check has-text-white is-size-3 mr-10" />
                 </li>
               )
             })}
