@@ -34,7 +34,6 @@ export const pvsReducer = createReducer(
     [GET_SN_ERROR]: (state, data) => ({
       ...state,
       fetchingSN: false,
-      serialNumbers: [],
       error: data
     }),
     [SET_TAKEN_IMAGE]: (state, data) => ({

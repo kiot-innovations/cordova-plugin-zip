@@ -42,6 +42,11 @@ const paths = {
       header: true,
       footer: true
     },
+    SN_LIST: {
+      path: '/sn-list',
+      header: true,
+      footer: true
+    },
     LOGOUT: { path: '/logout' },
     INVENTORY_COUNT: { path: '/inventory-count', header: true }
   },

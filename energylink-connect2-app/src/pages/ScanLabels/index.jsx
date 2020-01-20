@@ -26,7 +26,6 @@ function ScanLabels() {
 
   const cameraError = () => {
     setOpeningCamera(false)
-    alert('Pic not taken')
   }
 
   const cameraOptions = {

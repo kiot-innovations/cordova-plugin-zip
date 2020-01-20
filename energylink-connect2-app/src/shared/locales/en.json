@@ -88,8 +88,11 @@
 	"MICRO-INVERTERS": "microinverters",
 	"INVALID_ROLE": "You are not authorized to use this app",
 	"FETCH_SITE_ERROR": "Error happened during fetch",
-  "FETCHING_SITES": "Fetching sites...",
-  "FOUND_SITES": "Customer Sites: {0}",
-  "SCANNING_SN": "Scanning Serial Numbers...",
-  "FOUND_SN": "Found {0} Serial Numbers"
+  	"FETCHING_SITES": "Fetching sites...",
+  	"FOUND_SITES": "Customer Sites: {0}",
+  	"SCANNING_SN": "Scanning Serial Numbers...",
+  	"FOUND_SN": "Found {0} Serial Numbers",
+	"SCAN_MI_LABELS": "Scan the MI labels",
+	"SCAN_MORE": "Scan More",
+	"SN_MANUAL_ENTRY": "Add SN manually"
 }

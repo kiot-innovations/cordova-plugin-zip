@@ -1,0 +1,38 @@
+@import '~@sunpower/theme-dark/styles/variables';
+
+.snlist{
+  display: grid;
+  grid-template-rows: 10% 1fr;
+  grid-row-gap: 1rem;
+  height: -webkit-fill-available;
+
+  .top-text{
+    display: flex;
+    flex-direction: column;
+  }
+
+  .sn-container{
+    background-color: $silver-sand4;
+    padding: $font-size-huge;
+    max-height: 30rem;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    font-family: $font;
+    letter-spacing: 0;
+    border-radius: 5px;
+
+    .sn-item{
+      display: grid;
+      grid-template-columns: 90% 1fr;
+      text-align: left;
+      padding-bottom: 5px;
+      border-bottom: 2px solid;
+
+      button{
+        background: transparent;
+        border: none;
+      }
+    }
+  }
+
+}
