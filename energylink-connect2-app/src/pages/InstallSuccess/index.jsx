@@ -3,19 +3,19 @@ import useModal from 'hooks/useModal'
 import { useI18n } from 'shared/i18n'
 import './InstallSuccess.scss'
 
-const modalContent = (
-  <span className="has-text-white">Turn off the breakers before leaving</span>
+const modalContent = t => (
+  <span className="has-text-white">{t('TURN_OFF_BREAKERS')}</span>
 )
-const modalTitle = (
-  <span className="has-text-white has-text-weight-bold">Attention</span>
+const modalTitle = t => (
+  <span className="has-text-white has-text-weight-bold">{t('ATTENTION')}</span>
 )
 
 const InstallSuccessful = props => {
   const t = useI18n()
   const { modal, toggleModal } = useModal(
     props.animationState,
-    modalContent,
-    modalTitle,
+    modalContent(t),
+    modalTitle(t),
     false
   )
 
