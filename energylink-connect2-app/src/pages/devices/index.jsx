@@ -1,4 +1,5 @@
 import Collapsible from 'components/Collapsible'
+import { pathOr } from 'ramda'
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
@@ -29,7 +30,7 @@ function mapStateToProps({ inventory: { bom }, devices }) {
   return {
     isFetching,
     inventory: { inverters: bom.STRING_INVERTERS, meter: bom.METERS },
-    found: { inverters: found.inverter, meter: found.meter }
+    found
   }
 }
 
@@ -60,13 +61,43 @@ const Devices = ({ animationState }) => {
         <Collapsible
           title={capitalizeString(t('MICRO-INVERTERS'))}
           icon={microInverterIcon}
-          actions={Icon(found.inverters, inventory.inverters, 'sp-gear')}
-        />
+          actions={Icon(
+            pathOr([], ['inverter'], found).length,
+            inventory.inverters,
+            'sp-gear'
+          )}
+        >
+          <ul className="inverter-list">
+            {pathOr([], ['inverter'], found).map(elem => {
+              return (
+                <li
+                  className="inverter is-flex flow-wrap tile"
+                  key={elem.SERIAL}
+                >
+                  <div className="is-flex is-vertical has-text-white tile">
+                    <span>
+                      <span className="has-text-weight-bold has-text-white">
+                        SN:
+                      </span>
+                      {elem.SERIAL}
+                    </span>
+                    <span>{elem.MODEL}</span>
+                  </div>
+                  <span className="sp-grid has-text-white is-size-3 mr-10" />
+                </li>
+              )
+            })}
+          </ul>
+        </Collapsible>
       </div>
       <div className="pb-15">
         <Collapsible
           title={capitalizeString(t('METERS'))}
-          actions={Icon(found.meter, inventory.meter, '')}
+          actions={Icon(
+            pathOr([], ['power meter'], found).length,
+            inventory.meter,
+            ''
+          )}
           icon={meterIcon}
         />
       </div>
