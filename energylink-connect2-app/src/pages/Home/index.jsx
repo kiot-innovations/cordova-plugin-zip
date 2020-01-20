@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { useI18n } from 'shared/i18n'
-import { path, pathOr, test, join, values, pick, prop, compose } from 'ramda'
+import { path, test, join, values, pick, prop, compose, length } from 'ramda'
 
 import paths from 'routes/paths'
 import SelectField from 'components/SelectField'
@@ -16,16 +16,13 @@ import { either } from 'shared/utils'
 const getString = compose(
   join(' '),
   values,
-  pick(['site_addr_nm', 'st_addr_lbl']),
-  prop('_source')
+  pick(['address1', 'city', 'postalCode'])
 )
 
-const buildSite = site => ({
-  address: `${site.site_addr_nm} ${site.st_addr_lbl}`,
-  city: site.city_id,
-  state: site.st_id,
-  lat_deg: site.lat_deg,
-  long_deg: site.long_deg
+const buildSelectValue = value => ({
+  label: getString(value),
+  value: value.siteKey,
+  site: value
 })
 
 const setSite = (history, dispatch) => site => {
@@ -33,7 +30,7 @@ const setSite = (history, dispatch) => site => {
   history.push(paths.PROTECTED.BILL_OF_MATERIALS.path)
 }
 
-function Home() {
+function Home({ animationState }) {
   const t = useI18n()
   const dispatch = useDispatch()
   const history = useHistory()
@@ -42,25 +39,18 @@ function Home() {
   const sites = useSelector(state => state.site.sites)
   const error = useSelector(state => state.site.error)
 
-  const found = pathOr(0, ['items', 'totalSitesFound'], sites)
+  const found = length(sites) || 0
   const errorMessage = path(['data', 'message'], error)
 
   useEffect(() => {
-    dispatch(GET_SITES_INIT())
-  }, [dispatch])
+    if (animationState === 'enter') dispatch(GET_SITES_INIT())
+  }, [dispatch, animationState])
 
   const notFoundText = t('NOT_FOUND')
 
   const filterSites = (inputValue, cb) => {
-    const sitesValues = pathOr([], ['items', 'hits'], sites)
-
     const matchValue = compose(test(new RegExp(inputValue, 'ig')), getString)
-    const results = sitesValues.filter(matchValue).map(value => ({
-      label: getString(value),
-      value: getString(value),
-      site: buildSite(value._source)
-    }))
-
+    const results = sites.filter(matchValue).map(buildSelectValue)
     cb(results)
   }
 

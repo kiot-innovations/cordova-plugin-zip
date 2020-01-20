@@ -41,8 +41,12 @@ export async function getApiSearch() {
     apiSearch = await Swagger(process.env.REACT_APP_SWAGGER_SEARCH)
   return apiSearch
 }
-export async function getApiSite() {
-  if (!apiSite) apiSite = await Swagger(process.env.REACT_APP_SWAGGER_SITE)
+export async function getApiSite(access_token) {
+  if (!apiSite)
+    apiSite = await Swagger(
+      process.env.REACT_APP_SWAGGER_SITE,
+      authOptions(access_token)
+    )
   return apiSite
 }
 export async function getApiScanSN() {
