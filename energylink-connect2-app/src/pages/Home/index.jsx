@@ -36,7 +36,7 @@ function Home({ animationState }) {
   const history = useHistory()
 
   const isFetching = useSelector(state => state.site.isFetching)
-  const sites = useSelector(state => state.site.sites)
+  const sites = useSelector(state => state.site.sites || [])
   const error = useSelector(state => state.site.error)
 
   const found = length(sites) || 0

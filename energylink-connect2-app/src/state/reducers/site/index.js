@@ -9,7 +9,7 @@ import {
 
 const initialState = {
   isFetching: false,
-  sites: null, // []
+  sites: [], // []
   site: null, // { address1, city, latitude, longitude }
   error: null
 }
