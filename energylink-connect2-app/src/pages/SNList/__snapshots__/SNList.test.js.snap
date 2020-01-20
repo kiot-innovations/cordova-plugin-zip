@@ -39,6 +39,7 @@ exports[`Serial Number List Page renders correctly 1`] = `
         </span>
         <button
           className="has-text-white is-size-6"
+          onClick={[Function]}
         >
           <i
             className="sp-trash"
@@ -56,6 +57,7 @@ exports[`Serial Number List Page renders correctly 1`] = `
         </span>
         <button
           className="has-text-white is-size-6"
+          onClick={[Function]}
         >
           <i
             className="sp-trash"
@@ -73,6 +75,7 @@ exports[`Serial Number List Page renders correctly 1`] = `
         </span>
         <button
           className="has-text-white is-size-6"
+          onClick={[Function]}
         >
           <i
             className="sp-trash"
