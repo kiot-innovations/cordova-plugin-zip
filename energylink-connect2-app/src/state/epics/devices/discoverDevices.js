@@ -11,8 +11,8 @@ import {
 } from 'state/actions/devices'
 
 const fetchDiscovery = async () => {
-  const swagger = await getApiPVS()
   try {
+    const swagger = await getApiPVS()
     const res = await Promise.all([
       swagger.apis.devices.getDevices(),
       swagger.apis.discovery.getDiscoveryProgress()
@@ -23,7 +23,7 @@ const fetchDiscovery = async () => {
       progress: data[1]
     }
   } catch (e) {
-    console.error('ERROR', e)
+    throw new Error('UNREACHABLE_PVS')
   }
 }
 
