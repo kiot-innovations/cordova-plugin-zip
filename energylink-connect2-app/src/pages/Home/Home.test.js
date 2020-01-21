@@ -24,7 +24,11 @@ describe('Home component', () => {
   test('renders correctly when there are sites available', () => {
     const component = mountWithProvider(<Home />)({
       site: {
-        sites: { items: { totalSitesFound: 10 } },
+        sites: [{}, {}, {}],
+        site: {
+          latitude: 20.6881818,
+          longitude: -103.4218501
+        },
         isFetching: false
       }
     })

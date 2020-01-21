@@ -31,7 +31,7 @@ function ScanLabels() {
   const cameraOptions = {
     quality: 40,
     sourceType: 1,
-    destinationType: 1
+    destinationType: 0
   }
 
   const takePicture = () => {
@@ -49,7 +49,10 @@ function ScanLabels() {
         </span>
         <div className="barcode-icon">
           {takenImage ? (
-            <img src={takenImage} alt="Scanned Codes" />
+            <img
+              src={'data:image/jpeg;base64,' + takenImage}
+              alt="Scanned Codes"
+            />
           ) : (
             <BarcodeIcon />
           )}

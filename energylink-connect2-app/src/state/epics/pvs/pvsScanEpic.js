@@ -4,6 +4,7 @@ import { catchError, mergeMap, map } from 'rxjs/operators'
 import * as pvsActions from 'state/actions/pvs'
 import { postBinary } from 'shared/fetch'
 import { eqBy, prop, unionWith } from 'ramda'
+import { b64toBlob } from '../../../shared/utils'
 
 function mergeSN(arr1, arr2) {
   if (arr1.length > 0) {
@@ -23,10 +24,8 @@ export const pvsScanEpic = (action$, state$) => {
   return action$.pipe(
     ofType(pvsActions.GET_SN_INIT.getType()),
     mergeMap(({ payload }) => {
-      const promise = fetch(payload)
-        .then(res => res.blob())
-        .then(postBinary)
-        .then(r => r.json())
+      const photoBlob = b64toBlob(payload)
+      const promise = postBinary(photoBlob).then(r => r.json())
 
       return from(promise).pipe(
         map(response => {

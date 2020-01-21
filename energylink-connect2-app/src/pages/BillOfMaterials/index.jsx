@@ -2,7 +2,6 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import paths from '../../routes/paths'
-import RightNow from '../../components/RightNow'
 import { useI18n } from '../../shared/i18n'
 import './BillOfMaterials.scss'
 
@@ -23,21 +22,20 @@ function BillOfMaterials() {
   const t = useI18n()
 
   const data = useSelector(({ user, inventory }) => ({
-    address: user.data.AddressName,
     phone: user.data.phoneNumber,
     name: user.data.name,
-    bom: inventory.bom,
-    lat_deg: 20.6881818,
-    long_deg: -103.4218501
+    bom: inventory.bom
   }))
 
-  const { address } = useSelector(state => state.site.site)
+  const { address1, latitude, longitude } = useSelector(
+    state => state.site.site
+  )
 
   return (
     <main className="full-height pl-10 pr-10 home">
       <div className="pl-20 pr-20 mb-20">
         <img
-          src={`https://maps.googleapis.com/maps/api/staticmap?center=${data.lat_deg},${data.long_deg}&zoom=21&size=800x800&key=${process.env.REACT_APP_MAPS_API_KEY}&maptype=satellite`}
+          src={`https://maps.googleapis.com/maps/api/staticmap?center=${latitude},${longitude}&zoom=21&size=800x800&key=${process.env.REACT_APP_MAPS_API_KEY}&maptype=satellite`}
           title=""
           alt=""
           className="is-fullwidth"
@@ -56,7 +54,7 @@ function BillOfMaterials() {
           </div>
           <div className="tile is-flex is-vertical">
             <span className="is-uppercase is-size-7">{`${t('ADDRESS')}:`}</span>
-            <span className="has-text-white mb-10">{address}</span>
+            <span className="has-text-white mb-10">{address1}</span>
           </div>
         </div>
         <div className="is-flex is-vertical tile is-center pr-40">
@@ -107,9 +105,6 @@ function BillOfMaterials() {
             {t('ADD_INVENTORY')}
           </Link>
         )}
-      </section>
-      <section className="is-flex file level space-around section pt-0 mb-20 is-clipped">
-        <RightNow />
       </section>
       <section className="is-flex file level space-around section pt-0">
         <span className="is-uppercase has-text-white block">

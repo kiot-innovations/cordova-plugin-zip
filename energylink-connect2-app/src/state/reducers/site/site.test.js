@@ -10,8 +10,9 @@ describe('Site Reducer', () => {
   })
 
   it('populates the reducer state after GET_SITES_INIT action is fired', () => {
-    reducerTest({ fetchSites: false }, siteActions.GET_SITES_INIT(), {
-      fetchSites: true
+    reducerTest({ isFetching: false }, siteActions.GET_SITES_INIT(), {
+      isFetching: true,
+      error: null
     })
   })
 })

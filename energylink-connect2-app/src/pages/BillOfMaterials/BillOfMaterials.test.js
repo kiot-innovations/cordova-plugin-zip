@@ -29,9 +29,9 @@ describe('BillOfMaterials component', () => {
         }
       },
       site: {
-        site: {
-          address: '123 St Ave'
-        }
+        address1: '123 St Ave',
+        latitude: 20.6881818,
+        longitude: -103.4218501
       }
     })
     expect(component).toMatchSnapshot()
