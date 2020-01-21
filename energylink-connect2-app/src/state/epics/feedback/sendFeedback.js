@@ -31,9 +31,11 @@ export const sendFeedbackEpic = (action$, state$) =>
         htmlBody: `From ${bodyValues.contactEmail} at ${bodyValues.userstime}: ${bodyValues.comment}`
       }
 
-      const postParams = Object.keys(values).map((key) => {
-        return encodeURIComponent(key) + '=' + encodeURIComponent(values[key]);
-      }).join('&');
+      const postParams = Object.keys(values)
+        .map(key => {
+          return encodeURIComponent(key) + '=' + encodeURIComponent(values[key])
+        })
+        .join('&')
 
       return from(postFeedback(postParams, state$.value)).pipe(
         map(({ status, data }) =>
