@@ -1,3 +1,6 @@
+const home = 'home'
+const install = 'install'
+
 /**
  * To add a new route just add an object to the PROTECTED or UNPROTECTED
  * The object MUST have a path property
@@ -9,7 +12,14 @@ const paths = {
     BILL_OF_MATERIALS: {
       path: '/bill-of-materials',
       header: true,
-      footer: true
+      footer: true,
+      tab: home
+    },
+    DEVICES: {
+      path: '/devices',
+      header: true,
+      footer: true,
+      tab: install
     },
     ROOT: {
       path: '/',
@@ -25,15 +35,30 @@ const paths = {
     GIVE_FEEDBACK: { path: '/give-feedback' },
     PVS_CONNECTION_SUCCESS: {
       path: '/pvs-connection-success',
-      header: true
+      header: true,
+      footer: true,
+      tab: install
+    },
+    INSTALL_SUCCESS: {
+      path: '/install-success',
+      header: true,
+      footer: true,
+      tab: install
     },
     CONNECT_TO_PVS: {
       path: '/connect-to-pvs',
       header: true,
-      footer: true
+      footer: true,
+      tab: install
     },
     SCAN_LABELS: {
       path: '/scan-labels',
+      header: true,
+      footer: true,
+      tab: install
+    },
+    SN_LIST: {
+      path: '/sn-list',
       header: true,
       footer: true
     },
@@ -43,7 +68,8 @@ const paths = {
       path: '/system-configuration',
       header: true,
       footer: true
-    }
+    },
+    DATA: { path: '/data', header: true, footer: true }
   },
   UNPROTECTED: {
     LOGIN: {
@@ -60,5 +86,5 @@ const paths = {
     }
   }
 }
-
+export const protectedRoutes = Object.values(paths.PROTECTED)
 export default paths

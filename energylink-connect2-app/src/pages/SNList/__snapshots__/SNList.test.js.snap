@@ -1,0 +1,100 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Serial Number List Page renders correctly 1`] = `
+<BlockUi
+  blocking={false}
+  loader={[Function]}
+  message="OPENING_CAMERA"
+  renderChildren={true}
+  tag="div"
+>
+  <div
+    className="snlist is-vertical has-text-centered pl-10 pr-10"
+  >
+    <div
+      className="top-text"
+    >
+      <span
+        className="is-uppercase has-text-weight-bold"
+      >
+        SCAN_MI_LABELS
+      </span>
+      <span
+        className="has-text-white"
+      >
+        FOUND_SN 3
+      </span>
+    </div>
+    <div
+      className="sn-container"
+    >
+      <div
+        className="sn-item mt-10 mb-10 pb-5"
+        key="E00121852014339"
+      >
+        <span
+          className="is-uppercase has-text-weight-bold has-text-white"
+        >
+          E00121852014339
+        </span>
+        <button
+          className="has-text-white is-size-6"
+          onClick={[Function]}
+        >
+          <i
+            className="sp-trash"
+          />
+        </button>
+      </div>
+      <div
+        className="sn-item mt-10 mb-10 pb-5"
+        key="E00121852014348"
+      >
+        <span
+          className="is-uppercase has-text-weight-bold has-text-white"
+        >
+          E00121852014348
+        </span>
+        <button
+          className="has-text-white is-size-6"
+          onClick={[Function]}
+        >
+          <i
+            className="sp-trash"
+          />
+        </button>
+      </div>
+      <div
+        className="sn-item mt-10 mb-10 pb-5"
+        key="E00121929013075"
+      >
+        <span
+          className="is-uppercase has-text-weight-bold has-text-white"
+        >
+          E00121929013075
+        </span>
+        <button
+          className="has-text-white is-size-6"
+          onClick={[Function]}
+        >
+          <i
+            className="sp-trash"
+          />
+        </button>
+      </div>
+    </div>
+    <button
+      className="button is-primary trigger-scan"
+      onClick={[Function]}
+    >
+      SCAN_MORE
+    </button>
+    <Link
+      className="has-text-centered is-uppercase"
+      to="/scan-labels"
+    >
+      SN_MANUAL_ENTRY
+    </Link>
+  </div>
+</BlockUi>
+`;

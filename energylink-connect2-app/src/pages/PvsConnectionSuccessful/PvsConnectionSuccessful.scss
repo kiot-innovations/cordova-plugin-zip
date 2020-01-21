@@ -1,6 +1,9 @@
 @import '~@sunpower/theme-dark/styles/variables';
 
 .pvs-connection-success-screen {
+  .pvs-sn{
+    flex-direction: column;
+  }
   .sp-pvs {
     font-size: 7rem;
   }

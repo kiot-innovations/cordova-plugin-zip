@@ -1,23 +1,34 @@
 import Swagger from 'swagger-client'
 
-let apiAuth, apiDevice, apiParty, apiSearch, apiSite, apiFirmware
+let apiDevice, apiParty, apiSearch, apiSite, apiFirmware, apiPVS, apiScanSN
+
+const authOptions = access_token => ({
+  requestInterceptor: req => {
+    req.headers['Authorization'] = `Bearer ${access_token}`
+    return req
+  }
+})
 
 export async function getApiFirmware() {
   if (!apiFirmware)
     apiFirmware = await Swagger(process.env.REACT_APP_SWAGGER_FIRMWARE)
   return apiFirmware
 }
-export async function getApiAuth() {
-  if (!apiAuth) apiAuth = await Swagger(process.env.REACT_APP_SWAGGER_AUTH)
-  return apiAuth
+export async function getApiPVS() {
+  if (!apiPVS) apiPVS = await Swagger(process.env.REACT_APP_PVS_ADDRESS)
+  return apiPVS
 }
 export async function getApiDevice() {
   if (!apiDevice)
     apiDevice = await Swagger(process.env.REACT_APP_SWAGGER_DEVICE)
   return apiDevice
 }
-export async function getApiParty() {
-  if (!apiParty) apiParty = await Swagger(process.env.REACT_APP_SWAGGER_PARTY)
+export async function getApiParty(access_token) {
+  if (!apiParty)
+    apiParty = await Swagger(
+      process.env.REACT_APP_SWAGGER_PARTY,
+      authOptions(access_token)
+    )
   return apiParty
 }
 export async function getApiSearch() {
@@ -25,7 +36,16 @@ export async function getApiSearch() {
     apiSearch = await Swagger(process.env.REACT_APP_SWAGGER_SEARCH)
   return apiSearch
 }
-export async function getApiSite() {
-  if (!apiSite) apiSite = await Swagger(process.env.REACT_APP_SWAGGER_SITE)
+export async function getApiSite(access_token) {
+  if (!apiSite)
+    apiSite = await Swagger(
+      process.env.REACT_APP_SWAGGER_SITE,
+      authOptions(access_token)
+    )
   return apiSite
+}
+export async function getApiScanSN() {
+  if (!apiScanSN)
+    apiScanSN = await Swagger(process.env.REACT_APP_SCAN_SERIAL_NUMBERS)
+  return apiScanSN
 }

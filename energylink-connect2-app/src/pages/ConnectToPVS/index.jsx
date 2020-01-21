@@ -2,7 +2,7 @@ import React, { useCallback, useState, useEffect } from 'react'
 import ExampleImage from './assets/example.png'
 import { useI18n } from 'shared/i18n'
 import { decodeQRData, scanBarcodes } from 'shared/scanning'
-import { clearPVSErr, connectTo } from 'state/actions/network'
+import { clearPVSErr, PVS_CONNECTION_INIT } from 'state/actions/network'
 import { useSelector, useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import paths from 'routes/paths'
@@ -31,7 +31,7 @@ function ConnectToPVS({ animationState }) {
         const [serialNumber, ssid] = qrData
         const password = generatePassword(serialNumber)
         dispatch(saveSerialNumber(serialNumber))
-        dispatch(connectTo(ssid, password))
+        dispatch(PVS_CONNECTION_INIT({ ssid, password }))
       } else {
         alert(t('INVALID_QRCODE'))
       }

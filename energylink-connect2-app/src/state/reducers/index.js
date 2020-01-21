@@ -9,8 +9,10 @@ import { networkReducer } from './network'
 import { pvsReducer } from './pvs'
 import { globalReducer } from './global'
 import { storesVersions } from './migrations'
+import { siteReducer } from './site'
 import ui from './ui'
 import fileDownloader from './fileDownloader'
+import devicesReducer from './devices'
 
 export default combineReducers({
   ui,
@@ -35,6 +37,8 @@ export default combineReducers({
   global: globalReducer,
   inventory: inventoryReducer,
   network: networkReducer,
-  pvs: pvsReducer
+  pvs: pvsReducer,
+  site: siteReducer,
+  devices: devicesReducer
   // Add reducers here
 })
