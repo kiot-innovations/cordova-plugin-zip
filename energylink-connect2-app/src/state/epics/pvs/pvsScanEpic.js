@@ -3,12 +3,13 @@ import { of, from } from 'rxjs'
 import { catchError, mergeMap, map } from 'rxjs/operators'
 import * as pvsActions from 'state/actions/pvs'
 import { postBinary } from 'shared/fetch'
+import { eqBy, prop, unionWith } from 'ramda'
 
 function mergeSN(arr1, arr2) {
   if (arr1.length > 0) {
-    const ids = new Set(arr1.map(d => d.serial_number))
-    const merged = [...arr1, ...arr2.filter(d => !ids.has(d.serial_number))]
-    return merged
+    const merge = unionWith(eqBy(prop('serial_number')))
+    const mergedData = merge(arr1, arr2)
+    return mergedData
   } else {
     return arr2
   }

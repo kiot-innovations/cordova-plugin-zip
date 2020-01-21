@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { useI18n } from 'shared/i18n'
+import { GET_SN_INIT, REMOVE_SN } from 'state/actions/pvs'
 import paths from 'routes/paths'
 import BlockUI from 'react-block-ui'
-import 'react-block-ui/style.css'
 import './SNList.scss'
-import { GET_SN_INIT, REMOVE_SN } from 'state/actions/pvs'
-import { Link } from 'react-router-dom'
+import 'react-block-ui/style.css'
 
 function SNList() {
   const t = useI18n()
