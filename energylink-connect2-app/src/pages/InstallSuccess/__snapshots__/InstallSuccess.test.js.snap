@@ -1,0 +1,52 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PVS connection successful component render correctly 1`] = `
+<Fragment>
+  <div
+    className="file level has-text-centered fill-parent install-success-screen auto"
+  >
+    <div
+      className="is-vertical file level is-vertical is-flex tile"
+    >
+      <span
+        className="is-uppercase has-text-weight-bold mb-25 mt-25 "
+      >
+        INSTALL_SUCCESS
+      </span>
+      <span
+        className="sp-pvs has-text-white mb-30"
+      />
+      <span
+        className="mb-20"
+      >
+        INSTALL_SUBTITLE
+      </span>
+      <span
+        className="has-text-white"
+      >
+        YOU_CAN 
+        <span
+          className="has-text-weight-bold"
+        >
+          TURN_OF_SOLAR
+        </span>
+      </span>
+      <div
+        className="is-flex auto is-vertical tile"
+      >
+        <button
+          className="button is-primary is-uppercase is-center mt-50"
+        >
+          CONFIGURE
+        </button>
+        <button
+          className="configure-button is-uppercase is-center mt-50 has-text-weight-bold"
+          onClick={[Function]}
+        >
+          NOT_NOW
+        </button>
+      </div>
+    </div>
+  </div>
+</Fragment>
+`;
