@@ -20,17 +20,6 @@ exports[`EnergyMix component renders properly 1`] = `
     </h6>
   </div>
   <div
-    className="column is-4 is-flex icons ignore-in-share"
-  >
-    <SocialShareButton
-      beforeShare={[Function]}
-    />
-    <ForwardRef(SvgInfo)
-      className="ml-10"
-      onClick={[Function]}
-    />
-  </div>
-  <div
     className="column is-full"
   >
     <h6
@@ -114,17 +103,6 @@ exports[`EnergyMix component renders properly 1`] = `
       KWH
     </p>
   </div>
-  <OverlayModalLayout
-    className=""
-    header="ENERGY_MIX_INFO_LABEL"
-    id="em-info"
-  >
-    <div
-      className="section has-text-black content"
-    >
-      ENERGYMIXTEXT
-    </div>
-  </OverlayModalLayout>
 </div>
 `;
 

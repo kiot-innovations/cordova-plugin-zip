@@ -1,5 +1,0 @@
-export { ReactComponent as ShareIcon } from './share-icon.svg'
-export { ReactComponent as EmailIcon } from './email-icon.svg'
-export { ReactComponent as TextIcon } from './text-icon.svg'
-export { ReactComponent as FacebookIcon } from './facebook-icon.svg'
-export { ReactComponent as TwitterIcon } from './twitter-icon.svg'
