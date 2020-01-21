@@ -5,7 +5,8 @@ import {
   FETCH_INVENTORY_SUCCESS,
   SAVE_INVENTORY_INIT,
   SAVE_INVENTORY_SUCCESS,
-  SAVE_INVENTORY_ERROR
+  SAVE_INVENTORY_ERROR,
+  UPDATE_MI_COUNT
 } from '../../actions/inventory'
 
 const initialState = {
@@ -54,6 +55,10 @@ export const inventoryReducer = createReducer(
       ...state,
       savingInventory: false,
       err: payload
+    }),
+    [UPDATE_MI_COUNT]: (state, payload) => ({
+      ...state,
+      bom: { ...state.bom, MODULES: payload }
     })
   },
   initialState
