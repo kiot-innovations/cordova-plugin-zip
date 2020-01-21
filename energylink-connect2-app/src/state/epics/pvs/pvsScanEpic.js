@@ -6,16 +6,6 @@ import { postBinary } from 'shared/fetch'
 import { eqBy, prop, unionWith } from 'ramda'
 import { b64toBlob } from '../../../shared/utils'
 
-function mergeSN(arr1, arr2) {
-  if (arr1.length > 0) {
-    const merge = unionWith(eqBy(prop('serial_number')))
-    const mergedData = merge(arr1, arr2)
-    return mergedData
-  } else {
-    return arr2
-  }
-}
-
 export const pvsScanEpic = (action$, state$) => {
   let state
   state$.subscribe(s => {
@@ -31,7 +21,11 @@ export const pvsScanEpic = (action$, state$) => {
         map(response => {
           return response.devices && response.devices.length > 0
             ? pvsActions.GET_SN_SUCCESS(
-                mergeSN(state.pvs.serialNumbers, response.devices)
+                unionWith(
+                  eqBy(prop('serial_number')),
+                  state.pvs.serialNumbers,
+                  response.devices
+                )
               )
             : pvsActions.GET_SN_ERROR('NOT_FOUND')
         }),
