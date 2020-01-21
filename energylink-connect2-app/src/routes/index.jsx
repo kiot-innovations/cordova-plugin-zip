@@ -3,6 +3,11 @@ import { useSelector } from 'react-redux'
 import { Route, Switch } from 'react-router-dom'
 import { animated, useTransition } from 'react-spring'
 import { useDispatch } from 'react-redux'
+import { useRouter } from 'hooks'
+import { withTracker } from 'shared/ga'
+import { routeAuthorization, setLayout } from 'hocs'
+import { deviceResumeListener } from 'state/actions/mobile'
+
 import CreateSite from 'pages/CreateSite'
 import Firmwares from 'pages/Firmwares'
 import Home from 'pages/Home'
@@ -15,17 +20,13 @@ import PvsConnectionSuccessful from 'pages/PvsConnectionSuccessful'
 import BillOfMaterials from 'pages/BillOfMaterials'
 import InventoryCount from 'pages/InventoryCount'
 import ScanLabels from 'pages/ScanLabels'
-import SystemConfiguration from 'pages/SystemConfiguration'
-import SNList from 'pages/SNList'
 import Devices from 'pages/Devices'
 import InstallSuccessful from 'pages/InstallSuccess'
-
-import { useRouter } from 'hooks'
-import { withTracker } from 'shared/ga'
-import { routeAuthorization, setLayout } from 'hocs'
-import paths from './paths'
+import SystemConfiguration from 'pages/SystemConfiguration'
+import SNList from 'pages/SNList'
 import Logout from 'pages/Logout'
-import { deviceResumeListener } from 'state/actions/mobile'
+
+import paths from './paths'
 
 const mapComponents = {
   [paths.PROTECTED.DEVICES.path]: Devices,

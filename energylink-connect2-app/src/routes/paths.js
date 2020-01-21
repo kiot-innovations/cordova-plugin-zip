@@ -1,6 +1,9 @@
-const home = 'home'
-const install = 'install'
-
+export const TABS = {
+  HOME: 'HOME',
+  INSTALL: 'INSTALL',
+  DATA: 'DATA',
+  CONFIGURE: 'CONFIGURE'
+}
 /**
  * To add a new route just add an object to the PROTECTED or UNPROTECTED
  * The object MUST have a path property
@@ -13,13 +16,13 @@ const paths = {
       path: '/bill-of-materials',
       header: true,
       footer: true,
-      tab: home
+      tab: TABS.HOME
     },
     DEVICES: {
       path: '/devices',
       header: true,
       footer: true,
-      tab: install
+      tab: TABS.INSTALL
     },
     ROOT: {
       path: '/',
@@ -37,25 +40,25 @@ const paths = {
       path: '/pvs-connection-success',
       header: true,
       footer: true,
-      tab: install
+      tab: TABS.INSTALL
     },
     INSTALL_SUCCESS: {
       path: '/install-success',
       header: true,
       footer: true,
-      tab: install
+      tab: TABS.INSTALL
     },
     CONNECT_TO_PVS: {
       path: '/connect-to-pvs',
       header: true,
       footer: true,
-      tab: install
+      tab: TABS.INSTALL
     },
     SCAN_LABELS: {
       path: '/scan-labels',
       header: true,
       footer: true,
-      tab: install
+      tab: TABS.INSTALL
     },
     SN_LIST: {
       path: '/sn-list',
@@ -67,9 +70,10 @@ const paths = {
     SYSTEM_CONFIGURATION: {
       path: '/system-configuration',
       header: true,
-      footer: true
+      footer: true,
+      tab: TABS.CONFIGURE
     },
-    DATA: { path: '/data', header: true, footer: true }
+    DATA: { path: '/data', header: true, footer: true, tab: TABS.DATA }
   },
   UNPROTECTED: {
     LOGIN: {

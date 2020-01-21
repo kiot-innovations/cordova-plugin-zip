@@ -55,11 +55,13 @@ Object {
                 SELECT_SITE
               </h6>
               <SelectField
+                autoFocus={true}
                 notFoundText="NOT_FOUND"
                 onSearch={[Function]}
                 onSelect={[Function]}
               >
                 <StateManager
+                  autoFocus={true}
                   cacheOptions={true}
                   className="field"
                   classNamePrefix="search"
@@ -76,6 +78,7 @@ Object {
                   theme={[Function]}
                 >
                   <Select
+                    autoFocus={true}
                     backspaceRemovesValue={true}
                     blurInputOnSelect={true}
                     cacheOptions={true}
@@ -148,7 +151,7 @@ Object {
                       selectOption={[Function]}
                       selectProps={
                         Object {
-                          "autoFocus": undefined,
+                          "autoFocus": true,
                           "backspaceRemovesValue": true,
                           "blurInputOnSelect": true,
                           "cacheOptions": true,
@@ -271,7 +274,7 @@ Object {
                             selectOption={[Function]}
                             selectProps={
                               Object {
-                                "autoFocus": undefined,
+                                "autoFocus": true,
                                 "backspaceRemovesValue": true,
                                 "blurInputOnSelect": true,
                                 "cacheOptions": true,
@@ -402,7 +405,7 @@ Object {
                                   selectOption={[Function]}
                                   selectProps={
                                     Object {
-                                      "autoFocus": undefined,
+                                      "autoFocus": true,
                                       "backspaceRemovesValue": true,
                                       "blurInputOnSelect": true,
                                       "cacheOptions": true,
@@ -519,7 +522,7 @@ Object {
                                         selectOption={[Function]}
                                         selectProps={
                                           Object {
-                                            "autoFocus": undefined,
+                                            "autoFocus": true,
                                             "backspaceRemovesValue": true,
                                             "blurInputOnSelect": true,
                                             "cacheOptions": true,
@@ -641,7 +644,7 @@ Object {
                                         onFocus={[Function]}
                                         selectProps={
                                           Object {
-                                            "autoFocus": undefined,
+                                            "autoFocus": true,
                                             "backspaceRemovesValue": true,
                                             "blurInputOnSelect": true,
                                             "cacheOptions": true,
@@ -845,7 +848,7 @@ Object {
                                   selectOption={[Function]}
                                   selectProps={
                                     Object {
-                                      "autoFocus": undefined,
+                                      "autoFocus": true,
                                       "backspaceRemovesValue": true,
                                       "blurInputOnSelect": true,
                                       "cacheOptions": true,
@@ -958,7 +961,7 @@ Object {
                                         selectOption={[Function]}
                                         selectProps={
                                           Object {
-                                            "autoFocus": undefined,
+                                            "autoFocus": true,
                                             "backspaceRemovesValue": true,
                                             "blurInputOnSelect": true,
                                             "cacheOptions": true,
@@ -1063,7 +1066,7 @@ Object {
                                         selectOption={[Function]}
                                         selectProps={
                                           Object {
-                                            "autoFocus": undefined,
+                                            "autoFocus": true,
                                             "backspaceRemovesValue": true,
                                             "blurInputOnSelect": true,
                                             "cacheOptions": true,
@@ -1328,11 +1331,13 @@ Object {
                 SELECT_SITE
               </h6>
               <SelectField
+                autoFocus={true}
                 notFoundText="NOT_FOUND"
                 onSearch={[Function]}
                 onSelect={[Function]}
               >
                 <StateManager
+                  autoFocus={true}
                   cacheOptions={true}
                   className="field"
                   classNamePrefix="search"
@@ -1349,6 +1354,7 @@ Object {
                   theme={[Function]}
                 >
                   <Select
+                    autoFocus={true}
                     backspaceRemovesValue={true}
                     blurInputOnSelect={true}
                     cacheOptions={true}
@@ -1421,7 +1427,7 @@ Object {
                       selectOption={[Function]}
                       selectProps={
                         Object {
-                          "autoFocus": undefined,
+                          "autoFocus": true,
                           "backspaceRemovesValue": true,
                           "blurInputOnSelect": true,
                           "cacheOptions": true,
@@ -1544,7 +1550,7 @@ Object {
                             selectOption={[Function]}
                             selectProps={
                               Object {
-                                "autoFocus": undefined,
+                                "autoFocus": true,
                                 "backspaceRemovesValue": true,
                                 "blurInputOnSelect": true,
                                 "cacheOptions": true,
@@ -1675,7 +1681,7 @@ Object {
                                   selectOption={[Function]}
                                   selectProps={
                                     Object {
-                                      "autoFocus": undefined,
+                                      "autoFocus": true,
                                       "backspaceRemovesValue": true,
                                       "blurInputOnSelect": true,
                                       "cacheOptions": true,
@@ -1792,7 +1798,7 @@ Object {
                                         selectOption={[Function]}
                                         selectProps={
                                           Object {
-                                            "autoFocus": undefined,
+                                            "autoFocus": true,
                                             "backspaceRemovesValue": true,
                                             "blurInputOnSelect": true,
                                             "cacheOptions": true,
@@ -1914,7 +1920,7 @@ Object {
                                         onFocus={[Function]}
                                         selectProps={
                                           Object {
-                                            "autoFocus": undefined,
+                                            "autoFocus": true,
                                             "backspaceRemovesValue": true,
                                             "blurInputOnSelect": true,
                                             "cacheOptions": true,
@@ -2118,7 +2124,7 @@ Object {
                                   selectOption={[Function]}
                                   selectProps={
                                     Object {
-                                      "autoFocus": undefined,
+                                      "autoFocus": true,
                                       "backspaceRemovesValue": true,
                                       "blurInputOnSelect": true,
                                       "cacheOptions": true,
@@ -2231,7 +2237,7 @@ Object {
                                         selectOption={[Function]}
                                         selectProps={
                                           Object {
-                                            "autoFocus": undefined,
+                                            "autoFocus": true,
                                             "backspaceRemovesValue": true,
                                             "blurInputOnSelect": true,
                                             "cacheOptions": true,
@@ -2336,7 +2342,7 @@ Object {
                                         selectOption={[Function]}
                                         selectProps={
                                           Object {
-                                            "autoFocus": undefined,
+                                            "autoFocus": true,
                                             "backspaceRemovesValue": true,
                                             "blurInputOnSelect": true,
                                             "cacheOptions": true,
