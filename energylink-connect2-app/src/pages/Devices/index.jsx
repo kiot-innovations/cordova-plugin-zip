@@ -45,7 +45,7 @@ const Devices = ({ animationState }) => {
   }, [dispatch, animationState])
   return (
     <div className="fill-parent is-flex tile is-vertical has-text-centered sunpower-devices">
-      <span className="is-uppercase has-text-weight-bold mb-20">
+      <span className="is-uppercase has-text-weight-bold mb-20" role="button">
         {capitalizeString(t('DEVICES'))}
       </span>
       <span
