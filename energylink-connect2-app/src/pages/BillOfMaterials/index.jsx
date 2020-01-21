@@ -28,7 +28,7 @@ function BillOfMaterials() {
   }))
 
   const { address1, latitude, longitude } = useSelector(
-    state => state.site.site
+    state => state.site.site || {}
   )
 
   return (
