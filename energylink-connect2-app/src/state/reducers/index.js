@@ -10,6 +10,7 @@ import { pvsReducer } from './pvs'
 import { globalReducer } from './global'
 import { storesVersions } from './migrations'
 import { siteReducer } from './site'
+import { shareReducer } from './share'
 import ui from './ui'
 import fileDownloader from './fileDownloader'
 import devicesReducer from './devices'
@@ -39,6 +40,7 @@ export default combineReducers({
   network: networkReducer,
   pvs: pvsReducer,
   site: siteReducer,
-  devices: devicesReducer
+  devices: devicesReducer,
+  share: shareReducer
   // Add reducers here
 })

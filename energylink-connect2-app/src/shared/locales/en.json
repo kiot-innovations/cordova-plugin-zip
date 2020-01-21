@@ -103,5 +103,8 @@
   "SCAN_MI_LABELS": "Scan the MI labels",
   "SCAN_MORE": "Scan More",
   "SN_MANUAL_ENTRY": "Add SN manually",
-  "SCAN_HINT": "Tap on Scan More to scan MI barcodes"
+  "SCAN_HINT": "Tap on Scan More to scan MI barcodes",
+  "RIGHT_NOW": "Right Now",
+  "ENERGY_MIX": "Today's Energy Mix",
+  "AS_OF_TIME_TODAY": "As of {0} • today"
 }
