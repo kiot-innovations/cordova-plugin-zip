@@ -1,3 +1,4 @@
+import { pathOr } from 'ramda'
 import { ofType } from 'redux-observable'
 import { from, of, timer } from 'rxjs'
 import { catchError, switchMap, takeUntil, tap } from 'rxjs/operators'
@@ -44,9 +45,9 @@ const scanDevicesEpic = action$ => {
         switchMap(() =>
           from(fetchDiscovery()).pipe(
             switchMap(async response =>
-              response.progress.complete
-                ? DISCOVER_COMPLETE(response.devices)
-                : DISCOVER_UPDATE(response.devices)
+              pathOr(false, ['progress', 'complete', response])
+                ? DISCOVER_COMPLETE(pathOr([], ['devices'], response))
+                : DISCOVER_UPDATE(pathOr([], ['devices'], response))
             ),
             catchError(error => of(DISCOVER_ERROR.asError(error.message)))
           )
