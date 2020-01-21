@@ -100,8 +100,8 @@
   "CONFIGURE": "Configure",
   "TURN_OFF_BREAKERS": "Turn off the breakers before leaving",
   "ATTENTION": "Attention",
-	"SCAN_MI_LABELS": "Scan the MI labels",
-	"SCAN_MORE": "Scan More",
-	"SN_MANUAL_ENTRY": "Add SN manually",
-	"SCAN_HINT": "Tap on Scan More to scan MI barcodes"
+  "SCAN_MI_LABELS": "Scan the MI labels",
+  "SCAN_MORE": "Scan More",
+  "SN_MANUAL_ENTRY": "Add SN manually",
+  "SCAN_HINT": "Tap on Scan More to scan MI barcodes"
 }

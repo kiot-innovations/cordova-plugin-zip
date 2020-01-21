@@ -56,7 +56,7 @@ exports[`PVS connection successful component render correctly 1`] = `
             CONNECTED_TO
           </span>
           <div
-            className="tile is-vertical is-flex has-text-white is-uppercase is-size-7 is-bold is-text"
+            className="pvs-sn is-flex has-text-white is-uppercase is-size-6 is-bold is-text has-text-centered"
           >
             <span>
               PVS_SN_TEXT

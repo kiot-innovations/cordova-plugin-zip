@@ -27,7 +27,7 @@ function SNList() {
   const cameraOptions = {
     quality: 40,
     sourceType: 1,
-    destinationType: 1
+    destinationType: 0
   }
 
   const takePicture = () => {
