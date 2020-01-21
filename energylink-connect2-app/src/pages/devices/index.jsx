@@ -1,5 +1,5 @@
 import Collapsible from 'components/Collapsible'
-import { pathOr } from 'ramda'
+import { pathOr, propOr, length } from 'ramda'
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
@@ -49,20 +49,20 @@ const Devices = ({ animationState }) => {
       <span className="is-uppercase has-text-weight-bold mb-20">
         {capitalizeString(t('DEVICES'))}
       </span>
-      <button
+      <span
         className={`is-uppercase is-size-6 mb-40 ${
           isFetching ? 'is-loading' : ''
-        }`}
+        } has-text-primary`}
         onClick={() => dispatch(DISCOVER_INIT())}
       >
         {t('RESCAN')}
-      </button>
+      </span>
       <div className="pb-15">
         <Collapsible
           title={capitalizeString(t('MICRO-INVERTERS'))}
           icon={microInverterIcon}
           actions={Icon(
-            pathOr([], ['inverter'], found).length,
+            length(propOr([], ['inverter'], found)),
             inventory.inverters,
             'sp-gear'
           )}
