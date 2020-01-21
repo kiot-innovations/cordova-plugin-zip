@@ -1,11 +1,10 @@
 import Collapsible from 'components/Collapsible'
-import { pathOr, propOr, length } from 'ramda'
+import { propOr, length } from 'ramda'
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import paths from 'routes/paths'
 import { useI18n } from 'shared/i18n'
-import { capitalizeString } from 'shared/utils'
 import { DISCOVER_COMPLETE, DISCOVER_INIT } from 'state/actions/devices'
 import './Devices.scss'
 
@@ -46,7 +45,7 @@ const Devices = ({ animationState }) => {
   return (
     <div className="fill-parent is-flex tile is-vertical has-text-centered sunpower-devices">
       <span className="is-uppercase has-text-weight-bold mb-20" role="button">
-        {capitalizeString(t('DEVICES'))}
+        {t('DEVICES')}
       </span>
       <span
         className="is-uppercase mb-20 has-text-primary"
@@ -56,16 +55,16 @@ const Devices = ({ animationState }) => {
       </span>
       <div className="pb-15">
         <Collapsible
-          title={capitalizeString(t('MICRO-INVERTERS'))}
+          title={t('MICRO-INVERTERS')}
           icon={microInverterIcon}
           actions={Icon(
-            length(propOr([], ['inverter'], found)),
+            length(propOr([], 'inverter', found)),
             inventory.inverters,
             'sp-gear'
           )}
         >
           <ul className="inverter-list">
-            {pathOr([], ['inverter'], found).map(elem => {
+            {propOr([], 'inverter', found).map(elem => {
               return (
                 <li
                   className="inverter is-flex flow-wrap tile"
@@ -91,9 +90,9 @@ const Devices = ({ animationState }) => {
       </div>
       <div className="pb-15">
         <Collapsible
-          title={capitalizeString(t('METERS'))}
+          title={t('METERS')}
           actions={Icon(
-            pathOr([], ['power meter'], found).length,
+            length(propOr([], 'power meter', found)),
             inventory.meter,
             ''
           )}
@@ -102,7 +101,7 @@ const Devices = ({ animationState }) => {
       </div>
       <div className="pb-15">
         <Collapsible
-          title={capitalizeString(t('STORAGE'))}
+          title={t('STORAGE')}
           actions={numberItems(10)}
           icon={storageIcon}
         />
