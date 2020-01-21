@@ -1,0 +1,17 @@
+@import '~@sunpower/theme-dark/styles/variables';
+
+.raitings {
+  svg {
+
+    path.outline {
+      fill: $white;
+      fill-opacity: 0.8;
+    }
+    &.active {
+      path.fill {
+        fill: $sun;
+        fill-opacity: 0.9;
+      }
+    }
+  }
+}

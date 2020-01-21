@@ -1,0 +1,1 @@
+export { ReactComponent as Star } from './Star.svg'

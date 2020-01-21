@@ -32,7 +32,7 @@ const paths = {
     MENU: { path: '/menu', header: true },
     MANAGE_FIRMWARES: { path: '/manage-firmwares', header: true },
     VERSION_INFORMATION: { path: '/version-information' },
-    GIVE_FEEDBACK: { path: '/give-feedback' },
+    GIVE_FEEDBACK: { path: '/give-feedback', header: true },
     PVS_CONNECTION_SUCCESS: {
       path: '/pvs-connection-success',
       header: true,
