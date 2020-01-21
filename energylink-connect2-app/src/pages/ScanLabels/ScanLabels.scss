@@ -1,13 +1,11 @@
-.scan-labels{
+.scan-labels {
   display: grid;
   grid-template-rows: 5em 15em 5em 8em 5em;
   align-items: center;
   justify-content: center;
-  padding-right: 3em;
-  padding-left: 3em;
 }
 
-.trigger-scan{
+.trigger-scan {
   width: fit-content;
   justify-self: center;
 }

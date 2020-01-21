@@ -9,9 +9,11 @@ describe('BillOfMaterials component', () => {
   beforeEach(() => {
     dispatchMock = jest.fn()
     jest.spyOn(reactRedux, 'useDispatch').mockImplementation(() => dispatchMock)
-    jest
-      .spyOn(reactRedux, 'useSelector')
-      .mockImplementation(() => ({ MODULES: 0 }))
+    jest.spyOn(reactRedux, 'useSelector').mockImplementation(() => ({
+      MODULES: 0,
+      lat_deg: 20.6881818,
+      long_deg: -103.4218501
+    }))
     jest
       .spyOn(i18n, 'useI18n')
       .mockImplementation(path => (key, ...params) =>
@@ -22,11 +24,14 @@ describe('BillOfMaterials component', () => {
     const { component } = mountWithProvider(<BillOfMaterials />)({
       user: {
         data: {
-          AddressName: 'My house',
-          phoneNumber: '555-555-5555',
-          firstName: 'Cindy',
-          lastName: 'Solar'
+          phone: '555-555-5555',
+          name: 'Solar Cindy'
         }
+      },
+      site: {
+        address1: '123 St Ave',
+        latitude: 20.6881818,
+        longitude: -103.4218501
       }
     })
     expect(component).toMatchSnapshot()

@@ -6,6 +6,7 @@ import { useDispatch } from 'react-redux'
 import CreateSite from 'pages/CreateSite'
 import Firmwares from 'pages/Firmwares'
 import Home from 'pages/Home'
+import Data from 'pages/Data'
 import Login from 'pages/Login'
 import Menu from 'pages/Menu'
 import NotFound from 'pages/NotFound'
@@ -14,6 +15,8 @@ import PvsConnectionSuccessful from 'pages/PvsConnectionSuccessful'
 import BillOfMaterials from 'pages/BillOfMaterials'
 import InventoryCount from 'pages/InventoryCount'
 import ScanLabels from 'pages/ScanLabels'
+import Devices from 'pages/devices'
+import InstallSuccessful from 'pages/InstallSuccess'
 import SystemConfiguration from 'pages/SystemConfiguration'
 
 import { useRouter } from 'hooks'
@@ -24,13 +27,16 @@ import Logout from 'pages/Logout'
 import { deviceResumeListener } from 'state/actions/mobile'
 
 const mapComponents = {
+  [paths.PROTECTED.DEVICES.path]: Devices,
   [paths.PROTECTED.BILL_OF_MATERIALS.path]: BillOfMaterials,
   [paths.PROTECTED.CREATE_SITE.path]: CreateSite,
   [paths.PROTECTED.GIVE_FEEDBACK.path]: NotFound,
+  [paths.PROTECTED.DATA.path]: Data,
   [paths.PROTECTED.LOGOUT.path]: NotFound,
   [paths.PROTECTED.MANAGE_FIRMWARES.path]: Firmwares,
   [paths.PROTECTED.MENU.path]: Menu,
   [paths.PROTECTED.PVS_CONNECTION_SUCCESS.path]: PvsConnectionSuccessful,
+  [paths.PROTECTED.INSTALL_SUCCESS.path]: InstallSuccessful,
   [paths.PROTECTED.ROOT.path]: Home,
   [paths.PROTECTED.VERSION_INFORMATION.path]: NotFound,
   [paths.PROTECTED.INVENTORY_COUNT.path]: InventoryCount,

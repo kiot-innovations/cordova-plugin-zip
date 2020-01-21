@@ -16,11 +16,10 @@ export const httpPost = (path, data, state = null) => {
     .catch(err => console.error(err))
 }
 
-export const httpGet = (path, state = null) => {
-  const authHeader =
-    state && state.user && state.user.auth
-      ? { Authorization: `SP-CUSTOM ${state.user.auth.tokenID}` }
-      : {}
+export const httpGet = (path, state = null, token) => {
+  const authHeader = {
+    Authorization: `Bearer ${state ? state.user.auth.access_token : token}`
+  }
 
   return fetch(process.env.REACT_APP_EDP_API_URL + path, {
     method: 'GET',
@@ -79,3 +78,15 @@ const parseResponse = res => {
         }))
         .catch(err => console.error(err))
 }
+
+export const postBinary = (
+  body,
+  URL = 'https://dev-serial-numbers-scanner.dev-edp.sunpower.com/scan'
+) =>
+  fetch(URL, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/octet-stream'
+    },
+    body
+  })

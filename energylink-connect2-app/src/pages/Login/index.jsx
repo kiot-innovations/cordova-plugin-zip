@@ -58,7 +58,7 @@ function Login() {
         </div>
 
         {error && error.message ? (
-          <div className="error-message mb-10 mt-10">
+          <div className="message error mb-10 mt-10">
             <p className="pl-20 pr-20">{t(error.message)}</p>
           </div>
         ) : null}

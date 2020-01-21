@@ -4,7 +4,8 @@
   background: $black;
   height: 60px;
   position: relative;
-  .text, svg {
+  .text,
+  svg {
     margin: auto;
   }
   .text {
@@ -16,4 +17,3 @@
     padding: 18px;
   }
 }
-
