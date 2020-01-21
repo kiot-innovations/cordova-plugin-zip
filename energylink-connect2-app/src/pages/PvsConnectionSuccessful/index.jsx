@@ -21,7 +21,7 @@ const PvsConnectionSuccessful = () => {
       </span>
       <span className="sp-pvs has-text-white mb-30" />
       <span className="mb-20">{t('CONNECTED_TO')}</span>
-      <div className="tile is-vertical is-flex has-text-white is-uppercase is-size-7 is-bold is-text">
+      <div className="pvs-sn is-flex has-text-white is-uppercase is-size-6 is-bold is-text has-text-centered">
         <span>{t('PVS_SN_TEXT')}</span>
         <span>{serialNumber}</span>
       </div>

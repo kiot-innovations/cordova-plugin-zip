@@ -5,7 +5,7 @@ import {
   GET_SN_INIT,
   GET_SN_SUCCESS,
   GET_SN_ERROR,
-  SET_TAKEN_IMAGE
+  REMOVE_SN
 } from '../../actions/pvs'
 
 const initialState = {
@@ -34,12 +34,13 @@ export const pvsReducer = createReducer(
     [GET_SN_ERROR]: (state, data) => ({
       ...state,
       fetchingSN: false,
-      serialNumbers: [],
       error: data
     }),
-    [SET_TAKEN_IMAGE]: (state, data) => ({
+    [REMOVE_SN]: (state, sn) => ({
       ...state,
-      takenImage: data
+      serialNumbers: state.serialNumbers.filter(
+        device => device.serial_number !== sn
+      )
     })
   },
   initialState

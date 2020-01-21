@@ -3,10 +3,15 @@ import { of, from } from 'rxjs'
 import { catchError, mergeMap, map } from 'rxjs/operators'
 import * as pvsActions from 'state/actions/pvs'
 import { postBinary } from 'shared/fetch'
+import { eqBy, prop, unionWith } from 'ramda'
 import { b64toBlob } from '../../../shared/utils'
 
-export const pvsScanEpic = action$ =>
-  action$.pipe(
+export const pvsScanEpic = (action$, state$) => {
+  let state
+  state$.subscribe(s => {
+    state = s
+  })
+  return action$.pipe(
     ofType(pvsActions.GET_SN_INIT.getType()),
     mergeMap(({ payload }) => {
       const photoBlob = b64toBlob(payload)
@@ -14,12 +19,18 @@ export const pvsScanEpic = action$ =>
 
       return from(promise).pipe(
         map(response => {
-          console.info(response)
           return response.devices && response.devices.length > 0
-            ? pvsActions.GET_SN_SUCCESS(response.devices)
+            ? pvsActions.GET_SN_SUCCESS(
+                unionWith(
+                  eqBy(prop('serial_number')),
+                  state.pvs.serialNumbers,
+                  response.devices
+                )
+              )
             : pvsActions.GET_SN_ERROR('NOT_FOUND')
         }),
         catchError(err => of(pvsActions.GET_SN_ERROR(err)))
       )
     })
   )
+}
