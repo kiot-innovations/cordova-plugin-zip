@@ -15,7 +15,7 @@ import PvsConnectionSuccessful from 'pages/PvsConnectionSuccessful'
 import BillOfMaterials from 'pages/BillOfMaterials'
 import InventoryCount from 'pages/InventoryCount'
 import ScanLabels from 'pages/ScanLabels'
-import Devices from 'pages/devices'
+import Devices from 'pages/Devices'
 
 import { useRouter } from 'hooks'
 import { withTracker } from 'shared/ga'

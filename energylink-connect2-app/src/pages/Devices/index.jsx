@@ -7,7 +7,7 @@ import paths from 'routes/paths'
 import { useI18n } from 'shared/i18n'
 import { capitalizeString } from 'shared/utils'
 import { DISCOVER_COMPLETE, DISCOVER_INIT } from 'state/actions/devices'
-import './devices.scss'
+import './Devices.scss'
 
 const microInverterIcon = (
   <span className="sp-inverter mr-20 devices-icon ml-0 mt-0 mb-0" />

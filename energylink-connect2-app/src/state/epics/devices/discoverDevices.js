@@ -10,23 +10,22 @@ import {
   DISCOVER_UPDATE
 } from 'state/actions/devices'
 
-const fetchDiscovery = () =>
-  new Promise(async (resolve, reject) => {
-    const swagger = await getApiPVS()
-    try {
-      const res = await Promise.all([
-        swagger.apis.devices.getDevices(),
-        swagger.apis.discovery.getDiscoveryProgress()
-      ])
-      const data = res.map(req => req.body)
-      resolve({
-        devices: data[0],
-        progress: data[1]
-      })
-    } catch (e) {
-      console.error('ERROR', e)
+const fetchDiscovery = async () => {
+  const swagger = await getApiPVS()
+  try {
+    const res = await Promise.all([
+      swagger.apis.devices.getDevices(),
+      swagger.apis.discovery.getDiscoveryProgress()
+    ])
+    const data = res.map(req => req.body)
+    return {
+      devices: data[0],
+      progress: data[1]
     }
-  })
+  } catch (e) {
+    console.error('ERROR', e)
+  }
+}
 
 const initDeviceDiscovery = async () => {
   const swagger = await getApiPVS()
