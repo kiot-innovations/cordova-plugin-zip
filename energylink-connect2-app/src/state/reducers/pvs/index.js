@@ -5,8 +5,7 @@ import {
   GET_SN_INIT,
   GET_SN_SUCCESS,
   GET_SN_ERROR,
-  REMOVE_SN,
-  SET_TAKEN_IMAGE
+  REMOVE_SN
 } from '../../actions/pvs'
 
 const initialState = {
@@ -36,10 +35,6 @@ export const pvsReducer = createReducer(
       ...state,
       fetchingSN: false,
       error: data
-    }),
-    [SET_TAKEN_IMAGE]: (state, data) => ({
-      ...state,
-      takenImage: data
     }),
     [REMOVE_SN]: (state, sn) => ({
       ...state,

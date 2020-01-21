@@ -1,26 +1,24 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useI18n } from 'shared/i18n'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import { BarcodeIcon } from './assets'
 import paths from 'routes/paths'
 import BlockUI from 'react-block-ui'
 import 'react-block-ui/style.css'
 import './ScanLabels.scss'
-import { GET_SN_INIT, SET_TAKEN_IMAGE } from 'state/actions/pvs'
+import { GET_SN_INIT } from 'state/actions/pvs'
 
-function ScanLabels() {
+function ScanLabels({ animationState }) {
   const t = useI18n()
   const dispatch = useDispatch()
+  const history = useHistory()
   const [openingCamera, setOpeningCamera] = useState(false)
 
-  const { takenImage, serialNumbers, fetchingSN } = useSelector(
-    state => state.pvs
-  )
+  const { serialNumbers, fetchingSN } = useSelector(state => state.pvs)
 
   const cameraSuccess = photo => {
     setOpeningCamera(false)
-    dispatch(SET_TAKEN_IMAGE(photo))
     dispatch(GET_SN_INIT(photo))
   }
 
@@ -41,6 +39,12 @@ function ScanLabels() {
     }
   }
 
+  useEffect(() => {
+    if (serialNumbers.length > 0 && animationState !== 'leave') {
+      history.push(paths.PROTECTED.SN_LIST.path)
+    }
+  })
+
   return (
     <BlockUI tag="div" blocking={openingCamera} message={t('OPENING_CAMERA')}>
       <div className="scan-labels is-vertical has-text-centered pl-10 pr-10">
@@ -48,14 +52,7 @@ function ScanLabels() {
           {t('SCAN_EQUIPMENT')}
         </span>
         <div className="barcode-icon">
-          {takenImage ? (
-            <img
-              src={'data:image/jpeg;base64,' + takenImage}
-              alt="Scanned Codes"
-            />
-          ) : (
-            <BarcodeIcon />
-          )}
+          <BarcodeIcon />
         </div>
         <span className="hint-text">{t('BULK_SCAN_HINT')}</span>
 
