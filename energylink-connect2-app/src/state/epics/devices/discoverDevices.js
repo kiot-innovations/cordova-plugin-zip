@@ -1,9 +1,10 @@
 import { ofType } from 'redux-observable'
-import { from, timer } from 'rxjs'
-import { switchMap, takeUntil, tap } from 'rxjs/operators'
+import { from, of, timer } from 'rxjs'
+import { catchError, switchMap, takeUntil, tap } from 'rxjs/operators'
 import { getApiPVS } from 'shared/api'
 import {
   DISCOVER_COMPLETE,
+  DISCOVER_ERROR,
   DISCOVER_INIT,
   DISCOVER_UPDATE
 } from 'state/actions/devices'
@@ -11,10 +12,19 @@ import {
 const fetchDiscovery = () =>
   new Promise(async (resolve, reject) => {
     const swagger = await getApiPVS()
-    swagger.apis.discovery
-      .getDiscoveryProgress()
-      .then(resolve)
-      .catch(reject)
+    try {
+      const res = await Promise.all([
+        swagger.apis.devices.getDevices(),
+        swagger.apis.discovery.getDiscoveryProgress()
+      ])
+      const data = res.map(req => req.body)
+      resolve({
+        devices: data[0],
+        progress: data[1]
+      })
+    } catch (e) {
+      console.error('ERROR', e)
+    }
   })
 
 const initDeviceDiscovery = async () => {
@@ -29,15 +39,16 @@ const scanDevicesEpic = action$ => {
     ofType(DISCOVER_INIT.getType()),
     tap(initDeviceDiscovery),
     switchMap(() =>
-      timer(0, 500).pipe(
+      timer(0, 250).pipe(
         takeUntil(stopPolling$),
         switchMap(() =>
           from(fetchDiscovery()).pipe(
-            switchMap(async response => {
-              return response.data.complete
-                ? DISCOVER_COMPLETE(response.data.progress)
-                : DISCOVER_UPDATE(response.data.progress)
-            })
+            switchMap(async response =>
+              response.progress.complete
+                ? DISCOVER_COMPLETE(response.devices)
+                : DISCOVER_UPDATE(response.devices)
+            ),
+            catchError(error => of(DISCOVER_ERROR.asError(error.message)))
           )
         )
       )
