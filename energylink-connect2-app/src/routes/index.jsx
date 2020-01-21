@@ -15,6 +15,7 @@ import PvsConnectionSuccessful from 'pages/PvsConnectionSuccessful'
 import BillOfMaterials from 'pages/BillOfMaterials'
 import InventoryCount from 'pages/InventoryCount'
 import ScanLabels from 'pages/ScanLabels'
+import GiveFeedback from 'pages/GiveFeedback'
 import SNList from 'pages/SNList'
 import Devices from 'pages/Devices'
 import InstallSuccessful from 'pages/InstallSuccess'
@@ -30,7 +31,7 @@ const mapComponents = {
   [paths.PROTECTED.DEVICES.path]: Devices,
   [paths.PROTECTED.BILL_OF_MATERIALS.path]: BillOfMaterials,
   [paths.PROTECTED.CREATE_SITE.path]: CreateSite,
-  [paths.PROTECTED.GIVE_FEEDBACK.path]: NotFound,
+  [paths.PROTECTED.GIVE_FEEDBACK.path]: GiveFeedback,
   [paths.PROTECTED.DATA.path]: Data,
   [paths.PROTECTED.LOGOUT.path]: NotFound,
   [paths.PROTECTED.MANAGE_FIRMWARES.path]: Firmwares,

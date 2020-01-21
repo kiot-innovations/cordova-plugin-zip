@@ -1,0 +1,28 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Rating component renders without crashing 1`] = `
+<div
+  className="column raitings"
+>
+  <ForwardRef(SvgStar)
+    className="active"
+    onClick={[Function]}
+  />
+  <ForwardRef(SvgStar)
+    className=""
+    onClick={[Function]}
+  />
+  <ForwardRef(SvgStar)
+    className=""
+    onClick={[Function]}
+  />
+  <ForwardRef(SvgStar)
+    className=""
+    onClick={[Function]}
+  />
+  <ForwardRef(SvgStar)
+    className=""
+    onClick={[Function]}
+  />
+</div>
+`;

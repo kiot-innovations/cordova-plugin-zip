@@ -1,0 +1,43 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TextArea component renders and matches a snapshot 1`] = `
+<div
+  className="field"
+>
+  <p
+    className="control"
+  >
+    <textarea
+      autoComplete="off"
+      className="input textarea"
+      disabled={false}
+      onBlur={[MockFunction]}
+      onChange={[MockFunction]}
+    />
+  </p>
+</div>
+`;
+
+exports[`TextArea component renders and matches a snapshot when there is an error 1`] = `
+<div
+  className="field"
+>
+  <p
+    className="control"
+  >
+    <textarea
+      autoComplete="username"
+      className="input error textarea"
+      disabled={true}
+      onBlur={[MockFunction]}
+      onChange={[MockFunction]}
+      placeholder="some placeholder"
+    />
+    <span
+      className="error"
+    >
+      something wrong happened
+    </span>
+  </p>
+</div>
+`;
