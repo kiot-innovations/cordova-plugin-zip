@@ -1,21 +1,31 @@
+import { pathOr } from 'ramda'
 import { ofType } from 'redux-observable'
-import { from, timer } from 'rxjs'
-import { switchMap, takeUntil, tap } from 'rxjs/operators'
+import { from, of, timer } from 'rxjs'
+import { catchError, switchMap, takeUntil, tap } from 'rxjs/operators'
 import { getApiPVS } from 'shared/api'
 import {
   DISCOVER_COMPLETE,
+  DISCOVER_ERROR,
   DISCOVER_INIT,
   DISCOVER_UPDATE
 } from 'state/actions/devices'
 
-const fetchDiscovery = () =>
-  new Promise(async (resolve, reject) => {
+const fetchDiscovery = async () => {
+  try {
     const swagger = await getApiPVS()
-    swagger.apis.discovery
-      .getDiscoveryProgress()
-      .then(resolve)
-      .catch(reject)
-  })
+    const res = await Promise.all([
+      swagger.apis.devices.getDevices(),
+      swagger.apis.discovery.getDiscoveryProgress()
+    ])
+    const data = res.map(req => req.body)
+    return {
+      devices: data[0],
+      progress: data[1]
+    }
+  } catch (e) {
+    throw new Error('UNREACHABLE_PVS')
+  }
+}
 
 const initDeviceDiscovery = async () => {
   const swagger = await getApiPVS()
@@ -29,15 +39,16 @@ const scanDevicesEpic = action$ => {
     ofType(DISCOVER_INIT.getType()),
     tap(initDeviceDiscovery),
     switchMap(() =>
-      timer(0, 500).pipe(
+      timer(0, 250).pipe(
         takeUntil(stopPolling$),
         switchMap(() =>
           from(fetchDiscovery()).pipe(
-            switchMap(async response => {
-              return response.data.complete
-                ? DISCOVER_COMPLETE(response.data.progress)
-                : DISCOVER_UPDATE(response.data.progress)
-            })
+            switchMap(async response =>
+              pathOr(false, ['progress', 'complete', response])
+                ? DISCOVER_COMPLETE(pathOr([], ['devices'], response))
+                : DISCOVER_UPDATE(pathOr([], ['devices'], response))
+            ),
+            catchError(error => of(DISCOVER_ERROR.asError(error.message)))
           )
         )
       )

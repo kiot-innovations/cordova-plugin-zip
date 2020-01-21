@@ -19,7 +19,7 @@
     "@sunpower/sunpowerimage": "^0.1.2",
     "@sunpower/tabs": "^0.1.6",
     "@sunpower/textfield": "^0.1.2",
-    "@sunpower/theme-dark": "^0.1.6",
+    "@sunpower/theme-dark": "^0.1.10",
     "@sunpower/tile": "^0.1.5",
     "bulma": "^0.7.5",
     "bulma-calendar": "github:leszekszpunar/bulma-calendar",

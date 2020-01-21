@@ -11,26 +11,32 @@ const initialState = {
   error: ''
 }
 
-const parseDeviceData = devices =>
-  devices.reduce(
-    (acc, curr) => ({ [curr.TYPE.toLowerCase()]: curr.NFOUND, ...acc }),
-    {}
-  )
+const parseCompleteDevices = devices => {
+  const returnValue = {}
+  devices.forEach(device => {
+    const deviceType = device.DEVICE_TYPE.toLowerCase()
+    const propertyExists = !!returnValue[deviceType]
+    if (propertyExists)
+      returnValue[deviceType] = [...returnValue[deviceType], device]
+    else returnValue[deviceType] = [device]
+  })
+  return returnValue
+}
 
 export default createReducer(
   {
     [DISCOVER_INIT]: state => ({ ...state, isFetching: true }),
-    [DISCOVER_UPDATE]: (state, devices) => {
+    [DISCOVER_UPDATE]: (state, payload) => {
       return {
         ...state,
-        found: devices ? parseDeviceData(devices) : state.found
+        found: payload ? parseCompleteDevices(payload.devices) : state.found
       }
     },
-    [DISCOVER_COMPLETE]: (state, devices) => {
+    [DISCOVER_COMPLETE]: (state, payload) => {
       return {
         ...state,
         isFetching: false,
-        found: devices ? parseDeviceData(devices) : state.found
+        found: payload ? parseCompleteDevices(payload.devices) : state.found
       }
     }
   },

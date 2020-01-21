@@ -16,7 +16,7 @@ import BillOfMaterials from 'pages/BillOfMaterials'
 import InventoryCount from 'pages/InventoryCount'
 import ScanLabels from 'pages/ScanLabels'
 import SNList from 'pages/SNList'
-import Devices from 'pages/devices'
+import Devices from 'pages/Devices'
 import InstallSuccessful from 'pages/InstallSuccess'
 
 import { useRouter } from 'hooks'

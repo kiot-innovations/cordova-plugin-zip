@@ -1,0 +1,21 @@
+@import '~@sunpower/theme-dark/styles/variables';
+
+.sunpower-devices {
+  .inverter-list {
+    .inverter {
+      justify-content: space-between;
+    }
+    .inverter:after {
+      content: '';
+      width: 100%;
+      height: 1px;
+      background-color: white;
+      margin: 5px 0;
+    }
+    .inverter:last-child:after {
+      width: 100%;
+      height: 0;
+      margin: 0;
+    }
+  }
+}
