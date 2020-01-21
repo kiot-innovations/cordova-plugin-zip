@@ -26,16 +26,15 @@ const numberItems = num =>
   )
 
 function mapStateToProps({ inventory: { bom }, devices }) {
-  const { isFetching, found } = devices
+  const { found } = devices
   return {
-    isFetching,
     inventory: { inverters: bom.STRING_INVERTERS, meter: bom.METERS },
     found
   }
 }
 
 const Devices = ({ animationState }) => {
-  const { inventory, found, isFetching } = useSelector(mapStateToProps)
+  const { inventory, found } = useSelector(mapStateToProps)
   const dispatch = useDispatch()
   const t = useI18n()
   useEffect(() => {
@@ -50,9 +49,7 @@ const Devices = ({ animationState }) => {
         {capitalizeString(t('DEVICES'))}
       </span>
       <span
-        className={`is-uppercase is-size-6 mb-40 ${
-          isFetching ? 'is-loading' : ''
-        } has-text-primary`}
+        className="is-uppercase mb-20 has-text-primary"
         onClick={() => dispatch(DISCOVER_INIT())}
       >
         {t('RESCAN')}
