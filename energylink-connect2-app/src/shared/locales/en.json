@@ -102,6 +102,9 @@
   "MICRO-INVERTERS": "Microinverters",
   "INVALID_ROLE": "You are not authorized to use this app",
   "FETCH_SITE_ERROR": "Error happened during fetch",
+	"SUBMIT": "Submit",
+	"PLACEHOLDER_FEEDBACK": "Tell us what you think or what you'd like to see in the future",
+	"RATE_APP": "Please rate this application (1-5):",
   "FETCHING_SITES": "Fetching sites...",
   "FOUND_SITES": "Customer Sites: {0}",
   "SCANNING_SN": "Scanning Serial Numbers...",
@@ -117,5 +120,8 @@
   "SCAN_MI_LABELS": "Scan the MI labels",
   "SCAN_MORE": "Scan More",
   "SN_MANUAL_ENTRY": "Add SN manually",
-  "SCAN_HINT": "Tap on Scan More to scan MI barcodes"
+  "SCAN_HINT": "Tap on Scan More to scan MI barcodes",
+  "RIGHT_NOW": "Right Now",
+  "ENERGY_MIX": "Today's Energy Mix",
+  "AS_OF_TIME_TODAY": "As of {0} • today"
 }
