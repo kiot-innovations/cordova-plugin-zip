@@ -16,6 +16,7 @@ import BillOfMaterials from 'pages/BillOfMaterials'
 import InventoryCount from 'pages/InventoryCount'
 import ScanLabels from 'pages/ScanLabels'
 import Devices from 'pages/devices'
+import InstallSuccessful from 'pages/InstallSuccess'
 
 import { useRouter } from 'hooks'
 import { withTracker } from 'shared/ga'
@@ -34,6 +35,7 @@ const mapComponents = {
   [paths.PROTECTED.MANAGE_FIRMWARES.path]: Firmwares,
   [paths.PROTECTED.MENU.path]: Menu,
   [paths.PROTECTED.PVS_CONNECTION_SUCCESS.path]: PvsConnectionSuccessful,
+  [paths.PROTECTED.INSTALL_SUCCESS.path]: InstallSuccessful,
   [paths.PROTECTED.ROOT.path]: Home,
   [paths.PROTECTED.VERSION_INFORMATION.path]: NotFound,
   [paths.PROTECTED.INVENTORY_COUNT.path]: InventoryCount,

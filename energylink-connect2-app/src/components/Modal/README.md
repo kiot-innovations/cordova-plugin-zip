@@ -6,7 +6,13 @@ const modalContent = <div>MODAL CONTENT</div>
 const modalTitle = <div>TITLE</div>
 
 const TestComponent = props => {
-  const modal = useModal(props.animationState, modalContent, modalTitle, dismissable)
+    const { modal, toggleModal } = useModal(
+      props.animationState,
+      modalContent,
+      modalTitle,
+      intialValue: false
+      dissmissable: false
+    )
   return (
     <div>
       {modal}
