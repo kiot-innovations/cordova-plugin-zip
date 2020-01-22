@@ -65,7 +65,7 @@ function SNList({ animationState }) {
   const submitSN = () => {
     toggleModal()
     dispatch(UPDATE_MI_COUNT(serialNumbers.length))
-    history.push(paths.PROTECTED.BILL_OF_MATERIALS.path)
+    history.push(paths.PROTECTED.DEVICES.path)
   }
 
   const snModalContent = text => {
@@ -110,7 +110,7 @@ function SNList({ animationState }) {
 
   const countSN = () => {
     if (parseInt(scannedMICount, 10) === parseInt(expectedMICount, 10)) {
-      alert('MI Count matches!')
+      history.push(paths.PROTECTED.DEVICES.path)
     } else {
       toggleModal()
     }
