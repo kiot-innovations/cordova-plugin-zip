@@ -1,11 +1,13 @@
 import Collapsible from 'components/Collapsible'
 import { propOr, length } from 'ramda'
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
+import clsx from 'clsx'
 import paths from 'routes/paths'
 import { useI18n } from 'shared/i18n'
 import { DISCOVER_COMPLETE, DISCOVER_INIT } from 'state/actions/devices'
+import { either } from 'shared/utils'
 import './Devices.scss'
 
 const microInverterIcon = (
@@ -24,11 +26,29 @@ const numberItems = num =>
     <span className="devices-counter mr-10 ml-0 mt-0 mb-0">{num}</span>
   )
 
-function mapStateToProps({ inventory: { bom }, devices }) {
+const filterFoundPVS = (arr1, arr2) =>
+  arr1.map(device => {
+    try {
+      const model = arr2.find(item => item.SERIAL === device.serial_number)
+      if (model) {
+        device.model = model.MODEL
+      }
+      return device
+    } catch (error) {
+      return device
+    }
+  })
+
+function mapStateToProps({ inventory, devices, pvs }) {
   const { found } = devices
+  const { serialNumbers } = pvs
+  const { bom } = inventory
   return {
     inventory: { inverters: bom.STRING_INVERTERS, meter: bom.METERS },
-    found
+    found: {
+      ...found,
+      inverter: filterFoundPVS(serialNumbers, propOr([], 'inverter', found))
+    }
   }
 }
 
@@ -36,6 +56,14 @@ const Devices = ({ animationState }) => {
   const { inventory, found } = useSelector(mapStateToProps)
   const dispatch = useDispatch()
   const t = useI18n()
+  const [done, setDone] = useState(false)
+  useEffect(() => {
+    let canContinue = !!length(propOr([], 'inverter', found))
+    propOr([], 'inverter', found).forEach(elem => {
+      if (!elem.model) canContinue = false
+    })
+    setDone(canContinue)
+  }, [found])
   useEffect(() => {
     dispatch(DISCOVER_INIT())
     return () => {
@@ -68,20 +96,29 @@ const Devices = ({ animationState }) => {
               return (
                 <li
                   className="inverter is-flex flow-wrap tile"
-                  key={elem.SERIAL}
+                  key={elem.serial_number}
                 >
                   <div className="is-flex is-vertical has-text-white tile">
                     <span>
                       <span className="has-text-weight-bold has-text-white">
                         SN:
                       </span>
-                      {elem.SERIAL}
+                      {elem.serial_number}
                     </span>
-                    <span>
-                      {elem.MODEL} <span className="sp-pencil is-gray" />
-                    </span>
+                    {elem.model ? (
+                      <span>
+                        {elem.model} <span className="sp-pencil is-gray" />
+                      </span>
+                    ) : (
+                      ''
+                    )}
                   </div>
-                  <span className="sp-check has-text-white is-size-3 mr-10" />
+                  <span
+                    className={clsx('has-text-white is-size-3 mr-10', {
+                      'sp-check': elem.model,
+                      'sp-info': !elem.model
+                    })}
+                  />
                 </li>
               )
             })}
@@ -107,11 +144,20 @@ const Devices = ({ animationState }) => {
         />
       </div>
       <Link
-        className="button is-outlined is-primary is-uppercase is-paddingless ml-75 mr-75"
+        className="button is-outlined is-primary is-uppercase is-paddingless ml-75 mr-75 mb-10"
         to={paths.PROTECTED.INVENTORY_COUNT.path}
       >
         {t('ADD-DEVICES')}
       </Link>
+      {either(
+        done,
+        <Link
+          className="button is-primary is-uppercase is-paddingless ml-75 mr-75"
+          to={paths.PROTECTED.INSTALL_SUCCESS.path}
+        >
+          {t('DONE')}
+        </Link>
+      )}
     </div>
   )
 }

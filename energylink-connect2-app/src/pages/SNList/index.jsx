@@ -133,6 +133,9 @@ function SNList({ animationState }) {
       </div>
     )
   }
+
+  console.info(serialNumbers)
+
   return (
     <BlockUI tag="div" blocking={openingCamera} message={t('OPENING_CAMERA')}>
       {modal}
