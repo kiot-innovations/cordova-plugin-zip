@@ -1,0 +1,11 @@
+.system-config {
+  .collapsible {
+    padding-bottom: 0.6rem;
+  }
+  .collapsible-content.expanded {
+    min-height: 200px;
+    button {
+      padding: 0 20px;
+    }
+  }
+}
