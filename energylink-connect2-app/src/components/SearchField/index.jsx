@@ -2,7 +2,9 @@ import React from 'react'
 import clsx from 'clsx'
 import { components } from 'react-select'
 import AsyncSelect from 'react-select/async'
-import './SelectField.scss'
+
+import './SearchField.scss'
+
 const DropdownIndicator = props => {
   return (
     <components.DropdownIndicator {...props}>
@@ -10,7 +12,9 @@ const DropdownIndicator = props => {
     </components.DropdownIndicator>
   )
 }
+
 const IndicatorSeparator = ({ innerProps }) => <span />
+
 const Option = props => (
   <components.Option {...props}>
     <div className="is-flex file level">
@@ -19,13 +23,17 @@ const Option = props => (
     </div>
   </components.Option>
 )
+
 const selectComponents = { DropdownIndicator, IndicatorSeparator, Option }
+
 function SelectField(props) {
   const { notFoundText, onSearch, onSelect, className, autoFocus } = props
   const classes = clsx('field', className)
+
   return (
     <AsyncSelect
       cacheOptions
+      isSearchable
       placeholder=""
       onChange={onSelect}
       loadOptions={onSearch}
@@ -50,4 +58,5 @@ function SelectField(props) {
     />
   )
 }
+
 export default SelectField

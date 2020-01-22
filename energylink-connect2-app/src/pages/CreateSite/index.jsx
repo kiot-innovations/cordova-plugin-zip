@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux'
 import { useI18n } from 'shared/i18n'
 import { useField, useForm } from 'react-final-form-hooks'
 import TextField from '@sunpower/textfield'
-import SelectField from 'components/SelectField'
+import SearchField from 'components/SearchField'
 import paths from 'routes/paths'
 import PlacesAutocomplete from 'react-places-autocomplete'
 import { geocodeByAddress, getGeocodeData } from 'shared/utils'
@@ -91,7 +91,7 @@ function CreateSite() {
               <label htmlFor="address" className="has-text-white">
                 {t('ADDRESS')}
               </label>
-              <SelectField
+              <SearchField
                 onSearch={async newAddress => {
                   getInputProps().onChange({ target: { value: newAddress } })
                   return suggestions

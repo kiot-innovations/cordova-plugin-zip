@@ -5,7 +5,7 @@
   text-align: left;
   padding: $font-size-big;
   padding-bottom: $font-size;
-  max-height: 270px;
+  max-height: 500px;
   font-family: $font;
   letter-spacing: 0;
   border-radius: 5px;
@@ -33,12 +33,19 @@
     }
   }
 
+  &-title {
+    display: flex;
+  }
+
   &-actions {
     text-align: right;
     padding-right: 10px;
   }
+
   &-content {
-    transition: max-height 0.2s ease-out;
+    opacity: 0;
+    transition: max-height 0.4s ease-out;
+    transition: opacity 0.4s;
   }
 
   .collapsed {
@@ -47,7 +54,12 @@
   }
 
   .expanded {
-    max-height: 200px;
+    max-height: 700px;
     overflow-y: scroll;
+
+    opacity: 1;
+    border-top: 1px solid #f2f2f22e;
+    padding-top: 10px;
+    margin-top: 10px;
   }
 }
