@@ -6,7 +6,13 @@ import { useI18n } from '../../shared/i18n'
 
 export default () => {
   const t = useI18n()
-
+  const data = {
+    solar: 10,
+    storage: 0,
+    grid: 90,
+    date: new Date(),
+    homeUsage: 2
+  }
   return (
     <section className="data is-flex has-text-centered full-height">
       <section>
@@ -15,7 +21,7 @@ export default () => {
       </section>
       <section>
         <h6 className="is-uppercase mt-20 mb-20">{t('ENERGY_MIX')}</h6>
-        <EnergyMix />
+        <EnergyMix {...data} />
       </section>
     </section>
   )

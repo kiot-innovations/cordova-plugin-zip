@@ -3,7 +3,6 @@
 exports[`EnergyMix component renders properly 1`] = `
 <div
   className="energy-mix-container columns  is-mobile is-multiline is-variable is-1"
-  id="energy-mix-container"
 >
   <div
     className="column is-8"
