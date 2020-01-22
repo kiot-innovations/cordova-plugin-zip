@@ -20,6 +20,12 @@ export const useI18n = () => {
   return useMemo(() => getTranslate(languages[locale]), [locale])
 }
 
+export const translate = dict => {
+  const language = dict || {}
+  const { locale = 'en' } = language
+  return getTranslate(languages[locale])
+}
+
 export const useI18nComponent = () => {
   const language = useSelector(state => state.language)
   const { locale = 'en' } = language || {}

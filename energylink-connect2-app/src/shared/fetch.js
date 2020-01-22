@@ -90,3 +90,9 @@ export const postBinary = (
     },
     body
   })
+
+export const postParams = values => {
+  Object.keys(values).map(key => {
+    return encodeURIComponent(key) + '=' + encodeURIComponent(values[key])
+  }).join('&')
+}

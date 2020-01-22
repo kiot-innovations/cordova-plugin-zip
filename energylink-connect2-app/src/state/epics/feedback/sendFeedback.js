@@ -5,6 +5,8 @@ import * as feedbackActions from '../../actions/feedback'
 import { path } from 'ramda'
 import moment from 'moment'
 import { getApiParty } from 'shared/api'
+import { translate } from 'shared/i18n'
+import { postParams } from 'shared/fetch'
 
 export const postFeedback = async (postData, state) => {
   if (state !== null) {
@@ -21,23 +23,20 @@ export const sendFeedbackEpic = (action$, state$) =>
   action$.pipe(
     ofType(feedbackActions.SEND_FEEDBACK_INIT.getType()),
     mergeMap(({ payload }) => {
+      const t = translate(state$.value.language)
       const bodyValues = {
         ...payload,
         contactEmail: path(['value', 'user', 'data', 'email'], state$),
         userstime: moment().format('YYYY-MM-DDTHH:mm:ss')
       }
       const values = {
-        subject: `Recieved ${bodyValues.rating} star rating from EnergyLink Connect 2 feedback form`,
-        htmlBody: `From ${bodyValues.contactEmail} at ${bodyValues.userstime}: ${bodyValues.comment}`
+        subject: t("FEEDBACK_SUBJECT", bodyValues.rating),
+        htmlBody: t('FEEDBACK_BODY', bodyValues.contactEmail, bodyValues.userstime, bodyValues.comment)
       }
 
-      const postParams = Object.keys(values)
-        .map(key => {
-          return encodeURIComponent(key) + '=' + encodeURIComponent(values[key])
-        })
-        .join('&')
+      const postValues = postParams(values)
 
-      return from(postFeedback(postParams, state$.value)).pipe(
+      return from(postFeedback(postValues, state$.value)).pipe(
         map(({ status, data }) =>
           status === 200
             ? feedbackActions.SEND_FEEDBACK_SUCCESS()
