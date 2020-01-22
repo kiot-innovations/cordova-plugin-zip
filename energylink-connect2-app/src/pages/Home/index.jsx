@@ -61,7 +61,6 @@ function Home({ animationState }) {
         <h6 className="is-uppercase mt-20 mb-20">{t('SELECT_SITE')}</h6>
 
         <SelectField
-          autoFocus
           onSearch={filterSites}
           onSelect={compose(setSite(history, dispatch), prop('site'))}
           notFoundText={notFoundText}
