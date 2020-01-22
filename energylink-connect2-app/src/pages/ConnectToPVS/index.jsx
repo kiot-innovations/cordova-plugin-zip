@@ -44,7 +44,7 @@ function ConnectToPVS({ animationState }) {
   }
 
   useEffect(() => {
-    if (!scanning && animationState === 'enter') {
+    if (!scanning && animationState === 'enter' && !connectionState.connected) {
       setScanning(true)
       scanBarcodes(onSuccess, onFail)
     }
