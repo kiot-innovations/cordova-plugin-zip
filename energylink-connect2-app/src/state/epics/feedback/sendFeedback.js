@@ -30,8 +30,13 @@ export const sendFeedbackEpic = (action$, state$) =>
         userstime: moment().format('YYYY-MM-DDTHH:mm:ss')
       }
       const values = {
-        subject: t("FEEDBACK_SUBJECT", bodyValues.rating),
-        htmlBody: t('FEEDBACK_BODY', bodyValues.contactEmail, bodyValues.userstime, bodyValues.comment)
+        subject: t('FEEDBACK_SUBJECT', bodyValues.rating),
+        htmlBody: t(
+          'FEEDBACK_BODY',
+          bodyValues.contactEmail,
+          bodyValues.userstime,
+          bodyValues.comment
+        )
       }
 
       const postValues = postParams(values)
