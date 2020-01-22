@@ -5,7 +5,7 @@ import { Battery, SolarPanel, Grid } from '../Icons'
 import { useI18n } from '../../shared/i18n'
 import './EnergyMix.scss'
 
-export default React.memo(function EnergyMix(props) {
+export default function EnergyMix(props) {
   const {
     solar = 0,
     storage = 0,
@@ -15,16 +15,12 @@ export default React.memo(function EnergyMix(props) {
   } = props
   const t = useI18n()
   const time = moment(date).format('hh:mmA')
-  const shareId = 'energy-mix-container'
   const solarPercentage =
     solar !== 0
       ? (Math.min(solar, homeUsage) * 100) / Math.max(solar, homeUsage)
       : 0
   return (
-    <div
-      id={shareId}
-      className="energy-mix-container columns  is-mobile is-multiline is-variable is-1"
-    >
+    <div className="energy-mix-container columns  is-mobile is-multiline is-variable is-1">
       <div className="column is-8">
         <h6 className="title is-uppercase is-6">{t('TODAYS_ENERGY_MIX')}</h6>
         <h6 className="subtitle is-uppercase is-6">
@@ -67,4 +63,4 @@ export default React.memo(function EnergyMix(props) {
       </div>
     </div>
   )
-})
+}
