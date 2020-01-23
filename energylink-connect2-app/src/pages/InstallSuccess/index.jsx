@@ -1,23 +1,45 @@
 import React from 'react'
+import { useHistory } from 'react-router-dom'
 import useModal from 'hooks/useModal'
+import paths from 'routes/paths'
 import { useI18n } from 'shared/i18n'
 import './InstallSuccess.scss'
 
-const modalContent = t => (
-  <span className="has-text-white">{t('TURN_OFF_BREAKERS')}</span>
-)
-const modalTitle = t => (
-  <span className="has-text-white has-text-weight-bold">{t('ATTENTION')}</span>
-)
-
 const InstallSuccessful = props => {
   const t = useI18n()
+  const history = useHistory()
+
+  const modalContent = t => (
+    <div className="has-text-centered">
+      <span className="has-text-white">{t('TURN_OFF_BREAKERS')}</span>
+      <div>
+        <button
+          onClick={finishInstall}
+          className="button is-primary is-uppercase is-center mt-20"
+        >
+          {t('CONTINUE')}
+        </button>
+      </div>
+    </div>
+  )
+
+  const modalTitle = t => (
+    <span className="has-text-white has-text-weight-bold">
+      {t('ATTENTION')}
+    </span>
+  )
+
   const { modal, toggleModal } = useModal(
     props.animationState,
     modalContent(t),
     modalTitle(t),
     false
   )
+
+  const finishInstall = () => {
+    toggleModal()
+    history.push(paths.PROTECTED.BILL_OF_MATERIALS.path)
+  }
 
   return (
     <>

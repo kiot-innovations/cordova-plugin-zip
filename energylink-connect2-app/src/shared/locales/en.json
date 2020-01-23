@@ -115,7 +115,7 @@
   "TURN_OF_SOLAR": "Turn off the solar breakers",
   "YOU_CAN": "You can now",
   "CONFIGURE": "Configure",
-  "TURN_OFF_BREAKERS": "turn off the breakers before leaving",
+  "TURN_OFF_BREAKERS": "Please remember to turn off the breakers before leaving",
   "ATTENTION": "Attention",
   "SCAN_MI_LABELS": "Scan the MI labels",
   "SCAN_MORE": "Scan More",
@@ -126,7 +126,8 @@
   "MI_UNDERCOUNT": "You have scanned less codes than what the inventory stated ({0} scanned, {1} expected). If you can’t scan the missing codes, please tap on cancel and add the serial number manually. Otherwise, tap on continue to update the inventory count and continue.",
   "RIGHT_NOW": "Right Now",
   "ENERGY_MIX": "Today's Energy Mix",
-	"AS_OF_TIME_TODAY": "As of {0} • today",
-	"FEEDBACK_SUBJECT": "Received {0} star rating from EnergyLink Connect 2 feedback form",
-	"FEEDBACK_BODY": "From {0} at {1}: {2}"
+  "AS_OF_TIME_TODAY": "As of {0} • today",
+  "FEEDBACK_SUBJECT": "Received {0} star rating from EnergyLink Connect 2 feedback form",
+  "FEEDBACK_BODY": "From {0} at {1}: {2}",
+  "DEVICES_NOT_FOUND": "There were some devices that were not found. Please check those devices before continuing."
 }
