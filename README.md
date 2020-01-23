@@ -75,5 +75,10 @@ git push origin X.Y.Z
 
 # Login Credentials
 ## Partner Account
-username: test.createuser7@gmail.com
-password: Sunshine12
+- username: test.createuser7@gmail.com
+- password: Sunshine12
+## Partner Pro
+- Has access to EDP_API
+- Has One Site Assocciated
+- username: spwr_dev_partner_pro@outlook.com
+- password: ThisisIt01
