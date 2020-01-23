@@ -28,6 +28,7 @@ import SystemConfiguration from 'pages/SystemConfiguration'
 import Logout from 'pages/Logout'
 
 import paths from './paths'
+import { validateSession } from 'state/actions/auth'
 
 const mapComponents = {
   [paths.PROTECTED.DEVICES.path]: Devices,
@@ -61,6 +62,7 @@ const mapComponents = {
 function AppRoutes() {
   const dispatch = useDispatch()
   dispatch(deviceResumeListener())
+  dispatch(validateSession())
 
   const { location } = useRouter()
   const fadeIn = useTransition(location, loc => loc.pathname, {
