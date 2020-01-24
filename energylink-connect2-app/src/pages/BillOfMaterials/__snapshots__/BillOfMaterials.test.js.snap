@@ -48,7 +48,7 @@ exports[`BillOfMaterials component render correctly 1`] = `
             <img
               alt=""
               className="is-fullwidth"
-              src="https://maps.googleapis.com/maps/api/staticmap?center=undefined,undefined&zoom=21&size=800x800&key=undefined&maptype=satellite"
+              src="https://maps.googleapis.com/maps/api/staticmap?center=undefined,undefined&zoom=21&size=800x800&key=undefined&maptype=hybrid&markers=scale:4|blue|20.6881818,-103.4218501&scale=4"
               title=""
             />
           </div>
