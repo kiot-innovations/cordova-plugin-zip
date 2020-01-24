@@ -56,7 +56,7 @@ const InstallSuccessful = props => {
             <span className="has-text-weight-bold">{t('TURN_OF_SOLAR')}</span>
           </span>
           <div className="is-flex auto is-vertical tile">
-            <button className="button is-primary is-uppercase is-center mt-50">
+            <button className="button has-text-primary is-primary is-uppercase is-center mt-50">
               {t('CONFIGURE')}
             </button>
             <button
