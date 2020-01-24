@@ -7,7 +7,7 @@ import { useI18n } from 'shared/i18n'
 import { path, test, join, values, pick, prop, compose, length } from 'ramda'
 
 import paths from 'routes/paths'
-import SelectField from 'components/SelectField'
+import SearchField from 'components/SearchField'
 import { GET_SITES_INIT, SET_SITE } from 'state/actions/site'
 
 import './Home.scss'
@@ -60,7 +60,7 @@ function Home({ animationState }) {
         <span className="sp sp-map has-text-white" />
         <h6 className="is-uppercase mt-20 mb-20">{t('SELECT_SITE')}</h6>
 
-        <SelectField
+        <SearchField
           onSearch={filterSites}
           onSelect={compose(setSite(history, dispatch), prop('site'))}
           notFoundText={notFoundText}

@@ -39,7 +39,7 @@ const Footer = () => {
     {
       icon: 'sp-signal',
       text: 'Configure',
-      onClick: () => redirect(),
+      onClick: () => redirect(paths.PROTECTED.SYSTEM_CONFIGURATION.path),
       active: isActive(history.location.pathname, TABS.CONFIGURE)
     },
     {

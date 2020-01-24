@@ -1,4 +1,3 @@
-import { shallow } from 'enzyme'
 import InstallSuccessful from 'pages/InstallSuccess'
 import React from 'react'
 import * as i18n from 'shared/i18n'
@@ -22,7 +21,11 @@ describe('PVS connection successful component', () => {
   })
 
   test('render correctly', () => {
-    const component = shallow(<InstallSuccessful />)
+    const { component } = mountWithProvider(<InstallSuccessful />)({
+      history: {
+        push: jest.fn()
+      }
+    })
     expect(component).toMatchSnapshot()
   })
 })

@@ -1,7 +1,9 @@
 import React from 'react'
+import { useHistory } from 'react-router-dom'
 import useModal from 'hooks/useModal'
 import { useI18n } from 'shared/i18n'
 import './InstallSuccess.scss'
+import paths from 'routes/paths'
 
 const modalContent = t => (
   <span className="has-text-white">{t('TURN_OFF_BREAKERS')}</span>
@@ -12,6 +14,8 @@ const modalTitle = t => (
 
 const InstallSuccessful = props => {
   const t = useI18n()
+  const history = useHistory()
+
   const { modal, toggleModal } = useModal(
     props.animationState,
     modalContent(t),
@@ -34,7 +38,12 @@ const InstallSuccessful = props => {
             <span className="has-text-weight-bold">{t('TURN_OF_SOLAR')}</span>
           </span>
           <div className="is-flex auto is-vertical tile">
-            <button className="button is-primary is-uppercase is-center mt-50">
+            <button
+              className="button is-primary is-uppercase is-center mt-50"
+              onClick={() =>
+                history.push(paths.PROTECTED.SYSTEM_CONFIGURATION.path)
+              }
+            >
               {t('CONFIGURE')}
             </button>
             <button
