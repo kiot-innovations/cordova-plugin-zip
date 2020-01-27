@@ -6,9 +6,8 @@ import paths, { protectedRoutes, TABS } from 'routes/paths'
 import Nav from '@sunpower/nav'
 import './footer.scss'
 
-const isActive = (path = '', tab = '') => {
-  return !!protectedRoutes.find(elem => elem.path === path && elem.tab === tab)
-}
+const isActive = (path = '', tab = '') =>
+  !!protectedRoutes.find(elem => elem.path === path && elem.tab === tab)
 
 const Footer = () => {
   const history = useHistory()
