@@ -44,7 +44,7 @@ function mapStateToProps({ inventory, devices, pvs }) {
   const { serialNumbers } = pvs
   const { bom } = inventory
   return {
-    inventory: { inverters: bom.STRING_INVERTERS, meter: bom.METERS },
+    inventory: { inverters: bom[0].value, meter: bom[2].value },
     found: {
       ...found,
       inverter: filterFoundPVS(serialNumbers, propOr([], 'inverter', found))

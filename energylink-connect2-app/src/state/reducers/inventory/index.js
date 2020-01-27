@@ -55,7 +55,14 @@ export const inventoryReducer = createReducer(
     }),
     [UPDATE_MI_COUNT]: (state, payload) => ({
       ...state,
-      bom: { ...state.bom, MODULES: payload }
+      bom: [
+        ...state.bom.map(item => {
+          if (item.item === 'MODULES') {
+            item.value = payload
+          }
+          return item
+        })
+      ]
     })
   },
   initialState
