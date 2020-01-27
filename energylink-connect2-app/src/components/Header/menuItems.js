@@ -14,7 +14,7 @@ export default [
   {
     icon: 'sp-info',
     text: 'VERSION_INFORMATION',
-    to: paths.PROTECTED.SN_LIST.path
+    to: paths.PROTECTED.INVENTORY_COUNT.path
   },
   {
     icon: 'sp-feedback',
