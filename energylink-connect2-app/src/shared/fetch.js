@@ -79,6 +79,25 @@ const parseResponse = res => {
         .catch(err => console.error(err))
 }
 
+export const postEncodedBody = (
+  body,
+  state = null,
+  URL = 'https://dev-edp-api.dev-edp.sunpower.com/v1/party/feedback',
+) => {
+  return fetch(URL, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded',
+      'Authorization': `Bearer ${state.user.auth.access_token}`
+    },
+    body
+  })
+    .then(res => {
+      parseResponse(res)
+    })
+    .catch(err => console.error(err))
+}
+
 export const postBinary = (
   body,
   URL = 'https://dev-serial-numbers-scanner.dev-edp.sunpower.com/scan'
@@ -91,10 +110,11 @@ export const postBinary = (
     body
   })
 
-export const postParams = values => {
-  Object.keys(values)
+export const encodedParams = values => {
+  return Object.keys(values)
     .map(key => {
-      return encodeURIComponent(key) + '=' + encodeURIComponent(values[key])
+      const param = encodeURIComponent(key) + '=' + encodeURIComponent(values[key])
+      return param
     })
     .join('&')
 }

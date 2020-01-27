@@ -4,20 +4,8 @@ import { mergeMap, map, catchError } from 'rxjs/operators'
 import * as feedbackActions from '../../actions/feedback'
 import { path } from 'ramda'
 import moment from 'moment'
-import { getApiParty } from 'shared/api'
 import { translate } from 'shared/i18n'
-import { postParams } from 'shared/fetch'
-
-export const postFeedback = async (postData, state) => {
-  if (state !== null) {
-    try {
-      const swagger = await getApiParty(state.user.auth.access_token)
-      return swagger.apis.default.post_v1_party_feedback(postData)
-    } catch (err) {
-      return console.error(err)
-    }
-  }
-}
+import { encodedParams, postEncodedBody } from 'shared/fetch'
 
 export const sendFeedbackEpic = (action$, state$) =>
   action$.pipe(
@@ -39,14 +27,14 @@ export const sendFeedbackEpic = (action$, state$) =>
         )
       }
 
-      const postValues = postParams(values)
+      const postValues = encodedParams(values)
 
-      return from(postFeedback(postValues, state$.value)).pipe(
-        map(({ status, data }) =>
+      return from(postEncodedBody(postValues, state$.value)).pipe(
+        map(({ status, data }) => {
           status === 200
-            ? feedbackActions.SEND_FEEDBACK_SUCCESS()
-            : feedbackActions.SEND_FEEDBACK_ERROR({ status, data })
-        ),
+          ? feedbackActions.SEND_FEEDBACK_SUCCESS()
+          : feedbackActions.SEND_FEEDBACK_ERROR({ status, data })
+        }),
         catchError(err => of(feedbackActions.SEND_FEEDBACK_ERROR(err)))
       )
     })
