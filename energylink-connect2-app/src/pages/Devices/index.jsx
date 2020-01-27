@@ -7,14 +7,12 @@ import clsx from 'clsx'
 import paths from 'routes/paths'
 import { useI18n } from 'shared/i18n'
 import { DISCOVER_COMPLETE, DISCOVER_INIT } from 'state/actions/devices'
-import { either } from 'shared/utils'
 import './Devices.scss'
 
 const microInverterIcon = (
   <span className="sp-inverter mr-20 devices-icon ml-0 mt-0 mb-0" />
 )
 const meterIcon = <span className="mr-20 sp-meter ml-0 mt-0 mb-0" />
-const storageIcon = <span className="mr-20 sp-battery ml-0 mt-0 mb-0" />
 const Icon = (num = 0, max = 0, icon = '') => (
   <div className="is-flex">
     <span className={`${icon} mr-10 ml-0 mt-0 mb-0`} />
@@ -26,34 +24,48 @@ const numberItems = num =>
     <span className="devices-counter mr-10 ml-0 mt-0 mb-0">{num}</span>
   )
 
-const filterFoundPVS = (arr1, arr2) =>
-  arr1.map(device => {
-    try {
-      const model = arr2.find(item => item.SERIAL === device.serial_number)
-      if (model) {
-        device.model = model.MODEL
-      }
-      return device
-    } catch (error) {
-      return device
+const filterFoundPVS = (arr1, arr2) => {
+  const noModel = []
+  const withModel = []
+  arr1.forEach(device => {
+    const model = arr2.find(item => item.SERIAL === device.serial_number)
+    if (model) {
+      device.model = model.MODEL
+      withModel.push(device)
+    } else {
+      noModel.push(device)
     }
   })
+  return { noModel, withModel }
+}
 
 function mapStateToProps({ inventory, devices, pvs }) {
   const { found } = devices
   const { serialNumbers } = pvs
   const { bom } = inventory
+  const expectedMIs = serialNumbers.map(({ model, ...keepAttrs }) => keepAttrs)
+  console.info(expectedMIs)
+  const { noModel, withModel } = filterFoundPVS(
+    expectedMIs,
+    propOr([], 'inverter', found)
+  )
   return {
     inventory: { inverters: bom[0].value, meter: bom[2].value },
     found: {
       ...found,
-      inverter: filterFoundPVS(serialNumbers, propOr([], 'inverter', found))
+      inverter: [...noModel, ...withModel]
+    },
+    counts: {
+      inverter: {
+        noModel: noModel.length,
+        withModel: withModel.length
+      }
     }
   }
 }
 
 const Devices = ({ animationState }) => {
-  const { inventory, found } = useSelector(mapStateToProps)
+  const { found, counts } = useSelector(mapStateToProps)
   const dispatch = useDispatch()
   const t = useI18n()
   const [done, setDone] = useState(false)
@@ -86,16 +98,16 @@ const Devices = ({ animationState }) => {
           title={t('MICRO-INVERTERS')}
           icon={microInverterIcon}
           actions={Icon(
+            counts.inverter.withModel,
             length(propOr([], 'inverter', found)),
-            inventory.inverters,
             'sp-gear'
           )}
         >
-          <ul className="inverter-list">
+          <ul className="equipment-list">
             {propOr([], 'inverter', found).map(elem => {
               return (
                 <li
-                  className="inverter is-flex flow-wrap tile"
+                  className="equipment-piece is-flex flow-wrap tile"
                   key={elem.serial_number}
                 >
                   <div className="is-flex is-vertical has-text-white tile">
@@ -114,9 +126,9 @@ const Devices = ({ animationState }) => {
                     )}
                   </div>
                   <span
-                    className={clsx('has-text-white is-size-3 mr-10', {
-                      'sp-check': elem.model,
-                      'sp-info': !elem.model
+                    className={clsx('is-size-4 mr-10', {
+                      'sp-check has-text-white': elem.model,
+                      'sp-hey has-text-primary': !elem.model
                     })}
                   />
                 </li>
@@ -128,35 +140,44 @@ const Devices = ({ animationState }) => {
       <div className="pb-15">
         <Collapsible
           title={t('METERS')}
-          actions={Icon(
-            length(propOr([], 'power meter', found)),
-            inventory.meter,
-            ''
-          )}
+          actions={numberItems(length(propOr([], 'power meter', found)))}
           icon={meterIcon}
-        />
-      </div>
-      <div className="pb-15">
-        <Collapsible
-          title={t('STORAGE')}
-          actions={numberItems(10)}
-          icon={storageIcon}
-        />
+        >
+          <ul className="equipment-list">
+            {propOr([], 'power meter', found).map(elem => {
+              return (
+                <li className="equipment-piece is-flex flow-wrap tile">
+                  <div className="is-flex is-vertical has-text-white tile">
+                    <span>
+                      <span className="has-text-weight-bold has-text-white">
+                        SN:
+                      </span>
+                      {elem.SERIAL}
+                    </span>
+                  </div>
+                </li>
+              )
+            })}
+          </ul>
+        </Collapsible>
       </div>
       <Link
         className="button is-outlined is-primary is-uppercase is-paddingless ml-75 mr-75 mb-10"
-        to={paths.PROTECTED.INVENTORY_COUNT.path}
+        to={paths.PROTECTED.SN_LIST.path}
       >
         {t('ADD-DEVICES')}
       </Link>
-      {either(
-        done,
+      {done ? (
         <Link
           className="button is-primary is-uppercase is-paddingless ml-75 mr-75"
           to={paths.PROTECTED.INSTALL_SUCCESS.path}
         >
           {t('DONE')}
         </Link>
+      ) : (
+        <span className="has-text-weight-bold mb-20">
+          {t('DEVICES_NOT_FOUND')}
+        </span>
       )}
     </div>
   )
