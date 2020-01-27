@@ -92,9 +92,7 @@ export const postEncodedBody = (
     },
     body
   })
-    .then(res => {
-      parseResponse(res)
-    })
+    .then(res => parseResponse(res))
     .catch(err => console.error(err))
 }
 

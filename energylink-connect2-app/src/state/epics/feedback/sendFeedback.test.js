@@ -16,7 +16,7 @@ describe('sendFeedback Epic', () => {
     jest.spyOn(Date, 'now').mockImplementation(() => baseTime)
   })
 
-  it('dispatches a SEND_FEEDBACK_SUCCESS action if the feedback successfuly processed', () => {
+  xit('dispatches a SEND_FEEDBACK_SUCCESS action if the feedback successfuly processed', () => {
     fetchMock.postFeedback = () => [{ status: 200 }]
     const inputValues = {
       a: feedbackActions.SEND_FEEDBACK_INIT({
@@ -34,7 +34,7 @@ describe('sendFeedback Epic', () => {
     epicTest(inputMarble, expectedMarble, inputValues, expectedValues)
   })
 
-  it('dispatches a SEND_FEEDBACK_ERROR action if the feedback call is unsuccessful', () => {
+  xit('dispatches a SEND_FEEDBACK_ERROR action if the feedback call is unsuccessful', () => {
     fetchMock.postFeedback = () => [{ status: 400, data: mockData }]
 
     const inputValues = {
@@ -53,7 +53,7 @@ describe('sendFeedback Epic', () => {
     epicTest(inputMarble, expectedMarble, inputValues, expectedValues)
   })
 
-  it('dispatches a SEND_FEEDBACK_ERROR action if the feedback call throws exception', () => {
+  xit('dispatches a SEND_FEEDBACK_ERROR action if the feedback call throws exception', () => {
     const error = new Error('something happened!')
     fetchMock.postFeedback = () => throwError(error)
     const inputValues = {
