@@ -137,7 +137,7 @@
   "RSE_ON_3": "- Will not produce power ",
   "RSE_ON_4": "- Will report their power output as 0.",
   "RSE_OFF": "On this current configuration, the system will work and produce power as expected.",
-  "REMOTE_SYSTEM_ENERGYZE": "Remote System Energyze",
+  "REMOTE_SYSTEM_ENERGYZE": "Remote System Energize",
   "ON": "On",
   "OFF": "Off",
   "APPLY": "Apply"
