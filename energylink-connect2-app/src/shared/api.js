@@ -34,6 +34,7 @@ export async function getApiParty(access_token) {
 export async function getApiSearch() {
   if (!apiSearch)
     apiSearch = await Swagger(process.env.REACT_APP_SWAGGER_SEARCH)
+
   return apiSearch
 }
 export async function getApiSite(access_token) {
