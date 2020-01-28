@@ -8,11 +8,6 @@ exports[`EnergyMix component renders properly 1`] = `
     className="column is-8"
   >
     <h6
-      className="title is-uppercase is-6"
-    >
-      TODAYS_ENERGY_MIX
-    </h6>
-    <h6
       className="subtitle is-uppercase is-6"
     >
       AS_OF_TIME_TODAY 04:00AM

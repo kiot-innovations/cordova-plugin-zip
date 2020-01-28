@@ -18,14 +18,17 @@ describe('PVS connection successful component', () => {
       .mockImplementation(() => (key, ...params) =>
         `${key.toUpperCase()} ${params.join('_')}`.trim()
       )
+    jest.mock('react-router-dom', () => ({
+      useHistory: () => ({
+        history: {
+          push: jest.fn()
+        }
+      })
+    }))
   })
 
   test('render correctly', () => {
-    const { component } = mountWithProvider(<InstallSuccessful />)({
-      history: {
-        push: jest.fn()
-      }
-    })
+    const { component } = mountWithProvider(<InstallSuccessful />)({})
     expect(component).toMatchSnapshot()
   })
 })
