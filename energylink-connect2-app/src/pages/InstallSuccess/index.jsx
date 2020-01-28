@@ -9,6 +9,11 @@ const InstallSuccessful = props => {
   const t = useI18n()
   const history = useHistory()
 
+  const finishInstall = () => {
+    toggleModal()
+    history.push(paths.PROTECTED.DEVICES.path)
+  }
+
   const modalContent = t => (
     <div className="has-text-centered">
       <span className="has-text-white">{t('TURN_OFF_BREAKERS')}</span>
@@ -36,9 +41,8 @@ const InstallSuccessful = props => {
     false
   )
 
-  const finishInstall = () => {
-    toggleModal()
-    history.push(paths.PROTECTED.BILL_OF_MATERIALS.path)
+  const goToConfigure = () => {
+    history.push(paths.PROTECTED.SYSTEM_CONFIGURATION.path)
   }
 
   return (
@@ -56,11 +60,14 @@ const InstallSuccessful = props => {
             <span className="has-text-weight-bold">{t('TURN_OF_SOLAR')}</span>
           </span>
           <div className="is-flex auto is-vertical tile">
-            <button className="button has-text-primary is-primary is-uppercase is-center mt-50">
+            <button
+              onClick={goToConfigure}
+              className="button is-primary is-uppercase is-center mt-50"
+            >
               {t('CONFIGURE')}
             </button>
             <button
-              className="configure-button is-uppercase is-center mt-50 has-text-weight-bold"
+              className="configure-button has-text-primary is-uppercase is-center mt-50 has-text-weight-bold"
               onClick={toggleModal}
             >
               {t('NOT_NOW')}
