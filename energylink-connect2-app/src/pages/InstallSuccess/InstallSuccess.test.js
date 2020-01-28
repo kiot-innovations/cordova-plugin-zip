@@ -1,4 +1,3 @@
-import { shallow } from 'enzyme'
 import InstallSuccessful from 'pages/InstallSuccess'
 import React from 'react'
 import * as i18n from 'shared/i18n'
@@ -19,10 +18,17 @@ describe('PVS connection successful component', () => {
       .mockImplementation(() => (key, ...params) =>
         `${key.toUpperCase()} ${params.join('_')}`.trim()
       )
+    jest.mock('react-router-dom', () => ({
+      useHistory: () => ({
+        history: {
+          push: jest.fn()
+        }
+      })
+    }))
   })
 
   test('render correctly', () => {
-    const component = shallow(<InstallSuccessful />)
+    const { component } = mountWithProvider(<InstallSuccessful />)
     expect(component).toMatchSnapshot()
   })
 })

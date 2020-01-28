@@ -22,7 +22,6 @@ export default function EnergyMix(props) {
   return (
     <div className="energy-mix-container columns  is-mobile is-multiline is-variable is-1">
       <div className="column is-8">
-        <h6 className="title is-uppercase is-6">{t('TODAYS_ENERGY_MIX')}</h6>
         <h6 className="subtitle is-uppercase is-6">
           {t('AS_OF_TIME_TODAY', time)}
         </h6>
