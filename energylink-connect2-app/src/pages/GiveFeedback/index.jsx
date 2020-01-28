@@ -17,7 +17,7 @@ const changeRate = form => {
   return value => form.change('rating', value)
 }
 
-function GiveFeedback() {
+function GiveFeedback({ animationState }) {
   const t = useI18n()
   const dispatch = useDispatch()
   const isSendingFeedback = useSelector(state => state.global.isSendingFeedback)
@@ -36,9 +36,8 @@ function GiveFeedback() {
   const comment = useField('comment', form)
   const rating = useField('rating', form)
 
-  if (isFeedbackSuccessful) {
+  if (isFeedbackSuccessful && animationState !== 'leave')
     return <Redirect to={paths.PROTECTED.ROOT.path} />
-  }
 
   const submitClassnames = clsx('button', 'is-uppercase', 'is-primary', {
     'is-loading': isSendingFeedback
