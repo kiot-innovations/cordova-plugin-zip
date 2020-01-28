@@ -129,5 +129,17 @@
   "AS_OF_TIME_TODAY": "As of {0} • today",
   "FEEDBACK_SUBJECT": "Received {0} star rating from EnergyLink Connect 2 feedback form",
   "FEEDBACK_BODY": "From {0} at {1}: {2}",
+  "RSE": "RSE",
+  "RSE_ON_SYSTEM": "On this current configuration, the system:",
+  "RSE_ON_INVERTERS": "And the inverters:",
+  "RSE_ON_1": "- Can be remotely energized",
+  "RSE_ON_2": "- Won’t export power to the grid",
+  "RSE_ON_3": "- Will not produce power ",
+  "RSE_ON_4": "- Will report their power output as 0.",
+  "RSE_OFF": "On this current configuration, the system will work and produce power as expected.",
+  "REMOTE_SYSTEM_ENERGYZE": "Remote System Energize",
+  "ON": "On",
+  "OFF": "Off",
+  "APPLY": "Apply",
   "DEVICES_NOT_FOUND": "There were some devices that were not found. Please check those devices before continuing."
 }

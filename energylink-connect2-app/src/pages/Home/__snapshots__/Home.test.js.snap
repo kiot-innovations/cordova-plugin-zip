@@ -72,6 +72,7 @@ Object {
                   }
                   defaultOptions={false}
                   filterOption={null}
+                  isSearchable={true}
                   loadOptions={[Function]}
                   noOptionsMessage={[Function]}
                   onChange={[Function]}
@@ -95,6 +96,7 @@ Object {
                     defaultValue={null}
                     filterOption={null}
                     isLoading={false}
+                    isSearchable={true}
                     noOptionsMessage={[Function]}
                     onChange={[Function]}
                     onInputChange={[Function]}
@@ -1473,6 +1475,7 @@ Object {
                   }
                   defaultOptions={false}
                   filterOption={null}
+                  isSearchable={true}
                   loadOptions={[Function]}
                   noOptionsMessage={[Function]}
                   onChange={[Function]}
@@ -1496,6 +1499,7 @@ Object {
                     defaultValue={null}
                     filterOption={null}
                     isLoading={false}
+                    isSearchable={true}
                     noOptionsMessage={[Function]}
                     onChange={[Function]}
                     onInputChange={[Function]}
