@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { path, map, compose, prop } from 'ramda'
 import { useI18n } from 'shared/i18n'
@@ -8,8 +8,9 @@ import SelectField from 'components/SelectField'
 
 import {
   GET_NETWORK_APS_INIT,
-  SET_NETWORK_AP
+  CONNECT_NETWORK_AP_INIT
 } from 'state/actions/systemConfiguration'
+import { either } from 'shared/utils'
 
 const NWI = <span className="sp-wifi file level mr-15 is-size-4" />
 
@@ -20,9 +21,12 @@ function NetworkWidget() {
   const t = useI18n()
   const dispatch = useDispatch()
 
-  const { aps, isFetching, selectedAP } = useSelector(
+  const { aps, isFetching, selectedAP, isConnected, error } = useSelector(
     path(['systemConfiguration', 'network'])
   )
+
+  const [password, setPassword] = useState('')
+  const [AP, setAP] = useState({ ssid: '' })
 
   useEffect(() => {
     dispatch(GET_NETWORK_APS_INIT())
@@ -43,8 +47,8 @@ function NetworkWidget() {
                 <div className="control">
                   <SelectField
                     isSearchable={false}
-                    onSelect={compose(dispatch, SET_NETWORK_AP, prop('ap'))}
-                    defaultValue={buildAPItem(selectedAP || {})}
+                    onSelect={compose(setAP, prop('ap'))}
+                    defaultValue={buildAPItem(AP)}
                     placeholder={t('SELECT_NETWORK')}
                     options={buildAPsItems(aps)}
                   />
@@ -66,11 +70,25 @@ function NetworkWidget() {
                     className="input"
                     type="password"
                     placeholder="********"
+                    onChange={setPassword}
+                    value={password}
                   />
                 </div>
               </div>
             </div>
           </div>
+
+          {either(
+            isConnected,
+            <div className="message success">
+              {t('AP_CONNECTION_SUCCESS', prop('ssid', selectedAP))}
+            </div>
+          )}
+
+          {either(
+            error,
+            <div className="message success">{t('AP_CONNECTION_ERROR')}</div>
+          )}
 
           <div className="field is-grouped is-grouped-centered">
             <p className="control">
@@ -82,8 +100,11 @@ function NetworkWidget() {
               <button
                 className="button is-light is-uppercase"
                 disabled={isFetching}
+                onClick={() =>
+                  dispatch(CONNECT_NETWORK_AP_INIT({ ssid: AP.ssid, password }))
+                }
               >
-                {t('CONNECT')}
+                {isFetching ? 'Loading' : t('CONNECT')}
               </button>
             </p>
           </div>

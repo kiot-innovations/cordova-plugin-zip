@@ -4,13 +4,16 @@ import {
   GET_NETWORK_APS_INIT,
   GET_NETWORK_APS_SUCCESS,
   GET_NETWORK_APS_ERROR,
-  SET_NETWORK_AP
+  CONNECT_NETWORK_AP_INIT,
+  CONNECT_NETWORK_AP_SUCCESS,
+  CONNECT_NETWORK_AP_ERROR
 } from 'state/actions/systemConfiguration'
 
 const initialState = {
   aps: [],
   selectedAP: null,
   isFetching: false,
+  isConnected: false,
   error: null
 }
 
@@ -32,9 +35,24 @@ export const networkReducer = createReducer(
       error
     }),
 
-    [SET_NETWORK_AP]: (state, AP) => ({
+    [CONNECT_NETWORK_AP_INIT]: state => ({
       ...state,
-      selectedAP: AP
+      isFetching: true,
+      isConnected: false
+    }),
+
+    [CONNECT_NETWORK_AP_SUCCESS]: (state, ap) => ({
+      ...state,
+      isFetching: false,
+      isConnected: true,
+      selectedAP: ap
+    }),
+
+    [CONNECT_NETWORK_AP_ERROR]: (state, error) => ({
+      ...state,
+      isFetching: false,
+      isConnected: false,
+      error
     })
   },
   initialState

@@ -1,3 +1,4 @@
-import { fetchNetworkAPsEpic } from './fetchNetworkAPs'
+import { fetchNetworkAPsEpic } from './fetchNetworkAPsEpic'
+import { connectNetworkAPEpic } from './connectNetworkAPEpic'
 
-export default [fetchNetworkAPsEpic]
+export default [fetchNetworkAPsEpic, connectNetworkAPEpic]
