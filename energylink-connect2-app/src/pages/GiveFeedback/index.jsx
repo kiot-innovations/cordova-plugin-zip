@@ -75,9 +75,9 @@ function GiveFeedback({ animationState }) {
             {t('SUBMIT')}
           </button>
         </div>
-        {error && error.message ? (
+        {error && error.data.message ? (
           <div className="message error mb-10 mt-10">
-            <p className="pl-20 pr-20">{t(error.message)}</p>
+            <p className="pl-20 pr-20">{t(error.data.message)}</p>
           </div>
         ) : null}
       </form>
