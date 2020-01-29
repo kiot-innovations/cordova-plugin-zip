@@ -14,7 +14,7 @@ export default [
   {
     icon: 'sp-info',
     text: 'VERSION_INFORMATION',
-    to: paths.PROTECTED.SN_LIST.path
+    to: paths.PROTECTED.SYSTEM_CONFIGURATION.path
   },
   {
     icon: 'sp-feedback',
