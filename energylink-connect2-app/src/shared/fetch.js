@@ -83,7 +83,7 @@ const parseResponse = res => {
 
 export const postEncodedBody = (
   body,
-  state = null,
+  state = {},
   URL = 'https://dev-edp-api.dev-edp.sunpower.com/v1/party/feedback',
 ) => {
   return fetch(URL, {
