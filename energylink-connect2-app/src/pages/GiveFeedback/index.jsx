@@ -24,6 +24,7 @@ function GiveFeedback({ animationState }) {
   const isFeedbackSuccessful = useSelector(
     state => state.global.isFeedbackSuccessful
   )
+  const error = useSelector(state => state.global.err)
 
   const { form, handleSubmit } = useForm({
     onSubmit: onSubmit(dispatch),
@@ -74,6 +75,11 @@ function GiveFeedback({ animationState }) {
             {t('SUBMIT')}
           </button>
         </div>
+        {error && error.message ? (
+          <div className="message error mb-10 mt-10">
+            <p className="pl-20 pr-20">{t(error.message)}</p>
+          </div>
+        ) : null}
       </form>
     </section>
   )
