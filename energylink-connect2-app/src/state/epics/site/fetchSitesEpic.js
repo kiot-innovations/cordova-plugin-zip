@@ -6,8 +6,8 @@ import * as siteActions from 'state/actions/site'
 import { getApiParty } from 'shared/api'
 import { httpGet } from 'shared/fetch'
 
-const getAccessToken = path(['value', 'user', 'auth', 'access_token'])
-const getPartyId = path(['value', 'user', 'data', 'partyId'])
+const getAccessToken = path(['user', 'auth', 'access_token'])
+const getPartyId = path(['user', 'data', 'partyId'])
 const getAPIMethods = path(['apis', 'default'])
 
 const getSitesPromises = (access_token, sites) =>
@@ -26,7 +26,7 @@ export const fetchSitesEpic = (action$, state$) => {
   return action$.pipe(
     ofType(siteActions.GET_SITES_INIT.getType()),
     mergeMap(() =>
-      from(getParties(state$)).pipe(
+      from(getParties(state$.value)).pipe(
         map(response => {
           const sites = filter(Boolean, mapR(prop('data'), response)) || []
           return sites.length > 0
