@@ -21,7 +21,6 @@ const getPVSVersion = async () => {
       PVSversion = pathOr('-1', ['body', 'supervisor', 'FWVER', 'FWVER'], res)
     return serverVersion !== PVSversion
   } catch (e) {
-    console.warn('ESTEBAMN', e.message)
     throw new Error(e)
   }
 }
