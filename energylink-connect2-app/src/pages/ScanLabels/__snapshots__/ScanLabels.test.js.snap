@@ -39,67 +39,54 @@ exports[`Bulk Scan screen renders correctly 1`] = `
       }
     >
       <ScanLabels>
-        <BlockUi
-          blocking={false}
-          loader={[Function]}
-          message="OPENING_CAMERA"
-          renderChildren={true}
-          tag="div"
+        <div
+          className="scan-labels is-vertical has-text-centered pl-10 pr-10"
         >
-          <div
-            aria-busy={false}
+          <span
+            className="is-uppercase has-text-weight-bold"
           >
-            <div
-              className="scan-labels is-vertical has-text-centered pl-10 pr-10"
+            SCAN_EQUIPMENT
+          </span>
+          <div
+            className="hold-state"
+          >
+            <ForwardRef(SvgBarcode)>
+              <svg>
+                Barcode.svg
+              </svg>
+            </ForwardRef(SvgBarcode)>
+          </div>
+          <span
+            className="hint-text"
+          >
+            BULK_SCAN_HINT
+          </span>
+          <button
+            className="button is-primary trigger-scan"
+            disabled={false}
+            onClick={[Function]}
+          >
+            BULK_SCAN
+          </button>
+          <Link
+            className="has-text-centered is-uppercase"
+            to="/scan-labels"
+          >
+            <LinkAnchor
+              className="has-text-centered is-uppercase"
+              href="/scan-labels"
+              navigate={[Function]}
             >
-              <span
-                className="is-uppercase has-text-weight-bold"
-              >
-                SCAN_EQUIPMENT
-              </span>
-              <div
-                className="barcode-icon"
-              >
-                <ForwardRef(SvgBarcode)>
-                  <svg>
-                    Barcode.svg
-                  </svg>
-                </ForwardRef(SvgBarcode)>
-              </div>
-              <span
-                className="hint-text"
-              >
-                BULK_SCAN_HINT
-              </span>
-              <button
-                className="button is-primary trigger-scan"
-                disabled={false}
+              <a
+                className="has-text-centered is-uppercase"
+                href="/scan-labels"
                 onClick={[Function]}
               >
-                BULK_SCAN
-              </button>
-              <Link
-                className="has-text-centered is-uppercase"
-                to="/scan-labels"
-              >
-                <LinkAnchor
-                  className="has-text-centered is-uppercase"
-                  href="/scan-labels"
-                  navigate={[Function]}
-                >
-                  <a
-                    className="has-text-centered is-uppercase"
-                    href="/scan-labels"
-                    onClick={[Function]}
-                  >
-                    CANT_FIND_INVERTERS
-                  </a>
-                </LinkAnchor>
-              </Link>
-            </div>
-            <span />
-          </div>
-        </BlockUi>
+                CANT_FIND_INVERTERS
+              </a>
+            </LinkAnchor>
+          </Link>
+        </div>
       </ScanLabels>
     </Provider>
   </Router>

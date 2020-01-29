@@ -108,6 +108,7 @@
   "FETCHING_SITES": "Fetching sites...",
   "FOUND_SITES": "Customer Sites: {0}",
   "SCANNING_SN": "Scanning...",
+  "FETCHING_SN": "Hold on, we're looking for barcodes...",
   "FOUND_SN": "Found {0} Serial Numbers",
   "NOT_NOW": "Not now",
   "INSTALL_SUCCESS": "Install successful",
