@@ -1,5 +1,4 @@
 import Swagger from 'swagger-client'
-
 let apiDevice, apiParty, apiSearch, apiSite, apiFirmware, apiPVS, apiScanSN
 
 const authOptions = access_token => ({
@@ -24,11 +23,10 @@ export async function getApiDevice() {
   return apiDevice
 }
 export async function getApiParty(access_token) {
-  if (!apiParty)
-    apiParty = await Swagger(
-      process.env.REACT_APP_SWAGGER_PARTY,
-      authOptions(access_token)
-    )
+  apiParty = await Swagger(
+    process.env.REACT_APP_SWAGGER_PARTY,
+    authOptions(access_token)
+  )
   return apiParty
 }
 export async function getApiSearch() {

@@ -17,13 +17,14 @@ const changeRate = form => {
   return value => form.change('rating', value)
 }
 
-function GiveFeedback() {
+function GiveFeedback({ animationState }) {
   const t = useI18n()
   const dispatch = useDispatch()
   const isSendingFeedback = useSelector(state => state.global.isSendingFeedback)
   const isFeedbackSuccessful = useSelector(
     state => state.global.isFeedbackSuccessful
   )
+  const error = useSelector(state => state.global.err)
 
   const { form, handleSubmit } = useForm({
     onSubmit: onSubmit(dispatch),
@@ -36,9 +37,8 @@ function GiveFeedback() {
   const comment = useField('comment', form)
   const rating = useField('rating', form)
 
-  if (isFeedbackSuccessful) {
+  if (isFeedbackSuccessful && animationState !== 'leave')
     return <Redirect to={paths.PROTECTED.ROOT.path} />
-  }
 
   const submitClassnames = clsx('button', 'is-uppercase', 'is-primary', {
     'is-loading': isSendingFeedback
@@ -75,6 +75,11 @@ function GiveFeedback() {
             {t('SUBMIT')}
           </button>
         </div>
+        {error && error.data.message ? (
+          <div className="message error mb-10 mt-10">
+            <p className="pl-20 pr-20">{t(error.data.message)}</p>
+          </div>
+        ) : null}
       </form>
     </section>
   )

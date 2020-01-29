@@ -28,7 +28,7 @@ describe('PVS connection successful component', () => {
   })
 
   test('render correctly', () => {
-    const { component } = mountWithProvider(<InstallSuccessful />)
+    const { component } = mountWithProvider(<InstallSuccessful />)({})
     expect(component).toMatchSnapshot()
   })
 })

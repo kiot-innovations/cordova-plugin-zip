@@ -1,5 +1,4 @@
 import React, { useCallback, useState, useEffect } from 'react'
-import ExampleImage from './assets/example.png'
 import { useI18n } from 'shared/i18n'
 import { decodeQRData, scanBarcodes } from 'shared/scanning'
 import { clearPVSErr, PVS_CONNECTION_INIT } from 'state/actions/network'
@@ -7,6 +6,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import paths from 'routes/paths'
 import { saveSerialNumber } from 'state/actions/pvs'
+import './ConnectToPVS.scss'
 
 function ConnectToPVS({ animationState }) {
   const t = useI18n()
@@ -80,24 +80,21 @@ function ConnectToPVS({ animationState }) {
   }
 
   return (
-    <div className="is-vertical has-text-centered">
-      <span className="is-uppercase has-text-weight-bold mb-40">
+    <div className="qr-layout has-text-centered">
+      <span className="is-uppercase has-text-weight-bold mt-30">
         {t('LOOK_FOR_QR')}
       </span>
-      <div className="example-image mt-20 mb-20">
-        <span>{t('EXAMPLE_IMAGE')}</span>
-        <img
-          className="mt-15"
-          src={ExampleImage}
-          alt={t('EXAMPLE_QR_IMAGE_ALT')}
-        />
+      <div className="qr-icon">
+        <i className="sp-qr has-text-white" />
       </div>
-      <button
-        className="button is-primary"
-        onClick={() => scanBarcodes(onSuccess, onFail)}
-      >
-        {t('START_SCAN')}
-      </button>
+      <div className="pt-20">
+        <button
+          className="button is-primary"
+          onClick={() => scanBarcodes(onSuccess, onFail)}
+        >
+          {t('START_SCAN')}
+        </button>
+      </div>
     </div>
   )
 }
