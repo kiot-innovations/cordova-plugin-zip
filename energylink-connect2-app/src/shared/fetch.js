@@ -1,3 +1,5 @@
+import { path } from 'ramda'
+
 export const httpPost = (path, data, state = null) => {
   const authHeader =
     state && state.user && state.user.auth
@@ -88,7 +90,7 @@ export const postEncodedBody = (
     method: 'POST',
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded',
-      'Authorization': `Bearer ${state.user.auth.access_token}`
+      'Authorization': `Bearer ${path(['user', 'auth', 'access_token'], state)}`
     },
     body
   })
