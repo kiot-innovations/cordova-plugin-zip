@@ -1,22 +1,26 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { path, map } from 'ramda'
+import { path, map, compose, prop } from 'ramda'
 import { useI18n } from 'shared/i18n'
 
 import Collapsible from 'components/Collapsible'
 import SelectField from 'components/SelectField'
 
-import { GET_NETWORK_APS_INIT } from 'state/actions/systemConfiguration'
+import {
+  GET_NETWORK_APS_INIT,
+  SET_NETWORK_AP
+} from 'state/actions/systemConfiguration'
 
 const NWI = <span className="sp-wifi file level mr-15 is-size-4" />
 
-const buildAPsItems = map(({ ssid }) => ({ label: ssid, value: ssid }))
+const buildAPItem = ap => ({ label: ap.ssid, value: ap.ssid, ap })
+const buildAPsItems = map(buildAPItem)
 
 function NetworkWidget() {
   const t = useI18n()
   const dispatch = useDispatch()
 
-  const { aps, isFetching } = useSelector(
+  const { aps, isFetching, selectedAP } = useSelector(
     path(['systemConfiguration', 'network'])
   )
 
@@ -39,7 +43,8 @@ function NetworkWidget() {
                 <div className="control">
                   <SelectField
                     isSearchable={false}
-                    useDefaultDropDown
+                    onSelect={compose(dispatch, SET_NETWORK_AP, prop('ap'))}
+                    defaultValue={buildAPItem(selectedAP || {})}
                     placeholder={t('SELECT_NETWORK')}
                     options={buildAPsItems(aps)}
                   />
