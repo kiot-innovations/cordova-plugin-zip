@@ -18,7 +18,7 @@ export const networkPollingEpic = (action$, state$) => {
   return action$.pipe(
     ofType(PVS_CONNECTION_SUCCESS.getType()),
     switchMap(() =>
-      timer(0, 500).pipe(
+      timer(0, 1000).pipe(
         takeUntil(stopPolling$),
         switchMap(() => from(fetchSSID())),
         map(() => {
