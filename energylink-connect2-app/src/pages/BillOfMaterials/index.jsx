@@ -6,13 +6,13 @@ import { useI18n } from '../../shared/i18n'
 import './BillOfMaterials.scss'
 
 function drawTable(t, inventory) {
-  return Object.keys(inventory).map(key => {
+  return inventory.map(item => {
     return (
-      <tr key={key}>
-        <td className="pl-10 pt-10 pb-10 pr-10 has-text-white">{t(key)}</td>
-        <td className="pt-10 has-text-centered has-text-white">
-          {inventory[key]}
+      <tr key={item.item}>
+        <td className="pl-10 pt-10 pb-10 pr-10 has-text-white">
+          {t(item.item)}
         </td>
+        <td className="pt-10 has-text-white">{item.value}</td>
       </tr>
     )
   })

@@ -7,7 +7,7 @@ import {
   SET_EXPORT_LIMIT,
   SET_GRID_VOLTAGE
 } from 'state/actions/systemConfiguration'
-import { pathOr } from 'ramda'
+import { pathOr, length } from 'ramda'
 import Collapsible from 'components/Collapsible'
 import SelectField from 'components/SelectField'
 import './SystemConfiguration.scss'
@@ -38,11 +38,12 @@ function GridBehaviorWidget() {
         )
       : []
 
-  const gridProfileOptions = filterProfiles
-    ? filterProfiles.map(profile => {
-        return { label: profile.name, value: profile }
-      })
-    : [{ label: 'Fetching Options...', value: 'Option 1' }]
+  const gridProfileOptions =
+    length(filterProfiles) > 0
+      ? filterProfiles.map(profile => {
+          return { label: profile.name, value: profile }
+        })
+      : [{ label: 'Fetching Options...', value: 'Option 1' }]
 
   const setGridProfile = value => {
     dispatch(SET_GRID_PROFILE(value.value))

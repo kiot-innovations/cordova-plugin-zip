@@ -1,5 +1,5 @@
 import Collapsible from 'components/Collapsible'
-import { propOr, length } from 'ramda'
+import { pathOr, propOr, length, filter, propEq } from 'ramda'
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
@@ -49,8 +49,13 @@ function mapStateToProps({ inventory, devices, pvs }) {
     expectedMIs,
     propOr([], 'inverter', found)
   )
+  const inverterCount = filter(propEq('item', 'MODULES'), bom)
+  const meterCount = filter(propEq('item', 'METERS'), bom)
   return {
-    inventory: { inverters: bom.MODULES },
+    inventory: {
+      inverters: pathOr(0, ['value'], inverterCount),
+      meter: pathOr(0, ['value'], meterCount)
+    },
     found: {
       ...found,
       inverter: [...noModel, ...withModel]

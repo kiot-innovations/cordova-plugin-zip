@@ -46,17 +46,14 @@ describe('Serial Number List Page', () => {
       ]
     },
     inventory: {
-      bom: {
-        MODULES: 0,
-        STRING_INVERTERS: 0,
-        METERS: 0,
-        ESS: 0,
-        STORAGE_INVERTERS: 0,
-        TRANSFER_SWITCHES: 0,
-        BATTERIES: 0,
-        GCM: 0,
-        MET_STATION: 0
-      }
+      bom: [
+        { item: 'MODULES', value: '0' },
+        { item: 'STRING_INVERTERS', value: '0' },
+        { item: 'METERS', value: '0' },
+        { item: 'MET_STATION', value: '0' },
+        { item: 'ESS', value: 'None' },
+        { item: 'GCM', value: '0' }
+      ]
     }
   }
 
