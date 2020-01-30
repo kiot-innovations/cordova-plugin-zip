@@ -40,31 +40,30 @@ exports[`Connect to PVS page render correctly 1`] = `
     >
       <ConnectToPVS>
         <div
-          className="is-vertical has-text-centered"
+          className="qr-layout has-text-centered"
         >
           <span
-            className="is-uppercase has-text-weight-bold mb-40"
+            className="is-uppercase has-text-weight-bold mt-30"
           >
             LOOK_FOR_QR
           </span>
           <div
-            className="example-image mt-20 mb-20"
+            className="qr-icon"
           >
-            <span>
-              EXAMPLE_IMAGE
-            </span>
-            <img
-              alt="EXAMPLE_QR_IMAGE_ALT"
-              className="mt-15"
-              src="example.png"
+            <i
+              className="sp-qr has-text-white"
             />
           </div>
-          <button
-            className="button is-primary"
-            onClick={[Function]}
+          <div
+            className="pt-20"
           >
-            START_SCAN
-          </button>
+            <button
+              className="button is-primary"
+              onClick={[Function]}
+            >
+              START_SCAN
+            </button>
+          </div>
         </div>
       </ConnectToPVS>
     </Provider>

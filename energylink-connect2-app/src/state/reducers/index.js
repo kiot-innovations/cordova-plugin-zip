@@ -14,7 +14,7 @@ import { shareReducer } from './share'
 import ui from './ui'
 import fileDownloader from './fileDownloader'
 import devicesReducer from './devices'
-import systemConfiguration from './systemConfiguration'
+import systemConfigurationReducer from './systemConfiguration'
 
 export default combineReducers({
   ui,
@@ -43,6 +43,6 @@ export default combineReducers({
   site: siteReducer,
   devices: devicesReducer,
   share: shareReducer,
-  systemConfiguration
+  systemConfiguration: systemConfigurationReducer
   // Add reducers here
 })

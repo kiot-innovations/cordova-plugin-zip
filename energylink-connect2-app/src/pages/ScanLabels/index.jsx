@@ -4,8 +4,6 @@ import { useI18n } from 'shared/i18n'
 import { Link, useHistory } from 'react-router-dom'
 import { BarcodeIcon } from './assets'
 import paths from 'routes/paths'
-import BlockUI from 'react-block-ui'
-import 'react-block-ui/style.css'
 import './ScanLabels.scss'
 import { GET_SN_INIT } from 'state/actions/pvs'
 
@@ -46,37 +44,52 @@ function ScanLabels({ animationState }) {
   })
 
   return (
-    <BlockUI tag="div" blocking={openingCamera} message={t('OPENING_CAMERA')}>
-      <div className="scan-labels is-vertical has-text-centered pl-10 pr-10">
-        <span className="is-uppercase has-text-weight-bold">
-          {t('SCAN_EQUIPMENT')}
-        </span>
-        <div className="barcode-icon">
+    <div className="scan-labels is-vertical has-text-centered pl-10 pr-10">
+      <span className="is-uppercase has-text-weight-bold">
+        {t('SCAN_EQUIPMENT')}
+      </span>
+      <div className="hold-state">
+        {!fetchingSN && !openingCamera ? (
           <BarcodeIcon />
-        </div>
-        <span className="hint-text">{t('BULK_SCAN_HINT')}</span>
-
-        {!fetchingSN && serialNumbers.length > 0 ? (
-          <span className="has-text-white">
-            {t('FOUND_SN', serialNumbers.length)}
-          </span>
-        ) : null}
-
-        <button
-          className="button is-primary trigger-scan"
-          onClick={takePicture}
-          disabled={fetchingSN}
-        >
-          {fetchingSN ? t('SCANNING_SN') : t('BULK_SCAN')}
-        </button>
-        <Link
-          to={paths.PROTECTED.SCAN_LABELS.path}
-          className="has-text-centered is-uppercase"
-        >
-          {t('CANT_FIND_INVERTERS')}
-        </Link>
+        ) : (
+          <div>
+            <div className="custom-loader">
+              <div className="loader-inner line-scale-pulse-out-rapid">
+                <div /> <div /> <div /> <div /> <div />
+              </div>
+            </div>
+            <span className="hint-text">
+              {t(openingCamera ? 'OPENING_CAMERA' : 'FETCHING_SN')}
+            </span>
+          </div>
+        )}
       </div>
-    </BlockUI>
+      {!fetchingSN ? (
+        <span className="hint-text">{t('BULK_SCAN_HINT')}</span>
+      ) : (
+        ''
+      )}
+
+      {!fetchingSN && serialNumbers.length > 0 ? (
+        <span className="has-text-white">
+          {t('FOUND_SN', serialNumbers.length)}
+        </span>
+      ) : null}
+
+      <button
+        className="button is-primary trigger-scan"
+        onClick={takePicture}
+        disabled={fetchingSN}
+      >
+        {fetchingSN ? t('SCANNING_SN') : t('BULK_SCAN')}
+      </button>
+      <Link
+        to={paths.PROTECTED.SCAN_LABELS.path}
+        className="has-text-centered is-uppercase"
+      >
+        {t('CANT_FIND_INVERTERS')}
+      </Link>
+    </div>
   )
 }
 

@@ -43,7 +43,11 @@ export const globalReducer = createReducer(
       isSendingFeedback: false,
       isFeedbackSuccessful: true
     }),
-    [SEND_FEEDBACK_ERROR]: state => ({ ...state, isSendingFeedback: false }),
+    [SEND_FEEDBACK_ERROR]: (state, payload) => ({
+      ...state,
+      err: { ...payload },
+      isSendingFeedback: false
+    }),
     [RESET_FEEDBACK_FORM]: state => ({ ...state, isFeedbackSuccessful: false })
   },
   initialState

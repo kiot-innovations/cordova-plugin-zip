@@ -1,6 +1,9 @@
 import { combineReducers } from 'redux'
-import { gridBehavior } from './gridBehavior'
+
+import { gridBehaviorReducer } from './gridBehavior'
+import { networkReducer } from './network'
 
 export default combineReducers({
-  gridBehavior: gridBehavior
+  gridBehavior: gridBehaviorReducer,
+  network: networkReducer
 })

@@ -1,0 +1,15 @@
+.qr-layout{
+  height: 100%;
+  display: grid;
+  grid-template-rows: 20% 1fr 20%;
+}
+
+.qr-icon{
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  flex-direction: column;
+  i{
+    font-size: 8em;
+  }
+}

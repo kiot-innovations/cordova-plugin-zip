@@ -1,4 +1,4 @@
-import React, { useLayoutEffect } from 'react'
+import React, { useLayoutEffect, useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { Route, Switch } from 'react-router-dom'
 import { animated, useTransition } from 'react-spring'
@@ -61,9 +61,6 @@ const mapComponents = {
  */
 function AppRoutes() {
   const dispatch = useDispatch()
-  dispatch(deviceResumeListener())
-  dispatch(validateSession())
-
   const { location } = useRouter()
   const fadeIn = useTransition(location, loc => loc.pathname, {
     from: { opacity: 0, transform: 'translate(100%,0)' },
@@ -74,6 +71,11 @@ function AppRoutes() {
   useLayoutEffect(() => {
     window.scrollTo(0, 0)
   })
+
+  useEffect(() => {
+    dispatch(deviceResumeListener())
+    dispatch(validateSession())
+  }, [dispatch])
 
   const isLoggedIn = useSelector(({ user }) => user.auth.access_token)
   return fadeIn.map(({ item, props, key, state }) => (

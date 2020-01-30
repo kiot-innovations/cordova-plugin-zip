@@ -4,12 +4,12 @@ import { useI18n } from 'shared/i18n'
 import { either } from 'shared/utils'
 import Collapsible from 'components/Collapsible'
 import SelectField from 'components/SelectField'
+import NetworkWidget from './NetworkWidget'
 import './SystemConfiguration.scss'
 import GridBehaviorWidget from './GridBehaviorWidget'
 
 const MCI = <span className="sp-meter file level mr-15 is-size-4" />
 const STI = <span className="sp-battery file level mr-15 is-size-4" />
-const NWI = <span className="sp-wifi file level mr-15 is-size-4" />
 const RSE = <span className="sp-info file level mr-15 is-size-4" />
 
 function SystemConfiguration() {
@@ -136,66 +136,7 @@ function SystemConfiguration() {
         </Collapsible>
       </div>
 
-      <div className="pb-15">
-        <Collapsible title={t('NETWORK')} icon={NWI}>
-          <form>
-            <div className="field is-horizontal mb-15">
-              <div className="field-label">
-                <label htmlFor="siteName" className="label has-text-white">
-                  {t('NETWORK')}
-                </label>
-              </div>
-              <div className="field-body">
-                <div className="field">
-                  <div className="control">
-                    <SelectField
-                      isSearchable={false}
-                      useDefaultDropDown
-                      placeholder={t('SELECT_NETWORK')}
-                      options={[
-                        { label: 'PVS1', value: 'pvs1' },
-                        { label: 'PVS2', value: 'pvs2' }
-                      ]}
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="field is-horizontal mb-15">
-              <div className="field-label">
-                <label htmlFor="siteName" className="label has-text-white">
-                  {t('PASSWORD')}
-                </label>
-              </div>
-              <div className="field-body">
-                <div className="field">
-                  <div className="control">
-                    <input
-                      className="input"
-                      type="password"
-                      placeholder="********"
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="field is-grouped is-grouped-centered">
-              <p className="control">
-                <button className="button is-primary is-outlined">
-                  {t('USE_WPS')}
-                </button>
-              </p>
-              <p className="control">
-                <button className="button is-light is-uppercase">
-                  {t('CONNECT')}
-                </button>
-              </p>
-            </div>
-          </form>
-        </Collapsible>
-      </div>
+      <NetworkWidget />
 
       <div className="pb-15">
         <Collapsible title={t('RSE')} icon={RSE}>
