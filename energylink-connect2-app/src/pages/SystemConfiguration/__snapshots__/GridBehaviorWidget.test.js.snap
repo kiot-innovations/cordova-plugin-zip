@@ -113,7 +113,14 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                         <SelectField
                           isSearchable={false}
                           onSelect={[Function]}
-                          options={Array []}
+                          options={
+                            Array [
+                              Object {
+                                "label": "Fetching Options...",
+                                "value": "Option 1",
+                              },
+                            ]
+                          }
                           useDefaultDropDown={true}
                         >
                           <StateManager
@@ -131,7 +138,14 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                             isSearchable={false}
                             noOptionsMessage={[Function]}
                             onChange={[Function]}
-                            options={Array []}
+                            options={
+                              Array [
+                                Object {
+                                  "label": "Fetching Options...",
+                                  "value": "Option 1",
+                                },
+                              ]
+                            }
                             theme={[Function]}
                           >
                             <Select
@@ -176,7 +190,14 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                               onMenuOpen={[Function]}
                               openMenuOnClick={true}
                               openMenuOnFocus={false}
-                              options={Array []}
+                              options={
+                                Array [
+                                  Object {
+                                    "label": "Fetching Options...",
+                                    "value": "Option 1",
+                                  },
+                                ]
+                              }
                               pageSize={5}
                               placeholder="Select..."
                               screenReaderStatus={[Function]}
@@ -203,7 +224,14 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                                 isFocused={false}
                                 isMulti={false}
                                 isRtl={false}
-                                options={Array []}
+                                options={
+                                  Array [
+                                    Object {
+                                      "label": "Fetching Options...",
+                                      "value": "Option 1",
+                                    },
+                                  ]
+                                }
                                 selectOption={[Function]}
                                 selectProps={
                                   Object {
@@ -247,7 +275,12 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                                     "onMenuOpen": [Function],
                                     "openMenuOnClick": true,
                                     "openMenuOnFocus": false,
-                                    "options": Array [],
+                                    "options": Array [
+                                      Object {
+                                        "label": "Fetching Options...",
+                                        "value": "Option 1",
+                                      },
+                                    ],
                                     "pageSize": 5,
                                     "placeholder": "Select...",
                                     "screenReaderStatus": [Function],
@@ -326,7 +359,14 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                                       isMulti={false}
                                       isRtl={false}
                                       menuIsOpen={false}
-                                      options={Array []}
+                                      options={
+                                        Array [
+                                          Object {
+                                            "label": "Fetching Options...",
+                                            "value": "Option 1",
+                                          },
+                                        ]
+                                      }
                                       selectOption={[Function]}
                                       selectProps={
                                         Object {
@@ -370,7 +410,12 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                                           "onMenuOpen": [Function],
                                           "openMenuOnClick": true,
                                           "openMenuOnFocus": false,
-                                          "options": Array [],
+                                          "options": Array [
+                                            Object {
+                                              "label": "Fetching Options...",
+                                              "value": "Option 1",
+                                            },
+                                          ],
                                           "pageSize": 5,
                                           "placeholder": "Select...",
                                           "screenReaderStatus": [Function],
@@ -457,7 +502,14 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                                             isDisabled={false}
                                             isMulti={false}
                                             isRtl={false}
-                                            options={Array []}
+                                            options={
+                                              Array [
+                                                Object {
+                                                  "label": "Fetching Options...",
+                                                  "value": "Option 1",
+                                                },
+                                              ]
+                                            }
                                             selectOption={[Function]}
                                             selectProps={
                                               Object {
@@ -501,7 +553,12 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                                                 "onMenuOpen": [Function],
                                                 "openMenuOnClick": true,
                                                 "openMenuOnFocus": false,
-                                                "options": Array [],
+                                                "options": Array [
+                                                  Object {
+                                                    "label": "Fetching Options...",
+                                                    "value": "Option 1",
+                                                  },
+                                                ],
                                                 "pageSize": 5,
                                                 "placeholder": "Select...",
                                                 "screenReaderStatus": [Function],
@@ -574,7 +631,14 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                                                   isMulti={false}
                                                   isRtl={false}
                                                   key="placeholder"
-                                                  options={Array []}
+                                                  options={
+                                                    Array [
+                                                      Object {
+                                                        "label": "Fetching Options...",
+                                                        "value": "Option 1",
+                                                      },
+                                                    ]
+                                                  }
                                                   selectOption={[Function]}
                                                   selectProps={
                                                     Object {
@@ -618,7 +682,12 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                                                       "onMenuOpen": [Function],
                                                       "openMenuOnClick": true,
                                                       "openMenuOnFocus": false,
-                                                      "options": Array [],
+                                                      "options": Array [
+                                                        Object {
+                                                          "label": "Fetching Options...",
+                                                          "value": "Option 1",
+                                                        },
+                                                      ],
                                                       "pageSize": 5,
                                                       "placeholder": "Select...",
                                                       "screenReaderStatus": [Function],
@@ -740,7 +809,14 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                                             isDisabled={false}
                                             isMulti={false}
                                             isRtl={false}
-                                            options={Array []}
+                                            options={
+                                              Array [
+                                                Object {
+                                                  "label": "Fetching Options...",
+                                                  "value": "Option 1",
+                                                },
+                                              ]
+                                            }
                                             selectOption={[Function]}
                                             selectProps={
                                               Object {
@@ -784,7 +860,12 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                                                 "onMenuOpen": [Function],
                                                 "openMenuOnClick": true,
                                                 "openMenuOnFocus": false,
-                                                "options": Array [],
+                                                "options": Array [
+                                                  Object {
+                                                    "label": "Fetching Options...",
+                                                    "value": "Option 1",
+                                                  },
+                                                ],
                                                 "pageSize": 5,
                                                 "placeholder": "Select...",
                                                 "screenReaderStatus": [Function],
@@ -853,7 +934,14 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                                                   isFocused={false}
                                                   isMulti={false}
                                                   isRtl={false}
-                                                  options={Array []}
+                                                  options={
+                                                    Array [
+                                                      Object {
+                                                        "label": "Fetching Options...",
+                                                        "value": "Option 1",
+                                                      },
+                                                    ]
+                                                  }
                                                   selectOption={[Function]}
                                                   selectProps={
                                                     Object {
@@ -897,7 +985,12 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                                                       "onMenuOpen": [Function],
                                                       "openMenuOnClick": true,
                                                       "openMenuOnFocus": false,
-                                                      "options": Array [],
+                                                      "options": Array [
+                                                        Object {
+                                                          "label": "Fetching Options...",
+                                                          "value": "Option 1",
+                                                        },
+                                                      ],
                                                       "pageSize": 5,
                                                       "placeholder": "Select...",
                                                       "screenReaderStatus": [Function],
@@ -958,7 +1051,14 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                                                   isFocused={false}
                                                   isMulti={false}
                                                   isRtl={false}
-                                                  options={Array []}
+                                                  options={
+                                                    Array [
+                                                      Object {
+                                                        "label": "Fetching Options...",
+                                                        "value": "Option 1",
+                                                      },
+                                                    ]
+                                                  }
                                                   selectOption={[Function]}
                                                   selectProps={
                                                     Object {
@@ -1002,7 +1102,12 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                                                       "onMenuOpen": [Function],
                                                       "openMenuOnClick": true,
                                                       "openMenuOnFocus": false,
-                                                      "options": Array [],
+                                                      "options": Array [
+                                                        Object {
+                                                          "label": "Fetching Options...",
+                                                          "value": "Option 1",
+                                                        },
+                                                      ],
                                                       "pageSize": 5,
                                                       "placeholder": "Select...",
                                                       "screenReaderStatus": [Function],
