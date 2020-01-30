@@ -1,6 +1,6 @@
 import * as systemConfigurationReducers from '../../actions/systemConfiguration'
 import { networkReducer } from './network'
-describe('Site Reducer', () => {
+describe('SC Network Reducer', () => {
   const reducerTest = reducerTester(networkReducer)
 
   it('returns the initial state', () => {

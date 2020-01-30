@@ -10,3 +10,11 @@
     overflow-x: hidden;
   }
 }
+
+.input[type='number'] {
+  border: none;
+  color: white;
+  &::placeholder {
+    color: white;
+  }
+}
