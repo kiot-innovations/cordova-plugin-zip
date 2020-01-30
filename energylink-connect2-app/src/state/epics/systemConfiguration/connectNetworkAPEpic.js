@@ -17,8 +17,8 @@ export const connectNetworkAPEpic = (action$, state$) => {
     ofType(CONNECT_NETWORK_AP_INIT.getType()),
     mergeMap(({ payload }) => {
       const promise = getApiPVS()
-        .then(path(['apis', 'communications']))
-        .then(communications => communications.connectToAccessPoint(payload))
+        .then(path(['apis', 'wifi']))
+        .then(wifi => wifi.connectToAccessPoint(payload))
 
       return from(promise).pipe(
         map(prop('obj')),
