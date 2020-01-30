@@ -98,7 +98,7 @@ function NetworkWidget() {
             </p>
             <p className="control">
               <button
-                className="button is-light is-uppercase"
+                className="button is-primary is-uppercase"
                 disabled={isFetching}
                 onClick={() =>
                   dispatch(CONNECT_NETWORK_AP_INIT({ ssid: AP.ssid, password }))

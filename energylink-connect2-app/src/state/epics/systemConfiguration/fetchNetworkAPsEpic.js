@@ -14,8 +14,8 @@ export const fetchNetworkAPsEpic = (action$, state$) => {
     ofType(GET_NETWORK_APS_INIT.getType()),
     mergeMap(() => {
       const promise = getApiPVS()
-        .then(path(['apis', 'communications']))
-        .then(communications => communications.getAccessPoints())
+        .then(path(['apis', 'wifi']))
+        .then(wifi => wifi.getAccessPoints())
 
       return from(promise).pipe(
         map(prop('obj')),

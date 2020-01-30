@@ -14,7 +14,7 @@ import {
 
 const MCI = <span className="sp-meter file level mr-15 is-size-4" />
 
-function NetworkWidget() {
+function MetersWidget() {
   const t = useI18n()
   const dispatch = useDispatch()
 
@@ -119,4 +119,4 @@ function NetworkWidget() {
     </div>
   )
 }
-export default NetworkWidget
+export default MetersWidget

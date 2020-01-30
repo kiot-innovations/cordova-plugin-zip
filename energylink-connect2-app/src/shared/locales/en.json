@@ -147,10 +147,14 @@
   "OFF": "Off",
   "APPLY": "Apply",
   "DEVICES_NOT_FOUND": "There were some devices that were not found. Please check those devices before continuing.",
-  "AP_CONNECTION_SUCCESS": "Success. Connected to {0}",
+  "AP_CONNECTION_SUCCESS": "Connected to {0}",
   "AP_CONNECTION_ERROR": "An error happened connecting to the AP",
   "NOT_USED": "Not Used",
   "CONSUMPTION_LOAD": "Consumption (Load-Side Solar System)",
   "CONSUMPTION_LINE": "Consumption (Line-Side Solar System)",
-  "PRODUCTION_REVENUE": "Production (Revenue Grade Metering)"
+  "PRODUCTION_REVENUE": "Production (Revenue Grade Metering)",
+  "SUBMIT_CONFIG": "Submit Configuration",
+  "FETCHING_OPTIONS": "Fetching Options...",
+  "SELECT_A_GRID_PROFILE": "Please select a grid profile",
+  "NO_SELF_SUPPLY": "No Self Supply"
 }
