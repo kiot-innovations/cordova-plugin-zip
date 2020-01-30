@@ -13,6 +13,10 @@
   grid-column-gap: 1em;
   grid-row-gap: 1em;
 
+  .double{
+    grid-column: span 2;
+  }
+
   .form-input {
     font-family: $font;
     letter-spacing: 0;

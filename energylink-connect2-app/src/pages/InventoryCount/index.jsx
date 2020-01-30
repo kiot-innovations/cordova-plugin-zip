@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { Link, Redirect } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { useI18n } from 'shared/i18n'
+import clsx from 'clsx'
 import paths from 'routes/paths'
 import './InventoryCounts.scss'
 import { saveInventory } from '../../state/actions/inventory'
@@ -12,17 +13,35 @@ function submitInventory(event, inventory, dispatch, redirect) {
   redirect(true)
 }
 
-function createSelectField(t, translation, changeHandler, inventory) {
-  const options = [...Array(99).keys()].map(number => {
-    return (
-      <option key={number} value={number}>
-        {number}
-      </option>
-    )
-  })
+function createSelectField(
+  t,
+  translation,
+  changeHandler,
+  inventory,
+  overrideOptions,
+  size
+) {
+  const options = overrideOptions
+    ? overrideOptions.map(option => {
+        return (
+          <option key={option.value} value={option.value}>
+            {t(option.text)}
+          </option>
+        )
+      })
+    : [...Array(99).keys()].map(number => {
+        return (
+          <option key={number} value={number}>
+            {number}
+          </option>
+        )
+      })
 
   return (
-    <div key={translation} className="form-input">
+    <div
+      key={translation}
+      className={clsx({ 'form-input': true, double: size })}
+    >
       <label htmlFor={translation} className="has-text-white">
         {t(translation)}
       </label>
@@ -50,12 +69,34 @@ function InventoryCount() {
   const [toBom, setToBom] = useState(false)
 
   const changeHandler = e => {
-    inventory[e.target.name] = e.target.value
-    setInventory({ ...inventory })
+    const inventoryCopy = inventory
+    inventoryCopy.map(item => {
+      if (item.item === e.target.name) item.value = e.target.value
+      return item
+    })
+    setInventory(inventoryCopy)
   }
 
-  const fields = Object.keys(inventory).map(key => {
-    return createSelectField(t, key, changeHandler, inventory)
+  const batteryOptions = [
+    { value: 'None', text: 'NONE' },
+    { value: '16kWh', text: '16KWH_1INV' },
+    { value: '26kWh 1 Inverter', text: '26KWH_1INV' },
+    { value: '26kWh 2 Inverters', text: '26KWH_2INV' }
+  ]
+
+  const fields = inventory.map(item => {
+    if (item.item === 'ESS') {
+      return createSelectField(
+        t,
+        item.item,
+        changeHandler,
+        item.value,
+        batteryOptions,
+        'double'
+      )
+    } else {
+      return createSelectField(t, item.item, changeHandler, inventory)
+    }
   })
 
   return (

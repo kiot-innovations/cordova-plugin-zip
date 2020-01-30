@@ -78,7 +78,7 @@ exports[`PVS connection successful component render correctly 1`] = `
                 CONFIGURE
               </button>
               <button
-                className="configure-button is-uppercase is-center mt-50 has-text-weight-bold"
+                className="configure-button has-text-primary is-uppercase is-center mt-50 has-text-weight-bold"
                 onClick={[Function]}
               >
                 NOT_NOW
