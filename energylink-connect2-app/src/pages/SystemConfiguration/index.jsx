@@ -5,10 +5,11 @@ import { either } from 'shared/utils'
 import Collapsible from 'components/Collapsible'
 import SelectField from 'components/SelectField'
 import NetworkWidget from './NetworkWidget'
+import MetersWidget from './MetersWidget'
 import './SystemConfiguration.scss'
 import GridBehaviorWidget from './GridBehaviorWidget'
 
-const MCI = <span className="sp-meter file level mr-15 is-size-4" />
+const GBI = <span className="sp-grid file level mr-15 is-size-4" />
 const STI = <span className="sp-battery file level mr-15 is-size-4" />
 const RSE = <span className="sp-info file level mr-15 is-size-4" />
 
@@ -24,70 +25,7 @@ function SystemConfiguration() {
 
       <GridBehaviorWidget />
 
-      <div className="pb-15">
-        <Collapsible title={t('METER_CT')} icon={MCI}>
-          <div className="field is-horizontal mb-15">
-            <div className="field-label">
-              <label htmlFor="siteName" className="label has-text-white">
-                {t('CONSUMPTION_CT')}
-              </label>
-            </div>
-            <div className="field-body">
-              <div className="field">
-                <div className="control">
-                  <SelectField
-                    isSearchable={false}
-                    useDefaultDropDown
-                    options={[{ label: 'Grid Voltaje', value: '208V' }]}
-                    defaultValue={{ label: 'Line Side', value: 'lineSide' }}
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="field is-horizontal mb-15">
-            <div className="field-label">
-              <label htmlFor="siteName" className="label has-text-white">
-                {t('RATED_CURRENT')}
-              </label>
-            </div>
-            <div className="field-body">
-              <div className="field">
-                <div className="control">
-                  <SelectField
-                    isSearchable={false}
-                    useDefaultDropDown
-                    options={[{ label: '100', value: '100' }]}
-                    defaultValue={{ label: '100', value: '100' }}
-                  />
-                  <p className="control">amps</p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="field is-horizontal mb-15">
-            <div className="field-label">
-              <label htmlFor="siteName" className="label has-text-white">
-                {t('PRODUCTION_CT')}
-              </label>
-            </div>
-            <div className="field-body">
-              <div className="field">
-                <div className="control">
-                  <SelectField
-                    isSearchable={false}
-                    useDefaultDropDown
-                    options={[{ label: 'Used', value: 'used' }]}
-                    defaultValue={{ label: 'Used', value: 'no' }}
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-        </Collapsible>
-      </div>
+      <MetersWidget />
 
       <div className="pb-15">
         <Collapsible title={t('STORAGE')} icon={STI}>

@@ -87,7 +87,7 @@ function NetworkWidget() {
 
           {either(
             error,
-            <div className="message success">{t('AP_CONNECTION_ERROR')}</div>
+            <div className="message error">{t('AP_CONNECTION_ERROR')}</div>
           )}
 
           <div className="field is-grouped is-grouped-centered">
