@@ -22,6 +22,11 @@ function SystemConfiguration() {
       <StorageWidget />
       <NetworkWidget />
       <RSEWidget />
+      <div className="submit-config">
+        <button className="button is-primary is-uppercase">
+          {t('SUBMIT_CONFIG')}
+        </button>
+      </div>
     </div>
   )
 }

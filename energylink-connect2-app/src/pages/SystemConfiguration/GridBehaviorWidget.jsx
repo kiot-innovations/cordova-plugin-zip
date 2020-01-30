@@ -22,7 +22,7 @@ function GridBehaviorWidget() {
   )
   const { site } = useSelector(state => state.site)
   const [selfSupplyOptions, setSelfSupplyOptions] = useState([
-    { label: 'Please select a grid profile', value: false }
+    { label: t('SELECT_A_GRID_PROFILE'), value: false }
   ])
 
   useEffect(() => {
@@ -43,7 +43,7 @@ function GridBehaviorWidget() {
       ? filterProfiles.map(profile => {
           return { label: profile.name, value: profile }
         })
-      : [{ label: 'Fetching Options...', value: 'Option 1' }]
+      : [{ label: t('FETCHING_OPTIONS'), value: 0 }]
 
   const setGridProfile = value => {
     dispatch(SET_GRID_PROFILE(value.value))
@@ -61,7 +61,7 @@ function GridBehaviorWidget() {
       }
     } else {
       dispatch(SET_EXPORT_LIMIT(false))
-      setSelfSupplyOptions([{ label: 'No Self Supply', value: false }])
+      setSelfSupplyOptions([{ label: t('NO_SELF_SUPPLY'), value: false }])
     }
   }
 

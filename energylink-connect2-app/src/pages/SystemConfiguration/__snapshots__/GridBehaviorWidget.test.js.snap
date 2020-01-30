@@ -116,8 +116,8 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                           options={
                             Array [
                               Object {
-                                "label": "Fetching Options...",
-                                "value": "Option 1",
+                                "label": "FETCHING_OPTIONS",
+                                "value": 0,
                               },
                             ]
                           }
@@ -141,8 +141,8 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                             options={
                               Array [
                                 Object {
-                                  "label": "Fetching Options...",
-                                  "value": "Option 1",
+                                  "label": "FETCHING_OPTIONS",
+                                  "value": 0,
                                 },
                               ]
                             }
@@ -193,8 +193,8 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                               options={
                                 Array [
                                   Object {
-                                    "label": "Fetching Options...",
-                                    "value": "Option 1",
+                                    "label": "FETCHING_OPTIONS",
+                                    "value": 0,
                                   },
                                 ]
                               }
@@ -227,8 +227,8 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                                 options={
                                   Array [
                                     Object {
-                                      "label": "Fetching Options...",
-                                      "value": "Option 1",
+                                      "label": "FETCHING_OPTIONS",
+                                      "value": 0,
                                     },
                                   ]
                                 }
@@ -277,8 +277,8 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                                     "openMenuOnFocus": false,
                                     "options": Array [
                                       Object {
-                                        "label": "Fetching Options...",
-                                        "value": "Option 1",
+                                        "label": "FETCHING_OPTIONS",
+                                        "value": 0,
                                       },
                                     ],
                                     "pageSize": 5,
@@ -362,8 +362,8 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                                       options={
                                         Array [
                                           Object {
-                                            "label": "Fetching Options...",
-                                            "value": "Option 1",
+                                            "label": "FETCHING_OPTIONS",
+                                            "value": 0,
                                           },
                                         ]
                                       }
@@ -412,8 +412,8 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                                           "openMenuOnFocus": false,
                                           "options": Array [
                                             Object {
-                                              "label": "Fetching Options...",
-                                              "value": "Option 1",
+                                              "label": "FETCHING_OPTIONS",
+                                              "value": 0,
                                             },
                                           ],
                                           "pageSize": 5,
@@ -505,8 +505,8 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                                             options={
                                               Array [
                                                 Object {
-                                                  "label": "Fetching Options...",
-                                                  "value": "Option 1",
+                                                  "label": "FETCHING_OPTIONS",
+                                                  "value": 0,
                                                 },
                                               ]
                                             }
@@ -555,8 +555,8 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                                                 "openMenuOnFocus": false,
                                                 "options": Array [
                                                   Object {
-                                                    "label": "Fetching Options...",
-                                                    "value": "Option 1",
+                                                    "label": "FETCHING_OPTIONS",
+                                                    "value": 0,
                                                   },
                                                 ],
                                                 "pageSize": 5,
@@ -634,8 +634,8 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                                                   options={
                                                     Array [
                                                       Object {
-                                                        "label": "Fetching Options...",
-                                                        "value": "Option 1",
+                                                        "label": "FETCHING_OPTIONS",
+                                                        "value": 0,
                                                       },
                                                     ]
                                                   }
@@ -684,8 +684,8 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                                                       "openMenuOnFocus": false,
                                                       "options": Array [
                                                         Object {
-                                                          "label": "Fetching Options...",
-                                                          "value": "Option 1",
+                                                          "label": "FETCHING_OPTIONS",
+                                                          "value": 0,
                                                         },
                                                       ],
                                                       "pageSize": 5,
@@ -812,8 +812,8 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                                             options={
                                               Array [
                                                 Object {
-                                                  "label": "Fetching Options...",
-                                                  "value": "Option 1",
+                                                  "label": "FETCHING_OPTIONS",
+                                                  "value": 0,
                                                 },
                                               ]
                                             }
@@ -862,8 +862,8 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                                                 "openMenuOnFocus": false,
                                                 "options": Array [
                                                   Object {
-                                                    "label": "Fetching Options...",
-                                                    "value": "Option 1",
+                                                    "label": "FETCHING_OPTIONS",
+                                                    "value": 0,
                                                   },
                                                 ],
                                                 "pageSize": 5,
@@ -937,8 +937,8 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                                                   options={
                                                     Array [
                                                       Object {
-                                                        "label": "Fetching Options...",
-                                                        "value": "Option 1",
+                                                        "label": "FETCHING_OPTIONS",
+                                                        "value": 0,
                                                       },
                                                     ]
                                                   }
@@ -987,8 +987,8 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                                                       "openMenuOnFocus": false,
                                                       "options": Array [
                                                         Object {
-                                                          "label": "Fetching Options...",
-                                                          "value": "Option 1",
+                                                          "label": "FETCHING_OPTIONS",
+                                                          "value": 0,
                                                         },
                                                       ],
                                                       "pageSize": 5,
@@ -1054,8 +1054,8 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                                                   options={
                                                     Array [
                                                       Object {
-                                                        "label": "Fetching Options...",
-                                                        "value": "Option 1",
+                                                        "label": "FETCHING_OPTIONS",
+                                                        "value": 0,
                                                       },
                                                     ]
                                                   }
@@ -1104,8 +1104,8 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                                                       "openMenuOnFocus": false,
                                                       "options": Array [
                                                         Object {
-                                                          "label": "Fetching Options...",
-                                                          "value": "Option 1",
+                                                          "label": "FETCHING_OPTIONS",
+                                                          "value": 0,
                                                         },
                                                       ],
                                                       "pageSize": 5,
@@ -1258,7 +1258,7 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                           options={
                             Array [
                               Object {
-                                "label": "Please select a grid profile",
+                                "label": "SELECT_A_GRID_PROFILE",
                                 "value": false,
                               },
                             ]
@@ -1283,7 +1283,7 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                             options={
                               Array [
                                 Object {
-                                  "label": "Please select a grid profile",
+                                  "label": "SELECT_A_GRID_PROFILE",
                                   "value": false,
                                 },
                               ]
@@ -1335,7 +1335,7 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                               options={
                                 Array [
                                   Object {
-                                    "label": "Please select a grid profile",
+                                    "label": "SELECT_A_GRID_PROFILE",
                                     "value": false,
                                   },
                                 ]
@@ -1369,7 +1369,7 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                                 options={
                                   Array [
                                     Object {
-                                      "label": "Please select a grid profile",
+                                      "label": "SELECT_A_GRID_PROFILE",
                                       "value": false,
                                     },
                                   ]
@@ -1419,7 +1419,7 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                                     "openMenuOnFocus": false,
                                     "options": Array [
                                       Object {
-                                        "label": "Please select a grid profile",
+                                        "label": "SELECT_A_GRID_PROFILE",
                                         "value": false,
                                       },
                                     ],
@@ -1504,7 +1504,7 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                                       options={
                                         Array [
                                           Object {
-                                            "label": "Please select a grid profile",
+                                            "label": "SELECT_A_GRID_PROFILE",
                                             "value": false,
                                           },
                                         ]
@@ -1554,7 +1554,7 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                                           "openMenuOnFocus": false,
                                           "options": Array [
                                             Object {
-                                              "label": "Please select a grid profile",
+                                              "label": "SELECT_A_GRID_PROFILE",
                                               "value": false,
                                             },
                                           ],
@@ -1647,7 +1647,7 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                                             options={
                                               Array [
                                                 Object {
-                                                  "label": "Please select a grid profile",
+                                                  "label": "SELECT_A_GRID_PROFILE",
                                                   "value": false,
                                                 },
                                               ]
@@ -1697,7 +1697,7 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                                                 "openMenuOnFocus": false,
                                                 "options": Array [
                                                   Object {
-                                                    "label": "Please select a grid profile",
+                                                    "label": "SELECT_A_GRID_PROFILE",
                                                     "value": false,
                                                   },
                                                 ],
@@ -1776,7 +1776,7 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                                                   options={
                                                     Array [
                                                       Object {
-                                                        "label": "Please select a grid profile",
+                                                        "label": "SELECT_A_GRID_PROFILE",
                                                         "value": false,
                                                       },
                                                     ]
@@ -1826,7 +1826,7 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                                                       "openMenuOnFocus": false,
                                                       "options": Array [
                                                         Object {
-                                                          "label": "Please select a grid profile",
+                                                          "label": "SELECT_A_GRID_PROFILE",
                                                           "value": false,
                                                         },
                                                       ],
@@ -1954,7 +1954,7 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                                             options={
                                               Array [
                                                 Object {
-                                                  "label": "Please select a grid profile",
+                                                  "label": "SELECT_A_GRID_PROFILE",
                                                   "value": false,
                                                 },
                                               ]
@@ -2004,7 +2004,7 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                                                 "openMenuOnFocus": false,
                                                 "options": Array [
                                                   Object {
-                                                    "label": "Please select a grid profile",
+                                                    "label": "SELECT_A_GRID_PROFILE",
                                                     "value": false,
                                                   },
                                                 ],
@@ -2079,7 +2079,7 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                                                   options={
                                                     Array [
                                                       Object {
-                                                        "label": "Please select a grid profile",
+                                                        "label": "SELECT_A_GRID_PROFILE",
                                                         "value": false,
                                                       },
                                                     ]
@@ -2129,7 +2129,7 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                                                       "openMenuOnFocus": false,
                                                       "options": Array [
                                                         Object {
-                                                          "label": "Please select a grid profile",
+                                                          "label": "SELECT_A_GRID_PROFILE",
                                                           "value": false,
                                                         },
                                                       ],
@@ -2196,7 +2196,7 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                                                   options={
                                                     Array [
                                                       Object {
-                                                        "label": "Please select a grid profile",
+                                                        "label": "SELECT_A_GRID_PROFILE",
                                                         "value": false,
                                                       },
                                                     ]
@@ -2246,7 +2246,7 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                                                       "openMenuOnFocus": false,
                                                       "options": Array [
                                                         Object {
-                                                          "label": "Please select a grid profile",
+                                                          "label": "SELECT_A_GRID_PROFILE",
                                                           "value": false,
                                                         },
                                                       ],
