@@ -17,7 +17,10 @@ function SNList({ animationState }) {
   const [openingCamera, setOpeningCamera] = useState(false)
   const { serialNumbers, fetchingSN } = useSelector(state => state.pvs)
   const { bom } = useSelector(state => state.inventory)
-  const expectedMICount = bom.MODULES
+  const modulesOnInventory = bom.filter(item => {
+    return item.item === 'MODULES'
+  })
+  const expectedMICount = modulesOnInventory[0].value
   const scannedMICount = serialNumbers.length
 
   const cameraSuccess = photo => {
@@ -133,8 +136,6 @@ function SNList({ animationState }) {
       </div>
     )
   }
-
-  console.info(serialNumbers)
 
   return (
     <BlockUI tag="div" blocking={openingCamera} message={t('OPENING_CAMERA')}>
