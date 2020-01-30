@@ -6,6 +6,6 @@ import { meterReducer } from './meter'
 
 export default combineReducers({
   gridBehavior: gridBehaviorReducer,
-  network: networkReducer
+  network: networkReducer,
   meter: meterReducer
 })

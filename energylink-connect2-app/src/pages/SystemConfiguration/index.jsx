@@ -6,10 +6,10 @@ import Collapsible from 'components/Collapsible'
 import SelectField from 'components/SelectField'
 import NetworkWidget from './NetworkWidget'
 import MetersWidget from './MetersWidget'
-import './SystemConfiguration.scss'
 import GridBehaviorWidget from './GridBehaviorWidget'
 
-const GBI = <span className="sp-grid file level mr-15 is-size-4" />
+import './SystemConfiguration.scss'
+
 const STI = <span className="sp-battery file level mr-15 is-size-4" />
 const RSE = <span className="sp-info file level mr-15 is-size-4" />
 

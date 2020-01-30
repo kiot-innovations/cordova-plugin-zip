@@ -21,7 +21,7 @@ const initialState = {
   }
 }
 
-export const gridBehavior = createReducer(
+export const gridBehaviorReducer = createReducer(
   {
     [FETCH_GRID_BEHAVIOR]: state => ({
       ...state,

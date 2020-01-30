@@ -7,9 +7,9 @@ import {
 } from 'state/actions/systemConfiguration'
 
 const initialState = {
-  consumptionCT: 2,
-  productionCT: 1,
-  ratedCurrent: 101
+  consumptionCT: 0,
+  productionCT: 0,
+  ratedCurrent: 100
 }
 
 export const meterReducer = createReducer(
