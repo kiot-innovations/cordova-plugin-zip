@@ -11,6 +11,8 @@ import { globalReducer } from './global'
 import { storesVersions } from './migrations'
 import { siteReducer } from './site'
 import { shareReducer } from './share'
+import { energyLiveData } from './energy-live-data'
+
 import ui from './ui'
 import fileDownloader from './fileDownloader'
 import devicesReducer from './devices'
@@ -43,6 +45,7 @@ export default combineReducers({
   site: siteReducer,
   devices: devicesReducer,
   share: shareReducer,
-  systemConfiguration: systemConfigurationReducer
+  systemConfiguration: systemConfigurationReducer,
+  energyLiveData
   // Add reducers here
 })
