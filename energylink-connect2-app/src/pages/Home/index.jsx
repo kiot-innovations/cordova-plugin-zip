@@ -49,8 +49,9 @@ function Home({ animationState }) {
   const notFoundText = t('NOT_FOUND')
 
   const filterSites = (inputValue, cb) => {
+    let results
     const matchValue = compose(test(new RegExp(inputValue, 'ig')), getString)
-    const results = sites.filter(matchValue).map(buildSelectValue)
+    if (sites) results = sites.filter(matchValue).map(buildSelectValue)
     cb(results)
   }
 
