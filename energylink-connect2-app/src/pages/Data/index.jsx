@@ -19,6 +19,7 @@ export default () => {
 
   let data = {
     solar: 0,
+    stateOfCharge: 0,
     storage: 0,
     grid: 0,
     date: new Date(),
@@ -32,7 +33,7 @@ export default () => {
     data = {
       date: latestDate,
       stateOfCharge: latest.soc,
-      solar: latest.pp,
+      solar: latest.p,
       storage: latest.s,
       homeUsage: latest.c,
       grid: roundDecimals(latest.c - latest.p - latest.s),
@@ -48,10 +49,12 @@ export default () => {
       <section>
         <h6 className="is-uppercase mt-20 mb-20">{t('RIGHT_NOW')}</h6>
         <RightNow
-          solarValue={data.solar}
-          homeValue={data.homeUsage}
-          storageValue={data.storage}
-          gridValue={data.grid}
+          solarValue={data.powerSolar}
+          gridValue={data.powerGrid}
+          hasStorage={true}
+          storageValue={data.powerStorage}
+          homeValue={data.powerHomeUsage}
+          batteryLevel={data.stateOfCharge}
         />
       </section>
       <section>
@@ -70,7 +73,7 @@ export default () => {
       </section>
       <section>
         <h6 className="is-uppercase mt-20 mb-20">{t('ENERGY_MIX')}</h6>
-        <EnergyMix {...data} />
+        <EnergyMix {...data} hasStorage={true} />
       </section>
     </section>
   )
