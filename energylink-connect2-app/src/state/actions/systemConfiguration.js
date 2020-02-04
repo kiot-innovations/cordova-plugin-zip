@@ -22,3 +22,7 @@ export const CONNECT_NETWORK_AP_ERROR = createAction('CONNECT_NETWORK_AP_ERROR')
 export const SET_CONSUMPTION_CT = createAction('SET_CONSUMPTION_CT')
 export const SET_RATED_CURRENT = createAction('SET_RATED_CURRENT')
 export const SET_PRODUCTION_CT = createAction('SET_PRODUCTION_CT')
+
+export const GET_STORAGE_INIT = createAction('GET_BATTERIES_INIT')
+export const GET_STORAGE_ERROR = createAction('GET_BATTERIES_ERROR')
+export const GET_STORAGE_SUCCESS = createAction('GET_BATTERIES_SUCCESS')
