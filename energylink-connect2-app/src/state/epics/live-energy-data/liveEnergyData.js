@@ -14,9 +14,9 @@ import { roundDecimals } from '../../../shared/rounding'
 import { ofType } from 'redux-observable'
 import { LOGIN_SUCCESS } from 'state/actions/auth'
 
-const createWebsocketObservable = port =>
+const createWebsocketObservable = () =>
   new Observable(subscriber => {
-    const ws = new WebSocket(`ws://localhost:${port}`, {
+    const ws = new WebSocket(`ws://sunpowerconsole.com:9002`, {
       reconnect: false
     })
 
@@ -64,7 +64,7 @@ export const liveEnergyData = (action$, state$) =>
       energyDataActions.ENERGY_DATA_START_POLLING.getType() // @todo: likely not required, but necesssary for testing
     ),
     mergeMap(({ payload }) =>
-      createWebsocketObservable(payload).pipe(
+      createWebsocketObservable().pipe(
         retryWhen(errors =>
           errors.pipe(
             tap(err => console.error('Websocket connection', err)),
