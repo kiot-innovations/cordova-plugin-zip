@@ -80,3 +80,6 @@ export const NORMALIZE_POWER_DATA_SUCCESS = createAction(
 
 export const LTE_DATA_POLL_START = createAction('LTE_DATA_POLL_START')
 export const LTE_DATA_POLL_STOP = createAction('LTE_DATA_POLL_STOP')
+
+export const startPolling = () => dispatch =>
+  dispatch(ENERGY_DATA_START_POLLING())
