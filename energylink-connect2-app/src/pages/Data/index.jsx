@@ -6,7 +6,7 @@ import RightNow from '../../components/RightNow'
 import EnergyMix from '../../components/EnergyMix'
 import { useI18n } from '../../shared/i18n'
 import { roundDecimals } from '../../shared/rounding'
-import { startPolling } from '../../state/actions/energy-data'
+import { ENERGY_DATA_START_POLLING } from '../../state/actions/energy-data'
 
 export default () => {
   const t = useI18n()
@@ -14,7 +14,7 @@ export default () => {
   const { liveData = {} } = useSelector(state => state.energyLiveData)
 
   useEffect(() => {
-    dispatch(startPolling())
+    dispatch(ENERGY_DATA_START_POLLING())
   }, [dispatch])
 
   let data = {
