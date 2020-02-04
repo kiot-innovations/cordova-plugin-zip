@@ -11,7 +11,6 @@ import {
   converge,
   useWith
 } from 'ramda'
-import { fetchInventory } from './inventory'
 import { getFile } from './fileDownloader'
 import authClient from 'shared/auth/sdk'
 import { httpGet } from 'shared/fetch'
@@ -95,7 +94,7 @@ export const handleUserProfile = (tokenInfo = {}) => {
             dispatch(LOGIN_ERROR({ message: 'INVALID_ROLE' }))
           } else {
             dispatch(LOGIN_SUCCESS(payload))
-            dispatch(fetchInventory())
+            //dispatch(fetchInventory())
             dispatch(getFile())
           }
         })

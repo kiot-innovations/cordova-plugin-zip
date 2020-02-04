@@ -1,0 +1,326 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EnergyGraph component renders without crashing 1`] = `
+<div
+  className="energy-graph-container"
+>
+  <ResponsiveContainer
+    className="energy-graph"
+    debounce={0}
+    height={380}
+    width="100%"
+  >
+    <ComposedChart
+      barCategoryGap="10%"
+      barGap={4}
+      data={Array []}
+      layout="horizontal"
+      margin={
+        Object {
+          "left": 5,
+          "right": 10,
+        }
+      }
+      reverseStackOrder={false}
+      stackOffset="none"
+    >
+      <XAxis
+        allowDataOverflow={false}
+        allowDecimals={true}
+        allowDuplicatedCategory={true}
+        axisLine={false}
+        dataKey="weather"
+        domain={
+          Array [
+            0,
+            "auto",
+          ]
+        }
+        height={30}
+        hide={false}
+        interval={3}
+        mirror={false}
+        orientation="top"
+        padding={
+          Object {
+            "left": 0,
+            "right": 0,
+          }
+        }
+        reversed={false}
+        scale="auto"
+        tick={[Function]}
+        tickCount={5}
+        tickLine={false}
+        type="category"
+        width={0}
+        xAxisId={1}
+      />
+      <ReferenceLine
+        fill="none"
+        fillOpacity={1}
+        ifOverflow="discard"
+        isFront={false}
+        position="middle"
+        stroke="#607586"
+        strokeWidth={1}
+        xAxisId={0}
+        y={0}
+        yAxisId={0}
+      />
+      <ReferenceLine
+        fill="none"
+        fillOpacity={1}
+        ifOverflow="discard"
+        isFront={false}
+        position="middle"
+        stroke="#607586"
+        strokeWidth={1}
+        xAxisId={0}
+        y={0}
+        yAxisId={0}
+      />
+      <ReferenceLine
+        fill="none"
+        fillOpacity={1}
+        ifOverflow="discard"
+        isFront={false}
+        position="middle"
+        stroke="#607586"
+        strokeWidth={1}
+        xAxisId={0}
+        y={0}
+        yAxisId={0}
+      />
+      <Tooltip
+        active={false}
+        allowEscapeViewBox={
+          Object {
+            "x": false,
+            "y": false,
+          }
+        }
+        animationDuration={400}
+        animationEasing="ease"
+        contentStyle={
+          Object {
+            "backgroundColor": "#213445",
+            "border": 0,
+            "borderRadius": 5,
+          }
+        }
+        coordinate={
+          Object {
+            "x": 0,
+            "y": 0,
+          }
+        }
+        cursor={
+          Object {
+            "fill": "#FFE600",
+            "fillOpacity": 0.2,
+            "strokeWidth": 2,
+          }
+        }
+        cursorStyle={Object {}}
+        filterNull={true}
+        isAnimationActive={true}
+        itemStyle={Object {}}
+        labelFormatter={[Function]}
+        labelStyle={Object {}}
+        offset={10}
+        separator=" : "
+        useTranslate3d={false}
+        viewBox={
+          Object {
+            "x1": 0,
+            "x2": 0,
+            "y1": 0,
+            "y2": 0,
+          }
+        }
+        wrapperStyle={Object {}}
+      />
+      <Bar
+        animationBegin={0}
+        animationDuration={400}
+        animationEasing="ease"
+        barSize={10}
+        data={Array []}
+        dataKey="p"
+        fill="#FFE600"
+        hide={false}
+        isAnimationActive={true}
+        layout="vertical"
+        legendType="rect"
+        minPointSize={0}
+        onAnimationEnd={[Function]}
+        onAnimationStart={[Function]}
+        radius={
+          Array [
+            10,
+            10,
+            0,
+            0,
+          ]
+        }
+        stroke="#FFE600"
+        unit=" kWh"
+        xAxisId={0}
+        yAxisId={0}
+      />
+      <Bar
+        animationBegin={0}
+        animationDuration={400}
+        animationEasing="ease"
+        barSize={10}
+        data={Array []}
+        dataKey="c"
+        fill="#C4C4C4"
+        hide={false}
+        isAnimationActive={true}
+        layout="vertical"
+        legendType="rect"
+        minPointSize={0}
+        onAnimationEnd={[Function]}
+        onAnimationStart={[Function]}
+        radius={
+          Array [
+            10,
+            10,
+            0,
+            0,
+          ]
+        }
+        stroke="#C4C4C4"
+        unit=" kWh"
+        xAxisId={0}
+        yAxisId={0}
+      />
+      <XAxis
+        allowDataOverflow={false}
+        allowDecimals={true}
+        allowDuplicatedCategory={true}
+        axisLine={false}
+        domain={
+          Array [
+            0,
+            "auto",
+          ]
+        }
+        height={30}
+        hide={false}
+        id="wheather-axis"
+        interval={3}
+        mirror={false}
+        orientation="bottom"
+        padding={
+          Object {
+            "left": 0,
+            "right": 0,
+          }
+        }
+        reversed={false}
+        scale="auto"
+        tick={
+          <XTick
+            data={Array []}
+            view="day"
+          />
+        }
+        tickCount={5}
+        tickLine={false}
+        type="category"
+        width={0}
+        xAxisId={0}
+      />
+      <YAxis
+        allowDataOverflow={false}
+        allowDecimals={true}
+        allowDuplicatedCategory={true}
+        axisLine={false}
+        domain={
+          Array [
+            "dataMin",
+            "dataMax + 0",
+          ]
+        }
+        height={0}
+        hide={false}
+        interval={0}
+        mirror={false}
+        orientation="left"
+        padding={
+          Object {
+            "bottom": 0,
+            "top": 0,
+          }
+        }
+        reversed={false}
+        scale="auto"
+        tick={
+          Object {
+            "fill": "#F8F8F8",
+            "fontSize": 10,
+            "textAnchor": "middle",
+          }
+        }
+        tickCount={5}
+        tickFormatter={[Function]}
+        tickLine={false}
+        tickMargin={10}
+        ticks={
+          Array [
+            0,
+            0,
+            0,
+            0,
+            0,
+          ]
+        }
+        type="number"
+        width={25}
+        yAxisId={0}
+      />
+      <ReferenceArea
+        fill="#04070A"
+        fillOpacity={0.3}
+        ifOverflow="extendDomain"
+        isFront={true}
+        r={10}
+        stroke="none"
+        strokeWidth={1}
+        xAxisId={0}
+        y1={0}
+        y2={0}
+        yAxisId={0}
+      />
+      <ReferenceLine
+        fill="none"
+        fillOpacity={1}
+        ifOverflow="discard"
+        isFront={true}
+        position="middle"
+        stroke="white"
+        strokeWidth={2}
+        xAxisId={0}
+        y={0}
+        yAxisId={0}
+      />
+      <Legend
+        align="center"
+        content={[Function]}
+        iconSize={14}
+        layout="horizontal"
+        onClick={[Function]}
+        verticalAlign="bottom"
+        wrapperStyle={
+          Object {
+            "paddingTop": "30px",
+          }
+        }
+      />
+    </ComposedChart>
+  </ResponsiveContainer>
+</div>
+`;
