@@ -6,6 +6,7 @@ import feedbackEpic from './feedback'
 import siteEpic from './site'
 import pvsEpic from './pvs'
 import systemConfigurationEpics from './systemConfiguration'
+import liveEnergyData from './live-energy-data'
 
 export default combineEpics(
   ...networkPollingEpics,
@@ -14,5 +15,6 @@ export default combineEpics(
   ...firmwareUpdatesEpics,
   siteEpic,
   pvsEpic,
-  ...systemConfigurationEpics
+  ...systemConfigurationEpics,
+  liveEnergyData
 )
