@@ -31,9 +31,9 @@ export const sendFeedbackEpic = (action$, state$) =>
 
       return from(postEncodedBody(postValues, state$.value)).pipe(
         map(({ status, data }) =>
-        status === 200
-          ? feedbackActions.SEND_FEEDBACK_SUCCESS()
-          : feedbackActions.SEND_FEEDBACK_ERROR({ status, data })
+          status === 200
+            ? feedbackActions.SEND_FEEDBACK_SUCCESS()
+            : feedbackActions.SEND_FEEDBACK_ERROR({ status, data })
         ),
         catchError(err => of(feedbackActions.SEND_FEEDBACK_ERROR(err)))
       )
