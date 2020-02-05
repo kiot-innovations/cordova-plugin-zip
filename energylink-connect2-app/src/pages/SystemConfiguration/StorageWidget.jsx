@@ -28,7 +28,7 @@ function StorageWidget() {
           <section className="box is-flex space-around has-background-black has-text-grey pl-10 pr-10">
             <article>
               <h6 className="is-size-5 has-text-white is-lowercase">
-                {`${batteries.length} ${t('BATTERIES')}`}
+                {batteries.length} {t('BATTERIES')}
               </h6>
               <ul>
                 {batteries.map(({ serialNumber }) => (
