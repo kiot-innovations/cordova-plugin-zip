@@ -11,6 +11,7 @@ import { globalReducer } from './global'
 import { storesVersions } from './migrations'
 import { siteReducer } from './site'
 import { shareReducer } from './share'
+import { energyDataReducer } from './energy-data'
 import { energyLiveData } from './energy-live-data'
 
 import ui from './ui'
@@ -46,6 +47,23 @@ export default combineReducers({
   devices: devicesReducer,
   share: shareReducer,
   systemConfiguration: systemConfigurationReducer,
-  energyLiveData
+  energyLiveData,
+  energyData: persistReducer(
+    {
+      key: 'energyData',
+      storage,
+      blacklist: [
+        'isLoading',
+        'isLoadingPower',
+        'isPolling',
+        'isPollingPower',
+        'isPollingCurrentPower',
+        'isPollingLTD',
+        'currentPower'
+      ],
+      version: storesVersions.energyDataReducer
+    },
+    energyDataReducer
+  )
   // Add reducers here
 })

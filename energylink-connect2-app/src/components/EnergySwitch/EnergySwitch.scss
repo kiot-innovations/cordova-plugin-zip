@@ -1,0 +1,41 @@
+@import '~@sunpower/theme-dark/styles/variables';
+
+.energy-switch {
+  background: $light-black;
+  position: relative;
+  border-radius: 70px;
+  border: 1px solid $dark-gray;
+
+  .selected-label {
+    position: absolute;
+    top: 0;
+    width: 50%;
+    height: 100%;
+    border-radius: 70px;
+    background: $black;
+    transition: all 400ms;
+
+    &.selected-0 {
+      left: 0;
+    }
+    &.selected-1 {
+      left: 50%;
+    }
+  }
+
+  .entries {
+    z-index: 0;
+    width: 100%;
+
+    div {
+      width: 50%;
+      text-align: center;
+      cursor: pointer;
+    }
+
+    .selected {
+      transition: color 400ms;
+      color: $white;
+    }
+  }
+}
