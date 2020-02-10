@@ -16,7 +16,7 @@ function EnergySwitch({ entries = [], onChange = () => {} }) {
       <div className="entries is-flex pt-8 pb-8">
         {entries.map(({ id, value, selected }) => (
           <div
-            className={clsx(id.toLowerCase(), selected ? 'selected' : '')}
+            className={clsx(id.toLowerCase(), { selected })}
             key={value}
             onClick={() => onChange(id)}
           >
