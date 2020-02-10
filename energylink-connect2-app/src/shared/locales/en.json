@@ -154,8 +154,10 @@
   "CONSUMPTION_LINE": "Consumption (Line-Side Solar System)",
   "PRODUCTION_REVENUE": "Production (Revenue Grade Metering)",
   "SUBMIT_CONFIG": "Submit Configuration",
+  "SUBMITTING": "Submitting...",
   "FETCHING_OPTIONS": "Fetching Options...",
   "SELECT_A_GRID_PROFILE": "Please select a grid profile",
   "NO_SELF_SUPPLY": "No Self Supply",
+  "ERROR_CONFIGURATION": "There was an error saving your configurations, please check the values and try again",
   "ENERGY_GRAPH": "Energy Graph"
 }

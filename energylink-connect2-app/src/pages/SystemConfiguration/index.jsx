@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import { SUBMIT_CONFIG } from '../../state/actions/systemConfiguration'
 import paths from 'routes/paths'
+import useModal from 'hooks/useModal'
 import NetworkWidget from './NetworkWidget'
 import MetersWidget from './MetersWidget'
 import GridBehaviorWidget from './GridBehaviorWidget'
@@ -11,7 +12,7 @@ import StorageWidget from './StorageWidget'
 import RSEWidget from './RSEWidget'
 import './SystemConfiguration.scss'
 
-function SystemConfiguration() {
+function SystemConfiguration({ animationState }) {
   const t = useI18n()
   const dispatch = useDispatch()
   const history = useHistory()
@@ -25,10 +26,35 @@ function SystemConfiguration() {
   )
 
   useEffect(() => {
-    if (submitted) {
+    if (submitted && animationState !== 'leave') {
       history.push(paths.PROTECTED.INSTALL_SUCCESS.path)
     }
   })
+
+  const modalTitle = (
+    <span className="has-text-white has-text-weight-bold">
+      {t('ATTENTION')}
+    </span>
+  )
+
+  const modalContent = (
+    <div className="has-text-centered is-flex flex-column">
+      <span className="has-text-white mb-10">{t('ERROR_CONFIGURATION')}</span>
+      <button
+        className="button half-button-padding is-primary"
+        onClick={() => toggleModal()}
+      >
+        {t('CONTINUE')}
+      </button>
+    </div>
+  )
+
+  const { modal, toggleModal } = useModal(
+    animationState,
+    modalContent,
+    modalTitle,
+    false
+  )
 
   const validateConfig = configObject => {
     for (let value of Object.values(configObject)) {
@@ -49,7 +75,7 @@ function SystemConfiguration() {
       if (validateConfig(configObject)) {
         dispatch(SUBMIT_CONFIG(configObject))
       } else {
-        alert('Invalid object')
+        toggleModal()
       }
     } catch (err) {
       console.error(err)
@@ -58,22 +84,10 @@ function SystemConfiguration() {
 
   return (
     <div className="fill-parent is-flex tile is-vertical has-text-centered system-config pl-10 pr-10">
+      {modal}
       <span className="is-uppercase has-text-weight-bold mb-20">
         {t('SYSTEM_CONFIGURATION')}
       </span>
-
-      {submitting ? (
-        <div>
-          <div className="custom-loader">
-            <div className="loader-inner line-scale-pulse-out-rapid">
-              <div /> <div /> <div /> <div /> <div />
-            </div>
-          </div>
-          <span className="hint-text">{t('SUBMITTING_CONFIG')}</span>
-        </div>
-      ) : (
-        ''
-      )}
       <GridBehaviorWidget />
       <MetersWidget />
       <StorageWidget />
@@ -85,7 +99,7 @@ function SystemConfiguration() {
           className="button is-primary is-uppercase"
           disabled={submitting}
         >
-          {t(submitting ? 'SUBMITTING...' : 'SUBMIT_CONFIG')}
+          {t(submitting ? 'SUBMITTING' : 'SUBMIT_CONFIG')}
         </button>
       </div>
     </div>
