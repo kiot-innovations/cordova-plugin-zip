@@ -1,5 +1,6 @@
 import React from 'react'
 import clsx from 'clsx'
+import './Textarea.scss'
 
 const TextArea = ({
   input,
