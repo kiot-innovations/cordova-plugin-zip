@@ -5,6 +5,7 @@ import {
   PVS_CONNECTION_INIT,
   PVS_CONNECTION_SUCCESS
 } from 'state/actions/network'
+import { STOP_NETWORK_POLLING } from '../../actions/network'
 
 const IOS = 'iOS'
 const WPA = 'WPA'
@@ -23,7 +24,12 @@ const connectToEpic = action$ =>
         }
         return PVS_CONNECTION_SUCCESS()
       } catch (err) {
-        return PVS_CONNECTION_INIT({ ssid: ssid, password: password })
+        if (err.includes('Code=7')) {
+          alert('Halting reconnection attempt')
+          return STOP_NETWORK_POLLING()
+        } else {
+          return PVS_CONNECTION_INIT({ ssid: ssid, password: password })
+        }
       }
     })
   )
