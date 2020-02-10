@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import {
   FETCH_GRID_BEHAVIOR,
   SET_GRID_PROFILE,
+  SET_LAZY_GRID_PROFILE,
   SET_EXPORT_LIMIT,
   SET_GRID_VOLTAGE
 } from 'state/actions/systemConfiguration'
@@ -73,6 +74,15 @@ function GridBehaviorWidget() {
     dispatch(SET_GRID_VOLTAGE(value.value))
   }
 
+  const setLazyGridProfile = value => {
+    dispatch(SET_LAZY_GRID_PROFILE(value.value))
+  }
+
+  const lazyGridProfileOptions = [
+    { label: 'Yes', value: 1 },
+    { label: 'No', value: 0 }
+  ]
+
   return (
     <div className="pb-15">
       <Collapsible title={t('GRID_BEHAVIOR')} icon={GBI} expanded>
@@ -90,6 +100,27 @@ function GridBehaviorWidget() {
                   useDefaultDropDown
                   options={gridProfileOptions}
                   onSelect={setGridProfile}
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="field is-horizontal">
+          <div className="field-label">
+            <label htmlFor="siteName" className="label has-text-white">
+              {t('LAZY_GRID_PROFILE')}
+            </label>
+          </div>
+          <div className="field-body">
+            <div className="field">
+              <div className="control">
+                <SelectField
+                  isSearchable={false}
+                  useDefaultDropDown
+                  options={lazyGridProfileOptions}
+                  onSelect={setLazyGridProfile}
+                  defaultValue={{ label: 'Yes', value: 1 }}
                 />
               </div>
             </div>

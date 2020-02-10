@@ -3,9 +3,9 @@ import { ofType } from 'redux-observable'
 import { mergeMap } from 'rxjs/operators'
 import {
   PVS_CONNECTION_INIT,
-  PVS_CONNECTION_SUCCESS
+  PVS_CONNECTION_SUCCESS,
+  STOP_NETWORK_POLLING
 } from 'state/actions/network'
-import { STOP_NETWORK_POLLING } from '../../actions/network'
 
 const IOS = 'iOS'
 const WPA = 'WPA'
