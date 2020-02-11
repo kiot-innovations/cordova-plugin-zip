@@ -12,6 +12,9 @@ export const START_COMMISSIONING_SUCCESS = createAction(
 export const START_COMMISSIONING_ERROR = createAction(
   'START_COMMISSIONING_ERROR'
 )
+export const START_DISCOVERY_INIT = createAction('START_DISCOVERY_INIT')
+export const START_DISCOVERY_SUCCESS = createAction('START_DISCOVERY_SUCCESS')
+export const START_DISCOVERY_ERROR = createAction('START_DISCOVERY_ERROR')
 
 export const removeSN = serialNumber => {
   return dispatch => {
