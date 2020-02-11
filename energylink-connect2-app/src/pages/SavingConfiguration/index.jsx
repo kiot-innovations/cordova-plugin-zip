@@ -8,8 +8,8 @@ const SavingConfiguration = () => {
   const t = useI18n()
   const history = useHistory()
 
-  const submitting = false
-  const submitted = true
+  const submitting = true
+  const submitted = false
   const err = false
 
   const goToChangeAddress = () => {

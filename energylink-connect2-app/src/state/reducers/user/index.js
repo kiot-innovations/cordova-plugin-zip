@@ -12,9 +12,7 @@ import {
 import { GET_USER_INIT, GET_USER_SUCCESS } from 'state/actions/user'
 
 const initialState = {
-  auth: {
-    access_token: 123
-  },
+  auth: {},
   data: {}
 }
 
