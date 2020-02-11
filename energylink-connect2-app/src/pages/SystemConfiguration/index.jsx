@@ -67,8 +67,8 @@ function SystemConfiguration({ animationState }) {
   )
 
   const validateConfig = configObject => {
-    for (let value of Object.values(configObject)) {
-      if (value === undefined) {
+    for (const value of Object.values(configObject)) {
+      if (value == null) {
         return false
       }
     }

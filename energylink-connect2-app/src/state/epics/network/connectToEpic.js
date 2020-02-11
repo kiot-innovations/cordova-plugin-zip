@@ -9,6 +9,7 @@ import {
 
 const IOS = 'iOS'
 const WPA = 'WPA'
+const CODE7 = 'Code=7'
 
 const connectToEpic = action$ =>
   action$.pipe(
@@ -24,8 +25,7 @@ const connectToEpic = action$ =>
         }
         return PVS_CONNECTION_SUCCESS()
       } catch (err) {
-        if (err.includes('Code=7')) {
-          alert('Halting reconnection attempt')
+        if (err.includes(CODE7)) {
           return STOP_NETWORK_POLLING()
         } else {
           return PVS_CONNECTION_INIT({ ssid: ssid, password: password })
