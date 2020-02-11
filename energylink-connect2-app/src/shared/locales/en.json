@@ -160,5 +160,14 @@
   "INVERTER": "Inverter",
   "INVERTER_GATEWAY": "Inverter Gateway",
   "INSTALLED": "Installed",
-  "ENERGY_GRAPH": "Energy Graph"
+  "ENERGY_GRAPH": "Energy Graph",
+  "HOLD_ON": "Hold on",
+  "CONFIG_DONE": "Configuration done",
+  "CONFIG_ERROR": "Error saving configurations",
+  "CONFIG_ERROR_2": "We couldn’t save the configuration on the PVS. Please go back and try again",
+  "DONT_CLOSE_APP": "Please, don't close the application",
+  "ONE_LAST_STEP": "One last step",
+  "UPDATE_LAYOUT_ELA": "Don't forget to update the panel layout in EnergyLink Admin",
+  "CONFIG_NEW_SITE": "Configure a new site",
+  "RETRY": "Retry"
 }

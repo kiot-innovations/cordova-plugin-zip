@@ -1,0 +1,91 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SavingConfiguration component renders correctly 1`] = `
+<BrowserRouter
+  keyLength={0}
+>
+  <Router
+    history={
+      Object {
+        "action": "POP",
+        "block": [Function],
+        "createHref": [Function],
+        "go": [Function],
+        "goBack": [Function],
+        "goForward": [Function],
+        "length": 1,
+        "listen": [Function],
+        "location": Object {
+          "hash": "",
+          "pathname": "/",
+          "search": "",
+          "state": undefined,
+        },
+        "push": [Function],
+        "replace": [Function],
+      }
+    }
+  >
+    <Provider
+      store={
+        Object {
+          "clearActions": [Function],
+          "dispatch": [Function],
+          "getActions": [Function],
+          "getState": [Function],
+          "replaceReducer": [Function],
+          "subscribe": [Function],
+        }
+      }
+    >
+      <SavingConfiguration>
+        <div
+          className="saving-configuration has-text-centered pt-20 pr-20 pl-20"
+        >
+          <span
+            className="is-uppercase has-text-weight-bold"
+          >
+            CONFIG_DONE
+          </span>
+          <div
+            className="pt-20 pb-20"
+          >
+            <i
+              className="sp-check has-text-white is-size-1"
+            />
+          </div>
+          <div
+            className="status-message"
+          >
+            <span
+              className="has-text-white has-text-weight-bold"
+            >
+              SAVED_CONFIGURATION
+            </span>
+            <span
+              className="has-text-weight-bold"
+            >
+              ONE_LAST_STEP
+            </span>
+            <span>
+              UPDATE_LAYOUT_ELA
+            </span>
+            <button
+              className="button is-secondary"
+              onClick={[Function]}
+            >
+              CONFIG_NEW_SITE
+            </button>
+            <button
+              className="button is-primary"
+              onClick={[Function]}
+            >
+              DONE
+            </button>
+          </div>
+        </div>
+      </SavingConfiguration>
+    </Provider>
+  </Router>
+</BrowserRouter>
+`;
