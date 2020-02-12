@@ -4,6 +4,7 @@ import {
   LOGIN_INIT,
   LOGOUT,
   LOGIN_ERROR,
+  SAVE_REFRESHED_TOKEN,
   VALIDATE_SESSION_INIT,
   VALIDATE_SESSION_SUCCESS,
   VALIDATE_SESSION_ERROR
@@ -41,6 +42,10 @@ export const userReducer = createReducer(
       data: payload
     }),
     [LOGOUT]: () => initialState,
+    [SAVE_REFRESHED_TOKEN]: (state, payload) => ({
+      ...state.auth,
+      access_token: payload
+    }),
     [VALIDATE_SESSION_INIT]: state => ({
       ...state,
       auth: { ...state.auth },
