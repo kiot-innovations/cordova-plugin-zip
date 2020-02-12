@@ -1,20 +1,6 @@
 @import '~@sunpower/theme-dark/styles/variables';
 @import '~loaders.css/src/animations/line-scale-pulse-out-rapid';
 
-.custom-loader{
-  flex: 0 1 auto;
-  flex-direction: column;
-  flex-grow: 1;
-  flex-shrink: 0;
-  flex-basis: 25%;
-  height: 150px;
-  align-items: center;
-  justify-content: center;
-  box-sizing: border-box;
-  display: -ms-flexbox;
-  display: flex;
-}
-
 .sn-modal{
   padding: 1rem;
   text-align: center;

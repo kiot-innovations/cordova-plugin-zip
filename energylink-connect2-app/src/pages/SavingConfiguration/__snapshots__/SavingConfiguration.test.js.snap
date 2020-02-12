@@ -45,38 +45,27 @@ exports[`SavingConfiguration component renders correctly 1`] = `
           <span
             className="is-uppercase has-text-weight-bold"
           >
-            HOLD_ON
+            CONFIG_ERROR
           </span>
           <div
-            className="custom-loader"
+            className="pt-20 pb-20"
           >
-            <div
-              className="loader-inner line-scale-pulse-out-rapid"
-            >
-              <div />
-               
-              <div />
-               
-              <div />
-               
-              <div />
-               
-              <div />
-            </div>
+            <i
+              className="sp-close has-text-white is-size-1"
+            />
           </div>
           <div
             className="status-message"
           >
             <span>
-               
-              SAVING_CONFIGURATION
-               
+              CONFIG_ERROR_2
             </span>
-            <span
-              className="has-text-weight-bold"
+            <button
+              className="button is-primary"
+              onClick={[Function]}
             >
-              DONT_CLOSE_APP
-            </span>
+              RETRY
+            </button>
           </div>
         </div>
       </SavingConfiguration>

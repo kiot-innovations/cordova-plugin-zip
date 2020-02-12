@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useI18n } from 'shared/i18n'
 import { Link, useHistory } from 'react-router-dom'
 import { BarcodeIcon } from './assets'
+import { Loader } from 'components/Loader'
 import paths from 'routes/paths'
 import './ScanLabels.scss'
 import { GET_SN_INIT } from 'state/actions/pvs'
@@ -53,11 +54,7 @@ function ScanLabels({ animationState }) {
           <BarcodeIcon />
         ) : (
           <div>
-            <div className="custom-loader">
-              <div className="loader-inner line-scale-pulse-out-rapid">
-                <div /> <div /> <div /> <div /> <div />
-              </div>
-            </div>
+            <Loader />
             <span className="hint-text">
               {t(openingCamera ? 'OPENING_CAMERA' : 'FETCHING_SN')}
             </span>
