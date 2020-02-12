@@ -128,16 +128,17 @@ export const handleUserProfile = (tokenInfo = {}) => {
   }
 }
 
-export const verifyToken = access_token => {
+export const verifyToken = (access_token, refresh_token) => {
   return dispatch => {
     authClient
       .verifyTokenOAuth(access_token)
       .then(response => {
         if (!response.uniqueId) {
           try {
-            httpGet('/refresh', null, access_token)
-              .then(newToken => {
-                dispatch(SAVE_REFRESHED_TOKEN(newToken))
+            authClient
+              .refreshTokenOAuth(refresh_token)
+              .then(newAuthInfo => {
+                dispatch(SAVE_REFRESHED_TOKEN(newAuthInfo))
               })
               .catch(error => {
                 console.error(error)
@@ -168,7 +169,7 @@ export const validateSession = () => {
     const { user } = getState()
     if (user.auth.access_token) {
       dispatch(VALIDATE_SESSION_INIT())
-      dispatch(verifyToken(user.auth.access_token))
+      dispatch(verifyToken(user.auth.access_token, user.auth.refresh_token))
     }
   }
 }
