@@ -1,18 +1,24 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useI18n } from 'shared/i18n'
 import './PvsConnectionSuccessful.scss'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import paths from 'routes/paths'
+import { START_COMMISSIONING_INIT } from 'state/actions/pvs'
 
-const PvsConnectionSuccessful = () => {
+const PvsConnectionSuccessful = ({ animationState }) => {
   const t = useI18n()
+  const dispatch = useDispatch()
   const serialNumber = useSelector(state => state.pvs.serialNumber)
   const history = useHistory()
 
   const goToScanLabels = () => {
     history.push(paths.PROTECTED.SCAN_LABELS.path)
   }
+
+  useEffect(() => {
+    if (animationState === 'enter') dispatch(START_COMMISSIONING_INIT())
+  }, [dispatch, animationState])
 
   return (
     <div className="tile is-flex is-vertical has-text-centered pvs-connection-success-screen page-height">

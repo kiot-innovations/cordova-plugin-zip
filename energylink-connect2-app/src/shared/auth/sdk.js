@@ -47,6 +47,21 @@ const verifyTokenOAuth = access_token => {
   return post(getBaseApiUrlOAuth(true, true), headers, buildURL(params))
 }
 
+const refreshTokenOAuth = refresh_token => {
+  const params = {
+    grant_type: 'refresh_token',
+    refresh_token,
+    client_id: config.client_id
+  }
+
+  const headers = {
+    'Content-Type': 'application/x-www-form-urlencoded',
+    Authorization: `Basic ${config.secret}`,
+    access_token_manager_id: 'atm:jwt'
+  }
+  return post(getBaseApiUrlOAuth(), headers, buildURL(params))
+}
+
 /**
  * Obtain an access token in a format of:
  * {access_token: "bla", token_type: "Bearer", expires_in: 3600, scope: "address phone openid profile email", id_token: "bla"}
@@ -116,6 +131,7 @@ export default {
   getAccessTokenOAuth,
   getUserInfoOAuth,
   verifyTokenOAuth,
+  refreshTokenOAuth,
   parseURL,
   generateRandomValue
 }

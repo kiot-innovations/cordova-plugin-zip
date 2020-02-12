@@ -157,5 +157,8 @@
   "FETCHING_OPTIONS": "Fetching Options...",
   "SELECT_A_GRID_PROFILE": "Please select a grid profile",
   "NO_SELF_SUPPLY": "No Self Supply",
+  "INVERTER": "Inverter",
+  "INVERTER_GATEWAY": "Inverter Gateway",
+  "INSTALLED": "Installed",
   "ENERGY_GRAPH": "Energy Graph"
 }

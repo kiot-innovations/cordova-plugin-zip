@@ -84,13 +84,13 @@ const parseResponse = res => {
 export const postEncodedBody = (
   body,
   state = {},
-  URL = 'https://dev-edp-api.dev-edp.sunpower.com/v1/party/feedback',
+  URL = 'https://dev-edp-api.dev-edp.sunpower.com/v1/party/feedback'
 ) => {
   return fetch(URL, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded',
-      'Authorization': `Bearer ${path(['user', 'auth', 'access_token'], state)}`
+      Authorization: `Bearer ${path(['user', 'auth', 'access_token'], state)}`
     },
     body
   })
@@ -113,7 +113,8 @@ export const postBinary = (
 export const encodedParams = values => {
   return Object.keys(values)
     .map(key => {
-      const param = encodeURIComponent(key) + '=' + encodeURIComponent(values[key])
+      const param =
+        encodeURIComponent(key) + '=' + encodeURIComponent(values[key])
       return param
     })
     .join('&')

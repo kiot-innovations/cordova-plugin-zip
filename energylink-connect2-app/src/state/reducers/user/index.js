@@ -43,8 +43,8 @@ export const userReducer = createReducer(
     }),
     [LOGOUT]: () => initialState,
     [SAVE_REFRESHED_TOKEN]: (state, payload) => ({
-      ...state.auth,
-      access_token: payload
+      ...state,
+      auth: payload // payload comes with all
     }),
     [VALIDATE_SESSION_INIT]: state => ({
       ...state,

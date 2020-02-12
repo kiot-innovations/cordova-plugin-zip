@@ -3,9 +3,7 @@
 .collapsible {
   background-color: $silver-sand4;
   text-align: left;
-  padding: $font-size-big;
-  padding-bottom: $font-size;
-  max-height: 500px;
+  padding: $font-size-big $font-size-big $font-size;
   font-family: $font;
   letter-spacing: 0;
   border-radius: 5px;
@@ -44,8 +42,7 @@
 
   &-content {
     opacity: 0;
-    transition: max-height 0.4s ease-out;
-    transition: opacity 0.4s;
+    transition: max-height 0.4s ease-out, opacity 0.4s;
   }
 
   .collapsed {
@@ -56,7 +53,6 @@
   .expanded {
     max-height: 700px;
     overflow-y: scroll;
-
     opacity: 1;
     border-top: 1px solid #f2f2f22e;
     padding-top: 10px;

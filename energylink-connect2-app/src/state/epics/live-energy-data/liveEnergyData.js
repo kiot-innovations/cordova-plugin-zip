@@ -16,7 +16,7 @@ import { LOGIN_SUCCESS } from 'state/actions/auth'
 
 const createWebsocketObservable = () =>
   new Observable(subscriber => {
-    const ws = new WebSocket(`ws://sunpowerconsole.com:9002/`, {
+    const ws = new WebSocket(process.env.REACT_APP_PVS_WS, {
       reconnect: false
     })
 
