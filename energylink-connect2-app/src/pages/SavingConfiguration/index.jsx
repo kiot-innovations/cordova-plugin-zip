@@ -4,17 +4,17 @@ import { useHistory } from 'react-router-dom'
 import { Loader } from 'components/Loader'
 import paths from 'routes/paths'
 import './SavingConfiguration.scss'
+import { useSelector } from 'react-redux'
 
 const SavingConfiguration = () => {
   const t = useI18n()
   const history = useHistory()
-
-  const submitting = false
-  const submitted = false
-  const err = true
+  const { submitting, submitted, err } = useSelector(
+    state => state.systemConfiguration.submit
+  )
 
   const goToChangeAddress = () => {
-    history.push(paths.PROTECTED.CHANGE_ADDRESS.path)
+    history.push(paths.PROTECTED.ROOT.path)
   }
 
   const goToConfig = () => {
