@@ -1,5 +1,4 @@
 import { pathOr } from 'ramda'
-import { EmptyActionCreator as FIRMWARE_GET_VERSION_ERROR } from 'redux-act'
 import { ofType } from 'redux-observable'
 import { from, of } from 'rxjs'
 import { catchError, flatMap, map } from 'rxjs/operators'
@@ -7,7 +6,8 @@ import { getApiPVS } from 'shared/api'
 import { getFirmwareVersionNumber } from 'state/actions/fileDownloader'
 import {
   FIRMWARE_GET_VERSION_COMPLETE,
-  FIRMWARE_UPDATE_INIT
+  FIRMWARE_UPDATE_INIT,
+  FIRMWARE_GET_VERSION_ERROR
 } from 'state/actions/firmwareUpdate'
 import { PVS_CONNECTION_SUCCESS } from 'state/actions/network'
 
