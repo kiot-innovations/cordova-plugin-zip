@@ -16,7 +16,7 @@ export const startDiscoveryEpic = (action$, state$) =>
       return from(promise).pipe(
         map(response =>
           response.status === 200
-            ? pvsActions.START_DISCOVERY_SUCCESS(response) // { result: "succeed", supervisor: {...} }
+            ? pvsActions.START_DISCOVERY_SUCCESS(response)
             : pvsActions.START_DISCOVERY_ERROR('SEND_COMMAND_ERROR')
         ),
         catchError(err => of(pvsActions.START_DISCOVERY_ERROR(err)))
