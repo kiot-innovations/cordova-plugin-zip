@@ -85,10 +85,8 @@ function SystemConfiguration({ animationState }) {
       }
       if (validateConfig(configObject)) {
         dispatch(SUBMIT_CONFIG(configObject))
-        toggleModal()
-      } else {
-        toggleModal()
       }
+      toggleModal()
     } catch (err) {
       console.error(err)
     }

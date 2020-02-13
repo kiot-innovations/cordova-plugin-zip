@@ -8,7 +8,7 @@ import {
   SET_EXPORT_LIMIT,
   SET_GRID_VOLTAGE
 } from 'state/actions/systemConfiguration'
-import { pathOr, length } from 'ramda'
+import { pathOr, length, head } from 'ramda'
 import Collapsible from 'components/Collapsible'
 import SelectField from 'components/SelectField'
 import './SystemConfiguration.scss'
@@ -120,7 +120,7 @@ function GridBehaviorWidget() {
                   useDefaultDropDown
                   options={lazyGridProfileOptions}
                   onSelect={setLazyGridProfile}
-                  defaultValue={{ label: 'Yes', value: 1 }}
+                  defaultValue={head(lazyGridProfileOptions)}
                 />
               </div>
             </div>
