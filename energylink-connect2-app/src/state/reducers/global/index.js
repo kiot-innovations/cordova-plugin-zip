@@ -1,6 +1,11 @@
 import { createReducer } from 'redux-act'
 import { TOGGLE_MODAL } from '../../actions/modal'
-import { SELECT_ENERGY_GRAPH, GRAPHS } from '../../actions/user'
+import {
+  SELECT_ENERGY_GRAPH,
+  GRAPHS,
+  DATA_SOURCES,
+  SELECT_DATA_SOURCE
+} from '../../actions/user'
 import { DEVICE_RESUME } from '../../actions/mobile'
 import {
   SEND_FEEDBACK_INIT,
@@ -18,9 +23,10 @@ const initialState = {
   },
   isAccountCreated: false,
   isDeviceResumeListened: false,
-  selectedEnergyGraph: GRAPHS.ENERGY,
+  selectedEnergyGraph: GRAPHS.POWER,
   isSendingFeedback: false,
-  isFeedbackSuccessful: false
+  isFeedbackSuccessful: false,
+  selectedDataSource: DATA_SOURCES.LIVE
 }
 
 export const globalReducer = createReducer(
@@ -35,6 +41,10 @@ export const globalReducer = createReducer(
     [SELECT_ENERGY_GRAPH]: (state, action) => ({
       ...state,
       selectedEnergyGraph: action
+    }),
+    [SELECT_DATA_SOURCE]: (state, action) => ({
+      ...state,
+      selectedDataSource: action
     }),
     [DEVICE_RESUME]: state => ({ ...state, isDeviceResumeListened: true }),
     [SEND_FEEDBACK_INIT]: state => ({ ...state, isSendingFeedback: true }),

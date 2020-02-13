@@ -1,12 +1,15 @@
 import React, { useEffect } from 'react'
 import './Data.scss'
 import { useDispatch, useSelector } from 'react-redux'
-import EnergyGraph, { VIEWS } from '../../components/EnergyGraph'
 import RightNow from '../../components/RightNow'
 import EnergyMix from '../../components/EnergyMix'
 import { useI18n } from '../../shared/i18n'
 import { roundDecimals } from '../../shared/rounding'
-import { ENERGY_DATA_START_POLLING } from '../../state/actions/energy-data'
+import {
+  ENERGY_DATA_START_POLLING,
+  ENERGY_DATA_STOP_POLLING
+} from '../../state/actions/energy-data'
+import EnergyGraphSection from './EnergyGraphSection'
 
 export default () => {
   const t = useI18n()
@@ -15,6 +18,10 @@ export default () => {
 
   useEffect(() => {
     dispatch(ENERGY_DATA_START_POLLING())
+  }, [dispatch])
+
+  useEffect(() => {
+    return () => dispatch(ENERGY_DATA_STOP_POLLING())
   }, [dispatch])
 
   let data = {
@@ -57,20 +64,8 @@ export default () => {
           batteryLevel={data.stateOfCharge}
         />
       </section>
-      <section>
-        <h6 className="is-uppercase mt-20 mb-20">{t('ENERGY_GRAPH')}</h6>
-        <EnergyGraph
-          className="power-graph"
-          series={['pp', 'pc', 'ps']}
-          unitLabel="kW"
-          hasStorage={true}
-          power={true}
-          data={liveData}
-          weather={true}
-          view={VIEWS.LIVE}
-          animation={false}
-        />
-      </section>
+      <div className="separator" />
+      <EnergyGraphSection />
       <section>
         <h6 className="is-uppercase mt-20 mb-20">{t('ENERGY_MIX')}</h6>
         <EnergyMix {...data} hasStorage={true} />
