@@ -4,7 +4,10 @@ import './PvsConnectionSuccessful.scss'
 import { useSelector, useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import paths from 'routes/paths'
-import { START_COMMISSIONING_INIT } from 'state/actions/pvs'
+import {
+  START_COMMISSIONING_INIT,
+  START_DISCOVERY_INIT
+} from 'state/actions/pvs'
 
 const PvsConnectionSuccessful = ({ animationState }) => {
   const t = useI18n()
@@ -17,7 +20,10 @@ const PvsConnectionSuccessful = ({ animationState }) => {
   }
 
   useEffect(() => {
-    if (animationState === 'enter') dispatch(START_COMMISSIONING_INIT())
+    if (animationState === 'enter') {
+      dispatch(START_COMMISSIONING_INIT())
+      dispatch(START_DISCOVERY_INIT())
+    }
   }, [dispatch, animationState])
 
   return (
