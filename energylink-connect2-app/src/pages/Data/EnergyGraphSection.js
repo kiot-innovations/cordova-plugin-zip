@@ -7,12 +7,13 @@ import {
   SELECT_ENERGY_GRAPH,
   DATA_SOURCES,
   SELECT_DATA_SOURCE
-} from '../../state/actions/user'
-import EnergyGraph, { VIEWS } from '../../components/EnergyGraph'
-import EnergySwitch from '../../components/EnergySwitch'
-import { INTERVALS } from '../../state/actions/energy-data'
-import { sliceData } from '../../shared/sliceData'
-import { deepMerge } from '../../shared/deepMerge'
+} from 'state/actions/user'
+import { INTERVALS } from 'state/actions/energy-data'
+import EnergyGraph, { VIEWS } from 'components/EnergyGraph'
+import EnergySwitch from 'components/EnergySwitch'
+import { sliceData } from 'shared/sliceData'
+import { deepMerge } from 'shared/deepMerge'
+import './EnergyGraphSection.scss'
 
 const getSelectedGraph = (selectedId, data, dataSource) => {
   if (selectedId === GRAPHS.ENERGY) {
