@@ -25,6 +25,7 @@ import SNList from 'pages/SNList'
 import Devices from 'pages/Devices'
 import InstallSuccessful from 'pages/InstallSuccess'
 import SystemConfiguration from 'pages/SystemConfiguration'
+import SavingConfiguration from 'pages/SavingConfiguration'
 import Logout from 'pages/Logout'
 
 import paths from './paths'
@@ -47,6 +48,7 @@ const mapComponents = {
   [paths.PROTECTED.CONNECT_TO_PVS.path]: ConnectToPVS,
   [paths.PROTECTED.SCAN_LABELS.path]: ScanLabels,
   [paths.PROTECTED.SYSTEM_CONFIGURATION.path]: SystemConfiguration,
+  [paths.PROTECTED.SAVING_CONFIGURATION.path]: SavingConfiguration,
   [paths.PROTECTED.SN_LIST.path]: SNList,
   [paths.UNPROTECTED.FORGOT_PASSWORD.path]: NotFound,
   [paths.UNPROTECTED.GET_ASSISTANCE.path]: NotFound,

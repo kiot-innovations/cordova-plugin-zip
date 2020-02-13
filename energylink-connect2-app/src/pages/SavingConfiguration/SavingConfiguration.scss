@@ -1,0 +1,10 @@
+.saving-configuration{
+  display: grid;
+  vertical-align: middle;
+  align-content: center;
+  height: 100%;
+  .status-message{
+    display: grid;
+    grid-row-gap: 1em;
+  }
+}

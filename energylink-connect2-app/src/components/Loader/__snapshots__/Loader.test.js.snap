@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Loader component renders correctly 1`] = `
+<div
+  className="custom-loader"
+>
+  <div
+    className="loader-inner line-scale-pulse-out-rapid"
+  >
+    <div />
+     
+    <div />
+     
+    <div />
+     
+    <div />
+     
+    <div />
+  </div>
+</div>
+`;

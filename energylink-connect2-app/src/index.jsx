@@ -2,6 +2,7 @@ import 'unfetch/polyfill' // Fetch polyfill
 import React from 'react'
 import ReactDOM from 'react-dom'
 import ReactGA from 'react-ga'
+import * as Sentry from '@sentry/browser'
 import '@sunpower/theme-dark'
 import App from './App'
 
@@ -15,6 +16,8 @@ const GAproperty = process.env.REACT_APP_IS_MOBILE
 
 ReactGA.initialize(GAproperty)
 ReactGA.set({ checkProtocolTask: null })
+
+Sentry.init({ dsn: process.env.REACT_APP_SENTRY_DSN })
 
 const startApp = () => {
   ReactDOM.render(<App />, document.getElementById('root'))

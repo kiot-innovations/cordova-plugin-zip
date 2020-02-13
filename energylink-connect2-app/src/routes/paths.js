@@ -73,6 +73,12 @@ const paths = {
       footer: true,
       tab: TABS.CONFIGURE
     },
+    SAVING_CONFIGURATION: {
+      path: '/saving-configuration',
+      header: true,
+      footer: true,
+      tab: TABS.CONFIGURE
+    },
     DATA: { path: '/data', header: true, footer: true, tab: TABS.DATA }
   },
   UNPROTECTED: {
