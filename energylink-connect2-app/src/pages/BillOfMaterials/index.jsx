@@ -35,7 +35,7 @@ function BillOfMaterials() {
     <main className="full-height pl-10 pr-10 home">
       <div className="pl-20 pr-20 mb-20">
         <img
-          src={`https://maps.googleapis.com/maps/api/staticmap?center=${latitude},${longitude}&zoom=21&size=800x800&key=${process.env.REACT_APP_MAPS_API_KEY}&maptype=hybrid&markers=scale:4|blue|${data.lat_deg},${data.long_deg}&scale=4`}
+          src={`https://maps.googleapis.com/maps/api/staticmap?center=${latitude},${longitude}&zoom=21&size=800x800&key=${process.env.REACT_APP_MAPS_API_KEY}&maptype=hybrid&markers=scale:4|blue|${latitude},${longitude}&scale=4`}
           title=""
           alt=""
           className="is-fullwidth"

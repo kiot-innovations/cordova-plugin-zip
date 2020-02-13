@@ -6,6 +6,7 @@ export const FETCH_GRID_BEHAVIOR_SUCCESS = createAction(
   'FETCH_GRID_BEHAVIOR_SUCCESS'
 )
 export const SET_GRID_PROFILE = createAction('SET_GRID_PROFILE')
+export const SET_LAZY_GRID_PROFILE = createAction('SET_LAZY_GRID_PROFILE')
 export const SET_EXPORT_LIMIT = createAction('SET_EXPORT_LIMIT')
 export const SET_GRID_VOLTAGE = createAction('SET_GRID_VOLTAGE')
 
@@ -22,6 +23,10 @@ export const CONNECT_NETWORK_AP_ERROR = createAction('CONNECT_NETWORK_AP_ERROR')
 export const SET_CONSUMPTION_CT = createAction('SET_CONSUMPTION_CT')
 export const SET_RATED_CURRENT = createAction('SET_RATED_CURRENT')
 export const SET_PRODUCTION_CT = createAction('SET_PRODUCTION_CT')
+
+export const SUBMIT_CONFIG = createAction('SUBMIT_CONFIG')
+export const SUBMIT_CONFIG_SUCCESS = createAction('SUBMIT_CONFIG_SUCCESS')
+export const SUBMIT_CONFIG_ERROR = createAction('SUBMIT_CONFIG_ERROR')
 
 export const GET_STORAGE_INIT = createAction('GET_BATTERIES_INIT')
 export const GET_STORAGE_ERROR = createAction('GET_BATTERIES_ERROR')

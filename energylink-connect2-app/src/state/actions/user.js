@@ -25,6 +25,12 @@ export const getUser = () => {
 }
 
 export const SELECT_ENERGY_GRAPH = createAction('SELECT_ENERGY_GRAPH')
+export const SELECT_DATA_SOURCE = createAction('SELECT_DATA_SOURCE')
+
+export const DATA_SOURCES = {
+  C3: 'C3',
+  LIVE: 'LIVE'
+}
 
 export const GRAPHS = {
   ENERGY: 'energy',

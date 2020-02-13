@@ -7,7 +7,9 @@ import {
   GET_SN_ERROR,
   REMOVE_SN,
   START_COMMISSIONING_ERROR,
-  START_COMMISSIONING_SUCCESS
+  START_COMMISSIONING_SUCCESS,
+  START_DISCOVERY_ERROR,
+  START_DISCOVERY_SUCCESS
 } from '../../actions/pvs'
 
 const initialState = {
@@ -15,7 +17,8 @@ const initialState = {
   serialNumbers: [],
   fetchingSN: false,
   takenImage: null,
-  startCommissioningStatus: null
+  startCommissioningStatus: null,
+  startDiscoveryStatus: null
 }
 
 export const pvsReducer = createReducer(
@@ -24,7 +27,6 @@ export const pvsReducer = createReducer(
       ...state,
       serialNumber: payload
     }),
-
     [GET_SN_INIT]: state => ({
       ...state,
       fetchingSN: true
@@ -45,15 +47,21 @@ export const pvsReducer = createReducer(
         device => device.serial_number !== sn
       )
     }),
-
     [START_COMMISSIONING_SUCCESS]: (state, payload) => ({
       ...state,
       startCommissioningStatus: payload
     }),
-
     [START_COMMISSIONING_ERROR]: (state, payload) => ({
       ...state,
       startCommissioningStatus: payload
+    }),
+    [START_DISCOVERY_SUCCESS]: (state, payload) => ({
+      ...state,
+      startDiscoveryStatus: payload
+    }),
+    [START_DISCOVERY_ERROR]: (state, payload) => ({
+      ...state,
+      startDiscoveryStatus: payload
     })
   },
   initialState

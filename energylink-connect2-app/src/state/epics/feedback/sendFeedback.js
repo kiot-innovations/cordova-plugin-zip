@@ -1,7 +1,7 @@
 import { ofType } from 'redux-observable'
 import { of, from } from 'rxjs'
 import { mergeMap, map, catchError } from 'rxjs/operators'
-import * as feedbackActions from '../../actions/feedback'
+import * as feedbackActions from 'state/actions/feedback'
 import { path } from 'ramda'
 import moment from 'moment'
 import { translate } from 'shared/i18n'

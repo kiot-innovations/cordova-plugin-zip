@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useI18n } from 'shared/i18n'
 import { GET_SN_INIT, REMOVE_SN } from 'state/actions/pvs'
 import { UPDATE_MI_COUNT } from 'state/actions/inventory'
+import { Loader } from 'components/Loader'
 import paths from 'routes/paths'
 import useModal from 'hooks/useModal'
 import BlockUI from 'react-block-ui'
@@ -127,16 +128,6 @@ function SNList({ animationState }) {
         .map(device => createSnItem(device.serial_number))
     : []
 
-  const customLoader = () => {
-    return (
-      <div className="custom-loader">
-        <div className="loader-inner line-scale-pulse-out-rapid">
-          <div /> <div /> <div /> <div /> <div />
-        </div>
-      </div>
-    )
-  }
-
   return (
     <BlockUI tag="div" blocking={openingCamera} message={t('OPENING_CAMERA')}>
       {modal}
@@ -157,7 +148,7 @@ function SNList({ animationState }) {
           ) : (
             <span>{t('SCAN_HINT')}</span>
           )}
-          {fetchingSN ? customLoader() : ''}
+          {fetchingSN ? <Loader /> : ''}
         </div>
         <div className="sn-buttons">
           <button

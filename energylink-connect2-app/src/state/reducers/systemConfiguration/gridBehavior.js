@@ -4,6 +4,7 @@ import {
   FETCH_GRID_BEHAVIOR_ERR,
   FETCH_GRID_BEHAVIOR_SUCCESS,
   SET_GRID_PROFILE,
+  SET_LAZY_GRID_PROFILE,
   SET_EXPORT_LIMIT,
   SET_GRID_VOLTAGE
 } from '../../actions/systemConfiguration'
@@ -17,7 +18,8 @@ const initialState = {
   selectedOptions: {
     profile: '',
     exportLimit: '',
-    gridVoltage: ''
+    gridVoltage: '',
+    lazyGridProfile: 1
   }
 }
 
@@ -63,6 +65,13 @@ export const gridBehaviorReducer = createReducer(
       selectedOptions: {
         ...state.selectedOptions,
         gridVoltage: payload
+      }
+    }),
+    [SET_LAZY_GRID_PROFILE]: (state, payload) => ({
+      ...state,
+      selectedOptions: {
+        ...state.selectedOptions,
+        lazyGridProfile: payload
       }
     })
   },

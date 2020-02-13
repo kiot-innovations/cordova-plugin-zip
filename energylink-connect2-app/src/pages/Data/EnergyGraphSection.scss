@@ -1,0 +1,48 @@
+@import '~@sunpower/theme-dark/styles/variables';
+
+.energy-graph-container {
+  .title {
+    color: $white;
+    white-space: nowrap;
+  }
+
+  .subtitle {
+    color: $white;
+    white-space: nowrap;
+  }
+
+  .icons {
+    align-items: center;
+    justify-content: flex-end;
+    text-align: center;
+  }
+
+  .graph-top-values {
+    display: flex;
+    justify-content: space-between;
+    .prod {
+      color: $daisy;
+      text-align: left;
+    }
+    .cons {
+      text-align: right;
+      color: $silver-sand;
+    }
+
+    div {
+      div:first-child {
+        font-size: $font-size-huge;
+        font-weight: $bold-text;
+      }
+      div:last-child {
+        text-transform: uppercase;
+        font-size: $font-size;
+      }
+    }
+  }
+
+  .live.selected {
+    color: $sun !important;
+    text-shadow: 0px 0px 7px $sun;
+  }
+}
