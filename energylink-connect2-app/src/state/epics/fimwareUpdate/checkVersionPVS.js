@@ -1,9 +1,8 @@
-import { pathOr } from 'ramda'
 import { ofType } from 'redux-observable'
 import { from, of } from 'rxjs'
 import { catchError, flatMap, map } from 'rxjs/operators'
-import { getApiPVS } from 'shared/api'
-import { getFirmwareVersionNumber } from 'state/actions/fileDownloader'
+// import { getApiPVS } from 'shared/api'
+// import { getFirmwareVersionNumber } from 'state/actions/fileDownloader'
 import {
   FIRMWARE_GET_VERSION_COMPLETE,
   FIRMWARE_UPDATE_INIT,
@@ -12,7 +11,8 @@ import {
 import { PVS_CONNECTION_SUCCESS } from 'state/actions/network'
 
 const getPVSVersion = async () => {
-  try {
+  return false
+  /*try {
     const api = await getApiPVS()
     const res = await api.apis.pvs.getSupervisorInfo()
     const { version: serverVersion } = await getFirmwareVersionNumber()
@@ -22,7 +22,7 @@ const getPVSVersion = async () => {
     return serverVersion !== PVSversion
   } catch (e) {
     throw new Error(e)
-  }
+  }*/
 }
 
 const checkVersionPVS = action$ =>

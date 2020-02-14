@@ -1,3 +1,4 @@
+import { compose, join, split, head, slice } from 'ramda'
 import { createAction } from 'redux-act'
 import { getApiFirmware } from 'shared/api'
 
@@ -18,16 +19,21 @@ const ERROR_CODES = {
   parseLuaFile: 'parseLuaFile'
 }
 
+export const getLuaName = compose(
+  join(' '),
+  split('-'),
+  head,
+  slice(-4, -3),
+  split('/')
+)
+
 export async function getFirmwareVersionNumber() {
   try {
     const swagger = await getApiFirmware()
     const response = await swagger.apis.pvs6.firmwareUpdate({ fwver: 0 })
     const fileURL = response.data
-    const fileNameArr = fileURL.split('/').slice(-3)
-    const version = fileNameArr[0]
-    const fileName = fileNameArr.pop()
-    const luaFileName = `${version}-${fileName}`
-    return { luaFileName, fileURL, version }
+    const luaFileName = getLuaName(fileURL)
+    return { luaFileName, fileURL }
   } catch (e) {
     throw new Error(ERROR_CODES.getVersionInfo)
   }
@@ -73,12 +79,12 @@ async function getPersistentFile(fileName, fileUrl, dispatch) {
 export function getFile() {
   return async function(dispatch) {
     try {
-      const { fileURL, luaFileName, version } = await getFirmwareVersionNumber()
+      const { fileURL, luaFileName } = await getFirmwareVersionNumber()
       dispatch(SET_FILE_NAME(luaFileName))
       await getPersistentFile(luaFileName, fileURL, dispatch)
       const fileSystemURL = await parseLuaFile(luaFileName, dispatch)
       removeEventListeners()
-      await getPersistentFile(`${version}-fs.tgz`, fileSystemURL, dispatch)
+      await getPersistentFile(`${luaFileName}.fs`, fileSystemURL, dispatch)
       dispatch(DOWNLOAD_SUCCESS())
     } catch (error) {
       if (error.message === ERROR_CODES.getVersionInfo) {
