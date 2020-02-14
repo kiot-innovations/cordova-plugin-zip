@@ -52,3 +52,5 @@ export const b64toBlob = (b64Data, contentType = '', sliceSize = 512) => {
   const blob = new Blob(byteArrays, { type: contentType })
   return blob
 }
+
+export const isValidSN = sn => /^\d{12,}$/.test(sn)

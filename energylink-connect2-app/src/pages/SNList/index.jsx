@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import { Link, useHistory } from 'react-router-dom'
+import React, { useCallback, useState } from 'react'
+import { useHistory } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { useI18n } from 'shared/i18n'
 import { GET_SN_INIT, REMOVE_SN } from 'state/actions/pvs'
@@ -10,14 +10,22 @@ import useModal from 'hooks/useModal'
 import BlockUI from 'react-block-ui'
 import './SNList.scss'
 import 'react-block-ui/style.css'
+import SNManualEntry from './SNManualEntry'
+import SNScanButtons from './SNScanButtons'
 
 function SNList({ animationState }) {
   const t = useI18n()
   const dispatch = useDispatch()
+  const [isManualMode, setManualMode] = useState(false)
   const history = useHistory()
   const [openingCamera, setOpeningCamera] = useState(false)
   const { serialNumbers, fetchingSN } = useSelector(state => state.pvs)
   const { bom } = useSelector(state => state.inventory)
+
+  const toggleManualMode = useCallback(() => setManualMode(!isManualMode), [
+    isManualMode
+  ])
+
   const modulesOnInventory = bom.filter(item => {
     return item.item === 'MODULES'
   })
@@ -150,31 +158,39 @@ function SNList({ animationState }) {
           )}
           {fetchingSN ? <Loader /> : ''}
         </div>
-        <div className="sn-buttons">
-          <button
-            className="button half-button-padding is-secondary trigger-scan mr-10"
-            onClick={takePicture}
-            disabled={fetchingSN}
-          >
-            {fetchingSN ? t('SCANNING_SN') : t('SCAN_MORE')}
-          </button>
-          <button
-            className="button half-button-padding is-primary trigger-scan"
-            onClick={countSN}
-            disabled={fetchingSN}
-          >
-            {fetchingSN ? t('SCANNING_SN') : t('CONTINUE')}
-          </button>
-        </div>
-        {fetchingSN ? (
-          ''
+
+        {!isManualMode && (
+          <SNScanButtons
+            fetchingSN={fetchingSN}
+            takePicture={takePicture}
+            countSN={countSN}
+          />
+        )}
+
+        {isManualMode && <SNManualEntry toggleOpen={toggleManualMode} />}
+
+        {isManualMode ? (
+          <div className="sn-buttons">
+            <button
+              onClick={toggleManualMode}
+              className="button has-text-centered is-uppercase is-secondary has-no-border mr-40 pl-0 pr-0"
+            >
+              {t('BACK_TO_SCAN')}
+            </button>
+            <button
+              onClick={toggleManualMode}
+              className="button has-text-centered is-uppercase is-secondary has-no-border pl-0 pr-0"
+            >
+              {t('LEGACY_DISCOVERY')}
+            </button>
+          </div>
         ) : (
-          <Link
-            to={paths.PROTECTED.SCAN_LABELS.path}
-            className="has-text-centered is-uppercase"
+          <button
+            onClick={toggleManualMode}
+            className="button has-text-centered is-uppercase is-secondary has-no-border"
           >
             {t('SN_MANUAL_ENTRY')}
-          </Link>
+          </button>
         )}
       </div>
     </BlockUI>

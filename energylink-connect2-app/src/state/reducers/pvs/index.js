@@ -1,6 +1,7 @@
 import { createReducer } from 'redux-act'
 
 import {
+  ADD_PVS_SN,
   SAVE_PVS_SN,
   GET_SN_INIT,
   GET_SN_SUCCESS,
@@ -23,6 +24,10 @@ const initialState = {
 
 export const pvsReducer = createReducer(
   {
+    [ADD_PVS_SN]: (state, sn) => ({
+      ...state,
+      serialNumbers: [...state.serialNumbers, sn]
+    }),
     [SAVE_PVS_SN]: (state, payload) => ({
       ...state,
       serialNumber: payload

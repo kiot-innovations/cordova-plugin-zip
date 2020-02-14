@@ -13,6 +13,10 @@
   grid-row-gap: 1rem;
   height: -webkit-fill-available;
 
+  .has-no-border {
+    border: 0;
+  }
+
   .top-text{
     display: flex;
     flex-direction: column;
@@ -50,3 +54,5 @@
   }
 
 }
+
+
