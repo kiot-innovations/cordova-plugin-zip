@@ -124,40 +124,33 @@ exports[`Serial Number List Page renders correctly 1`] = `
                   </button>
                 </div>
               </div>
-              <div
-                className="sn-buttons"
+              <ScanButtons
+                countSN={[Function]}
+                takePicture={[Function]}
               >
-                <button
-                  className="button half-button-padding is-secondary trigger-scan mr-10"
-                  onClick={[Function]}
+                <div
+                  className="sn-buttons"
                 >
-                  SCAN_MORE
-                </button>
-                <button
-                  className="button half-button-padding is-primary trigger-scan"
-                  onClick={[Function]}
-                >
-                  CONTINUE
-                </button>
-              </div>
-              <Link
-                className="has-text-centered is-uppercase"
-                to="/scan-labels"
-              >
-                <LinkAnchor
-                  className="has-text-centered is-uppercase"
-                  href="/scan-labels"
-                  navigate={[Function]}
-                >
-                  <a
-                    className="has-text-centered is-uppercase"
-                    href="/scan-labels"
+                  <button
+                    className="button half-button-padding is-secondary trigger-scan mr-10"
                     onClick={[Function]}
                   >
-                    SN_MANUAL_ENTRY
-                  </a>
-                </LinkAnchor>
-              </Link>
+                    SCAN_MORE
+                  </button>
+                  <button
+                    className="button half-button-padding is-primary trigger-scan"
+                    onClick={[Function]}
+                  >
+                    CONTINUE
+                  </button>
+                </div>
+              </ScanButtons>
+              <button
+                className="button has-text-centered is-uppercase is-secondary has-no-border"
+                onClick={[Function]}
+              >
+                SN_MANUAL_ENTRY
+              </button>
             </div>
             <span />
           </div>
