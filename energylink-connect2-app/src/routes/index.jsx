@@ -68,7 +68,7 @@ const getTabNumber = cond([
   [T, always(-1)]
 ])
 
-const getTabNumberFromPathname = actualScreen =>
+const getTabNumberFromPathname = (actualScreen = '', protectedRoutes) =>
   getTabNumber(find(propEq('path', actualScreen), protectedRoutes))
 
 /**
@@ -82,13 +82,16 @@ function AppRoutes() {
   const [lastTab, setLastTab] = useState()
 
   useEffect(() => {
-    setLastTab(getTabNumberFromPathname(location.pathname))
+    setLastTab(getTabNumberFromPathname(location.pathname, protectedRoutes))
   }, [location])
 
   const fadeIn = useTransition(location, loc => loc.pathname, {
     unique: true,
     from: () => {
-      const actualTab = getTabNumberFromPathname(location.pathname)
+      const actualTab = getTabNumberFromPathname(
+        location.pathname,
+        protectedRoutes
+      )
       if (!lastTab) return { opacity: 0, transform: 'translate(0%,-100%)' }
       else if (actualTab < lastTab)
         return { opacity: 0, transform: 'translate(-100%,0)' }
@@ -96,7 +99,10 @@ function AppRoutes() {
     },
     enter: { opacity: 1, transform: 'translate(0%,0%)' },
     leave: () => {
-      const actualTab = getTabNumberFromPathname(location.pathname)
+      const actualTab = getTabNumberFromPathname(
+        location.pathname,
+        protectedRoutes
+      )
       if (actualTab < lastTab)
         return { opacity: 0, transform: 'translate(100%,0)' }
       else return { opacity: 0, transform: 'translate(-100%,0)' }
