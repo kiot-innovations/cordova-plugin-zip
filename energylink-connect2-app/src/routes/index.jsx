@@ -1,4 +1,4 @@
-import { always, compose, cond, equals, find, path, propEq, T } from 'ramda'
+import { always, compose, cond, equals, find, gt, path, propEq, T } from 'ramda'
 import React, { useLayoutEffect, useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { Route, Switch } from 'react-router-dom'
@@ -67,6 +67,10 @@ const getTabNumber = cond([
   [isTab(TABS.HOME), always(1)],
   [T, always(-1)]
 ])
+const animation = cond([
+  [gt, always({ opacity: 0, transform: 'translate(100%,0)' })],
+  [T, always({ opacity: 0, transform: 'translate(-100%,0)' })]
+])
 
 const getTabNumberFromPathname = (actualScreen = '', protectedRoutes) =>
   getTabNumber(find(propEq('path', actualScreen), protectedRoutes))
@@ -92,10 +96,7 @@ function AppRoutes() {
         location.pathname,
         protectedRoutes
       )
-      if (!lastTab) return { opacity: 0, transform: 'translate(0%,-100%)' }
-      else if (actualTab < lastTab)
-        return { opacity: 0, transform: 'translate(-100%,0)' }
-      else return { opacity: 0, transform: 'translate(100%,0)' }
+      return animation(actualTab, lastTab)
     },
     enter: { opacity: 1, transform: 'translate(0%,0%)' },
     leave: () => {
@@ -103,9 +104,7 @@ function AppRoutes() {
         location.pathname,
         protectedRoutes
       )
-      if (actualTab < lastTab)
-        return { opacity: 0, transform: 'translate(100%,0)' }
-      else return { opacity: 0, transform: 'translate(-100%,0)' }
+      return animation(lastTab, actualTab)
     }
   })
 
