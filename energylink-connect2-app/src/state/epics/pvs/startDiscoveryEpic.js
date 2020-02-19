@@ -11,7 +11,7 @@ export const startDiscoveryEpic = (action$, state$) =>
     mergeMap(() => {
       const promise = getApiPVS()
         .then(path(['apis', 'discovery']))
-        .then(api => api.discover())
+        .then(api => api.discover({ type: 'allnomi' }))
 
       return from(promise).pipe(
         map(response =>
