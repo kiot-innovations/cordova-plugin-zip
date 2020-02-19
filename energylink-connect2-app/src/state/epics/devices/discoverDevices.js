@@ -1,7 +1,7 @@
 import { pathOr } from 'ramda'
 import { ofType } from 'redux-observable'
 import { from, of, timer } from 'rxjs'
-import { catchError, switchMap, takeUntil, tap } from 'rxjs/operators'
+import { catchError, switchMap, takeUntil } from 'rxjs/operators'
 import { getApiPVS } from 'shared/api'
 import {
   DISCOVER_COMPLETE,
@@ -27,17 +27,11 @@ const fetchDiscovery = async () => {
   }
 }
 
-const initDeviceDiscovery = async () => {
-  const swagger = await getApiPVS()
-  return swagger.apis.discovery.startDiscovery()
-}
-
 const scanDevicesEpic = action$ => {
   const stopPolling$ = action$.pipe(ofType(DISCOVER_COMPLETE.getType()))
 
   return action$.pipe(
     ofType(DISCOVER_INIT.getType()),
-    tap(initDeviceDiscovery),
     switchMap(() =>
       timer(0, 250).pipe(
         takeUntil(stopPolling$),
