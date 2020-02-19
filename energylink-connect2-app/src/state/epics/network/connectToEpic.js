@@ -1,4 +1,4 @@
-import { pathOr } from 'ramda'
+import { pathOr, test } from 'ramda'
 import { ofType } from 'redux-observable'
 import { mergeMap } from 'rxjs/operators'
 import {
@@ -9,7 +9,7 @@ import {
 
 const IOS = 'iOS'
 const WPA = 'WPA'
-const CODE7 = 'Code=7'
+const hasCode7 = test(/Code=7/)
 
 const connectToEpic = action$ =>
   action$.pipe(
@@ -25,7 +25,7 @@ const connectToEpic = action$ =>
         }
         return PVS_CONNECTION_SUCCESS()
       } catch (err) {
-        if (err.includes(CODE7)) {
+        if (hasCode7(err)) {
           return STOP_NETWORK_POLLING()
         } else {
           return PVS_CONNECTION_INIT({ ssid: ssid, password: password })
