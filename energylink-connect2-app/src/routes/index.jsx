@@ -1,9 +1,22 @@
-import React, { useLayoutEffect, useEffect } from 'react'
+import {
+  always,
+  compose,
+  cond,
+  equals,
+  find,
+  gt,
+  ifElse,
+  path,
+  propEq,
+  T
+} from 'ramda'
+import React, { useLayoutEffect, useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { Route, Switch } from 'react-router-dom'
 import { animated, useTransition } from 'react-spring'
 import { useDispatch } from 'react-redux'
 import { useRouter } from 'hooks'
+import { protectedRoutes, TABS } from 'routes/paths'
 import { withTracker } from 'shared/ga'
 import { routeAuthorization, setLayout } from 'hocs'
 import { deviceResumeListener } from 'state/actions/mobile'
@@ -56,6 +69,24 @@ const mapComponents = {
   [paths.UNPROTECTED.LOGOUT.path]: Logout
 }
 
+const isTab = tab => compose(equals(tab), path(['tab']))
+
+const getTabNumber = cond([
+  [isTab(TABS.DATA), always(4)],
+  [isTab(TABS.CONFIGURE), always(3)],
+  [isTab(TABS.INSTALL), always(2)],
+  [isTab(TABS.HOME), always(1)],
+  [T, always(-1)]
+])
+const animationCSS = ifElse(
+  gt,
+  always({ opacity: 0, transform: 'translate(100%,0)' }),
+  always({ opacity: 0, transform: 'translate(-100%,0)' })
+)
+
+const getTabNumberFromPathname = (actualScreen = '', protectedRoutes) =>
+  getTabNumber(find(propEq('path', actualScreen), protectedRoutes))
+
 /**
  * The router of this app
  * @returns {*}
@@ -64,10 +95,29 @@ const mapComponents = {
 function AppRoutes() {
   const dispatch = useDispatch()
   const { location } = useRouter()
+  const [lastTab, setLastTab] = useState()
+
+  useEffect(() => {
+    setLastTab(getTabNumberFromPathname(location.pathname, protectedRoutes))
+  }, [location])
+
   const fadeIn = useTransition(location, loc => loc.pathname, {
-    from: { opacity: 0, transform: 'translate(100%,0)' },
-    enter: { opacity: 1, transform: 'translate(0%,0)' },
-    leave: { opacity: 0, transform: 'translate(-50%,0)' }
+    unique: true,
+    from: () => {
+      const actualTab = getTabNumberFromPathname(
+        location.pathname,
+        protectedRoutes
+      )
+      return animationCSS(actualTab, lastTab)
+    },
+    enter: { opacity: 1, transform: 'translate(0%,0%)' },
+    leave: () => {
+      const actualTab = getTabNumberFromPathname(
+        location.pathname,
+        protectedRoutes
+      )
+      return animationCSS(lastTab, actualTab)
+    }
   })
 
   useLayoutEffect(() => {
