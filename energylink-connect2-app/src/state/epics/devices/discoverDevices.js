@@ -55,4 +55,5 @@ const scanDevicesEpic = action$ => {
     )
   )
 }
+
 export default scanDevicesEpic

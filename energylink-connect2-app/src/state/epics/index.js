@@ -1,6 +1,7 @@
 import { combineEpics } from 'redux-observable'
 import firmwareUpdatesEpics from './fimwareUpdate'
 import discoverDeviceEpic from './devices/discoverDevices'
+import pushCandidatesEpic from './devices/pushCandidates'
 import networkPollingEpics from './network'
 import feedbackEpic from './feedback'
 import siteEpic from './site'
@@ -11,6 +12,7 @@ import liveEnergyData from './live-energy-data'
 export default combineEpics(
   ...networkPollingEpics,
   discoverDeviceEpic,
+  pushCandidatesEpic,
   ...feedbackEpic,
   ...firmwareUpdatesEpics,
   siteEpic,

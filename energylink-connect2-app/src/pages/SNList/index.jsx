@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { useI18n } from 'shared/i18n'
 import { GET_SN_INIT, REMOVE_SN } from 'state/actions/pvs'
+import { PUSH_CANDIDATES_INIT } from 'state/actions/devices'
 import { UPDATE_MI_COUNT } from 'state/actions/inventory'
 import { Loader } from 'components/Loader'
 import paths from 'routes/paths'
@@ -75,8 +76,12 @@ function SNList({ animationState }) {
   }
 
   const submitSN = () => {
+    const snList = serialNumbers.map(device => {
+      return { DEVICE_TYPE: 'Inverter', SERIAL: device.serial_number }
+    })
     toggleModal()
     dispatch(UPDATE_MI_COUNT(serialNumbers.length))
+    dispatch(PUSH_CANDIDATES_INIT(snList))
     history.push(paths.PROTECTED.DEVICES.path)
   }
 
@@ -122,7 +127,7 @@ function SNList({ animationState }) {
 
   const countSN = () => {
     if (parseInt(scannedMICount, 10) === parseInt(expectedMICount, 10)) {
-      history.push(paths.PROTECTED.DEVICES.path)
+      submitSN()
     } else {
       toggleModal()
     }

@@ -44,7 +44,6 @@ function mapStateToProps({ inventory, devices, pvs }) {
   const { serialNumbers } = pvs
   const { bom } = inventory
   const expectedMIs = serialNumbers.map(({ model, ...keepAttrs }) => keepAttrs)
-  console.info(expectedMIs)
   const { noModel, withModel } = filterFoundPVS(
     expectedMIs,
     propOr([], 'inverter', found)
