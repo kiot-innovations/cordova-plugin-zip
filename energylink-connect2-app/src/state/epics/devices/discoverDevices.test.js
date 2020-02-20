@@ -122,7 +122,6 @@ describe('the discover device epic', () => {
         expect(mockGetProgress).toBeCalledTimes(1)
       } else {
         expect(mockGetProgress).toBeCalledTimes(1)
-        expect(mockStartDiscovery).toBeCalledTimes(1)
         done()
       }
     })
