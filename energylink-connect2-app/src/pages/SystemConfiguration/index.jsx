@@ -9,6 +9,7 @@ import MetersWidget from './MetersWidget'
 import GridBehaviorWidget from './GridBehaviorWidget'
 import StorageWidget from './StorageWidget'
 import RSEWidget from './RSEWidget'
+import InterfacesWidget from './InterfacesWidget'
 import paths from 'routes/paths'
 import './SystemConfiguration.scss'
 
@@ -79,6 +80,9 @@ function SystemConfiguration({ animationState }) {
       <span className="is-uppercase has-text-weight-bold mb-20">
         {t('SYSTEM_CONFIGURATION')}
       </span>
+      <div className="mb-10">
+        <InterfacesWidget animationState={animationState} />
+      </div>
       <GridBehaviorWidget />
       <MetersWidget />
       <StorageWidget />

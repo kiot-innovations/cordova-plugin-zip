@@ -1,0 +1,122 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Interfaces Widget renders correctly 1`] = `
+<BrowserRouter
+  keyLength={0}
+>
+  <Router
+    history={
+      Object {
+        "action": "POP",
+        "block": [Function],
+        "createHref": [Function],
+        "go": [Function],
+        "goBack": [Function],
+        "goForward": [Function],
+        "length": 1,
+        "listen": [Function],
+        "location": Object {
+          "hash": "",
+          "pathname": "/",
+          "search": "",
+          "state": undefined,
+        },
+        "push": [Function],
+        "replace": [Function],
+      }
+    }
+  >
+    <Provider
+      store={
+        Object {
+          "clearActions": [Function],
+          "dispatch": [Function],
+          "getActions": [Function],
+          "getState": [Function],
+          "replaceReducer": [Function],
+          "subscribe": [Function],
+        }
+      }
+    >
+      <InterfacesWidget>
+        <section
+          className="iw is-flex collapsible pl-0"
+        >
+          <div
+            className="pvs"
+          >
+            <span
+              className="sp-pvs has-text-white"
+            />
+          </div>
+          <div
+            className="ifs ml-5"
+          >
+            <div
+              className="mb-5 has-text-white is-uppercase"
+            >
+              ZT188585000882A8888
+            </div>
+            <Interface
+              icon="sp-eth"
+              key="wan"
+              name="NO_CONNECTION (wan)"
+            >
+              <p
+                className="if"
+              >
+                <span
+                  className="sp-eth mr-10 has-text-white"
+                />
+                NO_CONNECTION (wan)
+              </p>
+            </Interface>
+            <Interface
+              icon="sp-eth"
+              key="plc"
+              name="NO_CONNECTION (plc)"
+            >
+              <p
+                className="if"
+              >
+                <span
+                  className="sp-eth mr-10 has-text-white"
+                />
+                NO_CONNECTION (plc)
+              </p>
+            </Interface>
+            <Interface
+              icon="sp-wifi"
+              key="sta0"
+              name="NO_CONNECTION (sta0)"
+            >
+              <p
+                className="if"
+              >
+                <span
+                  className="sp-wifi mr-10 has-text-white"
+                />
+                NO_CONNECTION (sta0)
+              </p>
+            </Interface>
+            <Interface
+              icon="sp-cell"
+              key="cell"
+              name="AT&T (cell)"
+            >
+              <p
+                className="if"
+              >
+                <span
+                  className="sp-cell mr-10 has-text-white"
+                />
+                AT&T (cell)
+              </p>
+            </Interface>
+          </div>
+        </section>
+      </InterfacesWidget>
+    </Provider>
+  </Router>
+</BrowserRouter>
+`;

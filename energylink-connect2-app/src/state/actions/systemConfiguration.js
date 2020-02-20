@@ -31,3 +31,7 @@ export const SUBMIT_CONFIG_ERROR = createAction('SUBMIT_CONFIG_ERROR')
 export const GET_STORAGE_INIT = createAction('GET_BATTERIES_INIT')
 export const GET_STORAGE_ERROR = createAction('GET_BATTERIES_ERROR')
 export const GET_STORAGE_SUCCESS = createAction('GET_BATTERIES_SUCCESS')
+
+export const GET_INTERFACES_INIT = createAction('GET_INTERFACES_INIT')
+export const GET_INTERFACES_ERROR = createAction('GET_INTERFACES_ERROR')
+export const GET_INTERFACES_SUCCESS = createAction('GET_INTERFACES_SUCCESS')

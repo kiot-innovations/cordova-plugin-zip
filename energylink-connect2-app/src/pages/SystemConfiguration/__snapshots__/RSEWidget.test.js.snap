@@ -45,7 +45,7 @@ exports[`RSE Widget renders correctly 1`] = `
           <Collapsible
             icon={
               <span
-                className="sp-info file level mr-15 is-size-4"
+                className="sp-power file level mr-15 is-size-4"
               />
             }
             title="RSE"
@@ -61,7 +61,7 @@ exports[`RSE Widget renders correctly 1`] = `
                 >
                   <span>
                     <span
-                      className="sp-info file level mr-15 is-size-4"
+                      className="sp-power file level mr-15 is-size-4"
                     />
                   </span>
                   <span>
