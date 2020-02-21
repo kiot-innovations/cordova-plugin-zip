@@ -32,8 +32,7 @@ validate_env JENKINS_URL
 validate_env PROJECT_NAME
 validate_env SLACK_WEBHOOK_URL
 
-#readonly slack_channel="cm2-builds"
-readonly slack_channel="fw-builds-test"
+readonly slack_channel="cm2-builds"
 readonly build_url="${JENKINS_URL}/blue/organizations/jenkins/$PROJECT_NAME/detail/$(urlencode "${BRANCH_NAME}")/$BUILD_ID"
 readonly download_url_prefix="https://fw-assets-pvs6-dev.dev-edp.sunpower.com/mobile/energylink-connect2/${BRANCH_NAME}/${BUILD_ID}"
 
