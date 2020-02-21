@@ -70,6 +70,15 @@ pipeline {
                 tag pattern: "^\\d+\\.\\d+\\.\\d+\$", comparator: "REGEXP"
             }
             steps {
+                withAWS(credentials: 'aws-s3-dev-sdp-fw-assets') {
+                    s3Upload bucket: 'sdp-fw-assets-pvs6-dev',
+                        file: 'platforms/android/app/build/outputs/apk/release/app-release.apk',
+                        path: "mobile/energylink-connect2/${BRANCH_NAME}/${BUILD_ID}/app-release.apk"
+                    s3Upload bucket: 'sdp-fw-assets-pvs6-dev',
+                        file: 'platforms/ios/build/device/EnergyLinkConnect2.ipa',
+                        path: "mobile/energylink-connect2/${BRANCH_NAME}/${BUILD_ID}/EnergyLinkConnect2.ipa"
+                }
+
                 sh "bundle exec fastlane android release"
                 sh "bundle exec fastlane ios release"
             }
