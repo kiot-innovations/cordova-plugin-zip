@@ -178,5 +178,8 @@
   "SN_FIELD_ERROR_REGEX": "It should contain only numbers and at least 12 digits ",
   "BACK_TO_SCAN": "Back to scan",
   "LEGACY_DISCOVERY": "Legacy discovery",
-  "SN_MANUAL_ENTRY": "Can’t find all my inverters"
+  "SN_MANUAL_ENTRY": "Can’t find all my inverters",
+  "LOADING": "Loading...",
+  "NO_DATA": "No data",
+  "NO_CONNECTION": "No Connection"
 }

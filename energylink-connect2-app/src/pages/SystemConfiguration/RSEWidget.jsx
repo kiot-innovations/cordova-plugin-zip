@@ -6,7 +6,7 @@ import { either } from 'shared/utils'
 import Collapsible from 'components/Collapsible'
 import SelectField from 'components/SelectField'
 
-const RSE = <span className="sp-info file level mr-15 is-size-4" />
+const RSE = <span className="sp-power file level mr-15 is-size-4" />
 
 function RSEWidget() {
   const t = useI18n()
