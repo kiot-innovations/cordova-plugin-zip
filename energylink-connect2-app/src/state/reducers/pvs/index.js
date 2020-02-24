@@ -10,7 +10,9 @@ import {
   START_COMMISSIONING_ERROR,
   START_COMMISSIONING_SUCCESS,
   START_DISCOVERY_ERROR,
-  START_DISCOVERY_SUCCESS
+  START_DISCOVERY_SUCCESS,
+  SET_METADATA_SUCCESS,
+  SET_METADATA_ERROR
 } from '../../actions/pvs'
 
 const initialState = {
@@ -19,7 +21,8 @@ const initialState = {
   fetchingSN: false,
   takenImage: null,
   startCommissioningStatus: null,
-  startDiscoveryStatus: null
+  startDiscoveryStatus: null,
+  startSetMetaDataStatus: null
 }
 
 export const pvsReducer = createReducer(
@@ -67,6 +70,14 @@ export const pvsReducer = createReducer(
     [START_DISCOVERY_ERROR]: (state, payload) => ({
       ...state,
       startDiscoveryStatus: payload
+    }),
+    [SET_METADATA_SUCCESS]: (state, payload) => ({
+      ...state,
+      startSetMetaDataStatus: payload
+    }),
+    [SET_METADATA_ERROR]: (state, payload) => ({
+      ...state,
+      startSetMetaDataStatus: payload
     })
   },
   initialState
