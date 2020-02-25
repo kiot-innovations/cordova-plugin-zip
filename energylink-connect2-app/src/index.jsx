@@ -21,6 +21,10 @@ Sentry.init({ dsn: process.env.REACT_APP_SENTRY_DSN })
 
 const startApp = () => {
   ReactDOM.render(<App />, document.getElementById('root'))
+  if (window.UXCam) {
+    window.UXCam.optIntoSchematicRecordings() /* To enabled session video recording on iOS */
+    window.UXCam.startWithKey(process.env.REACT_APP_UXCAM)
+  }
 }
 
 if (!window.cordova) {
