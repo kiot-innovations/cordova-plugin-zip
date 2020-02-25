@@ -19,7 +19,8 @@ export const LOGIN_INIT = createAction('LOGIN_INIT')
 export const LOGIN_SUCCESS = createAction('LOGIN_SUCCESS')
 export const LOGIN_ERROR = createAction('LOGIN_ERROR')
 export const LOGOUT = createAction('LOGOUT')
-export const SAVE_REFRESHED_TOKEN = createAction('SAVE_REFRESHED_TOKEN')
+export const REFRESH_TOKEN_INIT = createAction('REFRESH_TOKEN_INIT')
+export const REFRESH_TOKEN_SUCCESS = createAction('REFRESH_TOKEN_SUCCESS')
 
 const ROLES = {
   PARTNER: 'partner',
@@ -134,23 +135,8 @@ export const verifyToken = (access_token, refresh_token) => {
       .verifyTokenOAuth(access_token)
       .then(response => {
         if (!response.uniqueId) {
-          try {
-            authClient
-              .refreshTokenOAuth(refresh_token)
-              .then(newAuthInfo => {
-                dispatch(SAVE_REFRESHED_TOKEN(newAuthInfo))
-              })
-              .catch(error => {
-                console.error(error)
-                dispatch(LOGIN_ERROR({ message: 'ACCESS_TOKEN_EXPIRED' }))
-                dispatch(LOGOUT())
-              })
-          } catch (err) {
-            dispatch(LOGIN_ERROR({ message: 'ACCESS_TOKEN_EXPIRED' }))
-            dispatch(LOGOUT())
-          }
+          dispatch(REFRESH_TOKEN_INIT(refresh_token))
         }
-        dispatch(VALIDATE_SESSION_SUCCESS())
       })
       .catch(error => {
         dispatch(LOGIN_ERROR({ message: 'ACCESS_TOKEN_EXPIRED' }))

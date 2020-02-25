@@ -1,3 +1,3 @@
-import { loginEpic } from './loginEpic'
+import { refreshTokenEpic } from './refreshTokenEpic'
 
-export default [loginEpic]
+export default [refreshTokenEpic]
