@@ -12,7 +12,6 @@ import * as energyDataActions from '../../actions/energy-data'
 import * as mobileActions from '../../actions/mobile'
 import { roundDecimals } from '../../../shared/rounding'
 import { ofType } from 'redux-observable'
-import { LOGIN_SUCCESS } from 'state/actions/auth'
 
 const createWebsocketObservable = () =>
   new Observable(subscriber => {
@@ -60,7 +59,6 @@ export const liveEnergyData = (action$, state$) =>
     ofType(
       mobileActions.NABTO_PORT_OPEN.getType(),
       mobileActions.DEVICE_RESUME.getType(),
-      LOGIN_SUCCESS.getType(),
       energyDataActions.ENERGY_DATA_START_POLLING.getType() // @todo: likely not required, but necesssary for testing
     ),
     mergeMap(({ payload }) =>
