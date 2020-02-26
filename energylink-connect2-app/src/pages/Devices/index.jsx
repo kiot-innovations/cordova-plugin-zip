@@ -1,12 +1,16 @@
 import Collapsible from 'components/Collapsible'
 import { pathOr, propOr, length, filter, propEq } from 'ramda'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import clsx from 'clsx'
 import paths from 'routes/paths'
 import { useI18n } from 'shared/i18n'
-import { DISCOVER_COMPLETE, DISCOVER_INIT } from 'state/actions/devices'
+import {
+  DISCOVER_COMPLETE,
+  FETCH_CANDIDATES_INIT,
+  DISCOVER_INIT
+} from 'state/actions/devices'
 import './Devices.scss'
 
 const microInverterIcon = (
@@ -24,30 +28,37 @@ const numberItems = num =>
     <span className="devices-counter mr-10 ml-0 mt-0 mb-0">{num}</span>
   )
 
-const filterFoundPVS = (arr1, arr2) => {
-  const noModel = []
-  const withModel = []
-  arr1.forEach(device => {
-    const model = arr2.find(item => item.SERIAL === device.serial_number)
-    if (model) {
-      device.model = model.MODEL
-      withModel.push(device)
-    } else {
-      noModel.push(device)
+const filterFoundPVS = (SNList, candidatesList) => {
+  const okPVS = []
+  const nonOkPVS = []
+  SNList.forEach(device => {
+    try {
+      const foundCandidate = candidatesList.find(
+        item => item.SERIAL === device.serial_number
+      )
+
+      if (foundCandidate && foundCandidate.STATEDESCR.toLowerCase() === 'ok') {
+        device.state = foundCandidate.STATEDESCR
+        okPVS.push(device)
+      } else {
+        device.state = foundCandidate.STATEDESCR
+        nonOkPVS.push(device)
+      }
+    } catch (e) {
+      console.error('Filtering error', e)
     }
   })
-  return { noModel, withModel }
+
+  return { proceed: length(SNList) === length(okPVS), okPVS, nonOkPVS }
 }
 
 function mapStateToProps({ inventory, devices, pvs }) {
-  const { found } = devices
+  const { candidates, found } = devices
   const { serialNumbers } = pvs
   const { bom } = inventory
   const expectedMIs = serialNumbers.map(({ model, ...keepAttrs }) => keepAttrs)
-  const { noModel, withModel } = filterFoundPVS(
-    expectedMIs,
-    propOr([], 'inverter', found)
-  )
+  const { proceed, okPVS, nonOkPVS } = filterFoundPVS(expectedMIs, candidates)
+
   const inverterCount = filter(propEq('item', 'MODULES'), bom)
   const meterCount = filter(propEq('item', 'METERS'), bom)
   return {
@@ -57,12 +68,13 @@ function mapStateToProps({ inventory, devices, pvs }) {
     },
     found: {
       ...found,
-      inverter: [...noModel, ...withModel]
+      proceed,
+      inverter: [...okPVS, ...nonOkPVS]
     },
     counts: {
       inverter: {
-        noModel: noModel.length,
-        withModel: withModel.length
+        okPVSCount: length(okPVS),
+        errPVSCount: length(nonOkPVS)
       }
     }
   }
@@ -72,16 +84,8 @@ const Devices = ({ animationState }) => {
   const { found, counts } = useSelector(mapStateToProps)
   const dispatch = useDispatch()
   const t = useI18n()
-  const [done, setDone] = useState(false)
   useEffect(() => {
-    let canContinue = !!length(propOr([], 'inverter', found))
-    propOr([], 'inverter', found).forEach(elem => {
-      if (!elem.model) canContinue = false
-    })
-    setDone(canContinue)
-  }, [found])
-  useEffect(() => {
-    dispatch(DISCOVER_INIT())
+    dispatch(FETCH_CANDIDATES_INIT())
     return () => {
       if (animationState === 'exit') dispatch(DISCOVER_COMPLETE())
     }
@@ -102,7 +106,7 @@ const Devices = ({ animationState }) => {
           title={t('MICRO-INVERTERS')}
           icon={microInverterIcon}
           actions={Icon(
-            counts.inverter.withModel,
+            counts.inverter.okPVSCount,
             length(propOr([], 'inverter', found)),
             'sp-gear'
           )}
@@ -131,8 +135,8 @@ const Devices = ({ animationState }) => {
                   </div>
                   <span
                     className={clsx('is-size-4 mr-10', {
-                      'sp-check has-text-white': elem.model,
-                      'sp-hey has-text-primary': !elem.model
+                      'sp-check has-text-white': elem.state === 'OK',
+                      'sp-hey has-text-primary': elem.state !== 'OK'
                     })}
                   />
                 </li>
@@ -171,7 +175,7 @@ const Devices = ({ animationState }) => {
       >
         {t('ADD-DEVICES')}
       </Link>
-      {done ? (
+      {found.proceed ? (
         <Link
           className="button is-primary is-uppercase is-paddingless ml-75 mr-75"
           to={paths.PROTECTED.INSTALL_SUCCESS.path}

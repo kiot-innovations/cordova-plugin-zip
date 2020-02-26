@@ -1,5 +1,8 @@
 import { of } from 'rxjs'
-import { DISCOVER_INIT, DISCOVER_UPDATE } from 'state/actions/devices'
+import {
+  FETCH_CANDIDATES_COMPLETE,
+  DISCOVER_UPDATE
+} from 'state/actions/devices'
 import scanDevicesEpic from 'state/epics/devices/discoverDevices'
 import * as apis from 'shared/api'
 
@@ -14,7 +17,7 @@ describe('the discover device epic', () => {
   let update
 
   beforeEach(() => {
-    action = DISCOVER_INIT()
+    action = FETCH_CANDIDATES_COMPLETE()
     action$ = of(action)
     epic$ = scanDevicesEpic(action$)
     payload = [{ TYPE: 'Inverter', NFOUND: 10 }]

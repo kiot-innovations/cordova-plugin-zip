@@ -2,13 +2,19 @@ import { createReducer } from 'redux-act'
 import {
   DISCOVER_COMPLETE,
   DISCOVER_INIT,
-  DISCOVER_UPDATE
+  DISCOVER_UPDATE,
+  FETCH_CANDIDATES_INIT,
+  FETCH_CANDIDATES_UPDATE,
+  FETCH_CANDIDATES_COMPLETE,
+  FETCH_CANDIDATES_ERROR
 } from 'state/actions/devices'
 
 const initialState = {
   isFetching: false,
   found: {},
-  error: ''
+  error: '',
+  isFetchingCandidates: false,
+  candidates: []
 }
 
 const parseCompleteDevices = devices => {
@@ -37,6 +43,32 @@ export default createReducer(
         ...state,
         isFetching: false,
         found: payload ? parseCompleteDevices(payload.devices) : state.found
+      }
+    },
+    [FETCH_CANDIDATES_INIT]: state => {
+      return {
+        ...state,
+        isFetchingCandidates: true
+      }
+    },
+    [FETCH_CANDIDATES_UPDATE]: (state, payload) => {
+      return {
+        ...state,
+        candidates: payload
+      }
+    },
+    [FETCH_CANDIDATES_COMPLETE]: (state, payload) => {
+      return {
+        ...state,
+        candidates: payload,
+        isFetchingCandidates: false
+      }
+    },
+    [FETCH_CANDIDATES_ERROR]: (state, payload) => {
+      return {
+        ...state,
+        isFetchingCandidates: false,
+        error: payload
       }
     }
   },

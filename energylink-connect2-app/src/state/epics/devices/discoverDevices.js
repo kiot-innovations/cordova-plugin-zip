@@ -6,7 +6,7 @@ import { getApiPVS } from 'shared/api'
 import {
   DISCOVER_COMPLETE,
   DISCOVER_ERROR,
-  DISCOVER_INIT,
+  FETCH_CANDIDATES_COMPLETE,
   DISCOVER_UPDATE
 } from 'state/actions/devices'
 
@@ -31,7 +31,7 @@ const scanDevicesEpic = action$ => {
   const stopPolling$ = action$.pipe(ofType(DISCOVER_COMPLETE.getType()))
 
   return action$.pipe(
-    ofType(DISCOVER_INIT.getType()),
+    ofType(FETCH_CANDIDATES_COMPLETE.getType()),
     switchMap(() =>
       timer(0, 250).pipe(
         takeUntil(stopPolling$),
