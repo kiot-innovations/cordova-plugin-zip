@@ -4,6 +4,8 @@ import { useSelector } from 'react-redux'
 import paths from '../../routes/paths'
 import { useI18n } from '../../shared/i18n'
 import './BillOfMaterials.scss'
+import ProgressiveImage from 'components/ProgressiveImage'
+import mapPlaceholder from './MapPlaceholder.svg'
 
 function drawTable(t, inventory) {
   return inventory.map(item => {
@@ -34,11 +36,9 @@ function BillOfMaterials() {
   return (
     <main className="full-height pl-10 pr-10 home">
       <div className="pl-20 pr-20 mb-20">
-        <img
+        <ProgressiveImage
           src={`https://maps.googleapis.com/maps/api/staticmap?center=${latitude},${longitude}&zoom=21&size=800x800&key=${process.env.REACT_APP_MAPS_API_KEY}&maptype=hybrid&markers=scale:4|blue|${latitude},${longitude}&scale=4`}
-          title=""
-          alt=""
-          className="is-fullwidth"
+          overlaySrc={mapPlaceholder}
         />
       </div>
       <span className="is-uppercase is-block is-full-width has-text-centered is-bold mb-30 ">

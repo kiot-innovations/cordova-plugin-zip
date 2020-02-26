@@ -17,6 +17,10 @@ export const START_DISCOVERY_INIT = createAction('START_DISCOVERY_INIT')
 export const START_DISCOVERY_SUCCESS = createAction('START_DISCOVERY_SUCCESS')
 export const START_DISCOVERY_ERROR = createAction('START_DISCOVERY_ERROR')
 
+export const SET_METADATA_INIT = createAction('SET_METADATA_INIT')
+export const SET_METADATA_SUCCESS = createAction('SET_METADATA_SUCCESS')
+export const SET_METADATA_ERROR = createAction('SET_METADATA_ERROR')
+
 export const removeSN = serialNumber => {
   return dispatch => {
     dispatch(REMOVE_SN(serialNumber))

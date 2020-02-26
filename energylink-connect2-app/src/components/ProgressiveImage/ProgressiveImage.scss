@@ -1,0 +1,27 @@
+.progressive-image-container {
+  position: relative;
+  width: auto;
+  height: 400px;
+  img {
+    position: absolute;
+    transition: filter ease-in 250ms,opacity ease-in 500ms;
+    filter: blur(0px);
+    clip-path: none;
+
+    opacity: 1;
+  }
+  .hidden{
+    opacity: 0;
+  }
+  .waiting {
+    z-index: -1;
+    filter: blur(1px);
+    opacity: 0;
+  }
+  .overlay {
+    filter: blur(1px) !important;
+    clip-path: inset(1px) !important;
+    margin: -1px 0 0 -1px;
+    z-index: 1;
+  }
+}

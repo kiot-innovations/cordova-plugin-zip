@@ -9,6 +9,7 @@ import siteEpic from './site'
 import pvsEpics from './pvs'
 import systemConfigurationEpics from './systemConfiguration'
 import liveEnergyData from './live-energy-data'
+import authEpics from './auth'
 
 export default combineEpics(
   ...networkPollingEpics,
@@ -20,5 +21,6 @@ export default combineEpics(
   siteEpic,
   ...pvsEpics,
   ...systemConfigurationEpics,
-  liveEnergyData
+  liveEnergyData,
+  ...authEpics
 )
