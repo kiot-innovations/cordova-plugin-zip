@@ -45,12 +45,26 @@ exports[`BillOfMaterials component render correctly 1`] = `
           <div
             className="pl-20 pr-20 mb-20"
           >
-            <img
-              alt=""
-              className="is-fullwidth"
+            <ProgressiveImage
+              overlaySrc="MapPlaceholder.svg"
               src="https://maps.googleapis.com/maps/api/staticmap?center=undefined,undefined&zoom=21&size=800x800&key=undefined&maptype=hybrid&markers=scale:4|blue|undefined,undefined&scale=4"
-              title=""
-            />
+            >
+              <div
+                className="progressive-image-container"
+              >
+                <img
+                  alt=""
+                  className="waiting"
+                  onLoad={[Function]}
+                  src="https://maps.googleapis.com/maps/api/staticmap?center=undefined,undefined&zoom=21&size=800x800&key=undefined&maptype=hybrid&markers=scale:4|blue|undefined,undefined&scale=4"
+                />
+                <img
+                  alt=""
+                  className="overlay"
+                  src="MapPlaceholder.svg"
+                />
+              </div>
+            </ProgressiveImage>
           </div>
           <span
             className="is-uppercase is-block is-full-width has-text-centered is-bold mb-30 "

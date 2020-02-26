@@ -12,6 +12,7 @@ import RSEWidget from './RSEWidget'
 import InterfacesWidget from './InterfacesWidget'
 import paths from 'routes/paths'
 import './SystemConfiguration.scss'
+import { path } from 'ramda'
 
 function SystemConfiguration({ animationState }) {
   const t = useI18n()
@@ -21,6 +22,8 @@ function SystemConfiguration({ animationState }) {
   const { selectedOptions } = useSelector(
     state => state.systemConfiguration.gridBehavior
   )
+
+  const siteKey = useSelector(path(['site', 'site', 'siteKey']))
 
   const modalTitle = (
     <span className="has-text-white has-text-weight-bold">
@@ -62,7 +65,8 @@ function SystemConfiguration({ animationState }) {
         gridProfile: selectedOptions.profile.id,
         exportLimit: selectedOptions.exportLimit,
         gridVoltage: selectedOptions.gridVoltage,
-        lazyGridProfile: selectedOptions.lazyGridProfile
+        lazyGridProfile: selectedOptions.lazyGridProfile,
+        siteKey
       }
       if (validateConfig(configObject)) {
         dispatch(SUBMIT_CONFIG(configObject))

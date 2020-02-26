@@ -3,6 +3,7 @@ import { of, from } from 'rxjs'
 import { catchError, mergeMap, map } from 'rxjs/operators'
 import { path, converge, prop, pathOr, map as mapR, filter } from 'ramda'
 import * as siteActions from 'state/actions/site'
+import * as authActions from 'state/actions/auth'
 import { getApiParty } from 'shared/api'
 import { httpGet } from 'shared/fetch'
 
@@ -24,7 +25,10 @@ const getParties = converge(getPartiesPromise, [getAccessToken, getPartyId])
 
 export const fetchSitesEpic = (action$, state$) => {
   return action$.pipe(
-    ofType(siteActions.GET_SITES_INIT.getType()),
+    ofType(
+      siteActions.GET_SITES_INIT.getType(),
+      authActions.REFRESH_TOKEN_SUCCESS.getType()
+    ),
     mergeMap(() =>
       from(getParties(state$.value)).pipe(
         map(response => {

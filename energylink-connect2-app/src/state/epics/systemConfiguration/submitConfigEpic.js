@@ -18,7 +18,8 @@ const submitConfiguration = async payload => {
         lazy: payload.lazyGridProfile
       }),
       swagger.apis.grid.setGridExportLimit({ Limit: payload.exportLimit }),
-      swagger.apis.grid.setGridVoltage({ grid_voltage: payload.gridVoltage })
+      swagger.apis.grid.setGridVoltage({ grid_voltage: payload.gridVoltage }),
+      swagger.apis.config.sendConfigObject({ site_key: payload.siteKey })
     ])
     const [setGridProfiles, setExportLimit, setGridVoltage] = res.map(
       prop('body')
