@@ -17,7 +17,9 @@ function SelectField(props) {
     options,
     defaultValue,
     placeholder,
-    isSearchable
+    isSearchable,
+    value,
+    disabled
   } = props
 
   const classes = clsx('field', className)
@@ -33,6 +35,8 @@ function SelectField(props) {
     options,
     defaultValue,
     isSearchable,
+    value,
+    disabled,
     noOptionsMessage: () => notFoundText,
     theme: theme => ({
       ...theme,

@@ -91,7 +91,7 @@ function SystemConfiguration({ animationState }) {
       <MetersWidget />
       <StorageWidget />
       <NetworkWidget />
-      <RSEWidget />
+      <RSEWidget animationState={animationState} />
       <div className="submit-config">
         <button
           onClick={submitConfig}

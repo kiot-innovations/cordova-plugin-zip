@@ -110,27 +110,27 @@ exports[`RSE Widget renders correctly 1`] = `
                         className="control"
                       >
                         <SelectField
-                          defaultValue={
-                            Object {
-                              "label": "OFF",
-                              "value": false,
-                            }
-                          }
                           isSearchable={false}
                           onSelect={[Function]}
                           options={
                             Array [
                               Object {
                                 "label": "ON",
-                                "value": true,
+                                "value": "On",
                               },
                               Object {
                                 "label": "OFF",
-                                "value": false,
+                                "value": "Off",
                               },
                             ]
                           }
                           useDefaultDropDown={true}
+                          value={
+                            Object {
+                              "label": "OFF",
+                              "value": "Off",
+                            }
+                          }
                         >
                           <StateManager
                             cacheOptions={true}
@@ -143,12 +143,7 @@ exports[`RSE Widget renders correctly 1`] = `
                             }
                             defaultInputValue=""
                             defaultMenuIsOpen={false}
-                            defaultValue={
-                              Object {
-                                "label": "OFF",
-                                "value": false,
-                              }
-                            }
+                            defaultValue={null}
                             isSearchable={false}
                             noOptionsMessage={[Function]}
                             onChange={[Function]}
@@ -156,15 +151,21 @@ exports[`RSE Widget renders correctly 1`] = `
                               Array [
                                 Object {
                                   "label": "ON",
-                                  "value": true,
+                                  "value": "On",
                                 },
                                 Object {
                                   "label": "OFF",
-                                  "value": false,
+                                  "value": "Off",
                                 },
                               ]
                             }
                             theme={[Function]}
+                            value={
+                              Object {
+                                "label": "OFF",
+                                "value": "Off",
+                              }
+                            }
                           >
                             <Select
                               backspaceRemovesValue={true}
@@ -212,11 +213,11 @@ exports[`RSE Widget renders correctly 1`] = `
                                 Array [
                                   Object {
                                     "label": "ON",
-                                    "value": true,
+                                    "value": "On",
                                   },
                                   Object {
                                     "label": "OFF",
-                                    "value": false,
+                                    "value": "Off",
                                   },
                                 ]
                               }
@@ -230,7 +231,7 @@ exports[`RSE Widget renders correctly 1`] = `
                               value={
                                 Object {
                                   "label": "OFF",
-                                  "value": false,
+                                  "value": "Off",
                                 }
                               }
                             >
@@ -255,11 +256,11 @@ exports[`RSE Widget renders correctly 1`] = `
                                   Array [
                                     Object {
                                       "label": "ON",
-                                      "value": true,
+                                      "value": "On",
                                     },
                                     Object {
                                       "label": "OFF",
-                                      "value": false,
+                                      "value": "Off",
                                     },
                                   ]
                                 }
@@ -279,6 +280,7 @@ exports[`RSE Widget renders correctly 1`] = `
                                       "IndicatorSeparator": [Function],
                                     },
                                     "controlShouldRenderValue": true,
+                                    "disabled": undefined,
                                     "escapeClearsValue": false,
                                     "filterOption": [Function],
                                     "formatGroupLabel": [Function],
@@ -309,11 +311,11 @@ exports[`RSE Widget renders correctly 1`] = `
                                     "options": Array [
                                       Object {
                                         "label": "ON",
-                                        "value": true,
+                                        "value": "On",
                                       },
                                       Object {
                                         "label": "OFF",
-                                        "value": false,
+                                        "value": "Off",
                                       },
                                     ],
                                     "pageSize": 5,
@@ -325,7 +327,7 @@ exports[`RSE Widget renders correctly 1`] = `
                                     "theme": [Function],
                                     "value": Object {
                                       "label": "OFF",
-                                      "value": false,
+                                      "value": "Off",
                                     },
                                   }
                                 }
@@ -401,11 +403,11 @@ exports[`RSE Widget renders correctly 1`] = `
                                         Array [
                                           Object {
                                             "label": "ON",
-                                            "value": true,
+                                            "value": "On",
                                           },
                                           Object {
                                             "label": "OFF",
-                                            "value": false,
+                                            "value": "Off",
                                           },
                                         ]
                                       }
@@ -425,6 +427,7 @@ exports[`RSE Widget renders correctly 1`] = `
                                             "IndicatorSeparator": [Function],
                                           },
                                           "controlShouldRenderValue": true,
+                                          "disabled": undefined,
                                           "escapeClearsValue": false,
                                           "filterOption": [Function],
                                           "formatGroupLabel": [Function],
@@ -455,11 +458,11 @@ exports[`RSE Widget renders correctly 1`] = `
                                           "options": Array [
                                             Object {
                                               "label": "ON",
-                                              "value": true,
+                                              "value": "On",
                                             },
                                             Object {
                                               "label": "OFF",
-                                              "value": false,
+                                              "value": "Off",
                                             },
                                           ],
                                           "pageSize": 5,
@@ -471,7 +474,7 @@ exports[`RSE Widget renders correctly 1`] = `
                                           "theme": [Function],
                                           "value": Object {
                                             "label": "OFF",
-                                            "value": false,
+                                            "value": "Off",
                                           },
                                         }
                                       }
@@ -555,11 +558,11 @@ exports[`RSE Widget renders correctly 1`] = `
                                               Array [
                                                 Object {
                                                   "label": "ON",
-                                                  "value": true,
+                                                  "value": "On",
                                                 },
                                                 Object {
                                                   "label": "OFF",
-                                                  "value": false,
+                                                  "value": "Off",
                                                 },
                                               ]
                                             }
@@ -579,6 +582,7 @@ exports[`RSE Widget renders correctly 1`] = `
                                                   "IndicatorSeparator": [Function],
                                                 },
                                                 "controlShouldRenderValue": true,
+                                                "disabled": undefined,
                                                 "escapeClearsValue": false,
                                                 "filterOption": [Function],
                                                 "formatGroupLabel": [Function],
@@ -609,11 +613,11 @@ exports[`RSE Widget renders correctly 1`] = `
                                                 "options": Array [
                                                   Object {
                                                     "label": "ON",
-                                                    "value": true,
+                                                    "value": "On",
                                                   },
                                                   Object {
                                                     "label": "OFF",
-                                                    "value": false,
+                                                    "value": "Off",
                                                   },
                                                 ],
                                                 "pageSize": 5,
@@ -625,7 +629,7 @@ exports[`RSE Widget renders correctly 1`] = `
                                                 "theme": [Function],
                                                 "value": Object {
                                                   "label": "OFF",
-                                                  "value": false,
+                                                  "value": "Off",
                                                 },
                                               }
                                             }
@@ -686,7 +690,7 @@ exports[`RSE Widget renders correctly 1`] = `
                                                   data={
                                                     Object {
                                                       "label": "OFF",
-                                                      "value": false,
+                                                      "value": "Off",
                                                     }
                                                   }
                                                   getStyles={[Function]}
@@ -699,11 +703,11 @@ exports[`RSE Widget renders correctly 1`] = `
                                                     Array [
                                                       Object {
                                                         "label": "ON",
-                                                        "value": true,
+                                                        "value": "On",
                                                       },
                                                       Object {
                                                         "label": "OFF",
-                                                        "value": false,
+                                                        "value": "Off",
                                                       },
                                                     ]
                                                   }
@@ -723,6 +727,7 @@ exports[`RSE Widget renders correctly 1`] = `
                                                         "IndicatorSeparator": [Function],
                                                       },
                                                       "controlShouldRenderValue": true,
+                                                      "disabled": undefined,
                                                       "escapeClearsValue": false,
                                                       "filterOption": [Function],
                                                       "formatGroupLabel": [Function],
@@ -753,11 +758,11 @@ exports[`RSE Widget renders correctly 1`] = `
                                                       "options": Array [
                                                         Object {
                                                           "label": "ON",
-                                                          "value": true,
+                                                          "value": "On",
                                                         },
                                                         Object {
                                                           "label": "OFF",
-                                                          "value": false,
+                                                          "value": "Off",
                                                         },
                                                       ],
                                                       "pageSize": 5,
@@ -769,7 +774,7 @@ exports[`RSE Widget renders correctly 1`] = `
                                                       "theme": [Function],
                                                       "value": Object {
                                                         "label": "OFF",
-                                                        "value": false,
+                                                        "value": "Off",
                                                       },
                                                     }
                                                   }
@@ -892,11 +897,11 @@ exports[`RSE Widget renders correctly 1`] = `
                                               Array [
                                                 Object {
                                                   "label": "ON",
-                                                  "value": true,
+                                                  "value": "On",
                                                 },
                                                 Object {
                                                   "label": "OFF",
-                                                  "value": false,
+                                                  "value": "Off",
                                                 },
                                               ]
                                             }
@@ -916,6 +921,7 @@ exports[`RSE Widget renders correctly 1`] = `
                                                   "IndicatorSeparator": [Function],
                                                 },
                                                 "controlShouldRenderValue": true,
+                                                "disabled": undefined,
                                                 "escapeClearsValue": false,
                                                 "filterOption": [Function],
                                                 "formatGroupLabel": [Function],
@@ -946,11 +952,11 @@ exports[`RSE Widget renders correctly 1`] = `
                                                 "options": Array [
                                                   Object {
                                                     "label": "ON",
-                                                    "value": true,
+                                                    "value": "On",
                                                   },
                                                   Object {
                                                     "label": "OFF",
-                                                    "value": false,
+                                                    "value": "Off",
                                                   },
                                                 ],
                                                 "pageSize": 5,
@@ -962,7 +968,7 @@ exports[`RSE Widget renders correctly 1`] = `
                                                 "theme": [Function],
                                                 "value": Object {
                                                   "label": "OFF",
-                                                  "value": false,
+                                                  "value": "Off",
                                                 },
                                               }
                                             }
@@ -1028,11 +1034,11 @@ exports[`RSE Widget renders correctly 1`] = `
                                                     Array [
                                                       Object {
                                                         "label": "ON",
-                                                        "value": true,
+                                                        "value": "On",
                                                       },
                                                       Object {
                                                         "label": "OFF",
-                                                        "value": false,
+                                                        "value": "Off",
                                                       },
                                                     ]
                                                   }
@@ -1052,6 +1058,7 @@ exports[`RSE Widget renders correctly 1`] = `
                                                         "IndicatorSeparator": [Function],
                                                       },
                                                       "controlShouldRenderValue": true,
+                                                      "disabled": undefined,
                                                       "escapeClearsValue": false,
                                                       "filterOption": [Function],
                                                       "formatGroupLabel": [Function],
@@ -1082,11 +1089,11 @@ exports[`RSE Widget renders correctly 1`] = `
                                                       "options": Array [
                                                         Object {
                                                           "label": "ON",
-                                                          "value": true,
+                                                          "value": "On",
                                                         },
                                                         Object {
                                                           "label": "OFF",
-                                                          "value": false,
+                                                          "value": "Off",
                                                         },
                                                       ],
                                                       "pageSize": 5,
@@ -1098,7 +1105,7 @@ exports[`RSE Widget renders correctly 1`] = `
                                                       "theme": [Function],
                                                       "value": Object {
                                                         "label": "OFF",
-                                                        "value": false,
+                                                        "value": "Off",
                                                       },
                                                     }
                                                   }
@@ -1156,11 +1163,11 @@ exports[`RSE Widget renders correctly 1`] = `
                                                     Array [
                                                       Object {
                                                         "label": "ON",
-                                                        "value": true,
+                                                        "value": "On",
                                                       },
                                                       Object {
                                                         "label": "OFF",
-                                                        "value": false,
+                                                        "value": "Off",
                                                       },
                                                     ]
                                                   }
@@ -1180,6 +1187,7 @@ exports[`RSE Widget renders correctly 1`] = `
                                                         "IndicatorSeparator": [Function],
                                                       },
                                                       "controlShouldRenderValue": true,
+                                                      "disabled": undefined,
                                                       "escapeClearsValue": false,
                                                       "filterOption": [Function],
                                                       "formatGroupLabel": [Function],
@@ -1210,11 +1218,11 @@ exports[`RSE Widget renders correctly 1`] = `
                                                       "options": Array [
                                                         Object {
                                                           "label": "ON",
-                                                          "value": true,
+                                                          "value": "On",
                                                         },
                                                         Object {
                                                           "label": "OFF",
-                                                          "value": false,
+                                                          "value": "Off",
                                                         },
                                                       ],
                                                       "pageSize": 5,
@@ -1226,7 +1234,7 @@ exports[`RSE Widget renders correctly 1`] = `
                                                       "theme": [Function],
                                                       "value": Object {
                                                         "label": "OFF",
-                                                        "value": false,
+                                                        "value": "Off",
                                                       },
                                                     }
                                                   }
@@ -1352,7 +1360,6 @@ exports[`RSE Widget renders correctly 1`] = `
                 >
                   <button
                     className="button is-primary auto"
-                    disabled={true}
                   >
                     APPLY
                   </button>
