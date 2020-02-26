@@ -21,8 +21,10 @@ const connectToEpic = action$ =>
         if (window.device.platform === IOS) {
           await window.WifiWizard2.iOSConnectNetwork(ssid, password)
         } else {
+          console.log(await window.WifiWizard2.getConnectedSSID())
           await window.WifiWizard2.connect(ssid, true, password, WPA, false)
         }
+        console.log('PVS CONNECTION SUCCESS')
         return PVS_CONNECTION_SUCCESS()
       } catch (err) {
         if (hasCode7(err)) {

@@ -4,6 +4,7 @@ import { persistStore } from 'redux-persist'
 import rootReducer from './reducers'
 import rootEpic from './epics'
 import thunk from 'redux-thunk'
+import logger from 'redux-logger'
 
 const epicMiddleware = createEpicMiddleware()
 
@@ -15,6 +16,7 @@ export function configureStore(initialState) {
 
   middlewares.push(applyMiddleware(thunk))
   middlewares.push(applyMiddleware(epicMiddleware))
+  middlewares.push(applyMiddleware(logger))
 
   const store = createStore(
     rootReducer,

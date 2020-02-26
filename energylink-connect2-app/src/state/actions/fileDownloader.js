@@ -1,4 +1,4 @@
-import { compose, join, split, head, slice } from 'ramda'
+import { compose, join, split, head, slice, append } from 'ramda'
 import { createAction } from 'redux-act'
 import { getApiFirmware } from 'shared/api'
 
@@ -26,14 +26,29 @@ export const getLuaName = compose(
   slice(-4, -3),
   split('/')
 )
-
+const getBuildNumber = compose(
+  Number,
+  join(' '),
+  split('-'),
+  head,
+  slice(-3, -2),
+  split('/')
+)
+const getFileSystemURL = compose(
+  join('/'),
+  append('fwup_lua_usb_no_copy_conf.zip'),
+  slice(0, -2),
+  split('/')
+)
 export async function getFirmwareVersionNumber() {
   try {
-    const swagger = await getApiFirmware()
-    const response = await swagger.apis.pvs6.firmwareUpdate({ fwver: 0 })
-    const fileURL = response.data
+    // const swagger = await getApiFirmware()
+    // const response = await swagger.apis.pvs6.firmwareUpdate({ fwver: 0 })
+    const fileURL =
+      'https://fw-assets-pvs6-dev.dev-edp.sunpower.com/staging-prod-boomer/7031/fwup/fwup.lua'
+    console.log(fileURL)
     const luaFileName = getLuaName(fileURL)
-    return { luaFileName, fileURL }
+    return { luaFileName, fileURL, version: getBuildNumber(fileURL) }
   } catch (e) {
     throw new Error(ERROR_CODES.getVersionInfo)
   }
@@ -82,7 +97,9 @@ export function getFile() {
       const { fileURL, luaFileName } = await getFirmwareVersionNumber()
       dispatch(SET_FILE_NAME(luaFileName))
       await getPersistentFile(luaFileName, fileURL, dispatch)
-      const fileSystemURL = await parseLuaFile(luaFileName, dispatch)
+      await parseLuaFile(luaFileName, dispatch)
+      const fileSystemURL = getFileSystemURL(fileURL)
+      console.log('File system URL', fileSystemURL)
       removeEventListeners()
       await getPersistentFile(`${luaFileName}.fs`, fileSystemURL, dispatch)
       dispatch(DOWNLOAD_SUCCESS())

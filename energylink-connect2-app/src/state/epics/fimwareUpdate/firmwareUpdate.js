@@ -17,10 +17,13 @@ import {
 } from 'state/actions/network'
 
 const postData = async () => {
-  const { version } = await getFirmwareVersionNumber()
-  const file = await getPFile(`${version}-fs.tgz`)
+  console.log('STARTING UPGRADE')
+  const { luaFileName } = await getFirmwareVersionNumber()
+  console.log(luaFileName)
+  const file = await getPFile(`${luaFileName}.fs`)
   const swagger = await getApiPVS()
-  await swagger.apis.firmware.startUpgrade(file)
+  console.log(swagger)
+  await swagger.apis.firmware.upload({ firmware: file })
   return swagger
 }
 

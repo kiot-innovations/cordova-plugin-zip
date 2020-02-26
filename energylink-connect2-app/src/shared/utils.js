@@ -54,3 +54,6 @@ export const b64toBlob = (b64Data, contentType = '', sliceSize = 512) => {
 }
 
 export const isValidSN = sn => /^\d{12,}$/.test(sn)
+
+export const waitFor = (ms = 0) =>
+  new Promise(resolve => setTimeout(resolve, ms))
