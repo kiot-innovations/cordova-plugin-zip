@@ -1,7 +1,9 @@
 import React from 'react'
+import { useDispatch } from 'react-redux'
 import { useI18n } from 'shared/i18n'
 import { useHistory } from 'react-router-dom'
 import { Loader } from 'components/Loader'
+import { STOP_NETWORK_POLLING } from 'state/actions/network'
 import paths from 'routes/paths'
 import './SavingConfiguration.scss'
 import { useSelector } from 'react-redux'
@@ -9,11 +11,13 @@ import { useSelector } from 'react-redux'
 const SavingConfiguration = () => {
   const t = useI18n()
   const history = useHistory()
+  const dispatch = useDispatch()
   const { submitting, submitted, err } = useSelector(
     state => state.systemConfiguration.submit
   )
 
   const goToChangeAddress = () => {
+    dispatch(STOP_NETWORK_POLLING())
     history.push(paths.PROTECTED.ROOT.path)
   }
 

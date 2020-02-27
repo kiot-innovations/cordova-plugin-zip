@@ -19,17 +19,17 @@ import { Loader } from 'components/Loader'
 const microInverterIcon = (
   <span className="sp-inverter mr-20 devices-icon ml-0 mt-0 mb-0" />
 )
-const meterIcon = <span className="mr-20 sp-meter ml-0 mt-0 mb-0" />
+// const meterIcon = <span className="mr-20 sp-meter ml-0 mt-0 mb-0" />
 const Icon = (num = 0, max = 0, icon = '') => (
   <div className="is-flex">
     <span className={`${icon} mr-10 ml-0 mt-0 mb-0`} />
     <span className="devices-counter mr-10 ml-0 mt-0 mb-0">{`${num}/${max}`}</span>
   </div>
 )
-const numberItems = num =>
-  num !== 0 && (
-    <span className="devices-counter mr-10 ml-0 mt-0 mb-0">{num}</span>
-  )
+// const numberItems = num =>
+//   num !== 0 && (
+//     <span className="devices-counter mr-10 ml-0 mt-0 mb-0">{num}</span>
+//   )
 
 const filterFoundMI = (SNList, candidatesList) => {
   const okMI = []
@@ -184,36 +184,38 @@ const Devices = ({ animationState }) => {
           </ul>
         </Collapsible>
       </div>
-      <div className="pb-15">
-        <Collapsible
-          title={t('METERS')}
-          actions={numberItems(length(propOr([], 'power meter', found)))}
-          icon={meterIcon}
+      {/*<div className="pb-15">*/}
+      {/*  <Collapsible*/}
+      {/*    title={t('METERS')}*/}
+      {/*    actions={numberItems(length(propOr([], 'power meter', found)))}*/}
+      {/*    icon={meterIcon}*/}
+      {/*  >*/}
+      {/*    <ul className="equipment-list">*/}
+      {/*      {propOr([], 'power meter', found).map(elem => {*/}
+      {/*        return (*/}
+      {/*          <li className="equipment-piece is-flex flow-wrap tile">*/}
+      {/*            <div className="is-flex is-vertical has-text-white tile">*/}
+      {/*              <span>*/}
+      {/*                <span className="has-text-weight-bold has-text-white">*/}
+      {/*                  SN:*/}
+      {/*                </span>*/}
+      {/*                {elem.SERIAL}*/}
+      {/*              </span>*/}
+      {/*            </div>*/}
+      {/*          </li>*/}
+      {/*        )*/}
+      {/*      })}*/}
+      {/*    </ul>*/}
+      {/*  </Collapsible>*/}
+      {/*</div>*/}
+      {found.discoveryComplete && (
+        <Link
+          className="button is-outlined is-primary is-uppercase is-paddingless ml-75 mr-75 mb-10"
+          to={paths.PROTECTED.SN_LIST.path}
         >
-          <ul className="equipment-list">
-            {propOr([], 'power meter', found).map(elem => {
-              return (
-                <li className="equipment-piece is-flex flow-wrap tile">
-                  <div className="is-flex is-vertical has-text-white tile">
-                    <span>
-                      <span className="has-text-weight-bold has-text-white">
-                        SN:
-                      </span>
-                      {elem.SERIAL}
-                    </span>
-                  </div>
-                </li>
-              )
-            })}
-          </ul>
-        </Collapsible>
-      </div>
-      <Link
-        className="button is-outlined is-primary is-uppercase is-paddingless ml-75 mr-75 mb-10"
-        to={paths.PROTECTED.SN_LIST.path}
-      >
-        {t('ADD-DEVICES')}
-      </Link>
+          {t('ADD-DEVICES')}
+        </Link>
+      )}
       {found.discoveryComplete ? (
         <button
           className="button is-primary is-uppercase is-paddingless ml-75 mr-75"

@@ -1,5 +1,7 @@
 import React from 'react'
+import { useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
+import { STOP_NETWORK_POLLING } from 'state/actions/network'
 import useModal from 'hooks/useModal'
 import paths from 'routes/paths'
 import { useI18n } from 'shared/i18n'
@@ -8,10 +10,12 @@ import './InstallSuccess.scss'
 const InstallSuccessful = props => {
   const t = useI18n()
   const history = useHistory()
+  const dispatch = useDispatch()
 
   const finishInstall = () => {
+    dispatch(STOP_NETWORK_POLLING())
+    history.push(paths.PROTECTED.BILL_OF_MATERIALS.path)
     toggleModal()
-    history.push(paths.PROTECTED.DEVICES.path)
   }
 
   const modalContent = t => (
