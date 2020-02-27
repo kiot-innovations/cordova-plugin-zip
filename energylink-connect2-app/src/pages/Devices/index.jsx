@@ -126,7 +126,7 @@ const Devices = ({ animationState }) => {
         TYPE: 'SOLARBRIDGE'
       }
     })
-    dispatch(CLAIM_DEVICES_INIT(claimObject))
+    dispatch(CLAIM_DEVICES_INIT(JSON.stringify(claimObject)))
   }
 
   return (
