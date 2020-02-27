@@ -13,8 +13,10 @@ describe('RSE Reducer', () => {
       systemConfigurationReducers.GET_RSE_INIT(),
       {
         isFetching: true,
+        isSetting: false,
         data: {},
-        error: null
+        error: null,
+        newRSEValue: null
       }
     )
   })

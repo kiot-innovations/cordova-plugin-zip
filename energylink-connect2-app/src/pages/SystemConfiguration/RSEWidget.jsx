@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { compose, prop, pathOr, equals, propEq } from 'ramda'
 import { useDispatch, useSelector } from 'react-redux'
 import { useI18n } from 'shared/i18n'
@@ -19,18 +19,33 @@ function RSEWidget({ animationState }) {
     pathOr(false, ['systemConfiguration', 'rse', 'isFetching'])
   )
 
-  const { powerProduction = 'Off' } = useSelector(
+  const isSetting = useSelector(
+    pathOr(false, ['systemConfiguration', 'rse', 'isSetting'])
+  )
+
+  const { powerProduction = 'Off', progress = '20%' } = useSelector(
     pathOr({}, ['systemConfiguration', 'rse', 'data'])
   )
+
+  const [rseValue, setRSEValue] = useState(powerProduction)
 
   useEffect(() => {
     if (animationState === 'enter') dispatch(GET_RSE_INIT())
   }, [animationState, dispatch])
 
+  useEffect(() => {
+    setRSEValue(powerProduction)
+  }, [powerProduction])
+
   const RSES = [
     { label: t('ON'), value: 'On' },
     { label: t('OFF'), value: 'Off' }
   ]
+
+  const allowSetRSEValue = equals(powerProduction, rseValue)
+  const showProgress = isSetting && progress < 100
+  const currentRSEValue = RSES.find(propEq('value', rseValue))
+  const sendNewRSEValue = compose(dispatch, SET_RSE_INIT)
 
   return (
     <div className="pb-15">
@@ -49,11 +64,11 @@ function RSEWidget({ animationState }) {
                 <div className="field">
                   <div className="control">
                     <SelectField
+                      disabled={isSetting || progress < 100}
                       isSearchable={false}
-                      useDefaultDropDown
                       options={RSES}
-                      value={RSES.find(propEq('value', powerProduction))}
-                      onSelect={compose(dispatch, SET_RSE_INIT, prop('value'))}
+                      value={currentRSEValue}
+                      onSelect={compose(setRSEValue, prop('value'))}
                     />
                   </div>
                 </div>
@@ -63,7 +78,19 @@ function RSEWidget({ animationState }) {
             {renderRSEDescription(powerProduction, t)}
 
             <div className="is-flex mt-15">
-              <button className="button is-primary auto">{t('APPLY')}</button>
+              <button
+                className="button is-primary auto"
+                disabled={allowSetRSEValue || isSetting}
+                onClick={() => sendNewRSEValue(rseValue)}
+              >
+                {either(isSetting, t('APPLYING'), t('APPLY'))}
+                {either(
+                  showProgress,
+                  <span className="ml-10 has-text-information">
+                    {progress}%
+                  </span>
+                )}
+              </button>
             </div>
           </React.Fragment>
         )}

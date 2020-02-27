@@ -110,6 +110,7 @@ exports[`RSE Widget renders correctly 1`] = `
                         className="control"
                       >
                         <SelectField
+                          disabled={false}
                           isSearchable={false}
                           onSelect={[Function]}
                           options={
@@ -124,7 +125,6 @@ exports[`RSE Widget renders correctly 1`] = `
                               },
                             ]
                           }
-                          useDefaultDropDown={true}
                           value={
                             Object {
                               "label": "OFF",
@@ -144,6 +144,8 @@ exports[`RSE Widget renders correctly 1`] = `
                             defaultInputValue=""
                             defaultMenuIsOpen={false}
                             defaultValue={null}
+                            hideSelectedOptions={true}
+                            isDisabled={false}
                             isSearchable={false}
                             noOptionsMessage={[Function]}
                             onChange={[Function]}
@@ -187,6 +189,7 @@ exports[`RSE Widget renders correctly 1`] = `
                               formatGroupLabel={[Function]}
                               getOptionLabel={[Function]}
                               getOptionValue={[Function]}
+                              hideSelectedOptions={true}
                               inputValue=""
                               isDisabled={false}
                               isLoading={false}
@@ -280,12 +283,12 @@ exports[`RSE Widget renders correctly 1`] = `
                                       "IndicatorSeparator": [Function],
                                     },
                                     "controlShouldRenderValue": true,
-                                    "disabled": undefined,
                                     "escapeClearsValue": false,
                                     "filterOption": [Function],
                                     "formatGroupLabel": [Function],
                                     "getOptionLabel": [Function],
                                     "getOptionValue": [Function],
+                                    "hideSelectedOptions": true,
                                     "inputValue": "",
                                     "isDisabled": false,
                                     "isLoading": false,
@@ -343,7 +346,7 @@ exports[`RSE Widget renders correctly 1`] = `
                                       "neutral20": "hsl(0, 0%, 80%)",
                                       "neutral30": "hsl(0, 0%, 70%)",
                                       "neutral40": "hsl(0, 0%, 60%)",
-                                      "neutral5": "hsl(0, 0%, 95%)",
+                                      "neutral5": "#35404e",
                                       "neutral50": "hsl(0, 0%, 50%)",
                                       "neutral60": "hsl(0, 0%, 40%)",
                                       "neutral70": "white",
@@ -427,12 +430,12 @@ exports[`RSE Widget renders correctly 1`] = `
                                             "IndicatorSeparator": [Function],
                                           },
                                           "controlShouldRenderValue": true,
-                                          "disabled": undefined,
                                           "escapeClearsValue": false,
                                           "filterOption": [Function],
                                           "formatGroupLabel": [Function],
                                           "getOptionLabel": [Function],
                                           "getOptionValue": [Function],
+                                          "hideSelectedOptions": true,
                                           "inputValue": "",
                                           "isDisabled": false,
                                           "isLoading": false,
@@ -490,7 +493,7 @@ exports[`RSE Widget renders correctly 1`] = `
                                             "neutral20": "hsl(0, 0%, 80%)",
                                             "neutral30": "hsl(0, 0%, 70%)",
                                             "neutral40": "hsl(0, 0%, 60%)",
-                                            "neutral5": "hsl(0, 0%, 95%)",
+                                            "neutral5": "#35404e",
                                             "neutral50": "hsl(0, 0%, 50%)",
                                             "neutral60": "hsl(0, 0%, 40%)",
                                             "neutral70": "white",
@@ -582,12 +585,12 @@ exports[`RSE Widget renders correctly 1`] = `
                                                   "IndicatorSeparator": [Function],
                                                 },
                                                 "controlShouldRenderValue": true,
-                                                "disabled": undefined,
                                                 "escapeClearsValue": false,
                                                 "filterOption": [Function],
                                                 "formatGroupLabel": [Function],
                                                 "getOptionLabel": [Function],
                                                 "getOptionValue": [Function],
+                                                "hideSelectedOptions": true,
                                                 "inputValue": "",
                                                 "isDisabled": false,
                                                 "isLoading": false,
@@ -645,7 +648,7 @@ exports[`RSE Widget renders correctly 1`] = `
                                                   "neutral20": "hsl(0, 0%, 80%)",
                                                   "neutral30": "hsl(0, 0%, 70%)",
                                                   "neutral40": "hsl(0, 0%, 60%)",
-                                                  "neutral5": "hsl(0, 0%, 95%)",
+                                                  "neutral5": "#35404e",
                                                   "neutral50": "hsl(0, 0%, 50%)",
                                                   "neutral60": "hsl(0, 0%, 40%)",
                                                   "neutral70": "white",
@@ -727,12 +730,12 @@ exports[`RSE Widget renders correctly 1`] = `
                                                         "IndicatorSeparator": [Function],
                                                       },
                                                       "controlShouldRenderValue": true,
-                                                      "disabled": undefined,
                                                       "escapeClearsValue": false,
                                                       "filterOption": [Function],
                                                       "formatGroupLabel": [Function],
                                                       "getOptionLabel": [Function],
                                                       "getOptionValue": [Function],
+                                                      "hideSelectedOptions": true,
                                                       "inputValue": "",
                                                       "isDisabled": false,
                                                       "isLoading": false,
@@ -790,7 +793,7 @@ exports[`RSE Widget renders correctly 1`] = `
                                                         "neutral20": "hsl(0, 0%, 80%)",
                                                         "neutral30": "hsl(0, 0%, 70%)",
                                                         "neutral40": "hsl(0, 0%, 60%)",
-                                                        "neutral5": "hsl(0, 0%, 95%)",
+                                                        "neutral5": "#35404e",
                                                         "neutral50": "hsl(0, 0%, 50%)",
                                                         "neutral60": "hsl(0, 0%, 40%)",
                                                         "neutral70": "white",
@@ -921,12 +924,12 @@ exports[`RSE Widget renders correctly 1`] = `
                                                   "IndicatorSeparator": [Function],
                                                 },
                                                 "controlShouldRenderValue": true,
-                                                "disabled": undefined,
                                                 "escapeClearsValue": false,
                                                 "filterOption": [Function],
                                                 "formatGroupLabel": [Function],
                                                 "getOptionLabel": [Function],
                                                 "getOptionValue": [Function],
+                                                "hideSelectedOptions": true,
                                                 "inputValue": "",
                                                 "isDisabled": false,
                                                 "isLoading": false,
@@ -984,7 +987,7 @@ exports[`RSE Widget renders correctly 1`] = `
                                                   "neutral20": "hsl(0, 0%, 80%)",
                                                   "neutral30": "hsl(0, 0%, 70%)",
                                                   "neutral40": "hsl(0, 0%, 60%)",
-                                                  "neutral5": "hsl(0, 0%, 95%)",
+                                                  "neutral5": "#35404e",
                                                   "neutral50": "hsl(0, 0%, 50%)",
                                                   "neutral60": "hsl(0, 0%, 40%)",
                                                   "neutral70": "white",
@@ -1058,12 +1061,12 @@ exports[`RSE Widget renders correctly 1`] = `
                                                         "IndicatorSeparator": [Function],
                                                       },
                                                       "controlShouldRenderValue": true,
-                                                      "disabled": undefined,
                                                       "escapeClearsValue": false,
                                                       "filterOption": [Function],
                                                       "formatGroupLabel": [Function],
                                                       "getOptionLabel": [Function],
                                                       "getOptionValue": [Function],
+                                                      "hideSelectedOptions": true,
                                                       "inputValue": "",
                                                       "isDisabled": false,
                                                       "isLoading": false,
@@ -1121,7 +1124,7 @@ exports[`RSE Widget renders correctly 1`] = `
                                                         "neutral20": "hsl(0, 0%, 80%)",
                                                         "neutral30": "hsl(0, 0%, 70%)",
                                                         "neutral40": "hsl(0, 0%, 60%)",
-                                                        "neutral5": "hsl(0, 0%, 95%)",
+                                                        "neutral5": "#35404e",
                                                         "neutral50": "hsl(0, 0%, 50%)",
                                                         "neutral60": "hsl(0, 0%, 40%)",
                                                         "neutral70": "white",
@@ -1187,12 +1190,12 @@ exports[`RSE Widget renders correctly 1`] = `
                                                         "IndicatorSeparator": [Function],
                                                       },
                                                       "controlShouldRenderValue": true,
-                                                      "disabled": undefined,
                                                       "escapeClearsValue": false,
                                                       "filterOption": [Function],
                                                       "formatGroupLabel": [Function],
                                                       "getOptionLabel": [Function],
                                                       "getOptionValue": [Function],
+                                                      "hideSelectedOptions": true,
                                                       "inputValue": "",
                                                       "isDisabled": false,
                                                       "isLoading": false,
@@ -1250,7 +1253,7 @@ exports[`RSE Widget renders correctly 1`] = `
                                                         "neutral20": "hsl(0, 0%, 80%)",
                                                         "neutral30": "hsl(0, 0%, 70%)",
                                                         "neutral40": "hsl(0, 0%, 60%)",
-                                                        "neutral5": "hsl(0, 0%, 95%)",
+                                                        "neutral5": "#35404e",
                                                         "neutral50": "hsl(0, 0%, 50%)",
                                                         "neutral60": "hsl(0, 0%, 40%)",
                                                         "neutral70": "white",
@@ -1360,6 +1363,8 @@ exports[`RSE Widget renders correctly 1`] = `
                 >
                   <button
                     className="button is-primary auto"
+                    disabled={true}
+                    onClick={[Function]}
                   >
                     APPLY
                   </button>

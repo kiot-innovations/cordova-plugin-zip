@@ -36,7 +36,8 @@ function SelectField(props) {
     defaultValue,
     isSearchable,
     value,
-    disabled,
+    isDisabled: disabled,
+    hideSelectedOptions: true,
     noOptionsMessage: () => notFoundText,
     theme: theme => ({
       ...theme,
@@ -48,7 +49,8 @@ function SelectField(props) {
         neutral0: '#2f465b',
         neutral90: 'white',
         neutral70: 'white',
-        neutral80: 'white'
+        neutral80: 'white',
+        neutral5: '#35404e'
       }
     })
   }

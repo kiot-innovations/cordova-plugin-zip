@@ -181,5 +181,6 @@
   "SN_MANUAL_ENTRY": "Can’t find all my inverters",
   "LOADING": "Loading...",
   "NO_DATA": "No data",
-  "NO_CONNECTION": "No Connection"
+  "NO_CONNECTION": "No Connection",
+  "APPLYING": "Applying..."
 }

@@ -42,4 +42,5 @@ export const GET_RSE_SUCCESS = createAction('GET_RSE_SUCCESS')
 
 export const SET_RSE_INIT = createAction('SET_RSE_INIT')
 export const SET_RSE_ERROR = createAction('SET_RSE_ERROR')
+export const SET_RSE_STATUS = createAction('SET_RSE_STATUS')
 export const SET_RSE_SUCCESS = createAction('SET_RSE_SUCCESS')
