@@ -1,19 +1,27 @@
 import { path, pick } from 'ramda'
 import { ofType } from 'redux-observable'
 import { from, of, timer } from 'rxjs'
-import { catchError, flatMap, map, switchMap, takeUntil } from 'rxjs/operators'
+import {
+  catchError,
+  delay,
+  flatMap,
+  map,
+  switchMap,
+  takeUntil
+} from 'rxjs/operators'
 import { getApiPVS } from 'shared/api'
-import { waitFor } from 'shared/utils'
 import {
   getFileBlob,
   getFirmwareVersionNumber
 } from 'state/actions/fileDownloader'
 import {
+  FIRMWARE_UPDATE_COMPLETE,
   FIRMWARE_UPDATE_ERROR,
   FIRMWARE_UPDATE_INIT,
   FIRMWARE_UPDATE_POLL_INIT,
   FIRMWARE_UPDATE_POLL_STOP,
-  FIRMWARE_UPDATE_POLLING
+  FIRMWARE_UPDATE_POLLING,
+  FIRMWARE_UPDATE_WAITING_FOR_NETWORK
 } from 'state/actions/firmwareUpdate'
 import { PVS_CONNECTION_INIT } from 'state/actions/network'
 
@@ -83,15 +91,24 @@ export const firmwarePollStatus = action$ => {
 const firmwareWaitForWifi = (action$, state$) =>
   action$.pipe(
     ofType(FIRMWARE_UPDATE_POLL_STOP.getType()),
-    switchMap(() => {
-      from(waitFor(1000 * 60)).pipe(
-        switchMap(async () =>
-          PVS_CONNECTION_INIT({
-            ssid: state$.value.network.SSID,
-            password: state$.value.network.password
-          })
-        )
-      )
+    switchMap(async () => FIRMWARE_UPDATE_WAITING_FOR_NETWORK()),
+    //will wait for 1 minute, time to get the PVS back up
+    delay(1000 * 60),
+    switchMap(async () => {
+      console.warn('INITIATING CONNECTION', state$.value)
+      return PVS_CONNECTION_INIT({
+        ssid: state$.value.network.SSID,
+        password: state$.value.network.password
+      })
+    }),
+    delay(1000),
+    switchMap(async () => {
+      let connectedSSID = await window.WifiWizard2.getConnectedSSID()
+      //We need to wait for the device to connect to the PVS before continuing
+      while (connectedSSID !== state$.value.network.SSID)
+        connectedSSID = await window.WifiWizard2.getConnectedSSID()
+      console.warn('UPDATE COMPLETE :ROCKSTAR:')
+      return FIRMWARE_UPDATE_COMPLETE()
     })
   )
 

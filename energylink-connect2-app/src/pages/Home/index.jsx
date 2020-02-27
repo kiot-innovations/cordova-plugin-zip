@@ -8,7 +8,6 @@ import { path, test, join, values, pick, prop, compose, length } from 'ramda'
 
 import paths from 'routes/paths'
 import SearchField from 'components/SearchField'
-import { FIRMWARE_UPDATE_INIT } from 'state/actions/firmwareUpdate'
 import { GET_SITES_INIT, SET_SITE } from 'state/actions/site'
 
 import './Home.scss'

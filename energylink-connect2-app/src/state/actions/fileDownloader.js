@@ -1,6 +1,5 @@
-import { compose, join, split, head, slice, append } from 'ramda'
+import { append, compose, head, join, slice, split } from 'ramda'
 import { createAction } from 'redux-act'
-import { getApiFirmware } from 'shared/api'
 
 export const GET_FILE = createAction('GET FILE')
 export const GET_FILE_ERROR = createAction('GET FILE ERROR')
