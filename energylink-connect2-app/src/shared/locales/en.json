@@ -181,5 +181,7 @@
   "SN_MANUAL_ENTRY": "Can’t find all my inverters",
   "LOADING": "Loading...",
   "NO_DATA": "No data",
-  "NO_CONNECTION": "No Connection"
+  "NO_CONNECTION": "No Connection",
+  "DISCOVERY_IN_PROGRESS": "Hold on, we're looking for your devices",
+  "CLAIMING_DEVICES": "Saving device data"
 }

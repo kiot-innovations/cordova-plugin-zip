@@ -124,7 +124,7 @@ describe('the discover device epic', () => {
       if (returnedAction.type === update.type) {
         expect(mockGetProgress).toBeCalledTimes(1)
       } else {
-        expect(mockGetProgress).toBeCalledTimes(1)
+        expect(mockGetProgress).toBeCalledTimes(2)
         done()
       }
     })

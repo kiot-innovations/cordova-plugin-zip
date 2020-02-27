@@ -1,17 +1,20 @@
 import Collapsible from 'components/Collapsible'
-import { pathOr, propOr, length, filter, propEq } from 'ramda'
+import { propOr, length, path } from 'ramda'
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import clsx from 'clsx'
 import paths from 'routes/paths'
 import { useI18n } from 'shared/i18n'
 import {
   DISCOVER_COMPLETE,
   FETCH_CANDIDATES_INIT,
-  DISCOVER_INIT
+  DISCOVER_INIT,
+  FETCH_CANDIDATES_COMPLETE,
+  CLAIM_DEVICES_INIT
 } from 'state/actions/devices'
 import './Devices.scss'
+import { Loader } from 'components/Loader'
 
 const microInverterIcon = (
   <span className="sp-inverter mr-20 devices-icon ml-0 mt-0 mb-0" />
@@ -28,68 +31,104 @@ const numberItems = num =>
     <span className="devices-counter mr-10 ml-0 mt-0 mb-0">{num}</span>
   )
 
-const filterFoundPVS = (SNList, candidatesList) => {
-  const okPVS = []
-  const nonOkPVS = []
+const filterFoundMI = (SNList, candidatesList) => {
+  const okMI = []
+  const nonOkMI = []
   SNList.forEach(device => {
     try {
       const foundCandidate = candidatesList.find(
         item => item.SERIAL === device.serial_number
       )
-
       if (foundCandidate && foundCandidate.STATEDESCR.toLowerCase() === 'ok') {
         device.state = foundCandidate.STATEDESCR
-        okPVS.push(device)
+        okMI.push(device)
       } else {
-        device.state = foundCandidate.STATEDESCR
-        nonOkPVS.push(device)
+        device.state = 'Not Found'
+        nonOkMI.push(device)
       }
     } catch (e) {
       console.error('Filtering error', e)
     }
   })
 
-  return { proceed: length(SNList) === length(okPVS), okPVS, nonOkPVS }
+  return { proceed: length(SNList) === length(okMI), okMI, nonOkMI }
 }
 
-function mapStateToProps({ inventory, devices, pvs }) {
-  const { candidates, found } = devices
+function mapStateToProps({ devices, pvs }) {
+  const {
+    discoveryComplete,
+    candidates,
+    found,
+    claimingDevices,
+    claimedDevices,
+    fetchCandidatesError
+  } = devices
   const { serialNumbers } = pvs
-  const { bom } = inventory
-  const expectedMIs = serialNumbers.map(({ model, ...keepAttrs }) => keepAttrs)
-  const { proceed, okPVS, nonOkPVS } = filterFoundPVS(expectedMIs, candidates)
-
-  const inverterCount = filter(propEq('item', 'MODULES'), bom)
-  const meterCount = filter(propEq('item', 'METERS'), bom)
+  const { proceed, okMI, nonOkMI } = filterFoundMI(serialNumbers, candidates)
   return {
-    inventory: {
-      inverters: pathOr(0, ['value'], inverterCount),
-      meter: pathOr(0, ['value'], meterCount)
+    claim: {
+      claimingDevices,
+      claimedDevices
     },
     found: {
       ...found,
       proceed,
-      inverter: [...okPVS, ...nonOkPVS]
+      discoveryComplete,
+      fetchCandidatesError,
+      inverter: [...okMI, ...nonOkMI]
     },
     counts: {
       inverter: {
-        okPVSCount: length(okPVS),
-        errPVSCount: length(nonOkPVS)
+        expected: length(serialNumbers),
+        okMICount: length(okMI),
+        errMICount: length(nonOkMI)
       }
     }
   }
 }
 
 const Devices = ({ animationState }) => {
-  const { found, counts } = useSelector(mapStateToProps)
+  const { found, counts, claim } = useSelector(mapStateToProps)
   const dispatch = useDispatch()
+  const history = useHistory()
   const t = useI18n()
   useEffect(() => {
     dispatch(FETCH_CANDIDATES_INIT())
+    if (found.proceed) {
+      dispatch(FETCH_CANDIDATES_COMPLETE())
+    }
+    if (claim.claimedDevices && animationState !== 'leave') {
+      history.push(paths.PROTECTED.INSTALL_SUCCESS.path)
+    }
+    if (found.fetchCandidatesError && animationState !== 'leave') {
+      history.push(paths.PROTECTED.SN_LIST.path)
+    }
     return () => {
       if (animationState === 'exit') dispatch(DISCOVER_COMPLETE())
     }
-  }, [dispatch, animationState])
+  }, [
+    dispatch,
+    animationState,
+    counts.expected,
+    counts.okMICount,
+    found.proceed,
+    claim.claimedDevices,
+    history,
+    found.fetchCandidatesError
+  ])
+
+  const claimDevices = () => {
+    const claimObject = path(['inverter'], found).map(mi => {
+      return {
+        OPERATION: 'add',
+        MODEL: 'AC_Module_Type_E',
+        SERIAL: mi.serial_number,
+        TYPE: 'SOLARBRIDGE'
+      }
+    })
+    dispatch(CLAIM_DEVICES_INIT(claimObject))
+  }
+
   return (
     <div className="fill-parent is-flex tile is-vertical has-text-centered sunpower-devices pr-15 pl-15">
       <span className="is-uppercase has-text-weight-bold mb-20" role="button">
@@ -106,7 +145,7 @@ const Devices = ({ animationState }) => {
           title={t('MICRO-INVERTERS')}
           icon={microInverterIcon}
           actions={Icon(
-            counts.inverter.okPVSCount,
+            counts.inverter.okMICount,
             length(propOr([], 'inverter', found)),
             'sp-gear'
           )}
@@ -175,17 +214,22 @@ const Devices = ({ animationState }) => {
       >
         {t('ADD-DEVICES')}
       </Link>
-      {found.proceed ? (
-        <Link
+      {found.discoveryComplete ? (
+        <button
           className="button is-primary is-uppercase is-paddingless ml-75 mr-75"
-          to={paths.PROTECTED.INSTALL_SUCCESS.path}
+          onClick={claimDevices}
         >
           {t('DONE')}
-        </Link>
+        </button>
       ) : (
-        <span className="has-text-weight-bold mb-20">
-          {t('DEVICES_NOT_FOUND')}
-        </span>
+        <div>
+          <Loader />
+          <span className="has-text-weight-bold mb-20">
+            {claim.claimingDevices
+              ? t('CLAIMING_DEVICES')
+              : t('DISCOVERY_IN_PROGRESS')}
+          </span>
+        </div>
       )}
     </div>
   )
