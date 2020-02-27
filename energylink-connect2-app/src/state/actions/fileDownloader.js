@@ -53,6 +53,16 @@ export async function getFirmwareVersionNumber() {
     throw new Error(ERROR_CODES.getVersionInfo)
   }
 }
+export const getFileBlob = (fileName = '') =>
+  new Promise(async (resolve, reject) => {
+    const file = await getPFile(fileName)
+    const reader = new FileReader()
+    reader.onloadend = function() {
+      resolve(new Blob([this.result]))
+    }
+    reader.readAsArrayBuffer(file)
+  })
+
 export async function getPFile(fileName, errorCallback) {
   return new Promise((resolve, reject) => {
     const type = window.PERSISTENT

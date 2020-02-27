@@ -44,10 +44,7 @@ function Home({ animationState }) {
   const errorMessage = path(['data', 'message'], error)
 
   useEffect(() => {
-    if (animationState === 'enter') {
-      dispatch(GET_SITES_INIT())
-      dispatch(FIRMWARE_UPDATE_INIT())
-    }
+    if (animationState === 'enter') dispatch(GET_SITES_INIT())
   }, [dispatch, animationState])
 
   const notFoundText = t('NOT_FOUND')
