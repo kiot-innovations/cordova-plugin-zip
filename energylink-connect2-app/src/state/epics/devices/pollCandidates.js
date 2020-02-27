@@ -1,4 +1,4 @@
-import { path, pathOr } from 'ramda'
+import { path, pathOr, length } from 'ramda'
 import { ofType } from 'redux-observable'
 import { from, of, timer } from 'rxjs'
 import { catchError, switchMap, takeUntil } from 'rxjs/operators'
@@ -11,7 +11,12 @@ import {
 } from 'state/actions/devices'
 
 const fetchCandidatesEpic = action$ => {
-  const stopPolling$ = action$.pipe(ofType(FETCH_CANDIDATES_COMPLETE.getType()))
+  const stopPolling$ = action$.pipe(
+    ofType(
+      FETCH_CANDIDATES_COMPLETE.getType(),
+      FETCH_CANDIDATES_ERROR.getType()
+    )
+  )
   return action$.pipe(
     ofType(PUSH_CANDIDATES_SUCCESS.getType()),
     switchMap(() =>
@@ -28,7 +33,9 @@ const fetchCandidatesEpic = action$ => {
                 ['body', 'candidates'],
                 response
               )
-              return FETCH_CANDIDATES_UPDATE(candidatesList)
+              return length(candidatesList) > 0
+                ? FETCH_CANDIDATES_UPDATE(candidatesList)
+                : FETCH_CANDIDATES_ERROR('No candidates received')
             }),
             catchError(error => of(FETCH_CANDIDATES_ERROR(error)))
           )
