@@ -182,5 +182,7 @@
   "LOADING": "Loading...",
   "NO_DATA": "No data",
   "NO_CONNECTION": "No Connection",
-  "APPLYING": "Applying..."
+  "APPLYING": "Applying...",
+  "DISCOVERY_IN_PROGRESS": "Hold on, we're looking for your devices",
+  "CLAIMING_DEVICES": "Saving device data"
 }
