@@ -183,5 +183,7 @@
   "NO_DATA": "No data",
   "NO_CONNECTION": "No Connection",
   "DISCOVERY_IN_PROGRESS": "Hold on, we're looking for your devices",
-  "CLAIMING_DEVICES": "Saving device data"
+  "CLAIMING_DEVICES": "Saving device data",
+  "EMPTY_CANDIDATES": "There was an error with the PVS. Please reboot it and try again",
+  "CANDIDATES_ERROR_FOUND": "We found issues with the installed MIs. Please verify the connections, or call for assistance."
 }

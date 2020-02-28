@@ -10,7 +10,8 @@ import {
   FETCH_CANDIDATES_ERROR,
   CLAIM_DEVICES_INIT,
   CLAIM_DEVICES_SUCCESS,
-  CLAIM_DEVICES_ERROR
+  CLAIM_DEVICES_ERROR,
+  RESET_DISCOVERY
 } from 'state/actions/devices'
 
 const initialState = {
@@ -18,7 +19,6 @@ const initialState = {
   found: {},
   error: '',
   isFetchingCandidates: false,
-  fetchCandidatesError: false,
   candidates: [],
   allCandidatesFound: false,
   discoveryComplete: false,
@@ -79,8 +79,7 @@ export default createReducer(
       return {
         ...state,
         isFetchingCandidates: false,
-        error: payload,
-        fetchCandidatesError: true
+        error: payload
       }
     },
     [CLAIM_DEVICES_INIT]: state => {
@@ -101,6 +100,11 @@ export default createReducer(
         ...state,
         claimingDevices: false,
         error: payload
+      }
+    },
+    [RESET_DISCOVERY]: () => {
+      return {
+        ...initialState
       }
     }
   },
