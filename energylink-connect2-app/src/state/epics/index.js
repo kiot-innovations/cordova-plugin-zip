@@ -3,6 +3,7 @@ import firmwareUpdatesEpics from './fimwareUpdate'
 import discoverDeviceEpic from './devices/discoverDevices'
 import pushCandidatesEpic from './devices/pushCandidates'
 import fetchCandidatesEpic from './devices/pollCandidates'
+import claimDevicesEpic from './devices/claimDevices'
 import networkPollingEpics from './network'
 import feedbackEpic from './feedback'
 import siteEpic from './site'
@@ -16,6 +17,7 @@ export default combineEpics(
   discoverDeviceEpic,
   pushCandidatesEpic,
   fetchCandidatesEpic,
+  claimDevicesEpic,
   ...feedbackEpic,
   ...firmwareUpdatesEpics,
   siteEpic,

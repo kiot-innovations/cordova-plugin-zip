@@ -128,6 +128,7 @@ function SNList({ animationState }) {
   const countSN = () => {
     if (parseInt(scannedMICount, 10) === parseInt(expectedMICount, 10)) {
       submitSN()
+      history.push(paths.PROTECTED.DEVICES.path)
     } else {
       toggleModal()
     }
