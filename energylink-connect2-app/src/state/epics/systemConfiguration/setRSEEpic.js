@@ -19,25 +19,23 @@ const setRSE = async powerProduction => {
     )
     return res.body
   } catch (e) {
-    throw new Error('Setting RSE error')
+    throw new Error('SET_RSE_ERROR')
   }
 }
 
 export const setRSEEpic = action$ => {
   return action$.pipe(
     ofType(SET_RSE_INIT.getType()),
-    mergeMap(({ payload }) => {
-      return from(setRSE(payload)).pipe(
+    mergeMap(({ payload }) =>
+      from(setRSE(payload)).pipe(
         map(response =>
           response.error
             ? SET_RSE_ERROR(response.error)
             : SET_RSE_STATUS(response)
         ),
-        catchError(error => {
-          return of(SET_RSE_ERROR(error.message))
-        })
+        catchError(error => of(SET_RSE_ERROR(error.message)))
       )
-    })
+    )
   )
 }
 
@@ -52,10 +50,9 @@ export const pollRSEEpic = (action$, state$) => {
     ofType(SET_RSE_STATUS.getType()),
     mergeMap(() =>
       timer(0, 1000).pipe(
-        map(() => {
-          console.info(currentProgress)
-          return currentProgress < 100 ? GET_RSE_INIT(true) : SET_RSE_SUCCESS()
-        }),
+        map(() =>
+          currentProgress < 100 ? GET_RSE_INIT(true) : SET_RSE_SUCCESS()
+        ),
         takeWhile(() => currentProgress < 100)
       )
     )

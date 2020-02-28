@@ -14,7 +14,7 @@ const fetchRSE = async () => {
     const res = await swagger.apis.powerProduction.getPowerProduction()
     return res.body
   } catch (e) {
-    throw new Error('Fetching RSE error')
+    throw new Error('GET_RSE_ERROR')
   }
 }
 

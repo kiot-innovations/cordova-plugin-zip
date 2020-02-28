@@ -19,46 +19,36 @@ function RSEWidget({ animationState }) {
   const t = useI18n()
   const dispatch = useDispatch()
 
-  const isFetching = useSelector(
-    pathOr(false, ['systemConfiguration', 'rse', 'isFetching'])
+  const { isFetching, isPolling, isSetting, error, data = {} } = useSelector(
+    pathOr({}, ['systemConfiguration', 'rse'])
   )
 
-  const isPolling = useSelector(
-    pathOr(false, ['systemConfiguration', 'rse', 'isPolling'])
-  )
-
-  const isSetting = useSelector(
-    pathOr(false, ['systemConfiguration', 'rse', 'isSetting'])
-  )
-
-  const error = useSelector(
-    pathOr(null, ['systemConfiguration', 'rse', 'error'])
-  )
-
-  const { powerProduction = 'Off', progress = 0 } = useSelector(
-    pathOr({}, ['systemConfiguration', 'rse', 'data'])
-  )
+  const { powerProduction = 'Off', progress } = data
 
   const [rseValue, setRSEValue] = useState(powerProduction)
 
-  useEffect(() => {
-    if (animationState === 'enter') dispatch(GET_RSE_INIT())
-    if (progress < 100 && !isPolling) dispatch(SET_RSE_STATUS())
-  }, [animationState, dispatch, isPolling, progress])
-
-  useEffect(() => {
-    setRSEValue(powerProduction)
-  }, [powerProduction])
+  const disableSetRSEValue = equals(powerProduction, rseValue) || isSetting
+  const disableSelectValue = isSetting && isPolling
+  const showProgress = isSetting && progress < 100
 
   const RSES = [
     { label: t('ON'), value: 'On' },
     { label: t('OFF'), value: 'Off' }
   ]
 
-  const allowSetRSEValue = equals(powerProduction, rseValue)
-  const showProgress = isSetting && progress < 100
   const currentRSEValue = RSES.find(propEq('value', rseValue))
   const sendNewRSEValue = compose(dispatch, SET_RSE_INIT)
+
+  useEffect(() => {
+    if (animationState === 'enter') dispatch(GET_RSE_INIT())
+    // we sent the command, closed the page and came back,
+    // we need to start polling to check its status
+    if (progress && progress < 100 && !isPolling) dispatch(SET_RSE_STATUS())
+  }, [animationState, dispatch, isPolling, progress])
+
+  useEffect(() => {
+    setRSEValue(powerProduction)
+  }, [powerProduction])
 
   return (
     <div className="pb-15">
@@ -77,7 +67,7 @@ function RSEWidget({ animationState }) {
                 <div className="field">
                   <div className="control">
                     <SelectField
-                      disabled={isSetting && isPolling}
+                      disabled={disableSelectValue}
                       isSearchable={false}
                       options={RSES}
                       value={currentRSEValue}
@@ -89,18 +79,20 @@ function RSEWidget({ animationState }) {
             </div>
 
             {renderRSEDescription(powerProduction, t)}
+
             {either(
               error,
-              <div className="message error mt-10 mb-10">{error}</div>
+              <div className="message error mt-10 mb-10">{t(error)}</div>
             )}
 
             <div className="is-flex mt-15">
               <button
                 className="button is-primary auto"
-                disabled={allowSetRSEValue || isSetting}
+                disabled={disableSetRSEValue}
                 onClick={() => sendNewRSEValue(rseValue)}
               >
                 {either(isSetting, t('APPLYING'), t('APPLY'))}
+
                 {either(
                   showProgress,
                   <span className="ml-10 has-text-information">
