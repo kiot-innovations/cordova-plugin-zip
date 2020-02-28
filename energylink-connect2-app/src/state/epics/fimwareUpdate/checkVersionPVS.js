@@ -20,25 +20,14 @@ const getVersionNumber = compose(
 )
 const getPVSVersion = async () => {
   try {
-    console.log('WAITING FOR 1 second')
-    console.time('waiting')
     await waitFor(1000)
-    console.timeEnd('waiting')
-    console.log('GET PVS VERSION')
     const api = await getApiPVS()
-    console.log('API', api)
     const res = await api.apis.pvs.getSupervisorInfo()
-    console.log('RES', res)
     const { version: serverVersion } = await getFirmwareVersionNumber()
-    console.log('VERSION', serverVersion)
     let PVSversion = '-1'
     if (res.ok) PVSversion = getVersionNumber(res)
-    console.log('VERSIONS')
-    console.log(PVSversion, serverVersion)
-    console.log(serverVersion > PVSversion)
     return serverVersion > PVSversion
   } catch (e) {
-    console.log('I EXPLOTED', e)
     throw new Error(e)
   }
 }
@@ -49,8 +38,6 @@ const checkVersionPVS = action$ =>
     mergeMap(() =>
       from(getPVSVersion()).pipe(
         map(shouldUpdate => {
-          console.log('SHOULD UPDATE')
-          console.log(shouldUpdate)
           return shouldUpdate
             ? FIRMWARE_UPDATE_INIT()
             : FIRMWARE_GET_VERSION_COMPLETE()

@@ -45,7 +45,6 @@ export async function getFirmwareVersionNumber() {
     // const response = await swagger.apis.pvs6.firmwareUpdate({ fwver: 0 })
     const fileURL =
       'https://fw-assets-pvs6-dev.dev-edp.sunpower.com/staging-prod-boomer/7035/fwup/fwup.lua'
-    console.log(fileURL)
     const luaFileName = getLuaName(fileURL)
     return { luaFileName, fileURL, version: getBuildNumber(fileURL) }
   } catch (e) {
@@ -108,7 +107,6 @@ export function getFile() {
       await getPersistentFile(luaFileName, fileURL, dispatch)
       await parseLuaFile(luaFileName, dispatch)
       const fileSystemURL = getFileSystemURL(fileURL)
-      console.log('File system URL', fileSystemURL)
       removeEventListeners()
       await getPersistentFile(`${luaFileName}.fs`, fileSystemURL, dispatch)
       dispatch(DOWNLOAD_SUCCESS())

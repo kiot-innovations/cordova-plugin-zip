@@ -1,15 +1,16 @@
 import { path, pick } from 'ramda'
 import { ofType } from 'redux-observable'
-import { from, of, timer } from 'rxjs'
+import { concat, from, of, timer, zip } from 'rxjs'
 import {
   catchError,
-  delay,
   flatMap,
   map,
-  switchMap,
-  takeUntil
+  take,
+  takeUntil,
+  switchMap
 } from 'rxjs/operators'
 import { getApiPVS } from 'shared/api'
+import { waitFor } from 'shared/utils'
 import {
   getFileBlob,
   getFirmwareVersionNumber
@@ -23,7 +24,11 @@ import {
   FIRMWARE_UPDATE_POLLING,
   FIRMWARE_UPDATE_WAITING_FOR_NETWORK
 } from 'state/actions/firmwareUpdate'
-import { PVS_CONNECTION_INIT } from 'state/actions/network'
+import {
+  PVS_CONNECTION_INIT,
+  PVS_CONNECTION_SUCCESS,
+  STOP_NETWORK_POLLING
+} from 'state/actions/network'
 
 /**
  * Will upload the FS to the PVS and
@@ -53,7 +58,6 @@ const uploadFirmwarePVS = async () => {
  */
 const getUpgradeStatus = async () => {
   const swagger = await getApiPVS()
-  console.warn(swagger)
   const res = await swagger.apis.firmware.getUpgradeStatus()
   return res.body
 }
@@ -74,15 +78,15 @@ export const firmwarePollStatus = action$ => {
   return action$.pipe(
     ofType(FIRMWARE_UPDATE_POLL_INIT.getType()),
     switchMap(() =>
-      timer(0, 1000).pipe(
+      timer(0, 1500).pipe(
         takeUntil(stopPolling$),
         switchMap(() => from(getUpgradeStatus())),
         map(status => {
-          console.warn('STATUS', status)
           return path(['STATE'], status) === 'complete'
             ? FIRMWARE_UPDATE_POLL_STOP()
             : FIRMWARE_UPDATE_POLLING(pick(['STATE', 'PERCENT'], status))
-        })
+        }),
+        catchError(() => of({ type: "NOTHING HAPPENED HERE :')" }))
       )
     )
   )
@@ -91,25 +95,61 @@ export const firmwarePollStatus = action$ => {
 const firmwareWaitForWifi = (action$, state$) =>
   action$.pipe(
     ofType(FIRMWARE_UPDATE_POLL_STOP.getType()),
-    switchMap(async () => FIRMWARE_UPDATE_WAITING_FOR_NETWORK()),
-    //will wait for 1 minute, time to get the PVS back up
-    delay(1000 * 60),
-    switchMap(async () => {
-      console.warn('INITIATING CONNECTION', state$.value)
-      return PVS_CONNECTION_INIT({
-        ssid: state$.value.network.SSID,
-        password: state$.value.network.password
-      })
-    }),
-    delay(1000),
-    switchMap(async () => {
-      let connectedSSID = await window.WifiWizard2.getConnectedSSID()
-      //We need to wait for the device to connect to the PVS before continuing
-      while (connectedSSID !== state$.value.network.SSID)
-        connectedSSID = await window.WifiWizard2.getConnectedSSID()
-      console.warn('UPDATE COMPLETE :ROCKSTAR:')
-      return FIRMWARE_UPDATE_COMPLETE()
-    })
+    flatMap(() =>
+      concat(
+        of(STOP_NETWORK_POLLING()),
+        of(FIRMWARE_UPDATE_WAITING_FOR_NETWORK()),
+        from(waitFor(1000 * 60)).pipe(
+          map(() =>
+            PVS_CONNECTION_INIT({
+              ssid: state$.value.network.SSID,
+              password: state$.value.network.password
+            })
+          )
+        )
+      )
+    )
   )
+const firmwareUpdateSuccessEpic = action$ =>
+  action$.pipe(
+    ofType(FIRMWARE_UPDATE_WAITING_FOR_NETWORK.getType()),
+    switchMap(() =>
+      action$.pipe(
+        ofType(PVS_CONNECTION_SUCCESS.getType()),
+        take(1),
+        map(() => {
+          return FIRMWARE_UPDATE_COMPLETE()
+        })
+      )
+    )
+  )
+//{
+//   const waitForNetwork$ = action$.pipe(
+//     ofType(FIRMWARE_UPDATE_WAITING_FOR_NETWORK.getType())
+//   )
+//   const waitForConnection$ = action$.pipe(
+//     PVS_CONNECTION_SUCCESS.getType(),
+//     take(1)
+//   )
+//   const combined$ = zip(waitForConnection$, waitForNetwork$)
+//   return combined$.pipe()
+// }
 
-export default [firmwareUpgradeInit, firmwarePollStatus, firmwareWaitForWifi]
+// switchMap(
+//   action$.pipe(
+//     ofType(PVS_CONNECTION_SUCCESS.getType()),
+//     take(1),
+//     map(() => FIRMWARE_UPDATE_COMPLETE())
+//   )
+// )
+// action
+// oftype(FIRMWARE_UPDATE_WAITING_FOR_NETWORK)
+// ofType(CONNECTION SUCCESS)
+//of(PVS_UPGRADE_COMPLETE)
+
+export default [
+  firmwareUpgradeInit,
+  firmwarePollStatus,
+  firmwareWaitForWifi,
+  firmwareUpdateSuccessEpic
+]
