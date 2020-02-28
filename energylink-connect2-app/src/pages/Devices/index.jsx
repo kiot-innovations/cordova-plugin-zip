@@ -11,7 +11,8 @@ import {
   FETCH_CANDIDATES_INIT,
   DISCOVER_INIT,
   FETCH_CANDIDATES_COMPLETE,
-  CLAIM_DEVICES_INIT
+  CLAIM_DEVICES_INIT,
+  RESET_DISCOVERY
 } from 'state/actions/devices'
 import './Devices.scss'
 import { Loader } from 'components/Loader'
@@ -51,7 +52,11 @@ const filterFoundMI = (SNList, candidatesList) => {
     }
   })
 
-  return { proceed: length(SNList) === length(okMI), okMI, nonOkMI }
+  return {
+    proceed: length(SNList) === length(okMI),
+    okMI,
+    nonOkMI
+  }
 }
 
 function mapStateToProps({ devices, pvs }) {
@@ -61,7 +66,7 @@ function mapStateToProps({ devices, pvs }) {
     found,
     claimingDevices,
     claimedDevices,
-    fetchCandidatesError
+    error
   } = devices
   const { serialNumbers } = pvs
   const { proceed, okMI, nonOkMI } = filterFoundMI(serialNumbers, candidates)
@@ -74,7 +79,7 @@ function mapStateToProps({ devices, pvs }) {
       ...found,
       proceed,
       discoveryComplete,
-      fetchCandidatesError,
+      error,
       inverter: [...okMI, ...nonOkMI]
     },
     counts: {
@@ -100,9 +105,6 @@ const Devices = ({ animationState }) => {
     if (claim.claimedDevices && animationState !== 'leave') {
       history.push(paths.PROTECTED.INSTALL_SUCCESS.path)
     }
-    if (found.fetchCandidatesError && animationState !== 'leave') {
-      history.push(paths.PROTECTED.SN_LIST.path)
-    }
     return () => {
       if (animationState === 'exit') dispatch(DISCOVER_COMPLETE())
     }
@@ -113,9 +115,13 @@ const Devices = ({ animationState }) => {
     counts.okMICount,
     found.proceed,
     claim.claimedDevices,
-    history,
-    found.fetchCandidatesError
+    history
   ])
+
+  const retryDiscovery = () => {
+    dispatch(RESET_DISCOVERY())
+    history.push(paths.PROTECTED.SN_LIST.path)
+  }
 
   const claimDevices = () => {
     const claimObject = path(['inverter'], found).map(mi => {
@@ -216,14 +222,7 @@ const Devices = ({ animationState }) => {
           {t('ADD-DEVICES')}
         </Link>
       )}
-      {found.discoveryComplete ? (
-        <button
-          className="button is-primary is-uppercase is-paddingless ml-75 mr-75"
-          onClick={claimDevices}
-        >
-          {t('DONE')}
-        </button>
-      ) : (
+      {!found.error && !found.discoveryComplete ? (
         <div>
           <Loader />
           <span className="has-text-weight-bold mb-20">
@@ -232,6 +231,27 @@ const Devices = ({ animationState }) => {
               : t('DISCOVERY_IN_PROGRESS')}
           </span>
         </div>
+      ) : (
+        ''
+      )}
+      {found.error && (
+        <>
+          <button
+            className="button is-primary is-uppercase is-paddingless ml-75 mr-75"
+            onClick={retryDiscovery}
+          >
+            {t('RETRY')}
+          </button>
+          <span className="has-text-weight-bold mt-20">{t(found.error)}</span>
+        </>
+      )}
+      {found.discoveryComplete && (
+        <button
+          className="button is-primary is-uppercase is-paddingless ml-75 mr-75"
+          onClick={claimDevices}
+        >
+          {t('DONE')}
+        </button>
       )}
     </div>
   )
