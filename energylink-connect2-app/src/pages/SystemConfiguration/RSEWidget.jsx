@@ -3,7 +3,11 @@ import { compose, prop, pathOr, equals, propEq } from 'ramda'
 import { useDispatch, useSelector } from 'react-redux'
 import { useI18n } from 'shared/i18n'
 import { either } from 'shared/utils'
-import { GET_RSE_INIT, SET_RSE_INIT } from 'state/actions/systemConfiguration'
+import {
+  GET_RSE_INIT,
+  SET_RSE_INIT,
+  SET_RSE_STATUS
+} from 'state/actions/systemConfiguration'
 
 import Collapsible from 'components/Collapsible'
 import SelectField from 'components/SelectField'
@@ -19,11 +23,19 @@ function RSEWidget({ animationState }) {
     pathOr(false, ['systemConfiguration', 'rse', 'isFetching'])
   )
 
+  const isPolling = useSelector(
+    pathOr(false, ['systemConfiguration', 'rse', 'isPolling'])
+  )
+
   const isSetting = useSelector(
     pathOr(false, ['systemConfiguration', 'rse', 'isSetting'])
   )
 
-  const { powerProduction = 'Off', progress = '20%' } = useSelector(
+  const error = useSelector(
+    pathOr(null, ['systemConfiguration', 'rse', 'error'])
+  )
+
+  const { powerProduction = 'Off', progress = 0 } = useSelector(
     pathOr({}, ['systemConfiguration', 'rse', 'data'])
   )
 
@@ -31,7 +43,8 @@ function RSEWidget({ animationState }) {
 
   useEffect(() => {
     if (animationState === 'enter') dispatch(GET_RSE_INIT())
-  }, [animationState, dispatch])
+    if (progress < 100 && !isPolling) dispatch(SET_RSE_STATUS())
+  }, [animationState, dispatch, isPolling, progress])
 
   useEffect(() => {
     setRSEValue(powerProduction)
@@ -64,7 +77,7 @@ function RSEWidget({ animationState }) {
                 <div className="field">
                   <div className="control">
                     <SelectField
-                      disabled={isSetting || progress < 100}
+                      disabled={isSetting && isPolling}
                       isSearchable={false}
                       options={RSES}
                       value={currentRSEValue}
@@ -76,6 +89,10 @@ function RSEWidget({ animationState }) {
             </div>
 
             {renderRSEDescription(powerProduction, t)}
+            {either(
+              error,
+              <div className="message error mt-10 mb-10">{error}</div>
+            )}
 
             <div className="is-flex mt-15">
               <button
