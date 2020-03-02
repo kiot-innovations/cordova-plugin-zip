@@ -181,5 +181,8 @@
   "SN_MANUAL_ENTRY": "Can’t find all my inverters",
   "LOADING": "Loading...",
   "NO_DATA": "No data",
-  "NO_CONNECTION": "No Connection"
+  "NO_CONNECTION": "No Connection",
+  "UPLOADING_FS": "Uploading the file system",
+  "WAITING_FOR_NETWORK": "Waiting for the network to come back",
+  "UPGRADE_COMPLETE": "Upgrade complete"
 }

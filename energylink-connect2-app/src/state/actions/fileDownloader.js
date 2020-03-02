@@ -35,7 +35,7 @@ const getBuildNumber = compose(
 )
 const getFileSystemURL = compose(
   join('/'),
-  append('fwup_lua_usb_no_copy_conf.zip'),
+  append('fwup_lua_usb.zip'),
   slice(0, -2),
   split('/')
 )
@@ -44,7 +44,7 @@ export async function getFirmwareVersionNumber() {
     // const swagger = await getApiFirmware()
     // const response = await swagger.apis.pvs6.firmwareUpdate({ fwver: 0 })
     const fileURL =
-      'https://fw-assets-pvs6-dev.dev-edp.sunpower.com/staging-prod-boomer/7035/fwup/fwup.lua'
+      'https://fw-assets-pvs6-dev.dev-edp.sunpower.com/staging-prod-boomer/7047/fwup/fwup.lua'
     const luaFileName = getLuaName(fileURL)
     return { luaFileName, fileURL, version: getBuildNumber(fileURL) }
   } catch (e) {
@@ -52,7 +52,7 @@ export async function getFirmwareVersionNumber() {
   }
 }
 export const getFileBlob = (fileName = '') =>
-  new Promise(async (resolve, reject) => {
+  new Promise(async resolve => {
     const file = await getPFile(fileName)
     const reader = new FileReader()
     reader.onloadend = function() {

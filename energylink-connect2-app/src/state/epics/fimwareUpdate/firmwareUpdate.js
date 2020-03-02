@@ -1,13 +1,13 @@
 import { path, pick } from 'ramda'
 import { ofType } from 'redux-observable'
-import { concat, from, of, timer, zip } from 'rxjs'
+import { concat, from, of, timer } from 'rxjs'
 import {
   catchError,
   flatMap,
   map,
+  switchMap,
   take,
-  takeUntil,
-  switchMap
+  takeUntil
 } from 'rxjs/operators'
 import { getApiPVS } from 'shared/api'
 import { waitFor } from 'shared/utils'
@@ -62,6 +62,11 @@ const getUpgradeStatus = async () => {
   return res.body
 }
 
+/**
+ * Epic that will upload the FS to the PVS
+ * @param action$
+ * @returns {*}
+ */
 const firmwareUpgradeInit = action$ =>
   action$.pipe(
     ofType(FIRMWARE_UPDATE_INIT.getType()),
@@ -110,6 +115,7 @@ const firmwareWaitForWifi = (action$, state$) =>
       )
     )
   )
+
 const firmwareUpdateSuccessEpic = action$ =>
   action$.pipe(
     ofType(FIRMWARE_UPDATE_WAITING_FOR_NETWORK.getType()),
@@ -117,35 +123,10 @@ const firmwareUpdateSuccessEpic = action$ =>
       action$.pipe(
         ofType(PVS_CONNECTION_SUCCESS.getType()),
         take(1),
-        map(() => {
-          return FIRMWARE_UPDATE_COMPLETE()
-        })
+        map(() => FIRMWARE_UPDATE_COMPLETE())
       )
     )
   )
-//{
-//   const waitForNetwork$ = action$.pipe(
-//     ofType(FIRMWARE_UPDATE_WAITING_FOR_NETWORK.getType())
-//   )
-//   const waitForConnection$ = action$.pipe(
-//     PVS_CONNECTION_SUCCESS.getType(),
-//     take(1)
-//   )
-//   const combined$ = zip(waitForConnection$, waitForNetwork$)
-//   return combined$.pipe()
-// }
-
-// switchMap(
-//   action$.pipe(
-//     ofType(PVS_CONNECTION_SUCCESS.getType()),
-//     take(1),
-//     map(() => FIRMWARE_UPDATE_COMPLETE())
-//   )
-// )
-// action
-// oftype(FIRMWARE_UPDATE_WAITING_FOR_NETWORK)
-// ofType(CONNECTION SUCCESS)
-//of(PVS_UPGRADE_COMPLETE)
 
 export default [
   firmwareUpgradeInit,

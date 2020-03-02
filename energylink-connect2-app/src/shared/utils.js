@@ -1,3 +1,14 @@
+import {
+  compose,
+  join,
+  over,
+  lensIndex,
+  toUpper,
+  lt,
+  when,
+  length
+} from 'ramda'
+
 export const either = (condition, whenTrue, whenFalse = null) =>
   condition ? whenTrue : whenFalse
 
@@ -57,3 +68,8 @@ export const isValidSN = sn => /^\d{12,}$/.test(sn)
 
 export const waitFor = (ms = 0) =>
   new Promise(resolve => setTimeout(resolve, ms))
+
+export const capitalize = when(
+  compose(lt(0), length),
+  compose(join(''), over(lensIndex(0), toUpper))
+)

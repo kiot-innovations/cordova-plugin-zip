@@ -22,6 +22,7 @@ const getPVSVersion = async () => {
   try {
     await waitFor(1000)
     const api = await getApiPVS()
+    await waitFor(250)
     const res = await api.apis.pvs.getSupervisorInfo()
     const { version: serverVersion } = await getFirmwareVersionNumber()
     let PVSversion = '-1'

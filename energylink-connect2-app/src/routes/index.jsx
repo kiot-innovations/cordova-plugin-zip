@@ -1,3 +1,5 @@
+import useUpgrade from 'hooks/useUpgrade'
+import UpdateScreen from 'pages/UpdateScreen'
 import {
   always,
   compose,
@@ -46,6 +48,7 @@ import { validateSession } from 'state/actions/auth'
 
 const mapComponents = {
   [paths.PROTECTED.DEVICES.path]: Devices,
+  [paths.PROTECTED.UPDATE.path]: UpdateScreen,
   [paths.PROTECTED.BILL_OF_MATERIALS.path]: BillOfMaterials,
   [paths.PROTECTED.CREATE_SITE.path]: CreateSite,
   [paths.PROTECTED.GIVE_FEEDBACK.path]: GiveFeedback,
@@ -123,6 +126,7 @@ function AppRoutes() {
   useLayoutEffect(() => {
     window.scrollTo(0, 0)
   })
+  useUpgrade()
 
   useEffect(() => {
     dispatch(deviceResumeListener())
