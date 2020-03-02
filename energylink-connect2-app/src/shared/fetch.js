@@ -1,12 +1,11 @@
 import { path } from 'ramda'
 
-export const httpPost = (path, data, state = null) => {
-  const authHeader =
-    state && state.user && state.user.auth
-      ? { Authorization: `SP-CUSTOM ${state.user.auth.tokenID}` }
-      : {}
+export const httpPost = (path, data, state = null, token) => {
+  const authHeader = {
+    Authorization: `Bearer ${state ? state.user.auth.access_token : token}`
+  }
 
-  return fetch(process.env.REACT_APP_EDP_API_URL + path, {
+  return fetch(path, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',

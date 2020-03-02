@@ -162,6 +162,7 @@ exports[`Network Widget renders correctly 1`] = `
                                   "value": "",
                                 }
                               }
+                              hideSelectedOptions={true}
                               isSearchable={false}
                               noOptionsMessage={[Function]}
                               onChange={[Function]}
@@ -206,6 +207,7 @@ exports[`Network Widget renders correctly 1`] = `
                                 formatGroupLabel={[Function]}
                                 getOptionLabel={[Function]}
                                 getOptionValue={[Function]}
+                                hideSelectedOptions={true}
                                 inputValue=""
                                 isDisabled={false}
                                 isLoading={false}
@@ -319,6 +321,7 @@ exports[`Network Widget renders correctly 1`] = `
                                       "formatGroupLabel": [Function],
                                       "getOptionLabel": [Function],
                                       "getOptionValue": [Function],
+                                      "hideSelectedOptions": true,
                                       "inputValue": "",
                                       "isDisabled": false,
                                       "isLoading": false,
@@ -385,7 +388,7 @@ exports[`Network Widget renders correctly 1`] = `
                                         "neutral20": "hsl(0, 0%, 80%)",
                                         "neutral30": "hsl(0, 0%, 70%)",
                                         "neutral40": "hsl(0, 0%, 60%)",
-                                        "neutral5": "hsl(0, 0%, 95%)",
+                                        "neutral5": "#35404e",
                                         "neutral50": "hsl(0, 0%, 50%)",
                                         "neutral60": "hsl(0, 0%, 40%)",
                                         "neutral70": "white",
@@ -480,6 +483,7 @@ exports[`Network Widget renders correctly 1`] = `
                                             "formatGroupLabel": [Function],
                                             "getOptionLabel": [Function],
                                             "getOptionValue": [Function],
+                                            "hideSelectedOptions": true,
                                             "inputValue": "",
                                             "isDisabled": false,
                                             "isLoading": false,
@@ -546,7 +550,7 @@ exports[`Network Widget renders correctly 1`] = `
                                               "neutral20": "hsl(0, 0%, 80%)",
                                               "neutral30": "hsl(0, 0%, 70%)",
                                               "neutral40": "hsl(0, 0%, 60%)",
-                                              "neutral5": "hsl(0, 0%, 95%)",
+                                              "neutral5": "#35404e",
                                               "neutral50": "hsl(0, 0%, 50%)",
                                               "neutral60": "hsl(0, 0%, 40%)",
                                               "neutral70": "white",
@@ -649,6 +653,7 @@ exports[`Network Widget renders correctly 1`] = `
                                                   "formatGroupLabel": [Function],
                                                   "getOptionLabel": [Function],
                                                   "getOptionValue": [Function],
+                                                  "hideSelectedOptions": true,
                                                   "inputValue": "",
                                                   "isDisabled": false,
                                                   "isLoading": false,
@@ -715,7 +720,7 @@ exports[`Network Widget renders correctly 1`] = `
                                                     "neutral20": "hsl(0, 0%, 80%)",
                                                     "neutral30": "hsl(0, 0%, 70%)",
                                                     "neutral40": "hsl(0, 0%, 60%)",
-                                                    "neutral5": "hsl(0, 0%, 95%)",
+                                                    "neutral5": "#35404e",
                                                     "neutral50": "hsl(0, 0%, 50%)",
                                                     "neutral60": "hsl(0, 0%, 40%)",
                                                     "neutral70": "white",
@@ -811,6 +816,7 @@ exports[`Network Widget renders correctly 1`] = `
                                                         "formatGroupLabel": [Function],
                                                         "getOptionLabel": [Function],
                                                         "getOptionValue": [Function],
+                                                        "hideSelectedOptions": true,
                                                         "inputValue": "",
                                                         "isDisabled": false,
                                                         "isLoading": false,
@@ -877,7 +883,7 @@ exports[`Network Widget renders correctly 1`] = `
                                                           "neutral20": "hsl(0, 0%, 80%)",
                                                           "neutral30": "hsl(0, 0%, 70%)",
                                                           "neutral40": "hsl(0, 0%, 60%)",
-                                                          "neutral5": "hsl(0, 0%, 95%)",
+                                                          "neutral5": "#35404e",
                                                           "neutral50": "hsl(0, 0%, 50%)",
                                                           "neutral60": "hsl(0, 0%, 40%)",
                                                           "neutral70": "white",
@@ -1017,6 +1023,7 @@ exports[`Network Widget renders correctly 1`] = `
                                                   "formatGroupLabel": [Function],
                                                   "getOptionLabel": [Function],
                                                   "getOptionValue": [Function],
+                                                  "hideSelectedOptions": true,
                                                   "inputValue": "",
                                                   "isDisabled": false,
                                                   "isLoading": false,
@@ -1083,7 +1090,7 @@ exports[`Network Widget renders correctly 1`] = `
                                                     "neutral20": "hsl(0, 0%, 80%)",
                                                     "neutral30": "hsl(0, 0%, 70%)",
                                                     "neutral40": "hsl(0, 0%, 60%)",
-                                                    "neutral5": "hsl(0, 0%, 95%)",
+                                                    "neutral5": "#35404e",
                                                     "neutral50": "hsl(0, 0%, 50%)",
                                                     "neutral60": "hsl(0, 0%, 40%)",
                                                     "neutral70": "white",
@@ -1168,6 +1175,7 @@ exports[`Network Widget renders correctly 1`] = `
                                                         "formatGroupLabel": [Function],
                                                         "getOptionLabel": [Function],
                                                         "getOptionValue": [Function],
+                                                        "hideSelectedOptions": true,
                                                         "inputValue": "",
                                                         "isDisabled": false,
                                                         "isLoading": false,
@@ -1234,7 +1242,7 @@ exports[`Network Widget renders correctly 1`] = `
                                                           "neutral20": "hsl(0, 0%, 80%)",
                                                           "neutral30": "hsl(0, 0%, 70%)",
                                                           "neutral40": "hsl(0, 0%, 60%)",
-                                                          "neutral5": "hsl(0, 0%, 95%)",
+                                                          "neutral5": "#35404e",
                                                           "neutral50": "hsl(0, 0%, 50%)",
                                                           "neutral60": "hsl(0, 0%, 40%)",
                                                           "neutral70": "white",
@@ -1311,6 +1319,7 @@ exports[`Network Widget renders correctly 1`] = `
                                                         "formatGroupLabel": [Function],
                                                         "getOptionLabel": [Function],
                                                         "getOptionValue": [Function],
+                                                        "hideSelectedOptions": true,
                                                         "inputValue": "",
                                                         "isDisabled": false,
                                                         "isLoading": false,
@@ -1377,7 +1386,7 @@ exports[`Network Widget renders correctly 1`] = `
                                                           "neutral20": "hsl(0, 0%, 80%)",
                                                           "neutral30": "hsl(0, 0%, 70%)",
                                                           "neutral40": "hsl(0, 0%, 60%)",
-                                                          "neutral5": "hsl(0, 0%, 95%)",
+                                                          "neutral5": "#35404e",
                                                           "neutral50": "hsl(0, 0%, 50%)",
                                                           "neutral60": "hsl(0, 0%, 40%)",
                                                           "neutral70": "white",

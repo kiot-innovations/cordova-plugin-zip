@@ -6,6 +6,7 @@ import { meterReducer } from './meter'
 import { submitConfigReducer } from './submitConfiguration'
 import storageReducer from './storage'
 import interfacesReducer from './interfaces'
+import rseReducer from './rse'
 
 export default combineReducers({
   gridBehavior: gridBehaviorReducer,
@@ -13,5 +14,6 @@ export default combineReducers({
   meter: meterReducer,
   submit: submitConfigReducer,
   storage: storageReducer,
-  interfaces: interfacesReducer
+  interfaces: interfacesReducer,
+  rse: rseReducer
 })

@@ -1,5 +1,4 @@
 import { combineEpics } from 'redux-observable'
-import firmwareUpdatesEpics from './fimwareUpdate'
 import discoverDeviceEpic from './devices/discoverDevices'
 import pushCandidatesEpic from './devices/pushCandidates'
 import fetchCandidatesEpic from './devices/pollCandidates'
@@ -19,7 +18,6 @@ export default combineEpics(
   fetchCandidatesEpic,
   claimDevicesEpic,
   ...feedbackEpic,
-  ...firmwareUpdatesEpics,
   siteEpic,
   ...pvsEpics,
   ...systemConfigurationEpics,
