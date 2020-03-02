@@ -17,7 +17,9 @@ function SelectField(props) {
     options,
     defaultValue,
     placeholder,
-    isSearchable
+    isSearchable,
+    value,
+    disabled
   } = props
 
   const classes = clsx('field', className)
@@ -33,6 +35,9 @@ function SelectField(props) {
     options,
     defaultValue,
     isSearchable,
+    value,
+    isDisabled: disabled,
+    hideSelectedOptions: true,
     noOptionsMessage: () => notFoundText,
     theme: theme => ({
       ...theme,
@@ -44,7 +49,8 @@ function SelectField(props) {
         neutral0: '#2f465b',
         neutral90: 'white',
         neutral70: 'white',
-        neutral80: 'white'
+        neutral80: 'white',
+        neutral5: '#35404e'
       }
     })
   }
