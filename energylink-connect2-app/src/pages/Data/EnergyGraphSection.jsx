@@ -15,7 +15,7 @@ import { sliceData } from 'shared/sliceData'
 import { deepMerge } from 'shared/deepMerge'
 import './EnergyGraphSection.scss'
 
-const getSelectedGraph = (selectedId, data, dataSource) => {
+const SelectedGraph = ({ selectedId, data, dataSource }) => {
   if (selectedId === GRAPHS.ENERGY) {
     return (
       <EnergyGraph
@@ -23,7 +23,8 @@ const getSelectedGraph = (selectedId, data, dataSource) => {
         hasStorage={true}
         data={data}
         weather={true}
-        view={VIEWS.DAY}
+        view={VIEWS.LIVE}
+        animation={false}
       />
     )
   }
@@ -56,7 +57,7 @@ const getSelectedGraph = (selectedId, data, dataSource) => {
           </div>
         </div>
       ) : (
-        <div className="mt-55"></div>
+        <div className="mt-55" />
       )}
       <EnergyGraph
         className="power-graph"
@@ -99,6 +100,7 @@ export default function EnergyGraphSection() {
     ) {
       return state.energyLiveData.liveData
     }
+    return state.energyLiveData.liveData
 
     const energyData =
       state.energyData[INTERVALS.HOUR] && state.energyData[INTERVALS.HOUR].data
@@ -147,7 +149,11 @@ export default function EnergyGraphSection() {
         />
       </div>
       <div className="column energy-graph-column is-full pt-0">
-        {getSelectedGraph(selectedId, data, selectedDataSourceId)}
+        <SelectedGraph
+          selectedId={selectedId}
+          data={data}
+          dataSource={selectedDataSourceId}
+        />
       </div>
       <div className="column is-full ignore-in-share pb-0">
         <EnergySwitch

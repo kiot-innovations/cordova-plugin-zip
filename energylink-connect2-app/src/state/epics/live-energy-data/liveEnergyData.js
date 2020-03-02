@@ -52,8 +52,6 @@ const createWebsocketObservable = () =>
     })
   })
 
-const kWTokWh = kW => kW / 3600
-
 export const liveEnergyData = (action$, state$) =>
   action$.pipe(
     ofType(
@@ -97,16 +95,17 @@ export const liveEnergyData = (action$, state$) =>
               const ps = data.ess_p < 0.01 ? 0 : data.ess_p * -1
               const net = data.net_p < 0.01 ? 0 : data.net_p
 
-              const p = kWTokWh(pp)
-              const s = kWTokWh(ps)
-              const c = p + s + kWTokWh(net)
               const pc = pp + ps + net
+              const p = data.pv_en < 0.01 ? 0 : data.pv_en
+              const net_en = data.net_en < 0.01 ? 0 : data.net_en
+              const s = data.ess_en < 0.01 ? 0 : data.ess_en * -1
+              const c = p + s + net_en
 
               return energyDataActions.LIVE_ENERGY_DATA_NOTIFICATION({
                 [new Date(data.time * 1000).toISOString()]: {
-                  p,
-                  s,
-                  c,
+                  p: roundDecimals(p),
+                  s: roundDecimals(s),
+                  c: roundDecimals(c),
                   pp: roundDecimals(pp),
                   pc: roundDecimals(pc),
                   ps: roundDecimals(ps),
