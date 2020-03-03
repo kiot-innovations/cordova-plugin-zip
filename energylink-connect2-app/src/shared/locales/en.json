@@ -191,5 +191,6 @@
   "SET_RSE_ERROR": "Could not set RSE correctly",
   "GET_RSE_ERROR": "Could not get RSE information",
   "EMPTY_CANDIDATES": "There was an error with the PVS. Please reboot it and try again",
-  "CANDIDATES_ERROR_FOUND": "We found issues with the installed MIs. Please verify the connections, or call for assistance."
+  "CANDIDATES_ERROR_FOUND": "We found issues with the installed MIs. Please verify the connections, or call for assistance.",
+  "RETRIEVING_MODEL": "Retrieving Model..."
 }

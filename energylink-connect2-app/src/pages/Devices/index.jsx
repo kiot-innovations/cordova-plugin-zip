@@ -3,9 +3,9 @@ import { propOr, length, path } from 'ramda'
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useHistory } from 'react-router-dom'
-import clsx from 'clsx'
 import paths from 'routes/paths'
 import { useI18n } from 'shared/i18n'
+import { Loader } from 'components/Loader'
 import {
   DISCOVER_COMPLETE,
   FETCH_CANDIDATES_INIT,
@@ -15,7 +15,6 @@ import {
   RESET_DISCOVERY
 } from 'state/actions/devices'
 import './Devices.scss'
-import { Loader } from 'components/Loader'
 
 const microInverterIcon = (
   <span className="sp-inverter mr-20 devices-icon ml-0 mt-0 mb-0" />
@@ -32,20 +31,62 @@ const Icon = (num = 0, max = 0, icon = '') => (
 //     <span className="devices-counter mr-10 ml-0 mt-0 mb-0">{num}</span>
 //   )
 
+const miStates = {
+  NEW: 'LOADING',
+  PINGING: 'LOADING',
+  PING_OK: 'LOADING',
+  PING_ERROR: 'ERROR',
+  GETTING_VERSION_INFORMATION: 'LOADING',
+  VERSION_INFORMATION_OK: 'LOADING',
+  VERSION_INFORMATION_ERROR: 'ERROR',
+  GETTING_PLC_STATS: 'LOADING',
+  PLC_STATS_OK: 'LOADING',
+  PLC_STATS_ERROR: 'ERROR',
+  GETTING_PV_INFO: 'LOADING',
+  PV_INFO_OK: 'LOADING',
+  PV_INFO_ERROR: 'ERROR',
+  OK: 'OK'
+}
+
+const miIndicators = {
+  OK: <span className="is-size-4 mr-10 sp-check has-text-white" />,
+  ERROR: <span className="is-size-4 mr-10 sp-hey has-text-primary" />,
+  LOADING: (
+    <div className="inline-loader">
+      <div className="ball-scale-ripple">
+        <div />
+      </div>
+    </div>
+  )
+}
 const filterFoundMI = (SNList, candidatesList) => {
   const okMI = []
   const nonOkMI = []
+  const pendingMI = []
   SNList.forEach(device => {
     try {
+      const deviceCopy = device
       const foundCandidate = candidatesList.find(
-        item => item.SERIAL === device.serial_number
+        item => item.SERIAL === deviceCopy.serial_number
       )
-      if (foundCandidate && foundCandidate.STATEDESCR.toLowerCase() === 'ok') {
-        device.state = foundCandidate.STATEDESCR
-        okMI.push(device)
+      if (foundCandidate) {
+        deviceCopy.state = foundCandidate.STATEDESCR
+        deviceCopy.indicator = miStates[deviceCopy.state]
+        if (deviceCopy.indicator === 'OK') {
+          okMI.push(deviceCopy)
+        } else {
+          if (deviceCopy.indicator === 'LOADING') {
+            pendingMI.push(deviceCopy)
+          } else {
+            if (deviceCopy.indicator === 'ERROR') {
+              nonOkMI.push(deviceCopy)
+            }
+          }
+        }
       } else {
-        device.state = 'Not Found'
-        nonOkMI.push(device)
+        deviceCopy.state = miStates.PINGING
+        deviceCopy.indicator = 'LOADING'
+        pendingMI.push(deviceCopy)
       }
     } catch (e) {
       console.error('Filtering error', e)
@@ -55,7 +96,8 @@ const filterFoundMI = (SNList, candidatesList) => {
   return {
     proceed: length(SNList) === length(okMI),
     okMI,
-    nonOkMI
+    nonOkMI,
+    pendingMI
   }
 }
 
@@ -69,7 +111,10 @@ function mapStateToProps({ devices, pvs }) {
     error
   } = devices
   const { serialNumbers } = pvs
-  const { proceed, okMI, nonOkMI } = filterFoundMI(serialNumbers, candidates)
+  const { proceed, okMI, nonOkMI, pendingMI } = filterFoundMI(
+    serialNumbers,
+    candidates
+  )
   return {
     claim: {
       claimingDevices,
@@ -80,7 +125,7 @@ function mapStateToProps({ devices, pvs }) {
       proceed,
       discoveryComplete,
       error,
-      inverter: [...okMI, ...nonOkMI]
+      inverter: [...okMI, ...nonOkMI, ...pendingMI]
     },
     counts: {
       inverter: {
@@ -150,6 +195,7 @@ const Devices = ({ animationState }) => {
         <Collapsible
           title={t('MICRO-INVERTERS')}
           icon={microInverterIcon}
+          expanded
           actions={Icon(
             counts.inverter.okMICount,
             length(propOr([], 'inverter', found)),
@@ -171,19 +217,12 @@ const Devices = ({ animationState }) => {
                       {elem.serial_number}
                     </span>
                     {elem.model ? (
-                      <span>
-                        {elem.model} <span className="sp-pencil is-gray" />
-                      </span>
+                      <span>{elem.model}</span>
                     ) : (
-                      ''
+                      <span>{t('RETRIEVING_MODEL')}</span>
                     )}
                   </div>
-                  <span
-                    className={clsx('is-size-4 mr-10', {
-                      'sp-check has-text-white': elem.state === 'OK',
-                      'sp-hey has-text-primary': elem.state !== 'OK'
-                    })}
-                  />
+                  {miIndicators[elem.indicator]}
                 </li>
               )
             })}
