@@ -67,6 +67,7 @@ export default createReducer(
       return {
         ...state,
         isFetching: false,
+        progress: {},
         error: payload
       }
     },
@@ -94,6 +95,7 @@ export default createReducer(
       return {
         ...state,
         isFetchingCandidates: false,
+        candidates: [],
         error: payload
       }
     },
