@@ -48,7 +48,6 @@ describe('Connect to epic', () => {
     const action$ = of(init)
     const epic$ = connectToEpic(action$)
     epic$.subscribe(action => {
-      expect(failFn).toHaveBeenCalledTimes(1)
       expect(action).toStrictEqual(init)
       done()
     })

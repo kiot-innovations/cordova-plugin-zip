@@ -1,6 +1,5 @@
-import { compose, join, split, head, slice } from 'ramda'
+import { append, compose, head, join, slice, split } from 'ramda'
 import { createAction } from 'redux-act'
-import { getApiFirmware } from 'shared/api'
 
 export const GET_FILE = createAction('GET FILE')
 export const GET_FILE_ERROR = createAction('GET FILE ERROR')
@@ -26,18 +25,42 @@ export const getLuaName = compose(
   slice(-4, -3),
   split('/')
 )
-
+const getBuildNumber = compose(
+  Number,
+  join(' '),
+  split('-'),
+  head,
+  slice(-3, -2),
+  split('/')
+)
+const getFileSystemURL = compose(
+  join('/'),
+  append('fwup_lua_usb.zip'),
+  slice(0, -2),
+  split('/')
+)
 export async function getFirmwareVersionNumber() {
   try {
-    const swagger = await getApiFirmware()
-    const response = await swagger.apis.pvs6.firmwareUpdate({ fwver: 0 })
-    const fileURL = response.data
+    // const swagger = await getApiFirmware()
+    // const response = await swagger.apis.pvs6.firmwareUpdate({ fwver: 0 })
+    const fileURL =
+      'https://fw-assets-pvs6-dev.dev-edp.sunpower.com/staging-prod-boomer/7047/fwup/fwup.lua'
     const luaFileName = getLuaName(fileURL)
-    return { luaFileName, fileURL }
+    return { luaFileName, fileURL, version: getBuildNumber(fileURL) }
   } catch (e) {
     throw new Error(ERROR_CODES.getVersionInfo)
   }
 }
+export const getFileBlob = (fileName = '') =>
+  new Promise(async resolve => {
+    const file = await getPFile(fileName)
+    const reader = new FileReader()
+    reader.onloadend = function() {
+      resolve(new Blob([this.result]))
+    }
+    reader.readAsArrayBuffer(file)
+  })
+
 export async function getPFile(fileName, errorCallback) {
   return new Promise((resolve, reject) => {
     const type = window.PERSISTENT
@@ -82,7 +105,8 @@ export function getFile() {
       const { fileURL, luaFileName } = await getFirmwareVersionNumber()
       dispatch(SET_FILE_NAME(luaFileName))
       await getPersistentFile(luaFileName, fileURL, dispatch)
-      const fileSystemURL = await parseLuaFile(luaFileName, dispatch)
+      await parseLuaFile(luaFileName, dispatch)
+      const fileSystemURL = getFileSystemURL(fileURL)
       removeEventListeners()
       await getPersistentFile(`${luaFileName}.fs`, fileSystemURL, dispatch)
       dispatch(DOWNLOAD_SUCCESS())

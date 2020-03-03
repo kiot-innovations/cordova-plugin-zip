@@ -21,6 +21,9 @@ const connectToEpic = action$ =>
         if (window.device.platform === IOS) {
           await window.WifiWizard2.iOSConnectNetwork(ssid, password)
         } else {
+          //looks like wifiwizard works like this in andrdoid
+          // I don't know why (ET)
+          console.log(await window.WifiWizard2.getConnectedSSID())
           await window.WifiWizard2.connect(ssid, true, password, WPA, false)
         }
         return PVS_CONNECTION_SUCCESS()

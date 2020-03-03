@@ -1,0 +1,27 @@
+@import '~@sunpower/theme-dark/styles/variables';
+
+.pvs-update-screen {
+  display: grid;
+  grid-template-rows: minmax(50px, 1fr) minmax(115px, 1fr) 1fr minmax(
+      100px,
+      1fr
+    );
+  justify-items: center;
+  align-items: center;
+  span {
+    text-align: center;
+  }
+  .pvs-sn {
+    flex-direction: column;
+  }
+  .percent-loader {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    align-items: center;
+    justify-content: space-evenly;
+  }
+  .sp-pvs {
+    font-size: 7rem;
+  }
+}

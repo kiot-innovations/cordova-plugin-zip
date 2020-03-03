@@ -42,7 +42,10 @@ const Footer = () => {
     {
       icon: 'sp-home',
       text: 'Home',
-      onClick: () => redirect(paths.PROTECTED.BILL_OF_MATERIALS.path),
+      onClick: () => {
+        setLast(paths.PROTECTED.CONNECT_TO_PVS.path)
+        return redirect(paths.PROTECTED.BILL_OF_MATERIALS.path)
+      },
       active: active.home
     },
     {

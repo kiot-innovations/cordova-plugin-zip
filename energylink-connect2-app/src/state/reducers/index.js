@@ -18,7 +18,7 @@ import ui from './ui'
 import fileDownloader from './fileDownloader'
 import devicesReducer from './devices'
 import systemConfigurationReducer from './systemConfiguration'
-
+import firmwareUpdate from './firmware-update'
 export default combineReducers({
   ui,
   user: persistReducer(
@@ -39,6 +39,7 @@ export default combineReducers({
     languageReducer
   ),
   fileDownloader,
+  firmwareUpdate,
   global: globalReducer,
   inventory: inventoryReducer,
   network: networkReducer,

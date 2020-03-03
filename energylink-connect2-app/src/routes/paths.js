@@ -18,6 +18,10 @@ const paths = {
       footer: true,
       tab: TABS.HOME
     },
+    UPDATE: {
+      path: '/update-in-progress',
+      header: true
+    },
     DEVICES: {
       path: '/devices',
       header: true,
