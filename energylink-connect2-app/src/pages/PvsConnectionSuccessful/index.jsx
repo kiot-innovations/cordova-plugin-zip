@@ -31,27 +31,25 @@ const PvsConnectionSuccessful = ({ animationState }) => {
   }, [dispatch, animationState, siteKey])
 
   return (
-    <div className="tile is-flex is-vertical has-text-centered pvs-connection-success-screen page-height">
-      <span className="is-uppercase has-text-weight-bold mb-40">
+    <div className="pvs-connection-success-screen pr-20 pl-30">
+      <span className="is-uppercase has-text-weight-bold">
         {t('CONNECTION_SUCCESS')}
       </span>
-      <span className="sp-pvs has-text-white mb-30" />
-      <span className="mb-20">{t('CONNECTED_TO')}</span>
+      <span className="sp-pvs has-text-white" />
+      <span>{t('CONNECTED_TO')}</span>
       <div className="pvs-sn is-flex has-text-white is-uppercase is-size-6 is-bold is-text has-text-centered">
         <span>{t('PVS_SN_TEXT')}</span>
         <span>{serialNumber}</span>
       </div>
-      <span className="mr-40 ml-40 mt-40 is-size-6">
+      <span className="mr-10 ml-10 is-size-6 has-text-centered">
         {t('VERIFY_SERIAL_PVS_CONN_SUCCESS')}
       </span>
-      <div className="is-flex auto">
-        <button
-          className="button is-primary is-uppercase is-center mt-50"
-          onClick={goToScanLabels}
-        >
-          {t('CONTINUE')}
-        </button>
-      </div>
+      <button
+        className="button is-primary is-uppercase is-center"
+        onClick={goToScanLabels}
+      >
+        {t('CONTINUE')}
+      </button>
     </div>
   )
 }
