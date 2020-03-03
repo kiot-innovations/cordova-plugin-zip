@@ -40,7 +40,7 @@ exports[`PVS connection successful component render correctly 1`] = `
     >
       <PvsConnectionSuccessful>
         <div
-          className="pvs-connection-success-screen pr-20 pl-30"
+          className="pvs-connection-success-screen pr-20 pl-20"
         >
           <span
             className="is-uppercase has-text-weight-bold"
