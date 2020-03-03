@@ -60,5 +60,7 @@
   &-status {
     text-align: right;
     padding-right: 10px;
+    display: grid;
+    align-items: center;
   }
 }
