@@ -184,5 +184,12 @@
   "NO_CONNECTION": "No Connection",
   "UPLOADING_FS": "Uploading the file system",
   "WAITING_FOR_NETWORK": "Waiting for the network to come back",
-  "UPGRADE_COMPLETE": "Upgrade complete"
+  "UPGRADE_COMPLETE": "Upgrade complete",
+  "APPLYING": "Applying...",
+  "DISCOVERY_IN_PROGRESS": "Hold on, we're looking for your devices",
+  "CLAIMING_DEVICES": "Saving device data",
+  "SET_RSE_ERROR": "Could not set RSE correctly",
+  "GET_RSE_ERROR": "Could not get RSE information",
+  "EMPTY_CANDIDATES": "There was an error with the PVS. Please reboot it and try again",
+  "CANDIDATES_ERROR_FOUND": "We found issues with the installed MIs. Please verify the connections, or call for assistance."
 }

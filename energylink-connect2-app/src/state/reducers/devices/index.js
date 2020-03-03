@@ -1,4 +1,5 @@
 import { createReducer } from 'redux-act'
+import { length } from 'ramda'
 import {
   DISCOVER_COMPLETE,
   DISCOVER_INIT,
@@ -6,7 +7,11 @@ import {
   FETCH_CANDIDATES_INIT,
   FETCH_CANDIDATES_UPDATE,
   FETCH_CANDIDATES_COMPLETE,
-  FETCH_CANDIDATES_ERROR
+  FETCH_CANDIDATES_ERROR,
+  CLAIM_DEVICES_INIT,
+  CLAIM_DEVICES_SUCCESS,
+  CLAIM_DEVICES_ERROR,
+  RESET_DISCOVERY
 } from 'state/actions/devices'
 
 const initialState = {
@@ -14,7 +19,11 @@ const initialState = {
   found: {},
   error: '',
   isFetchingCandidates: false,
-  candidates: []
+  candidates: [],
+  allCandidatesFound: false,
+  discoveryComplete: false,
+  claimingDevices: false,
+  claimedDevices: false
 }
 
 const parseCompleteDevices = devices => {
@@ -42,7 +51,8 @@ export default createReducer(
       return {
         ...state,
         isFetching: false,
-        found: payload ? parseCompleteDevices(payload.devices) : state.found
+        found: payload ? parseCompleteDevices(payload.devices) : state.found,
+        discoveryComplete: true
       }
     },
     [FETCH_CANDIDATES_INIT]: state => {
@@ -54,14 +64,15 @@ export default createReducer(
     [FETCH_CANDIDATES_UPDATE]: (state, payload) => {
       return {
         ...state,
-        candidates: payload
+        isFetchingCandidates: true,
+        candidates: length(payload) !== 0 ? payload : state.candidates
       }
     },
-    [FETCH_CANDIDATES_COMPLETE]: (state, payload) => {
+    [FETCH_CANDIDATES_COMPLETE]: state => {
       return {
         ...state,
-        candidates: payload,
-        isFetchingCandidates: false
+        isFetchingCandidates: false,
+        allCandidatesFound: true
       }
     },
     [FETCH_CANDIDATES_ERROR]: (state, payload) => {
@@ -69,6 +80,31 @@ export default createReducer(
         ...state,
         isFetchingCandidates: false,
         error: payload
+      }
+    },
+    [CLAIM_DEVICES_INIT]: state => {
+      return {
+        ...state,
+        claimingDevices: true
+      }
+    },
+    [CLAIM_DEVICES_SUCCESS]: state => {
+      return {
+        ...state,
+        claimingDevices: false,
+        claimedDevices: true
+      }
+    },
+    [CLAIM_DEVICES_ERROR]: (state, payload) => {
+      return {
+        ...state,
+        claimingDevices: false,
+        error: payload
+      }
+    },
+    [RESET_DISCOVERY]: () => {
+      return {
+        ...initialState
       }
     }
   },

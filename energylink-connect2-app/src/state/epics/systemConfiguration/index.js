@@ -4,6 +4,8 @@ import { fetchNetworkAPsEpic } from './fetchNetworkAPsEpic'
 import { connectNetworkAPEpic } from './connectNetworkAPEpic'
 import { submitConfigurationEpic } from './submitConfigEpic'
 import { fetchInterfacesEpic } from './fetchInterfacesEpic'
+import { fetchRSEEpic } from './fetchRSEEpic'
+import { setRSEEpic, pollRSEEpic } from './setRSEEpic'
 
 export default [
   fetchGridBehaviorEpic,
@@ -11,5 +13,8 @@ export default [
   connectNetworkAPEpic,
   submitConfigurationEpic,
   fetchBatteriesEpic,
-  fetchInterfacesEpic
+  fetchInterfacesEpic,
+  fetchRSEEpic,
+  setRSEEpic,
+  pollRSEEpic
 ]

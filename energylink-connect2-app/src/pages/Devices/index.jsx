@@ -1,95 +1,140 @@
 import Collapsible from 'components/Collapsible'
-import { pathOr, propOr, length, filter, propEq } from 'ramda'
+import { propOr, length, path } from 'ramda'
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import clsx from 'clsx'
 import paths from 'routes/paths'
 import { useI18n } from 'shared/i18n'
 import {
   DISCOVER_COMPLETE,
   FETCH_CANDIDATES_INIT,
-  DISCOVER_INIT
+  DISCOVER_INIT,
+  FETCH_CANDIDATES_COMPLETE,
+  CLAIM_DEVICES_INIT,
+  RESET_DISCOVERY
 } from 'state/actions/devices'
 import './Devices.scss'
+import { Loader } from 'components/Loader'
 
 const microInverterIcon = (
   <span className="sp-inverter mr-20 devices-icon ml-0 mt-0 mb-0" />
 )
-const meterIcon = <span className="mr-20 sp-meter ml-0 mt-0 mb-0" />
+// const meterIcon = <span className="mr-20 sp-meter ml-0 mt-0 mb-0" />
 const Icon = (num = 0, max = 0, icon = '') => (
   <div className="is-flex">
     <span className={`${icon} mr-10 ml-0 mt-0 mb-0`} />
     <span className="devices-counter mr-10 ml-0 mt-0 mb-0">{`${num}/${max}`}</span>
   </div>
 )
-const numberItems = num =>
-  num !== 0 && (
-    <span className="devices-counter mr-10 ml-0 mt-0 mb-0">{num}</span>
-  )
+// const numberItems = num =>
+//   num !== 0 && (
+//     <span className="devices-counter mr-10 ml-0 mt-0 mb-0">{num}</span>
+//   )
 
-const filterFoundPVS = (SNList, candidatesList) => {
-  const okPVS = []
-  const nonOkPVS = []
+const filterFoundMI = (SNList, candidatesList) => {
+  const okMI = []
+  const nonOkMI = []
   SNList.forEach(device => {
     try {
       const foundCandidate = candidatesList.find(
         item => item.SERIAL === device.serial_number
       )
-
       if (foundCandidate && foundCandidate.STATEDESCR.toLowerCase() === 'ok') {
         device.state = foundCandidate.STATEDESCR
-        okPVS.push(device)
+        okMI.push(device)
       } else {
-        device.state = foundCandidate.STATEDESCR
-        nonOkPVS.push(device)
+        device.state = 'Not Found'
+        nonOkMI.push(device)
       }
     } catch (e) {
       console.error('Filtering error', e)
     }
   })
 
-  return { proceed: length(SNList) === length(okPVS), okPVS, nonOkPVS }
+  return {
+    proceed: length(SNList) === length(okMI),
+    okMI,
+    nonOkMI
+  }
 }
 
-function mapStateToProps({ inventory, devices, pvs }) {
-  const { candidates, found } = devices
+function mapStateToProps({ devices, pvs }) {
+  const {
+    discoveryComplete,
+    candidates,
+    found,
+    claimingDevices,
+    claimedDevices,
+    error
+  } = devices
   const { serialNumbers } = pvs
-  const { bom } = inventory
-  const expectedMIs = serialNumbers.map(({ model, ...keepAttrs }) => keepAttrs)
-  const { proceed, okPVS, nonOkPVS } = filterFoundPVS(expectedMIs, candidates)
-
-  const inverterCount = filter(propEq('item', 'MODULES'), bom)
-  const meterCount = filter(propEq('item', 'METERS'), bom)
+  const { proceed, okMI, nonOkMI } = filterFoundMI(serialNumbers, candidates)
   return {
-    inventory: {
-      inverters: pathOr(0, ['value'], inverterCount),
-      meter: pathOr(0, ['value'], meterCount)
+    claim: {
+      claimingDevices,
+      claimedDevices
     },
     found: {
       ...found,
       proceed,
-      inverter: [...okPVS, ...nonOkPVS]
+      discoveryComplete,
+      error,
+      inverter: [...okMI, ...nonOkMI]
     },
     counts: {
       inverter: {
-        okPVSCount: length(okPVS),
-        errPVSCount: length(nonOkPVS)
+        expected: length(serialNumbers),
+        okMICount: length(okMI),
+        errMICount: length(nonOkMI)
       }
     }
   }
 }
 
 const Devices = ({ animationState }) => {
-  const { found, counts } = useSelector(mapStateToProps)
+  const { found, counts, claim } = useSelector(mapStateToProps)
   const dispatch = useDispatch()
+  const history = useHistory()
   const t = useI18n()
   useEffect(() => {
     dispatch(FETCH_CANDIDATES_INIT())
+    if (found.proceed) {
+      dispatch(FETCH_CANDIDATES_COMPLETE())
+    }
+    if (claim.claimedDevices && animationState !== 'leave') {
+      history.push(paths.PROTECTED.INSTALL_SUCCESS.path)
+    }
     return () => {
       if (animationState === 'exit') dispatch(DISCOVER_COMPLETE())
     }
-  }, [dispatch, animationState])
+  }, [
+    dispatch,
+    animationState,
+    counts.expected,
+    counts.okMICount,
+    found.proceed,
+    claim.claimedDevices,
+    history
+  ])
+
+  const retryDiscovery = () => {
+    dispatch(RESET_DISCOVERY())
+    history.push(paths.PROTECTED.SN_LIST.path)
+  }
+
+  const claimDevices = () => {
+    const claimObject = path(['inverter'], found).map(mi => {
+      return {
+        OPERATION: 'add',
+        MODEL: 'AC_Module_Type_E',
+        SERIAL: mi.serial_number,
+        TYPE: 'SOLARBRIDGE'
+      }
+    })
+    dispatch(CLAIM_DEVICES_INIT(JSON.stringify(claimObject)))
+  }
+
   return (
     <div className="fill-parent is-flex tile is-vertical has-text-centered sunpower-devices pr-15 pl-15">
       <span className="is-uppercase has-text-weight-bold mb-20" role="button">
@@ -106,7 +151,7 @@ const Devices = ({ animationState }) => {
           title={t('MICRO-INVERTERS')}
           icon={microInverterIcon}
           actions={Icon(
-            counts.inverter.okPVSCount,
+            counts.inverter.okMICount,
             length(propOr([], 'inverter', found)),
             'sp-gear'
           )}
@@ -145,47 +190,68 @@ const Devices = ({ animationState }) => {
           </ul>
         </Collapsible>
       </div>
-      <div className="pb-15">
-        <Collapsible
-          title={t('METERS')}
-          actions={numberItems(length(propOr([], 'power meter', found)))}
-          icon={meterIcon}
-        >
-          <ul className="equipment-list">
-            {propOr([], 'power meter', found).map(elem => {
-              return (
-                <li className="equipment-piece is-flex flow-wrap tile">
-                  <div className="is-flex is-vertical has-text-white tile">
-                    <span>
-                      <span className="has-text-weight-bold has-text-white">
-                        SN:
-                      </span>
-                      {elem.SERIAL}
-                    </span>
-                  </div>
-                </li>
-              )
-            })}
-          </ul>
-        </Collapsible>
-      </div>
-      <Link
-        className="button is-outlined is-primary is-uppercase is-paddingless ml-75 mr-75 mb-10"
-        to={paths.PROTECTED.SN_LIST.path}
-      >
-        {t('ADD-DEVICES')}
-      </Link>
-      {found.proceed ? (
+      {/*<div className="pb-15">*/}
+      {/*  <Collapsible*/}
+      {/*    title={t('METERS')}*/}
+      {/*    actions={numberItems(length(propOr([], 'power meter', found)))}*/}
+      {/*    icon={meterIcon}*/}
+      {/*  >*/}
+      {/*    <ul className="equipment-list">*/}
+      {/*      {propOr([], 'power meter', found).map(elem => {*/}
+      {/*        return (*/}
+      {/*          <li className="equipment-piece is-flex flow-wrap tile">*/}
+      {/*            <div className="is-flex is-vertical has-text-white tile">*/}
+      {/*              <span>*/}
+      {/*                <span className="has-text-weight-bold has-text-white">*/}
+      {/*                  SN:*/}
+      {/*                </span>*/}
+      {/*                {elem.SERIAL}*/}
+      {/*              </span>*/}
+      {/*            </div>*/}
+      {/*          </li>*/}
+      {/*        )*/}
+      {/*      })}*/}
+      {/*    </ul>*/}
+      {/*  </Collapsible>*/}
+      {/*</div>*/}
+      {found.discoveryComplete && (
         <Link
+          className="button is-outlined is-primary is-uppercase is-paddingless ml-75 mr-75 mb-10"
+          to={paths.PROTECTED.SN_LIST.path}
+        >
+          {t('ADD-DEVICES')}
+        </Link>
+      )}
+      {!found.error && !found.discoveryComplete ? (
+        <div>
+          <Loader />
+          <span className="has-text-weight-bold mb-20">
+            {claim.claimingDevices
+              ? t('CLAIMING_DEVICES')
+              : t('DISCOVERY_IN_PROGRESS')}
+          </span>
+        </div>
+      ) : (
+        ''
+      )}
+      {found.error && (
+        <>
+          <button
+            className="button is-primary is-uppercase is-paddingless ml-75 mr-75"
+            onClick={retryDiscovery}
+          >
+            {t('RETRY')}
+          </button>
+          <span className="has-text-weight-bold mt-20">{t(found.error)}</span>
+        </>
+      )}
+      {found.discoveryComplete && (
+        <button
           className="button is-primary is-uppercase is-paddingless ml-75 mr-75"
-          to={paths.PROTECTED.INSTALL_SUCCESS.path}
+          onClick={claimDevices}
         >
           {t('DONE')}
-        </Link>
-      ) : (
-        <span className="has-text-weight-bold mb-20">
-          {t('DEVICES_NOT_FOUND')}
-        </span>
+        </button>
       )}
     </div>
   )

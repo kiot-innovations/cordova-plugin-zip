@@ -33,12 +33,12 @@ const scanDevicesEpic = action$ => {
   return action$.pipe(
     ofType(FETCH_CANDIDATES_COMPLETE.getType()),
     switchMap(() =>
-      timer(0, 250).pipe(
+      timer(0, 2500).pipe(
         takeUntil(stopPolling$),
         switchMap(() =>
           from(fetchDiscovery()).pipe(
             switchMap(async response =>
-              pathOr(false, ['progress', 'complete', response])
+              pathOr(false, ['progress', 'complete'], response)
                 ? DISCOVER_COMPLETE(pathOr([], ['devices'], response))
                 : DISCOVER_UPDATE(pathOr([], ['devices'], response))
             ),
