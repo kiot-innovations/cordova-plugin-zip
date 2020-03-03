@@ -224,8 +224,7 @@ const Devices = ({ animationState }) => {
           expanded
           actions={Icon(
             counts.inverter.okMICount,
-            length(propOr([], 'inverter', found)),
-            'sp-gear'
+            length(propOr([], 'inverter', found))
           )}
         >
           <ul className="equipment-list">

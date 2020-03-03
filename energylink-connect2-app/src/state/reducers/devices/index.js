@@ -4,6 +4,7 @@ import {
   DISCOVER_COMPLETE,
   DISCOVER_INIT,
   DISCOVER_UPDATE,
+  DISCOVER_ERROR,
   FETCH_CANDIDATES_INIT,
   FETCH_CANDIDATES_UPDATE,
   FETCH_CANDIDATES_COMPLETE,
@@ -60,6 +61,13 @@ export default createReducer(
           : state.found,
         progress: payload ? payload.progress : state.progress,
         discoveryComplete: true
+      }
+    },
+    [DISCOVER_ERROR]: (state, payload) => {
+      return {
+        ...state,
+        isFetching: false,
+        error: payload
       }
     },
     [FETCH_CANDIDATES_INIT]: state => {
