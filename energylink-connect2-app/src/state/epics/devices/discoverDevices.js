@@ -39,8 +39,8 @@ const scanDevicesEpic = action$ => {
           from(fetchDiscovery()).pipe(
             switchMap(async response =>
               pathOr(false, ['progress', 'complete'], response)
-                ? DISCOVER_COMPLETE(pathOr([], ['devices'], response))
-                : DISCOVER_UPDATE(pathOr([], ['devices'], response))
+                ? DISCOVER_COMPLETE(response)
+                : DISCOVER_UPDATE(response)
             ),
             catchError(error => of(DISCOVER_ERROR.asError(error.message)))
           )

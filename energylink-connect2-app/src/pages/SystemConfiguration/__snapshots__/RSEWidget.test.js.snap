@@ -51,7 +51,7 @@ exports[`RSE Widget renders correctly 1`] = `
             title="RSE"
           >
             <div
-              className="collapsible"
+              className="collapsible mb-10"
             >
               <div
                 className="collapsible-header"

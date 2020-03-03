@@ -2,7 +2,7 @@
 
 exports[`Collapsible Component Renders Correctly 1`] = `
 <div
-  className="collapsible"
+  className="collapsible mb-10"
 >
   <div
     className="collapsible-header"

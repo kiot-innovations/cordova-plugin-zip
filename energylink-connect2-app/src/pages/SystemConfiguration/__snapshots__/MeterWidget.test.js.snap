@@ -51,7 +51,7 @@ exports[`Meter Widget renders correctly 1`] = `
             title="METER_CT"
           >
             <div
-              className="collapsible"
+              className="collapsible mb-10"
             >
               <div
                 className="collapsible-header"

@@ -1,5 +1,5 @@
 import Collapsible from 'components/Collapsible'
-import { propOr, length, path } from 'ramda'
+import { propOr, length, path, pathOr } from 'ramda'
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useHistory } from 'react-router-dom'
@@ -108,7 +108,8 @@ function mapStateToProps({ devices, pvs }) {
     found,
     claimingDevices,
     claimedDevices,
-    error
+    error,
+    progress
   } = devices
   const { serialNumbers } = pvs
   const { proceed, okMI, nonOkMI, pendingMI } = filterFoundMI(
@@ -120,6 +121,7 @@ function mapStateToProps({ devices, pvs }) {
       claimingDevices,
       claimedDevices
     },
+    progress,
     found: {
       ...found,
       proceed,
@@ -138,10 +140,11 @@ function mapStateToProps({ devices, pvs }) {
 }
 
 const Devices = ({ animationState }) => {
-  const { found, counts, claim } = useSelector(mapStateToProps)
+  const { progress, found, counts, claim } = useSelector(mapStateToProps)
   const dispatch = useDispatch()
   const history = useHistory()
   const t = useI18n()
+
   useEffect(() => {
     dispatch(FETCH_CANDIDATES_INIT())
     if (found.proceed) {
@@ -180,6 +183,28 @@ const Devices = ({ animationState }) => {
     dispatch(CLAIM_DEVICES_INIT(JSON.stringify(claimObject)))
   }
 
+  const progressIndicators = () => {
+    const progressMap = pathOr([], ['progress'], progress).map(deviceType => {
+      if (deviceType.TYPE !== 'MicroInverters')
+        return (
+          <Collapsible
+            title={deviceType.TYPE}
+            icon={
+              deviceType.PROGR !== '100'
+                ? miIndicators.LOADING
+                : miIndicators.OK
+            }
+            actions={
+              deviceType.PROGR !== '100'
+                ? deviceType.PROGR + '%'
+                : deviceType.NFOUND + ' Found'
+            }
+            expandable={false}
+          />
+        )
+    })
+    return progressMap
+  }
   return (
     <div className="fill-parent is-flex tile is-vertical has-text-centered sunpower-devices pr-15 pl-15">
       <span className="is-uppercase has-text-weight-bold mb-20" role="button">
@@ -228,31 +253,8 @@ const Devices = ({ animationState }) => {
             })}
           </ul>
         </Collapsible>
+        {progressIndicators()}
       </div>
-      {/*<div className="pb-15">*/}
-      {/*  <Collapsible*/}
-      {/*    title={t('METERS')}*/}
-      {/*    actions={numberItems(length(propOr([], 'power meter', found)))}*/}
-      {/*    icon={meterIcon}*/}
-      {/*  >*/}
-      {/*    <ul className="equipment-list">*/}
-      {/*      {propOr([], 'power meter', found).map(elem => {*/}
-      {/*        return (*/}
-      {/*          <li className="equipment-piece is-flex flow-wrap tile">*/}
-      {/*            <div className="is-flex is-vertical has-text-white tile">*/}
-      {/*              <span>*/}
-      {/*                <span className="has-text-weight-bold has-text-white">*/}
-      {/*                  SN:*/}
-      {/*                </span>*/}
-      {/*                {elem.SERIAL}*/}
-      {/*              </span>*/}
-      {/*            </div>*/}
-      {/*          </li>*/}
-      {/*        )*/}
-      {/*      })}*/}
-      {/*    </ul>*/}
-      {/*  </Collapsible>*/}
-      {/*</div>*/}
       {found.discoveryComplete && (
         <Link
           className="button is-outlined is-primary is-uppercase is-paddingless ml-75 mr-75 mb-10"
