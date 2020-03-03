@@ -219,7 +219,7 @@ const Devices = ({ animationState }) => {
                     {elem.model ? (
                       <span>{elem.model}</span>
                     ) : (
-                      <span>Retrieving Model...</span>
+                      <span>{t('RETRIEVING_MODEL')}</span>
                     )}
                   </div>
                   {miIndicators[elem.indicator]}
