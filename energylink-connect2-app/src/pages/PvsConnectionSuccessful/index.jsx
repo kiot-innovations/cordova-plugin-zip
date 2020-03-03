@@ -31,7 +31,7 @@ const PvsConnectionSuccessful = ({ animationState }) => {
   }, [dispatch, animationState, siteKey])
 
   return (
-    <div className="pvs-connection-success-screen pr-20 pl-30">
+    <div className="pvs-connection-success-screen pr-20 pl-20">
       <span className="is-uppercase has-text-weight-bold">
         {t('CONNECTION_SUCCESS')}
       </span>
