@@ -19,17 +19,13 @@ import './Devices.scss'
 const microInverterIcon = (
   <span className="sp-inverter mr-20 devices-icon ml-0 mt-0 mb-0" />
 )
-// const meterIcon = <span className="mr-20 sp-meter ml-0 mt-0 mb-0" />
+
 const Icon = (num = 0, max = 0, icon = '') => (
   <div className="is-flex">
     <span className={`${icon} mr-10 ml-0 mt-0 mb-0`} />
     <span className="devices-counter mr-10 ml-0 mt-0 mb-0">{`${num}/${max}`}</span>
   </div>
 )
-// const numberItems = num =>
-//   num !== 0 && (
-//     <span className="devices-counter mr-10 ml-0 mt-0 mb-0">{num}</span>
-//   )
 
 const miStates = {
   NEW: 'LOADING',
