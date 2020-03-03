@@ -135,6 +135,19 @@ function mapStateToProps({ devices, pvs }) {
   }
 }
 
+const deviceProgressElement = (indicator, type, progress) => {
+  return (
+    <div className="device-prog mb-10 mt-10">
+      <div className="device-prog-header">
+        <div className="device-prog-title">
+          <span className="has-text-centered">{indicator}</span>
+          <span className="pl-10">{type}</span>
+        </div>
+        <div className="device-prog-status">{progress}</div>
+      </div>
+    </div>
+  )
+}
 const Devices = ({ animationState }) => {
   const { progress, found, counts, claim } = useSelector(mapStateToProps)
   const dispatch = useDispatch()
@@ -182,25 +195,17 @@ const Devices = ({ animationState }) => {
   const progressIndicators = () => {
     const progressMap = pathOr([], ['progress'], progress).map(deviceType => {
       if (deviceType.TYPE !== 'MicroInverters')
-        return (
-          <Collapsible
-            title={deviceType.TYPE}
-            icon={
-              deviceType.PROGR !== '100'
-                ? miIndicators.LOADING
-                : miIndicators.OK
-            }
-            actions={
-              deviceType.PROGR !== '100'
-                ? deviceType.PROGR + '%'
-                : deviceType.NFOUND + ' Found'
-            }
-            expandable={false}
-          />
+        return deviceProgressElement(
+          deviceType.PROGR !== '100' ? miIndicators.LOADING : miIndicators.OK,
+          deviceType.TYPE,
+          deviceType.PROGR !== '100'
+            ? deviceType.PROGR + '%'
+            : deviceType.NFOUND + ' Found'
         )
     })
     return progressMap
   }
+
   return (
     <div className="fill-parent is-flex tile is-vertical has-text-centered sunpower-devices pr-15 pl-15">
       <span className="is-uppercase has-text-weight-bold mb-20" role="button">

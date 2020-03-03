@@ -51,7 +51,7 @@ exports[`Network Widget renders correctly 1`] = `
             title="NETWORK"
           >
             <div
-              className="collapsible mb-10"
+              className="collapsible"
             >
               <div
                 className="collapsible-header"

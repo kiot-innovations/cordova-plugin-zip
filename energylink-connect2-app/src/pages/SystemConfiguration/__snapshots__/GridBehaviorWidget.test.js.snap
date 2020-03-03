@@ -52,7 +52,7 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
             title="GRID_BEHAVIOR"
           >
             <div
-              className="collapsible mb-10"
+              className="collapsible"
             >
               <div
                 className="collapsible-header"

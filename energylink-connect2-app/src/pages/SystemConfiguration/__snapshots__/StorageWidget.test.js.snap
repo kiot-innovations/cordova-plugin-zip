@@ -51,7 +51,7 @@ exports[`Storage Widget renders correctly 1`] = `
             title="STORAGE"
           >
             <div
-              className="collapsible mb-10"
+              className="collapsible"
             >
               <div
                 className="collapsible-header"

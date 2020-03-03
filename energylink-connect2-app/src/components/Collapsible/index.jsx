@@ -7,8 +7,7 @@ function Collapsible({
   title = 'Collapsible Title',
   actions,
   children,
-  expanded = false,
-  expandable = true
+  expanded = false
 }) {
   const [expand, setExpand] = useState(expanded)
 
@@ -17,23 +16,21 @@ function Collapsible({
   }
 
   return (
-    <div className="collapsible mb-10">
+    <div className="collapsible">
       <div className="collapsible-header">
         <div className="collapsible-title">
           <span>{icon}</span>
           <span>{title}</span>
         </div>
         <div className="collapsible-actions">{actions}</div>
-        {expandable && (
-          <div className="collapsible-trigger">
-            <div
-              className={clsx({ chevron: true, down: expand })}
-              onClick={toggle}
-            >
-              <span className="sp-chevron-up" />
-            </div>
+        <div className="collapsible-trigger">
+          <div
+            className={clsx({ chevron: true, down: expand })}
+            onClick={toggle}
+          >
+            <span className="sp-chevron-up" />
           </div>
-        )}
+        </div>
       </div>
       <div
         className={clsx(
