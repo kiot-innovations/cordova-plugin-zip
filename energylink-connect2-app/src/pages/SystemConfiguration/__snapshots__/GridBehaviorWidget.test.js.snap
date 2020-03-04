@@ -3679,7 +3679,7 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                         <SelectField
                           defaultValue={
                             Object {
-                              "label": "240v",
+                              "label": "240",
                               "value": 240,
                             }
                           }
@@ -3688,11 +3688,11 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                           options={
                             Array [
                               Object {
-                                "label": "208v",
+                                "label": "208",
                                 "value": 208,
                               },
                               Object {
-                                "label": "240v",
+                                "label": "240",
                                 "value": 240,
                               },
                             ]
@@ -3712,7 +3712,7 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                             defaultMenuIsOpen={false}
                             defaultValue={
                               Object {
-                                "label": "240v",
+                                "label": "240",
                                 "value": 240,
                               }
                             }
@@ -3723,11 +3723,11 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                             options={
                               Array [
                                 Object {
-                                  "label": "208v",
+                                  "label": "208",
                                   "value": 208,
                                 },
                                 Object {
-                                  "label": "240v",
+                                  "label": "240",
                                   "value": 240,
                                 },
                               ]
@@ -3780,11 +3780,11 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                               options={
                                 Array [
                                   Object {
-                                    "label": "208v",
+                                    "label": "208",
                                     "value": 208,
                                   },
                                   Object {
-                                    "label": "240v",
+                                    "label": "240",
                                     "value": 240,
                                   },
                                 ]
@@ -3798,7 +3798,7 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                               theme={[Function]}
                               value={
                                 Object {
-                                  "label": "240v",
+                                  "label": "240",
                                   "value": 240,
                                 }
                               }
@@ -3823,11 +3823,11 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                                 options={
                                   Array [
                                     Object {
-                                      "label": "208v",
+                                      "label": "208",
                                       "value": 208,
                                     },
                                     Object {
-                                      "label": "240v",
+                                      "label": "240",
                                       "value": 240,
                                     },
                                   ]
@@ -3878,11 +3878,11 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                                     "openMenuOnFocus": false,
                                     "options": Array [
                                       Object {
-                                        "label": "208v",
+                                        "label": "208",
                                         "value": 208,
                                       },
                                       Object {
-                                        "label": "240v",
+                                        "label": "240",
                                         "value": 240,
                                       },
                                     ],
@@ -3894,7 +3894,7 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                                     "tabSelectsValue": true,
                                     "theme": [Function],
                                     "value": Object {
-                                      "label": "240v",
+                                      "label": "240",
                                       "value": 240,
                                     },
                                   }
@@ -3970,11 +3970,11 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                                       options={
                                         Array [
                                           Object {
-                                            "label": "208v",
+                                            "label": "208",
                                             "value": 208,
                                           },
                                           Object {
-                                            "label": "240v",
+                                            "label": "240",
                                             "value": 240,
                                           },
                                         ]
@@ -4025,11 +4025,11 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                                           "openMenuOnFocus": false,
                                           "options": Array [
                                             Object {
-                                              "label": "208v",
+                                              "label": "208",
                                               "value": 208,
                                             },
                                             Object {
-                                              "label": "240v",
+                                              "label": "240",
                                               "value": 240,
                                             },
                                           ],
@@ -4041,7 +4041,7 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                                           "tabSelectsValue": true,
                                           "theme": [Function],
                                           "value": Object {
-                                            "label": "240v",
+                                            "label": "240",
                                             "value": 240,
                                           },
                                         }
@@ -4125,11 +4125,11 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                                             options={
                                               Array [
                                                 Object {
-                                                  "label": "208v",
+                                                  "label": "208",
                                                   "value": 208,
                                                 },
                                                 Object {
-                                                  "label": "240v",
+                                                  "label": "240",
                                                   "value": 240,
                                                 },
                                               ]
@@ -4180,11 +4180,11 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                                                 "openMenuOnFocus": false,
                                                 "options": Array [
                                                   Object {
-                                                    "label": "208v",
+                                                    "label": "208",
                                                     "value": 208,
                                                   },
                                                   Object {
-                                                    "label": "240v",
+                                                    "label": "240",
                                                     "value": 240,
                                                   },
                                                 ],
@@ -4196,7 +4196,7 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                                                 "tabSelectsValue": true,
                                                 "theme": [Function],
                                                 "value": Object {
-                                                  "label": "240v",
+                                                  "label": "240",
                                                   "value": 240,
                                                 },
                                               }
@@ -4257,7 +4257,7 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                                                   cx={[Function]}
                                                   data={
                                                     Object {
-                                                      "label": "240v",
+                                                      "label": "240",
                                                       "value": 240,
                                                     }
                                                   }
@@ -4270,11 +4270,11 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                                                   options={
                                                     Array [
                                                       Object {
-                                                        "label": "208v",
+                                                        "label": "208",
                                                         "value": 208,
                                                       },
                                                       Object {
-                                                        "label": "240v",
+                                                        "label": "240",
                                                         "value": 240,
                                                       },
                                                     ]
@@ -4325,11 +4325,11 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                                                       "openMenuOnFocus": false,
                                                       "options": Array [
                                                         Object {
-                                                          "label": "208v",
+                                                          "label": "208",
                                                           "value": 208,
                                                         },
                                                         Object {
-                                                          "label": "240v",
+                                                          "label": "240",
                                                           "value": 240,
                                                         },
                                                       ],
@@ -4341,7 +4341,7 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                                                       "tabSelectsValue": true,
                                                       "theme": [Function],
                                                       "value": Object {
-                                                        "label": "240v",
+                                                        "label": "240",
                                                         "value": 240,
                                                       },
                                                     }
@@ -4401,7 +4401,7 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                                                     <div
                                                       className="search__single-value css-5sz5u5-singleValue"
                                                     >
-                                                      240v
+                                                      240
                                                     </div>
                                                   </EmotionCssPropInternal>
                                                 </SingleValue>
@@ -4464,11 +4464,11 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                                             options={
                                               Array [
                                                 Object {
-                                                  "label": "208v",
+                                                  "label": "208",
                                                   "value": 208,
                                                 },
                                                 Object {
-                                                  "label": "240v",
+                                                  "label": "240",
                                                   "value": 240,
                                                 },
                                               ]
@@ -4519,11 +4519,11 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                                                 "openMenuOnFocus": false,
                                                 "options": Array [
                                                   Object {
-                                                    "label": "208v",
+                                                    "label": "208",
                                                     "value": 208,
                                                   },
                                                   Object {
-                                                    "label": "240v",
+                                                    "label": "240",
                                                     "value": 240,
                                                   },
                                                 ],
@@ -4535,7 +4535,7 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                                                 "tabSelectsValue": true,
                                                 "theme": [Function],
                                                 "value": Object {
-                                                  "label": "240v",
+                                                  "label": "240",
                                                   "value": 240,
                                                 },
                                               }
@@ -4601,11 +4601,11 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                                                   options={
                                                     Array [
                                                       Object {
-                                                        "label": "208v",
+                                                        "label": "208",
                                                         "value": 208,
                                                       },
                                                       Object {
-                                                        "label": "240v",
+                                                        "label": "240",
                                                         "value": 240,
                                                       },
                                                     ]
@@ -4656,11 +4656,11 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                                                       "openMenuOnFocus": false,
                                                       "options": Array [
                                                         Object {
-                                                          "label": "208v",
+                                                          "label": "208",
                                                           "value": 208,
                                                         },
                                                         Object {
-                                                          "label": "240v",
+                                                          "label": "240",
                                                           "value": 240,
                                                         },
                                                       ],
@@ -4672,7 +4672,7 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                                                       "tabSelectsValue": true,
                                                       "theme": [Function],
                                                       "value": Object {
-                                                        "label": "240v",
+                                                        "label": "240",
                                                         "value": 240,
                                                       },
                                                     }
@@ -4730,11 +4730,11 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                                                   options={
                                                     Array [
                                                       Object {
-                                                        "label": "208v",
+                                                        "label": "208",
                                                         "value": 208,
                                                       },
                                                       Object {
-                                                        "label": "240v",
+                                                        "label": "240",
                                                         "value": 240,
                                                       },
                                                     ]
@@ -4785,11 +4785,11 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                                                       "openMenuOnFocus": false,
                                                       "options": Array [
                                                         Object {
-                                                          "label": "208v",
+                                                          "label": "208",
                                                           "value": 208,
                                                         },
                                                         Object {
-                                                          "label": "240v",
+                                                          "label": "240",
                                                           "value": 240,
                                                         },
                                                       ],
@@ -4801,7 +4801,7 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                                                       "tabSelectsValue": true,
                                                       "theme": [Function],
                                                       "value": Object {
-                                                        "label": "240v",
+                                                        "label": "240",
                                                         "value": 240,
                                                       },
                                                     }
@@ -4914,6 +4914,11 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                             </Select>
                           </StateManager>
                         </SelectField>
+                        <p
+                          className="control"
+                        >
+                          volts
+                        </p>
                       </div>
                     </div>
                   </div>
