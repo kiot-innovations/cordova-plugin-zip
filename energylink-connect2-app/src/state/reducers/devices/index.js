@@ -4,6 +4,7 @@ import {
   DISCOVER_COMPLETE,
   DISCOVER_INIT,
   DISCOVER_UPDATE,
+  DISCOVER_ERROR,
   FETCH_CANDIDATES_INIT,
   FETCH_CANDIDATES_UPDATE,
   FETCH_CANDIDATES_COMPLETE,
@@ -17,6 +18,7 @@ import {
 const initialState = {
   isFetching: false,
   found: {},
+  progress: {},
   error: '',
   isFetchingCandidates: false,
   candidates: [],
@@ -44,15 +46,29 @@ export default createReducer(
     [DISCOVER_UPDATE]: (state, payload) => {
       return {
         ...state,
-        found: payload ? parseCompleteDevices(payload.devices) : state.found
+        found: payload
+          ? parseCompleteDevices(payload.devices.devices)
+          : state.found,
+        progress: payload ? payload.progress : state.progress
       }
     },
     [DISCOVER_COMPLETE]: (state, payload) => {
       return {
         ...state,
         isFetching: false,
-        found: payload ? parseCompleteDevices(payload.devices) : state.found,
+        found: payload
+          ? parseCompleteDevices(payload.devices.devices)
+          : state.found,
+        progress: payload ? payload.progress : state.progress,
         discoveryComplete: true
+      }
+    },
+    [DISCOVER_ERROR]: (state, payload) => {
+      return {
+        ...state,
+        isFetching: false,
+        progress: {},
+        error: payload
       }
     },
     [FETCH_CANDIDATES_INIT]: state => {
@@ -79,6 +95,7 @@ export default createReducer(
       return {
         ...state,
         isFetchingCandidates: false,
+        candidates: [],
         error: payload
       }
     },

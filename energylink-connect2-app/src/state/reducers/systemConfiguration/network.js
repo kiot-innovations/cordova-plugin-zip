@@ -19,7 +19,7 @@ const initialState = {
 
 export const networkReducer = createReducer(
   {
-    [GET_NETWORK_APS_INIT]: (state, payload) => ({
+    [GET_NETWORK_APS_INIT]: state => ({
       ...state,
       isFetching: true
     }),
@@ -27,6 +27,7 @@ export const networkReducer = createReducer(
     [GET_NETWORK_APS_SUCCESS]: (state, aps) => ({
       ...state,
       aps,
+      error: null,
       isFetching: false
     }),
 

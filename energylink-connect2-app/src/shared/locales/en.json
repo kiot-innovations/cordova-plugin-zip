@@ -192,5 +192,16 @@
   "GET_RSE_ERROR": "Could not get RSE information",
   "EMPTY_CANDIDATES": "There was an error with the PVS. Please reboot it and try again",
   "CANDIDATES_ERROR_FOUND": "We found issues with the installed MIs. Please verify the connections, or call for assistance.",
-  "RETRIEVING_MODEL": "Retrieving Model..."
+  "RETRIEVING_MODEL": "Retrieving Model...",
+  "SPRf": "Fronius Inverters",
+  "SPRp": "Power One Inverters",
+  "SPRk": "Kaco Inverters",
+  "SPRm": "SMA Inverters",
+  "OtherInverters": "ModBus Inverters",
+  "Meters": "Modbus Meters",
+  "MetStations": "MET Stations",
+  "GroundCurMon": "Ground Current Monitor",
+  "SunSpecDevices": "Sunspec Inverters & Meters",
+  "PVS5Meter": "Built-in Meters",
+  "HubPlus": "Equinox Storage System"
 }

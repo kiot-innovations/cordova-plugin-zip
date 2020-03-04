@@ -23,7 +23,8 @@ describe('SC Network Reducer', () => {
       systemConfigurationReducers.GET_NETWORK_APS_SUCCESS([{ ssid: '1' }]),
       {
         isFetching: false,
-        aps: [{ ssid: '1' }]
+        aps: [{ ssid: '1' }],
+        error: null
       }
     )
   })
