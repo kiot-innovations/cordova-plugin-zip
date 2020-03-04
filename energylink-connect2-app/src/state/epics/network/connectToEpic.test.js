@@ -1,6 +1,6 @@
 import {
   PVS_CONNECTION_INIT,
-  PVS_CONNECTION_SUCCESS
+  WAIT_FOR_SWAGGER
 } from 'state/actions/network'
 import { of } from 'rxjs'
 
@@ -27,12 +27,12 @@ describe('Connect to epic', () => {
       platform: 'iOS'
     }
     const init = PVS_CONNECTION_INIT({ ssid: 'sunpower', password: '123456' })
-    const success = PVS_CONNECTION_SUCCESS()
+    const success = WAIT_FOR_SWAGGER()
     const action$ = of(init)
     const epic$ = connectToEpic(action$)
     epic$.subscribe(action => {
-      expect(iosConnect).toHaveBeenCalledTimes(1)
       expect(action).toStrictEqual(success)
+      expect(iosConnect).toHaveBeenCalledTimes(1)
       done()
     })
   })

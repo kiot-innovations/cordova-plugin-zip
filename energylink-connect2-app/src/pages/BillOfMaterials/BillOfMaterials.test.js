@@ -2,12 +2,15 @@ import React from 'react'
 import BillOfMaterials from '.'
 import * as i18n from '../../shared/i18n'
 import * as reactRedux from 'react-redux'
-
+import * as utils from 'shared/utils'
 describe('BillOfMaterials component', () => {
   let dispatchMock
-
+  let isIosMock
   beforeEach(() => {
     dispatchMock = jest.fn()
+    isIosMock = jest.fn().mockReturnValue(true)
+    jest.spyOn(utils, 'isIos').mockImplementation(() => isIosMock)
+    jest.spyOn(reactRedux, 'useDispatch').mockImplementation(() => dispatchMock)
     jest.spyOn(reactRedux, 'useDispatch').mockImplementation(() => dispatchMock)
     jest.spyOn(reactRedux, 'useSelector').mockImplementation(() => ({
       MODULES: 0,

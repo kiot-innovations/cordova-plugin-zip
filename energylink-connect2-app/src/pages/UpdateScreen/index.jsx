@@ -1,3 +1,4 @@
+import { Loader } from 'components/Loader'
 import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { animated, useSpring } from 'react-spring'
@@ -33,7 +34,8 @@ const UpdateScreen = ({ animationState }) => {
           <>
             {either(
               status !== 'UPLOADING_FS',
-              <span className="has-text-white is-size-1">{percent}%</span>
+              <span className="has-text-white is-size-1">{percent}%</span>,
+              <Loader />
             )}
             <span className="has-text-white">{capitalize(t(status))}</span>
           </>

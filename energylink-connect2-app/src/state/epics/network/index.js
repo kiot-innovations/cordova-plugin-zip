@@ -1,4 +1,4 @@
 import { networkPollingEpic } from './networkEpic'
-import connectToEpic from './connectToEpic'
+import connectToEpic, { waitForSwaggerEpic } from './connectToEpic'
 
-export default [networkPollingEpic, connectToEpic]
+export default [networkPollingEpic, connectToEpic, waitForSwaggerEpic]
