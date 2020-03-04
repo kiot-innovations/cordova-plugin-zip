@@ -135,13 +135,13 @@ function mapStateToProps({ devices, pvs }) {
   }
 }
 
-const deviceProgressElement = (indicator, type, progress) => {
+const deviceProgressElement = (indicator, type, progress, t) => {
   return (
     <div className="device-prog mb-10 mt-10">
       <div className="device-prog-header">
         <div className="device-prog-title">
           <span className="has-text-centered">{indicator}</span>
-          <span className="pl-10">{type}</span>
+          <span className="pl-10">{t(type)}</span>
         </div>
         <div className="device-prog-status">{progress}</div>
       </div>
@@ -200,7 +200,8 @@ const Devices = ({ animationState }) => {
           deviceType.TYPE,
           deviceType.PROGR !== '100'
             ? deviceType.PROGR + '%'
-            : deviceType.NFOUND + ' Found'
+            : deviceType.NFOUND + ' Found',
+          t
         )
     })
     return progressMap
