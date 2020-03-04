@@ -44,30 +44,34 @@ function BillOfMaterials() {
       <span className="is-uppercase is-block is-full-width has-text-centered is-bold mb-30 ">
         {t('CUSTOMER_INFORMATION')}
       </span>
-      <section className="is-flex mb-40">
-        <div className="is-flex is-vertical tile pl-40">
-          <div className="tile is-flex is-vertical">
-            <span className="is-uppercase is-size-7 ">{`${t('NAME')}:`}</span>
-            <span className="has-text-white mb-10 is-capitalized">
-              {data.name}
-            </span>
+      <section className="mb-40">
+        <div className="is-flex is-vertical">
+          <div className="is-flex is-vertical tile pl-40">
+            <div className="tile is-flex is-vertical">
+              <span className="is-uppercase is-size-7 ">{`${t('NAME')}:`}</span>
+              <span className="has-text-white mb-10 is-capitalized">
+                {data.name}
+              </span>
+            </div>
+            <div className="tile is-flex is-vertical">
+              <span className=" is-uppercase is-size-7">{`${t(
+                'PHONE'
+              )}:`}</span>
+              <span className="has-text-white mb-10">{data.phone}</span>
+            </div>
           </div>
-          <div className="tile is-flex is-vertical">
-            <span className="is-uppercase is-size-7">{`${t('ADDRESS')}:`}</span>
-            <span className="has-text-white mb-10">{address1}</span>
+          <div className="is-flex is-vertical tile is-center pr-40">
+            <div className="tile is-flex is-vertical is-hidden">
+              <span className=" is-uppercase is-size-7">{`${t(
+                'UTILITY'
+              )}:`}</span>
+              <span className="has-text-white mb-10">PG&E</span>
+            </div>
           </div>
         </div>
-        <div className="is-flex is-vertical tile is-center pr-40">
-          <div className="tile is-flex is-vertical">
-            <span className=" is-uppercase is-size-7">{`${t('PHONE')}:`}</span>
-            <span className="has-text-white mb-10">{data.phone}</span>
-          </div>
-          <div className="tile is-flex is-vertical is-hidden">
-            <span className=" is-uppercase is-size-7">{`${t(
-              'UTILITY'
-            )}:`}</span>
-            <span className="has-text-white mb-10">PG&E</span>
-          </div>
+        <div className="tile pl-40 is-flex is-vertical">
+          <span className="is-uppercase is-size-7">{`${t('ADDRESS')}:`}</span>
+          <span className="has-text-white mb-10">{address1}</span>
         </div>
       </section>
       <section className="mb-50">
