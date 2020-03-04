@@ -135,19 +135,6 @@ function mapStateToProps({ devices, pvs }) {
   }
 }
 
-const deviceProgressElement = (indicator, type, progress, t) => {
-  return (
-    <div className="device-prog mb-10 mt-10">
-      <div className="device-prog-header">
-        <div className="device-prog-title">
-          <span className="has-text-centered">{indicator}</span>
-          <span className="pl-10">{t(type)}</span>
-        </div>
-        <div className="device-prog-status">{progress}</div>
-      </div>
-    </div>
-  )
-}
 const Devices = ({ animationState }) => {
   const { progress, found, counts, claim } = useSelector(mapStateToProps)
   const dispatch = useDispatch()
@@ -191,6 +178,18 @@ const Devices = ({ animationState }) => {
     })
     dispatch(CLAIM_DEVICES_INIT(JSON.stringify(claimObject)))
   }
+
+  const deviceProgressElement = (indicator, type, progress, t) => (
+    <div className="device-prog mb-10 mt-10">
+      <div className="device-prog-header">
+        <div className="device-prog-title">
+          <span className="has-text-centered">{indicator}</span>
+          <span className="pl-10">{t(type)}</span>
+        </div>
+        <div className="device-prog-status">{progress}</div>
+      </div>
+    </div>
+  )
 
   const progressIndicators = () => {
     const progressMap = pathOr([], ['progress'], progress).map(deviceType => {
