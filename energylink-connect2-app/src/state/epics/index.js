@@ -10,8 +10,10 @@ import pvsEpics from './pvs'
 import systemConfigurationEpics from './systemConfiguration'
 import liveEnergyData from './live-energy-data'
 import authEpics from './auth'
+import firmwareUpdateEpics from './fimwareUpdate'
 
 export default combineEpics(
+  ...firmwareUpdateEpics,
   ...networkPollingEpics,
   discoverDeviceEpic,
   pushCandidatesEpic,

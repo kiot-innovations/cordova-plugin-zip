@@ -14,7 +14,6 @@ const states = {
 const UpdateScreen = ({ animationState }) => {
   const { status, percent } = useSelector(state => state.firmwareUpdate)
   const [color, setColor] = useState('#ffffff')
-
   const PVSColor = useSpring({ color })
   const t = useI18n()
 
@@ -32,7 +31,10 @@ const UpdateScreen = ({ animationState }) => {
           status === 'UPGRADE_COMPLETE',
           null,
           <>
-            <span className="has-text-white is-size-1">{percent}%</span>
+            {either(
+              status !== 'UPLOADING_FS',
+              <span className="has-text-white is-size-1">{percent}%</span>
+            )}
             <span className="has-text-white">{capitalize(t(status))}</span>
           </>
         )}
