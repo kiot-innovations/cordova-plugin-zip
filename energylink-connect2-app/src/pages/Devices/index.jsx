@@ -5,7 +5,6 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Link, useHistory } from 'react-router-dom'
 import paths from 'routes/paths'
 import { useI18n } from 'shared/i18n'
-import { Loader } from 'components/Loader'
 import {
   DISCOVER_COMPLETE,
   FETCH_CANDIDATES_INIT,
@@ -264,14 +263,11 @@ const Devices = ({ animationState }) => {
         </Link>
       )}
       {!found.error && !found.discoveryComplete ? (
-        <div>
-          <Loader />
-          <span className="has-text-weight-bold mb-20">
-            {claim.claimingDevices
-              ? t('CLAIMING_DEVICES')
-              : t('DISCOVERY_IN_PROGRESS')}
-          </span>
-        </div>
+        <span className="has-text-weight-bold mb-20">
+          {claim.claimingDevices
+            ? t('CLAIMING_DEVICES')
+            : t('DISCOVERY_IN_PROGRESS')}
+        </span>
       ) : (
         ''
       )}
