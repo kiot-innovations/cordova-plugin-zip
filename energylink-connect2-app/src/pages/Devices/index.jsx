@@ -178,28 +178,27 @@ const Devices = ({ animationState }) => {
     dispatch(CLAIM_DEVICES_INIT(JSON.stringify(claimObject)))
   }
 
-  const deviceProgressElement = (indicator, type, progress, t) => (
-    <div className="device-prog mb-10 mt-10">
-      <div className="device-prog-header">
-        <div className="device-prog-title">
-          <span className="has-text-centered">{indicator}</span>
-          <span className="pl-10">{t(type)}</span>
-        </div>
-        <div className="device-prog-status">{progress}</div>
-      </div>
-    </div>
-  )
-
-  const progressIndicators = () => {
-    const progressMap = pathOr([], ['progress'], progress).map(deviceType => {
+  const progressIndicators = progressList => {
+    const progressMap = progressList.map(deviceType => {
       if (deviceType.TYPE !== 'MicroInverters')
-        return deviceProgressElement(
-          deviceType.PROGR !== '100' ? miIndicators.LOADING : miIndicators.OK,
-          deviceType.TYPE,
-          deviceType.PROGR !== '100'
-            ? deviceType.PROGR + '%'
-            : deviceType.NFOUND + ' Found',
-          t
+        return (
+          <div className="device-prog mb-10 mt-10">
+            <div className="device-prog-header">
+              <div className="device-prog-title">
+                <span className="has-text-centered">
+                  {deviceType.PROGR !== '100'
+                    ? miIndicators.LOADING
+                    : miIndicators.OK}
+                </span>
+                <span className="pl-10">{t(deviceType.TYPE)}</span>
+              </div>
+              <div className="device-prog-status">
+                {deviceType.PROGR !== '100'
+                  ? deviceType.PROGR + '%'
+                  : deviceType.NFOUND + ' Found'}
+              </div>
+            </div>
+          </div>
         )
     })
     return progressMap
@@ -252,7 +251,7 @@ const Devices = ({ animationState }) => {
             })}
           </ul>
         </Collapsible>
-        {progressIndicators()}
+        {progressIndicators(pathOr([], ['progress'], progress))}
       </div>
       {found.discoveryComplete && (
         <Link
