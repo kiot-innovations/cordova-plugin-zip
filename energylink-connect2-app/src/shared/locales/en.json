@@ -204,5 +204,6 @@
   "GroundCurMon": "Ground Current Monitor",
   "SunSpecDevices": "Sunspec Inverters & Meters",
   "PVS5Meter": "Built-in Meters",
-  "HubPlus": "Equinox Storage System"
+  "HubPlus": "Equinox Storage System",
+  "FOUND": "Found"
 }

@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useHistory } from 'react-router-dom'
 import { prop, propOr, path, pathOr, length } from 'ramda'
+import clsx from 'clsx'
 import { useI18n } from 'shared/i18n'
 import {
   DISCOVER_COMPLETE,
@@ -12,7 +13,6 @@ import {
   RESET_DISCOVERY
 } from 'state/actions/devices'
 import Collapsible from 'components/Collapsible'
-import clsx from 'clsx'
 import paths from 'routes/paths'
 import './Devices.scss'
 
@@ -190,12 +190,12 @@ const Devices = ({ animationState }) => {
             <div className="device-prog-header">
               <div className="device-prog-title">
                 <span className="has-text-centered">
-                  {progr !== '100' ? miIndicators.LOADING : miIndicators.OK}
+                  {progr !== 100 ? miIndicators.LOADING : miIndicators.OK}
                 </span>
                 <span className="pl-10">{t(type)}</span>
               </div>
               <div className="device-prog-status">
-                {progr !== '100' ? progr + '%' : nfound + ' Found'}
+                {progr !== '100' ? progr + '%' : nfound + ' ' + t('FOUND')}
               </div>
             </div>
           </div>
@@ -284,12 +284,7 @@ const Devices = ({ animationState }) => {
       {found.discoveryComplete && (
         <button
           className={clsx(
-            'button',
-            'is-primary',
-            'is-uppercase',
-            'is-paddingless',
-            'ml-75',
-            'mr-75',
+            'button is-primary is-uppercase is-paddingless ml-75 mr-75',
             { 'is-loading': claim.claimingDevices }
           )}
           disabled={claim.claimingDevices}

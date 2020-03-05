@@ -27,7 +27,7 @@ export const pollClaimingEpic = action$ => {
   return action$.pipe(
     ofType(CLAIM_DEVICES_SUCCESS.getType()),
     switchMap(() =>
-      timer(0, 1000).pipe(
+      timer(0, 2500).pipe(
         takeUntil(stopPolling$),
         switchMap(() => {
           const promise = getApiPVS()

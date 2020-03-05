@@ -10,7 +10,6 @@ import {
   FETCH_CANDIDATES_COMPLETE,
   FETCH_CANDIDATES_ERROR,
   CLAIM_DEVICES_INIT,
-  CLAIM_DEVICES_SUCCESS,
   CLAIM_DEVICES_ERROR,
   RESET_DISCOVERY,
   CLAIM_DEVICES_UPDATE,
@@ -106,11 +105,6 @@ export default createReducer(
       return {
         ...state,
         claimingDevices: true
-      }
-    },
-    [CLAIM_DEVICES_SUCCESS]: state => {
-      return {
-        ...state
       }
     },
     [CLAIM_DEVICES_UPDATE]: (state, payload) => {
