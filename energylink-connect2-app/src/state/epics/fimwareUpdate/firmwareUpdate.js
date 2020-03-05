@@ -11,10 +11,7 @@ import {
 } from 'rxjs/operators'
 import { getApiPVS } from 'shared/api'
 import { waitFor } from 'shared/utils'
-import {
-  getFileBlob,
-  getFirmwareVersionNumber
-} from 'state/actions/fileDownloader'
+import { getFileBlob, getPVSFileSystemName } from 'state/actions/fileDownloader'
 import {
   FIRMWARE_UPDATE_COMPLETE,
   FIRMWARE_UPDATE_ERROR,
@@ -38,8 +35,7 @@ import {
  */
 const uploadFirmwarePVS = async () => {
   try {
-    const { luaFileName } = await getFirmwareVersionNumber()
-    const fileBlob = await getFileBlob(`${luaFileName}.fs`)
+    const fileBlob = await getFileBlob(await getPVSFileSystemName())
     const formData = new FormData()
     formData.append('firmware', fileBlob)
     //TODO use the SWAGGER client, for some reason it is not working at the moment (2020-27-02)
