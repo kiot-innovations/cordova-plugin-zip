@@ -45,26 +45,30 @@ exports[`BillOfMaterials component render correctly 1`] = `
           <div
             className="pl-20 pr-20 mb-20"
           >
-            <ProgressiveImage
-              overlaySrc="MapPlaceholder.svg"
-              src="https://maps.googleapis.com/maps/api/staticmap?center=undefined,undefined&zoom=21&size=800x800&key=undefined&maptype=hybrid&markers=scale:4|blue|undefined,undefined&scale=4"
+            <a
+              href="maps://maps.google.com/maps?daddr=undefined,undefined&amp;ll="
             >
-              <div
-                className="progressive-image-container"
+              <ProgressiveImage
+                overlaySrc="MapPlaceholder.svg"
+                src="https://maps.googleapis.com/maps/api/staticmap?center=undefined,undefined&zoom=21&size=800x800&key=undefined&maptype=hybrid&markers=scale:4|blue|undefined,undefined&scale=4"
               >
-                <img
-                  alt=""
-                  className="waiting"
-                  onLoad={[Function]}
-                  src="https://maps.googleapis.com/maps/api/staticmap?center=undefined,undefined&zoom=21&size=800x800&key=undefined&maptype=hybrid&markers=scale:4|blue|undefined,undefined&scale=4"
-                />
-                <img
-                  alt=""
-                  className="overlay"
-                  src="MapPlaceholder.svg"
-                />
-              </div>
-            </ProgressiveImage>
+                <div
+                  className="progressive-image-container"
+                >
+                  <img
+                    alt=""
+                    className="waiting"
+                    onLoad={[Function]}
+                    src="https://maps.googleapis.com/maps/api/staticmap?center=undefined,undefined&zoom=21&size=800x800&key=undefined&maptype=hybrid&markers=scale:4|blue|undefined,undefined&scale=4"
+                  />
+                  <img
+                    alt=""
+                    className="overlay"
+                    src="MapPlaceholder.svg"
+                  />
+                </div>
+              </ProgressiveImage>
+            </a>
           </div>
           <span
             className="is-uppercase is-block is-full-width has-text-centered is-bold mb-30 "
@@ -100,9 +104,6 @@ exports[`BillOfMaterials component render correctly 1`] = `
                   >
                     PHONE:
                   </span>
-                  <span
-                    className="has-text-white mb-10"
-                  />
                 </div>
               </div>
               <div
@@ -135,6 +136,24 @@ exports[`BillOfMaterials component render correctly 1`] = `
               <span
                 className="has-text-white mb-10"
               />
+            </div>
+            <div
+              className="is-flex is-vertical tile is-center pr-40"
+            >
+              <div
+                className="tile is-flex is-vertical is-hidden"
+              >
+                <span
+                  className=" is-uppercase is-size-7"
+                >
+                  UTILITY:
+                </span>
+                <span
+                  className="has-text-white mb-10"
+                >
+                  PG&E
+                </span>
+              </div>
             </div>
           </section>
           <section

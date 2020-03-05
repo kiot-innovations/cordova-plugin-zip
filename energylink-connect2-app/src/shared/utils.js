@@ -73,3 +73,5 @@ export const capitalize = when(
   compose(lt(0), length),
   compose(join(''), over(lensIndex(0), toUpper))
 )
+
+export const isIos = () => window.device.platform === 'iOS'

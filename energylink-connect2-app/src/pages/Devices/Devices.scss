@@ -33,3 +33,34 @@
   display: -ms-flexbox;
   display: flex;
 }
+
+
+.device-prog {
+  background-color: $silver-sand4;
+  text-align: left;
+  padding: $font-size-big $font-size-big $font-size;
+  font-family: $font;
+  letter-spacing: 0;
+  border-radius: 5px;
+
+  &-header {
+    color: $white;
+    font-size: 18px;
+    display: grid;
+    grid-template-columns: 70% 1fr;
+    margin-bottom: 5px;
+  }
+
+  &-title {
+    display: grid;
+    grid-template-columns: 20% 1fr;
+    align-items: center;
+  }
+
+  &-status {
+    text-align: right;
+    padding-right: 10px;
+    display: grid;
+    align-items: center;
+  }
+}

@@ -1,11 +1,10 @@
 import Collapsible from 'components/Collapsible'
-import { propOr, length, path } from 'ramda'
+import { propOr, length, path, pathOr } from 'ramda'
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useHistory } from 'react-router-dom'
 import paths from 'routes/paths'
 import { useI18n } from 'shared/i18n'
-import { Loader } from 'components/Loader'
 import {
   DISCOVER_COMPLETE,
   FETCH_CANDIDATES_INIT,
@@ -19,17 +18,13 @@ import './Devices.scss'
 const microInverterIcon = (
   <span className="sp-inverter mr-20 devices-icon ml-0 mt-0 mb-0" />
 )
-// const meterIcon = <span className="mr-20 sp-meter ml-0 mt-0 mb-0" />
+
 const Icon = (num = 0, max = 0, icon = '') => (
   <div className="is-flex">
     <span className={`${icon} mr-10 ml-0 mt-0 mb-0`} />
     <span className="devices-counter mr-10 ml-0 mt-0 mb-0">{`${num}/${max}`}</span>
   </div>
 )
-// const numberItems = num =>
-//   num !== 0 && (
-//     <span className="devices-counter mr-10 ml-0 mt-0 mb-0">{num}</span>
-//   )
 
 const miStates = {
   NEW: 'LOADING',
@@ -108,7 +103,8 @@ function mapStateToProps({ devices, pvs }) {
     found,
     claimingDevices,
     claimedDevices,
-    error
+    error,
+    progress
   } = devices
   const { serialNumbers } = pvs
   const { proceed, okMI, nonOkMI, pendingMI } = filterFoundMI(
@@ -120,6 +116,7 @@ function mapStateToProps({ devices, pvs }) {
       claimingDevices,
       claimedDevices
     },
+    progress,
     found: {
       ...found,
       proceed,
@@ -138,10 +135,11 @@ function mapStateToProps({ devices, pvs }) {
 }
 
 const Devices = ({ animationState }) => {
-  const { found, counts, claim } = useSelector(mapStateToProps)
+  const { progress, found, counts, claim } = useSelector(mapStateToProps)
   const dispatch = useDispatch()
   const history = useHistory()
   const t = useI18n()
+
   useEffect(() => {
     dispatch(FETCH_CANDIDATES_INIT())
     if (found.proceed) {
@@ -180,6 +178,32 @@ const Devices = ({ animationState }) => {
     dispatch(CLAIM_DEVICES_INIT(JSON.stringify(claimObject)))
   }
 
+  const progressIndicators = progressList => {
+    const progressMap = progressList.map(deviceType => {
+      if (deviceType.TYPE !== 'MicroInverters')
+        return (
+          <div className="device-prog mb-10 mt-10">
+            <div className="device-prog-header">
+              <div className="device-prog-title">
+                <span className="has-text-centered">
+                  {deviceType.PROGR !== '100'
+                    ? miIndicators.LOADING
+                    : miIndicators.OK}
+                </span>
+                <span className="pl-10">{t(deviceType.TYPE)}</span>
+              </div>
+              <div className="device-prog-status">
+                {deviceType.PROGR !== '100'
+                  ? deviceType.PROGR + '%'
+                  : deviceType.NFOUND + ' Found'}
+              </div>
+            </div>
+          </div>
+        )
+    })
+    return progressMap
+  }
+
   return (
     <div className="fill-parent is-flex tile is-vertical has-text-centered sunpower-devices pr-15 pl-15">
       <span className="is-uppercase has-text-weight-bold mb-20" role="button">
@@ -198,8 +222,7 @@ const Devices = ({ animationState }) => {
           expanded
           actions={Icon(
             counts.inverter.okMICount,
-            length(propOr([], 'inverter', found)),
-            'sp-gear'
+            length(propOr([], 'inverter', found))
           )}
         >
           <ul className="equipment-list">
@@ -228,31 +251,8 @@ const Devices = ({ animationState }) => {
             })}
           </ul>
         </Collapsible>
+        {progressIndicators(pathOr([], ['progress'], progress))}
       </div>
-      {/*<div className="pb-15">*/}
-      {/*  <Collapsible*/}
-      {/*    title={t('METERS')}*/}
-      {/*    actions={numberItems(length(propOr([], 'power meter', found)))}*/}
-      {/*    icon={meterIcon}*/}
-      {/*  >*/}
-      {/*    <ul className="equipment-list">*/}
-      {/*      {propOr([], 'power meter', found).map(elem => {*/}
-      {/*        return (*/}
-      {/*          <li className="equipment-piece is-flex flow-wrap tile">*/}
-      {/*            <div className="is-flex is-vertical has-text-white tile">*/}
-      {/*              <span>*/}
-      {/*                <span className="has-text-weight-bold has-text-white">*/}
-      {/*                  SN:*/}
-      {/*                </span>*/}
-      {/*                {elem.SERIAL}*/}
-      {/*              </span>*/}
-      {/*            </div>*/}
-      {/*          </li>*/}
-      {/*        )*/}
-      {/*      })}*/}
-      {/*    </ul>*/}
-      {/*  </Collapsible>*/}
-      {/*</div>*/}
       {found.discoveryComplete && (
         <Link
           className="button is-outlined is-primary is-uppercase is-paddingless ml-75 mr-75 mb-10"
@@ -262,14 +262,11 @@ const Devices = ({ animationState }) => {
         </Link>
       )}
       {!found.error && !found.discoveryComplete ? (
-        <div>
-          <Loader />
-          <span className="has-text-weight-bold mb-20">
-            {claim.claimingDevices
-              ? t('CLAIMING_DEVICES')
-              : t('DISCOVERY_IN_PROGRESS')}
-          </span>
-        </div>
+        <span className="has-text-weight-bold mb-20">
+          {claim.claimingDevices
+            ? t('CLAIMING_DEVICES')
+            : t('DISCOVERY_IN_PROGRESS')}
+        </span>
       ) : (
         ''
       )}

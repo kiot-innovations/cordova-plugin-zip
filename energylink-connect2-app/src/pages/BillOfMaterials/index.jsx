@@ -1,6 +1,8 @@
-import React from 'react'
+import { prop } from 'ramda'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
+import { either, isIos } from 'shared/utils'
 import paths from '../../routes/paths'
 import { useI18n } from '../../shared/i18n'
 import './BillOfMaterials.scss'
@@ -20,6 +22,20 @@ function drawTable(t, inventory) {
   })
 }
 
+const useMap = (latitude, longitude) => {
+  const [url, setUrl] = useState(
+    `maps://maps.google.com/maps?daddr=${latitude},${longitude}&amp;ll=`
+  )
+  useEffect(() => {
+    if (isIos())
+      setUrl(
+        `maps://maps.google.com/maps?daddr=${latitude},${longitude}&amp;ll=`
+      )
+    else setUrl(`geo:${latitude},${longitude}`)
+  }, [latitude, longitude])
+  return url
+}
+
 function BillOfMaterials() {
   const t = useI18n()
 
@@ -28,18 +44,20 @@ function BillOfMaterials() {
     name: user.data.name,
     bom: inventory.bom
   }))
-
   const { address1, latitude, longitude } = useSelector(
     state => state.site.site || {}
   )
+  const url = useMap(latitude, longitude)
 
   return (
     <main className="full-height pl-10 pr-10 home">
       <div className="pl-20 pr-20 mb-20">
-        <ProgressiveImage
-          src={`https://maps.googleapis.com/maps/api/staticmap?center=${latitude},${longitude}&zoom=21&size=800x800&key=${process.env.REACT_APP_MAPS_API_KEY}&maptype=hybrid&markers=scale:4|blue|${latitude},${longitude}&scale=4`}
-          overlaySrc={mapPlaceholder}
-        />
+        <a href={url}>
+          <ProgressiveImage
+            src={`https://maps.googleapis.com/maps/api/staticmap?center=${latitude},${longitude}&zoom=21&size=800x800&key=${process.env.REACT_APP_MAPS_API_KEY}&maptype=hybrid&markers=scale:4|blue|${latitude},${longitude}&scale=4`}
+            overlaySrc={mapPlaceholder}
+          />
+        </a>
       </div>
       <span className="is-uppercase is-block is-full-width has-text-centered is-bold mb-30 ">
         {t('CUSTOMER_INFORMATION')}
@@ -57,7 +75,12 @@ function BillOfMaterials() {
               <span className=" is-uppercase is-size-7">{`${t(
                 'PHONE'
               )}:`}</span>
-              <span className="has-text-white mb-10">{data.phone}</span>
+              {either(
+                prop('phone', data),
+                <a className="has-text-white mb-10" href={`tel:${data.phone}`}>
+                  {data.phone}
+                </a>
+              )}
             </div>
           </div>
           <div className="is-flex is-vertical tile is-center pr-40">
@@ -72,6 +95,14 @@ function BillOfMaterials() {
         <div className="tile pl-40 is-flex is-vertical">
           <span className="is-uppercase is-size-7">{`${t('ADDRESS')}:`}</span>
           <span className="has-text-white mb-10">{address1}</span>
+        </div>
+        <div className="is-flex is-vertical tile is-center pr-40">
+          <div className="tile is-flex is-vertical is-hidden">
+            <span className=" is-uppercase is-size-7">{`${t(
+              'UTILITY'
+            )}:`}</span>
+            <span className="has-text-white mb-10">PG&E</span>
+          </div>
         </div>
       </section>
       <section className="mb-50">

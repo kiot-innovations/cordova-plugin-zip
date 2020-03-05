@@ -68,12 +68,11 @@ exports[`PVS connection successful component render correctly 1`] = `
           >
             VERIFY_SERIAL_PVS_CONN_SUCCESS
           </span>
-          <button
-            className="button is-primary is-uppercase is-center"
-            onClick={[Function]}
+          <span
+            className="has-text-centered has-text-white"
           >
-            CONTINUE
-          </button>
+            CHECKING_UPDATES
+          </span>
         </div>
       </PvsConnectionSuccessful>
     </Provider>

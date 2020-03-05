@@ -160,16 +160,17 @@ function GridBehaviorWidget() {
                   isSearchable={false}
                   useDefaultDropDown
                   options={[
-                    { label: '208v', value: 208 },
-                    { label: '240v', value: 240 }
+                    { label: '208', value: 208 },
+                    { label: '240', value: 240 }
                   ]}
                   defaultValue={
                     gridVoltage.grid_voltage === 240
-                      ? { label: '208v', value: 208 }
-                      : { label: '240v', value: 240 }
+                      ? { label: '208', value: 208 }
+                      : { label: '240', value: 240 }
                   }
                   onSelect={setGridVoltage}
                 />
+                <p className="control">volts</p>
               </div>
             </div>
           </div>
