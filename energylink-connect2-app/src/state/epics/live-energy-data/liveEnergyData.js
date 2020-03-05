@@ -9,7 +9,8 @@ import {
 } from 'rxjs/operators'
 import { Client as WebSocket } from 'rpc-websockets'
 import * as energyDataActions from '../../actions/energy-data'
-import * as mobileActions from '../../actions/mobile'
+import * as networkActions from '../../actions/network'
+
 import { roundDecimals } from '../../../shared/rounding'
 import { ofType } from 'redux-observable'
 
@@ -24,11 +25,12 @@ const createWebsocketObservable = () =>
     ws.on('close', () => subscriber.error(new Error('Connection closed')))
 
     ws.on('open', () => {
+      ws.subscribe('power')
       subscriber.next({ evt: 'open' })
 
       ws.on('power', data => subscriber.next({ evt: 'power', data }))
 
-      ws.call('GetMetrics', ['power', '1d', '-2d', '-2d'])
+      /*ws.call('GetMetrics', ['power', '1d', '-2d', '-2d'])
         .then(yesterdaysData =>
           ws.call('GetMetrics', ['power', '1d', '-1d', '-1d']).then(data => {
             subscriber.next({
@@ -44,7 +46,7 @@ const createWebsocketObservable = () =>
           subscriber.error(
             new Error(`Error colleting daily metrics: ${err.message}`)
           )
-        )
+        )*/
 
       return () => {
         ws.close()
@@ -52,15 +54,9 @@ const createWebsocketObservable = () =>
     })
   })
 
-const kWTokWh = kW => kW / 3600
-
 export const liveEnergyData = (action$, state$) =>
   action$.pipe(
-    ofType(
-      mobileActions.NABTO_PORT_OPEN.getType(),
-      mobileActions.DEVICE_RESUME.getType(),
-      energyDataActions.ENERGY_DATA_START_POLLING.getType() // @todo: likely not required, but necesssary for testing
-    ),
+    ofType(networkActions.PVS_CONNECTION_SUCCESS.getType()),
     mergeMap(({ payload }) =>
       createWebsocketObservable().pipe(
         retryWhen(errors =>
@@ -93,20 +89,31 @@ export const liveEnergyData = (action$, state$) =>
               })
             case 'power':
             default: {
+              /*
+                pp = power production
+                pc = power consumption
+                ps = storage power
+                p = production
+                c = consumption
+                s = storage
+                soc = state of charge
+                weather = storage
+              */
               const pp = data.pv_p < 0.01 ? 0 : data.pv_p
               const ps = data.ess_p < 0.01 ? 0 : data.ess_p * -1
               const net = data.net_p < 0.01 ? 0 : data.net_p
 
-              const p = kWTokWh(pp)
-              const s = kWTokWh(ps)
-              const c = p + s + kWTokWh(net)
               const pc = pp + ps + net
+              const p = data.pv_en < 0.01 ? 0 : data.pv_en
+              const net_en = data.net_en < 0.01 ? 0 : data.net_en
+              const s = data.ess_en < 0.01 ? 0 : data.ess_en * -1
+              const c = p + s + net_en
 
               return energyDataActions.LIVE_ENERGY_DATA_NOTIFICATION({
                 [new Date(data.time * 1000).toISOString()]: {
-                  p,
-                  s,
-                  c,
+                  p: roundDecimals(p),
+                  s: roundDecimals(s),
+                  c: roundDecimals(c),
                   pp: roundDecimals(pp),
                   pc: roundDecimals(pc),
                   ps: roundDecimals(ps),

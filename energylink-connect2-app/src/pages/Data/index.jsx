@@ -2,7 +2,6 @@ import React, { useEffect } from 'react'
 import './Data.scss'
 import { useDispatch, useSelector } from 'react-redux'
 import RightNow from '../../components/RightNow'
-import EnergyMix from '../../components/EnergyMix'
 import { useI18n } from '../../shared/i18n'
 import { roundDecimals } from '../../shared/rounding'
 import {
@@ -66,10 +65,10 @@ export default () => {
       </section>
       <div className="separator" />
       <EnergyGraphSection />
-      <section>
+      {/*<section>
         <h6 className="is-uppercase mt-20 mb-20">{t('ENERGY_MIX')}</h6>
         <EnergyMix {...data} hasStorage={true} />
-      </section>
+      </section>*/}
     </section>
   )
 }

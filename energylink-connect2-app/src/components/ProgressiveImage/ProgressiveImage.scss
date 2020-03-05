@@ -1,27 +1,12 @@
-.progressive-image-container {
+.ic {
+  background: url('map.png');
   position: relative;
-  width: auto;
-  height: 400px;
-  img {
-    position: absolute;
-    transition: filter ease-in 250ms,opacity ease-in 500ms;
-    filter: blur(0px);
-    clip-path: none;
+  width: 100%;
+  height: 380px;
+  border: 2px solid white;
+  border-radius: 5px;
 
-    opacity: 1;
-  }
-  .hidden{
-    opacity: 0;
-  }
-  .waiting {
-    z-index: -1;
-    filter: blur(1px);
-    opacity: 0;
-  }
-  .overlay {
-    filter: blur(1px) !important;
-    clip-path: inset(1px) !important;
-    margin: -1px 0 0 -1px;
-    z-index: 1;
+  img {
+    width: 100%;
   }
 }

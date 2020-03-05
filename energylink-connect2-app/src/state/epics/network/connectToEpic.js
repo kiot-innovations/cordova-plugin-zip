@@ -54,7 +54,7 @@ export const waitForSwaggerEpic = action$ => {
   return action$.pipe(
     ofType(WAIT_FOR_SWAGGER.getType()),
     switchMap(() =>
-      timer(0, 500).pipe(
+      timer(0, 2000).pipe(
         takeUntil(stopPolling$),
         switchMap(() =>
           from(getApiPVS()).pipe(

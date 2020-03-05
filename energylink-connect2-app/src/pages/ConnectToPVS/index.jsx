@@ -1,4 +1,4 @@
-import React, { useCallback, useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useI18n } from 'shared/i18n'
 import { decodeQRData, scanBarcodes } from 'shared/scanning'
 import { clearPVSErr, PVS_CONNECTION_INIT } from 'state/actions/network'
@@ -8,36 +8,37 @@ import paths from 'routes/paths'
 import { saveSerialNumber } from 'state/actions/pvs'
 import './ConnectToPVS.scss'
 
+const onSuccess = (setScanning, generatePassword, dispatch, t) => data => {
+  try {
+    setScanning(false)
+    let wifiData
+
+    try {
+      wifiData = decodeQRData(data)
+    } catch {
+      wifiData = ''
+    }
+
+    if (wifiData.length > 0) {
+      const qrData = wifiData.split('|')
+      const [serialNumber, ssid] = qrData
+      const password = generatePassword(serialNumber)
+      dispatch(saveSerialNumber(serialNumber))
+      dispatch(PVS_CONNECTION_INIT({ ssid, password }))
+    } else {
+      alert(t('INVALID_QRCODE'))
+    }
+  } catch (error) {
+    console.warn(error)
+  }
+}
+
 function ConnectToPVS({ animationState }) {
   const t = useI18n()
   const dispatch = useDispatch()
   const history = useHistory()
   const connectionState = useSelector(state => state.network)
   const [scanning, setScanning] = useState(false)
-
-  const onSuccess = useCallback(
-    data => {
-      setScanning(false)
-      let wifiData
-
-      try {
-        wifiData = decodeQRData(data)
-      } catch {
-        wifiData = ''
-      }
-
-      if (wifiData.length > 0) {
-        const qrData = wifiData.split('|')
-        const [serialNumber, ssid] = qrData
-        const password = generatePassword(serialNumber)
-        dispatch(saveSerialNumber(serialNumber))
-        dispatch(PVS_CONNECTION_INIT({ ssid, password }))
-      } else {
-        alert(t('INVALID_QRCODE'))
-      }
-    },
-    [t, dispatch]
-  )
 
   const onFail = err => {
     alert(err)
@@ -46,7 +47,10 @@ function ConnectToPVS({ animationState }) {
   useEffect(() => {
     if (!scanning && animationState === 'enter' && !connectionState.connected) {
       setScanning(true)
-      scanBarcodes(onSuccess, onFail)
+      scanBarcodes(
+        onSuccess(setScanning, generatePassword, dispatch, t),
+        onFail
+      )
     }
     if (
       !connectionState.connecting &&
@@ -60,14 +64,13 @@ function ConnectToPVS({ animationState }) {
       alert(t('PVS_CONN_ERROR'))
     }
   }, [
-    scanning,
     animationState,
     connectionState.connected,
     connectionState.connecting,
     connectionState.err,
-    history,
-    onSuccess,
     dispatch,
+    history,
+    scanning,
     t
   ])
 
@@ -89,10 +92,16 @@ function ConnectToPVS({ animationState }) {
       </div>
       <div className="pt-20">
         <button
+          disabled={connectionState.connecting}
           className="button is-primary"
-          onClick={() => scanBarcodes(onSuccess, onFail)}
+          onClick={() =>
+            scanBarcodes(
+              onSuccess(setScanning, generatePassword, dispatch, t),
+              onFail
+            )
+          }
         >
-          {t('START_SCAN')}
+          {connectionState.connecting ? t('SCANNING_SN') : t('START_SCAN')}
         </button>
       </div>
     </div>
