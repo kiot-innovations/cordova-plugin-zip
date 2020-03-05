@@ -44,13 +44,19 @@ export async function getFirmwareVersionNumber() {
     // const swagger = await getApiFirmware()
     // const response = await swagger.apis.pvs6.firmwareUpdate({ fwver: 0 })
     const fileURL =
-      'https://fw-assets-pvs6-dev.dev-edp.sunpower.com/staging-prod-boomer/7047/fwup/fwup.lua'
+      'https://fw-assets-pvs6-dev.dev-edp.sunpower.com/staging-prod-boomer/7056/fwup/fwup.lua'
     const luaFileName = getLuaName(fileURL)
     return { luaFileName, fileURL, version: getBuildNumber(fileURL) }
   } catch (e) {
     throw new Error(ERROR_CODES.getVersionInfo)
   }
 }
+
+export const getPVSFileSystemName = async () => {
+  const { version, luaFileName } = await getFirmwareVersionNumber()
+  return `${luaFileName}-${version}.fs`
+}
+
 export const getFileBlob = (fileName = '') =>
   new Promise(async resolve => {
     const file = await getPFile(fileName)
@@ -108,7 +114,11 @@ export function getFile() {
       await parseLuaFile(luaFileName, dispatch)
       const fileSystemURL = getFileSystemURL(fileURL)
       removeEventListeners()
-      await getPersistentFile(`${luaFileName}.fs`, fileSystemURL, dispatch)
+      await getPersistentFile(
+        await getPVSFileSystemName(),
+        fileSystemURL,
+        dispatch
+      )
       dispatch(DOWNLOAD_SUCCESS())
     } catch (error) {
       if (error.message === ERROR_CODES.getVersionInfo) {
