@@ -35,7 +35,7 @@ const useMap = (latitude, longitude) => {
   return url
 }
 
-function BillOfMaterials() {
+function BillOfMaterials({ animationState }) {
   const t = useI18n()
 
   const data = useSelector(({ user, inventory }) => ({
@@ -54,7 +54,7 @@ function BillOfMaterials() {
     <main className="full-height pl-10 pr-10 home">
       <div className="pl-10 pr-10 mb-20">
         <a href={url}>
-          <ProgressiveImage src={imageURL} />
+          <ProgressiveImage src={imageURL} animationState={animationState} />
         </a>
       </div>
       <span className="is-uppercase is-block is-full-width has-text-centered is-bold mb-30 ">
