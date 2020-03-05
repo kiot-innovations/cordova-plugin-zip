@@ -92,6 +92,16 @@ export const liveEnergyData = (action$, state$) =>
               })
             case 'power':
             default: {
+              /*
+                pp = power production
+                pc = power consumption
+                ps = storage power
+                p = production
+                c = consumption
+                s = storage
+                soc = state of charge
+                weather = storage
+              */
               const pp = data.pv_p < 0.01 ? 0 : data.pv_p
               const ps = data.ess_p < 0.01 ? 0 : data.ess_p * -1
               const net = data.net_p < 0.01 ? 0 : data.net_p
