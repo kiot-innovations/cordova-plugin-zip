@@ -205,6 +205,7 @@
   "SunSpecDevices": "Sunspec Inverters & Meters",
   "PVS5Meter": "Built-in Meters",
   "HubPlus": "Equinox Storage System",
+  "FOUND": "Found",
   "ENERGY_POWER_GRAPH": "Energy power graph",
   "BATTERY_CHARGING": "Battery charging"
 }

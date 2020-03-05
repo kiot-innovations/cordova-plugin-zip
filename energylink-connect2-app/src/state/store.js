@@ -15,7 +15,6 @@ export function configureStore(initialState) {
 
   middlewares.push(applyMiddleware(thunk))
   middlewares.push(applyMiddleware(epicMiddleware))
-
   const store = createStore(
     rootReducer,
     initialState,

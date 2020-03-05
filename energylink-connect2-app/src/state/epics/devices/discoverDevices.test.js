@@ -3,7 +3,7 @@ import {
   FETCH_CANDIDATES_COMPLETE,
   DISCOVER_UPDATE
 } from 'state/actions/devices'
-import scanDevicesEpic from 'state/epics/devices/discoverDevices'
+import { scanDevicesEpic } from './discoverDevices'
 import * as apis from 'shared/api'
 
 describe('the discover device epic', () => {

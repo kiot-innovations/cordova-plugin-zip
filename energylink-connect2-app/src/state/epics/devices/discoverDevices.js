@@ -27,7 +27,7 @@ const fetchDiscovery = async () => {
   }
 }
 
-const scanDevicesEpic = action$ => {
+export const scanDevicesEpic = action$ => {
   const stopPolling$ = action$.pipe(ofType(DISCOVER_COMPLETE.getType()))
 
   return action$.pipe(
@@ -49,5 +49,3 @@ const scanDevicesEpic = action$ => {
     )
   )
 }
-
-export default scanDevicesEpic

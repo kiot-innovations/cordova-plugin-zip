@@ -24,7 +24,7 @@ const validateCandidates = candidatesList => {
   return FETCH_CANDIDATES_UPDATE(candidatesList)
 }
 
-const fetchCandidatesEpic = action$ => {
+export const fetchCandidatesEpic = action$ => {
   const stopPolling$ = action$.pipe(
     ofType(
       FETCH_CANDIDATES_COMPLETE.getType(),
@@ -57,5 +57,3 @@ const fetchCandidatesEpic = action$ => {
     )
   )
 }
-
-export default fetchCandidatesEpic
