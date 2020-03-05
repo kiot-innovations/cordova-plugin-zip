@@ -190,7 +190,7 @@ const Devices = ({ animationState }) => {
             <div className="device-prog-header">
               <div className="device-prog-title">
                 <span className="has-text-centered">
-                  {progr !== 100 ? miIndicators.LOADING : miIndicators.OK}
+                  {progr !== '100' ? miIndicators.LOADING : miIndicators.OK}
                 </span>
                 <span className="pl-10">{t(type)}</span>
               </div>
