@@ -1,29 +1,32 @@
-import React, { useState } from 'react'
-import clsx from 'clsx'
-import * as PropTypes from 'prop-types'
+import React, { useState, useEffect } from 'react'
+import Logo from '@sunpower/sunpowerimage'
+import { either } from 'shared/utils'
+import { Loader } from 'components/Loader'
 import './ProgressiveImage.scss'
 
-const ProgressiveImage = ({ overlaySrc, src, className = '', ...rest }) => {
-  const [HighResLoaded, setHighResLoaded] = useState(false)
+const ProgressiveImage = ({ src }) => {
+  const [isImageLoaded, setImageLoaded] = useState(false)
+
+  useEffect(() => {
+    const i = new Image()
+    i.onload = function() {
+      setImageLoaded(true)
+    }
+    i.src = src
+  }, [src])
+
   return (
-    <div className="progressive-image-container">
-      <img
-        onLoad={() => setHighResLoaded(true)}
-        src={src}
-        {...rest}
-        alt=""
-        className={clsx({ waiting: !HighResLoaded }, className)}
-      />
-      <img
-        className={clsx(className, 'overlay', { hidden: HighResLoaded })}
-        src={overlaySrc}
-        alt=""
-      />
+    <div className="ic is-flex">
+      {either(
+        isImageLoaded,
+        <img src={src} alt="" />,
+        <figure className="auto">
+          <Logo />
+          <Loader />
+        </figure>
+      )}
     </div>
   )
 }
-ProgressiveImage.propTypes = {
-  overlaySrc: PropTypes.string.isRequired,
-  src: PropTypes.string.isRequired
-}
+
 export default ProgressiveImage
