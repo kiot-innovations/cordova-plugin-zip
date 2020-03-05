@@ -9,7 +9,8 @@ import {
 } from 'rxjs/operators'
 import { Client as WebSocket } from 'rpc-websockets'
 import * as energyDataActions from '../../actions/energy-data'
-import * as mobileActions from '../../actions/mobile'
+import * as networkActions from '../../actions/network'
+
 import { roundDecimals } from '../../../shared/rounding'
 import { ofType } from 'redux-observable'
 
@@ -55,11 +56,7 @@ const createWebsocketObservable = () =>
 
 export const liveEnergyData = (action$, state$) =>
   action$.pipe(
-    ofType(
-      mobileActions.NABTO_PORT_OPEN.getType(),
-      mobileActions.DEVICE_RESUME.getType(),
-      energyDataActions.ENERGY_DATA_START_POLLING.getType() // @todo: likely not required, but necesssary for testing
-    ),
+    ofType(networkActions.PVS_CONNECTION_SUCCESS.getType()),
     mergeMap(({ payload }) =>
       createWebsocketObservable().pipe(
         retryWhen(errors =>
