@@ -108,8 +108,8 @@ async function getPersistentFile(fileName, fileUrl, dispatch) {
 export function getFile() {
   return async function(dispatch) {
     try {
-      const { fileURL, luaFileName } = await getFirmwareVersionNumber()
-      dispatch(SET_FILE_NAME(luaFileName))
+      const { fileURL, luaFileName, version } = await getFirmwareVersionNumber()
+      dispatch(SET_FILE_NAME(`${luaFileName} - ${version}`))
       await getPersistentFile(luaFileName, fileURL, dispatch)
       await parseLuaFile(luaFileName, dispatch)
       const fileSystemURL = getFileSystemURL(fileURL)
