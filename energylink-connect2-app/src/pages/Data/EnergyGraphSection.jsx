@@ -2,20 +2,12 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import moment from 'moment'
 import { useI18n } from '../../shared/i18n'
-import {
-  GRAPHS,
-  SELECT_ENERGY_GRAPH,
-  DATA_SOURCES,
-  SELECT_DATA_SOURCE
-} from 'state/actions/user'
-import { INTERVALS } from 'state/actions/energy-data'
+import { GRAPHS, SELECT_ENERGY_GRAPH, DATA_SOURCES } from 'state/actions/user'
 import EnergyGraph, { VIEWS } from 'components/EnergyGraph'
 import EnergySwitch from 'components/EnergySwitch'
-import { sliceData } from 'shared/sliceData'
-import { deepMerge } from 'shared/deepMerge'
 import './EnergyGraphSection.scss'
 
-const getSelectedGraph = (selectedId, data, dataSource) => {
+const SelectedGraph = ({ selectedId, data, dataSource }) => {
   if (selectedId === GRAPHS.ENERGY) {
     return (
       <EnergyGraph
@@ -23,7 +15,8 @@ const getSelectedGraph = (selectedId, data, dataSource) => {
         hasStorage={true}
         data={data}
         weather={true}
-        view={VIEWS.DAY}
+        view={VIEWS.LIVE}
+        animation={false}
       />
     )
   }
@@ -56,7 +49,7 @@ const getSelectedGraph = (selectedId, data, dataSource) => {
           </div>
         </div>
       ) : (
-        <div className="mt-55"></div>
+        <div className="mt-55" />
       )}
       <EnergyGraph
         className="power-graph"
@@ -92,40 +85,13 @@ export default function EnergyGraphSection() {
     state => state.global.selectedDataSource
   )
 
-  const data = useSelector(state => {
-    if (
-      selectedId === GRAPHS.POWER &&
-      selectedDataSourceId === DATA_SOURCES.LIVE
-    ) {
-      return state.energyLiveData.liveData
-    }
-
-    const energyData =
-      state.energyData[INTERVALS.HOUR] && state.energyData[INTERVALS.HOUR].data
-    const powerData =
-      state.energyData[INTERVALS.HOUR] &&
-      state.energyData[INTERVALS.HOUR].powerData
-    const dateKeys = Object.keys(energyData)
-
-    if (!dateKeys.length) {
-      return {}
-    }
-    const data = deepMerge(energyData, powerData)
-    return sliceData(data, moment().startOf('day'), moment().endOf('day')).data
-  })
+  const data = useSelector(state => state.energyLiveData.liveData)
 
   const graphSelect = [
     { id: GRAPHS.POWER, value: `${t('POWER')} (kW)` },
     { id: GRAPHS.ENERGY, value: `${t('ENERGY')} (kWh)` }
   ].map(entry =>
     entry.id === selectedId ? { ...entry, selected: true } : entry
-  )
-
-  const dataSelect = [
-    { id: DATA_SOURCES.C3, value: `Standard Data` },
-    { id: DATA_SOURCES.LIVE, value: `Live Data` }
-  ].map(entry =>
-    entry.id === selectedDataSourceId ? { ...entry, selected: true } : entry
   )
 
   return (
@@ -147,12 +113,10 @@ export default function EnergyGraphSection() {
         />
       </div>
       <div className="column energy-graph-column is-full pt-0">
-        {getSelectedGraph(selectedId, data, selectedDataSourceId)}
-      </div>
-      <div className="column is-full ignore-in-share pb-0">
-        <EnergySwitch
-          entries={dataSelect}
-          onChange={id => dispatch(SELECT_DATA_SOURCE(id))}
+        <SelectedGraph
+          selectedId={selectedId}
+          data={data}
+          dataSource={selectedDataSourceId}
         />
       </div>
     </div>
