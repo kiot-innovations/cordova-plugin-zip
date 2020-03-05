@@ -62,7 +62,7 @@ function BillOfMaterials({ animationState }) {
       </span>
       <section className="mb-40">
         <div className="is-flex is-vertical">
-          <div className="is-flex is-vertical tile pl-40">
+          <div className="is-flex is-vertical tile pl-15">
             <div className="tile is-flex is-vertical">
               <span className="is-uppercase is-size-7 ">{`${t('NAME')}:`}</span>
               <span className="has-text-white mb-10 is-capitalized">
@@ -70,9 +70,7 @@ function BillOfMaterials({ animationState }) {
               </span>
             </div>
             <div className="tile is-flex is-vertical">
-              <span className=" is-uppercase is-size-7">{`${t(
-                'PHONE'
-              )}:`}</span>
+              <span className=" is-uppercase is-size-7">{t('PHONE')}:</span>
               {either(
                 prop('phone', data),
                 <a className="has-text-white mb-10" href={`tel:${data.phone}`}>
@@ -83,14 +81,12 @@ function BillOfMaterials({ animationState }) {
           </div>
           <div className="is-flex is-vertical tile is-center pr-40">
             <div className="tile is-flex is-vertical is-hidden">
-              <span className=" is-uppercase is-size-7">{`${t(
-                'UTILITY'
-              )}:`}</span>
-              <span className="has-text-white mb-10">PG&E</span>
+              <span className=" is-uppercase is-size-7">{t('UTILITY')}:</span>
+              <span className="has-text-white mb-10">{t('PGE')}</span>
             </div>
           </div>
         </div>
-        <div className="tile pl-40 is-flex is-vertical">
+        <div className="tile pl-15 is-flex is-vertical">
           <span className="is-uppercase is-size-7">{`${t('ADDRESS')}:`}</span>
           <span className="has-text-white mb-10">{address1}</span>
         </div>

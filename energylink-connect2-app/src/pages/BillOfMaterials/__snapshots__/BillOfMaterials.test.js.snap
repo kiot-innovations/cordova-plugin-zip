@@ -120,7 +120,7 @@ exports[`BillOfMaterials component render correctly 1`] = `
               className="is-flex is-vertical"
             >
               <div
-                className="is-flex is-vertical tile pl-40"
+                className="is-flex is-vertical tile pl-15"
               >
                 <div
                   className="tile is-flex is-vertical"
@@ -140,7 +140,8 @@ exports[`BillOfMaterials component render correctly 1`] = `
                   <span
                     className=" is-uppercase is-size-7"
                   >
-                    PHONE:
+                    PHONE
+                    :
                   </span>
                 </div>
               </div>
@@ -153,18 +154,19 @@ exports[`BillOfMaterials component render correctly 1`] = `
                   <span
                     className=" is-uppercase is-size-7"
                   >
-                    UTILITY:
+                    UTILITY
+                    :
                   </span>
                   <span
                     className="has-text-white mb-10"
                   >
-                    PG&E
+                    PGE
                   </span>
                 </div>
               </div>
             </div>
             <div
-              className="tile pl-40 is-flex is-vertical"
+              className="tile pl-15 is-flex is-vertical"
             >
               <span
                 className="is-uppercase is-size-7"
