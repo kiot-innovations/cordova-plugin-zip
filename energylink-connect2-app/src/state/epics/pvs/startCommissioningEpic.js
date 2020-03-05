@@ -5,7 +5,7 @@ import { path } from 'ramda'
 import * as pvsActions from 'state/actions/pvs'
 import { getApiPVS } from 'shared/api'
 
-export const startCommissioningEpic = (action$, state$) =>
+export const startCommissioningEpic = action$ =>
   action$.pipe(
     ofType(pvsActions.START_COMMISSIONING_INIT.getType()),
     mergeMap(() => {

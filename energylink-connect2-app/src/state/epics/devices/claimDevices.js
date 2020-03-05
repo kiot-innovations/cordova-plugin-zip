@@ -1,6 +1,8 @@
 import { ofType } from 'redux-observable'
 import { catchError, map, mergeMap } from 'rxjs/operators'
 import { from, of } from 'rxjs'
+import { path } from 'ramda'
+import { getApiPVS } from 'shared/api'
 import {
   CLAIM_DEVICES_INIT,
   CLAIM_DEVICES_SUCCESS,
@@ -11,13 +13,9 @@ const claimDevicesEpic = action$ => {
   return action$.pipe(
     ofType(CLAIM_DEVICES_INIT.getType()),
     mergeMap(({ payload }) => {
-      const promise = fetch(
-        process.env.REACT_APP_PVS_SELECTEDADDRESS + '/dl_cgi/devices',
-        {
-          method: 'post',
-          body: payload
-        }
-      )
+      const promise = getApiPVS()
+        .then(path(['apis', 'devices']))
+        .then(api => api.startClaim({ id: 1 }, { requestBody: payload }))
 
       return from(promise).pipe(
         map(response =>
