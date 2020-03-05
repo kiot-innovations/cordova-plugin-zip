@@ -62,7 +62,7 @@ const Footer = () => {
     },
     {
       icon: 'sp-data',
-      text: 'Data',
+      text: 'Live Data',
       onClick: () => redirect(paths.PROTECTED.DATA.path),
       active: active.data
     }

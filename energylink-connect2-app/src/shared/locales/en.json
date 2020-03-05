@@ -204,5 +204,7 @@
   "GroundCurMon": "Ground Current Monitor",
   "SunSpecDevices": "Sunspec Inverters & Meters",
   "PVS5Meter": "Built-in Meters",
-  "HubPlus": "Equinox Storage System"
+  "HubPlus": "Equinox Storage System",
+  "ENERGY_POWER_GRAPH": "Energy power graph",
+  "BATTERY_CHARGING": "Battery charging"
 }

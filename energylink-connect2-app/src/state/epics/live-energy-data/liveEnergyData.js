@@ -24,11 +24,12 @@ const createWebsocketObservable = () =>
     ws.on('close', () => subscriber.error(new Error('Connection closed')))
 
     ws.on('open', () => {
+      ws.subscribe('power')
       subscriber.next({ evt: 'open' })
 
       ws.on('power', data => subscriber.next({ evt: 'power', data }))
 
-      ws.call('GetMetrics', ['power', '1d', '-2d', '-2d'])
+      /*ws.call('GetMetrics', ['power', '1d', '-2d', '-2d'])
         .then(yesterdaysData =>
           ws.call('GetMetrics', ['power', '1d', '-1d', '-1d']).then(data => {
             subscriber.next({
@@ -44,7 +45,7 @@ const createWebsocketObservable = () =>
           subscriber.error(
             new Error(`Error colleting daily metrics: ${err.message}`)
           )
-        )
+        )*/
 
       return () => {
         ws.close()
