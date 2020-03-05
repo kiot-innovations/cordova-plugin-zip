@@ -12,7 +12,9 @@ import {
   CLAIM_DEVICES_INIT,
   CLAIM_DEVICES_SUCCESS,
   CLAIM_DEVICES_ERROR,
-  RESET_DISCOVERY
+  RESET_DISCOVERY,
+  CLAIM_DEVICES_UPDATE,
+  CLAIM_DEVICES_COMPLETE
 } from 'state/actions/devices'
 
 const initialState = {
@@ -25,6 +27,7 @@ const initialState = {
   allCandidatesFound: false,
   discoveryComplete: false,
   claimingDevices: false,
+  claimProgress: 0,
   claimedDevices: false
 }
 
@@ -107,7 +110,19 @@ export default createReducer(
     },
     [CLAIM_DEVICES_SUCCESS]: state => {
       return {
+        ...state
+      }
+    },
+    [CLAIM_DEVICES_UPDATE]: (state, payload) => {
+      return {
         ...state,
+        claimProgress: payload
+      }
+    },
+    [CLAIM_DEVICES_COMPLETE]: state => {
+      return {
+        ...state,
+        claimProgress: 100,
         claimingDevices: false,
         claimedDevices: true
       }

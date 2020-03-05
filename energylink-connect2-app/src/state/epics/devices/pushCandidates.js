@@ -9,7 +9,7 @@ import {
   PUSH_CANDIDATES_ERROR
 } from 'state/actions/devices'
 
-const pushCandidatesEpic = action$ => {
+export const pushCandidatesEpic = action$ => {
   return action$.pipe(
     ofType(PUSH_CANDIDATES_INIT.getType()),
     mergeMap(({ payload }) => {
@@ -29,5 +29,3 @@ const pushCandidatesEpic = action$ => {
     })
   )
 }
-
-export default pushCandidatesEpic

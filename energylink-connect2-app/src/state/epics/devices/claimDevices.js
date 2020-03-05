@@ -9,7 +9,7 @@ import {
   CLAIM_DEVICES_ERROR
 } from 'state/actions/devices'
 
-const claimDevicesEpic = action$ => {
+export const claimDevicesEpic = action$ => {
   return action$.pipe(
     ofType(CLAIM_DEVICES_INIT.getType()),
     mergeMap(({ payload }) => {
@@ -28,5 +28,3 @@ const claimDevicesEpic = action$ => {
     })
   )
 }
-
-export default claimDevicesEpic

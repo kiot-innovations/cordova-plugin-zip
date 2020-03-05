@@ -1,9 +1,7 @@
-import Collapsible from 'components/Collapsible'
-import { propOr, length, path, pathOr } from 'ramda'
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useHistory } from 'react-router-dom'
-import paths from 'routes/paths'
+import { prop, propOr, path, pathOr, length } from 'ramda'
 import { useI18n } from 'shared/i18n'
 import {
   DISCOVER_COMPLETE,
@@ -13,6 +11,9 @@ import {
   CLAIM_DEVICES_INIT,
   RESET_DISCOVERY
 } from 'state/actions/devices'
+import Collapsible from 'components/Collapsible'
+import clsx from 'clsx'
+import paths from 'routes/paths'
 import './Devices.scss'
 
 const microInverterIcon = (
@@ -178,31 +179,30 @@ const Devices = ({ animationState }) => {
     dispatch(CLAIM_DEVICES_INIT(JSON.stringify(claimObject)))
   }
 
-  const progressIndicators = progressList => {
-    const progressMap = progressList.map(deviceType => {
-      if (deviceType.TYPE !== 'MicroInverters')
+  const progressIndicators = progressList =>
+    progressList.map(deviceType => {
+      const progr = prop('PROGR', deviceType)
+      const type = prop('TYPE', deviceType)
+      const nfound = prop('NFOUND', deviceType)
+      if (type !== 'MicroInverters') {
         return (
           <div className="device-prog mb-10 mt-10">
             <div className="device-prog-header">
               <div className="device-prog-title">
                 <span className="has-text-centered">
-                  {deviceType.PROGR !== '100'
-                    ? miIndicators.LOADING
-                    : miIndicators.OK}
+                  {progr !== '100' ? miIndicators.LOADING : miIndicators.OK}
                 </span>
-                <span className="pl-10">{t(deviceType.TYPE)}</span>
+                <span className="pl-10">{t(type)}</span>
               </div>
               <div className="device-prog-status">
-                {deviceType.PROGR !== '100'
-                  ? deviceType.PROGR + '%'
-                  : deviceType.NFOUND + ' Found'}
+                {progr !== '100' ? progr + '%' : nfound + ' Found'}
               </div>
             </div>
           </div>
         )
+      }
+      return null
     })
-    return progressMap
-  }
 
   return (
     <div className="fill-parent is-flex tile is-vertical has-text-centered sunpower-devices pr-15 pl-15">
@@ -283,7 +283,16 @@ const Devices = ({ animationState }) => {
       )}
       {found.discoveryComplete && (
         <button
-          className="button is-primary is-uppercase is-paddingless ml-75 mr-75"
+          className={clsx(
+            'button',
+            'is-primary',
+            'is-uppercase',
+            'is-paddingless',
+            'ml-75',
+            'mr-75',
+            { 'is-loading': claim.claimingDevices }
+          )}
+          disabled={claim.claimingDevices}
           onClick={claimDevices}
         >
           {t('DONE')}
