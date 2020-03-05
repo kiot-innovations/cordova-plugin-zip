@@ -4,14 +4,16 @@ import {
   GET_SITES_INIT,
   GET_SITES_SUCCESS,
   GET_SITES_ERROR,
-  SET_SITE
+  SET_SITE,
+  SET_MAP_VIEW_SRC
 } from 'state/actions/site'
 
 const initialState = {
   isFetching: false,
   sites: [], // []
   site: null, // { address1, city, latitude, longitude }
-  error: null
+  error: null,
+  mapViewSrc: false
 }
 
 export const siteReducer = createReducer(
@@ -36,6 +38,11 @@ export const siteReducer = createReducer(
     [SET_SITE]: (state, payload) => ({
       ...state,
       site: payload
+    }),
+
+    [SET_MAP_VIEW_SRC]: (state, mapViewSrc) => ({
+      ...state,
+      mapViewSrc
     })
   },
   initialState

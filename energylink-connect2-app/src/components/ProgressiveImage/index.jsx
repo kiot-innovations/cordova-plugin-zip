@@ -1,29 +1,37 @@
-import React, { useState } from 'react'
-import clsx from 'clsx'
-import * as PropTypes from 'prop-types'
+import React, { useEffect } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import Logo from '@sunpower/sunpowerimage'
+import { either } from 'shared/utils'
+import { Loader } from 'components/Loader'
+import { SET_MAP_VIEW_SRC } from 'state/actions/site'
 import './ProgressiveImage.scss'
 
-const ProgressiveImage = ({ overlaySrc, src, className = '', ...rest }) => {
-  const [HighResLoaded, setHighResLoaded] = useState(false)
+const ProgressiveImage = ({ src, animationState }) => {
+  const dispatch = useDispatch()
+  const { mapViewSrc } = useSelector(state => state.site)
+  useEffect(() => {
+    if (animationState === 'enter' && !mapViewSrc !== src) {
+      const i = new Image()
+      i.onload = function() {
+        dispatch(SET_MAP_VIEW_SRC(src))
+      }
+      i.src = src
+    }
+    // eslint-disable-next-line
+  }, [])
+
   return (
-    <div className="progressive-image-container">
-      <img
-        onLoad={() => setHighResLoaded(true)}
-        src={src}
-        {...rest}
-        alt=""
-        className={clsx({ waiting: !HighResLoaded }, className)}
-      />
-      <img
-        className={clsx(className, 'overlay', { hidden: HighResLoaded })}
-        src={overlaySrc}
-        alt=""
-      />
+    <div className="ic is-flex">
+      {either(
+        mapViewSrc,
+        <img src={src} alt="" />,
+        <figure className="auto">
+          <Logo />
+          <Loader />
+        </figure>
+      )}
     </div>
   )
 }
-ProgressiveImage.propTypes = {
-  overlaySrc: PropTypes.string.isRequired,
-  src: PropTypes.string.isRequired
-}
+
 export default ProgressiveImage
