@@ -114,48 +114,70 @@ exports[`BillOfMaterials component render correctly 1`] = `
             CUSTOMER_INFORMATION
           </span>
           <section
-            className="is-flex mb-40"
+            className="mb-40"
           >
             <div
-              className="is-flex is-vertical tile pl-40"
+              className="is-flex is-vertical"
             >
               <div
-                className="tile is-flex is-vertical"
+                className="is-flex is-vertical tile pl-40"
               >
-                <span
-                  className="is-uppercase is-size-7 "
+                <div
+                  className="tile is-flex is-vertical"
                 >
-                  NAME:
-                </span>
-                <span
-                  className="has-text-white mb-10 is-capitalized"
-                />
+                  <span
+                    className="is-uppercase is-size-7 "
+                  >
+                    NAME:
+                  </span>
+                  <span
+                    className="has-text-white mb-10 is-capitalized"
+                  />
+                </div>
+                <div
+                  className="tile is-flex is-vertical"
+                >
+                  <span
+                    className=" is-uppercase is-size-7"
+                  >
+                    PHONE:
+                  </span>
+                </div>
               </div>
               <div
-                className="tile is-flex is-vertical"
+                className="is-flex is-vertical tile is-center pr-40"
               >
-                <span
-                  className="is-uppercase is-size-7"
+                <div
+                  className="tile is-flex is-vertical is-hidden"
                 >
-                  ADDRESS:
-                </span>
-                <span
-                  className="has-text-white mb-10"
-                />
+                  <span
+                    className=" is-uppercase is-size-7"
+                  >
+                    UTILITY:
+                  </span>
+                  <span
+                    className="has-text-white mb-10"
+                  >
+                    PG&E
+                  </span>
+                </div>
               </div>
+            </div>
+            <div
+              className="tile pl-40 is-flex is-vertical"
+            >
+              <span
+                className="is-uppercase is-size-7"
+              >
+                ADDRESS:
+              </span>
+              <span
+                className="has-text-white mb-10"
+              />
             </div>
             <div
               className="is-flex is-vertical tile is-center pr-40"
             >
-              <div
-                className="tile is-flex is-vertical"
-              >
-                <span
-                  className=" is-uppercase is-size-7"
-                >
-                  PHONE:
-                </span>
-              </div>
               <div
                 className="tile is-flex is-vertical is-hidden"
               >

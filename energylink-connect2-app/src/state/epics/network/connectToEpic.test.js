@@ -1,7 +1,4 @@
-import {
-  PVS_CONNECTION_INIT,
-  WAIT_FOR_SWAGGER
-} from 'state/actions/network'
+import { PVS_CONNECTION_INIT, WAIT_FOR_SWAGGER } from 'state/actions/network'
 import { of } from 'rxjs'
 
 describe('Connect to epic', () => {
