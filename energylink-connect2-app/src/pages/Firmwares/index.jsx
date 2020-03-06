@@ -1,9 +1,13 @@
-import React, { useCallback, useEffect } from 'react'
 import Collapsible from 'components/Collapsible'
-import { useI18n } from 'shared/i18n'
+import { prop } from 'ramda'
+import React, { useCallback, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { animated, useSpring } from 'react-spring'
+import { useI18n } from 'shared/i18n'
+import { either } from 'shared/utils'
 import * as fileDownloaderActions from 'state/actions/fileDownloader'
+
+export const getFileName = prop('name')
 
 function Firmwares({ animationState }) {
   const t = useI18n()
@@ -29,7 +33,7 @@ function Firmwares({ animationState }) {
     <section className="is-flex tile is-vertical pt-0 pr-10 pl-10 full-height">
       <h1 className="has-text-centered is-uppercase pb-20">{t('FIRMWARE')}</h1>
       <Collapsible
-        title={fileInfo.name}
+        title={getFileName(fileInfo)}
         actions={
           !fileInfo.error ? (
             progress !== 0 &&
@@ -45,31 +49,27 @@ function Firmwares({ animationState }) {
         }
         expanded
       >
-        {fileInfo.error ? (
-          <>
-            <span>{t('FIRMWARE_ERROR_FOUND')}</span>
-          </>
-        ) : (
-          <>
-            <section className="mt-20 mb-10">
-              <p className="mb-5">
-                <span className="mr-10 has-text-white has-text-weight-bold">
-                  {progress}%
-                </span>
-                {progress === 100 ? t('DOWNLOADED') : t('DOWNLOADING')}
-                <span className="is-pulled-right has-text-white has-text-weight-bold">
-                  {fileInfo.size}mb
-                </span>
-              </p>
-              {progress !== 100 && (
-                <animated.progress
-                  className="progress is-tiny is-white"
-                  value={springProgress.value}
-                  max="100"
-                />
-              )}
-            </section>
-          </>
+        {either(
+          fileInfo.error,
+          <span>{t('FIRMWARE_ERROR_FOUND')}</span>,
+          <section className="mt-20 mb-10">
+            <p className="mb-5">
+              <span className="mr-10 has-text-white has-text-weight-bold">
+                {progress}%
+              </span>
+              {progress === 100 ? t('DOWNLOADED') : t('DOWNLOADING')}
+              <span className="is-pulled-right has-text-white has-text-weight-bold">
+                {fileInfo.size}mb
+              </span>
+            </p>
+            {progress !== 100 && (
+              <animated.progress
+                className="progress is-tiny is-white"
+                value={springProgress.value}
+                max="100"
+              />
+            )}
+          </section>
         )}
       </Collapsible>
     </section>

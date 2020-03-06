@@ -1,7 +1,7 @@
 import React from 'react'
 import * as reactRedux from 'react-redux'
-import Firmwares from '.'
 import * as i18n from 'shared/i18n'
+import Firmwares, { getFileName } from '.'
 
 describe('Firmwares component', () => {
   let dispatchMock
@@ -23,5 +23,12 @@ describe('Firmwares component', () => {
       }
     })
     expect(component.html()).toMatchSnapshot()
+  })
+  it('should type-safe the file name', () => {
+    const name = 'file name'
+    let fileInfoObj = { name }
+    expect(getFileName(fileInfoObj)).toBe(name)
+    fileInfoObj = {}
+    expect(getFileName(fileInfoObj)).toBe(undefined)
   })
 })
