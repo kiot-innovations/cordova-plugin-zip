@@ -89,24 +89,22 @@ export const liveEnergyData = (action$, state$) =>
               })
             case 'power':
             default: {
-              /*
-                pp = power production
-                pc = power consumption
-                ps = storage power
-                p = production
-                c = consumption
-                s = storage
-                soc = state of charge
-                weather = storage
-              */
+              // pp/pv_p :: power production (Kw)
               const pp = data.pv_p < 0.01 ? 0 : data.pv_p
+              // ps/ess_p :: energy storage power (kw)
               const ps = data.ess_p < 0.01 ? 0 : data.ess_p * -1
+              // net_p :: grid power (Kw)
               const net = data.net_p < 0.01 ? 0 : data.net_p
 
+              // pc :: power consumption (Kw)
               const pc = pp + ps + net
+              // p/pv_en :: energy production (KwH)
               const p = data.pv_en < 0.01 ? 0 : data.pv_en
+              // net_en :: grid energy (KwH)
               const net_en = data.net_en < 0.01 ? 0 : data.net_en
+              // net_en :: energy storage energy (KwH)
               const s = data.ess_en < 0.01 ? 0 : data.ess_en * -1
+              // c :: consumption
               const c = p + s + net_en
 
               return energyDataActions.LIVE_ENERGY_DATA_NOTIFICATION({
@@ -117,6 +115,7 @@ export const liveEnergyData = (action$, state$) =>
                   pp: roundDecimals(pp),
                   pc: roundDecimals(pc),
                   ps: roundDecimals(ps),
+                  // soc:: stage of charge
                   soc: roundDecimals(data.soc)
                 }
               })
