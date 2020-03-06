@@ -1,13 +1,12 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useHistory } from 'react-router-dom'
-import { prop, propOr, path, pathOr, length } from 'ramda'
+import { propOr, path, pathOr, length } from 'ramda'
 import clsx from 'clsx'
 import { useI18n } from 'shared/i18n'
 import {
   DISCOVER_COMPLETE,
   FETCH_CANDIDATES_INIT,
-  DISCOVER_INIT,
   FETCH_CANDIDATES_COMPLETE,
   CLAIM_DEVICES_INIT,
   RESET_DISCOVERY
@@ -15,6 +14,7 @@ import {
 import Collapsible from 'components/Collapsible'
 import paths from 'routes/paths'
 import './Devices.scss'
+import ProgressIndicators from './ProgressIndicators'
 
 const microInverterIcon = (
   <span className="sp-inverter mr-20 devices-icon ml-0 mt-0 mb-0" />
@@ -90,7 +90,6 @@ const filterFoundMI = (SNList, candidatesList) => {
   })
 
   return {
-    proceed: length(SNList) === length(okMI),
     okMI,
     nonOkMI,
     pendingMI
@@ -108,10 +107,7 @@ function mapStateToProps({ devices, pvs }) {
     progress
   } = devices
   const { serialNumbers } = pvs
-  const { proceed, okMI, nonOkMI, pendingMI } = filterFoundMI(
-    serialNumbers,
-    candidates
-  )
+  const { okMI, nonOkMI, pendingMI } = filterFoundMI(serialNumbers, candidates)
   return {
     claim: {
       claimingDevices,
@@ -120,7 +116,6 @@ function mapStateToProps({ devices, pvs }) {
     progress,
     found: {
       ...found,
-      proceed,
       discoveryComplete,
       error,
       inverter: [...okMI, ...nonOkMI, ...pendingMI]
@@ -143,7 +138,10 @@ const Devices = ({ animationState }) => {
 
   useEffect(() => {
     dispatch(FETCH_CANDIDATES_INIT())
-    if (found.proceed) {
+    if (
+      counts.inverter.expected ===
+      counts.inverter.okMICount + counts.inverter.errMICount
+    ) {
       dispatch(FETCH_CANDIDATES_COMPLETE())
     }
     if (claim.claimedDevices && animationState !== 'leave') {
@@ -159,7 +157,10 @@ const Devices = ({ animationState }) => {
     counts.okMICount,
     found.proceed,
     claim.claimedDevices,
-    history
+    history,
+    counts.inverter.expected,
+    counts.inverter.okMICount,
+    counts.inverter.errMICount
   ])
 
   const retryDiscovery = () => {
@@ -179,41 +180,75 @@ const Devices = ({ animationState }) => {
     dispatch(CLAIM_DEVICES_INIT(JSON.stringify(claimObject)))
   }
 
-  const progressIndicators = progressList =>
-    progressList.map(deviceType => {
-      const progr = prop('PROGR', deviceType)
-      const type = prop('TYPE', deviceType)
-      const nfound = prop('NFOUND', deviceType)
-      if (type !== 'MicroInverters') {
+  const discoveryStatus = t => {
+    const discoveryComplete = found.discoveryComplete
+    const errMICount = counts.inverter.errMICount
+    const error = found.error
+
+    if (discoveryComplete) {
+      if (errMICount > 0) {
         return (
-          <div className="device-prog mb-10 mt-10">
-            <div className="device-prog-header">
-              <div className="device-prog-title">
-                <span className="has-text-centered">
-                  {progr !== '100' ? miIndicators.LOADING : miIndicators.OK}
-                </span>
-                <span className="pl-10">{t(type)}</span>
-              </div>
-              <div className="device-prog-status">
-                {progr !== '100' ? progr + '%' : nfound + ' ' + t('FOUND')}
-              </div>
-            </div>
-          </div>
+          <>
+            <button
+              className="button is-primary is-uppercase is-paddingless ml-75 mr-75"
+              onClick={retryDiscovery}
+            >
+              {t('RETRY')}
+            </button>
+            <span className="has-text-weight-bold mt-20">{t('MI_ERRORS')}</span>
+          </>
         )
       }
-      return null
-    })
+
+      if (error) {
+        return (
+          <>
+            <button
+              className="button is-primary is-uppercase is-paddingless ml-75 mr-75"
+              onClick={retryDiscovery}
+            >
+              {t('RETRY')}
+            </button>
+            <span className="has-text-weight-bold mt-20">{t(error)}</span>
+          </>
+        )
+      }
+
+      return (
+        <>
+          <Link
+            className="button is-outlined is-primary is-uppercase is-paddingless ml-75 mr-75 mb-10"
+            to={paths.PROTECTED.SN_LIST.path}
+          >
+            {t('ADD-DEVICES')}
+          </Link>
+          <button
+            className={clsx(
+              'button is-primary is-uppercase is-paddingless ml-75 mr-75',
+              { 'is-loading': claim.claimingDevices }
+            )}
+            disabled={claim.claimingDevices}
+            onClick={claimDevices}
+          >
+            {t('DONE')}
+          </button>
+        </>
+      )
+    } else {
+      return (
+        <span className="has-text-weight-bold mb-20">
+          {claim.claimingDevices
+            ? t('CLAIMING_DEVICES')
+            : t('DISCOVERY_IN_PROGRESS')}
+        </span>
+      )
+    }
+  }
 
   return (
     <div className="fill-parent is-flex tile is-vertical has-text-centered sunpower-devices pr-15 pl-15">
       <span className="is-uppercase has-text-weight-bold mb-20" role="button">
         {t('DEVICES')}
-      </span>
-      <span
-        className="is-uppercase mb-20 has-text-primary"
-        onClick={() => dispatch(DISCOVER_INIT())}
-      >
-        {t('RESCAN')}
       </span>
       <div className="pb-15">
         <Collapsible
@@ -251,48 +286,9 @@ const Devices = ({ animationState }) => {
             })}
           </ul>
         </Collapsible>
-        {progressIndicators(pathOr([], ['progress'], progress))}
+        <ProgressIndicators progressList={pathOr([], ['progress'], progress)} />
       </div>
-      {found.discoveryComplete && (
-        <Link
-          className="button is-outlined is-primary is-uppercase is-paddingless ml-75 mr-75 mb-10"
-          to={paths.PROTECTED.SN_LIST.path}
-        >
-          {t('ADD-DEVICES')}
-        </Link>
-      )}
-      {!found.error && !found.discoveryComplete ? (
-        <span className="has-text-weight-bold mb-20">
-          {claim.claimingDevices
-            ? t('CLAIMING_DEVICES')
-            : t('DISCOVERY_IN_PROGRESS')}
-        </span>
-      ) : (
-        ''
-      )}
-      {found.error && (
-        <>
-          <button
-            className="button is-primary is-uppercase is-paddingless ml-75 mr-75"
-            onClick={retryDiscovery}
-          >
-            {t('RETRY')}
-          </button>
-          <span className="has-text-weight-bold mt-20">{t(found.error)}</span>
-        </>
-      )}
-      {found.discoveryComplete && (
-        <button
-          className={clsx(
-            'button is-primary is-uppercase is-paddingless ml-75 mr-75',
-            { 'is-loading': claim.claimingDevices }
-          )}
-          disabled={claim.claimingDevices}
-          onClick={claimDevices}
-        >
-          {t('DONE')}
-        </button>
-      )}
+      {discoveryStatus(t)}
     </div>
   )
 }

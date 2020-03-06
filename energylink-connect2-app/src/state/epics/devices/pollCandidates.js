@@ -1,4 +1,4 @@
-import { path, pathOr, length, includes } from 'ramda'
+import { path, pathOr, length } from 'ramda'
 import { ofType } from 'redux-observable'
 import { from, of, timer } from 'rxjs'
 import { catchError, switchMap, takeUntil } from 'rxjs/operators'
@@ -9,20 +9,6 @@ import {
   FETCH_CANDIDATES_ERROR,
   PUSH_CANDIDATES_SUCCESS
 } from 'state/actions/devices'
-
-const validateCandidates = candidatesList => {
-  if (length.candidatesList === 0) {
-    return FETCH_CANDIDATES_ERROR('EMPTY_CANDIDATES')
-  }
-
-  const foundError = candidatesList.find(item =>
-    includes('error', pathOr('error', ['STATEDESCR'], item).toLowerCase())
-  )
-
-  if (foundError) return FETCH_CANDIDATES_ERROR('CANDIDATES_ERROR_FOUND')
-
-  return FETCH_CANDIDATES_UPDATE(candidatesList)
-}
 
 export const fetchCandidatesEpic = action$ => {
   const stopPolling$ = action$.pipe(
@@ -48,7 +34,9 @@ export const fetchCandidatesEpic = action$ => {
                 response
               )
 
-              return validateCandidates(candidatesList)
+              return length(candidatesList) === 0
+                ? FETCH_CANDIDATES_ERROR('EMPTY_CANDIDATES')
+                : FETCH_CANDIDATES_UPDATE(candidatesList)
             }),
             catchError(error => of(FETCH_CANDIDATES_ERROR(error)))
           )
