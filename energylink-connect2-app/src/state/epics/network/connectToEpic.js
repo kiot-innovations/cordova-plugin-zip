@@ -14,37 +14,26 @@ import {
 const WPA = 'WPA'
 const hasCode7 = test(/Code=7/)
 
-const connectToPVS = async (ssid, password) => {
-  try {
-    if (isIos()) {
-      await window.WifiWizard2.iOSConnectNetwork(ssid, password)
-    } else {
-      //looks like wifiwizard works like this in andrdoid
-      // I don't know why (ET)
-      await window.WifiWizard2.getConnectedSSID()
-      await window.WifiWizard2.connect(ssid, true, password, WPA, false)
-    }
-  } catch (e) {
-    throw new Error('ERROR CONNECTING', e)
-  }
-}
-
 const connectToEpic = action$ =>
   action$.pipe(
     ofType(PVS_CONNECTION_INIT.getType()),
-    mergeMap(action => {
+    mergeMap(async action => {
       const ssid = pathOr('', ['payload', 'ssid'], action)
       const password = pathOr('', ['payload', 'password'], action)
-      return from(connectToPVS(ssid, password)).pipe(
-        map(() => WAIT_FOR_SWAGGER()),
-        catchError(err => {
-          if (hasCode7(err)) {
-            return of(STOP_NETWORK_POLLING())
-          } else {
-            return of(PVS_CONNECTION_INIT({ ssid: ssid, password: password }))
-          }
-        })
-      )
+      try {
+        if (isIos()) {
+          await window.WifiWizard2.iOSConnectNetwork(ssid, password)
+        } else {
+          await window.WifiWizard2.connect(ssid, true, password, WPA, false)
+        }
+        return WAIT_FOR_SWAGGER()
+      } catch (err) {
+        if (hasCode7(err)) {
+          return STOP_NETWORK_POLLING()
+        } else {
+          return PVS_CONNECTION_INIT({ ssid: ssid, password: password })
+        }
+      }
     })
   )
 
