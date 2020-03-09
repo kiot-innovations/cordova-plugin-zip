@@ -208,5 +208,6 @@
   "FOUND": "Found",
   "ENERGY_POWER_GRAPH": "Energy power graph",
   "BATTERY_CHARGING": "Battery charging",
-  "PGE": "PG&E"
+  "PGE": "PG&E",
+  "NO_STORAGE_INSTALLED": "This site has no storage hardware installed"
 }

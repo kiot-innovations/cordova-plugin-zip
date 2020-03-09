@@ -1,12 +1,14 @@
 import { createReducer } from 'redux-act'
 import {
   GET_STORAGE_INIT,
-  GET_STORAGE_SUCCESS
+  GET_STORAGE_SUCCESS,
+  GET_STORAGE_ERROR
 } from 'state/actions/systemConfiguration'
 
 const initialState = {
   isFetching: false,
-  data: {}
+  data: {},
+  error: null
 }
 
 const storageReducer = createReducer(
@@ -19,6 +21,11 @@ const storageReducer = createReducer(
       ...state,
       isFetching: false,
       data: payload
+    }),
+    [GET_STORAGE_ERROR]: (state, payload) => ({
+      ...state,
+      isFetching: false,
+      error: payload
     })
   },
   initialState

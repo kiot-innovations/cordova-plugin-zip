@@ -17,7 +17,7 @@ const NWI = <span className="sp-wifi file level mr-15 is-size-4" />
 const buildAPItem = ap => ({ label: ap.ssid, value: ap.ssid, ap })
 const buildAPsItems = map(buildAPItem)
 
-function NetworkWidget() {
+function NetworkWidget({ animationState }) {
   const t = useI18n()
   const dispatch = useDispatch()
 
@@ -29,8 +29,8 @@ function NetworkWidget() {
   const [AP, setAP] = useState({ ssid: '' })
 
   useEffect(() => {
-    dispatch(GET_NETWORK_APS_INIT())
-  }, [dispatch])
+    if (animationState === 'enter') dispatch(GET_NETWORK_APS_INIT())
+  }, [animationState, dispatch])
 
   return (
     <div className="pb-15">

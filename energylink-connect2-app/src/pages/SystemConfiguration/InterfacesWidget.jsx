@@ -29,7 +29,7 @@ function InterfacesWidget({ animationState }) {
 
   useEffect(() => {
     if (animationState === 'enter') dispatch(GET_INTERFACES_INIT())
-  }, [dispatch, animationState])
+  }, [animationState, dispatch])
 
   return (
     <section className="iw is-flex collapsible pl-0">
