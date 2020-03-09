@@ -32,7 +32,7 @@ const ProgressIndicators = ({ progressList }) => {
               <span className="pl-10">{t(type)}</span>
             </div>
             <div className="device-prog-status">
-              {progr !== '100' ? progr + '%' : nfound + ' ' + t('FOUND')}
+              {progr !== '100' ? `${progr}%` : `${nfound} ${t('FOUND')}`}
             </div>
           </div>
         </div>
