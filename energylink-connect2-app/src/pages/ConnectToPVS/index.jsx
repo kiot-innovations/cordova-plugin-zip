@@ -7,6 +7,7 @@ import { useHistory } from 'react-router-dom'
 import paths from 'routes/paths'
 import { saveSerialNumber } from 'state/actions/pvs'
 import './ConnectToPVS.scss'
+import { Loader } from '../../components/Loader'
 
 const onSuccess = (setScanning, generatePassword, dispatch, t) => data => {
   try {
@@ -87,9 +88,13 @@ function ConnectToPVS({ animationState }) {
       <span className="is-uppercase has-text-weight-bold mt-30">
         {t('LOOK_FOR_QR')}
       </span>
-      <div className="qr-icon">
-        <i className="sp-qr has-text-white" />
-      </div>
+      {connectionState.connecting ? (
+        <Loader />
+      ) : (
+        <div className="qr-icon">
+          <i className="sp-qr has-text-white" />
+        </div>
+      )}
       <div className="pt-20">
         <button
           disabled={connectionState.connecting}
@@ -101,7 +106,7 @@ function ConnectToPVS({ animationState }) {
             )
           }
         >
-          {connectionState.connecting ? t('SCANNING_SN') : t('START_SCAN')}
+          {connectionState.connecting ? t('CONNECTING') : t('START_SCAN')}
         </button>
       </div>
     </div>
