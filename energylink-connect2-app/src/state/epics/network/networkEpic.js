@@ -1,6 +1,12 @@
 import { ofType } from 'redux-observable'
-import { from, timer } from 'rxjs'
-import { catchError, switchMap, takeUntil, map } from 'rxjs/operators'
+import { from, timer, of } from 'rxjs'
+import {
+  catchError,
+  exhaustMap,
+  map,
+  switchMap,
+  takeUntil
+} from 'rxjs/operators'
 import {
   PVS_CONNECTION_INIT,
   PVS_CONNECTION_SUCCESS,
@@ -20,16 +26,16 @@ export const networkPollingEpic = (action$, state$) => {
     switchMap(() =>
       timer(0, 1000).pipe(
         takeUntil(stopPolling$),
-        switchMap(() => from(fetchSSID())),
-        map(() => {
-          return { type: 'DEVICE_IS_CONNECTED' }
-        }),
-        catchError(async () => {
-          return PVS_CONNECTION_INIT({
-            ssid: state.network.SSID,
-            password: state.network.password
-          })
-        })
+        exhaustMap(() => from(fetchSSID())),
+        map(() => ({ type: 'DEVICE_IS_CONNECTED' })),
+        catchError(() =>
+          of(
+            PVS_CONNECTION_INIT({
+              ssid: state.network.SSID,
+              password: state.network.password
+            })
+          )
+        )
       )
     )
   )

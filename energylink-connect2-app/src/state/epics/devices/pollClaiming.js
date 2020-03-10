@@ -1,14 +1,20 @@
-import { getApiPVS } from 'shared/api'
-import {
-  CLAIM_DEVICES_SUCCESS,
-  CLAIM_DEVICES_UPDATE,
-  CLAIM_DEVICES_COMPLETE,
-  CLAIM_DEVICES_ERROR
-} from 'state/actions/devices'
+import { path, pathOr, prop } from 'ramda'
 import { ofType } from 'redux-observable'
 import { from, of, timer } from 'rxjs'
-import { catchError, switchMap, takeUntil } from 'rxjs/operators'
-import { prop, path, pathOr } from 'ramda'
+import {
+  catchError,
+  exhaustMap,
+  map,
+  switchMap,
+  takeUntil
+} from 'rxjs/operators'
+import { getApiPVS } from 'shared/api'
+import {
+  CLAIM_DEVICES_COMPLETE,
+  CLAIM_DEVICES_ERROR,
+  CLAIM_DEVICES_SUCCESS,
+  CLAIM_DEVICES_UPDATE
+} from 'state/actions/devices'
 
 const updateClaimProgress = claimProgress => {
   const percent = prop('percent', claimProgress)
@@ -29,12 +35,12 @@ export const pollClaimingEpic = action$ => {
     switchMap(() =>
       timer(0, 2500).pipe(
         takeUntil(stopPolling$),
-        switchMap(() => {
+        exhaustMap(() => {
           const promise = getApiPVS()
             .then(path(['apis', 'devices']))
             .then(api => api.getClaim())
           return from(promise).pipe(
-            switchMap(async response => {
+            map(response => {
               const claimProgress = pathOr([], ['body'], response)
               return updateClaimProgress(claimProgress)
             }),

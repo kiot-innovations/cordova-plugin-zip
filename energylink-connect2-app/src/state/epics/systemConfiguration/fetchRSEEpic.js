@@ -1,11 +1,11 @@
 import { ofType } from 'redux-observable'
 import { from, of } from 'rxjs'
-import { catchError, switchMap } from 'rxjs/operators'
+import { catchError, exhaustMap, map } from 'rxjs/operators'
 import { getApiPVS } from 'shared/api'
 import {
+  GET_RSE_ERROR,
   GET_RSE_INIT,
-  GET_RSE_SUCCESS,
-  GET_RSE_ERROR
+  GET_RSE_SUCCESS
 } from 'state/actions/systemConfiguration'
 
 const fetchRSE = async () => {
@@ -21,9 +21,9 @@ const fetchRSE = async () => {
 export const fetchRSEEpic = action$ => {
   return action$.pipe(
     ofType(GET_RSE_INIT.getType()),
-    switchMap(() =>
+    exhaustMap(() =>
       from(fetchRSE()).pipe(
-        switchMap(async response => GET_RSE_SUCCESS(response)),
+        map(GET_RSE_SUCCESS),
         catchError(error => of(GET_RSE_ERROR(error.message)))
       )
     )

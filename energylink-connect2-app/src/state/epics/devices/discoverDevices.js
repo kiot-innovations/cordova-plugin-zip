@@ -1,13 +1,19 @@
 import { pathOr } from 'ramda'
 import { ofType } from 'redux-observable'
 import { from, of, timer } from 'rxjs'
-import { catchError, switchMap, takeUntil } from 'rxjs/operators'
+import {
+  catchError,
+  exhaustMap,
+  map,
+  switchMap,
+  takeUntil
+} from 'rxjs/operators'
 import { getApiPVS } from 'shared/api'
 import {
   DISCOVER_COMPLETE,
   DISCOVER_ERROR,
-  FETCH_CANDIDATES_COMPLETE,
-  DISCOVER_UPDATE
+  DISCOVER_UPDATE,
+  FETCH_CANDIDATES_COMPLETE
 } from 'state/actions/devices'
 
 const fetchDiscovery = async () => {
@@ -35,9 +41,9 @@ export const scanDevicesEpic = action$ => {
     switchMap(() =>
       timer(0, 2500).pipe(
         takeUntil(stopPolling$),
-        switchMap(() =>
+        exhaustMap(() =>
           from(fetchDiscovery()).pipe(
-            switchMap(async response =>
+            map(response =>
               pathOr(false, ['progress', 'complete'], response)
                 ? DISCOVER_COMPLETE(response)
                 : DISCOVER_UPDATE(response)
