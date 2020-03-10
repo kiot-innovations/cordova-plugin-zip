@@ -1,7 +1,13 @@
 import { pathOr, test } from 'ramda'
 import { ofType } from 'redux-observable'
 import { from, of, timer } from 'rxjs'
-import { catchError, map, mergeMap, switchMap, takeUntil } from 'rxjs/operators'
+import {
+  catchError,
+  exhaustMap,
+  map,
+  mergeMap,
+  takeUntil
+} from 'rxjs/operators'
 import { getApiPVS } from 'shared/api'
 import { isIos } from 'shared/utils'
 import {
@@ -25,7 +31,7 @@ const connectToPVS = async (ssid, password) => {
       await window.WifiWizard2.connect(ssid, true, password, WPA, false)
     }
   } catch (e) {
-    throw new Error('ERROR CONNECTING', e)
+    throw new Error(e)
   }
 }
 
@@ -53,10 +59,10 @@ export const waitForSwaggerEpic = action$ => {
 
   return action$.pipe(
     ofType(WAIT_FOR_SWAGGER.getType()),
-    switchMap(() =>
-      timer(0, 2000).pipe(
+    exhaustMap(() =>
+      timer(0, 1000).pipe(
         takeUntil(stopPolling$),
-        switchMap(() =>
+        exhaustMap(() =>
           from(getApiPVS()).pipe(
             map(() => PVS_CONNECTION_SUCCESS()),
             catchError(() =>

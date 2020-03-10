@@ -1,12 +1,12 @@
-import { path, pathOr, length } from 'ramda'
+import { length, path, pathOr } from 'ramda'
 import { ofType } from 'redux-observable'
 import { from, of, timer } from 'rxjs'
-import { catchError, switchMap, takeUntil } from 'rxjs/operators'
+import { catchError, exhaustMap, switchMap, takeUntil } from 'rxjs/operators'
 import { getApiPVS } from 'shared/api'
 import {
-  FETCH_CANDIDATES_UPDATE,
   FETCH_CANDIDATES_COMPLETE,
   FETCH_CANDIDATES_ERROR,
+  FETCH_CANDIDATES_UPDATE,
   PUSH_CANDIDATES_SUCCESS
 } from 'state/actions/devices'
 
@@ -22,7 +22,7 @@ export const fetchCandidatesEpic = action$ => {
     switchMap(() =>
       timer(0, 5000).pipe(
         takeUntil(stopPolling$),
-        switchMap(() => {
+        exhaustMap(() => {
           const promise = getApiPVS()
             .then(path(['apis', 'candidates']))
             .then(api => api.getCandidates())

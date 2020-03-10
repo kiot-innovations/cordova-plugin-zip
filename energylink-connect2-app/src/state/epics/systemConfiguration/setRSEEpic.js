@@ -1,13 +1,13 @@
 import { ofType } from 'redux-observable'
 import { from, of, timer } from 'rxjs'
-import { catchError, mergeMap, map, takeWhile } from 'rxjs/operators'
+import { catchError, map, mergeMap, takeWhile } from 'rxjs/operators'
 import { getApiPVS } from 'shared/api'
 import {
+  GET_RSE_INIT,
+  SET_RSE_ERROR,
   SET_RSE_INIT,
   SET_RSE_STATUS,
-  SET_RSE_SUCCESS,
-  SET_RSE_ERROR,
-  GET_RSE_INIT
+  SET_RSE_SUCCESS
 } from 'state/actions/systemConfiguration'
 
 const setRSE = async powerProduction => {

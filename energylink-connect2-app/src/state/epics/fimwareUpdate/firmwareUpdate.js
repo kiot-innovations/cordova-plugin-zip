@@ -3,6 +3,7 @@ import { ofType } from 'redux-observable'
 import { concat, from, of, timer } from 'rxjs'
 import {
   catchError,
+  exhaustMap,
   flatMap,
   map,
   switchMap,
@@ -79,9 +80,9 @@ export const firmwarePollStatus = action$ => {
   return action$.pipe(
     ofType(FIRMWARE_UPDATE_POLL_INIT.getType()),
     switchMap(() =>
-      timer(0, 1500).pipe(
+      timer(0, 5000).pipe(
         takeUntil(stopPolling$),
-        switchMap(() => from(getUpgradeStatus())),
+        exhaustMap(() => from(getUpgradeStatus())),
         map(status => {
           return path(['STATE'], status) === 'complete'
             ? FIRMWARE_UPDATE_POLL_STOP()
