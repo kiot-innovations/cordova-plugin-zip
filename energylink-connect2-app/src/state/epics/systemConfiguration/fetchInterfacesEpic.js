@@ -6,12 +6,13 @@ import { getApiPVS } from 'shared/api'
 import {
   GET_INTERFACES_ERROR,
   GET_INTERFACES_INIT,
-  GET_INTERFACES_SUCCESS
+  GET_INTERFACES_SUCCESS,
+  CONNECT_NETWORK_AP_SUCCESS
 } from 'state/actions/systemConfiguration'
 
 export const fetchInterfacesEpic = action$ =>
   action$.pipe(
-    ofType(GET_INTERFACES_INIT.getType()),
+    ofType(GET_INTERFACES_INIT.getType(), CONNECT_NETWORK_AP_SUCCESS.getType()),
     flatMap(() => {
       const promise = getApiPVS()
         .then(path(['apis', 'network']))

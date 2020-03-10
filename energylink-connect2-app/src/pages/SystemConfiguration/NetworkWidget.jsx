@@ -94,6 +94,7 @@ function NetworkWidget() {
             <p className="control">
               <button
                 className="button is-primary is-outlined"
+                disabled={isFetching}
                 onClick={() =>
                   dispatch(
                     CONNECT_NETWORK_AP_INIT({
