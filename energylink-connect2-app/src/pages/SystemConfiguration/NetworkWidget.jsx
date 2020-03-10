@@ -70,7 +70,7 @@ function NetworkWidget({ animationState }) {
                     className="input"
                     type="password"
                     placeholder="********"
-                    onChange={setPassword}
+                    onChange={compose(setPassword, path(['target', 'value']))}
                     value={password}
                   />
                 </div>
@@ -92,7 +92,19 @@ function NetworkWidget({ animationState }) {
 
           <div className="field is-grouped is-grouped-centered">
             <p className="control">
-              <button className="button is-primary is-outlined">
+              <button
+                className="button is-primary is-outlined"
+                disabled={isFetching}
+                onClick={() =>
+                  dispatch(
+                    CONNECT_NETWORK_AP_INIT({
+                      ssid: AP.ssid,
+                      password,
+                      mode: 'wps'
+                    })
+                  )
+                }
+              >
                 {t('USE_WPS')}
               </button>
             </p>
@@ -101,10 +113,16 @@ function NetworkWidget({ animationState }) {
                 className="button is-primary is-uppercase"
                 disabled={isFetching}
                 onClick={() =>
-                  dispatch(CONNECT_NETWORK_AP_INIT({ ssid: AP.ssid, password }))
+                  dispatch(
+                    CONNECT_NETWORK_AP_INIT({
+                      ssid: AP.ssid,
+                      password,
+                      mode: 'psk'
+                    })
+                  )
                 }
               >
-                {isFetching ? 'Loading' : t('CONNECT')}
+                {isFetching ? t('LOADING') : t('CONNECT')}
               </button>
             </p>
           </div>

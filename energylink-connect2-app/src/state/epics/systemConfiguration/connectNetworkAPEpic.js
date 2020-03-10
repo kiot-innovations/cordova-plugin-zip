@@ -18,7 +18,14 @@ export const connectNetworkAPEpic = (action$, state$) => {
     mergeMap(({ payload }) => {
       const promise = getApiPVS()
         .then(path(['apis', 'wifi']))
-        .then(wifi => wifi.connectToAccessPoint(payload))
+        .then(wifi =>
+          wifi.connectToAccessPoint(
+            { id: 1 },
+            {
+              requestBody: payload
+            }
+          )
+        )
 
       return from(promise).pipe(
         map(prop('obj')),

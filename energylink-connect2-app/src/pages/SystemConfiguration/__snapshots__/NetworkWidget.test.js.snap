@@ -1527,6 +1527,7 @@ exports[`Network Widget renders correctly 1`] = `
                     >
                       <button
                         className="button is-primary is-outlined"
+                        onClick={[Function]}
                       >
                         USE_WPS
                       </button>
