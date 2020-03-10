@@ -48,8 +48,14 @@ function Home({ animationState }) {
 
   const notFoundText = t('NOT_FOUND')
 
+  const cleanString = (str = '') => {
+    const regex = /\W+/g
+    return str.replace(regex, '')
+  }
+
   const filterSites = (inputValue, cb) => {
-    const matchValue = compose(test(new RegExp(inputValue, 'ig')), getString)
+    const searchStr = cleanString(inputValue)
+    const matchValue = compose(test(new RegExp(searchStr, 'ig')), getString)
     const results = sites.filter(matchValue).map(buildSelectValue)
     cb(results)
   }

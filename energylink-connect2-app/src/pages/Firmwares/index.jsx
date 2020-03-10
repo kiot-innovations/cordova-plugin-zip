@@ -8,6 +8,7 @@ import { either } from 'shared/utils'
 import * as fileDownloaderActions from 'state/actions/fileDownloader'
 
 export const getFileName = prop('name')
+export const getFileSize = prop('size')
 
 function Firmwares({ animationState }) {
   const t = useI18n()
@@ -59,7 +60,7 @@ function Firmwares({ animationState }) {
               </span>
               {progress === 100 ? t('DOWNLOADED') : t('DOWNLOADING')}
               <span className="is-pulled-right has-text-white has-text-weight-bold">
-                {fileInfo.size}mb
+                {getFileSize(fileInfo)}MB
               </span>
             </p>
             {progress !== 100 && (
