@@ -12,7 +12,10 @@ export const startDiscoveryEpic = action$ =>
       const promise = getApiPVS()
         .then(path(['apis', 'discovery']))
         .then(api =>
-          api.discover({ id: 1 }, { requestBody: { Device: 'allnomi' } })
+          api.discover(
+            { id: 1 },
+            { requestBody: { Device: 'allnomi', Interfaces: ['mime'] } }
+          )
         )
 
       return from(promise).pipe(
