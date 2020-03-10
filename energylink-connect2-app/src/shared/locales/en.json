@@ -209,6 +209,7 @@
   "ENERGY_POWER_GRAPH": "Energy power graph",
   "BATTERY_CHARGING": "Battery charging",
   "PGE": "PG&E",
+  "NO_STORAGE_INSTALLED": "This site has no storage hardware installed",
   "CONNECTING": "Connecting...",
   "DISCOVERY_ERROR": "There were errors detected. Please verify and try again.",
   "MI_ERRORS": "Some MIs reported errors or were not found. Please verify and try again.",

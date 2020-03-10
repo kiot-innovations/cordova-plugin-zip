@@ -7,7 +7,8 @@ function Collapsible({
   title = 'Collapsible Title',
   actions,
   children,
-  expanded = false
+  expanded = false,
+  className = ''
 }) {
   const [expand, setExpand] = useState(expanded)
 
@@ -33,10 +34,10 @@ function Collapsible({
         </div>
       </div>
       <div
-        className={clsx(
-          'collapsible-content',
-          expand ? 'expanded' : 'collapsed'
-        )}
+        className={clsx(className, 'collapsible-content', {
+          expanded: expand,
+          collapsed: !expand
+        })}
       >
         {children}
       </div>

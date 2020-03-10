@@ -87,10 +87,10 @@ function SystemConfiguration({ animationState }) {
       <div className="mb-10">
         <InterfacesWidget animationState={animationState} />
       </div>
-      <GridBehaviorWidget />
+      <GridBehaviorWidget animationState={animationState} />
       <MetersWidget />
-      <StorageWidget />
-      <NetworkWidget />
+      <StorageWidget animationState={animationState} />
+      <NetworkWidget animationState={animationState} />
       <RSEWidget animationState={animationState} />
       <div className="submit-config">
         <button

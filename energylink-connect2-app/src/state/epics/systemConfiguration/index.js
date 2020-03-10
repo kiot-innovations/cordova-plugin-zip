@@ -1,4 +1,4 @@
-import fetchBatteriesEpic from 'state/epics/systemConfiguration/fetchBatteriesEpic'
+import { fetchBatteriesEpic } from 'state/epics/systemConfiguration/fetchBatteriesEpic'
 import { fetchGridBehaviorEpic } from './fetchGridBehavior'
 import { fetchNetworkAPsEpic } from './fetchNetworkAPsEpic'
 import { connectNetworkAPEpic } from './connectNetworkAPEpic'

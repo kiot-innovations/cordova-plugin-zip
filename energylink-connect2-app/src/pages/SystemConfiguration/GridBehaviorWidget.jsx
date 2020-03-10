@@ -15,7 +15,7 @@ import './SystemConfiguration.scss'
 
 const GBI = <span className="sp-grid file level mr-15 is-size-4" />
 
-function GridBehaviorWidget() {
+function GridBehaviorWidget({ animationState }) {
   const t = useI18n()
   const dispatch = useDispatch()
   const { profiles, exportLimit, gridVoltage } = useSelector(
@@ -27,8 +27,8 @@ function GridBehaviorWidget() {
   ])
 
   useEffect(() => {
-    dispatch(FETCH_GRID_BEHAVIOR())
-  }, [dispatch])
+    if (animationState === 'enter') dispatch(FETCH_GRID_BEHAVIOR())
+  }, [animationState, dispatch])
 
   const filterProfiles =
     profiles && site
