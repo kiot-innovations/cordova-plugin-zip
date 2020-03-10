@@ -23,7 +23,7 @@ const fetchDiscovery = async () => {
       progress: data[1]
     }
   } catch (e) {
-    throw new Error('UNREACHABLE_PVS')
+    throw new Error('DISCOVERY_ERROR')
   }
 }
 
