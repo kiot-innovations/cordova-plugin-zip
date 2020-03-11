@@ -25,6 +25,10 @@ const SavingConfiguration = () => {
     history.push(paths.PROTECTED.SYSTEM_CONFIGURATION.path)
   }
 
+  const goToData = () => {
+    history.push(paths.PROTECTED.DATA.path)
+  }
+
   const configContent =
     submitted && !err
       ? {
@@ -47,7 +51,7 @@ const SavingConfiguration = () => {
               >
                 {t('CONFIG_NEW_SITE')}
               </button>
-              <button onClick={goToConfig} className="button is-primary">
+              <button onClick={goToData} className="button is-primary">
                 {t('DONE')}
               </button>
             </div>
