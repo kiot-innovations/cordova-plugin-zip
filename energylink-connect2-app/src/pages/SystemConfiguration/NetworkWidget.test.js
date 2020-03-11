@@ -10,7 +10,7 @@ describe('Network Widget', () => {
     systemConfiguration: {
       network: {
         aps: [{ ssid: '1' }, { ssid: '2' }],
-        selectedAP: null,
+        selectedAP: { label: '' },
         error: null
       }
     }

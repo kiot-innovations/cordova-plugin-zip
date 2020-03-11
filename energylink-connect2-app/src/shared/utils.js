@@ -6,7 +6,12 @@ import {
   toUpper,
   lt,
   when,
-  length
+  length,
+  prop,
+  find,
+  propEq,
+  map,
+  defaultTo
 } from 'ramda'
 
 export const either = (condition, whenTrue, whenFalse = null) =>
@@ -75,3 +80,19 @@ export const capitalize = when(
 )
 
 export const isIos = () => window.device.platform === 'iOS'
+
+/* ACCESS POINT HELPERS */
+export const buildAPItem = ap => ({ label: ap.ssid, value: ap.ssid, ap })
+export const buildAPsItems = map(buildAPItem)
+
+export const getCurrentlyConnectedInterface = compose(
+  prop('ssid'),
+  find(propEq('interface', 'sta0'))
+)
+
+export const getConnectedAP = (interfaces, aps) =>
+  compose(
+    buildAPItem,
+    defaultTo({ ssid: '' }),
+    find(propEq('ssid', getCurrentlyConnectedInterface(interfaces)))
+  )(aps)

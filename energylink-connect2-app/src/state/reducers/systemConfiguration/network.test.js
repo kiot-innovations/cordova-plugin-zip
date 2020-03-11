@@ -12,7 +12,8 @@ describe('SC Network Reducer', () => {
       { isFetching: false },
       systemConfigurationReducers.GET_NETWORK_APS_INIT(),
       {
-        isFetching: true
+        isFetching: true,
+        error: null
       }
     )
   })
@@ -25,18 +26,6 @@ describe('SC Network Reducer', () => {
         isFetching: false,
         aps: [{ ssid: '1' }],
         error: null
-      }
-    )
-  })
-
-  it('populates the reducer state after CONNECT_NETWORK_AP_SUCCESS action is fired', () => {
-    reducerTest(
-      { isFetching: false },
-      systemConfigurationReducers.CONNECT_NETWORK_AP_SUCCESS({ ssid: '1' }),
-      {
-        isFetching: false,
-        selectedAP: { ssid: '1' },
-        isConnected: true
       }
     )
   })
