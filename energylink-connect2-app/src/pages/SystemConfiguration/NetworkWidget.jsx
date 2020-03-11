@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { path, map, compose, prop } from 'ramda'
+import { path, compose, prop, isEmpty } from 'ramda'
 import { useI18n } from 'shared/i18n'
 
 import Collapsible from 'components/Collapsible'
@@ -10,12 +10,9 @@ import {
   GET_NETWORK_APS_INIT,
   CONNECT_NETWORK_AP_INIT
 } from 'state/actions/systemConfiguration'
-import { either } from 'shared/utils'
+import { either, buildAPsItems } from 'shared/utils'
 
 const NWI = <span className="sp-wifi file level mr-15 is-size-4" />
-
-const buildAPItem = ap => ({ label: ap.ssid, value: ap.ssid, ap })
-const buildAPsItems = map(buildAPItem)
 
 function NetworkWidget({ animationState }) {
   const t = useI18n()
@@ -32,6 +29,9 @@ function NetworkWidget({ animationState }) {
     if (animationState === 'enter') dispatch(GET_NETWORK_APS_INIT())
   }, [animationState, dispatch])
 
+  const disallowConnecting =
+    isFetching || AP.ssid === path(['ap', 'ssid'], selectedAP)
+
   return (
     <div className="pb-15">
       <Collapsible title={t('NETWORK')} icon={NWI}>
@@ -46,9 +46,10 @@ function NetworkWidget({ animationState }) {
               <div className="field">
                 <div className="control">
                   <SelectField
+                    disabled={isFetching}
                     isSearchable={false}
                     onSelect={compose(setAP, prop('ap'))}
-                    defaultValue={buildAPItem(AP)}
+                    defaultValue={selectedAP}
                     placeholder={t('SELECT_NETWORK')}
                     options={buildAPsItems(aps)}
                   />
@@ -67,6 +68,7 @@ function NetworkWidget({ animationState }) {
               <div className="field">
                 <div className="control">
                   <input
+                    disabled={isFetching}
                     className="input"
                     type="password"
                     placeholder="********"
@@ -79,14 +81,14 @@ function NetworkWidget({ animationState }) {
           </div>
 
           {either(
-            isConnected,
+            isConnected && !error && !isFetching && !isEmpty(selectedAP.label),
             <div className="message success">
-              {t('AP_CONNECTION_SUCCESS', prop('ssid', selectedAP))}
+              {t('AP_CONNECTION_SUCCESS', selectedAP.label)}
             </div>
           )}
 
           {either(
-            error,
+            error && !isFetching,
             <div className="message error">{t('AP_CONNECTION_ERROR')}</div>
           )}
 
@@ -94,7 +96,7 @@ function NetworkWidget({ animationState }) {
             <p className="control">
               <button
                 className="button is-primary is-outlined"
-                disabled={isFetching}
+                disabled={disallowConnecting}
                 onClick={() =>
                   dispatch(
                     CONNECT_NETWORK_AP_INIT({
@@ -111,7 +113,7 @@ function NetworkWidget({ animationState }) {
             <p className="control">
               <button
                 className="button is-primary is-uppercase"
-                disabled={isFetching}
+                disabled={disallowConnecting}
                 onClick={() =>
                   dispatch(
                     CONNECT_NETWORK_AP_INIT({

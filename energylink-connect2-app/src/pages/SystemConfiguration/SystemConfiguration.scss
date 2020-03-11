@@ -23,6 +23,11 @@
   }
 }
 
+form.input:disabled {
+  background: #35404e !important;
+  opacity: 1;
+}
+
 .flex-column {
   flex-direction: column;
 }
