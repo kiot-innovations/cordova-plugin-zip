@@ -19,8 +19,7 @@ const authorizeOAuth = state => {
     `${getBaseApiUrlOAuth(true)}?` +
     `client_id=${config.client_id}&` +
     `redirect_uri=${config.redirectUri}&` +
-    `response_type=${config.response_type}&` +
-    `state=${state}`
+    `response_type=${config.response_type}`
   createExternalLinkHandler(authUrl)()
 }
 
