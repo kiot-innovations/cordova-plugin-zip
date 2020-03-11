@@ -20,16 +20,14 @@ const ProgressiveImage = ({ src, animationState }) => {
     // eslint-disable-next-line
   }, [])
 
-  return (
+  return either(
+    mapViewSrc,
+    <img src={src} className="ici" alt="" />,
     <div className="ic is-flex">
-      {either(
-        mapViewSrc,
-        <img src={src} alt="" />,
-        <figure className="auto">
-          <Logo />
-          <Loader />
-        </figure>
-      )}
+      <figure className="auto">
+        <Logo />
+        <Loader />
+      </figure>
     </div>
   )
 }
