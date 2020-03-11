@@ -1,12 +1,15 @@
+.ic, .ici {
+  border: 2px solid white;
+  border-radius: 5px;
+}
+
 .ic {
   background: url('map.png');
   position: relative;
   width: 100%;
-  height: 40vh;
-  border: 2px solid white;
-  border-radius: 5px;
+  height: 330px;
+}
 
-  img {
-    width: 100%;
-  }
+.ici {
+  width: 100%;
 }
