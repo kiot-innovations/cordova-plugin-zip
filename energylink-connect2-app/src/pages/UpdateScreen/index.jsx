@@ -34,7 +34,7 @@ const UpdateScreen = ({ animationState }) => {
           <>
             {either(
               status !== 'UPLOADING_FS',
-              <span className="has-text-white is-size-1">{percent}%</span>,
+              <span className="has-text-white is-size-1">{percent || 0}%</span>,
               <Loader />
             )}
             <span className="has-text-white">{capitalize(t(status))}</span>
