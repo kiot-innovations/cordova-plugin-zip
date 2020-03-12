@@ -80,7 +80,7 @@ export const firmwarePollStatus = action$ => {
   return action$.pipe(
     ofType(FIRMWARE_UPDATE_POLL_INIT.getType()),
     switchMap(() =>
-      timer(0, 5000).pipe(
+      timer(0, 1500).pipe(
         takeUntil(stopPolling$),
         exhaustMap(() => from(getUpgradeStatus())),
         map(status => {
