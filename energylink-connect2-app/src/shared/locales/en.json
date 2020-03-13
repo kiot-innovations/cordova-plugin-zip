@@ -229,5 +229,5 @@
   "PV_INFO_ERROR": "Error communicating with MI. Please check connections and remove possible sources of interference.",
   "OK": "MI is working as expected",
   "CONNECTED": "Connected",
-  "Waiting_GOOGLE_MAPS": "Waiting for Google Maps to load"
+  "WAITING_GOOGLE_MAPS": "Waiting for Google Maps to load"
 }

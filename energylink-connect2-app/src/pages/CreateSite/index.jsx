@@ -64,7 +64,7 @@ function CreateSite() {
     return (
       <section className="is-flex tile is-vertical section pt-0 fill-parent">
         <h1 className="has-text-centered is-uppercase has-text-weight-bold  pb-20">
-          {t('Waiting_GOOGLE_MAPS')}
+          {t('WAITING_GOOGLE_MAPS')}
         </h1>
       </section>
     )
