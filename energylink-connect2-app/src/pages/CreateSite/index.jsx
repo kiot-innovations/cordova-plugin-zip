@@ -1,6 +1,6 @@
 import TextField from '@sunpower/textfield'
 import SearchField from 'components/SearchField'
-import { path } from 'ramda'
+import { contains, path } from 'ramda'
 import React, { useEffect, useState } from 'react'
 import { useField, useForm } from 'react-final-form-hooks'
 import PlacesAutocomplete from 'react-places-autocomplete'
@@ -109,6 +109,19 @@ function CreateSite() {
               </label>
               <SearchField
                 onSearch={async newAddress => {
+                  const VALID_COUNTRY_STRINGS = [
+                    //english based phones
+                    'USA',
+                    'Mexico',
+                    'Canada',
+                    //spanish based phones
+                    'EE. UU.',
+                    'México',
+                    'Canadá',
+                    //french based phones
+                    'États-Unis',
+                    'Mexique'
+                  ]
                   getInputProps().onChange({ target: { value: newAddress } })
                   return suggestions
                     .filter(elem => {
@@ -116,19 +129,7 @@ function CreateSite() {
                         ['terms', elem.terms.length - 1, 'value'],
                         elem
                       )
-                      return (
-                        //English based language phone
-                        country === 'USA' ||
-                        country === 'Mexico' ||
-                        country === 'Canada' ||
-                        //spanish based language phone
-                        country === 'EE. UU.' ||
-                        country === 'México' ||
-                        country === 'Canadá' ||
-                        // french based language phone
-                        country === 'États-Unis' ||
-                        country === 'Mexique'
-                      )
+                      return contains(country, VALID_COUNTRY_STRINGS)
                     })
                     .map(elem => ({
                       value: elem.description,
