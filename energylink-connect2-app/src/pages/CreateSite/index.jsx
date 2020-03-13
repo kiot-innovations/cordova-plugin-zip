@@ -1,20 +1,20 @@
-import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
-import { useDispatch } from 'react-redux'
-import { useI18n } from 'shared/i18n'
-import { useField, useForm } from 'react-final-form-hooks'
 import TextField from '@sunpower/textfield'
 import SearchField from 'components/SearchField'
-import paths from 'routes/paths'
-import PlacesAutocomplete from 'react-places-autocomplete'
-import { geocodeByAddress, getGeocodeData } from 'shared/utils'
 import { path } from 'ramda'
+import React, { useEffect, useState } from 'react'
+import { useField, useForm } from 'react-final-form-hooks'
+import PlacesAutocomplete from 'react-places-autocomplete'
+import { useDispatch } from 'react-redux'
+import { Link } from 'react-router-dom'
+import paths from 'routes/paths'
+import { useI18n } from 'shared/i18n'
+import { geocodeByAddress, getGeocodeData } from 'shared/utils'
 
 function useGoogleMaps() {
   const [hasGoogleMaps, setGoogleMaps] = useState(!!window.google)
   useEffect(() => {
     setGoogleMaps(!!window.google)
-  }, [window.google])
+  }, [])
   return hasGoogleMaps
 }
 
@@ -117,9 +117,17 @@ function CreateSite() {
                         elem
                       )
                       return (
+                        //English based language phone
                         country === 'USA' ||
                         country === 'Mexico' ||
-                        country === 'Canada'
+                        country === 'Canada' ||
+                        //spanish based language phone
+                        country === 'EE. UU.' ||
+                        country === 'México' ||
+                        country === 'Canadá' ||
+                        // french based language phone
+                        country === 'États-Unis' ||
+                        country === 'Mexique'
                       )
                     })
                     .map(elem => ({
