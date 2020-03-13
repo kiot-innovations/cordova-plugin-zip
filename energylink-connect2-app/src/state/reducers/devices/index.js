@@ -27,7 +27,8 @@ const initialState = {
   discoveryComplete: false,
   claimingDevices: false,
   claimProgress: 0,
-  claimedDevices: false
+  claimedDevices: false,
+  claimError: ''
 }
 
 const parseCompleteDevices = devices => {
@@ -125,7 +126,7 @@ export default createReducer(
       return {
         ...state,
         claimingDevices: false,
-        error: payload
+        claimError: payload
       }
     },
     [RESET_DISCOVERY]: () => {
