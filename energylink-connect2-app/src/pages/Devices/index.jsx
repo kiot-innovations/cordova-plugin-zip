@@ -301,7 +301,6 @@ const Devices = ({ animationState }) => {
     const claimObject = path(['inverter'], found).map(mi => {
       return {
         OPERATION: 'add',
-        MODEL: 'AC_Module_Type_E',
         SERIAL: mi.serial_number,
         TYPE: 'SOLARBRIDGE',
         panid: 0
