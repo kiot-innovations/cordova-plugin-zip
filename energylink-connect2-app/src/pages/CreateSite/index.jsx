@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { useI18n } from 'shared/i18n'
@@ -10,7 +10,16 @@ import PlacesAutocomplete from 'react-places-autocomplete'
 import { geocodeByAddress, getGeocodeData } from 'shared/utils'
 import { path } from 'ramda'
 
+function useGoogleMaps() {
+  const [hasGoogleMaps, setGoogleMaps] = useState(!!window.google)
+  useEffect(() => {
+    setGoogleMaps(!!window.google)
+  }, [window.google])
+  return hasGoogleMaps
+}
+
 function CreateSite() {
+  const hasGoogleMaps = useGoogleMaps()
   const [initialValues, setInitialValues] = useState({
     siteName: '',
     apt: '',
@@ -51,7 +60,14 @@ function CreateSite() {
       address: address.value
     })
   }
-
+  if (!hasGoogleMaps)
+    return (
+      <section className="is-flex tile is-vertical section pt-0 fill-parent">
+        <h1 className="has-text-centered is-uppercase has-text-weight-bold  pb-20">
+          {t('Waiting_GOOGLE_MAPS')}
+        </h1>
+      </section>
+    )
   return (
     <PlacesAutocomplete
       value={initialValues.address}
