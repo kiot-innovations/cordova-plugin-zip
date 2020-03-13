@@ -144,7 +144,6 @@ const discoveryStatus = (
   const discoveryComplete = found.discoveryComplete
   const errMICount = counts.inverter.errMICount
   const error = found.error
-  const claimError = claim.claimError
 
   if (discoveryComplete) {
     if (errMICount > 0) {
@@ -175,11 +174,11 @@ const discoveryStatus = (
       )
     }
 
-    if (claimError) {
+    if (claim.claimError) {
       return (
         <>
           <span className="has-text-weight-bold mb-20">
-            {t('CLAIM_DEVICES_ERROR', claimError)}
+            {t('CLAIM_DEVICES_ERROR', claim.claimError)}
           </span>
           <Link
             className="button is-outlined is-primary is-uppercase is-paddingless ml-75 mr-75 mb-10"
