@@ -104,6 +104,7 @@ function mapStateToProps({ devices, pvs }) {
     found,
     claimingDevices,
     claimedDevices,
+    claimError,
     error,
     progress
   } = devices
@@ -112,7 +113,8 @@ function mapStateToProps({ devices, pvs }) {
   return {
     claim: {
       claimingDevices,
-      claimedDevices
+      claimedDevices,
+      claimError
     },
     progress,
     found: {
@@ -172,6 +174,32 @@ const discoveryStatus = (
       )
     }
 
+    if (claim.claimError) {
+      return (
+        <>
+          <span className="has-text-weight-bold mb-20">
+            {t('CLAIM_DEVICES_ERROR', claim.claimError)}
+          </span>
+          <Link
+            className="button is-outlined is-primary is-uppercase is-paddingless ml-75 mr-75 mb-10"
+            to={paths.PROTECTED.SN_LIST.path}
+          >
+            {t('ADD-DEVICES')}
+          </Link>
+          <button
+            className={clsx(
+              'button is-primary is-uppercase is-paddingless ml-75 mr-75',
+              { 'is-loading': claim.claimingDevices }
+            )}
+            disabled={claim.claimingDevices}
+            onClick={claimDevices}
+          >
+            {t('CLAIM_DEVICES')}
+          </button>
+        </>
+      )
+    }
+
     return (
       <>
         <Link
@@ -188,7 +216,7 @@ const discoveryStatus = (
           disabled={claim.claimingDevices}
           onClick={claimDevices}
         >
-          {t('DONE')}
+          {t('CLAIM_DEVICES')}
         </button>
       </>
     )
@@ -273,9 +301,9 @@ const Devices = ({ animationState }) => {
     const claimObject = path(['inverter'], found).map(mi => {
       return {
         OPERATION: 'add',
-        MODEL: 'AC_Module_Type_E',
         SERIAL: mi.serial_number,
-        TYPE: 'SOLARBRIDGE'
+        TYPE: 'SOLARBRIDGE',
+        panid: 0
       }
     })
     dispatch(CLAIM_DEVICES_INIT(JSON.stringify(claimObject)))
