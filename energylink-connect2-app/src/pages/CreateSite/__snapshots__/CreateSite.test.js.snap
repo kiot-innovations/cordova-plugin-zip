@@ -1,16 +1,13 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`CreateSite component render correctly 1`] = `
-<PlacesAutocomplete
-  debounce={200}
-  highlightFirstSuggestion={false}
-  onChange={[Function]}
-  onError={[Function]}
-  onSelect={[Function]}
-  searchOptions={Object {}}
-  shouldFetchSuggestions={true}
-  value=""
+<section
+  className="is-flex tile is-vertical section pt-0 fill-parent"
 >
-  <Component />
-</PlacesAutocomplete>
+  <h1
+    className="has-text-centered is-uppercase has-text-weight-bold  pb-20"
+  >
+    WAITING_GOOGLE_MAPS
+  </h1>
+</section>
 `;

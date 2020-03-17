@@ -1,16 +1,25 @@
-import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
-import { useDispatch } from 'react-redux'
-import { useI18n } from 'shared/i18n'
-import { useField, useForm } from 'react-final-form-hooks'
 import TextField from '@sunpower/textfield'
 import SearchField from 'components/SearchField'
-import paths from 'routes/paths'
+import { contains, path } from 'ramda'
+import React, { useEffect, useState } from 'react'
+import { useField, useForm } from 'react-final-form-hooks'
 import PlacesAutocomplete from 'react-places-autocomplete'
+import { useDispatch } from 'react-redux'
+import { Link } from 'react-router-dom'
+import paths from 'routes/paths'
+import { useI18n } from 'shared/i18n'
 import { geocodeByAddress, getGeocodeData } from 'shared/utils'
-import { path } from 'ramda'
+
+function useGoogleMaps() {
+  const [hasGoogleMaps, setGoogleMaps] = useState(!!window.google)
+  useEffect(() => {
+    setGoogleMaps(!!window.google)
+  }, [])
+  return hasGoogleMaps
+}
 
 function CreateSite() {
+  const hasGoogleMaps = useGoogleMaps()
   const [initialValues, setInitialValues] = useState({
     siteName: '',
     apt: '',
@@ -51,7 +60,14 @@ function CreateSite() {
       address: address.value
     })
   }
-
+  if (!hasGoogleMaps)
+    return (
+      <section className="is-flex tile is-vertical section pt-0 fill-parent">
+        <h1 className="has-text-centered is-uppercase has-text-weight-bold  pb-20">
+          {t('WAITING_GOOGLE_MAPS')}
+        </h1>
+      </section>
+    )
   return (
     <PlacesAutocomplete
       value={initialValues.address}
@@ -93,6 +109,19 @@ function CreateSite() {
               </label>
               <SearchField
                 onSearch={async newAddress => {
+                  const VALID_COUNTRY_STRINGS = [
+                    //english based phones
+                    'USA',
+                    'Mexico',
+                    'Canada',
+                    //spanish based phones
+                    'EE. UU.',
+                    'México',
+                    'Canadá',
+                    //french based phones
+                    'États-Unis',
+                    'Mexique'
+                  ]
                   getInputProps().onChange({ target: { value: newAddress } })
                   return suggestions
                     .filter(elem => {
@@ -100,11 +129,7 @@ function CreateSite() {
                         ['terms', elem.terms.length - 1, 'value'],
                         elem
                       )
-                      return (
-                        country === 'USA' ||
-                        country === 'Mexico' ||
-                        country === 'Canada'
-                      )
+                      return contains(country, VALID_COUNTRY_STRINGS)
                     })
                     .map(elem => ({
                       value: elem.description,
