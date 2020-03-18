@@ -21,13 +21,6 @@ const microInverterIcon = (
   <span className="sp-inverter mr-20 devices-icon ml-0 mt-0 mb-0" />
 )
 
-const Icon = (num = 0, max = 0, icon = '') => (
-  <div className="is-flex">
-    <span className={`${icon} mr-10 ml-0 mt-0 mb-0`} />
-    <span className="devices-counter mr-10 ml-0 mt-0 mb-0">{`${num}/${max}`}</span>
-  </div>
-)
-
 const miStates = {
   NEW: 'LOADING',
   PINGING: 'LOADING',
@@ -281,6 +274,20 @@ const Devices = ({ animationState }) => {
     dispatch(CLAIM_DEVICES_INIT(JSON.stringify(claimObject)))
   }
 
+  const bulkEditModel = () => {
+    history.push(paths.PROTECTED.MODEL_EDIT.path)
+  }
+
+  const miActions = (num = 0, max = 0, icon = '') => (
+    <div className="is-flex">
+      <span
+        onClick={bulkEditModel}
+        className={`${icon} mr-10 ml-0 mt-0 mb-0`}
+      />
+      <span className="devices-counter mr-10 ml-0 mt-0 mb-0">{`${num}/${max}`}</span>
+    </div>
+  )
+
   return (
     <div className="fill-parent is-flex tile is-vertical has-text-centered sunpower-devices pr-15 pl-15">
       {modal}
@@ -292,9 +299,10 @@ const Devices = ({ animationState }) => {
           title={t('MICRO-INVERTERS')}
           icon={microInverterIcon}
           expanded
-          actions={Icon(
+          actions={miActions(
             counts.inverter.okMICount,
-            length(propOr([], 'inverter', found))
+            length(propOr([], 'inverter', found)),
+            'sp-gear'
           )}
         >
           <ul className="equipment-list">
@@ -310,11 +318,14 @@ const Devices = ({ animationState }) => {
                         SN:
                       </span>
                       {elem.serial_number}
+                      <span className="has-text-weight-bold ml-10">
+                        {elem.model}
+                      </span>
                     </span>
-                    {elem.model ? (
-                      <span>{elem.model}</span>
+                    {elem.modelStr ? (
+                      <span>{elem.modelStr}</span>
                     ) : (
-                      <span>{t('RETRIEVING_MODEL')}</span>
+                      <span>{t('NO_MODEL')}</span>
                     )}
                   </div>
                   <div
