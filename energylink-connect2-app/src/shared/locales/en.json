@@ -188,6 +188,8 @@
   "APPLYING": "Applying...",
   "DISCOVERY_IN_PROGRESS": "Hold on, we're looking for your devices",
   "CLAIMING_DEVICES": "Saving device data",
+  "CLAIM_DEVICES": "Claim Devices",
+  "CLAIM_DEVICES_ERROR": "An error occurred during the claiming process. Error code {0}",
   "SET_RSE_ERROR": "Could not set RSE correctly",
   "GET_RSE_ERROR": "Could not get RSE information",
   "EMPTY_CANDIDATES": "There was an error with the PVS. Please reboot it and try again",
@@ -228,5 +230,6 @@
   "PV_INFO_OK": "PV information successfully retrieved.",
   "PV_INFO_ERROR": "Error communicating with MI. Please check connections and remove possible sources of interference.",
   "OK": "MI is working as expected",
-  "CONNECTED": "Connected"
+  "CONNECTED": "Connected",
+  "WAITING_GOOGLE_MAPS": "Waiting for Google Maps to load"
 }
