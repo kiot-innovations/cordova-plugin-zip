@@ -6,9 +6,13 @@
   grid-row-gap: 1rem;
   height: -webkit-fill-available;
 
+  .model-container{
+    .collapsible{
+      margin-bottom: 1em;
+    }
+  }
+
   .mi-container{
-    background-color: $silver-sand4;
-    padding: $font-size-huge;
     max-height: 30rem;
     overflow-y: scroll;
     overflow-x: hidden;
