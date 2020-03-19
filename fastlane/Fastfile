@@ -21,6 +21,11 @@ end
 
 platform :ios do
     lane :build do
+        create_keychain(
+            name: "ci",
+            password: "123",
+            unlock: true
+        )
         sync_code_signing(
             readonly: true
         )
