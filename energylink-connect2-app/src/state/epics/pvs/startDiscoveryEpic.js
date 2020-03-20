@@ -1,14 +1,18 @@
 import { ofType } from 'redux-observable'
 import { of, from } from 'rxjs'
-import { catchError, mergeMap, map } from 'rxjs/operators'
+import { catchError, exhaustMap, map } from 'rxjs/operators'
 import { path } from 'ramda'
 import * as pvsActions from 'state/actions/pvs'
 import { getApiPVS } from 'shared/api'
+import { FIRMWARE_UPDATE_COMPLETE } from 'state/actions/firmwareUpdate'
 
 export const startDiscoveryEpic = action$ =>
   action$.pipe(
-    ofType(pvsActions.START_DISCOVERY_INIT.getType()),
-    mergeMap(() => {
+    ofType(
+      pvsActions.START_DISCOVERY_INIT.getType(),
+      FIRMWARE_UPDATE_COMPLETE.getType()
+    ),
+    exhaustMap(() => {
       const promise = getApiPVS()
         .then(path(['apis', 'discovery']))
         .then(api =>
