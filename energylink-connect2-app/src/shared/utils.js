@@ -96,3 +96,12 @@ export const getConnectedAP = (interfaces, aps) =>
     defaultTo({ ssid: '' }),
     find(propEq('ssid', getCurrentlyConnectedInterface(interfaces)))
   )(aps)
+
+const decideModel = barcode =>
+  barcode.startsWith('1') || barcode.startsWith('E001') ? 'Type E' : 'Type G'
+
+export const buildSN = barcode => ({
+  serial_number: barcode,
+  model: decideModel(barcode),
+  type: 'MI'
+})
