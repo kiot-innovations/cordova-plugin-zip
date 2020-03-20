@@ -3,12 +3,11 @@
 #
 # This is shorter version of build workflow. For pull requests we want to
 # have quick result, so we only want to test and build the application.
-name: Quick build for Pull Requests
 on:
   pull_request:
 
 jobs:
-  quick-build:
+  build:
     runs-on: macos-10.15
     steps:
       - uses: actions/checkout@v2
