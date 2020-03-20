@@ -21,9 +21,12 @@ end
 
 platform :ios do
     lane :build do
+        # The keychain will be used only during the application building process.
+        # We need a keychain for storing a certificate and private key. It
+        # won't be copied to final application
         create_keychain(
-            name: "ci",
-            password: "123",
+            name: ENV.fetch("KEYCHAIN_NAME", "ci"),
+            password: ENV.fetch("KEYCHAIN_PASSWORD", "123"),
             unlock: true
         )
         sync_code_signing(

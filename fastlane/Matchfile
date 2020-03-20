@@ -4,7 +4,7 @@ git_url("https://github.com/SunPower/firmware-mobile-certificates")
 # available types: appstore, adhoc, enterprise, development
 type("appstore")
 
-keychain_name("ci")
-keychain_password("123")
+keychain_name(ENV.fetch("KEYCHAIN_NAME", "ci"))
+keychain_password(ENV.fetch("KEYCHAIN_PASSWORD", "123"))
 
 team_id("YWBF6F2KK8")
