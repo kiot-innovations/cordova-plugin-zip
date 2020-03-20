@@ -1,4 +1,5 @@
-import React, { useEffect, useState, useRef, useCallback } from 'react'
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useEffect, useState, useRef } from 'react'
 import { useHistory } from 'react-router-dom'
 import { compose, map } from 'ramda'
 import { useDispatch, useSelector } from 'react-redux'
@@ -32,9 +33,9 @@ function ScanDeviceLabels() {
     }
   }
 
-  const startScanning = useCallback(() => {
+  const startScanning = () => {
     if (window.Scandit) onDone.current = scanM(addCodes)
-  }, [addCodes])
+  }
 
   useEffect(() => {
     startScanning()
@@ -44,7 +45,7 @@ function ScanDeviceLabels() {
         onDone.current()
       }
     }
-  }, [isScanning, startScanning])
+  }, [])
 
   return (
     <ErrorBoundary>

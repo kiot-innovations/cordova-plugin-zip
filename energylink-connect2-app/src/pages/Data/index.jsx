@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect } from 'react'
 import './Data.scss'
 import { useDispatch, useSelector } from 'react-redux'
@@ -17,11 +18,11 @@ export default () => {
 
   useEffect(() => {
     dispatch(ENERGY_DATA_START_POLLING())
-  }, [dispatch])
+  }, [])
 
   useEffect(() => {
     return () => dispatch(ENERGY_DATA_STOP_POLLING())
-  }, [dispatch])
+  }, [])
 
   let data = {
     solar: 0,
