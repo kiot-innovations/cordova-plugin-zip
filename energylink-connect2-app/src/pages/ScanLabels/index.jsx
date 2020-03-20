@@ -9,7 +9,7 @@ import { ADD_PVS_SN } from 'state/actions/pvs'
 import { buildSN } from 'shared/utils'
 import paths from 'routes/paths'
 
-import './ScanDeviceLabels.scss'
+import './ScanLabels.scss'
 
 function ScanDeviceLabels() {
   const t = useI18n()
@@ -48,26 +48,25 @@ function ScanDeviceLabels() {
 
   return (
     <ErrorBoundary>
-      <div className="tile is-flex is-vertical has-text-centered page-height scan">
-        <span className="is-uppercase has-text-weight-bold mb-40">
-          {t('SCAN_MI_LABELS')} {serialNumbers.length}
+      <div className="scan-labels is-vertical has-text-centered pl-10 pr-10">
+        <span className="is-uppercase has-text-weight-bold mb-10">
+          {t('SCAN_EQUIPMENT')}
         </span>
-        <div id="scandit" />
-        <div className="is-flex auto">
-          <button
-            className="button is-primary is-uppercase is-center mt-50"
-            onClick={finishedScanning}
-          >
-            {t('DONE')}
-          </button>
 
-          <button
-            className="button is-primary is-uppercase is-center mt-50"
-            onClick={startScanning}
-          >
-            {t('SCAN')}
-          </button>
+        <div id="scandit" />
+
+        <div className="hint-text mt-15 pl-15 pr-15">{t('BULK_SCAN_HINT')}</div>
+
+        <div className="has-text-white mt-10">
+          {t('FOUND_SN', serialNumbers.length)}
         </div>
+
+        <button
+          className="button is-primary trigger-scan mt-15"
+          onClick={isScanning ? finishedScanning : startScanning}
+        >
+          {isScanning ? t('DONE') : t('BULK_SCAN')}
+        </button>
       </div>
     </ErrorBoundary>
   )
