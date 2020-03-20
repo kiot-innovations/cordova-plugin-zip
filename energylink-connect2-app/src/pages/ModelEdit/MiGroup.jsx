@@ -1,13 +1,23 @@
 import React, { useState } from 'react'
 import { useI18n } from 'shared/i18n'
+import { useDispatch, useSelector } from 'react-redux'
+import { test, uniq, includes, path, pathOr } from 'ramda'
+import { UPDATE_MI_MODELS } from 'state/actions/pvs'
 import './ModelEdit.scss'
 import SearchField from '../../components/SearchField'
 import Collapsible from '../../components/Collapsible'
-import { uniq } from 'ramda'
 
 const MiGroup = ({ title, data }) => {
   const t = useI18n()
+  const dispatch = useDispatch()
   const [selectedMi, setSelectedMi] = useState([])
+  const [selectedModel, setSelectedModel] = useState()
+
+  const { serialNumbers } = useSelector(state => state.pvs)
+
+  const modelOptions = useSelector(state =>
+    pathOr([], ['devices', 'miModels'], state)
+  )
 
   const selectMi = serialNumber => {
     const currentSelections = selectedMi
@@ -43,13 +53,31 @@ const MiGroup = ({ title, data }) => {
     return str.replace(regex, '')
   }
 
-  const fetchModel = (inputValue, cb) => {
+  const buildSelectValue = value => ({
+    label: value,
+    value: value
+  })
+
+  const filterModel = (inputValue, cb) => {
     const searchStr = cleanString(inputValue)
-    alert(searchStr)
+    const matchValue = test(new RegExp(searchStr, 'ig'))
+    const results = modelOptions.filter(matchValue).map(buildSelectValue)
+    cb(results)
   }
 
   const selectModel = model => {
-    alert(model)
+    setSelectedModel(path(['value'], model))
+  }
+
+  const applyModel = () => {
+    const miList = serialNumbers
+    const updatedList = miList.map(mi => {
+      if (includes(mi.serial_number, selectedMi)) {
+        mi.modelStr = selectedModel
+      }
+      return mi
+    })
+    dispatch(UPDATE_MI_MODELS(updatedList))
   }
 
   const createMiItem = miData => (
@@ -75,7 +103,7 @@ const MiGroup = ({ title, data }) => {
       <div className="mi-container has-text-centered">
         <span className="has-text-white">Specify the model to apply</span>
         <SearchField
-          onSearch={fetchModel}
+          onSearch={filterModel}
           onSelect={selectModel}
           notFoundText={notFoundText}
           className="mt-10 mb-10"
@@ -83,17 +111,25 @@ const MiGroup = ({ title, data }) => {
         <div className="mi-list">
           {data.map(miData => createMiItem(miData))}
         </div>
-        <button
-          onClick={e =>
-            selectAll(
-              e,
-              data.map(miData => miData.serial_number)
-            )
-          }
-          className="mt-20 button is-outlined is-primary"
-        >
-          {t('SELECT_ALL')}
-        </button>
+        <div className="inline-buttons">
+          <button
+            onClick={e =>
+              selectAll(
+                e,
+                data.map(miData => miData.serial_number)
+              )
+            }
+            className="mt-20 mr-10 button is-outlined is-primary"
+          >
+            {t('SELECT_ALL')}
+          </button>
+          <button
+            onClick={applyModel}
+            className="mt-20 ml-10 button is-primary"
+          >
+            {t('APPLY')}
+          </button>
+        </div>
       </div>
     </Collapsible>
   )

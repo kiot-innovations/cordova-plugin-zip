@@ -19,6 +19,14 @@
     font-family: $font;
     letter-spacing: 0;
     border-radius: 5px;
+
+    .inline-buttons {
+      grid-template-columns: 1fr 1fr;
+      display: grid;
+      button{
+        padding: unset !important;
+      }
+    }
   }
 
   .mi-list{

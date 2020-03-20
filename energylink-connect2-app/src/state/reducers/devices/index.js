@@ -13,7 +13,8 @@ import {
   CLAIM_DEVICES_ERROR,
   RESET_DISCOVERY,
   CLAIM_DEVICES_UPDATE,
-  CLAIM_DEVICES_COMPLETE
+  CLAIM_DEVICES_COMPLETE,
+  FETCH_MODELS_SUCCESS
 } from 'state/actions/devices'
 
 const initialState = {
@@ -28,7 +29,8 @@ const initialState = {
   claimingDevices: false,
   claimProgress: 0,
   claimedDevices: false,
-  claimError: ''
+  claimError: '',
+  miModels: []
 }
 
 const parseCompleteDevices = devices => {
@@ -132,6 +134,12 @@ export default createReducer(
     [RESET_DISCOVERY]: () => {
       return {
         ...initialState
+      }
+    },
+    [FETCH_MODELS_SUCCESS]: (state, payload) => {
+      return {
+        ...state,
+        miModels: payload
       }
     }
   },
