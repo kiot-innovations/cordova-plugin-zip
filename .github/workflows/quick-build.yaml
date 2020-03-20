@@ -1,0 +1,38 @@
+####
+# Quick version of build workflow
+#
+# This is shorter version of build workflow. For pull requests we want to
+# have quick result, so we only want to test and build the application.
+name: Quick build for Pull Requests
+on:
+  pull_request:
+
+jobs:
+  quick-build:
+    runs-on: macos-10.15
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: "10.15.3"
+          registry-url: "https://registry.npmjs.org"
+
+      #
+      # Native Application
+      #
+      - run: npm install
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
+        working-directory: energylink-connect2-app
+
+      - run: npm run test
+        env:
+          CI: 1
+        working-directory: energylink-connect2-app
+
+      - name: Decrypt .env
+        run: openssl aes-256-cbc -d -a -salt -k '${{ secrets.ENVFILE_PASSWORD }}' -in .env.enc -out .env
+        working-directory: energylink-connect2-app
+
+      - run: npm run build
+        working-directory: energylink-connect2-app
