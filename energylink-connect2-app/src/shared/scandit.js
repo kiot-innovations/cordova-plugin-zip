@@ -19,13 +19,7 @@ export function scanM(onRecognize, nodeID = 'scandit') {
   // The settings instance initially has all types of barcodes (symbologies) disabled. For the purpose of this
   // sample we enable a very generous set of symbologies. In your own app ensure that you only enable the
   // symbologies that your app requires as every additional enabled symbology has an impact on processing times.
-  settings.enableSymbologies([
-    Scandit.Symbology.EAN13UPCA,
-    Scandit.Symbology.EAN8,
-    Scandit.Symbology.UPCE,
-    Scandit.Symbology.Code39,
-    Scandit.Symbology.Code128
-  ])
+  settings.enableSymbologies([Scandit.Symbology.Code128])
 
   // Create new barcode tracking mode with the settings from above.
   const barcodeTracking = Scandit.BarcodeTracking.forContext(context, settings)
