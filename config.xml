@@ -34,6 +34,7 @@
     <platform name="ios">
         <preference name="UseSwiftLanguageVersion" value="4" />
         <preference name="DisallowOverscroll" value="true" />
+        <hook src="extend_build_phase.js" type="before_build" />
         <allow-intent href="itms:*" />
         <allow-intent href="itms-apps:*" />
         <config-file mode="add" parent="ITSAppUsesNonExemptEncryption" target="*-Info.plist">
@@ -63,7 +64,6 @@
         <splash src="www/res/screen/ios/Default@3x~iphone~comany.png" />
         <splash src="www/res/screen/ios/Default@2x~ipad~anyany.png" />
         <splash src="www/res/screen/ios/Default@2x~ipad~comany.png" />
-        <hook src="extend_build_phase.js" type="after_platform_add" />
     </platform>
     <edit-config file="*-Info.plist" mode="merge" target="NSCameraUsageDescription">
         <string>need camera access to take pictures</string>
