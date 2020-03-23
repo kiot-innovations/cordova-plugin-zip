@@ -108,3 +108,8 @@ export const groupBy = (array, prop) => {
     return acc
   }, {})
 }
+
+export const cleanString = (str = '') => {
+  const regex = /\W+/g
+  return str.replace(regex, '')
+}

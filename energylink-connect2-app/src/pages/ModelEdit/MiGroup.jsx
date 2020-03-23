@@ -1,11 +1,17 @@
 import React, { useState } from 'react'
 import { useI18n } from 'shared/i18n'
 import { useDispatch, useSelector } from 'react-redux'
-import { test, uniq, includes, path, pathOr } from 'ramda'
+import { test, uniq, union, includes, path, pathOr } from 'ramda'
 import { UPDATE_MI_MODELS } from 'state/actions/pvs'
+import { cleanString } from 'shared/utils'
 import './ModelEdit.scss'
 import SearchField from '../../components/SearchField'
 import Collapsible from '../../components/Collapsible'
+
+const buildSelectValue = value => ({
+  label: value,
+  value: value
+})
 
 const MiGroup = ({ title, data }) => {
   const t = useI18n()
@@ -21,7 +27,7 @@ const MiGroup = ({ title, data }) => {
 
   const selectMi = serialNumber => {
     const currentSelections = selectedMi
-    const filterDuplicates = uniq([...currentSelections, serialNumber])
+    const filterDuplicates = uniq(union(currentSelections, serialNumber))
     setSelectedMi(filterDuplicates)
   }
 
@@ -36,27 +42,18 @@ const MiGroup = ({ title, data }) => {
   const handleCheckbox = e => {
     const item = e.target.name
     const isChecked = e.target.checked
-    isChecked ? selectMi(item) : unSelectMi(item)
+    if (isChecked) selectMi(item)
+    else unSelectMi(item)
   }
 
   const selectAll = (e, miGroup) => {
     e.preventDefault()
     const currentSelections = selectedMi
-    const filterDuplicates = uniq([...currentSelections, ...miGroup])
+    const filterDuplicates = uniq(union(currentSelections, miGroup))
     setSelectedMi(filterDuplicates)
   }
 
   const notFoundText = t('NOT_FOUND')
-
-  const cleanString = (str = '') => {
-    const regex = /\W+/g
-    return str.replace(regex, '')
-  }
-
-  const buildSelectValue = value => ({
-    label: value,
-    value: value
-  })
 
   const filterModel = (inputValue, cb) => {
     const searchStr = cleanString(inputValue)

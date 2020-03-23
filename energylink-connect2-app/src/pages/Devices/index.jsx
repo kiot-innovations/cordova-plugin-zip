@@ -310,7 +310,7 @@ const Devices = ({ animationState }) => {
     <div className="is-flex">
       <span
         onClick={bulkEditModel}
-        className={`${icon} mr-10 ml-0 mt-0 mb-0`}
+        className={clsx(icon, 'mr-10 ml-0 mt-0 mb-0')}
       />
       <span className="devices-counter mr-10 ml-0 mt-0 mb-0">{`${num}/${max}`}</span>
     </div>
