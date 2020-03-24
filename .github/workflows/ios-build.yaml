@@ -8,9 +8,8 @@
 # - send slack notification
 on:
   push:
-    branches:
-      - master
-
+    tags:
+      - "*"
 jobs:
   build:
     runs-on: macos-10.15
@@ -39,7 +38,6 @@ jobs:
         working-directory: energylink-connect2-app
 
       - run: npm run build
-        working-directory: energylink-connect2-app
 
       #
       # Configure environment for iOS and Android
@@ -59,30 +57,13 @@ jobs:
         run: |
           npm install
           npm install -g cordova@9.0.0
-          npm rebuild node-sass
 
-      - name: Prepare cordova build for Android and iOS
+      - name: Prepare cordova build for iOS
         run: |
-          cordova prepare android
+          ls
+          
+          cordova platform add ios
           cordova prepare ios
-
-      - name: Configure credentials
-        run: |
-          echo "${{ secrets.GOOGLE_PLAY_UPLOAD_KEYSTORE }}" | base64 -d > upload-keystore.jks
-          echo "${{ secrets.GOOGLE_PLAY_API_KEY }}" | base64 -d > google-api.json
-
-      #
-      # Android Application
-      #
-      - name: Build Android Application
-        run: bundle exec fastlane android build
-        env:
-          KEYSTORE_PASSWORD: ${{ secrets.GOOGLE_PLAY_UPLOAD_KEYSTORE_PASSWORD }}
-
-      - uses: actions/upload-artifact@v1
-        with:
-          name: Android
-          path: platforms/android/app/build/outputs/apk/release/app-release.apk
 
       #
       # iOS Application
@@ -100,51 +81,9 @@ jobs:
           name: iOS
           path: platforms/ios/build/device/EnergyLinkConnect2.ipa
 
-      #
-      # Release Android and iOS Application
-      #
-      - name: Upload build to Google Play store
-        run: bundle exec fastlane android release
-        if: startsWith(github.ref, 'refs/tags/')
-
       - name: Upload build to Apple TestFlight
         run: bundle exec fastlane ios release
         if: startsWith(github.ref, 'refs/tags/')
         env:
           FASTLANE_PASSWORD: ${{ secrets.FASTLANE_PASSWORD }}
           MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
-
-      #
-      # Slack Notification
-      #
-      - name: Calculate GIT branch name
-        run: |
-          export BRANCH_NAME=${GITHUB_REF#refs/heads/}
-          export BRANCH_NAME=${BRANCH_NAME#refs/tags/}
-          echo "::set-env name=BRANCH_NAME::$BRANCH_NAME"
-
-      - name: Send slack notification
-        uses: hbfernandes/slack-action@1.0
-        env:
-          SLACK_TOKEN: ${{ secrets.SLACK_TOKEN }}
-        with:
-          args: |
-            {
-              "channel": "cm2-builds",
-              "text": "New release is available",
-              "as_user": true,
-              "attachments": [{
-                "color": "good",
-                "fields": [{
-                    "title": "Revision",
-                    "value": "${{ env.BRANCH_NAME }}",
-                    "short": true
-                  },
-                  {
-                    "title": "Build Artifacts",
-                    "value": "<https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}|Open>",
-                    "short": true
-                  }
-                ]
-              }]
-            }

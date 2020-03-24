@@ -20,3 +20,7 @@ export const CLAIM_DEVICES_UPDATE = createAction('CLAIM_DEVICES_UPDATE')
 export const CLAIM_DEVICES_COMPLETE = createAction('CLAIM_COMPLETE')
 
 export const RESET_DISCOVERY = createAction('RESET_DISCOVERY')
+
+export const FETCH_MODELS_INIT = createAction('FETCH_MODELS_INIT')
+export const FETCH_MODELS_SUCCESS = createAction('FETCH_MODELS_SUCCESS')
+export const FETCH_MODELS_ERROR = createAction('FETCH_MODELS_ERROR')

@@ -4,6 +4,7 @@ import { useHistory } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { useI18n } from 'shared/i18n'
+import { cleanString } from 'shared/utils'
 import { path, test, join, values, pick, prop, compose, length } from 'ramda'
 
 import paths from 'routes/paths'
@@ -47,11 +48,6 @@ function Home({ animationState }) {
   }, [dispatch, animationState])
 
   const notFoundText = t('NOT_FOUND')
-
-  const cleanString = (str = '') => {
-    const regex = /\W+/g
-    return str.replace(regex, '')
-  }
 
   const filterSites = (inputValue, cb) => {
     const searchStr = cleanString(inputValue)

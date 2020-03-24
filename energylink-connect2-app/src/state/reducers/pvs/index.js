@@ -13,7 +13,8 @@ import {
   START_DISCOVERY_ERROR,
   START_DISCOVERY_SUCCESS,
   SET_METADATA_SUCCESS,
-  SET_METADATA_ERROR
+  SET_METADATA_ERROR,
+  UPDATE_MI_MODELS
 } from '../../actions/pvs'
 
 const initialState = {
@@ -79,6 +80,10 @@ export const pvsReducer = createReducer(
     [SET_METADATA_ERROR]: (state, payload) => ({
       ...state,
       startSetMetaDataStatus: payload
+    }),
+    [UPDATE_MI_MODELS]: (state, payload) => ({
+      ...state,
+      serialNumbers: payload
     })
   },
   initialState
