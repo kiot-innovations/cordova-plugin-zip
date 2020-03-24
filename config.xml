@@ -34,7 +34,6 @@
     <platform name="ios">
         <preference name="UseSwiftLanguageVersion" value="4" />
         <preference name="DisallowOverscroll" value="true" />
-        <hook src="extend_build_phase.js" type="before_compile" />
         <allow-intent href="itms:*" />
         <allow-intent href="itms-apps:*" />
         <config-file mode="add" parent="ITSAppUsesNonExemptEncryption" target="*-Info.plist">
@@ -87,6 +86,4 @@
     </plugin>
     <plugin name="cordova-plugin-device" spec="^2.0.3" />
     <plugin name="cordova-plugin-nabto" spec="~2.6.3" />
-    <plugin name="scandit-cordova-datacapture-core" spec="~6.2.0" />
-    <plugin name="scandit-cordova-datacapture-barcode" spec="~6.2.0" />
 </widget>
