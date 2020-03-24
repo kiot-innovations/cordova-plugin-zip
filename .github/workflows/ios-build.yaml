@@ -28,11 +28,6 @@ jobs:
           NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
         working-directory: energylink-connect2-app
 
-      - run: npm run test
-        env:
-          CI: 1
-        working-directory: energylink-connect2-app
-
       - name: Decrypt .env
         run: openssl aes-256-cbc -d -a -salt -k '${{ secrets.ENVFILE_PASSWORD }}' -in .env.enc -out .env
         working-directory: energylink-connect2-app
@@ -60,8 +55,6 @@ jobs:
 
       - name: Prepare cordova build for iOS
         run: |
-          ls
-          
           cordova platform add ios
           cordova prepare ios
 
