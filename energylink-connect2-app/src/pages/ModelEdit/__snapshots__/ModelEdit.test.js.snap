@@ -1,0 +1,77 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MI Model Editing page renders correctly 1`] = `
+<div
+  className="model-edit is-vertical has-text-centered pr-10 pl-10"
+>
+  <span
+    className="is-uppercase has-text-weight-bold"
+  >
+    Edit Micro Inverter Models
+  </span>
+  <div
+    className="model-container"
+  >
+    <MiGroup
+      data={
+        Array [
+          Object {
+            "bounding_box": Object {
+              "height": 131,
+              "left": 1174,
+              "top": 850,
+              "width": 1614,
+            },
+            "model": "Type E",
+            "serial_number": "E00121852014339",
+            "type": "MI",
+          },
+          Object {
+            "bounding_box": Object {
+              "height": 113,
+              "left": 1109,
+              "top": 1470,
+              "width": 1619,
+            },
+            "model": "Type E",
+            "serial_number": "E00121929013075",
+            "type": "MI",
+          },
+          Object {
+            "bounding_box": Object {
+              "height": 113,
+              "left": 1259,
+              "top": 2055,
+              "width": 1497,
+            },
+            "model": "Type E",
+            "serial_number": "E00121852014321",
+            "type": "MI",
+          },
+          Object {
+            "bounding_box": Object {
+              "height": 105,
+              "left": 1279,
+              "top": 2647,
+              "width": 1495,
+            },
+            "model": "Type E",
+            "serial_number": "E00121852014325",
+            "type": "MI",
+          },
+        ]
+      }
+      key="Type E"
+      title="Type E"
+    />
+  </div>
+  <Link
+    className="link is-uppercase"
+    to="/devices"
+  >
+    <small>
+      BACK
+    </small>
+  </Link>
+</div>
+`;
