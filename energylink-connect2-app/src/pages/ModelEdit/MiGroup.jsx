@@ -27,7 +27,7 @@ const MiGroup = ({ title, data }) => {
 
   const selectMi = serialNumber => {
     const currentSelections = selectedMi
-    const filterDuplicates = union(currentSelections, serialNumber)
+    const filterDuplicates = union(currentSelections, [serialNumber])
     setSelectedMi(filterDuplicates)
   }
 
