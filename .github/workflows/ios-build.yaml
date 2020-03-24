@@ -38,7 +38,6 @@ jobs:
         working-directory: energylink-connect2-app
 
       - run: npm run build
-        working-directory: energylink-connect2-app
 
       #
       # Configure environment for iOS and Android
@@ -58,10 +57,12 @@ jobs:
         run: |
           npm install
           npm install -g cordova@9.0.0
-          npm rebuild node-sass
 
       - name: Prepare cordova build for iOS
         run: |
+          ls
+          cordova plugin save
+          cordova platform add ios
           cordova prepare ios
 
       #
