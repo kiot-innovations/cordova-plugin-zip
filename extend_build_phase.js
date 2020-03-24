@@ -11,6 +11,12 @@ const myProj = xcode.project(projectPath)
 var options = { shellPath: '/bin/sh', shellScript }
 
 myProj.parse(function(err) {
+  if (err) {
+    console.error('ERROR PARSING PROJECT')
+    console.error(err)
+    return
+  }
+
   myProj.addBuildPhase(
     [],
     'PBXShellScriptBuildPhase',
