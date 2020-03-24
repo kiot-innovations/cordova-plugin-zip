@@ -295,8 +295,7 @@ const Devices = ({ animationState }) => {
       return {
         OPERATION: 'add',
         SERIAL: mi.serial_number,
-        TYPE: 'SOLARBRIDGE',
-        panid: 0
+        TYPE: 'SOLARBRIDGE'
       }
     })
     dispatch(CLAIM_DEVICES_INIT(JSON.stringify(claimObject)))
