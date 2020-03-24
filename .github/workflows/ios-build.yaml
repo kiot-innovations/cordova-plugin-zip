@@ -60,9 +60,8 @@ jobs:
           npm install -g cordova@9.0.0
           npm rebuild node-sass
 
-      - name: Prepare cordova build for Android and iOS
+      - name: Prepare cordova build for iOS
         run: |
-          cordova prepare android
           cordova prepare ios
 
       #
