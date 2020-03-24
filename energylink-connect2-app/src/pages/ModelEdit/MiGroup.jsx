@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useI18n } from 'shared/i18n'
 import { useDispatch, useSelector } from 'react-redux'
-import { test, uniq, union, includes, path, pathOr } from 'ramda'
+import { test, union, includes, path, pathOr } from 'ramda'
 import { UPDATE_MI_MODELS } from 'state/actions/pvs'
 import { cleanString } from 'shared/utils'
 import './ModelEdit.scss'
@@ -27,7 +27,7 @@ const MiGroup = ({ title, data }) => {
 
   const selectMi = serialNumber => {
     const currentSelections = selectedMi
-    const filterDuplicates = uniq(union(currentSelections, serialNumber))
+    const filterDuplicates = union(currentSelections, serialNumber)
     setSelectedMi(filterDuplicates)
   }
 
@@ -49,7 +49,7 @@ const MiGroup = ({ title, data }) => {
   const selectAll = (e, miGroup) => {
     e.preventDefault()
     const currentSelections = selectedMi
-    const filterDuplicates = uniq(union(currentSelections, miGroup))
+    const filterDuplicates = union(currentSelections, miGroup)
     setSelectedMi(filterDuplicates)
   }
 
