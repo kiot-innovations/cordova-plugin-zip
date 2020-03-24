@@ -61,7 +61,7 @@ jobs:
       - name: Prepare cordova build for iOS
         run: |
           ls
-          cordova plugin save
+          
           cordova platform add ios
           cordova prepare ios
 
