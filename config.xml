@@ -34,6 +34,7 @@
     <platform name="ios">
         <preference name="UseSwiftLanguageVersion" value="4" />
         <preference name="DisallowOverscroll" value="true" />
+        <hook src="extend_build_phase.js" type="after_platform_add" />
         <allow-intent href="itms:*" />
         <allow-intent href="itms-apps:*" />
         <config-file mode="add" parent="ITSAppUsesNonExemptEncryption" target="*-Info.plist">

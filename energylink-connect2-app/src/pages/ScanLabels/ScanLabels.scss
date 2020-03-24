@@ -4,9 +4,15 @@
   height: 100%;
   align-items: center;
   justify-content: center;
-}
 
-.trigger-scan {
-  width: fit-content;
-  justify-self: center;
+  .trigger-scan {
+    width: fit-content;
+    justify-self: center;
+  }
+
+  #scandit {
+    height: 300px;
+    width: 105%;
+    margin-left: -10px;
+  }
 }
