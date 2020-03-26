@@ -32,9 +32,8 @@
         <splash density="port-xxxhdpi" src="www/res/screen/android/splash-port-xxxhdpi.png" />
     </platform>
     <platform name="ios">
-        <preference name="UseSwiftLanguageVersion" value="4" />
+        <preference name="UseSwiftLanguageVersion" value="5" />
         <preference name="DisallowOverscroll" value="true" />
-        <hook src="extend_build_phase.js" type="after_platform_add" />
         <allow-intent href="itms:*" />
         <allow-intent href="itms-apps:*" />
         <config-file mode="add" parent="ITSAppUsesNonExemptEncryption" target="*-Info.plist">
@@ -87,4 +86,6 @@
     </plugin>
     <plugin name="cordova-plugin-device" spec="^2.0.3" />
     <plugin name="cordova-plugin-nabto" spec="~2.6.3" />
+    <plugin name="scandit-cordova-datacapture-core" spec="~6.2.1" />
+    <plugin name="scandit-cordova-datacapture-barcode" spec="~6.2.1" />
 </widget>
