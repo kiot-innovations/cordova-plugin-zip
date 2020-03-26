@@ -27,6 +27,7 @@
     "cordova-plugin-nabto": "^2.6.3",
     "cordova-plugin-network-information": "^2.0.2",
     "cordova-plugin-wifiwizard2": "git+https://github.com/tripflex/wifiwizard2.git",
+    "cordova-plugin-wkwebview-engine": "^1.2.1",
     "cordova-plugin-zip": "^3.1.0",
     "es6-promise-plugin": "^4.1.0",
     "phonegap": "^9.0.0",
@@ -59,7 +60,8 @@
         "ANDROID_PATHPREFIX": "/"
       },
       "cordova-plugin-device": {},
-      "cordova-plugin-nabto": {}
+      "cordova-plugin-nabto": {},
+      "cordova-plugin-wkwebview-engine": {}
     },
     "platforms": [
       "android",
