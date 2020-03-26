@@ -21,13 +21,6 @@ const microInverterIcon = (
   <span className="sp-inverter mr-20 devices-icon ml-0 mt-0 mb-0" />
 )
 
-const Icon = (num = 0, max = 0, icon = '') => (
-  <div className="is-flex">
-    <span className={`${icon} mr-10 ml-0 mt-0 mb-0`} />
-    <span className="devices-counter mr-10 ml-0 mt-0 mb-0">{`${num}/${max}`}</span>
-  </div>
-)
-
 const miStates = {
   NEW: 'LOADING',
   PINGING: 'LOADING',
@@ -104,6 +97,7 @@ function mapStateToProps({ devices, pvs }) {
     found,
     claimingDevices,
     claimedDevices,
+    claimError,
     error,
     progress
   } = devices
@@ -112,7 +106,8 @@ function mapStateToProps({ devices, pvs }) {
   return {
     claim: {
       claimingDevices,
-      claimedDevices
+      claimedDevices,
+      claimError
     },
     progress,
     found: {
@@ -172,6 +167,32 @@ const discoveryStatus = (
       )
     }
 
+    if (claim.claimError) {
+      return (
+        <>
+          <span className="has-text-weight-bold mb-20">
+            {t('CLAIM_DEVICES_ERROR', claim.claimError)}
+          </span>
+          <Link
+            className="button is-outlined is-primary is-uppercase is-paddingless ml-75 mr-75 mb-10"
+            to={paths.PROTECTED.SN_LIST.path}
+          >
+            {t('ADD-DEVICES')}
+          </Link>
+          <button
+            className={clsx(
+              'button is-primary is-uppercase is-paddingless ml-75 mr-75',
+              { 'is-loading': claim.claimingDevices }
+            )}
+            disabled={claim.claimingDevices}
+            onClick={claimDevices}
+          >
+            {t('CLAIM_DEVICES')}
+          </button>
+        </>
+      )
+    }
+
     return (
       <>
         <Link
@@ -188,7 +209,7 @@ const discoveryStatus = (
           disabled={claim.claimingDevices}
           onClick={claimDevices}
         >
-          {t('DONE')}
+          {t('CLAIM_DEVICES')}
         </button>
       </>
     )
@@ -273,13 +294,26 @@ const Devices = ({ animationState }) => {
     const claimObject = path(['inverter'], found).map(mi => {
       return {
         OPERATION: 'add',
-        MODEL: 'AC_Module_Type_E',
         SERIAL: mi.serial_number,
         TYPE: 'SOLARBRIDGE'
       }
     })
     dispatch(CLAIM_DEVICES_INIT(JSON.stringify(claimObject)))
   }
+
+  const bulkEditModel = () => {
+    history.push(paths.PROTECTED.MODEL_EDIT.path)
+  }
+
+  const miActions = (num = 0, max = 0, icon = '') => (
+    <div className="is-flex">
+      <span
+        onClick={bulkEditModel}
+        className={clsx(icon, 'mr-10 ml-0 mt-0 mb-0')}
+      />
+      <span className="devices-counter mr-10 ml-0 mt-0 mb-0">{`${num}/${max}`}</span>
+    </div>
+  )
 
   return (
     <div className="fill-parent is-flex tile is-vertical has-text-centered sunpower-devices pr-15 pl-15">
@@ -292,9 +326,10 @@ const Devices = ({ animationState }) => {
           title={t('MICRO-INVERTERS')}
           icon={microInverterIcon}
           expanded
-          actions={Icon(
+          actions={miActions(
             counts.inverter.okMICount,
-            length(propOr([], 'inverter', found))
+            length(propOr([], 'inverter', found)),
+            'sp-gear'
           )}
         >
           <ul className="equipment-list">
@@ -310,11 +345,14 @@ const Devices = ({ animationState }) => {
                         SN:
                       </span>
                       {elem.serial_number}
+                      <span className="has-text-weight-bold ml-10">
+                        {elem.model}
+                      </span>
                     </span>
-                    {elem.model ? (
-                      <span>{elem.model}</span>
+                    {elem.modelStr ? (
+                      <span>{elem.modelStr}</span>
                     ) : (
-                      <span>{t('RETRIEVING_MODEL')}</span>
+                      <span>{t('NO_MODEL')}</span>
                     )}
                   </div>
                   <div

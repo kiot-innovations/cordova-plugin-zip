@@ -38,6 +38,7 @@ import ScanLabels from 'pages/ScanLabels'
 import GiveFeedback from 'pages/GiveFeedback'
 import SNList from 'pages/SNList'
 import Devices from 'pages/Devices'
+import ModelEdit from 'pages/ModelEdit'
 import InstallSuccessful from 'pages/InstallSuccess'
 import SystemConfiguration from 'pages/SystemConfiguration'
 import SavingConfiguration from 'pages/SavingConfiguration'
@@ -66,6 +67,7 @@ const mapComponents = {
   [paths.PROTECTED.SYSTEM_CONFIGURATION.path]: SystemConfiguration,
   [paths.PROTECTED.SAVING_CONFIGURATION.path]: SavingConfiguration,
   [paths.PROTECTED.SN_LIST.path]: SNList,
+  [paths.PROTECTED.MODEL_EDIT.path]: ModelEdit,
   [paths.UNPROTECTED.FORGOT_PASSWORD.path]: NotFound,
   [paths.UNPROTECTED.GET_ASSISTANCE.path]: NotFound,
   [paths.UNPROTECTED.LOGIN.path]: Login,

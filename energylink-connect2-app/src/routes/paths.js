@@ -28,6 +28,12 @@ const paths = {
       footer: true,
       tab: TABS.INSTALL
     },
+    MODEL_EDIT: {
+      path: '/model-edit',
+      header: true,
+      footer: true,
+      tab: TABS.INSTALL
+    },
     ROOT: {
       path: '/',
       header: true

@@ -96,3 +96,20 @@ export const getConnectedAP = (interfaces, aps) =>
     defaultTo({ ssid: '' }),
     find(propEq('ssid', getCurrentlyConnectedInterface(interfaces)))
   )(aps)
+
+export const groupBy = (array, prop) => {
+  return array.reduce((acc, obj) => {
+    const key = obj[prop]
+    if (!acc[key]) {
+      acc[key] = []
+    }
+
+    acc[key].push(obj)
+    return acc
+  }, {})
+}
+
+export const cleanString = (str = '') => {
+  const regex = /\W+/g
+  return str.replace(regex, '')
+}

@@ -1,0 +1,75 @@
+@import '~@sunpower/theme-dark/styles/variables';
+
+.model-edit{
+  display: grid;
+  grid-template-rows: 5% 1fr;
+  grid-row-gap: 1rem;
+  height: -webkit-fill-available;
+
+  .model-container{
+    .collapsible{
+      margin-bottom: 1em;
+    }
+  }
+
+  .mi-container{
+    max-height: 30rem;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    font-family: $font;
+    letter-spacing: 0;
+    border-radius: 5px;
+
+    .inline-buttons {
+      grid-template-columns: 1fr 1fr;
+      display: grid;
+      button{
+        padding: unset !important;
+      }
+    }
+  }
+
+  .mi-list{
+    display: grid;
+    text-align: left;
+    grid-template-columns: 1fr;
+    grid-row-gap: 1em;
+  }
+
+  .mi-item{
+    display: grid;
+    grid-template-columns: 20px 1fr;
+    grid-template-rows: 1fr 1fr;
+    grid-column-gap: 1em;
+    grid-template-areas: "checkbox serialnumber" "checkbox modeldata";
+    align-items: center;
+
+    &-checkbox{
+      grid-area: checkbox;
+      -webkit-appearance: none;
+      background-color: $black;
+      border: 1px solid $silver-sand2;
+      padding: 7px;
+      border-radius: 3px;
+      display: inline-block;
+      position: relative;
+    }
+
+    &-checkbox:checked:after {
+      content: '\2713';
+      font-size: 14px;
+      position: absolute;
+      top: -2px;
+      left: 0;
+      color: #99a1a7;
+    }
+
+    &-serialnumber{
+      grid-area: serialnumber;
+    }
+
+    &-modeldata{
+      grid-area: modeldata;
+    }
+  }
+}
