@@ -5,7 +5,9 @@
 # have quick result, so we only want to test and build the application.
 on:
   pull_request:
-
+  push:
+    branches:
+      - develop
 jobs:
   build:
     # Run Quick Builds on Ubutnu 18.04 (Linux) instead of MacOS
