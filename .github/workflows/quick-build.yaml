@@ -5,10 +5,15 @@
 # have quick result, so we only want to test and build the application.
 on:
   pull_request:
-
+  push:
+    branches:
+      - develop
 jobs:
   build:
-    runs-on: macos-10.15
+    # Run Quick Builds on Ubutnu 18.04 (Linux) instead of MacOS
+    # because MacOS builds are 10x more expensive (minute multiplier is 10)
+    # https://help.github.com/en/github/setting-up-and-managing-billing-and-payments-on-github/about-billing-for-github-actions#about-billing-for-github-actions
+    runs-on: ubuntu-18.04
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
@@ -30,7 +35,7 @@ jobs:
         working-directory: energylink-connect2-app
 
       - name: Decrypt .env
-        run: openssl aes-256-cbc -d -a -salt -k '${{ secrets.ENVFILE_PASSWORD }}' -in .env.enc -out .env
+        run: openssl enc -aes256 -d -base64 -md md5 -pass pass:'${{ secrets.ENVFILE_PASSWORD }}' -in .env.enc -out .env
         working-directory: energylink-connect2-app
 
       - run: npm run build

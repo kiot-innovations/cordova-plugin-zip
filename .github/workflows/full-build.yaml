@@ -11,7 +11,7 @@ on:
     branches:
       - master
     tags:
-      - '*'
+      - "*"
 
 jobs:
   build:
@@ -37,7 +37,7 @@ jobs:
         working-directory: energylink-connect2-app
 
       - name: Decrypt .env
-        run: openssl aes-256-cbc -d -a -salt -k '${{ secrets.ENVFILE_PASSWORD }}' -in .env.enc -out .env
+        run: openssl enc -aes256 -d -base64 -md md5 -pass pass:'${{ secrets.ENVFILE_PASSWORD }}' -in .env.enc -out .env
         working-directory: energylink-connect2-app
 
       - run: npm run build
