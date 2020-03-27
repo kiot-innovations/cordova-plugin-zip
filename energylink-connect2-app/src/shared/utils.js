@@ -11,7 +11,10 @@ import {
   find,
   propEq,
   map,
-  defaultTo
+  defaultTo,
+  curry,
+  dissoc,
+  assoc
 } from 'ramda'
 
 export const either = (condition, whenTrue, whenFalse = null) =>
@@ -113,3 +116,7 @@ export const cleanString = (str = '') => {
   const regex = /\W+/g
   return str.replace(regex, '')
 }
+
+export const renameKey = curry((oldKey, newKey, obj) =>
+  assoc(newKey, prop(oldKey, obj), dissoc(oldKey, obj))
+)

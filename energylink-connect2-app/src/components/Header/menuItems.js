@@ -14,7 +14,7 @@ export default [
   {
     icon: 'sp-info',
     text: 'VERSION_INFORMATION',
-    to: paths.PROTECTED.MODEL_EDIT.path
+    to: paths.PROTECTED.VERSION_INFORMATION.path
   },
   {
     icon: 'sp-feedback',
