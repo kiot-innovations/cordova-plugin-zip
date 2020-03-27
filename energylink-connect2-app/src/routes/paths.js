@@ -44,7 +44,7 @@ const paths = {
     },
     MENU: { path: '/menu', header: true },
     MANAGE_FIRMWARES: { path: '/manage-firmwares', header: true },
-    VERSION_INFORMATION: { path: '/version-information' },
+    VERSION_INFORMATION: { path: '/version-information', header: true },
     GIVE_FEEDBACK: { path: '/give-feedback', header: true },
     PVS_CONNECTION_SUCCESS: {
       path: '/pvs-connection-success',

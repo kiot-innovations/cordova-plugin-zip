@@ -52,8 +52,8 @@ export default () => {
   useEffect(() => {
     dispatch(
       actions.init([
-        utils.panelBuilder({ id: '10', x: 130, y: 90 }),
-        utils.panelBuilder({ id: '11', x: 130, y: 130 })
+        utils.panelBuilder({ id: '100', x: 130, y: 90 }),
+        utils.panelBuilder({ id: '111', x: 130, y: 130 })
       ])
     )
   }, [dispatch])
@@ -65,12 +65,12 @@ export default () => {
       <Canvas
         store={store}
         width={window.innerWidth}
-        height={window.innerHeight - 100}
+        height={window.innerHeight - window.innerHeight * 0.25}
         onClick={assign}
       >
         <PanelsContainer PanelComponent={EPanel} />
       </Canvas>
-      <h3 className='has-text-centered has-text-white'>Add panel to layout</h3>
+      <h3 className="has-text-centered has-text-white">Add panel to layout</h3>
       <div className="panelContainer">
         {either(
           index !== 0,
