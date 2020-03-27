@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom'
 import ReactGA from 'react-ga'
 import * as Sentry from '@sentry/browser'
 import '@sunpower/theme-dark'
-// import App from './App'
+import App from './App'
 
 const GAproperty = process.env.REACT_APP_IS_MOBILE
   ? process.env.NODE_ENV === 'production'
@@ -19,10 +19,8 @@ ReactGA.set({ checkProtocolTask: null })
 
 Sentry.init({ dsn: process.env.REACT_APP_SENTRY_DSN })
 
-const MyApp = () => <h1> This App Runs on WkwebEngine </h1>
-
 const startApp = () => {
-  ReactDOM.render(<MyApp />, document.getElementById('root'))
+  ReactDOM.render(<App />, document.getElementById('root'))
   if (window.UXCam) {
     window.UXCam.optIntoSchematicRecordings() /* To enabled session video recording on iOS */
     window.UXCam.startWithKey(process.env.REACT_APP_UXCAM)
