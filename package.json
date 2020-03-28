@@ -23,6 +23,7 @@
     "cordova-plugin-file-md5": "^0.3.3",
     "cordova-plugin-file-transfer": "^1.7.1",
     "cordova-plugin-inappbrowser": "^3.1.0",
+    "cordova-plugin-nabto": "^2.6.3",
     "cordova-plugin-network-information": "^2.0.2",
     "cordova-plugin-wifiwizard2": "git+https://github.com/tripflex/wifiwizard2.git",
     "cordova-plugin-wkwebview-engine": "^1.2.1",
@@ -54,7 +55,10 @@
       },
       "cordova-plugin-device": {},
       "cordova-plugin-wkwebview-engine": {},
-      "cordova-uxcam": {}
+      "cordova-plugin-camera": {
+        "ANDROID_SUPPORT_V4_VERSION": "27.+"
+      },
+      "cordova-plugin-nabto": {}
     },
     "platforms": [
       "ios"
