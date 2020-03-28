@@ -19,7 +19,7 @@ ReactGA.set({ checkProtocolTask: null })
 
 Sentry.init({ dsn: process.env.REACT_APP_SENTRY_DSN })
 
-const MyApp = () => <h1> This App Runs on WkwebEngine </h1>
+const MyApp = () => <h1 className="mt-30"> This App Runs on WkwebEngine </h1>
 
 const startApp = () => {
   ReactDOM.render(<MyApp />, document.getElementById('root'))
