@@ -53,7 +53,8 @@
         "ANDROID_PATHPREFIX": "/"
       },
       "cordova-plugin-device": {},
-      "cordova-plugin-wkwebview-engine": {}
+      "cordova-plugin-wkwebview-engine": {},
+      "cordova-uxcam": {}
     },
     "platforms": [
       "ios"
