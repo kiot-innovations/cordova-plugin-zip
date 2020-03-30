@@ -60,8 +60,7 @@ function Firmwares({ animationState }) {
   }, [dispatch, downloadFile, animationState])
 
   useEffect(() => {
-    if (fileInfo.error === 'NO WIFI') setModal(true)
-    else if (!fileInfo.error) setModal(false)
+    setModal(fileInfo.error === 'NO WIFI')
   }, [fileInfo.error, setModal])
 
   return (
