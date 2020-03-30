@@ -1,5 +1,6 @@
 import { combineReducers } from 'redux'
 import { persistReducer } from 'redux-persist'
+import { getReducer as getPLTReducer } from '@sunpower/panel-layout-tool'
 import storage from 'redux-persist/lib/storage'
 
 import { userReducer } from './user'
@@ -19,7 +20,9 @@ import fileDownloader from './fileDownloader'
 import devicesReducer from './devices'
 import systemConfigurationReducer from './systemConfiguration'
 import firmwareUpdate from './firmware-update'
+
 export default combineReducers({
+  ...getPLTReducer(),
   ui,
   user: persistReducer(
     {
