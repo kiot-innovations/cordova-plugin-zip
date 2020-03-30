@@ -1,6 +1,6 @@
 import { compose, pick, prop, without } from 'ramda'
 import React, { useCallback, useEffect, useState } from 'react'
-import { useDispatch, useStore } from 'react-redux'
+import { useDispatch, useSelector, useStore } from 'react-redux'
 import {
   actions,
   utils,
@@ -8,7 +8,8 @@ import {
   Panel,
   PanelsContainer,
   withSelectablePanel,
-  withDraggablePanel
+  withDraggablePanel,
+  RotationSelector
 } from '@sunpower/panel-layout-tool'
 import { renameKey, either } from 'shared/utils'
 import './panelLayoutTool.scss'
@@ -24,13 +25,10 @@ const getPosition = compose(
 )
 export default () => {
   const dispatch = useDispatch()
-  const [unassigned, setUnassigned] = useState([
-    '12345',
-    'ZT12345',
-    'ZT1235673',
-    'ZT!234asd4',
-    'zxcas1234125'
-  ])
+  const serialNumbers = useSelector(({ pvs }) => pvs.serialNumbers)
+  const [unassigned, setUnassigned] = useState(
+    serialNumbers.map(({ serial_number }) => serial_number)
+  )
   const [index, setIndex] = useState(0)
 
   const assign = useCallback(
@@ -87,6 +85,7 @@ export default () => {
           </button>
         )}
       </div>
+      <RotationSelector />
     </>
   )
 }

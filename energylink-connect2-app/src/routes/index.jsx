@@ -43,7 +43,7 @@ import InstallSuccessful from 'pages/InstallSuccess'
 import SystemConfiguration from 'pages/SystemConfiguration'
 import SavingConfiguration from 'pages/SavingConfiguration'
 import Logout from 'pages/Logout'
-import PLT from 'pages/PanelLayoutTool'
+import PanelLayoutTool from 'pages/PanelLayoutTool'
 import paths from './paths'
 import { validateSession } from 'state/actions/auth'
 
@@ -60,7 +60,7 @@ const mapComponents = {
   [paths.PROTECTED.PVS_CONNECTION_SUCCESS.path]: PvsConnectionSuccessful,
   [paths.PROTECTED.INSTALL_SUCCESS.path]: InstallSuccessful,
   [paths.PROTECTED.ROOT.path]: Home,
-  [paths.PROTECTED.VERSION_INFORMATION.path]: PLT,
+  [paths.PROTECTED.VERSION_INFORMATION.path]: PanelLayoutTool,
   [paths.PROTECTED.INVENTORY_COUNT.path]: InventoryCount,
   [paths.PROTECTED.CONNECT_TO_PVS.path]: ConnectToPVS,
   [paths.PROTECTED.SCAN_LABELS.path]: ScanLabels,

@@ -72,6 +72,7 @@ Object {
                   }
                   defaultOptions={false}
                   filterOption={null}
+                  isLoading={false}
                   isSearchable={true}
                   loadOptions={[Function]}
                   noOptionsMessage={[Function]}
@@ -526,6 +527,7 @@ Object {
                                     }
                                   >
                                     <EmotionCssPropInternal
+                                      __EMOTION_LABEL_PLEASE_DO_NOT_USE__="ValueContainer"
                                       __EMOTION_TYPE_PLEASE_DO_NOT_USE__="div"
                                       className="search__value-container"
                                       css={
@@ -543,7 +545,7 @@ Object {
                                       }
                                     >
                                       <div
-                                        className="search__value-container css-1hwfws3"
+                                        className="search__value-container css-g1d714-ValueContainer"
                                       >
                                         <Placeholder
                                           clearValue={[Function]}
@@ -1475,6 +1477,7 @@ Object {
                   }
                   defaultOptions={false}
                   filterOption={null}
+                  isLoading={false}
                   isSearchable={true}
                   loadOptions={[Function]}
                   noOptionsMessage={[Function]}
@@ -1929,6 +1932,7 @@ Object {
                                     }
                                   >
                                     <EmotionCssPropInternal
+                                      __EMOTION_LABEL_PLEASE_DO_NOT_USE__="ValueContainer"
                                       __EMOTION_TYPE_PLEASE_DO_NOT_USE__="div"
                                       className="search__value-container"
                                       css={
@@ -1946,7 +1950,7 @@ Object {
                                       }
                                     >
                                       <div
-                                        className="search__value-container css-1hwfws3"
+                                        className="search__value-container css-g1d714-ValueContainer"
                                       >
                                         <Placeholder
                                           clearValue={[Function]}
