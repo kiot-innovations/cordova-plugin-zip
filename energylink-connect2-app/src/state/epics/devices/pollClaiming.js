@@ -19,9 +19,14 @@ import {
 const updateClaimProgress = claimProgress => {
   const percent = prop('percent', claimProgress)
   const result = prop('result', claimProgress)
+  const code = prop('code', claimProgress)
 
   if (percent === 100 && result === 'succeed')
     return CLAIM_DEVICES_COMPLETE(claimProgress)
+
+  if (percent === 100 && result === 'error') {
+    return CLAIM_DEVICES_ERROR(code)
+  }
 
   return CLAIM_DEVICES_UPDATE(percent)
 }

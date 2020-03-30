@@ -1,0 +1,89 @@
+####
+# Full version of build workflow
+#
+# This is a full version of build workflow for build and release:
+# - test and build native application
+# - build and store as build artifacts Android and iOS Application
+# - for releases (git tag) upload a build artifact to Google Play and Apple TestFlight
+# - send slack notification
+on:
+  push:
+    tags:
+      - "*"
+jobs:
+  build:
+    runs-on: macos-10.15
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: "10.15.3"
+          registry-url: "https://registry.npmjs.org"
+
+      #
+      # Native Application
+      #
+      - run: npm install
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
+        working-directory: energylink-connect2-app
+
+      - run: npm run test
+        env:
+          CI: 1
+        working-directory: energylink-connect2-app
+
+      - name: Decrypt .env
+        run: openssl aes-256-cbc -d -a -salt -k '${{ secrets.ENVFILE_PASSWORD }}' -in .env.enc -out .env
+        working-directory: energylink-connect2-app
+
+      - run: npm run build
+        working-directory: energylink-connect2-app
+
+      #
+      # Configure environment for iOS and Android
+      #
+      - uses: actions/setup-java@v1
+        with:
+          java-version: 8
+
+      - uses: actions/setup-ruby@v1
+        with:
+          ruby-version: "2.4"
+
+      - name: Install RubyGems
+        run: bundle install --jobs 4 --retry 3
+
+      - name: Install Cordova
+        run: |
+          npm install
+          npm install -g cordova@9.0.0
+          npm rebuild node-sass
+
+      - name: Prepare cordova build for Android and iOS
+        run: |
+          cordova prepare android
+          cordova prepare ios
+
+      #
+      # iOS Application
+      #
+      - name: Build iOS Application
+        run: bundle exec fastlane ios build
+        env:
+          FASTLANE_PASSWORD: ${{ secrets.FASTLANE_PASSWORD }}
+          MATCH_GIT_BASIC_AUTHORIZATION: ${{ secrets.MATCH_GIT_BASIC_AUTHORIZATION }}
+          MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
+          KEYCHAIN_PASSWORD: ${{ secrets.KEYCHAIN_PASSWORD }}
+
+      - uses: actions/upload-artifact@v1
+        with:
+          name: iOS
+          path: platforms/ios/build/device/EnergyLinkConnect2.ipa
+
+      - name: Upload build to Apple TestFlight
+        run: bundle exec fastlane ios release
+        if: startsWith(github.ref, 'refs/tags/')
+        env:
+          FASTLANE_PASSWORD: ${{ secrets.FASTLANE_PASSWORD }}
+          MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}

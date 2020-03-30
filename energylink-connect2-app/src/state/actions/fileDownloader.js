@@ -94,7 +94,13 @@ export function getPFile(fileName) {
     )
   })
 }
-function getPersistentFile(fileName, fileUrl, dispatch, wifiOnly) {
+function getPersistentFile(
+  fileName,
+  fileUrl,
+  dispatch,
+  wifiOnly,
+  showProgress = true
+) {
   return new Promise((resolve, reject) => {
     getPFile(fileName)
       .then(resolve)
@@ -102,7 +108,7 @@ function getPersistentFile(fileName, fileUrl, dispatch, wifiOnly) {
         const networkState = navigator.connection.type
         if (networkState !== 'wifi' && wifiOnly)
           return reject(new Error(ERROR_CODES.noWifi))
-        downloadLuaFile(fileName, fileUrl, dispatch, wifiOnly)
+        downloadFile(fileName, fileUrl, dispatch, wifiOnly, showProgress)
         reject(e)
       })
   })
@@ -113,8 +119,7 @@ export function getFile(wifiOnly = true) {
     try {
       const { fileURL, luaFileName, version } = await getFirmwareVersionNumber()
       dispatch(SET_FILE_NAME(`${luaFileName} - ${version}`))
-
-      await getPersistentFile(luaFileName, fileURL, dispatch, wifiOnly)
+      await getPersistentFile(luaFileName, fileURL, dispatch, wifiOnly, false)
       await parseLuaFile(luaFileName, dispatch)
       const fileSystemURL = getFileSystemURL(fileURL)
       removeEventListeners()
@@ -202,11 +207,19 @@ function downloadProgress(event, dispatch) {
   return dispatch(DOWNLOAD_PROGRESS({ progress: event.data[0] }))
 }
 
-function downloadLuaFile(fileName, fileUrl, dispatch, wifiOnly) {
+function downloadFile(
+  fileName,
+  fileUrl,
+  dispatch,
+  wifiOnly,
+  showProgress = true
+) {
   window.downloader.init({ folder: 'firmware' })
-  document.addEventListener('DOWNLOADER_downloadProgress', e => {
-    downloadProgress(e, dispatch)
-  })
+
+  if (showProgress)
+    document.addEventListener('DOWNLOADER_downloadProgress', e => {
+      downloadProgress(e, dispatch)
+    })
 
   document.addEventListener('DOWNLOADER_downloadSuccess', e =>
     downloadSuccess(e, dispatch, wifiOnly)
