@@ -14,6 +14,7 @@
     "ecosystem:cordova"
   ],
   "dependencies": {
+    "cordova-android": "^8.1.0",
     "cordova-ios": "^5.1.1",
     "cordova-plugin-add-swift-support": "^2.0.2",
     "cordova-plugin-camera": "^4.1.0",
@@ -68,6 +69,9 @@
       "cordova-plugin-nabto": {},
       "cordova-plugin-http": {}
     },
-    "platforms": []
+    "platforms": [
+      "ios",
+      "android"
+    ]
   }
 }

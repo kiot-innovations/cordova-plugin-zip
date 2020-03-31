@@ -1,7 +1,13 @@
 .qr-layout{
   height: 100%;
   display: grid;
-  grid-template-rows: 20% 1fr 20%;
+  grid-template-rows: 10% 1fr 15%;
+
+  #scandit {
+    // height: 330px;
+    width: 105%;
+    margin-left: -10px;
+  }
 }
 
 .qr-icon{

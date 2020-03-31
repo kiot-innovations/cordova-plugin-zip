@@ -19,7 +19,7 @@ export function scanM(onRecognize, nodeID = 'scandit') {
   // The settings instance initially has all types of barcodes (symbologies) disabled. For the purpose of this
   // sample we enable a very generous set of symbologies. In your own app ensure that you only enable the
   // symbologies that your app requires as every additional enabled symbology has an impact on processing times.
-  settings.enableSymbologies([Scandit.Symbology.Code128])
+  settings.enableSymbologies([Scandit.Symbology.Code128, Scandit.Symbology.QR])
 
   // Create new barcode tracking mode with the settings from above.
   const barcodeTracking = Scandit.BarcodeTracking.forContext(context, settings)
@@ -67,6 +67,64 @@ export function scanM(onRecognize, nodeID = 'scandit') {
 
   return () => {
     barcodeTracking.isEnabled = false
+    camera.switchToDesiredState(Scandit.FrameSourceState.Off)
+  }
+}
+
+export function scanSimple(onRecognize, nodeID = 'scandit') {
+  const key = process.env.REACT_APP_SCANDIT
+
+  const context = Scandit.DataCaptureContext.forLicenseKey(key)
+
+  // Use the world-facing (back) camera and set it as the frame source of the context. The camera is off by
+  // default and must be turned on to start streaming frames to the data capture context for recognition.
+  const camera = Scandit.Camera.default
+  context.setFrameSource(camera)
+
+  // The barcode capturing process is configured through barcode capture settings
+  // and are then applied to the barcode capture instance that manages barcode recognition.
+  const settings = new Scandit.BarcodeCaptureSettings()
+
+  // The settings instance initially has all types of barcodes (symbologies) disabled. For the purpose of this
+  // sample we enable a very generous set of symbologies. In your own app ensure that you only enable the
+  // symbologies that your app requires as every additional enabled symbology has an impact on processing times.
+  settings.enableSymbologies([Scandit.Symbology.QR, Scandit.Symbology.Code128])
+
+  // Create new barcode capture mode with the settings from above.
+  const barcodeCapture = Scandit.BarcodeCapture.forContext(context, settings)
+
+  // Register a listener to get informed whenever a new barcode got recognized.
+  barcodeCapture.addListener({
+    didScan: (barcodeCapture, session) => {
+      if (session.newlyRecognizedBarcodes.length > 0) {
+        const barcodes = map(path(['data']), session.newlyRecognizedBarcodes)
+        onRecognize(barcodes)
+      }
+    }
+  })
+
+  // To visualize the on-going barcode capturing process on screen, setup a data capture view that renders the
+  // camera preview. The view must be connected to the data capture context.
+  const view = Scandit.DataCaptureView.forContext(context)
+
+  // Connect the data capture view to the HTML element, so it can fill up its size and follow its position.
+  view.connectToElement(document.getElementById('scandit'))
+
+  // Add a barcode capture overlay to the data capture view to render the location of captured barcodes on top of
+  // the video preview. This is optional, but recommended for better visual feedback.
+  const overlay = Scandit.BarcodeCaptureOverlay.withBarcodeCaptureForView(
+    barcodeCapture,
+    view
+  )
+  overlay.viewfinder = new Scandit.RectangularViewfinder()
+
+  // Switch camera on to start streaming frames and enable the barcode capture mode.
+  // The camera is started asynchronously and will take some time to completely turn on.
+  camera.switchToDesiredState(Scandit.FrameSourceState.On)
+  barcodeCapture.isEnabled = true
+
+  return () => {
+    barcodeCapture.isEnabled = false
     camera.switchToDesiredState(Scandit.FrameSourceState.Off)
   }
 }
