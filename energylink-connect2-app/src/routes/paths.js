@@ -18,6 +18,12 @@ const paths = {
       footer: true,
       tab: TABS.HOME
     },
+    PANEL_LAYOUT_TOOL: {
+      path: '/panel-layout-tool',
+      header: true,
+      footer: true,
+      tab: TABS.INSTALL
+    },
     UPDATE: {
       path: '/update-in-progress',
       header: true
@@ -44,7 +50,7 @@ const paths = {
     },
     MENU: { path: '/menu', header: true },
     MANAGE_FIRMWARES: { path: '/manage-firmwares', header: true },
-    VERSION_INFORMATION: { path: '/version-information' },
+    VERSION_INFORMATION: { path: '/version-information', header: true },
     GIVE_FEEDBACK: { path: '/give-feedback', header: true },
     PVS_CONNECTION_SUCCESS: {
       path: '/pvs-connection-success',

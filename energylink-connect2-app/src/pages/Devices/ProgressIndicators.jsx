@@ -38,6 +38,7 @@ const ProgressIndicators = ({ progressList }) => {
         </div>
       )
     }
+    return null
   })
 }
 

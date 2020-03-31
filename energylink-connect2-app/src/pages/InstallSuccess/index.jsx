@@ -49,6 +49,10 @@ const InstallSuccessful = props => {
     history.push(paths.PROTECTED.SYSTEM_CONFIGURATION.path)
   }
 
+  const goToPanelLayoutTool = () => {
+    history.push(paths.PROTECTED.PANEL_LAYOUT_TOOL.path)
+  }
+
   return (
     <>
       {modal}
@@ -75,6 +79,12 @@ const InstallSuccessful = props => {
               onClick={toggleModal}
             >
               {t('NOT_NOW')}
+            </button>
+            <button
+              className="configure-button has-text-primary is-uppercase is-center mt-50 has-text-weight-bold"
+              onClick={goToPanelLayoutTool}
+            >
+              Go to Panel layout tool
             </button>
           </div>
         </div>

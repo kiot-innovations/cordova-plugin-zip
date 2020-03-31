@@ -83,6 +83,12 @@ exports[`PVS connection successful component render correctly 1`] = `
               >
                 NOT_NOW
               </button>
+              <button
+                className="configure-button has-text-primary is-uppercase is-center mt-50 has-text-weight-bold"
+                onClick={[Function]}
+              >
+                Go to Panel layout tool
+              </button>
             </div>
           </div>
         </div>

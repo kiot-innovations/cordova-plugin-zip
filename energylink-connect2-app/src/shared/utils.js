@@ -11,7 +11,10 @@ import {
   find,
   propEq,
   map,
-  defaultTo
+  defaultTo,
+  curry,
+  dissoc,
+  assoc
 } from 'ramda'
 
 export const either = (condition, whenTrue, whenFalse = null) =>
@@ -127,3 +130,6 @@ export const trace = t => x => {
   console.info(x)
   return x
 }
+export const renameKey = curry((oldKey, newKey, obj) =>
+  assoc(newKey, prop(oldKey, obj), dissoc(oldKey, obj))
+)
