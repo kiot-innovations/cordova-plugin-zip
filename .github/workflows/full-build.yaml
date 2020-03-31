@@ -10,6 +10,8 @@ on:
   push:
     branches:
       - master
+    tags:
+      - '*'
 
 jobs:
   build:
@@ -60,33 +62,13 @@ jobs:
           npm install
           npm install -g cordova@9.0.0
 
-      - name: Prepare cordova build for Android and iOS
-        run: |
-          npx phonegap prepare ios
-
-      - name: Configure credentials
-        run: |
-          echo "${{ secrets.GOOGLE_PLAY_UPLOAD_KEYSTORE }}" | base64 -d > upload-keystore.jks
-          echo "${{ secrets.GOOGLE_PLAY_API_KEY }}" | base64 -d > google-api.json
-
-      #
-      # Android Application
-      #
-      - name: Build Android Application
-        run: bundle exec fastlane android build
-        env:
-          KEYSTORE_PASSWORD: ${{ secrets.GOOGLE_PLAY_UPLOAD_KEYSTORE_PASSWORD }}
-
-      - uses: actions/upload-artifact@v1
-        with:
-          name: Android
-          path: platforms/android/app/build/outputs/apk/release/app-release.apk
-
       #
       # iOS Application
       #
       - name: Build iOS Application
-        run: bundle exec fastlane ios build
+        run: |
+          npx phonegap prepare ios
+          bundle exec fastlane ios build
         env:
           FASTLANE_PASSWORD: ${{ secrets.FASTLANE_PASSWORD }}
           MATCH_GIT_BASIC_AUTHORIZATION: ${{ secrets.MATCH_GIT_BASIC_AUTHORIZATION }}
@@ -98,19 +80,39 @@ jobs:
           name: iOS
           path: platforms/ios/build/device/EnergyLinkConnect2.ipa
 
-      #
-      # Release Android and iOS Application
-      #
-      - name: Upload build to Google Play store
-        run: bundle exec fastlane android release
-        if: startsWith(github.ref, 'refs/tags/')
-
       - name: Upload build to Apple TestFlight
         run: bundle exec fastlane ios release
         if: startsWith(github.ref, 'refs/tags/')
         env:
           FASTLANE_PASSWORD: ${{ secrets.FASTLANE_PASSWORD }}
           MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
+
+      #
+      # Android Application
+      #
+      - name: Configure credentials
+        run: |
+          echo "${{ secrets.GOOGLE_PLAY_UPLOAD_KEYSTORE }}" | base64 -d > upload-keystore.jks
+          echo "${{ secrets.GOOGLE_PLAY_API_KEY }}" | base64 -d > google-api.json
+
+      - name: Build Android Application
+        run: |
+          npx phonegap prepare android
+          bundle exec fastlane android build
+        env:
+          KEYSTORE_PASSWORD: ${{ secrets.GOOGLE_PLAY_UPLOAD_KEYSTORE_PASSWORD }}
+
+      - uses: actions/upload-artifact@v1
+        with:
+          name: Android
+          path: platforms/android/app/build/outputs/apk/release/app-release.apk
+
+      #
+      # Release Android and iOS Application
+      #
+      - name: Upload build to Google Play store
+        run: bundle exec fastlane android release
+        if: startsWith(github.ref, 'refs/tags/')
 
       #
       # Slack Notification

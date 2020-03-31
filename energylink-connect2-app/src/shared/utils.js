@@ -122,3 +122,8 @@ export const buildSN = barcode => ({
   model: decideModel(barcode),
   type: 'MI'
 })
+export const trace = t => x => {
+  console.info(t)
+  console.info(x)
+  return x
+}
