@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { path, pathOr } from 'ramda'
+import { pathOr } from 'ramda'
 import { useI18n } from 'shared/i18n'
 import './PvsConnectionSuccessful.scss'
 import { useSelector, useDispatch } from 'react-redux'
@@ -8,8 +8,7 @@ import paths from 'routes/paths'
 import { either } from 'shared/utils'
 import {
   START_COMMISSIONING_INIT,
-  START_DISCOVERY_INIT,
-  SET_METADATA_INIT
+  START_DISCOVERY_INIT
 } from 'state/actions/pvs'
 
 const getPVSVersionChecked = pathOr(false, ['firmwareUpdate', 'canContinue'])
@@ -19,7 +18,6 @@ const PvsConnectionSuccessful = ({ animationState }) => {
   const dispatch = useDispatch()
   const serialNumber = useSelector(state => state.pvs.serialNumber)
   const versionChecked = useSelector(getPVSVersionChecked)
-  const siteKey = useSelector(path(['site', 'site', 'siteKey']))
   const history = useHistory()
 
   const goToScanLabels = () => {
@@ -28,11 +26,10 @@ const PvsConnectionSuccessful = ({ animationState }) => {
 
   useEffect(() => {
     if (animationState === 'enter') {
-      dispatch(SET_METADATA_INIT(siteKey))
       dispatch(START_COMMISSIONING_INIT())
       dispatch(START_DISCOVERY_INIT())
     }
-  }, [dispatch, animationState, siteKey])
+  }, [dispatch, animationState])
 
   return (
     <div className="pvs-connection-success-screen pr-20 pl-20">

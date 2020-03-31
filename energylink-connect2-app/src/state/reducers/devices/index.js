@@ -33,27 +33,13 @@ const initialState = {
   miModels: []
 }
 
-const parseCompleteDevices = devices => {
-  const returnValue = {}
-  devices.forEach(device => {
-    const deviceType = device.DEVICE_TYPE.toLowerCase()
-    const propertyExists = !!returnValue[deviceType]
-    if (propertyExists)
-      returnValue[deviceType] = [...returnValue[deviceType], device]
-    else returnValue[deviceType] = [device]
-  })
-  return returnValue
-}
-
 export default createReducer(
   {
     [DISCOVER_INIT]: state => ({ ...state, isFetching: true }),
     [DISCOVER_UPDATE]: (state, payload) => {
       return {
         ...state,
-        found: payload
-          ? parseCompleteDevices(payload.devices.devices)
-          : state.found,
+        found: payload ? payload.devices.devices : state.found,
         progress: payload ? payload.progress : state.progress
       }
     },
@@ -61,9 +47,7 @@ export default createReducer(
       return {
         ...state,
         isFetching: false,
-        found: payload
-          ? parseCompleteDevices(payload.devices.devices)
-          : state.found,
+        found: payload ? payload.devices.devices : state.found,
         progress: payload ? payload.progress : state.progress,
         discoveryComplete: true
       }

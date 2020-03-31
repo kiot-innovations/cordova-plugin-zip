@@ -11,6 +11,7 @@ import {
   CLAIM_DEVICES_INIT,
   RESET_DISCOVERY
 } from 'state/actions/devices'
+import { SET_METADATA_INIT } from 'state/actions/pvs'
 import Collapsible from 'components/Collapsible'
 import paths from 'routes/paths'
 import './Devices.scss'
@@ -55,13 +56,13 @@ const filterFoundMI = (SNList, candidatesList) => {
   const pendingMI = []
   SNList.forEach(device => {
     try {
-      const deviceCopy = device
+      let deviceCopy = device
       const foundCandidate = candidatesList.find(
         item => item.SERIAL === deviceCopy.serial_number
       )
       if (foundCandidate) {
-        deviceCopy.state = foundCandidate.STATEDESCR
-        deviceCopy.indicator = miStates[deviceCopy.state]
+        deviceCopy = { ...deviceCopy, ...foundCandidate }
+        deviceCopy.indicator = miStates[deviceCopy.STATEDESCR]
         if (deviceCopy.indicator === 'OK') {
           okMI.push(deviceCopy)
         } else {
@@ -74,7 +75,7 @@ const filterFoundMI = (SNList, candidatesList) => {
           }
         }
       } else {
-        deviceCopy.state = miStates.PINGING
+        deviceCopy.STATEDESCR = miStates.PINGING
         deviceCopy.indicator = 'LOADING'
         pendingMI.push(deviceCopy)
       }
@@ -111,7 +112,7 @@ function mapStateToProps({ devices, pvs }) {
     },
     progress,
     found: {
-      ...found,
+      otherDevices: found,
       discoveryComplete,
       error,
       inverter: [...okMI, ...nonOkMI, ...pendingMI]
@@ -226,6 +227,7 @@ const discoveryStatus = (
 
 const Devices = ({ animationState }) => {
   const { progress, found, counts, claim } = useSelector(mapStateToProps)
+  const siteKey = useSelector(path(['site', 'site', 'siteKey']))
   const dispatch = useDispatch()
   const history = useHistory()
   const t = useI18n()
@@ -290,15 +292,26 @@ const Devices = ({ animationState }) => {
     history.push(paths.PROTECTED.SN_LIST.path)
   }
 
+  const validateModels = () => {
+    const filterModels = path(['inverter'], found).filter(mi => !mi.modelStr)
+    if (filterModels.length > 0) {
+      bulkEditModel()
+    } else {
+      claimDevices()
+    }
+  }
+
   const claimDevices = () => {
     const claimObject = path(['inverter'], found).map(mi => {
-      return {
-        OPERATION: 'add',
-        SERIAL: mi.serial_number,
-        TYPE: 'SOLARBRIDGE'
-      }
+      mi.OPERATION = 'add'
+      return mi
     })
+    const metadataObject = {
+      site_key: siteKey,
+      devices: [...found.otherDevices, ...claimObject]
+    }
     dispatch(CLAIM_DEVICES_INIT(JSON.stringify(claimObject)))
+    dispatch(SET_METADATA_INIT(metadataObject))
   }
 
   const bulkEditModel = () => {
@@ -357,7 +370,7 @@ const Devices = ({ animationState }) => {
                   </div>
                   <div
                     onClick={() =>
-                      showMIStatusModal(elem.serial_number, elem.state)
+                      showMIStatusModal(elem.serial_number, elem.STATEDESCR)
                     }
                   >
                     {miIndicators[elem.indicator]}
@@ -369,7 +382,7 @@ const Devices = ({ animationState }) => {
         </Collapsible>
         <ProgressIndicators progressList={pathOr([], ['progress'], progress)} />
       </div>
-      {discoveryStatus(found, counts, claim, claimDevices, t, retryDiscovery)}
+      {discoveryStatus(found, counts, claim, validateModels, t, retryDiscovery)}
     </div>
   )
 }
