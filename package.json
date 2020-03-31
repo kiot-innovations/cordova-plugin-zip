@@ -22,6 +22,7 @@
     "cordova-plugin-file-downloader": "^0.4.0",
     "cordova-plugin-file-md5": "^0.3.3",
     "cordova-plugin-file-transfer": "^1.7.1",
+    "cordova-plugin-http": "^1.2.0",
     "cordova-plugin-inappbrowser": "^3.1.0",
     "cordova-plugin-nabto": "^2.6.3",
     "cordova-plugin-network-information": "^2.0.2",
@@ -58,7 +59,8 @@
       "cordova-plugin-camera": {
         "ANDROID_SUPPORT_V4_VERSION": "27.+"
       },
-      "cordova-plugin-nabto": {}
+      "cordova-plugin-nabto": {},
+      "cordova-plugin-http": {}
     },
     "platforms": [
       "ios"

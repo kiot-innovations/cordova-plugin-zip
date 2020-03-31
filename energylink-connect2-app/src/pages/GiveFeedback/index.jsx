@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useI18n } from 'shared/i18n'
 import { SEND_FEEDBACK_INIT } from 'state/actions/feedback'
 import { Redirect } from 'react-router-dom'
+import { path } from 'ramda'
 import paths from 'routes/paths'
 import Rating from 'components/Rating'
 import TextArea from 'components/TextArea'
@@ -75,7 +76,7 @@ function GiveFeedback({ animationState }) {
             {t('SUBMIT')}
           </button>
         </div>
-        {error && error.data.message ? (
+        {path(['data', 'message'], error) ? (
           <div className="message error mb-10 mt-10">
             <p className="pl-20 pr-20">{t(error.data.message)}</p>
           </div>

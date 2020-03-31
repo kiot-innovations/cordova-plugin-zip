@@ -113,3 +113,9 @@ export const cleanString = (str = '') => {
   const regex = /\W+/g
   return str.replace(regex, '')
 }
+
+export const trace = t => x => {
+  console.info(t)
+  console.info(x)
+  return x
+}

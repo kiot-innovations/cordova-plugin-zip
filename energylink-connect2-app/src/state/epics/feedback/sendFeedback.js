@@ -5,7 +5,18 @@ import * as feedbackActions from 'state/actions/feedback'
 import { path } from 'ramda'
 import moment from 'moment'
 import { translate } from 'shared/i18n'
-import { encodedParams, postEncodedBody } from 'shared/fetch'
+import { encodedParams } from 'shared/fetch'
+import { getApiParty } from 'shared/api'
+
+const getAccessToken = path(['user', 'auth', 'access_token'])
+const getAPIMethods = path(['apis', 'default'])
+
+const sendFeedbackPromise = (access_token, values) =>
+  getApiParty(access_token)
+    .then(getAPIMethods)
+    .then(apiParty =>
+      apiParty.post_v1_party_feedback({ id: 1 }, { requestBody: values })
+    )
 
 export const sendFeedbackEpic = (action$, state$) =>
   action$.pipe(
@@ -28,8 +39,9 @@ export const sendFeedbackEpic = (action$, state$) =>
       }
 
       const postValues = encodedParams(values)
+      const access_token = getAccessToken(state$.value)
 
-      return from(postEncodedBody(postValues, state$.value)).pipe(
+      return from(sendFeedbackPromise(access_token, postValues)).pipe(
         map(({ status, data }) =>
           status === 200
             ? feedbackActions.SEND_FEEDBACK_SUCCESS()
