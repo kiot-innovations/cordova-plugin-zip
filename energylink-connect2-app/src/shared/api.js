@@ -1,5 +1,5 @@
 import Swagger from 'swagger-client'
-let apiDevice, apiParty, apiSearch, apiSite, apiFirmware, apiPVS, apiScanSN
+let apiDevice, apiParty, apiSearch, apiSite, apiFirmware, apiScanSN
 
 const authOptions = access_token => ({
   requestInterceptor: req => {

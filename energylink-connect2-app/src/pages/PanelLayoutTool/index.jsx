@@ -1,17 +1,19 @@
-import { compose, pick, prop, without } from 'ramda'
-import React, { useCallback, useEffect, useState } from 'react'
-import { useDispatch, useSelector, useStore } from 'react-redux'
 import {
   actions,
-  utils,
   Canvas,
   Panel,
   PanelsContainer,
-  withSelectablePanel,
+  RotationSelector,
+  utils,
   withDraggablePanel,
-  RotationSelector
+  withSelectablePanel
 } from '@sunpower/panel-layout-tool'
-import { renameKey, either } from 'shared/utils'
+import { compose, pick, prop, without } from 'ramda'
+import React, { useCallback, useEffect, useState } from 'react'
+import { useDispatch, useSelector, useStore } from 'react-redux'
+import { useHistory } from 'react-router-dom'
+import paths from 'routes/paths'
+import { either, renameKey } from 'shared/utils'
 import './panelLayoutTool.scss'
 
 const EPanel = withSelectablePanel(withDraggablePanel(Panel))
@@ -57,13 +59,18 @@ export default () => {
   }, [dispatch])
 
   const store = useStore()
+  const history = useHistory()
+
+  const goToConfigure = () => {
+    history.push(paths.PROTECTED.SYSTEM_CONFIGURATION.path)
+  }
 
   return (
-    <>
+    <div style={{ display: 'flex', flexDirection: 'column' }}>
       <Canvas
         store={store}
         width={window.innerWidth}
-        height={window.innerHeight - window.innerHeight * 0.25}
+        height={window.innerHeight - 300}
         onClick={assign}
       >
         <PanelsContainer PanelComponent={EPanel} />
@@ -86,6 +93,13 @@ export default () => {
         )}
       </div>
       <RotationSelector />
-    </>
+      <button
+        style={{ alignSelf: 'center' }}
+        className="button is-primary is-uppercase is-center mt-10"
+        onClick={goToConfigure}
+      >
+        Go to configure
+      </button>
+    </div>
   )
 }

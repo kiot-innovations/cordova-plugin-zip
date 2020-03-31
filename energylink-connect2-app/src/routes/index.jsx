@@ -57,6 +57,7 @@ const mapComponents = {
   [paths.PROTECTED.LOGOUT.path]: NotFound,
   [paths.PROTECTED.MANAGE_FIRMWARES.path]: Firmwares,
   [paths.PROTECTED.MENU.path]: Menu,
+  [paths.PROTECTED.PANEL_LAYOUT_TOOL.path]: PanelLayoutTool,
   [paths.PROTECTED.PVS_CONNECTION_SUCCESS.path]: PvsConnectionSuccessful,
   [paths.PROTECTED.INSTALL_SUCCESS.path]: InstallSuccessful,
   [paths.PROTECTED.ROOT.path]: Home,

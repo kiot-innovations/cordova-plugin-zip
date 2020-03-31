@@ -18,6 +18,12 @@ const paths = {
       footer: true,
       tab: TABS.HOME
     },
+    PANEL_LAYOUT_TOOL: {
+      path: '/panel-layout-tool',
+      header: true,
+      footer: true,
+      tab: TABS.INSTALL
+    },
     UPDATE: {
       path: '/update-in-progress',
       header: true
