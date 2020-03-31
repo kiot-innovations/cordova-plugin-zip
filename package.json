@@ -34,8 +34,8 @@
     "es6-promise-plugin": "^4.1.0",
     "phonegap": "^9.0.0",
     "phonegap-plugin-barcodescanner": "^8.1.0",
-    "scandit-cordova-datacapture-barcode": "^6.2.0",
-    "scandit-cordova-datacapture-core": "^6.2.0",
+    "scandit-cordova-datacapture-barcode": "6.2.0",
+    "scandit-cordova-datacapture-core": "6.2.0",
     "wifiwizard2": "^3.1.1",
     "xcode": "^2.1.0"
   },
@@ -70,8 +70,8 @@
       "cordova-plugin-http": {}
     },
     "platforms": [
-      "ios",
-      "android"
+      "android",
+      "ios"
     ]
   }
 }
