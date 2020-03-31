@@ -1,5 +1,5 @@
 import { createReducer } from 'redux-act'
-import { union } from 'ramda'
+import { unionWith, eqBy, prop } from 'ramda'
 
 import {
   ADD_PVS_SN,
@@ -31,7 +31,11 @@ export const pvsReducer = createReducer(
   {
     [ADD_PVS_SN]: (state, sn) => ({
       ...state,
-      serialNumbers: union(state.serialNumbers, [sn])
+      serialNumbers: unionWith(
+        eqBy(prop('serial_number')),
+        state.serialNumbers,
+        [sn]
+      )
     }),
     [SAVE_PVS_SN]: (state, payload) => ({
       ...state,

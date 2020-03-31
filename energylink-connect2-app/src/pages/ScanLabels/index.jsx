@@ -12,7 +12,7 @@ import paths from 'routes/paths'
 
 import './ScanLabels.scss'
 
-function ScanDeviceLabels() {
+function ScanDeviceLabels({ animationState }) {
   const t = useI18n()
   const dispatch = useDispatch()
   const history = useHistory()
@@ -41,7 +41,7 @@ function ScanDeviceLabels() {
     startScanning()
 
     return () => {
-      if (isScanning && onDone.current) {
+      if (isScanning && onDone.current && animationState === 'leave') {
         onDone.current()
       }
     }
