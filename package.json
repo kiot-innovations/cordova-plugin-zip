@@ -62,12 +62,12 @@
       "cordova-plugin-device": {},
       "scandit-cordova-datacapture-core": {},
       "scandit-cordova-datacapture-barcode": {},
-      "cordova-plugin-wkwebview-engine": {},
       "cordova-plugin-camera": {
         "ANDROID_SUPPORT_V4_VERSION": "27.+"
       },
       "cordova-plugin-nabto": {},
-      "cordova-plugin-http": {}
+      "cordova-plugin-http": {},
+      "cordova-plugin-wkwebview-engine": {}
     },
     "platforms": [
       "android",

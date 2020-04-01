@@ -3,7 +3,7 @@ let apiDevice, apiParty, apiSearch, apiSite, apiFirmware, apiScanSN
 
 const requestOptions = access_token => ({
   requestInterceptor: req => {
-    req.headers['Authorization'] = `Bearer ${access_token}`
+    if (access_token) req.headers['Authorization'] = `Bearer ${access_token}`
     return req
   },
 
