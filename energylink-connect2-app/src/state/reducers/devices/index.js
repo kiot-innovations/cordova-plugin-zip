@@ -1,5 +1,5 @@
 import { createReducer } from 'redux-act'
-import { length } from 'ramda'
+import { length, pathOr, propOr } from 'ramda'
 import {
   DISCOVER_COMPLETE,
   DISCOVER_INIT,
@@ -33,38 +33,22 @@ const initialState = {
   miModels: []
 }
 
-const parseCompleteDevices = devices => {
-  const returnValue = {}
-  devices.forEach(device => {
-    const deviceType = device.DEVICE_TYPE.toLowerCase()
-    const propertyExists = !!returnValue[deviceType]
-    if (propertyExists)
-      returnValue[deviceType] = [...returnValue[deviceType], device]
-    else returnValue[deviceType] = [device]
-  })
-  return returnValue
-}
-
 export default createReducer(
   {
     [DISCOVER_INIT]: state => ({ ...state, isFetching: true }),
     [DISCOVER_UPDATE]: (state, payload) => {
       return {
         ...state,
-        found: payload
-          ? parseCompleteDevices(payload.devices.devices)
-          : state.found,
-        progress: payload ? payload.progress : state.progress
+        found: pathOr(state.found, ['devices', 'devices'], payload),
+        progress: propOr(state.progress, 'progress', payload)
       }
     },
     [DISCOVER_COMPLETE]: (state, payload) => {
       return {
         ...state,
         isFetching: false,
-        found: payload
-          ? parseCompleteDevices(payload.devices.devices)
-          : state.found,
-        progress: payload ? payload.progress : state.progress,
+        found: pathOr(state.found, ['devices', 'devices'], payload),
+        progress: propOr(state.progress, 'progress', payload),
         discoveryComplete: true
       }
     },

@@ -13,7 +13,7 @@ export const fetchModelsEpic = (action$, state$) => {
   return action$.pipe(
     ofType(FETCH_MODELS_INIT.getType()),
     switchMap(() => {
-      const promise = httpGet('/device/sunverge/modelnames', state$.value)
+      const promise = httpGet('/device/E/modelnames', state$.value)
       return from(promise).pipe(
         map(models =>
           FETCH_MODELS_SUCCESS(pathOr([], ['data', 'items'], models))

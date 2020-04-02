@@ -8,10 +8,10 @@ import { getApiPVS } from 'shared/api'
 export const setMetaDataEpic = action$ => {
   return action$.pipe(
     ofType(pvsActions.SET_METADATA_INIT.getType()),
-    switchMap(({ payload: siteKey }) => {
+    switchMap(({ payload }) => {
       const promise = getApiPVS()
         .then(path(['apis', 'meta']))
-        .then(api => api.setMetaData({ site_key: siteKey }))
+        .then(api => api.setMetaData({ id: 1 }, { requestBody: payload }))
 
       return from(promise).pipe(
         map(({ status, data }) =>
