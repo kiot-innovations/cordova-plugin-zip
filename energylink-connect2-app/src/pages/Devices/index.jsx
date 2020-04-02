@@ -294,7 +294,9 @@ const Devices = ({ animationState }) => {
   }
 
   const validateModels = () => {
-    const filterModels = path(['inverter'], found).filter(mi => !mi.modelStr)
+    const filterModels = propOr([], 'inverter', found).filter(
+      mi => !mi.modelStr
+    )
     if (filterModels.length > 0) {
       bulkEditModel()
     } else {

@@ -1,5 +1,5 @@
 import { createReducer } from 'redux-act'
-import { length } from 'ramda'
+import { length, pathOr, propOr } from 'ramda'
 import {
   DISCOVER_COMPLETE,
   DISCOVER_INIT,
@@ -39,16 +39,16 @@ export default createReducer(
     [DISCOVER_UPDATE]: (state, payload) => {
       return {
         ...state,
-        found: payload ? payload.devices.devices : state.found,
-        progress: payload ? payload.progress : state.progress
+        found: pathOr(state.found, ['devices', 'devices'], payload),
+        progress: propOr(state.progress, 'progress', payload)
       }
     },
     [DISCOVER_COMPLETE]: (state, payload) => {
       return {
         ...state,
         isFetching: false,
-        found: payload ? payload.devices.devices : state.found,
-        progress: payload ? payload.progress : state.progress,
+        found: pathOr(state.found, ['devices', 'devices'], payload),
+        progress: propOr(state.progress, 'progress', payload),
         discoveryComplete: true
       }
     },
