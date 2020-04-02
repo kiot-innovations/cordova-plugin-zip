@@ -44,6 +44,7 @@ import SystemConfiguration from 'pages/SystemConfiguration'
 import SavingConfiguration from 'pages/SavingConfiguration'
 import Logout from 'pages/Logout'
 import PanelLayoutTool from 'pages/PanelLayoutTool'
+import PanelLayoutToolGroupPanels from 'pages/PanelLayoutTool/GroupPanels'
 import paths from './paths'
 import { validateSession } from 'state/actions/auth'
 
@@ -58,6 +59,7 @@ const mapComponents = {
   [paths.PROTECTED.MANAGE_FIRMWARES.path]: Firmwares,
   [paths.PROTECTED.MENU.path]: Menu,
   [paths.PROTECTED.PANEL_LAYOUT_TOOL.path]: PanelLayoutTool,
+  [paths.PROTECTED.PANEL_LAYOUT_TOOL_GROUPS.path]: PanelLayoutToolGroupPanels,
   [paths.PROTECTED.PVS_CONNECTION_SUCCESS.path]: PvsConnectionSuccessful,
   [paths.PROTECTED.INSTALL_SUCCESS.path]: InstallSuccessful,
   [paths.PROTECTED.ROOT.path]: Home,
