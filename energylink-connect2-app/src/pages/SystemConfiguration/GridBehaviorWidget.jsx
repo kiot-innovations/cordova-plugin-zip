@@ -8,7 +8,7 @@ import {
   SET_EXPORT_LIMIT,
   SET_GRID_VOLTAGE
 } from 'state/actions/systemConfiguration'
-import { pathOr, head } from 'ramda'
+import { pathOr, length, head } from 'ramda'
 import Collapsible from 'components/Collapsible'
 import SelectField from 'components/SelectField'
 import './SystemConfiguration.scss'
@@ -94,7 +94,11 @@ function GridBehaviorWidget({ animationState }) {
                   isSearchable={false}
                   useDefaultDropDown
                   options={gridProfileOptions}
-                  notFoundText={t('FETCHING_OPTIONS')}
+                  notFoundText={
+                    length(gridProfileOptions) === 0
+                      ? t('FETCHING_OPTIONS')
+                      : null
+                  }
                   onSelect={setGridProfile}
                 />
               </div>
@@ -136,7 +140,11 @@ function GridBehaviorWidget({ animationState }) {
                   isSearchable={false}
                   useDefaultDropDown
                   options={selfSupplyOptions}
-                  notFoundText={t('SELECT_A_GRID_PROFILE')}
+                  notFoundText={
+                    length(selfSupplyOptions) === 0
+                      ? t('SELECT_A_GRID_PROFILE')
+                      : null
+                  }
                   onSelect={setExportLimit}
                 />
               </div>
