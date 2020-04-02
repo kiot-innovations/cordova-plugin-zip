@@ -30,6 +30,7 @@ const miStates = {
   GETTING_VERSION_INFORMATION: 'LOADING',
   VERSION_INFORMATION_OK: 'LOADING',
   VERSION_INFORMATION_ERROR: 'ERROR',
+  INVALID_SERIAL_NUMBER: 'ERROR',
   GETTING_PLC_STATS: 'LOADING',
   PLC_STATS_OK: 'LOADING',
   PLC_STATS_ERROR: 'ERROR',
@@ -307,8 +308,10 @@ const Devices = ({ animationState }) => {
       return mi
     })
     const metadataObject = {
-      site_key: siteKey,
-      devices: [...found.otherDevices, ...claimObject]
+      metaData: {
+        site_key: siteKey,
+        devices: [...found.otherDevices, ...claimObject]
+      }
     }
     dispatch(CLAIM_DEVICES_INIT(JSON.stringify(claimObject)))
     dispatch(SET_METADATA_INIT(metadataObject))
