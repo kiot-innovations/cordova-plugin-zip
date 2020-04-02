@@ -42,7 +42,7 @@ export default () => {
       <Canvas
         store={store}
         width={window.innerWidth - 30}
-        height={window.innerHeight - 30}
+        height={window.innerHeight - 300}
       >
         <EGroupsContainer PanelComponent={EPanel} />
       </Canvas>

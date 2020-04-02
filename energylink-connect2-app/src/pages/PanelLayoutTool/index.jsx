@@ -69,8 +69,8 @@ export default () => {
   const store = useStore()
   const history = useHistory()
 
-  const goToConfigure = () => {
-    history.push(paths.PROTECTED.SYSTEM_CONFIGURATION.path)
+  const goToConfigureArrays = () => {
+    history.push(paths.PROTECTED.PANEL_LAYOUT_TOOL_GROUPS.path)
   }
 
   return (
@@ -128,7 +128,7 @@ export default () => {
           <button
             style={{ alignSelf: 'center' }}
             className="button is-primary is-uppercase is-center"
-            onClick={goToConfigure}
+            onClick={goToConfigureArrays}
           >
             continue
           </button>
