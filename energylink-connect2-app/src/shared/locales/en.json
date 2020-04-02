@@ -232,6 +232,8 @@
   "OK": "MI is working as expected",
   "CONNECTED": "Connected",
   "WAITING_GOOGLE_MAPS": "Waiting for Google Maps to load",
+  "DOWNLOAD_ANYWAY": "Download anyways",
+  "NO_WIFI": "No WIFI detected, do you want to download the PVS firmware using cell data",
   "SELECT_ALL": "Select All",
   "NO_MODEL": "No model information"
 }

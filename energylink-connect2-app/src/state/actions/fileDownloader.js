@@ -9,13 +9,16 @@ export const DOWNLOAD_PROGRESS = createAction('UPDATE DOWNLOAD PROGRESS')
 export const ABORT_DOWNLOAD = createAction('ABORT DOWNLOAD')
 export const DOWNLOAD_SUCCESS = createAction('DOWNLOAD SUCCESS')
 
+export const DOWNLOAD_NO_WIFI = createAction('NO WIFI')
+
 export const SET_FILES_SIZE = createAction('SET DOWNLOAD SIZE')
 const ERROR_CODES = {
   getVersionInfo: 'getVersionInfo',
   getLuaFile: 'getLuaFile',
   noLuaFile: 'noLuaFile',
   noFSFile: 'no filesystem file',
-  parseLuaFile: 'parseLuaFile'
+  parseLuaFile: 'parseLuaFile',
+  noWifi: 'No wifi'
 }
 
 export const getLuaName = compose(
@@ -67,7 +70,7 @@ export const getFileBlob = (fileName = '') =>
     reader.readAsArrayBuffer(file)
   })
 
-export async function getPFile(fileName, errorCallback) {
+export function getPFile(fileName) {
   return new Promise((resolve, reject) => {
     const type = window.PERSISTENT
     const size = 5 * 1024 * 1024
@@ -80,12 +83,10 @@ export async function getPFile(fileName, errorCallback) {
             file => {
               resolve(file)
             },
-            () => {
-              reject(new Error(ERROR_CODES.noLuaFile))
-            }
+            () => reject(new Error(ERROR_CODES.noLuaFile))
           )
         },
-        errorCallback
+        reject
       )
     }
     window.requestFileSystem(type, size, successCallback, () =>
@@ -93,31 +94,40 @@ export async function getPFile(fileName, errorCallback) {
     )
   })
 }
-async function getPersistentFile(fileName, fileUrl, dispatch) {
+function getPersistentFile(
+  fileName,
+  fileUrl,
+  dispatch,
+  wifiOnly,
+  showProgress = true
+) {
   return new Promise((resolve, reject) => {
-    const errorCallback = () => {
-      downloadLuaFile(fileName, fileUrl, dispatch)
-      reject(new Error(ERROR_CODES.getLuaFile))
-    }
-    getPFile(fileName, errorCallback)
+    getPFile(fileName)
       .then(resolve)
-      .catch(reject)
+      .catch(e => {
+        const networkState = navigator.connection.type
+        if (networkState !== 'wifi' && wifiOnly)
+          return reject(new Error(ERROR_CODES.noWifi))
+        downloadFile(fileName, fileUrl, dispatch, wifiOnly, showProgress)
+        reject(e)
+      })
   })
 }
 
-export function getFile() {
+export function getFile(wifiOnly = true) {
   return async function(dispatch) {
     try {
       const { fileURL, luaFileName, version } = await getFirmwareVersionNumber()
       dispatch(SET_FILE_NAME(`${luaFileName} - ${version}`))
-      await getPersistentFile(luaFileName, fileURL, dispatch)
+      await getPersistentFile(luaFileName, fileURL, dispatch, wifiOnly, false)
       await parseLuaFile(luaFileName, dispatch)
       const fileSystemURL = getFileSystemURL(fileURL)
       removeEventListeners()
       await getPersistentFile(
         await getPVSFileSystemName(),
         fileSystemURL,
-        dispatch
+        dispatch,
+        wifiOnly
       )
       dispatch(DOWNLOAD_SUCCESS())
     } catch (error) {
@@ -127,6 +137,8 @@ export function getFile() {
             error: 'I ran into an error getting the PVS filename'
           })
         )
+      } else if (error.message === ERROR_CODES.noWifi) {
+        return dispatch(DOWNLOAD_NO_WIFI())
       } else dispatch(GET_FILE_ERROR({ error: error.message }))
     }
   }
@@ -183,7 +195,9 @@ function parseLuaFile(fileName, dispatch) {
       )
     }
 
-    window.requestFileSystem(type, size, successCallback, console.warn)
+    window.requestFileSystem(type, size, successCallback, e =>
+      console.error('ERROR REQUESTING FS', e)
+    )
   })
 }
 
@@ -193,14 +207,22 @@ function downloadProgress(event, dispatch) {
   return dispatch(DOWNLOAD_PROGRESS({ progress: event.data[0] }))
 }
 
-function downloadLuaFile(fileName, fileUrl, dispatch) {
+function downloadFile(
+  fileName,
+  fileUrl,
+  dispatch,
+  wifiOnly,
+  showProgress = true
+) {
   window.downloader.init({ folder: 'firmware' })
-  document.addEventListener('DOWNLOADER_downloadProgress', e => {
-    downloadProgress(e, dispatch)
-  })
+
+  if (showProgress)
+    document.addEventListener('DOWNLOADER_downloadProgress', e => {
+      downloadProgress(e, dispatch)
+    })
 
   document.addEventListener('DOWNLOADER_downloadSuccess', e =>
-    downloadSuccess(e, dispatch)
+    downloadSuccess(e, dispatch, wifiOnly)
   )
   window.downloader.get(fileUrl, null, fileName)
 }
@@ -216,7 +238,7 @@ export const abortDownload = () => dispatch => {
   dispatch(ABORT_DOWNLOAD())
 }
 
-function downloadSuccess(event, dispatch) {
+function downloadSuccess(event, dispatch, wifiOnly) {
   removeEventListeners()
-  dispatch(getFile())
+  dispatch(getFile(wifiOnly))
 }

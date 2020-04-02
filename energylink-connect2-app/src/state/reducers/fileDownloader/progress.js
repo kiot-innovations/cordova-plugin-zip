@@ -1,4 +1,5 @@
 import {
+  DOWNLOAD_NO_WIFI,
   DOWNLOAD_PROGRESS,
   DOWNLOAD_SUCCESS,
   GET_FILE
@@ -19,7 +20,8 @@ export default createReducer(
       progress: 100,
       lastProgress: 0
     }),
-    [GET_FILE]: (state, payload) => ({ progress: 100, lastProgress: 0 })
+    [GET_FILE]: () => ({ progress: 100, lastProgress: 0 }),
+    [DOWNLOAD_NO_WIFI]: () => ({ progress: 0, lastProgress: 0 })
   },
   initialState
 )

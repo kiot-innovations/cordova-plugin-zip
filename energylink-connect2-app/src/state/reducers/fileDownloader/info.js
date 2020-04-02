@@ -1,5 +1,7 @@
 import {
+  DOWNLOAD_NO_WIFI,
   DOWNLOAD_PROGRESS,
+  DOWNLOAD_SUCCESS,
   GET_FILE,
   GET_FILE_ERROR,
   SET_FILE_NAME,
@@ -26,7 +28,9 @@ export default createReducer(
       ...state,
       error: ''
     }),
-    [GET_FILE_ERROR]: (state, { error }) => ({ ...state, error })
+    [DOWNLOAD_SUCCESS]: state => ({ ...state, error: '' }),
+    [GET_FILE_ERROR]: (state, { error }) => ({ ...state, error }),
+    [DOWNLOAD_NO_WIFI]: state => ({ ...state, error: 'NO WIFI' })
   },
   initialState
 )
