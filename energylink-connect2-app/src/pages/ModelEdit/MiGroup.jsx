@@ -1,7 +1,16 @@
 import React, { useEffect, useState } from 'react'
 import { useI18n } from 'shared/i18n'
 import { useDispatch, useSelector } from 'react-redux'
-import { test, union, includes, path, pathOr } from 'ramda'
+import {
+  test,
+  union,
+  includes,
+  path,
+  pathOr,
+  compose,
+  map,
+  filter
+} from 'ramda'
 import { UPDATE_MI_MODELS } from 'state/actions/pvs'
 import { FETCH_MODELS_INIT } from 'state/actions/devices'
 import { cleanString } from 'shared/utils'
@@ -14,7 +23,7 @@ const buildSelectValue = value => ({
   value: value
 })
 
-const MiGroup = ({ title, data, animationState }) => {
+const MiGroup = ({ title, data }) => {
   const t = useI18n()
   const dispatch = useDispatch()
   const [selectedMi, setSelectedMi] = useState([])
@@ -30,10 +39,9 @@ const MiGroup = ({ title, data, animationState }) => {
   }
 
   useEffect(() => {
-    if (animationState === 'enter') {
-      dispatch(FETCH_MODELS_INIT(miTypes[title]))
-    }
-  }, [animationState, dispatch, miTypes, title])
+    dispatch(FETCH_MODELS_INIT(miTypes[title]))
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   const modelOptions = useSelector(state =>
     pathOr([], ['devices', 'miModels'], state)
@@ -76,10 +84,9 @@ const MiGroup = ({ title, data, animationState }) => {
   const filterModel = (inputValue, cb) => {
     const searchStr = cleanString(inputValue)
     const matchValue = test(new RegExp(searchStr, 'ig'))
-    const results = filteredOptions.models
-      .filter(matchValue)
-      .map(buildSelectValue)
-    cb(results)
+    const models = pathOr([], [0, 'models'], filteredOptions)
+    const getResults = compose(map(buildSelectValue), filter(matchValue))
+    cb(getResults(models))
   }
 
   const selectModel = model => {
