@@ -1,14 +1,31 @@
+@import '~@sunpower/theme-dark/styles/variables';
+
 .panelContainer {
   display: grid;
   grid-template-columns: 50px 1fr 50px;
   align-items: center;
   justify-items: center;
+  width: 90%;
   button {
-    color: #dbdbdb;
+    color: $sun;
     font-size: 2rem;
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0);
     border: none;
+  }
+}
+.plt-screen-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: repeat(2, minmax(30px, 1fr)) 98vw minmax(30px, 1fr) minmax(
+      50px,
+      1fr
+    ) minmax(30px, 1fr);
+  height: 100%;
+  justify-items: center;
+  align-items: center;
+  .has-error-text {
+    color: $error-red;
   }
 }

@@ -6,17 +6,21 @@ import {
   RotationSelector,
   utils,
   withDraggablePanel,
+  withNotOverlappablePanel,
   withSelectablePanel
 } from '@sunpower/panel-layout-tool'
-import { compose, pick, prop, without } from 'ramda'
-import React, { useCallback, useEffect, useState } from 'react'
+import { compose, pathOr, pick, prop, without } from 'ramda'
+import React, { useCallback, useState } from 'react'
 import { useDispatch, useSelector, useStore } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import paths from 'routes/paths'
+import { useI18n } from 'shared/i18n'
 import { either, renameKey } from 'shared/utils'
 import './panelLayoutTool.scss'
 
-const EPanel = withSelectablePanel(withDraggablePanel(Panel))
+const EPanel = withNotOverlappablePanel(
+  withSelectablePanel(withDraggablePanel(Panel))
+)
 
 const getPosition = compose(
   utils.roundXY,
@@ -25,12 +29,25 @@ const getPosition = compose(
   pick(['offsetX', 'offsetY']),
   prop('evt')
 )
+const useError = () => {
+  const orientation = useSelector(
+    pathOr([], ['panel_layout_tool', 'overlappingIds'])
+  )
+  return orientation.length ? 'OVERLAPPING_PANELS' : ''
+}
 export default () => {
   const dispatch = useDispatch()
+  const t = useI18n()
   const serialNumbers = useSelector(({ pvs }) => pvs.serialNumbers)
+  const panels = useSelector(pathOr([], ['panel_layout_tool', 'panels']))
+  const err = useError()
   const [unassigned, setUnassigned] = useState(
-    serialNumbers.map(({ serial_number }) => serial_number)
+    without(
+      panels.map(({ id }) => id),
+      serialNumbers.map(({ serial_number }) => serial_number)
+    )
   )
+
   const [index, setIndex] = useState(0)
 
   const assign = useCallback(
@@ -49,15 +66,6 @@ export default () => {
     [unassigned, dispatch, index]
   )
 
-  useEffect(() => {
-    dispatch(
-      actions.init([
-        utils.panelBuilder({ id: '100', x: 130, y: 90 }),
-        utils.panelBuilder({ id: '111', x: 130, y: 130 })
-      ])
-    )
-  }, [dispatch])
-
   const store = useStore()
   const history = useHistory()
 
@@ -66,40 +74,66 @@ export default () => {
   }
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column' }}>
+    <div className={'plt-screen-container'}>
+      <h1 className="is-uppercase has-text-centered">
+        {t('PANEL_LAYOUT_DESIGNER')}
+      </h1>
+      {either(
+        err,
+        <span className="has-text-centered has-error-text">{t(err)}</span>,
+        <span className="has-text-centered has-text-white">
+          {t('ADD_PANEL_PLT')}
+        </span>
+      )}
       <Canvas
         store={store}
-        width={window.innerWidth}
-        height={window.innerHeight - 300}
+        width={window.innerWidth - 30}
+        height={window.innerWidth - 30}
         onClick={assign}
       >
         <PanelsContainer PanelComponent={EPanel} />
       </Canvas>
-      <h3 className="has-text-centered has-text-white">Add panel to layout</h3>
-      <div className="panelContainer">
-        {either(
-          index !== 0,
-          <button value={'<'} onClick={() => setIndex(index - 1)}>
-            {'<'}
-          </button>,
-          <span />
-        )}
-        <span>{unassigned[index]}</span>
-        {either(
-          index < unassigned.length - 1,
-          <button value={'>'} onClick={() => setIndex(index + 1)}>
-            {'>'}
+      {either(
+        unassigned.length || err,
+        <>
+          <h3 className="has-text-centered has-text-white">
+            Add panel to layout
+          </h3>
+          <div className="panelContainer">
+            {either(
+              index !== 0,
+              <button value={'<'} onClick={() => setIndex(index - 1)}>
+                {'<'}
+              </button>,
+              <span />
+            )}
+            <span>{unassigned[index]}</span>
+            {either(
+              index < unassigned.length - 1,
+              <button value={'>'} onClick={() => setIndex(index + 1)}>
+                {'>'}
+              </button>
+            )}
+          </div>
+          <span className="has-text-centered has-text-weight-bold has-text-white">
+            orientation
+          </span>
+          <RotationSelector />
+        </>,
+        <>
+          <span className="has-text-centered has-text-white has-text-weight-bold">
+            All panels set!
+          </span>
+          <span className="has-text-centered">Continue to adjust arrays</span>
+          <button
+            style={{ alignSelf: 'center' }}
+            className="button is-primary is-uppercase is-center"
+            onClick={goToConfigure}
+          >
+            continue
           </button>
-        )}
-      </div>
-      <RotationSelector />
-      <button
-        style={{ alignSelf: 'center' }}
-        className="button is-primary is-uppercase is-center mt-10"
-        onClick={goToConfigure}
-      >
-        Go to configure
-      </button>
+        </>
+      )}
     </div>
   )
 }
