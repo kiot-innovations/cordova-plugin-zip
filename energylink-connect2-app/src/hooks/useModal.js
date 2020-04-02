@@ -11,6 +11,7 @@ const useModal = (
 ) => {
   const modalRoot = document.getElementById('modal-root')
   const [modalVisible, setModal] = useState(initialVisible)
+
   const toggleModal = () => {
     setModal(!modalVisible)
   }
@@ -29,6 +30,10 @@ const useModal = (
       {content}
     </Modal>
   )
-  return { modal: ReactDOM.createPortal(modal, modalRoot), toggleModal }
+  return {
+    modal: ReactDOM.createPortal(modal, modalRoot),
+    toggleModal,
+    setModal
+  }
 }
 export default useModal
