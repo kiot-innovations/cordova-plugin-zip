@@ -10,14 +10,17 @@
   }
 }
 .with-footer {
-  height: calc(100vh - 145px - env(safe-area-inset-bottom));
+  --safe-area-inset-bottom: env(safe-area-inset-bottom);
+  height: calc(100vh - 170px - var(--safe-area-inset-bottom));
   overflow-y: auto;
 }
 .without-footer {
-  height: calc(100vh - (150px + env(safe-area-inset-bottom)));
+  --safe-area-inset-bottom: env(safe-area-inset-bottom);
+  height: calc(100vh - 150px - var(--safe-area-inset-bottom));
 }
 .without-header {
-  height: calc(100vh - (80px + env(safe-area-inset-bottom)));
+  --safe-area-inset-bottom: env(safe-area-inset-bottom);
+  height: calc(100vh - 80px - var(--safe-area-inset-bottom));
 }
 
 body {
