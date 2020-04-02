@@ -14,7 +14,7 @@ const requestOptions = access_token => ({
       window.cordovaHTTP[METHOD](
         url,
         body,
-        options.headers,
+        options.headers || {},
         function(response) {
           console.info('HTTP Request RESPONSE SUCCESS')
           console.info(response)
