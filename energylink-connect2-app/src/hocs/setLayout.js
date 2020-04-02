@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
+import { propOr } from 'ramda'
 import { setHeader, setFooter } from 'state/actions/ui'
 import clsx from 'clsx'
 import './layout.scss'
@@ -16,6 +17,16 @@ const setLayout = (
       dispatch(setFooter(footer))
     }
   }, [dispatch])
+
+  useEffect(() => {
+    const customFooter = document.querySelector('.custom-footer')
+    const offSetTop = propOr(0, 'offsetTop', customFooter)
+    const clientHeight = propOr(0, 'clientHeight', document.body)
+
+    if (customFooter && clientHeight - offSetTop > 120)
+      customFooter.style.top = '100%'
+  })
+
   return (
     <div
       className={clsx({
