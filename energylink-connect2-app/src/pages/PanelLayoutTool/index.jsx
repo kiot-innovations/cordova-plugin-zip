@@ -17,6 +17,7 @@ import paths from 'routes/paths'
 import { useI18n } from 'shared/i18n'
 import { either, renameKey } from 'shared/utils'
 import './panelLayoutTool.scss'
+import { useError } from './hooks'
 
 const EPanel = withNotOverlappablePanel(
   withSelectablePanel(withDraggablePanel(Panel))
@@ -29,12 +30,7 @@ const getPosition = compose(
   pick(['offsetX', 'offsetY']),
   prop('evt')
 )
-const useError = () => {
-  const orientation = useSelector(
-    pathOr([], ['panel_layout_tool', 'overlappingIds'])
-  )
-  return orientation.length ? 'OVERLAPPING_PANELS' : ''
-}
+
 export default () => {
   const dispatch = useDispatch()
   const t = useI18n()

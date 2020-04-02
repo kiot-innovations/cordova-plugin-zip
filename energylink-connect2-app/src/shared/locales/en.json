@@ -238,5 +238,7 @@
   "NO_MODEL": "No model information",
   "PANEL_LAYOUT_DESIGNER":"Panel layout designer",
   "OVERLAPPING_PANELS": "Some panels are overlapping. Please move them to a valid location",
-  "ADD_PANEL_PLT": "Tap on the grid to place the module"
+  "ADD_PANEL_PLT": "Tap on the grid to place the module",
+  "GROUP_PANEL_PLT": "Place your arrays"
+
 }
