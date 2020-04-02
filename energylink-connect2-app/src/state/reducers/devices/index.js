@@ -139,7 +139,7 @@ export default createReducer(
     [FETCH_MODELS_SUCCESS]: (state, payload) => {
       return {
         ...state,
-        miModels: payload
+        miModels: [...state.miModels, payload]
       }
     }
   },

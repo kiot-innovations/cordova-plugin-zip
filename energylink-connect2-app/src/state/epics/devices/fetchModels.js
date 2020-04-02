@@ -9,14 +9,20 @@ import {
 import { pathOr } from 'ramda'
 import { httpGet } from 'shared/fetch'
 
+const buildModelFilter = (type, data) => {
+  return { type: type, models: data }
+}
+
 export const fetchModelsEpic = (action$, state$) => {
   return action$.pipe(
     ofType(FETCH_MODELS_INIT.getType()),
-    switchMap(() => {
-      const promise = httpGet('/device/sunverge/modelnames', state$.value)
+    switchMap(({ payload }) => {
+      const promise = httpGet(`/device/${payload}/modelnames`, state$.value)
       return from(promise).pipe(
         map(models =>
-          FETCH_MODELS_SUCCESS(pathOr([], ['data', 'items'], models))
+          FETCH_MODELS_SUCCESS(
+            buildModelFilter(payload, pathOr([], ['data', 'items'], models))
+          )
         ),
         catchError(err => of(FETCH_MODELS_ERROR(err)))
       )
