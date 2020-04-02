@@ -2433,15 +2433,9 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                       >
                         <SelectField
                           isSearchable={false}
+                          notFoundText="SELECT_A_GRID_PROFILE"
                           onSelect={[Function]}
-                          options={
-                            Array [
-                              Object {
-                                "label": "SELECT_A_GRID_PROFILE",
-                                "value": false,
-                              },
-                            ]
-                          }
+                          options={Array []}
                           useDefaultDropDown={true}
                         >
                           <StateManager
@@ -2460,14 +2454,7 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                             isSearchable={false}
                             noOptionsMessage={[Function]}
                             onChange={[Function]}
-                            options={
-                              Array [
-                                Object {
-                                  "label": "SELECT_A_GRID_PROFILE",
-                                  "value": false,
-                                },
-                              ]
-                            }
+                            options={Array []}
                             theme={[Function]}
                           >
                             <Select
@@ -2513,14 +2500,7 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                               onMenuOpen={[Function]}
                               openMenuOnClick={true}
                               openMenuOnFocus={false}
-                              options={
-                                Array [
-                                  Object {
-                                    "label": "SELECT_A_GRID_PROFILE",
-                                    "value": false,
-                                  },
-                                ]
-                              }
+                              options={Array []}
                               pageSize={5}
                               placeholder="Select..."
                               screenReaderStatus={[Function]}
@@ -2547,14 +2527,7 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                                 isFocused={false}
                                 isMulti={false}
                                 isRtl={false}
-                                options={
-                                  Array [
-                                    Object {
-                                      "label": "SELECT_A_GRID_PROFILE",
-                                      "value": false,
-                                    },
-                                  ]
-                                }
+                                options={Array []}
                                 selectOption={[Function]}
                                 selectProps={
                                   Object {
@@ -2599,12 +2572,7 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                                     "onMenuOpen": [Function],
                                     "openMenuOnClick": true,
                                     "openMenuOnFocus": false,
-                                    "options": Array [
-                                      Object {
-                                        "label": "SELECT_A_GRID_PROFILE",
-                                        "value": false,
-                                      },
-                                    ],
+                                    "options": Array [],
                                     "pageSize": 5,
                                     "placeholder": "Select...",
                                     "screenReaderStatus": [Function],
@@ -2683,14 +2651,7 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                                       isMulti={false}
                                       isRtl={false}
                                       menuIsOpen={false}
-                                      options={
-                                        Array [
-                                          Object {
-                                            "label": "SELECT_A_GRID_PROFILE",
-                                            "value": false,
-                                          },
-                                        ]
-                                      }
+                                      options={Array []}
                                       selectOption={[Function]}
                                       selectProps={
                                         Object {
@@ -2735,12 +2696,7 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                                           "onMenuOpen": [Function],
                                           "openMenuOnClick": true,
                                           "openMenuOnFocus": false,
-                                          "options": Array [
-                                            Object {
-                                              "label": "SELECT_A_GRID_PROFILE",
-                                              "value": false,
-                                            },
-                                          ],
+                                          "options": Array [],
                                           "pageSize": 5,
                                           "placeholder": "Select...",
                                           "screenReaderStatus": [Function],
@@ -2827,14 +2783,7 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                                             isDisabled={false}
                                             isMulti={false}
                                             isRtl={false}
-                                            options={
-                                              Array [
-                                                Object {
-                                                  "label": "SELECT_A_GRID_PROFILE",
-                                                  "value": false,
-                                                },
-                                              ]
-                                            }
+                                            options={Array []}
                                             selectOption={[Function]}
                                             selectProps={
                                               Object {
@@ -2879,12 +2828,7 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                                                 "onMenuOpen": [Function],
                                                 "openMenuOnClick": true,
                                                 "openMenuOnFocus": false,
-                                                "options": Array [
-                                                  Object {
-                                                    "label": "SELECT_A_GRID_PROFILE",
-                                                    "value": false,
-                                                  },
-                                                ],
+                                                "options": Array [],
                                                 "pageSize": 5,
                                                 "placeholder": "Select...",
                                                 "screenReaderStatus": [Function],
@@ -2958,14 +2902,7 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                                                   isMulti={false}
                                                   isRtl={false}
                                                   key="placeholder"
-                                                  options={
-                                                    Array [
-                                                      Object {
-                                                        "label": "SELECT_A_GRID_PROFILE",
-                                                        "value": false,
-                                                      },
-                                                    ]
-                                                  }
+                                                  options={Array []}
                                                   selectOption={[Function]}
                                                   selectProps={
                                                     Object {
@@ -3010,12 +2947,7 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                                                       "onMenuOpen": [Function],
                                                       "openMenuOnClick": true,
                                                       "openMenuOnFocus": false,
-                                                      "options": Array [
-                                                        Object {
-                                                          "label": "SELECT_A_GRID_PROFILE",
-                                                          "value": false,
-                                                        },
-                                                      ],
+                                                      "options": Array [],
                                                       "pageSize": 5,
                                                       "placeholder": "Select...",
                                                       "screenReaderStatus": [Function],
@@ -3141,14 +3073,7 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                                             isDisabled={false}
                                             isMulti={false}
                                             isRtl={false}
-                                            options={
-                                              Array [
-                                                Object {
-                                                  "label": "SELECT_A_GRID_PROFILE",
-                                                  "value": false,
-                                                },
-                                              ]
-                                            }
+                                            options={Array []}
                                             selectOption={[Function]}
                                             selectProps={
                                               Object {
@@ -3193,12 +3118,7 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                                                 "onMenuOpen": [Function],
                                                 "openMenuOnClick": true,
                                                 "openMenuOnFocus": false,
-                                                "options": Array [
-                                                  Object {
-                                                    "label": "SELECT_A_GRID_PROFILE",
-                                                    "value": false,
-                                                  },
-                                                ],
+                                                "options": Array [],
                                                 "pageSize": 5,
                                                 "placeholder": "Select...",
                                                 "screenReaderStatus": [Function],
@@ -3267,14 +3187,7 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                                                   isFocused={false}
                                                   isMulti={false}
                                                   isRtl={false}
-                                                  options={
-                                                    Array [
-                                                      Object {
-                                                        "label": "SELECT_A_GRID_PROFILE",
-                                                        "value": false,
-                                                      },
-                                                    ]
-                                                  }
+                                                  options={Array []}
                                                   selectOption={[Function]}
                                                   selectProps={
                                                     Object {
@@ -3319,12 +3232,7 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                                                       "onMenuOpen": [Function],
                                                       "openMenuOnClick": true,
                                                       "openMenuOnFocus": false,
-                                                      "options": Array [
-                                                        Object {
-                                                          "label": "SELECT_A_GRID_PROFILE",
-                                                          "value": false,
-                                                        },
-                                                      ],
+                                                      "options": Array [],
                                                       "pageSize": 5,
                                                       "placeholder": "Select...",
                                                       "screenReaderStatus": [Function],
@@ -3385,14 +3293,7 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                                                   isFocused={false}
                                                   isMulti={false}
                                                   isRtl={false}
-                                                  options={
-                                                    Array [
-                                                      Object {
-                                                        "label": "SELECT_A_GRID_PROFILE",
-                                                        "value": false,
-                                                      },
-                                                    ]
-                                                  }
+                                                  options={Array []}
                                                   selectOption={[Function]}
                                                   selectProps={
                                                     Object {
@@ -3437,12 +3338,7 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                                                       "onMenuOpen": [Function],
                                                       "openMenuOnClick": true,
                                                       "openMenuOnFocus": false,
-                                                      "options": Array [
-                                                        Object {
-                                                          "label": "SELECT_A_GRID_PROFILE",
-                                                          "value": false,
-                                                        },
-                                                      ],
+                                                      "options": Array [],
                                                       "pageSize": 5,
                                                       "placeholder": "Select...",
                                                       "screenReaderStatus": [Function],

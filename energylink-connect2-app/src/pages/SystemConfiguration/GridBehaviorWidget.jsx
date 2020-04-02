@@ -22,9 +22,7 @@ function GridBehaviorWidget({ animationState }) {
     state => state.systemConfiguration.gridBehavior
   )
   const { site } = useSelector(state => state.site)
-  const [selfSupplyOptions, setSelfSupplyOptions] = useState([
-    { label: t('SELECT_A_GRID_PROFILE'), value: false }
-  ])
+  const [selfSupplyOptions, setSelfSupplyOptions] = useState([])
 
   useEffect(() => {
     if (animationState === 'enter') dispatch(FETCH_GRID_BEHAVIOR())
@@ -138,6 +136,7 @@ function GridBehaviorWidget({ animationState }) {
                   isSearchable={false}
                   useDefaultDropDown
                   options={selfSupplyOptions}
+                  notFoundText={t('SELECT_A_GRID_PROFILE')}
                   onSelect={setExportLimit}
                 />
               </div>
