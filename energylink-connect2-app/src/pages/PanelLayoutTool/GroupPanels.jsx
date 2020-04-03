@@ -7,6 +7,7 @@ import {
   withDraggableGroupsContainer,
   withNotOverlappablePanel
 } from '@sunpower/panel-layout-tool'
+import { path } from 'ramda'
 import { useI18n } from 'shared/i18n'
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector, useStore } from 'react-redux'
@@ -23,15 +24,16 @@ export default ({ animationState }) => {
   const dispatch = useDispatch()
   const t = useI18n()
   const err = useError()
-  const panels = useSelector(
-    ({ panel_layout_tool }) => panel_layout_tool.panels
-  )
+  const panels = useSelector(path(['panel_layout_tool', 'panels']))
 
+  //Had to disable the eslint rule of exhaustive because
+  //panels change when the component is mounting and creates an error
   useEffect(() => {
     if (animationState === 'enter') {
       dispatch(actions.init(utils.createGroups(panels)))
     }
-  }, [animationState, dispatch, panels])
+    //eslint-disable-next-line
+  }, [])
 
   const store = useStore()
   const history = useHistory()
@@ -59,20 +61,18 @@ export default ({ animationState }) => {
       <Canvas
         store={store}
         width={window.innerWidth - 30}
-        height={window.innerHeight - 300}
+        height={window.innerWidth - 30}
       >
         <EGroupsContainer PanelComponent={EPanel} />
       </Canvas>
       <div className="panelContainer" />
       <button
-        style={{ alignSelf: 'center' }}
-        className="configure-button has-text-primary is-uppercase is-center has-text-weight-bold"
+        className="button-transparent has-text-primary is-uppercase is-center has-text-weight-bold"
         onClick={goBack}
       >
         Back
       </button>
       <button
-        style={{ alignSelf: 'center' }}
         className="button is-primary is-uppercase is-center mt-10"
         onClick={goToConfigure}
       >
