@@ -7,7 +7,7 @@ import { groupBy } from 'shared/utils'
 import './ModelEdit.scss'
 import MiGroup from './MiGroup'
 
-const ModelEdit = () => {
+const ModelEdit = ({ animationState }) => {
   const t = useI18n()
   const { serialNumbers } = useSelector(state => state.pvs)
 
@@ -15,7 +15,12 @@ const ModelEdit = () => {
 
   const collapsibleElements = () => {
     return Object.keys(groupedSerialNumbers).map((key, i) => (
-      <MiGroup key={key} title={key} data={groupedSerialNumbers[key]} />
+      <MiGroup
+        key={key}
+        title={key}
+        data={groupedSerialNumbers[key]}
+        animationState={animationState}
+      />
     ))
   }
 

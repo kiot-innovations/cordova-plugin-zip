@@ -23,7 +23,7 @@ const buildSelectValue = value => ({
   value: value
 })
 
-const MiGroup = ({ title, data }) => {
+const MiGroup = ({ title, data, animationState }) => {
   const t = useI18n()
   const dispatch = useDispatch()
   const [selectedMi, setSelectedMi] = useState([])
@@ -39,9 +39,8 @@ const MiGroup = ({ title, data }) => {
   }
 
   useEffect(() => {
-    dispatch(FETCH_MODELS_INIT(miTypes[title]))
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+    if (animationState === 'enter') dispatch(FETCH_MODELS_INIT(miTypes[title]))
+  }, [animationState, dispatch, miTypes, title])
 
   const modelOptions = useSelector(state =>
     pathOr([], ['devices', 'miModels'], state)
