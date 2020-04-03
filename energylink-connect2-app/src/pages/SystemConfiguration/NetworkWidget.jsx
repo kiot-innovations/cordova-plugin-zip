@@ -47,7 +47,7 @@ function NetworkWidget({ animationState }) {
                 <div className="control">
                   <SelectField
                     disabled={isFetching}
-                    isSearchable={false}
+                    isSearchable={true}
                     onSelect={compose(setAP, prop('ap'))}
                     defaultValue={selectedAP}
                     placeholder={t('SELECT_NETWORK')}
