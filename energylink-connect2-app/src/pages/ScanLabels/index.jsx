@@ -19,6 +19,7 @@ function ScanDeviceLabels({ animationState }) {
   const { serialNumbers } = useSelector(state => state.pvs)
 
   const [isScanning, setIsScanning] = useState(true)
+  const [init, setInit] = useState(false)
   const onDone = useRef(null)
 
   const addSN = compose(dispatch, ADD_PVS_SN, buildSN)
@@ -28,22 +29,24 @@ function ScanDeviceLabels({ animationState }) {
     if (typeof onDone.current === 'function') {
       onDone.current()
       setIsScanning(false)
+      setInit(false)
       history.push(paths.PROTECTED.SN_LIST.path)
-      console.warn(serialNumbers, 'ON FINISH')
     }
   }
 
   const startScanning = () => {
-    if (window.Scandit) onDone.current = scanM(addCodes)
+    if (window.Scandit && !init) {
+      setInit(true)
+      onDone.current = scanM(addCodes)
+    }
   }
 
   useEffect(() => {
-    startScanning()
+    if (animationState === 'update') startScanning()
 
     return () => {
-      if (isScanning && onDone.current && animationState === 'leave') {
-        onDone.current()
-      }
+      // do not invoke stopScanning()
+      if (isScanning && init && animationState === 'leave') onDone.current()
     }
   }, [])
 

@@ -48,6 +48,7 @@ function ConnectToPVS({ animationState }) {
   const history = useHistory()
   const connectionState = useSelector(state => state.network)
   const [scanning, setScanning] = useState(true)
+  const [init, setInit] = useState(false)
 
   const generatePassword = serialNumber => {
     let lastIndex = serialNumber.length
@@ -63,6 +64,7 @@ function ConnectToPVS({ animationState }) {
     if (typeof onDone.current === 'function') {
       onDone.current()
       setScanning(false)
+      setInit(false)
     }
     if (shouldGoBack) history.goBack()
   }
@@ -72,7 +74,10 @@ function ConnectToPVS({ animationState }) {
   )
 
   const startScanning = () => {
-    if (window.Scandit) onDone.current = scanSimple(processQRCode)
+    if (window.Scandit && !init) {
+      setInit(true)
+      onDone.current = scanSimple(processQRCode)
+    }
     if (!scanning) setScanning(true)
   }
 
@@ -82,6 +87,7 @@ function ConnectToPVS({ animationState }) {
       connectionState.connected &&
       animationState !== 'leave'
     ) {
+      stopScanning()
       history.push(paths.PROTECTED.PVS_CONNECTION_SUCCESS.path)
     }
     if (!connectionState.connecting && connectionState.err) {
@@ -100,11 +106,11 @@ function ConnectToPVS({ animationState }) {
   ])
 
   useEffect(() => {
-    startScanning()
+    if (animationState === 'update') startScanning()
 
     return () => {
       if (animationState === 'leave' && typeof onDone.current === 'function')
-        onDone.current()
+        stopScanning()
 
       if (animationState === 'leave' && connectionState.connecting) {
         dispatch(PVS_CONNECTION_ERROR('CANCELED'))
