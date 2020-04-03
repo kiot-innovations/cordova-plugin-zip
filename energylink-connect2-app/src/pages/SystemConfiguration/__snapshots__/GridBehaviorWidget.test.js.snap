@@ -111,6 +111,7 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                         className="control"
                       >
                         <SelectField
+                          defaultValue={null}
                           isSearchable={false}
                           notFoundText="FETCHING_OPTIONS"
                           onSelect={[Function]}

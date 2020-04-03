@@ -23,6 +23,7 @@ function GridBehaviorWidget({ animationState }) {
   )
   const { site } = useSelector(state => state.site)
   const [selfSupplyOptions, setSelfSupplyOptions] = useState([])
+  const [hasDefaultGridProfile, setHasDefaultGridProfile] = useState(false)
 
   useEffect(() => {
     if (animationState === 'enter') dispatch(FETCH_GRID_BEHAVIOR())
@@ -37,7 +38,12 @@ function GridBehaviorWidget({ animationState }) {
         )
       : []
 
+  let defaultGridProfile = null
+
   const gridProfileOptions = filterProfiles.map(profile => {
+    if (length(filterProfiles) === 2 && !/^IEEE/.test(profile.name)) {
+      defaultGridProfile = { label: profile.name, value: profile }
+    }
     return { label: profile.name, value: profile }
   })
 
@@ -59,6 +65,11 @@ function GridBehaviorWidget({ animationState }) {
       dispatch(SET_EXPORT_LIMIT(false))
       setSelfSupplyOptions([{ label: t('NO_SELF_SUPPLY'), value: false }])
     }
+  }
+
+  if (!hasDefaultGridProfile && defaultGridProfile) {
+    setGridProfile(defaultGridProfile)
+    setHasDefaultGridProfile(true)
   }
 
   const setExportLimit = value => {
@@ -93,6 +104,7 @@ function GridBehaviorWidget({ animationState }) {
                 <SelectField
                   isSearchable={false}
                   useDefaultDropDown
+                  defaultValue={defaultGridProfile}
                   options={gridProfileOptions}
                   notFoundText={
                     length(gridProfileOptions) === 0
