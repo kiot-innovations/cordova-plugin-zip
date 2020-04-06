@@ -10,7 +10,7 @@ const requestOptions = access_token => ({
   userFetch: (url, options) =>
     new Promise((resolve, reject) => {
       const METHOD = options.method.toLowerCase()
-      const body = options.body ? JSON.parse(options.body) : null
+      const body = options.body ? JSON.parse(options.body) : {}
       window.cordovaHTTP[METHOD](
         url,
         body,
@@ -31,6 +31,10 @@ const requestOptions = access_token => ({
           try {
             console.error('HTTP Request RESPONSE ERROR')
             console.error(response)
+            console.error('It Was Sent With:')
+            console.info(options)
+            console.error('URL')
+            console.info(url)
             reject(JSON.parse(response.error))
           } catch (error) {
             reject(response.error)
