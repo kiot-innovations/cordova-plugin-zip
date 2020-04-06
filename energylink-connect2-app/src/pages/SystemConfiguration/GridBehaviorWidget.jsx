@@ -39,9 +39,10 @@ function GridBehaviorWidget({ animationState }) {
       : []
 
   let defaultGridProfile = null
+  const isIEEE = /^IEEE/
 
   const gridProfileOptions = filterProfiles.map(profile => {
-    if (length(filterProfiles) === 2 && !/^IEEE/.test(profile.name)) {
+    if (length(filterProfiles) === 2 && !isIEEE.test(profile.name)) {
       defaultGridProfile = { label: profile.name, value: profile }
     }
     return { label: profile.name, value: profile }
