@@ -1,5 +1,4 @@
-import { split, join, map, fromPairs, toPairs, pipe, tail, head } from 'ramda'
-import request from 'superagent'
+import { split, map, fromPairs, pipe, tail, head } from 'ramda'
 import jwtDecode from 'jwt-decode'
 import config from './config'
 import { createExternalLinkHandler } from 'shared/routing'
@@ -43,7 +42,7 @@ const verifyTokenOAuth = access_token => {
     Authorization: `Basic ${config.token_secret}`,
     access_token_manager_id: 'atm:jwt'
   }
-  return post(getBaseApiUrlOAuth(true, true), headers, buildURL(params))
+  return post(getBaseApiUrlOAuth(true, true), headers, params)
 }
 
 const refreshTokenOAuth = refresh_token => {
@@ -58,7 +57,7 @@ const refreshTokenOAuth = refresh_token => {
     Authorization: `Basic ${config.secret}`,
     access_token_manager_id: 'atm:jwt'
   }
-  return post(getBaseApiUrlOAuth(), headers, buildURL(params))
+  return post(getBaseApiUrlOAuth(), headers, params)
 }
 
 /**
@@ -80,7 +79,7 @@ const getAccessTokenOAuth = code => {
     Authorization: `Basic ${config.secret}`,
     access_token_manager_id: 'atm:jwt'
   }
-  return post(getBaseApiUrlOAuth(), headers, buildURL(params))
+  return post(getBaseApiUrlOAuth(), headers, params)
 }
 
 const getBaseApiUrlOAuth = (useAuthUrl, useCheckTokenURI) => {
@@ -94,17 +93,24 @@ const getBaseApiUrlOAuth = (useAuthUrl, useCheckTokenURI) => {
 
 const post = (apiPath, headers, body = {}) =>
   new Promise((resolved, rejected) =>
-    request
-      .post(apiPath)
-      .send(body)
-      .set(headers)
-      .end((err, res) => {
-        if (err) {
-          rejected(res ? res.body : err)
-        } else {
-          resolved(res.body)
+    window.cordovaHTTP.post(
+      apiPath,
+      body,
+      headers,
+      function(response) {
+        try {
+          const data = JSON.parse(response.data)
+          resolved(data)
+        } catch (error) {
+          console.error(error)
+          rejected(error)
         }
-      })
+      },
+      function(response) {
+        console.error(response)
+        rejected(response.error)
+      }
+    )
   )
 
 const parseURL = pipe(
@@ -116,7 +122,7 @@ const parseURL = pipe(
   fromPairs
 )
 
-const buildURL = pipe(toPairs, map(join('=')), join('&'))
+// const buildURL = pipe(toPairs, map(join('=')), join('&'))
 
 const generateRandomValue = () => {
   let crypto = window.crypto || window.msCrypto

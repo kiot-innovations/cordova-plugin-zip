@@ -126,7 +126,7 @@ exports[`Serial Number List Page renders correctly 1`] = `
               </div>
               <ScanButtons
                 countSN={[Function]}
-                takePicture={[Function]}
+                onScanMore={[Function]}
               >
                 <div
                   className="sn-buttons"

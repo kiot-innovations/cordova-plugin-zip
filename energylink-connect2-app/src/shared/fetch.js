@@ -22,15 +22,26 @@ export const httpGet = (path, state = null, token) => {
     Authorization: `Bearer ${state ? state.user.auth.access_token : token}`
   }
 
-  return fetch(process.env.REACT_APP_EDP_API_URL + path, {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json',
-      ...authHeader
-    }
-  })
-    .then(res => parseResponse(res))
-    .catch(err => console.error(err))
+  return new Promise((res, rej) =>
+    window.cordovaHTTP.get(
+      process.env.REACT_APP_EDP_API_URL + path,
+      {},
+      authHeader,
+      function(response) {
+        try {
+          const data = JSON.parse(response.data)
+          res({ data })
+        } catch (error) {
+          console.error(error)
+          rej(error)
+        }
+      },
+      function(response) {
+        console.error(response)
+        rej(response.error)
+      }
+    )
+  )
 }
 
 export const httpPatch = (path, data, state = null) => {

@@ -1,7 +1,7 @@
 @import '~@sunpower/theme-dark/styles/variables';
 
 .custom-footer {
-  position: absolute;
+  position: fixed;
   bottom: constant(safe-area-inset-bottom);
   bottom: env(safe-area-inset-bottom);
   width: 100vw;

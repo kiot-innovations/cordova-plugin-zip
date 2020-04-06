@@ -117,6 +117,19 @@ export const cleanString = (str = '') => {
   return str.replace(regex, '')
 }
 
+const decideModel = barcode =>
+  barcode.startsWith('1') || barcode.startsWith('E001') ? 'Type E' : 'Type G'
+
+export const buildSN = barcode => ({
+  serial_number: barcode.startsWith('1') ? `E00${barcode}` : barcode,
+  model: decideModel(barcode),
+  type: 'MI'
+})
+export const trace = t => x => {
+  console.info(t)
+  console.info(x)
+  return x
+}
 export const renameKey = curry((oldKey, newKey, obj) =>
   assoc(newKey, prop(oldKey, obj), dissoc(oldKey, obj))
 )

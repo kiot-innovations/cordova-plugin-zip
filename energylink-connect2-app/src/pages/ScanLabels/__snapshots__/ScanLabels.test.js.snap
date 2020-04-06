@@ -38,56 +38,38 @@ exports[`Bulk Scan screen renders correctly 1`] = `
         }
       }
     >
-      <ScanLabels>
-        <div
-          className="scan-labels is-vertical has-text-centered pl-10 pr-10"
-        >
-          <span
-            className="is-uppercase has-text-weight-bold"
-          >
-            SCAN_EQUIPMENT
-          </span>
+      <ScanDeviceLabels>
+        <ErrorBoundary>
           <div
-            className="hold-state"
+            className="scan-labels is-vertical has-text-centered pl-10 pr-10"
           >
-            <ForwardRef(SvgBarcode)>
-              <svg>
-                Barcode.svg
-              </svg>
-            </ForwardRef(SvgBarcode)>
-          </div>
-          <span
-            className="hint-text"
-          >
-            BULK_SCAN_HINT
-          </span>
-          <button
-            className="button is-primary trigger-scan"
-            disabled={false}
-            onClick={[Function]}
-          >
-            BULK_SCAN
-          </button>
-          <Link
-            className="has-text-centered is-uppercase"
-            to="/scan-labels"
-          >
-            <LinkAnchor
-              className="has-text-centered is-uppercase"
-              href="/scan-labels"
-              navigate={[Function]}
+            <span
+              className="is-uppercase has-text-weight-bold mb-10"
             >
-              <a
-                className="has-text-centered is-uppercase"
-                href="/scan-labels"
-                onClick={[Function]}
-              >
-                CANT_FIND_INVERTERS
-              </a>
-            </LinkAnchor>
-          </Link>
-        </div>
-      </ScanLabels>
+              SCAN_EQUIPMENT
+            </span>
+            <div
+              id="scandit"
+            />
+            <div
+              className="hint-text mt-15 pl-15 pr-15"
+            >
+              BULK_SCAN_HINT
+            </div>
+            <div
+              className="has-text-white mt-10"
+            >
+              FOUND_SN 0
+            </div>
+            <button
+              className="button is-primary trigger-scan mt-15"
+              onClick={[Function]}
+            >
+              DONE
+            </button>
+          </div>
+        </ErrorBoundary>
+      </ScanDeviceLabels>
     </Provider>
   </Router>
 </BrowserRouter>

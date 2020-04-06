@@ -1,93 +1,79 @@
-import React, { useState, useEffect } from 'react'
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useEffect, useState, useRef } from 'react'
+import { useHistory } from 'react-router-dom'
+import { compose, map } from 'ramda'
 import { useDispatch, useSelector } from 'react-redux'
 import { useI18n } from 'shared/i18n'
-import { Link, useHistory } from 'react-router-dom'
-import { BarcodeIcon } from './assets'
-import { Loader } from 'components/Loader'
+import { scanM } from 'shared/scandit'
+import ErrorBoundary from 'components/Error'
+import { ADD_PVS_SN } from 'state/actions/pvs'
+import { buildSN } from 'shared/utils'
 import paths from 'routes/paths'
-import './ScanLabels.scss'
-import { GET_SN_INIT } from 'state/actions/pvs'
 
-function ScanLabels({ animationState }) {
+import './ScanLabels.scss'
+
+function ScanDeviceLabels({ animationState }) {
   const t = useI18n()
   const dispatch = useDispatch()
   const history = useHistory()
-  const [openingCamera, setOpeningCamera] = useState(false)
+  const { serialNumbers } = useSelector(state => state.pvs)
 
-  const { serialNumbers, fetchingSN } = useSelector(state => state.pvs)
+  const [isScanning, setIsScanning] = useState(true)
+  const [init, setInit] = useState(false)
+  const onDone = useRef(null)
 
-  const cameraSuccess = photo => {
-    setOpeningCamera(false)
-    dispatch(GET_SN_INIT(photo))
+  const addSN = compose(dispatch, ADD_PVS_SN, buildSN)
+  const addCodes = map(addSN)
+
+  const finishedScanning = () => {
+    if (typeof onDone.current === 'function') {
+      onDone.current()
+      setIsScanning(false)
+      setInit(false)
+      history.push(paths.PROTECTED.SN_LIST.path)
+    }
   }
 
-  const cameraError = () => {
-    setOpeningCamera(false)
-  }
-
-  const cameraOptions = {
-    quality: 40,
-    sourceType: 1,
-    destinationType: 0
-  }
-
-  const takePicture = () => {
-    if (navigator) {
-      setOpeningCamera(true)
-      navigator.camera.getPicture(cameraSuccess, cameraError, cameraOptions)
+  const startScanning = () => {
+    if (window.Scandit && !init) {
+      setInit(true)
+      onDone.current = scanM(addCodes)
     }
   }
 
   useEffect(() => {
-    if (serialNumbers.length > 0 && animationState !== 'leave') {
-      history.push(paths.PROTECTED.SN_LIST.path)
+    if (animationState === 'update') startScanning()
+
+    return () => {
+      // do not invoke stopScanning()
+      if (isScanning && init && animationState === 'leave') onDone.current()
     }
-  })
+  }, [])
 
   return (
-    <div className="scan-labels is-vertical has-text-centered pl-10 pr-10">
-      <span className="is-uppercase has-text-weight-bold">
-        {t('SCAN_EQUIPMENT')}
-      </span>
-      <div className="hold-state">
-        {!fetchingSN && !openingCamera ? (
-          <BarcodeIcon />
-        ) : (
-          <div>
-            <Loader />
-            <span className="hint-text">
-              {t(openingCamera ? 'OPENING_CAMERA' : 'FETCHING_SN')}
-            </span>
-          </div>
-        )}
-      </div>
-      {!fetchingSN ? (
-        <span className="hint-text">{t('BULK_SCAN_HINT')}</span>
-      ) : (
-        ''
-      )}
-
-      {!fetchingSN && serialNumbers.length > 0 ? (
-        <span className="has-text-white">
-          {t('FOUND_SN', serialNumbers.length)}
+    <ErrorBoundary>
+      <div className="scan-labels is-vertical has-text-centered pl-10 pr-10">
+        <span className="is-uppercase has-text-weight-bold mb-10">
+          {t('SCAN_EQUIPMENT')}
         </span>
-      ) : null}
 
-      <button
-        className="button is-primary trigger-scan"
-        onClick={takePicture}
-        disabled={fetchingSN}
-      >
-        {fetchingSN ? t('SCANNING_SN') : t('BULK_SCAN')}
-      </button>
-      <Link
-        to={paths.PROTECTED.SCAN_LABELS.path}
-        className="has-text-centered is-uppercase"
-      >
-        {t('CANT_FIND_INVERTERS')}
-      </Link>
-    </div>
+        <div id="scandit" />
+
+        <div className="hint-text mt-15 pl-15 pr-15">{t('BULK_SCAN_HINT')}</div>
+
+        <div className="has-text-white mt-10">
+          {t('FOUND_SN', serialNumbers.length)}
+        </div>
+
+        <button
+          className="button is-primary trigger-scan mt-15"
+          onClick={isScanning ? finishedScanning : startScanning}
+        >
+          {isScanning ? t('DONE') : t('BULK_SCAN')}
+        </button>
+      </div>
+    </ErrorBoundary>
   )
 }
 
-export default ScanLabels
+export default ScanDeviceLabels

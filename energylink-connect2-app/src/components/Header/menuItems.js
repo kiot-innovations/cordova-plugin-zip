@@ -14,11 +14,11 @@ export default [
   {
     icon: 'sp-info',
     text: 'VERSION_INFORMATION',
-    to: paths.PROTECTED.VERSION_INFORMATION.path
+    to: paths.PROTECTED.SCAN_LABELS.path
   },
   {
     icon: 'sp-feedback',
     text: 'GIVE_FEEDBACK',
-    to: paths.PROTECTED.GIVE_FEEDBACK.path
+    to: paths.PROTECTED.SN_LIST.path
   }
 ]
