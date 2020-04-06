@@ -9,7 +9,8 @@ import {
   omit,
   identity,
   converge,
-  useWith
+  useWith,
+  pathOr
 } from 'ramda'
 import { getFile } from './fileDownloader'
 import authClient from 'shared/auth/sdk'
@@ -139,9 +140,9 @@ export const verifyToken = (access_token, refresh_token) => {
         }
       })
       .catch(error => {
-        dispatch(LOGIN_ERROR({ message: 'ACCESS_TOKEN_EXPIRED' }))
-        dispatch(LOGOUT())
-        dispatch(VALIDATE_SESSION_ERROR())
+        console.error('Auth Verification Error')
+        console.error(error)
+        dispatch(REFRESH_TOKEN_INIT(refresh_token))
       })
   }
 }
@@ -153,7 +154,13 @@ export const VALIDATE_SESSION_ERROR = createAction('VALIDATE_SESSION_ERROR')
 export const validateSession = () => {
   return (dispatch, getState) => {
     const { user } = getState()
-    if (user.auth.access_token) {
+    const access_token = pathOr(null, ['auth', 'access_token'], user)
+    const expires = pathOr(0, ['data', 'exp'], user) * 1000
+    const now = new Date().getTime()
+
+    const shouldValidateSession = now - expires > 0
+
+    if (access_token && shouldValidateSession) {
       dispatch(VALIDATE_SESSION_INIT())
       dispatch(verifyToken(user.auth.access_token, user.auth.refresh_token))
     }
