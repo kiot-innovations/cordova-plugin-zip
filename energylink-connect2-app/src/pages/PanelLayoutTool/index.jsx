@@ -81,14 +81,16 @@ export default () => {
           {t('ADD_PANEL_PLT')}
         </span>
       )}
-      <Canvas
-        store={store}
-        width={window.innerWidth - 30}
-        height={window.innerWidth - 30}
-        onClick={assign}
-      >
-        <PanelsContainer PanelComponent={EPanel} />
-      </Canvas>
+      <div className="canvas">
+        <Canvas
+          store={store}
+          width={window.innerWidth - 30}
+          height={window.innerWidth - 30}
+          onClick={assign}
+        >
+          <PanelsContainer PanelComponent={EPanel} />
+        </Canvas>
+      </div>
       {either(
         unassigned.length || err,
         <>
