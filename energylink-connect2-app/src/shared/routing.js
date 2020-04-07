@@ -7,5 +7,5 @@ export const createExternalLinkHandler = url => event => {
     event.stopPropagation()
   }
 
-  window.open(url, '_system')
+  window.open(url, '_system', 'usewkwebview=yes')
 }

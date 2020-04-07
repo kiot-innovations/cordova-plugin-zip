@@ -25,7 +25,8 @@
     "cordova-plugin-file-md5": "^0.3.3",
     "cordova-plugin-file-transfer": "^1.7.1",
     "cordova-plugin-http": "^1.2.0",
-    "cordova-plugin-inappbrowser": "^3.1.0",
+    "cordova-plugin-inappbrowser": "^3.2.0",
+    "cordova-plugin-keyboard": "^1.2.0",
     "cordova-plugin-nabto": "^2.6.3",
     "cordova-plugin-network-information": "^2.0.2",
     "cordova-plugin-wifiwizard2": "git+https://github.com/tripflex/wifiwizard2.git",
@@ -51,7 +52,6 @@
       "cordova-plugin-network-information": {},
       "cordova-plugin-file": {},
       "cordova-plugin-file-downloader": {},
-      "cordova-plugin-inappbrowser": {},
       "wifiwizard2": {},
       "cordova-plugin-customurlscheme": {
         "URL_SCHEME": "com.sunpower.elc2",
@@ -67,7 +67,10 @@
       },
       "cordova-plugin-nabto": {},
       "cordova-plugin-http": {},
-      "cordova-plugin-wkwebview-engine": {}
+      "cordova-plugin-wkwebview-engine": {},
+      "cordova-plugin-wkwebviewxhrfix": {},
+      "cordova-plugin-keyboard": {},
+      "cordova-plugin-inappbrowser": {}
     },
     "platforms": [
       "android",
