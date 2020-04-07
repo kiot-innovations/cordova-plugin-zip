@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.sunpower.energylink.commissioning2" version="0.75.34" xmlns="http://www.w3.org/ns/widgets" xmlns:android="http://schemas.android.com/apk/res/android" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="com.sunpower.energylink.commissioning2" version="0.75.35" xmlns="http://www.w3.org/ns/widgets" xmlns:android="http://schemas.android.com/apk/res/android" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>EnergylinkConnect2</name>
     <description>
         SunPower EnergyLink Connect 2
@@ -33,6 +33,7 @@
     </platform>
     <platform name="ios">
         <hook src="extend_build_phase.js" type="after_platform_add" />
+        <preference name="WKWebViewOnly" value="true" />
         <feature name="CDVWKWebViewEngine">
             <param name="ios-package" value="CDVWKWebViewEngine" />
         </feature>
