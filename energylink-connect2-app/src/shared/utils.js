@@ -133,3 +133,8 @@ export const trace = t => x => {
 export const renameKey = curry((oldKey, newKey, obj) =>
   assoc(newKey, prop(oldKey, obj), dissoc(oldKey, obj))
 )
+
+export const updateBodyHeight = () => {
+  const current = document.body.style.height
+  document.body.style.height = `${current === '100vh' ? 101 : 100}vh`
+}

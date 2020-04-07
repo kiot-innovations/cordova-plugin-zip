@@ -26,16 +26,18 @@
     "cordova-plugin-file-transfer": "^1.7.1",
     "cordova-plugin-http": "^1.2.0",
     "cordova-plugin-inappbrowser": "^3.1.0",
+    "cordova-plugin-keyboard": "^1.2.0",
     "cordova-plugin-nabto": "^2.6.3",
     "cordova-plugin-network-information": "^2.0.2",
     "cordova-plugin-wifiwizard2": "git+https://github.com/tripflex/wifiwizard2.git",
     "cordova-plugin-wkwebview-engine": "^1.1.4",
+    "cordova-plugin-wkwebviewxhrfix": "git+https://github.com/TheMattRay/cordova-plugin-wkwebviewxhrfix.git",
     "cordova-plugin-zip": "^3.1.0",
     "es6-promise-plugin": "^4.1.0",
     "phonegap": "^9.0.0",
     "phonegap-plugin-barcodescanner": "^8.1.0",
-    "scandit-cordova-datacapture-barcode": "6.2.0",
-    "scandit-cordova-datacapture-core": "6.2.0",
+    "scandit-cordova-datacapture-barcode": "^6.2.1",
+    "scandit-cordova-datacapture-core": "^6.2.1",
     "wifiwizard2": "^3.1.1",
     "xcode": "^2.1.0"
   },
@@ -60,14 +62,15 @@
         "ANDROID_PATHPREFIX": "/"
       },
       "cordova-plugin-device": {},
-      "scandit-cordova-datacapture-core": {},
-      "scandit-cordova-datacapture-barcode": {},
       "cordova-plugin-camera": {
         "ANDROID_SUPPORT_V4_VERSION": "27.+"
       },
       "cordova-plugin-nabto": {},
       "cordova-plugin-http": {},
-      "cordova-plugin-wkwebview-engine": {}
+      "cordova-plugin-wkwebviewxhrfix": {},
+      "scandit-cordova-datacapture-core": {},
+      "scandit-cordova-datacapture-barcode": {},
+      "cordova-plugin-keyboard": {}
     },
     "platforms": [
       "android",
