@@ -36,8 +36,8 @@
     "es6-promise-plugin": "^4.1.0",
     "phonegap": "^9.0.0",
     "phonegap-plugin-barcodescanner": "^8.1.0",
-    "scandit-cordova-datacapture-barcode": "^6.2.1",
-    "scandit-cordova-datacapture-core": "^6.2.1",
+    "scandit-cordova-datacapture-barcode": "^6.2.0",
+    "scandit-cordova-datacapture-core": "^6.2.0",
     "wifiwizard2": "^3.1.1",
     "xcode": "^2.1.0"
   },
@@ -68,9 +68,9 @@
       "cordova-plugin-nabto": {},
       "cordova-plugin-http": {},
       "cordova-plugin-wkwebviewxhrfix": {},
+      "cordova-plugin-keyboard": {},
       "scandit-cordova-datacapture-core": {},
-      "scandit-cordova-datacapture-barcode": {},
-      "cordova-plugin-keyboard": {}
+      "scandit-cordova-datacapture-barcode": {}
     },
     "platforms": [
       "android",
