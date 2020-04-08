@@ -14,7 +14,8 @@ import {
   RESET_DISCOVERY,
   CLAIM_DEVICES_UPDATE,
   CLAIM_DEVICES_COMPLETE,
-  FETCH_MODELS_SUCCESS
+  FETCH_MODELS_SUCCESS,
+  UPDATE_DEVICES_LIST
 } from 'state/actions/devices'
 
 const initialState = {
@@ -124,6 +125,12 @@ export default createReducer(
       return {
         ...state,
         miModels: payload
+      }
+    },
+    [UPDATE_DEVICES_LIST]: (state, payload) => {
+      return {
+        ...state,
+        found: payload
       }
     }
   },

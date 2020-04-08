@@ -240,5 +240,7 @@
   "PANEL_LAYOUT_DESIGNER": "Panel layout designer",
   "OVERLAPPING_PANELS": "Some panels are overlapping. Please move them to a valid location",
   "ADD_PANEL_PLT": "Tap on the grid to place the module",
-  "GROUP_PANEL_PLT": "Tap on the new location for the selected panel"
+  "GROUP_PANEL_PLT": "Tap on the new location for the selected panel",
+  "DISCOVERY_COMPLETE": "Discovery Complete",
+  "REMOVE_UNWANTED_MIS": "Please make sure to remove any MIs not belonging to the site before continuing."
 }
