@@ -12,7 +12,7 @@ describe('MI Model Editing page', () => {
       {
         serial_number: 'E00121852014339',
         type: 'MI',
-        model: 'Type E',
+        miType: 'Type E',
         bounding_box: {
           left: 1174,
           top: 850,
@@ -23,7 +23,7 @@ describe('MI Model Editing page', () => {
       {
         serial_number: 'E00121929013075',
         type: 'MI',
-        model: 'Type E',
+        miType: 'Type E',
         bounding_box: {
           left: 1109,
           top: 1470,
@@ -34,7 +34,7 @@ describe('MI Model Editing page', () => {
       {
         serial_number: 'E00121852014321',
         type: 'MI',
-        model: 'Type E',
+        miType: 'Type E',
         bounding_box: {
           left: 1259,
           top: 2055,
@@ -45,7 +45,7 @@ describe('MI Model Editing page', () => {
       {
         serial_number: 'E00121852014325',
         type: 'MI',
-        model: 'Type E',
+        miType: 'Type E',
         bounding_box: {
           left: 1279,
           top: 2647,

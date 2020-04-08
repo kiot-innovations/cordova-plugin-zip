@@ -13,7 +13,7 @@ const ModelEdit = ({ animationState }) => {
   const dispatch = useDispatch()
   const { serialNumbers } = useSelector(state => state.pvs)
 
-  const groupedSerialNumbers = groupBy(serialNumbers, 'model')
+  const groupedSerialNumbers = groupBy(serialNumbers, 'miType')
 
   const collapsibleElements = () => {
     return Object.keys(groupedSerialNumbers).map((key, i) => (
