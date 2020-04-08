@@ -48,6 +48,7 @@ import PanelLayoutToolGroupPanels from 'pages/PanelLayoutTool/GroupPanels'
 import LegacyDiscovery from 'pages/LegacyDiscovery'
 import paths from './paths'
 import { validateSession } from 'state/actions/auth'
+import { updateBodyHeight } from 'shared/utils'
 
 const mapComponents = {
   [paths.PROTECTED.DEVICES.path]: Devices,
@@ -138,6 +139,12 @@ function AppRoutes() {
   useEffect(() => {
     dispatch(deviceResumeListener())
     dispatch(validateSession())
+
+    window.addEventListener('keyboardDidHide', updateBodyHeight)
+
+    return () => {
+      document.removeEventListener('keyboardDidHide', updateBodyHeight)
+    }
   }, [dispatch])
 
   const isLoggedIn = useSelector(({ user }) => user.auth.access_token)

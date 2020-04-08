@@ -5,43 +5,7 @@ const requestOptions = access_token => ({
   requestInterceptor: req => {
     if (access_token) req.headers['Authorization'] = `Bearer ${access_token}`
     return req
-  },
-
-  userFetch: (url, options) =>
-    new Promise((resolve, reject) => {
-      const METHOD = options.method.toLowerCase()
-      const body = options.body ? JSON.parse(options.body) : {}
-      window.cordovaHTTP[METHOD](
-        url,
-        body,
-        options.headers || {},
-        function(response) {
-          console.info('HTTP Request RESPONSE SUCCESS')
-          console.info(response)
-
-          resolve(
-            new Response(response.data, {
-              status: response.status,
-              statusText: response.statusText,
-              headers: response.headers
-            })
-          )
-        },
-        function(response) {
-          try {
-            console.error('HTTP Request RESPONSE ERROR')
-            console.error(response)
-            console.error('It Was Sent With:')
-            console.info(options)
-            console.error('URL')
-            console.info(url)
-            reject(JSON.parse(response.error))
-          } catch (error) {
-            reject(response.error)
-          }
-        }
-      )
-    })
+  }
 })
 
 export async function getApiFirmware() {
