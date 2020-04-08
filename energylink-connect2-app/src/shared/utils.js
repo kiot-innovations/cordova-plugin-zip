@@ -123,7 +123,7 @@ const decideModel = barcode =>
 export const buildSN = barcode => ({
   serial_number: barcode.startsWith('1') ? `E00${barcode}` : barcode,
   model: decideModel(barcode),
-  type: 'MI'
+  type: 'SOLARBRIDGE'
 })
 export const trace = t => x => {
   console.info(t)
