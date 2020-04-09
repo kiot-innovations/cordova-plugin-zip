@@ -1,3 +1,4 @@
+/* eslint react-hooks/exhaustive-deps: 0 */
 import React, { useEffect, useState } from 'react'
 import { useI18n } from 'shared/i18n'
 import { useDispatch, useSelector } from 'react-redux'
@@ -40,7 +41,7 @@ const MiGroup = ({ title, data, animationState }) => {
 
   useEffect(() => {
     if (animationState === 'enter') dispatch(FETCH_MODELS_INIT(miTypes[title]))
-  }, [animationState, dispatch, miTypes, title])
+  }, [])
 
   const modelOptions = useSelector(state =>
     pathOr([], ['devices', 'miModels'], state)
