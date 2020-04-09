@@ -81,14 +81,16 @@ export default () => {
           {t('ADD_PANEL_PLT')}
         </span>
       )}
-      <Canvas
-        store={store}
-        width={window.innerWidth - 30}
-        height={window.innerWidth - 30}
-        onClick={assign}
-      >
-        <PanelsContainer PanelComponent={EPanel} />
-      </Canvas>
+      <div className="canvas">
+        <Canvas
+          store={store}
+          width={window.innerWidth - 30}
+          height={window.innerWidth - 30}
+          onClick={assign}
+        >
+          <PanelsContainer PanelComponent={EPanel} />
+        </Canvas>
+      </div>
       {either(
         unassigned.length || err,
         <>
@@ -117,12 +119,15 @@ export default () => {
           <RotationSelector />
         </>,
         <>
+          <span className="has-text-centered has-text-weight-bold has-text-white">
+            orientation
+          </span>
+          <RotationSelector />
           <span className="has-text-centered has-text-white has-text-weight-bold">
             All panels set!
           </span>
           <span className="has-text-centered">Continue to adjust arrays</span>
           <button
-            style={{ alignSelf: 'center' }}
             className="button is-primary is-uppercase is-center"
             onClick={goToConfigureArrays}
           >

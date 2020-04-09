@@ -10,21 +10,29 @@
   }
 }
 .with-footer {
-  height: calc(100vh - (175px + 2 * env(safe-area-inset-bottom)));
+  --safe-area-inset-bottom: env(safe-area-inset-bottom);
+  height: calc(100vh - 170px - var(--safe-area-inset-bottom));
   overflow-y: auto;
 }
 .without-footer {
-  height: calc(100vh - (150px + env(safe-area-inset-bottom)));
+  --safe-area-inset-bottom: env(safe-area-inset-bottom);
+  height: calc(100vh - 150px - var(--safe-area-inset-bottom));
 }
 .without-header {
-  height: calc(100vh - (80px + env(safe-area-inset-bottom)));
+  --safe-area-inset-bottom: env(safe-area-inset-bottom);
+  height: calc(100vh - 80px - var(--safe-area-inset-bottom));
 }
 
 body {
   padding-top: constant(safe-area-inset-top); /* iOS 11.0 */
   padding-top: env(safe-area-inset-top); /* iOS 11.2 */
+  padding-bottom: env(safe-area-inset-bottom);
+  overflow: scroll;
+  padding-top: constant(safe-area-inset-top); /* iOS 11.0 */
+  padding-top: env(safe-area-inset-top); /* iOS 11.2 */
   overflow: scroll;
   -webkit-overflow-scrolling: touch;
+  transform: translate3d(0,0,0);
 }
 
 html {

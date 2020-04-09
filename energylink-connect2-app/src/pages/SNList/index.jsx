@@ -2,7 +2,7 @@ import React, { useCallback, useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { useI18n } from 'shared/i18n'
-import { GET_SN_INIT, REMOVE_SN } from 'state/actions/pvs'
+import { REMOVE_SN } from 'state/actions/pvs'
 import { PUSH_CANDIDATES_INIT } from 'state/actions/devices'
 import { UPDATE_MI_COUNT } from 'state/actions/inventory'
 import { Loader } from 'components/Loader'
@@ -17,9 +17,9 @@ import SNScanButtons from './SNScanButtons'
 function SNList({ animationState }) {
   const t = useI18n()
   const dispatch = useDispatch()
-  const [isManualMode, setManualMode] = useState(false)
   const history = useHistory()
-  const [openingCamera, setOpeningCamera] = useState(false)
+
+  const [isManualMode, setManualMode] = useState(false)
   const { serialNumbers, fetchingSN } = useSelector(state => state.pvs)
   const { bom } = useSelector(state => state.inventory)
 
@@ -33,26 +33,8 @@ function SNList({ animationState }) {
   const expectedMICount = modulesOnInventory[0].value
   const scannedMICount = serialNumbers.length
 
-  const cameraSuccess = photo => {
-    setOpeningCamera(false)
-    dispatch(GET_SN_INIT(photo))
-  }
-
-  const cameraError = () => {
-    setOpeningCamera(false)
-  }
-
-  const cameraOptions = {
-    quality: 40,
-    sourceType: 1,
-    destinationType: 0
-  }
-
-  const takePicture = () => {
-    if (navigator) {
-      setOpeningCamera(true)
-      navigator.camera.getPicture(cameraSuccess, cameraError, cameraOptions)
-    }
+  const onScanMore = () => {
+    history.push(paths.PROTECTED.SCAN_LABELS.path)
   }
 
   const handleRemoveSN = serialNumber => {
@@ -143,7 +125,7 @@ function SNList({ animationState }) {
     : []
 
   return (
-    <BlockUI tag="div" blocking={openingCamera} message={t('OPENING_CAMERA')}>
+    <BlockUI tag="div" blocking={false} message={t('OPENING_CAMERA')}>
       {modal}
       <div className="snlist is-vertical has-text-centered pl-10 pr-10">
         <div className="top-text">
@@ -168,7 +150,7 @@ function SNList({ animationState }) {
         {!isManualMode && (
           <SNScanButtons
             fetchingSN={fetchingSN}
-            takePicture={takePicture}
+            onScanMore={onScanMore}
             countSN={countSN}
           />
         )}

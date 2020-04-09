@@ -58,6 +58,7 @@
     "redux-thunk": "^2.3.0",
     "rpc-websockets": "^5.0.14",
     "rxjs": "^6.5.3",
+    "scandit-sdk": "^4.6.3",
     "superagent": "^5.1.2",
     "swagger-client": "^3.9.6",
     "unfetch": "^4.1.0"

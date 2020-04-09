@@ -71,6 +71,7 @@
   "LOOK_FOR_QR": "Look for the QR code on PVS",
   "EXAMPLE_IMAGE": "Example image",
   "START_SCAN": "Start scanning",
+  "STOP_SCAN": "Stop scanning",
   "FIRMWARE_ERROR_FOUND": "An error occurred while downloading the file, please try again",
   "TRY_AGAIN": "Try again",
   "INVALID_QRCODE": "Please scan a valid PVS6 QR Code",
@@ -236,9 +237,8 @@
   "NO_WIFI": "No WIFI detected, do you want to download the PVS firmware using cell data",
   "SELECT_ALL": "Select All",
   "NO_MODEL": "No model information",
-  "PANEL_LAYOUT_DESIGNER":"Panel layout designer",
+  "PANEL_LAYOUT_DESIGNER": "Panel layout designer",
   "OVERLAPPING_PANELS": "Some panels are overlapping. Please move them to a valid location",
   "ADD_PANEL_PLT": "Tap on the grid to place the module",
-  "GROUP_PANEL_PLT": "Place your arrays"
-
+  "GROUP_PANEL_PLT": "Tap on the new location for the selected panel"
 }

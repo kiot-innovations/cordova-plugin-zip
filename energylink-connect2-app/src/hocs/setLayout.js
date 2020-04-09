@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
+import clsx from 'clsx'
 import { useDispatch } from 'react-redux'
 import { setHeader, setFooter } from 'state/actions/ui'
-import clsx from 'clsx'
 import './layout.scss'
 
 const setLayout = (
@@ -16,6 +16,7 @@ const setLayout = (
       dispatch(setFooter(footer))
     }
   }, [dispatch])
+
   return (
     <div
       className={clsx({

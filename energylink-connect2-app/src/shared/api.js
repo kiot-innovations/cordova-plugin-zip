@@ -1,9 +1,9 @@
 import Swagger from 'swagger-client'
 let apiDevice, apiParty, apiSearch, apiSite, apiFirmware, apiScanSN
 
-const authOptions = access_token => ({
+const requestOptions = access_token => ({
   requestInterceptor: req => {
-    req.headers['Authorization'] = `Bearer ${access_token}`
+    if (access_token) req.headers['Authorization'] = `Bearer ${access_token}`
     return req
   }
 })
@@ -24,7 +24,7 @@ export async function getApiDevice() {
 export async function getApiParty(access_token) {
   apiParty = await Swagger(
     process.env.REACT_APP_SWAGGER_PARTY,
-    authOptions(access_token)
+    requestOptions(access_token)
   )
   return apiParty
 }
@@ -38,7 +38,7 @@ export async function getApiSite(access_token) {
   if (!apiSite)
     apiSite = await Swagger(
       process.env.REACT_APP_SWAGGER_SITE,
-      authOptions(access_token)
+      requestOptions(access_token)
     )
   return apiSite
 }

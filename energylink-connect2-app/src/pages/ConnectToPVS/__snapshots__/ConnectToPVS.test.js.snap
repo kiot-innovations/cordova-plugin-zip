@@ -43,17 +43,13 @@ exports[`Connect to PVS page render correctly 1`] = `
           className="qr-layout has-text-centered"
         >
           <span
-            className="is-uppercase has-text-weight-bold mt-30"
+            className="is-uppercase has-text-weight-bold mt-10"
           >
             LOOK_FOR_QR
           </span>
           <div
-            className="qr-icon"
-          >
-            <i
-              className="sp-qr has-text-white"
-            />
-          </div>
+            id="scandit"
+          />
           <div
             className="pt-20"
           >
@@ -61,7 +57,7 @@ exports[`Connect to PVS page render correctly 1`] = `
               className="button is-primary"
               onClick={[Function]}
             >
-              START_SCAN
+              STOP_SCAN
             </button>
           </div>
         </div>
