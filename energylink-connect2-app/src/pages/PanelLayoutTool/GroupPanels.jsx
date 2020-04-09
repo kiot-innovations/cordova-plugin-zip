@@ -5,6 +5,7 @@ import {
   GroupsContainer,
   utils,
   withDraggableGroupsContainer,
+  withSelectableGroupsContainer,
   withNotOverlappablePanel
 } from '@sunpower/panel-layout-tool'
 import { path } from 'ramda'
@@ -18,13 +19,18 @@ import { either } from 'shared/utils'
 import { useError } from './hooks'
 
 const EPanel = withNotOverlappablePanel(Panel)
-const EGroupsContainer = withDraggableGroupsContainer(GroupsContainer)
+const EGroupsContainer = withSelectableGroupsContainer(
+  withDraggableGroupsContainer(GroupsContainer)
+)
 
 export default ({ animationState }) => {
   const dispatch = useDispatch()
   const t = useI18n()
   const err = useError()
   const panels = useSelector(path(['panel_layout_tool', 'panels']))
+  const selectedGroup = useSelector(
+    path(['panel_layout_tool', 'selectedGroup'])
+  )
 
   //Had to disable the eslint rule of exhaustive because
   //panels change when the component is mounting and creates an error
@@ -46,6 +52,10 @@ export default ({ animationState }) => {
     history.push(paths.PROTECTED.PANEL_LAYOUT_TOOL.path)
   }
 
+  const rotateArray = () => {
+    dispatch(actions.rotateSelectedGroup())
+  }
+
   return (
     <div className="plt-screen-container">
       <h1 className="is-uppercase has-text-centered">
@@ -58,14 +68,27 @@ export default ({ animationState }) => {
           {t('GROUP_PANEL_PLT')}
         </span>
       )}
-      <Canvas
-        store={store}
-        width={window.innerWidth - 30}
-        height={window.innerWidth - 30}
-      >
-        <EGroupsContainer PanelComponent={EPanel} />
-      </Canvas>
+      <div className="canvas">
+        <Canvas
+          store={store}
+          width={window.innerWidth - 30}
+          height={window.innerWidth - 30}
+        >
+          <EGroupsContainer PanelComponent={EPanel} />
+        </Canvas>
+      </div>
       <div className="panelContainer" />
+
+      <div className="sn-buttons">
+        <button
+          className="button sp-rotate half-button-padding is-secondary trigger-scan mr-10"
+          disabled={selectedGroup === -1}
+          onClick={rotateArray}
+        >
+          {t('ROTATE')}
+        </button>
+      </div>
+
       <button
         className="button-transparent has-text-primary is-uppercase is-center has-text-weight-bold"
         onClick={goBack}
