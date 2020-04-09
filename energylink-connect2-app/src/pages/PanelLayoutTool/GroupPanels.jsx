@@ -49,13 +49,13 @@ export default ({ animationState }) => {
         className="button-transparent has-text-primary is-uppercase is-center has-text-weight-bold"
         onClick={goBack}
       >
-        Back
+        {t('BACK')}
       </button>
       <button
         className="button is-primary is-uppercase is-center mt-10"
         onClick={goToConfigure}
       >
-        Go to configure
+        {t('GO_TO_CONFIGURE')}
       </button>
     </>
   )

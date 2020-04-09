@@ -8,7 +8,7 @@ import {
   withSelectablePanel
 } from '@sunpower/panel-layout-tool'
 import PanelLayoutTool from './Template'
-import { compose, pathOr, pick, prop, without } from 'ramda'
+import { compose, pathOr, pick, prop, without, map } from 'ramda'
 import React, { useCallback, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
@@ -18,9 +18,13 @@ import { either, renameKey } from 'shared/utils'
 import { useError } from './hooks'
 import './panelLayoutTool.scss'
 
-const EPanel = withNotOverlappablePanel(
-  withSelectablePanel(withDraggablePanel(Panel))
+const getEPanel = compose(
+  withNotOverlappablePanel,
+  withSelectablePanel,
+  withDraggablePanel
 )
+
+const EPanel = getEPanel(Panel)
 
 const getPosition = compose(
   utils.roundXY,
@@ -33,14 +37,11 @@ const getPosition = compose(
 export default () => {
   const dispatch = useDispatch()
   const t = useI18n()
-  const serialNumbers = useSelector(({ pvs }) => pvs.serialNumbers)
+  const serialNumbers = useSelector(pathOr([], ['pvs', 'serialNumbers']))
   const panels = useSelector(pathOr([], ['panel_layout_tool', 'panels']))
   const err = useError()
   const [unassigned, setUnassigned] = useState(
-    without(
-      panels.map(({ id }) => id),
-      serialNumbers.map(({ serial_number }) => serial_number)
-    )
+    without(map(prop('id'), panels), map(prop('serial_number'), serialNumbers))
   )
 
   const [index, setIndex] = useState(0)
@@ -69,7 +70,9 @@ export default () => {
   const footer = either(
     unassigned.length || err,
     <>
-      <h3 className="has-text-centered has-text-white">Add panel to layout</h3>
+      <h3 className="has-text-centered has-text-white">
+        {t('ADD_PANEL_TO_LAYOUT')}
+      </h3>
       <div className="panelContainer">
         {either(
           index !== 0,
@@ -87,24 +90,24 @@ export default () => {
         )}
       </div>
       <span className="has-text-centered has-text-weight-bold has-text-white is-size-7 is-capitalized">
-        orientation
+        {t('ORIENTATION')}
       </span>
       <RotationSelector />
     </>,
     <>
       <span className="has-text-centered has-text-weight-bold has-text-white is-size-7 is-capitalized">
-        orientation
+        {t('ORIENTATION')}
       </span>
       <RotationSelector />
       <span className="has-text-centered has-text-white has-text-weight-bold is-size-7">
-        All panels set!
+        {t('ALL_PANELS_SET')}!
       </span>
-      <span className="has-text-centered">Continue to adjust arrays</span>
+      <span className="has-text-centered">{t('CONTINUE_TO_ADJUST')}</span>
       <button
         className="button is-primary is-uppercase is-center"
         onClick={goToConfigureArrays}
       >
-        continue
+        {t('CONTINUE')}
       </button>
     </>
   )
