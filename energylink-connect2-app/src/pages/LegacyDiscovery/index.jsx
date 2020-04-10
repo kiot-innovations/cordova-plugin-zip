@@ -16,7 +16,7 @@ const LegacyDiscovery = ({ animationState }) => {
     if (animationState === 'enter') {
       dispatch(FETCH_CANDIDATES_COMPLETE())
     }
-  })
+  }, [animationState, dispatch])
 
   const restartDiscovery = () => {
     dispatch(START_DISCOVERY_INIT())
@@ -25,8 +25,8 @@ const LegacyDiscovery = ({ animationState }) => {
 
   const discoveryComplete = propOr(false, 'complete', progress)
 
-  const getProgress = propOr([], 'progress', progress)
-  const deviceProgress = pluck('PROGR', getProgress)
+  const discoveryProgress = propOr([], 'progress', progress)
+  const deviceProgress = pluck('PROGR', discoveryProgress)
   const overallProgress = Math.floor(
     reduce(add, 0, deviceProgress) / length(deviceProgress)
   )
@@ -73,7 +73,7 @@ const LegacyDiscovery = ({ animationState }) => {
       ) : (
         <div className="legacy-discovery__progress has-text-centered is-flex flex-column">
           <span className="discovery-percentage mb-20 has-text-weight-bold is-size-1 has-text-white">
-            {`${overallProgress ? overallProgress : 0}%`}
+            {overallProgress || 0} %
           </span>
           <span className="has-text-weight-bold">
             {t('DISCOVERY_IN_PROGRESS')}

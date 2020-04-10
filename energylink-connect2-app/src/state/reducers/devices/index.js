@@ -37,102 +37,74 @@ const initialState = {
 export default createReducer(
   {
     [DISCOVER_INIT]: state => ({ ...state, isFetching: true }),
-    [DISCOVER_UPDATE]: (state, payload) => {
-      return {
-        ...state,
-        found: pathOr(state.found, ['devices', 'devices'], payload),
-        progress: propOr(state.progress, 'progress', payload)
-      }
-    },
-    [DISCOVER_COMPLETE]: (state, payload) => {
-      return {
-        ...state,
-        isFetching: false,
-        found: pathOr(state.found, ['devices', 'devices'], payload),
-        progress: propOr(state.progress, 'progress', payload),
-        discoveryComplete: true
-      }
-    },
-    [DISCOVER_ERROR]: (state, payload) => {
-      return {
-        ...state,
-        isFetching: false,
-        progress: {},
-        error: payload
-      }
-    },
-    [FETCH_CANDIDATES_INIT]: state => {
-      return {
-        ...state,
-        isFetchingCandidates: true
-      }
-    },
-    [FETCH_CANDIDATES_UPDATE]: (state, payload) => {
-      return {
-        ...state,
-        isFetchingCandidates: true,
-        candidates: length(payload) !== 0 ? payload : state.candidates
-      }
-    },
-    [FETCH_CANDIDATES_COMPLETE]: state => {
-      return {
-        ...state,
-        isFetchingCandidates: false,
-        allCandidatesFound: true
-      }
-    },
-    [FETCH_CANDIDATES_ERROR]: (state, payload) => {
-      return {
-        ...state,
-        isFetchingCandidates: false,
-        candidates: [],
-        error: payload
-      }
-    },
-    [CLAIM_DEVICES_INIT]: state => {
-      return {
-        ...state,
-        claimingDevices: true
-      }
-    },
-    [CLAIM_DEVICES_UPDATE]: (state, payload) => {
-      return {
-        ...state,
-        claimProgress: payload
-      }
-    },
-    [CLAIM_DEVICES_COMPLETE]: state => {
-      return {
-        ...state,
-        claimProgress: 100,
-        claimingDevices: false,
-        claimedDevices: true
-      }
-    },
-    [CLAIM_DEVICES_ERROR]: (state, payload) => {
-      return {
-        ...state,
-        claimingDevices: false,
-        claimError: payload
-      }
-    },
-    [RESET_DISCOVERY]: () => {
-      return {
-        ...initialState
-      }
-    },
-    [FETCH_MODELS_SUCCESS]: (state, payload) => {
-      return {
-        ...state,
-        miModels: payload
-      }
-    },
-    [UPDATE_DEVICES_LIST]: (state, payload) => {
-      return {
-        ...state,
-        found: payload
-      }
-    }
+    [DISCOVER_UPDATE]: (state, payload) => ({
+      ...state,
+      found: pathOr(state.found, ['devices', 'devices'], payload),
+      progress: propOr(state.progress, 'progress', payload)
+    }),
+    [DISCOVER_COMPLETE]: (state, payload) => ({
+      ...state,
+      isFetching: false,
+      found: pathOr(state.found, ['devices', 'devices'], payload),
+      progress: propOr(state.progress, 'progress', payload),
+      discoveryComplete: true
+    }),
+    [DISCOVER_ERROR]: (state, payload) => ({
+      ...state,
+      isFetching: false,
+      progress: {},
+      error: payload
+    }),
+    [FETCH_CANDIDATES_INIT]: state => ({
+      ...state,
+      isFetchingCandidates: true
+    }),
+    [FETCH_CANDIDATES_UPDATE]: (state, payload) => ({
+      ...state,
+      isFetchingCandidates: true,
+      candidates: length(payload) !== 0 ? payload : state.candidates
+    }),
+    [FETCH_CANDIDATES_COMPLETE]: state => ({
+      ...state,
+      isFetchingCandidates: false,
+      allCandidatesFound: true
+    }),
+    [FETCH_CANDIDATES_ERROR]: (state, payload) => ({
+      ...state,
+      isFetchingCandidates: false,
+      candidates: [],
+      error: payload
+    }),
+    [CLAIM_DEVICES_INIT]: state => ({
+      ...state,
+      claimingDevices: true
+    }),
+    [CLAIM_DEVICES_UPDATE]: (state, payload) => ({
+      ...state,
+      claimProgress: payload
+    }),
+    [CLAIM_DEVICES_COMPLETE]: state => ({
+      ...state,
+      claimProgress: 100,
+      claimingDevices: false,
+      claimedDevices: true
+    }),
+    [CLAIM_DEVICES_ERROR]: (state, payload) => ({
+      ...state,
+      claimingDevices: false,
+      claimError: payload
+    }),
+    [RESET_DISCOVERY]: () => ({
+      ...initialState
+    }),
+    [FETCH_MODELS_SUCCESS]: (state, payload) => ({
+      ...state,
+      miModels: payload
+    }),
+    [UPDATE_DEVICES_LIST]: (state, payload) => ({
+      ...state,
+      found: payload
+    })
   },
   initialState
 )
