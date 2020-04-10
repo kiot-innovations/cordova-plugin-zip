@@ -26,7 +26,8 @@ const initialState = {
   selectedEnergyGraph: GRAPHS.POWER,
   isSendingFeedback: false,
   isFeedbackSuccessful: false,
-  selectedDataSource: DATA_SOURCES.LIVE
+  selectedDataSource: DATA_SOURCES.LIVE,
+  feedbackError: null
 }
 
 export const globalReducer = createReducer(
@@ -51,11 +52,12 @@ export const globalReducer = createReducer(
     [SEND_FEEDBACK_SUCCESS]: state => ({
       ...state,
       isSendingFeedback: false,
-      isFeedbackSuccessful: true
+      isFeedbackSuccessful: true,
+      feedbackError: false
     }),
     [SEND_FEEDBACK_ERROR]: (state, payload) => ({
       ...state,
-      err: { ...payload },
+      feedbackError: payload,
       isSendingFeedback: false
     }),
     [RESET_FEEDBACK_FORM]: state => ({ ...state, isFeedbackSuccessful: false })

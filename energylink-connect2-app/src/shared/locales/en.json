@@ -241,6 +241,7 @@
   "OVERLAPPING_PANELS": "Some panels are overlapping. Please move them to a valid location",
   "ADD_PANEL_PLT": "Tap on the grid to place the module",
   "GROUP_PANEL_PLT": "Tap on the new location for the selected panel",
+  "FEEDBACK_ERROR": "An error happened. Are you online?",
   "BACK": "Back",
   "GO_TO_CONFIGURE": "Go to configure",
   "ADD_PANEL_TO_LAYOUT": "Add panel to layout",
