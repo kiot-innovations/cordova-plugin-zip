@@ -1,5 +1,3 @@
-import { path } from 'ramda'
-
 export const httpPost = (path, data, state = null, token) => {
   const authHeader = {
     Authorization: `Bearer ${state ? state.user.auth.access_token : token}`
@@ -89,23 +87,6 @@ const parseResponse = res => {
           data
         }))
         .catch(err => console.error(err))
-}
-
-export const postEncodedBody = (
-  body,
-  state = {},
-  URL = 'https://dev-edp-api.dev-edp.sunpower.com/v1/party/feedback'
-) => {
-  return fetch(URL, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/x-www-form-urlencoded',
-      Authorization: `Bearer ${path(['user', 'auth', 'access_token'], state)}`
-    },
-    body
-  })
-    .then(res => parseResponse(res))
-    .catch(err => console.error(err))
 }
 
 export const postBinary = (
