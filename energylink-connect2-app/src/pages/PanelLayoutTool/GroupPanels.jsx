@@ -1,22 +1,21 @@
 import {
   actions,
-  Canvas,
-  Panel,
   GroupsContainer,
+  Panel,
   utils,
   withDraggableGroupsContainer,
-  withSelectableGroupsContainer,
-  withNotOverlappablePanel
+  withNotOverlappablePanel,
+  withSelectableGroupsContainer
 } from '@sunpower/panel-layout-tool'
+import PanelLayoutTool from 'pages/PanelLayoutTool/Template'
 import { path } from 'ramda'
-import { useI18n } from 'shared/i18n'
 import React, { useEffect } from 'react'
-import { useDispatch, useSelector, useStore } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import paths from 'routes/paths'
-import './panelLayoutTool.scss'
-import { either } from 'shared/utils'
+import { useI18n } from 'shared/i18n'
 import { useError } from './hooks'
+import './panelLayoutTool.scss'
 
 const EPanel = withNotOverlappablePanel(Panel)
 const EGroupsContainer = withSelectableGroupsContainer(
@@ -41,7 +40,6 @@ export default ({ animationState }) => {
     //eslint-disable-next-line
   }, [])
 
-  const store = useStore()
   const history = useHistory()
 
   const goToConfigure = () => {
@@ -55,30 +53,8 @@ export default ({ animationState }) => {
   const rotateArray = () => {
     dispatch(actions.rotateSelectedGroup())
   }
-
-  return (
-    <div className="plt-screen-container">
-      <h1 className="is-uppercase has-text-centered">
-        {t('PANEL_LAYOUT_DESIGNER')}
-      </h1>
-      {either(
-        err,
-        <span className="has-text-centered has-error-text">{t(err)}</span>,
-        <span className="has-text-centered has-text-white">
-          {t('GROUP_PANEL_PLT')}
-        </span>
-      )}
-      <div className="canvas">
-        <Canvas
-          store={store}
-          width={window.innerWidth - 30}
-          height={window.innerWidth - 30}
-        >
-          <EGroupsContainer PanelComponent={EPanel} />
-        </Canvas>
-      </div>
-      <div className="panelContainer" />
-
+  const footer = (
+    <>
       <div className="sn-buttons">
         <button
           className="button sp-rotate half-button-padding is-secondary trigger-scan mr-10"
@@ -88,7 +64,6 @@ export default ({ animationState }) => {
           {t('ROTATE')}
         </button>
       </div>
-
       <button
         className="button-transparent has-text-primary is-uppercase is-center has-text-weight-bold"
         onClick={goBack}
@@ -101,6 +76,15 @@ export default ({ animationState }) => {
       >
         Go to configure
       </button>
-    </div>
+    </>
+  )
+  return (
+    <PanelLayoutTool
+      instruction={t('GROUP_PANEL_PLT')}
+      err={err}
+      Container={EGroupsContainer}
+      panels={EPanel}
+      footer={footer}
+    />
   )
 }

@@ -7,8 +7,7 @@ import {
   withNotOverlappablePanel,
   withSelectablePanel
 } from '@sunpower/panel-layout-tool'
-import PanelLayoutTool from './Template'
-import { compose, pathOr, pick, prop, without, map } from 'ramda'
+import { compose, map, pathOr, pick, prop, without } from 'ramda'
 import React, { useCallback, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
@@ -17,6 +16,7 @@ import { useI18n } from 'shared/i18n'
 import { either, renameKey } from 'shared/utils'
 import { useError } from './hooks'
 import './panelLayoutTool.scss'
+import PanelLayoutTool from './Template'
 
 const getEPanel = compose(
   withNotOverlappablePanel,
