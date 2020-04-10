@@ -32,7 +32,7 @@ const LegacyDiscovery = ({ animationState }) => {
   )
 
   const groupedDevices =
-    length(found) > 0 ? groupBy(prop('DEVICE_TYPE'))(found) : []
+    length(found) > 0 ? groupBy(prop('DEVICE_TYPE'), found) : []
 
   return (
     <div className="legacy-discovery fill-parent has-text-centered pr-15 pl-15">
