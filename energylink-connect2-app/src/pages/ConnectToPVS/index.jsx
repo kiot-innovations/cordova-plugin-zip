@@ -106,7 +106,7 @@ function ConnectToPVS({ animationState }) {
   ])
 
   useEffect(() => {
-    if (animationState === 'update') startScanning()
+    if (animationState === 'enter') startScanning()
 
     return () => {
       if (animationState === 'leave' && typeof onDone.current === 'function')

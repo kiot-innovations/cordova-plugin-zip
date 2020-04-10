@@ -107,24 +107,26 @@ export function scanSimple(onRecognize, nodeID = 'scandit') {
   // camera preview. The view must be connected to the data capture context.
   const view = Scandit.DataCaptureView.forContext(context)
 
-  // Connect the data capture view to the HTML element, so it can fill up its size and follow its position.
-  view.connectToElement(document.getElementById('scandit'))
-
   // Add a barcode capture overlay to the data capture view to render the location of captured barcodes on top of
   // the video preview. This is optional, but recommended for better visual feedback.
   const overlay = Scandit.BarcodeCaptureOverlay.withBarcodeCaptureForView(
     barcodeCapture,
     view
   )
+
   overlay.viewfinder = new Scandit.RectangularViewfinder()
 
-  // Switch camera on to start streaming frames and enable the barcode capture mode.
-  // The camera is started asynchronously and will take some time to completely turn on.
-  camera.switchToDesiredState(Scandit.FrameSourceState.On)
-  barcodeCapture.isEnabled = true
+  setTimeout(() => {
+    // Connect the data capture view to the HTML element, so it can fill up its size and follow its position.
+    view.connectToElement(document.getElementById('scandit'))
+    // Switch camera on to start streaming frames and enable the barcode capture mode.
+    // The camera is started asynchronously and will take some time to completely turn on.
+    camera.switchToDesiredState(Scandit.FrameSourceState.On)
+    barcodeCapture.isEnabled = true
+  }, 1000)
 
   return () => {
-    barcodeCapture.isEnabled = false
     camera.switchToDesiredState(Scandit.FrameSourceState.Off)
+    barcodeCapture.isEnabled = false
   }
 }
