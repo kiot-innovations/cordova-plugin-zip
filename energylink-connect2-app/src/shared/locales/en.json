@@ -240,5 +240,11 @@
   "PANEL_LAYOUT_DESIGNER": "Panel layout designer",
   "OVERLAPPING_PANELS": "Some panels are overlapping. Please move them to a valid location",
   "ADD_PANEL_PLT": "Tap on the grid to place the module",
-  "GROUP_PANEL_PLT": "Tap on the new location for the selected panel"
+  "GROUP_PANEL_PLT": "Tap on the new location for the selected panel",
+  "BACK": "Back",
+  "GO_TO_CONFIGURE": "Go to configure",
+  "ADD_PANEL_TO_LAYOUT": "Add panel to layout",
+  "ORIENTATION": "Orientation",
+  "ALL_PANELS_SET": "All panels set",
+  "CONTINUE_TO_ADJUST": "Continue to adjust arrays"
 }
