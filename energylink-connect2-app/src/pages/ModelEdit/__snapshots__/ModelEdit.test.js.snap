@@ -55,6 +55,7 @@ Object {
                 data={
                   Array [
                     Object {
+                      "SERIAL": "E00121852014339",
                       "bounding_box": Object {
                         "height": 131,
                         "left": 1174,
@@ -66,6 +67,7 @@ Object {
                       "type": "MI",
                     },
                     Object {
+                      "SERIAL": "E00121852014339",
                       "bounding_box": Object {
                         "height": 113,
                         "left": 1109,
@@ -77,6 +79,7 @@ Object {
                       "type": "MI",
                     },
                     Object {
+                      "SERIAL": "E00121852014339",
                       "bounding_box": Object {
                         "height": 113,
                         "left": 1259,
@@ -88,6 +91,7 @@ Object {
                       "type": "MI",
                     },
                     Object {
+                      "SERIAL": "E00121852014339",
                       "bounding_box": Object {
                         "height": 105,
                         "left": 1279,

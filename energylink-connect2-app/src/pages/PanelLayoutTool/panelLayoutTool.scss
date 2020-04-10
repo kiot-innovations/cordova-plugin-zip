@@ -16,14 +16,11 @@
   }
 }
 .plt-screen-container {
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows:
-    repeat(2, minmax(30px, 1fr)) 98vw minmax(30px, 1fr) minmax(50px, 1fr)
-    minmax(30px, 1fr) minmax(40px, 1fr) minmax(40px, 1fr);
-  height: 100%;
-  justify-items: center;
+  display: flex;
+  flex-direction: column;
   align-items: center;
+  min-height: 100%;
+  justify-content: space-around;
   .canvas {
     border: 1px solid white;
   }

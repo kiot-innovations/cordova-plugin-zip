@@ -243,5 +243,12 @@
   "ADD_PANEL_PLT": "Tap on the grid to place the module",
   "GROUP_PANEL_PLT": "Tap on the new location for the selected panel",
   "DISCOVERY_COMPLETE": "Discovery Complete",
-  "REMOVE_UNWANTED_MIS": "Please make sure to remove any MIs not belonging to the site before continuing."
+  "REMOVE_UNWANTED_MIS": "Please make sure to remove any MIs not belonging to the site before continuing.",
+  "FEEDBACK_ERROR": "An error happened. Are you online?",
+  "BACK": "Back",
+  "GO_TO_CONFIGURE": "Go to configure",
+  "ADD_PANEL_TO_LAYOUT": "Add panel to layout",
+  "ORIENTATION": "Orientation",
+  "ALL_PANELS_SET": "All panels set",
+  "CONTINUE_TO_ADJUST": "Continue to adjust arrays"
 }

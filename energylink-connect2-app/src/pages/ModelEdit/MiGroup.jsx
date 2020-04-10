@@ -1,8 +1,19 @@
-import React, { useState } from 'react'
+/* eslint react-hooks/exhaustive-deps: 0 */
+import React, { useEffect, useState } from 'react'
 import { useI18n } from 'shared/i18n'
 import { useDispatch, useSelector } from 'react-redux'
-import { test, union, includes, path, pathOr } from 'ramda'
+import {
+  test,
+  union,
+  includes,
+  path,
+  pathOr,
+  compose,
+  map,
+  filter
+} from 'ramda'
 import { UPDATE_MI_MODELS } from 'state/actions/pvs'
+import { FETCH_MODELS_INIT } from 'state/actions/devices'
 import { cleanString } from 'shared/utils'
 import './ModelEdit.scss'
 import SearchField from '../../components/SearchField'
@@ -13,7 +24,7 @@ const buildSelectValue = value => ({
   value: value
 })
 
-const MiGroup = ({ title, data }) => {
+const MiGroup = ({ title, data, animationState }) => {
   const t = useI18n()
   const dispatch = useDispatch()
   const [selectedMi, setSelectedMi] = useState([])
@@ -21,8 +32,29 @@ const MiGroup = ({ title, data }) => {
 
   const { serialNumbers } = useSelector(state => state.pvs)
 
+  const miTypes = {
+    'Type E': 'E',
+    'Type G': 'G',
+    'Type C': 'C',
+    'Type D': 'D'
+  }
+
+  useEffect(() => {
+    if (animationState === 'enter') {
+      dispatch(FETCH_MODELS_INIT(miTypes[title]))
+    }
+  })
+
   const modelOptions = useSelector(state =>
-    pathOr([], ['devices', 'miModels'], state)
+    pathOr(
+      [{ models: ['Fetching Options...'], type: miTypes[title] }],
+      ['devices', 'miModels'],
+      state
+    )
+  )
+
+  const filteredOptions = modelOptions.filter(
+    options => options.type === miTypes[title]
   )
 
   const selectMi = serialNumber => {
@@ -58,8 +90,9 @@ const MiGroup = ({ title, data }) => {
   const filterModel = (inputValue, cb) => {
     const searchStr = cleanString(inputValue)
     const matchValue = test(new RegExp(searchStr, 'ig'))
-    const results = modelOptions.filter(matchValue).map(buildSelectValue)
-    cb(results)
+    const models = pathOr([], [0, 'models'], filteredOptions)
+    const getResults = compose(map(buildSelectValue), filter(matchValue))
+    cb(getResults(models))
   }
 
   const selectModel = model => {

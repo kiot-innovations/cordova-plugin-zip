@@ -99,7 +99,7 @@ export default createReducer(
     }),
     [FETCH_MODELS_SUCCESS]: (state, payload) => ({
       ...state,
-      miModels: payload
+      miModels: [...state.miModels, payload]
     }),
     [UPDATE_DEVICES_LIST]: (state, payload) => ({
       ...state,

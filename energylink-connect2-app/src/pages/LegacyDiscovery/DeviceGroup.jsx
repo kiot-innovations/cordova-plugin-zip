@@ -10,7 +10,7 @@ const renderDevice = (
   removeInverter,
   title
 ) => deviceItem => (
-  <div className="pt-5 pb-5 device-item">
+  <div className="pt-5 pb-5 device-item" key={deviceItem.SERIAL}>
     <span className="mt-5 mb-5 has-text-white">{deviceItem.SERIAL}</span>
     {discoveryComplete && title === 'Inverter' ? (
       <button

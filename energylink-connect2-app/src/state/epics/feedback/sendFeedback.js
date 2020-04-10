@@ -5,7 +5,6 @@ import * as feedbackActions from 'state/actions/feedback'
 import { path } from 'ramda'
 import moment from 'moment'
 import { translate } from 'shared/i18n'
-import { encodedParams } from 'shared/fetch'
 import { getApiParty } from 'shared/api'
 
 const getAccessToken = path(['user', 'auth', 'access_token'])
@@ -38,10 +37,9 @@ export const sendFeedbackEpic = (action$, state$) =>
         )
       }
 
-      const postValues = encodedParams(values)
       const access_token = getAccessToken(state$.value)
 
-      return from(sendFeedbackPromise(access_token, postValues)).pipe(
+      return from(sendFeedbackPromise(access_token, values)).pipe(
         map(({ status, data }) =>
           status === 200
             ? feedbackActions.SEND_FEEDBACK_SUCCESS()
