@@ -1,77 +1,1587 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`MI Model Editing page renders correctly 1`] = `
-<div
-  className="model-edit is-vertical has-text-centered pr-10 pl-10"
->
-  <span
-    className="is-uppercase has-text-weight-bold"
+Object {
+  "component": <BrowserRouter
+    keyLength={0}
   >
-    Edit Micro Inverter Models
-  </span>
-  <div
-    className="model-container"
-  >
-    <MiGroup
-      data={
-        Array [
-          Object {
-            "bounding_box": Object {
-              "height": 131,
-              "left": 1174,
-              "top": 850,
-              "width": 1614,
-            },
-            "miType": "Type E",
-            "serial_number": "E00121852014339",
-            "type": "MI",
+    <Router
+      history={
+        Object {
+          "action": "POP",
+          "block": [Function],
+          "createHref": [Function],
+          "go": [Function],
+          "goBack": [Function],
+          "goForward": [Function],
+          "length": 1,
+          "listen": [Function],
+          "location": Object {
+            "hash": "",
+            "pathname": "/",
+            "search": "",
+            "state": undefined,
           },
-          Object {
-            "bounding_box": Object {
-              "height": 113,
-              "left": 1109,
-              "top": 1470,
-              "width": 1619,
-            },
-            "miType": "Type E",
-            "serial_number": "E00121929013075",
-            "type": "MI",
-          },
-          Object {
-            "bounding_box": Object {
-              "height": 113,
-              "left": 1259,
-              "top": 2055,
-              "width": 1497,
-            },
-            "miType": "Type E",
-            "serial_number": "E00121852014321",
-            "type": "MI",
-          },
-          Object {
-            "bounding_box": Object {
-              "height": 105,
-              "left": 1279,
-              "top": 2647,
-              "width": 1495,
-            },
-            "miType": "Type E",
-            "serial_number": "E00121852014325",
-            "type": "MI",
-          },
-        ]
+          "push": [Function],
+          "replace": [Function],
+        }
       }
-      key="Type E"
-      title="Type E"
-    />
-  </div>
-  <Link
-    className="link is-uppercase"
-    to="/devices"
-  >
-    <small>
-      BACK
-    </small>
-  </Link>
-</div>
+    >
+      <Provider
+        store={
+          Object {
+            "clearActions": [Function],
+            "dispatch": [Function],
+            "getActions": [Function],
+            "getState": [Function],
+            "replaceReducer": [Function],
+            "subscribe": [Function],
+          }
+        }
+      >
+        <ModelEdit>
+          <div
+            className="model-edit is-vertical has-text-centered pr-10 pl-10"
+          >
+            <span
+              className="is-uppercase has-text-weight-bold"
+            >
+              Edit Micro Inverter Models
+            </span>
+            <div
+              className="model-container"
+            >
+              <MiGroup
+                data={
+                  Array [
+                    Object {
+                      "bounding_box": Object {
+                        "height": 131,
+                        "left": 1174,
+                        "top": 850,
+                        "width": 1614,
+                      },
+                      "miType": "Type E",
+                      "serial_number": "E00121852014339",
+                      "type": "MI",
+                    },
+                    Object {
+                      "bounding_box": Object {
+                        "height": 113,
+                        "left": 1109,
+                        "top": 1470,
+                        "width": 1619,
+                      },
+                      "miType": "Type E",
+                      "serial_number": "E00121929013075",
+                      "type": "MI",
+                    },
+                    Object {
+                      "bounding_box": Object {
+                        "height": 113,
+                        "left": 1259,
+                        "top": 2055,
+                        "width": 1497,
+                      },
+                      "miType": "Type E",
+                      "serial_number": "E00121852014321",
+                      "type": "MI",
+                    },
+                    Object {
+                      "bounding_box": Object {
+                        "height": 105,
+                        "left": 1279,
+                        "top": 2647,
+                        "width": 1495,
+                      },
+                      "miType": "Type E",
+                      "serial_number": "E00121852014325",
+                      "type": "MI",
+                    },
+                  ]
+                }
+                key="Type E"
+                title="Type E"
+              >
+                <Collapsible
+                  title="Type E"
+                >
+                  <div
+                    className="collapsible"
+                  >
+                    <div
+                      className="collapsible-header"
+                    >
+                      <div
+                        className="collapsible-title"
+                      >
+                        <span />
+                        <span>
+                          Type E
+                        </span>
+                      </div>
+                      <div
+                        className="collapsible-actions"
+                      />
+                      <div
+                        className="collapsible-trigger"
+                      >
+                        <div
+                          className="chevron"
+                          onClick={[Function]}
+                        >
+                          <span
+                            className="sp-chevron-up"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      className="collapsible-content collapsed"
+                    >
+                      <div
+                        className="mi-container has-text-centered"
+                      >
+                        <span
+                          className="has-text-white"
+                        >
+                          Specify the model to apply
+                        </span>
+                        <SelectField
+                          className="mt-10 mb-10"
+                          notFoundText="NOT_FOUND"
+                          onSearch={[Function]}
+                          onSelect={[Function]}
+                        >
+                          <Async
+                            cacheOptions={true}
+                            className="field mt-10 mb-10"
+                            classNamePrefix="search"
+                            components={
+                              Object {
+                                "DropdownIndicator": [Function],
+                                "IndicatorSeparator": [Function],
+                                "Option": [Function],
+                              }
+                            }
+                            defaultOptions={false}
+                            filterOption={null}
+                            isLoading={false}
+                            isSearchable={true}
+                            loadOptions={[Function]}
+                            noOptionsMessage={[Function]}
+                            onChange={[Function]}
+                            placeholder=""
+                            theme={[Function]}
+                          >
+                            <StateManager
+                              cacheOptions={true}
+                              className="field mt-10 mb-10"
+                              classNamePrefix="search"
+                              components={
+                                Object {
+                                  "DropdownIndicator": [Function],
+                                  "IndicatorSeparator": [Function],
+                                  "Option": [Function],
+                                }
+                              }
+                              defaultInputValue=""
+                              defaultMenuIsOpen={false}
+                              defaultOptions={false}
+                              defaultValue={null}
+                              filterOption={null}
+                              isLoading={false}
+                              isSearchable={true}
+                              noOptionsMessage={[Function]}
+                              onChange={[Function]}
+                              onInputChange={[Function]}
+                              options={Array []}
+                              placeholder=""
+                              theme={[Function]}
+                            >
+                              <Select
+                                backspaceRemovesValue={true}
+                                blurInputOnSelect={true}
+                                cacheOptions={true}
+                                captureMenuScroll={false}
+                                className="field mt-10 mb-10"
+                                classNamePrefix="search"
+                                closeMenuOnScroll={false}
+                                closeMenuOnSelect={true}
+                                components={
+                                  Object {
+                                    "DropdownIndicator": [Function],
+                                    "IndicatorSeparator": [Function],
+                                    "Option": [Function],
+                                  }
+                                }
+                                controlShouldRenderValue={true}
+                                defaultOptions={false}
+                                escapeClearsValue={false}
+                                filterOption={null}
+                                formatGroupLabel={[Function]}
+                                getOptionLabel={[Function]}
+                                getOptionValue={[Function]}
+                                inputValue=""
+                                isDisabled={false}
+                                isLoading={false}
+                                isMulti={false}
+                                isOptionDisabled={[Function]}
+                                isRtl={false}
+                                isSearchable={true}
+                                loadingMessage={[Function]}
+                                maxMenuHeight={300}
+                                menuIsOpen={false}
+                                menuPlacement="bottom"
+                                menuPosition="absolute"
+                                menuShouldBlockScroll={false}
+                                menuShouldScrollIntoView={true}
+                                minMenuHeight={140}
+                                noOptionsMessage={[Function]}
+                                onChange={[Function]}
+                                onInputChange={[Function]}
+                                onMenuClose={[Function]}
+                                onMenuOpen={[Function]}
+                                openMenuOnClick={true}
+                                openMenuOnFocus={false}
+                                options={Array []}
+                                pageSize={5}
+                                placeholder=""
+                                screenReaderStatus={[Function]}
+                                styles={Object {}}
+                                tabIndex="0"
+                                tabSelectsValue={true}
+                                theme={[Function]}
+                                value={null}
+                              >
+                                <SelectContainer
+                                  className="field mt-10 mb-10"
+                                  clearValue={[Function]}
+                                  cx={[Function]}
+                                  getStyles={[Function]}
+                                  getValue={[Function]}
+                                  hasValue={false}
+                                  innerProps={
+                                    Object {
+                                      "id": undefined,
+                                      "onKeyDown": [Function],
+                                    }
+                                  }
+                                  isDisabled={false}
+                                  isFocused={false}
+                                  isMulti={false}
+                                  isRtl={false}
+                                  options={Array []}
+                                  selectOption={[Function]}
+                                  selectProps={
+                                    Object {
+                                      "autoFocus": undefined,
+                                      "backspaceRemovesValue": true,
+                                      "blurInputOnSelect": true,
+                                      "cacheOptions": true,
+                                      "captureMenuScroll": false,
+                                      "className": "field mt-10 mb-10",
+                                      "classNamePrefix": "search",
+                                      "closeMenuOnScroll": false,
+                                      "closeMenuOnSelect": true,
+                                      "components": Object {
+                                        "DropdownIndicator": [Function],
+                                        "IndicatorSeparator": [Function],
+                                        "Option": [Function],
+                                      },
+                                      "controlShouldRenderValue": true,
+                                      "defaultOptions": false,
+                                      "escapeClearsValue": false,
+                                      "filterOption": null,
+                                      "formatGroupLabel": [Function],
+                                      "getOptionLabel": [Function],
+                                      "getOptionValue": [Function],
+                                      "inputValue": "",
+                                      "isDisabled": false,
+                                      "isLoading": false,
+                                      "isMulti": false,
+                                      "isOptionDisabled": [Function],
+                                      "isRtl": false,
+                                      "isSearchable": true,
+                                      "loadingMessage": [Function],
+                                      "maxMenuHeight": 300,
+                                      "menuIsOpen": false,
+                                      "menuPlacement": "bottom",
+                                      "menuPosition": "absolute",
+                                      "menuShouldBlockScroll": false,
+                                      "menuShouldScrollIntoView": true,
+                                      "minMenuHeight": 140,
+                                      "noOptionsMessage": [Function],
+                                      "onChange": [Function],
+                                      "onInputChange": [Function],
+                                      "onMenuClose": [Function],
+                                      "onMenuOpen": [Function],
+                                      "openMenuOnClick": true,
+                                      "openMenuOnFocus": false,
+                                      "options": Array [],
+                                      "pageSize": 5,
+                                      "placeholder": "",
+                                      "screenReaderStatus": [Function],
+                                      "styles": Object {},
+                                      "tabIndex": "0",
+                                      "tabSelectsValue": true,
+                                      "theme": [Function],
+                                      "value": null,
+                                    }
+                                  }
+                                  setValue={[Function]}
+                                  theme={
+                                    Object {
+                                      "borderRadius": 4,
+                                      "colors": Object {
+                                        "danger": "#DE350B",
+                                        "dangerLight": "#FFBDAD",
+                                        "neutral0": "#2f465b",
+                                        "neutral10": "hsl(0, 0%, 90%)",
+                                        "neutral20": "hsl(0, 0%, 80%)",
+                                        "neutral30": "hsl(0, 0%, 70%)",
+                                        "neutral40": "hsl(0, 0%, 60%)",
+                                        "neutral5": "hsl(0, 0%, 95%)",
+                                        "neutral50": "hsl(0, 0%, 50%)",
+                                        "neutral60": "hsl(0, 0%, 40%)",
+                                        "neutral70": "white",
+                                        "neutral80": "white",
+                                        "neutral90": "white",
+                                        "primary": "transparent",
+                                        "primary25": "#0a1421",
+                                        "primary50": "#0a1421",
+                                        "primary75": "#4C9AFF",
+                                      },
+                                      "spacing": Object {
+                                        "baseUnit": 4,
+                                        "controlHeight": 38,
+                                        "menuGutter": 8,
+                                      },
+                                    }
+                                  }
+                                >
+                                  <EmotionCssPropInternal
+                                    __EMOTION_LABEL_PLEASE_DO_NOT_USE__="SelectContainer"
+                                    __EMOTION_TYPE_PLEASE_DO_NOT_USE__="div"
+                                    className="field mt-10 mb-10"
+                                    css={
+                                      Object {
+                                        "boxSizing": "border-box",
+                                        "direction": null,
+                                        "label": "container",
+                                        "pointerEvents": null,
+                                        "position": "relative",
+                                      }
+                                    }
+                                    onKeyDown={[Function]}
+                                  >
+                                    <div
+                                      className="field mt-10 mb-10 css-2b097c-container"
+                                      onKeyDown={[Function]}
+                                    >
+                                      <Control
+                                        clearValue={[Function]}
+                                        cx={[Function]}
+                                        getStyles={[Function]}
+                                        getValue={[Function]}
+                                        hasValue={false}
+                                        innerProps={
+                                          Object {
+                                            "onMouseDown": [Function],
+                                            "onTouchEnd": [Function],
+                                          }
+                                        }
+                                        innerRef={[Function]}
+                                        isDisabled={false}
+                                        isFocused={false}
+                                        isMulti={false}
+                                        isRtl={false}
+                                        menuIsOpen={false}
+                                        options={Array []}
+                                        selectOption={[Function]}
+                                        selectProps={
+                                          Object {
+                                            "autoFocus": undefined,
+                                            "backspaceRemovesValue": true,
+                                            "blurInputOnSelect": true,
+                                            "cacheOptions": true,
+                                            "captureMenuScroll": false,
+                                            "className": "field mt-10 mb-10",
+                                            "classNamePrefix": "search",
+                                            "closeMenuOnScroll": false,
+                                            "closeMenuOnSelect": true,
+                                            "components": Object {
+                                              "DropdownIndicator": [Function],
+                                              "IndicatorSeparator": [Function],
+                                              "Option": [Function],
+                                            },
+                                            "controlShouldRenderValue": true,
+                                            "defaultOptions": false,
+                                            "escapeClearsValue": false,
+                                            "filterOption": null,
+                                            "formatGroupLabel": [Function],
+                                            "getOptionLabel": [Function],
+                                            "getOptionValue": [Function],
+                                            "inputValue": "",
+                                            "isDisabled": false,
+                                            "isLoading": false,
+                                            "isMulti": false,
+                                            "isOptionDisabled": [Function],
+                                            "isRtl": false,
+                                            "isSearchable": true,
+                                            "loadingMessage": [Function],
+                                            "maxMenuHeight": 300,
+                                            "menuIsOpen": false,
+                                            "menuPlacement": "bottom",
+                                            "menuPosition": "absolute",
+                                            "menuShouldBlockScroll": false,
+                                            "menuShouldScrollIntoView": true,
+                                            "minMenuHeight": 140,
+                                            "noOptionsMessage": [Function],
+                                            "onChange": [Function],
+                                            "onInputChange": [Function],
+                                            "onMenuClose": [Function],
+                                            "onMenuOpen": [Function],
+                                            "openMenuOnClick": true,
+                                            "openMenuOnFocus": false,
+                                            "options": Array [],
+                                            "pageSize": 5,
+                                            "placeholder": "",
+                                            "screenReaderStatus": [Function],
+                                            "styles": Object {},
+                                            "tabIndex": "0",
+                                            "tabSelectsValue": true,
+                                            "theme": [Function],
+                                            "value": null,
+                                          }
+                                        }
+                                        setValue={[Function]}
+                                        theme={
+                                          Object {
+                                            "borderRadius": 4,
+                                            "colors": Object {
+                                              "danger": "#DE350B",
+                                              "dangerLight": "#FFBDAD",
+                                              "neutral0": "#2f465b",
+                                              "neutral10": "hsl(0, 0%, 90%)",
+                                              "neutral20": "hsl(0, 0%, 80%)",
+                                              "neutral30": "hsl(0, 0%, 70%)",
+                                              "neutral40": "hsl(0, 0%, 60%)",
+                                              "neutral5": "hsl(0, 0%, 95%)",
+                                              "neutral50": "hsl(0, 0%, 50%)",
+                                              "neutral60": "hsl(0, 0%, 40%)",
+                                              "neutral70": "white",
+                                              "neutral80": "white",
+                                              "neutral90": "white",
+                                              "primary": "transparent",
+                                              "primary25": "#0a1421",
+                                              "primary50": "#0a1421",
+                                              "primary75": "#4C9AFF",
+                                            },
+                                            "spacing": Object {
+                                              "baseUnit": 4,
+                                              "controlHeight": 38,
+                                              "menuGutter": 8,
+                                            },
+                                          }
+                                        }
+                                      >
+                                        <EmotionCssPropInternal
+                                          __EMOTION_LABEL_PLEASE_DO_NOT_USE__="Control"
+                                          __EMOTION_TYPE_PLEASE_DO_NOT_USE__="div"
+                                          className="search__control"
+                                          css={
+                                            Object {
+                                              "&:hover": Object {
+                                                "borderColor": "hsl(0, 0%, 70%)",
+                                              },
+                                              "alignItems": "center",
+                                              "backgroundColor": "#2f465b",
+                                              "borderColor": "hsl(0, 0%, 80%)",
+                                              "borderRadius": 4,
+                                              "borderStyle": "solid",
+                                              "borderWidth": 1,
+                                              "boxShadow": null,
+                                              "boxSizing": "border-box",
+                                              "cursor": "default",
+                                              "display": "flex",
+                                              "flexWrap": "wrap",
+                                              "justifyContent": "space-between",
+                                              "label": "control",
+                                              "minHeight": 38,
+                                              "outline": "0 !important",
+                                              "position": "relative",
+                                              "transition": "all 100ms",
+                                            }
+                                          }
+                                          onMouseDown={[Function]}
+                                          onTouchEnd={[Function]}
+                                        >
+                                          <div
+                                            className="search__control css-f2mhmk-control"
+                                            onMouseDown={[Function]}
+                                            onTouchEnd={[Function]}
+                                          >
+                                            <ValueContainer
+                                              clearValue={[Function]}
+                                              cx={[Function]}
+                                              getStyles={[Function]}
+                                              getValue={[Function]}
+                                              hasValue={false}
+                                              isDisabled={false}
+                                              isMulti={false}
+                                              isRtl={false}
+                                              options={Array []}
+                                              selectOption={[Function]}
+                                              selectProps={
+                                                Object {
+                                                  "autoFocus": undefined,
+                                                  "backspaceRemovesValue": true,
+                                                  "blurInputOnSelect": true,
+                                                  "cacheOptions": true,
+                                                  "captureMenuScroll": false,
+                                                  "className": "field mt-10 mb-10",
+                                                  "classNamePrefix": "search",
+                                                  "closeMenuOnScroll": false,
+                                                  "closeMenuOnSelect": true,
+                                                  "components": Object {
+                                                    "DropdownIndicator": [Function],
+                                                    "IndicatorSeparator": [Function],
+                                                    "Option": [Function],
+                                                  },
+                                                  "controlShouldRenderValue": true,
+                                                  "defaultOptions": false,
+                                                  "escapeClearsValue": false,
+                                                  "filterOption": null,
+                                                  "formatGroupLabel": [Function],
+                                                  "getOptionLabel": [Function],
+                                                  "getOptionValue": [Function],
+                                                  "inputValue": "",
+                                                  "isDisabled": false,
+                                                  "isLoading": false,
+                                                  "isMulti": false,
+                                                  "isOptionDisabled": [Function],
+                                                  "isRtl": false,
+                                                  "isSearchable": true,
+                                                  "loadingMessage": [Function],
+                                                  "maxMenuHeight": 300,
+                                                  "menuIsOpen": false,
+                                                  "menuPlacement": "bottom",
+                                                  "menuPosition": "absolute",
+                                                  "menuShouldBlockScroll": false,
+                                                  "menuShouldScrollIntoView": true,
+                                                  "minMenuHeight": 140,
+                                                  "noOptionsMessage": [Function],
+                                                  "onChange": [Function],
+                                                  "onInputChange": [Function],
+                                                  "onMenuClose": [Function],
+                                                  "onMenuOpen": [Function],
+                                                  "openMenuOnClick": true,
+                                                  "openMenuOnFocus": false,
+                                                  "options": Array [],
+                                                  "pageSize": 5,
+                                                  "placeholder": "",
+                                                  "screenReaderStatus": [Function],
+                                                  "styles": Object {},
+                                                  "tabIndex": "0",
+                                                  "tabSelectsValue": true,
+                                                  "theme": [Function],
+                                                  "value": null,
+                                                }
+                                              }
+                                              setValue={[Function]}
+                                              theme={
+                                                Object {
+                                                  "borderRadius": 4,
+                                                  "colors": Object {
+                                                    "danger": "#DE350B",
+                                                    "dangerLight": "#FFBDAD",
+                                                    "neutral0": "#2f465b",
+                                                    "neutral10": "hsl(0, 0%, 90%)",
+                                                    "neutral20": "hsl(0, 0%, 80%)",
+                                                    "neutral30": "hsl(0, 0%, 70%)",
+                                                    "neutral40": "hsl(0, 0%, 60%)",
+                                                    "neutral5": "hsl(0, 0%, 95%)",
+                                                    "neutral50": "hsl(0, 0%, 50%)",
+                                                    "neutral60": "hsl(0, 0%, 40%)",
+                                                    "neutral70": "white",
+                                                    "neutral80": "white",
+                                                    "neutral90": "white",
+                                                    "primary": "transparent",
+                                                    "primary25": "#0a1421",
+                                                    "primary50": "#0a1421",
+                                                    "primary75": "#4C9AFF",
+                                                  },
+                                                  "spacing": Object {
+                                                    "baseUnit": 4,
+                                                    "controlHeight": 38,
+                                                    "menuGutter": 8,
+                                                  },
+                                                }
+                                              }
+                                            >
+                                              <EmotionCssPropInternal
+                                                __EMOTION_LABEL_PLEASE_DO_NOT_USE__="ValueContainer"
+                                                __EMOTION_TYPE_PLEASE_DO_NOT_USE__="div"
+                                                className="search__value-container"
+                                                css={
+                                                  Object {
+                                                    "WebkitOverflowScrolling": "touch",
+                                                    "alignItems": "center",
+                                                    "boxSizing": "border-box",
+                                                    "display": "flex",
+                                                    "flex": 1,
+                                                    "flexWrap": "wrap",
+                                                    "overflow": "hidden",
+                                                    "padding": "2px 8px",
+                                                    "position": "relative",
+                                                  }
+                                                }
+                                              >
+                                                <div
+                                                  className="search__value-container css-g1d714-ValueContainer"
+                                                >
+                                                  <Placeholder
+                                                    clearValue={[Function]}
+                                                    cx={[Function]}
+                                                    getStyles={[Function]}
+                                                    getValue={[Function]}
+                                                    hasValue={false}
+                                                    isDisabled={false}
+                                                    isFocused={false}
+                                                    isMulti={false}
+                                                    isRtl={false}
+                                                    key="placeholder"
+                                                    options={Array []}
+                                                    selectOption={[Function]}
+                                                    selectProps={
+                                                      Object {
+                                                        "autoFocus": undefined,
+                                                        "backspaceRemovesValue": true,
+                                                        "blurInputOnSelect": true,
+                                                        "cacheOptions": true,
+                                                        "captureMenuScroll": false,
+                                                        "className": "field mt-10 mb-10",
+                                                        "classNamePrefix": "search",
+                                                        "closeMenuOnScroll": false,
+                                                        "closeMenuOnSelect": true,
+                                                        "components": Object {
+                                                          "DropdownIndicator": [Function],
+                                                          "IndicatorSeparator": [Function],
+                                                          "Option": [Function],
+                                                        },
+                                                        "controlShouldRenderValue": true,
+                                                        "defaultOptions": false,
+                                                        "escapeClearsValue": false,
+                                                        "filterOption": null,
+                                                        "formatGroupLabel": [Function],
+                                                        "getOptionLabel": [Function],
+                                                        "getOptionValue": [Function],
+                                                        "inputValue": "",
+                                                        "isDisabled": false,
+                                                        "isLoading": false,
+                                                        "isMulti": false,
+                                                        "isOptionDisabled": [Function],
+                                                        "isRtl": false,
+                                                        "isSearchable": true,
+                                                        "loadingMessage": [Function],
+                                                        "maxMenuHeight": 300,
+                                                        "menuIsOpen": false,
+                                                        "menuPlacement": "bottom",
+                                                        "menuPosition": "absolute",
+                                                        "menuShouldBlockScroll": false,
+                                                        "menuShouldScrollIntoView": true,
+                                                        "minMenuHeight": 140,
+                                                        "noOptionsMessage": [Function],
+                                                        "onChange": [Function],
+                                                        "onInputChange": [Function],
+                                                        "onMenuClose": [Function],
+                                                        "onMenuOpen": [Function],
+                                                        "openMenuOnClick": true,
+                                                        "openMenuOnFocus": false,
+                                                        "options": Array [],
+                                                        "pageSize": 5,
+                                                        "placeholder": "",
+                                                        "screenReaderStatus": [Function],
+                                                        "styles": Object {},
+                                                        "tabIndex": "0",
+                                                        "tabSelectsValue": true,
+                                                        "theme": [Function],
+                                                        "value": null,
+                                                      }
+                                                    }
+                                                    setValue={[Function]}
+                                                    theme={
+                                                      Object {
+                                                        "borderRadius": 4,
+                                                        "colors": Object {
+                                                          "danger": "#DE350B",
+                                                          "dangerLight": "#FFBDAD",
+                                                          "neutral0": "#2f465b",
+                                                          "neutral10": "hsl(0, 0%, 90%)",
+                                                          "neutral20": "hsl(0, 0%, 80%)",
+                                                          "neutral30": "hsl(0, 0%, 70%)",
+                                                          "neutral40": "hsl(0, 0%, 60%)",
+                                                          "neutral5": "hsl(0, 0%, 95%)",
+                                                          "neutral50": "hsl(0, 0%, 50%)",
+                                                          "neutral60": "hsl(0, 0%, 40%)",
+                                                          "neutral70": "white",
+                                                          "neutral80": "white",
+                                                          "neutral90": "white",
+                                                          "primary": "transparent",
+                                                          "primary25": "#0a1421",
+                                                          "primary50": "#0a1421",
+                                                          "primary75": "#4C9AFF",
+                                                        },
+                                                        "spacing": Object {
+                                                          "baseUnit": 4,
+                                                          "controlHeight": 38,
+                                                          "menuGutter": 8,
+                                                        },
+                                                      }
+                                                    }
+                                                  >
+                                                    <EmotionCssPropInternal
+                                                      __EMOTION_LABEL_PLEASE_DO_NOT_USE__="Placeholder"
+                                                      __EMOTION_TYPE_PLEASE_DO_NOT_USE__="div"
+                                                      className="search__placeholder"
+                                                      css={
+                                                        Object {
+                                                          "boxSizing": "border-box",
+                                                          "color": "hsl(0, 0%, 50%)",
+                                                          "label": "placeholder",
+                                                          "marginLeft": 2,
+                                                          "marginRight": 2,
+                                                          "position": "absolute",
+                                                          "top": "50%",
+                                                          "transform": "translateY(-50%)",
+                                                        }
+                                                      }
+                                                    >
+                                                      <div
+                                                        className="search__placeholder css-1wa3eu0-placeholder"
+                                                      />
+                                                    </EmotionCssPropInternal>
+                                                  </Placeholder>
+                                                  <Input
+                                                    aria-autocomplete="list"
+                                                    autoCapitalize="none"
+                                                    autoComplete="off"
+                                                    autoCorrect="off"
+                                                    cx={[Function]}
+                                                    getStyles={[Function]}
+                                                    id="react-select-2-input"
+                                                    innerRef={[Function]}
+                                                    isDisabled={false}
+                                                    isHidden={false}
+                                                    onBlur={[Function]}
+                                                    onChange={[Function]}
+                                                    onFocus={[Function]}
+                                                    selectProps={
+                                                      Object {
+                                                        "autoFocus": undefined,
+                                                        "backspaceRemovesValue": true,
+                                                        "blurInputOnSelect": true,
+                                                        "cacheOptions": true,
+                                                        "captureMenuScroll": false,
+                                                        "className": "field mt-10 mb-10",
+                                                        "classNamePrefix": "search",
+                                                        "closeMenuOnScroll": false,
+                                                        "closeMenuOnSelect": true,
+                                                        "components": Object {
+                                                          "DropdownIndicator": [Function],
+                                                          "IndicatorSeparator": [Function],
+                                                          "Option": [Function],
+                                                        },
+                                                        "controlShouldRenderValue": true,
+                                                        "defaultOptions": false,
+                                                        "escapeClearsValue": false,
+                                                        "filterOption": null,
+                                                        "formatGroupLabel": [Function],
+                                                        "getOptionLabel": [Function],
+                                                        "getOptionValue": [Function],
+                                                        "inputValue": "",
+                                                        "isDisabled": false,
+                                                        "isLoading": false,
+                                                        "isMulti": false,
+                                                        "isOptionDisabled": [Function],
+                                                        "isRtl": false,
+                                                        "isSearchable": true,
+                                                        "loadingMessage": [Function],
+                                                        "maxMenuHeight": 300,
+                                                        "menuIsOpen": false,
+                                                        "menuPlacement": "bottom",
+                                                        "menuPosition": "absolute",
+                                                        "menuShouldBlockScroll": false,
+                                                        "menuShouldScrollIntoView": true,
+                                                        "minMenuHeight": 140,
+                                                        "noOptionsMessage": [Function],
+                                                        "onChange": [Function],
+                                                        "onInputChange": [Function],
+                                                        "onMenuClose": [Function],
+                                                        "onMenuOpen": [Function],
+                                                        "openMenuOnClick": true,
+                                                        "openMenuOnFocus": false,
+                                                        "options": Array [],
+                                                        "pageSize": 5,
+                                                        "placeholder": "",
+                                                        "screenReaderStatus": [Function],
+                                                        "styles": Object {},
+                                                        "tabIndex": "0",
+                                                        "tabSelectsValue": true,
+                                                        "theme": [Function],
+                                                        "value": null,
+                                                      }
+                                                    }
+                                                    spellCheck="false"
+                                                    tabIndex="0"
+                                                    theme={
+                                                      Object {
+                                                        "borderRadius": 4,
+                                                        "colors": Object {
+                                                          "danger": "#DE350B",
+                                                          "dangerLight": "#FFBDAD",
+                                                          "neutral0": "#2f465b",
+                                                          "neutral10": "hsl(0, 0%, 90%)",
+                                                          "neutral20": "hsl(0, 0%, 80%)",
+                                                          "neutral30": "hsl(0, 0%, 70%)",
+                                                          "neutral40": "hsl(0, 0%, 60%)",
+                                                          "neutral5": "hsl(0, 0%, 95%)",
+                                                          "neutral50": "hsl(0, 0%, 50%)",
+                                                          "neutral60": "hsl(0, 0%, 40%)",
+                                                          "neutral70": "white",
+                                                          "neutral80": "white",
+                                                          "neutral90": "white",
+                                                          "primary": "transparent",
+                                                          "primary25": "#0a1421",
+                                                          "primary50": "#0a1421",
+                                                          "primary75": "#4C9AFF",
+                                                        },
+                                                        "spacing": Object {
+                                                          "baseUnit": 4,
+                                                          "controlHeight": 38,
+                                                          "menuGutter": 8,
+                                                        },
+                                                      }
+                                                    }
+                                                    type="text"
+                                                    value=""
+                                                  >
+                                                    <EmotionCssPropInternal
+                                                      __EMOTION_LABEL_PLEASE_DO_NOT_USE__="Input"
+                                                      __EMOTION_TYPE_PLEASE_DO_NOT_USE__="div"
+                                                      css={
+                                                        Object {
+                                                          "boxSizing": "border-box",
+                                                          "color": "white",
+                                                          "margin": 2,
+                                                          "paddingBottom": 2,
+                                                          "paddingTop": 2,
+                                                          "visibility": "visible",
+                                                        }
+                                                      }
+                                                    >
+                                                      <div
+                                                        className="css-18fsd36-Input"
+                                                      >
+                                                        <AutosizeInput
+                                                          aria-autocomplete="list"
+                                                          autoCapitalize="none"
+                                                          autoComplete="off"
+                                                          autoCorrect="off"
+                                                          className="search__input"
+                                                          disabled={false}
+                                                          id="react-select-2-input"
+                                                          injectStyles={true}
+                                                          inputRef={[Function]}
+                                                          inputStyle={
+                                                            Object {
+                                                              "background": 0,
+                                                              "border": 0,
+                                                              "color": "inherit",
+                                                              "fontSize": "inherit",
+                                                              "label": "input",
+                                                              "opacity": 1,
+                                                              "outline": 0,
+                                                              "padding": 0,
+                                                            }
+                                                          }
+                                                          minWidth={1}
+                                                          onBlur={[Function]}
+                                                          onChange={[Function]}
+                                                          onFocus={[Function]}
+                                                          spellCheck="false"
+                                                          tabIndex="0"
+                                                          type="text"
+                                                          value=""
+                                                        >
+                                                          <div
+                                                            className="search__input"
+                                                            style={
+                                                              Object {
+                                                                "display": "inline-block",
+                                                              }
+                                                            }
+                                                          >
+                                                            <input
+                                                              aria-autocomplete="list"
+                                                              autoCapitalize="none"
+                                                              autoComplete="off"
+                                                              autoCorrect="off"
+                                                              disabled={false}
+                                                              id="react-select-2-input"
+                                                              onBlur={[Function]}
+                                                              onChange={[Function]}
+                                                              onFocus={[Function]}
+                                                              spellCheck="false"
+                                                              style={
+                                                                Object {
+                                                                  "background": 0,
+                                                                  "border": 0,
+                                                                  "boxSizing": "content-box",
+                                                                  "color": "inherit",
+                                                                  "fontSize": "inherit",
+                                                                  "label": "input",
+                                                                  "opacity": 1,
+                                                                  "outline": 0,
+                                                                  "padding": 0,
+                                                                  "width": "2px",
+                                                                }
+                                                              }
+                                                              tabIndex="0"
+                                                              type="text"
+                                                              value=""
+                                                            />
+                                                            <div
+                                                              style={
+                                                                Object {
+                                                                  "height": 0,
+                                                                  "left": 0,
+                                                                  "overflow": "scroll",
+                                                                  "position": "absolute",
+                                                                  "top": 0,
+                                                                  "visibility": "hidden",
+                                                                  "whiteSpace": "pre",
+                                                                }
+                                                              }
+                                                            />
+                                                          </div>
+                                                        </AutosizeInput>
+                                                      </div>
+                                                    </EmotionCssPropInternal>
+                                                  </Input>
+                                                </div>
+                                              </EmotionCssPropInternal>
+                                            </ValueContainer>
+                                            <IndicatorsContainer
+                                              clearValue={[Function]}
+                                              cx={[Function]}
+                                              getStyles={[Function]}
+                                              getValue={[Function]}
+                                              hasValue={false}
+                                              isDisabled={false}
+                                              isMulti={false}
+                                              isRtl={false}
+                                              options={Array []}
+                                              selectOption={[Function]}
+                                              selectProps={
+                                                Object {
+                                                  "autoFocus": undefined,
+                                                  "backspaceRemovesValue": true,
+                                                  "blurInputOnSelect": true,
+                                                  "cacheOptions": true,
+                                                  "captureMenuScroll": false,
+                                                  "className": "field mt-10 mb-10",
+                                                  "classNamePrefix": "search",
+                                                  "closeMenuOnScroll": false,
+                                                  "closeMenuOnSelect": true,
+                                                  "components": Object {
+                                                    "DropdownIndicator": [Function],
+                                                    "IndicatorSeparator": [Function],
+                                                    "Option": [Function],
+                                                  },
+                                                  "controlShouldRenderValue": true,
+                                                  "defaultOptions": false,
+                                                  "escapeClearsValue": false,
+                                                  "filterOption": null,
+                                                  "formatGroupLabel": [Function],
+                                                  "getOptionLabel": [Function],
+                                                  "getOptionValue": [Function],
+                                                  "inputValue": "",
+                                                  "isDisabled": false,
+                                                  "isLoading": false,
+                                                  "isMulti": false,
+                                                  "isOptionDisabled": [Function],
+                                                  "isRtl": false,
+                                                  "isSearchable": true,
+                                                  "loadingMessage": [Function],
+                                                  "maxMenuHeight": 300,
+                                                  "menuIsOpen": false,
+                                                  "menuPlacement": "bottom",
+                                                  "menuPosition": "absolute",
+                                                  "menuShouldBlockScroll": false,
+                                                  "menuShouldScrollIntoView": true,
+                                                  "minMenuHeight": 140,
+                                                  "noOptionsMessage": [Function],
+                                                  "onChange": [Function],
+                                                  "onInputChange": [Function],
+                                                  "onMenuClose": [Function],
+                                                  "onMenuOpen": [Function],
+                                                  "openMenuOnClick": true,
+                                                  "openMenuOnFocus": false,
+                                                  "options": Array [],
+                                                  "pageSize": 5,
+                                                  "placeholder": "",
+                                                  "screenReaderStatus": [Function],
+                                                  "styles": Object {},
+                                                  "tabIndex": "0",
+                                                  "tabSelectsValue": true,
+                                                  "theme": [Function],
+                                                  "value": null,
+                                                }
+                                              }
+                                              setValue={[Function]}
+                                              theme={
+                                                Object {
+                                                  "borderRadius": 4,
+                                                  "colors": Object {
+                                                    "danger": "#DE350B",
+                                                    "dangerLight": "#FFBDAD",
+                                                    "neutral0": "#2f465b",
+                                                    "neutral10": "hsl(0, 0%, 90%)",
+                                                    "neutral20": "hsl(0, 0%, 80%)",
+                                                    "neutral30": "hsl(0, 0%, 70%)",
+                                                    "neutral40": "hsl(0, 0%, 60%)",
+                                                    "neutral5": "hsl(0, 0%, 95%)",
+                                                    "neutral50": "hsl(0, 0%, 50%)",
+                                                    "neutral60": "hsl(0, 0%, 40%)",
+                                                    "neutral70": "white",
+                                                    "neutral80": "white",
+                                                    "neutral90": "white",
+                                                    "primary": "transparent",
+                                                    "primary25": "#0a1421",
+                                                    "primary50": "#0a1421",
+                                                    "primary75": "#4C9AFF",
+                                                  },
+                                                  "spacing": Object {
+                                                    "baseUnit": 4,
+                                                    "controlHeight": 38,
+                                                    "menuGutter": 8,
+                                                  },
+                                                }
+                                              }
+                                            >
+                                              <EmotionCssPropInternal
+                                                __EMOTION_LABEL_PLEASE_DO_NOT_USE__="IndicatorsContainer"
+                                                __EMOTION_TYPE_PLEASE_DO_NOT_USE__="div"
+                                                className="search__indicators"
+                                                css={
+                                                  Object {
+                                                    "alignItems": "center",
+                                                    "alignSelf": "stretch",
+                                                    "boxSizing": "border-box",
+                                                    "display": "flex",
+                                                    "flexShrink": 0,
+                                                  }
+                                                }
+                                              >
+                                                <div
+                                                  className="search__indicators css-1hb7zxy-IndicatorsContainer"
+                                                >
+                                                  <IndicatorSeparator
+                                                    clearValue={[Function]}
+                                                    cx={[Function]}
+                                                    getStyles={[Function]}
+                                                    getValue={[Function]}
+                                                    hasValue={false}
+                                                    isDisabled={false}
+                                                    isFocused={false}
+                                                    isMulti={false}
+                                                    isRtl={false}
+                                                    options={Array []}
+                                                    selectOption={[Function]}
+                                                    selectProps={
+                                                      Object {
+                                                        "autoFocus": undefined,
+                                                        "backspaceRemovesValue": true,
+                                                        "blurInputOnSelect": true,
+                                                        "cacheOptions": true,
+                                                        "captureMenuScroll": false,
+                                                        "className": "field mt-10 mb-10",
+                                                        "classNamePrefix": "search",
+                                                        "closeMenuOnScroll": false,
+                                                        "closeMenuOnSelect": true,
+                                                        "components": Object {
+                                                          "DropdownIndicator": [Function],
+                                                          "IndicatorSeparator": [Function],
+                                                          "Option": [Function],
+                                                        },
+                                                        "controlShouldRenderValue": true,
+                                                        "defaultOptions": false,
+                                                        "escapeClearsValue": false,
+                                                        "filterOption": null,
+                                                        "formatGroupLabel": [Function],
+                                                        "getOptionLabel": [Function],
+                                                        "getOptionValue": [Function],
+                                                        "inputValue": "",
+                                                        "isDisabled": false,
+                                                        "isLoading": false,
+                                                        "isMulti": false,
+                                                        "isOptionDisabled": [Function],
+                                                        "isRtl": false,
+                                                        "isSearchable": true,
+                                                        "loadingMessage": [Function],
+                                                        "maxMenuHeight": 300,
+                                                        "menuIsOpen": false,
+                                                        "menuPlacement": "bottom",
+                                                        "menuPosition": "absolute",
+                                                        "menuShouldBlockScroll": false,
+                                                        "menuShouldScrollIntoView": true,
+                                                        "minMenuHeight": 140,
+                                                        "noOptionsMessage": [Function],
+                                                        "onChange": [Function],
+                                                        "onInputChange": [Function],
+                                                        "onMenuClose": [Function],
+                                                        "onMenuOpen": [Function],
+                                                        "openMenuOnClick": true,
+                                                        "openMenuOnFocus": false,
+                                                        "options": Array [],
+                                                        "pageSize": 5,
+                                                        "placeholder": "",
+                                                        "screenReaderStatus": [Function],
+                                                        "styles": Object {},
+                                                        "tabIndex": "0",
+                                                        "tabSelectsValue": true,
+                                                        "theme": [Function],
+                                                        "value": null,
+                                                      }
+                                                    }
+                                                    setValue={[Function]}
+                                                    theme={
+                                                      Object {
+                                                        "borderRadius": 4,
+                                                        "colors": Object {
+                                                          "danger": "#DE350B",
+                                                          "dangerLight": "#FFBDAD",
+                                                          "neutral0": "#2f465b",
+                                                          "neutral10": "hsl(0, 0%, 90%)",
+                                                          "neutral20": "hsl(0, 0%, 80%)",
+                                                          "neutral30": "hsl(0, 0%, 70%)",
+                                                          "neutral40": "hsl(0, 0%, 60%)",
+                                                          "neutral5": "hsl(0, 0%, 95%)",
+                                                          "neutral50": "hsl(0, 0%, 50%)",
+                                                          "neutral60": "hsl(0, 0%, 40%)",
+                                                          "neutral70": "white",
+                                                          "neutral80": "white",
+                                                          "neutral90": "white",
+                                                          "primary": "transparent",
+                                                          "primary25": "#0a1421",
+                                                          "primary50": "#0a1421",
+                                                          "primary75": "#4C9AFF",
+                                                        },
+                                                        "spacing": Object {
+                                                          "baseUnit": 4,
+                                                          "controlHeight": 38,
+                                                          "menuGutter": 8,
+                                                        },
+                                                      }
+                                                    }
+                                                  >
+                                                    <span />
+                                                  </IndicatorSeparator>
+                                                  <DropdownIndicator
+                                                    clearValue={[Function]}
+                                                    cx={[Function]}
+                                                    getStyles={[Function]}
+                                                    getValue={[Function]}
+                                                    hasValue={false}
+                                                    innerProps={
+                                                      Object {
+                                                        "aria-hidden": "true",
+                                                        "onMouseDown": [Function],
+                                                        "onTouchEnd": [Function],
+                                                      }
+                                                    }
+                                                    isDisabled={false}
+                                                    isFocused={false}
+                                                    isMulti={false}
+                                                    isRtl={false}
+                                                    options={Array []}
+                                                    selectOption={[Function]}
+                                                    selectProps={
+                                                      Object {
+                                                        "autoFocus": undefined,
+                                                        "backspaceRemovesValue": true,
+                                                        "blurInputOnSelect": true,
+                                                        "cacheOptions": true,
+                                                        "captureMenuScroll": false,
+                                                        "className": "field mt-10 mb-10",
+                                                        "classNamePrefix": "search",
+                                                        "closeMenuOnScroll": false,
+                                                        "closeMenuOnSelect": true,
+                                                        "components": Object {
+                                                          "DropdownIndicator": [Function],
+                                                          "IndicatorSeparator": [Function],
+                                                          "Option": [Function],
+                                                        },
+                                                        "controlShouldRenderValue": true,
+                                                        "defaultOptions": false,
+                                                        "escapeClearsValue": false,
+                                                        "filterOption": null,
+                                                        "formatGroupLabel": [Function],
+                                                        "getOptionLabel": [Function],
+                                                        "getOptionValue": [Function],
+                                                        "inputValue": "",
+                                                        "isDisabled": false,
+                                                        "isLoading": false,
+                                                        "isMulti": false,
+                                                        "isOptionDisabled": [Function],
+                                                        "isRtl": false,
+                                                        "isSearchable": true,
+                                                        "loadingMessage": [Function],
+                                                        "maxMenuHeight": 300,
+                                                        "menuIsOpen": false,
+                                                        "menuPlacement": "bottom",
+                                                        "menuPosition": "absolute",
+                                                        "menuShouldBlockScroll": false,
+                                                        "menuShouldScrollIntoView": true,
+                                                        "minMenuHeight": 140,
+                                                        "noOptionsMessage": [Function],
+                                                        "onChange": [Function],
+                                                        "onInputChange": [Function],
+                                                        "onMenuClose": [Function],
+                                                        "onMenuOpen": [Function],
+                                                        "openMenuOnClick": true,
+                                                        "openMenuOnFocus": false,
+                                                        "options": Array [],
+                                                        "pageSize": 5,
+                                                        "placeholder": "",
+                                                        "screenReaderStatus": [Function],
+                                                        "styles": Object {},
+                                                        "tabIndex": "0",
+                                                        "tabSelectsValue": true,
+                                                        "theme": [Function],
+                                                        "value": null,
+                                                      }
+                                                    }
+                                                    setValue={[Function]}
+                                                    theme={
+                                                      Object {
+                                                        "borderRadius": 4,
+                                                        "colors": Object {
+                                                          "danger": "#DE350B",
+                                                          "dangerLight": "#FFBDAD",
+                                                          "neutral0": "#2f465b",
+                                                          "neutral10": "hsl(0, 0%, 90%)",
+                                                          "neutral20": "hsl(0, 0%, 80%)",
+                                                          "neutral30": "hsl(0, 0%, 70%)",
+                                                          "neutral40": "hsl(0, 0%, 60%)",
+                                                          "neutral5": "hsl(0, 0%, 95%)",
+                                                          "neutral50": "hsl(0, 0%, 50%)",
+                                                          "neutral60": "hsl(0, 0%, 40%)",
+                                                          "neutral70": "white",
+                                                          "neutral80": "white",
+                                                          "neutral90": "white",
+                                                          "primary": "transparent",
+                                                          "primary25": "#0a1421",
+                                                          "primary50": "#0a1421",
+                                                          "primary75": "#4C9AFF",
+                                                        },
+                                                        "spacing": Object {
+                                                          "baseUnit": 4,
+                                                          "controlHeight": 38,
+                                                          "menuGutter": 8,
+                                                        },
+                                                      }
+                                                    }
+                                                  >
+                                                    <DropdownIndicator
+                                                      clearValue={[Function]}
+                                                      cx={[Function]}
+                                                      getStyles={[Function]}
+                                                      getValue={[Function]}
+                                                      hasValue={false}
+                                                      innerProps={
+                                                        Object {
+                                                          "aria-hidden": "true",
+                                                          "onMouseDown": [Function],
+                                                          "onTouchEnd": [Function],
+                                                        }
+                                                      }
+                                                      isDisabled={false}
+                                                      isFocused={false}
+                                                      isMulti={false}
+                                                      isRtl={false}
+                                                      options={Array []}
+                                                      selectOption={[Function]}
+                                                      selectProps={
+                                                        Object {
+                                                          "autoFocus": undefined,
+                                                          "backspaceRemovesValue": true,
+                                                          "blurInputOnSelect": true,
+                                                          "cacheOptions": true,
+                                                          "captureMenuScroll": false,
+                                                          "className": "field mt-10 mb-10",
+                                                          "classNamePrefix": "search",
+                                                          "closeMenuOnScroll": false,
+                                                          "closeMenuOnSelect": true,
+                                                          "components": Object {
+                                                            "DropdownIndicator": [Function],
+                                                            "IndicatorSeparator": [Function],
+                                                            "Option": [Function],
+                                                          },
+                                                          "controlShouldRenderValue": true,
+                                                          "defaultOptions": false,
+                                                          "escapeClearsValue": false,
+                                                          "filterOption": null,
+                                                          "formatGroupLabel": [Function],
+                                                          "getOptionLabel": [Function],
+                                                          "getOptionValue": [Function],
+                                                          "inputValue": "",
+                                                          "isDisabled": false,
+                                                          "isLoading": false,
+                                                          "isMulti": false,
+                                                          "isOptionDisabled": [Function],
+                                                          "isRtl": false,
+                                                          "isSearchable": true,
+                                                          "loadingMessage": [Function],
+                                                          "maxMenuHeight": 300,
+                                                          "menuIsOpen": false,
+                                                          "menuPlacement": "bottom",
+                                                          "menuPosition": "absolute",
+                                                          "menuShouldBlockScroll": false,
+                                                          "menuShouldScrollIntoView": true,
+                                                          "minMenuHeight": 140,
+                                                          "noOptionsMessage": [Function],
+                                                          "onChange": [Function],
+                                                          "onInputChange": [Function],
+                                                          "onMenuClose": [Function],
+                                                          "onMenuOpen": [Function],
+                                                          "openMenuOnClick": true,
+                                                          "openMenuOnFocus": false,
+                                                          "options": Array [],
+                                                          "pageSize": 5,
+                                                          "placeholder": "",
+                                                          "screenReaderStatus": [Function],
+                                                          "styles": Object {},
+                                                          "tabIndex": "0",
+                                                          "tabSelectsValue": true,
+                                                          "theme": [Function],
+                                                          "value": null,
+                                                        }
+                                                      }
+                                                      setValue={[Function]}
+                                                      theme={
+                                                        Object {
+                                                          "borderRadius": 4,
+                                                          "colors": Object {
+                                                            "danger": "#DE350B",
+                                                            "dangerLight": "#FFBDAD",
+                                                            "neutral0": "#2f465b",
+                                                            "neutral10": "hsl(0, 0%, 90%)",
+                                                            "neutral20": "hsl(0, 0%, 80%)",
+                                                            "neutral30": "hsl(0, 0%, 70%)",
+                                                            "neutral40": "hsl(0, 0%, 60%)",
+                                                            "neutral5": "hsl(0, 0%, 95%)",
+                                                            "neutral50": "hsl(0, 0%, 50%)",
+                                                            "neutral60": "hsl(0, 0%, 40%)",
+                                                            "neutral70": "white",
+                                                            "neutral80": "white",
+                                                            "neutral90": "white",
+                                                            "primary": "transparent",
+                                                            "primary25": "#0a1421",
+                                                            "primary50": "#0a1421",
+                                                            "primary75": "#4C9AFF",
+                                                          },
+                                                          "spacing": Object {
+                                                            "baseUnit": 4,
+                                                            "controlHeight": 38,
+                                                            "menuGutter": 8,
+                                                          },
+                                                        }
+                                                      }
+                                                    >
+                                                      <EmotionCssPropInternal
+                                                        __EMOTION_LABEL_PLEASE_DO_NOT_USE__="DropdownIndicator"
+                                                        __EMOTION_TYPE_PLEASE_DO_NOT_USE__="div"
+                                                        aria-hidden="true"
+                                                        className="search__indicator search__dropdown-indicator"
+                                                        css={
+                                                          Object {
+                                                            ":hover": Object {
+                                                              "color": "hsl(0, 0%, 60%)",
+                                                            },
+                                                            "boxSizing": "border-box",
+                                                            "color": "hsl(0, 0%, 80%)",
+                                                            "display": "flex",
+                                                            "label": "indicatorContainer",
+                                                            "padding": 8,
+                                                            "transition": "color 150ms",
+                                                          }
+                                                        }
+                                                        onMouseDown={[Function]}
+                                                        onTouchEnd={[Function]}
+                                                      >
+                                                        <div
+                                                          aria-hidden="true"
+                                                          className="search__indicator search__dropdown-indicator css-tlfecz-indicatorContainer"
+                                                          onMouseDown={[Function]}
+                                                          onTouchEnd={[Function]}
+                                                        >
+                                                          <span
+                                                            className="sp sp-location"
+                                                          />
+                                                        </div>
+                                                      </EmotionCssPropInternal>
+                                                    </DropdownIndicator>
+                                                  </DropdownIndicator>
+                                                </div>
+                                              </EmotionCssPropInternal>
+                                            </IndicatorsContainer>
+                                          </div>
+                                        </EmotionCssPropInternal>
+                                      </Control>
+                                    </div>
+                                  </EmotionCssPropInternal>
+                                </SelectContainer>
+                              </Select>
+                            </StateManager>
+                          </Async>
+                        </SelectField>
+                        <div
+                          className="mi-list"
+                        >
+                          <div
+                            className="mi-item"
+                            key="E00121852014339"
+                          >
+                            <input
+                              checked={false}
+                              className="mr-10 mi-item-checkbox"
+                              name="E00121852014339"
+                              onChange={[Function]}
+                              type="checkbox"
+                            />
+                            <span
+                              className="is-uppercase has-text-weight-bold has-text-white mi-item-serialnumber"
+                            >
+                              E00121852014339
+                            </span>
+                            <span
+                              className="has-text-white mi-item-modeldata"
+                            >
+                              NO_MODEL
+                            </span>
+                          </div>
+                          <div
+                            className="mi-item"
+                            key="E00121929013075"
+                          >
+                            <input
+                              checked={false}
+                              className="mr-10 mi-item-checkbox"
+                              name="E00121929013075"
+                              onChange={[Function]}
+                              type="checkbox"
+                            />
+                            <span
+                              className="is-uppercase has-text-weight-bold has-text-white mi-item-serialnumber"
+                            >
+                              E00121929013075
+                            </span>
+                            <span
+                              className="has-text-white mi-item-modeldata"
+                            >
+                              NO_MODEL
+                            </span>
+                          </div>
+                          <div
+                            className="mi-item"
+                            key="E00121852014321"
+                          >
+                            <input
+                              checked={false}
+                              className="mr-10 mi-item-checkbox"
+                              name="E00121852014321"
+                              onChange={[Function]}
+                              type="checkbox"
+                            />
+                            <span
+                              className="is-uppercase has-text-weight-bold has-text-white mi-item-serialnumber"
+                            >
+                              E00121852014321
+                            </span>
+                            <span
+                              className="has-text-white mi-item-modeldata"
+                            >
+                              NO_MODEL
+                            </span>
+                          </div>
+                          <div
+                            className="mi-item"
+                            key="E00121852014325"
+                          >
+                            <input
+                              checked={false}
+                              className="mr-10 mi-item-checkbox"
+                              name="E00121852014325"
+                              onChange={[Function]}
+                              type="checkbox"
+                            />
+                            <span
+                              className="is-uppercase has-text-weight-bold has-text-white mi-item-serialnumber"
+                            >
+                              E00121852014325
+                            </span>
+                            <span
+                              className="has-text-white mi-item-modeldata"
+                            >
+                              NO_MODEL
+                            </span>
+                          </div>
+                        </div>
+                        <div
+                          className="inline-buttons"
+                        >
+                          <button
+                            className="mt-20 mr-10 button is-outlined is-primary"
+                            onClick={[Function]}
+                          >
+                            SELECT_ALL
+                          </button>
+                          <button
+                            className="mt-20 ml-10 button is-primary"
+                            onClick={[Function]}
+                          >
+                            APPLY
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </Collapsible>
+              </MiGroup>
+            </div>
+            <div>
+              <button
+                className="button is-outlined is-primary has-text-primary mb-20"
+                onClick={[Function]}
+              >
+                BACK
+              </button>
+            </div>
+          </div>
+        </ModelEdit>
+      </Provider>
+    </Router>
+  </BrowserRouter>,
+  "store": Object {
+    "clearActions": [Function],
+    "dispatch": [Function],
+    "getActions": [Function],
+    "getState": [Function],
+    "replaceReducer": [Function],
+    "subscribe": [Function],
+  },
+}
 `;

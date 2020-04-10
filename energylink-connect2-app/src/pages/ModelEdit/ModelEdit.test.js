@@ -1,5 +1,4 @@
 import React from 'react'
-import { shallow } from 'enzyme'
 import ModelEdit from '.'
 import * as i18n from 'shared/i18n'
 import * as reactRedux from 'react-redux'
@@ -58,6 +57,13 @@ describe('MI Model Editing page', () => {
 
   beforeEach(() => {
     dispatchMock = jest.fn()
+    jest.mock('react-router-dom', () => ({
+      useHistory: () => ({
+        history: {
+          goBack: jest.fn()
+        }
+      })
+    }))
     jest.spyOn(reactRedux, 'useDispatch').mockImplementation(() => dispatchMock)
     jest.spyOn(reactRedux, 'useSelector').mockImplementation(() => initialState)
     jest
@@ -68,7 +74,7 @@ describe('MI Model Editing page', () => {
   })
 
   test('renders correctly', () => {
-    const component = shallow(<ModelEdit />)
+    const component = mountWithProvider(<ModelEdit />)(initialState)
     expect(component).toMatchSnapshot()
   })
 })
