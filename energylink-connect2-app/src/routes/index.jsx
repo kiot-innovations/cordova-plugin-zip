@@ -45,6 +45,7 @@ import SavingConfiguration from 'pages/SavingConfiguration'
 import Logout from 'pages/Logout'
 import PanelLayoutTool from 'pages/PanelLayoutTool/AddingPanels'
 import PanelLayoutToolGroupPanels from 'pages/PanelLayoutTool/GroupPanels'
+import LegacyDiscovery from 'pages/LegacyDiscovery'
 import paths from './paths'
 import { validateSession } from 'state/actions/auth'
 import { updateBodyHeight } from 'shared/utils'
@@ -72,6 +73,7 @@ const mapComponents = {
   [paths.PROTECTED.SAVING_CONFIGURATION.path]: SavingConfiguration,
   [paths.PROTECTED.SN_LIST.path]: SNList,
   [paths.PROTECTED.MODEL_EDIT.path]: ModelEdit,
+  [paths.PROTECTED.LEGACY_DISCOVERY.path]: LegacyDiscovery,
   [paths.UNPROTECTED.FORGOT_PASSWORD.path]: NotFound,
   [paths.UNPROTECTED.GET_ASSISTANCE.path]: NotFound,
   [paths.UNPROTECTED.LOGIN.path]: Login,

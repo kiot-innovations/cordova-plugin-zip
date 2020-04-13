@@ -41,7 +41,6 @@ const onSuccess = (doneScanning, generatePassword, dispatch, t) => data => {
     console.warn(error)
   }
 }
-
 function ConnectToPVS({ animationState }) {
   const t = useI18n()
   const dispatch = useDispatch()

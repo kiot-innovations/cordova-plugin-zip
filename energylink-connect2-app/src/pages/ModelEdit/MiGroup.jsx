@@ -40,7 +40,9 @@ const MiGroup = ({ title, data, animationState }) => {
   }
 
   useEffect(() => {
-    if (animationState === 'enter') dispatch(FETCH_MODELS_INIT(miTypes[title]))
+    if (animationState === 'enter') {
+      dispatch(FETCH_MODELS_INIT(miTypes[title]))
+    }
   }, [])
 
   const modelOptions = useSelector(state =>
