@@ -22,9 +22,8 @@ function GridBehaviorWidget({ animationState }) {
     state => state.systemConfiguration.gridBehavior
   )
   const { site } = useSelector(state => state.site)
-  const [selfSupplyOptions, setSelfSupplyOptions] = useState([
-    { label: t('SELECT_A_GRID_PROFILE'), value: false }
-  ])
+  const [selfSupplyOptions, setSelfSupplyOptions] = useState([])
+  const [hasDefaultGridProfile, setHasDefaultGridProfile] = useState(false)
 
   useEffect(() => {
     if (animationState === 'enter') dispatch(FETCH_GRID_BEHAVIOR())
@@ -39,12 +38,15 @@ function GridBehaviorWidget({ animationState }) {
         )
       : []
 
-  const gridProfileOptions =
-    length(filterProfiles) > 0
-      ? filterProfiles.map(profile => {
-          return { label: profile.name, value: profile }
-        })
-      : [{ label: t('FETCHING_OPTIONS'), value: 0 }]
+  let defaultGridProfile = null
+  const isIEEE = /^IEEE/
+
+  const gridProfileOptions = filterProfiles.map(profile => {
+    if (length(filterProfiles) === 2 && !isIEEE.test(profile.name)) {
+      defaultGridProfile = { label: profile.name, value: profile }
+    }
+    return { label: profile.name, value: profile }
+  })
 
   const setGridProfile = value => {
     dispatch(SET_GRID_PROFILE(value.value))
@@ -64,6 +66,11 @@ function GridBehaviorWidget({ animationState }) {
       dispatch(SET_EXPORT_LIMIT(false))
       setSelfSupplyOptions([{ label: t('NO_SELF_SUPPLY'), value: false }])
     }
+  }
+
+  if (!hasDefaultGridProfile && defaultGridProfile) {
+    setGridProfile(defaultGridProfile)
+    setHasDefaultGridProfile(true)
   }
 
   const setExportLimit = value => {
@@ -98,7 +105,13 @@ function GridBehaviorWidget({ animationState }) {
                 <SelectField
                   isSearchable={false}
                   useDefaultDropDown
+                  defaultValue={defaultGridProfile}
                   options={gridProfileOptions}
+                  notFoundText={
+                    length(gridProfileOptions) === 0
+                      ? t('FETCHING_OPTIONS')
+                      : null
+                  }
                   onSelect={setGridProfile}
                 />
               </div>
@@ -140,6 +153,11 @@ function GridBehaviorWidget({ animationState }) {
                   isSearchable={false}
                   useDefaultDropDown
                   options={selfSupplyOptions}
+                  notFoundText={
+                    length(selfSupplyOptions) === 0
+                      ? t('SELECT_A_GRID_PROFILE')
+                      : null
+                  }
                   onSelect={setExportLimit}
                 />
               </div>
