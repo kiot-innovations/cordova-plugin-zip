@@ -1,13 +1,13 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
-import { useI18n } from 'shared/i18n'
+import { Link } from 'react-router-dom'
 import paths from 'routes/paths'
+import { useI18n } from 'shared/i18n'
 import { groupBy } from 'shared/utils'
-import './ModelEdit.scss'
 import MiGroup from './MiGroup'
+import './ModelEdit.scss'
 
-const ModelEdit = ({ animationState }) => {
+const ModelEdit = () => {
   const t = useI18n()
   const { serialNumbers } = useSelector(state => state.pvs)
 
@@ -15,12 +15,7 @@ const ModelEdit = ({ animationState }) => {
 
   const collapsibleElements = () => {
     return Object.keys(groupedSerialNumbers).map((key, i) => (
-      <MiGroup
-        key={key}
-        title={key}
-        data={groupedSerialNumbers[key]}
-        animationState={animationState}
-      />
+      <MiGroup key={key} title={key} data={groupedSerialNumbers[key]} />
     ))
   }
 

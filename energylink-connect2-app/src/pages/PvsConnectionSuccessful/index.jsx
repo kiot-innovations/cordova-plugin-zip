@@ -13,7 +13,7 @@ import {
 
 const getPVSVersionChecked = pathOr(false, ['firmwareUpdate', 'canContinue'])
 
-const PvsConnectionSuccessful = ({ animationState }) => {
+const PvsConnectionSuccessful = () => {
   const t = useI18n()
   const dispatch = useDispatch()
   const serialNumber = useSelector(state => state.pvs.serialNumber)
@@ -25,11 +25,9 @@ const PvsConnectionSuccessful = ({ animationState }) => {
   }
 
   useEffect(() => {
-    if (animationState === 'enter') {
-      dispatch(START_COMMISSIONING_INIT())
-      dispatch(START_DISCOVERY_INIT())
-    }
-  }, [dispatch, animationState])
+    dispatch(START_COMMISSIONING_INIT())
+    dispatch(START_DISCOVERY_INIT())
+  }, [dispatch])
 
   return (
     <div className="pvs-connection-success-screen pr-20 pl-20">

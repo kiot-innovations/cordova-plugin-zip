@@ -7,7 +7,7 @@ import paths from 'routes/paths'
 import { useI18n } from 'shared/i18n'
 import './InstallSuccess.scss'
 
-const InstallSuccessful = props => {
+const InstallSuccessful = () => {
   const t = useI18n()
   const history = useHistory()
   const dispatch = useDispatch()
@@ -38,12 +38,7 @@ const InstallSuccessful = props => {
     </span>
   )
 
-  const { modal, toggleModal } = useModal(
-    props.animationState,
-    modalContent(t),
-    modalTitle(t),
-    false
-  )
+  const { modal, toggleModal } = useModal(modalContent(t), modalTitle(t), false)
 
   const goToConfigure = () => {
     history.push(paths.PROTECTED.SYSTEM_CONFIGURATION.path)

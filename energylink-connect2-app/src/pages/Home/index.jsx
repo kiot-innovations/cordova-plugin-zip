@@ -1,18 +1,16 @@
+import SearchField from 'components/SearchField'
+import { compose, join, length, path, pick, prop, test, values } from 'ramda'
 import React, { useEffect } from 'react'
-import { Link } from 'react-router-dom'
-import { useHistory } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-
-import { useI18n } from 'shared/i18n'
-import { cleanString } from 'shared/utils'
-import { path, test, join, values, pick, prop, compose, length } from 'ramda'
+import { Link, useHistory } from 'react-router-dom'
 
 import paths from 'routes/paths'
-import SearchField from 'components/SearchField'
+
+import { useI18n } from 'shared/i18n'
+import { cleanString, either } from 'shared/utils'
 import { GET_SITES_INIT, SET_SITE } from 'state/actions/site'
 
 import './Home.scss'
-import { either } from 'shared/utils'
 
 const getString = compose(
   join(' '),
@@ -31,7 +29,7 @@ const setSite = (history, dispatch) => site => {
   history.push(paths.PROTECTED.BILL_OF_MATERIALS.path)
 }
 
-function Home({ animationState }) {
+function Home() {
   const t = useI18n()
   const dispatch = useDispatch()
   const history = useHistory()
@@ -44,8 +42,8 @@ function Home({ animationState }) {
   const errorMessage = path(['data', 'message'], error)
 
   useEffect(() => {
-    if (animationState === 'enter') dispatch(GET_SITES_INIT())
-  }, [dispatch, animationState])
+    dispatch(GET_SITES_INIT())
+  }, [dispatch])
 
   const notFoundText = t('NOT_FOUND')
 

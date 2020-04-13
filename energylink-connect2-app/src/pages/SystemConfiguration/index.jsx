@@ -1,20 +1,20 @@
-import React from 'react'
-import { useI18n } from 'shared/i18n'
-import { useSelector, useDispatch } from 'react-redux'
-import { useHistory } from 'react-router-dom'
-import { SUBMIT_CONFIG } from 'state/actions/systemConfiguration'
 import useModal from 'hooks/useModal'
-import NetworkWidget from './NetworkWidget'
-import MetersWidget from './MetersWidget'
-import GridBehaviorWidget from './GridBehaviorWidget'
-import StorageWidget from './StorageWidget'
-import RSEWidget from './RSEWidget'
-import InterfacesWidget from './InterfacesWidget'
-import paths from 'routes/paths'
-import './SystemConfiguration.scss'
 import { path } from 'ramda'
+import React from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { useHistory } from 'react-router-dom'
+import paths from 'routes/paths'
+import { useI18n } from 'shared/i18n'
+import { SUBMIT_CONFIG } from 'state/actions/systemConfiguration'
+import GridBehaviorWidget from './GridBehaviorWidget'
+import InterfacesWidget from './InterfacesWidget'
+import MetersWidget from './MetersWidget'
+import NetworkWidget from './NetworkWidget'
+import RSEWidget from './RSEWidget'
+import StorageWidget from './StorageWidget'
+import './SystemConfiguration.scss'
 
-function SystemConfiguration({ animationState }) {
+function SystemConfiguration() {
   const t = useI18n()
   const dispatch = useDispatch()
   const history = useHistory()
@@ -43,12 +43,7 @@ function SystemConfiguration({ animationState }) {
     </div>
   )
 
-  const { modal, toggleModal } = useModal(
-    animationState,
-    modalContent,
-    modalTitle,
-    false
-  )
+  const { modal, toggleModal } = useModal(modalContent, modalTitle, false)
 
   const validateConfig = configObject => {
     for (const value of Object.values(configObject)) {
@@ -85,13 +80,13 @@ function SystemConfiguration({ animationState }) {
         {t('SYSTEM_CONFIGURATION')}
       </span>
       <div className="mb-10">
-        <InterfacesWidget animationState={animationState} />
+        <InterfacesWidget />
       </div>
-      <GridBehaviorWidget animationState={animationState} />
+      <GridBehaviorWidget />
       <MetersWidget />
-      <StorageWidget animationState={animationState} />
-      <NetworkWidget animationState={animationState} />
-      <RSEWidget animationState={animationState} />
+      <StorageWidget />
+      <NetworkWidget />
+      <RSEWidget />
       <div className="submit-config">
         <button
           onClick={submitConfig}

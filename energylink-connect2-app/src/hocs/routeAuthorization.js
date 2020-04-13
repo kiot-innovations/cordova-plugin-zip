@@ -17,27 +17,15 @@ function querystring(name, url = window.location.href) {
   return decodeURIComponent(results[2].replace(/\+/g, ' '))
 }
 
-export default (
-  isProtected,
-  isLoggedIn,
-  animationState
-) => ChildrenComponent => {
+export default (isProtected, isLoggedIn) => ChildrenComponent => {
   const HocComponent = ({ ...props }) => {
-    if (
-      isProtected &&
-      !isLoggedIn &&
-      (animationState === 'enter' || animationState === 'update')
-    )
+    if (isProtected && !isLoggedIn)
       return (
         <Redirect
           to={`/login?redirect=${props.location.pathname}${props.location.search}`}
         />
       )
-    if (
-      !isProtected &&
-      isLoggedIn &&
-      (animationState === 'enter' || animationState === 'update')
-    ) {
+    if (!isProtected && isLoggedIn) {
       const redirect = querystring('redirect')
       return (
         <Redirect to={redirect === '' || redirect === null ? '/' : redirect} />

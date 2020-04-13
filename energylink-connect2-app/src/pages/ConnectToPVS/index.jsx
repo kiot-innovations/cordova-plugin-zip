@@ -1,20 +1,20 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useState, useEffect, useRef } from 'react'
+import { map } from 'ramda'
+import React, { useEffect, useRef, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { useHistory } from 'react-router-dom'
+import paths from 'routes/paths'
 import { useI18n } from 'shared/i18n'
+import { scanSimple } from 'shared/scandit'
 import { decodeQRData } from 'shared/scanning'
 import {
   clearPVSErr,
-  PVS_CONNECTION_INIT,
-  PVS_CONNECTION_ERROR
+  PVS_CONNECTION_ERROR,
+  PVS_CONNECTION_INIT
 } from 'state/actions/network'
-import { useSelector, useDispatch } from 'react-redux'
-import { useHistory } from 'react-router-dom'
-import { map } from 'ramda'
-import paths from 'routes/paths'
 import { saveSerialNumber } from 'state/actions/pvs'
-import './ConnectToPVS.scss'
 import { Loader } from '../../components/Loader'
-import { scanSimple } from 'shared/scandit'
+import './ConnectToPVS.scss'
 
 const onSuccess = (doneScanning, generatePassword, dispatch, t) => data => {
   try {
@@ -42,7 +42,7 @@ const onSuccess = (doneScanning, generatePassword, dispatch, t) => data => {
   }
 }
 
-function ConnectToPVS({ animationState }) {
+function ConnectToPVS() {
   const t = useI18n()
   const dispatch = useDispatch()
   const history = useHistory()
@@ -82,11 +82,7 @@ function ConnectToPVS({ animationState }) {
   }
 
   useEffect(() => {
-    if (
-      !connectionState.connecting &&
-      connectionState.connected &&
-      animationState !== 'leave'
-    ) {
+    if (!connectionState.connecting && connectionState.connected) {
       stopScanning()
       history.push(paths.PROTECTED.PVS_CONNECTION_SUCCESS.path)
     }
@@ -95,7 +91,6 @@ function ConnectToPVS({ animationState }) {
       alert(t('PVS_CONN_ERROR'))
     }
   }, [
-    animationState,
     connectionState.connected,
     connectionState.connecting,
     connectionState.err,
@@ -106,13 +101,11 @@ function ConnectToPVS({ animationState }) {
   ])
 
   useEffect(() => {
-    if (animationState === 'enter') startScanning()
+    startScanning()
 
     return () => {
-      if (animationState === 'leave' && typeof onDone.current === 'function')
-        stopScanning()
-
-      if (animationState === 'leave' && connectionState.connecting) {
+      if (typeof onDone.current === 'function') stopScanning()
+      if (connectionState.connecting) {
         dispatch(PVS_CONNECTION_ERROR('CANCELED'))
         dispatch(clearPVSErr())
       }

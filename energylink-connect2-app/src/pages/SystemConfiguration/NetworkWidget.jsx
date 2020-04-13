@@ -1,20 +1,19 @@
-import React, { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { path, compose, prop, isEmpty } from 'ramda'
-import { useI18n } from 'shared/i18n'
-
 import Collapsible from 'components/Collapsible'
 import SelectField from 'components/SelectField'
+import { compose, isEmpty, path, prop } from 'ramda'
+import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { useI18n } from 'shared/i18n'
+import { buildAPsItems, either } from 'shared/utils'
 
 import {
-  GET_NETWORK_APS_INIT,
-  CONNECT_NETWORK_AP_INIT
+  CONNECT_NETWORK_AP_INIT,
+  GET_NETWORK_APS_INIT
 } from 'state/actions/systemConfiguration'
-import { either, buildAPsItems } from 'shared/utils'
 
 const NWI = <span className="sp-wifi file level mr-15 is-size-4" />
 
-function NetworkWidget({ animationState }) {
+function NetworkWidget() {
   const t = useI18n()
   const dispatch = useDispatch()
 
@@ -26,8 +25,8 @@ function NetworkWidget({ animationState }) {
   const [AP, setAP] = useState({ ssid: '' })
 
   useEffect(() => {
-    if (animationState === 'enter') dispatch(GET_NETWORK_APS_INIT())
-  }, [animationState, dispatch])
+    dispatch(GET_NETWORK_APS_INIT())
+  }, [dispatch])
 
   const disallowConnecting =
     isFetching || AP.ssid === path(['ap', 'ssid'], selectedAP)

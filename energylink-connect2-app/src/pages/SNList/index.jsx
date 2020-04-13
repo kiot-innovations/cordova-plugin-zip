@@ -1,20 +1,20 @@
+import { Loader } from 'components/Loader'
+import useModal from 'hooks/useModal'
 import React, { useCallback, useState } from 'react'
-import { useHistory } from 'react-router-dom'
+import BlockUI from 'react-block-ui'
+import 'react-block-ui/style.css'
 import { useDispatch, useSelector } from 'react-redux'
+import { useHistory } from 'react-router-dom'
+import paths from 'routes/paths'
 import { useI18n } from 'shared/i18n'
-import { REMOVE_SN } from 'state/actions/pvs'
 import { PUSH_CANDIDATES_INIT } from 'state/actions/devices'
 import { UPDATE_MI_COUNT } from 'state/actions/inventory'
-import { Loader } from 'components/Loader'
-import paths from 'routes/paths'
-import useModal from 'hooks/useModal'
-import BlockUI from 'react-block-ui'
+import { REMOVE_SN } from 'state/actions/pvs'
 import './SNList.scss'
-import 'react-block-ui/style.css'
 import SNManualEntry from './SNManualEntry'
 import SNScanButtons from './SNScanButtons'
 
-function SNList({ animationState }) {
+function SNList() {
   const t = useI18n()
   const dispatch = useDispatch()
   const history = useHistory()
@@ -100,12 +100,7 @@ function SNList({ animationState }) {
     </span>
   )
 
-  const { modal, toggleModal } = useModal(
-    animationState,
-    modalContent,
-    modalTitle,
-    false
-  )
+  const { modal, toggleModal } = useModal(modalContent, modalTitle, false)
 
   const countSN = () => {
     if (parseInt(scannedMICount, 10) === parseInt(expectedMICount, 10)) {

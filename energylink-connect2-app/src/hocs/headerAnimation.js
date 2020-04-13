@@ -1,22 +1,19 @@
+import clsx from 'clsx'
 import React from 'react'
 import { useSelector } from 'react-redux'
-import { useTransition, animated } from 'react-spring'
 
 const withHaderAnimation = Child => {
   const HOC = childProps => {
-    const showHeader = useSelector(({ ui }) => ui.header)
-    const grow = useTransition(!!showHeader, null, {
-      from: { maxHeight: 0, opacity: 0 },
-      enter: { maxHeight: 90, opacity: 1 },
-      leave: { maxHeight: 0, opacity: 0 }
-    })
-    return grow.map(
-      ({ item, props, key }) =>
-        item && (
-          <animated.header style={props} key={key}>
-            <Child {...childProps} />
-          </animated.header>
-        )
+    const showHeader = useSelector(({ ui }) => !!ui.header)
+    return (
+      <header
+        className={clsx('header-transition', {
+          'show-footer': showHeader,
+          'hide-footer': !showHeader
+        })}
+      >
+        <Child {...childProps} />
+      </header>
     )
   }
 

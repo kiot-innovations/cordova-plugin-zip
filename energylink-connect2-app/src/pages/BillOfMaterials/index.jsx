@@ -1,11 +1,11 @@
+import ProgressiveImage from 'components/ProgressiveImage'
 import { prop } from 'ramda'
 import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
+import { Link } from 'react-router-dom'
 import { either, isIos } from 'shared/utils'
 import paths from '../../routes/paths'
 import { useI18n } from '../../shared/i18n'
-import ProgressiveImage from 'components/ProgressiveImage'
 import './BillOfMaterials.scss'
 
 function drawTable(t, inventory) {
@@ -35,7 +35,7 @@ const useMap = (latitude, longitude) => {
   return url
 }
 
-function BillOfMaterials({ animationState }) {
+function BillOfMaterials() {
   const t = useI18n()
 
   const data = useSelector(({ user, inventory }) => ({
@@ -54,7 +54,7 @@ function BillOfMaterials({ animationState }) {
     <main className="full-height pl-10 pr-10 home">
       <div className="pl-10 pr-10 mb-20">
         <a href={url}>
-          <ProgressiveImage src={imageURL} animationState={animationState} />
+          <ProgressiveImage src={imageURL} />
         </a>
       </div>
       <span className="is-uppercase is-block is-full-width has-text-centered is-bold mb-30 ">

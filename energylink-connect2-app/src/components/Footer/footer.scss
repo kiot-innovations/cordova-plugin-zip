@@ -8,4 +8,5 @@
   height: 70px;
   background-color: $black;
   transform: translate3d(0,0,0);
+  transition: max-height 250ms ease-out,opacity 250ms ease-out;
 }
