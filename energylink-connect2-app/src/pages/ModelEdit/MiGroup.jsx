@@ -43,14 +43,10 @@ const MiGroup = ({ title, data, animationState }) => {
     if (animationState === 'enter') {
       dispatch(FETCH_MODELS_INIT(miTypes[title]))
     }
-  })
+  }, [])
 
   const modelOptions = useSelector(state =>
-    pathOr(
-      [{ models: ['Fetching Options...'], type: miTypes[title] }],
-      ['devices', 'miModels'],
-      state
-    )
+    pathOr([], ['devices', 'miModels'], state)
   )
 
   const filteredOptions = modelOptions.filter(
