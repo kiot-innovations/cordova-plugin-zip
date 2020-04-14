@@ -1,3 +1,4 @@
 import { createAction } from 'redux-act'
 
-export const TOGGLE_MODAL = createAction('TOGGLE_MODAL')
+export const SHOW_MODAL = createAction('SHOW_MODAL')
+export const HIDE_MODAL = createAction('HIDE_MODAL')
