@@ -11,6 +11,7 @@ describe('Network Widget', () => {
       network: {
         aps: [{ ssid: '1' }, { ssid: '2' }],
         selectedAP: { label: '' },
+        connectedToAP: { label: '', value: '', ap: { ssid: '' } },
         error: null
       }
     }

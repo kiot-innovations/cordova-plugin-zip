@@ -8,7 +8,8 @@ import SelectField from 'components/SelectField'
 
 import {
   GET_NETWORK_APS_INIT,
-  CONNECT_NETWORK_AP_INIT
+  CONNECT_NETWORK_AP_INIT,
+  SET_SELECTED_AP
 } from 'state/actions/systemConfiguration'
 import { either, buildAPsItems } from 'shared/utils'
 
@@ -18,19 +19,24 @@ function NetworkWidget({ animationState }) {
   const t = useI18n()
   const dispatch = useDispatch()
 
-  const { aps, isFetching, selectedAP, isConnected, error } = useSelector(
-    path(['systemConfiguration', 'network'])
-  )
+  const {
+    aps,
+    isFetching,
+    connectedToAP,
+    selectedAP,
+    isConnected,
+    error
+  } = useSelector(path(['systemConfiguration', 'network']))
 
   const [password, setPassword] = useState('')
-  const [AP, setAP] = useState({ ssid: '' })
 
   useEffect(() => {
     if (animationState === 'enter') dispatch(GET_NETWORK_APS_INIT())
-  }, [animationState, dispatch])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   const disallowConnecting =
-    isFetching || AP.ssid === path(['ap', 'ssid'], selectedAP)
+    isFetching || selectedAP.ssid === path(['ap', 'ssid'], connectedToAP)
 
   return (
     <div className="pb-15">
@@ -48,8 +54,8 @@ function NetworkWidget({ animationState }) {
                   <SelectField
                     disabled={isFetching}
                     isSearchable={true}
-                    onSelect={compose(setAP, prop('ap'))}
-                    defaultValue={selectedAP}
+                    onSelect={compose(dispatch, SET_SELECTED_AP, prop('ap'))}
+                    defaultValue={connectedToAP}
                     placeholder={t('SELECT_NETWORK')}
                     options={buildAPsItems(aps)}
                   />
@@ -81,9 +87,12 @@ function NetworkWidget({ animationState }) {
           </div>
 
           {either(
-            isConnected && !error && !isFetching && !isEmpty(selectedAP.label),
+            isConnected &&
+              !error &&
+              !isFetching &&
+              !isEmpty(connectedToAP.label),
             <div className="message success">
-              {t('AP_CONNECTION_SUCCESS', selectedAP.label)}
+              {t('AP_CONNECTION_SUCCESS', connectedToAP.label)}
             </div>
           )}
 
@@ -100,7 +109,7 @@ function NetworkWidget({ animationState }) {
                 onClick={() =>
                   dispatch(
                     CONNECT_NETWORK_AP_INIT({
-                      ssid: AP.ssid,
+                      ssid: selectedAP.ssid,
                       password,
                       mode: 'wps'
                     })
@@ -117,7 +126,7 @@ function NetworkWidget({ animationState }) {
                 onClick={() =>
                   dispatch(
                     CONNECT_NETWORK_AP_INIT({
-                      ssid: AP.ssid,
+                      ssid: selectedAP.ssid,
                       password,
                       mode: 'psk'
                     })

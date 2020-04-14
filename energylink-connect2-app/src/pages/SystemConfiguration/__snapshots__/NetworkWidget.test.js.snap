@@ -113,7 +113,11 @@ exports[`Network Widget renders correctly 1`] = `
                           <SelectField
                             defaultValue={
                               Object {
+                                "ap": Object {
+                                  "ssid": "",
+                                },
                                 "label": "",
+                                "value": "",
                               }
                             }
                             isSearchable={true}
@@ -151,7 +155,11 @@ exports[`Network Widget renders correctly 1`] = `
                               defaultMenuIsOpen={false}
                               defaultValue={
                                 Object {
+                                  "ap": Object {
+                                    "ssid": "",
+                                  },
                                   "label": "",
+                                  "value": "",
                                 }
                               }
                               hideSelectedOptions={true}
@@ -249,7 +257,11 @@ exports[`Network Widget renders correctly 1`] = `
                                 theme={[Function]}
                                 value={
                                   Object {
+                                    "ap": Object {
+                                      "ssid": "",
+                                    },
                                     "label": "",
+                                    "value": "",
                                   }
                                 }
                               >
@@ -356,7 +368,11 @@ exports[`Network Widget renders correctly 1`] = `
                                       "tabSelectsValue": true,
                                       "theme": [Function],
                                       "value": Object {
+                                        "ap": Object {
+                                          "ssid": "",
+                                        },
                                         "label": "",
+                                        "value": "",
                                       },
                                     }
                                   }
@@ -514,7 +530,11 @@ exports[`Network Widget renders correctly 1`] = `
                                             "tabSelectsValue": true,
                                             "theme": [Function],
                                             "value": Object {
+                                              "ap": Object {
+                                                "ssid": "",
+                                              },
                                               "label": "",
+                                              "value": "",
                                             },
                                           }
                                         }
@@ -680,7 +700,11 @@ exports[`Network Widget renders correctly 1`] = `
                                                   "tabSelectsValue": true,
                                                   "theme": [Function],
                                                   "value": Object {
+                                                    "ap": Object {
+                                                      "ssid": "",
+                                                    },
                                                     "label": "",
+                                                    "value": "",
                                                   },
                                                 }
                                               }
@@ -741,7 +765,11 @@ exports[`Network Widget renders correctly 1`] = `
                                                     cx={[Function]}
                                                     data={
                                                       Object {
+                                                        "ap": Object {
+                                                          "ssid": "",
+                                                        },
                                                         "label": "",
+                                                        "value": "",
                                                       }
                                                     }
                                                     getStyles={[Function]}
@@ -836,7 +864,11 @@ exports[`Network Widget renders correctly 1`] = `
                                                         "tabSelectsValue": true,
                                                         "theme": [Function],
                                                         "value": Object {
+                                                          "ap": Object {
+                                                            "ssid": "",
+                                                          },
                                                           "label": "",
+                                                          "value": "",
                                                         },
                                                       }
                                                     }
@@ -978,7 +1010,11 @@ exports[`Network Widget renders correctly 1`] = `
                                                         "tabSelectsValue": true,
                                                         "theme": [Function],
                                                         "value": Object {
+                                                          "ap": Object {
+                                                            "ssid": "",
+                                                          },
                                                           "label": "",
+                                                          "value": "",
                                                         },
                                                       }
                                                     }
@@ -1217,7 +1253,11 @@ exports[`Network Widget renders correctly 1`] = `
                                                   "tabSelectsValue": true,
                                                   "theme": [Function],
                                                   "value": Object {
+                                                    "ap": Object {
+                                                      "ssid": "",
+                                                    },
                                                     "label": "",
+                                                    "value": "",
                                                   },
                                                 }
                                               }
@@ -1365,7 +1405,11 @@ exports[`Network Widget renders correctly 1`] = `
                                                         "tabSelectsValue": true,
                                                         "theme": [Function],
                                                         "value": Object {
+                                                          "ap": Object {
+                                                            "ssid": "",
+                                                          },
                                                           "label": "",
+                                                          "value": "",
                                                         },
                                                       }
                                                     }
@@ -1505,7 +1549,11 @@ exports[`Network Widget renders correctly 1`] = `
                                                         "tabSelectsValue": true,
                                                         "theme": [Function],
                                                         "value": Object {
+                                                          "ap": Object {
+                                                            "ssid": "",
+                                                          },
                                                           "label": "",
+                                                          "value": "",
                                                         },
                                                       }
                                                     }

@@ -25,7 +25,7 @@ export const connectNetworkAPEpic = (action$, state$) => {
         )
 
       return from(promise).pipe(
-        map(prop('obj')),
+        map(prop('body')),
         map(response =>
           response.result === 'succeed'
             ? GET_INTERFACES_INIT()

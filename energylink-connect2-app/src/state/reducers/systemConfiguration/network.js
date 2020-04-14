@@ -1,5 +1,5 @@
 import { createReducer } from 'redux-act'
-import { isEmpty } from 'ramda'
+import { isEmpty, prop } from 'ramda'
 
 import {
   GET_NETWORK_APS_INIT,
@@ -7,14 +7,16 @@ import {
   GET_NETWORK_APS_ERROR,
   CONNECT_NETWORK_AP_INIT,
   CONNECT_NETWORK_AP_ERROR,
-  GET_INTERFACES_SUCCESS
+  GET_INTERFACES_SUCCESS,
+  SET_SELECTED_AP
 } from 'state/actions/systemConfiguration'
 
 import { getConnectedAP } from 'shared/utils'
 
 const initialState = {
   aps: [],
-  selectedAP: { label: '', value: '', ap: null },
+  selectedAP: { ssid: '' },
+  connectedToAP: { label: '', value: '', ap: null },
   isFetching: false,
   isConnected: false,
   error: null
@@ -48,12 +50,18 @@ export const networkReducer = createReducer(
       error: null
     }),
     [GET_INTERFACES_SUCCESS]: (state, interfaces) => {
-      const selectedAP = getConnectedAP(interfaces, state.aps)
+      const connectedToAP = getConnectedAP(interfaces, state.aps)
+      const error =
+        state.isFetching &&
+        state.selectedAP.ssid !== '' &&
+        state.selectedAP.ssid !== prop('ssid', connectedToAP.ap)
+
       return {
         ...state,
-        isConnected: !isEmpty(selectedAP.label),
+        error,
+        isConnected: !error && !isEmpty(connectedToAP.label),
         isFetching: false,
-        selectedAP
+        connectedToAP
       }
     },
 
@@ -62,6 +70,11 @@ export const networkReducer = createReducer(
       isFetching: false,
       isConnected: false,
       error
+    }),
+
+    [SET_SELECTED_AP]: (state, selectedAP) => ({
+      ...state,
+      selectedAP
     })
   },
   initialState
