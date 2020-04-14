@@ -1,3 +1,4 @@
+/* eslint no-undef: 0 */
 import React from 'react'
 import * as i18n from 'shared/i18n'
 import { ModalWrapper } from './Wrapper'
