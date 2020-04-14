@@ -2,11 +2,11 @@ import clsx from 'clsx'
 import { Loader } from 'components/Loader'
 import useGlobalModal, { useGlobalHideModal } from 'hooks/useGlobalModal'
 import React, { lazy, Suspense } from 'react'
+import { useI18n } from 'shared/i18n'
 import { either } from 'shared/utils'
 import './ModalWrapper.scss'
 
 export const ModalWrapper = () => {
-  const modalState = useGlobalModal()
   const {
     title,
     componentPath,
@@ -16,8 +16,9 @@ export const ModalWrapper = () => {
     dismissable,
     show,
     okButton
-  } = modalState
+  } = useGlobalModal()
 
+  const t = useI18n()
   const closeModal = useGlobalHideModal()
   const CustomComponent = lazy(() => import(`${componentPath}`))
 
@@ -63,7 +64,7 @@ export const ModalWrapper = () => {
               className="button is-primary is-uppercase"
               onClick={okButton}
             >
-              Accept
+              {t('ACCEPT')}
             </button>
           </div>
         )}

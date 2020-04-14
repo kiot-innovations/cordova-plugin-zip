@@ -250,5 +250,6 @@
   "ADD_PANEL_TO_LAYOUT": "Add panel to layout",
   "ORIENTATION": "Orientation",
   "ALL_PANELS_SET": "All panels set",
-  "CONTINUE_TO_ADJUST": "Continue to adjust arrays"
+  "CONTINUE_TO_ADJUST": "Continue to adjust arrays",
+  "ACCEPT": "Accept"
 }

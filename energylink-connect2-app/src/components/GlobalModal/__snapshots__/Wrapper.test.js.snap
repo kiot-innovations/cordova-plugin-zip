@@ -1,0 +1,133 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`The wrapper component for global modals should NOT show if the component if the redux store tells modal 1`] = `
+<BrowserRouter
+  keyLength={0}
+>
+  <Router
+    history={
+      Object {
+        "action": "POP",
+        "block": [Function],
+        "createHref": [Function],
+        "go": [Function],
+        "goBack": [Function],
+        "goForward": [Function],
+        "length": 1,
+        "listen": [Function],
+        "location": Object {
+          "hash": "",
+          "pathname": "/",
+          "search": "",
+          "state": undefined,
+        },
+        "push": [Function],
+        "replace": [Function],
+      }
+    }
+  >
+    <Provider
+      store={
+        Object {
+          "clearActions": [Function],
+          "dispatch": [Function],
+          "getActions": [Function],
+          "getState": [Function],
+          "replaceReducer": [Function],
+          "subscribe": [Function],
+        }
+      }
+    >
+      <ModalWrapper>
+        <div
+          className="modal modal-wrapper"
+        >
+          <div
+            className="modal-background"
+          />
+          <div
+            className="modal-content"
+          >
+            <div
+              className="modal-bar"
+            />
+            <div
+              className="modal-body"
+            >
+              <Suspense
+                fallback={<Loader />}
+              />
+            </div>
+          </div>
+        </div>
+      </ModalWrapper>
+    </Provider>
+  </Router>
+</BrowserRouter>
+`;
+
+exports[`The wrapper component for global modals should show if the component if the redux store tells modal 1`] = `
+<BrowserRouter
+  keyLength={0}
+>
+  <Router
+    history={
+      Object {
+        "action": "POP",
+        "block": [Function],
+        "createHref": [Function],
+        "go": [Function],
+        "goBack": [Function],
+        "goForward": [Function],
+        "length": 1,
+        "listen": [Function],
+        "location": Object {
+          "hash": "",
+          "pathname": "/",
+          "search": "",
+          "state": undefined,
+        },
+        "push": [Function],
+        "replace": [Function],
+      }
+    }
+  >
+    <Provider
+      store={
+        Object {
+          "clearActions": [Function],
+          "dispatch": [Function],
+          "getActions": [Function],
+          "getState": [Function],
+          "replaceReducer": [Function],
+          "subscribe": [Function],
+        }
+      }
+    >
+      <ModalWrapper>
+        <div
+          className="modal modal-wrapper is-active"
+        >
+          <div
+            className="modal-background"
+          />
+          <div
+            className="modal-content"
+          >
+            <div
+              className="modal-bar"
+            />
+            <div
+              className="modal-body"
+            >
+              <Suspense
+                fallback={<Loader />}
+              />
+            </div>
+          </div>
+        </div>
+      </ModalWrapper>
+    </Provider>
+  </Router>
+</BrowserRouter>
+`;
