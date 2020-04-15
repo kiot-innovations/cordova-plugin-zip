@@ -61,20 +61,20 @@ function SNList({ animationState }) {
     const snList = serialNumbers.map(device => {
       return { DEVICE_TYPE: 'Inverter', SERIAL: device.serial_number }
     })
-    toggleModal()
+    toggleSerialNumbersModal()
     dispatch(UPDATE_MI_COUNT(serialNumbers.length))
     dispatch(PUSH_CANDIDATES_INIT(snList))
     history.push(paths.PROTECTED.DEVICES.path)
   }
 
-  const snModalContent = text => {
+  const serialNumbersModalTemplate = text => {
     return (
       <div className="sn-modal">
         <span className="has-text-white mb-10">{text}</span>
         <div className="sn-buttons">
           <button
             className="button half-button-padding is-secondary trigger-scan mr-10"
-            onClick={() => toggleModal()}
+            onClick={() => toggleSerialNumbersModal()}
           >
             {t('CANCEL')}
           </button>
@@ -89,30 +89,32 @@ function SNList({ animationState }) {
     )
   }
 
-  const modalContent =
+  const serialNumbersModalContent =
     scannedMICount > expectedMICount
-      ? snModalContent(t('MI_OVERCOUNT', scannedMICount, expectedMICount))
-      : snModalContent(t('MI_UNDERCOUNT', scannedMICount, expectedMICount))
+      ? serialNumbersModalTemplate(
+          t('MI_OVERCOUNT', scannedMICount, expectedMICount)
+        )
+      : serialNumbersModalTemplate(
+          t('MI_UNDERCOUNT', scannedMICount, expectedMICount)
+        )
 
-  const modalTitle = (
+  const modalsTitle = (
     <span className="has-text-white has-text-weight-bold">
       {t('ATTENTION')}
     </span>
   )
 
-  const { modal, toggleModal } = useModal(
-    animationState,
-    modalContent,
-    modalTitle,
-    false
-  )
+  const {
+    modal: serialNumbersModal,
+    toggleModal: toggleSerialNumbersModal
+  } = useModal(animationState, serialNumbersModalContent, modalsTitle, false)
 
   const countSN = () => {
     if (parseInt(scannedMICount, 10) === parseInt(expectedMICount, 10)) {
       submitSN()
       history.push(paths.PROTECTED.DEVICES.path)
     } else {
-      toggleModal()
+      toggleSerialNumbersModal()
     }
   }
 
@@ -126,7 +128,7 @@ function SNList({ animationState }) {
 
   return (
     <BlockUI tag="div" blocking={false} message={t('OPENING_CAMERA')}>
-      {modal}
+      {serialNumbersModal}
       <div className="snlist is-vertical has-text-centered pl-10 pr-10">
         <div className="top-text">
           <span className="is-uppercase has-text-weight-bold">
