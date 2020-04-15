@@ -2,8 +2,8 @@ import {
   compose,
   filter,
   includes,
-  map,
   path,
+  map,
   pathOr,
   test,
   union

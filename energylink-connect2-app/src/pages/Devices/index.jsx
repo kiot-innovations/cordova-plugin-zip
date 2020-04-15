@@ -356,7 +356,7 @@ const Devices = () => {
                       </span>
                       {elem.serial_number}
                       <span className="has-text-weight-bold ml-10">
-                        {elem.model}
+                        {elem.miType}
                       </span>
                     </span>
                     {elem.modelStr ? (

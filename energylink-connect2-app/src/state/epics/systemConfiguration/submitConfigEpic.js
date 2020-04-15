@@ -13,13 +13,27 @@ const submitConfiguration = async payload => {
   try {
     const swagger = await getApiPVS()
     const res = await Promise.all([
-      swagger.apis.grid.set({
-        ID: payload.gridProfile,
-        lazy: payload.lazyGridProfile
-      }),
-      swagger.apis.grid.setGridExportLimit({ Limit: payload.exportLimit }),
-      swagger.apis.grid.setGridVoltage({ grid_voltage: payload.gridVoltage }),
-      swagger.apis.config.sendConfigObject({ site_key: payload.siteKey })
+      swagger.apis.grid.set(
+        { id: 1 },
+        {
+          requestBody: {
+            ID: payload.gridProfile,
+            lazy: payload.lazyGridProfile
+          }
+        }
+      ),
+      swagger.apis.grid.setGridExportLimit(
+        { id: 1 },
+        { requestBody: { Limit: payload.exportLimit } }
+      ),
+      swagger.apis.grid.setGridVoltage(
+        { id: 1 },
+        { requestBody: { grid_voltage: payload.gridVoltage } }
+      ),
+      swagger.apis.config.sendConfigObject(
+        { id: 1 },
+        { requestBody: { site_key: payload.siteKey } }
+      )
     ])
     const [setGridProfiles, setExportLimit, setGridVoltage] = res.map(
       prop('body')

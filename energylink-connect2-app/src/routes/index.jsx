@@ -11,6 +11,7 @@ import GiveFeedback from 'pages/GiveFeedback'
 import Home from 'pages/Home'
 import InstallSuccessful from 'pages/InstallSuccess'
 import InventoryCount from 'pages/InventoryCount'
+import LegacyDiscovery from 'pages/LegacyDiscovery'
 import Login from 'pages/Login'
 import Logout from 'pages/Logout'
 import Menu from 'pages/Menu'
@@ -56,6 +57,7 @@ const mapComponents = {
   [paths.PROTECTED.SAVING_CONFIGURATION.path]: SavingConfiguration,
   [paths.PROTECTED.SN_LIST.path]: SNList,
   [paths.PROTECTED.MODEL_EDIT.path]: ModelEdit,
+  [paths.PROTECTED.LEGACY_DISCOVERY.path]: LegacyDiscovery,
   [paths.UNPROTECTED.FORGOT_PASSWORD.path]: NotFound,
   [paths.UNPROTECTED.GET_ASSISTANCE.path]: NotFound,
   [paths.UNPROTECTED.LOGIN.path]: Login,
@@ -78,7 +80,9 @@ function AppRoutes() {
   useEffect(() => {
     dispatch(deviceResumeListener())
     dispatch(validateSession())
+
     window.addEventListener('keyboardDidHide', updateBodyHeight)
+
     return () => {
       document.removeEventListener('keyboardDidHide', updateBodyHeight)
     }

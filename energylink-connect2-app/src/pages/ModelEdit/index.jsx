@@ -1,17 +1,17 @@
+import { groupBy, prop } from 'ramda'
 import React from 'react'
 import { useSelector } from 'react-redux'
-import { Link } from 'react-router-dom'
-import paths from 'routes/paths'
+import { useHistory } from 'react-router-dom'
 import { useI18n } from 'shared/i18n'
-import { groupBy } from 'shared/utils'
 import MiGroup from './MiGroup'
 import './ModelEdit.scss'
 
 const ModelEdit = () => {
   const t = useI18n()
+  const history = useHistory()
   const { serialNumbers } = useSelector(state => state.pvs)
 
-  const groupedSerialNumbers = groupBy(serialNumbers, 'model')
+  const groupedSerialNumbers = groupBy(prop('miType'), serialNumbers)
 
   const collapsibleElements = () => {
     return Object.keys(groupedSerialNumbers).map((key, i) => (
@@ -26,9 +26,14 @@ const ModelEdit = () => {
       </span>
 
       <div className="model-container">{collapsibleElements()}</div>
-      <Link to={paths.PROTECTED.DEVICES.path} className="link is-uppercase">
-        <small>{t('BACK')}</small>
-      </Link>
+      <div>
+        <button
+          className="button is-outlined is-primary has-text-primary mb-20"
+          onClick={() => history.goBack()}
+        >
+          {t('BACK')}
+        </button>
+      </div>
     </div>
   )
 }

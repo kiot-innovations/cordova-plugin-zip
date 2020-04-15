@@ -1,6 +1,6 @@
 import { ofType } from 'redux-observable'
 import { from, of } from 'rxjs'
-import { catchError, switchMap, map } from 'rxjs/operators'
+import { catchError, mergeMap, map } from 'rxjs/operators'
 import {
   FETCH_MODELS_INIT,
   FETCH_MODELS_SUCCESS,
@@ -16,7 +16,7 @@ const buildModelFilter = (type, data) => {
 export const fetchModelsEpic = (action$, state$) => {
   return action$.pipe(
     ofType(FETCH_MODELS_INIT.getType()),
-    switchMap(({ payload }) => {
+    mergeMap(({ payload }) => {
       const promise = httpGet(`/device/${payload}/modelnames`, state$.value)
       return from(promise).pipe(
         map(models =>

@@ -5,10 +5,10 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useI18n } from 'shared/i18n'
 import { buildAPsItems, either } from 'shared/utils'
-
 import {
   CONNECT_NETWORK_AP_INIT,
-  GET_NETWORK_APS_INIT
+  GET_NETWORK_APS_INIT,
+  SET_SELECTED_AP
 } from 'state/actions/systemConfiguration'
 
 const NWI = <span className="sp-wifi file level mr-15 is-size-4" />
@@ -17,19 +17,23 @@ function NetworkWidget() {
   const t = useI18n()
   const dispatch = useDispatch()
 
-  const { aps, isFetching, selectedAP, isConnected, error } = useSelector(
-    path(['systemConfiguration', 'network'])
-  )
+  const {
+    aps,
+    isFetching,
+    connectedToAP,
+    selectedAP,
+    isConnected,
+    error
+  } = useSelector(path(['systemConfiguration', 'network']))
 
   const [password, setPassword] = useState('')
-  const [AP, setAP] = useState({ ssid: '' })
 
   useEffect(() => {
     dispatch(GET_NETWORK_APS_INIT())
   }, [dispatch])
 
   const disallowConnecting =
-    isFetching || AP.ssid === path(['ap', 'ssid'], selectedAP)
+    isFetching || selectedAP.ssid === path(['ap', 'ssid'], connectedToAP)
 
   return (
     <div className="pb-15">
@@ -47,8 +51,8 @@ function NetworkWidget() {
                   <SelectField
                     disabled={isFetching}
                     isSearchable={true}
-                    onSelect={compose(setAP, prop('ap'))}
-                    defaultValue={selectedAP}
+                    onSelect={compose(dispatch, SET_SELECTED_AP, prop('ap'))}
+                    defaultValue={connectedToAP}
                     placeholder={t('SELECT_NETWORK')}
                     options={buildAPsItems(aps)}
                   />
@@ -80,9 +84,12 @@ function NetworkWidget() {
           </div>
 
           {either(
-            isConnected && !error && !isFetching && !isEmpty(selectedAP.label),
+            isConnected &&
+              !error &&
+              !isFetching &&
+              !isEmpty(connectedToAP.label),
             <div className="message success">
-              {t('AP_CONNECTION_SUCCESS', selectedAP.label)}
+              {t('AP_CONNECTION_SUCCESS', connectedToAP.label)}
             </div>
           )}
 
@@ -99,7 +106,7 @@ function NetworkWidget() {
                 onClick={() =>
                   dispatch(
                     CONNECT_NETWORK_AP_INIT({
-                      ssid: AP.ssid,
+                      ssid: selectedAP.ssid,
                       password,
                       mode: 'wps'
                     })
@@ -116,7 +123,7 @@ function NetworkWidget() {
                 onClick={() =>
                   dispatch(
                     CONNECT_NETWORK_AP_INIT({
-                      ssid: AP.ssid,
+                      ssid: selectedAP.ssid,
                       password,
                       mode: 'psk'
                     })

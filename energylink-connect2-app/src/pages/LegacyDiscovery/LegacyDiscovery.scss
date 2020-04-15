@@ -1,0 +1,24 @@
+@import '~@sunpower/theme-dark/styles/variables';
+
+.legacy-discovery{
+  display: grid;
+  grid-template-rows: 5% 1fr 25%;
+
+  .discovery-percentage{
+    line-height: 3rem;
+  }
+
+  .device-item{
+    display: grid;
+    grid-template-columns: 90% 1fr;
+    text-align: left;
+    padding-bottom: 5px;
+    border-bottom: 2px solid;
+
+    button{
+      background: transparent;
+      border: none;
+    }
+  }
+
+}

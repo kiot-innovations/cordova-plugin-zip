@@ -40,6 +40,12 @@ const paths = {
       footer: true,
       tab: TABS.INSTALL
     },
+    LEGACY_DISCOVERY: {
+      path: '/legacy-discovery',
+      header: true,
+      footer: true,
+      tab: TABS.INSTALL
+    },
     MODEL_EDIT: {
       path: '/model-edit',
       header: true,
