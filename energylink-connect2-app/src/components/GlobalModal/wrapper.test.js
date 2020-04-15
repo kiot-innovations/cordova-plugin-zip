@@ -1,7 +1,19 @@
-/* eslint no-undef: 0 */
+import { mount } from 'enzyme'
 import React from 'react'
+import { Provider } from 'react-redux'
+import configureStore from 'redux-mock-store'
+import thunk from 'redux-thunk'
 import * as i18n from 'shared/i18n'
-import { ModalWrapper } from './Wrapper'
+import ModalWrapper from './Wrapper'
+
+const mockedStore = (initial = {}) => configureStore([thunk])(initial)
+const mountWithProvider = children => initialState => {
+  const store = mockedStore(initialState)
+  return {
+    component: mount(<Provider store={store}>{children}</Provider>),
+    store
+  }
+}
 
 describe('The wrapper component for global modals', () => {
   beforeEach(() => {
@@ -20,7 +32,7 @@ describe('The wrapper component for global modals', () => {
     expect(wrapper.length).toBe(1)
     expect(component).toMatchSnapshot()
   })
-  it('should NOT show if the component if the redux store tells modal', () => {
+  it("should NOT show the modal if the redux store doesn't have the property show", () => {
     const { component } = mountWithProvider(<ModalWrapper />)({
       modal: {}
     })
@@ -29,6 +41,7 @@ describe('The wrapper component for global modals', () => {
     expect(component).toMatchSnapshot()
     expect(wrapper.length).toBe(0)
   })
+
   it('should show a title if the property is passed', () => {
     const title = 'My super modal'
     const { component } = mountWithProvider(<ModalWrapper />)({

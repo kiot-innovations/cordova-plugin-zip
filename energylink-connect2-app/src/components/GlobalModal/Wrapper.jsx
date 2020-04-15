@@ -6,7 +6,7 @@ import { useI18n } from 'shared/i18n'
 import { either } from 'shared/utils'
 import './ModalWrapper.scss'
 
-export const ModalWrapper = () => {
+const ModalWrapper = () => {
   const {
     title,
     componentPath,
@@ -72,3 +72,4 @@ export const ModalWrapper = () => {
     </div>
   )
 }
+export default ModalWrapper

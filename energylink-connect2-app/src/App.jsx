@@ -1,5 +1,5 @@
 import Footer from 'components/Footer'
-import { ModalWrapper } from 'components/GlobalModal/Wrapper'
+import ModalWrapper from 'components/GlobalModal/Wrapper'
 import Header from 'components/Header'
 import React from 'react'
 import { Provider } from 'react-redux'

@@ -1,0 +1,79 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`The wrapper component for global modals should NOT show the modal if the redux store doesn't have the property show 1`] = `
+<Provider
+  store={
+    Object {
+      "clearActions": [Function],
+      "dispatch": [Function],
+      "getActions": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+    }
+  }
+>
+  <ModalWrapper>
+    <div
+      className="modal modal-wrapper"
+    >
+      <div
+        className="modal-background"
+      />
+      <div
+        className="modal-content"
+      >
+        <div
+          className="modal-bar"
+        />
+        <div
+          className="modal-body"
+        >
+          <Suspense
+            fallback={<Loader />}
+          />
+        </div>
+      </div>
+    </div>
+  </ModalWrapper>
+</Provider>
+`;
+
+exports[`The wrapper component for global modals should show if the component if the redux store tells modal 1`] = `
+<Provider
+  store={
+    Object {
+      "clearActions": [Function],
+      "dispatch": [Function],
+      "getActions": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+    }
+  }
+>
+  <ModalWrapper>
+    <div
+      className="modal modal-wrapper is-active"
+    >
+      <div
+        className="modal-background"
+      />
+      <div
+        className="modal-content"
+      >
+        <div
+          className="modal-bar"
+        />
+        <div
+          className="modal-body"
+        >
+          <Suspense
+            fallback={<Loader />}
+          />
+        </div>
+      </div>
+    </div>
+  </ModalWrapper>
+</Provider>
+`;
