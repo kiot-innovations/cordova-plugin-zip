@@ -104,10 +104,37 @@ function SNList({ animationState }) {
     </span>
   )
 
+  const legacyDiscoveryModalContent = (
+    <div className="sn-modal">
+      <span className="has-text-white mb-10">
+        {t('LEGACY_DISCOVERY_WARNING')}
+      </span>
+      <div className="sn-buttons">
+        <button
+          className="button half-button-padding is-secondary trigger-scan mr-10"
+          onClick={() => toggleLegacyDiscoveryModal()}
+        >
+          {t('CANCEL')}
+        </button>
+        <button
+          className="button half-button-padding is-primary trigger-scan"
+          onClick={() => {}}
+        >
+          {t('CONTINUE')}
+        </button>
+      </div>
+    </div>
+  )
+
   const {
     modal: serialNumbersModal,
     toggleModal: toggleSerialNumbersModal
   } = useModal(animationState, serialNumbersModalContent, modalsTitle, false)
+
+  const {
+    modal: legacyDiscoveryModal,
+    toggleModal: toggleLegacyDiscoveryModal
+  } = useModal(animationState, legacyDiscoveryModalContent, modalsTitle, false)
 
   const countSN = () => {
     if (parseInt(scannedMICount, 10) === parseInt(expectedMICount, 10)) {
@@ -129,6 +156,7 @@ function SNList({ animationState }) {
   return (
     <BlockUI tag="div" blocking={false} message={t('OPENING_CAMERA')}>
       {serialNumbersModal}
+      {legacyDiscoveryModal}
       <div className="snlist is-vertical has-text-centered pl-10 pr-10">
         <div className="top-text">
           <span className="is-uppercase has-text-weight-bold">
@@ -168,7 +196,7 @@ function SNList({ animationState }) {
               {t('BACK_TO_SCAN')}
             </button>
             <button
-              onClick={toggleManualMode}
+              onClick={toggleLegacyDiscoveryModal}
               className="button has-text-centered is-uppercase is-secondary has-no-border pl-0 pr-0"
             >
               {t('LEGACY_DISCOVERY')}
