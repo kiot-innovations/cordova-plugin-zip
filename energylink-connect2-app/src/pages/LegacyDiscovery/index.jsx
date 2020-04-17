@@ -19,7 +19,7 @@ const LegacyDiscovery = ({ animationState }) => {
   }, [animationState, dispatch])
 
   const restartDiscovery = () => {
-    dispatch(START_DISCOVERY_INIT())
+    dispatch(START_DISCOVERY_INIT({ Device: 'allplusmime' }))
     dispatch(FETCH_CANDIDATES_COMPLETE())
   }
 
