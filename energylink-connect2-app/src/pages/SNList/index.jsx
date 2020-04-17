@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useI18n } from 'shared/i18n'
 import { REMOVE_SN } from 'state/actions/pvs'
 import { PUSH_CANDIDATES_INIT } from 'state/actions/devices'
+import { START_DISCOVERY_INIT } from 'state/actions/pvs'
 import { UPDATE_MI_COUNT } from 'state/actions/inventory'
 import { Loader } from 'components/Loader'
 import paths from 'routes/paths'
@@ -118,7 +119,10 @@ function SNList({ animationState }) {
         </button>
         <button
           className="button half-button-padding is-primary trigger-scan"
-          onClick={() => {}}
+          onClick={() => {
+            dispatch(START_DISCOVERY_INIT({ Device: 'allplusmime' }))
+            history.push(paths.PROTECTED.LEGACY_DISCOVERY.path)
+          }}
         >
           {t('CONTINUE')}
         </button>
