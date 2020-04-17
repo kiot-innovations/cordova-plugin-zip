@@ -27,7 +27,9 @@ const PvsConnectionSuccessful = ({ animationState }) => {
   useEffect(() => {
     if (animationState === 'enter') {
       dispatch(START_COMMISSIONING_INIT())
-      dispatch(START_DISCOVERY_INIT())
+      dispatch(
+        START_DISCOVERY_INIT({ Device: 'allnomi', Interfaces: ['mime'] })
+      )
     }
   }, [dispatch, animationState])
 
