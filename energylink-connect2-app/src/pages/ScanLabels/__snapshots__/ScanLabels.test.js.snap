@@ -67,6 +67,12 @@ exports[`Bulk Scan screen renders correctly 1`] = `
             >
               DONE
             </button>
+            <button
+              className="button has-text-centered is-uppercase is-secondary has-no-border"
+              onClick={[Function]}
+            >
+              SN_MANUAL_ENTRY
+            </button>
           </div>
         </ErrorBoundary>
       </ScanDeviceLabels>

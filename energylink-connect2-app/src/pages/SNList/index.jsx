@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from 'react'
-import { useHistory } from 'react-router-dom'
+import { useHistory, useLocation } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { useI18n } from 'shared/i18n'
 import { REMOVE_SN } from 'state/actions/pvs'
@@ -8,6 +8,7 @@ import { START_DISCOVERY_INIT } from 'state/actions/pvs'
 import { UPDATE_MI_COUNT } from 'state/actions/inventory'
 import { Loader } from 'components/Loader'
 import paths from 'routes/paths'
+import { pathOr } from 'ramda'
 import useModal from 'hooks/useModal'
 import BlockUI from 'react-block-ui'
 import './SNList.scss'
@@ -19,8 +20,10 @@ function SNList({ animationState }) {
   const t = useI18n()
   const dispatch = useDispatch()
   const history = useHistory()
+  const location = useLocation()
+  const { isManualModeDefault = false } = pathOr({}, ['state'], location)
 
-  const [isManualMode, setManualMode] = useState(false)
+  const [isManualMode, setManualMode] = useState(isManualModeDefault)
   const { serialNumbers, fetchingSN } = useSelector(state => state.pvs)
   const { bom } = useSelector(state => state.inventory)
 
