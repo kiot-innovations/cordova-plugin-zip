@@ -6,7 +6,7 @@ describe('ConnectionLost component', () => {
   beforeEach(() => {
     jest
       .spyOn(i18n, 'useI18n')
-      .mockImplementation(() => (key, ...params) =>
+      .mockImplementation(() => (key = '', ...params) =>
         `${key.toUpperCase()} ${params.join('_')}`.trim()
       )
   })

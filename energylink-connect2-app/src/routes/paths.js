@@ -110,8 +110,7 @@ const paths = {
     CONNECTION_LOST: {
       path: '/connection-lost',
       header: true,
-      footer: true,
-      tab: TABS.INSTALL
+      footer: true
     },
     DATA: { path: '/data', header: true, footer: true, tab: TABS.DATA }
   },
