@@ -67,7 +67,6 @@ exports[`ConnectionLost component render correctly 1`] = `
               className="has-text-centered mt-20 has-text-weight-bold"
             >
               ZT123123123009
-               349349384934839489
             </p>
             <p
               className="mt-20"
