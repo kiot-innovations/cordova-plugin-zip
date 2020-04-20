@@ -64,7 +64,7 @@ const ConnectionLost = ({ animationState }) => {
         {t('RECONNECT2')}
         <br />
         <p className="has-text-centered mt-20 has-text-weight-bold">
-          {serialNumber} 349349384934839489
+          {serialNumber}
         </p>
         <p className="mt-20">{t('RECONNECT4')}</p>
       </div>
