@@ -254,6 +254,8 @@
   "RECONNECT": "Reconnect",
   "RECONNECT1": "Tap on",
   "RECONNECT2": "to connect and continue on PVS6 SN:",
-  "RECONNECT4": "Or tap on Exit site to abort and go to another site",
-  "EXIT_SITE": "Exit site"
+  "RECONNECT3": "Or tap on Exit site to abort and go to another site",
+  "EXIT_SITE": "Exit site",
+  "PVS_CONNECTION_TIMEOUT": "Could not connect to the PVS after 1 minute. Please check the equipment",
+  "PVS_CONNECTION_EMPTY_SSID": "Error, no PVS WIFI SSID was provided"
 }

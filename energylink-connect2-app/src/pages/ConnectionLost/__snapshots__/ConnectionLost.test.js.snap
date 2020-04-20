@@ -71,7 +71,7 @@ exports[`ConnectionLost component render correctly 1`] = `
             <p
               className="mt-20"
             >
-              RECONNECT4
+              RECONNECT3
             </p>
           </div>
           <div
