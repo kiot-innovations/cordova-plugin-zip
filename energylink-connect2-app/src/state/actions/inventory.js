@@ -7,6 +7,7 @@ export const SAVE_INVENTORY_INIT = createAction('SAVE_INVENTORY_INIT')
 export const SAVE_INVENTORY_ERROR = createAction('SAVE_INVENTORY_ERROR')
 export const SAVE_INVENTORY_SUCCESS = createAction('SAVE_INVENTORY_SUCCESS')
 export const UPDATE_MI_COUNT = createAction('UPDATE_MI_COUNT')
+export const RESET_INVENOTRY = createAction('RESET_INVENOTRY')
 
 const mockedInventory = [
   { item: 'MODULES', value: '0' },

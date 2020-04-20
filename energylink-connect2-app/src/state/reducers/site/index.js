@@ -5,7 +5,8 @@ import {
   GET_SITES_SUCCESS,
   GET_SITES_ERROR,
   SET_SITE,
-  SET_MAP_VIEW_SRC
+  SET_MAP_VIEW_SRC,
+  RESET_SITE
 } from 'state/actions/site'
 
 const initialState = {
@@ -43,6 +44,12 @@ export const siteReducer = createReducer(
     [SET_MAP_VIEW_SRC]: (state, mapViewSrc) => ({
       ...state,
       mapViewSrc
+    }),
+    [RESET_SITE]: state => ({
+      ...state,
+      mapViewSrc: null,
+      error: null,
+      site: null
     })
   },
   initialState

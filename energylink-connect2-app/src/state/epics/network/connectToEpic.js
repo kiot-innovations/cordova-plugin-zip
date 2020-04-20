@@ -31,6 +31,8 @@ const connectToPVS = async (ssid, password) => {
       await window.WifiWizard2.connect(ssid, true, password, WPA, false)
     }
   } catch (e) {
+    console.info('error connecting to EIFI')
+    console.info(e)
     throw new Error(e)
   }
 }
@@ -45,7 +47,7 @@ const connectToEpic = action$ =>
         map(() => WAIT_FOR_SWAGGER()),
         catchError(err => {
           if (hasCode7(err)) {
-            return of(STOP_NETWORK_POLLING())
+            return of(STOP_NETWORK_POLLING({ canceled: true }))
           } else {
             return of(PVS_CONNECTION_INIT({ ssid: ssid, password: password }))
           }

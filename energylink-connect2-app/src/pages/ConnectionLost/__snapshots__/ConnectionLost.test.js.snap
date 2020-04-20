@@ -1,0 +1,99 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ConnectionLost component render correctly 1`] = `
+<BrowserRouter
+  keyLength={0}
+>
+  <Router
+    history={
+      Object {
+        "action": "POP",
+        "block": [Function],
+        "createHref": [Function],
+        "go": [Function],
+        "goBack": [Function],
+        "goForward": [Function],
+        "length": 1,
+        "listen": [Function],
+        "location": Object {
+          "hash": "",
+          "pathname": "/",
+          "search": "",
+          "state": undefined,
+        },
+        "push": [Function],
+        "replace": [Function],
+      }
+    }
+  >
+    <Provider
+      store={
+        Object {
+          "clearActions": [Function],
+          "dispatch": [Function],
+          "getActions": [Function],
+          "getState": [Function],
+          "replaceReducer": [Function],
+          "subscribe": [Function],
+        }
+      }
+    >
+      <ConnectionLost>
+        <div
+          className="pvs-connection-lost-screen pr-20 pl-20"
+        >
+          <h2
+            className="is-uppercase has-text-weight-bold"
+          >
+            CONNECTION_LOST
+          </h2>
+          <span
+            className="sp-no-connection has-text-white"
+          />
+          <div
+            className="mr-5 ml-5 is-size-6 has-text-centered"
+          >
+            <p>
+              RECONNECT1
+            </p>
+            <span
+              className="has-text-weight-bold mr-5"
+            >
+              RECONNECT
+            </span>
+            RECONNECT2
+            <br />
+            <p
+              className="has-text-centered mt-20 has-text-weight-bold"
+            >
+              ZT123123123009
+               349349384934839489
+            </p>
+            <p
+              className="mt-20"
+            >
+              RECONNECT4
+            </p>
+          </div>
+          <div
+            className="actions is-flex"
+          >
+            <button
+              className="button is-outlined is-primary"
+              onClick={[Function]}
+            >
+              EXIT_SITE
+            </button>
+            <button
+              className="button is-primary is-uppercase is-center is-small mt-20"
+              onClick={[Function]}
+            >
+              RECONNECT
+            </button>
+          </div>
+        </div>
+      </ConnectionLost>
+    </Provider>
+  </Router>
+</BrowserRouter>
+`;

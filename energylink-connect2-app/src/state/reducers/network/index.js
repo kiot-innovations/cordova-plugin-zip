@@ -1,14 +1,18 @@
 import { createReducer } from 'redux-act'
+import { propOr } from 'ramda'
 import {
   PVS_CONNECTION_INIT,
   PVS_CONNECTION_SUCCESS,
   PVS_CONNECTION_ERROR,
-  PVS_CLEAR_ERROR
+  PVS_CLEAR_ERROR,
+  RESET_PVS_CONNECTION,
+  STOP_NETWORK_POLLING
 } from '../../actions/network'
 
 const initialState = {
   connected: false,
   connecting: false,
+  connectionCanceled: false,
   err: '',
   SSID: '',
   password: ''
@@ -35,7 +39,12 @@ export const networkReducer = createReducer(
     }),
     [PVS_CLEAR_ERROR]: state => ({
       initialState
-    })
+    }),
+    [STOP_NETWORK_POLLING]: (state, payload) => ({
+      ...state,
+      connectionCanceled: propOr(false, 'canceled', payload)
+    }),
+    [RESET_PVS_CONNECTION]: () => initialState
   },
   initialState
 )
