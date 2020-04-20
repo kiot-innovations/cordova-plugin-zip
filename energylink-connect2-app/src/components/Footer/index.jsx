@@ -12,6 +12,7 @@ const isActive = (path = '', tab = '') =>
 const Footer = () => {
   const history = useHistory()
   const showFooter = useSelector(({ ui }) => ui.footer)
+  const connected = useSelector(({ network }) => network.connected)
   const [lastInstallPage, setLast] = useState(
     paths.PROTECTED.CONNECT_TO_PVS.path
   )
@@ -31,8 +32,11 @@ const Footer = () => {
     [location]
   )
   useEffect(() => {
-    if (active.install) setLast(location.pathname)
-  }, [active, location])
+    if (active.install)
+      setLast(
+        connected ? location.pathname : paths.PROTECTED.CONNECT_TO_PVS.path
+      )
+  }, [active, connected, location])
 
   function redirect(path) {
     history.push(path)
