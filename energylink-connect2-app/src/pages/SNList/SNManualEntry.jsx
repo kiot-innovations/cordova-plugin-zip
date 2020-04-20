@@ -14,7 +14,9 @@ const ManualEntryForm = () => {
 
   const { form, handleSubmit } = useForm({
     onSubmit: ({ barcode }) => {
-      dispatch(ADD_PVS_SN({ serial_number: barcode }))
+      const prefix =
+        barcode.length === 12 && barcode.startsWith('12') ? 'E00' : ''
+      dispatch(ADD_PVS_SN({ serial_number: `${prefix}${barcode}` }))
     },
     validate: values => {
       const errors = {}
