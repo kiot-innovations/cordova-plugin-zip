@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react'
-import { pathOr } from 'ramda'
-import { useI18n } from 'shared/i18n'
+import { pathOr, isEmpty, isNil } from 'ramda'
 import { useSelector, useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
-import paths from 'routes/paths'
+import { either } from 'shared/utils'
+import { useI18n } from 'shared/i18n'
 import { RESET_DISCOVERY } from 'state/actions/devices'
 import { RESET_PVS_INFO_STATE } from 'state/actions/pvs'
 import {
@@ -13,6 +13,7 @@ import {
 } from 'state/actions/network'
 import { RESET_INVENOTRY } from 'state/actions/inventory'
 import { RESET_SITE } from 'state/actions/site'
+import paths from 'routes/paths'
 
 import './ConnectionLost.scss'
 
@@ -66,21 +67,30 @@ const ConnectionLost = ({ animationState }) => {
         <p className="has-text-centered mt-20 has-text-weight-bold">
           {serialNumber}
         </p>
-        <p className="mt-20">{t('RECONNECT4')}</p>
+        <p className="mt-20">{t('RECONNECT3')}</p>
+
+        {either(err, <div className="message error mb-10 mt-10">{t(err)}</div>)}
       </div>
 
       <div className="actions is-flex">
-        <button className="button is-outlined is-primary" onClick={exitSite}>
+        <button
+          disabled={connecting}
+          className="button is-outlined is-primary"
+          onClick={exitSite}
+        >
           {t('EXIT_SITE')}
         </button>
 
-        <button
-          disabled={connecting}
-          className="button is-primary is-uppercase is-center is-small mt-20"
-          onClick={reconnectToPVS}
-        >
-          {connecting ? t('CONNECTING') : t('RECONNECT')}
-        </button>
+        {either(
+          !isNil(serialNumber) && !isEmpty(serialNumber),
+          <button
+            disabled={connecting}
+            className="button is-primary is-uppercase is-center is-small mt-20"
+            onClick={reconnectToPVS}
+          >
+            {connecting ? t('CONNECTING') : t('RECONNECT')}
+          </button>
+        )}
       </div>
     </div>
   )

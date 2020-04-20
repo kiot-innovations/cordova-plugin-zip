@@ -38,10 +38,15 @@ export const networkReducer = createReducer(
       connecting: false
     }),
     [PVS_CLEAR_ERROR]: state => ({
-      initialState
+      ...state,
+      err: '',
+      connected: false,
+      connecting: false
     }),
     [STOP_NETWORK_POLLING]: (state, payload) => ({
       ...state,
+      connecting: false,
+      connected: false,
       connectionCanceled: propOr(false, 'canceled', payload)
     }),
     [RESET_PVS_CONNECTION]: () => initialState
