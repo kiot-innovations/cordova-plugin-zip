@@ -25,7 +25,7 @@ export default (
   const HocComponent = ({ ...props }) => {
     if (
       isProtected &&
-      !isLoggedIn &&
+      isLoggedIn &&
       (animationState === 'enter' || animationState === 'update')
     )
       return (
