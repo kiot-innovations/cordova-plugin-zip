@@ -48,7 +48,6 @@ const ConnectionLost = ({ animationState }) => {
     }
     if (!connecting && err) {
       dispatch(clearPVSErr())
-      alert(t('PVS_CONN_ERROR'))
     }
   }, [animationState, connected, connecting, err, dispatch, history, t])
 

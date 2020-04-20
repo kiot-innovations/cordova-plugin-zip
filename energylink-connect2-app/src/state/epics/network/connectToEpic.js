@@ -6,8 +6,6 @@ import {
   exhaustMap,
   map,
   takeUntil,
-  timeout,
-  race,
   switchMap
 } from 'rxjs/operators'
 import { getApiPVS } from 'shared/api'
@@ -73,7 +71,7 @@ export const waitForSwaggerEpic = (action$, state$) => {
     ofType(WAIT_FOR_SWAGGER.getType()),
     exhaustMap(() =>
       timer(0, 1000).pipe(
-        takeUntil(race(stopPolling$, timeout(60 * 1000))),
+        takeUntil(stopPolling$),
         exhaustMap(() =>
           from(getApiPVS()).pipe(
             map(() => PVS_CONNECTION_SUCCESS()),

@@ -29,7 +29,8 @@ export const networkReducer = createReducer(
     [PVS_CONNECTION_SUCCESS]: state => ({
       ...state,
       connected: true,
-      connecting: false
+      connecting: false,
+      connectionCanceled: false
     }),
     [PVS_CONNECTION_ERROR]: (state, payload) => ({
       ...state,
