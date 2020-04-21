@@ -117,6 +117,7 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                           onSelect={[Function]}
                           options={Array []}
                           useDefaultDropDown={true}
+                          value={null}
                         >
                           <StateManager
                             cacheOptions={true}
@@ -136,6 +137,7 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                             onChange={[Function]}
                             options={Array []}
                             theme={[Function]}
+                            value={null}
                           >
                             <Select
                               backspaceRemovesValue={true}
@@ -1185,6 +1187,12 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                             ]
                           }
                           useDefaultDropDown={true}
+                          value={
+                            Object {
+                              "label": "No",
+                              "value": 0,
+                            }
+                          }
                         >
                           <StateManager
                             cacheOptions={true}
@@ -1220,6 +1228,12 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                               ]
                             }
                             theme={[Function]}
+                            value={
+                              Object {
+                                "label": "No",
+                                "value": 0,
+                              }
+                            }
                           >
                             <Select
                               backspaceRemovesValue={true}
@@ -1285,8 +1299,8 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                               theme={[Function]}
                               value={
                                 Object {
-                                  "label": "Yes",
-                                  "value": 1,
+                                  "label": "No",
+                                  "value": 0,
                                 }
                               }
                             >
@@ -1381,8 +1395,8 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                                     "tabSelectsValue": true,
                                     "theme": [Function],
                                     "value": Object {
-                                      "label": "Yes",
-                                      "value": 1,
+                                      "label": "No",
+                                      "value": 0,
                                     },
                                   }
                                 }
@@ -1528,8 +1542,8 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                                           "tabSelectsValue": true,
                                           "theme": [Function],
                                           "value": Object {
-                                            "label": "Yes",
-                                            "value": 1,
+                                            "label": "No",
+                                            "value": 0,
                                           },
                                         }
                                       }
@@ -1683,8 +1697,8 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                                                 "tabSelectsValue": true,
                                                 "theme": [Function],
                                                 "value": Object {
-                                                  "label": "Yes",
-                                                  "value": 1,
+                                                  "label": "No",
+                                                  "value": 0,
                                                 },
                                               }
                                             }
@@ -1745,8 +1759,8 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                                                   cx={[Function]}
                                                   data={
                                                     Object {
-                                                      "label": "Yes",
-                                                      "value": 1,
+                                                      "label": "No",
+                                                      "value": 0,
                                                     }
                                                   }
                                                   getStyles={[Function]}
@@ -1829,8 +1843,8 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                                                       "tabSelectsValue": true,
                                                       "theme": [Function],
                                                       "value": Object {
-                                                        "label": "Yes",
-                                                        "value": 1,
+                                                        "label": "No",
+                                                        "value": 0,
                                                       },
                                                     }
                                                   }
@@ -1889,7 +1903,7 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                                                     <div
                                                       className="search__single-value css-5sz5u5-singleValue"
                                                     >
-                                                      Yes
+                                                      No
                                                     </div>
                                                   </EmotionCssPropInternal>
                                                 </SingleValue>
@@ -2027,8 +2041,8 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                                                 "tabSelectsValue": true,
                                                 "theme": [Function],
                                                 "value": Object {
-                                                  "label": "Yes",
-                                                  "value": 1,
+                                                  "label": "No",
+                                                  "value": 0,
                                                 },
                                               }
                                             }
@@ -2164,8 +2178,8 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                                                       "tabSelectsValue": true,
                                                       "theme": [Function],
                                                       "value": Object {
-                                                        "label": "Yes",
-                                                        "value": 1,
+                                                        "label": "No",
+                                                        "value": 0,
                                                       },
                                                     }
                                                   }
@@ -2293,8 +2307,8 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                                                       "tabSelectsValue": true,
                                                       "theme": [Function],
                                                       "value": Object {
-                                                        "label": "Yes",
-                                                        "value": 1,
+                                                        "label": "No",
+                                                        "value": 0,
                                                       },
                                                     }
                                                   }
@@ -2434,9 +2448,16 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                       >
                         <SelectField
                           isSearchable={false}
-                          notFoundText="SELECT_A_GRID_PROFILE"
+                          notFoundText={null}
                           onSelect={[Function]}
-                          options={Array []}
+                          options={
+                            Array [
+                              Object {
+                                "label": "NO_SELF_SUPPLY",
+                                "value": false,
+                              },
+                            ]
+                          }
                           useDefaultDropDown={true}
                         >
                           <StateManager
@@ -2455,7 +2476,14 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                             isSearchable={false}
                             noOptionsMessage={[Function]}
                             onChange={[Function]}
-                            options={Array []}
+                            options={
+                              Array [
+                                Object {
+                                  "label": "NO_SELF_SUPPLY",
+                                  "value": false,
+                                },
+                              ]
+                            }
                             theme={[Function]}
                           >
                             <Select
@@ -2501,7 +2529,14 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                               onMenuOpen={[Function]}
                               openMenuOnClick={true}
                               openMenuOnFocus={false}
-                              options={Array []}
+                              options={
+                                Array [
+                                  Object {
+                                    "label": "NO_SELF_SUPPLY",
+                                    "value": false,
+                                  },
+                                ]
+                              }
                               pageSize={5}
                               placeholder="Select..."
                               screenReaderStatus={[Function]}
@@ -2528,7 +2563,14 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                                 isFocused={false}
                                 isMulti={false}
                                 isRtl={false}
-                                options={Array []}
+                                options={
+                                  Array [
+                                    Object {
+                                      "label": "NO_SELF_SUPPLY",
+                                      "value": false,
+                                    },
+                                  ]
+                                }
                                 selectOption={[Function]}
                                 selectProps={
                                   Object {
@@ -2573,7 +2615,12 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                                     "onMenuOpen": [Function],
                                     "openMenuOnClick": true,
                                     "openMenuOnFocus": false,
-                                    "options": Array [],
+                                    "options": Array [
+                                      Object {
+                                        "label": "NO_SELF_SUPPLY",
+                                        "value": false,
+                                      },
+                                    ],
                                     "pageSize": 5,
                                     "placeholder": "Select...",
                                     "screenReaderStatus": [Function],
@@ -2652,7 +2699,14 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                                       isMulti={false}
                                       isRtl={false}
                                       menuIsOpen={false}
-                                      options={Array []}
+                                      options={
+                                        Array [
+                                          Object {
+                                            "label": "NO_SELF_SUPPLY",
+                                            "value": false,
+                                          },
+                                        ]
+                                      }
                                       selectOption={[Function]}
                                       selectProps={
                                         Object {
@@ -2697,7 +2751,12 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                                           "onMenuOpen": [Function],
                                           "openMenuOnClick": true,
                                           "openMenuOnFocus": false,
-                                          "options": Array [],
+                                          "options": Array [
+                                            Object {
+                                              "label": "NO_SELF_SUPPLY",
+                                              "value": false,
+                                            },
+                                          ],
                                           "pageSize": 5,
                                           "placeholder": "Select...",
                                           "screenReaderStatus": [Function],
@@ -2784,7 +2843,14 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                                             isDisabled={false}
                                             isMulti={false}
                                             isRtl={false}
-                                            options={Array []}
+                                            options={
+                                              Array [
+                                                Object {
+                                                  "label": "NO_SELF_SUPPLY",
+                                                  "value": false,
+                                                },
+                                              ]
+                                            }
                                             selectOption={[Function]}
                                             selectProps={
                                               Object {
@@ -2829,7 +2895,12 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                                                 "onMenuOpen": [Function],
                                                 "openMenuOnClick": true,
                                                 "openMenuOnFocus": false,
-                                                "options": Array [],
+                                                "options": Array [
+                                                  Object {
+                                                    "label": "NO_SELF_SUPPLY",
+                                                    "value": false,
+                                                  },
+                                                ],
                                                 "pageSize": 5,
                                                 "placeholder": "Select...",
                                                 "screenReaderStatus": [Function],
@@ -2903,7 +2974,14 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                                                   isMulti={false}
                                                   isRtl={false}
                                                   key="placeholder"
-                                                  options={Array []}
+                                                  options={
+                                                    Array [
+                                                      Object {
+                                                        "label": "NO_SELF_SUPPLY",
+                                                        "value": false,
+                                                      },
+                                                    ]
+                                                  }
                                                   selectOption={[Function]}
                                                   selectProps={
                                                     Object {
@@ -2948,7 +3026,12 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                                                       "onMenuOpen": [Function],
                                                       "openMenuOnClick": true,
                                                       "openMenuOnFocus": false,
-                                                      "options": Array [],
+                                                      "options": Array [
+                                                        Object {
+                                                          "label": "NO_SELF_SUPPLY",
+                                                          "value": false,
+                                                        },
+                                                      ],
                                                       "pageSize": 5,
                                                       "placeholder": "Select...",
                                                       "screenReaderStatus": [Function],
@@ -3074,7 +3157,14 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                                             isDisabled={false}
                                             isMulti={false}
                                             isRtl={false}
-                                            options={Array []}
+                                            options={
+                                              Array [
+                                                Object {
+                                                  "label": "NO_SELF_SUPPLY",
+                                                  "value": false,
+                                                },
+                                              ]
+                                            }
                                             selectOption={[Function]}
                                             selectProps={
                                               Object {
@@ -3119,7 +3209,12 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                                                 "onMenuOpen": [Function],
                                                 "openMenuOnClick": true,
                                                 "openMenuOnFocus": false,
-                                                "options": Array [],
+                                                "options": Array [
+                                                  Object {
+                                                    "label": "NO_SELF_SUPPLY",
+                                                    "value": false,
+                                                  },
+                                                ],
                                                 "pageSize": 5,
                                                 "placeholder": "Select...",
                                                 "screenReaderStatus": [Function],
@@ -3188,7 +3283,14 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                                                   isFocused={false}
                                                   isMulti={false}
                                                   isRtl={false}
-                                                  options={Array []}
+                                                  options={
+                                                    Array [
+                                                      Object {
+                                                        "label": "NO_SELF_SUPPLY",
+                                                        "value": false,
+                                                      },
+                                                    ]
+                                                  }
                                                   selectOption={[Function]}
                                                   selectProps={
                                                     Object {
@@ -3233,7 +3335,12 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                                                       "onMenuOpen": [Function],
                                                       "openMenuOnClick": true,
                                                       "openMenuOnFocus": false,
-                                                      "options": Array [],
+                                                      "options": Array [
+                                                        Object {
+                                                          "label": "NO_SELF_SUPPLY",
+                                                          "value": false,
+                                                        },
+                                                      ],
                                                       "pageSize": 5,
                                                       "placeholder": "Select...",
                                                       "screenReaderStatus": [Function],
@@ -3294,7 +3401,14 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                                                   isFocused={false}
                                                   isMulti={false}
                                                   isRtl={false}
-                                                  options={Array []}
+                                                  options={
+                                                    Array [
+                                                      Object {
+                                                        "label": "NO_SELF_SUPPLY",
+                                                        "value": false,
+                                                      },
+                                                    ]
+                                                  }
                                                   selectOption={[Function]}
                                                   selectProps={
                                                     Object {
@@ -3339,7 +3453,12 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                                                       "onMenuOpen": [Function],
                                                       "openMenuOnClick": true,
                                                       "openMenuOnFocus": false,
-                                                      "options": Array [],
+                                                      "options": Array [
+                                                        Object {
+                                                          "label": "NO_SELF_SUPPLY",
+                                                          "value": false,
+                                                        },
+                                                      ],
                                                       "pageSize": 5,
                                                       "placeholder": "Select...",
                                                       "screenReaderStatus": [Function],
@@ -3506,6 +3625,12 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                             ]
                           }
                           useDefaultDropDown={true}
+                          value={
+                            Object {
+                              "label": "240",
+                              "value": 240,
+                            }
+                          }
                         >
                           <StateManager
                             cacheOptions={true}
@@ -3541,6 +3666,12 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                               ]
                             }
                             theme={[Function]}
+                            value={
+                              Object {
+                                "label": "240",
+                                "value": 240,
+                              }
+                            }
                           >
                             <Select
                               backspaceRemovesValue={true}

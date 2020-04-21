@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useI18n } from 'shared/i18n'
+import { findByPathValue } from 'shared/utils'
 import { useDispatch, useSelector } from 'react-redux'
 import {
   FETCH_GRID_BEHAVIOR,
@@ -8,7 +9,7 @@ import {
   SET_EXPORT_LIMIT,
   SET_GRID_VOLTAGE
 } from 'state/actions/systemConfiguration'
-import { pathOr, length, head } from 'ramda'
+import { always, cond, head, length, pathOr, pipe, T } from 'ramda'
 import Collapsible from 'components/Collapsible'
 import SelectField from 'components/SelectField'
 import './SystemConfiguration.scss'
@@ -17,17 +18,43 @@ const GBI = <span className="sp-grid file level mr-15 is-size-4" />
 
 function GridBehaviorWidget({ animationState }) {
   const t = useI18n()
+  const getExportLimitOptions = (availability, exportLimit) => {
+    if (!availability) {
+      return [{ label: t('NO_SELF_SUPPLY'), value: false }]
+    }
+    return exportLimit === -1
+      ? [{ label: 'No', value: -1 }]
+      : [
+          { label: 'Yes', value: 0 },
+          { label: 'No', value: -1 }
+        ]
+  }
+
   const dispatch = useDispatch()
-  const { profiles, exportLimit, gridVoltage } = useSelector(
+  const { profiles, gridVoltage, selectedOptions } = useSelector(
     state => state.systemConfiguration.gridBehavior
   )
   const { site } = useSelector(state => state.site)
-  const [selfSupplyOptions, setSelfSupplyOptions] = useState([])
+  const [selfSupplyOptions, setSelfSupplyOptions] = useState(
+    getExportLimitOptions(
+      pathOr(false, ['profile', 'selfsupply'], selectedOptions),
+      pathOr(false, ['exportLimit'], selectedOptions)
+    )
+  )
+
   const [hasDefaultGridProfile, setHasDefaultGridProfile] = useState(false)
 
   useEffect(() => {
     if (animationState === 'enter') dispatch(FETCH_GRID_BEHAVIOR())
   }, [animationState, dispatch])
+
+  const findProfileById = pipe(
+    findByPathValue(profiles, ['id']),
+    cond([
+      [x => x, ({ id, name }) => ({ label: name, value: id })],
+      [T, always(null)]
+    ])
+  )
 
   const filterProfiles =
     profiles && site
@@ -51,21 +78,9 @@ function GridBehaviorWidget({ animationState }) {
   const setGridProfile = value => {
     dispatch(SET_GRID_PROFILE(value.value))
     const selfSupplyAvailability = pathOr(false, ['value', 'selfsupply'], value)
-    if (selfSupplyAvailability) {
-      if (exportLimit === -1) {
-        dispatch(SET_EXPORT_LIMIT(-1))
-        setSelfSupplyOptions([{ label: 'No', value: -1 }])
-      } else {
-        dispatch(SET_EXPORT_LIMIT(0))
-        setSelfSupplyOptions([
-          { label: 'Yes', value: 0 },
-          { label: 'No', value: -1 }
-        ])
-      }
-    } else {
-      dispatch(SET_EXPORT_LIMIT(false))
-      setSelfSupplyOptions([{ label: t('NO_SELF_SUPPLY'), value: false }])
-    }
+    const options = getExportLimitOptions(selfSupplyAvailability)
+    setSelfSupplyOptions(options)
+    dispatch(SET_EXPORT_LIMIT(head(options).value))
   }
 
   if (!hasDefaultGridProfile && defaultGridProfile) {
@@ -90,6 +105,17 @@ function GridBehaviorWidget({ animationState }) {
     { label: 'No', value: 0 }
   ]
 
+  const gridVoltageOptions = [
+    { label: '208', value: 208 },
+    { label: '240', value: 240 }
+  ]
+
+  const findVoltageByValue = findByPathValue(gridVoltageOptions, ['value'])
+  const findLazyGridProfileValue = findByPathValue(lazyGridProfileOptions, [
+    'value'
+  ])
+  const findExportLimitValue = findByPathValue(selfSupplyOptions, ['value'])
+
   return (
     <div className="pb-15">
       <Collapsible title={t('GRID_BEHAVIOR')} icon={GBI} expanded>
@@ -107,6 +133,9 @@ function GridBehaviorWidget({ animationState }) {
                   useDefaultDropDown
                   defaultValue={defaultGridProfile}
                   options={gridProfileOptions}
+                  value={findProfileById(
+                    pathOr(null, ['profile', 'id'], selectedOptions)
+                  )}
                   notFoundText={
                     length(gridProfileOptions) === 0
                       ? t('FETCHING_OPTIONS')
@@ -134,6 +163,9 @@ function GridBehaviorWidget({ animationState }) {
                   options={lazyGridProfileOptions}
                   onSelect={setLazyGridProfile}
                   defaultValue={head(lazyGridProfileOptions)}
+                  value={findLazyGridProfileValue(
+                    pathOr(null, ['lazyGridProfile'], selectedOptions)
+                  )}
                 />
               </div>
             </div>
@@ -159,6 +191,9 @@ function GridBehaviorWidget({ animationState }) {
                       : null
                   }
                   onSelect={setExportLimit}
+                  value={findExportLimitValue(
+                    pathOr(null, ['exportLimit'], selectedOptions)
+                  )}
                 />
               </div>
             </div>
@@ -177,15 +212,13 @@ function GridBehaviorWidget({ animationState }) {
                 <SelectField
                   isSearchable={false}
                   useDefaultDropDown
-                  options={[
-                    { label: '208', value: 208 },
-                    { label: '240', value: 240 }
-                  ]}
+                  options={gridVoltageOptions}
                   defaultValue={
                     gridVoltage.grid_voltage === 240
                       ? { label: '208', value: 208 }
                       : { label: '240', value: 240 }
                   }
+                  value={findVoltageByValue(selectedOptions.gridVoltage)}
                   onSelect={setGridVoltage}
                 />
                 <p className="control">volts</p>

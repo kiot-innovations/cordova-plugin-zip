@@ -106,6 +106,7 @@ function MetersWidget() {
                   useDefaultDropDown
                   onSelect={compose(dispatch, SET_PRODUCTION_CT)}
                   options={PRODUCTION_CT}
+                  value={productionCT}
                   defaultValue={find(
                     propEq('value', productionCT),
                     PRODUCTION_CT

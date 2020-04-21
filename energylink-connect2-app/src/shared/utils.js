@@ -14,7 +14,8 @@ import {
   defaultTo,
   curry,
   dissoc,
-  assoc
+  assoc,
+  pathEq
 } from 'ramda'
 
 export const either = (condition, whenTrue, whenFalse = null) =>
@@ -138,3 +139,7 @@ export const updateBodyHeight = () => {
   const current = document.body.style.height
   document.body.style.height = `${current === '100vh' ? 101 : 100}vh`
 }
+
+export const findByPathValue = curry((arr, path, value) =>
+  find(pathEq(path, value))(arr)
+)

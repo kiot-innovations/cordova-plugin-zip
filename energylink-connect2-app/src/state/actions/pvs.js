@@ -21,6 +21,9 @@ export const SET_METADATA_INIT = createAction('SET_METADATA_INIT')
 export const SET_METADATA_SUCCESS = createAction('SET_METADATA_SUCCESS')
 export const SET_METADATA_ERROR = createAction('SET_METADATA_ERROR')
 
+export const UPDATE_MI_MODELS = createAction('UPDATE_MI_MODELS')
+export const RESET_PVS_INFO_STATE = createAction('RESET_PVS_INFO_STATE')
+
 export const removeSN = serialNumber => {
   return dispatch => {
     dispatch(REMOVE_SN(serialNumber))

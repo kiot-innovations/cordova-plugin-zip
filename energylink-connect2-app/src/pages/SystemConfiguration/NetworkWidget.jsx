@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { path, compose, prop, isEmpty } from 'ramda'
+import { findByPathValue } from 'shared/utils'
+import { compose, path, pathOr, prop, isEmpty } from 'ramda'
 import { useI18n } from 'shared/i18n'
-
 import Collapsible from 'components/Collapsible'
 import SelectField from 'components/SelectField'
 
@@ -38,6 +38,9 @@ function NetworkWidget({ animationState }) {
   const disallowConnecting =
     isFetching || selectedAP.ssid === path(['ap', 'ssid'], connectedToAP)
 
+  const networkOptions = buildAPsItems(aps)
+  const findNetworkValue = findByPathValue(networkOptions, ['value'])
+
   return (
     <div className="pb-15">
       <Collapsible title={t('NETWORK')} icon={NWI}>
@@ -57,7 +60,8 @@ function NetworkWidget({ animationState }) {
                     onSelect={compose(dispatch, SET_SELECTED_AP, prop('ap'))}
                     defaultValue={connectedToAP}
                     placeholder={t('SELECT_NETWORK')}
-                    options={buildAPsItems(aps)}
+                    options={networkOptions}
+                    value={findNetworkValue(pathOr(null, ['ssid'], selectedAP))}
                   />
                 </div>
               </div>

@@ -89,7 +89,11 @@ function ConnectToPVS({ animationState }) {
       stopScanning()
       history.push(paths.PROTECTED.PVS_CONNECTION_SUCCESS.path)
     }
-    if (!connectionState.connecting && connectionState.err) {
+    if (
+      !connectionState.connected &&
+      !connectionState.connecting &&
+      connectionState.err
+    ) {
       dispatch(clearPVSErr())
       alert(t('PVS_CONN_ERROR'))
     }

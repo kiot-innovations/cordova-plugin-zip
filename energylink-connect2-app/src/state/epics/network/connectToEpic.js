@@ -1,12 +1,12 @@
-import { pathOr, test } from 'ramda'
+import { pathOr, test, isEmpty } from 'ramda'
 import { ofType } from 'redux-observable'
 import { from, of, timer } from 'rxjs'
 import {
   catchError,
   exhaustMap,
   map,
-  mergeMap,
-  takeUntil
+  takeUntil,
+  switchMap
 } from 'rxjs/operators'
 import { getApiPVS } from 'shared/api'
 import { isIos } from 'shared/utils'
@@ -14,11 +14,14 @@ import {
   PVS_CONNECTION_INIT,
   PVS_CONNECTION_SUCCESS,
   STOP_NETWORK_POLLING,
-  WAIT_FOR_SWAGGER
+  WAIT_FOR_SWAGGER,
+  PVS_CONNECTION_ERROR
 } from 'state/actions/network'
+import { translate } from 'shared/i18n'
 
 const WPA = 'WPA'
 const hasCode7 = test(/Code=7/)
+const isTimeout = test(/CONNECT_FAILED_TIMEOUT/)
 
 const connectToPVS = async (ssid, password) => {
   try {
@@ -35,17 +38,23 @@ const connectToPVS = async (ssid, password) => {
   }
 }
 
-const connectToEpic = action$ =>
+const connectToEpic = (action$, state$) =>
   action$.pipe(
     ofType(PVS_CONNECTION_INIT.getType()),
-    mergeMap(action => {
+    switchMap(action => {
       const ssid = pathOr('', ['payload', 'ssid'], action)
       const password = pathOr('', ['payload', 'password'], action)
+
+      if (!ssid || isEmpty(ssid)) {
+        const t = translate(state$.value.language)
+        return of(PVS_CONNECTION_ERROR(t('PVS_CONNECTION_EMPTY_SSID')))
+      }
+
       return from(connectToPVS(ssid, password)).pipe(
         map(() => WAIT_FOR_SWAGGER()),
         catchError(err => {
-          if (hasCode7(err)) {
-            return of(STOP_NETWORK_POLLING())
+          if (hasCode7(err) || isTimeout(err)) {
+            return of(STOP_NETWORK_POLLING({ canceled: true }))
           } else {
             return of(PVS_CONNECTION_INIT({ ssid: ssid, password: password }))
           }
@@ -54,8 +63,9 @@ const connectToEpic = action$ =>
     })
   )
 
-export const waitForSwaggerEpic = action$ => {
+export const waitForSwaggerEpic = (action$, state$) => {
   const stopPolling$ = action$.pipe(ofType(PVS_CONNECTION_SUCCESS.getType()))
+  const t = translate(state$.value.language)
 
   return action$.pipe(
     ofType(WAIT_FOR_SWAGGER.getType()),
@@ -66,9 +76,7 @@ export const waitForSwaggerEpic = action$ => {
           from(getApiPVS()).pipe(
             map(() => PVS_CONNECTION_SUCCESS()),
             catchError(() =>
-              of({
-                type: 'waiting to have a stable connection to the PVS'
-              })
+              of(PVS_CONNECTION_ERROR(t('PVS_CONNECTION_TIMEOUT')))
             )
           )
         )
