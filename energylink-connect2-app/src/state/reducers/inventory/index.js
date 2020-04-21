@@ -7,7 +7,7 @@ import {
   SAVE_INVENTORY_SUCCESS,
   SAVE_INVENTORY_ERROR,
   UPDATE_MI_COUNT,
-  RESET_INVENOTRY
+  RESET_INVENTORY
 } from '../../actions/inventory'
 
 const initialState = {
@@ -65,7 +65,7 @@ export const inventoryReducer = createReducer(
         })
       ]
     }),
-    [RESET_INVENOTRY]: () => initialState
+    [RESET_INVENTORY]: () => initialState
   },
   initialState
 )
