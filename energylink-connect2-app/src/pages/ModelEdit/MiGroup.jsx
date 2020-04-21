@@ -38,10 +38,10 @@ const MiGroup = ({ title, data, animationState }) => {
   )
 
   const miTypes = {
-    AC_Module_Type_E: 'E',
-    AC_Module_Type_G: 'G',
-    AC_Module_Type_C: 'C',
-    AC_Module_Type_D: 'D'
+    'Type E': 'E',
+    'Type G': 'G',
+    'Type C': 'C',
+    'Type D': 'D'
   }
 
   useEffect(() => {
