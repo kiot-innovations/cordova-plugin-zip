@@ -1507,6 +1507,7 @@ exports[`Meter Widget renders correctly 1`] = `
                             ]
                           }
                           useDefaultDropDown={true}
+                          value={1}
                         >
                           <StateManager
                             cacheOptions={true}
@@ -1542,6 +1543,7 @@ exports[`Meter Widget renders correctly 1`] = `
                               ]
                             }
                             theme={[Function]}
+                            value={1}
                           >
                             <Select
                               backspaceRemovesValue={true}
@@ -1605,12 +1607,7 @@ exports[`Meter Widget renders correctly 1`] = `
                               tabIndex="0"
                               tabSelectsValue={true}
                               theme={[Function]}
-                              value={
-                                Object {
-                                  "label": "PRODUCTION_REVENUE",
-                                  "value": 1,
-                                }
-                              }
+                              value={1}
                             >
                               <SelectContainer
                                 className="field"
@@ -1618,7 +1615,7 @@ exports[`Meter Widget renders correctly 1`] = `
                                 cx={[Function]}
                                 getStyles={[Function]}
                                 getValue={[Function]}
-                                hasValue={true}
+                                hasValue={false}
                                 innerProps={
                                   Object {
                                     "id": undefined,
@@ -1702,10 +1699,7 @@ exports[`Meter Widget renders correctly 1`] = `
                                     "tabIndex": "0",
                                     "tabSelectsValue": true,
                                     "theme": [Function],
-                                    "value": Object {
-                                      "label": "PRODUCTION_REVENUE",
-                                      "value": 1,
-                                    },
+                                    "value": 1,
                                   }
                                 }
                                 setValue={[Function]}
@@ -1763,7 +1757,7 @@ exports[`Meter Widget renders correctly 1`] = `
                                       cx={[Function]}
                                       getStyles={[Function]}
                                       getValue={[Function]}
-                                      hasValue={true}
+                                      hasValue={false}
                                       innerProps={
                                         Object {
                                           "onMouseDown": [Function],
@@ -1849,10 +1843,7 @@ exports[`Meter Widget renders correctly 1`] = `
                                           "tabIndex": "0",
                                           "tabSelectsValue": true,
                                           "theme": [Function],
-                                          "value": Object {
-                                            "label": "PRODUCTION_REVENUE",
-                                            "value": 1,
-                                          },
+                                          "value": 1,
                                         }
                                       }
                                       setValue={[Function]}
@@ -1927,7 +1918,7 @@ exports[`Meter Widget renders correctly 1`] = `
                                             cx={[Function]}
                                             getStyles={[Function]}
                                             getValue={[Function]}
-                                            hasValue={true}
+                                            hasValue={false}
                                             isDisabled={false}
                                             isMulti={false}
                                             isRtl={false}
@@ -2004,10 +1995,7 @@ exports[`Meter Widget renders correctly 1`] = `
                                                 "tabIndex": "0",
                                                 "tabSelectsValue": true,
                                                 "theme": [Function],
-                                                "value": Object {
-                                                  "label": "PRODUCTION_REVENUE",
-                                                  "value": 1,
-                                                },
+                                                "value": 1,
                                               }
                                             }
                                             setValue={[Function]}
@@ -2044,7 +2032,7 @@ exports[`Meter Widget renders correctly 1`] = `
                                             <EmotionCssPropInternal
                                               __EMOTION_LABEL_PLEASE_DO_NOT_USE__="ValueContainer"
                                               __EMOTION_TYPE_PLEASE_DO_NOT_USE__="div"
-                                              className="search__value-container search__value-container--has-value"
+                                              className="search__value-container"
                                               css={
                                                 Object {
                                                   "WebkitOverflowScrolling": "touch",
@@ -2060,23 +2048,19 @@ exports[`Meter Widget renders correctly 1`] = `
                                               }
                                             >
                                               <div
-                                                className="search__value-container search__value-container--has-value css-g1d714-ValueContainer"
+                                                className="search__value-container css-g1d714-ValueContainer"
                                               >
-                                                <SingleValue
+                                                <Placeholder
                                                   clearValue={[Function]}
                                                   cx={[Function]}
-                                                  data={
-                                                    Object {
-                                                      "label": "PRODUCTION_REVENUE",
-                                                      "value": 1,
-                                                    }
-                                                  }
                                                   getStyles={[Function]}
                                                   getValue={[Function]}
-                                                  hasValue={true}
+                                                  hasValue={false}
                                                   isDisabled={false}
+                                                  isFocused={false}
                                                   isMulti={false}
                                                   isRtl={false}
+                                                  key="placeholder"
                                                   options={
                                                     Array [
                                                       Object {
@@ -2150,10 +2134,7 @@ exports[`Meter Widget renders correctly 1`] = `
                                                       "tabIndex": "0",
                                                       "tabSelectsValue": true,
                                                       "theme": [Function],
-                                                      "value": Object {
-                                                        "label": "PRODUCTION_REVENUE",
-                                                        "value": 1,
-                                                      },
+                                                      "value": 1,
                                                     }
                                                   }
                                                   setValue={[Function]}
@@ -2188,33 +2169,29 @@ exports[`Meter Widget renders correctly 1`] = `
                                                   }
                                                 >
                                                   <EmotionCssPropInternal
-                                                    __EMOTION_LABEL_PLEASE_DO_NOT_USE__="SingleValue"
+                                                    __EMOTION_LABEL_PLEASE_DO_NOT_USE__="Placeholder"
                                                     __EMOTION_TYPE_PLEASE_DO_NOT_USE__="div"
-                                                    className="search__single-value"
+                                                    className="search__placeholder"
                                                     css={
                                                       Object {
                                                         "boxSizing": "border-box",
-                                                        "color": "white",
-                                                        "label": "singleValue",
+                                                        "color": "hsl(0, 0%, 50%)",
+                                                        "label": "placeholder",
                                                         "marginLeft": 2,
                                                         "marginRight": 2,
-                                                        "maxWidth": "calc(100% - 8px)",
-                                                        "overflow": "hidden",
                                                         "position": "absolute",
-                                                        "textOverflow": "ellipsis",
                                                         "top": "50%",
                                                         "transform": "translateY(-50%)",
-                                                        "whiteSpace": "nowrap",
                                                       }
                                                     }
                                                   >
                                                     <div
-                                                      className="search__single-value css-5sz5u5-singleValue"
+                                                      className="search__placeholder css-1wa3eu0-placeholder"
                                                     >
-                                                      PRODUCTION_REVENUE
+                                                      Select...
                                                     </div>
                                                   </EmotionCssPropInternal>
-                                                </SingleValue>
+                                                </Placeholder>
                                                 <DummyInput
                                                   aria-autocomplete="list"
                                                   disabled={false}
@@ -2271,7 +2248,7 @@ exports[`Meter Widget renders correctly 1`] = `
                                             cx={[Function]}
                                             getStyles={[Function]}
                                             getValue={[Function]}
-                                            hasValue={true}
+                                            hasValue={false}
                                             isDisabled={false}
                                             isMulti={false}
                                             isRtl={false}
@@ -2348,10 +2325,7 @@ exports[`Meter Widget renders correctly 1`] = `
                                                 "tabIndex": "0",
                                                 "tabSelectsValue": true,
                                                 "theme": [Function],
-                                                "value": Object {
-                                                  "label": "PRODUCTION_REVENUE",
-                                                  "value": 1,
-                                                },
+                                                "value": 1,
                                               }
                                             }
                                             setValue={[Function]}
@@ -2407,7 +2381,7 @@ exports[`Meter Widget renders correctly 1`] = `
                                                   cx={[Function]}
                                                   getStyles={[Function]}
                                                   getValue={[Function]}
-                                                  hasValue={true}
+                                                  hasValue={false}
                                                   isDisabled={false}
                                                   isFocused={false}
                                                   isMulti={false}
@@ -2485,10 +2459,7 @@ exports[`Meter Widget renders correctly 1`] = `
                                                       "tabIndex": "0",
                                                       "tabSelectsValue": true,
                                                       "theme": [Function],
-                                                      "value": Object {
-                                                        "label": "PRODUCTION_REVENUE",
-                                                        "value": 1,
-                                                      },
+                                                      "value": 1,
                                                     }
                                                   }
                                                   setValue={[Function]}
@@ -2529,7 +2500,7 @@ exports[`Meter Widget renders correctly 1`] = `
                                                   cx={[Function]}
                                                   getStyles={[Function]}
                                                   getValue={[Function]}
-                                                  hasValue={true}
+                                                  hasValue={false}
                                                   innerProps={
                                                     Object {
                                                       "aria-hidden": "true",
@@ -2614,10 +2585,7 @@ exports[`Meter Widget renders correctly 1`] = `
                                                       "tabIndex": "0",
                                                       "tabSelectsValue": true,
                                                       "theme": [Function],
-                                                      "value": Object {
-                                                        "label": "PRODUCTION_REVENUE",
-                                                        "value": 1,
-                                                      },
+                                                      "value": 1,
                                                     }
                                                   }
                                                   setValue={[Function]}
