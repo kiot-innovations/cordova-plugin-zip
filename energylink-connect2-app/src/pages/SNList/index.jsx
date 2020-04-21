@@ -125,7 +125,12 @@ function SNList({ animationState }) {
     : []
 
   return (
-    <BlockUI tag="div" blocking={false} message={t('OPENING_CAMERA')}>
+    <BlockUI
+      tag="div"
+      className="snlist-blockui"
+      blocking={false}
+      message={t('OPENING_CAMERA')}
+    >
       {modal}
       <div className="snlist is-vertical has-text-centered pl-10 pr-10">
         <div className="top-text">
@@ -147,39 +152,39 @@ function SNList({ animationState }) {
           {fetchingSN ? <Loader /> : ''}
         </div>
 
-        {!isManualMode && (
-          <SNScanButtons
-            fetchingSN={fetchingSN}
-            onScanMore={onScanMore}
-            countSN={countSN}
-          />
-        )}
-
-        {isManualMode && <SNManualEntry toggleOpen={toggleManualMode} />}
-
-        {isManualMode ? (
-          <div className="sn-buttons">
-            <button
-              onClick={toggleManualMode}
-              className="button has-text-centered is-uppercase is-secondary has-no-border mr-40 pl-0 pr-0"
-            >
-              {t('BACK_TO_SCAN')}
-            </button>
-            <button
-              onClick={toggleManualMode}
-              className="button has-text-centered is-uppercase is-secondary has-no-border pl-0 pr-0"
-            >
-              {t('LEGACY_DISCOVERY')}
-            </button>
-          </div>
-        ) : (
-          <button
-            onClick={toggleManualMode}
-            className="button has-text-centered is-uppercase is-secondary has-no-border"
-          >
-            {t('SN_MANUAL_ENTRY')}
-          </button>
-        )}
+        <div className="sn-buttons">
+          {isManualMode ? (
+            <>
+              <SNManualEntry toggleOpen={toggleManualMode} />
+              <button
+                onClick={toggleManualMode}
+                className="button has-text-centered is-uppercase is-secondary has-no-border mr-40 pl-0 pr-0"
+              >
+                {t('BACK_TO_SCAN')}
+              </button>
+              <button
+                onClick={toggleManualMode}
+                className="button has-text-centered is-uppercase is-secondary has-no-border pl-0 pr-0"
+              >
+                {t('LEGACY_DISCOVERY')}
+              </button>
+            </>
+          ) : (
+            <>
+              <SNScanButtons
+                fetchingSN={fetchingSN}
+                onScanMore={onScanMore}
+                countSN={countSN}
+              />
+              <button
+                onClick={toggleManualMode}
+                className="button has-text-centered is-uppercase is-secondary has-no-border"
+              >
+                {t('SN_MANUAL_ENTRY')}
+              </button>
+            </>
+          )}
+        </div>
       </div>
     </BlockUI>
   )

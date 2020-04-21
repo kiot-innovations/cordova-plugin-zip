@@ -43,7 +43,7 @@ const ManualEntryForm = () => {
       </label>
 
       <div className="field is-grouped is-grouped-centered">
-        <div className="control">
+        <div className="control control-barcode">
           <TextField
             input={fieldBarcode.input}
             meta={fieldBarcode.meta}
@@ -52,7 +52,7 @@ const ManualEntryForm = () => {
             className="field-barcode"
           />
         </div>
-        <div className="control">
+        <div className="control control-add">
           <button
             className="button is-primary is-uppercase pl-10 pr-10 pb-30 pt-10"
             type="submit"
