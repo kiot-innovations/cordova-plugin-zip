@@ -1,7 +1,20 @@
 .sn-manual-entry {
-
-  .field.is-grouped > .control {
-    flex-shrink: 1;
+  .control-barcode {
+    height: 6rem;
     flex-grow: 1;
+
+    .field-barcode {
+      width: 100%;
+    }
+
+    span.error {
+      width: 235px;
+      display: block;
+      text-align: left;
+    }
   }
+  .control-add {
+    flex-grow: 0;
+  }
+
 }

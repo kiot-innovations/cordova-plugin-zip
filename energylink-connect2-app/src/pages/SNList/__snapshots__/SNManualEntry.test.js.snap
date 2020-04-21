@@ -53,7 +53,7 @@ exports[`SNManualEntry renders correctly 1`] = `
             className="field is-grouped is-grouped-centered"
           >
             <div
-              className="control"
+              className="control control-barcode"
             >
               <Component
                 autoComplete="barcode"
@@ -114,7 +114,7 @@ exports[`SNManualEntry renders correctly 1`] = `
               </Component>
             </div>
             <div
-              className="control"
+              className="control control-add"
             >
               <button
                 className="button is-primary is-uppercase pl-10 pr-10 pb-30 pt-10"

@@ -41,6 +41,7 @@ exports[`Serial Number List Page renders correctly 1`] = `
       <SNList>
         <BlockUi
           blocking={false}
+          className="snlist-blockui"
           loader={[Function]}
           message="OPENING_CAMERA"
           renderChildren={true}
@@ -48,6 +49,7 @@ exports[`Serial Number List Page renders correctly 1`] = `
         >
           <div
             aria-busy={false}
+            className="snlist-blockui"
           >
             <div
               className="snlist is-vertical has-text-centered pl-10 pr-10"
@@ -124,33 +126,37 @@ exports[`Serial Number List Page renders correctly 1`] = `
                   </button>
                 </div>
               </div>
-              <ScanButtons
-                countSN={[Function]}
-                onScanMore={[Function]}
+              <div
+                className="sn-buttons"
               >
-                <div
-                  className="sn-buttons"
+                <ScanButtons
+                  countSN={[Function]}
+                  onScanMore={[Function]}
                 >
-                  <button
-                    className="button half-button-padding is-secondary trigger-scan mr-10"
-                    onClick={[Function]}
+                  <div
+                    className="sn-buttons"
                   >
-                    SCAN_MORE
-                  </button>
-                  <button
-                    className="button half-button-padding is-primary trigger-scan"
-                    onClick={[Function]}
-                  >
-                    CONTINUE
-                  </button>
-                </div>
-              </ScanButtons>
-              <button
-                className="button has-text-centered is-uppercase is-secondary has-no-border"
-                onClick={[Function]}
-              >
-                SN_MANUAL_ENTRY
-              </button>
+                    <button
+                      className="button half-button-padding is-secondary trigger-scan mr-10"
+                      onClick={[Function]}
+                    >
+                      SCAN_MORE
+                    </button>
+                    <button
+                      className="button half-button-padding is-primary trigger-scan"
+                      onClick={[Function]}
+                    >
+                      CONTINUE
+                    </button>
+                  </div>
+                </ScanButtons>
+                <button
+                  className="button has-text-centered is-uppercase is-secondary has-no-border"
+                  onClick={[Function]}
+                >
+                  SN_MANUAL_ENTRY
+                </button>
+              </div>
             </div>
             <span />
           </div>

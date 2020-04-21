@@ -1,26 +1,19 @@
 import { createReducer } from 'redux-act'
-import { TOGGLE_MODAL } from '../../actions/modal'
 import {
-  SELECT_ENERGY_GRAPH,
-  GRAPHS,
-  DATA_SOURCES,
-  SELECT_DATA_SOURCE
-} from '../../actions/user'
+  RESET_FEEDBACK_FORM,
+  SEND_FEEDBACK_ERROR,
+  SEND_FEEDBACK_INIT,
+  SEND_FEEDBACK_SUCCESS
+} from '../../actions/feedback'
 import { DEVICE_RESUME } from '../../actions/mobile'
 import {
-  SEND_FEEDBACK_INIT,
-  SEND_FEEDBACK_SUCCESS,
-  SEND_FEEDBACK_ERROR,
-  RESET_FEEDBACK_FORM
-} from '../../actions/feedback'
-
-const defaultModalId = 'modal-root'
+  DATA_SOURCES,
+  GRAPHS,
+  SELECT_DATA_SOURCE,
+  SELECT_ENERGY_GRAPH
+} from '../../actions/user'
 
 const initialState = {
-  modal: {
-    isActive: false,
-    modalId: defaultModalId
-  },
   isAccountCreated: false,
   isDeviceResumeListened: false,
   selectedEnergyGraph: GRAPHS.POWER,
@@ -32,13 +25,6 @@ const initialState = {
 
 export const globalReducer = createReducer(
   {
-    [TOGGLE_MODAL]: (state, { isActive, modalId = defaultModalId }) => ({
-      ...state,
-      modal: {
-        isActive,
-        modalId
-      }
-    }),
     [SELECT_ENERGY_GRAPH]: (state, action) => ({
       ...state,
       selectedEnergyGraph: action
