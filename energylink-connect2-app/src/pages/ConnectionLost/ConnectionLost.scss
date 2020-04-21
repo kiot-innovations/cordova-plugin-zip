@@ -1,0 +1,24 @@
+@import '~@sunpower/theme-dark/styles/variables';
+
+.pvs-connection-lost-screen {
+  display: grid;
+  height: 100%;
+  grid-template-rows: minmax(29px, 50px) minmax(120px, 1fr) 1fr minmax(
+      30px,
+      200px
+    );
+  align-items: center;
+  justify-items: center;
+  .pvs-sn {
+    flex-direction: column;
+  }
+  .sp-no-connection {
+    font-size: 7rem;
+  }
+  .actions {
+    flex-direction: column;
+    button {
+      display: block;
+    }
+  }
+}

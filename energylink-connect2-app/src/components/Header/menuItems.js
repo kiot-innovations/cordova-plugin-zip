@@ -14,7 +14,7 @@ export default [
   {
     icon: 'sp-info',
     text: 'VERSION_INFORMATION',
-    to: paths.PROTECTED.LEGACY_DISCOVERY.path
+    to: paths.PROTECTED.CONNECTION_LOST.path
   },
   {
     icon: 'sp-feedback',

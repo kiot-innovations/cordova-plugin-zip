@@ -13,7 +13,7 @@ describe('Network Reducer', () => {
     reducerTest(
       { connected: false, connecting: false, err: '' },
       networkActions.PVS_CONNECTION_SUCCESS(),
-      { connected: true, connecting: false, err: '' }
+      { connected: true, connecting: false, err: '', connectionCanceled: false }
     )
   })
 })

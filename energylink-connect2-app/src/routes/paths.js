@@ -107,6 +107,11 @@ const paths = {
       footer: true,
       tab: TABS.CONFIGURE
     },
+    CONNECTION_LOST: {
+      path: '/connection-lost',
+      header: true,
+      footer: true
+    },
     DATA: { path: '/data', header: true, footer: true, tab: TABS.DATA }
   },
   UNPROTECTED: {
