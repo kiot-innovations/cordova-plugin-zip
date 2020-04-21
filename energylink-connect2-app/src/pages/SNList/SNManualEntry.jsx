@@ -14,7 +14,9 @@ const ManualEntryForm = () => {
 
   const { form, handleSubmit } = useForm({
     onSubmit: ({ barcode }) => {
-      dispatch(ADD_PVS_SN({ serial_number: barcode }))
+      const prefix =
+        barcode.length === 12 && barcode.startsWith('12') ? 'E00' : ''
+      dispatch(ADD_PVS_SN({ serial_number: `${prefix}${barcode}` }))
     },
     validate: values => {
       const errors = {}
@@ -41,7 +43,7 @@ const ManualEntryForm = () => {
       </label>
 
       <div className="field is-grouped is-grouped-centered">
-        <div className="control">
+        <div className="control control-barcode">
           <TextField
             input={fieldBarcode.input}
             meta={fieldBarcode.meta}
@@ -50,7 +52,7 @@ const ManualEntryForm = () => {
             className="field-barcode"
           />
         </div>
-        <div className="control">
+        <div className="control control-add">
           <button
             className="button is-primary is-uppercase pl-10 pr-10 pb-30 pt-10"
             type="submit"

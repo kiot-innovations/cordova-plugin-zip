@@ -253,5 +253,7 @@
   "CONTINUE_TO_ADJUST": "Continue to adjust arrays",
   "SAVE": "Save",
   "MISSING_MODELS": "Please make sure all MIs have models assigned before continuing",
-  "EDIT_MODELS": "Edit Micro Inverter Models"
+  "EDIT_MODELS": "Edit Micro Inverter Models",
+  "ACCEPT": "Accept",
+  "CLOSE": "Close"
 }

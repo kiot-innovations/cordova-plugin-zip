@@ -2,7 +2,7 @@ import { combineReducers } from 'redux'
 import { persistReducer } from 'redux-persist'
 import { getReducer as getPLTReducer } from '@sunpower/panel-layout-tool'
 import storage from 'redux-persist/lib/storage'
-
+import modal from './modal'
 import { userReducer } from './user'
 import { inventoryReducer } from './inventory'
 import { languageReducer } from './language'
@@ -52,6 +52,7 @@ export default combineReducers({
   share: shareReducer,
   systemConfiguration: systemConfigurationReducer,
   energyLiveData,
+  modal,
   energyData: persistReducer(
     {
       key: 'energyData',

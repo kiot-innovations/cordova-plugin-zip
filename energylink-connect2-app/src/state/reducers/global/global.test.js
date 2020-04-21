@@ -1,8 +1,6 @@
-import * as modalActions from '../../actions/modal'
-import * as userActions from '../../actions/user'
-import * as mobileActions from '../../actions/mobile'
-
 import { globalReducer } from '.'
+import * as mobileActions from '../../actions/mobile'
+import * as userActions from '../../actions/user'
 
 describe('Global reducer', () => {
   const initialState = {
@@ -26,28 +24,6 @@ describe('Global reducer', () => {
         },
         isAccountCreated: false,
         selectedEnergyGraph: userActions.GRAPHS.ENERGY
-      }
-    )
-  })
-
-  it('changes default modal to active when TOGGLE_MODAL action is fired', () => {
-    reducerTest({ modal: {} }, modalActions.TOGGLE_MODAL({ isActive: true }), {
-      modal: {
-        isActive: true,
-        modalId: 'modal-root'
-      }
-    })
-  })
-
-  it('changes specific modal to active when TOGGLE_MODAL action is fired', () => {
-    reducerTest(
-      { modal: {} },
-      modalActions.TOGGLE_MODAL({ isActive: true, modalId: 'custom-modal' }),
-      {
-        modal: {
-          isActive: true,
-          modalId: 'custom-modal'
-        }
       }
     )
   })
