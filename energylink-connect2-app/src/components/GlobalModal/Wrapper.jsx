@@ -58,7 +58,7 @@ const ModalWrapper = () => {
               className="button button-transparent has-text-primary is-uppercase has-text-weight-bold"
               onClick={closeModal}
             >
-              Close
+              {t('CLOSE')}
             </button>
             <button
               className="button is-primary is-uppercase"
