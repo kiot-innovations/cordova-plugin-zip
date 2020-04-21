@@ -11,7 +11,7 @@ import {
   PVS_CONNECTION_INIT,
   clearPVSErr
 } from 'state/actions/network'
-import { RESET_INVENOTRY } from 'state/actions/inventory'
+import { RESET_INVENTORY } from 'state/actions/inventory'
 import { RESET_SITE } from 'state/actions/site'
 import paths from 'routes/paths'
 
@@ -32,7 +32,7 @@ const ConnectionLost = ({ animationState }) => {
     dispatch(RESET_PVS_INFO_STATE())
     dispatch(RESET_PVS_CONNECTION())
     dispatch(RESET_DISCOVERY())
-    dispatch(RESET_INVENOTRY())
+    dispatch(RESET_INVENTORY())
     dispatch(RESET_SITE())
     history.push(paths.PROTECTED.ROOT.path)
   }
