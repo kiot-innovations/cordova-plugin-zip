@@ -19,7 +19,7 @@ export function scanM(onRecognize, nodeID = 'scandit') {
   // The settings instance initially has all types of barcodes (symbologies) disabled. For the purpose of this
   // sample we enable a very generous set of symbologies. In your own app ensure that you only enable the
   // symbologies that your app requires as every additional enabled symbology has an impact on processing times.
-  settings.enableSymbologies([Scandit.Symbology.Code128, Scandit.Symbology.QR])
+  settings.enableSymbologies([Scandit.Symbology.Code128])
 
   // Create new barcode tracking mode with the settings from above.
   const barcodeTracking = Scandit.BarcodeTracking.forContext(context, settings)
@@ -35,7 +35,7 @@ export function scanM(onRecognize, nodeID = 'scandit') {
 
         onRecognize(barcodes)
       }
-    }
+    },
   })
 
   // To visualize the on-going barcode tracking process on screen, setup a data capture view that renders the
@@ -57,7 +57,7 @@ export function scanM(onRecognize, nodeID = 'scandit') {
 
   overlay.listener = {
     brushForTrackedBarcode: (overlay, trackedBarcode) =>
-      new Scandit.Brush(fill, stroke, 2)
+      new Scandit.Brush(fill, stroke, 2),
   }
 
   // Switch camera on to start streaming frames and enable the barcode tracking mode.
@@ -88,7 +88,7 @@ export function scanSimple(onRecognize, nodeID = 'scandit') {
   // The settings instance initially has all types of barcodes (symbologies) disabled. For the purpose of this
   // sample we enable a very generous set of symbologies. In your own app ensure that you only enable the
   // symbologies that your app requires as every additional enabled symbology has an impact on processing times.
-  settings.enableSymbologies([Scandit.Symbology.QR, Scandit.Symbology.Code128])
+  settings.enableSymbologies([Scandit.Symbology.QR])
 
   // Create new barcode capture mode with the settings from above.
   const barcodeCapture = Scandit.BarcodeCapture.forContext(context, settings)
@@ -100,7 +100,7 @@ export function scanSimple(onRecognize, nodeID = 'scandit') {
         const barcodes = map(path(['data']), session.newlyRecognizedBarcodes)
         onRecognize(barcodes)
       }
-    }
+    },
   })
 
   // To visualize the on-going barcode capturing process on screen, setup a data capture view that renders the

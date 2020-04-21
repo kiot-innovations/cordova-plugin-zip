@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useHistory } from 'react-router-dom'
 import { propOr, path, pathOr, length } from 'ramda'
+import { either } from 'shared/utils'
 import clsx from 'clsx'
 import { useI18n } from 'shared/i18n'
 import {
@@ -366,9 +367,12 @@ const Devices = ({ animationState }) => {
                         SN:
                       </span>
                       {elem.serial_number}
-                      <span className="has-text-weight-bold ml-10">
-                        {elem.miType}
-                      </span>
+                      {either(
+                        elem.indicator === 'OK',
+                        <span className="has-text-weight-bold ml-10">
+                          {elem.miType}
+                        </span>
+                      )}
                     </span>
                     {elem.modelStr ? (
                       <span>{elem.modelStr}</span>
