@@ -1,9 +1,13 @@
 import React from 'react'
 import ModelEdit from '.'
 import * as i18n from 'shared/i18n'
+import * as ReactDOM from 'react-dom'
 
 describe('MI Model Editing page', () => {
   beforeEach(() => {
+    ReactDOM.createPortal = jest.fn((element, node) => {
+      return element
+    })
     jest.mock('react-router-dom', () => ({
       useHistory: () => ({
         history: {
@@ -18,62 +22,56 @@ describe('MI Model Editing page', () => {
       )
   })
 
+  const mockedStore = {
+    pvs: {
+      settingMetadata: false,
+      setMetadataStatus: null
+    },
+    devices: {
+      candidates: [
+        {
+          ISDETAIL: true,
+          SERIAL: 'E00121938109605',
+          TYPE: 'SOLARBRIDGE',
+          STATE: 'working',
+          STATEDESCR: 'Has Not Reported',
+          MODEL: 'AC_Module_Type_E',
+          DESCR: 'Inverter E00121938109605',
+          DEVICE_TYPE: 'Inverter',
+          SWVER: '4.14.5',
+          PORT: '',
+          MOD_SN: '',
+          NMPLT_SKU: '',
+          origin: 'data_logger',
+          OPERATION: 'noop',
+          CURTIME: '2020,04,20,22,17,23'
+        }
+      ],
+      found: [
+        {
+          ISDETAIL: true,
+          SERIAL: 'E00121938109605',
+          TYPE: 'SOLARBRIDGE',
+          STATE: 'working',
+          STATEDESCR: 'Has Not Reported',
+          MODEL: 'AC_Module_Type_E',
+          DESCR: 'Inverter E00121938109605',
+          DEVICE_TYPE: 'Inverter',
+          SWVER: '4.14.5',
+          PORT: '',
+          MOD_SN: '',
+          NMPLT_SKU: '',
+          origin: 'data_logger',
+          OPERATION: 'noop',
+          CURTIME: '2020,04,20,22,17,23'
+        }
+      ],
+      miModels: [{ models: ['SPR1234'], type: 'E' }]
+    }
+  }
+
   test('renders correctly', () => {
-    const component = mountWithProvider(<ModelEdit />)({
-      device: { miModels: [{ models: ['SPR1234'], type: 'E' }] },
-      pvs: {
-        serialNumbers: [
-          {
-            serial_number: 'E00121852014339',
-            SERIAL: 'E00121852014339',
-            type: 'MI',
-            miType: 'Type E',
-            bounding_box: {
-              left: 1174,
-              top: 850,
-              width: 1614,
-              height: 131
-            }
-          },
-          {
-            serial_number: 'E00121929013075',
-            SERIAL: 'E00121852014339',
-            type: 'MI',
-            miType: 'Type E',
-            bounding_box: {
-              left: 1109,
-              top: 1470,
-              width: 1619,
-              height: 113
-            }
-          },
-          {
-            serial_number: 'E00121852014321',
-            SERIAL: 'E00121852014339',
-            type: 'MI',
-            miType: 'Type E',
-            bounding_box: {
-              left: 1259,
-              top: 2055,
-              width: 1497,
-              height: 113
-            }
-          },
-          {
-            serial_number: 'E00121852014325',
-            SERIAL: 'E00121852014339',
-            type: 'MI',
-            miType: 'Type E',
-            bounding_box: {
-              left: 1279,
-              top: 2647,
-              width: 1495,
-              height: 105
-            }
-          }
-        ]
-      }
-    })
+    const component = mountWithProvider(<ModelEdit />)(mockedStore)
     expect(component).toMatchSnapshot()
   })
 })

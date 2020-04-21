@@ -11,7 +11,6 @@ import {
   CLAIM_DEVICES_INIT,
   RESET_DISCOVERY
 } from 'state/actions/devices'
-import { SET_METADATA_INIT } from 'state/actions/pvs'
 import Collapsible from 'components/Collapsible'
 import paths from 'routes/paths'
 import './Devices.scss'
@@ -182,10 +181,9 @@ const discoveryStatus = (
             {t('ADD-DEVICES')}
           </Link>
           <button
-            className={clsx(
-              'button is-primary is-uppercase is-paddingless ml-75 mr-75',
-              { 'is-loading': claim.claimingDevices }
-            )}
+            className={clsx('button is-primary is-uppercase ml-75 mr-75', {
+              'is-loading': claim.claimingDevices
+            })}
             disabled={claim.claimingDevices}
             onClick={claimDevices}
           >
@@ -228,14 +226,12 @@ const discoveryStatus = (
 
 const Devices = ({ animationState }) => {
   const { progress, found, counts, claim } = useSelector(mapStateToProps)
-  const siteKey = useSelector(path(['site', 'site', 'siteKey']))
   const dispatch = useDispatch()
   const history = useHistory()
   const t = useI18n()
 
   const [modalSN, setModalSN] = useState('')
   const [modalErrorMsg, setModalErrorMsg] = useState('PING_ERROR')
-  const [metadataObject, setMetadataObject] = useState()
 
   const modalTitle = (
     <span className="has-text-white has-text-weight-bold">
@@ -271,8 +267,7 @@ const Devices = ({ animationState }) => {
       dispatch(FETCH_CANDIDATES_COMPLETE())
     }
     if (claim.claimedDevices && animationState !== 'leave') {
-      dispatch(SET_METADATA_INIT(metadataObject))
-      history.push(paths.PROTECTED.INSTALL_SUCCESS.path)
+      history.push(paths.PROTECTED.MODEL_EDIT.path)
     }
     return () => {
       if (animationState === 'exit') dispatch(DISCOVER_COMPLETE())
@@ -287,8 +282,7 @@ const Devices = ({ animationState }) => {
     history,
     counts.inverter.expected,
     counts.inverter.okMICount,
-    counts.inverter.errMICount,
-    metadataObject
+    counts.inverter.errMICount
   ])
 
   const retryDiscovery = () => {
@@ -296,42 +290,16 @@ const Devices = ({ animationState }) => {
     history.push(paths.PROTECTED.SN_LIST.path)
   }
 
-  const validateModels = () => {
-    const filterModels = propOr([], 'inverter', found).filter(
-      mi => !mi.modelStr
-    )
-    if (filterModels.length > 0) {
-      bulkEditModel()
-    } else {
-      claimDevices()
-    }
-  }
-
   const claimDevices = () => {
     const claimObject = path(['inverter'], found).map(mi => {
       mi.OPERATION = 'add'
       return mi
     })
-    const metadataObject = {
-      metaData: {
-        site_key: siteKey,
-        devices: [...found.otherDevices, ...claimObject]
-      }
-    }
-    setMetadataObject(metadataObject)
     dispatch(CLAIM_DEVICES_INIT(claimObject))
   }
 
-  const bulkEditModel = () => {
-    history.push(paths.PROTECTED.MODEL_EDIT.path)
-  }
-
   const miActions = (num = 0, max = 0, icon = '') => (
-    <div className="is-flex">
-      <span
-        onClick={bulkEditModel}
-        className={clsx(icon, 'mr-10 ml-0 mt-0 mb-0')}
-      />
+    <div>
       <span className="devices-counter mr-10 ml-0 mt-0 mb-0">{`${num}/${max}`}</span>
     </div>
   )
@@ -390,7 +358,7 @@ const Devices = ({ animationState }) => {
         </Collapsible>
         <ProgressIndicators progressList={pathOr([], ['progress'], progress)} />
       </div>
-      {discoveryStatus(found, counts, claim, validateModels, t, retryDiscovery)}
+      {discoveryStatus(found, counts, claim, claimDevices, t, retryDiscovery)}
     </div>
   )
 }

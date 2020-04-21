@@ -16,7 +16,7 @@ export const setMetaDataEpic = action$ => {
       return from(promise).pipe(
         map(({ status, data }) =>
           status === 200
-            ? pvsActions.SET_METADATA_SUCCESS(data)
+            ? pvsActions.SET_METADATA_SUCCESS('success')
             : pvsActions.SET_METADATA_ERROR({ status, data })
         ),
         catchError(err => of(pvsActions.SET_METADATA_ERROR(err)))

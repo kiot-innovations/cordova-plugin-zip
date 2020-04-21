@@ -10,14 +10,15 @@ import {
   pathOr,
   compose,
   map,
-  filter
+  filter,
+  pluck
 } from 'ramda'
-import { UPDATE_MI_MODELS } from 'state/actions/pvs'
 import { FETCH_MODELS_INIT } from 'state/actions/devices'
 import { cleanString } from 'shared/utils'
 import './ModelEdit.scss'
 import SearchField from '../../components/SearchField'
 import Collapsible from '../../components/Collapsible'
+import { UPDATE_DEVICES_LIST } from 'state/actions/devices'
 
 const buildSelectValue = value => ({
   label: value,
@@ -30,13 +31,17 @@ const MiGroup = ({ title, data, animationState }) => {
   const [selectedMi, setSelectedMi] = useState([])
   const [selectedModel, setSelectedModel] = useState()
 
-  const { serialNumbers } = useSelector(state => state.pvs)
+  const { found } = useSelector(state => state.devices)
+  const serialNumbers = pluck('SERIAL', data)
+  const filteredMIs = found.filter(device =>
+    includes(device.SERIAL, serialNumbers)
+  )
 
   const miTypes = {
-    'Type E': 'E',
-    'Type G': 'G',
-    'Type C': 'C',
-    'Type D': 'D'
+    AC_Module_Type_E: 'E',
+    AC_Module_Type_G: 'G',
+    AC_Module_Type_C: 'C',
+    AC_Module_Type_D: 'D'
   }
 
   useEffect(() => {
@@ -96,27 +101,27 @@ const MiGroup = ({ title, data, animationState }) => {
   }
 
   const applyModel = () => {
-    const miList = serialNumbers
+    const miList = found
     const updatedList = miList.map(mi => {
-      if (includes(mi.serial_number, selectedMi)) {
+      if (includes(mi.SERIAL, selectedMi)) {
         mi.modelStr = selectedModel
       }
       return mi
     })
-    dispatch(UPDATE_MI_MODELS(updatedList))
+    dispatch(UPDATE_DEVICES_LIST(updatedList))
   }
 
   const createMiItem = miData => (
-    <div key={miData.serial_number} className="mi-item">
+    <div key={miData.SERIAL} className="mi-item">
       <input
         type="checkbox"
-        name={miData.serial_number}
+        name={miData.SERIAL}
         onChange={handleCheckbox}
         className="mr-10 mi-item-checkbox"
-        checked={!!selectedMi.find(item => item === miData.serial_number)}
+        checked={!!selectedMi.find(item => item === miData.SERIAL)}
       />
       <span className="is-uppercase has-text-weight-bold has-text-white mi-item-serialnumber">
-        {miData.serial_number}
+        {miData.SERIAL}
       </span>
       <span className="has-text-white mi-item-modeldata">
         {miData.modelStr ? miData.modelStr : t('NO_MODEL')}
@@ -135,14 +140,14 @@ const MiGroup = ({ title, data, animationState }) => {
           className="mt-10 mb-10"
         />
         <div className="mi-list">
-          {data.map(miData => createMiItem(miData))}
+          {filteredMIs.map(miData => createMiItem(miData))}
         </div>
         <div className="inline-buttons">
           <button
             onClick={e =>
               selectAll(
                 e,
-                data.map(miData => miData.serial_number)
+                data.map(miData => miData.SERIAL)
               )
             }
             className="mt-20 mr-10 button is-outlined is-primary"
