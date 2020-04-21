@@ -6,12 +6,14 @@ import {
   test,
   union,
   includes,
+  prop,
   path,
   pathOr,
   compose,
   map,
   filter,
-  pluck
+  pluck,
+  equals
 } from 'ramda'
 import { FETCH_MODELS_INIT } from 'state/actions/devices'
 import { cleanString } from 'shared/utils'
@@ -24,6 +26,16 @@ const buildSelectValue = value => ({
   label: value,
   value: value
 })
+
+const applyModel = (miList, selectedModel, selectedMi, dispatch) => {
+  const updatedList = miList.map(mi => {
+    if (includes(mi.SERIAL, selectedMi)) {
+      mi.modelStr = selectedModel
+    }
+    return mi
+  })
+  dispatch(UPDATE_DEVICES_LIST(updatedList))
+}
 
 const MiGroup = ({ title, data, animationState }) => {
   const t = useI18n()
@@ -100,17 +112,6 @@ const MiGroup = ({ title, data, animationState }) => {
     setSelectedModel(path(['value'], model))
   }
 
-  const applyModel = () => {
-    const miList = found
-    const updatedList = miList.map(mi => {
-      if (includes(mi.SERIAL, selectedMi)) {
-        mi.modelStr = selectedModel
-      }
-      return mi
-    })
-    dispatch(UPDATE_DEVICES_LIST(updatedList))
-  }
-
   const createMiItem = miData => (
     <div key={miData.SERIAL} className="mi-item">
       <input
@@ -118,7 +119,7 @@ const MiGroup = ({ title, data, animationState }) => {
         name={miData.SERIAL}
         onChange={handleCheckbox}
         className="mr-10 mi-item-checkbox"
-        checked={!!selectedMi.find(item => item === miData.SERIAL)}
+        checked={!!selectedMi.find(equals(miData.SERIAL))}
       />
       <span className="is-uppercase has-text-weight-bold has-text-white mi-item-serialnumber">
         {miData.SERIAL}
@@ -139,23 +140,18 @@ const MiGroup = ({ title, data, animationState }) => {
           notFoundText={notFoundText}
           className="mt-10 mb-10"
         />
-        <div className="mi-list">
-          {filteredMIs.map(miData => createMiItem(miData))}
-        </div>
+        <div className="mi-list">{filteredMIs.map(createMiItem)}</div>
         <div className="inline-buttons">
           <button
-            onClick={e =>
-              selectAll(
-                e,
-                data.map(miData => miData.SERIAL)
-              )
-            }
+            onClick={e => selectAll(e, data.map(prop('SERIAL')))}
             className="mt-20 mr-10 button is-outlined is-primary"
           >
             {t('SELECT_ALL')}
           </button>
           <button
-            onClick={applyModel}
+            onClick={() =>
+              applyModel(found, selectedModel, selectedMi, dispatch)
+            }
             className="mt-20 ml-10 button is-primary"
           >
             {t('APPLY')}
