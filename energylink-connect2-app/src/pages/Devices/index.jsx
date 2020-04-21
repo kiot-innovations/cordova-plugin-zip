@@ -235,6 +235,7 @@ const Devices = () => {
 
   const [modalSN, setModalSN] = useState('')
   const [modalErrorMsg, setModalErrorMsg] = useState('PING_ERROR')
+  const [metadataObject, setMetadataObject] = useState()
 
   const modalTitle = (
     <span className="has-text-white has-text-weight-bold">
@@ -263,6 +264,7 @@ const Devices = () => {
       dispatch(FETCH_CANDIDATES_COMPLETE())
     }
     if (claim.claimedDevices) {
+      dispatch(SET_METADATA_INIT(metadataObject))
       history.push(paths.PROTECTED.INSTALL_SUCCESS.path)
     }
     return () => {
@@ -277,7 +279,8 @@ const Devices = () => {
     history,
     counts.inverter.expected,
     counts.inverter.okMICount,
-    counts.inverter.errMICount
+    counts.inverter.errMICount,
+    metadataObject
   ])
 
   const retryDiscovery = () => {
@@ -307,8 +310,8 @@ const Devices = () => {
         devices: [...found.otherDevices, ...claimObject]
       }
     }
-    dispatch(CLAIM_DEVICES_INIT(JSON.stringify(claimObject)))
-    dispatch(SET_METADATA_INIT(metadataObject))
+    setMetadataObject(metadataObject)
+    dispatch(CLAIM_DEVICES_INIT(claimObject))
   }
 
   const bulkEditModel = () => {
