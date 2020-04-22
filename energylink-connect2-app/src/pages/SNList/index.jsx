@@ -93,20 +93,25 @@ function SNList({ animationState }) {
     )
   }
 
-  const serialNumbersModalContent =
-    scannedMICount > expectedMICount
-      ? serialNumbersModalTemplate(
-          t('MI_OVERCOUNT', scannedMICount, expectedMICount)
-        )
-      : serialNumbersModalTemplate(
-          t('MI_UNDERCOUNT', scannedMICount, expectedMICount)
-        )
+  const COUNT_TYPE =
+    scannedMICount > expectedMICount ? 'MI_OVERCOUNT' : 'MI_UNDERCOUNT'
+
+  const serialNumbersModalContent = serialNumbersModalTemplate(
+    t(COUNT_TYPE),
+    scannedMICount,
+    expectedMICount
+  )
 
   const modalsTitle = (
     <span className="has-text-white has-text-weight-bold">
       {t('ATTENTION')}
     </span>
   )
+
+  const startLegacyDiscovery = () => {
+    dispatch(START_DISCOVERY_INIT({ Device: 'allplusmime' }))
+    history.push(paths.PROTECTED.LEGACY_DISCOVERY.path)
+  }
 
   const legacyDiscoveryModalContent = (
     <div className="sn-modal">
@@ -122,10 +127,7 @@ function SNList({ animationState }) {
         </button>
         <button
           className="button half-button-padding is-primary trigger-scan"
-          onClick={() => {
-            dispatch(START_DISCOVERY_INIT({ Device: 'allplusmime' }))
-            history.push(paths.PROTECTED.LEGACY_DISCOVERY.path)
-          }}
+          onClick={startLegacyDiscovery}
         >
           {t('CONTINUE')}
         </button>
