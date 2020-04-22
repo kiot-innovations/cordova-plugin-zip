@@ -6,6 +6,7 @@ import { submitConfigurationEpic } from './submitConfigEpic'
 import { fetchInterfacesEpic } from './fetchInterfacesEpic'
 import { fetchRSEEpic } from './fetchRSEEpic'
 import { setRSEEpic, pollRSEEpic } from './setRSEEpic'
+import { submitConfigObjectEpic } from './submitConfigObjectEpic'
 
 export default [
   fetchGridBehaviorEpic,
@@ -16,5 +17,6 @@ export default [
   fetchInterfacesEpic,
   fetchRSEEpic,
   setRSEEpic,
-  pollRSEEpic
+  pollRSEEpic,
+  submitConfigObjectEpic
 ]

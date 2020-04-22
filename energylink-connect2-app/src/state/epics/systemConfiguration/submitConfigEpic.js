@@ -31,14 +31,7 @@ const submitConfiguration = async payload => {
         { id: 1 },
         { requestBody: { grid_voltage: payload.gridVoltage } }
       ),
-      swagger.apis.commission.sendConfig(
-        { id: 1 },
-        {
-          requestBody: {
-            metaData: { site_key: payload.siteKey, devices: payload.devices }
-          }
-        }
-      )
+      swagger.apis.commission.sendConfig()
     ])
     const [
       setGridProfiles,
