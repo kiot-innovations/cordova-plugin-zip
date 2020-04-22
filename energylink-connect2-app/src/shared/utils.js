@@ -15,7 +15,9 @@ import {
   curry,
   dissoc,
   assoc,
-  pathEq
+  pathEq,
+  includes,
+  values
 } from 'ramda'
 
 export const either = (condition, whenTrue, whenFalse = null) =>
@@ -142,4 +144,27 @@ export const updateBodyHeight = () => {
 
 export const findByPathValue = curry((arr, path, value) =>
   find(pathEq(path, value))(arr)
+)
+
+const flattenObject = ob => {
+  const toReturn = {}
+
+  for (var i in ob) {
+    if (!ob.hasOwnProperty(i)) continue
+    if (typeof ob[i] == 'object') {
+      var flatObject = flattenObject(ob[i])
+      for (var x in flatObject) {
+        if (!flatObject.hasOwnProperty(x)) continue
+
+        toReturn[i + '.' + x] = flatObject[x]
+      }
+    } else {
+      toReturn[i] = ob[i]
+    }
+  }
+  return toReturn
+}
+
+export const findProp = curry((prop, obj) =>
+  compose(includes(prop), values, flattenObject)(obj)
 )

@@ -23,14 +23,14 @@ function MetersWidget() {
   )
 
   const CONSUMPTION_CT = [
-    { label: t('NOT_USED'), value: 0 },
-    { label: t('CONSUMPTION_LOAD'), value: 1 },
-    { label: t('CONSUMPTION_LINE'), value: 2 }
+    { label: t('NOT_USED'), value: null },
+    { label: t('CONSUMPTION_LOAD'), value: 'NET_CONSUMPTION_LOADSIDE' },
+    { label: t('CONSUMPTION_LINE'), value: 'GROSS_CONSUMPTION_LINESIDE' }
   ]
 
   const PRODUCTION_CT = [
-    { label: t('NOT_USED'), value: 0 },
-    { label: t('PRODUCTION_REVENUE'), value: 1 }
+    { label: t('NOT_USED'), value: null },
+    { label: t('PRODUCTION_REVENUE'), value: 'GROSS_PRODUCTION' }
   ]
 
   return (
@@ -104,9 +104,8 @@ function MetersWidget() {
                 <SelectField
                   isSearchable={false}
                   useDefaultDropDown
-                  onSelect={compose(dispatch, SET_PRODUCTION_CT)}
+                  onSelect={compose(dispatch, SET_PRODUCTION_CT, prop('value'))}
                   options={PRODUCTION_CT}
-                  value={productionCT}
                   defaultValue={find(
                     propEq('value', productionCT),
                     PRODUCTION_CT

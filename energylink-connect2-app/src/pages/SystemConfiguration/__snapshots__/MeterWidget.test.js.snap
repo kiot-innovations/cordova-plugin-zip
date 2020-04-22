@@ -110,27 +110,21 @@ exports[`Meter Widget renders correctly 1`] = `
                         className="control"
                       >
                         <SelectField
-                          defaultValue={
-                            Object {
-                              "label": "CONSUMPTION_LOAD",
-                              "value": 1,
-                            }
-                          }
                           isSearchable={false}
                           onSelect={[Function]}
                           options={
                             Array [
                               Object {
                                 "label": "NOT_USED",
-                                "value": 0,
+                                "value": null,
                               },
                               Object {
                                 "label": "CONSUMPTION_LOAD",
-                                "value": 1,
+                                "value": "NET_CONSUMPTION_LOADSIDE",
                               },
                               Object {
                                 "label": "CONSUMPTION_LINE",
-                                "value": 2,
+                                "value": "GROSS_CONSUMPTION_LINESIDE",
                               },
                             ]
                           }
@@ -147,12 +141,7 @@ exports[`Meter Widget renders correctly 1`] = `
                             }
                             defaultInputValue=""
                             defaultMenuIsOpen={false}
-                            defaultValue={
-                              Object {
-                                "label": "CONSUMPTION_LOAD",
-                                "value": 1,
-                              }
-                            }
+                            defaultValue={null}
                             hideSelectedOptions={true}
                             isSearchable={false}
                             noOptionsMessage={[Function]}
@@ -161,15 +150,15 @@ exports[`Meter Widget renders correctly 1`] = `
                               Array [
                                 Object {
                                   "label": "NOT_USED",
-                                  "value": 0,
+                                  "value": null,
                                 },
                                 Object {
                                   "label": "CONSUMPTION_LOAD",
-                                  "value": 1,
+                                  "value": "NET_CONSUMPTION_LOADSIDE",
                                 },
                                 Object {
                                   "label": "CONSUMPTION_LINE",
-                                  "value": 2,
+                                  "value": "GROSS_CONSUMPTION_LINESIDE",
                                 },
                               ]
                             }
@@ -222,15 +211,15 @@ exports[`Meter Widget renders correctly 1`] = `
                                 Array [
                                   Object {
                                     "label": "NOT_USED",
-                                    "value": 0,
+                                    "value": null,
                                   },
                                   Object {
                                     "label": "CONSUMPTION_LOAD",
-                                    "value": 1,
+                                    "value": "NET_CONSUMPTION_LOADSIDE",
                                   },
                                   Object {
                                     "label": "CONSUMPTION_LINE",
-                                    "value": 2,
+                                    "value": "GROSS_CONSUMPTION_LINESIDE",
                                   },
                                 ]
                               }
@@ -241,12 +230,7 @@ exports[`Meter Widget renders correctly 1`] = `
                               tabIndex="0"
                               tabSelectsValue={true}
                               theme={[Function]}
-                              value={
-                                Object {
-                                  "label": "CONSUMPTION_LOAD",
-                                  "value": 1,
-                                }
-                              }
+                              value={null}
                             >
                               <SelectContainer
                                 className="field"
@@ -254,7 +238,7 @@ exports[`Meter Widget renders correctly 1`] = `
                                 cx={[Function]}
                                 getStyles={[Function]}
                                 getValue={[Function]}
-                                hasValue={true}
+                                hasValue={false}
                                 innerProps={
                                   Object {
                                     "id": undefined,
@@ -269,15 +253,15 @@ exports[`Meter Widget renders correctly 1`] = `
                                   Array [
                                     Object {
                                       "label": "NOT_USED",
-                                      "value": 0,
+                                      "value": null,
                                     },
                                     Object {
                                       "label": "CONSUMPTION_LOAD",
-                                      "value": 1,
+                                      "value": "NET_CONSUMPTION_LOADSIDE",
                                     },
                                     Object {
                                       "label": "CONSUMPTION_LINE",
-                                      "value": 2,
+                                      "value": "GROSS_CONSUMPTION_LINESIDE",
                                     },
                                   ]
                                 }
@@ -328,15 +312,15 @@ exports[`Meter Widget renders correctly 1`] = `
                                     "options": Array [
                                       Object {
                                         "label": "NOT_USED",
-                                        "value": 0,
+                                        "value": null,
                                       },
                                       Object {
                                         "label": "CONSUMPTION_LOAD",
-                                        "value": 1,
+                                        "value": "NET_CONSUMPTION_LOADSIDE",
                                       },
                                       Object {
                                         "label": "CONSUMPTION_LINE",
-                                        "value": 2,
+                                        "value": "GROSS_CONSUMPTION_LINESIDE",
                                       },
                                     ],
                                     "pageSize": 5,
@@ -346,10 +330,7 @@ exports[`Meter Widget renders correctly 1`] = `
                                     "tabIndex": "0",
                                     "tabSelectsValue": true,
                                     "theme": [Function],
-                                    "value": Object {
-                                      "label": "CONSUMPTION_LOAD",
-                                      "value": 1,
-                                    },
+                                    "value": null,
                                   }
                                 }
                                 setValue={[Function]}
@@ -407,7 +388,7 @@ exports[`Meter Widget renders correctly 1`] = `
                                       cx={[Function]}
                                       getStyles={[Function]}
                                       getValue={[Function]}
-                                      hasValue={true}
+                                      hasValue={false}
                                       innerProps={
                                         Object {
                                           "onMouseDown": [Function],
@@ -424,15 +405,15 @@ exports[`Meter Widget renders correctly 1`] = `
                                         Array [
                                           Object {
                                             "label": "NOT_USED",
-                                            "value": 0,
+                                            "value": null,
                                           },
                                           Object {
                                             "label": "CONSUMPTION_LOAD",
-                                            "value": 1,
+                                            "value": "NET_CONSUMPTION_LOADSIDE",
                                           },
                                           Object {
                                             "label": "CONSUMPTION_LINE",
-                                            "value": 2,
+                                            "value": "GROSS_CONSUMPTION_LINESIDE",
                                           },
                                         ]
                                       }
@@ -483,15 +464,15 @@ exports[`Meter Widget renders correctly 1`] = `
                                           "options": Array [
                                             Object {
                                               "label": "NOT_USED",
-                                              "value": 0,
+                                              "value": null,
                                             },
                                             Object {
                                               "label": "CONSUMPTION_LOAD",
-                                              "value": 1,
+                                              "value": "NET_CONSUMPTION_LOADSIDE",
                                             },
                                             Object {
                                               "label": "CONSUMPTION_LINE",
-                                              "value": 2,
+                                              "value": "GROSS_CONSUMPTION_LINESIDE",
                                             },
                                           ],
                                           "pageSize": 5,
@@ -501,10 +482,7 @@ exports[`Meter Widget renders correctly 1`] = `
                                           "tabIndex": "0",
                                           "tabSelectsValue": true,
                                           "theme": [Function],
-                                          "value": Object {
-                                            "label": "CONSUMPTION_LOAD",
-                                            "value": 1,
-                                          },
+                                          "value": null,
                                         }
                                       }
                                       setValue={[Function]}
@@ -579,7 +557,7 @@ exports[`Meter Widget renders correctly 1`] = `
                                             cx={[Function]}
                                             getStyles={[Function]}
                                             getValue={[Function]}
-                                            hasValue={true}
+                                            hasValue={false}
                                             isDisabled={false}
                                             isMulti={false}
                                             isRtl={false}
@@ -587,15 +565,15 @@ exports[`Meter Widget renders correctly 1`] = `
                                               Array [
                                                 Object {
                                                   "label": "NOT_USED",
-                                                  "value": 0,
+                                                  "value": null,
                                                 },
                                                 Object {
                                                   "label": "CONSUMPTION_LOAD",
-                                                  "value": 1,
+                                                  "value": "NET_CONSUMPTION_LOADSIDE",
                                                 },
                                                 Object {
                                                   "label": "CONSUMPTION_LINE",
-                                                  "value": 2,
+                                                  "value": "GROSS_CONSUMPTION_LINESIDE",
                                                 },
                                               ]
                                             }
@@ -646,15 +624,15 @@ exports[`Meter Widget renders correctly 1`] = `
                                                 "options": Array [
                                                   Object {
                                                     "label": "NOT_USED",
-                                                    "value": 0,
+                                                    "value": null,
                                                   },
                                                   Object {
                                                     "label": "CONSUMPTION_LOAD",
-                                                    "value": 1,
+                                                    "value": "NET_CONSUMPTION_LOADSIDE",
                                                   },
                                                   Object {
                                                     "label": "CONSUMPTION_LINE",
-                                                    "value": 2,
+                                                    "value": "GROSS_CONSUMPTION_LINESIDE",
                                                   },
                                                 ],
                                                 "pageSize": 5,
@@ -664,10 +642,7 @@ exports[`Meter Widget renders correctly 1`] = `
                                                 "tabIndex": "0",
                                                 "tabSelectsValue": true,
                                                 "theme": [Function],
-                                                "value": Object {
-                                                  "label": "CONSUMPTION_LOAD",
-                                                  "value": 1,
-                                                },
+                                                "value": null,
                                               }
                                             }
                                             setValue={[Function]}
@@ -704,7 +679,7 @@ exports[`Meter Widget renders correctly 1`] = `
                                             <EmotionCssPropInternal
                                               __EMOTION_LABEL_PLEASE_DO_NOT_USE__="ValueContainer"
                                               __EMOTION_TYPE_PLEASE_DO_NOT_USE__="div"
-                                              className="search__value-container search__value-container--has-value"
+                                              className="search__value-container"
                                               css={
                                                 Object {
                                                   "WebkitOverflowScrolling": "touch",
@@ -720,36 +695,32 @@ exports[`Meter Widget renders correctly 1`] = `
                                               }
                                             >
                                               <div
-                                                className="search__value-container search__value-container--has-value css-g1d714-ValueContainer"
+                                                className="search__value-container css-g1d714-ValueContainer"
                                               >
-                                                <SingleValue
+                                                <Placeholder
                                                   clearValue={[Function]}
                                                   cx={[Function]}
-                                                  data={
-                                                    Object {
-                                                      "label": "CONSUMPTION_LOAD",
-                                                      "value": 1,
-                                                    }
-                                                  }
                                                   getStyles={[Function]}
                                                   getValue={[Function]}
-                                                  hasValue={true}
+                                                  hasValue={false}
                                                   isDisabled={false}
+                                                  isFocused={false}
                                                   isMulti={false}
                                                   isRtl={false}
+                                                  key="placeholder"
                                                   options={
                                                     Array [
                                                       Object {
                                                         "label": "NOT_USED",
-                                                        "value": 0,
+                                                        "value": null,
                                                       },
                                                       Object {
                                                         "label": "CONSUMPTION_LOAD",
-                                                        "value": 1,
+                                                        "value": "NET_CONSUMPTION_LOADSIDE",
                                                       },
                                                       Object {
                                                         "label": "CONSUMPTION_LINE",
-                                                        "value": 2,
+                                                        "value": "GROSS_CONSUMPTION_LINESIDE",
                                                       },
                                                     ]
                                                   }
@@ -800,15 +771,15 @@ exports[`Meter Widget renders correctly 1`] = `
                                                       "options": Array [
                                                         Object {
                                                           "label": "NOT_USED",
-                                                          "value": 0,
+                                                          "value": null,
                                                         },
                                                         Object {
                                                           "label": "CONSUMPTION_LOAD",
-                                                          "value": 1,
+                                                          "value": "NET_CONSUMPTION_LOADSIDE",
                                                         },
                                                         Object {
                                                           "label": "CONSUMPTION_LINE",
-                                                          "value": 2,
+                                                          "value": "GROSS_CONSUMPTION_LINESIDE",
                                                         },
                                                       ],
                                                       "pageSize": 5,
@@ -818,10 +789,7 @@ exports[`Meter Widget renders correctly 1`] = `
                                                       "tabIndex": "0",
                                                       "tabSelectsValue": true,
                                                       "theme": [Function],
-                                                      "value": Object {
-                                                        "label": "CONSUMPTION_LOAD",
-                                                        "value": 1,
-                                                      },
+                                                      "value": null,
                                                     }
                                                   }
                                                   setValue={[Function]}
@@ -856,33 +824,29 @@ exports[`Meter Widget renders correctly 1`] = `
                                                   }
                                                 >
                                                   <EmotionCssPropInternal
-                                                    __EMOTION_LABEL_PLEASE_DO_NOT_USE__="SingleValue"
+                                                    __EMOTION_LABEL_PLEASE_DO_NOT_USE__="Placeholder"
                                                     __EMOTION_TYPE_PLEASE_DO_NOT_USE__="div"
-                                                    className="search__single-value"
+                                                    className="search__placeholder"
                                                     css={
                                                       Object {
                                                         "boxSizing": "border-box",
-                                                        "color": "white",
-                                                        "label": "singleValue",
+                                                        "color": "hsl(0, 0%, 50%)",
+                                                        "label": "placeholder",
                                                         "marginLeft": 2,
                                                         "marginRight": 2,
-                                                        "maxWidth": "calc(100% - 8px)",
-                                                        "overflow": "hidden",
                                                         "position": "absolute",
-                                                        "textOverflow": "ellipsis",
                                                         "top": "50%",
                                                         "transform": "translateY(-50%)",
-                                                        "whiteSpace": "nowrap",
                                                       }
                                                     }
                                                   >
                                                     <div
-                                                      className="search__single-value css-5sz5u5-singleValue"
+                                                      className="search__placeholder css-1wa3eu0-placeholder"
                                                     >
-                                                      CONSUMPTION_LOAD
+                                                      Select...
                                                     </div>
                                                   </EmotionCssPropInternal>
-                                                </SingleValue>
+                                                </Placeholder>
                                                 <DummyInput
                                                   aria-autocomplete="list"
                                                   disabled={false}
@@ -939,7 +903,7 @@ exports[`Meter Widget renders correctly 1`] = `
                                             cx={[Function]}
                                             getStyles={[Function]}
                                             getValue={[Function]}
-                                            hasValue={true}
+                                            hasValue={false}
                                             isDisabled={false}
                                             isMulti={false}
                                             isRtl={false}
@@ -947,15 +911,15 @@ exports[`Meter Widget renders correctly 1`] = `
                                               Array [
                                                 Object {
                                                   "label": "NOT_USED",
-                                                  "value": 0,
+                                                  "value": null,
                                                 },
                                                 Object {
                                                   "label": "CONSUMPTION_LOAD",
-                                                  "value": 1,
+                                                  "value": "NET_CONSUMPTION_LOADSIDE",
                                                 },
                                                 Object {
                                                   "label": "CONSUMPTION_LINE",
-                                                  "value": 2,
+                                                  "value": "GROSS_CONSUMPTION_LINESIDE",
                                                 },
                                               ]
                                             }
@@ -1006,15 +970,15 @@ exports[`Meter Widget renders correctly 1`] = `
                                                 "options": Array [
                                                   Object {
                                                     "label": "NOT_USED",
-                                                    "value": 0,
+                                                    "value": null,
                                                   },
                                                   Object {
                                                     "label": "CONSUMPTION_LOAD",
-                                                    "value": 1,
+                                                    "value": "NET_CONSUMPTION_LOADSIDE",
                                                   },
                                                   Object {
                                                     "label": "CONSUMPTION_LINE",
-                                                    "value": 2,
+                                                    "value": "GROSS_CONSUMPTION_LINESIDE",
                                                   },
                                                 ],
                                                 "pageSize": 5,
@@ -1024,10 +988,7 @@ exports[`Meter Widget renders correctly 1`] = `
                                                 "tabIndex": "0",
                                                 "tabSelectsValue": true,
                                                 "theme": [Function],
-                                                "value": Object {
-                                                  "label": "CONSUMPTION_LOAD",
-                                                  "value": 1,
-                                                },
+                                                "value": null,
                                               }
                                             }
                                             setValue={[Function]}
@@ -1083,7 +1044,7 @@ exports[`Meter Widget renders correctly 1`] = `
                                                   cx={[Function]}
                                                   getStyles={[Function]}
                                                   getValue={[Function]}
-                                                  hasValue={true}
+                                                  hasValue={false}
                                                   isDisabled={false}
                                                   isFocused={false}
                                                   isMulti={false}
@@ -1092,15 +1053,15 @@ exports[`Meter Widget renders correctly 1`] = `
                                                     Array [
                                                       Object {
                                                         "label": "NOT_USED",
-                                                        "value": 0,
+                                                        "value": null,
                                                       },
                                                       Object {
                                                         "label": "CONSUMPTION_LOAD",
-                                                        "value": 1,
+                                                        "value": "NET_CONSUMPTION_LOADSIDE",
                                                       },
                                                       Object {
                                                         "label": "CONSUMPTION_LINE",
-                                                        "value": 2,
+                                                        "value": "GROSS_CONSUMPTION_LINESIDE",
                                                       },
                                                     ]
                                                   }
@@ -1151,15 +1112,15 @@ exports[`Meter Widget renders correctly 1`] = `
                                                       "options": Array [
                                                         Object {
                                                           "label": "NOT_USED",
-                                                          "value": 0,
+                                                          "value": null,
                                                         },
                                                         Object {
                                                           "label": "CONSUMPTION_LOAD",
-                                                          "value": 1,
+                                                          "value": "NET_CONSUMPTION_LOADSIDE",
                                                         },
                                                         Object {
                                                           "label": "CONSUMPTION_LINE",
-                                                          "value": 2,
+                                                          "value": "GROSS_CONSUMPTION_LINESIDE",
                                                         },
                                                       ],
                                                       "pageSize": 5,
@@ -1169,10 +1130,7 @@ exports[`Meter Widget renders correctly 1`] = `
                                                       "tabIndex": "0",
                                                       "tabSelectsValue": true,
                                                       "theme": [Function],
-                                                      "value": Object {
-                                                        "label": "CONSUMPTION_LOAD",
-                                                        "value": 1,
-                                                      },
+                                                      "value": null,
                                                     }
                                                   }
                                                   setValue={[Function]}
@@ -1213,7 +1171,7 @@ exports[`Meter Widget renders correctly 1`] = `
                                                   cx={[Function]}
                                                   getStyles={[Function]}
                                                   getValue={[Function]}
-                                                  hasValue={true}
+                                                  hasValue={false}
                                                   innerProps={
                                                     Object {
                                                       "aria-hidden": "true",
@@ -1229,15 +1187,15 @@ exports[`Meter Widget renders correctly 1`] = `
                                                     Array [
                                                       Object {
                                                         "label": "NOT_USED",
-                                                        "value": 0,
+                                                        "value": null,
                                                       },
                                                       Object {
                                                         "label": "CONSUMPTION_LOAD",
-                                                        "value": 1,
+                                                        "value": "NET_CONSUMPTION_LOADSIDE",
                                                       },
                                                       Object {
                                                         "label": "CONSUMPTION_LINE",
-                                                        "value": 2,
+                                                        "value": "GROSS_CONSUMPTION_LINESIDE",
                                                       },
                                                     ]
                                                   }
@@ -1288,15 +1246,15 @@ exports[`Meter Widget renders correctly 1`] = `
                                                       "options": Array [
                                                         Object {
                                                           "label": "NOT_USED",
-                                                          "value": 0,
+                                                          "value": null,
                                                         },
                                                         Object {
                                                           "label": "CONSUMPTION_LOAD",
-                                                          "value": 1,
+                                                          "value": "NET_CONSUMPTION_LOADSIDE",
                                                         },
                                                         Object {
                                                           "label": "CONSUMPTION_LINE",
-                                                          "value": 2,
+                                                          "value": "GROSS_CONSUMPTION_LINESIDE",
                                                         },
                                                       ],
                                                       "pageSize": 5,
@@ -1306,10 +1264,7 @@ exports[`Meter Widget renders correctly 1`] = `
                                                       "tabIndex": "0",
                                                       "tabSelectsValue": true,
                                                       "theme": [Function],
-                                                      "value": Object {
-                                                        "label": "CONSUMPTION_LOAD",
-                                                        "value": 1,
-                                                      },
+                                                      "value": null,
                                                     }
                                                   }
                                                   setValue={[Function]}
@@ -1486,28 +1441,21 @@ exports[`Meter Widget renders correctly 1`] = `
                         className="control"
                       >
                         <SelectField
-                          defaultValue={
-                            Object {
-                              "label": "PRODUCTION_REVENUE",
-                              "value": 1,
-                            }
-                          }
                           isSearchable={false}
                           onSelect={[Function]}
                           options={
                             Array [
                               Object {
                                 "label": "NOT_USED",
-                                "value": 0,
+                                "value": null,
                               },
                               Object {
                                 "label": "PRODUCTION_REVENUE",
-                                "value": 1,
+                                "value": "GROSS_PRODUCTION",
                               },
                             ]
                           }
                           useDefaultDropDown={true}
-                          value={1}
                         >
                           <StateManager
                             cacheOptions={true}
@@ -1520,12 +1468,7 @@ exports[`Meter Widget renders correctly 1`] = `
                             }
                             defaultInputValue=""
                             defaultMenuIsOpen={false}
-                            defaultValue={
-                              Object {
-                                "label": "PRODUCTION_REVENUE",
-                                "value": 1,
-                              }
-                            }
+                            defaultValue={null}
                             hideSelectedOptions={true}
                             isSearchable={false}
                             noOptionsMessage={[Function]}
@@ -1534,16 +1477,15 @@ exports[`Meter Widget renders correctly 1`] = `
                               Array [
                                 Object {
                                   "label": "NOT_USED",
-                                  "value": 0,
+                                  "value": null,
                                 },
                                 Object {
                                   "label": "PRODUCTION_REVENUE",
-                                  "value": 1,
+                                  "value": "GROSS_PRODUCTION",
                                 },
                               ]
                             }
                             theme={[Function]}
-                            value={1}
                           >
                             <Select
                               backspaceRemovesValue={true}
@@ -1592,11 +1534,11 @@ exports[`Meter Widget renders correctly 1`] = `
                                 Array [
                                   Object {
                                     "label": "NOT_USED",
-                                    "value": 0,
+                                    "value": null,
                                   },
                                   Object {
                                     "label": "PRODUCTION_REVENUE",
-                                    "value": 1,
+                                    "value": "GROSS_PRODUCTION",
                                   },
                                 ]
                               }
@@ -1607,7 +1549,7 @@ exports[`Meter Widget renders correctly 1`] = `
                               tabIndex="0"
                               tabSelectsValue={true}
                               theme={[Function]}
-                              value={1}
+                              value={null}
                             >
                               <SelectContainer
                                 className="field"
@@ -1630,11 +1572,11 @@ exports[`Meter Widget renders correctly 1`] = `
                                   Array [
                                     Object {
                                       "label": "NOT_USED",
-                                      "value": 0,
+                                      "value": null,
                                     },
                                     Object {
                                       "label": "PRODUCTION_REVENUE",
-                                      "value": 1,
+                                      "value": "GROSS_PRODUCTION",
                                     },
                                   ]
                                 }
@@ -1685,11 +1627,11 @@ exports[`Meter Widget renders correctly 1`] = `
                                     "options": Array [
                                       Object {
                                         "label": "NOT_USED",
-                                        "value": 0,
+                                        "value": null,
                                       },
                                       Object {
                                         "label": "PRODUCTION_REVENUE",
-                                        "value": 1,
+                                        "value": "GROSS_PRODUCTION",
                                       },
                                     ],
                                     "pageSize": 5,
@@ -1699,7 +1641,7 @@ exports[`Meter Widget renders correctly 1`] = `
                                     "tabIndex": "0",
                                     "tabSelectsValue": true,
                                     "theme": [Function],
-                                    "value": 1,
+                                    "value": null,
                                   }
                                 }
                                 setValue={[Function]}
@@ -1774,11 +1716,11 @@ exports[`Meter Widget renders correctly 1`] = `
                                         Array [
                                           Object {
                                             "label": "NOT_USED",
-                                            "value": 0,
+                                            "value": null,
                                           },
                                           Object {
                                             "label": "PRODUCTION_REVENUE",
-                                            "value": 1,
+                                            "value": "GROSS_PRODUCTION",
                                           },
                                         ]
                                       }
@@ -1829,11 +1771,11 @@ exports[`Meter Widget renders correctly 1`] = `
                                           "options": Array [
                                             Object {
                                               "label": "NOT_USED",
-                                              "value": 0,
+                                              "value": null,
                                             },
                                             Object {
                                               "label": "PRODUCTION_REVENUE",
-                                              "value": 1,
+                                              "value": "GROSS_PRODUCTION",
                                             },
                                           ],
                                           "pageSize": 5,
@@ -1843,7 +1785,7 @@ exports[`Meter Widget renders correctly 1`] = `
                                           "tabIndex": "0",
                                           "tabSelectsValue": true,
                                           "theme": [Function],
-                                          "value": 1,
+                                          "value": null,
                                         }
                                       }
                                       setValue={[Function]}
@@ -1926,11 +1868,11 @@ exports[`Meter Widget renders correctly 1`] = `
                                               Array [
                                                 Object {
                                                   "label": "NOT_USED",
-                                                  "value": 0,
+                                                  "value": null,
                                                 },
                                                 Object {
                                                   "label": "PRODUCTION_REVENUE",
-                                                  "value": 1,
+                                                  "value": "GROSS_PRODUCTION",
                                                 },
                                               ]
                                             }
@@ -1981,11 +1923,11 @@ exports[`Meter Widget renders correctly 1`] = `
                                                 "options": Array [
                                                   Object {
                                                     "label": "NOT_USED",
-                                                    "value": 0,
+                                                    "value": null,
                                                   },
                                                   Object {
                                                     "label": "PRODUCTION_REVENUE",
-                                                    "value": 1,
+                                                    "value": "GROSS_PRODUCTION",
                                                   },
                                                 ],
                                                 "pageSize": 5,
@@ -1995,7 +1937,7 @@ exports[`Meter Widget renders correctly 1`] = `
                                                 "tabIndex": "0",
                                                 "tabSelectsValue": true,
                                                 "theme": [Function],
-                                                "value": 1,
+                                                "value": null,
                                               }
                                             }
                                             setValue={[Function]}
@@ -2065,11 +2007,11 @@ exports[`Meter Widget renders correctly 1`] = `
                                                     Array [
                                                       Object {
                                                         "label": "NOT_USED",
-                                                        "value": 0,
+                                                        "value": null,
                                                       },
                                                       Object {
                                                         "label": "PRODUCTION_REVENUE",
-                                                        "value": 1,
+                                                        "value": "GROSS_PRODUCTION",
                                                       },
                                                     ]
                                                   }
@@ -2120,11 +2062,11 @@ exports[`Meter Widget renders correctly 1`] = `
                                                       "options": Array [
                                                         Object {
                                                           "label": "NOT_USED",
-                                                          "value": 0,
+                                                          "value": null,
                                                         },
                                                         Object {
                                                           "label": "PRODUCTION_REVENUE",
-                                                          "value": 1,
+                                                          "value": "GROSS_PRODUCTION",
                                                         },
                                                       ],
                                                       "pageSize": 5,
@@ -2134,7 +2076,7 @@ exports[`Meter Widget renders correctly 1`] = `
                                                       "tabIndex": "0",
                                                       "tabSelectsValue": true,
                                                       "theme": [Function],
-                                                      "value": 1,
+                                                      "value": null,
                                                     }
                                                   }
                                                   setValue={[Function]}
@@ -2256,11 +2198,11 @@ exports[`Meter Widget renders correctly 1`] = `
                                               Array [
                                                 Object {
                                                   "label": "NOT_USED",
-                                                  "value": 0,
+                                                  "value": null,
                                                 },
                                                 Object {
                                                   "label": "PRODUCTION_REVENUE",
-                                                  "value": 1,
+                                                  "value": "GROSS_PRODUCTION",
                                                 },
                                               ]
                                             }
@@ -2311,11 +2253,11 @@ exports[`Meter Widget renders correctly 1`] = `
                                                 "options": Array [
                                                   Object {
                                                     "label": "NOT_USED",
-                                                    "value": 0,
+                                                    "value": null,
                                                   },
                                                   Object {
                                                     "label": "PRODUCTION_REVENUE",
-                                                    "value": 1,
+                                                    "value": "GROSS_PRODUCTION",
                                                   },
                                                 ],
                                                 "pageSize": 5,
@@ -2325,7 +2267,7 @@ exports[`Meter Widget renders correctly 1`] = `
                                                 "tabIndex": "0",
                                                 "tabSelectsValue": true,
                                                 "theme": [Function],
-                                                "value": 1,
+                                                "value": null,
                                               }
                                             }
                                             setValue={[Function]}
@@ -2390,11 +2332,11 @@ exports[`Meter Widget renders correctly 1`] = `
                                                     Array [
                                                       Object {
                                                         "label": "NOT_USED",
-                                                        "value": 0,
+                                                        "value": null,
                                                       },
                                                       Object {
                                                         "label": "PRODUCTION_REVENUE",
-                                                        "value": 1,
+                                                        "value": "GROSS_PRODUCTION",
                                                       },
                                                     ]
                                                   }
@@ -2445,11 +2387,11 @@ exports[`Meter Widget renders correctly 1`] = `
                                                       "options": Array [
                                                         Object {
                                                           "label": "NOT_USED",
-                                                          "value": 0,
+                                                          "value": null,
                                                         },
                                                         Object {
                                                           "label": "PRODUCTION_REVENUE",
-                                                          "value": 1,
+                                                          "value": "GROSS_PRODUCTION",
                                                         },
                                                       ],
                                                       "pageSize": 5,
@@ -2459,7 +2401,7 @@ exports[`Meter Widget renders correctly 1`] = `
                                                       "tabIndex": "0",
                                                       "tabSelectsValue": true,
                                                       "theme": [Function],
-                                                      "value": 1,
+                                                      "value": null,
                                                     }
                                                   }
                                                   setValue={[Function]}
@@ -2516,11 +2458,11 @@ exports[`Meter Widget renders correctly 1`] = `
                                                     Array [
                                                       Object {
                                                         "label": "NOT_USED",
-                                                        "value": 0,
+                                                        "value": null,
                                                       },
                                                       Object {
                                                         "label": "PRODUCTION_REVENUE",
-                                                        "value": 1,
+                                                        "value": "GROSS_PRODUCTION",
                                                       },
                                                     ]
                                                   }
@@ -2571,11 +2513,11 @@ exports[`Meter Widget renders correctly 1`] = `
                                                       "options": Array [
                                                         Object {
                                                           "label": "NOT_USED",
-                                                          "value": 0,
+                                                          "value": null,
                                                         },
                                                         Object {
                                                           "label": "PRODUCTION_REVENUE",
-                                                          "value": 1,
+                                                          "value": "GROSS_PRODUCTION",
                                                         },
                                                       ],
                                                       "pageSize": 5,
@@ -2585,7 +2527,7 @@ exports[`Meter Widget renders correctly 1`] = `
                                                       "tabIndex": "0",
                                                       "tabSelectsValue": true,
                                                       "theme": [Function],
-                                                      "value": 1,
+                                                      "value": null,
                                                     }
                                                   }
                                                   setValue={[Function]}
