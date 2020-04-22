@@ -46,3 +46,8 @@ export const SET_RSE_STATUS = createAction('SET_RSE_STATUS')
 export const SET_RSE_SUCCESS = createAction('SET_RSE_SUCCESS')
 
 export const SET_SELECTED_AP = createAction('SET_SELECTED_AP')
+
+export const SUBMIT_COMMISSION_SUCCESS = createAction(
+  'SUBMIT_COMMISSION_SUCCESS'
+)
+export const SUBMIT_COMMISSION_ERROR = createAction('SUBMIT_COMMISSION_ERROR')

@@ -7,8 +7,8 @@ import {
 } from 'state/actions/systemConfiguration'
 
 const initialState = {
-  consumptionCT: 0,
-  productionCT: 0,
+  consumptionCT: null,
+  productionCT: null,
   ratedCurrent: 100
 }
 

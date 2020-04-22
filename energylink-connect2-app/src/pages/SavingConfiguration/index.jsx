@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux'
 import { useI18n } from 'shared/i18n'
 import { useHistory } from 'react-router-dom'
 import { Loader } from 'components/Loader'
+import { isEmpty } from 'ramda'
 import { STOP_NETWORK_POLLING } from 'state/actions/network'
 import paths from 'routes/paths'
 import './SavingConfiguration.scss'
@@ -12,7 +13,7 @@ const SavingConfiguration = () => {
   const t = useI18n()
   const history = useHistory()
   const dispatch = useDispatch()
-  const { submitting, submitted, err } = useSelector(
+  const { submitting, commissioned, commissionError } = useSelector(
     state => state.systemConfiguration.submit
   )
 
@@ -30,7 +31,7 @@ const SavingConfiguration = () => {
   }
 
   const configContent =
-    submitted && !err
+    commissioned && isEmpty(commissionError)
       ? {
           title: t('CONFIG_DONE'),
           indicator: (
@@ -67,6 +68,7 @@ const SavingConfiguration = () => {
           controls: (
             <div className="status-message">
               <span>{t('CONFIG_ERROR_2')}</span>
+              <span>{commissionError}</span>
               <button onClick={goToConfig} className="button is-primary">
                 {t('RETRY')}
               </button>

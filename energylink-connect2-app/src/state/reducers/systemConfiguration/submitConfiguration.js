@@ -3,14 +3,18 @@ import { createReducer } from 'redux-act'
 import {
   SUBMIT_CONFIG,
   SUBMIT_CONFIG_SUCCESS,
-  SUBMIT_CONFIG_ERROR
+  SUBMIT_CONFIG_ERROR,
+  SUBMIT_COMMISSION_SUCCESS,
+  SUBMIT_COMMISSION_ERROR
 } from 'state/actions/systemConfiguration'
 
 const initialState = {
   submitting: false,
   submitted: false,
   config: {},
-  err: ''
+  err: '',
+  commissioned: false,
+  commissionError: ''
 }
 
 export const submitConfigReducer = createReducer(
@@ -22,13 +26,22 @@ export const submitConfigReducer = createReducer(
     }),
     [SUBMIT_CONFIG_SUCCESS]: state => ({
       ...state,
-      submitting: false,
       submitted: true
     }),
     [SUBMIT_CONFIG_ERROR]: (state, payload) => ({
       ...state,
       submitting: false,
       err: payload
+    }),
+    [SUBMIT_COMMISSION_SUCCESS]: state => ({
+      ...state,
+      submitting: false,
+      commissioned: true
+    }),
+    [SUBMIT_COMMISSION_ERROR]: (state, payload) => ({
+      ...state,
+      submitting: false,
+      commissionError: payload
     })
   },
   initialState

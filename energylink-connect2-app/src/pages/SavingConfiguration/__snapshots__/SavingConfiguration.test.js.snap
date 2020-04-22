@@ -60,6 +60,7 @@ exports[`SavingConfiguration component renders correctly 1`] = `
             <span>
               CONFIG_ERROR_2
             </span>
+            <span />
             <button
               className="button is-primary"
               onClick={[Function]}
