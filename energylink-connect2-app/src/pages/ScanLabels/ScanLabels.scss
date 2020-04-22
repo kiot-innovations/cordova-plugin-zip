@@ -5,6 +5,10 @@
   align-items: center;
   justify-content: center;
 
+  .has-no-border {
+    border: none;
+  }
+
   .trigger-scan {
     width: fit-content;
     justify-self: center;

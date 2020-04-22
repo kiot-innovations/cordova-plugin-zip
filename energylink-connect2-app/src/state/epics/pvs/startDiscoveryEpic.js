@@ -12,15 +12,10 @@ export const startDiscoveryEpic = action$ =>
       pvsActions.START_DISCOVERY_INIT.getType(),
       FIRMWARE_UPDATE_COMPLETE.getType()
     ),
-    exhaustMap(() => {
+    exhaustMap(({ payload }) => {
       const promise = getApiPVS()
         .then(path(['apis', 'discovery']))
-        .then(api =>
-          api.discover(
-            { id: 1 },
-            { requestBody: { Device: 'allnomi', Interfaces: ['mime'] } }
-          )
-        )
+        .then(api => api.discover({ id: 1 }, { requestBody: payload }))
 
       return from(promise).pipe(
         map(response =>

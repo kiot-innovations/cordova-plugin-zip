@@ -1,12 +1,14 @@
 import React, { useCallback, useState } from 'react'
-import { useHistory } from 'react-router-dom'
+import { useHistory, useLocation } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { useI18n } from 'shared/i18n'
 import { REMOVE_SN } from 'state/actions/pvs'
 import { PUSH_CANDIDATES_INIT } from 'state/actions/devices'
+import { START_DISCOVERY_INIT } from 'state/actions/pvs'
 import { UPDATE_MI_COUNT } from 'state/actions/inventory'
 import { Loader } from 'components/Loader'
 import paths from 'routes/paths'
+import { pathOr } from 'ramda'
 import useModal from 'hooks/useModal'
 import BlockUI from 'react-block-ui'
 import './SNList.scss'
@@ -18,8 +20,10 @@ function SNList({ animationState }) {
   const t = useI18n()
   const dispatch = useDispatch()
   const history = useHistory()
+  const location = useLocation()
+  const { isManualModeDefault = false } = pathOr({}, ['state'], location)
 
-  const [isManualMode, setManualMode] = useState(false)
+  const [isManualMode, setManualMode] = useState(isManualModeDefault)
   const { serialNumbers, fetchingSN } = useSelector(state => state.pvs)
   const { bom } = useSelector(state => state.inventory)
 
@@ -61,20 +65,20 @@ function SNList({ animationState }) {
     const snList = serialNumbers.map(device => {
       return { DEVICE_TYPE: 'Inverter', SERIAL: device.serial_number }
     })
-    toggleModal()
+    toggleSerialNumbersModal()
     dispatch(UPDATE_MI_COUNT(serialNumbers.length))
     dispatch(PUSH_CANDIDATES_INIT(snList))
     history.push(paths.PROTECTED.DEVICES.path)
   }
 
-  const snModalContent = text => {
+  const serialNumbersModalTemplate = text => {
     return (
       <div className="sn-modal">
         <span className="has-text-white mb-10">{text}</span>
         <div className="sn-buttons">
           <button
             className="button half-button-padding is-secondary trigger-scan mr-10"
-            onClick={() => toggleModal()}
+            onClick={() => toggleSerialNumbersModal()}
           >
             {t('CANCEL')}
           </button>
@@ -89,30 +93,64 @@ function SNList({ animationState }) {
     )
   }
 
-  const modalContent =
-    scannedMICount > expectedMICount
-      ? snModalContent(t('MI_OVERCOUNT', scannedMICount, expectedMICount))
-      : snModalContent(t('MI_UNDERCOUNT', scannedMICount, expectedMICount))
+  const COUNT_TYPE =
+    scannedMICount > expectedMICount ? 'MI_OVERCOUNT' : 'MI_UNDERCOUNT'
 
-  const modalTitle = (
+  const serialNumbersModalContent = serialNumbersModalTemplate(
+    t(COUNT_TYPE),
+    scannedMICount,
+    expectedMICount
+  )
+
+  const modalsTitle = (
     <span className="has-text-white has-text-weight-bold">
       {t('ATTENTION')}
     </span>
   )
 
-  const { modal, toggleModal } = useModal(
-    animationState,
-    modalContent,
-    modalTitle,
-    false
+  const startLegacyDiscovery = () => {
+    dispatch(START_DISCOVERY_INIT({ Device: 'allplusmime' }))
+    history.push(paths.PROTECTED.LEGACY_DISCOVERY.path)
+  }
+
+  const legacyDiscoveryModalContent = (
+    <div className="sn-modal">
+      <span className="has-text-white mb-10">
+        {t('LEGACY_DISCOVERY_WARNING')}
+      </span>
+      <div className="sn-buttons">
+        <button
+          className="button half-button-padding is-secondary trigger-scan mr-10"
+          onClick={() => toggleLegacyDiscoveryModal()}
+        >
+          {t('CANCEL')}
+        </button>
+        <button
+          className="button half-button-padding is-primary trigger-scan"
+          onClick={startLegacyDiscovery}
+        >
+          {t('CONTINUE')}
+        </button>
+      </div>
+    </div>
   )
+
+  const {
+    modal: serialNumbersModal,
+    toggleModal: toggleSerialNumbersModal
+  } = useModal(animationState, serialNumbersModalContent, modalsTitle, false)
+
+  const {
+    modal: legacyDiscoveryModal,
+    toggleModal: toggleLegacyDiscoveryModal
+  } = useModal(animationState, legacyDiscoveryModalContent, modalsTitle, false)
 
   const countSN = () => {
     if (parseInt(scannedMICount, 10) === parseInt(expectedMICount, 10)) {
       submitSN()
       history.push(paths.PROTECTED.DEVICES.path)
     } else {
-      toggleModal()
+      toggleSerialNumbersModal()
     }
   }
 
@@ -125,13 +163,9 @@ function SNList({ animationState }) {
     : []
 
   return (
-    <BlockUI
-      tag="div"
-      className="snlist-blockui"
-      blocking={false}
-      message={t('OPENING_CAMERA')}
-    >
-      {modal}
+    <BlockUI tag="div" blocking={false} message={t('OPENING_CAMERA')}>
+      {serialNumbersModal}
+      {legacyDiscoveryModal}
       <div className="snlist is-vertical has-text-centered pl-10 pr-10">
         <div className="top-text">
           <span className="is-uppercase has-text-weight-bold">
@@ -152,39 +186,39 @@ function SNList({ animationState }) {
           {fetchingSN ? <Loader /> : ''}
         </div>
 
-        <div className="sn-buttons">
-          {isManualMode ? (
-            <>
-              <SNManualEntry toggleOpen={toggleManualMode} />
-              <button
-                onClick={toggleManualMode}
-                className="button has-text-centered is-uppercase is-secondary has-no-border mr-40 pl-0 pr-0"
-              >
-                {t('BACK_TO_SCAN')}
-              </button>
-              <button
-                onClick={toggleManualMode}
-                className="button has-text-centered is-uppercase is-secondary has-no-border pl-0 pr-0"
-              >
-                {t('LEGACY_DISCOVERY')}
-              </button>
-            </>
-          ) : (
-            <>
-              <SNScanButtons
-                fetchingSN={fetchingSN}
-                onScanMore={onScanMore}
-                countSN={countSN}
-              />
-              <button
-                onClick={toggleManualMode}
-                className="button has-text-centered is-uppercase is-secondary has-no-border"
-              >
-                {t('SN_MANUAL_ENTRY')}
-              </button>
-            </>
-          )}
-        </div>
+        {!isManualMode && (
+          <SNScanButtons
+            fetchingSN={fetchingSN}
+            onScanMore={onScanMore}
+            countSN={countSN}
+          />
+        )}
+
+        {isManualMode && <SNManualEntry toggleOpen={toggleManualMode} />}
+
+        {isManualMode ? (
+          <div className="sn-buttons">
+            <button
+              onClick={toggleManualMode}
+              className="button has-text-centered is-uppercase is-secondary has-no-border mr-40 pl-0 pr-0"
+            >
+              {t('BACK_TO_SCAN')}
+            </button>
+            <button
+              onClick={toggleLegacyDiscoveryModal}
+              className="button has-text-centered is-uppercase is-secondary has-no-border pl-0 pr-0"
+            >
+              {t('LEGACY_DISCOVERY')}
+            </button>
+          </div>
+        ) : (
+          <button
+            onClick={toggleManualMode}
+            className="button has-text-centered is-uppercase is-secondary has-no-border"
+          >
+            {t('SN_MANUAL_ENTRY')}
+          </button>
+        )}
       </div>
     </BlockUI>
   )
