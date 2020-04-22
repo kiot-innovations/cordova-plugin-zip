@@ -1,15 +1,17 @@
 import { ofType } from 'redux-observable'
 import { catchError, map, mergeMap } from 'rxjs/operators'
-import { path } from 'ramda'
+import { path, pathOr } from 'ramda'
 import { from, of } from 'rxjs'
 import { getApiPVS } from 'shared/api'
+import { translate } from 'shared/i18n'
 import {
   SUBMIT_CONFIG_SUCCESS,
   SUBMIT_COMMISSION_SUCCESS,
   SUBMIT_COMMISSION_ERROR
 } from 'state/actions/systemConfiguration'
 
-export const submitConfigObjectEpic = action$ => {
+export const submitConfigObjectEpic = (action$, state$) => {
+  const t = translate(state$.value.language)
   return action$.pipe(
     ofType(SUBMIT_CONFIG_SUCCESS.getType()),
     mergeMap(() => {
@@ -23,7 +25,17 @@ export const submitConfigObjectEpic = action$ => {
             ? SUBMIT_COMMISSION_SUCCESS(response)
             : SUBMIT_COMMISSION_ERROR(response.result)
         ),
-        catchError(response => of(SUBMIT_COMMISSION_ERROR(response)))
+        catchError(response =>
+          of(
+            SUBMIT_COMMISSION_ERROR(
+              pathOr(
+                t('UNKNOWN_ERROR'),
+                ['response', 'body', 'result', 'message'],
+                response
+              )
+            )
+          )
+        )
       )
     })
   )

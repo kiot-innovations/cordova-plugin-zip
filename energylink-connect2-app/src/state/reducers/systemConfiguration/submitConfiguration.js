@@ -26,7 +26,6 @@ export const submitConfigReducer = createReducer(
     }),
     [SUBMIT_CONFIG_SUCCESS]: state => ({
       ...state,
-      submitting: false,
       submitted: true
     }),
     [SUBMIT_CONFIG_ERROR]: (state, payload) => ({
@@ -36,10 +35,12 @@ export const submitConfigReducer = createReducer(
     }),
     [SUBMIT_COMMISSION_SUCCESS]: state => ({
       ...state,
+      submitting: false,
       commissioned: true
     }),
     [SUBMIT_COMMISSION_ERROR]: (state, payload) => ({
       ...state,
+      submitting: false,
       commissionError: payload
     })
   },
