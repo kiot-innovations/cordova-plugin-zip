@@ -179,7 +179,7 @@
   "SN_FIELD_ERROR_REGEX": "It should contain only numbers and at least 12 digits ",
   "BACK_TO_SCAN": "Back to scan",
   "LEGACY_DISCOVERY": "Legacy discovery",
-  "LEGACY_DISCOVERY_WARNING": "A legacy discovery takes longer to complete and can’t be canceled. Do you want to continue?",
+  "LEGACY_DISCOVERY_WARNING": "A legacy discovery takes longer to complete and can't be canceled. Do you want to continue?",
   "SN_MANUAL_ENTRY": "Can’t find all my inverters",
   "LOADING": "Loading...",
   "NO_DATA": "No data",
