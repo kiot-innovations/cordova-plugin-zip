@@ -41,6 +41,15 @@ function ScanDeviceLabels({ animationState }) {
     }
   }
 
+  const triggerManualEntry = () => {
+    history.push({
+      pathname: paths.PROTECTED.SN_LIST.path,
+      state: {
+        isManualModeDefault: true
+      }
+    })
+  }
+
   useEffect(() => {
     if (animationState === 'update') startScanning()
 
@@ -70,6 +79,13 @@ function ScanDeviceLabels({ animationState }) {
           onClick={isScanning ? finishedScanning : startScanning}
         >
           {isScanning ? t('DONE') : t('BULK_SCAN')}
+        </button>
+
+        <button
+          className="button has-text-centered is-uppercase is-secondary has-no-border"
+          onClick={triggerManualEntry}
+        >
+          {t('SN_MANUAL_ENTRY')}
         </button>
       </div>
     </ErrorBoundary>
