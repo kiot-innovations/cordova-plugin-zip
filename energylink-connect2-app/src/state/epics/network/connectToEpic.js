@@ -1,4 +1,4 @@
-import { pathOr, test, isEmpty } from 'ramda'
+import { pathOr, test, isEmpty, compose, find, propEq } from 'ramda'
 import { ofType } from 'redux-observable'
 import { from, of, timer } from 'rxjs'
 import {
@@ -34,6 +34,7 @@ const connectToPVS = async (ssid, password) => {
       await window.WifiWizard2.connect(ssid, true, password, WPA, false)
     }
   } catch (e) {
+    console.error('connectToPVS e', e)
     throw new Error(e)
   }
 }
@@ -53,6 +54,7 @@ const connectToEpic = (action$, state$) =>
       return from(connectToPVS(ssid, password)).pipe(
         map(() => WAIT_FOR_SWAGGER()),
         catchError(err => {
+          console.warn(err.message)
           if (hasCode7(err) || isTimeout(err)) {
             return of(STOP_NETWORK_POLLING({ canceled: true }))
           } else {
@@ -66,6 +68,17 @@ const connectToEpic = (action$, state$) =>
 export const waitForSwaggerEpic = (action$, state$) => {
   const stopPolling$ = action$.pipe(ofType(PVS_CONNECTION_SUCCESS.getType()))
   const t = translate(state$.value.language)
+  const parsePromises = compose(Boolean, find(propEq('status', 'fulfilled')))
+  const checkForConnection = async () => {
+    const promises = [
+      getApiPVS(),
+      fetch(
+        'http://sunpowerconsole.net/cgi-bin/dl_cgi?Command=GetSupervisorInformation'
+      )
+    ]
+    const isConnected = parsePromises(await Promise.allSettled(promises))
+    if (!isConnected) throw new Error('WAITING_FOR_CONNECTION')
+  }
 
   return action$.pipe(
     ofType(WAIT_FOR_SWAGGER.getType()),
@@ -73,11 +86,15 @@ export const waitForSwaggerEpic = (action$, state$) => {
       timer(0, 1000).pipe(
         takeUntil(stopPolling$),
         exhaustMap(() =>
-          from(getApiPVS()).pipe(
+          from(checkForConnection()).pipe(
             map(() => PVS_CONNECTION_SUCCESS()),
-            catchError(() =>
-              of(PVS_CONNECTION_ERROR(t('PVS_CONNECTION_TIMEOUT')))
-            )
+            catchError(err => {
+              // The reason for this is that this could happen several times
+              // and we don't want to spam the user with I couldn't connect
+              if (err.message !== 'WAITING_FOR_CONNECTION')
+                return of(PVS_CONNECTION_ERROR(t('PVS_CONNECTION_TIMEOUT')))
+              return of({ type: 'WAITING FOR SWAGGER' })
+            })
           )
         )
       )
