@@ -12,9 +12,9 @@ import {
   START_COMMISSIONING_SUCCESS,
   START_DISCOVERY_ERROR,
   START_DISCOVERY_SUCCESS,
+  SET_METADATA_INIT,
   SET_METADATA_SUCCESS,
   SET_METADATA_ERROR,
-  UPDATE_MI_MODELS,
   RESET_PVS_INFO_STATE
 } from '../../actions/pvs'
 
@@ -25,7 +25,8 @@ const initialState = {
   takenImage: null,
   startCommissioningStatus: null,
   startDiscoveryStatus: null,
-  startSetMetaDataStatus: null
+  settingMetadata: false,
+  setMetadataStatus: null
 }
 
 export const pvsReducer = createReducer(
@@ -41,6 +42,10 @@ export const pvsReducer = createReducer(
     [SAVE_PVS_SN]: (state, payload) => ({
       ...state,
       serialNumber: payload
+    }),
+    [SET_METADATA_INIT]: state => ({
+      ...state,
+      settingMetadata: true
     }),
     [GET_SN_INIT]: state => ({
       ...state,
@@ -80,15 +85,13 @@ export const pvsReducer = createReducer(
     }),
     [SET_METADATA_SUCCESS]: (state, payload) => ({
       ...state,
-      startSetMetaDataStatus: payload
+      settingMetadata: false,
+      setMetadataStatus: payload
     }),
     [SET_METADATA_ERROR]: (state, payload) => ({
       ...state,
-      startSetMetaDataStatus: payload
-    }),
-    [UPDATE_MI_MODELS]: (state, payload) => ({
-      ...state,
-      serialNumbers: payload
+      settingMetadata: false,
+      setMetadataStatus: payload
     }),
     [RESET_PVS_INFO_STATE]: () => initialState
   },

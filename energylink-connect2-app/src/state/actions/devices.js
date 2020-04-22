@@ -26,3 +26,4 @@ export const FETCH_MODELS_SUCCESS = createAction('FETCH_MODELS_SUCCESS')
 export const FETCH_MODELS_ERROR = createAction('FETCH_MODELS_ERROR')
 
 export const UPDATE_DEVICES_LIST = createAction('UPDATE_DEVICES_LIST')
+export const UPDATE_MI_MODELS = createAction('UPDATE_MI_MODELS')
