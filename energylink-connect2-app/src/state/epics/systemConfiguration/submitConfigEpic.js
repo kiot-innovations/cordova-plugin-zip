@@ -30,16 +30,12 @@ const submitConfiguration = async payload => {
       swagger.apis.grid.setGridVoltage(
         { id: 1 },
         { requestBody: { grid_voltage: payload.gridVoltage } }
-      ),
-      swagger.apis.commission.sendConfig()
+      )
     ])
-    const [
-      setGridProfiles,
-      setExportLimit,
-      setGridVoltage,
-      sendConfigObject
-    ] = res.map(prop('body'))
-    return { setGridProfiles, setExportLimit, setGridVoltage, sendConfigObject }
+    const [setGridProfiles, setExportLimit, setGridVoltage] = res.map(
+      prop('body')
+    )
+    return { setGridProfiles, setExportLimit, setGridVoltage }
   } catch (e) {
     console.error(e)
   }
