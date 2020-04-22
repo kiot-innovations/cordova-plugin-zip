@@ -3,6 +3,7 @@ import { from, of } from 'rxjs'
 import { catchError, switchMap } from 'rxjs/operators'
 import { getApiPVS } from 'shared/api'
 import { prop } from 'ramda'
+import { findProp } from 'shared/utils'
 import {
   SUBMIT_CONFIG,
   SUBMIT_CONFIG_SUCCESS,
@@ -30,15 +31,15 @@ const submitConfiguration = async payload => {
         { id: 1 },
         { requestBody: { grid_voltage: payload.gridVoltage } }
       ),
-      swagger.apis.config.sendConfigObject(
-        { id: 1 },
-        { requestBody: { site_key: payload.siteKey } }
-      )
+      swagger.apis.commission.sendConfig()
     ])
-    const [setGridProfiles, setExportLimit, setGridVoltage] = res.map(
-      prop('body')
-    )
-    return { setGridProfiles, setExportLimit, setGridVoltage }
+    const [
+      setGridProfiles,
+      setExportLimit,
+      setGridVoltage,
+      sendConfigObject
+    ] = res.map(prop('body'))
+    return { setGridProfiles, setExportLimit, setGridVoltage, sendConfigObject }
   } catch (e) {
     console.error(e)
   }
@@ -49,7 +50,11 @@ export const submitConfigurationEpic = action$ => {
     ofType(SUBMIT_CONFIG.getType()),
     switchMap(({ payload }) =>
       from(submitConfiguration(payload)).pipe(
-        switchMap(async response => SUBMIT_CONFIG_SUCCESS(response)),
+        switchMap(async response =>
+          findProp('error', response)
+            ? SUBMIT_CONFIG_ERROR(response)
+            : SUBMIT_CONFIG_SUCCESS(response)
+        ),
         catchError(error => of(SUBMIT_CONFIG_ERROR(error.message)))
       )
     )
