@@ -43,10 +43,65 @@ Object {
           <div
             className="model-edit is-vertical has-text-centered pr-10 pl-10"
           >
+            <Modal
+              close={[Function]}
+              dismissable={true}
+              display={false}
+              title={
+                <span
+                  className="has-text-white has-text-weight-bold"
+                >
+                  ATTENTION
+                </span>
+              }
+            >
+              <div
+                className="modal"
+              >
+                <div
+                  className="modal-background"
+                />
+                <div
+                  className="modal-content"
+                >
+                  <button
+                    aria-label="close"
+                    className="modal-close is-medium"
+                    onClick={[Function]}
+                  />
+                  <div
+                    className="modal-bar"
+                  >
+                    <div
+                      className="modal-title mb-15"
+                    >
+                      <span
+                        className="has-text-white has-text-weight-bold"
+                      >
+                        ATTENTION
+                      </span>
+                    </div>
+                  </div>
+                  <div
+                    className="modal-body"
+                  >
+                    <div
+                      className="has-text-centered"
+                    >
+                      <span
+                        className="has-text-white"
+                      >
+                        MISSING_MODELS
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </Modal>
             <span
               className="is-uppercase has-text-weight-bold"
             >
-              Edit Micro Inverter Models
+              EDIT_MODELS
             </span>
             <div
               className="model-container"
@@ -55,56 +110,25 @@ Object {
                 data={
                   Array [
                     Object {
-                      "SERIAL": "E00121852014339",
-                      "bounding_box": Object {
-                        "height": 131,
-                        "left": 1174,
-                        "top": 850,
-                        "width": 1614,
-                      },
-                      "miType": "Type E",
-                      "serial_number": "E00121852014339",
-                      "type": "MI",
-                    },
-                    Object {
-                      "SERIAL": "E00121852014339",
-                      "bounding_box": Object {
-                        "height": 113,
-                        "left": 1109,
-                        "top": 1470,
-                        "width": 1619,
-                      },
-                      "miType": "Type E",
-                      "serial_number": "E00121929013075",
-                      "type": "MI",
-                    },
-                    Object {
-                      "SERIAL": "E00121852014339",
-                      "bounding_box": Object {
-                        "height": 113,
-                        "left": 1259,
-                        "top": 2055,
-                        "width": 1497,
-                      },
-                      "miType": "Type E",
-                      "serial_number": "E00121852014321",
-                      "type": "MI",
-                    },
-                    Object {
-                      "SERIAL": "E00121852014339",
-                      "bounding_box": Object {
-                        "height": 105,
-                        "left": 1279,
-                        "top": 2647,
-                        "width": 1495,
-                      },
-                      "miType": "Type E",
-                      "serial_number": "E00121852014325",
-                      "type": "MI",
+                      "CURTIME": "2020,04,20,22,17,23",
+                      "DESCR": "Inverter E00121938109605",
+                      "DEVICE_TYPE": "Inverter",
+                      "ISDETAIL": true,
+                      "MODEL": "AC_Module_Type_E",
+                      "MOD_SN": "",
+                      "NMPLT_SKU": "",
+                      "OPERATION": "noop",
+                      "PORT": "",
+                      "SERIAL": "E00121938109605",
+                      "STATE": "working",
+                      "STATEDESCR": "Has Not Reported",
+                      "SWVER": "4.14.5",
+                      "TYPE": "SOLARBRIDGE",
+                      "origin": "data_logger",
                     },
                   ]
                 }
-                key="Type E"
+                key="AC_Module_Type_E"
                 title="Type E"
               >
                 <Collapsible
@@ -1457,85 +1481,19 @@ Object {
                         >
                           <div
                             className="mi-item"
-                            key="E00121852014339"
+                            key="E00121938109605"
                           >
                             <input
                               checked={false}
                               className="mr-10 mi-item-checkbox"
-                              name="E00121852014339"
+                              name="E00121938109605"
                               onChange={[Function]}
                               type="checkbox"
                             />
                             <span
                               className="is-uppercase has-text-weight-bold has-text-white mi-item-serialnumber"
                             >
-                              E00121852014339
-                            </span>
-                            <span
-                              className="has-text-white mi-item-modeldata"
-                            >
-                              NO_MODEL
-                            </span>
-                          </div>
-                          <div
-                            className="mi-item"
-                            key="E00121929013075"
-                          >
-                            <input
-                              checked={false}
-                              className="mr-10 mi-item-checkbox"
-                              name="E00121929013075"
-                              onChange={[Function]}
-                              type="checkbox"
-                            />
-                            <span
-                              className="is-uppercase has-text-weight-bold has-text-white mi-item-serialnumber"
-                            >
-                              E00121929013075
-                            </span>
-                            <span
-                              className="has-text-white mi-item-modeldata"
-                            >
-                              NO_MODEL
-                            </span>
-                          </div>
-                          <div
-                            className="mi-item"
-                            key="E00121852014321"
-                          >
-                            <input
-                              checked={false}
-                              className="mr-10 mi-item-checkbox"
-                              name="E00121852014321"
-                              onChange={[Function]}
-                              type="checkbox"
-                            />
-                            <span
-                              className="is-uppercase has-text-weight-bold has-text-white mi-item-serialnumber"
-                            >
-                              E00121852014321
-                            </span>
-                            <span
-                              className="has-text-white mi-item-modeldata"
-                            >
-                              NO_MODEL
-                            </span>
-                          </div>
-                          <div
-                            className="mi-item"
-                            key="E00121852014325"
-                          >
-                            <input
-                              checked={false}
-                              className="mr-10 mi-item-checkbox"
-                              name="E00121852014325"
-                              onChange={[Function]}
-                              type="checkbox"
-                            />
-                            <span
-                              className="is-uppercase has-text-weight-bold has-text-white mi-item-serialnumber"
-                            >
-                              E00121852014325
+                              E00121938109605
                             </span>
                             <span
                               className="has-text-white mi-item-modeldata"
@@ -1568,10 +1526,17 @@ Object {
             </div>
             <div>
               <button
-                className="button is-outlined is-primary has-text-primary mb-20"
+                className="button is-uppercase is-outlined is-primary has-text-primary mb-20 mr-10"
                 onClick={[Function]}
               >
                 BACK
+              </button>
+              <button
+                className="button is-primary is-uppercase mb-20 ml-10"
+                disabled={false}
+                onClick={[Function]}
+              >
+                SAVE
               </button>
             </div>
           </div>
