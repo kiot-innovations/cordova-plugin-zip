@@ -72,23 +72,9 @@ exports[`Interfaces Widget renders correctly 1`] = `
               </p>
             </Interface>
             <Interface
-              icon="sp-eth"
-              key="plc"
-              name="NO_CONNECTION (plc)"
-            >
-              <p
-                className="if"
-              >
-                <span
-                  className="sp-eth mr-10 has-text-white"
-                />
-                NO_CONNECTION (plc)
-              </p>
-            </Interface>
-            <Interface
               icon="sp-wifi"
               key="sta0"
-              name="NO_CONNECTION (sta0)"
+              name="NO_CONNECTION (wifi)"
             >
               <p
                 className="if"
@@ -96,7 +82,7 @@ exports[`Interfaces Widget renders correctly 1`] = `
                 <span
                   className="sp-wifi mr-10 has-text-white"
                 />
-                NO_CONNECTION (sta0)
+                NO_CONNECTION (wifi)
               </p>
             </Interface>
             <Interface

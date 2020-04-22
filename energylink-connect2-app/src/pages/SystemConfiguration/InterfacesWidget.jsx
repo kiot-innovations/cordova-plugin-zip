@@ -10,7 +10,8 @@ import {
   anyPass,
   length,
   lt,
-  compose
+  compose,
+  filter
 } from 'ramda'
 import clsx from 'clsx'
 import { useI18n } from 'shared/i18n'
@@ -44,15 +45,17 @@ function InterfacesWidget({ animationState }) {
   )
 }
 
+const isntPLC = iface => iface.interface !== 'plc'
+const getInterfaces = t => compose(map(getInterface(t)), filter(isntPLC))
+
 const showInterfaces = (data, error, t) =>
-  hasData(data) && isNil(error) ? map(getInterface(t), data) : t('NO_DATA')
+  hasData(data) && isNil(error) ? getInterfaces(t)(data) : t('NO_DATA')
 
 const hasData = compose(lt(0), length)
 const ICON = {
   sta0: 'sp-wifi',
   cell: 'sp-cell',
-  wan: 'sp-eth',
-  plc: 'sp-eth'
+  wan: 'sp-eth'
 }
 
 const getInterface = t => ifc => (
@@ -78,15 +81,16 @@ const getInterfaceName = t =>
   cond([
     [propEq('interface', 'cell'), withDefault('provider', t)],
     [propEq('interface', 'sta0'), withDefault('ssid', t)],
-    [propEq('interface', 'wan'), withDefault('ipaddr', t)],
-    [propEq('interface', 'plc'), withDefault('ipaddr', t)]
+    [propEq('interface', 'wan'), withDefault('ipaddr', t)]
   ])
 
 // String -> Object -> String
-const withDefault = (prop, t) => obj =>
-  hasEmptyValue(obj[prop])
-    ? `${t('NO_CONNECTION')} (${obj['interface']})`
-    : `${obj[prop]} (${obj['interface']})`
+const withDefault = (prop, t) => obj => {
+  const iface = obj['interface'] === 'sta0' ? 'wifi' : obj['interface']
+  return hasEmptyValue(obj[prop])
+    ? `${t('NO_CONNECTION')} (${iface})`
+    : `${obj[prop]} (${iface})`
+}
 
 const hasEmptyValue = anyPass([isNil, isEmpty])
 
