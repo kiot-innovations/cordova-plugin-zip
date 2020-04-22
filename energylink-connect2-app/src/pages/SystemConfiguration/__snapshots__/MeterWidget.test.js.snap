@@ -116,7 +116,7 @@ exports[`Meter Widget renders correctly 1`] = `
                             Array [
                               Object {
                                 "label": "NOT_USED",
-                                "value": null,
+                                "value": "NOT_USED",
                               },
                               Object {
                                 "label": "CONSUMPTION_LOAD",
@@ -150,7 +150,7 @@ exports[`Meter Widget renders correctly 1`] = `
                               Array [
                                 Object {
                                   "label": "NOT_USED",
-                                  "value": null,
+                                  "value": "NOT_USED",
                                 },
                                 Object {
                                   "label": "CONSUMPTION_LOAD",
@@ -211,7 +211,7 @@ exports[`Meter Widget renders correctly 1`] = `
                                 Array [
                                   Object {
                                     "label": "NOT_USED",
-                                    "value": null,
+                                    "value": "NOT_USED",
                                   },
                                   Object {
                                     "label": "CONSUMPTION_LOAD",
@@ -253,7 +253,7 @@ exports[`Meter Widget renders correctly 1`] = `
                                   Array [
                                     Object {
                                       "label": "NOT_USED",
-                                      "value": null,
+                                      "value": "NOT_USED",
                                     },
                                     Object {
                                       "label": "CONSUMPTION_LOAD",
@@ -312,7 +312,7 @@ exports[`Meter Widget renders correctly 1`] = `
                                     "options": Array [
                                       Object {
                                         "label": "NOT_USED",
-                                        "value": null,
+                                        "value": "NOT_USED",
                                       },
                                       Object {
                                         "label": "CONSUMPTION_LOAD",
@@ -405,7 +405,7 @@ exports[`Meter Widget renders correctly 1`] = `
                                         Array [
                                           Object {
                                             "label": "NOT_USED",
-                                            "value": null,
+                                            "value": "NOT_USED",
                                           },
                                           Object {
                                             "label": "CONSUMPTION_LOAD",
@@ -464,7 +464,7 @@ exports[`Meter Widget renders correctly 1`] = `
                                           "options": Array [
                                             Object {
                                               "label": "NOT_USED",
-                                              "value": null,
+                                              "value": "NOT_USED",
                                             },
                                             Object {
                                               "label": "CONSUMPTION_LOAD",
@@ -565,7 +565,7 @@ exports[`Meter Widget renders correctly 1`] = `
                                               Array [
                                                 Object {
                                                   "label": "NOT_USED",
-                                                  "value": null,
+                                                  "value": "NOT_USED",
                                                 },
                                                 Object {
                                                   "label": "CONSUMPTION_LOAD",
@@ -624,7 +624,7 @@ exports[`Meter Widget renders correctly 1`] = `
                                                 "options": Array [
                                                   Object {
                                                     "label": "NOT_USED",
-                                                    "value": null,
+                                                    "value": "NOT_USED",
                                                   },
                                                   Object {
                                                     "label": "CONSUMPTION_LOAD",
@@ -712,7 +712,7 @@ exports[`Meter Widget renders correctly 1`] = `
                                                     Array [
                                                       Object {
                                                         "label": "NOT_USED",
-                                                        "value": null,
+                                                        "value": "NOT_USED",
                                                       },
                                                       Object {
                                                         "label": "CONSUMPTION_LOAD",
@@ -771,7 +771,7 @@ exports[`Meter Widget renders correctly 1`] = `
                                                       "options": Array [
                                                         Object {
                                                           "label": "NOT_USED",
-                                                          "value": null,
+                                                          "value": "NOT_USED",
                                                         },
                                                         Object {
                                                           "label": "CONSUMPTION_LOAD",
@@ -911,7 +911,7 @@ exports[`Meter Widget renders correctly 1`] = `
                                               Array [
                                                 Object {
                                                   "label": "NOT_USED",
-                                                  "value": null,
+                                                  "value": "NOT_USED",
                                                 },
                                                 Object {
                                                   "label": "CONSUMPTION_LOAD",
@@ -970,7 +970,7 @@ exports[`Meter Widget renders correctly 1`] = `
                                                 "options": Array [
                                                   Object {
                                                     "label": "NOT_USED",
-                                                    "value": null,
+                                                    "value": "NOT_USED",
                                                   },
                                                   Object {
                                                     "label": "CONSUMPTION_LOAD",
@@ -1053,7 +1053,7 @@ exports[`Meter Widget renders correctly 1`] = `
                                                     Array [
                                                       Object {
                                                         "label": "NOT_USED",
-                                                        "value": null,
+                                                        "value": "NOT_USED",
                                                       },
                                                       Object {
                                                         "label": "CONSUMPTION_LOAD",
@@ -1112,7 +1112,7 @@ exports[`Meter Widget renders correctly 1`] = `
                                                       "options": Array [
                                                         Object {
                                                           "label": "NOT_USED",
-                                                          "value": null,
+                                                          "value": "NOT_USED",
                                                         },
                                                         Object {
                                                           "label": "CONSUMPTION_LOAD",
@@ -1187,7 +1187,7 @@ exports[`Meter Widget renders correctly 1`] = `
                                                     Array [
                                                       Object {
                                                         "label": "NOT_USED",
-                                                        "value": null,
+                                                        "value": "NOT_USED",
                                                       },
                                                       Object {
                                                         "label": "CONSUMPTION_LOAD",
@@ -1246,7 +1246,7 @@ exports[`Meter Widget renders correctly 1`] = `
                                                       "options": Array [
                                                         Object {
                                                           "label": "NOT_USED",
-                                                          "value": null,
+                                                          "value": "NOT_USED",
                                                         },
                                                         Object {
                                                           "label": "CONSUMPTION_LOAD",
@@ -1447,7 +1447,7 @@ exports[`Meter Widget renders correctly 1`] = `
                             Array [
                               Object {
                                 "label": "NOT_USED",
-                                "value": null,
+                                "value": "NOT_USED",
                               },
                               Object {
                                 "label": "PRODUCTION_REVENUE",
@@ -1477,7 +1477,7 @@ exports[`Meter Widget renders correctly 1`] = `
                               Array [
                                 Object {
                                   "label": "NOT_USED",
-                                  "value": null,
+                                  "value": "NOT_USED",
                                 },
                                 Object {
                                   "label": "PRODUCTION_REVENUE",
@@ -1534,7 +1534,7 @@ exports[`Meter Widget renders correctly 1`] = `
                                 Array [
                                   Object {
                                     "label": "NOT_USED",
-                                    "value": null,
+                                    "value": "NOT_USED",
                                   },
                                   Object {
                                     "label": "PRODUCTION_REVENUE",
@@ -1572,7 +1572,7 @@ exports[`Meter Widget renders correctly 1`] = `
                                   Array [
                                     Object {
                                       "label": "NOT_USED",
-                                      "value": null,
+                                      "value": "NOT_USED",
                                     },
                                     Object {
                                       "label": "PRODUCTION_REVENUE",
@@ -1627,7 +1627,7 @@ exports[`Meter Widget renders correctly 1`] = `
                                     "options": Array [
                                       Object {
                                         "label": "NOT_USED",
-                                        "value": null,
+                                        "value": "NOT_USED",
                                       },
                                       Object {
                                         "label": "PRODUCTION_REVENUE",
@@ -1716,7 +1716,7 @@ exports[`Meter Widget renders correctly 1`] = `
                                         Array [
                                           Object {
                                             "label": "NOT_USED",
-                                            "value": null,
+                                            "value": "NOT_USED",
                                           },
                                           Object {
                                             "label": "PRODUCTION_REVENUE",
@@ -1771,7 +1771,7 @@ exports[`Meter Widget renders correctly 1`] = `
                                           "options": Array [
                                             Object {
                                               "label": "NOT_USED",
-                                              "value": null,
+                                              "value": "NOT_USED",
                                             },
                                             Object {
                                               "label": "PRODUCTION_REVENUE",
@@ -1868,7 +1868,7 @@ exports[`Meter Widget renders correctly 1`] = `
                                               Array [
                                                 Object {
                                                   "label": "NOT_USED",
-                                                  "value": null,
+                                                  "value": "NOT_USED",
                                                 },
                                                 Object {
                                                   "label": "PRODUCTION_REVENUE",
@@ -1923,7 +1923,7 @@ exports[`Meter Widget renders correctly 1`] = `
                                                 "options": Array [
                                                   Object {
                                                     "label": "NOT_USED",
-                                                    "value": null,
+                                                    "value": "NOT_USED",
                                                   },
                                                   Object {
                                                     "label": "PRODUCTION_REVENUE",
@@ -2007,7 +2007,7 @@ exports[`Meter Widget renders correctly 1`] = `
                                                     Array [
                                                       Object {
                                                         "label": "NOT_USED",
-                                                        "value": null,
+                                                        "value": "NOT_USED",
                                                       },
                                                       Object {
                                                         "label": "PRODUCTION_REVENUE",
@@ -2062,7 +2062,7 @@ exports[`Meter Widget renders correctly 1`] = `
                                                       "options": Array [
                                                         Object {
                                                           "label": "NOT_USED",
-                                                          "value": null,
+                                                          "value": "NOT_USED",
                                                         },
                                                         Object {
                                                           "label": "PRODUCTION_REVENUE",
@@ -2198,7 +2198,7 @@ exports[`Meter Widget renders correctly 1`] = `
                                               Array [
                                                 Object {
                                                   "label": "NOT_USED",
-                                                  "value": null,
+                                                  "value": "NOT_USED",
                                                 },
                                                 Object {
                                                   "label": "PRODUCTION_REVENUE",
@@ -2253,7 +2253,7 @@ exports[`Meter Widget renders correctly 1`] = `
                                                 "options": Array [
                                                   Object {
                                                     "label": "NOT_USED",
-                                                    "value": null,
+                                                    "value": "NOT_USED",
                                                   },
                                                   Object {
                                                     "label": "PRODUCTION_REVENUE",
@@ -2332,7 +2332,7 @@ exports[`Meter Widget renders correctly 1`] = `
                                                     Array [
                                                       Object {
                                                         "label": "NOT_USED",
-                                                        "value": null,
+                                                        "value": "NOT_USED",
                                                       },
                                                       Object {
                                                         "label": "PRODUCTION_REVENUE",
@@ -2387,7 +2387,7 @@ exports[`Meter Widget renders correctly 1`] = `
                                                       "options": Array [
                                                         Object {
                                                           "label": "NOT_USED",
-                                                          "value": null,
+                                                          "value": "NOT_USED",
                                                         },
                                                         Object {
                                                           "label": "PRODUCTION_REVENUE",
@@ -2458,7 +2458,7 @@ exports[`Meter Widget renders correctly 1`] = `
                                                     Array [
                                                       Object {
                                                         "label": "NOT_USED",
-                                                        "value": null,
+                                                        "value": "NOT_USED",
                                                       },
                                                       Object {
                                                         "label": "PRODUCTION_REVENUE",
@@ -2513,7 +2513,7 @@ exports[`Meter Widget renders correctly 1`] = `
                                                       "options": Array [
                                                         Object {
                                                           "label": "NOT_USED",
-                                                          "value": null,
+                                                          "value": "NOT_USED",
                                                         },
                                                         Object {
                                                           "label": "PRODUCTION_REVENUE",

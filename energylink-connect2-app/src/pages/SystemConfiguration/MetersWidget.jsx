@@ -23,13 +23,13 @@ function MetersWidget() {
   )
 
   const CONSUMPTION_CT = [
-    { label: t('NOT_USED'), value: null },
+    { label: t('NOT_USED'), value: 'NOT_USED' },
     { label: t('CONSUMPTION_LOAD'), value: 'NET_CONSUMPTION_LOADSIDE' },
     { label: t('CONSUMPTION_LINE'), value: 'GROSS_CONSUMPTION_LINESIDE' }
   ]
 
   const PRODUCTION_CT = [
-    { label: t('NOT_USED'), value: null },
+    { label: t('NOT_USED'), value: 'NOT_USED' },
     { label: t('PRODUCTION_REVENUE'), value: 'GROSS_PRODUCTION' }
   ]
 

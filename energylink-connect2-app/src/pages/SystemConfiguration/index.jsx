@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import { SUBMIT_CONFIG } from 'state/actions/systemConfiguration'
 import { UPDATE_DEVICES_LIST } from 'state/actions/devices'
+import { SET_METADATA_INIT } from 'state/actions/pvs'
 import useModal from 'hooks/useModal'
 import NetworkWidget from './NetworkWidget'
 import MetersWidget from './MetersWidget'
@@ -14,7 +15,6 @@ import InterfacesWidget from './InterfacesWidget'
 import paths from 'routes/paths'
 import './SystemConfiguration.scss'
 import { endsWith, path } from 'ramda'
-import { SET_METADATA_INIT } from '../../state/actions/pvs'
 
 const applyMeterConfig = (devicesList, meterConfig, dispatch, site) => {
   const updatedDevices = devicesList.map(device => {
@@ -103,6 +103,8 @@ function SystemConfiguration({ animationState }) {
         exportLimit: selectedOptions.exportLimit,
         gridVoltage: selectedOptions.gridVoltage,
         lazyGridProfile: selectedOptions.lazyGridProfile,
+        prodMeter: meter.productionCT,
+        consMeter: meter.consumptionCT,
         siteKey,
         devices: found
       }
