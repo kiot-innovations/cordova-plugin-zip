@@ -15,7 +15,8 @@ import {
   PVS_CONNECTION_SUCCESS,
   STOP_NETWORK_POLLING,
   WAIT_FOR_SWAGGER,
-  PVS_CONNECTION_ERROR
+  PVS_CONNECTION_ERROR,
+  WAITING_FOR_SWAGGER
 } from 'state/actions/network'
 import { translate } from 'shared/i18n'
 
@@ -64,21 +65,17 @@ const connectToEpic = (action$, state$) =>
       )
     })
   )
+const parsePromises = compose(Boolean, find(propEq('status', 'fulfilled')))
+
+const checkForConnection = async () => {
+  const promises = [getApiPVS(), fetch(process.env.REACT_APP_PVS_VERSION_INFO)]
+  const isConnected = parsePromises(await Promise.allSettled(promises))
+  if (!isConnected) throw new Error('WAITING_FOR_CONNECTION')
+}
 
 export const waitForSwaggerEpic = (action$, state$) => {
   const stopPolling$ = action$.pipe(ofType(PVS_CONNECTION_SUCCESS.getType()))
   const t = translate(state$.value.language)
-  const parsePromises = compose(Boolean, find(propEq('status', 'fulfilled')))
-  const checkForConnection = async () => {
-    const promises = [
-      getApiPVS(),
-      fetch(
-        'http://sunpowerconsole.net/cgi-bin/dl_cgi?Command=GetSupervisorInformation'
-      )
-    ]
-    const isConnected = parsePromises(await Promise.allSettled(promises))
-    if (!isConnected) throw new Error('WAITING_FOR_CONNECTION')
-  }
 
   return action$.pipe(
     ofType(WAIT_FOR_SWAGGER.getType()),
@@ -93,7 +90,7 @@ export const waitForSwaggerEpic = (action$, state$) => {
               // and we don't want to spam the user with I couldn't connect
               if (err.message !== 'WAITING_FOR_CONNECTION')
                 return of(PVS_CONNECTION_ERROR(t('PVS_CONNECTION_TIMEOUT')))
-              return of({ type: 'WAITING FOR SWAGGER' })
+              return of(WAITING_FOR_SWAGGER())
             })
           )
         )
