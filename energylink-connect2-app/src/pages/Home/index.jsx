@@ -9,10 +9,14 @@ import { path, test, join, values, pick, prop, compose, length } from 'ramda'
 
 import paths from 'routes/paths'
 import SearchField from 'components/SearchField'
-import { GET_SITES_INIT, SET_SITE } from 'state/actions/site'
+import { GET_SITES_INIT, SET_SITE, RESET_SITE } from 'state/actions/site'
 
 import './Home.scss'
 import { either } from 'shared/utils'
+import { RESET_PVS_INFO_STATE } from 'state/actions/pvs'
+import { RESET_PVS_CONNECTION } from 'state/actions/network'
+import { RESET_DISCOVERY } from 'state/actions/devices'
+import { RESET_INVENTORY } from 'state/actions/inventory'
 
 const getString = compose(
   join(' '),
@@ -27,8 +31,17 @@ const buildSelectValue = value => ({
 })
 
 const setSite = (history, dispatch) => site => {
+  resetCommissioning(dispatch)
   dispatch(SET_SITE(site))
   history.push(paths.PROTECTED.BILL_OF_MATERIALS.path)
+}
+
+const resetCommissioning = dispatch => {
+  dispatch(RESET_PVS_INFO_STATE())
+  dispatch(RESET_PVS_CONNECTION())
+  dispatch(RESET_DISCOVERY())
+  dispatch(RESET_INVENTORY())
+  dispatch(RESET_SITE())
 }
 
 function Home({ animationState }) {
@@ -36,9 +49,7 @@ function Home({ animationState }) {
   const dispatch = useDispatch()
   const history = useHistory()
 
-  const isFetching = useSelector(state => state.site.isFetching)
-  const sites = useSelector(state => state.site.sites || [])
-  const error = useSelector(state => state.site.error)
+  const { isFetching, sites, error } = useSelector(state => state.site)
 
   const found = length(sites) || 0
   const errorMessage = path(['data', 'message'], error)
