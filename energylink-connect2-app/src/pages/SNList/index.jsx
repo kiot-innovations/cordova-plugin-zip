@@ -97,9 +97,7 @@ function SNList({ animationState }) {
     scannedMICount > expectedMICount ? 'MI_OVERCOUNT' : 'MI_UNDERCOUNT'
 
   const serialNumbersModalContent = serialNumbersModalTemplate(
-    t(COUNT_TYPE),
-    scannedMICount,
-    expectedMICount
+    t(COUNT_TYPE, scannedMICount, expectedMICount)
   )
 
   const modalsTitle = (
