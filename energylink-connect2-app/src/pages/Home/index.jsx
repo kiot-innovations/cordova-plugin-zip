@@ -49,7 +49,7 @@ function Home({ animationState }) {
   const dispatch = useDispatch()
   const history = useHistory()
 
-  const { isFetching, sites, error } = useSelector(state => state.site)
+  const { isFetching, sites = [], error } = useSelector(state => state.site)
 
   const found = length(sites) || 0
   const errorMessage = path(['data', 'message'], error)
