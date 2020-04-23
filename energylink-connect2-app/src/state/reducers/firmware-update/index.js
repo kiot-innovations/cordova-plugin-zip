@@ -4,8 +4,10 @@ import {
   FIRMWARE_GET_VERSION_COMPLETE,
   FIRMWARE_UPDATE_COMPLETE,
   FIRMWARE_UPDATE_INIT,
+  FIRMWARE_UPDATE_ERROR,
   FIRMWARE_UPDATE_POLLING,
   FIRMWARE_UPDATE_WAITING_FOR_NETWORK,
+  GRID_PROFILE_UPLOAD_ERROR,
   RESET_FIRMWARE_UPDATE
 } from 'state/actions/firmwareUpdate'
 
@@ -42,6 +44,16 @@ export default createReducer(
       status: 'UPGRADE_COMPLETE',
       upgrading: false,
       canContinue: true
+    }),
+    [FIRMWARE_UPDATE_ERROR]: state => ({
+      ...initialState,
+      ...state,
+      status: 'ERROR'
+    }),
+    [GRID_PROFILE_UPLOAD_ERROR]: state => ({
+      ...initialState,
+      ...state,
+      status: 'ERROR'
     }),
     [RESET_FIRMWARE_UPDATE]: () => initialState,
     [FIRMWARE_GET_VERSION_COMPLETE]: () => ({

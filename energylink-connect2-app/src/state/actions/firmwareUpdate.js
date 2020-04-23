@@ -22,3 +22,11 @@ export const FIRMWARE_GET_VERSION_ERROR = createAction(
 export const FIRMWARE_GET_VERSION_COMPLETE = createAction(
   'PVS  FW VERSION COMPLETE'
 )
+
+export const GRID_PROFILE_UPLOAD_INIT = createAction('GRID_PROFILE_UPLOAD_INIT')
+export const GRID_PROFILE_UPLOAD_COMPLETE = createAction(
+  'GRID_PROFILE_UPLOAD_COMPLETE'
+)
+export const GRID_PROFILE_UPLOAD_ERROR = createAction(
+  'GRID_PROFILE_UPLOAD_ERROR'
+)

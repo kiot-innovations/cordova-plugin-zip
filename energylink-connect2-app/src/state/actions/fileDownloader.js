@@ -1,4 +1,4 @@
-import { append, compose, head, join, slice, split } from 'ramda'
+import { append, compose, head, join, last, slice, split } from 'ramda'
 import { createAction } from 'redux-act'
 
 export const GET_FILE = createAction('GET FILE')
@@ -114,6 +114,11 @@ function getPersistentFile(
   })
 }
 
+const GRID_PROFILE_URL =
+  'https://s3-us-west-2.amazonaws.com/2oduso0/gridprofiles/v2/gridprofiles.tar.gz'
+
+export const getGridProfileFileName = () => last(split('/')(GRID_PROFILE_URL))
+
 export function getFile(wifiOnly = true) {
   return async function(dispatch) {
     try {
@@ -128,6 +133,13 @@ export function getFile(wifiOnly = true) {
         fileSystemURL,
         dispatch,
         wifiOnly
+      )
+      await getPersistentFile(
+        getGridProfileFileName(),
+        GRID_PROFILE_URL,
+        dispatch,
+        wifiOnly,
+        false
       )
       dispatch(DOWNLOAD_SUCCESS())
     } catch (error) {
