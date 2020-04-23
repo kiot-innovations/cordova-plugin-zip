@@ -34,7 +34,7 @@ import {
  * by using the redirect call from the PVS
  * @returns {Promise<Response>}
  */
-const uploadFirmwarePVS = async () => {
+const uploadFirmwareToBoomerPVS = async () => {
   try {
     const fileBlob = await getFileBlob(await getPVSFileSystemName())
     const formData = new FormData()
@@ -68,7 +68,7 @@ const firmwareUpgradeInit = action$ =>
   action$.pipe(
     ofType(FIRMWARE_UPDATE_INIT.getType()),
     flatMap(() =>
-      from(uploadFirmwarePVS()).pipe(
+      from(uploadFirmwareToBoomerPVS()).pipe(
         switchMap(async () => FIRMWARE_UPDATE_POLL_INIT()),
         catchError(err => of(FIRMWARE_UPDATE_ERROR.asError(err)))
       )
