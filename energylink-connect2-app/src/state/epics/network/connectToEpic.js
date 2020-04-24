@@ -1,4 +1,4 @@
-import { pathOr, test, isEmpty, compose, find, propEq } from 'ramda'
+import { pathOr, test, isEmpty, compose, find, propEq, isNil } from 'ramda'
 import { ofType } from 'redux-observable'
 import { from, of, timer } from 'rxjs'
 import {
@@ -8,6 +8,9 @@ import {
   takeUntil,
   switchMap
 } from 'rxjs/operators'
+
+import allSettled from 'promise.allsettled'
+
 import { getApiPVS } from 'shared/api'
 import { isIos } from 'shared/utils'
 import {
@@ -31,7 +34,7 @@ const connectToPVS = async (ssid, password) => {
     } else {
       //looks like wifiwizard works like this in andrdoid
       // I don't know why (ET)
-      await window.WifiWizard2.getConnectedSSID()
+      // await window.WifiWizard2.getConnectedSSID()
       await window.WifiWizard2.connect(ssid, true, password, WPA, false)
     }
   } catch (e) {
@@ -69,7 +72,7 @@ const parsePromises = compose(Boolean, find(propEq('status', 'fulfilled')))
 
 const checkForConnection = async () => {
   const promises = [getApiPVS(), fetch(process.env.REACT_APP_PVS_VERSION_INFO)]
-  const isConnected = parsePromises(await Promise.allSettled(promises))
+  const isConnected = parsePromises(await allSettled(promises))
   if (!isConnected) throw new Error('WAITING_FOR_CONNECTION')
 }
 
@@ -86,9 +89,14 @@ export const waitForSwaggerEpic = (action$, state$) => {
           from(checkForConnection()).pipe(
             map(() => PVS_CONNECTION_SUCCESS()),
             catchError(err => {
+              console.error(err)
               // The reason for this is that this could happen several times
               // and we don't want to spam the user with I couldn't connect
-              if (err.message !== 'WAITING_FOR_CONNECTION')
+              if (
+                !isNil(err.message) &&
+                !isEmpty(err.message) &&
+                err.message !== 'WAITING_FOR_CONNECTION'
+              )
                 return of(PVS_CONNECTION_ERROR(t('PVS_CONNECTION_TIMEOUT')))
               return of(WAITING_FOR_SWAGGER())
             })

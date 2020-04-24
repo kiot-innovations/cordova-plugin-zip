@@ -9,7 +9,8 @@ const setLayout = (header, footer) => ChildComponent => props => {
   useEffect(() => {
     dispatch(setHeader(header))
     dispatch(setFooter(footer))
-  }, [dispatch])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   return (
     <div

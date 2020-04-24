@@ -55,7 +55,8 @@ function Home() {
 
   useEffect(() => {
     dispatch(GET_SITES_INIT())
-  }, [dispatch])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   const notFoundText = t('NOT_FOUND')
 

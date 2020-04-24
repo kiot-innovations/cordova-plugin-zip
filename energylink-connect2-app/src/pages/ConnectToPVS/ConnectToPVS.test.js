@@ -15,6 +15,8 @@ describe('Connect to PVS page', () => {
     }
   }
   beforeEach(() => {
+    dispatchMock = jest.fn()
+    global.alert = jest.fn()
     jest.mock('react-router-dom', () => ({
       useHistory: () => ({
         history: {
