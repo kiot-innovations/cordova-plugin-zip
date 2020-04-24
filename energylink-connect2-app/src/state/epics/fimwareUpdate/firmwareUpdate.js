@@ -20,9 +20,7 @@ import {
   FIRMWARE_UPDATE_POLL_INIT,
   FIRMWARE_UPDATE_POLL_STOP,
   FIRMWARE_UPDATE_POLLING,
-  FIRMWARE_UPDATE_WAITING_FOR_NETWORK,
-  GRID_PROFILE_UPLOAD_COMPLETE,
-  GRID_PROFILE_UPLOAD_INIT
+  FIRMWARE_UPDATE_WAITING_FOR_NETWORK
 } from 'state/actions/firmwareUpdate'
 import {
   PVS_CONNECTION_INIT,
@@ -62,24 +60,13 @@ const getUpgradeStatus = async () => {
 }
 
 /**
- * Epic that will start the GridProfile Upload followed by the Firmware Update
+ * Epic that will upload the FS to the PVS
  * @param action$
  * @returns {*}
  */
 const firmwareUpgradeInit = action$ =>
   action$.pipe(
     ofType(FIRMWARE_UPDATE_INIT.getType()),
-    flatMap(async () => GRID_PROFILE_UPLOAD_INIT())
-  )
-
-/**
- * Epic that will upload the FS to the PVS
- * @param action$
- * @returns {*}
- */
-const gridProfileUploadComplete = action$ =>
-  action$.pipe(
-    ofType(GRID_PROFILE_UPLOAD_COMPLETE.getType()),
     flatMap(() =>
       from(uploadFirmwareToBoomerPVS()).pipe(
         switchMap(async () => FIRMWARE_UPDATE_POLL_INIT()),
@@ -142,6 +129,5 @@ export default [
   firmwareUpgradeInit,
   firmwarePollStatus,
   firmwareWaitForWifi,
-  firmwareUpdateSuccessEpic,
-  gridProfileUploadComplete
+  firmwareUpdateSuccessEpic
 ]

@@ -264,5 +264,8 @@
   "PVS_CONNECTION_TIMEOUT": "Could not connect to the PVS after 1 minute. Please check the equipment",
   "PVS_CONNECTION_EMPTY_SSID": "Error, no PVS WIFI SSID was provided",
   "UNKNOWN_ERROR": "An unknown error ocurred, please try again",
-  "REDISCOVER": "Rediscover"
+  "REDISCOVER": "Rediscover",
+  "GRID_PROFILE_ERROR_FOUND": "Error downloading grid profile",
+  "LAST_TIME_UPDATED": "Last time updated",
+  "FILE_NOT_PRESENT": "File is not downloaded" 
 }

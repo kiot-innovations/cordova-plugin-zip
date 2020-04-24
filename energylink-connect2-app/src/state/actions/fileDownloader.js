@@ -1,4 +1,4 @@
-import { append, compose, head, join, last, slice, split } from 'ramda'
+import { append, compose, head, join, slice, split } from 'ramda'
 import { createAction } from 'redux-act'
 
 export const GET_FILE = createAction('GET FILE')
@@ -8,10 +8,10 @@ export const SET_FILE_NAME = createAction('SET FILE NAME')
 export const DOWNLOAD_PROGRESS = createAction('UPDATE DOWNLOAD PROGRESS')
 export const ABORT_DOWNLOAD = createAction('ABORT DOWNLOAD')
 export const DOWNLOAD_SUCCESS = createAction('DOWNLOAD SUCCESS')
-
 export const DOWNLOAD_NO_WIFI = createAction('NO WIFI')
 
 export const SET_FILES_SIZE = createAction('SET DOWNLOAD SIZE')
+
 const ERROR_CODES = {
   getVersionInfo: 'getVersionInfo',
   getLuaFile: 'getLuaFile',
@@ -114,11 +114,6 @@ function getPersistentFile(
   })
 }
 
-const GRID_PROFILE_URL =
-  'https://s3-us-west-2.amazonaws.com/2oduso0/gridprofiles/v2/gridprofiles.tar.gz'
-
-export const getGridProfileFileName = () => last(split('/')(GRID_PROFILE_URL))
-
 export function getFile(wifiOnly = true) {
   return async function(dispatch) {
     try {
@@ -133,13 +128,6 @@ export function getFile(wifiOnly = true) {
         fileSystemURL,
         dispatch,
         wifiOnly
-      )
-      await getPersistentFile(
-        getGridProfileFileName(),
-        GRID_PROFILE_URL,
-        dispatch,
-        wifiOnly,
-        false
       )
       dispatch(DOWNLOAD_SUCCESS())
     } catch (error) {

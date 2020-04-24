@@ -2,19 +2,15 @@ import { ofType } from 'redux-observable'
 import { from, of } from 'rxjs'
 import { catchError, map, switchMap } from 'rxjs/operators'
 import {
+  FIRMWARE_GET_VERSION_COMPLETE,
   GRID_PROFILE_UPLOAD_COMPLETE,
-  GRID_PROFILE_UPLOAD_ERROR,
-  GRID_PROFILE_UPLOAD_INIT
+  GRID_PROFILE_UPLOAD_ERROR
 } from 'state/actions/firmwareUpdate'
-import {
-  getFileBlob,
-  getGridProfileFileName
-} from 'state/actions/fileDownloader'
+import { getFileBlob } from 'state/actions/fileDownloader'
+import { getGridProfileFileName } from 'state/actions/gridProfileDownloader'
 
 /**
- * Will upload the Grid Profile file to the PVS and
- * execute the startUpgrade command
- * by using the redirect call from the PVS
+ * Will upload the Grid Profile file to the PVS
  * @returns {Promise<Response>}
  */
 const uploadGridProfile = async () => {
@@ -36,7 +32,7 @@ const uploadGridProfile = async () => {
 
 export const epicUploadGridProfile = action$ =>
   action$.pipe(
-    ofType(GRID_PROFILE_UPLOAD_INIT.getType()),
+    ofType(FIRMWARE_GET_VERSION_COMPLETE.getType()),
     switchMap(() =>
       from(uploadGridProfile()).pipe(
         map(() => {

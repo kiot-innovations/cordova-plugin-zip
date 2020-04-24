@@ -1,11 +1,16 @@
 import Collapsible from 'components/Collapsible'
 import useModal from 'hooks/useModal'
+import * as moment from 'moment'
 import { prop } from 'ramda'
 import React, { useCallback, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useI18n } from 'shared/i18n'
 import { either } from 'shared/utils'
 import * as fileDownloaderActions from 'state/actions/fileDownloader'
+import {
+  getGridProfileFile,
+  setFileInfo
+} from 'state/actions/gridProfileDownloader'
 
 export const getFileName = prop('name')
 export const getFileSize = prop('size')
@@ -29,6 +34,19 @@ const modalTitle = t => (
   <span className="has-text-white has-text-weight-bold">{t('ATTENTION')}</span>
 )
 
+const GridProfileFileStatus = ({ gpProgress, lastModified }) => {
+  const t = useI18n()
+  return either(
+    gpProgress === 100,
+    lastModified
+      ? `${t('LAST_TIME_UPDATED')}: ${moment
+          .unix(lastModified / 1000)
+          .format('MM/DD/YYYY')}`
+      : t('FILE_NOT_PRESENT'),
+    t('DOWNLOADING')
+  )
+}
+
 function Firmwares() {
   const t = useI18n()
   const dispatch = useDispatch()
@@ -37,17 +55,43 @@ function Firmwares() {
     modalTitle(t),
     false
   )
-  const { progress, fileInfo } = useSelector(({ fileDownloader }) => ({
-    ...fileDownloader.progress,
-    fileInfo: fileDownloader.fileInfo
+  const { progress, lastProgress, fileInfo } = useSelector(
+    ({ fileDownloader }) => ({
+      ...fileDownloader.progress,
+      fileInfo: fileDownloader.fileInfo
+    })
+  )
+
+  const {
+    progress: gpProgress,
+    lastProgress: gpLastProgress,
+    error: gpError,
+    lastModified
+  } = useSelector(({ fileDownloader }) => ({
+    ...fileDownloader.gridProfileProgress
   }))
 
+  const springProgress = useSpring({
+    from: { value: lastProgress },
+    to: { value: progress }
+  })
+  const gpSpringProgress = useSpring({
+    from: { value: gpLastProgress },
+    to: { value: gpProgress }
+  })
   const downloadFile = useCallback(
     () => dispatch(fileDownloaderActions.getFile()),
     [dispatch]
   )
+
+  const downlaodGridProfiles = useCallback(
+    () => dispatch(getGridProfileFile()),
+    [dispatch]
+  )
+
   useEffect(() => {
     downloadFile()
+    dispatch(setFileInfo())
   }, [dispatch, downloadFile])
 
   useEffect(() => {
@@ -91,7 +135,48 @@ function Firmwares() {
             {progress !== 100 && (
               <progress
                 className="progress is-tiny is-white"
-                value={progress}
+                value={springProgress.value}
+                max="100"
+              />
+            )}
+          </section>
+        )}
+      </Collapsible>
+      <div className="separator" />
+      <Collapsible
+        title={t('GRID_PROFILES_PACKAGE')}
+        actions={
+          progress === 100 && gpProgress !== 100 ? (
+            <span
+              className={'is-size-4 sp-stop'}
+              onClick={() => dispatch(fileDownloaderActions.abortDownload())}
+            />
+          ) : (
+            <span
+              className={'is-size-4 sp-download'}
+              onClick={downlaodGridProfiles}
+            />
+          )
+        }
+        expanded
+      >
+        {either(
+          gpError,
+          <span>{t('GRID_PROFILE_ERROR_FOUND')}</span>,
+          <section className="mt-20 mb-10">
+            <p className="mb-5">
+              <span className="mr-10 has-text-white has-text-weight-bold">
+                {gpProgress}%
+              </span>
+              <GridProfileFileStatus
+                lastModified={lastModified}
+                gpProgress={gpProgress}
+              />
+            </p>
+            {gpProgress !== 100 && (
+              <progress
+                className="progress is-tiny is-white"
+                value={gpSpringProgress.value}
                 max="100"
               />
             )}
