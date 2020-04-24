@@ -6,8 +6,10 @@ import {
   GRID_PROFILE_UPLOAD_COMPLETE,
   GRID_PROFILE_UPLOAD_ERROR
 } from 'state/actions/firmwareUpdate'
-import { getFileBlob } from 'state/actions/fileDownloader'
-import { getGridProfileFileName } from 'state/actions/gridProfileDownloader'
+import {
+  getGridProfileFileInfo,
+  getFileBlob
+} from 'state/actions/gridProfileDownloader'
 
 /**
  * Will upload the Grid Profile file to the PVS
@@ -15,7 +17,8 @@ import { getGridProfileFileName } from 'state/actions/gridProfileDownloader'
  */
 const uploadGridProfile = async () => {
   try {
-    const fileBlob = await getFileBlob(getGridProfileFileName())
+    const fileInfo = await getGridProfileFileInfo()
+    const fileBlob = await getFileBlob(fileInfo)
     const formData = new FormData()
     formData.append('file', fileBlob)
     return await fetch(
@@ -26,7 +29,7 @@ const uploadGridProfile = async () => {
       }
     )
   } catch (e) {
-    console.error(e)
+    console.error('grid profile file is not in the file system', e)
   }
 }
 

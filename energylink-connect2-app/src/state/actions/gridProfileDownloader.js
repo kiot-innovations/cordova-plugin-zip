@@ -78,6 +78,15 @@ export function getGridProfileFileInfo() {
   })
 }
 
+export const getFileBlob = file =>
+  new Promise(async resolve => {
+    const reader = new FileReader()
+    reader.onloadend = function() {
+      resolve(new Blob([this.result]))
+    }
+    reader.readAsArrayBuffer(file)
+  })
+
 export function getGridProfileFile(wifiOnly = true) {
   return async function(dispatch) {
     try {
