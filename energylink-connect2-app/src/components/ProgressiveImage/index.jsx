@@ -6,11 +6,11 @@ import { Loader } from 'components/Loader'
 import { SET_MAP_VIEW_SRC } from 'state/actions/site'
 import './ProgressiveImage.scss'
 
-const ProgressiveImage = ({ src, animationState }) => {
+const ProgressiveImage = ({ src }) => {
   const dispatch = useDispatch()
   const { mapViewSrc } = useSelector(state => state.site)
   useEffect(() => {
-    if (animationState === 'enter' && !mapViewSrc !== src) {
+    if (!mapViewSrc !== src) {
       const i = new Image()
       i.onload = function() {
         dispatch(SET_MAP_VIEW_SRC(src))

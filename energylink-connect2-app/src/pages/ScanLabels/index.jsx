@@ -1,18 +1,18 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useEffect, useState, useRef } from 'react'
-import { useHistory } from 'react-router-dom'
+import ErrorBoundary from 'components/Error'
 import { compose, map } from 'ramda'
+import React, { useEffect, useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { useHistory } from 'react-router-dom'
+import paths from 'routes/paths'
 import { useI18n } from 'shared/i18n'
 import { scanM } from 'shared/scandit'
-import ErrorBoundary from 'components/Error'
-import { ADD_PVS_SN } from 'state/actions/pvs'
 import { buildSN } from 'shared/utils'
-import paths from 'routes/paths'
+import { ADD_PVS_SN } from 'state/actions/pvs'
 
 import './ScanLabels.scss'
 
-function ScanDeviceLabels({ animationState }) {
+function ScanDeviceLabels() {
   const t = useI18n()
   const dispatch = useDispatch()
   const history = useHistory()
@@ -51,11 +51,10 @@ function ScanDeviceLabels({ animationState }) {
   }
 
   useEffect(() => {
-    if (animationState === 'update') startScanning()
-
+    startScanning()
     return () => {
       // do not invoke stopScanning()
-      if (isScanning && init && animationState === 'leave') onDone.current()
+      if (isScanning && init) onDone.current()
     }
   }, [])
 

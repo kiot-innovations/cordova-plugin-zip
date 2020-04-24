@@ -1,20 +1,23 @@
 import React from 'react'
-import { useI18n } from 'shared/i18n'
-import { useSelector, useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
+import { endsWith, path } from 'ramda'
+import { useI18n } from 'shared/i18n'
 import { SUBMIT_CONFIG } from 'state/actions/systemConfiguration'
 import { UPDATE_DEVICES_LIST } from 'state/actions/devices'
 import { SET_METADATA_INIT } from 'state/actions/pvs'
-import useModal from 'hooks/useModal'
-import NetworkWidget from './NetworkWidget'
-import MetersWidget from './MetersWidget'
-import GridBehaviorWidget from './GridBehaviorWidget'
-import StorageWidget from './StorageWidget'
-import RSEWidget from './RSEWidget'
-import InterfacesWidget from './InterfacesWidget'
+
 import paths from 'routes/paths'
+import useModal from 'hooks/useModal'
+
+import InterfacesWidget from './InterfacesWidget'
+import GridBehaviorWidget from './GridBehaviorWidget'
+import MetersWidget from './MetersWidget'
+import StorageWidget from './StorageWidget'
+import NetworkWidget from './NetworkWidget'
+import RSEWidget from './RSEWidget'
+
 import './SystemConfiguration.scss'
-import { endsWith, path } from 'ramda'
 
 const applyMeterConfig = (devicesList, meterConfig, dispatch, site) => {
   const updatedDevices = devicesList.map(device => {
@@ -48,7 +51,7 @@ const applyMeterConfig = (devicesList, meterConfig, dispatch, site) => {
   dispatch(UPDATE_DEVICES_LIST(updatedDevices))
 }
 
-function SystemConfiguration({ animationState }) {
+function SystemConfiguration() {
   const t = useI18n()
   const dispatch = useDispatch()
   const history = useHistory()
@@ -80,12 +83,7 @@ function SystemConfiguration({ animationState }) {
     </div>
   )
 
-  const { modal, toggleModal } = useModal(
-    animationState,
-    modalContent,
-    modalTitle,
-    false
-  )
+  const { modal, toggleModal } = useModal(modalContent, modalTitle, false)
 
   const validateConfig = configObject => {
     for (const value of Object.values(configObject)) {
@@ -126,13 +124,13 @@ function SystemConfiguration({ animationState }) {
         {t('SYSTEM_CONFIGURATION')}
       </span>
       <div className="mb-10">
-        <InterfacesWidget animationState={animationState} />
+        <InterfacesWidget />
       </div>
-      <GridBehaviorWidget animationState={animationState} />
+      <GridBehaviorWidget />
       <MetersWidget />
-      <StorageWidget animationState={animationState} />
-      <NetworkWidget animationState={animationState} />
-      <RSEWidget animationState={animationState} />
+      <StorageWidget />
+      <NetworkWidget />
+      <RSEWidget />
       <div className="submit-config">
         <button
           onClick={submitConfig}

@@ -1,5 +1,8 @@
+import Collapsible from 'components/Collapsible'
+import { Loader } from 'components/Loader'
+import SelectField from 'components/SelectField'
+import { compose, equals, pathOr, prop, propEq } from 'ramda'
 import React, { useEffect, useState } from 'react'
-import { compose, prop, pathOr, equals, propEq } from 'ramda'
 import { useDispatch, useSelector } from 'react-redux'
 import { useI18n } from 'shared/i18n'
 import { either } from 'shared/utils'
@@ -9,13 +12,9 @@ import {
   SET_RSE_STATUS
 } from 'state/actions/systemConfiguration'
 
-import Collapsible from 'components/Collapsible'
-import SelectField from 'components/SelectField'
-import { Loader } from 'components/Loader'
-
 const RSE = <span className="sp-power file level mr-15 is-size-4" />
 
-function RSEWidget({ animationState }) {
+function RSEWidget() {
   const t = useI18n()
   const dispatch = useDispatch()
 
@@ -40,11 +39,11 @@ function RSEWidget({ animationState }) {
   const sendNewRSEValue = compose(dispatch, SET_RSE_INIT)
 
   useEffect(() => {
-    if (animationState === 'enter') dispatch(GET_RSE_INIT())
+    dispatch(GET_RSE_INIT())
     // we sent the command, closed the page and came back,
     // we need to start polling to check its status
     if (progress && progress < 100 && !isPolling) dispatch(SET_RSE_STATUS())
-  }, [animationState, dispatch, isPolling, progress])
+  }, [dispatch, isPolling, progress])
 
   useEffect(() => {
     setRSEValue(powerProduction)

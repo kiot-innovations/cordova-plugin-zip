@@ -3,7 +3,6 @@ import Modal from 'components/Modal'
 import * as ReactDOM from 'react-dom'
 
 const useModal = (
-  animationState,
   content,
   title,
   initialVisible = true,
@@ -16,10 +15,10 @@ const useModal = (
     setModal(!modalVisible)
   }
   useEffect(() => {
-    if (animationState === 'leave') {
+    return () => {
       setModal(false)
     }
-  }, [animationState])
+  }, [])
   const modal = (
     <Modal
       display={modalVisible}

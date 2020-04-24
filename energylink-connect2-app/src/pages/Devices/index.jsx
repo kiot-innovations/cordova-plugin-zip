@@ -1,22 +1,23 @@
 import React, { useEffect, useState } from 'react'
+import clsx from 'clsx'
+import useModal from 'hooks/useModal'
+import { length, path, pathOr, propOr } from 'ramda'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useHistory } from 'react-router-dom'
-import { propOr, path, pathOr, length } from 'ramda'
 import { either } from 'shared/utils'
-import clsx from 'clsx'
 import { useI18n } from 'shared/i18n'
 import {
-  DISCOVER_COMPLETE,
-  FETCH_CANDIDATES_INIT,
-  FETCH_CANDIDATES_COMPLETE,
   CLAIM_DEVICES_INIT,
+  DISCOVER_COMPLETE,
+  FETCH_CANDIDATES_COMPLETE,
+  FETCH_CANDIDATES_INIT,
   RESET_DISCOVERY
 } from 'state/actions/devices'
-import Collapsible from 'components/Collapsible'
 import paths from 'routes/paths'
-import './Devices.scss'
+import Collapsible from 'components/Collapsible'
 import ProgressIndicators from './ProgressIndicators'
-import useModal from 'hooks/useModal'
+
+import './Devices.scss'
 
 const microInverterIcon = (
   <span className="sp-inverter mr-20 devices-icon ml-0 mt-0 mb-0" />
@@ -225,7 +226,7 @@ const discoveryStatus = (
   }
 }
 
-const Devices = ({ animationState }) => {
+const Devices = () => {
   const { progress, found, counts, claim } = useSelector(mapStateToProps)
   const dispatch = useDispatch()
   const history = useHistory()
@@ -244,12 +245,7 @@ const Devices = ({ animationState }) => {
     <span className="has-text-white has-text-centered">{t(modalErrorMsg)}</span>
   )
 
-  const { modal, toggleModal } = useModal(
-    animationState,
-    modalContent,
-    modalTitle,
-    false
-  )
+  const { modal, toggleModal } = useModal(modalContent, modalTitle, false)
 
   const showMIStatusModal = (serialNumber, errorMsg) => {
     setModalSN(serialNumber)
@@ -258,24 +254,21 @@ const Devices = ({ animationState }) => {
   }
 
   useEffect(() => {
-    if (animationState === 'enter') {
-      dispatch(FETCH_CANDIDATES_INIT())
-    }
+    dispatch(FETCH_CANDIDATES_INIT())
     if (
       counts.inverter.expected ===
       counts.inverter.okMICount + counts.inverter.errMICount
     ) {
       dispatch(FETCH_CANDIDATES_COMPLETE())
     }
-    if (claim.claimedDevices && animationState !== 'leave') {
+    if (claim.claimedDevices) {
       history.push(paths.PROTECTED.MODEL_EDIT.path)
     }
     return () => {
-      if (animationState === 'exit') dispatch(DISCOVER_COMPLETE())
+      dispatch(DISCOVER_COMPLETE())
     }
   }, [
     dispatch,
-    animationState,
     counts.expected,
     counts.okMICount,
     found.proceed,

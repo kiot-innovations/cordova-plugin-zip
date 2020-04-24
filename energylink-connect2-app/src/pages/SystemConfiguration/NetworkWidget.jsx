@@ -1,21 +1,20 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { findByPathValue } from 'shared/utils'
 import { compose, path, pathOr, prop, isEmpty } from 'ramda'
 import { useI18n } from 'shared/i18n'
+import { findByPathValue, buildAPsItems, either } from 'shared/utils'
+import {
+  CONNECT_NETWORK_AP_INIT,
+  GET_NETWORK_APS_INIT,
+  SET_SELECTED_AP
+} from 'state/actions/systemConfiguration'
+
 import Collapsible from 'components/Collapsible'
 import SelectField from 'components/SelectField'
 
-import {
-  GET_NETWORK_APS_INIT,
-  CONNECT_NETWORK_AP_INIT,
-  SET_SELECTED_AP
-} from 'state/actions/systemConfiguration'
-import { either, buildAPsItems } from 'shared/utils'
-
 const NWI = <span className="sp-wifi file level mr-15 is-size-4" />
 
-function NetworkWidget({ animationState }) {
+function NetworkWidget() {
   const t = useI18n()
   const dispatch = useDispatch()
 
@@ -31,9 +30,8 @@ function NetworkWidget({ animationState }) {
   const [password, setPassword] = useState('')
 
   useEffect(() => {
-    if (animationState === 'enter') dispatch(GET_NETWORK_APS_INIT())
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+    dispatch(GET_NETWORK_APS_INIT())
+  }, [dispatch])
 
   const disallowConnecting =
     isFetching || selectedAP.ssid === path(['ap', 'ssid'], connectedToAP)

@@ -16,7 +16,7 @@ import './SystemConfiguration.scss'
 
 const GBI = <span className="sp-grid file level mr-15 is-size-4" />
 
-function GridBehaviorWidget({ animationState }) {
+function GridBehaviorWidget() {
   const t = useI18n()
   const getExportLimitOptions = (availability, exportLimit) => {
     if (!availability) {
@@ -45,8 +45,8 @@ function GridBehaviorWidget({ animationState }) {
   const [hasDefaultGridProfile, setHasDefaultGridProfile] = useState(false)
 
   useEffect(() => {
-    if (animationState === 'enter') dispatch(FETCH_GRID_BEHAVIOR())
-  }, [animationState, dispatch])
+    dispatch(FETCH_GRID_BEHAVIOR())
+  }, [dispatch])
 
   const findProfileById = pipe(
     findByPathValue(profiles, ['id']),

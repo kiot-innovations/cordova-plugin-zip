@@ -9,7 +9,7 @@ import { useI18n } from 'shared/i18n'
 
 const STI = <span className="sp-battery file level mr-15 is-size-4" />
 
-function StorageWidget({ animationState }) {
+function StorageWidget() {
   const t = useI18n()
   const dispatch = useDispatch()
 
@@ -25,8 +25,8 @@ function StorageWidget({ animationState }) {
   )
 
   useEffect(() => {
-    if (animationState === 'enter') dispatch(GET_STORAGE_INIT())
-  }, [animationState, dispatch])
+    dispatch(GET_STORAGE_INIT())
+  }, [dispatch])
 
   const noStorage = isEmpty(storageSystems) && error
 

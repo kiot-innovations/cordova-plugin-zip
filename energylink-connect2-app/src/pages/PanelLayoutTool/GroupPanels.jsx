@@ -22,7 +22,7 @@ const EGroupsContainer = withSelectableGroupsContainer(
   withDraggableGroupsContainer(GroupsContainer)
 )
 
-export default ({ animationState }) => {
+export default () => {
   const dispatch = useDispatch()
   const t = useI18n()
   const err = useError()
@@ -34,9 +34,7 @@ export default ({ animationState }) => {
   //Had to disable the eslint rule of exhaustive because
   //panels change when the component is mounting and creates an error
   useEffect(() => {
-    if (animationState === 'enter') {
-      dispatch(actions.init(utils.createGroups(panels)))
-    }
+    dispatch(actions.init(utils.createGroups(panels)))
     //eslint-disable-next-line
   }, [])
 

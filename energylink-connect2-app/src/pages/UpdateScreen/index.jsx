@@ -1,31 +1,24 @@
 import { Loader } from 'components/Loader'
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { useSelector } from 'react-redux'
-import { animated, useSpring } from 'react-spring'
 import { useI18n } from 'shared/i18n'
 import { capitalize, either } from 'shared/utils'
 import './UpdateScreen.scss'
 
-const states = {
-  UPGRADE_COMPLETE: '#fff',
-  UPLOADING_FS: '#b224ff',
-  WAITING_FOR_NETWORK: '#42ff28'
-}
+// const states = {
+//   UPGRADE_COMPLETE: '#fff',
+//   UPLOADING_FS: '#b224ff',
+//   WAITING_FOR_NETWORK: '#42ff28'
+// }
 
-const UpdateScreen = ({ animationState }) => {
+const UpdateScreen = () => {
   const { status, percent } = useSelector(state => state.firmwareUpdate)
-  const [color, setColor] = useState('#ffffff')
-  const PVSColor = useSpring({ color })
   const t = useI18n()
-
-  useEffect(() => {
-    setColor(states[status] || '#4cd6ff')
-  }, [status, setColor])
 
   return (
     <div className="pvs-update-screen page-height pr-20 pl-30">
       <span className="is-uppercase has-text-weight-bold">HOLD ON</span>
-      <animated.span className="sp-pvs" style={PVSColor} />
+      <span className="sp-pvs" />
       <span>We’re updating the PVS Please don’t close the application</span>
       <div className="percent-loader">
         {either(
