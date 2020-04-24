@@ -265,7 +265,8 @@
   "PVS_CONNECTION_EMPTY_SSID": "Error, no PVS WIFI SSID was provided",
   "UNKNOWN_ERROR": "An unknown error ocurred, please try again",
   "REDISCOVER": "Rediscover",
+  "GRID_PROFILES_PACKAGE": "Grid Profiles Package",
   "GRID_PROFILE_ERROR_FOUND": "Error downloading grid profile",
   "LAST_TIME_UPDATED": "Last time updated",
-  "FILE_NOT_PRESENT": "File is not downloaded" 
+  "FILE_NOT_PRESENT": "File is not downloaded"
 }
