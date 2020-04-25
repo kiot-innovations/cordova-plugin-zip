@@ -26,6 +26,7 @@ import { translate } from 'shared/i18n'
 const WPA = 'WPA'
 const hasCode7 = test(/Code=7/)
 const isTimeout = test(/CONNECT_FAILED_TIMEOUT/)
+const isInvalidNetworkID = test(/INVALID_NETWORK_ID_TO_CONNECT/)
 
 const connectToPVS = async (ssid, password) => {
   try {
@@ -34,7 +35,7 @@ const connectToPVS = async (ssid, password) => {
     } else {
       //looks like wifiwizard works like this in andrdoid
       // I don't know why (ET)
-      // await window.WifiWizard2.getConnectedSSID()
+      await window.WifiWizard2.getConnectedSSID()
       await window.WifiWizard2.connect(ssid, true, password, WPA, false)
     }
   } catch (e) {
@@ -59,7 +60,7 @@ const connectToEpic = (action$, state$) =>
         map(() => WAIT_FOR_SWAGGER()),
         catchError(err => {
           console.warn(err.message)
-          if (hasCode7(err) || isTimeout(err)) {
+          if (hasCode7(err) || isTimeout(err) || isInvalidNetworkID(err)) {
             return of(STOP_NETWORK_POLLING({ canceled: true }))
           } else {
             return of(PVS_CONNECTION_INIT({ ssid: ssid, password: password }))
