@@ -35,7 +35,7 @@ export function scanM(onRecognize, nodeID = 'scandit') {
 
         onRecognize(barcodes)
       }
-    },
+    }
   })
 
   // To visualize the on-going barcode tracking process on screen, setup a data capture view that renders the
@@ -57,7 +57,7 @@ export function scanM(onRecognize, nodeID = 'scandit') {
 
   overlay.listener = {
     brushForTrackedBarcode: (overlay, trackedBarcode) =>
-      new Scandit.Brush(fill, stroke, 2),
+      new Scandit.Brush(fill, stroke, 2)
   }
 
   // Switch camera on to start streaming frames and enable the barcode tracking mode.
@@ -100,7 +100,7 @@ export function scanSimple(onRecognize, nodeID = 'scandit') {
         const barcodes = map(path(['data']), session.newlyRecognizedBarcodes)
         onRecognize(barcodes)
       }
-    },
+    }
   })
 
   // To visualize the on-going barcode capturing process on screen, setup a data capture view that renders the
@@ -116,14 +116,12 @@ export function scanSimple(onRecognize, nodeID = 'scandit') {
 
   overlay.viewfinder = new Scandit.RectangularViewfinder()
 
-  setTimeout(() => {
-    // Connect the data capture view to the HTML element, so it can fill up its size and follow its position.
-    view.connectToElement(document.getElementById('scandit'))
-    // Switch camera on to start streaming frames and enable the barcode capture mode.
-    // The camera is started asynchronously and will take some time to completely turn on.
-    camera.switchToDesiredState(Scandit.FrameSourceState.On)
-    barcodeCapture.isEnabled = true
-  }, 1000)
+  // Connect the data capture view to the HTML element, so it can fill up its size and follow its position.
+  view.connectToElement(document.getElementById('scandit'))
+  // Switch camera on to start streaming frames and enable the barcode capture mode.
+  // The camera is started asynchronously and will take some time to completely turn on.
+  camera.switchToDesiredState(Scandit.FrameSourceState.On)
+  barcodeCapture.isEnabled = true
 
   return () => {
     camera.switchToDesiredState(Scandit.FrameSourceState.Off)

@@ -3,7 +3,6 @@ import useModal from 'hooks/useModal'
 import { prop } from 'ramda'
 import React, { useCallback, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { animated, useSpring } from 'react-spring'
 import { useI18n } from 'shared/i18n'
 import { either } from 'shared/utils'
 import * as fileDownloaderActions from 'state/actions/fileDownloader'
@@ -30,34 +29,26 @@ const modalTitle = t => (
   <span className="has-text-white has-text-weight-bold">{t('ATTENTION')}</span>
 )
 
-function Firmwares({ animationState }) {
+function Firmwares() {
   const t = useI18n()
   const dispatch = useDispatch()
   const { setModal, modal } = useModal(
-    animationState,
     modalContent(dispatch, t),
     modalTitle(t),
     false
   )
-  const { progress, lastProgress, fileInfo } = useSelector(
-    ({ fileDownloader }) => ({
-      ...fileDownloader.progress,
-      fileInfo: fileDownloader.fileInfo
-    })
-  )
-  const springProgress = useSpring({
-    from: { value: lastProgress },
-    to: { value: progress }
-  })
+  const { progress, fileInfo } = useSelector(({ fileDownloader }) => ({
+    ...fileDownloader.progress,
+    fileInfo: fileDownloader.fileInfo
+  }))
+
   const downloadFile = useCallback(
     () => dispatch(fileDownloaderActions.getFile()),
     [dispatch]
   )
   useEffect(() => {
-    if (animationState === 'enter') {
-      downloadFile()
-    }
-  }, [dispatch, downloadFile, animationState])
+    downloadFile()
+  }, [dispatch, downloadFile])
 
   useEffect(() => {
     setModal(fileInfo.error === 'NO WIFI')
@@ -98,9 +89,9 @@ function Firmwares({ animationState }) {
               </span>
             </p>
             {progress !== 100 && (
-              <animated.progress
+              <progress
                 className="progress is-tiny is-white"
-                value={springProgress.value}
+                value={progress}
                 max="100"
               />
             )}

@@ -4,18 +4,13 @@ import { useDispatch } from 'react-redux'
 import { setHeader, setFooter } from 'state/actions/ui'
 import './layout.scss'
 
-const setLayout = (
-  header,
-  footer,
-  animationState
-) => ChildComponent => props => {
+const setLayout = (header, footer) => ChildComponent => props => {
   const dispatch = useDispatch()
   useEffect(() => {
-    if (animationState === 'enter') {
-      dispatch(setHeader(header))
-      dispatch(setFooter(footer))
-    }
-  }, [dispatch])
+    dispatch(setHeader(header))
+    dispatch(setFooter(footer))
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   return (
     <div
@@ -26,7 +21,7 @@ const setLayout = (
         'without-header': !header
       })}
     >
-      <ChildComponent {...props} animationState={animationState} />
+      <ChildComponent {...props} />
     </div>
   )
 }

@@ -1,4 +1,4 @@
-import { pathOr, test, isEmpty, compose, find, propEq } from 'ramda'
+import { pathOr, test, isEmpty, compose, find, propEq, isNil } from 'ramda'
 import { ofType } from 'redux-observable'
 import { from, of, timer } from 'rxjs'
 import {
@@ -8,6 +8,9 @@ import {
   takeUntil,
   switchMap
 } from 'rxjs/operators'
+
+import allSettled from 'promise.allsettled'
+
 import { getApiPVS } from 'shared/api'
 import { isIos } from 'shared/utils'
 import {
@@ -23,6 +26,7 @@ import { translate } from 'shared/i18n'
 const WPA = 'WPA'
 const hasCode7 = test(/Code=7/)
 const isTimeout = test(/CONNECT_FAILED_TIMEOUT/)
+const isInvalidNetworkID = test(/INVALID_NETWORK_ID_TO_CONNECT/)
 
 const connectToPVS = async (ssid, password) => {
   try {
@@ -56,7 +60,7 @@ const connectToEpic = (action$, state$) =>
         map(() => WAIT_FOR_SWAGGER()),
         catchError(err => {
           console.warn(err.message)
-          if (hasCode7(err) || isTimeout(err)) {
+          if (hasCode7(err) || isTimeout(err) || isInvalidNetworkID(err)) {
             return of(STOP_NETWORK_POLLING({ canceled: true }))
           } else {
             return of(PVS_CONNECTION_INIT({ ssid: ssid, password: password }))
@@ -69,7 +73,7 @@ const parsePromises = compose(Boolean, find(propEq('status', 'fulfilled')))
 
 const checkForConnection = async () => {
   const promises = [getApiPVS(), fetch(process.env.REACT_APP_PVS_VERSION_INFO)]
-  const isConnected = parsePromises(await Promise.allSettled(promises))
+  const isConnected = parsePromises(await allSettled(promises))
   if (!isConnected) throw new Error('WAITING_FOR_CONNECTION')
 }
 
@@ -86,9 +90,14 @@ export const waitForSwaggerEpic = (action$, state$) => {
           from(checkForConnection()).pipe(
             map(() => PVS_CONNECTION_SUCCESS()),
             catchError(err => {
+              console.error(err)
               // The reason for this is that this could happen several times
               // and we don't want to spam the user with I couldn't connect
-              if (err.message !== 'WAITING_FOR_CONNECTION')
+              if (
+                !isNil(err.message) &&
+                !isEmpty(err.message) &&
+                err.message !== 'WAITING_FOR_CONNECTION'
+              )
                 return of(PVS_CONNECTION_ERROR(t('PVS_CONNECTION_TIMEOUT')))
               return of(WAITING_FOR_SWAGGER())
             })

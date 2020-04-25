@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react'
+import clsx from 'clsx'
 import { useHistory } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { groupBy, path, prop } from 'ramda'
@@ -8,7 +9,6 @@ import useModal from 'hooks/useModal'
 import paths from 'routes/paths'
 import MiGroup from './MiGroup'
 import './ModelEdit.scss'
-import clsx from 'clsx'
 
 const miTypes = {
   AC_Module_Type_E: 'Type E',
@@ -17,7 +17,7 @@ const miTypes = {
   AC_Module_Type_D: 'Type D'
 }
 
-const ModelEdit = ({ animationState }) => {
+const ModelEdit = () => {
   const t = useI18n()
   const history = useHistory()
   const dispatch = useDispatch()
@@ -39,12 +39,7 @@ const ModelEdit = ({ animationState }) => {
 
   const groupedSerialNumbers = groupBy(prop('MODEL'), candidates)
 
-  const { modal, toggleModal } = useModal(
-    animationState,
-    modalContent,
-    modalTitle,
-    false
-  )
+  const { modal, toggleModal } = useModal(modalContent, modalTitle, false)
 
   const validateModels = () => {
     const filterModels = found.filter(
@@ -69,13 +64,12 @@ const ModelEdit = ({ animationState }) => {
         key={key}
         title={miTypes[key]}
         data={groupedSerialNumbers[key]}
-        animationState={animationState}
       />
     ))
   }
 
   useEffect(() => {
-    if (setMetadataStatus === 'success' && animationState !== 'leave') {
+    if (setMetadataStatus === 'success') {
       history.push(paths.PROTECTED.INSTALL_SUCCESS.path)
     }
   })

@@ -1,56 +1,43 @@
-import useUpgrade from 'hooks/useUpgrade'
-import useCanceledPVSConnection from 'hooks/useCanceledPVSConnection'
-import UpdateScreen from 'pages/UpdateScreen'
-import {
-  always,
-  compose,
-  cond,
-  equals,
-  find,
-  gt,
-  ifElse,
-  path,
-  propEq,
-  T
-} from 'ramda'
-import React, { useLayoutEffect, useEffect, useState } from 'react'
-import { useSelector } from 'react-redux'
+import React, { useLayoutEffect, useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { Route, Switch } from 'react-router-dom'
-import { animated, useTransition } from 'react-spring'
-import { useDispatch } from 'react-redux'
-import { useRouter } from 'hooks'
-import { protectedRoutes, TABS } from 'routes/paths'
 import { withTracker } from 'shared/ga'
 import { routeAuthorization, setLayout } from 'hocs'
-import { deviceResumeListener } from 'state/actions/mobile'
 
-import CreateSite from 'pages/CreateSite'
-import Firmwares from 'pages/Firmwares'
-import Home from 'pages/Home'
-import Data from 'pages/Data'
-import Login from 'pages/Login'
-import Menu from 'pages/Menu'
-import NotFound from 'pages/NotFound'
-import ConnectToPVS from 'pages/ConnectToPVS'
-import PvsConnectionSuccessful from 'pages/PvsConnectionSuccessful'
+import useUpgrade from 'hooks/useUpgrade'
+import useCanceledPVSConnection from 'hooks/useCanceledPVSConnection'
+
 import BillOfMaterials from 'pages/BillOfMaterials'
-import InventoryCount from 'pages/InventoryCount'
-import ScanLabels from 'pages/ScanLabels'
-import GiveFeedback from 'pages/GiveFeedback'
-import SNList from 'pages/SNList'
+import ConnectToPVS from 'pages/ConnectToPVS'
+import CreateSite from 'pages/CreateSite'
+import Data from 'pages/Data'
 import Devices from 'pages/Devices'
-import ModelEdit from 'pages/ModelEdit'
+import Firmwares from 'pages/Firmwares'
+import GiveFeedback from 'pages/GiveFeedback'
+import Home from 'pages/Home'
 import InstallSuccessful from 'pages/InstallSuccess'
-import SystemConfiguration from 'pages/SystemConfiguration'
-import SavingConfiguration from 'pages/SavingConfiguration'
+import InventoryCount from 'pages/InventoryCount'
+import LegacyDiscovery from 'pages/LegacyDiscovery'
+import Login from 'pages/Login'
 import Logout from 'pages/Logout'
+import Menu from 'pages/Menu'
+import ModelEdit from 'pages/ModelEdit'
+import NotFound from 'pages/NotFound'
 import PanelLayoutTool from 'pages/PanelLayoutTool/AddingPanels'
 import PanelLayoutToolGroupPanels from 'pages/PanelLayoutTool/GroupPanels'
-import LegacyDiscovery from 'pages/LegacyDiscovery'
+import PvsConnectionSuccessful from 'pages/PvsConnectionSuccessful'
+import SavingConfiguration from 'pages/SavingConfiguration'
+import ScanLabels from 'pages/ScanLabels'
+import SNList from 'pages/SNList'
+import SystemConfiguration from 'pages/SystemConfiguration'
 import ConnectionLost from 'pages/ConnectionLost'
-import paths from './paths'
+import UpdateScreen from 'pages/UpdateScreen'
+
 import { validateSession } from 'state/actions/auth'
 import { updateBodyHeight } from 'shared/utils'
+import { deviceResumeListener } from 'state/actions/mobile'
+
+import paths from './paths'
 
 const mapComponents = {
   [paths.PROTECTED.DEVICES.path]: Devices,
@@ -83,24 +70,6 @@ const mapComponents = {
   [paths.UNPROTECTED.LOGOUT.path]: Logout
 }
 
-const isTab = tab => compose(equals(tab), path(['tab']))
-
-const getTabNumber = cond([
-  [isTab(TABS.DATA), always(4)],
-  [isTab(TABS.CONFIGURE), always(3)],
-  [isTab(TABS.INSTALL), always(2)],
-  [isTab(TABS.HOME), always(1)],
-  [T, always(-1)]
-])
-const animationCSS = ifElse(
-  gt,
-  always({ opacity: 0, transform: 'translate(100%,0)' }),
-  always({ opacity: 0, transform: 'translate(-100%,0)' })
-)
-
-const getTabNumberFromPathname = (actualScreen = '', protectedRoutes) =>
-  getTabNumber(find(propEq('path', actualScreen), protectedRoutes))
-
 /**
  * The router of this app
  * @returns {*}
@@ -108,31 +77,6 @@ const getTabNumberFromPathname = (actualScreen = '', protectedRoutes) =>
  */
 function AppRoutes() {
   const dispatch = useDispatch()
-  const { location } = useRouter()
-  const [lastTab, setLastTab] = useState()
-
-  useEffect(() => {
-    setLastTab(getTabNumberFromPathname(location.pathname, protectedRoutes))
-  }, [location])
-
-  const fadeIn = useTransition(location, loc => loc.pathname, {
-    unique: true,
-    from: () => {
-      const actualTab = getTabNumberFromPathname(
-        location.pathname,
-        protectedRoutes
-      )
-      return animationCSS(actualTab, lastTab)
-    },
-    enter: { opacity: 1, transform: 'translate(0%,0%)' },
-    leave: () => {
-      const actualTab = getTabNumberFromPathname(
-        location.pathname,
-        protectedRoutes
-      )
-      return animationCSS(lastTab, actualTab)
-    }
-  })
 
   useLayoutEffect(() => {
     window.scrollTo(0, 0)
@@ -150,12 +94,13 @@ function AppRoutes() {
     return () => {
       document.removeEventListener('keyboardDidHide', updateBodyHeight)
     }
-  }, [dispatch])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   const isLoggedIn = useSelector(({ user }) => user.auth.access_token)
-  return fadeIn.map(({ item, props, key, state }) => (
-    <animated.div key={key} style={props}>
-      <Switch location={item}>
+  return (
+    <div>
+      <Switch>
         {Object.values(paths.UNPROTECTED).map(
           ({ path, header = false, footer = false }) => (
             <Route
@@ -164,15 +109,8 @@ function AppRoutes() {
               exact
               component={routeAuthorization(
                 false,
-                isLoggedIn,
-                state
-              )(
-                setLayout(
-                  header,
-                  footer,
-                  state
-                )(withTracker(mapComponents[path]))
-              )}
+                isLoggedIn
+              )(setLayout(header, footer)(withTracker(mapComponents[path])))}
             />
           )
         )}
@@ -184,22 +122,15 @@ function AppRoutes() {
               exact
               component={routeAuthorization(
                 true,
-                isLoggedIn,
-                state
-              )(
-                setLayout(
-                  header,
-                  footer,
-                  state
-                )(withTracker(mapComponents[path]))
-              )}
+                isLoggedIn
+              )(setLayout(header, footer)(withTracker(mapComponents[path])))}
             />
           )
         )}
         <Route component={NotFound} />
       </Switch>
-    </animated.div>
-  ))
+    </div>
+  )
 }
 
 export default AppRoutes

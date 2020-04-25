@@ -1,22 +1,21 @@
+import { compose, join, length, path, pick, prop, test, values } from 'ramda'
 import React, { useEffect } from 'react'
-import { Link } from 'react-router-dom'
-import { useHistory } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-
-import { useI18n } from 'shared/i18n'
-import { cleanString } from 'shared/utils'
-import { path, test, join, values, pick, prop, compose, length } from 'ramda'
+import { Link, useHistory } from 'react-router-dom'
 
 import paths from 'routes/paths'
 import SearchField from 'components/SearchField'
-import { GET_SITES_INIT, SET_SITE, RESET_SITE } from 'state/actions/site'
 
-import './Home.scss'
-import { either } from 'shared/utils'
+import { GET_SITES_INIT, SET_SITE, RESET_SITE } from 'state/actions/site'
 import { RESET_PVS_INFO_STATE } from 'state/actions/pvs'
 import { RESET_PVS_CONNECTION } from 'state/actions/network'
 import { RESET_DISCOVERY } from 'state/actions/devices'
 import { RESET_INVENTORY } from 'state/actions/inventory'
+
+import { useI18n } from 'shared/i18n'
+import { cleanString, either } from 'shared/utils'
+
+import './Home.scss'
 
 const getString = compose(
   join(' '),
@@ -44,7 +43,7 @@ const resetCommissioning = dispatch => {
   dispatch(RESET_SITE())
 }
 
-function Home({ animationState }) {
+function Home() {
   const t = useI18n()
   const dispatch = useDispatch()
   const history = useHistory()
@@ -55,8 +54,9 @@ function Home({ animationState }) {
   const errorMessage = path(['data', 'message'], error)
 
   useEffect(() => {
-    if (animationState === 'enter') dispatch(GET_SITES_INIT())
-  }, [dispatch, animationState])
+    dispatch(GET_SITES_INIT())
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   const notFoundText = t('NOT_FOUND')
 

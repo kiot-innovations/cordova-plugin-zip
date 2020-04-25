@@ -32,10 +32,25 @@ body {
   padding-top: env(safe-area-inset-top); /* iOS 11.2 */
   overflow: scroll;
   -webkit-overflow-scrolling: touch;
-  transform: translate3d(0,0,0);
+  transform: translate3d(0, 0, 0);
 }
 
 html {
   height: 100vh;
   background-color: $dark-blue;
+}
+
+.header-transition{
+  transition: max-height 250ms ease-out,opacity 250ms ease-out;
+
+}
+
+.show-footer {
+  opacity: 1;
+  max-height: 90px;
+}
+
+.hide-footer {
+  opacity: 0;
+  max-height: 0;
 }

@@ -1,13 +1,13 @@
-import React from 'react'
-import { useForm, useField } from 'react-final-form-hooks'
-import { useDispatch, useSelector } from 'react-redux'
-import { useI18n } from 'shared/i18n'
-import { SEND_FEEDBACK_INIT } from 'state/actions/feedback'
-import { Redirect } from 'react-router-dom'
-import paths from 'routes/paths'
+import clsx from 'clsx'
 import Rating from 'components/Rating'
 import TextArea from 'components/TextArea'
-import clsx from 'clsx'
+import React from 'react'
+import { useField, useForm } from 'react-final-form-hooks'
+import { useDispatch, useSelector } from 'react-redux'
+import { Redirect } from 'react-router-dom'
+import paths from 'routes/paths'
+import { useI18n } from 'shared/i18n'
+import { SEND_FEEDBACK_INIT } from 'state/actions/feedback'
 
 const onSubmit = dispatch => {
   return values => dispatch(SEND_FEEDBACK_INIT(values))
@@ -17,7 +17,7 @@ const changeRate = form => {
   return value => form.change('rating', value)
 }
 
-function GiveFeedback({ animationState }) {
+function GiveFeedback() {
   const t = useI18n()
   const dispatch = useDispatch()
   const isSendingFeedback = useSelector(state => state.global.isSendingFeedback)
@@ -37,8 +37,7 @@ function GiveFeedback({ animationState }) {
   const comment = useField('comment', form)
   const rating = useField('rating', form)
 
-  if (isFeedbackSuccessful && animationState !== 'leave')
-    return <Redirect to={paths.PROTECTED.ROOT.path} />
+  if (isFeedbackSuccessful) return <Redirect to={paths.PROTECTED.ROOT.path} />
 
   const submitClassnames = clsx('button', 'is-uppercase', 'is-primary', {
     'is-loading': isSendingFeedback

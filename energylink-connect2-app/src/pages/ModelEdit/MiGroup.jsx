@@ -1,26 +1,27 @@
-/* eslint react-hooks/exhaustive-deps: 0 */
 import React, { useEffect, useState } from 'react'
-import { useI18n } from 'shared/i18n'
 import { useDispatch, useSelector } from 'react-redux'
 import {
-  test,
-  union,
+  compose,
+  filter,
   includes,
   prop,
   path,
-  pathOr,
-  compose,
   map,
-  filter,
   pluck,
-  equals
+  equals,
+  pathOr,
+  test,
+  union
 } from 'ramda'
-import { FETCH_MODELS_INIT } from 'state/actions/devices'
+import { useI18n } from 'shared/i18n'
 import { cleanString } from 'shared/utils'
-import './ModelEdit.scss'
-import SearchField from '../../components/SearchField'
-import Collapsible from '../../components/Collapsible'
+import { FETCH_MODELS_INIT } from 'state/actions/devices'
 import { UPDATE_DEVICES_LIST } from 'state/actions/devices'
+
+import Collapsible from '../../components/Collapsible'
+import SearchField from '../../components/SearchField'
+
+import './ModelEdit.scss'
 
 const buildSelectValue = value => ({
   label: value,
@@ -37,7 +38,7 @@ const applyModel = (miList, selectedModel, selectedMi, dispatch) => {
   dispatch(UPDATE_DEVICES_LIST(updatedList))
 }
 
-const MiGroup = ({ title, data, animationState }) => {
+const MiGroup = ({ title, data }) => {
   const t = useI18n()
   const dispatch = useDispatch()
   const [selectedMi, setSelectedMi] = useState([])
@@ -57,9 +58,8 @@ const MiGroup = ({ title, data, animationState }) => {
   }
 
   useEffect(() => {
-    if (animationState === 'enter') {
-      dispatch(FETCH_MODELS_INIT(miTypes[title]))
-    }
+    dispatch(FETCH_MODELS_INIT(miTypes[title]))
+    //eslint-disable-next-line
   }, [])
 
   const modelOptions = useSelector(state =>

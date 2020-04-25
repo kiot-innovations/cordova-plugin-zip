@@ -1,24 +1,25 @@
 import React, { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import clsx from 'clsx'
 import {
-  path,
-  map,
-  cond,
-  propEq,
-  isNil,
-  isEmpty,
   anyPass,
+  compose,
+  cond,
+  isEmpty,
+  isNil,
   length,
   lt,
-  compose,
-  filter
+  filter,
+  map,
+  path,
+  propEq
 } from 'ramda'
-import clsx from 'clsx'
+import { useDispatch, useSelector } from 'react-redux'
 import { useI18n } from 'shared/i18n'
 import { GET_INTERFACES_INIT } from 'state/actions/systemConfiguration'
+
 import './InterfacesWidget.scss'
 
-function InterfacesWidget({ animationState }) {
+function InterfacesWidget() {
   const dispatch = useDispatch()
   const t = useI18n()
 
@@ -29,8 +30,8 @@ function InterfacesWidget({ animationState }) {
   const { serialNumber } = useSelector(path(['pvs']))
 
   useEffect(() => {
-    if (animationState === 'enter') dispatch(GET_INTERFACES_INIT())
-  }, [animationState, dispatch])
+    dispatch(GET_INTERFACES_INIT())
+  }, [dispatch])
 
   return (
     <section className="iw is-flex collapsible pl-0">

@@ -1,20 +1,22 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { useHistory } from 'react-router-dom'
+import { map, isEmpty, equals } from 'ramda'
 import { useI18n } from 'shared/i18n'
+import { scanSimple } from 'shared/scandit'
 import { decodeQRData } from 'shared/scanning'
 import {
   clearPVSErr,
-  PVS_CONNECTION_INIT,
-  PVS_CONNECTION_ERROR
+  PVS_CONNECTION_ERROR,
+  PVS_CONNECTION_INIT
 } from 'state/actions/network'
-import { useSelector, useDispatch } from 'react-redux'
-import { useHistory } from 'react-router-dom'
-import { map } from 'ramda'
-import paths from 'routes/paths'
 import { saveSerialNumber } from 'state/actions/pvs'
-import './ConnectToPVS.scss'
 import { Loader } from '../../components/Loader'
-import { scanSimple } from 'shared/scandit'
+
+import paths from 'routes/paths'
+
+import './ConnectToPVS.scss'
 
 const onSuccess = (doneScanning, generatePassword, dispatch, t) => data => {
   try {
@@ -42,13 +44,13 @@ const onSuccess = (doneScanning, generatePassword, dispatch, t) => data => {
   }
 }
 
-function ConnectToPVS({ animationState }) {
+function ConnectToPVS() {
   const t = useI18n()
   const dispatch = useDispatch()
   const history = useHistory()
-  const connectionState = useSelector(state => state.network)
+
+  const { connecting, connected, err } = useSelector(state => state.network)
   const [scanning, setScanning] = useState(true)
-  const [init, setInit] = useState(false)
 
   const generatePassword = serialNumber => {
     let lastIndex = serialNumber.length
@@ -64,7 +66,6 @@ function ConnectToPVS({ animationState }) {
     if (typeof onDone.current === 'function') {
       onDone.current()
       setScanning(false)
-      setInit(false)
     }
     if (shouldGoBack) history.goBack()
   }
@@ -74,8 +75,7 @@ function ConnectToPVS({ animationState }) {
   )
 
   const startScanning = () => {
-    if (window.Scandit && !init) {
-      setInit(true)
+    if (window.Scandit) {
       onDone.current = scanSimple(processQRCode)
     }
     if (!scanning) setScanning(true)
@@ -83,52 +83,39 @@ function ConnectToPVS({ animationState }) {
 
   useEffect(() => {
     if (
-      !connectionState.connecting &&
-      connectionState.connected &&
-      animationState !== 'leave'
-    ) {
-      stopScanning()
-      history.push(paths.PROTECTED.PVS_CONNECTION_SUCCESS.path)
-    }
-    if (
-      !connectionState.connected &&
-      !connectionState.connecting &&
-      connectionState.err
+      !connected &&
+      !connecting &&
+      !isEmpty(err) &&
+      !equals('CANCELED', err)
     ) {
       dispatch(clearPVSErr())
       alert(t('PVS_CONN_ERROR'))
     }
-  }, [
-    animationState,
-    connectionState.connected,
-    connectionState.connecting,
-    connectionState.err,
-    dispatch,
-    history,
-    scanning,
-    t
-  ])
+
+    if (connected && !connecting && isEmpty(err)) {
+      stopScanning()
+      history.push(paths.PROTECTED.PVS_CONNECTION_SUCCESS.path)
+    }
+  }, [connected, connecting, err])
 
   useEffect(() => {
-    if (animationState === 'enter') startScanning()
+    startScanning()
 
     return () => {
-      if (animationState === 'leave' && typeof onDone.current === 'function')
-        stopScanning()
-
-      if (animationState === 'leave' && connectionState.connecting) {
+      if (typeof onDone.current === 'function') stopScanning()
+      if (connecting) {
         dispatch(PVS_CONNECTION_ERROR('CANCELED'))
         dispatch(clearPVSErr())
       }
     }
-  }, [])
+  }, [dispatch])
 
   return (
     <div className="qr-layout has-text-centered">
       <span className="is-uppercase has-text-weight-bold mt-10">
         {t('LOOK_FOR_QR')}
       </span>
-      {connectionState.connecting ? (
+      {connecting ? (
         <Loader />
       ) : scanning ? (
         <div id="scandit" />
@@ -139,11 +126,11 @@ function ConnectToPVS({ animationState }) {
       )}
       <div className="pt-20">
         <button
-          disabled={connectionState.connecting}
+          disabled={connecting}
           className="button is-primary"
           onClick={scanning ? stopScanning(true) : startScanning}
         >
-          {connectionState.connecting
+          {connecting
             ? t('CONNECTING')
             : scanning
             ? t('STOP_SCAN')

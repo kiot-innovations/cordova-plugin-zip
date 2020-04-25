@@ -24,13 +24,15 @@ export const networkReducer = createReducer(
       ...state,
       SSID: ssid,
       password: password,
-      connecting: true
+      connecting: true,
+      err: ''
     }),
     [PVS_CONNECTION_SUCCESS]: state => ({
       ...state,
       connected: true,
       connecting: false,
-      connectionCanceled: false
+      connectionCanceled: false,
+      err: ''
     }),
     [PVS_CONNECTION_ERROR]: (state, payload) => ({
       ...state,

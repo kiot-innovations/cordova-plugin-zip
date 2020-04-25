@@ -3,8 +3,9 @@ import { of } from 'rxjs'
 
 describe('Connect to epic', () => {
   let connectToEpic
-  let iosConnect = jest.fn().mockReturnValue('default')
+  const iosConnect = jest.fn().mockReturnValue('default')
   const androidConnect = jest.fn().mockReturnValue('default')
+  const connectedSSID = jest.fn().mockReturnValue('sunpower')
   beforeAll(() => {
     delete global.device
     delete global.WifiWizard2
@@ -15,7 +16,8 @@ describe('Connect to epic', () => {
     connectToEpic = require('./connectToEpic').default
     global.WifiWizard2 = {
       iOSConnectNetwork: iosConnect,
-      connect: androidConnect
+      connect: androidConnect,
+      getConnectedSSID: connectedSSID
     }
   })
 

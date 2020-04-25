@@ -13,7 +13,7 @@ import {
 
 const getPVSVersionChecked = pathOr(false, ['firmwareUpdate', 'canContinue'])
 
-const PvsConnectionSuccessful = ({ animationState }) => {
+const PvsConnectionSuccessful = () => {
   const t = useI18n()
   const dispatch = useDispatch()
   const serialNumber = useSelector(state => state.pvs.serialNumber)
@@ -25,13 +25,10 @@ const PvsConnectionSuccessful = ({ animationState }) => {
   }
 
   useEffect(() => {
-    if (animationState === 'enter') {
-      dispatch(START_COMMISSIONING_INIT())
-      dispatch(
-        START_DISCOVERY_INIT({ Device: 'allnomi', Interfaces: ['mime'] })
-      )
-    }
-  }, [dispatch, animationState])
+    dispatch(START_COMMISSIONING_INIT())
+    dispatch(START_DISCOVERY_INIT({ Device: 'allnomi', Interfaces: ['mime'] }))
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   return (
     <div className="pvs-connection-success-screen pr-20 pl-20">

@@ -1,22 +1,25 @@
 import React, { useCallback, useState } from 'react'
 import { useHistory, useLocation } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
+import { pathOr } from 'ramda'
 import { useI18n } from 'shared/i18n'
+import paths from 'routes/paths'
+import useModal from 'hooks/useModal'
+
+import BlockUI from 'react-block-ui'
+import SNManualEntry from './SNManualEntry'
+import SNScanButtons from './SNScanButtons'
+import { Loader } from 'components/Loader'
+
 import { REMOVE_SN } from 'state/actions/pvs'
 import { PUSH_CANDIDATES_INIT } from 'state/actions/devices'
 import { START_DISCOVERY_INIT } from 'state/actions/pvs'
 import { UPDATE_MI_COUNT } from 'state/actions/inventory'
-import { Loader } from 'components/Loader'
-import paths from 'routes/paths'
-import { pathOr } from 'ramda'
-import useModal from 'hooks/useModal'
-import BlockUI from 'react-block-ui'
-import './SNList.scss'
-import 'react-block-ui/style.css'
-import SNManualEntry from './SNManualEntry'
-import SNScanButtons from './SNScanButtons'
 
-function SNList({ animationState }) {
+import 'react-block-ui/style.css'
+import './SNList.scss'
+
+function SNList() {
   const t = useI18n()
   const dispatch = useDispatch()
   const history = useHistory()
@@ -136,12 +139,12 @@ function SNList({ animationState }) {
   const {
     modal: serialNumbersModal,
     toggleModal: toggleSerialNumbersModal
-  } = useModal(animationState, serialNumbersModalContent, modalsTitle, false)
+  } = useModal(serialNumbersModalContent, modalsTitle, false)
 
   const {
     modal: legacyDiscoveryModal,
     toggleModal: toggleLegacyDiscoveryModal
-  } = useModal(animationState, legacyDiscoveryModalContent, modalsTitle, false)
+  } = useModal(legacyDiscoveryModalContent, modalsTitle, false)
 
   const countSN = () => {
     if (parseInt(scannedMICount, 10) === parseInt(expectedMICount, 10)) {

@@ -24,7 +24,7 @@ const rseReducer = createReducer(
   {
     [GET_RSE_INIT]: (state, isPolling = false) => ({
       ...(isPolling ? state : initialState),
-      isFetching: !isPolling,
+      isFetching: true,
       isPolling
     }),
     [GET_RSE_SUCCESS]: (state, payload) => ({

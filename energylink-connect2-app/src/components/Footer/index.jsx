@@ -1,27 +1,27 @@
 import React, { useEffect, useMemo, useState } from 'react'
 import { useSelector } from 'react-redux'
-import { animated, useTransition } from 'react-spring'
 import { useHistory, useLocation } from 'react-router-dom'
 import paths, { protectedRoutes, TABS } from 'routes/paths'
 import Nav from '@sunpower/nav'
+import clsx from 'clsx'
 import './footer.scss'
 
 const isActive = (path = '', tab = '') =>
   !!protectedRoutes.find(elem => elem.path === path && elem.tab === tab)
 
+//The animation values that we are going to use are
+//
+// closed -> maxHeight: 0, opacity: 0
+// open -> maxHeight: 90, opacity: 1
+
 const Footer = () => {
   const history = useHistory()
-  const showFooter = useSelector(({ ui }) => ui.footer)
+  const showFooter = useSelector(({ ui }) => !!ui.footer)
   const connected = useSelector(({ network }) => network.connected)
   const [lastInstallPage, setLast] = useState(
     paths.PROTECTED.CONNECT_TO_PVS.path
   )
   const location = useLocation()
-  const grow = useTransition(!!showFooter, null, {
-    from: { maxHeight: 0, opacity: 0 },
-    enter: { maxHeight: 90, opacity: 1 },
-    leave: { maxHeight: 0, opacity: 0 }
-  })
   const active = useMemo(
     () => ({
       home: isActive(location.pathname, TABS.HOME),
@@ -72,17 +72,15 @@ const Footer = () => {
     }
   ]
 
-  return grow.map(
-    ({ item, props, key }) =>
-      item && (
-        <animated.footer
-          style={props}
-          key={key}
-          className={'custom-footer is-clipper'}
-        >
-          <Nav items={navBarItems} />
-        </animated.footer>
-      )
+  return (
+    <footer
+      className={clsx('custom-footer is-clipper', {
+        'show-footer': showFooter,
+        'hide-footer': !showFooter
+      })}
+    >
+      <Nav items={navBarItems} />
+    </footer>
   )
 }
 
