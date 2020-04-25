@@ -51,7 +51,6 @@ function ConnectToPVS() {
 
   const { connecting, connected, err } = useSelector(state => state.network)
   const [scanning, setScanning] = useState(true)
-  const [init, setInit] = useState(false)
 
   const generatePassword = serialNumber => {
     let lastIndex = serialNumber.length
@@ -67,7 +66,6 @@ function ConnectToPVS() {
     if (typeof onDone.current === 'function') {
       onDone.current()
       setScanning(false)
-      setInit(false)
     }
     if (shouldGoBack) history.goBack()
   }
@@ -77,8 +75,7 @@ function ConnectToPVS() {
   )
 
   const startScanning = () => {
-    if (window.Scandit && !init) {
-      setInit(true)
+    if (window.Scandit) {
       onDone.current = scanSimple(processQRCode)
     }
     if (!scanning) setScanning(true)
@@ -111,7 +108,7 @@ function ConnectToPVS() {
         dispatch(clearPVSErr())
       }
     }
-  }, [])
+  }, [dispatch])
 
   return (
     <div className="qr-layout has-text-centered">
