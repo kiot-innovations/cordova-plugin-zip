@@ -22,15 +22,13 @@ function drawTable(t, inventory) {
 }
 
 const useMap = (latitude, longitude) => {
-  const [url, setUrl] = useState(
-    `maps://maps.google.com/maps?daddr=${latitude},${longitude}&amp;ll=`
-  )
+  const [url, setUrl] = useState('')
   useEffect(() => {
     if (isIos())
       setUrl(
         `maps://maps.google.com/maps?daddr=${latitude},${longitude}&amp;ll=`
       )
-    else setUrl(`geo:${latitude},${longitude}`)
+    else setUrl(`geo:0,0?q=${latitude},${longitude}`)
   }, [latitude, longitude])
   return url
 }
