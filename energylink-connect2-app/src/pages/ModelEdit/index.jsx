@@ -2,9 +2,10 @@ import React, { useEffect } from 'react'
 import clsx from 'clsx'
 import { useHistory } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { groupBy, path, prop } from 'ramda'
+import { groupBy, path, prop, length } from 'ramda'
 import { useI18n } from 'shared/i18n'
 import { SET_METADATA_INIT } from 'state/actions/pvs'
+import { CLAIM_DEVICES_RESET } from 'state/actions/devices'
 import useModal from 'hooks/useModal'
 import paths from 'routes/paths'
 import MiGroup from './MiGroup'
@@ -25,6 +26,11 @@ const ModelEdit = () => {
   const { candidates, found } = useSelector(state => state.devices)
   const siteKey = useSelector(path(['site', 'site', 'siteKey']))
 
+  const resetClaim = () => {
+    dispatch(CLAIM_DEVICES_RESET())
+    history.goBack()
+  }
+
   const modalContent = (
     <div className="has-text-centered">
       <span className="has-text-white">{t('MISSING_MODELS')}</span>
@@ -37,7 +43,11 @@ const ModelEdit = () => {
     </span>
   )
 
-  const groupedSerialNumbers = groupBy(prop('MODEL'), candidates)
+  const miSource =
+    length(candidates) > 0
+      ? candidates
+      : found.filter(device => device.DEVICE_TYPE === 'Inverter')
+  const groupedSerialNumbers = groupBy(prop('MODEL'), miSource)
 
   const { modal, toggleModal } = useModal(modalContent, modalTitle, false)
 
@@ -85,7 +95,7 @@ const ModelEdit = () => {
       <div>
         <button
           className="button is-uppercase is-outlined is-primary has-text-primary mb-20 mr-10"
-          onClick={() => history.goBack()}
+          onClick={resetClaim}
         >
           {t('BACK')}
         </button>

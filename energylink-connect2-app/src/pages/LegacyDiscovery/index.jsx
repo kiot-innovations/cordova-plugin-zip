@@ -1,29 +1,54 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useI18n } from 'shared/i18n'
-import './LegacyDiscovery.scss'
-import { FETCH_CANDIDATES_COMPLETE } from 'state/actions/devices'
+import clsx from 'clsx'
+import { useHistory } from 'react-router-dom'
+import {
+  CLAIM_DEVICES_INIT,
+  FETCH_CANDIDATES_COMPLETE
+} from 'state/actions/devices'
 import { START_DISCOVERY_INIT } from 'state/actions/pvs'
 import { groupBy, prop, propOr, length, pluck, reduce, add } from 'ramda'
+import paths from 'routes/paths'
 import DeviceGroup from './DeviceGroup'
+import './LegacyDiscovery.scss'
 
-const LegacyDiscovery = ({ animationState }) => {
+const claimDevices = (devices, dispatch) => {
+  const inverters = devices.filter(device => device.DEVICE_TYPE === 'Inverter')
+  const claimObject = inverters.map(mi => {
+    mi.OPERATION = 'add'
+    return mi
+  })
+  dispatch(CLAIM_DEVICES_INIT(claimObject))
+}
+
+const LegacyDiscovery = () => {
   const t = useI18n()
-  const { found, progress } = useSelector(state => state.devices)
+  const history = useHistory()
+  const {
+    claimingDevices,
+    claimError,
+    claimedDevices,
+    found,
+    progress
+  } = useSelector(state => state.devices)
   const dispatch = useDispatch()
 
+  const discoveryComplete = propOr(false, 'complete', progress)
+
   useEffect(() => {
-    if (animationState === 'enter') {
+    if (!discoveryComplete) {
       dispatch(FETCH_CANDIDATES_COMPLETE())
     }
-  }, [animationState, dispatch])
+    if (claimedDevices) {
+      history.push(paths.PROTECTED.MODEL_EDIT.path)
+    }
+  }, [claimedDevices, discoveryComplete, dispatch, history])
 
   const restartDiscovery = () => {
     dispatch(START_DISCOVERY_INIT({ Device: 'allplusmime' }))
     dispatch(FETCH_CANDIDATES_COMPLETE())
   }
-
-  const discoveryComplete = propOr(false, 'complete', progress)
 
   const discoveryProgress = propOr([], 'progress', progress)
   const deviceProgress = pluck('PROGR', discoveryProgress)
@@ -56,17 +81,26 @@ const LegacyDiscovery = ({ animationState }) => {
             {t('DISCOVERY_COMPLETE')}
           </span>
           <span className="has-text-weight-bold has-text-white mt-10 mb-20">
-            {t('REMOVE_UNWANTED_MIS')}
+            {claimError
+              ? t('CLAIM_DEVICES_ERROR', claimError)
+              : t('REMOVE_UNWANTED_MIS')}
           </span>
           <div className="inline-buttons">
             <button
               onClick={restartDiscovery}
               className="button half-button-padding is-secondary trigger-scan mr-10"
             >
-              {t('SCAN_MORE')}
+              {t('REDISCOVER')}
             </button>
-            <button className="button half-button-padding is-primary trigger-scan">
-              {t('CONTINUE')}
+            <button
+              disabled={claimingDevices}
+              onClick={() => claimDevices(found, dispatch)}
+              className={clsx(
+                'button half-button-padding is-primary trigger-scan',
+                { 'is-loading': claimingDevices }
+              )}
+            >
+              {claimError ? t('RETRY') : t('CONTINUE')}
             </button>
           </div>
         </div>

@@ -18,6 +18,7 @@ export const CLAIM_DEVICES_SUCCESS = createAction('CLAIM_DEVICES_SUCCESS')
 export const CLAIM_DEVICES_ERROR = createAction('CLAIM_DEVICES_ERROR')
 export const CLAIM_DEVICES_UPDATE = createAction('CLAIM_DEVICES_UPDATE')
 export const CLAIM_DEVICES_COMPLETE = createAction('CLAIM_COMPLETE')
+export const CLAIM_DEVICES_RESET = createAction('CLAIM_DEVICES_RESET')
 
 export const RESET_DISCOVERY = createAction('RESET_DISCOVERY')
 

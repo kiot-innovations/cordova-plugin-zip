@@ -1,0 +1,77 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Legacy Discovery Results page renders correctly 1`] = `
+<BrowserRouter
+  keyLength={0}
+>
+  <Router
+    history={
+      Object {
+        "action": "POP",
+        "block": [Function],
+        "createHref": [Function],
+        "go": [Function],
+        "goBack": [Function],
+        "goForward": [Function],
+        "length": 1,
+        "listen": [Function],
+        "location": Object {
+          "hash": "",
+          "pathname": "/",
+          "search": "",
+          "state": undefined,
+        },
+        "push": [Function],
+        "replace": [Function],
+      }
+    }
+  >
+    <Provider
+      store={
+        Object {
+          "clearActions": [Function],
+          "dispatch": [Function],
+          "getActions": [Function],
+          "getState": [Function],
+          "replaceReducer": [Function],
+          "subscribe": [Function],
+        }
+      }
+    >
+      <LegacyDiscovery>
+        <div
+          className="legacy-discovery fill-parent has-text-centered pr-15 pl-15"
+        >
+          <div
+            className="legacy-discovery__title"
+          >
+            <span
+              className="is-uppercase has-text-weight-bold mb-20"
+            >
+              LEGACY_DISCOVERY
+            </span>
+          </div>
+          <div
+            className="legacy-discovery__devices"
+          />
+          <div
+            className="legacy-discovery__progress has-text-centered is-flex flex-column"
+          >
+            <span
+              className="discovery-percentage mb-20 has-text-weight-bold is-size-1 has-text-white"
+            >
+              0
+               %
+            </span>
+            <span
+              className="has-text-weight-bold"
+            >
+              DISCOVERY_IN_PROGRESS
+            </span>
+          </div>
+        </div>
+      </LegacyDiscovery>
+    </Provider>
+  </Router>
+</BrowserRouter>
+`;

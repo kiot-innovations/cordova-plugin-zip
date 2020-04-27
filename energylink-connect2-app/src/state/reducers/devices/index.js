@@ -11,6 +11,7 @@ import {
   FETCH_CANDIDATES_ERROR,
   CLAIM_DEVICES_INIT,
   CLAIM_DEVICES_ERROR,
+  CLAIM_DEVICES_RESET,
   RESET_DISCOVERY,
   CLAIM_DEVICES_UPDATE,
   CLAIM_DEVICES_COMPLETE,
@@ -93,6 +94,13 @@ export default createReducer(
       ...state,
       claimingDevices: false,
       claimError: payload
+    }),
+    [CLAIM_DEVICES_RESET]: state => ({
+      ...state,
+      claimProgress: initialState.claimProgress,
+      claimingDevices: initialState.claimingDevices,
+      claimedDevices: initialState.claimedDevices,
+      claimError: initialState.claimError
     }),
     [RESET_DISCOVERY]: () => ({
       ...initialState
