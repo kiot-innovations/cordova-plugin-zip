@@ -55,30 +55,17 @@ function Firmwares() {
     modalTitle(t),
     false
   )
-  const { progress, lastProgress, fileInfo } = useSelector(
+  const { progress, fileInfo } = useSelector(({ fileDownloader }) => ({
+    ...fileDownloader.progress,
+    fileInfo: fileDownloader.fileInfo
+  }))
+
+  const { progress: gpProgress, error: gpError, lastModified } = useSelector(
     ({ fileDownloader }) => ({
-      ...fileDownloader.progress,
-      fileInfo: fileDownloader.fileInfo
+      ...fileDownloader.gridProfileProgress
     })
   )
 
-  const {
-    progress: gpProgress,
-    lastProgress: gpLastProgress,
-    error: gpError,
-    lastModified
-  } = useSelector(({ fileDownloader }) => ({
-    ...fileDownloader.gridProfileProgress
-  }))
-
-  const springProgress = useSpring({
-    from: { value: lastProgress },
-    to: { value: progress }
-  })
-  const gpSpringProgress = useSpring({
-    from: { value: gpLastProgress },
-    to: { value: gpProgress }
-  })
   const downloadFile = useCallback(
     () => dispatch(fileDownloaderActions.getFile()),
     [dispatch]
@@ -135,7 +122,7 @@ function Firmwares() {
             {progress !== 100 && (
               <progress
                 className="progress is-tiny is-white"
-                value={springProgress.value}
+                value={progress}
                 max="100"
               />
             )}
@@ -176,7 +163,7 @@ function Firmwares() {
             {gpProgress !== 100 && (
               <progress
                 className="progress is-tiny is-white"
-                value={gpSpringProgress.value}
+                value={gpProgress}
                 max="100"
               />
             )}
