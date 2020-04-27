@@ -5,11 +5,7 @@ import { UPDATE_DEVICES_LIST } from 'state/actions/devices'
 import Collapsible from 'components/Collapsible'
 import './LegacyDiscovery.scss'
 
-const renderDevice = (
-  discoveryComplete,
-  removeInverter,
-  title
-) => deviceItem => (
+const deviceRow = (discoveryComplete, removeInverter, title) => deviceItem => (
   <div className="pt-5 pb-5 device-item" key={deviceItem.SERIAL}>
     <span className="mt-5 mb-5 has-text-white">{deviceItem.SERIAL}</span>
     {discoveryComplete && title === 'Inverter' ? (
@@ -26,7 +22,7 @@ const renderDevice = (
 )
 
 const DeviceGroup = ({ title, data, discoveryComplete }) => {
-  const dispatch = useDispatch
+  const dispatch = useDispatch()
   const { found } = useSelector(state => state.devices)
 
   const removeInverter = serial => {
@@ -35,7 +31,7 @@ const DeviceGroup = ({ title, data, discoveryComplete }) => {
   }
 
   const deviceList = map(
-    renderDevice(discoveryComplete, removeInverter, title),
+    deviceRow(discoveryComplete, removeInverter, title),
     data
   )
 
