@@ -1,20 +1,21 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useI18n } from 'shared/i18n'
-import clsx from 'clsx'
 import { useHistory } from 'react-router-dom'
 import {
   CLAIM_DEVICES_INIT,
   FETCH_CANDIDATES_COMPLETE
 } from 'state/actions/devices'
 import { START_DISCOVERY_INIT } from 'state/actions/pvs'
+import { filterInverters } from 'shared/utils'
 import { groupBy, prop, propOr, length, pluck, reduce, add } from 'ramda'
+import clsx from 'clsx'
 import paths from 'routes/paths'
 import DeviceGroup from './DeviceGroup'
 import './LegacyDiscovery.scss'
 
 const claimDevices = (devices, dispatch) => {
-  const inverters = devices.filter(device => device.DEVICE_TYPE === 'Inverter')
+  const inverters = filterInverters(devices)
   const claimObject = inverters.map(mi => {
     mi.OPERATION = 'add'
     return mi

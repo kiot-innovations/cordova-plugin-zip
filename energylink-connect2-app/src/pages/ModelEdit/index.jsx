@@ -6,6 +6,7 @@ import { groupBy, path, prop, length } from 'ramda'
 import { useI18n } from 'shared/i18n'
 import { SET_METADATA_INIT } from 'state/actions/pvs'
 import { CLAIM_DEVICES_RESET } from 'state/actions/devices'
+import { filterInverters } from 'shared/utils'
 import useModal from 'hooks/useModal'
 import paths from 'routes/paths'
 import MiGroup from './MiGroup'
@@ -43,10 +44,7 @@ const ModelEdit = () => {
     </span>
   )
 
-  const miSource =
-    length(candidates) > 0
-      ? candidates
-      : found.filter(device => device.DEVICE_TYPE === 'Inverter')
+  const miSource = length(candidates) > 0 ? candidates : filterInverters(found)
   const groupedSerialNumbers = groupBy(prop('MODEL'), miSource)
 
   const { modal, toggleModal } = useModal(modalContent, modalTitle, false)

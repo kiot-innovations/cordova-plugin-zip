@@ -17,7 +17,8 @@ import {
   assoc,
   pathEq,
   includes,
-  values
+  values,
+  filter
 } from 'ramda'
 
 export const either = (condition, whenTrue, whenFalse = null) =>
@@ -168,3 +169,5 @@ const flattenObject = ob => {
 export const findProp = curry((prop, obj) =>
   compose(includes(prop), values, flattenObject)(obj)
 )
+
+export const filterInverters = filter(propEq('DEVICE_TYPE', 'Inverter'))
