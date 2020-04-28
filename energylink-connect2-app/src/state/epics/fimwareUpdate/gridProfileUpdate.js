@@ -37,9 +37,7 @@ export const epicUploadGridProfile = action$ =>
     ofType(FIRMWARE_GET_VERSION_COMPLETE.getType()),
     switchMap(() =>
       from(uploadGridProfile()).pipe(
-        map(() => {
-          return GRID_PROFILE_UPLOAD_COMPLETE()
-        }),
+        map(() => GRID_PROFILE_UPLOAD_COMPLETE()),
         catchError(err => of(GRID_PROFILE_UPLOAD_ERROR.asError(err.message)))
       )
     )
