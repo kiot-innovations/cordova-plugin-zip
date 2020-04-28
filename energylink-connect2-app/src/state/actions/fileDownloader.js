@@ -1,4 +1,13 @@
-import { append, compose, head, join, slice, split } from 'ramda'
+import {
+  append,
+  compose,
+  head,
+  join,
+  pickBy,
+  slice,
+  split,
+  toPairs
+} from 'ramda'
 import { createAction } from 'redux-act'
 
 export const GET_FILE = createAction('GET FILE')
@@ -42,6 +51,16 @@ const getFileSystemURL = compose(
   slice(0, -2),
   split('/')
 )
+
+const eventListeners = {}
+
+const applyToEventListeners = addRemoveEventListenerFn =>
+  toPairs(
+    pickBy((_, event) => eventListeners[event], eventListeners)
+  ).map(([eventName, callback]) =>
+    addRemoveEventListenerFn(eventName, callback)
+  )
+
 export async function getFirmwareVersionNumber() {
   try {
     // const swagger = await getApiFirmware()
@@ -216,21 +235,20 @@ function downloadFile(
 ) {
   window.downloader.init({ folder: 'firmware' })
 
-  if (showProgress)
-    document.addEventListener('DOWNLOADER_downloadProgress', e => {
-      downloadProgress(e, dispatch)
-    })
+  eventListeners['DOWNLOADER_downloadProgress'] = showProgress
+    ? e => downloadProgress(e, dispatch)
+    : undefined
 
-  document.addEventListener('DOWNLOADER_downloadSuccess', e =>
-    downloadSuccess(e, dispatch, wifiOnly)
-  )
+  eventListeners['DOWNLOADER_downloadSuccess'] = e =>
+    downloadSuccess(e, dispatch)
+
+  applyToEventListeners(document.addEventListener)
   window.downloader.get(fileUrl, null, fileName)
 }
 
 function removeEventListeners() {
   window.downloader.abort()
-  document.removeEventListener('DOWNLOADER_downloadSuccess', () => {})
-  document.removeEventListener('DOWNLOADER_downloadProgress', () => {})
+  applyToEventListeners(document.removeEventListener)
 }
 
 export const abortDownload = () => dispatch => {
@@ -238,7 +256,6 @@ export const abortDownload = () => dispatch => {
   dispatch(ABORT_DOWNLOAD())
 }
 
-function downloadSuccess(event, dispatch, wifiOnly) {
+function downloadSuccess() {
   removeEventListeners()
-  dispatch(getFile(wifiOnly))
 }

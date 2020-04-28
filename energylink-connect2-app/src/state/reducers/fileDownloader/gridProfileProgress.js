@@ -2,6 +2,7 @@ import {
   GRID_PROFILE_DOWNLOAD_INIT,
   GRID_PROFILE_DOWNLOAD_PROGRESS,
   GRID_PROFILE_DOWNLOAD_SUCCESS,
+  GRID_PROFILE_DOWNLOAD_ERROR,
   GRID_PROFILE_GET_FILE,
   GRID_PROFILE_FILE_ERROR,
   GRID_PROFILE_SET_FILE_INFO
@@ -26,6 +27,10 @@ export default createReducer(
       ...state,
       progress: payload.progress,
       lastProgress: state.progress
+    }),
+    [GRID_PROFILE_DOWNLOAD_ERROR]: (state, { error }) => ({
+      ...state,
+      error
     }),
     [GRID_PROFILE_GET_FILE]: state => ({
       ...state,

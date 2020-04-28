@@ -1,10 +1,13 @@
-import { last, split } from 'ramda'
+import { compose, last, split, pathOr, pickBy, toPairs } from 'ramda'
 import { createAction } from 'redux-act'
 export const GRID_PROFILE_DOWNLOAD_INIT = createAction(
   'GRID_PROFILE_DOWNLOAD_INIT'
 )
 export const GRID_PROFILE_DOWNLOAD_PROGRESS = createAction(
   'GRID_PROFILE_DOWNLOAD_PROGRESS'
+)
+export const GRID_PROFILE_DOWNLOAD_ERROR = createAction(
+  'GRID_PROFILE_DOWNLOAD_ERROR'
 )
 export const GRID_PROFILE_DOWNLOAD_SUCCESS = createAction(
   'GRID_PROFILE_DOWNLOAD_SUCCESS'
@@ -15,25 +18,41 @@ export const GRID_PROFILE_SET_FILE_INFO = createAction(
   'GRID_PROFILE_SET_FILE_INFO'
 )
 
-const GRID_PROFILE_URL =
-  'https://s3-us-west-2.amazonaws.com/2oduso0/gridprofiles/v2/gridprofiles.tar.gz'
+const eventListeners = {}
+
+const applyToEventListeners = addRemoveEventListenerFn =>
+  toPairs(
+    pickBy((_, event) => eventListeners[event], eventListeners)
+  ).map(([eventName, callback]) =>
+    addRemoveEventListenerFn(eventName, callback)
+  )
 
 const ERROR_CODES = {
-  noFSFile: 'no filesystem file'
+  NO_FILESYSTEM_FILE: 'no filesystem file'
 }
 
-export const getGridProfileFileName = () => last(split('/')(GRID_PROFILE_URL))
+export const getGridProfileFileName = compose(last, split('/'))
 
-async function downloadSuccess(event, dispatch, wifiOnly) {
+async function downloadSuccess(event, dispatch) {
   removeEventListeners()
-  dispatch(GRID_PROFILE_DOWNLOAD_SUCCESS(await getGridProfileFileInfo()))
+  getGridProfileFileInfo()
+    .then(fileInfo => dispatch(GRID_PROFILE_DOWNLOAD_SUCCESS(fileInfo)))
+    .catch(error => dispatch(GRID_PROFILE_FILE_ERROR({ error: error.message })))
 }
 
 function downloadProgress(event, dispatch) {
-  return dispatch(GRID_PROFILE_DOWNLOAD_PROGRESS({ progress: event.data[0] }))
+  return dispatch(
+    GRID_PROFILE_DOWNLOAD_PROGRESS({ progress: pathOr(0, ['data', 0], event) })
+  )
 }
 
-function downloadFile(
+function downloadError(event, dispatch) {
+  return dispatch(
+    GRID_PROFILE_DOWNLOAD_ERROR({ progress: pathOr(0, ['data', 0], event) })
+  )
+}
+
+export function downloadFile(
   fileName,
   fileUrl,
   dispatch,
@@ -42,41 +61,45 @@ function downloadFile(
 ) {
   window.downloader.init({ folder: 'firmware' })
 
-  if (showProgress)
-    document.addEventListener('DOWNLOADER_downloadProgress', e => {
-      downloadProgress(e, dispatch)
-    })
+  eventListeners['DOWNLOADER_downloadProgress'] = showProgress
+    ? e => downloadProgress(e, dispatch)
+    : undefined
 
-  document.addEventListener('DOWNLOADER_downloadSuccess', e =>
-    downloadSuccess(e, dispatch, wifiOnly)
-  )
+  eventListeners['DOWNLOADER_downloadSuccess'] = e =>
+    downloadSuccess(e, dispatch)
+
+  eventListeners['DOWNLOADER_onDownloadError'] = e =>
+    dispatch(downloadError(e, dispatch))
+
+  applyToEventListeners(document.addEventListener)
   window.downloader.get(fileUrl, null, fileName)
 }
 
-export function getGridProfileFileInfo() {
-  return new Promise((resolve, reject) => {
+export const getGridProfileFileInfo = () =>
+  new Promise((resolve, reject) => {
     const type = window.PERSISTENT
     const size = 5 * 1024 * 1024
     function successCallback(fs) {
       fs.root.getFile(
-        `firmware/${getGridProfileFileName()}`,
+        `firmware/${getGridProfileFileName(
+          process.env.REACT_APP_GRID_PROFILE_URL
+        )}`,
         {},
         function(fileEntry) {
           fileEntry.file(
             file => {
               resolve(file)
             },
-            () => reject(new Error(ERROR_CODES.noFSFile))
+            () => reject(new Error(ERROR_CODES.NO_FILESYSTEM_FILE))
           )
         },
         reject
       )
     }
     window.requestFileSystem(type, size, successCallback, () =>
-      reject(new Error(ERROR_CODES.noFSFile))
+      reject(new Error(ERROR_CODES.NO_FILESYSTEM_FILE))
     )
   })
-}
 
 export const getFileBlob = file =>
   new Promise(async resolve => {
@@ -87,36 +110,27 @@ export const getFileBlob = file =>
     reader.readAsArrayBuffer(file)
   })
 
-export function getGridProfileFile(wifiOnly = true) {
-  return async function(dispatch) {
-    try {
-      removeEventListeners()
-      await downloadFile(
-        getGridProfileFileName(),
-        GRID_PROFILE_URL,
-        dispatch,
-        wifiOnly,
-        true
-      )
-      GRID_PROFILE_SET_FILE_INFO(await getGridProfileFileInfo())
-    } catch (error) {
-      dispatch(GRID_PROFILE_FILE_ERROR({ error: error.message }))
-    }
-  }
+export const getFile = (wifiOnly = true) => dispatch => {
+  removeEventListeners()
+  downloadFile(
+    getGridProfileFileName(process.env.REACT_APP_GRID_PROFILE_URL),
+    process.env.REACT_APP_GRID_PROFILE_URL,
+    dispatch,
+    wifiOnly,
+    true
+  )
 }
 
 function removeEventListeners() {
   window.downloader.abort()
-  document.removeEventListener('DOWNLOADER_downloadSuccess', () => {})
-  document.removeEventListener('DOWNLOADER_downloadProgress', () => {})
+  applyToEventListeners(document.removeEventListener)
 }
 
 export const abortDownload = () => dispatch => {
   window.downloader.abort()
 }
 
-export const setFileInfo = () => {
-  return async function(dispatch) {
-    dispatch(GRID_PROFILE_SET_FILE_INFO(await getGridProfileFileInfo()))
-  }
-}
+export const setFileInfo = () => dispatch =>
+  getGridProfileFileInfo()
+    .then(fileInfo => dispatch(GRID_PROFILE_SET_FILE_INFO(fileInfo)))
+    .catch(error => dispatch(GRID_PROFILE_FILE_ERROR({ error: error.message })))

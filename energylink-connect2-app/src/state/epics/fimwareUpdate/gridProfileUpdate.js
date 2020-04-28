@@ -21,13 +21,10 @@ const uploadGridProfile = async () => {
     const fileBlob = await getFileBlob(fileInfo)
     const formData = new FormData()
     formData.append('file', fileBlob)
-    return await fetch(
-      'http://sunpowerconsole.com/cgi-bin/upload-grid-profiles',
-      {
-        method: 'POST',
-        body: formData
-      }
-    )
+    return await fetch(process.env.REACT_APP_GRID_PROFILE_UPLOAD_ENDPOINT, {
+      method: 'POST',
+      body: formData
+    })
   } catch (e) {
     console.error('grid profile file is not in the file system', e)
   }
