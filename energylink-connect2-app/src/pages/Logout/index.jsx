@@ -6,7 +6,8 @@ function Logout() {
   const dispatch = useDispatch()
   useEffect(() => {
     dispatch(LOGOUT())
-  }, [dispatch])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   return <div className="section content page-height">Loggin out...</div>
 }

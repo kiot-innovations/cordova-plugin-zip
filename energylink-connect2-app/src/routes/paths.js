@@ -118,9 +118,6 @@ const paths = {
     LOGIN: {
       path: '/login'
     },
-    LOGOUT: {
-      path: '/logout'
-    },
     FORGOT_PASSWORD: {
       path: '/forgot'
     },

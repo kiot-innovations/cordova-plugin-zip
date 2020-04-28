@@ -64,10 +64,10 @@ const mapComponents = {
   [paths.PROTECTED.MODEL_EDIT.path]: ModelEdit,
   [paths.PROTECTED.LEGACY_DISCOVERY.path]: LegacyDiscovery,
   [paths.PROTECTED.CONNECTION_LOST.path]: ConnectionLost,
+  [paths.PROTECTED.LOGOUT.path]: Logout,
   [paths.UNPROTECTED.FORGOT_PASSWORD.path]: NotFound,
   [paths.UNPROTECTED.GET_ASSISTANCE.path]: NotFound,
-  [paths.UNPROTECTED.LOGIN.path]: Login,
-  [paths.UNPROTECTED.LOGOUT.path]: Logout
+  [paths.UNPROTECTED.LOGIN.path]: Login
 }
 
 /**
