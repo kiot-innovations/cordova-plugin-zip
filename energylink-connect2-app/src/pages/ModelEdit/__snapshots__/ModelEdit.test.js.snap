@@ -196,6 +196,7 @@ Object {
                             components={
                               Object {
                                 "IndicatorSeparator": [Function],
+                                "Option": [Function],
                               }
                             }
                             defaultInputValue=""
@@ -227,6 +228,7 @@ Object {
                               components={
                                 Object {
                                   "IndicatorSeparator": [Function],
+                                  "Option": [Function],
                                 }
                               }
                               controlShouldRenderValue={true}
@@ -314,6 +316,7 @@ Object {
                                     "closeMenuOnSelect": true,
                                     "components": Object {
                                       "IndicatorSeparator": [Function],
+                                      "Option": [Function],
                                     },
                                     "controlShouldRenderValue": true,
                                     "escapeClearsValue": false,
@@ -450,6 +453,7 @@ Object {
                                           "closeMenuOnSelect": true,
                                           "components": Object {
                                             "IndicatorSeparator": [Function],
+                                            "Option": [Function],
                                           },
                                           "controlShouldRenderValue": true,
                                           "escapeClearsValue": false,
@@ -594,6 +598,7 @@ Object {
                                                 "closeMenuOnSelect": true,
                                                 "components": Object {
                                                   "IndicatorSeparator": [Function],
+                                                  "Option": [Function],
                                                 },
                                                 "controlShouldRenderValue": true,
                                                 "escapeClearsValue": false,
@@ -725,6 +730,7 @@ Object {
                                                       "closeMenuOnSelect": true,
                                                       "components": Object {
                                                         "IndicatorSeparator": [Function],
+                                                        "Option": [Function],
                                                       },
                                                       "controlShouldRenderValue": true,
                                                       "escapeClearsValue": false,
@@ -853,6 +859,7 @@ Object {
                                                       "closeMenuOnSelect": true,
                                                       "components": Object {
                                                         "IndicatorSeparator": [Function],
+                                                        "Option": [Function],
                                                       },
                                                       "controlShouldRenderValue": true,
                                                       "escapeClearsValue": false,
@@ -1070,6 +1077,7 @@ Object {
                                                 "closeMenuOnSelect": true,
                                                 "components": Object {
                                                   "IndicatorSeparator": [Function],
+                                                  "Option": [Function],
                                                 },
                                                 "controlShouldRenderValue": true,
                                                 "escapeClearsValue": false,
@@ -1196,6 +1204,7 @@ Object {
                                                       "closeMenuOnSelect": true,
                                                       "components": Object {
                                                         "IndicatorSeparator": [Function],
+                                                        "Option": [Function],
                                                       },
                                                       "controlShouldRenderValue": true,
                                                       "escapeClearsValue": false,
@@ -1314,6 +1323,7 @@ Object {
                                                       "closeMenuOnSelect": true,
                                                       "components": Object {
                                                         "IndicatorSeparator": [Function],
+                                                        "Option": [Function],
                                                       },
                                                       "controlShouldRenderValue": true,
                                                       "escapeClearsValue": false,

@@ -161,6 +161,7 @@ exports[`Network Widget after selecting network network is selected 1`] = `
                               components={
                                 Object {
                                   "IndicatorSeparator": [Function],
+                                  "Option": [Function],
                                 }
                               }
                               defaultInputValue=""
@@ -223,6 +224,7 @@ exports[`Network Widget after selecting network network is selected 1`] = `
                                 components={
                                   Object {
                                     "IndicatorSeparator": [Function],
+                                    "Option": [Function],
                                   }
                                 }
                                 controlShouldRenderValue={true}
@@ -343,6 +345,7 @@ exports[`Network Widget after selecting network network is selected 1`] = `
                                       "closeMenuOnSelect": true,
                                       "components": Object {
                                         "IndicatorSeparator": [Function],
+                                        "Option": [Function],
                                       },
                                       "controlShouldRenderValue": true,
                                       "escapeClearsValue": false,
@@ -510,6 +513,7 @@ exports[`Network Widget after selecting network network is selected 1`] = `
                                             "closeMenuOnSelect": true,
                                             "components": Object {
                                               "IndicatorSeparator": [Function],
+                                              "Option": [Function],
                                             },
                                             "controlShouldRenderValue": true,
                                             "escapeClearsValue": false,
@@ -685,6 +689,7 @@ exports[`Network Widget after selecting network network is selected 1`] = `
                                                   "closeMenuOnSelect": true,
                                                   "components": Object {
                                                     "IndicatorSeparator": [Function],
+                                                    "Option": [Function],
                                                   },
                                                   "controlShouldRenderValue": true,
                                                   "escapeClearsValue": false,
@@ -855,6 +860,7 @@ exports[`Network Widget after selecting network network is selected 1`] = `
                                                         "closeMenuOnSelect": true,
                                                         "components": Object {
                                                           "IndicatorSeparator": [Function],
+                                                          "Option": [Function],
                                                         },
                                                         "controlShouldRenderValue": true,
                                                         "escapeClearsValue": false,
@@ -1006,6 +1012,7 @@ exports[`Network Widget after selecting network network is selected 1`] = `
                                                         "closeMenuOnSelect": true,
                                                         "components": Object {
                                                           "IndicatorSeparator": [Function],
+                                                          "Option": [Function],
                                                         },
                                                         "controlShouldRenderValue": true,
                                                         "escapeClearsValue": false,
@@ -1254,6 +1261,7 @@ exports[`Network Widget after selecting network network is selected 1`] = `
                                                   "closeMenuOnSelect": true,
                                                   "components": Object {
                                                     "IndicatorSeparator": [Function],
+                                                    "Option": [Function],
                                                   },
                                                   "controlShouldRenderValue": true,
                                                   "escapeClearsValue": false,
@@ -1411,6 +1419,7 @@ exports[`Network Widget after selecting network network is selected 1`] = `
                                                         "closeMenuOnSelect": true,
                                                         "components": Object {
                                                           "IndicatorSeparator": [Function],
+                                                          "Option": [Function],
                                                         },
                                                         "controlShouldRenderValue": true,
                                                         "escapeClearsValue": false,
@@ -1560,6 +1569,7 @@ exports[`Network Widget after selecting network network is selected 1`] = `
                                                         "closeMenuOnSelect": true,
                                                         "components": Object {
                                                           "IndicatorSeparator": [Function],
+                                                          "Option": [Function],
                                                         },
                                                         "controlShouldRenderValue": true,
                                                         "escapeClearsValue": false,
@@ -1956,6 +1966,7 @@ exports[`Network Widget on initial state renders correctly 1`] = `
                               components={
                                 Object {
                                   "IndicatorSeparator": [Function],
+                                  "Option": [Function],
                                 }
                               }
                               defaultInputValue=""
@@ -2006,6 +2017,7 @@ exports[`Network Widget on initial state renders correctly 1`] = `
                                 components={
                                   Object {
                                     "IndicatorSeparator": [Function],
+                                    "Option": [Function],
                                   }
                                 }
                                 controlShouldRenderValue={true}
@@ -2121,6 +2133,7 @@ exports[`Network Widget on initial state renders correctly 1`] = `
                                       "closeMenuOnSelect": true,
                                       "components": Object {
                                         "IndicatorSeparator": [Function],
+                                        "Option": [Function],
                                       },
                                       "controlShouldRenderValue": true,
                                       "escapeClearsValue": false,
@@ -2283,6 +2296,7 @@ exports[`Network Widget on initial state renders correctly 1`] = `
                                             "closeMenuOnSelect": true,
                                             "components": Object {
                                               "IndicatorSeparator": [Function],
+                                              "Option": [Function],
                                             },
                                             "controlShouldRenderValue": true,
                                             "escapeClearsValue": false,
@@ -2453,6 +2467,7 @@ exports[`Network Widget on initial state renders correctly 1`] = `
                                                   "closeMenuOnSelect": true,
                                                   "components": Object {
                                                     "IndicatorSeparator": [Function],
+                                                    "Option": [Function],
                                                   },
                                                   "controlShouldRenderValue": true,
                                                   "escapeClearsValue": false,
@@ -2617,6 +2632,7 @@ exports[`Network Widget on initial state renders correctly 1`] = `
                                                         "closeMenuOnSelect": true,
                                                         "components": Object {
                                                           "IndicatorSeparator": [Function],
+                                                          "Option": [Function],
                                                         },
                                                         "controlShouldRenderValue": true,
                                                         "escapeClearsValue": false,
@@ -2763,6 +2779,7 @@ exports[`Network Widget on initial state renders correctly 1`] = `
                                                         "closeMenuOnSelect": true,
                                                         "components": Object {
                                                           "IndicatorSeparator": [Function],
+                                                          "Option": [Function],
                                                         },
                                                         "controlShouldRenderValue": true,
                                                         "escapeClearsValue": false,
@@ -3006,6 +3023,7 @@ exports[`Network Widget on initial state renders correctly 1`] = `
                                                   "closeMenuOnSelect": true,
                                                   "components": Object {
                                                     "IndicatorSeparator": [Function],
+                                                    "Option": [Function],
                                                   },
                                                   "controlShouldRenderValue": true,
                                                   "escapeClearsValue": false,
@@ -3158,6 +3176,7 @@ exports[`Network Widget on initial state renders correctly 1`] = `
                                                         "closeMenuOnSelect": true,
                                                         "components": Object {
                                                           "IndicatorSeparator": [Function],
+                                                          "Option": [Function],
                                                         },
                                                         "controlShouldRenderValue": true,
                                                         "escapeClearsValue": false,
@@ -3302,6 +3321,7 @@ exports[`Network Widget on initial state renders correctly 1`] = `
                                                         "closeMenuOnSelect": true,
                                                         "components": Object {
                                                           "IndicatorSeparator": [Function],
+                                                          "Option": [Function],
                                                         },
                                                         "controlShouldRenderValue": true,
                                                         "escapeClearsValue": false,
