@@ -1,14 +1,6 @@
-import {
-  append,
-  compose,
-  head,
-  join,
-  pickBy,
-  slice,
-  split,
-  toPairs
-} from 'ramda'
+import { append, compose, head, join, slice, split } from 'ramda'
 import { createAction } from 'redux-act'
+import { applyToEventListeners } from 'shared/utils'
 
 export const GET_FILE = createAction('GET FILE')
 export const GET_FILE_ERROR = createAction('GET FILE ERROR')
@@ -53,13 +45,6 @@ const getFileSystemURL = compose(
 )
 
 const eventListeners = {}
-
-const applyToEventListeners = addRemoveEventListenerFn =>
-  toPairs(
-    pickBy((_, event) => eventListeners[event], eventListeners)
-  ).map(([eventName, callback]) =>
-    addRemoveEventListenerFn(eventName, callback)
-  )
 
 export async function getFirmwareVersionNumber() {
   try {
@@ -242,13 +227,13 @@ function downloadFile(
   eventListeners['DOWNLOADER_downloadSuccess'] = e =>
     downloadSuccess(e, dispatch)
 
-  applyToEventListeners(document.addEventListener)
+  applyToEventListeners(document.addEventListener, eventListeners)
   window.downloader.get(fileUrl, null, fileName)
 }
 
 function removeEventListeners() {
   window.downloader.abort()
-  applyToEventListeners(document.removeEventListener)
+  applyToEventListeners(document.removeEventListener, eventListeners)
 }
 
 export const abortDownload = () => dispatch => {

@@ -1,5 +1,6 @@
-import { compose, last, split, pathOr, pickBy, toPairs } from 'ramda'
+import { compose, last, split, pathOr } from 'ramda'
 import { createAction } from 'redux-act'
+import { applyToEventListeners } from 'shared/utils'
 export const GRID_PROFILE_DOWNLOAD_INIT = createAction(
   'GRID_PROFILE_DOWNLOAD_INIT'
 )
@@ -19,13 +20,6 @@ export const GRID_PROFILE_SET_FILE_INFO = createAction(
 )
 
 const eventListeners = {}
-
-const applyToEventListeners = addRemoveEventListenerFn =>
-  toPairs(
-    pickBy((_, event) => eventListeners[event], eventListeners)
-  ).map(([eventName, callback]) =>
-    addRemoveEventListenerFn(eventName, callback)
-  )
 
 const ERROR_CODES = {
   NO_FILESYSTEM_FILE: 'no filesystem file'
@@ -71,7 +65,7 @@ export function downloadFile(
   eventListeners['DOWNLOADER_onDownloadError'] = e =>
     dispatch(downloadError(e, dispatch))
 
-  applyToEventListeners(document.addEventListener)
+  applyToEventListeners(document.addEventListener, eventListeners)
   window.downloader.get(fileUrl, null, fileName)
 }
 
@@ -123,7 +117,7 @@ export const getFile = (wifiOnly = true) => dispatch => {
 
 function removeEventListeners() {
   window.downloader.abort()
-  applyToEventListeners(document.removeEventListener)
+  applyToEventListeners(document.removeEventListener, eventListeners)
 }
 
 export const abortDownload = () => dispatch => {
