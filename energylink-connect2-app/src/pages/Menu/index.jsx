@@ -1,12 +1,20 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
 import Tile from '@sunpower/tile'
-import menuItems from 'components/Header/menuItems'
 import paths from 'routes/paths'
+import menuItems from 'components/Header/menuItems'
 import { useI18n } from 'shared/i18n'
+import { LOGOUT } from 'state/actions/auth'
 
 function Menu(props) {
   const t = useI18n()
+  const dispatch = useDispatch()
+
+  const logout = () => {
+    props.history.push(paths.PROTECTED.ROOT.path)
+    dispatch(LOGOUT())
+  }
+
   return (
     <section className="is-flex tile is-vertical level full-height">
       <article className="is-flex space-around flow-wrap mt-15">
@@ -20,12 +28,12 @@ function Menu(props) {
           </div>
         ))}
       </article>
-      <Link
-        to={paths.PROTECTED.LOGOUT.path}
-        className="has-text-centered is-uppercase mb-10"
+      <button
+        className="button has-text-centered is-uppercase mb-10 has-text-primary is-text"
+        onClick={logout}
       >
         {t('LOGOUT')}
-      </Link>
+      </button>
     </section>
   )
 }
