@@ -17,6 +17,8 @@ import {
   assoc,
   pathEq,
   includes,
+  pickBy,
+  toPairs,
   values,
   filter
 } from 'ramda'
@@ -171,3 +173,13 @@ export const findProp = curry((prop, obj) =>
 )
 
 export const filterInverters = filter(propEq('DEVICE_TYPE', 'Inverter'))
+
+export const applyToEventListeners = (
+  addRemoveEventListenerFn,
+  eventListeners
+) =>
+  toPairs(
+    pickBy((_, event) => eventListeners[event], eventListeners)
+  ).map(([eventName, callback]) =>
+    addRemoveEventListenerFn(eventName, callback)
+  )

@@ -28,7 +28,12 @@ describe('Firmwares component', () => {
   test('render correctly', () => {
     const { component } = mountWithProvider(<Firmwares />)({
       fileDownloader: {
-        progress: { progress: 0, lastProgress: 0 },
+        progress: { progress: 0, lastProgress: 0, downloading: false },
+        gridProfileProgress: {
+          progress: 0,
+          lastProgress: 0,
+          lastModified: null
+        },
         fileInfo: { name: 'test-file.zip', error: '' }
       }
     })
