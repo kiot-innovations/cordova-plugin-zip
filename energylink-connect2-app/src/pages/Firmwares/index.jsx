@@ -52,10 +52,11 @@ function Firmwares() {
     modalTitle(t),
     false
   )
-  const { progress: fwProgress, fileInfo: fwFileInfo } = useSelector(
+  const { fwProgress, fwDownloading, fwFileInfo } = useSelector(
     ({ fileDownloader }) => ({
-      ...fileDownloader.progress,
-      fileInfo: fileDownloader.fileInfo
+      fwProgress: fileDownloader.progress.progress,
+      fwDownloading: fileDownloader.progress.downloading,
+      fwFileInfo: fileDownloader.fileInfo
     })
   )
 
@@ -79,10 +80,10 @@ function Firmwares() {
   }, [dispatch, downloadFile])
 
   useEffect(() => {
-    if (fwProgress === 100 && !gpLastModified) {
+    if (fwProgress === 100 && !fwDownloading && !gpLastModified) {
       dispatch(gridProfileDownloaderActions.getFile())
     }
-  }, [dispatch, fwProgress, gpLastModified])
+  }, [dispatch, fwProgress, fwDownloading, gpLastModified])
 
   useEffect(() => {
     setModal(fwFileInfo.error === 'NO WIFI')

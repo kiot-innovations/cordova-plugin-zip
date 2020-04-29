@@ -256,6 +256,7 @@ export const abortDownload = () => dispatch => {
   dispatch(ABORT_DOWNLOAD())
 }
 
-function downloadSuccess() {
+function downloadSuccess(e, dispatch) {
+  dispatch(DOWNLOAD_SUCCESS())
   removeEventListeners()
 }
