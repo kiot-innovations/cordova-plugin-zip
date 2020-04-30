@@ -1,4 +1,4 @@
-import { split, map, fromPairs, pipe, tail, head } from 'ramda'
+import { split, map, fromPairs, toPairs, join, pipe, tail, head } from 'ramda'
 import jwtDecode from 'jwt-decode'
 import config from './config'
 import { createExternalLinkHandler } from 'shared/routing'
@@ -92,26 +92,11 @@ const getBaseApiUrlOAuth = (useAuthUrl, useCheckTokenURI) => {
 }
 
 const post = (apiPath, headers, body = {}) =>
-  new Promise((resolved, rejected) =>
-    window.cordovaHTTP.post(
-      apiPath,
-      body,
-      headers,
-      function(response) {
-        try {
-          const data = JSON.parse(response.data)
-          resolved(data)
-        } catch (error) {
-          console.error(error)
-          rejected(error)
-        }
-      },
-      function(response) {
-        console.error(response)
-        rejected(response.error)
-      }
-    )
-  )
+  fetch(apiPath, {
+    method: 'POST',
+    headers,
+    body: buildURL(body)
+  }).then(res => res.json())
 
 const parseURL = pipe(
   split('?'),
@@ -122,7 +107,7 @@ const parseURL = pipe(
   fromPairs
 )
 
-// const buildURL = pipe(toPairs, map(join('=')), join('&'))
+const buildURL = pipe(toPairs, map(join('=')), join('&'))
 
 const generateRandomValue = () => {
   let crypto = window.crypto || window.msCrypto
