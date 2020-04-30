@@ -49,7 +49,7 @@ export const submitGridProfileEpic = action$ => {
       const promise = getApiPVS()
         .then(path(['apis', 'grid']))
         .then(api =>
-          api.grid.set(
+          api.set(
             { id: 1 },
             {
               requestBody: {
@@ -61,11 +61,11 @@ export const submitGridProfileEpic = action$ => {
         )
 
       return from(promise).pipe(
-        map(response =>
-          response.success === true
+        map(response => {
+          response.data.success === true
             ? SUBMIT_EXPORTLIMIT(payload)
             : SUBMIT_CONFIG_ERROR('Error while setting grid profile')
-        )
+        })
       )
     })
   )
@@ -104,7 +104,7 @@ export const submitGridVoltageEpic = action$ => {
         .then(api =>
           api.grid.setGridVoltage(
             { id: 1 },
-            { requestBody: { grid_voltage: payload.gridVoltage } }
+            { requestBody: { body: { grid_voltage: payload.gridVoltage } } }
           )
         )
 
