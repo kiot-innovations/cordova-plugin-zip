@@ -31,7 +31,8 @@ function ScanDeviceLabels() {
 
   const startScanning = useCallback(() => {
     if (window.Scandit) onDone.current = scanM(addCodes)
-  }, [addCodes])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   const triggerManualEntry = () => {
     history.push({
