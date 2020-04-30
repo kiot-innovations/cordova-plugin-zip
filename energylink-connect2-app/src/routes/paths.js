@@ -93,7 +93,6 @@ const paths = {
       header: true,
       footer: true
     },
-    LOGOUT: { path: '/logout' },
     INVENTORY_COUNT: { path: '/inventory-count', header: true },
     SYSTEM_CONFIGURATION: {
       path: '/system-configuration',
@@ -117,9 +116,6 @@ const paths = {
   UNPROTECTED: {
     LOGIN: {
       path: '/login'
-    },
-    LOGOUT: {
-      path: '/logout'
     },
     FORGOT_PASSWORD: {
       path: '/forgot'

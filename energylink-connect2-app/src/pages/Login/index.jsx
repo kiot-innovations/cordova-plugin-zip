@@ -10,12 +10,12 @@ import { useI18n } from 'shared/i18n'
 import paths from 'routes/paths'
 
 import './Login.scss'
+import { either } from 'shared/utils'
 
 function Login() {
   const t = useI18n()
   const dispatch = useDispatch()
 
-  const auth = useSelector(state => state.user.auth)
   const isAuthenticating = useSelector(state => state.user.isAuthenticating)
   const error = useSelector(state => state.user.err)
 
@@ -51,10 +51,22 @@ function Login() {
                 disabled={!!isAuthenticating}
                 onClick={onSubmit(dispatch)}
               >
-                {!auth.access_token ? t('BTN_LOGIN') : t('BTN_LOGOUT')}
+                {isAuthenticating ? t('BTN_LOGGIN_IN') : t('BTN_LOGIN')}
               </button>
             </p>
           </div>
+
+          {either(
+            isAuthenticating,
+            <p>
+              <button
+                className="button has-text-primary is-text is-size-6 mt-20"
+                onClick={onSubmit(dispatch)}
+              >
+                {t('LOGIN_TRY_AGAIN')}
+              </button>
+            </p>
+          )}
         </div>
 
         {error && error.message ? (

@@ -19,7 +19,6 @@ import InstallSuccessful from 'pages/InstallSuccess'
 import InventoryCount from 'pages/InventoryCount'
 import LegacyDiscovery from 'pages/LegacyDiscovery'
 import Login from 'pages/Login'
-import Logout from 'pages/Logout'
 import Menu from 'pages/Menu'
 import ModelEdit from 'pages/ModelEdit'
 import NotFound from 'pages/NotFound'
@@ -46,7 +45,6 @@ const mapComponents = {
   [paths.PROTECTED.CREATE_SITE.path]: CreateSite,
   [paths.PROTECTED.GIVE_FEEDBACK.path]: GiveFeedback,
   [paths.PROTECTED.DATA.path]: Data,
-  [paths.PROTECTED.LOGOUT.path]: NotFound,
   [paths.PROTECTED.MANAGE_FIRMWARES.path]: Firmwares,
   [paths.PROTECTED.MENU.path]: Menu,
   [paths.PROTECTED.PANEL_LAYOUT_TOOL.path]: PanelLayoutTool,
@@ -66,8 +64,7 @@ const mapComponents = {
   [paths.PROTECTED.CONNECTION_LOST.path]: ConnectionLost,
   [paths.UNPROTECTED.FORGOT_PASSWORD.path]: NotFound,
   [paths.UNPROTECTED.GET_ASSISTANCE.path]: NotFound,
-  [paths.UNPROTECTED.LOGIN.path]: Login,
-  [paths.UNPROTECTED.LOGOUT.path]: Logout
+  [paths.UNPROTECTED.LOGIN.path]: Login
 }
 
 /**

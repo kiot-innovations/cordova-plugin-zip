@@ -16,6 +16,8 @@
   "APT": "Apt/Unit No.",
   "BTN_LOGIN": "Login",
   "BTN_LOGOUT": "Logout",
+  "BTN_LOGGIN_IN": "Loggin in...",
+  "LOGIN_TRY_AGAIN": "Not working? Try Again",
   "BTN_UPDATE": "Update",
   "CANCEL": "Cancel",
   "DONE": "Done",
