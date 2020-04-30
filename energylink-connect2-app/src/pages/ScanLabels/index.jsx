@@ -1,14 +1,13 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-import ErrorBoundary from 'components/Error'
+import React, { useEffect, useRef, useCallback } from 'react'
 import { compose, map } from 'ramda'
-import React, { useEffect, useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
-import paths from 'routes/paths'
 import { useI18n } from 'shared/i18n'
 import { scanM } from 'shared/scandit'
 import { buildSN } from 'shared/utils'
 import { ADD_PVS_SN } from 'state/actions/pvs'
+import paths from 'routes/paths'
+import ErrorBoundary from 'components/Error'
 
 import './ScanLabels.scss'
 
@@ -18,8 +17,6 @@ function ScanDeviceLabels() {
   const history = useHistory()
   const { serialNumbers } = useSelector(state => state.pvs)
 
-  const [isScanning, setIsScanning] = useState(true)
-  const [init, setInit] = useState(false)
   const onDone = useRef(null)
 
   const addSN = compose(dispatch, ADD_PVS_SN, buildSN)
@@ -28,18 +25,13 @@ function ScanDeviceLabels() {
   const finishedScanning = () => {
     if (typeof onDone.current === 'function') {
       onDone.current()
-      setIsScanning(false)
-      setInit(false)
       history.push(paths.PROTECTED.SN_LIST.path)
     }
   }
 
-  const startScanning = () => {
-    if (window.Scandit && !init) {
-      setInit(true)
-      onDone.current = scanM(addCodes)
-    }
-  }
+  const startScanning = useCallback(() => {
+    if (window.Scandit) onDone.current = scanM(addCodes)
+  }, [addCodes])
 
   const triggerManualEntry = () => {
     history.push({
@@ -52,11 +44,8 @@ function ScanDeviceLabels() {
 
   useEffect(() => {
     startScanning()
-    return () => {
-      // do not invoke stopScanning()
-      if (isScanning && init) onDone.current()
-    }
-  }, [])
+    return () => onDone.current()
+  }, [startScanning])
 
   return (
     <ErrorBoundary>
@@ -75,9 +64,9 @@ function ScanDeviceLabels() {
 
         <button
           className="button is-primary trigger-scan mt-15"
-          onClick={isScanning ? finishedScanning : startScanning}
+          onClick={finishedScanning}
         >
-          {isScanning ? t('DONE') : t('BULK_SCAN')}
+          {t('DONE')}
         </button>
 
         <button
