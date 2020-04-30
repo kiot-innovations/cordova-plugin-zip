@@ -47,3 +47,9 @@ export async function getApiScanSN() {
     apiScanSN = await Swagger(process.env.REACT_APP_SCAN_SERIAL_NUMBERS)
   return apiScanSN
 }
+export async function getApiAuth(access_token) {
+  return await Swagger(
+    process.env.REACT_APP_SWAGGER_AUTH,
+    requestOptions(access_token)
+  )
+}
