@@ -4,6 +4,7 @@ import { scanDevicesEpic } from './discoverDevices'
 import { pushCandidatesEpic } from './pushCandidates'
 import { fetchCandidatesEpic } from './pollCandidates'
 import { fetchModelsEpic } from './fetchModels'
+import { fetchDeviceListEpic } from './fetchDeviceList'
 
 export default [
   pushCandidatesEpic,
@@ -11,5 +12,6 @@ export default [
   scanDevicesEpic,
   claimDevicesEpic,
   pollClaimingEpic,
-  fetchModelsEpic
+  fetchModelsEpic,
+  fetchDeviceListEpic
 ]
