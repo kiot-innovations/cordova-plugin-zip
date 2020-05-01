@@ -11,7 +11,8 @@ import {
   DISCOVER_COMPLETE,
   FETCH_CANDIDATES_COMPLETE,
   FETCH_CANDIDATES_INIT,
-  RESET_DISCOVERY
+  RESET_DISCOVERY,
+  FETCH_DEVICES_LIST
 } from 'state/actions/devices'
 import paths from 'routes/paths'
 import Collapsible from 'components/Collapsible'
@@ -262,6 +263,7 @@ const Devices = () => {
       dispatch(FETCH_CANDIDATES_COMPLETE())
     }
     if (claim.claimedDevices) {
+      dispatch(FETCH_DEVICES_LIST())
       history.push(paths.PROTECTED.MODEL_EDIT.path)
     }
     return () => {
