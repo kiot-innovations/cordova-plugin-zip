@@ -24,11 +24,11 @@ const SavingConfiguration = () => {
   }
 
   const goToConfig = () => {
+    dispatch(SUBMIT_CLEAR())
     history.push(paths.PROTECTED.SYSTEM_CONFIGURATION.path)
   }
 
   const goToData = () => {
-    dispatch(SUBMIT_CLEAR())
     history.push(paths.PROTECTED.DATA.path)
   }
 
