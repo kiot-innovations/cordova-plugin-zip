@@ -1,4 +1,6 @@
 import firmwareUpdate from './firmwareUpdate'
+import gridProfileUpdate from './gridProfileUpdate'
+
 import checkVersionPVS from './checkVersionPVS'
 
-export default [checkVersionPVS, ...firmwareUpdate]
+export default [checkVersionPVS, ...firmwareUpdate, ...gridProfileUpdate]

@@ -1,12 +1,20 @@
 import React from 'react'
 import clsx from 'clsx'
-import Select from 'react-select'
+import Select, { components } from 'react-select'
 
 import './SelectField.scss'
 
 const IndicatorSeparator = ({ innerProps }) => <span />
 
-const selectComponents = { IndicatorSeparator }
+const Option = props => (
+  <components.Option {...props}>
+    <div className="is-flex file level">
+      <p className="is-size-6">{props.label}</p>
+    </div>
+  </components.Option>
+)
+
+const selectComponents = { Option, IndicatorSeparator }
 
 function SelectField(props) {
   const {

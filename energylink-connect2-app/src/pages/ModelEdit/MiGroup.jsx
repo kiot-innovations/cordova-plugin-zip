@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import {
   compose,
-  filter,
   includes,
   prop,
   path,
@@ -10,16 +9,14 @@ import {
   pluck,
   equals,
   pathOr,
-  test,
   union
 } from 'ramda'
 import { useI18n } from 'shared/i18n'
-import { cleanString } from 'shared/utils'
 import { FETCH_MODELS_INIT } from 'state/actions/devices'
 import { UPDATE_DEVICES_LIST } from 'state/actions/devices'
 
 import Collapsible from '../../components/Collapsible'
-import SearchField from '../../components/SearchField'
+import SelectField from '../../components/SelectField'
 
 import './ModelEdit.scss'
 
@@ -27,6 +24,8 @@ const buildSelectValue = value => ({
   label: value,
   value: value
 })
+
+const getModels = compose(map(buildSelectValue), pathOr([], [0, 'models']))
 
 const applyModel = (miList, selectedModel, selectedMi, dispatch) => {
   const updatedList = miList.map(mi => {
@@ -100,14 +99,6 @@ const MiGroup = ({ title, data }) => {
 
   const notFoundText = t('NOT_FOUND')
 
-  const filterModel = (inputValue, cb) => {
-    const searchStr = cleanString(inputValue)
-    const matchValue = test(new RegExp(searchStr, 'ig'))
-    const models = pathOr([], [0, 'models'], filteredOptions)
-    const getResults = compose(map(buildSelectValue), filter(matchValue))
-    cb(getResults(models))
-  }
-
   const selectModel = model => {
     setSelectedModel(path(['value'], model))
   }
@@ -134,8 +125,9 @@ const MiGroup = ({ title, data }) => {
     <Collapsible title={title}>
       <div className="mi-container has-text-centered">
         <span className="has-text-white">Specify the model to apply</span>
-        <SearchField
-          onSearch={filterModel}
+        <SelectField
+          isSearchable={true}
+          options={getModels(filteredOptions)}
           onSelect={selectModel}
           notFoundText={notFoundText}
           className="mt-10 mb-10"

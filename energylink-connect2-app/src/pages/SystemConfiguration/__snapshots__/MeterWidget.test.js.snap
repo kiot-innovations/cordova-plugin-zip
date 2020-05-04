@@ -137,6 +137,7 @@ exports[`Meter Widget renders correctly 1`] = `
                             components={
                               Object {
                                 "IndicatorSeparator": [Function],
+                                "Option": [Function],
                               }
                             }
                             defaultInputValue=""
@@ -176,6 +177,7 @@ exports[`Meter Widget renders correctly 1`] = `
                               components={
                                 Object {
                                   "IndicatorSeparator": [Function],
+                                  "Option": [Function],
                                 }
                               }
                               controlShouldRenderValue={true}
@@ -279,6 +281,7 @@ exports[`Meter Widget renders correctly 1`] = `
                                     "closeMenuOnSelect": true,
                                     "components": Object {
                                       "IndicatorSeparator": [Function],
+                                      "Option": [Function],
                                     },
                                     "controlShouldRenderValue": true,
                                     "escapeClearsValue": false,
@@ -431,6 +434,7 @@ exports[`Meter Widget renders correctly 1`] = `
                                           "closeMenuOnSelect": true,
                                           "components": Object {
                                             "IndicatorSeparator": [Function],
+                                            "Option": [Function],
                                           },
                                           "controlShouldRenderValue": true,
                                           "escapeClearsValue": false,
@@ -591,6 +595,7 @@ exports[`Meter Widget renders correctly 1`] = `
                                                 "closeMenuOnSelect": true,
                                                 "components": Object {
                                                   "IndicatorSeparator": [Function],
+                                                  "Option": [Function],
                                                 },
                                                 "controlShouldRenderValue": true,
                                                 "escapeClearsValue": false,
@@ -738,6 +743,7 @@ exports[`Meter Widget renders correctly 1`] = `
                                                       "closeMenuOnSelect": true,
                                                       "components": Object {
                                                         "IndicatorSeparator": [Function],
+                                                        "Option": [Function],
                                                       },
                                                       "controlShouldRenderValue": true,
                                                       "escapeClearsValue": false,
@@ -937,6 +943,7 @@ exports[`Meter Widget renders correctly 1`] = `
                                                 "closeMenuOnSelect": true,
                                                 "components": Object {
                                                   "IndicatorSeparator": [Function],
+                                                  "Option": [Function],
                                                 },
                                                 "controlShouldRenderValue": true,
                                                 "escapeClearsValue": false,
@@ -1079,6 +1086,7 @@ exports[`Meter Widget renders correctly 1`] = `
                                                       "closeMenuOnSelect": true,
                                                       "components": Object {
                                                         "IndicatorSeparator": [Function],
+                                                        "Option": [Function],
                                                       },
                                                       "controlShouldRenderValue": true,
                                                       "escapeClearsValue": false,
@@ -1213,6 +1221,7 @@ exports[`Meter Widget renders correctly 1`] = `
                                                       "closeMenuOnSelect": true,
                                                       "components": Object {
                                                         "IndicatorSeparator": [Function],
+                                                        "Option": [Function],
                                                       },
                                                       "controlShouldRenderValue": true,
                                                       "escapeClearsValue": false,
@@ -1464,6 +1473,7 @@ exports[`Meter Widget renders correctly 1`] = `
                             components={
                               Object {
                                 "IndicatorSeparator": [Function],
+                                "Option": [Function],
                               }
                             }
                             defaultInputValue=""
@@ -1499,6 +1509,7 @@ exports[`Meter Widget renders correctly 1`] = `
                               components={
                                 Object {
                                   "IndicatorSeparator": [Function],
+                                  "Option": [Function],
                                 }
                               }
                               controlShouldRenderValue={true}
@@ -1594,6 +1605,7 @@ exports[`Meter Widget renders correctly 1`] = `
                                     "closeMenuOnSelect": true,
                                     "components": Object {
                                       "IndicatorSeparator": [Function],
+                                      "Option": [Function],
                                     },
                                     "controlShouldRenderValue": true,
                                     "escapeClearsValue": false,
@@ -1738,6 +1750,7 @@ exports[`Meter Widget renders correctly 1`] = `
                                           "closeMenuOnSelect": true,
                                           "components": Object {
                                             "IndicatorSeparator": [Function],
+                                            "Option": [Function],
                                           },
                                           "controlShouldRenderValue": true,
                                           "escapeClearsValue": false,
@@ -1890,6 +1903,7 @@ exports[`Meter Widget renders correctly 1`] = `
                                                 "closeMenuOnSelect": true,
                                                 "components": Object {
                                                   "IndicatorSeparator": [Function],
+                                                  "Option": [Function],
                                                 },
                                                 "controlShouldRenderValue": true,
                                                 "escapeClearsValue": false,
@@ -2029,6 +2043,7 @@ exports[`Meter Widget renders correctly 1`] = `
                                                       "closeMenuOnSelect": true,
                                                       "components": Object {
                                                         "IndicatorSeparator": [Function],
+                                                        "Option": [Function],
                                                       },
                                                       "controlShouldRenderValue": true,
                                                       "escapeClearsValue": false,
@@ -2220,6 +2235,7 @@ exports[`Meter Widget renders correctly 1`] = `
                                                 "closeMenuOnSelect": true,
                                                 "components": Object {
                                                   "IndicatorSeparator": [Function],
+                                                  "Option": [Function],
                                                 },
                                                 "controlShouldRenderValue": true,
                                                 "escapeClearsValue": false,
@@ -2354,6 +2370,7 @@ exports[`Meter Widget renders correctly 1`] = `
                                                       "closeMenuOnSelect": true,
                                                       "components": Object {
                                                         "IndicatorSeparator": [Function],
+                                                        "Option": [Function],
                                                       },
                                                       "controlShouldRenderValue": true,
                                                       "escapeClearsValue": false,
@@ -2480,6 +2497,7 @@ exports[`Meter Widget renders correctly 1`] = `
                                                       "closeMenuOnSelect": true,
                                                       "components": Object {
                                                         "IndicatorSeparator": [Function],
+                                                        "Option": [Function],
                                                       },
                                                       "controlShouldRenderValue": true,
                                                       "escapeClearsValue": false,

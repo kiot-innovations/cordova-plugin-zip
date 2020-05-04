@@ -1,5 +1,6 @@
 import { append, compose, head, join, slice, split } from 'ramda'
 import { createAction } from 'redux-act'
+import { applyToEventListeners } from 'shared/utils'
 
 export const GET_FILE = createAction('GET FILE')
 export const GET_FILE_ERROR = createAction('GET FILE ERROR')
@@ -8,10 +9,10 @@ export const SET_FILE_NAME = createAction('SET FILE NAME')
 export const DOWNLOAD_PROGRESS = createAction('UPDATE DOWNLOAD PROGRESS')
 export const ABORT_DOWNLOAD = createAction('ABORT DOWNLOAD')
 export const DOWNLOAD_SUCCESS = createAction('DOWNLOAD SUCCESS')
-
 export const DOWNLOAD_NO_WIFI = createAction('NO WIFI')
 
 export const SET_FILES_SIZE = createAction('SET DOWNLOAD SIZE')
+
 const ERROR_CODES = {
   getVersionInfo: 'getVersionInfo',
   getLuaFile: 'getLuaFile',
@@ -42,6 +43,9 @@ const getFileSystemURL = compose(
   slice(0, -2),
   split('/')
 )
+
+const eventListeners = {}
+
 export async function getFirmwareVersionNumber() {
   try {
     // const swagger = await getApiFirmware()
@@ -216,21 +220,20 @@ function downloadFile(
 ) {
   window.downloader.init({ folder: 'firmware' })
 
-  if (showProgress)
-    document.addEventListener('DOWNLOADER_downloadProgress', e => {
-      downloadProgress(e, dispatch)
-    })
+  eventListeners['DOWNLOADER_downloadProgress'] = showProgress
+    ? e => downloadProgress(e, dispatch)
+    : undefined
 
-  document.addEventListener('DOWNLOADER_downloadSuccess', e =>
-    downloadSuccess(e, dispatch, wifiOnly)
-  )
+  eventListeners['DOWNLOADER_downloadSuccess'] = e =>
+    downloadSuccess(e, dispatch)
+
+  applyToEventListeners(document.addEventListener, eventListeners)
   window.downloader.get(fileUrl, null, fileName)
 }
 
 function removeEventListeners() {
   window.downloader.abort()
-  document.removeEventListener('DOWNLOADER_downloadSuccess', () => {})
-  document.removeEventListener('DOWNLOADER_downloadProgress', () => {})
+  applyToEventListeners(document.removeEventListener, eventListeners)
 }
 
 export const abortDownload = () => dispatch => {
@@ -238,7 +241,7 @@ export const abortDownload = () => dispatch => {
   dispatch(ABORT_DOWNLOAD())
 }
 
-function downloadSuccess(event, dispatch, wifiOnly) {
+function downloadSuccess(e, dispatch) {
+  dispatch(DOWNLOAD_SUCCESS())
   removeEventListeners()
-  dispatch(getFile(wifiOnly))
 }

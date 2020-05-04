@@ -13,8 +13,8 @@ import {
   pathOr
 } from 'ramda'
 import { getFile } from './fileDownloader'
+import { getApiAuth } from 'shared/api'
 import authClient from 'shared/auth/sdk'
-import { httpGet } from 'shared/fetch'
 
 export const LOGIN_INIT = createAction('LOGIN_INIT')
 export const LOGIN_SUCCESS = createAction('LOGIN_SUCCESS')
@@ -59,9 +59,7 @@ export const handleLoginFromPing = URL => {
     if (hashes.code) {
       authClient
         .getAccessTokenOAuth(hashes.code)
-        .then(token => {
-          dispatch(handleUserProfile(token))
-        })
+        .then(pipe(handleUserProfile, dispatch))
         .catch(error => {
           dispatch(LOGIN_ERROR({ message: 'FETCH_ACCESS_TOKEN' }))
         })
@@ -70,7 +68,7 @@ export const handleLoginFromPing = URL => {
 }
 
 const discardUserPropsFromAPIResponse = pipe(
-  prop('data'),
+  prop('body'),
   omit(['userId', 'displayName', 'email'])
 )
 
@@ -85,8 +83,9 @@ export const handleUserProfile = (tokenInfo = {}) => {
   return dispatch => {
     try {
       const { access_token } = tokenInfo
+
       Promise.all([
-        httpGet('/auth/user', null, access_token),
+        getApiAuth(access_token).then(s => s.apis.default.get_v1_auth_user()),
         authClient.getUserInfoOAuth(access_token)
       ])
         .then(buildUser)

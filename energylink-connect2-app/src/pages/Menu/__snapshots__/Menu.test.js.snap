@@ -48,11 +48,11 @@ exports[`Menu Page render correctly 1`] = `
       />
     </div>
   </article>
-  <Link
-    className="has-text-centered is-uppercase mb-10"
-    to="/logout"
+  <button
+    className="button has-text-centered is-uppercase mb-10 has-text-primary is-text"
+    onClick={[Function]}
   >
     LOGOUT
-  </Link>
+  </button>
 </section>
 `;
