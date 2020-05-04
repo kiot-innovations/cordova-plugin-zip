@@ -27,6 +27,11 @@ import {
   PVS_CONNECTION_SUCCESS,
   STOP_NETWORK_POLLING
 } from 'state/actions/network'
+import { fetchAdamaPVS } from '../../../shared/utils'
+import {
+  getWebserverFirmwareUpgradePackageURL,
+  startWebserver
+} from '../../../shared/webserver'
 
 /**
  * Will upload the FS to the PVS and
@@ -34,7 +39,7 @@ import {
  * by using the redirect call from the PVS
  * @returns {Promise<Response>}
  */
-const uploadFirmwareToBoomerPVS = async () => {
+const uploadFirmwareToBoomer = async () => {
   try {
     const fileBlob = await getFileBlob(await getPVSFileSystemName())
     const formData = new FormData()
@@ -59,6 +64,21 @@ const getUpgradeStatus = async () => {
   return res.body
 }
 
+async function uploadFirmwareToAdama() {
+  console.warn('UPLOADING TO ADAMA')
+  await startWebserver()
+  const fileUrl = await getWebserverFirmwareUpgradePackageURL()
+  console.warn(
+    `We're uploading to adama, this is the link we'll use ${fileUrl}`
+  )
+  await fetchAdamaPVS(`StartFWUpgrade&url=${fileUrl}`)
+  return await waitFor(100000000)
+}
+
+function uploadFirmwareToPVS(isAdama) {
+  return isAdama ? uploadFirmwareToAdama() : uploadFirmwareToBoomer()
+}
+
 /**
  * Epic that will upload the FS to the PVS
  * @param action$
@@ -67,8 +87,8 @@ const getUpgradeStatus = async () => {
 const firmwareUpgradeInit = action$ =>
   action$.pipe(
     ofType(FIRMWARE_UPDATE_INIT.getType()),
-    flatMap(() =>
-      from(uploadFirmwareToBoomerPVS()).pipe(
+    flatMap(({ payload: isAdama }) =>
+      from(uploadFirmwareToPVS(isAdama)).pipe(
         switchMap(async () => FIRMWARE_UPDATE_POLL_INIT()),
         catchError(err => of(FIRMWARE_UPDATE_ERROR.asError(err)))
       )

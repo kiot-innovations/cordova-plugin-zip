@@ -1,8 +1,10 @@
 /* eslint-disable react-hooks/exhaustive-deps */
+import { equals, isEmpty, map } from 'ramda'
 import React, { useEffect, useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
-import { map, isEmpty, equals } from 'ramda'
+
+import paths from 'routes/paths'
 import { useI18n } from 'shared/i18n'
 import { scanSimple } from 'shared/scandit'
 import { decodeQRData } from 'shared/scanning'
@@ -13,8 +15,6 @@ import {
 } from 'state/actions/network'
 import { saveSerialNumber } from 'state/actions/pvs'
 import { Loader } from '../../components/Loader'
-
-import paths from 'routes/paths'
 
 import './ConnectToPVS.scss'
 
@@ -57,6 +57,7 @@ function ConnectToPVS() {
     let password =
       serialNumber.substring(2, 6) +
       serialNumber.substring(lastIndex - 4, lastIndex)
+    console.log(password)
     return password
   }
 

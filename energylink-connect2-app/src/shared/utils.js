@@ -1,26 +1,29 @@
 import {
-  compose,
-  join,
-  over,
-  lensIndex,
-  toUpper,
-  lt,
-  when,
-  length,
-  prop,
-  find,
-  propEq,
-  map,
-  defaultTo,
-  curry,
-  dissoc,
   assoc,
-  pathEq,
+  compose,
+  curry,
+  defaultTo,
+  dissoc,
+  filter,
+  find,
   includes,
+  join,
+  last,
+  length,
+  lensIndex,
+  lt,
+  map,
+  over,
+  pathEq,
   pickBy,
+  prop,
+  propEq,
+  replace,
+  split,
   toPairs,
+  toUpper,
   values,
-  filter
+  when
 } from 'ramda'
 
 export const either = (condition, whenTrue, whenFalse = null) =>
@@ -183,3 +186,12 @@ export const applyToEventListeners = (
   ).map(([eventName, callback]) =>
     addRemoveEventListenerFn(eventName, callback)
   )
+export const replaceSpaceByDashes = replace('/ /g', '-')
+
+export const fetchAdamaPVS = async command => {
+  const baseUrl = process.env.REACT_APP_PVS_SELECTEDADDRESS
+  console.warn(`${baseUrl}/dl_cgi?Command=${command}`)
+  const response = await fetch(`${baseUrl}/dl_cgi?Command=${command}`)
+  return await response.json()
+}
+export const getLastIPOctet = compose(last, split('.'))
