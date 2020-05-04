@@ -264,5 +264,8 @@
   "PVS_CONNECTION_TIMEOUT": "Could not connect to the PVS after 1 minute. Please check the equipment",
   "PVS_CONNECTION_EMPTY_SSID": "Error, no PVS WIFI SSID was provided",
   "UNKNOWN_ERROR": "An unknown error ocurred, please try again",
-  "REDISCOVER": "Rediscover"
+  "REDISCOVER": "Rediscover",
+  "SUBMIT_GRID_PROFILE_ERROR": "Error while setting grid profile",
+  "SUBMIT_EXPORT_LIMIT_ERROR": "Error while setting export limit",
+  "SUBMIT_GRID_VOLTAGE_ERROR": "Erorr while setting grid voltage"
 }

@@ -2,6 +2,7 @@ import { ofType } from 'redux-observable'
 import { from, of } from 'rxjs'
 import { catchError, mergeMap, map } from 'rxjs/operators'
 import { getApiPVS } from 'shared/api'
+import { translate } from 'shared/i18n'
 import { path } from 'ramda'
 import {
   SUBMIT_CONFIG,
@@ -11,7 +12,8 @@ import {
   SUBMIT_GRIDVOLTAGE
 } from 'state/actions/systemConfiguration'
 
-export const submitGridProfileEpic = action$ => {
+export const submitGridProfileEpic = (action$, state$) => {
+  const t = translate(state$.value.language)
   return action$.pipe(
     ofType(SUBMIT_CONFIG.getType()),
     mergeMap(({ payload }) => {
@@ -33,17 +35,18 @@ export const submitGridProfileEpic = action$ => {
         map(response =>
           response.status === 200
             ? SUBMIT_EXPORTLIMIT(payload)
-            : SUBMIT_CONFIG_ERROR('Error while setting grid profile')
+            : SUBMIT_CONFIG_ERROR(t('SUBMIT_GRID_PROFILE_ERROR'))
         ),
         catchError(err =>
-          of(SUBMIT_CONFIG_ERROR('Error while setting grid profile'))
+          of(SUBMIT_CONFIG_ERROR(t('SUBMIT_GRID_PROFILE_ERROR')))
         )
       )
     })
   )
 }
 
-export const submitExportLimitEpic = action$ => {
+export const submitExportLimitEpic = (action$, state$) => {
+  const t = translate(state$.value.language)
   return action$.pipe(
     ofType(SUBMIT_EXPORTLIMIT.getType()),
     mergeMap(({ payload }) => {
@@ -60,17 +63,18 @@ export const submitExportLimitEpic = action$ => {
         map(response =>
           response.status === 200
             ? SUBMIT_GRIDVOLTAGE(payload)
-            : SUBMIT_CONFIG_ERROR('Error while setting export limit')
+            : SUBMIT_CONFIG_ERROR(t('SUBMIT_EXPORT_LIMIT_ERROR'))
         ),
         catchError(err =>
-          of(SUBMIT_CONFIG_ERROR('Error while setting export limit'))
+          of(SUBMIT_CONFIG_ERROR(t('SUBMIT_EXPORT_LIMIT_ERROR')))
         )
       )
     })
   )
 }
 
-export const submitGridVoltageEpic = action$ => {
+export const submitGridVoltageEpic = (action$, state$) => {
+  const t = translate(state$.value.language)
   return action$.pipe(
     ofType(SUBMIT_GRIDVOLTAGE.getType()),
     mergeMap(({ payload }) => {
@@ -87,10 +91,10 @@ export const submitGridVoltageEpic = action$ => {
         map(response =>
           response.status === 200
             ? SUBMIT_CONFIG_SUCCESS(response)
-            : SUBMIT_CONFIG_ERROR('Error while setting grid voltage')
+            : SUBMIT_CONFIG_ERROR(t('SUBMIT_GRID_VOLTAGE_ERROR'))
         ),
         catchError(err =>
-          of(SUBMIT_CONFIG_ERROR('Error while setting grid voltage'))
+          of(SUBMIT_CONFIG_ERROR(t('SUBMIT_GRID_VOLTAGE_ERROR')))
         )
       )
     })
