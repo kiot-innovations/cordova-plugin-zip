@@ -12,12 +12,11 @@ import {
 
 const initialState = {
   bom: [
-    { item: 'MODULES', value: '0' },
+    { item: 'AC_MODULES', value: '0' },
+    { item: 'DC_MODULES', value: '0' },
     { item: 'STRING_INVERTERS', value: '0' },
-    { item: 'METERS', value: '0' },
-    { item: 'MET_STATION', value: '0' },
-    { item: 'ESS', value: 'None' },
-    { item: 'GCM', value: '0' }
+    { item: 'EXTERNAL_METERS', value: '0' },
+    { item: 'ESS', value: 'None' }
   ],
   fetchingInventory: false,
   savingInventory: false
@@ -58,7 +57,7 @@ export const inventoryReducer = createReducer(
       ...state,
       bom: [
         ...state.bom.map(item => {
-          if (item.item === 'MODULES') {
+          if (item.item === 'AC_MODULES') {
             item.value = payload
           }
           return item
