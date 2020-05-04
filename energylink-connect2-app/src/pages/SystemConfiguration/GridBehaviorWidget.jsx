@@ -20,7 +20,7 @@ function GridBehaviorWidget() {
   const t = useI18n()
   const getExportLimitOptions = (availability, exportLimit) => {
     if (!availability) {
-      return [{ label: t('NO_SELF_SUPPLY'), value: false }]
+      return [{ label: t('NO_SELF_SUPPLY'), value: -1 }]
     }
     return exportLimit === -1
       ? [{ label: 'No', value: -1 }]

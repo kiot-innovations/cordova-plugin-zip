@@ -2472,11 +2472,17 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                             Array [
                               Object {
                                 "label": "NO_SELF_SUPPLY",
-                                "value": false,
+                                "value": -1,
                               },
                             ]
                           }
                           useDefaultDropDown={true}
+                          value={
+                            Object {
+                              "label": "NO_SELF_SUPPLY",
+                              "value": -1,
+                            }
+                          }
                         >
                           <StateManager
                             cacheOptions={true}
@@ -2499,11 +2505,17 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                               Array [
                                 Object {
                                   "label": "NO_SELF_SUPPLY",
-                                  "value": false,
+                                  "value": -1,
                                 },
                               ]
                             }
                             theme={[Function]}
+                            value={
+                              Object {
+                                "label": "NO_SELF_SUPPLY",
+                                "value": -1,
+                              }
+                            }
                           >
                             <Select
                               backspaceRemovesValue={true}
@@ -2553,7 +2565,7 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                                 Array [
                                   Object {
                                     "label": "NO_SELF_SUPPLY",
-                                    "value": false,
+                                    "value": -1,
                                   },
                                 ]
                               }
@@ -2564,7 +2576,12 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                               tabIndex="0"
                               tabSelectsValue={true}
                               theme={[Function]}
-                              value={null}
+                              value={
+                                Object {
+                                  "label": "NO_SELF_SUPPLY",
+                                  "value": -1,
+                                }
+                              }
                             >
                               <SelectContainer
                                 className="field"
@@ -2572,7 +2589,7 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                                 cx={[Function]}
                                 getStyles={[Function]}
                                 getValue={[Function]}
-                                hasValue={false}
+                                hasValue={true}
                                 innerProps={
                                   Object {
                                     "id": undefined,
@@ -2587,7 +2604,7 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                                   Array [
                                     Object {
                                       "label": "NO_SELF_SUPPLY",
-                                      "value": false,
+                                      "value": -1,
                                     },
                                   ]
                                 }
@@ -2639,7 +2656,7 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                                     "options": Array [
                                       Object {
                                         "label": "NO_SELF_SUPPLY",
-                                        "value": false,
+                                        "value": -1,
                                       },
                                     ],
                                     "pageSize": 5,
@@ -2649,7 +2666,10 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                                     "tabIndex": "0",
                                     "tabSelectsValue": true,
                                     "theme": [Function],
-                                    "value": null,
+                                    "value": Object {
+                                      "label": "NO_SELF_SUPPLY",
+                                      "value": -1,
+                                    },
                                   }
                                 }
                                 setValue={[Function]}
@@ -2707,7 +2727,7 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                                       cx={[Function]}
                                       getStyles={[Function]}
                                       getValue={[Function]}
-                                      hasValue={false}
+                                      hasValue={true}
                                       innerProps={
                                         Object {
                                           "onMouseDown": [Function],
@@ -2724,7 +2744,7 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                                         Array [
                                           Object {
                                             "label": "NO_SELF_SUPPLY",
-                                            "value": false,
+                                            "value": -1,
                                           },
                                         ]
                                       }
@@ -2776,7 +2796,7 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                                           "options": Array [
                                             Object {
                                               "label": "NO_SELF_SUPPLY",
-                                              "value": false,
+                                              "value": -1,
                                             },
                                           ],
                                           "pageSize": 5,
@@ -2786,7 +2806,10 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                                           "tabIndex": "0",
                                           "tabSelectsValue": true,
                                           "theme": [Function],
-                                          "value": null,
+                                          "value": Object {
+                                            "label": "NO_SELF_SUPPLY",
+                                            "value": -1,
+                                          },
                                         }
                                       }
                                       setValue={[Function]}
@@ -2861,7 +2884,7 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                                             cx={[Function]}
                                             getStyles={[Function]}
                                             getValue={[Function]}
-                                            hasValue={false}
+                                            hasValue={true}
                                             isDisabled={false}
                                             isMulti={false}
                                             isRtl={false}
@@ -2869,7 +2892,7 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                                               Array [
                                                 Object {
                                                   "label": "NO_SELF_SUPPLY",
-                                                  "value": false,
+                                                  "value": -1,
                                                 },
                                               ]
                                             }
@@ -2921,7 +2944,7 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                                                 "options": Array [
                                                   Object {
                                                     "label": "NO_SELF_SUPPLY",
-                                                    "value": false,
+                                                    "value": -1,
                                                   },
                                                 ],
                                                 "pageSize": 5,
@@ -2931,7 +2954,10 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                                                 "tabIndex": "0",
                                                 "tabSelectsValue": true,
                                                 "theme": [Function],
-                                                "value": null,
+                                                "value": Object {
+                                                  "label": "NO_SELF_SUPPLY",
+                                                  "value": -1,
+                                                },
                                               }
                                             }
                                             setValue={[Function]}
@@ -2968,7 +2994,7 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                                             <EmotionCssPropInternal
                                               __EMOTION_LABEL_PLEASE_DO_NOT_USE__="ValueContainer"
                                               __EMOTION_TYPE_PLEASE_DO_NOT_USE__="div"
-                                              className="search__value-container"
+                                              className="search__value-container search__value-container--has-value"
                                               css={
                                                 Object {
                                                   "WebkitOverflowScrolling": "touch",
@@ -2984,24 +3010,28 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                                               }
                                             >
                                               <div
-                                                className="search__value-container css-g1d714-ValueContainer"
+                                                className="search__value-container search__value-container--has-value css-g1d714-ValueContainer"
                                               >
-                                                <Placeholder
+                                                <SingleValue
                                                   clearValue={[Function]}
                                                   cx={[Function]}
+                                                  data={
+                                                    Object {
+                                                      "label": "NO_SELF_SUPPLY",
+                                                      "value": -1,
+                                                    }
+                                                  }
                                                   getStyles={[Function]}
                                                   getValue={[Function]}
-                                                  hasValue={false}
+                                                  hasValue={true}
                                                   isDisabled={false}
-                                                  isFocused={false}
                                                   isMulti={false}
                                                   isRtl={false}
-                                                  key="placeholder"
                                                   options={
                                                     Array [
                                                       Object {
                                                         "label": "NO_SELF_SUPPLY",
-                                                        "value": false,
+                                                        "value": -1,
                                                       },
                                                     ]
                                                   }
@@ -3053,7 +3083,7 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                                                       "options": Array [
                                                         Object {
                                                           "label": "NO_SELF_SUPPLY",
-                                                          "value": false,
+                                                          "value": -1,
                                                         },
                                                       ],
                                                       "pageSize": 5,
@@ -3063,7 +3093,10 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                                                       "tabIndex": "0",
                                                       "tabSelectsValue": true,
                                                       "theme": [Function],
-                                                      "value": null,
+                                                      "value": Object {
+                                                        "label": "NO_SELF_SUPPLY",
+                                                        "value": -1,
+                                                      },
                                                     }
                                                   }
                                                   setValue={[Function]}
@@ -3098,29 +3131,33 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                                                   }
                                                 >
                                                   <EmotionCssPropInternal
-                                                    __EMOTION_LABEL_PLEASE_DO_NOT_USE__="Placeholder"
+                                                    __EMOTION_LABEL_PLEASE_DO_NOT_USE__="SingleValue"
                                                     __EMOTION_TYPE_PLEASE_DO_NOT_USE__="div"
-                                                    className="search__placeholder"
+                                                    className="search__single-value"
                                                     css={
                                                       Object {
                                                         "boxSizing": "border-box",
-                                                        "color": "hsl(0, 0%, 50%)",
-                                                        "label": "placeholder",
+                                                        "color": "white",
+                                                        "label": "singleValue",
                                                         "marginLeft": 2,
                                                         "marginRight": 2,
+                                                        "maxWidth": "calc(100% - 8px)",
+                                                        "overflow": "hidden",
                                                         "position": "absolute",
+                                                        "textOverflow": "ellipsis",
                                                         "top": "50%",
                                                         "transform": "translateY(-50%)",
+                                                        "whiteSpace": "nowrap",
                                                       }
                                                     }
                                                   >
                                                     <div
-                                                      className="search__placeholder css-1wa3eu0-placeholder"
+                                                      className="search__single-value css-5sz5u5-singleValue"
                                                     >
-                                                      Select...
+                                                      NO_SELF_SUPPLY
                                                     </div>
                                                   </EmotionCssPropInternal>
-                                                </Placeholder>
+                                                </SingleValue>
                                                 <DummyInput
                                                   aria-autocomplete="list"
                                                   disabled={false}
@@ -3177,7 +3214,7 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                                             cx={[Function]}
                                             getStyles={[Function]}
                                             getValue={[Function]}
-                                            hasValue={false}
+                                            hasValue={true}
                                             isDisabled={false}
                                             isMulti={false}
                                             isRtl={false}
@@ -3185,7 +3222,7 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                                               Array [
                                                 Object {
                                                   "label": "NO_SELF_SUPPLY",
-                                                  "value": false,
+                                                  "value": -1,
                                                 },
                                               ]
                                             }
@@ -3237,7 +3274,7 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                                                 "options": Array [
                                                   Object {
                                                     "label": "NO_SELF_SUPPLY",
-                                                    "value": false,
+                                                    "value": -1,
                                                   },
                                                 ],
                                                 "pageSize": 5,
@@ -3247,7 +3284,10 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                                                 "tabIndex": "0",
                                                 "tabSelectsValue": true,
                                                 "theme": [Function],
-                                                "value": null,
+                                                "value": Object {
+                                                  "label": "NO_SELF_SUPPLY",
+                                                  "value": -1,
+                                                },
                                               }
                                             }
                                             setValue={[Function]}
@@ -3303,7 +3343,7 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                                                   cx={[Function]}
                                                   getStyles={[Function]}
                                                   getValue={[Function]}
-                                                  hasValue={false}
+                                                  hasValue={true}
                                                   isDisabled={false}
                                                   isFocused={false}
                                                   isMulti={false}
@@ -3312,7 +3352,7 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                                                     Array [
                                                       Object {
                                                         "label": "NO_SELF_SUPPLY",
-                                                        "value": false,
+                                                        "value": -1,
                                                       },
                                                     ]
                                                   }
@@ -3364,7 +3404,7 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                                                       "options": Array [
                                                         Object {
                                                           "label": "NO_SELF_SUPPLY",
-                                                          "value": false,
+                                                          "value": -1,
                                                         },
                                                       ],
                                                       "pageSize": 5,
@@ -3374,7 +3414,10 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                                                       "tabIndex": "0",
                                                       "tabSelectsValue": true,
                                                       "theme": [Function],
-                                                      "value": null,
+                                                      "value": Object {
+                                                        "label": "NO_SELF_SUPPLY",
+                                                        "value": -1,
+                                                      },
                                                     }
                                                   }
                                                   setValue={[Function]}
@@ -3415,7 +3458,7 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                                                   cx={[Function]}
                                                   getStyles={[Function]}
                                                   getValue={[Function]}
-                                                  hasValue={false}
+                                                  hasValue={true}
                                                   innerProps={
                                                     Object {
                                                       "aria-hidden": "true",
@@ -3431,7 +3474,7 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                                                     Array [
                                                       Object {
                                                         "label": "NO_SELF_SUPPLY",
-                                                        "value": false,
+                                                        "value": -1,
                                                       },
                                                     ]
                                                   }
@@ -3483,7 +3526,7 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                                                       "options": Array [
                                                         Object {
                                                           "label": "NO_SELF_SUPPLY",
-                                                          "value": false,
+                                                          "value": -1,
                                                         },
                                                       ],
                                                       "pageSize": 5,
@@ -3493,7 +3536,10 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                                                       "tabIndex": "0",
                                                       "tabSelectsValue": true,
                                                       "theme": [Function],
-                                                      "value": null,
+                                                      "value": Object {
+                                                        "label": "NO_SELF_SUPPLY",
+                                                        "value": -1,
+                                                      },
                                                     }
                                                   }
                                                   setValue={[Function]}

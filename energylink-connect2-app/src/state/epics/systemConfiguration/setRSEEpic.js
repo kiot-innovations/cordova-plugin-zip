@@ -49,7 +49,7 @@ export const pollRSEEpic = (action$, state$) => {
   return action$.pipe(
     ofType(SET_RSE_STATUS.getType()),
     mergeMap(() =>
-      timer(0, 1000).pipe(
+      timer(0, 5000).pipe(
         map(() =>
           currentProgress < 100 ? GET_RSE_INIT(true) : SET_RSE_SUCCESS()
         ),

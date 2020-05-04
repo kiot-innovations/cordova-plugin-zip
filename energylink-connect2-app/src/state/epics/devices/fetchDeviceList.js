@@ -3,7 +3,6 @@ import { from } from 'rxjs'
 import { switchMap, map } from 'rxjs/operators'
 import { getApiPVS } from 'shared/api'
 import { FETCH_DEVICES_LIST, UPDATE_DEVICES_LIST } from 'state/actions/devices'
-
 import { path } from 'ramda'
 
 export const fetchDeviceListEpic = action$ => {
@@ -14,7 +13,11 @@ export const fetchDeviceListEpic = action$ => {
         .then(path(['apis', 'devices']))
         .then(api => api.getDevices())
 
-      return from(promise).pipe(map(response => UPDATE_DEVICES_LIST(response)))
+      return from(promise).pipe(
+        map(response =>
+          UPDATE_DEVICES_LIST(path(['body', 'devices'], response))
+        )
+      )
     })
   )
 }
