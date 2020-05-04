@@ -4,6 +4,7 @@ import { useI18n } from 'shared/i18n'
 import { useHistory } from 'react-router-dom'
 import { Loader } from 'components/Loader'
 import { isEmpty } from 'ramda'
+import { SUBMIT_CLEAR } from 'state/actions/systemConfiguration'
 import { STOP_NETWORK_POLLING } from 'state/actions/network'
 import paths from 'routes/paths'
 import './SavingConfiguration.scss'
@@ -27,6 +28,7 @@ const SavingConfiguration = () => {
   }
 
   const goToData = () => {
+    dispatch(SUBMIT_CLEAR())
     history.push(paths.PROTECTED.DATA.path)
   }
 

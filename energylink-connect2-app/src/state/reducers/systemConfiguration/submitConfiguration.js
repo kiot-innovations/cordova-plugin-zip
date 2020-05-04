@@ -1,6 +1,7 @@
 import { createReducer } from 'redux-act'
 
 import {
+  SUBMIT_CLEAR,
   SUBMIT_CONFIG,
   SUBMIT_CONFIG_SUCCESS,
   SUBMIT_CONFIG_ERROR,
@@ -41,6 +42,9 @@ export const submitConfigReducer = createReducer(
       ...state,
       submitting: false,
       error: payload
+    }),
+    [SUBMIT_CLEAR]: () => ({
+      initialState
     })
   },
   initialState
