@@ -1168,8 +1168,8 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                         <SelectField
                           defaultValue={
                             Object {
-                              "label": "Yes",
-                              "value": 1,
+                              "label": "No",
+                              "value": 0,
                             }
                           }
                           isSearchable={false}
@@ -1177,12 +1177,12 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                           options={
                             Array [
                               Object {
-                                "label": "Yes",
-                                "value": 1,
-                              },
-                              Object {
                                 "label": "No",
                                 "value": 0,
+                              },
+                              Object {
+                                "label": "Yes",
+                                "value": 1,
                               },
                             ]
                           }
@@ -1207,8 +1207,8 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                             defaultMenuIsOpen={false}
                             defaultValue={
                               Object {
-                                "label": "Yes",
-                                "value": 1,
+                                "label": "No",
+                                "value": 0,
                               }
                             }
                             hideSelectedOptions={true}
@@ -1218,12 +1218,12 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                             options={
                               Array [
                                 Object {
-                                  "label": "Yes",
-                                  "value": 1,
-                                },
-                                Object {
                                   "label": "No",
                                   "value": 0,
+                                },
+                                Object {
+                                  "label": "Yes",
+                                  "value": 1,
                                 },
                               ]
                             }
@@ -1281,12 +1281,12 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                               options={
                                 Array [
                                   Object {
-                                    "label": "Yes",
-                                    "value": 1,
-                                  },
-                                  Object {
                                     "label": "No",
                                     "value": 0,
+                                  },
+                                  Object {
+                                    "label": "Yes",
+                                    "value": 1,
                                   },
                                 ]
                               }
@@ -1324,12 +1324,12 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                                 options={
                                   Array [
                                     Object {
-                                      "label": "Yes",
-                                      "value": 1,
-                                    },
-                                    Object {
                                       "label": "No",
                                       "value": 0,
+                                    },
+                                    Object {
+                                      "label": "Yes",
+                                      "value": 1,
                                     },
                                   ]
                                 }
@@ -1379,12 +1379,12 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                                     "openMenuOnFocus": false,
                                     "options": Array [
                                       Object {
-                                        "label": "Yes",
-                                        "value": 1,
-                                      },
-                                      Object {
                                         "label": "No",
                                         "value": 0,
+                                      },
+                                      Object {
+                                        "label": "Yes",
+                                        "value": 1,
                                       },
                                     ],
                                     "pageSize": 5,
@@ -1471,12 +1471,12 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                                       options={
                                         Array [
                                           Object {
-                                            "label": "Yes",
-                                            "value": 1,
-                                          },
-                                          Object {
                                             "label": "No",
                                             "value": 0,
+                                          },
+                                          Object {
+                                            "label": "Yes",
+                                            "value": 1,
                                           },
                                         ]
                                       }
@@ -1526,12 +1526,12 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                                           "openMenuOnFocus": false,
                                           "options": Array [
                                             Object {
-                                              "label": "Yes",
-                                              "value": 1,
-                                            },
-                                            Object {
                                               "label": "No",
                                               "value": 0,
+                                            },
+                                            Object {
+                                              "label": "Yes",
+                                              "value": 1,
                                             },
                                           ],
                                           "pageSize": 5,
@@ -1626,12 +1626,12 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                                             options={
                                               Array [
                                                 Object {
-                                                  "label": "Yes",
-                                                  "value": 1,
-                                                },
-                                                Object {
                                                   "label": "No",
                                                   "value": 0,
+                                                },
+                                                Object {
+                                                  "label": "Yes",
+                                                  "value": 1,
                                                 },
                                               ]
                                             }
@@ -1681,12 +1681,12 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                                                 "openMenuOnFocus": false,
                                                 "options": Array [
                                                   Object {
-                                                    "label": "Yes",
-                                                    "value": 1,
-                                                  },
-                                                  Object {
                                                     "label": "No",
                                                     "value": 0,
+                                                  },
+                                                  Object {
+                                                    "label": "Yes",
+                                                    "value": 1,
                                                   },
                                                 ],
                                                 "pageSize": 5,
@@ -1772,12 +1772,12 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                                                   options={
                                                     Array [
                                                       Object {
-                                                        "label": "Yes",
-                                                        "value": 1,
-                                                      },
-                                                      Object {
                                                         "label": "No",
                                                         "value": 0,
+                                                      },
+                                                      Object {
+                                                        "label": "Yes",
+                                                        "value": 1,
                                                       },
                                                     ]
                                                   }
@@ -1827,12 +1827,12 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                                                       "openMenuOnFocus": false,
                                                       "options": Array [
                                                         Object {
-                                                          "label": "Yes",
-                                                          "value": 1,
-                                                        },
-                                                        Object {
                                                           "label": "No",
                                                           "value": 0,
+                                                        },
+                                                        Object {
+                                                          "label": "Yes",
+                                                          "value": 1,
                                                         },
                                                       ],
                                                       "pageSize": 5,
@@ -1970,12 +1970,12 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                                             options={
                                               Array [
                                                 Object {
-                                                  "label": "Yes",
-                                                  "value": 1,
-                                                },
-                                                Object {
                                                   "label": "No",
                                                   "value": 0,
+                                                },
+                                                Object {
+                                                  "label": "Yes",
+                                                  "value": 1,
                                                 },
                                               ]
                                             }
@@ -2025,12 +2025,12 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                                                 "openMenuOnFocus": false,
                                                 "options": Array [
                                                   Object {
-                                                    "label": "Yes",
-                                                    "value": 1,
-                                                  },
-                                                  Object {
                                                     "label": "No",
                                                     "value": 0,
+                                                  },
+                                                  Object {
+                                                    "label": "Yes",
+                                                    "value": 1,
                                                   },
                                                 ],
                                                 "pageSize": 5,
@@ -2107,12 +2107,12 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                                                   options={
                                                     Array [
                                                       Object {
-                                                        "label": "Yes",
-                                                        "value": 1,
-                                                      },
-                                                      Object {
                                                         "label": "No",
                                                         "value": 0,
+                                                      },
+                                                      Object {
+                                                        "label": "Yes",
+                                                        "value": 1,
                                                       },
                                                     ]
                                                   }
@@ -2162,12 +2162,12 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                                                       "openMenuOnFocus": false,
                                                       "options": Array [
                                                         Object {
-                                                          "label": "Yes",
-                                                          "value": 1,
-                                                        },
-                                                        Object {
                                                           "label": "No",
                                                           "value": 0,
+                                                        },
+                                                        Object {
+                                                          "label": "Yes",
+                                                          "value": 1,
                                                         },
                                                       ],
                                                       "pageSize": 5,
@@ -2236,12 +2236,12 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                                                   options={
                                                     Array [
                                                       Object {
-                                                        "label": "Yes",
-                                                        "value": 1,
-                                                      },
-                                                      Object {
                                                         "label": "No",
                                                         "value": 0,
+                                                      },
+                                                      Object {
+                                                        "label": "Yes",
+                                                        "value": 1,
                                                       },
                                                     ]
                                                   }
@@ -2291,12 +2291,12 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                                                       "openMenuOnFocus": false,
                                                       "options": Array [
                                                         Object {
-                                                          "label": "Yes",
-                                                          "value": 1,
-                                                        },
-                                                        Object {
                                                           "label": "No",
                                                           "value": 0,
+                                                        },
+                                                        Object {
+                                                          "label": "Yes",
+                                                          "value": 1,
                                                         },
                                                       ],
                                                       "pageSize": 5,
