@@ -38,9 +38,9 @@ const connectToPVS = async (ssid, password) => {
       await window.WifiWizard2.getConnectedSSID()
       await window.WifiWizard2.connect(ssid, true, password, WPA, false)
     }
-  } catch (e) {
-    console.error('connectToPVS e', e)
-    throw new Error(e)
+  } catch (err) {
+    console.warn('connectToPVS failed: ', err)
+    throw new Error(err)
   }
 }
 
@@ -59,7 +59,6 @@ const connectToEpic = (action$, state$) =>
       return from(connectToPVS(ssid, password)).pipe(
         map(() => WAIT_FOR_SWAGGER()),
         catchError(err => {
-          console.warn(err.message)
           if (hasCode7(err) || isTimeout(err) || isInvalidNetworkID(err)) {
             return of(STOP_NETWORK_POLLING({ canceled: true }))
           } else {
@@ -69,6 +68,7 @@ const connectToEpic = (action$, state$) =>
       )
     })
   )
+
 const parsePromises = compose(Boolean, find(propEq('status', 'fulfilled')))
 
 const checkForConnection = async () => {
