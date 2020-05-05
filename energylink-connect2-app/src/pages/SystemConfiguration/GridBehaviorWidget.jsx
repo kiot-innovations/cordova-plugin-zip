@@ -118,7 +118,7 @@ function GridBehaviorWidget() {
 
   return (
     <div className="pb-15">
-      <Collapsible title={t('GRID_BEHAVIOR')} icon={GBI} expanded>
+      <Collapsible title={t('GRID_BEHAVIOR')} icon={GBI}>
         <div className="field is-horizontal">
           <div className="field-label">
             <label htmlFor="siteName" className="label has-text-white">
