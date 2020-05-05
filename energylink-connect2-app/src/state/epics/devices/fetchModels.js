@@ -30,7 +30,7 @@ export const fetchModelsEpic = (action$, state$) => {
       return from(promise).pipe(
         map(models =>
           FETCH_MODELS_SUCCESS(
-            buildModelFilter(payload, pathOr([], ['data', 'items'], models))
+            buildModelFilter(payload, pathOr([], ['body', 'items'], models))
           )
         ),
         catchError(err => of(FETCH_MODELS_ERROR(err)))
