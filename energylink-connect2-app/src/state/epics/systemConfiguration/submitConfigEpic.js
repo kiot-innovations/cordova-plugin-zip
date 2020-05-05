@@ -1,6 +1,6 @@
 import { ofType } from 'redux-observable'
 import { from, of } from 'rxjs'
-import { catchError, mergeMap, map } from 'rxjs/operators'
+import { catchError, exhaustMap, map } from 'rxjs/operators'
 import { getApiPVS } from 'shared/api'
 import { translate } from 'shared/i18n'
 import { path } from 'ramda'
@@ -16,7 +16,7 @@ export const submitGridProfileEpic = (action$, state$) => {
   const t = translate(state$.value.language)
   return action$.pipe(
     ofType(SUBMIT_CONFIG.getType()),
-    mergeMap(({ payload }) => {
+    exhaustMap(({ payload }) => {
       const promise = getApiPVS()
         .then(path(['apis', 'grid']))
         .then(api =>
@@ -49,7 +49,7 @@ export const submitExportLimitEpic = (action$, state$) => {
   const t = translate(state$.value.language)
   return action$.pipe(
     ofType(SUBMIT_EXPORTLIMIT.getType()),
-    mergeMap(({ payload }) => {
+    exhaustMap(({ payload }) => {
       const promise = getApiPVS()
         .then(path(['apis', 'grid']))
         .then(api =>
@@ -77,7 +77,7 @@ export const submitGridVoltageEpic = (action$, state$) => {
   const t = translate(state$.value.language)
   return action$.pipe(
     ofType(SUBMIT_GRIDVOLTAGE.getType()),
-    mergeMap(({ payload }) => {
+    exhaustMap(({ payload }) => {
       const promise = getApiPVS()
         .then(path(['apis', 'grid']))
         .then(api =>

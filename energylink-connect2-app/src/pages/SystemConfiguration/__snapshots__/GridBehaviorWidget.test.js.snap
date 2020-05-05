@@ -43,7 +43,6 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
           className="pb-15"
         >
           <Collapsible
-            expanded={true}
             icon={
               <span
                 className="sp-grid file level mr-15 is-size-4"
@@ -76,7 +75,7 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                   className="collapsible-trigger"
                 >
                   <div
-                    className="chevron down"
+                    className="chevron"
                     onClick={[Function]}
                   >
                     <span
@@ -86,7 +85,7 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                 </div>
               </div>
               <div
-                className="collapsible-content expanded"
+                className="collapsible-content collapsed"
               >
                 <div
                   className="field is-horizontal"
