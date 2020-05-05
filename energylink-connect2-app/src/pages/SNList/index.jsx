@@ -35,7 +35,7 @@ function SNList() {
   ])
 
   const modulesOnInventory = bom.filter(item => {
-    return item.item === 'MODULES'
+    return item.item === 'AC_MODULES'
   })
   const expectedMICount = modulesOnInventory[0].value
   const scannedMICount = serialNumbers.length
