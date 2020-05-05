@@ -9,31 +9,35 @@ describe('RSE Reducer', () => {
 
   it('populates the reducer state after GET_RSE_INIT action is fired', () => {
     reducerTest(
-      { isFetching: false },
-      systemConfigurationReducers.GET_RSE_INIT(),
       {
-        isFetching: true,
         isSetting: false,
         data: {},
         error: null,
         newRSEValue: null,
-        isPolling: false,
-        pollProgress: 0
+        isPolling: false
+      },
+      systemConfigurationReducers.GET_RSE_INIT(true),
+      {
+        data: {
+          progress: null
+        },
+        error: null,
+        newRSEValue: null,
+        isSetting: false,
+        isPolling: true
       }
     )
   })
 
   it('populates the reducer state after GET_RSE_SUCCESS action is fired', () => {
     reducerTest(
-      { isFetching: false },
+      { data: {} },
       systemConfigurationReducers.GET_RSE_SUCCESS({
         powerProduction: 'On',
         result: 'Pass',
         progress: 100
       }),
       {
-        isFetching: false,
-        pollProgress: 0,
         data: { powerProduction: 'On', result: 'Pass', progress: 100 }
       }
     )
