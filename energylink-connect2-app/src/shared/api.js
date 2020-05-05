@@ -1,5 +1,5 @@
 import Swagger from 'swagger-client'
-let apiDevice, apiParty, apiSearch, apiSite, apiFirmware, apiScanSN
+let apiParty, apiSearch, apiSite, apiFirmware, apiScanSN
 
 const requestOptions = access_token => ({
   requestInterceptor: req => {
@@ -16,10 +16,11 @@ export async function getApiFirmware() {
 export async function getApiPVS() {
   return await Swagger(process.env.REACT_APP_PVS_ADDRESS)
 }
-export async function getApiDevice() {
-  if (!apiDevice)
-    apiDevice = await Swagger(process.env.REACT_APP_SWAGGER_DEVICE)
-  return apiDevice
+export async function getApiDevice(access_token) {
+  return await Swagger(
+    process.env.REACT_APP_SWAGGER_DEVICE,
+    requestOptions(access_token)
+  )
 }
 export async function getApiParty(access_token) {
   apiParty = await Swagger(
