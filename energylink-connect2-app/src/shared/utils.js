@@ -120,7 +120,7 @@ export const groupBy = (array, prop) => {
 
 export const cleanString = (str = '') => {
   const regex = /\W+/g
-  return str.replace(regex, '')
+  return str.replace(regex, ' ')
 }
 
 const decideModel = barcode =>
