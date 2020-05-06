@@ -88,7 +88,11 @@ function RSEWidget() {
               disabled={isSetting || disableApplyBtn}
               onClick={() => sendNewRSEValue(rseValue)}
             >
-              {either(isSetting, t('APPLYING', progress || '...'), t('APPLY'))}
+              {either(
+                isSetting,
+                t('APPLYING', progress && progress < 100 ? progress : '...'),
+                t('APPLY')
+              )}
             </button>
           </div>
         </React.Fragment>
