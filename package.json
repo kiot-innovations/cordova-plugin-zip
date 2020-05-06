@@ -15,7 +15,6 @@
   ],
   "dependencies": {
     "cordova-android": "^8.1.0",
-    "cordova-httpd": "git+https://github.com/floatinghotpot/cordova-httpd.git",
     "cordova-ios": "^5.1.1",
     "cordova-plugin-add-swift-support": "^2.0.2",
     "cordova-plugin-camera": "^4.1.0",
@@ -76,7 +75,6 @@
       "scandit-cordova-datacapture-core": {},
       "scandit-cordova-datacapture-barcode": {},
       "cordova-plugin-networkinterface": {},
-      "com.rjfun.cordova.httpd": {},
       "cordova-plugin-httpd": {}
     },
     "platforms": [

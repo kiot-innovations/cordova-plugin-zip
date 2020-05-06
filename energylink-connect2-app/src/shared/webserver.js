@@ -1,5 +1,5 @@
 import { compose, pathOr, replace } from 'ramda'
-import { getLastIPOctet } from 'shared/utils'
+import { getLastIPOctet, padNumber } from 'shared/utils'
 
 const defaultPort = 8080
 
@@ -8,8 +8,8 @@ export const getWebserverFirmwareUpgradePackageURL = (port = defaultPort) =>
     window.networkinterface.getWiFiIPAddress(
       wifi =>
         resolve(
-          `http://${wifi.ip}:${port}/files/luaFiles/fwup${getLastIPOctet(
-            wifi.ip
+          `http://${wifi.ip}:${port}/files/luaFiles/fwup${padNumber(
+            getLastIPOctet(wifi.ip)
           )}.lua`
         ),
       reject

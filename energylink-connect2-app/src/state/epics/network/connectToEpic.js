@@ -47,7 +47,7 @@ const connectToPVS = async (ssid, password) => {
 const connectToEpic = (action$, state$) =>
   action$.pipe(
     ofType(PVS_CONNECTION_INIT.getType()),
-    switchMap(action => {
+    exhaustMap(action => {
       const ssid = pathOr('', ['payload', 'ssid'], action)
       const password = pathOr('', ['payload', 'password'], action)
 
@@ -90,7 +90,7 @@ export const waitForSwaggerEpic = (action$, state$) => {
           from(checkForConnection()).pipe(
             map(() => PVS_CONNECTION_SUCCESS()),
             catchError(err => {
-              console.error(err)
+              console.error('ERROR CONNECTING', err)
               // The reason for this is that this could happen several times
               // and we don't want to spam the user with I couldn't connect
               if (

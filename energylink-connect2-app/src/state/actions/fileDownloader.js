@@ -40,7 +40,7 @@ const getBuildNumber = compose(
 )
 const getFileSystemURL = compose(
   join('/'),
-  append('fwup_lua_usb.zip'),
+  append('fwup/rootfs.tgz'),
   slice(0, -2),
   split('/')
 )
@@ -52,7 +52,7 @@ export async function getFirmwareVersionNumber() {
     // const swagger = await getApiFirmware()
     // const response = await swagger.apis.pvs6.firmwareUpdate({ fwver: 0 })
     const fileURL =
-      'https://fw-assets-pvs6-dev.dev-edp.sunpower.com/staging-prod-boomer/7124/fwup/fwup.lua'
+      'https://fw-assets-pvs6-dev.dev-edp.sunpower.com/staging-prod-boomer/7128/fwup/fwup.lua'
     const luaFileName = getLuaName(fileURL)
     console.warn({ luaFileName, fileURL, version: getBuildNumber(fileURL) })
     return { luaFileName, fileURL, version: getBuildNumber(fileURL) }
@@ -132,13 +132,14 @@ export function getFile(wifiOnly = true) {
       await parseLuaFile(luaFileName, dispatch)
       const fileSystemURL = getFileSystemURL(fileURL)
       removeEventListeners()
-      downloadLuaFiles(version)
       await getPersistentFile(
         await getPVSFileSystemName(),
         fileSystemURL,
         dispatch,
         wifiOnly
       )
+      removeEventListeners()
+      downloadLuaFiles(version)
       dispatch(DOWNLOAD_SUCCESS())
     } catch (error) {
       if (error.message === ERROR_CODES.getVersionInfo) {

@@ -195,3 +195,10 @@ export const fetchAdamaPVS = async command => {
   return await response.json()
 }
 export const getLastIPOctet = compose(last, split('.'))
+
+export function padNumber(number, width = 3, separator = '0') {
+  const n = number.toString()
+  return n.length >= width
+    ? n
+    : new Array(width - n.length + 1).join(separator) + n
+}

@@ -271,5 +271,6 @@
   "GRID_PROFILES_PACKAGE": "Grid Profiles Package",
   "GRID_PROFILE_ERROR_FOUND": "Error downloading Grid Profile",
   "LAST_TIME_UPDATED": "Last time updated",
-  "FILE_NOT_PRESENT": "File is not downloaded"
+  "FILE_NOT_PRESENT": "File is not downloaded",
+  "downloading images": "Uploading image"
 }
