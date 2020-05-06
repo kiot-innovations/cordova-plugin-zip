@@ -20,7 +20,7 @@ function GridBehaviorWidget() {
   const t = useI18n()
   const getExportLimitOptions = (availability, exportLimit) => {
     if (!availability) {
-      return [{ label: t('NO_SELF_SUPPLY'), value: false }]
+      return [{ label: t('NO_SELF_SUPPLY'), value: -1 }]
     }
     return exportLimit === -1
       ? [{ label: 'No', value: -1 }]
@@ -101,8 +101,8 @@ function GridBehaviorWidget() {
   }
 
   const lazyGridProfileOptions = [
-    { label: 'Yes', value: 1 },
-    { label: 'No', value: 0 }
+    { label: 'No', value: 0 },
+    { label: 'Yes', value: 1 }
   ]
 
   const gridVoltageOptions = [
@@ -118,7 +118,7 @@ function GridBehaviorWidget() {
 
   return (
     <div className="pb-15">
-      <Collapsible title={t('GRID_BEHAVIOR')} icon={GBI} expanded>
+      <Collapsible title={t('GRID_BEHAVIOR')} icon={GBI}>
         <div className="field is-horizontal">
           <div className="field-label">
             <label htmlFor="siteName" className="label has-text-white">
