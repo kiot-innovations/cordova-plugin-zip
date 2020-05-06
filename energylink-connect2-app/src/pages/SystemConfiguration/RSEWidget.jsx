@@ -1,47 +1,47 @@
 import Collapsible from 'components/Collapsible'
 import SelectField from 'components/SelectField'
-import { compose, equals, pathOr, prop, propEq } from 'ramda'
+import { curry, compose, equals, pathOr, prop } from 'ramda'
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useI18n } from 'shared/i18n'
 import { either } from 'shared/utils'
-import {
-  GET_RSE_INIT,
-  SET_RSE_INIT,
-  SET_RSE_STATUS
-} from 'state/actions/systemConfiguration'
+import { GET_RSE_INIT, SET_RSE_INIT } from 'state/actions/systemConfiguration'
 
 const RSE = <span className="sp-power file level mr-15 is-size-4" />
+
+const invertedPowerProduction = curry((RSES, pp) =>
+  pp === RSES[0].value ? RSES[1] : RSES[0]
+)
 
 function RSEWidget() {
   const t = useI18n()
   const dispatch = useDispatch()
 
-  const { isPolling, isSetting, error, data = {} } = useSelector(
+  const { isSetting, error, data = {} } = useSelector(
     pathOr({}, ['systemConfiguration', 'rse'])
   )
 
   const { powerProduction = 'Off', progress = 100 } = data
-
-  const [rseValue, setRSEValue] = useState(powerProduction)
-
-  const disableSetRSEValue = equals(powerProduction, rseValue) || isSetting
 
   const RSES = [
     { label: t('ON'), value: 'On' },
     { label: t('OFF'), value: 'Off' }
   ]
 
-  const currentRSEValue = RSES.find(propEq('value', rseValue))
+  const [rseValue, setRSEValue] = useState(powerProduction)
+
+  const disableApplyBtn = equals(powerProduction, rseValue)
   const sendNewRSEValue = compose(dispatch, SET_RSE_INIT)
+  const onSelectRSE = compose(
+    setRSEValue,
+    prop('value'),
+    invertedPowerProduction(RSES),
+    prop('value')
+  )
 
   useEffect(() => {
     dispatch(GET_RSE_INIT())
-    // we sent the command, closed the page and came back,
-    // we need to start polling to check its status
-    if (progress && progress < 100 && !isPolling) dispatch(SET_RSE_STATUS())
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [progress])
+  }, [dispatch])
 
   useEffect(() => {
     setRSEValue(powerProduction)
@@ -64,15 +64,18 @@ function RSEWidget() {
                     disabled={isSetting}
                     isSearchable={false}
                     options={RSES}
-                    value={currentRSEValue}
-                    onSelect={compose(setRSEValue, prop('value'))}
+                    value={invertedPowerProduction(RSES, rseValue)}
+                    onSelect={onSelectRSE}
                   />
                 </div>
               </div>
             </div>
           </div>
 
-          {renderRSEDescription(powerProduction, t)}
+          {renderRSEDescription(
+            invertedPowerProduction(RSES, rseValue).value,
+            t
+          )}
 
           {either(
             error,
@@ -82,10 +85,10 @@ function RSEWidget() {
           <div className="is-flex mt-15">
             <button
               className="button is-primary auto"
-              disabled={disableSetRSEValue}
+              disabled={isSetting || disableApplyBtn}
               onClick={() => sendNewRSEValue(rseValue)}
             >
-              {either(isSetting, t('APPLYING'), t('APPLY'))}
+              {either(isSetting, t('APPLYING', progress || '...'), t('APPLY'))}
             </button>
           </div>
         </React.Fragment>

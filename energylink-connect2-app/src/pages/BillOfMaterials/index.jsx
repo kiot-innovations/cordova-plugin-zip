@@ -3,7 +3,8 @@ import { prop } from 'ramda'
 import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { either, isIos } from 'shared/utils'
+import { either } from 'shared/utils'
+import { createExternalLinkHandler } from 'shared/routing'
 import paths from '../../routes/paths'
 import { useI18n } from '../../shared/i18n'
 import './BillOfMaterials.scss'
@@ -24,11 +25,9 @@ function drawTable(t, inventory) {
 const useMap = (latitude, longitude) => {
   const [url, setUrl] = useState('')
   useEffect(() => {
-    if (isIos())
-      setUrl(
-        `maps://maps.google.com/maps?daddr=${latitude},${longitude}&amp;ll=`
-      )
-    else setUrl(`geo:0,0?q=${latitude},${longitude}`)
+    setUrl(
+      `https://maps.google.com/maps?daddr=${latitude},${longitude}&amp;ll=`
+    )
   }, [latitude, longitude])
   return url
 }
@@ -45,15 +44,16 @@ function BillOfMaterials() {
   const { address1, latitude, longitude } = useSelector(
     state => state.site.site || {}
   )
-  const url = useMap(latitude, longitude)
+  const googleMapsUrl = useMap(latitude, longitude)
   const imageURL = `https://maps.googleapis.com/maps/api/staticmap?center=${latitude},${longitude}&zoom=21&size=800x800&key=${process.env.REACT_APP_MAPS_API_KEY}&maptype=hybrid&markers=scale:4|blue|${latitude},${longitude}&scale=4`
 
   return (
     <main className="full-height pl-10 pr-10 home">
-      <div className="pl-10 pr-10 mb-20">
-        <a href={url}>
-          <ProgressiveImage src={imageURL} />
-        </a>
+      <div
+        className="pl-10 pr-10 mb-20"
+        onClick={() => createExternalLinkHandler(googleMapsUrl)()}
+      >
+        <ProgressiveImage src={imageURL} />
       </div>
       <span className="is-uppercase is-block is-full-width has-text-centered is-bold mb-30 ">
         {t('CUSTOMER_INFORMATION')}

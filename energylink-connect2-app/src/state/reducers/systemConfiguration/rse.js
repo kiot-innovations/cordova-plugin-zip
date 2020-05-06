@@ -11,10 +11,8 @@ import {
 } from 'state/actions/systemConfiguration'
 
 const initialState = {
-  isFetching: false,
   isSetting: false,
   isPolling: false,
-  pollProgress: 0,
   newRSEValue: null,
   data: {},
   error: null
@@ -24,19 +22,19 @@ const rseReducer = createReducer(
   {
     [GET_RSE_INIT]: (state, isPolling = false) => ({
       ...(isPolling ? state : initialState),
-      isFetching: true,
-      isPolling
+      isPolling,
+      data: {
+        ...state.data,
+        progress: null
+      }
     }),
     [GET_RSE_SUCCESS]: (state, payload) => ({
       ...state,
-      isFetching: false,
       isSetting: state.isPolling && propOr(0, 'progress', payload) < 100,
-      pollProgress: state.isPolling ? propOr(0, 'progress', payload) : 0,
       data: payload
     }),
     [GET_RSE_ERROR]: (state, payload) => ({
       ...state,
-      isFetching: false,
       error: payload
     }),
     [SET_RSE_INIT]: (state, payload) => ({
@@ -46,15 +44,12 @@ const rseReducer = createReducer(
     }),
     [SET_RSE_STATUS]: state => ({
       ...state,
-      isPolling: true,
-      pollProgress: 0
+      isPolling: true
     }),
     [SET_RSE_SUCCESS]: state => ({
       ...state,
       isSetting: false,
-      isFetching: false,
-      isPolling: false,
-      pollProgress: 0
+      isPolling: false
     }),
     [SET_RSE_ERROR]: (state, error) => ({
       ...initialState,

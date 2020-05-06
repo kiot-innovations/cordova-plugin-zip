@@ -126,8 +126,8 @@ exports[`RSE Widget renders correctly 1`] = `
                           }
                           value={
                             Object {
-                              "label": "OFF",
-                              "value": "Off",
+                              "label": "ON",
+                              "value": "On",
                             }
                           }
                         >
@@ -163,8 +163,8 @@ exports[`RSE Widget renders correctly 1`] = `
                             theme={[Function]}
                             value={
                               Object {
-                                "label": "OFF",
-                                "value": "Off",
+                                "label": "ON",
+                                "value": "On",
                               }
                             }
                           >
@@ -233,8 +233,8 @@ exports[`RSE Widget renders correctly 1`] = `
                               theme={[Function]}
                               value={
                                 Object {
-                                  "label": "OFF",
-                                  "value": "Off",
+                                  "label": "ON",
+                                  "value": "On",
                                 }
                               }
                             >
@@ -330,8 +330,8 @@ exports[`RSE Widget renders correctly 1`] = `
                                     "tabSelectsValue": true,
                                     "theme": [Function],
                                     "value": Object {
-                                      "label": "OFF",
-                                      "value": "Off",
+                                      "label": "ON",
+                                      "value": "On",
                                     },
                                   }
                                 }
@@ -478,8 +478,8 @@ exports[`RSE Widget renders correctly 1`] = `
                                           "tabSelectsValue": true,
                                           "theme": [Function],
                                           "value": Object {
-                                            "label": "OFF",
-                                            "value": "Off",
+                                            "label": "ON",
+                                            "value": "On",
                                           },
                                         }
                                       }
@@ -634,8 +634,8 @@ exports[`RSE Widget renders correctly 1`] = `
                                                 "tabSelectsValue": true,
                                                 "theme": [Function],
                                                 "value": Object {
-                                                  "label": "OFF",
-                                                  "value": "Off",
+                                                  "label": "ON",
+                                                  "value": "On",
                                                 },
                                               }
                                             }
@@ -696,8 +696,8 @@ exports[`RSE Widget renders correctly 1`] = `
                                                   cx={[Function]}
                                                   data={
                                                     Object {
-                                                      "label": "OFF",
-                                                      "value": "Off",
+                                                      "label": "ON",
+                                                      "value": "On",
                                                     }
                                                   }
                                                   getStyles={[Function]}
@@ -781,8 +781,8 @@ exports[`RSE Widget renders correctly 1`] = `
                                                       "tabSelectsValue": true,
                                                       "theme": [Function],
                                                       "value": Object {
-                                                        "label": "OFF",
-                                                        "value": "Off",
+                                                        "label": "ON",
+                                                        "value": "On",
                                                       },
                                                     }
                                                   }
@@ -841,7 +841,7 @@ exports[`RSE Widget renders correctly 1`] = `
                                                     <div
                                                       className="search__single-value css-5sz5u5-singleValue"
                                                     >
-                                                      OFF
+                                                      ON
                                                     </div>
                                                   </EmotionCssPropInternal>
                                                 </SingleValue>
@@ -980,8 +980,8 @@ exports[`RSE Widget renders correctly 1`] = `
                                                 "tabSelectsValue": true,
                                                 "theme": [Function],
                                                 "value": Object {
-                                                  "label": "OFF",
-                                                  "value": "Off",
+                                                  "label": "ON",
+                                                  "value": "On",
                                                 },
                                               }
                                             }
@@ -1118,8 +1118,8 @@ exports[`RSE Widget renders correctly 1`] = `
                                                       "tabSelectsValue": true,
                                                       "theme": [Function],
                                                       "value": Object {
-                                                        "label": "OFF",
-                                                        "value": "Off",
+                                                        "label": "ON",
+                                                        "value": "On",
                                                       },
                                                     }
                                                   }
@@ -1248,8 +1248,8 @@ exports[`RSE Widget renders correctly 1`] = `
                                                       "tabSelectsValue": true,
                                                       "theme": [Function],
                                                       "value": Object {
-                                                        "label": "OFF",
-                                                        "value": "Off",
+                                                        "label": "ON",
+                                                        "value": "On",
                                                       },
                                                     }
                                                   }
@@ -1365,11 +1365,34 @@ exports[`RSE Widget renders correctly 1`] = `
                     </div>
                   </div>
                 </div>
-                <p
-                  className="text-center"
-                >
-                  RSE_OFF
-                </p>
+                <article>
+                  <p
+                    className="text-center"
+                  >
+                    RSE_ON_SYSTEM
+                  </p>
+                  <ul>
+                    <li>
+                      RSE_ON_1
+                    </li>
+                    <li>
+                      RSE_ON_2
+                    </li>
+                  </ul>
+                  <p
+                    className="text-center mt-10"
+                  >
+                    RSE_ON_INVERTERS
+                  </p>
+                  <ul>
+                    <li>
+                      RSE_ON_3
+                    </li>
+                    <li>
+                      RSE_ON_4
+                    </li>
+                  </ul>
+                </article>
                 <div
                   className="is-flex mt-15"
                 >
