@@ -16,15 +16,6 @@ export const getWebserverFirmwareUpgradePackageURL = (port = defaultPort) =>
     )
   })
 
-export function getLuaDirectoryFiles() {
-  return new Promise((resolve, reject) => {
-    window.networkinterface.getWiFiIPAddress(
-      wifi => resolve(`http://${wifi.ip}:8090/luaFiles/`),
-      reject
-    )
-  })
-}
-
 const getAppRoot = compose(
   replace('file://', ''),
   pathOr('', ['cordova', 'file', 'dataDirectory'])
@@ -49,6 +40,7 @@ function startServer(wwwroot, port) {
     httpd.getURL(function(url) {
       console.log('url', url)
       if (url.length > 0) {
+        console.log('base server', url)
         getWebserverFirmwareUpgradePackageURL()
       } else {
         /* wwwroot is the root dir of web server, it can be absolute or relative path
