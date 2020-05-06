@@ -1,13 +1,7 @@
 import { pathOr, test, isEmpty, compose, find, propEq, isNil } from 'ramda'
 import { ofType } from 'redux-observable'
 import { from, of, timer } from 'rxjs'
-import {
-  catchError,
-  exhaustMap,
-  map,
-  takeUntil,
-  switchMap
-} from 'rxjs/operators'
+import { catchError, exhaustMap, map, takeUntil } from 'rxjs/operators'
 
 import allSettled from 'promise.allsettled'
 
@@ -18,8 +12,7 @@ import {
   PVS_CONNECTION_SUCCESS,
   STOP_NETWORK_POLLING,
   WAIT_FOR_SWAGGER,
-  PVS_CONNECTION_ERROR,
-  WAITING_FOR_SWAGGER
+  PVS_CONNECTION_ERROR
 } from 'state/actions/network'
 import { translate } from 'shared/i18n'
 
@@ -39,15 +32,16 @@ const connectToPVS = async (ssid, password) => {
       await window.WifiWizard2.connect(ssid, true, password, WPA, false)
     }
   } catch (err) {
-    console.warn('connectToPVS failed: ', err)
-    throw new Error(err)
+    const normalizedError = err || 'UNKNOWN_ERROR' // Sometimes we get a null error value from WifiWizard2, doing this we get always a string value
+    console.warn('connectToPVS failed: ', normalizedError)
+    throw new Error(normalizedError)
   }
 }
 
 const connectToEpic = (action$, state$) =>
   action$.pipe(
     ofType(PVS_CONNECTION_INIT.getType()),
-    switchMap(action => {
+    exhaustMap(action => {
       const ssid = pathOr('', ['payload', 'ssid'], action)
       const password = pathOr('', ['payload', 'password'], action)
 
@@ -62,7 +56,7 @@ const connectToEpic = (action$, state$) =>
           if (hasCode7(err) || isTimeout(err) || isInvalidNetworkID(err)) {
             return of(STOP_NETWORK_POLLING({ canceled: true }))
           } else {
-            return of(PVS_CONNECTION_INIT({ ssid: ssid, password: password }))
+            return of(WAIT_FOR_SWAGGER())
           }
         })
       )
@@ -84,22 +78,24 @@ export const waitForSwaggerEpic = (action$, state$) => {
   return action$.pipe(
     ofType(WAIT_FOR_SWAGGER.getType()),
     exhaustMap(() =>
-      timer(0, 1000).pipe(
+      timer(0, 3000).pipe(
         takeUntil(stopPolling$),
         exhaustMap(() =>
           from(checkForConnection()).pipe(
             map(() => PVS_CONNECTION_SUCCESS()),
             catchError(err => {
-              console.error(err)
-              // The reason for this is that this could happen several times
-              // and we don't want to spam the user with I couldn't connect
               if (
                 !isNil(err.message) &&
                 !isEmpty(err.message) &&
                 err.message !== 'WAITING_FOR_CONNECTION'
               )
                 return of(PVS_CONNECTION_ERROR(t('PVS_CONNECTION_TIMEOUT')))
-              return of(WAITING_FOR_SWAGGER())
+              return of(
+                PVS_CONNECTION_INIT({
+                  ssid: state$.value.network.SSID,
+                  password: state$.value.network.password
+                })
+              )
             })
           )
         )
