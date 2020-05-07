@@ -23,10 +23,17 @@ import {
   FIRMWARE_UPDATE_WAITING_FOR_NETWORK
 } from 'state/actions/firmwareUpdate'
 import {
+  PVS_CONNECTION_ERROR,
   PVS_CONNECTION_INIT,
   PVS_CONNECTION_SUCCESS,
   STOP_NETWORK_POLLING
 } from 'state/actions/network'
+import { fetchAdamaPVS } from 'shared/utils'
+import {
+  getWebserverFirmwareUpgradePackageURL,
+  startWebserver,
+  stopWebserver
+} from 'shared/webserver'
 
 /**
  * Will upload the FS to the PVS and
@@ -34,7 +41,7 @@ import {
  * by using the redirect call from the PVS
  * @returns {Promise<Response>}
  */
-const uploadFirmwareToBoomerPVS = async () => {
+const uploadFirmwareToBoomer = async () => {
   try {
     const fileBlob = await getFileBlob(await getPVSFileSystemName())
     const formData = new FormData()
@@ -53,10 +60,26 @@ const uploadFirmwareToBoomerPVS = async () => {
  * Will ask the PVS if the upgrade has finished
  * @returns {Promise<boolean>}
  */
-const getUpgradeStatus = async () => {
+const getUpgradeStatus = async isAdama => {
+  if (isAdama) return await fetchAdamaPVS('GetFWUpgradeStatus')
+
   const swagger = await getApiPVS()
   const res = await swagger.apis.firmware.getUpgradeStatus()
   return res.body
+}
+
+async function uploadFirmwareToAdama() {
+  console.warn('UPLOADING TO ADAMA')
+  await startWebserver()
+  const fileUrl = await getWebserverFirmwareUpgradePackageURL()
+  console.warn(
+    `We're uploading to adama, this is the link we'll use ${fileUrl}`
+  )
+  return await fetchAdamaPVS(`StartFWUpgrade&url=${fileUrl}`)
+}
+
+function uploadFirmwareToPVS(isAdama) {
+  return isAdama ? uploadFirmwareToAdama() : uploadFirmwareToBoomer()
 }
 
 /**
@@ -67,9 +90,9 @@ const getUpgradeStatus = async () => {
 const firmwareUpgradeInit = action$ =>
   action$.pipe(
     ofType(FIRMWARE_UPDATE_INIT.getType()),
-    flatMap(() =>
-      from(uploadFirmwareToBoomerPVS()).pipe(
-        switchMap(async () => FIRMWARE_UPDATE_POLL_INIT()),
+    flatMap(({ payload: isAdama }) =>
+      from(uploadFirmwareToPVS(isAdama)).pipe(
+        switchMap(async () => FIRMWARE_UPDATE_POLL_INIT(isAdama)),
         catchError(err => of(FIRMWARE_UPDATE_ERROR.asError(err)))
       )
     )
@@ -79,10 +102,10 @@ export const firmwarePollStatus = action$ => {
   const stopPolling$ = action$.pipe(ofType(FIRMWARE_UPDATE_POLL_STOP.getType()))
   return action$.pipe(
     ofType(FIRMWARE_UPDATE_POLL_INIT.getType()),
-    switchMap(() =>
+    switchMap(({ payload: isAdama }) =>
       timer(0, 1500).pipe(
         takeUntil(stopPolling$),
-        exhaustMap(() => from(getUpgradeStatus())),
+        exhaustMap(() => from(getUpgradeStatus(isAdama))),
         map(status => {
           return path(['STATE'], status) === 'complete'
             ? FIRMWARE_UPDATE_POLL_STOP()
@@ -101,14 +124,30 @@ const firmwareWaitForWifi = (action$, state$) =>
       concat(
         of(STOP_NETWORK_POLLING()),
         of(FIRMWARE_UPDATE_WAITING_FOR_NETWORK()),
-        from(waitFor(1000 * 60)).pipe(
-          map(() =>
-            PVS_CONNECTION_INIT({
+        from(waitFor(1000 * 10)).pipe(
+          map(() => {
+            console.info('CONNECTING TO PVS')
+            return PVS_CONNECTION_INIT({
               ssid: state$.value.network.SSID,
               password: state$.value.network.password
             })
-          )
+          })
         )
+      )
+    )
+  )
+
+const pvsNotYetAvailable = action$ =>
+  action$.pipe(
+    ofType(FIRMWARE_UPDATE_WAITING_FOR_NETWORK()),
+    exhaustMap(() =>
+      action$.pipe(
+        ofType(PVS_CONNECTION_ERROR.getType()),
+        take(1),
+        map(() => {
+          console.info('Had an error reconnecting, trying again')
+          return FIRMWARE_UPDATE_POLL_STOP()
+        })
       )
     )
   )
@@ -120,7 +159,10 @@ const firmwareUpdateSuccessEpic = action$ =>
       action$.pipe(
         ofType(PVS_CONNECTION_SUCCESS.getType()),
         take(1),
-        map(() => FIRMWARE_UPDATE_COMPLETE())
+        map(() => {
+          stopWebserver()
+          return FIRMWARE_UPDATE_COMPLETE()
+        })
       )
     )
   )
@@ -129,5 +171,6 @@ export default [
   firmwareUpgradeInit,
   firmwarePollStatus,
   firmwareWaitForWifi,
+  pvsNotYetAvailable,
   firmwareUpdateSuccessEpic
 ]

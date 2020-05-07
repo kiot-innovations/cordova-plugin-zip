@@ -25,7 +25,9 @@ const checkIfNeedToUpdatePVSToLatestVersion = async () => {
     const { version: serverVersion } = await getFirmwareVersionNumber()
     let PVSversion = '-1'
     if (res.ok) PVSversion = getVersionNumber(await res.json())
-    return serverVersion > PVSversion
+    const shouldUpdate = serverVersion > PVSversion
+    const isAdama = PVSversion < 700
+    return { shouldUpdate, isAdama }
   } catch (e) {
     throw new Error(e)
   }
@@ -36,9 +38,9 @@ const checkVersionPVS = action$ =>
     ofType(PVS_CONNECTION_SUCCESS.getType()),
     mergeMap(() =>
       from(checkIfNeedToUpdatePVSToLatestVersion()).pipe(
-        map(shouldUpdate => {
+        map(({ shouldUpdate, isAdama }) => {
           return shouldUpdate
-            ? FIRMWARE_UPDATE_INIT()
+            ? FIRMWARE_UPDATE_INIT(isAdama)
             : FIRMWARE_GET_VERSION_COMPLETE()
         }),
         catchError(err => of(FIRMWARE_GET_VERSION_ERROR.asError(err.message)))
