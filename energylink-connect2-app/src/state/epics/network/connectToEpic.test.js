@@ -35,7 +35,7 @@ describe('Connect to epic', () => {
       done()
     })
   })
-  it('should retry if connection failed', done => {
+  it('should wait for swagger file if connection failed', done => {
     global.device = {
       platform: 'android'
     }
@@ -44,10 +44,11 @@ describe('Connect to epic', () => {
       connect: failFn
     }
     const init = PVS_CONNECTION_INIT({ ssid: 'sunpower', password: '123456' })
+    const success = WAIT_FOR_SWAGGER()
     const action$ = of(init)
     const epic$ = connectToEpic(action$)
     epic$.subscribe(action => {
-      expect(action).toStrictEqual(init)
+      expect(action).toStrictEqual(success)
       done()
     })
   })
