@@ -25,6 +25,7 @@ export const networkReducer = createReducer(
       SSID: ssid,
       password: password,
       connecting: true,
+      connected: false,
       err: ''
     }),
     [PVS_CONNECTION_SUCCESS]: state => ({

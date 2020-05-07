@@ -20,6 +20,7 @@ const WPA = 'WPA'
 const hasCode7 = test(/Code=7/)
 const isTimeout = test(/CONNECT_FAILED_TIMEOUT/)
 const isInvalidNetworkID = test(/INVALID_NETWORK_ID_TO_CONNECT/)
+const isWaitingForConnection = test(/WAITING_FOR_CONNECTION/)
 
 const connectToPVS = async (ssid, password) => {
   try {
@@ -32,8 +33,7 @@ const connectToPVS = async (ssid, password) => {
       await window.WifiWizard2.connect(ssid, true, password, WPA, false)
     }
   } catch (err) {
-    const normalizedError = err || 'UNKNOWN_ERROR' // Sometimes we get a null error value from WifiWizard2, doing this we get always a string value
-    console.warn('connectToPVS failed: ', normalizedError)
+    const normalizedError = err || 'UNKNOWN_ERROR'
     throw new Error(normalizedError)
   }
 }
@@ -87,7 +87,7 @@ export const waitForSwaggerEpic = (action$, state$) => {
               if (
                 !isNil(err.message) &&
                 !isEmpty(err.message) &&
-                err.message !== 'WAITING_FOR_CONNECTION'
+                !isWaitingForConnection(err.message)
               )
                 return of(PVS_CONNECTION_ERROR(t('PVS_CONNECTION_TIMEOUT')))
               return of(
