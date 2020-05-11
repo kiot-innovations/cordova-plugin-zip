@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import clsx from 'clsx'
 import useModal from 'hooks/useModal'
-import { length, path, pathOr, propOr } from 'ramda'
+import { length, pathOr } from 'ramda'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useHistory } from 'react-router-dom'
 import { either } from 'shared/utils'
@@ -94,54 +94,16 @@ const filterFoundMI = (SNList, candidatesList) => {
   }
 }
 
-function mapStateToProps({ devices, pvs }) {
-  const {
-    discoveryComplete,
-    candidates,
-    found,
-    claimingDevices,
-    claimedDevices,
-    claimError,
-    error,
-    progress
-  } = devices
-  const { serialNumbers } = pvs
-  const { okMI, nonOkMI, pendingMI } = filterFoundMI(serialNumbers, candidates)
-  return {
-    claim: {
-      claimingDevices,
-      claimedDevices,
-      claimError
-    },
-    progress,
-    found: {
-      otherDevices: found,
-      discoveryComplete,
-      error,
-      inverter: [...okMI, ...nonOkMI, ...pendingMI]
-    },
-    counts: {
-      inverter: {
-        expected: length(serialNumbers),
-        okMICount: length(okMI),
-        errMICount: length(nonOkMI)
-      }
-    }
-  }
-}
-
 const discoveryStatus = (
-  found,
-  counts,
-  claim,
+  error,
+  discoveryComplete,
+  errMICount,
+  claimError,
+  claimingDevices,
   claimDevices,
   t,
   retryDiscovery
 ) => {
-  const discoveryComplete = found.discoveryComplete
-  const errMICount = counts.inverter.errMICount
-  const error = found.error
-
   if (discoveryComplete) {
     if (errMICount > 0) {
       return (
@@ -171,11 +133,11 @@ const discoveryStatus = (
       )
     }
 
-    if (claim.claimError) {
+    if (claimError) {
       return (
         <>
           <span className="has-text-weight-bold mb-20">
-            {t('CLAIM_DEVICES_ERROR', claim.claimError)}
+            {t('CLAIM_DEVICES_ERROR', claimError)}
           </span>
           <Link
             className="button is-outlined is-primary is-uppercase is-paddingless ml-75 mr-75 mb-10"
@@ -185,9 +147,9 @@ const discoveryStatus = (
           </Link>
           <button
             className={clsx('button is-primary is-uppercase ml-75 mr-75', {
-              'is-loading': claim.claimingDevices
+              'is-loading': claimingDevices
             })}
-            disabled={claim.claimingDevices}
+            disabled={claimingDevices}
             onClick={claimDevices}
           >
             {t('CLAIM_DEVICES')}
@@ -207,9 +169,9 @@ const discoveryStatus = (
         <button
           className={clsx(
             'button is-primary is-uppercase is-paddingless ml-75 mr-75',
-            { 'is-loading': claim.claimingDevices }
+            { 'is-loading': claimingDevices }
           )}
-          disabled={claim.claimingDevices}
+          disabled={claimingDevices}
           onClick={claimDevices}
         >
           {t('CLAIM_DEVICES')}
@@ -219,19 +181,41 @@ const discoveryStatus = (
   } else {
     return (
       <span className="has-text-weight-bold mb-20">
-        {claim.claimingDevices
-          ? t('CLAIMING_DEVICES')
-          : t('DISCOVERY_IN_PROGRESS')}
+        {claimingDevices ? t('CLAIMING_DEVICES') : t('DISCOVERY_IN_PROGRESS')}
       </span>
     )
   }
 }
 
-const Devices = () => {
-  const { progress, found, counts, claim } = useSelector(mapStateToProps)
+const miActions = (num = 0, max = 0, icon = '') => (
+  <div>
+    <span className="devices-counter mr-10 ml-0 mt-0 mb-0">{`${num}/${max}`}</span>
+  </div>
+)
+
+function Devices() {
   const dispatch = useDispatch()
   const history = useHistory()
   const t = useI18n()
+
+  const { serialNumbers } = useSelector(state => state.pvs)
+
+  const {
+    discoveryComplete,
+    candidates,
+    claimingDevices,
+    claimedDevices,
+    claimError,
+    error,
+    progress
+  } = useSelector(state => state.devices)
+
+  const { okMI, nonOkMI, pendingMI } = filterFoundMI(serialNumbers, candidates)
+
+  const inverter = [...okMI, ...nonOkMI, ...pendingMI]
+  const expected = length(serialNumbers)
+  const okMICount = length(okMI)
+  const errMICount = length(nonOkMI)
 
   const [modalSN, setModalSN] = useState('')
   const [modalErrorMsg, setModalErrorMsg] = useState('PING_ERROR')
@@ -256,30 +240,24 @@ const Devices = () => {
 
   useEffect(() => {
     dispatch(FETCH_CANDIDATES_INIT())
-    if (
-      counts.inverter.expected ===
-      counts.inverter.okMICount + counts.inverter.errMICount
-    ) {
+    return () => {
+      console.warn('unmounting component')
+      dispatch(DISCOVER_COMPLETE())
+    }
+  }, [dispatch])
+
+  useEffect(() => {
+    if (expected === okMICount + errMICount) {
       dispatch(FETCH_CANDIDATES_COMPLETE())
     }
-    if (claim.claimedDevices) {
+  }, [errMICount, expected, okMICount, dispatch])
+
+  useEffect(() => {
+    if (claimedDevices) {
       dispatch(FETCH_DEVICES_LIST())
       history.push(paths.PROTECTED.MODEL_EDIT.path)
     }
-    return () => {
-      dispatch(DISCOVER_COMPLETE())
-    }
-  }, [
-    dispatch,
-    counts.expected,
-    counts.okMICount,
-    found.proceed,
-    claim.claimedDevices,
-    history,
-    counts.inverter.expected,
-    counts.inverter.okMICount,
-    counts.inverter.errMICount
-  ])
+  }, [claimedDevices, dispatch, history])
 
   const retryDiscovery = () => {
     dispatch(RESET_DISCOVERY())
@@ -287,18 +265,14 @@ const Devices = () => {
   }
 
   const claimDevices = () => {
-    const claimObject = path(['inverter'], found).map(mi => {
+    const claimObject = inverter.map(mi => {
       mi.OPERATION = 'add'
       return mi
     })
     dispatch(CLAIM_DEVICES_INIT(claimObject))
   }
 
-  const miActions = (num = 0, max = 0, icon = '') => (
-    <div>
-      <span className="devices-counter mr-10 ml-0 mt-0 mb-0">{`${num}/${max}`}</span>
-    </div>
-  )
+  console.warn('This is a render')
 
   return (
     <div className="fill-parent is-flex tile is-vertical has-text-centered sunpower-devices pr-15 pl-15">
@@ -311,14 +285,10 @@ const Devices = () => {
           title={t('MICRO-INVERTERS')}
           icon={microInverterIcon}
           expanded
-          actions={miActions(
-            counts.inverter.okMICount,
-            length(propOr([], 'inverter', found)),
-            'sp-gear'
-          )}
+          actions={miActions(okMICount, length(inverter), 'sp-gear')}
         >
           <ul className="equipment-list">
-            {propOr([], 'inverter', found).map(elem => {
+            {inverter.map(elem => {
               return (
                 <li
                   className="equipment-piece is-flex flow-wrap tile"
@@ -357,7 +327,16 @@ const Devices = () => {
         </Collapsible>
         <ProgressIndicators progressList={pathOr([], ['progress'], progress)} />
       </div>
-      {discoveryStatus(found, counts, claim, claimDevices, t, retryDiscovery)}
+      {discoveryStatus(
+        error,
+        discoveryComplete,
+        errMICount,
+        claimError,
+        claimingDevices,
+        claimDevices,
+        t,
+        retryDiscovery
+      )}
     </div>
   )
 }
