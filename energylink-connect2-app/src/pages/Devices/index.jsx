@@ -3,12 +3,11 @@ import clsx from 'clsx'
 import useModal from 'hooks/useModal'
 import { length, pathOr } from 'ramda'
 import { useDispatch, useSelector } from 'react-redux'
-import { Link, useHistory } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 import { either } from 'shared/utils'
 import { useI18n } from 'shared/i18n'
 import {
   CLAIM_DEVICES_INIT,
-  DISCOVER_COMPLETE,
   FETCH_CANDIDATES_COMPLETE,
   FETCH_CANDIDATES_INIT,
   RESET_DISCOVERY,
@@ -139,12 +138,12 @@ const discoveryStatus = (
           <span className="has-text-weight-bold mb-20">
             {t('CLAIM_DEVICES_ERROR', claimError)}
           </span>
-          <Link
+          <button
             className="button is-outlined is-primary is-uppercase is-paddingless ml-75 mr-75 mb-10"
-            to={paths.PROTECTED.SN_LIST.path}
+            onClick={retryDiscovery}
           >
             {t('ADD-DEVICES')}
-          </Link>
+          </button>
           <button
             className={clsx('button is-primary is-uppercase ml-75 mr-75', {
               'is-loading': claimingDevices
@@ -160,12 +159,12 @@ const discoveryStatus = (
 
     return (
       <>
-        <Link
+        <button
           className="button is-outlined is-primary is-uppercase is-paddingless ml-75 mr-75 mb-10"
-          to={paths.PROTECTED.SN_LIST.path}
+          onClick={retryDiscovery}
         >
           {t('ADD-DEVICES')}
-        </Link>
+        </button>
         <button
           className={clsx(
             'button is-primary is-uppercase is-paddingless ml-75 mr-75',
@@ -240,9 +239,6 @@ function Devices() {
 
   useEffect(() => {
     dispatch(FETCH_CANDIDATES_INIT())
-    return () => {
-      dispatch(DISCOVER_COMPLETE())
-    }
   }, [dispatch])
 
   useEffect(() => {
