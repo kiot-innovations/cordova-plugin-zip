@@ -139,7 +139,7 @@ const discoveryStatus = (
             {t('CLAIM_DEVICES_ERROR', claimError)}
           </span>
           <button
-            className="button is-outlined is-uppercase is-paddingless ml-75 mr-75 mb-10"
+            className="button is-primary is-outlined is-uppercase is-paddingless ml-75 mr-75 mb-10"
             disabled={claimingDevices}
             onClick={retryDiscovery}
           >
@@ -161,7 +161,7 @@ const discoveryStatus = (
     return (
       <>
         <button
-          className="button is-outlined is-uppercase is-paddingless ml-75 mr-75 mb-10"
+          className="button is-primary is-outlined is-uppercase is-paddingless ml-75 mr-75 mb-10"
           disabled={claimingDevices}
           onClick={retryDiscovery}
         >
