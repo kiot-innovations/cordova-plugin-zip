@@ -140,6 +140,7 @@ const discoveryStatus = (
           </span>
           <button
             className="button is-outlined is-primary is-uppercase is-paddingless ml-75 mr-75 mb-10"
+            disabled={claimingDevices}
             onClick={retryDiscovery}
           >
             {t('ADD-DEVICES')}
