@@ -241,7 +241,6 @@ function Devices() {
   useEffect(() => {
     dispatch(FETCH_CANDIDATES_INIT())
     return () => {
-      console.warn('unmounting component')
       dispatch(DISCOVER_COMPLETE())
     }
   }, [dispatch])
@@ -271,8 +270,6 @@ function Devices() {
     })
     dispatch(CLAIM_DEVICES_INIT(claimObject))
   }
-
-  console.warn('This is a render')
 
   return (
     <div className="fill-parent is-flex tile is-vertical has-text-centered sunpower-devices pr-15 pl-15">
