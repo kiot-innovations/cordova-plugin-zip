@@ -26,7 +26,7 @@ const checkIfNeedToUpdatePVSToLatestVersion = async () => {
     let PVSversion = '-1'
     if (res.ok) PVSversion = getVersionNumber(await res.json())
     const shouldUpdate = serverVersion > PVSversion
-    const isAdama = PVSversion > 600
+    const isAdama = PVSversion < 700
     return { shouldUpdate, isAdama }
   } catch (e) {
     throw new Error(e)

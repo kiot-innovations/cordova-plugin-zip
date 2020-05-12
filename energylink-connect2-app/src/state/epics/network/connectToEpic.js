@@ -1,13 +1,7 @@
 import { pathOr, test, isEmpty, compose, find, propEq, isNil } from 'ramda'
 import { ofType } from 'redux-observable'
 import { from, of, timer } from 'rxjs'
-import {
-  catchError,
-  exhaustMap,
-  map,
-  takeUntil,
-  switchMap
-} from 'rxjs/operators'
+import { catchError, exhaustMap, map, takeUntil } from 'rxjs/operators'
 
 import allSettled from 'promise.allsettled'
 

@@ -57,7 +57,7 @@ function ConnectToPVS() {
     let password =
       serialNumber.substring(2, 6) +
       serialNumber.substring(lastIndex - 4, lastIndex)
-    console.log(password)
+    console.info(password)
     return password
   }
 

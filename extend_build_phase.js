@@ -29,7 +29,7 @@ myProj.parse(function(err) {
 
 function fromDir(startPath, filter, rec, multiple) {
   if (!fs.existsSync(startPath)) {
-    console.log('no dir ', startPath)
+    console.info('no dir ', startPath)
     return
   }
   const files = fs.readdirSync(startPath)

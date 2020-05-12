@@ -8,7 +8,10 @@ import SearchField from 'components/SearchField'
 
 import { GET_SITES_INIT, SET_SITE, RESET_SITE } from 'state/actions/site'
 import { RESET_PVS_INFO_STATE } from 'state/actions/pvs'
-import { RESET_PVS_CONNECTION } from 'state/actions/network'
+import {
+  RESET_PVS_CONNECTION,
+  START_WEBSERVER_INIT
+} from 'state/actions/network'
 import { RESET_DISCOVERY } from 'state/actions/devices'
 import { RESET_INVENTORY } from 'state/actions/inventory'
 
@@ -55,8 +58,8 @@ function Home() {
 
   useEffect(() => {
     dispatch(GET_SITES_INIT())
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+    dispatch(START_WEBSERVER_INIT())
+  }, [dispatch])
 
   const notFoundText = t('NOT_FOUND')
 

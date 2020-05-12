@@ -14,16 +14,7 @@ export const getWebserverFirmwareUpgradePackageURL = (port = defaultPort) =>
     }, reject)
   })
 
-export function getLuaDirectoryFiles() {
-  return new Promise((resolve, reject) => {
-    window.networkinterface.getWiFiIPAddress(
-      wifi => resolve(`http://${wifi.ip}:8090/luaFiles/`),
-      reject
-    )
-  })
-}
-
-const getAppRoot = compose(
+export const getAppRoot = compose(
   replace('file://', ''),
   pathOr('', ['cordova', 'file', 'dataDirectory'])
 )
@@ -42,7 +33,7 @@ export const startWebserver = async (port = defaultPort) => {
 }
 
 function startServer(wwwroot, port) {
-  console.log('startServer', wwwroot)
+  console.info('startServer', wwwroot)
   const httpd = pathOr(null, ['cordova', 'plugins', 'CorHttpd'], window)
   const serverSettings = {
     www_root: wwwroot,
@@ -50,11 +41,12 @@ function startServer(wwwroot, port) {
     localhost_only: false
   }
   if (httpd) {
-    console.log('httpd exists')
+    console.info('httpd exists')
     // before start, check whether its up or not
     httpd.getURL(function(url) {
-      console.log('url', url)
+      console.info('url', url)
       if (url.length > 0) {
+        console.info('base server', url)
         getWebserverFirmwareUpgradePackageURL()
       } else {
         /* wwwroot is the root dir of web server, it can be absolute or relative path
@@ -67,20 +59,20 @@ function startServer(wwwroot, port) {
         httpd.startServer(
           serverSettings,
           function(url) {
-            console.log('startServer url', url)
+            console.info('startServer url', url)
             // if server is up, it will return the url of http://<server ip>:port/
             // the ip is the active network connection
             // if no wifi or no cell, "127.0.0.1" will be returned.
             getWebserverFirmwareUpgradePackageURL()
           },
           function(error) {
-            console.log('failed to start server: ' + error)
+            console.info('failed to start server: ' + error)
           }
         )
       }
     })
   } else {
-    console.log('startServer - CorHttpd plugin not available/ready.')
+    console.info('startServer - CorHttpd plugin not available/ready.')
   }
 }
 
@@ -90,13 +82,13 @@ export function stopWebserver() {
     // call this API to stop web server
     httpd.stopServer(
       function() {
-        console.log('server is stopped.')
+        console.info('server is stopped.')
       },
       function(error) {
-        console.log('failed to stop server' + error)
+        console.info('failed to stop server' + error)
       }
     )
   } else {
-    console.log('stopServer - CorHttpd plugin not available/ready.')
+    console.info('stopServer - CorHttpd plugin not available/ready.')
   }
 }

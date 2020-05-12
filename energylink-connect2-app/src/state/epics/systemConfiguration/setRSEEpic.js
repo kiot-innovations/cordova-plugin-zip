@@ -1,6 +1,6 @@
 import { ofType } from 'redux-observable'
 import { from, of, timer } from 'rxjs'
-import { catchError, map, mergeMap, takeWhile } from 'rxjs/operators'
+import { catchError, map, mergeMap, switchMap, takeUntil } from 'rxjs/operators'
 import { getApiPVS } from 'shared/api'
 import {
   GET_RSE_INIT,
@@ -43,17 +43,21 @@ export const pollRSEEpic = (action$, state$) => {
   let currentProgress = 0
 
   state$.subscribe(state => {
-    currentProgress = state.systemConfiguration.rse.pollProgress
+    currentProgress = state.systemConfiguration.rse.data.progress || 0
   })
+
+  const stopPolling$ = action$.pipe(ofType(SET_RSE_SUCCESS.getType()))
 
   return action$.pipe(
     ofType(SET_RSE_STATUS.getType()),
-    mergeMap(() =>
-      timer(0, 1000).pipe(
-        map(() =>
-          currentProgress < 100 ? GET_RSE_INIT(true) : SET_RSE_SUCCESS()
-        ),
-        takeWhile(() => currentProgress < 100)
+    switchMap(() =>
+      timer(500, 2500).pipe(
+        takeUntil(stopPolling$),
+        map(timeLapsed =>
+          currentProgress < 100 && timeLapsed < 30
+            ? GET_RSE_INIT(true)
+            : SET_RSE_SUCCESS()
+        )
       )
     )
   )

@@ -123,13 +123,13 @@ function SystemConfiguration() {
       <span className="is-uppercase has-text-weight-bold mb-20">
         {t('SYSTEM_CONFIGURATION')}
       </span>
-      <div className="mb-10">
+      <div className="mb-15">
         <InterfacesWidget />
       </div>
+      <NetworkWidget />
       <GridBehaviorWidget />
       <MetersWidget />
       <StorageWidget />
-      <NetworkWidget />
       <RSEWidget />
       <div className="submit-config">
         <button

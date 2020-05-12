@@ -1,6 +1,6 @@
 import { path, pick } from 'ramda'
 import { ofType } from 'redux-observable'
-import { concat, from, of, timer, iif } from 'rxjs'
+import { concat, from, of, timer } from 'rxjs'
 import {
   catchError,
   exhaustMap,
@@ -126,7 +126,7 @@ const firmwareWaitForWifi = (action$, state$) =>
         of(FIRMWARE_UPDATE_WAITING_FOR_NETWORK()),
         from(waitFor(1000 * 10)).pipe(
           map(() => {
-            console.log('CONNECTING TO PVS')
+            console.info('CONNECTING TO PVS')
             return PVS_CONNECTION_INIT({
               ssid: state$.value.network.SSID,
               password: state$.value.network.password
@@ -145,7 +145,7 @@ const pvsNotYetAvailable = action$ =>
         ofType(PVS_CONNECTION_ERROR.getType()),
         take(1),
         map(() => {
-          console.log('Had an error reconnecting, trying again')
+          console.info('Had an error reconnecting, trying again')
           return FIRMWARE_UPDATE_POLL_STOP()
         })
       )

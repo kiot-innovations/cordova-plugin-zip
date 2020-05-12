@@ -256,7 +256,7 @@ function downloadSuccess(e, dispatch) {
 
 function downloadLuaFiles(version) {
   window.downloader.init({ folder: 'luaFiles', unzip: true })
-  console.log('DOWNLOADING LUA FILES')
+  console.info('DOWNLOADING LUA FILES')
   window.downloader.get(
     `https://fw-assets-pvs6-dev.dev-edp.sunpower.com/staging-prod-boomer/${version}/fwup_lua_cm2.zip`
   )
