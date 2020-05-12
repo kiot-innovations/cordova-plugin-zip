@@ -25,6 +25,7 @@ import {
   values,
   when
 } from 'ramda'
+import { getApiPVS } from 'shared/api'
 
 export const either = (condition, whenTrue, whenFalse = null) =>
   condition ? whenTrue : whenFalse
@@ -201,4 +202,16 @@ export function padNumber(number, width = 3, separator = '0') {
   return n.length >= width
     ? n
     : new Array(width - n.length + 1).join(separator) + n
+}
+
+export async function isThePVSAdama() {
+  try {
+    const res = await fetchAdamaPVS('GetSupervisorInformation')
+    if (!res.ok) throw new Error('PVS NOT CONNECTED')
+    await getApiPVS()
+    return false
+  } catch (e) {
+    console.error('GETTING ADAMA DATA', e)
+    return true
+  }
 }

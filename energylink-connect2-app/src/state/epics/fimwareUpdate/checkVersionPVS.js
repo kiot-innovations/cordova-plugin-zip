@@ -2,6 +2,7 @@ import { compose, last, path, split } from 'ramda'
 import { ofType } from 'redux-observable'
 import { from, of } from 'rxjs'
 import { catchError, map, mergeMap } from 'rxjs/operators'
+import { isThePVSAdama } from 'shared/utils'
 import { getFirmwareVersionNumber } from 'state/actions/fileDownloader'
 import {
   FIRMWARE_GET_VERSION_COMPLETE,
@@ -26,7 +27,9 @@ const checkIfNeedToUpdatePVSToLatestVersion = async () => {
     let PVSversion = '-1'
     if (res.ok) PVSversion = getVersionNumber(await res.json())
     const shouldUpdate = serverVersion > PVSversion
-    const isAdama = PVSversion < 700
+    const isAdama = await isThePVSAdama()
+    console.warn('IS ADAMA:', isAdama)
+    console.warn('PVS version:', isAdama)
     return { shouldUpdate, isAdama }
   } catch (e) {
     throw new Error(e)

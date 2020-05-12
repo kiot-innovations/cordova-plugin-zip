@@ -1,5 +1,5 @@
 import { compose, concat, curry, pathOr, replace } from 'ramda'
-import { getLastIPOctet, padNumber } from 'shared/utils'
+import { getLastIPOctet, isIos, padNumber } from 'shared/utils'
 
 const defaultPort = 8080
 
@@ -14,21 +14,23 @@ export const getWebserverFirmwareUpgradePackageURL = (port = defaultPort) =>
     }, reject)
   })
 
-export const getAppRoot = compose(
-  replace('file://', ''),
-  pathOr('', ['cordova', 'file', 'dataDirectory'])
+const getDataDirectory = pathOr('', ['cordova', 'file', 'dataDirectory'])
+
+const removeFileProtocol = replace('file://', '')
+
+const getAppRootIOS = compose(
+  replace('Library/NoCloud/', 'Documents/'),
+  removeFileProtocol,
+  getDataDirectory
 )
 
 const getAppRootAndroid = curry(fileUrl => {
-  const directory = compose(
-    replace('file://', ''),
-    pathOr('', ['cordova', 'file', 'dataDirectory'])
-  )(fileUrl)
+  const directory = compose(removeFileProtocol, getDataDirectory)(fileUrl)
   return concat(directory, 'files')
 })
 
 export const startWebserver = async (port = defaultPort) => {
-  const wwwRoot = getAppRootAndroid(window)
+  const wwwRoot = isIos() ? getAppRootIOS(window) : getAppRootAndroid(window)
   startServer(wwwRoot, port)
 }
 

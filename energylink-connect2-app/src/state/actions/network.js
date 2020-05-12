@@ -17,6 +17,3 @@ export const clearPVSErr = () => {
     dispatch(PVS_CLEAR_ERROR())
   }
 }
-export const START_WEBSERVER_INIT = createAction('START_WEBSERVER_INIT')
-export const START_WEBSERVER_SUCCESS = createAction('START_WEBSERVER_SUCCESS')
-export const START_WEBSERVER_ERROR = createAction('START_WEBSERVER_ERROR')

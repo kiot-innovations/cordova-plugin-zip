@@ -8,7 +8,6 @@ import systemConfigurationEpics from './systemConfiguration'
 import liveEnergyData from './live-energy-data'
 import authEpics from './auth'
 import firmwareUpdateEpics from './fimwareUpdate'
-import { webserverEpic } from './mobile/webserverEpic'
 export default combineEpics(
   ...firmwareUpdateEpics,
   ...networkPollingEpics,
@@ -18,6 +17,5 @@ export default combineEpics(
   ...deviceEpics,
   ...systemConfigurationEpics,
   liveEnergyData,
-  ...authEpics,
-  webserverEpic
+  ...authEpics
 )

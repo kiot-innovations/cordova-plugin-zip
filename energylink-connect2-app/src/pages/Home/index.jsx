@@ -1,22 +1,19 @@
+import SearchField from 'components/SearchField'
 import { compose, join, length, path, pick, prop, test, values } from 'ramda'
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useHistory } from 'react-router-dom'
 
 import paths from 'routes/paths'
-import SearchField from 'components/SearchField'
-
-import { GET_SITES_INIT, SET_SITE, RESET_SITE } from 'state/actions/site'
-import { RESET_PVS_INFO_STATE } from 'state/actions/pvs'
-import {
-  RESET_PVS_CONNECTION,
-  START_WEBSERVER_INIT
-} from 'state/actions/network'
-import { RESET_DISCOVERY } from 'state/actions/devices'
-import { RESET_INVENTORY } from 'state/actions/inventory'
 
 import { useI18n } from 'shared/i18n'
 import { cleanString, either } from 'shared/utils'
+import { RESET_DISCOVERY } from 'state/actions/devices'
+import { RESET_INVENTORY } from 'state/actions/inventory'
+import { RESET_PVS_CONNECTION } from 'state/actions/network'
+import { RESET_PVS_INFO_STATE } from 'state/actions/pvs'
+
+import { GET_SITES_INIT, RESET_SITE, SET_SITE } from 'state/actions/site'
 
 import './Home.scss'
 
@@ -58,7 +55,6 @@ function Home() {
 
   useEffect(() => {
     dispatch(GET_SITES_INIT())
-    dispatch(START_WEBSERVER_INIT())
   }, [dispatch])
 
   const notFoundText = t('NOT_FOUND')
