@@ -30,7 +30,7 @@ function RSEWidget() {
 
   const [rseValue, setRSEValue] = useState(powerProduction)
 
-  const disableApplyBtn = equals(powerProduction, rseValue)
+  const disableApplyBtn = !equals(powerProduction, rseValue)
   const sendNewRSEValue = compose(dispatch, SET_RSE_INIT)
   const onSelectRSE = compose(
     setRSEValue,
@@ -86,12 +86,17 @@ function RSEWidget() {
             <button
               className="button is-primary auto"
               disabled={isSetting || disableApplyBtn}
-              onClick={() => sendNewRSEValue(rseValue)}
+              onClick={() =>
+                sendNewRSEValue(invertedPowerProduction(RSES, rseValue).value)
+              }
             >
               {either(
                 isSetting,
-                t('APPLYING', progress && progress < 100 ? progress : '...'),
-                t('APPLY')
+                t(
+                  'APPLYING',
+                  progress && progress < 100 ? `${progress}%` : '...'
+                ),
+                t('APPLY', invertedPowerProduction(RSES, powerProduction).value)
               )}
             </button>
           </div>
