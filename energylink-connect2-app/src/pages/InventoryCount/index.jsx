@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Link, Redirect } from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { useI18n } from 'shared/i18n'
 import clsx from 'clsx'
@@ -116,7 +116,6 @@ function InventoryCount() {
         >
           {t('DONE')}
         </button>
-        <Link to={paths.PROTECTED.BILL_OF_MATERIALS.path}>{t('CANCEL')}</Link>
       </div>
     </section>
   )

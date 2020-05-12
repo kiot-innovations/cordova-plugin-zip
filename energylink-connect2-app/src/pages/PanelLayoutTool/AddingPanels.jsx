@@ -69,11 +69,11 @@ export default () => {
   }
   const footer = either(
     unassigned.length || err,
-    <>
+    <div>
       <h3 className="has-text-centered has-text-white">
         {t('ADD_PANEL_TO_LAYOUT')}
       </h3>
-      <div className="panelContainer">
+      <div className="controlsContainer">
         {either(
           index !== 0,
           <button value={'<'} onClick={() => setIndex(index - 1)}>
@@ -89,15 +89,15 @@ export default () => {
           </button>
         )}
       </div>
-      <span className="has-text-centered has-text-weight-bold has-text-white is-size-7 is-capitalized">
+      <div className="has-text-centered has-text-weight-bold has-text-white is-size-7 is-capitalized">
         {t('ORIENTATION')}
-      </span>
+      </div>
       <RotationSelector />
-    </>,
-    <>
-      <span className="has-text-centered has-text-weight-bold has-text-white is-size-7 is-capitalized">
+    </div>,
+    <div>
+      <div className="has-text-centered has-text-weight-bold has-text-white is-size-7 is-capitalized">
         {t('ORIENTATION')}
-      </span>
+      </div>
       <RotationSelector />
       <span className="has-text-centered has-text-white has-text-weight-bold is-size-7">
         {t('ALL_PANELS_SET')}!
@@ -109,7 +109,7 @@ export default () => {
       >
         {t('CONTINUE')}
       </button>
-    </>
+    </div>
   )
   return (
     <PanelLayoutTool
