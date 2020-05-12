@@ -1,19 +1,17 @@
-import { compose, pathOr, replace } from 'ramda'
+import { compose, concat, curry, pathOr, replace } from 'ramda'
 import { getLastIPOctet, padNumber } from 'shared/utils'
 
 const defaultPort = 8080
 
 export const getWebserverFirmwareUpgradePackageURL = (port = defaultPort) =>
   new Promise((resolve, reject) => {
-    window.networkinterface.getWiFiIPAddress(
-      wifi =>
-        resolve(
-          `http://${wifi.ip}:${port}/files/luaFiles/fwup${padNumber(
-            getLastIPOctet(wifi.ip)
-          )}.lua`
-        ),
-      reject
-    )
+    window.networkinterface.getWiFiIPAddress(wifi => {
+      return resolve(
+        `http://${wifi.ip}:${port}/luaFiles/fwup${padNumber(
+          getLastIPOctet(wifi.ip)
+        )}.lua`
+      )
+    }, reject)
   })
 
 export function getLuaDirectoryFiles() {
@@ -30,8 +28,16 @@ const getAppRoot = compose(
   pathOr('', ['cordova', 'file', 'dataDirectory'])
 )
 
+const getAppRootAndroid = curry(fileUrl => {
+  const directory = compose(
+    replace('file://', ''),
+    pathOr('', ['cordova', 'file', 'dataDirectory'])
+  )(fileUrl)
+  return concat(directory, 'files')
+})
+
 export const startWebserver = async (port = defaultPort) => {
-  const wwwRoot = getAppRoot(window)
+  const wwwRoot = getAppRootAndroid(window)
   startServer(wwwRoot, port)
 }
 
