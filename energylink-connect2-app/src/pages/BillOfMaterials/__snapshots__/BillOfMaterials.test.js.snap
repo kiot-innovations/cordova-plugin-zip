@@ -194,7 +194,7 @@ exports[`BillOfMaterials component render correctly 1`] = `
             </div>
           </section>
           <section
-            className="mb-50"
+            className="pb-50"
           >
             <Link
               className="is-block is-full-width has-text-centered is-bold mb-30 has-text-weight-bold"
@@ -211,33 +211,6 @@ exports[`BillOfMaterials component render correctly 1`] = `
                   onClick={[Function]}
                 >
                   ADD_INVENTORY
-                </a>
-              </LinkAnchor>
-            </Link>
-          </section>
-          <section
-            className="is-flex file level space-around section pt-0"
-          >
-            <span
-              className="is-uppercase has-text-white block"
-            >
-              SOMETHING_WRONG
-            </span>
-            <Link
-              className="is-bold"
-              to="/"
-            >
-              <LinkAnchor
-                className="is-bold"
-                href="/"
-                navigate={[Function]}
-              >
-                <a
-                  className="is-bold"
-                  href="/"
-                  onClick={[Function]}
-                >
-                  SEND_A_REPORT
                 </a>
               </LinkAnchor>
             </Link>

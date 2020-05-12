@@ -97,7 +97,7 @@ function BillOfMaterials() {
           </div>
         </div>
       </section>
-      <section className="mb-50">
+      <section className="pb-50">
         {data.bom ? (
           <div>
             <span className="is-block is-full-width has-text-centered is-bold mb-5 has-text-weight-bold">
@@ -132,14 +132,6 @@ function BillOfMaterials() {
             {t('ADD_INVENTORY')}
           </Link>
         )}
-      </section>
-      <section className="is-flex file level space-around section pt-0">
-        <span className="is-uppercase has-text-white block">
-          {t('SOMETHING_WRONG')}
-        </span>
-        <Link to={paths.PROTECTED.ROOT.path} className="is-bold">
-          {t('SEND_A_REPORT')}
-        </Link>
       </section>
     </main>
   )
