@@ -1398,10 +1398,10 @@ exports[`RSE Widget renders correctly 1`] = `
                 >
                   <button
                     className="button is-primary auto"
-                    disabled={true}
+                    disabled={false}
                     onClick={[Function]}
                   >
-                    APPLY
+                    APPLY On
                   </button>
                 </div>
               </div>
