@@ -14,6 +14,7 @@ import {
   lt,
   map,
   over,
+  path,
   pathEq,
   pickBy,
   prop,
@@ -191,7 +192,6 @@ export const replaceSpaceByDashes = replace('/ /g', '-')
 
 export const fetchAdamaPVS = async command => {
   const baseUrl = process.env.REACT_APP_PVS_SELECTEDADDRESS
-  console.warn(`${baseUrl}/dl_cgi?Command=${command}`)
   const response = await fetch(`${baseUrl}/dl_cgi?Command=${command}`)
   return await response.json()
 }
@@ -211,7 +211,13 @@ export async function isThePVSAdama() {
     await getApiPVS()
     return false
   } catch (e) {
-    console.error('GETTING ADAMA DATA', e)
     return true
   }
 }
+
+export const getPVSVersionNumber = compose(
+  Number,
+  last,
+  split('Build'),
+  path(['supervisor', 'SWVER'])
+)

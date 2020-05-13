@@ -54,16 +54,23 @@ export async function getFirmwareVersionNumber() {
     const fileURL =
       'https://fw-assets-pvs6-dev.dev-edp.sunpower.com/staging-prod-boomer/7130/fwup/fwup.lua'
     const luaFileName = getLuaName(fileURL)
-    console.warn({ luaFileName, fileURL, version: getBuildNumber(fileURL) })
     return { luaFileName, fileURL, version: getBuildNumber(fileURL) }
   } catch (e) {
     throw new Error(ERROR_CODES.getVersionInfo)
   }
 }
 
+export const getLuaDownloadName = async () => {
+  const name = getPVSVersionNumber()
+  return `${name}.lua`
+}
 export const getPVSFileSystemName = async () => {
+  const name = getPVSVersionNumber()
+  return `${name}.fs`
+}
+const getPVSVersionNumber = async () => {
   const { version, luaFileName } = await getFirmwareVersionNumber()
-  return `${luaFileName}-${version}.fs`.replace(/ /g, '-')
+  return `${luaFileName}-${version}`.replace(/ /g, '-')
 }
 
 export const getFileBlob = (fileName = '') =>
@@ -128,7 +135,14 @@ export function getFile(wifiOnly = true) {
     try {
       const { fileURL, luaFileName, version } = await getFirmwareVersionNumber()
       dispatch(SET_FILE_NAME(`${luaFileName} - ${version}`))
-      await getPersistentFile(luaFileName, fileURL, dispatch, wifiOnly, false)
+      downloadLuaFiles(version)
+      await getPersistentFile(
+        await getLuaDownloadName(),
+        fileURL,
+        dispatch,
+        wifiOnly,
+        false
+      )
       await parseLuaFile(luaFileName, dispatch)
       const fileSystemURL = getFileSystemURL(fileURL)
       removeEventListeners()
@@ -139,7 +153,6 @@ export function getFile(wifiOnly = true) {
         wifiOnly
       )
       removeEventListeners()
-      downloadLuaFiles(version)
       dispatch(DOWNLOAD_SUCCESS())
     } catch (error) {
       if (error.message === ERROR_CODES.getVersionInfo) {
@@ -256,7 +269,6 @@ function downloadSuccess(e, dispatch) {
 
 function downloadLuaFiles(version) {
   window.downloader.init({ folder: 'luaFiles', unzip: true })
-  console.info('DOWNLOADING LUA FILES')
   window.downloader.get(
     `https://fw-assets-pvs6-dev.dev-edp.sunpower.com/staging-prod-boomer/${version}/fwup_lua_cm2.zip`
   )

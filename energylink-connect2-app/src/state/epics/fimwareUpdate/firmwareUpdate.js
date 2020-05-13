@@ -1,3 +1,4 @@
+import * as Sentry from '@sentry/browser'
 import { path, pick } from 'ramda'
 import { ofType } from 'redux-observable'
 import { concat, from, of, timer } from 'rxjs'
@@ -11,7 +12,12 @@ import {
   takeUntil
 } from 'rxjs/operators'
 import { getApiPVS } from 'shared/api'
-import { waitFor } from 'shared/utils'
+import { fetchAdamaPVS, getPVSVersionNumber, waitFor } from 'shared/utils'
+import {
+  getWebserverFirmwareUpgradePackageURL,
+  startWebserver,
+  stopWebserver
+} from 'shared/webserver'
 import { getFileBlob, getPVSFileSystemName } from 'state/actions/fileDownloader'
 import {
   FIRMWARE_UPDATE_COMPLETE,
@@ -23,17 +29,10 @@ import {
   FIRMWARE_UPDATE_WAITING_FOR_NETWORK
 } from 'state/actions/firmwareUpdate'
 import {
-  PVS_CONNECTION_ERROR,
   PVS_CONNECTION_INIT,
   PVS_CONNECTION_SUCCESS,
   STOP_NETWORK_POLLING
 } from 'state/actions/network'
-import { fetchAdamaPVS } from 'shared/utils'
-import {
-  getWebserverFirmwareUpgradePackageURL,
-  startWebserver,
-  stopWebserver
-} from 'shared/webserver'
 
 /**
  * Will upload the FS to the PVS and
@@ -69,12 +68,8 @@ const getUpgradeStatus = async isAdama => {
 }
 
 async function uploadFirmwareToAdama() {
-  console.warn('UPLOADING TO ADAMA')
   await startWebserver()
   const fileUrl = await getWebserverFirmwareUpgradePackageURL()
-  console.warn(
-    `We're uploading to adama, this is the link we'll use ${fileUrl}`
-  )
   return await fetchAdamaPVS(`StartFWUpgrade&url=${fileUrl}`)
 }
 
@@ -90,12 +85,13 @@ function uploadFirmwareToPVS(isAdama) {
 const firmwareUpgradeInit = action$ =>
   action$.pipe(
     ofType(FIRMWARE_UPDATE_INIT.getType()),
-    flatMap(({ payload: isAdama }) =>
-      from(uploadFirmwareToPVS(isAdama)).pipe(
+    flatMap(({ payload }) => {
+      const { isAdama } = payload
+      return from(uploadFirmwareToPVS(isAdama)).pipe(
         switchMap(async () => FIRMWARE_UPDATE_POLL_INIT(isAdama)),
         catchError(err => of(FIRMWARE_UPDATE_ERROR.asError(err)))
       )
-    )
+    })
   )
 
 export const firmwarePollStatus = action$ => {
@@ -111,7 +107,14 @@ export const firmwarePollStatus = action$ => {
             ? FIRMWARE_UPDATE_POLL_STOP()
             : FIRMWARE_UPDATE_POLLING(pick(['STATE', 'PERCENT'], status))
         }),
-        catchError(() => of({ type: "NOTHING HAPPENED HERE :')" }))
+        catchError(() => {
+          const errorMsg = `The request to get the PVS upgrade disconnected V: ${
+            isAdama ? 'adama' : 'boomer'
+          }`
+          Sentry.captureException(new Error(errorMsg))
+
+          return of(FIRMWARE_UPDATE_POLL_STOP())
+        })
       )
     )
   )
@@ -137,31 +140,31 @@ const firmwareWaitForWifi = (action$, state$) =>
     )
   )
 
-const pvsNotYetAvailable = action$ =>
-  action$.pipe(
-    ofType(FIRMWARE_UPDATE_WAITING_FOR_NETWORK()),
-    exhaustMap(() =>
-      action$.pipe(
-        ofType(PVS_CONNECTION_ERROR.getType()),
-        take(1),
-        map(() => {
-          console.info('Had an error reconnecting, trying again')
-          return FIRMWARE_UPDATE_POLL_STOP()
-        })
-      )
-    )
+async function didThePVSUpgrade(lastVersion) {
+  const PVSversion = getPVSVersionNumber(
+    await fetchAdamaPVS('GetSupervisorInformation')
   )
+  if (PVSversion > lastVersion) return true
+  throw new Error("Update didn't update successfully")
+}
 
-const firmwareUpdateSuccessEpic = action$ =>
+const firmwareUpdateSuccessEpic = (action$, state$) =>
   action$.pipe(
     ofType(FIRMWARE_UPDATE_WAITING_FOR_NETWORK.getType()),
     switchMap(() =>
       action$.pipe(
         ofType(PVS_CONNECTION_SUCCESS.getType()),
         take(1),
-        map(() => {
+        exhaustMap(() => {
           stopWebserver()
-          return FIRMWARE_UPDATE_COMPLETE()
+          return from(
+            didThePVSUpgrade(state$.value.firmwareUpdate.versionBeforeUpgrade)
+          ).pipe(
+            exhaustMap(() => of(FIRMWARE_UPDATE_COMPLETE())),
+            catchError(err => {
+              return of(FIRMWARE_UPDATE_ERROR(err))
+            })
+          )
         })
       )
     )
@@ -171,6 +174,5 @@ export default [
   firmwareUpgradeInit,
   firmwarePollStatus,
   firmwareWaitForWifi,
-  pvsNotYetAvailable,
   firmwareUpdateSuccessEpic
 ]

@@ -1,4 +1,4 @@
-import { pathOr, test, isEmpty, compose, find, propEq, isNil } from 'ramda'
+import { compose, find, isEmpty, isNil, pathOr, propEq, test } from 'ramda'
 import { ofType } from 'redux-observable'
 import { from, of, timer } from 'rxjs'
 import { catchError, exhaustMap, map, takeUntil } from 'rxjs/operators'
@@ -6,16 +6,16 @@ import { catchError, exhaustMap, map, takeUntil } from 'rxjs/operators'
 import allSettled from 'promise.allsettled'
 
 import { getApiPVS } from 'shared/api'
+import { translate } from 'shared/i18n'
 import { isIos } from 'shared/utils'
 import {
+  PVS_CONNECTION_ERROR,
   PVS_CONNECTION_INIT,
   PVS_CONNECTION_SUCCESS,
   STOP_NETWORK_POLLING,
   WAIT_FOR_SWAGGER,
-  PVS_CONNECTION_ERROR,
   WAITING_FOR_SWAGGER
 } from 'state/actions/network'
-import { translate } from 'shared/i18n'
 
 const WPA = 'WPA'
 const hasCode7 = test(/Code=7/)
@@ -53,7 +53,6 @@ const connectToEpic = (action$, state$) =>
       return from(connectToPVS(ssid, password)).pipe(
         map(() => WAIT_FOR_SWAGGER()),
         catchError(err => {
-          console.warn(err.message)
           if (hasCode7(err) || isTimeout(err) || isInvalidNetworkID(err)) {
             return of(STOP_NETWORK_POLLING({ canceled: true }))
           } else {
@@ -81,7 +80,7 @@ export const waitForSwaggerEpic = (action$, state$) => {
       timer(0, 1000).pipe(
         takeUntil(stopPolling$),
         exhaustMap(() =>
-          from(checkForConnection()).pipe(
+          from(checkForConnection(state$)).pipe(
             map(() => PVS_CONNECTION_SUCCESS()),
             catchError(err => {
               console.error('ERROR CONNECTING', err)
@@ -90,7 +89,8 @@ export const waitForSwaggerEpic = (action$, state$) => {
               if (
                 !isNil(err.message) &&
                 !isEmpty(err.message) &&
-                err.message !== 'WAITING_FOR_CONNECTION'
+                err.message !== 'WAITING_FOR_CONNECTION' &&
+                err.message === 'NETWORK_NAME_DIFFERENT'
               )
                 return of(PVS_CONNECTION_ERROR(t('PVS_CONNECTION_TIMEOUT')))
               return of(WAITING_FOR_SWAGGER())
