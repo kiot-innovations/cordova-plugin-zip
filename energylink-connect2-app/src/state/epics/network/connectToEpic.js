@@ -6,7 +6,7 @@ import { catchError, exhaustMap, map, takeUntil } from 'rxjs/operators'
 import allSettled from 'promise.allsettled'
 
 import { getApiPVS } from 'shared/api'
-import { isIos } from 'shared/utils'
+import { fetchAdamaPVS, isIos } from 'shared/utils'
 import {
   PVS_CONNECTION_INIT,
   PVS_CONNECTION_SUCCESS,
@@ -66,7 +66,7 @@ const connectToEpic = (action$, state$) =>
 const parsePromises = compose(Boolean, find(propEq('status', 'fulfilled')))
 
 const checkForConnection = async () => {
-  const promises = [getApiPVS(), fetch(process.env.REACT_APP_PVS_VERSION_INFO)]
+  const promises = [getApiPVS(), fetchAdamaPVS('GetSupervisorInformation')]
   const isConnected = parsePromises(await allSettled(promises))
   if (!isConnected) throw new Error('WAITING_FOR_CONNECTION')
 }
