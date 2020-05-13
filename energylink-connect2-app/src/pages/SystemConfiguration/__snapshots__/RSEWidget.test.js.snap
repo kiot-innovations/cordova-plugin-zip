@@ -1401,7 +1401,7 @@ exports[`RSE Widget renders correctly 1`] = `
                     disabled={false}
                     onClick={[Function]}
                   >
-                    SET On
+                    APPLY
                   </button>
                 </div>
               </div>

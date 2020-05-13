@@ -96,7 +96,7 @@ function RSEWidget() {
                   'APPLYING',
                   progress && progress < 100 ? `${progress}%` : '...'
                 ),
-                t('SET', invertedPowerProduction(RSES, powerProduction).value)
+                t('APPLY')
               )}
             </button>
           </div>

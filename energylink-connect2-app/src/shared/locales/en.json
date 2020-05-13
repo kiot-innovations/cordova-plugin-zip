@@ -149,7 +149,6 @@
   "ON": "On",
   "OFF": "Off",
   "APPLY": "Apply",
-  "SET": "Set {0}",
   "DEVICES_NOT_FOUND": "There were some devices that were not found. Please check those devices before continuing.",
   "AP_CONNECTION_SUCCESS": "Connected to {0}",
   "AP_CONNECTION_ERROR": "An error happened connecting to the AP",
