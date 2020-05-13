@@ -1,20 +1,15 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-import { equals, isEmpty, map } from 'ramda'
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef, useCallback } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
-
-import paths from 'routes/paths'
+import { map, isEmpty, equals } from 'ramda'
 import { useI18n } from 'shared/i18n'
 import { scanSimple } from 'shared/scandit'
 import { decodeQRData } from 'shared/scanning'
-import {
-  clearPVSErr,
-  PVS_CONNECTION_ERROR,
-  PVS_CONNECTION_INIT
-} from 'state/actions/network'
+import { clearPVSErr, PVS_CONNECTION_INIT } from 'state/actions/network'
 import { saveSerialNumber } from 'state/actions/pvs'
 import { Loader } from '../../components/Loader'
+
+import paths from 'routes/paths'
 
 import './ConnectToPVS.scss'
 
@@ -50,37 +45,36 @@ function ConnectToPVS() {
   const history = useHistory()
 
   const { connecting, connected, err } = useSelector(state => state.network)
-  const [scanning, setScanning] = useState(true)
 
   const generatePassword = serialNumber => {
     let lastIndex = serialNumber.length
     let password =
       serialNumber.substring(2, 6) +
       serialNumber.substring(lastIndex - 4, lastIndex)
-    console.info(password)
     return password
   }
 
   const onDone = useRef(null)
 
-  const stopScanning = shouldGoBack => () => {
-    if (typeof onDone.current === 'function') {
-      onDone.current()
-      setScanning(false)
-    }
-    if (shouldGoBack) history.goBack()
-  }
+  const stopScanning = useCallback(
+    shouldGoBack => () => {
+      if (typeof onDone.current === 'function') {
+        onDone.current()
+      }
+      if (shouldGoBack) history.goBack()
+    },
+    [history]
+  )
 
   const processQRCode = map(
     onSuccess(stopScanning(), generatePassword, dispatch, t)
   )
 
-  const startScanning = () => {
+  const startScanning = useCallback(() => {
     if (window.Scandit) {
       onDone.current = scanSimple(processQRCode)
     }
-    if (!scanning) setScanning(true)
-  }
+  }, [processQRCode])
 
   useEffect(() => {
     if (
@@ -97,45 +91,29 @@ function ConnectToPVS() {
       stopScanning()
       history.push(paths.PROTECTED.PVS_CONNECTION_SUCCESS.path)
     }
-  }, [connected, connecting, err])
+  }, [connected, connecting, dispatch, err, history, stopScanning, t])
 
   useEffect(() => {
     startScanning()
 
     return () => {
       if (typeof onDone.current === 'function') stopScanning()
-      if (connecting) {
-        dispatch(PVS_CONNECTION_ERROR('CANCELED'))
-        dispatch(clearPVSErr())
-      }
     }
-  }, [dispatch])
+  }, [connecting, dispatch, startScanning, stopScanning])
 
   return (
     <div className="qr-layout has-text-centered">
       <span className="is-uppercase has-text-weight-bold mt-10">
         {t('LOOK_FOR_QR')}
       </span>
-      {connecting ? (
-        <Loader />
-      ) : scanning ? (
-        <div id="scandit" />
-      ) : (
-        <div className="qr-icon">
-          <i className="sp-qr has-text-white" />
-        </div>
-      )}
+      {connecting || connected ? <Loader /> : <div id="scandit" />}
       <div className="pt-20">
         <button
           disabled={connecting}
           className="button is-primary"
-          onClick={scanning ? stopScanning(true) : startScanning}
+          onClick={stopScanning(true)}
         >
-          {connecting
-            ? t('CONNECTING')
-            : scanning
-            ? t('STOP_SCAN')
-            : t('START_SCAN')}
+          {connecting ? t('CONNECTING') : t('STOP_SCAN')}
         </button>
       </div>
     </div>

@@ -18,6 +18,9 @@ const fetchSSID = async ssid => {
   throw new Error('Network name different')
 }
 
+// After a successful connection to the PVS WiFi, check every second if the app
+// is still connected to it. If the app isn't connected, then try to reconnect
+// it. Stop monitoring if the STOP_NETWORK_POLLING action is dispatched.
 export const networkPollingEpic = (action$, state$) => {
   const stopPolling$ = action$.pipe(ofType(STOP_NETWORK_POLLING.getType()))
   let state

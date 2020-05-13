@@ -24,6 +24,5 @@ export default [
   fetchInterfacesEpic,
   fetchRSEEpic,
   setRSEEpic,
-  pollRSEEpic,
-  submitConfigObjectEpic
+  pollRSEEpic
 ]

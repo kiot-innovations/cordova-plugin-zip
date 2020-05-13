@@ -1,7 +1,13 @@
 import { length, path, pathOr } from 'ramda'
 import { ofType } from 'redux-observable'
 import { from, of, timer } from 'rxjs'
-import { catchError, exhaustMap, switchMap, takeUntil } from 'rxjs/operators'
+import {
+  catchError,
+  exhaustMap,
+  switchMap,
+  takeUntil,
+  map
+} from 'rxjs/operators'
 import { getApiPVS } from 'shared/api'
 import {
   FETCH_CANDIDATES_COMPLETE,
@@ -27,7 +33,7 @@ export const fetchCandidatesEpic = action$ => {
             .then(path(['apis', 'candidates']))
             .then(api => api.getCandidates())
           return from(promise).pipe(
-            switchMap(async response => {
+            map(response => {
               const candidatesList = pathOr(
                 [],
                 ['body', 'candidates'],

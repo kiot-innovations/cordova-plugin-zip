@@ -1,4 +1,4 @@
-import { compose, find, isEmpty, isNil, pathOr, propEq, test } from 'ramda'
+import { pathOr, test, isEmpty, compose, find, propEq, isNil } from 'ramda'
 import { ofType } from 'redux-observable'
 import { from, of, timer } from 'rxjs'
 import { catchError, exhaustMap, map, takeUntil } from 'rxjs/operators'
@@ -6,21 +6,21 @@ import { catchError, exhaustMap, map, takeUntil } from 'rxjs/operators'
 import allSettled from 'promise.allsettled'
 
 import { getApiPVS } from 'shared/api'
-import { translate } from 'shared/i18n'
 import { isIos } from 'shared/utils'
 import {
-  PVS_CONNECTION_ERROR,
   PVS_CONNECTION_INIT,
   PVS_CONNECTION_SUCCESS,
   STOP_NETWORK_POLLING,
   WAIT_FOR_SWAGGER,
-  WAITING_FOR_SWAGGER
+  PVS_CONNECTION_ERROR
 } from 'state/actions/network'
+import { translate } from 'shared/i18n'
 
 const WPA = 'WPA'
 const hasCode7 = test(/Code=7/)
 const isTimeout = test(/CONNECT_FAILED_TIMEOUT/)
 const isInvalidNetworkID = test(/INVALID_NETWORK_ID_TO_CONNECT/)
+const isWaitingForConnection = test(/WAITING_FOR_CONNECTION/)
 
 const connectToPVS = async (ssid, password) => {
   try {
@@ -32,9 +32,9 @@ const connectToPVS = async (ssid, password) => {
       await window.WifiWizard2.getConnectedSSID()
       await window.WifiWizard2.connect(ssid, true, password, WPA, false)
     }
-  } catch (e) {
-    console.error('connectToPVS e', e)
-    throw new Error(e)
+  } catch (err) {
+    const normalizedError = err || 'UNKNOWN_ERROR'
+    throw new Error(normalizedError)
   }
 }
 
@@ -56,12 +56,13 @@ const connectToEpic = (action$, state$) =>
           if (hasCode7(err) || isTimeout(err) || isInvalidNetworkID(err)) {
             return of(STOP_NETWORK_POLLING({ canceled: true }))
           } else {
-            return of(PVS_CONNECTION_INIT({ ssid: ssid, password: password }))
+            return of(WAIT_FOR_SWAGGER())
           }
         })
       )
     })
   )
+
 const parsePromises = compose(Boolean, find(propEq('status', 'fulfilled')))
 
 const checkForConnection = async () => {
@@ -77,23 +78,24 @@ export const waitForSwaggerEpic = (action$, state$) => {
   return action$.pipe(
     ofType(WAIT_FOR_SWAGGER.getType()),
     exhaustMap(() =>
-      timer(0, 1000).pipe(
+      timer(0, 3000).pipe(
         takeUntil(stopPolling$),
         exhaustMap(() =>
-          from(checkForConnection(state$)).pipe(
+          from(checkForConnection()).pipe(
             map(() => PVS_CONNECTION_SUCCESS()),
             catchError(err => {
-              console.error('ERROR CONNECTING', err)
-              // The reason for this is that this could happen several times
-              // and we don't want to spam the user with I couldn't connect
               if (
                 !isNil(err.message) &&
                 !isEmpty(err.message) &&
-                err.message !== 'WAITING_FOR_CONNECTION' &&
-                err.message === 'NETWORK_NAME_DIFFERENT'
+                !isWaitingForConnection(err.message)
               )
                 return of(PVS_CONNECTION_ERROR(t('PVS_CONNECTION_TIMEOUT')))
-              return of(WAITING_FOR_SWAGGER())
+              return of(
+                PVS_CONNECTION_INIT({
+                  ssid: state$.value.network.SSID,
+                  password: state$.value.network.password
+                })
+              )
             })
           )
         )
