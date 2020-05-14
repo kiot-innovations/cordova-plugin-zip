@@ -1,4 +1,5 @@
 import { createReducer } from 'redux-act'
+import { clone } from 'ramda'
 import {
   FETCH_INVENTORY_INIT,
   FETCH_INVENTORY_ERROR,
@@ -45,7 +46,7 @@ export const inventoryReducer = createReducer(
     }),
     [SAVE_INVENTORY_SUCCESS]: (state, payload) => ({
       ...state,
-      bom: payload,
+      bom: clone(payload),
       savingInventory: false
     }),
     [SAVE_INVENTORY_ERROR]: (state, payload) => ({
@@ -64,7 +65,7 @@ export const inventoryReducer = createReducer(
         })
       ]
     }),
-    [RESET_INVENTORY]: () => initialState
+    [RESET_INVENTORY]: () => ({ ...initialState, bom: clone(initialState.bom) })
   },
   initialState
 )
