@@ -16,6 +16,7 @@ import { RESET_SITE } from 'state/actions/site'
 import paths from 'routes/paths'
 
 import './ConnectionLost.scss'
+import { RESET_LAST_VISITED_PAGE } from 'state/actions/global'
 
 const ConnectionLost = ({ animationState }) => {
   const t = useI18n()
@@ -34,6 +35,7 @@ const ConnectionLost = ({ animationState }) => {
     dispatch(RESET_DISCOVERY())
     dispatch(RESET_INVENTORY())
     dispatch(RESET_SITE())
+    dispatch(RESET_LAST_VISITED_PAGE())
     history.push(paths.PROTECTED.ROOT.path)
   }
 
