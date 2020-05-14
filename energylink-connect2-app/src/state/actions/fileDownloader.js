@@ -1,6 +1,7 @@
 import { append, compose, head, join, slice, split } from 'ramda'
 import { createAction } from 'redux-act'
 import { applyToEventListeners } from 'shared/utils'
+import { SHOW_MODAL } from 'state/actions/modal'
 import { replaceSpaceByDashes } from '../../shared/utils'
 
 export const GET_FILE = createAction('GET FILE')
@@ -61,11 +62,11 @@ export async function getFirmwareVersionNumber() {
 }
 
 export const getLuaDownloadName = async () => {
-  const name = getPVSVersionNumber()
+  const name = await getPVSVersionNumber()
   return `${name}.lua`
 }
 export const getPVSFileSystemName = async () => {
-  const name = getPVSVersionNumber()
+  const name = await getPVSVersionNumber()
   return `${name}.fs`
 }
 const getPVSVersionNumber = async () => {
@@ -122,8 +123,9 @@ function getPersistentFile(
       .then(resolve)
       .catch(e => {
         const networkState = navigator.connection.type
-        if (networkState !== 'wifi' && wifiOnly)
+        if (networkState !== 'wifi' && wifiOnly) {
           return reject(new Error(ERROR_CODES.noWifi))
+        }
         downloadFile(fileName, fileUrl, dispatch, wifiOnly, showProgress)
         reject(e)
       })
@@ -135,7 +137,6 @@ export function getFile(wifiOnly = true) {
     try {
       const { fileURL, luaFileName, version } = await getFirmwareVersionNumber()
       dispatch(SET_FILE_NAME(`${luaFileName} - ${version}`))
-      downloadLuaFiles(version)
       await getPersistentFile(
         await getLuaDownloadName(),
         fileURL,
@@ -143,7 +144,7 @@ export function getFile(wifiOnly = true) {
         wifiOnly,
         false
       )
-      await parseLuaFile(luaFileName, dispatch)
+      await parseLuaFile(await getLuaDownloadName(), dispatch)
       const fileSystemURL = getFileSystemURL(fileURL)
       removeEventListeners()
       await getPersistentFile(
@@ -153,6 +154,7 @@ export function getFile(wifiOnly = true) {
         wifiOnly
       )
       removeEventListeners()
+      downloadLuaFiles(version)
       dispatch(DOWNLOAD_SUCCESS())
     } catch (error) {
       if (error.message === ERROR_CODES.getVersionInfo) {
@@ -162,7 +164,13 @@ export function getFile(wifiOnly = true) {
           })
         )
       } else if (error.message === ERROR_CODES.noWifi) {
-        return dispatch(DOWNLOAD_NO_WIFI())
+        dispatch(
+          SHOW_MODAL({
+            title: 'UNABLE_DOWNLOAD_FILES_TITLE',
+            body: 'UNABLE_DOWNLOAD_FILES_BODY',
+            dismissable: true
+          })
+        )
       } else dispatch(GET_FILE_ERROR({ error: error.message }))
     }
   }

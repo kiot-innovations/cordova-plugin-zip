@@ -1,5 +1,5 @@
 import { ofType } from 'redux-observable'
-import { from, timer, of } from 'rxjs'
+import { from, of, timer } from 'rxjs'
 import {
   catchError,
   exhaustMap,
@@ -14,8 +14,8 @@ import {
 } from 'state/actions/network'
 
 const fetchSSID = async ssid => {
-  if ((await window.WifiWizard2.getConnectedSSID()) === ssid) return true
-  throw new Error('Network name different')
+  const currentSSID = await window.WifiWizard2.getConnectedSSID()
+  if (currentSSID !== ssid) throw new Error('NETWORK_NAME_DIFFERENT')
 }
 
 // After a successful connection to the PVS WiFi, check every second if the app

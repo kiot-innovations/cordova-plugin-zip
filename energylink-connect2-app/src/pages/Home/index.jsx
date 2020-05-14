@@ -9,6 +9,7 @@ import paths from 'routes/paths'
 import { useI18n } from 'shared/i18n'
 import { cleanString, either } from 'shared/utils'
 import { RESET_DISCOVERY } from 'state/actions/devices'
+import { getFile } from 'state/actions/fileDownloader'
 import { RESET_INVENTORY } from 'state/actions/inventory'
 import { RESET_PVS_CONNECTION } from 'state/actions/network'
 import { RESET_PVS_INFO_STATE } from 'state/actions/pvs'
@@ -55,6 +56,7 @@ function Home() {
 
   useEffect(() => {
     dispatch(GET_SITES_INIT())
+    dispatch(getFile())
   }, [dispatch])
 
   const notFoundText = t('NOT_FOUND')

@@ -1,20 +1,19 @@
-import { pathOr, test, isEmpty, compose, find, propEq, isNil } from 'ramda'
+import allSettled from 'promise.allsettled'
+import { compose, find, isEmpty, isNil, pathOr, propEq, test } from 'ramda'
 import { ofType } from 'redux-observable'
 import { from, of, timer } from 'rxjs'
 import { catchError, exhaustMap, map, takeUntil } from 'rxjs/operators'
 
-import allSettled from 'promise.allsettled'
-
 import { getApiPVS } from 'shared/api'
+import { translate } from 'shared/i18n'
 import { fetchAdamaPVS, isIos } from 'shared/utils'
 import {
+  PVS_CONNECTION_ERROR,
   PVS_CONNECTION_INIT,
   PVS_CONNECTION_SUCCESS,
   STOP_NETWORK_POLLING,
-  WAIT_FOR_SWAGGER,
-  PVS_CONNECTION_ERROR
+  WAIT_FOR_SWAGGER
 } from 'state/actions/network'
-import { translate } from 'shared/i18n'
 
 const WPA = 'WPA'
 const hasCode7 = test(/Code=7/)
@@ -23,6 +22,7 @@ const isInvalidNetworkID = test(/INVALID_NETWORK_ID_TO_CONNECT/)
 const isWaitingForConnection = test(/WAITING_FOR_CONNECTION/)
 
 const connectToPVS = async (ssid, password) => {
+  console.warn('CONNECT TO PVS', { ssid, password })
   try {
     if (isIos()) {
       await window.WifiWizard2.iOSConnectNetwork(ssid, password)
