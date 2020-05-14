@@ -42,7 +42,7 @@ exports[`Footer Component Renders nothing if Footer is false 1`] = `
     >
       <Footer>
         <footer
-          className="custom-footer is-clipper hide-footer"
+          className="custom-footer is-clipper show-footer"
         >
           <Component
             items={

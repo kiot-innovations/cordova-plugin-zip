@@ -16,6 +16,7 @@ import { useI18n } from 'shared/i18n'
 import { cleanString, either } from 'shared/utils'
 
 import './Home.scss'
+import { RESET_LAST_VISITED_PAGE } from 'state/actions/global'
 
 const getString = compose(
   join(' '),
@@ -41,6 +42,7 @@ const resetCommissioning = dispatch => {
   dispatch(RESET_DISCOVERY())
   dispatch(RESET_INVENTORY())
   dispatch(RESET_SITE())
+  dispatch(RESET_LAST_VISITED_PAGE())
 }
 
 function Home() {
@@ -55,8 +57,7 @@ function Home() {
 
   useEffect(() => {
     dispatch(GET_SITES_INIT())
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, [dispatch])
 
   const notFoundText = t('NOT_FOUND')
 

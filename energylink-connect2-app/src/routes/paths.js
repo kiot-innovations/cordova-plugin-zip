@@ -91,7 +91,8 @@ const paths = {
     SN_LIST: {
       path: '/sn-list',
       header: true,
-      footer: true
+      footer: true,
+      tab: TABS.INSTALL
     },
     INVENTORY_COUNT: { path: '/inventory-count', header: true },
     SYSTEM_CONFIGURATION: {
@@ -108,8 +109,7 @@ const paths = {
     },
     CONNECTION_LOST: {
       path: '/connection-lost',
-      header: true,
-      footer: true
+      header: true
     },
     DATA: { path: '/data', header: true, footer: true, tab: TABS.DATA }
   },

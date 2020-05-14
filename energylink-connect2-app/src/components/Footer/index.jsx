@@ -1,9 +1,11 @@
-import React, { useEffect, useMemo, useState } from 'react'
-import { useSelector } from 'react-redux'
+import React, { useEffect, useMemo } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
 import { useHistory, useLocation } from 'react-router-dom'
-import paths, { protectedRoutes, TABS } from 'routes/paths'
 import Nav from '@sunpower/nav'
 import clsx from 'clsx'
+import paths, { protectedRoutes, TABS } from 'routes/paths'
+import { SET_LAST_VISITED_PAGE } from 'state/actions/global'
+
 import './footer.scss'
 
 const isActive = (path = '', tab = '') =>
@@ -16,11 +18,12 @@ const isActive = (path = '', tab = '') =>
 
 const Footer = () => {
   const history = useHistory()
+  const dispatch = useDispatch()
+
   const showFooter = useSelector(({ ui }) => !!ui.footer)
   const connected = useSelector(({ network }) => network.connected)
-  const [lastInstallPage, setLast] = useState(
-    paths.PROTECTED.CONNECT_TO_PVS.path
-  )
+  const lastVisitedPage = useSelector(({ global }) => global.lastVisitedPage)
+
   const location = useLocation()
   const active = useMemo(
     () => ({
@@ -32,30 +35,29 @@ const Footer = () => {
     [location]
   )
   useEffect(() => {
-    if (active.install)
-      setLast(
-        connected ? location.pathname : paths.PROTECTED.CONNECT_TO_PVS.path
-      )
-  }, [active, connected, location])
+    if (active.install) {
+      const destination = connected
+        ? location.pathname
+        : paths.PROTECTED.CONNECT_TO_PVS.path
+      dispatch(SET_LAST_VISITED_PAGE(destination))
+    }
+  }, [active, connected, dispatch, location])
 
   function redirect(path) {
-    history.push(path)
+    if (path !== location.pathname) history.push(path)
   }
 
   const navBarItems = [
     {
       icon: 'sp-home',
       text: 'Home',
-      onClick: () => {
-        setLast(paths.PROTECTED.CONNECT_TO_PVS.path)
-        return redirect(paths.PROTECTED.BILL_OF_MATERIALS.path)
-      },
+      onClick: () => redirect(paths.PROTECTED.BILL_OF_MATERIALS.path),
       active: active.home
     },
     {
       icon: 'sp-list',
       text: 'Install',
-      onClick: () => redirect(lastInstallPage),
+      onClick: () => redirect(lastVisitedPage),
       active: active.install
     },
     {
