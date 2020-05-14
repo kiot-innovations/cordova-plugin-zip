@@ -72,7 +72,10 @@ const checkForConnection = async () => {
 }
 
 export const waitForSwaggerEpic = (action$, state$) => {
-  const stopPolling$ = action$.pipe(ofType(PVS_CONNECTION_SUCCESS.getType()))
+  const stopPolling$ = action$.pipe(
+    ofType(PVS_CONNECTION_SUCCESS.getType(), STOP_NETWORK_POLLING.getType())
+  )
+
   const t = translate(state$.value.language)
 
   return action$.pipe(
