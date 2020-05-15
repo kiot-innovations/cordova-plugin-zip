@@ -1,11 +1,13 @@
 import {
   assoc,
   compose,
+  concat,
   curry,
   defaultTo,
   dissoc,
   filter,
   find,
+  flip,
   includes,
   join,
   last,
@@ -26,7 +28,6 @@ import {
   values,
   when
 } from 'ramda'
-import { getApiPVS } from 'shared/api'
 
 export const either = (condition, whenTrue, whenFalse = null) =>
   condition ? whenTrue : whenFalse
@@ -190,11 +191,6 @@ export const applyToEventListeners = (
   )
 export const replaceSpaceByDashes = replace('/ /g', '-')
 
-export const fetchAdamaPVS = async command => {
-  const baseUrl = process.env.REACT_APP_PVS_SELECTEDADDRESS
-  const response = await fetch(`${baseUrl}/dl_cgi?Command=${command}`)
-  return await response.json()
-}
 export const getLastIPOctet = compose(last, split('.'))
 
 export function padNumber(number, width = 3, separator = '0') {
@@ -204,20 +200,11 @@ export function padNumber(number, width = 3, separator = '0') {
     : new Array(width - n.length + 1).join(separator) + n
 }
 
-export async function isThePVSAdama() {
-  try {
-    const res = await fetchAdamaPVS('GetSupervisorInformation')
-    if (!res.ok) throw new Error('PVS NOT CONNECTED')
-    await getApiPVS()
-    return false
-  } catch (e) {
-    return true
-  }
-}
-
 export const getPVSVersionNumber = compose(
   Number,
   last,
   split('Build'),
   path(['supervisor', 'SWVER'])
 )
+
+export const flipConcat = flip(concat)
