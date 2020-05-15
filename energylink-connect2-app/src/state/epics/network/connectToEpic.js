@@ -54,7 +54,15 @@ const connectToEpic = (action$, state$) =>
       return from(connectToPVS(ssid, password)).pipe(
         map(() => WAIT_FOR_SWAGGER()),
         catchError(err => {
-          if (hasCode7(err) || isTimeout(err) || isInvalidNetworkID(err)) {
+          const isTimeoutAndNotUpgrading =
+            isTimeout(err) &&
+            state$.value.firmwareUpdate.status !== 'UPGRADE_COMPLETE'
+
+          if (
+            hasCode7(err) ||
+            isInvalidNetworkID(err) ||
+            isTimeoutAndNotUpgrading
+          ) {
             return of(STOP_NETWORK_POLLING({ canceled: true }))
           } else {
             return of(WAIT_FOR_SWAGGER())
