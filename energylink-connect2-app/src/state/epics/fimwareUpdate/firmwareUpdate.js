@@ -152,7 +152,7 @@ const firmwareUpdateSuccessEpic = (action$, state$) => {
           stopWebserver()
           const firmware = getFirmwareFromState(state$)
           return from(didThePVSUpgrade(firmware)).pipe(
-            map(() => of(FIRMWARE_UPDATE_COMPLETE())),
+            map(FIRMWARE_UPDATE_COMPLETE),
             catchError(err => of(FIRMWARE_UPDATE_ERROR(t(err.message))))
           )
         })
