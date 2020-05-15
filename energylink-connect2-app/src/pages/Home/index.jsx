@@ -17,6 +17,7 @@ import { RESET_PVS_INFO_STATE } from 'state/actions/pvs'
 import { GET_SITES_INIT, RESET_SITE, SET_SITE } from 'state/actions/site'
 
 import './Home.scss'
+import { RESET_LAST_VISITED_PAGE } from 'state/actions/global'
 
 const getString = compose(
   join(' '),
@@ -42,6 +43,7 @@ const resetCommissioning = dispatch => {
   dispatch(RESET_DISCOVERY())
   dispatch(RESET_INVENTORY())
   dispatch(RESET_SITE())
+  dispatch(RESET_LAST_VISITED_PAGE())
 }
 
 function Home() {
