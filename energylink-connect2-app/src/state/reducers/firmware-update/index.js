@@ -50,6 +50,7 @@ export default createReducer(
     [FIRMWARE_UPDATE_ERROR]: state => ({
       ...initialState,
       ...state,
+      upgrading: false,
       status: 'ERROR'
     }),
     [GRID_PROFILE_UPLOAD_ERROR]: state => ({

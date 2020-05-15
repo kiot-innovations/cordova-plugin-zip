@@ -1,8 +1,7 @@
 import { append, compose, head, join, slice, split } from 'ramda'
 import { createAction } from 'redux-act'
-import { applyToEventListeners } from 'shared/utils'
+import { applyToEventListeners, replaceSpaceByDashes } from 'shared/utils'
 import { SHOW_MODAL } from 'state/actions/modal'
-import { replaceSpaceByDashes } from '../../shared/utils'
 
 export const GET_FILE = createAction('GET FILE')
 export const GET_FILE_ERROR = createAction('GET FILE ERROR')
@@ -62,14 +61,14 @@ export async function getFirmwareVersionNumber() {
 }
 
 export const getLuaDownloadName = async () => {
-  const name = await getPVSVersionNumber()
+  const name = await getFirmwareVersionName()
   return `${name}.lua`
 }
 export const getPVSFileSystemName = async () => {
-  const name = await getPVSVersionNumber()
+  const name = await getFirmwareVersionName()
   return `${name}.fs`
 }
-const getPVSVersionNumber = async () => {
+const getFirmwareVersionName = async () => {
   const { version, luaFileName } = await getFirmwareVersionNumber()
   return `${luaFileName}-${version}`.replace(/ /g, '-')
 }

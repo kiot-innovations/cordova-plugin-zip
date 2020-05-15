@@ -5,9 +5,10 @@ import { concat, from, of, timer } from 'rxjs'
 import { catchError, exhaustMap, map, take, takeUntil } from 'rxjs/operators'
 import { getApiPVS } from 'shared/api'
 import { translate } from 'shared/i18n'
-import { fetchAdamaPVS, getPVSVersionNumber, waitFor } from 'shared/utils'
+import { sendCommandToPVS } from 'shared/PVSUtils'
+import { getPVSVersionNumber, waitFor } from 'shared/utils'
 import {
-  getWebserverFirmwareUpgradePackageURL,
+  getFirmwareUpgradePackageURL,
   startWebserver,
   stopWebserver
 } from 'shared/webserver'
@@ -38,7 +39,7 @@ const getFirmwareFromState = path([
  * @returns {Promise<boolean>}
  */
 const getUpgradeStatus = async isAdama => {
-  if (isAdama) return await fetchAdamaPVS('GetFWUpgradeStatus')
+  if (isAdama) return await sendCommandToPVS('GetFWUpgradeStatus')
 
   const swagger = await getApiPVS()
   const res = await swagger.apis.firmware.getUpgradeStatus()
@@ -47,8 +48,8 @@ const getUpgradeStatus = async isAdama => {
 
 async function uploadFirmwareToAdama() {
   await startWebserver()
-  const fileUrl = await getWebserverFirmwareUpgradePackageURL()
-  return await fetchAdamaPVS(`StartFWUpgrade&url=${fileUrl}`)
+  const fileUrl = await getFirmwareUpgradePackageURL()
+  return await sendCommandToPVS(`StartFWUpgrade&url=${fileUrl}`)
 }
 
 async function uploadFirmwareToPVS(isAdama) {
@@ -120,20 +121,20 @@ const firmwareWaitForWifi = (action$, state$) =>
       concat(
         of(STOP_NETWORK_POLLING()),
         of(FIRMWARE_UPDATE_WAITING_FOR_NETWORK()),
-        from(waitFor(1000 * 10)).pipe(
-          map(() => {
-            return PVS_CONNECTION_INIT({
+        from(waitFor(1000 * 60)).pipe(
+          map(() =>
+            PVS_CONNECTION_INIT({
               ssid: state$.value.network.SSID,
               password: state$.value.network.password
             })
-          })
+          )
         )
       )
     )
   )
 
 async function didThePVSUpgrade(lastVersion) {
-  const PVSinfo = await fetchAdamaPVS('GetSupervisorInformation')
+  const PVSinfo = await sendCommandToPVS('GetSupervisorInformation')
   const PVSversion = getPVSVersionNumber(PVSinfo)
   if (PVSversion > lastVersion) return true
   throw new Error('UPDATE_WENT_WRONG')
@@ -151,7 +152,7 @@ const firmwareUpdateSuccessEpic = (action$, state$) => {
           stopWebserver()
           const firmware = getFirmwareFromState(state$)
           return from(didThePVSUpgrade(firmware)).pipe(
-            map(() => of(FIRMWARE_UPDATE_COMPLETE())),
+            map(FIRMWARE_UPDATE_COMPLETE),
             catchError(err => of(FIRMWARE_UPDATE_ERROR(t(err.message))))
           )
         })

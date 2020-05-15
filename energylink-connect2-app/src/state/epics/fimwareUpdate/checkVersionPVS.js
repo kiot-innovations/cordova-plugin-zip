@@ -1,7 +1,8 @@
 import { ofType } from 'redux-observable'
 import { from, of } from 'rxjs'
 import { catchError, map, mergeMap } from 'rxjs/operators'
-import { fetchAdamaPVS, getPVSVersionNumber, isThePVSAdama } from 'shared/utils'
+import { isThePVSAdama, sendCommandToPVS } from 'shared/PVSUtils'
+import { getPVSVersionNumber } from 'shared/utils'
 import { getFirmwareVersionNumber } from 'state/actions/fileDownloader'
 import {
   FIRMWARE_GET_VERSION_COMPLETE,
@@ -14,7 +15,7 @@ const checkIfNeedToUpdatePVSToLatestVersion = async () => {
   try {
     const { version: serverVersion } = await getFirmwareVersionNumber()
     const PVSversion =
-      getPVSVersionNumber(await fetchAdamaPVS('GetSupervisorInformation')) ||
+      getPVSVersionNumber(await sendCommandToPVS('GetSupervisorInformation')) ||
       '-1'
     const shouldUpdate = serverVersion > PVSversion
     return { shouldUpdate, isAdama: await isThePVSAdama(), PVSversion }
