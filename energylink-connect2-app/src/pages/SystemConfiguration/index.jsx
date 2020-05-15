@@ -1,21 +1,20 @@
+import useModal from 'hooks/useModal'
+import { compose, endsWith, isEmpty, not, path } from 'ramda'
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
-import { endsWith, path } from 'ramda'
+import paths from 'routes/paths'
 import { useI18n } from 'shared/i18n'
-import { SUBMIT_CONFIG } from 'state/actions/systemConfiguration'
 import { UPDATE_DEVICES_LIST } from 'state/actions/devices'
 import { SET_METADATA_INIT } from 'state/actions/pvs'
-
-import paths from 'routes/paths'
-import useModal from 'hooks/useModal'
+import { SUBMIT_CONFIG } from 'state/actions/systemConfiguration'
+import GridBehaviorWidget from './GridBehaviorWidget'
 
 import InterfacesWidget from './InterfacesWidget'
-import GridBehaviorWidget from './GridBehaviorWidget'
 import MetersWidget from './MetersWidget'
-import StorageWidget from './StorageWidget'
 import NetworkWidget from './NetworkWidget'
 import RSEWidget from './RSEWidget'
+import StorageWidget from './StorageWidget'
 
 import './SystemConfiguration.scss'
 
@@ -64,7 +63,9 @@ function SystemConfiguration() {
   const { found } = useSelector(state => state.devices)
 
   const siteKey = useSelector(path(['site', 'site', 'siteKey']))
-
+  const hasStorage = useSelector(
+    compose(not, isEmpty, path(['systemConfiguration', 'storage', 'data']))
+  )
   const modalTitle = (
     <span className="has-text-white has-text-weight-bold">
       {t('ATTENTION')}
@@ -129,7 +130,7 @@ function SystemConfiguration() {
       <NetworkWidget />
       <GridBehaviorWidget />
       <MetersWidget />
-      <StorageWidget />
+      {hasStorage && <StorageWidget />}
       <RSEWidget />
       <div className="submit-config">
         <button
@@ -142,4 +143,5 @@ function SystemConfiguration() {
     </div>
   )
 }
+
 export default SystemConfiguration
