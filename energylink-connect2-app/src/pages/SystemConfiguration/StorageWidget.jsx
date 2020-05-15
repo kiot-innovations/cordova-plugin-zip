@@ -1,11 +1,11 @@
+import clsx from 'clsx'
+import Collapsible from 'components/Collapsible'
+import { isEmpty, pathOr } from 'ramda'
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import clsx from 'clsx'
-import { pathOr, isEmpty } from 'ramda'
-import Collapsible from 'components/Collapsible'
-import { GET_STORAGE_INIT } from 'state/actions/systemConfiguration'
-import { either } from 'shared/utils'
 import { useI18n } from 'shared/i18n'
+import { either } from 'shared/utils'
+import { GET_STORAGE_INIT } from 'state/actions/systemConfiguration'
 
 const STI = <span className="sp-battery file level mr-15 is-size-4" />
 
