@@ -116,7 +116,7 @@ const renderRSEDescription = (powerProduction, t) =>
         <li>{t('RSE_ON_2')}</li>
       </ul>
 
-      <p className="text-center mt-10">{t('RSE_ON_INVERTERS')}</p>
+      <p className="text-center mt-10">{t('RSE_ON_MICROINVERTERS')}</p>
       <ul>
         <li>{t('RSE_ON_3')}</li>
         <li>{t('RSE_ON_4')}</li>
