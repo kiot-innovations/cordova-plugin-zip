@@ -188,7 +188,7 @@
   "NO_DATA": "No data",
   "NO_CONNECTION": "No Connection",
   "UPLOADING_FS": "Uploading the file system",
-  "WAITING_FOR_NETWORK": "Waiting for the network to come back",
+  "WAITING_FOR_NETWORK": "Done. Will reconnect after 1:30 minutes...",
   "UPGRADE_COMPLETE": "Upgrade complete",
   "APPLYING": "Setting...{0}",
   "DISCOVERY_IN_PROGRESS": "Hold on, we're looking for your devices",
@@ -274,5 +274,11 @@
   "GRID_PROFILES_PACKAGE": "Grid Profiles Package",
   "GRID_PROFILE_ERROR_FOUND": "Error downloading Grid Profile",
   "LAST_TIME_UPDATED": "Last time updated",
-  "FILE_NOT_PRESENT": "File is not downloaded"
+  "FILE_NOT_PRESENT": "File is not downloaded",
+  "downloading images": "Uploading image",
+  "ERROR_POLLING_UPGRADE": "The request to get the PVS upgrade disconnected V:{}",
+  "NETWORK_DIFFERENT": "Network name different",
+  "UNABLE_DOWNLOAD_FILES_TITLE": "Unable to download the firmware files",
+  "UNABLE_DOWNLOAD_FILES_BODY": "Because I dont have a wifi connection, please connect to a wifi and download the files. Go to manage firmware screen.",
+  "DONT_CLOSE_APP_UPGRADING": "We’re updating the PVS Please don’t close the application"
 }

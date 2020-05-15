@@ -32,9 +32,9 @@ describe('The network epic tests', () => {
     let times = 0
     timesPolled = jest
       .fn()
-      .mockResolvedValueOnce('once')
-      .mockResolvedValueOnce('once')
-      .mockResolvedValueOnce('once')
+      .mockResolvedValueOnce('sunPower')
+      .mockResolvedValueOnce('sunPower')
+      .mockResolvedValueOnce('sunPower')
       .mockRejectedValueOnce('I failed')
     global.WifiWizard2 = {
       getConnectedSSID: timesPolled

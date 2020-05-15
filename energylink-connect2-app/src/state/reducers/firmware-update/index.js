@@ -3,8 +3,8 @@ import { createReducer } from 'redux-act'
 import {
   FIRMWARE_GET_VERSION_COMPLETE,
   FIRMWARE_UPDATE_COMPLETE,
-  FIRMWARE_UPDATE_INIT,
   FIRMWARE_UPDATE_ERROR,
+  FIRMWARE_UPDATE_INIT,
   FIRMWARE_UPDATE_POLLING,
   FIRMWARE_UPDATE_WAITING_FOR_NETWORK,
   GRID_PROFILE_UPLOAD_ERROR,
@@ -12,9 +12,10 @@ import {
 } from 'state/actions/firmwareUpdate'
 
 const initialState = {
-  status: '',
   percent: 0,
-  upgrading: false
+  status: '',
+  upgrading: false,
+  versionBeforeUpgrade: 0
 }
 
 const getState = prop('STATE')
@@ -22,10 +23,11 @@ const getPercent = prop('PERCENT')
 
 export default createReducer(
   {
-    [FIRMWARE_UPDATE_INIT]: () => ({
+    [FIRMWARE_UPDATE_INIT]: (state, { PVSversion }) => ({
       ...initialState,
       status: 'UPLOADING_FS',
-      upgrading: true
+      upgrading: true,
+      versionBeforeUpgrade: PVSversion
     }),
     [FIRMWARE_UPDATE_POLLING]: (state, payload) => ({
       ...initialState,
@@ -48,6 +50,7 @@ export default createReducer(
     [FIRMWARE_UPDATE_ERROR]: state => ({
       ...initialState,
       ...state,
+      upgrading: false,
       status: 'ERROR'
     }),
     [GRID_PROFILE_UPLOAD_ERROR]: state => ({
@@ -56,9 +59,10 @@ export default createReducer(
       status: 'ERROR'
     }),
     [RESET_FIRMWARE_UPDATE]: () => initialState,
-    [FIRMWARE_GET_VERSION_COMPLETE]: () => ({
+    [FIRMWARE_GET_VERSION_COMPLETE]: ({ versionBeforeUpgrade }) => ({
       ...initialState,
-      canContinue: true
+      canContinue: true,
+      versionBeforeUpgrade
     })
   },
   initialState

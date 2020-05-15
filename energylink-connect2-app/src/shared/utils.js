@@ -1,26 +1,32 @@
 import {
-  compose,
-  join,
-  over,
-  lensIndex,
-  toUpper,
-  lt,
-  when,
-  length,
-  prop,
-  find,
-  propEq,
-  map,
-  defaultTo,
-  curry,
-  dissoc,
   assoc,
-  pathEq,
+  compose,
+  concat,
+  curry,
+  defaultTo,
+  dissoc,
+  filter,
+  find,
+  flip,
   includes,
+  join,
+  last,
+  length,
+  lensIndex,
+  lt,
+  map,
+  over,
+  path,
+  pathEq,
   pickBy,
+  prop,
+  propEq,
+  replace,
+  split,
   toPairs,
+  toUpper,
   values,
-  filter
+  when
 } from 'ramda'
 
 export const either = (condition, whenTrue, whenFalse = null) =>
@@ -183,3 +189,22 @@ export const applyToEventListeners = (
   ).map(([eventName, callback]) =>
     addRemoveEventListenerFn(eventName, callback)
   )
+export const replaceSpaceByDashes = replace('/ /g', '-')
+
+export const getLastIPOctet = compose(last, split('.'))
+
+export function padNumber(number, width = 3, separator = '0') {
+  const n = number.toString()
+  return n.length >= width
+    ? n
+    : new Array(width - n.length + 1).join(separator) + n
+}
+
+export const getPVSVersionNumber = compose(
+  Number,
+  last,
+  split('Build'),
+  path(['supervisor', 'SWVER'])
+)
+
+export const flipConcat = flip(concat)

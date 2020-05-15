@@ -1,7 +1,8 @@
-import { compose, last, path, split } from 'ramda'
 import { ofType } from 'redux-observable'
 import { from, of } from 'rxjs'
 import { catchError, map, mergeMap } from 'rxjs/operators'
+import { isThePVSAdama, sendCommandToPVS } from 'shared/PVSUtils'
+import { getPVSVersionNumber } from 'shared/utils'
 import { getFirmwareVersionNumber } from 'state/actions/fileDownloader'
 import {
   FIRMWARE_GET_VERSION_COMPLETE,
@@ -10,24 +11,16 @@ import {
 } from 'state/actions/firmwareUpdate'
 import { PVS_CONNECTION_SUCCESS } from 'state/actions/network'
 
-const getVersionNumber = compose(
-  Number,
-  last,
-  split('Build'),
-  path(['supervisor', 'SWVER'])
-)
-
 const checkIfNeedToUpdatePVSToLatestVersion = async () => {
   try {
-    const res = await fetch(
-      'http://sunpowerconsole.com/cgi-bin/dl_cgi?Command=GetSupervisorInformation'
-    )
     const { version: serverVersion } = await getFirmwareVersionNumber()
-    let PVSversion = '-1'
-    if (res.ok) PVSversion = getVersionNumber(await res.json())
-    return serverVersion > PVSversion
+    const PVSversion =
+      getPVSVersionNumber(await sendCommandToPVS('GetSupervisorInformation')) ||
+      '-1'
+    const shouldUpdate = serverVersion > PVSversion
+    return { shouldUpdate, isAdama: await isThePVSAdama(), PVSversion }
   } catch (e) {
-    throw new Error(e)
+    return { shouldUpdate: false }
   }
 }
 
@@ -36,9 +29,9 @@ const checkVersionPVS = action$ =>
     ofType(PVS_CONNECTION_SUCCESS.getType()),
     mergeMap(() =>
       from(checkIfNeedToUpdatePVSToLatestVersion()).pipe(
-        map(shouldUpdate => {
+        map(({ shouldUpdate, isAdama, PVSversion }) => {
           return shouldUpdate
-            ? FIRMWARE_UPDATE_INIT()
+            ? FIRMWARE_UPDATE_INIT({ isAdama, PVSversion })
             : FIRMWARE_GET_VERSION_COMPLETE()
         }),
         catchError(err => of(FIRMWARE_GET_VERSION_ERROR.asError(err.message)))

@@ -1,5 +1,5 @@
 import { ofType } from 'redux-observable'
-import { from, timer, of } from 'rxjs'
+import { from, of, timer } from 'rxjs'
 import {
   catchError,
   exhaustMap,
@@ -13,7 +13,10 @@ import {
   STOP_NETWORK_POLLING
 } from 'state/actions/network'
 
-const fetchSSID = () => window.WifiWizard2.getConnectedSSID()
+const fetchSSID = async ssid => {
+  const currentSSID = await window.WifiWizard2.getConnectedSSID()
+  if (currentSSID !== ssid) throw new Error('NETWORK_NAME_DIFFERENT')
+}
 
 // After a successful connection to the PVS WiFi, check every second if the app
 // is still connected to it. If the app isn't connected, then try to reconnect
@@ -29,7 +32,7 @@ export const networkPollingEpic = (action$, state$) => {
     switchMap(() =>
       timer(0, 1000).pipe(
         takeUntil(stopPolling$),
-        exhaustMap(() => from(fetchSSID())),
+        exhaustMap(() => from(fetchSSID(state.network.SSID))),
         map(() => ({ type: 'DEVICE_IS_CONNECTED' })),
         catchError(() =>
           of(

@@ -12,7 +12,6 @@ import {
   useWith,
   pathOr
 } from 'ramda'
-import { getFile } from './fileDownloader'
 import { getApiAuth } from 'shared/api'
 import authClient from 'shared/auth/sdk'
 
@@ -97,7 +96,6 @@ export const handleUserProfile = (tokenInfo = {}) => {
           } else {
             dispatch(LOGIN_SUCCESS(payload))
             //dispatch(fetchInventory())
-            dispatch(getFile())
           }
         })
         .catch(error => {

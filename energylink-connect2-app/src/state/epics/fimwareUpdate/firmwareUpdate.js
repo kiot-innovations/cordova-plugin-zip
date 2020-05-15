@@ -1,17 +1,17 @@
+import * as Sentry from '@sentry/browser'
 import { path, pick } from 'ramda'
 import { ofType } from 'redux-observable'
 import { concat, from, of, timer } from 'rxjs'
-import {
-  catchError,
-  exhaustMap,
-  flatMap,
-  map,
-  switchMap,
-  take,
-  takeUntil
-} from 'rxjs/operators'
+import { catchError, exhaustMap, map, take, takeUntil } from 'rxjs/operators'
 import { getApiPVS } from 'shared/api'
-import { waitFor } from 'shared/utils'
+import { translate } from 'shared/i18n'
+import { sendCommandToPVS } from 'shared/PVSUtils'
+import { getPVSVersionNumber, waitFor } from 'shared/utils'
+import {
+  getFirmwareUpgradePackageURL,
+  startWebserver,
+  stopWebserver
+} from 'shared/webserver'
 import { getFileBlob, getPVSFileSystemName } from 'state/actions/fileDownloader'
 import {
   FIRMWARE_UPDATE_COMPLETE,
@@ -28,13 +28,35 @@ import {
   STOP_NETWORK_POLLING
 } from 'state/actions/network'
 
+const getFirmwareFromState = path([
+  'value',
+  'firmwareUpdate',
+  'versionBeforeUpgrade'
+])
+
 /**
- * Will upload the FS to the PVS and
- * execute the startUpgrade command
- * by using the redirect call from the PVS
- * @returns {Promise<Response>}
+ * Will ask the PVS if the upgrade has finished
+ * @returns {Promise<boolean>}
  */
-const uploadFirmwareToBoomerPVS = async () => {
+const getUpgradeStatus = async isAdama => {
+  if (isAdama) return await sendCommandToPVS('GetFWUpgradeStatus')
+
+  const swagger = await getApiPVS()
+  const res = await swagger.apis.firmware.getUpgradeStatus()
+  return res.body
+}
+
+async function uploadFirmwareToAdama() {
+  await startWebserver()
+  const fileUrl = await getFirmwareUpgradePackageURL()
+  return await sendCommandToPVS(`StartFWUpgrade&url=${fileUrl}`)
+}
+
+async function uploadFirmwareToPVS(isAdama) {
+  if (isAdama) {
+    return await uploadFirmwareToAdama()
+  }
+  // Will upload the firmware to the PVS (Boomer or later)
   try {
     const fileBlob = await getFileBlob(await getPVSFileSystemName())
     const formData = new FormData()
@@ -50,16 +72,6 @@ const uploadFirmwareToBoomerPVS = async () => {
 }
 
 /**
- * Will ask the PVS if the upgrade has finished
- * @returns {Promise<boolean>}
- */
-const getUpgradeStatus = async () => {
-  const swagger = await getApiPVS()
-  const res = await swagger.apis.firmware.getUpgradeStatus()
-  return res.body
-}
-
-/**
  * Epic that will upload the FS to the PVS
  * @param action$
  * @returns {*}
@@ -67,28 +79,36 @@ const getUpgradeStatus = async () => {
 const firmwareUpgradeInit = action$ =>
   action$.pipe(
     ofType(FIRMWARE_UPDATE_INIT.getType()),
-    flatMap(() =>
-      from(uploadFirmwareToBoomerPVS()).pipe(
-        switchMap(async () => FIRMWARE_UPDATE_POLL_INIT()),
+    exhaustMap(({ payload }) => {
+      const { isAdama } = payload
+      return from(uploadFirmwareToPVS(isAdama)).pipe(
+        map(() => FIRMWARE_UPDATE_POLL_INIT(isAdama)),
         catchError(err => of(FIRMWARE_UPDATE_ERROR.asError(err)))
       )
-    )
+    })
   )
 
-export const firmwarePollStatus = action$ => {
+export const firmwarePollStatus = (action$, state$) => {
+  const t = translate(state$.value.language)
   const stopPolling$ = action$.pipe(ofType(FIRMWARE_UPDATE_POLL_STOP.getType()))
   return action$.pipe(
     ofType(FIRMWARE_UPDATE_POLL_INIT.getType()),
-    switchMap(() =>
+    exhaustMap(({ payload: isAdama }) =>
       timer(0, 1500).pipe(
         takeUntil(stopPolling$),
-        exhaustMap(() => from(getUpgradeStatus())),
+        exhaustMap(() => from(getUpgradeStatus(isAdama))),
         map(status => {
           return path(['STATE'], status) === 'complete'
             ? FIRMWARE_UPDATE_POLL_STOP()
             : FIRMWARE_UPDATE_POLLING(pick(['STATE', 'PERCENT'], status))
         }),
-        catchError(() => of({ type: "NOTHING HAPPENED HERE :')" }))
+        catchError(() => {
+          const firmware = getFirmwareFromState(state$)
+          const errorMsg = t('ERROR_POLLING_UPGRADE', firmware)
+          Sentry.captureException(new Error(errorMsg))
+
+          return of(FIRMWARE_UPDATE_POLL_STOP())
+        })
       )
     )
   )
@@ -97,11 +117,11 @@ export const firmwarePollStatus = action$ => {
 const firmwareWaitForWifi = (action$, state$) =>
   action$.pipe(
     ofType(FIRMWARE_UPDATE_POLL_STOP.getType()),
-    flatMap(() =>
+    exhaustMap(() =>
       concat(
         of(STOP_NETWORK_POLLING()),
         of(FIRMWARE_UPDATE_WAITING_FOR_NETWORK()),
-        from(waitFor(1000 * 60)).pipe(
+        from(waitFor(1000 * 100)).pipe(
           map(() =>
             PVS_CONNECTION_INIT({
               ssid: state$.value.network.SSID,
@@ -113,17 +133,33 @@ const firmwareWaitForWifi = (action$, state$) =>
     )
   )
 
-const firmwareUpdateSuccessEpic = action$ =>
-  action$.pipe(
+async function didThePVSUpgrade(lastVersion) {
+  const PVSinfo = await sendCommandToPVS('GetSupervisorInformation')
+  const PVSversion = getPVSVersionNumber(PVSinfo)
+  if (PVSversion > lastVersion) return true
+  throw new Error('UPDATE_WENT_WRONG')
+}
+
+const firmwareUpdateSuccessEpic = (action$, state$) => {
+  const t = translate(state$.value.language)
+  return action$.pipe(
     ofType(FIRMWARE_UPDATE_WAITING_FOR_NETWORK.getType()),
-    switchMap(() =>
+    exhaustMap(() =>
       action$.pipe(
         ofType(PVS_CONNECTION_SUCCESS.getType()),
         take(1),
-        map(() => FIRMWARE_UPDATE_COMPLETE())
+        exhaustMap(() => {
+          stopWebserver()
+          const firmware = getFirmwareFromState(state$)
+          return from(didThePVSUpgrade(firmware)).pipe(
+            map(FIRMWARE_UPDATE_COMPLETE),
+            catchError(err => of(FIRMWARE_UPDATE_ERROR(t(err.message))))
+          )
+        })
       )
     )
   )
+}
 
 export default [
   firmwareUpgradeInit,

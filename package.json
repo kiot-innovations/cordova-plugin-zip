@@ -25,10 +25,12 @@
     "cordova-plugin-file-md5": "^0.3.3",
     "cordova-plugin-file-transfer": "^1.7.1",
     "cordova-plugin-http": "^1.2.0",
+    "cordova-plugin-httpd": "^0.9.3",
     "cordova-plugin-inappbrowser": "^3.2.0",
     "cordova-plugin-keyboard": "^1.2.0",
     "cordova-plugin-nabto": "^2.6.3",
     "cordova-plugin-network-information": "^2.0.2",
+    "cordova-plugin-networkinterface": "^2.0.0",
     "cordova-plugin-wifiwizard2": "git+https://github.com/tripflex/wifiwizard2.git",
     "cordova-plugin-wkwebview-engine": "^1.1.4",
     "cordova-plugin-wkwebviewxhrfix": "git+https://github.com/TheMattRay/cordova-plugin-wkwebviewxhrfix.git",
@@ -71,7 +73,9 @@
       "cordova-plugin-inappbrowser": {},
       "cordova-plugin-keyboard": {},
       "scandit-cordova-datacapture-core": {},
-      "scandit-cordova-datacapture-barcode": {}
+      "scandit-cordova-datacapture-barcode": {},
+      "cordova-plugin-networkinterface": {},
+      "cordova-plugin-httpd": {}
     },
     "platforms": [
       "android",

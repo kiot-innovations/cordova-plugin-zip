@@ -38,7 +38,7 @@ const ModalWrapper = () => {
           {either(
             title,
             <div className="modal-title mb-15 has-text-white has-text-weight-bold">
-              {title}
+              {t(title)}
             </div>
           )}
         </div>
@@ -47,7 +47,7 @@ const ModalWrapper = () => {
             {either(
               componentPath,
               <CustomComponent {...componentProps} />,
-              body
+              t(body)
             )}
           </Suspense>
         </div>

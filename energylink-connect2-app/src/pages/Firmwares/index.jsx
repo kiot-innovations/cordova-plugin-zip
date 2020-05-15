@@ -1,8 +1,7 @@
 import Collapsible from 'components/Collapsible'
-import useModal from 'hooks/useModal'
 import moment from 'moment'
 import { pathOr, prop } from 'ramda'
-import React, { useEffect, useCallback } from 'react'
+import React, { useCallback, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useI18n } from 'shared/i18n'
 import { either } from 'shared/utils'
@@ -11,25 +10,6 @@ import * as gridProfileDownloaderActions from 'state/actions/gridProfileDownload
 
 export const getFileName = prop('name')
 export const getFileSize = prop('size')
-
-const modalContent = (dispatch, t) => (
-  <div className="has-text-centered">
-    <span className="has-text-white">{t('NO_WIFI')}</span>
-    <div>
-      <button
-        onClick={() => {
-          dispatch(fileDownloaderActions.getFile(false))
-        }}
-        className="button is-primary is-uppercase is-center mt-20"
-      >
-        {t('DOWNLOAD_ANYWAY')}
-      </button>
-    </div>
-  </div>
-)
-const modalTitle = t => (
-  <span className="has-text-white has-text-weight-bold">{t('ATTENTION')}</span>
-)
 
 const GridProfileFileStatus = ({ gpProgress, gpLastModified }) => {
   const t = useI18n()
@@ -47,11 +27,6 @@ const GridProfileFileStatus = ({ gpProgress, gpLastModified }) => {
 function Firmwares() {
   const t = useI18n()
   const dispatch = useDispatch()
-  const { setModal, modal } = useModal(
-    modalContent(dispatch, t),
-    modalTitle(t),
-    false
-  )
   const { fwProgress, fwDownloading, fwFileInfo } = useSelector(
     ({ fileDownloader }) => ({
       fwProgress: fileDownloader.progress.progress,
@@ -85,13 +60,8 @@ function Firmwares() {
     }
   }, [dispatch, fwProgress, fwDownloading, gpLastModified])
 
-  useEffect(() => {
-    setModal(fwFileInfo.error === 'NO WIFI')
-  }, [fwFileInfo.error, setModal])
-
   return (
     <section className="is-flex tile is-vertical pt-0 pr-10 pl-10 full-height">
-      {modal}
       <h1 className="has-text-centered is-uppercase pb-20">{t('FIRMWARE')}</h1>
       <Collapsible
         title={getFileName(fwFileInfo)}

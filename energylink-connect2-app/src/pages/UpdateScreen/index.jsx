@@ -19,7 +19,7 @@ const UpdateScreen = () => {
     <div className="pvs-update-screen page-height pr-20 pl-30">
       <span className="is-uppercase has-text-weight-bold">HOLD ON</span>
       <span className="sp-pvs" />
-      <span>We’re updating the PVS Please don’t close the application</span>
+      <span>{t('DONT_CLOSE_APP_UPGRADING')}</span>
       <div className="percent-loader">
         {either(
           status === 'UPGRADE_COMPLETE',

@@ -1,6 +1,7 @@
 import { append, compose, head, join, slice, split } from 'ramda'
 import { createAction } from 'redux-act'
-import { applyToEventListeners } from 'shared/utils'
+import { applyToEventListeners, replaceSpaceByDashes } from 'shared/utils'
+import { SHOW_MODAL } from 'state/actions/modal'
 
 export const GET_FILE = createAction('GET FILE')
 export const GET_FILE_ERROR = createAction('GET FILE ERROR')
@@ -39,7 +40,7 @@ const getBuildNumber = compose(
 )
 const getFileSystemURL = compose(
   join('/'),
-  append('fwup_lua_usb.zip'),
+  append('fwup/rootfs.tgz'),
   slice(0, -2),
   split('/')
 )
@@ -51,7 +52,7 @@ export async function getFirmwareVersionNumber() {
     // const swagger = await getApiFirmware()
     // const response = await swagger.apis.pvs6.firmwareUpdate({ fwver: 0 })
     const fileURL =
-      'https://fw-assets-pvs6-dev.dev-edp.sunpower.com/staging-prod-boomer/7128/fwup/fwup.lua'
+      'https://fw-assets-pvs6-dev.dev-edp.sunpower.com/staging-prod-boomer/7130/fwup/fwup.lua'
     const luaFileName = getLuaName(fileURL)
     return { luaFileName, fileURL, version: getBuildNumber(fileURL) }
   } catch (e) {
@@ -59,9 +60,17 @@ export async function getFirmwareVersionNumber() {
   }
 }
 
+export const getLuaDownloadName = async () => {
+  const name = await getFirmwareVersionName()
+  return `${name}.lua`
+}
 export const getPVSFileSystemName = async () => {
+  const name = await getFirmwareVersionName()
+  return `${name}.fs`
+}
+const getFirmwareVersionName = async () => {
   const { version, luaFileName } = await getFirmwareVersionNumber()
-  return `${luaFileName}-${version}.fs`
+  return `${luaFileName}-${version}`.replace(/ /g, '-')
 }
 
 export const getFileBlob = (fileName = '') =>
@@ -78,9 +87,10 @@ export function getPFile(fileName) {
   return new Promise((resolve, reject) => {
     const type = window.PERSISTENT
     const size = 5 * 1024 * 1024
+
     function successCallback(fs) {
       fs.root.getFile(
-        `firmware/${fileName}`,
+        `firmware/${replaceSpaceByDashes(fileName)}`,
         {},
         function(fileEntry) {
           fileEntry.file(
@@ -93,11 +103,13 @@ export function getPFile(fileName) {
         reject
       )
     }
+
     window.requestFileSystem(type, size, successCallback, () =>
       reject(new Error(ERROR_CODES.getLuaFile))
     )
   })
 }
+
 function getPersistentFile(
   fileName,
   fileUrl,
@@ -110,8 +122,9 @@ function getPersistentFile(
       .then(resolve)
       .catch(e => {
         const networkState = navigator.connection.type
-        if (networkState !== 'wifi' && wifiOnly)
+        if (networkState !== 'wifi' && wifiOnly) {
           return reject(new Error(ERROR_CODES.noWifi))
+        }
         downloadFile(fileName, fileUrl, dispatch, wifiOnly, showProgress)
         reject(e)
       })
@@ -123,8 +136,14 @@ export function getFile(wifiOnly = true) {
     try {
       const { fileURL, luaFileName, version } = await getFirmwareVersionNumber()
       dispatch(SET_FILE_NAME(`${luaFileName} - ${version}`))
-      await getPersistentFile(luaFileName, fileURL, dispatch, wifiOnly, false)
-      await parseLuaFile(luaFileName, dispatch)
+      await getPersistentFile(
+        await getLuaDownloadName(),
+        fileURL,
+        dispatch,
+        wifiOnly,
+        false
+      )
+      await parseLuaFile(await getLuaDownloadName(), dispatch)
       const fileSystemURL = getFileSystemURL(fileURL)
       removeEventListeners()
       await getPersistentFile(
@@ -133,6 +152,8 @@ export function getFile(wifiOnly = true) {
         dispatch,
         wifiOnly
       )
+      removeEventListeners()
+      downloadLuaFiles(version)
       dispatch(DOWNLOAD_SUCCESS())
     } catch (error) {
       if (error.message === ERROR_CODES.getVersionInfo) {
@@ -142,7 +163,13 @@ export function getFile(wifiOnly = true) {
           })
         )
       } else if (error.message === ERROR_CODES.noWifi) {
-        return dispatch(DOWNLOAD_NO_WIFI())
+        dispatch(
+          SHOW_MODAL({
+            title: 'UNABLE_DOWNLOAD_FILES_TITLE',
+            body: 'UNABLE_DOWNLOAD_FILES_BODY',
+            dismissable: true
+          })
+        )
       } else dispatch(GET_FILE_ERROR({ error: error.message }))
     }
   }
@@ -152,6 +179,7 @@ function parseLuaFile(fileName, dispatch) {
   return new Promise(resolve => {
     const type = window.PERSISTENT
     const size = 5 * 1024 * 1024
+
     function successCallback(fs) {
       fs.root.getFile(
         `firmware/${fileName}`,
@@ -244,4 +272,11 @@ export const abortDownload = () => dispatch => {
 function downloadSuccess(e, dispatch) {
   dispatch(DOWNLOAD_SUCCESS())
   removeEventListeners()
+}
+
+function downloadLuaFiles(version) {
+  window.downloader.init({ folder: 'luaFiles', unzip: true })
+  window.downloader.get(
+    `https://fw-assets-pvs6-dev.dev-edp.sunpower.com/staging-prod-boomer/${version}/fwup_lua_cm2.zip`
+  )
 }
