@@ -13,9 +13,6 @@ export async function isThePVSAdama() {
     await getApiPVS()
     return false
   } catch (e) {
-    if (e.message === 'PVS NOT CONNECTED') {
-      throw e
-    }
     return true
   }
 }
