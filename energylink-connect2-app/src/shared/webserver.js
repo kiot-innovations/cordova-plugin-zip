@@ -49,16 +49,8 @@ function startServer(wwwroot, port) {
   }
   if (httpd) {
     httpd.getURL(function(url) {
-      if (url.length > 0) {
-        getFirmwareUpgradePackageURL()
-      } else {
-        httpd.startServer(
-          serverSettings,
-          function(url) {
-            getFirmwareUpgradePackageURL()
-          },
-          Sentry.captureException
-        )
+      if (url.length === 0) {
+        httpd.startServer(serverSettings, console.info, Sentry.captureException)
       }
     })
   } else {
