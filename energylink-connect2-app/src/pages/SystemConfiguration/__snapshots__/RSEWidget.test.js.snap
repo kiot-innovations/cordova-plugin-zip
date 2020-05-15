@@ -1382,7 +1382,7 @@ exports[`RSE Widget renders correctly 1`] = `
                   <p
                     className="text-center mt-10"
                   >
-                    RSE_ON_INVERTERS
+                    RSE_ON_MICROINVERTERS
                   </p>
                   <ul>
                     <li>

@@ -277,7 +277,7 @@ function Devices() {
       </span>
       <div className="pb-15">
         <Collapsible
-          title={t('MICRO-INVERTERS')}
+          title={t('MICROINVERTERS')}
           icon={microInverterIcon}
           expanded
           actions={miActions(okMICount, length(inverter), 'sp-gear')}
