@@ -113,3 +113,6 @@ user: {
 }
 ```
 In order to do API calls, use the `user.auth.access_token` value
+
+
+The diagrams need to be opened using draw.io :)
