@@ -47,6 +47,13 @@ const Footer = () => {
     if (path !== location.pathname) history.push(path)
   }
 
+  const configureClickHandler = connected
+    ? () => redirect(paths.PROTECTED.SYSTEM_CONFIGURATION.path)
+    : () => {}
+  const liveDataClickHandler = connected
+    ? () => redirect(paths.PROTECTED.DATA.path)
+    : () => {}
+
   const navBarItems = [
     {
       icon: 'sp-home',
@@ -63,13 +70,13 @@ const Footer = () => {
     {
       icon: 'sp-signal',
       text: 'Configure',
-      onClick: () => redirect(paths.PROTECTED.SYSTEM_CONFIGURATION.path),
+      onClick: configureClickHandler,
       active: active.configure
     },
     {
       icon: 'sp-data',
       text: 'Live Data',
-      onClick: () => redirect(paths.PROTECTED.DATA.path),
+      onClick: liveDataClickHandler,
       active: active.data
     }
   ]
