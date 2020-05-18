@@ -39,42 +39,40 @@ exports[`Bulk Scan screen renders correctly 1`] = `
       }
     >
       <ScanDeviceLabels>
-        <ErrorBoundary>
-          <div
-            className="scan-labels is-vertical has-text-centered pl-10 pr-10"
+        <div
+          className="scan-labels is-vertical has-text-centered pl-10 pr-10"
+        >
+          <span
+            className="is-uppercase has-text-weight-bold mb-10"
           >
-            <span
-              className="is-uppercase has-text-weight-bold mb-10"
-            >
-              SCAN_EQUIPMENT
-            </span>
-            <div
-              id="scandit"
-            />
-            <div
-              className="hint-text mt-15 pl-15 pr-15"
-            >
-              BULK_SCAN_HINT
-            </div>
-            <div
-              className="has-text-white mt-10"
-            >
-              FOUND_SN 0
-            </div>
-            <button
-              className="button is-primary trigger-scan mt-15"
-              onClick={[Function]}
-            >
-              DONE
-            </button>
-            <button
-              className="button has-text-centered is-uppercase is-secondary has-no-border"
-              onClick={[Function]}
-            >
-              SN_MANUAL_ENTRY
-            </button>
+            SCAN_EQUIPMENT
+          </span>
+          <div
+            id="scandit"
+          />
+          <div
+            className="hint-text mt-15 pl-15 pr-15"
+          >
+            BULK_SCAN_HINT
           </div>
-        </ErrorBoundary>
+          <div
+            className="has-text-white mt-10"
+          >
+            FOUND_SN 0
+          </div>
+          <button
+            className="button is-primary trigger-scan mt-15"
+            onClick={[Function]}
+          >
+            DONE
+          </button>
+          <button
+            className="button has-text-centered is-uppercase is-secondary has-no-border"
+            onClick={[Function]}
+          >
+            SN_MANUAL_ENTRY
+          </button>
+        </div>
       </ScanDeviceLabels>
     </Provider>
   </Router>
