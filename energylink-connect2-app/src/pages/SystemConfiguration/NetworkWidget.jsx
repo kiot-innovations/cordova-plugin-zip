@@ -21,10 +21,12 @@ function NetworkWidget({ hideWPSButton, expanded }) {
   const {
     aps,
     isFetching,
+    isConnecting,
     connectedToAP,
     selectedAP,
     isConnected,
-    error
+    errorFetching,
+    errorConnecting
   } = useSelector(path(['systemConfiguration', 'network']))
 
   const [password, setPassword] = useState('')
@@ -35,9 +37,12 @@ function NetworkWidget({ hideWPSButton, expanded }) {
 
   const disallowConnecting =
     isFetching ||
+    isConnecting ||
     !selectedAP.ssid ||
     !password ||
     selectedAP.ssid === path(['ap', 'ssid'], connectedToAP)
+
+  const disableInputs = isFetching || errorFetching
 
   const networkOptions = buildAPsItems(aps)
 
@@ -55,7 +60,7 @@ function NetworkWidget({ hideWPSButton, expanded }) {
               <div className="field">
                 <div className="control">
                   <SelectField
-                    disabled={isFetching}
+                    disabled={disableInputs}
                     isSearchable={true}
                     onSelect={compose(dispatch, SET_SELECTED_AP, prop('ap'))}
                     defaultInputValue={connectedToAP.value}
@@ -77,7 +82,7 @@ function NetworkWidget({ hideWPSButton, expanded }) {
               <div className="field">
                 <div className="control">
                   <input
-                    disabled={isFetching}
+                    disabled={disableInputs}
                     className="input"
                     type="password"
                     placeholder="********"
@@ -91,7 +96,8 @@ function NetworkWidget({ hideWPSButton, expanded }) {
 
           {either(
             isConnected &&
-              !error &&
+              !errorFetching &&
+              !errorConnecting &&
               !isFetching &&
               !isEmpty(connectedToAP.label),
             <div className="message success">
@@ -100,8 +106,37 @@ function NetworkWidget({ hideWPSButton, expanded }) {
           )}
 
           {either(
-            error && !isFetching,
-            <div className="message error">{t('AP_CONNECTION_ERROR')}</div>
+            isFetching,
+            <div className="message success">{t('AP_FETCHING')}</div>
+          )}
+
+          {either(
+            isConnecting,
+            <div className="message success">
+              {t('AP_CONNECTING', selectedAP.ssid)}
+            </div>
+          )}
+
+          {either(
+            errorFetching && !isFetching,
+            <div className="block">
+              <div className="message error">
+                {t('AP_FETCHING_ERROR')}
+                <button
+                  className="button has-text-primary is-text pl-0"
+                  onClick={() => dispatch(GET_NETWORK_APS_INIT())}
+                >
+                  {t('RETRY_CLICK')}
+                </button>
+              </div>
+            </div>
+          )}
+
+          {either(
+            errorConnecting && !isFetching,
+            <div className="message error">
+              {t('AP_CONNECTION_ERROR', selectedAP.ssid)}
+            </div>
           )}
 
           <div className="field is-grouped is-grouped-centered">

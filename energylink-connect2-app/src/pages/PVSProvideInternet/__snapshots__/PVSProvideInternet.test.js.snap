@@ -125,7 +125,6 @@ exports[`PVS Provide Internet page renders correctly 1`] = `
                             >
                               <SelectField
                                 defaultInputValue=""
-                                disabled={false}
                                 isSearchable={true}
                                 onSelect={[Function]}
                                 options={Array []}
@@ -145,7 +144,6 @@ exports[`PVS Provide Internet page renders correctly 1`] = `
                                   defaultMenuIsOpen={false}
                                   defaultValue={null}
                                   hideSelectedOptions={true}
-                                  isDisabled={false}
                                   isSearchable={true}
                                   noOptionsMessage={[Function]}
                                   onChange={[Function]}
@@ -1347,7 +1345,6 @@ exports[`PVS Provide Internet page renders correctly 1`] = `
                             >
                               <input
                                 className="input"
-                                disabled={false}
                                 onChange={[Function]}
                                 placeholder="********"
                                 type="password"

@@ -23,11 +23,20 @@
   }
 }
 
-form.input:disabled {
+form .input:disabled,
+.input[disabled] {
   background: #35404e !important;
+  background-color: #35404e !important;
   opacity: 1;
 }
 
 .flex-column {
   flex-direction: column;
+}
+
+.message.error {
+  text-align: justify;
+  .button {
+    display: block;
+  }
 }

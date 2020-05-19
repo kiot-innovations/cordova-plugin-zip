@@ -9,23 +9,37 @@ describe('SC Network Reducer', () => {
 
   it('populates the reducer state after GET_NETWORK_APS_INIT action is fired', () => {
     reducerTest(
-      { isFetching: false },
+      {
+        isFetching: false,
+        isConnecting: false,
+        errorFetching: null,
+        errorConnecting: null
+      },
       systemConfigurationReducers.GET_NETWORK_APS_INIT(),
       {
         isFetching: true,
-        error: null
+        isConnecting: false,
+        errorFetching: null,
+        errorConnecting: null
       }
     )
   })
 
   it('populates the reducer state after GET_NETWORK_APS_SUCCESS action is fired', () => {
     reducerTest(
-      { isFetching: false },
-      systemConfigurationReducers.GET_NETWORK_APS_SUCCESS([{ ssid: '1' }]),
       {
         isFetching: false,
+        isConnecting: false,
+        errorFetching: null,
+        errorConnecting: null
+      },
+      systemConfigurationReducers.GET_NETWORK_APS_SUCCESS([{ ssid: '1' }]),
+      {
+        isConnecting: false,
+        isFetching: false,
         aps: [{ ssid: '1' }],
-        error: null
+        errorFetching: null,
+        errorConnecting: null
       }
     )
   })

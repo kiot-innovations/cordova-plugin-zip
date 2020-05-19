@@ -24,11 +24,9 @@ const PVSProvideInternet = () => {
     pathOr(false, ['firmwareUpdate', 'canContinue'])
   )
 
-  const { isConnected, connectedToAP, isFetching } = useSelector(
+  const { isConnected } = useSelector(
     pathOr(false, ['systemConfiguration', 'network'])
   )
-
-  console.warn({ isConnected, connectedToAP, isFetching })
 
   const goToScanLabels = () => {
     history.push(paths.PROTECTED.SCAN_LABELS.path)
