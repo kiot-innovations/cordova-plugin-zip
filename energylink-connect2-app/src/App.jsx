@@ -17,8 +17,8 @@ const App = props => (
         <Header />
         <Routes />
         <Footer />
+        <ModalWrapper />
       </Router>
-      <ModalWrapper />
     </PersistGate>
   </Provider>
 )

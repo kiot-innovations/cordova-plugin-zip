@@ -112,7 +112,7 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                         <SelectField
                           defaultValue={null}
                           isSearchable={false}
-                          notFoundText="FETCHING_OPTIONS"
+                          notFoundText="GRID_PROFILES_NOT_FOUND"
                           onSelect={[Function]}
                           options={Array []}
                           useDefaultDropDown={true}

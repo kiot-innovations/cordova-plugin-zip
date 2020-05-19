@@ -27,6 +27,7 @@ exports[`Inventory Count page renders correctly 1`] = `
         </label>
         <select
           className="input mt-5"
+          defaultValue="0"
           id="MODULES"
           key="MODULES"
           name="MODULES"
@@ -640,6 +641,7 @@ exports[`Inventory Count page renders correctly 1`] = `
         </label>
         <select
           className="input mt-5"
+          defaultValue="0"
           id="STRING_INVERTERS"
           key="STRING_INVERTERS"
           name="STRING_INVERTERS"
@@ -1253,6 +1255,7 @@ exports[`Inventory Count page renders correctly 1`] = `
         </label>
         <select
           className="input mt-5"
+          defaultValue="0"
           id="METERS"
           key="METERS"
           name="METERS"
@@ -1866,6 +1869,7 @@ exports[`Inventory Count page renders correctly 1`] = `
         </label>
         <select
           className="input mt-5"
+          defaultValue="0"
           id="MET_STATION"
           key="MET_STATION"
           name="MET_STATION"
@@ -2479,6 +2483,7 @@ exports[`Inventory Count page renders correctly 1`] = `
         </label>
         <select
           className="input mt-5"
+          defaultValue="None"
           id="ESS"
           key="ESS"
           name="ESS"
@@ -2486,24 +2491,28 @@ exports[`Inventory Count page renders correctly 1`] = `
         >
           <option
             key="None"
+            selected={true}
             value="None"
           >
             NONE
           </option>
           <option
             key="16kWh"
+            selected={false}
             value="16kWh"
           >
             16KWH_1INV
           </option>
           <option
             key="26kWh 1 Inverter"
+            selected={false}
             value="26kWh 1 Inverter"
           >
             26KWH_1INV
           </option>
           <option
             key="26kWh 2 Inverters"
+            selected={false}
             value="26kWh 2 Inverters"
           >
             26KWH_2INV
@@ -2522,6 +2531,7 @@ exports[`Inventory Count page renders correctly 1`] = `
         </label>
         <select
           className="input mt-5"
+          defaultValue="0"
           id="GCM"
           key="GCM"
           name="GCM"
