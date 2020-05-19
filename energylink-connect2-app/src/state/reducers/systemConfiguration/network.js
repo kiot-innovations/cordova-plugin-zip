@@ -48,7 +48,8 @@ export const networkReducer = createReducer(
       errorFetching: error,
       errorConnecting: null,
       isFetching: false,
-      isConnecting: false
+      isConnecting: false,
+      isConnected: false
     }),
 
     [CONNECT_NETWORK_AP_INIT]: state => ({
