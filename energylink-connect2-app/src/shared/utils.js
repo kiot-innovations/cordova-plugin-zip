@@ -50,7 +50,7 @@ export function geocodeByAddress(address) {
 
 export function getGeocodeData({ address_components, geometry }) {
   const data = address_components.map(elem => ({
-    name: elem.long_name,
+    short_name: elem.short_name,
     type: elem.types.shift()
   }))
 
@@ -59,7 +59,7 @@ export function getGeocodeData({ address_components, geometry }) {
   //parsed data so we can use it in the setState
   const parsedData = {}
   data.forEach(elem => {
-    parsedData[elem.type] = elem.name
+    parsedData[elem.type] = elem.short_name
   })
   return { parsedData, lat, lng }
 }

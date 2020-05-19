@@ -1,14 +1,17 @@
 import TextField from '@sunpower/textfield'
+import clsx from 'clsx'
 import SearchField from 'components/SearchField'
-import { contains, path } from 'ramda'
+import { compose, contains, path } from 'ramda'
 import React, { useEffect, useState } from 'react'
 import { useField, useForm } from 'react-final-form-hooks'
 import PlacesAutocomplete from 'react-places-autocomplete'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import paths from 'routes/paths'
 import { useI18n } from 'shared/i18n'
-import { geocodeByAddress, getGeocodeData } from 'shared/utils'
+import { either, geocodeByAddress, getGeocodeData } from 'shared/utils'
+import { SHOW_MODAL } from '../../state/actions/modal'
+import { CREATE_SITE_INIT, CREATE_SITE_RESET } from '../../state/actions/site'
 
 function useGoogleMaps() {
   const [hasGoogleMaps, setGoogleMaps] = useState(!!window.google)
@@ -21,28 +24,66 @@ function useGoogleMaps() {
 function CreateSite() {
   const hasGoogleMaps = useGoogleMaps()
   const [initialValues, setInitialValues] = useState({
-    siteName: '',
-    apt: '',
-    city: '',
-    state: '',
-    postalCode: '',
     address: ''
   })
   const t = useI18n()
   const dispatch = useDispatch()
+  const serverError = useSelector(path(['site', 'saveError']))
+  const isSaving = useSelector(path(['site', 'isSaving']))
+  const showModal = useSelector(path(['site', 'saveModal']))
+
+  useEffect(() => {
+    dispatch(CREATE_SITE_RESET())
+  }, [dispatch])
+
+  useEffect(() => {
+    if (showModal) {
+      dispatch(
+        SHOW_MODAL({
+          title: t('SITE_CREATED_MODAL_TITLE'),
+          componentPath: './CreateSiteSuccessModal.jsx'
+        })
+      )
+    }
+  }, [dispatch, showModal, t])
 
   const { form, handleSubmit } = useForm({
     onSubmit: onSubmit(dispatch),
     initialValues,
-    validate: values => null
+    validate: values => {
+      const errors = {}
+
+      if (!values.address) {
+        errors.address = 'Required'
+      }
+
+      if (!values.siteName) {
+        errors.siteName = 'Required'
+      }
+
+      if (!values.city) {
+        errors.city = 'Required'
+      }
+
+      if (!values.state) {
+        errors.state = 'Required'
+      }
+
+      if (!values.postalCode) {
+        errors.postalCode = 'Required'
+      }
+      return errors
+    }
   })
+
   const siteName = useField('siteName', form)
   const apt = useField('apt', form)
   const city = useField('city', form)
   const state = useField('state', form)
   const postalCode = useField('postalCode', form)
-  useField('lat', form)
-  useField('lng', form)
+  const address = useField('address', form)
+  useField('latitude', form)
+  useField('longitude', form)
   /**
    * All this handle is just to populate all the fields
    * @param address
@@ -55,8 +96,8 @@ function CreateSite() {
       city: parsedData.locality || parsedData.political,
       postalCode: parsedData.postal_code,
       state: parsedData.administrative_area_level_1,
-      lat,
-      lng,
+      latitude: lat,
+      longitude: lng,
       address: address.value
     })
   }
@@ -107,38 +148,44 @@ function CreateSite() {
               <label htmlFor="address" className="has-text-white">
                 {t('ADDRESS')}
               </label>
-              <SearchField
-                onSearch={async newAddress => {
-                  const VALID_COUNTRY_STRINGS = [
-                    //english based phones
-                    'USA',
-                    'Mexico',
-                    'Canada',
-                    //spanish based phones
-                    'EE. UU.',
-                    'México',
-                    'Canadá',
-                    //french based phones
-                    'États-Unis',
-                    'Mexique'
-                  ]
-                  getInputProps().onChange({ target: { value: newAddress } })
-                  return suggestions
-                    .filter(elem => {
-                      const country = path(
-                        ['terms', elem.terms.length - 1, 'value'],
-                        elem
-                      )
-                      return contains(country, VALID_COUNTRY_STRINGS)
-                    })
-                    .map(elem => ({
-                      value: elem.description,
-                      label: elem.description
-                    }))
-                }} //load options
-                onSelect={handleSelect} //onchange
-                className="mt-10"
-              />
+              <div className="control">
+                <SearchField
+                  onSearch={async newAddress => {
+                    const VALID_COUNTRY_STRINGS = [
+                      //english based phones
+                      'USA',
+                      'Mexico',
+                      'Canada',
+                      //spanish based phones
+                      'EE. UU.',
+                      'México',
+                      'Canadá',
+                      //french based phones
+                      'États-Unis',
+                      'Mexique'
+                    ]
+                    getInputProps().onChange({ target: { value: newAddress } })
+                    return suggestions
+                      .filter(elem => {
+                        const country = path(
+                          ['terms', elem.terms.length - 1, 'value'],
+                          elem
+                        )
+                        return contains(country, VALID_COUNTRY_STRINGS)
+                      })
+                      .map(elem => ({
+                        value: elem.description,
+                        label: elem.description
+                      }))
+                  }} //load options
+                  onSelect={handleSelect} //onchange
+                  className="mt-10"
+                />
+
+                {address.meta.touched && address.meta.error && (
+                  <span className="error">{address.meta.error}</span>
+                )}
+              </div>
             </article>
 
             <div className="is-flex level">
@@ -198,14 +245,24 @@ function CreateSite() {
             </div>
 
             <div className="is-flex file level space-around section pt-0">
+              {either(
+                serverError && address.meta.touched,
+                <div className="message error mb-10">{t(serverError)}</div>
+              )}
               <button
-                className="button is-primary is-uppercase mb-15"
+                className={clsx('button is-primary is-uppercase mb-20 ml-10', {
+                  'is-loading': isSaving
+                })}
                 type="submit"
+                disabled={isSaving}
               >
                 {t('CREATE')}
               </button>
 
-              <Link to={paths.PROTECTED.ROOT.path}>{t('CANCEL')}</Link>
+              {either(
+                !isSaving,
+                <Link to={paths.PROTECTED.ROOT.path}>{t('CANCEL')}</Link>
+              )}
             </div>
           </form>
         </section>
@@ -216,6 +273,4 @@ function CreateSite() {
 
 export default CreateSite
 
-function onSubmit(dispatch) {
-  return console.info
-}
+const onSubmit = dispatch => compose(dispatch, CREATE_SITE_INIT)

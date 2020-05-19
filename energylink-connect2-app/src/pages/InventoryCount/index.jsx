@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { Redirect } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { useI18n } from 'shared/i18n'
+import { compose, find, propEq, propOr } from 'ramda'
 import clsx from 'clsx'
 import paths from 'routes/paths'
 import './InventoryCounts.scss'
@@ -21,10 +22,21 @@ function createSelectField(
   overrideOptions,
   size
 ) {
+  const getItemValue = compose(
+    propOr(0, 'value'),
+    find(propEq('item', translation))
+  )
+
+  const itemValue = getItemValue(inventory)
+
   const options = overrideOptions
     ? overrideOptions.map(option => {
         return (
-          <option key={option.value} value={option.value}>
+          <option
+            key={option.value}
+            value={option.value}
+            selected={option.value === itemValue}
+          >
             {t(option.text)}
           </option>
         )
@@ -51,7 +63,7 @@ function createSelectField(
         id={translation}
         className="input mt-5"
         onChange={changeHandler}
-        value={inventory[translation]}
+        defaultValue={itemValue}
       >
         {options}
       </select>
@@ -90,7 +102,7 @@ function InventoryCount() {
         t,
         item.item,
         changeHandler,
-        item.value,
+        inventory,
         batteryOptions,
         'double'
       )

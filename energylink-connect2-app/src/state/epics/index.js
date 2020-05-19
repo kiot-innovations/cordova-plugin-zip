@@ -1,7 +1,7 @@
 import { combineEpics } from 'redux-observable'
 import networkPollingEpics from './network'
 import feedbackEpic from './feedback'
-import siteEpic from './site'
+import siteEpics from './site'
 import pvsEpics from './pvs'
 import deviceEpics from './devices'
 import systemConfigurationEpics from './systemConfiguration'
@@ -12,7 +12,7 @@ export default combineEpics(
   ...firmwareUpdateEpics,
   ...networkPollingEpics,
   ...feedbackEpic,
-  siteEpic,
+  ...siteEpics,
   ...pvsEpics,
   ...deviceEpics,
   ...systemConfigurationEpics,
