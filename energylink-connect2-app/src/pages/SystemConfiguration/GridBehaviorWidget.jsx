@@ -31,9 +31,12 @@ function GridBehaviorWidget() {
   }
 
   const dispatch = useDispatch()
-  const { profiles, gridVoltage, selectedOptions } = useSelector(
-    state => state.systemConfiguration.gridBehavior
-  )
+  const {
+    profiles,
+    gridVoltage,
+    selectedOptions,
+    fetchingGridBehavior
+  } = useSelector(state => state.systemConfiguration.gridBehavior)
   const { site } = useSelector(state => state.site)
   const [selfSupplyOptions, setSelfSupplyOptions] = useState(
     getExportLimitOptions(
@@ -137,9 +140,9 @@ function GridBehaviorWidget() {
                     pathOr(null, ['profile', 'id'], selectedOptions)
                   )}
                   notFoundText={
-                    length(gridProfileOptions) === 0
+                    fetchingGridBehavior
                       ? t('FETCHING_OPTIONS')
-                      : null
+                      : t('GRID_PROFILES_NOT_FOUND')
                   }
                   onSelect={setGridProfile}
                 />
