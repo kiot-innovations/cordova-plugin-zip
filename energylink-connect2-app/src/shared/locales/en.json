@@ -135,6 +135,7 @@
   "MI_COUNT_MISMATCH": "Inventory Count Mismatch",
   "MI_OVERCOUNT": "You have scanned more codes than what the inventory stated ({0} scanned, {1} expected). Do you want to update the inventory count and continue?",
   "MI_UNDERCOUNT": "You have scanned less codes than what the inventory stated ({0} scanned, {1} expected). If you can’t scan the missing codes, please tap on cancel and add the serial number manually. Otherwise, tap on continue to update the inventory count and continue.",
+  "MI_NO_COUNT": "You have scanned no MI codes, and the inventory count expects no MI codes. if you have installed non-microinverter equipment, tap on continue. Otherwise please scan the MI codes before continuing.",
   "RIGHT_NOW": "Right Now",
   "ENERGY_MIX": "Today's Energy Mix",
   "AS_OF_TIME_TODAY": "As of {0} • today",

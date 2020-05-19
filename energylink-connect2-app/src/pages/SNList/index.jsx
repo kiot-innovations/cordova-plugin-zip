@@ -1,23 +1,22 @@
 import React, { useCallback, useState } from 'react'
-import { useHistory, useLocation } from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux'
-import { pathOr } from 'ramda'
-import { useI18n } from 'shared/i18n'
-import paths from 'routes/paths'
+import { Loader } from 'components/Loader'
 import useModal from 'hooks/useModal'
+import { pathOr } from 'ramda'
 
 import BlockUI from 'react-block-ui'
-import SNManualEntry from './SNManualEntry'
-import SNScanButtons from './SNScanButtons'
-import { Loader } from 'components/Loader'
-
-import { REMOVE_SN } from 'state/actions/pvs'
-import { PUSH_CANDIDATES_INIT } from 'state/actions/devices'
-import { START_DISCOVERY_INIT } from 'state/actions/pvs'
-import { UPDATE_MI_COUNT } from 'state/actions/inventory'
 
 import 'react-block-ui/style.css'
+import { useDispatch, useSelector } from 'react-redux'
+import { useHistory, useLocation } from 'react-router-dom'
+import paths from 'routes/paths'
+import { useI18n } from 'shared/i18n'
+import { PUSH_CANDIDATES_INIT } from 'state/actions/devices'
+import { UPDATE_MI_COUNT } from 'state/actions/inventory'
+
+import { REMOVE_SN, START_DISCOVERY_INIT } from 'state/actions/pvs'
 import './SNList.scss'
+import SNManualEntry from './SNManualEntry'
+import SNScanButtons from './SNScanButtons'
 
 function SNList() {
   const t = useI18n()
@@ -96,11 +95,21 @@ function SNList() {
     )
   }
 
-  const COUNT_TYPE =
-    scannedMICount > expectedMICount ? 'MI_OVERCOUNT' : 'MI_UNDERCOUNT'
+  const getCountType = (scannedMICount, expectedMICount) => {
+    const numExpected = parseInt(expectedMICount)
+    const numScanned = parseInt(scannedMICount)
+
+    if (parseInt(numScanned) === 0 && numExpected === 0) return 'MI_NO_COUNT'
+    if (numScanned > numExpected) return 'MI_OVERCOUNT'
+    return 'MI_UNDERCOUNT'
+  }
 
   const serialNumbersModalContent = serialNumbersModalTemplate(
-    t(COUNT_TYPE, scannedMICount, expectedMICount)
+    t(
+      getCountType(scannedMICount, expectedMICount),
+      scannedMICount,
+      expectedMICount
+    )
   )
 
   const modalsTitle = (
@@ -147,11 +156,16 @@ function SNList() {
   } = useModal(legacyDiscoveryModalContent, modalsTitle, false)
 
   const countSN = () => {
-    if (parseInt(scannedMICount, 10) === parseInt(expectedMICount, 10)) {
+    const parsedScannedMICount = parseInt(scannedMICount)
+    const parsedExpectedMiCount = parseInt(expectedMICount)
+    if (
+      parsedScannedMICount !== parsedExpectedMiCount ||
+      (parsedScannedMICount === 0 && parsedExpectedMiCount === 0)
+    ) {
+      toggleSerialNumbersModal()
+    } else {
       submitSN()
       history.push(paths.PROTECTED.DEVICES.path)
-    } else {
-      toggleSerialNumbersModal()
     }
   }
 
