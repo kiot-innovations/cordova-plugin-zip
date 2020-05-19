@@ -1,0 +1,10 @@
+@import '~@sunpower/theme-dark/styles/variables';
+
+.pvs-provide-internet {
+  display: grid;
+  grid-template-rows: minmax(15px, 40px) minmax(1fr, 460px) minmax(30px, 50px) minmax(
+      10px,
+      50px
+    );
+  align-items: center;
+}

@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { compose, path, pathOr, prop, isEmpty } from 'ramda'
+import { compose, path, prop, isEmpty } from 'ramda'
 import { useI18n } from 'shared/i18n'
-import { findByPathValue, buildAPsItems, either } from 'shared/utils'
+import { buildAPsItems, either } from 'shared/utils'
 import {
   CONNECT_NETWORK_AP_INIT,
   GET_NETWORK_APS_INIT,
@@ -14,17 +14,19 @@ import SelectField from 'components/SelectField'
 
 const NWI = <span className="sp-wifi file level mr-15 is-size-4" />
 
-function NetworkWidget() {
+function NetworkWidget({ hideWPSButton, expanded }) {
   const t = useI18n()
   const dispatch = useDispatch()
 
   const {
     aps,
     isFetching,
+    isConnecting,
     connectedToAP,
     selectedAP,
     isConnected,
-    error
+    errorFetching,
+    errorConnecting
   } = useSelector(path(['systemConfiguration', 'network']))
 
   const [password, setPassword] = useState('')
@@ -34,14 +36,19 @@ function NetworkWidget() {
   }, [dispatch])
 
   const disallowConnecting =
-    isFetching || selectedAP.ssid === path(['ap', 'ssid'], connectedToAP)
+    isFetching ||
+    isConnecting ||
+    !selectedAP.ssid ||
+    !password ||
+    selectedAP.ssid === path(['ap', 'ssid'], connectedToAP)
+
+  const disableInputs = isFetching || errorFetching
 
   const networkOptions = buildAPsItems(aps)
-  const findNetworkValue = findByPathValue(networkOptions, ['value'])
 
   return (
     <div className="pb-15">
-      <Collapsible title={t('NETWORK')} icon={NWI}>
+      <Collapsible title={t('NETWORK')} icon={NWI} expanded={expanded}>
         <form>
           <div className="field is-horizontal mb-15">
             <div className="field-label">
@@ -53,13 +60,12 @@ function NetworkWidget() {
               <div className="field">
                 <div className="control">
                   <SelectField
-                    disabled={isFetching}
+                    disabled={disableInputs}
                     isSearchable={true}
                     onSelect={compose(dispatch, SET_SELECTED_AP, prop('ap'))}
-                    defaultValue={connectedToAP}
+                    defaultInputValue={connectedToAP.value}
                     placeholder={t('SELECT_NETWORK')}
                     options={networkOptions}
-                    value={findNetworkValue(pathOr(null, ['ssid'], selectedAP))}
                   />
                 </div>
               </div>
@@ -76,7 +82,7 @@ function NetworkWidget() {
               <div className="field">
                 <div className="control">
                   <input
-                    disabled={isFetching}
+                    disabled={disableInputs}
                     className="input"
                     type="password"
                     placeholder="********"
@@ -90,7 +96,8 @@ function NetworkWidget() {
 
           {either(
             isConnected &&
-              !error &&
+              !errorFetching &&
+              !errorConnecting &&
               !isFetching &&
               !isEmpty(connectedToAP.label),
             <div className="message success">
@@ -99,28 +106,61 @@ function NetworkWidget() {
           )}
 
           {either(
-            error && !isFetching,
-            <div className="message error">{t('AP_CONNECTION_ERROR')}</div>
+            isFetching,
+            <div className="message success">{t('AP_FETCHING')}</div>
+          )}
+
+          {either(
+            isConnecting,
+            <div className="message success">
+              {t('AP_CONNECTING', selectedAP.ssid)}
+            </div>
+          )}
+
+          {either(
+            errorFetching && !isFetching,
+            <div className="block">
+              <div className="message error">
+                {t('AP_FETCHING_ERROR')}
+                <button
+                  className="button has-text-primary is-text pl-0"
+                  onClick={() => dispatch(GET_NETWORK_APS_INIT())}
+                >
+                  {t('RETRY_CLICK')}
+                </button>
+              </div>
+            </div>
+          )}
+
+          {either(
+            errorConnecting && !isFetching,
+            <div className="message error">
+              {t('AP_CONNECTION_ERROR', selectedAP.ssid)}
+            </div>
           )}
 
           <div className="field is-grouped is-grouped-centered">
-            <p className="control">
-              <button
-                className="button is-primary is-outlined"
-                disabled={disallowConnecting}
-                onClick={() =>
-                  dispatch(
-                    CONNECT_NETWORK_AP_INIT({
-                      ssid: selectedAP.ssid,
-                      password,
-                      mode: 'wps'
-                    })
-                  )
-                }
-              >
-                {t('USE_WPS')}
-              </button>
-            </p>
+            {either(
+              hideWPSButton,
+              null,
+              <p className="control">
+                <button
+                  className="button is-primary is-outlined"
+                  disabled={disallowConnecting}
+                  onClick={() =>
+                    dispatch(
+                      CONNECT_NETWORK_AP_INIT({
+                        ssid: selectedAP.ssid,
+                        password,
+                        mode: 'wps'
+                      })
+                    )
+                  }
+                >
+                  {t('USE_WPS')}
+                </button>
+              </p>
+            )}
             <p className="control">
               <button
                 className="button is-primary is-uppercase"

@@ -18,8 +18,10 @@ const initialState = {
   selectedAP: { ssid: '' },
   connectedToAP: { label: '', value: '', ap: null },
   isFetching: false,
+  isConnecting: false,
   isConnected: false,
-  error: null
+  errorFetching: null,
+  errorConnecting: null
 }
 
 export const networkReducer = createReducer(
@@ -27,27 +29,36 @@ export const networkReducer = createReducer(
     [GET_NETWORK_APS_INIT]: state => ({
       ...state, // preserve previously connected state
       isFetching: true,
-      error: null
+      isConnecting: false,
+      errorFetching: null,
+      errorConnecting: null
     }),
 
     [GET_NETWORK_APS_SUCCESS]: (state, aps) => ({
       ...state,
       aps,
-      error: null,
-      isFetching: false
+      errorFetching: null,
+      errorConnecting: null,
+      isFetching: false,
+      isConnecting: false
     }),
 
     [GET_NETWORK_APS_ERROR]: (state, error) => ({
       ...state,
-      error,
-      isFetching: false
+      errorFetching: error,
+      errorConnecting: null,
+      isFetching: false,
+      isConnecting: false,
+      isConnected: false
     }),
 
     [CONNECT_NETWORK_AP_INIT]: state => ({
       ...state,
-      isFetching: true,
+      isFetching: false,
       isConnected: false,
-      error: null
+      isConnecting: true,
+      errorFetching: null,
+      errorConnecting: null
     }),
     [GET_INTERFACES_SUCCESS]: (state, interfaces) => {
       const connectedToAP = getConnectedAP(interfaces, state.aps)
@@ -58,9 +69,11 @@ export const networkReducer = createReducer(
 
       return {
         ...state,
-        error,
+        errorConnecting: error,
+        errorFetching: null,
         isConnected: !error && !isEmpty(connectedToAP.label),
         isFetching: false,
+        isConnecting: false,
         connectedToAP
       }
     },
@@ -68,8 +81,10 @@ export const networkReducer = createReducer(
     [CONNECT_NETWORK_AP_ERROR]: (state, error) => ({
       ...state,
       isFetching: false,
+      isConnecting: false,
       isConnected: false,
-      error
+      errorConnecting: error,
+      errorFetching: null
     }),
 
     [SET_SELECTED_AP]: (state, selectedAP) => ({

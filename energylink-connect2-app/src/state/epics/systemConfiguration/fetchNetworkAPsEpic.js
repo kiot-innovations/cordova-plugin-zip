@@ -1,6 +1,6 @@
 import { ofType } from 'redux-observable'
 import { of, from } from 'rxjs'
-import { catchError, mergeMap, map } from 'rxjs/operators'
+import { catchError, map, concatMap, retry } from 'rxjs/operators'
 import { path, prop, uniqBy } from 'ramda'
 import {
   GET_NETWORK_APS_INIT,
@@ -14,20 +14,21 @@ const filterDuplicateAPs = uniqBy(prop('ssid'))
 export const fetchNetworkAPsEpic = (action$, state$) => {
   return action$.pipe(
     ofType(GET_NETWORK_APS_INIT.getType()),
-    mergeMap(() => {
+    concatMap(() => {
       const promise = getApiPVS()
         .then(path(['apis', 'wifi']))
         .then(wifi => wifi.accessPoints())
 
       return from(promise).pipe(
-        map(prop('obj')),
+        map(prop('body')),
         map(response =>
           response.result === 'succeed'
             ? GET_NETWORK_APS_SUCCESS(filterDuplicateAPs(response.aps))
             : GET_NETWORK_APS_ERROR(response.error)
         ),
-        catchError(err => of(GET_NETWORK_APS_ERROR(err)))
+        catchError(err => of(GET_NETWORK_APS_ERROR.asError(err)))
       )
-    })
+    }),
+    retry(2)
   )
 }

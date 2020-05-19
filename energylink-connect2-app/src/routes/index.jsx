@@ -25,6 +25,7 @@ import NotFound from 'pages/NotFound'
 import PanelLayoutTool from 'pages/PanelLayoutTool/AddingPanels'
 import PanelLayoutToolGroupPanels from 'pages/PanelLayoutTool/GroupPanels'
 import PvsConnectionSuccessful from 'pages/PvsConnectionSuccessful'
+import PVSProvideInternet from 'pages/PVSProvideInternet'
 import SavingConfiguration from 'pages/SavingConfiguration'
 import ScanLabels from 'pages/ScanLabels'
 import SNList from 'pages/SNList'
@@ -50,6 +51,7 @@ const mapComponents = {
   [paths.PROTECTED.PANEL_LAYOUT_TOOL.path]: PanelLayoutTool,
   [paths.PROTECTED.PANEL_LAYOUT_TOOL_GROUPS.path]: PanelLayoutToolGroupPanels,
   [paths.PROTECTED.PVS_CONNECTION_SUCCESS.path]: PvsConnectionSuccessful,
+  [paths.PROTECTED.PVS_PROVIDE_INTERNET.path]: PVSProvideInternet,
   [paths.PROTECTED.INSTALL_SUCCESS.path]: InstallSuccessful,
   [paths.PROTECTED.ROOT.path]: Home,
   [paths.PROTECTED.VERSION_INFORMATION.path]: PanelLayoutTool,

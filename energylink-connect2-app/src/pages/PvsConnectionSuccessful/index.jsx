@@ -1,34 +1,24 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { pathOr } from 'ramda'
 import { useI18n } from 'shared/i18n'
-import './PvsConnectionSuccessful.scss'
-import { useSelector, useDispatch } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import paths from 'routes/paths'
 import { either } from 'shared/utils'
-import {
-  START_COMMISSIONING_INIT,
-  START_DISCOVERY_INIT
-} from 'state/actions/pvs'
+
+import './PvsConnectionSuccessful.scss'
 
 const getPVSVersionChecked = pathOr(false, ['firmwareUpdate', 'canContinue'])
 
 const PvsConnectionSuccessful = () => {
   const t = useI18n()
-  const dispatch = useDispatch()
   const serialNumber = useSelector(state => state.pvs.serialNumber)
   const versionChecked = useSelector(getPVSVersionChecked)
   const history = useHistory()
 
-  const goToScanLabels = () => {
-    history.push(paths.PROTECTED.SCAN_LABELS.path)
+  const goNext = () => {
+    history.push(paths.PROTECTED.PVS_PROVIDE_INTERNET.path)
   }
-
-  useEffect(() => {
-    dispatch(START_COMMISSIONING_INIT())
-    dispatch(START_DISCOVERY_INIT({ Device: 'allnomi', Interfaces: ['mime'] }))
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
 
   return (
     <div className="pvs-connection-success-screen pr-20 pl-20">
@@ -48,7 +38,7 @@ const PvsConnectionSuccessful = () => {
         versionChecked,
         <button
           className="button is-primary is-uppercase is-center"
-          onClick={goToScanLabels}
+          onClick={goNext}
         >
           {t('CONTINUE')}
         </button>,
