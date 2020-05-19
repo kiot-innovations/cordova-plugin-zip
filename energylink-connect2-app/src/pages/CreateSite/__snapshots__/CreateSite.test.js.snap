@@ -1,13 +1,129 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`CreateSite component render correctly 1`] = `
-<section
-  className="is-flex tile is-vertical section pt-0 fill-parent"
->
-  <h1
-    className="has-text-centered is-uppercase has-text-weight-bold  pb-20"
+exports[`CreateSite component initial state render correctly 1`] = `
+Object {
+  "component": <BrowserRouter
+    keyLength={0}
   >
-    WAITING_GOOGLE_MAPS
-  </h1>
-</section>
+    <Router
+      history={
+        Object {
+          "action": "POP",
+          "block": [Function],
+          "createHref": [Function],
+          "go": [Function],
+          "goBack": [Function],
+          "goForward": [Function],
+          "length": 1,
+          "listen": [Function],
+          "location": Object {
+            "hash": "",
+            "pathname": "/",
+            "search": "",
+            "state": undefined,
+          },
+          "push": [Function],
+          "replace": [Function],
+        }
+      }
+    >
+      <Provider
+        store={
+          Object {
+            "clearActions": [Function],
+            "dispatch": [Function],
+            "getActions": [Function],
+            "getState": [Function],
+            "replaceReducer": [Function],
+            "subscribe": [Function],
+          }
+        }
+      >
+        <CreateSite>
+          <section
+            className="is-flex tile is-vertical section pt-0 fill-parent"
+          >
+            <h1
+              className="has-text-centered is-uppercase has-text-weight-bold  pb-20"
+            >
+              WAITING_GOOGLE_MAPS
+            </h1>
+          </section>
+        </CreateSite>
+      </Provider>
+    </Router>
+  </BrowserRouter>,
+  "store": Object {
+    "clearActions": [Function],
+    "dispatch": [Function],
+    "getActions": [Function],
+    "getState": [Function],
+    "replaceReducer": [Function],
+    "subscribe": [Function],
+  },
+}
+`;
+
+exports[`CreateSite component with error render correctly 1`] = `
+Object {
+  "component": <BrowserRouter
+    keyLength={0}
+  >
+    <Router
+      history={
+        Object {
+          "action": "POP",
+          "block": [Function],
+          "createHref": [Function],
+          "go": [Function],
+          "goBack": [Function],
+          "goForward": [Function],
+          "length": 1,
+          "listen": [Function],
+          "location": Object {
+            "hash": "",
+            "pathname": "/",
+            "search": "",
+            "state": undefined,
+          },
+          "push": [Function],
+          "replace": [Function],
+        }
+      }
+    >
+      <Provider
+        store={
+          Object {
+            "clearActions": [Function],
+            "dispatch": [Function],
+            "getActions": [Function],
+            "getState": [Function],
+            "replaceReducer": [Function],
+            "subscribe": [Function],
+          }
+        }
+      >
+        <CreateSite>
+          <section
+            className="is-flex tile is-vertical section pt-0 fill-parent"
+          >
+            <h1
+              className="has-text-centered is-uppercase has-text-weight-bold  pb-20"
+            >
+              WAITING_GOOGLE_MAPS
+            </h1>
+          </section>
+        </CreateSite>
+      </Provider>
+    </Router>
+  </BrowserRouter>,
+  "store": Object {
+    "clearActions": [Function],
+    "dispatch": [Function],
+    "getActions": [Function],
+    "getState": [Function],
+    "replaceReducer": [Function],
+    "subscribe": [Function],
+  },
+}
 `;
