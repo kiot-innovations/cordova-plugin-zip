@@ -70,6 +70,12 @@ const paths = {
       footer: true,
       tab: TABS.INSTALL
     },
+    PVS_PROVIDE_INTERNET: {
+      path: '/pvs-provide-internet',
+      header: true,
+      footer: true,
+      tab: TABS.INSTALL
+    },
     INSTALL_SUCCESS: {
       path: '/install-success',
       header: true,
