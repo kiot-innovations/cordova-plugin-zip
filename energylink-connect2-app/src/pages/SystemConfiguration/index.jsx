@@ -38,16 +38,14 @@ const createMeterConfig = (devicesList, meterConfig, dispatch, site) => {
     return device
   })
 
-  let metaDataObj = {
+  dispatch(UPDATE_DEVICES_LIST(updatedDevices))
+
+  return {
     metaData: {
       site_key: site,
       devices: updatedDevices
     }
   }
-
-  dispatch(UPDATE_DEVICES_LIST(updatedDevices))
-
-  return metaDataObj
 }
 
 function SystemConfiguration() {

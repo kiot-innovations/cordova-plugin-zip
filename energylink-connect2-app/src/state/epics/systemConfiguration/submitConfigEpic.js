@@ -1,6 +1,6 @@
 import { ofType } from 'redux-observable'
 import { from, of } from 'rxjs'
-import { catchError, exhaustMap, map, switchMap } from 'rxjs/operators'
+import { catchError, exhaustMap, map } from 'rxjs/operators'
 import { getApiPVS } from 'shared/api'
 import { translate } from 'shared/i18n'
 import { path } from 'ramda'
@@ -17,7 +17,7 @@ export const submitMeterDataEpic = (action$, state$) => {
   const t = translate(state$.value.language)
   return action$.pipe(
     ofType(SUBMIT_CONFIG.getType()),
-    switchMap(({ payload }) => {
+    exhaustMap(({ payload }) => {
       const promise = getApiPVS()
         .then(path(['apis', 'meta']))
         .then(api =>
