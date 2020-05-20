@@ -217,7 +217,7 @@ function GridBehaviorWidget() {
                   useDefaultDropDown
                   options={gridVoltageOptions}
                   defaultValue={
-                    gridVoltage.grid_voltage === 240
+                    gridVoltage.selected === 240
                       ? { label: '208', value: 208 }
                       : { label: '240', value: 240 }
                   }
