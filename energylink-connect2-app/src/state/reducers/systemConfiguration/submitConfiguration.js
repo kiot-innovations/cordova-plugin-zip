@@ -43,9 +43,7 @@ export const submitConfigReducer = createReducer(
       submitting: false,
       error: payload
     }),
-    [SUBMIT_CLEAR]: () => ({
-      initialState
-    })
+    [SUBMIT_CLEAR]: () => initialState
   },
   initialState
 )
