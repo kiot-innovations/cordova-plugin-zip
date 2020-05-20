@@ -95,17 +95,13 @@ function SystemConfiguration() {
 
   const submitConfig = () => {
     try {
-      let metaDataObject = createMeterConfig(found, meter, dispatch, siteKey)
+      const metaData = createMeterConfig(found, meter, dispatch, siteKey)
       const configObject = {
+        metaData,
         gridProfile: selectedOptions.profile.id,
-        exportLimit: selectedOptions.exportLimit,
-        gridVoltage: selectedOptions.gridVoltage,
         lazyGridProfile: selectedOptions.lazyGridProfile,
-        prodMeter: meter.productionCT,
-        consMeter: meter.consumptionCT,
-        siteKey,
-        devices: found,
-        metaData: metaDataObject
+        exportLimit: selectedOptions.exportLimit,
+        gridVoltage: selectedOptions.gridVoltage
       }
       if (validateConfig(configObject)) {
         dispatch(SUBMIT_CONFIG(configObject))
