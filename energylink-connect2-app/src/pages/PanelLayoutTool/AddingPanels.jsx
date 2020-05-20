@@ -73,7 +73,7 @@ export default () => {
       <h3 className="has-text-centered has-text-white">
         {t('ADD_PANEL_TO_LAYOUT')}
       </h3>
-      <div className="controlsContainer">
+      <div className="pltControlsContainer">
         {either(
           index !== 0,
           <button value={'<'} onClick={() => setIndex(index - 1)}>

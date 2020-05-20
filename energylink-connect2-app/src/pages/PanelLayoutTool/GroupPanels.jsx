@@ -52,7 +52,7 @@ export default () => {
     dispatch(actions.rotateSelectedGroup())
   }
   const footer = (
-    <>
+    <div className="pltControlsContainer">
       <div className="sn-buttons">
         <button
           className="button sp-rotate half-button-padding is-secondary trigger-scan mr-10"
@@ -74,7 +74,7 @@ export default () => {
       >
         Go to configure
       </button>
-    </>
+    </div>
   )
   return (
     <PanelLayoutTool

@@ -1,8 +1,8 @@
 @import '~@sunpower/theme-dark/styles/variables';
 
-.controlsContainer {
-  display: grid;
-  grid-template-columns: 50px 1fr 50px;
+.pltControlsContainer {
+  display: flex;
+  flex-direction: column;
   align-items: center;
   justify-items: center;
   width: 90%;
@@ -20,7 +20,21 @@
   min-height: 100%;
   justify-content: space-around;
   .canvas {
-    border: 1px solid white;
+    .controlsContainer {
+      border: 1px solid white;
+
+      .zoomControl {
+        margin: 0;
+        right: 0;
+      }
+      button {
+        color: $sun;
+        background-color: rgba(0,0,0,0);
+        font-size: 1.5rem;
+        border: none;
+      }
+    }
+
   }
 }
 .has-error-text {
