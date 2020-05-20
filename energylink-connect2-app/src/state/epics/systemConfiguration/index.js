@@ -7,6 +7,7 @@ import { fetchRSEEpic } from './fetchRSEEpic'
 import { setRSEEpic, pollRSEEpic } from './setRSEEpic'
 import { submitConfigObjectEpic } from './submitConfigObjectEpic'
 import {
+  submitMeterDataEpic,
   submitGridProfileEpic,
   submitExportLimitEpic,
   submitGridVoltageEpic
@@ -17,6 +18,7 @@ export default [
   fetchNetworkAPsEpic,
   connectNetworkAPEpic,
   submitConfigObjectEpic,
+  submitMeterDataEpic,
   submitGridProfileEpic,
   submitExportLimitEpic,
   submitGridVoltageEpic,
