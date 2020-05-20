@@ -1,6 +1,6 @@
 import { ofType } from 'redux-observable'
 import { from, of } from 'rxjs'
-import { catchError, exhaustMap, map } from 'rxjs/operators'
+import { catchError, exhaustMap, map, switchMap } from 'rxjs/operators'
 import { getApiPVS } from 'shared/api'
 import { translate } from 'shared/i18n'
 import { path } from 'ramda'
@@ -9,13 +9,37 @@ import {
   SUBMIT_CONFIG_SUCCESS,
   SUBMIT_CONFIG_ERROR,
   SUBMIT_EXPORTLIMIT,
-  SUBMIT_GRIDVOLTAGE
+  SUBMIT_GRIDVOLTAGE,
+  SUBMIT_GRIDPROFILE
 } from 'state/actions/systemConfiguration'
+
+export const submitMeterDataEpic = (action$, state$) => {
+  const t = translate(state$.value.language)
+  return action$.pipe(
+    ofType(SUBMIT_CONFIG.getType()),
+    switchMap(({ payload }) => {
+      const promise = getApiPVS()
+        .then(path(['apis', 'meta']))
+        .then(api =>
+          api.setMetaData({ id: 1 }, { requestBody: payload.metaData })
+        )
+
+      return from(promise).pipe(
+        map(response =>
+          response.status === 200
+            ? SUBMIT_GRIDPROFILE(payload)
+            : SUBMIT_CONFIG_ERROR(t('SUBMIT_METER_DATA_ERROR'))
+        ),
+        catchError(err => of(SUBMIT_CONFIG_ERROR(t('SUBMIT_METER_DATA_ERROR'))))
+      )
+    })
+  )
+}
 
 export const submitGridProfileEpic = (action$, state$) => {
   const t = translate(state$.value.language)
   return action$.pipe(
-    ofType(SUBMIT_CONFIG.getType()),
+    ofType(SUBMIT_GRIDPROFILE.getType()),
     exhaustMap(({ payload }) => {
       const promise = getApiPVS()
         .then(path(['apis', 'grid']))

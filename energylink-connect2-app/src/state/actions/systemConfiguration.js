@@ -28,6 +28,7 @@ export const SUBMIT_CLEAR = createAction('SUBMIT_CLEAR')
 export const SUBMIT_CONFIG = createAction('SUBMIT_CONFIG')
 export const SUBMIT_CONFIG_SUCCESS = createAction('SUBMIT_CONFIG_SUCCESS')
 export const SUBMIT_CONFIG_ERROR = createAction('SUBMIT_CONFIG_ERROR')
+export const SUBMIT_GRIDPROFILE = createAction('SUBMIT_GRIDPROFILE')
 export const SUBMIT_EXPORTLIMIT = createAction('SUBMIT_EXPORTLIMIT')
 export const SUBMIT_GRIDVOLTAGE = createAction('SUBMIT_GRIDVOLTAGE')
 

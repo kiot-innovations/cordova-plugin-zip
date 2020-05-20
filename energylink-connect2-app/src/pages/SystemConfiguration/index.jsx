@@ -6,7 +6,6 @@ import { useHistory } from 'react-router-dom'
 import paths from 'routes/paths'
 import { useI18n } from 'shared/i18n'
 import { UPDATE_DEVICES_LIST } from 'state/actions/devices'
-import { SET_METADATA_INIT } from 'state/actions/pvs'
 import { SUBMIT_CONFIG } from 'state/actions/systemConfiguration'
 import GridBehaviorWidget from './GridBehaviorWidget'
 
@@ -18,7 +17,7 @@ import StorageWidget from './StorageWidget'
 
 import './SystemConfiguration.scss'
 
-const applyMeterConfig = (devicesList, meterConfig, dispatch, site) => {
+const createMeterConfig = (devicesList, meterConfig, dispatch, site) => {
   const updatedDevices = devicesList.map(device => {
     if (
       device.DEVICE_TYPE === 'Power Meter' &&
@@ -39,15 +38,16 @@ const applyMeterConfig = (devicesList, meterConfig, dispatch, site) => {
     return device
   })
 
-  dispatch(
-    SET_METADATA_INIT({
-      metaData: {
-        site_key: site,
-        devices: updatedDevices
-      }
-    })
-  )
+  let metaDataObj = {
+    metaData: {
+      site_key: site,
+      devices: updatedDevices
+    }
+  }
+
   dispatch(UPDATE_DEVICES_LIST(updatedDevices))
+
+  return metaDataObj
 }
 
 function SystemConfiguration() {
@@ -97,6 +97,7 @@ function SystemConfiguration() {
 
   const submitConfig = () => {
     try {
+      let metaDataObject = createMeterConfig(found, meter, dispatch, siteKey)
       const configObject = {
         gridProfile: selectedOptions.profile.id,
         exportLimit: selectedOptions.exportLimit,
@@ -105,10 +106,10 @@ function SystemConfiguration() {
         prodMeter: meter.productionCT,
         consMeter: meter.consumptionCT,
         siteKey,
-        devices: found
+        devices: found,
+        metaData: metaDataObject
       }
       if (validateConfig(configObject)) {
-        applyMeterConfig(found, meter, dispatch, siteKey)
         dispatch(SUBMIT_CONFIG(configObject))
         history.push(paths.PROTECTED.SAVING_CONFIGURATION.path)
       }
