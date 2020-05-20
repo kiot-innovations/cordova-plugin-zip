@@ -51,38 +51,34 @@ const InstallSuccessful = () => {
   return (
     <>
       {modal}
-      <div className="file level has-text-centered fill-parent install-success-screen auto">
-        <div className="is-vertical file level is-vertical is-flex tile">
-          <span className="is-uppercase has-text-weight-bold mb-25 mt-25 ">
-            {t('INSTALL_SUCCESS')}
-          </span>
-          <span className="sp-pvs has-text-white mb-30" />
-          <span className="mb-20">{t('INSTALL_SUBTITLE')}</span>
-          <span className="has-text-white">
-            {`${t('YOU_CAN')} `}
-            <span className="has-text-weight-bold">{t('TURN_OF_SOLAR')}</span>
-          </span>
-          <div className="is-flex auto is-vertical tile">
-            <button
-              onClick={goToConfigure}
-              className="button is-primary is-uppercase is-center mt-50"
-            >
-              {t('CONFIGURE')}
-            </button>
-            <button
-              className="configure-button has-text-primary is-uppercase is-center mt-50 has-text-weight-bold"
-              onClick={toggleModal}
-            >
-              {t('NOT_NOW')}
-            </button>
-            <button
-              className="configure-button has-text-primary is-uppercase is-center mt-50 has-text-weight-bold"
-              onClick={goToPanelLayoutTool}
-            >
-              Go to Panel layout tool
-            </button>
-          </div>
-        </div>
+      <div className="fill-parent install-success-screen">
+        <span className="is-uppercase has-text-weight-bold">
+          {t('INSTALL_SUCCESS')}
+        </span>
+        <span className="sp-pvs has-text-white " />
+        <span>{t('INSTALL_SUBTITLE')}</span>
+        <span className="has-text-white">
+          {t('YOU_CAN')}
+          <span className="has-text-weight-bold">{t('TURN_OF_SOLAR')}</span>
+        </span>
+        <button
+          onClick={goToConfigure}
+          className="button is-primary is-uppercase is-center"
+        >
+          {t('CONFIGURE')}
+        </button>
+        <button
+          className="configure-button has-text-primary is-uppercase is-center has-text-weight-bold"
+          onClick={toggleModal}
+        >
+          {t('NOT_NOW')}
+        </button>
+        <button
+          className="configure-button has-text-primary is-uppercase is-center has-text-weight-bold"
+          onClick={goToPanelLayoutTool}
+        >
+          {t('GO_PANEL_LAYOUT')}
+        </button>
       </div>
     </>
   )

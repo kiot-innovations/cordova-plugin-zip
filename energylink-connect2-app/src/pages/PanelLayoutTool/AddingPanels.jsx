@@ -99,16 +99,18 @@ export default () => {
         {t('ORIENTATION')}
       </div>
       <RotationSelector />
-      <span className="has-text-centered has-text-white has-text-weight-bold is-size-7">
-        {t('ALL_PANELS_SET')}!
-      </span>
-      <span className="has-text-centered">{t('CONTINUE_TO_ADJUST')}</span>
-      <button
-        className="button is-primary is-uppercase is-center"
-        onClick={goToConfigureArrays}
-      >
-        {t('CONTINUE')}
-      </button>
+      <div className="all-panels-set">
+        <span className="has-text-centered has-text-white has-text-weight-bold is-size-7">
+          {t('ALL_PANELS_SET')}!
+        </span>
+        <span className="has-text-centered">{t('CONTINUE_TO_ADJUST')}</span>
+        <button
+          className="button is-primary is-uppercase is-center"
+          onClick={goToConfigureArrays}
+        >
+          {t('CONTINUE')}
+        </button>
+      </div>
     </div>
   )
   return (
