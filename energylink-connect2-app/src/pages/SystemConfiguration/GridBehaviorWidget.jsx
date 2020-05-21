@@ -15,6 +15,14 @@ import SelectField from 'components/SelectField'
 import './SystemConfiguration.scss'
 
 const GBI = <span className="sp-grid file level mr-15 is-size-4" />
+const voltageWarning = (t, measuredVoltage) => (
+  <>
+    <span className="is-size-7 ml-10 mr-10 sp-hey has-text-primary" />
+    <span className="is-size-7 has-text-primary">
+      {t('VOLTAGE_WARNING', measuredVoltage)}
+    </span>
+  </>
+)
 
 function GridBehaviorWidget() {
   const t = useI18n()
@@ -225,6 +233,8 @@ function GridBehaviorWidget() {
                   onSelect={setGridVoltage}
                 />
                 <p className="control">volts</p>
+                {gridVoltage.selected !== gridVoltage.measured &&
+                  voltageWarning(t, gridVoltage.measured)}
               </div>
             </div>
           </div>
