@@ -73,10 +73,14 @@ export default () => {
       <h3 className="has-text-centered has-text-white">
         {t('ADD_PANEL_TO_LAYOUT')}
       </h3>
-      <div className="pltControlsContainer">
+      <div className="plt-add-control-container">
         {either(
           index !== 0,
-          <button value={'<'} onClick={() => setIndex(index - 1)}>
+          <button
+            value={'<'}
+            onClick={() => setIndex(index - 1)}
+            className="plt-button"
+          >
             {'<'}
           </button>,
           <span />
@@ -84,7 +88,11 @@ export default () => {
         <span>{unassigned[index]}</span>
         {either(
           index < unassigned.length - 1,
-          <button value={'>'} onClick={() => setIndex(index + 1)}>
+          <button
+            value={'>'}
+            onClick={() => setIndex(index + 1)}
+            className="plt-button"
+          >
             {'>'}
           </button>
         )}

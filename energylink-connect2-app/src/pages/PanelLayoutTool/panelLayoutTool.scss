@@ -1,16 +1,26 @@
 @import '~@sunpower/theme-dark/styles/variables';
 
-.pltControlsContainer {
-  display: flex;
-  flex-direction: column;
+.plt-add-control-container {
+  display: grid;
+  grid-template-columns: 50px 1fr 50px;
   align-items: center;
   justify-items: center;
-  button {
-    color: $sun;
-    font-size: 2rem;
-    background-color: rgba(0, 0, 0, 0);
-    border: none;
-  }
+}
+
+.plt-rotate-control-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  flex-direction: column;
+  height: 114px;
+  width: 100%;
+}
+
+.plt-button {
+  color: $sun;
+  font-size: 2rem;
+  background-color: rgba(0, 0, 0, 0);
+  border: none;
 }
 .plt-screen-container {
   display: flex;
@@ -48,4 +58,16 @@
   flex-direction: column;
   height: 100px;
   justify-content: space-between;
+}
+.plt-buttons-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 100%;
+  button {
+    padding: 0;
+  }
+  .is-secondary{
+    width: 9rem;
+  }
 }

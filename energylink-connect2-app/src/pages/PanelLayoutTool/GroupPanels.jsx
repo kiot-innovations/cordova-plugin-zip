@@ -52,28 +52,26 @@ export default () => {
     dispatch(actions.rotateSelectedGroup())
   }
   const footer = (
-    <div className="pltControlsContainer">
-      <div className="sn-buttons">
+    <div className="plt-rotate-control-container">
+      <span className="has-text-white mb-15">Moving array</span>
+      <button
+        className="button half-button-padding is-secondary sp-rotate trigger-scan"
+        disabled={selectedGroup === -1}
+        onClick={rotateArray}
+      >
+        {t('ROTATE')}
+      </button>
+      <div className="plt-buttons-row mt-15">
+        <button className="button is-secondary is-uppercase " onClick={goBack}>
+          Back
+        </button>
         <button
-          className="button sp-rotate half-button-padding is-secondary trigger-scan mr-10"
-          disabled={selectedGroup === -1}
-          onClick={rotateArray}
+          className="button is-primary is-uppercase is-center"
+          onClick={goToConfigure}
         >
-          {t('ROTATE')}
+          Go to configure
         </button>
       </div>
-      <button
-        className="button-transparent has-text-primary is-uppercase is-center has-text-weight-bold"
-        onClick={goBack}
-      >
-        Back
-      </button>
-      <button
-        className="button is-primary is-uppercase is-center mt-10"
-        onClick={goToConfigure}
-      >
-        Go to configure
-      </button>
     </div>
   )
   return (
