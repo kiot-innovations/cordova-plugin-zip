@@ -69,7 +69,7 @@ export default () => {
           className="button is-primary is-uppercase is-center"
           onClick={goToConfigure}
         >
-          Go to configure
+          {t('SUBMIT')}
         </button>
       </div>
     </div>
