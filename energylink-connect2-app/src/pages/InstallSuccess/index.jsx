@@ -58,7 +58,7 @@ const InstallSuccessful = () => {
         <span className="sp-pvs has-text-white " />
         <span>{t('INSTALL_SUBTITLE')}</span>
         <span className="has-text-white">
-          {t('YOU_CAN')}
+          {`${t('YOU_CAN')} `}
           <span className="has-text-weight-bold">{t('TURN_OF_SOLAR')}</span>
         </span>
         <button
