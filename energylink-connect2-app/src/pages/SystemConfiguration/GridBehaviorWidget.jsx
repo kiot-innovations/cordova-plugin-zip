@@ -127,6 +127,8 @@ function GridBehaviorWidget() {
   ])
   const findExportLimitValue = findByPathValue(selfSupplyOptions, ['value'])
 
+  const showVoltageWarning = gridVoltage.selected !== gridVoltage.measured
+
   return (
     <div className="pb-15">
       <Collapsible title={t('GRID_BEHAVIOR')} icon={GBI}>
@@ -233,8 +235,7 @@ function GridBehaviorWidget() {
                   onSelect={setGridVoltage}
                 />
                 <p className="control">volts</p>
-                {gridVoltage.selected !== gridVoltage.measured &&
-                  voltageWarning(t, gridVoltage.measured)}
+                {showVoltageWarning && voltageWarning(t, gridVoltage.measured)}
               </div>
             </div>
           </div>
