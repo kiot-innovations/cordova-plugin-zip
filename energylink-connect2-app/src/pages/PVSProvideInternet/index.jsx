@@ -11,6 +11,7 @@ import {
 
 import paths from 'routes/paths'
 
+import InterfacesWidget from 'pages/SystemConfiguration/InterfacesWidget'
 import NetworkWidget from 'pages/SystemConfiguration/NetworkWidget'
 
 import './PVSProvideInternet.scss'
@@ -48,6 +49,9 @@ const PVSProvideInternet = () => {
         {t('CONFIGURE_NETWORK')}
       </p>
 
+      <div className="mb-10">
+        <InterfacesWidget />
+      </div>
       <NetworkWidget expanded hideWPSButton />
 
       {either(
