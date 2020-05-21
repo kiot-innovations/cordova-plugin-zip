@@ -110,7 +110,7 @@ exports[`Login page renders without crashing 1`] = `
               </p>
             </div>
             <div
-              className="mb-30 has-text-centered"
+              className="mt-30 has-text-centered"
             >
               <p>
                 NO_ACCOUNT

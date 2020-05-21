@@ -68,7 +68,7 @@ function Login() {
           </div>
         ) : null}
 
-        <div className="mb-30 has-text-centered">
+        <div className="mt-30 has-text-centered">
           <p>{t('NO_ACCOUNT')}</p>
           <Link className="link" to={paths.UNPROTECTED.GET_ASSISTANCE.path}>
             {t('GET_ASSISTANCE')}

@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import { pathOr } from 'ramda'
+import clsx from 'clsx'
 import { useI18n } from 'shared/i18n'
 import { useSelector, useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
@@ -52,18 +53,20 @@ const PVSProvideInternet = () => {
       {either(
         isConnected,
         null,
-        <div className="pvs-sn is-flex has-text-white is-size-6 is-bold is-text has-text-centered">
+        <div className="has-text-white is-size-6 is-bold is-text has-text-centered">
           {t('PVS_PROVIDE_INTERNET')}
         </div>
       )}
 
       <div className="container is-flex">
         <button
-          className="button is-primary is-uppercase is-center auto"
-          disabled={!isConnected}
+          className={clsx(
+            'button is-uppercase is-center auto continue-button',
+            isConnected ? 'is-primary' : 'is-secondary'
+          )}
           onClick={goToScanLabels}
         >
-          {t('CONTINUE')}
+          {t(isConnected ? 'CONTINUE' : 'NOT_NOW')}
         </button>
       </div>
     </div>
