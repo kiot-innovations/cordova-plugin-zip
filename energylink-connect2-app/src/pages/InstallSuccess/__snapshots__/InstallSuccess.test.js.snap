@@ -56,11 +56,12 @@ exports[`PVS connection successful component render correctly 1`] = `
           <span
             className="has-text-white"
           >
-            YOU_CAN 
+            YOU_CAN
+             
             <span
               className="has-text-weight-bold"
             >
-              TURN_OF_SOLAR
+              TURN_OFF_SOLAR
             </span>
           </span>
           <button

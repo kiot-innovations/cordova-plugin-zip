@@ -59,7 +59,7 @@ const InstallSuccessful = () => {
         <span>{t('INSTALL_SUBTITLE')}</span>
         <span className="has-text-white">
           {t('YOU_CAN')}&nbsp;
-          <span className="has-text-weight-bold">{t('TURN_OF_SOLAR')}</span>
+          <span className="has-text-weight-bold">{t('TURN_OFF_SOLAR')}</span>
         </span>
         <button
           onClick={goToConfigure}
