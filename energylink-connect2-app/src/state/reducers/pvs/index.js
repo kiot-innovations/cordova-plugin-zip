@@ -15,7 +15,9 @@ import {
   SET_METADATA_INIT,
   SET_METADATA_SUCCESS,
   SET_METADATA_ERROR,
-  RESET_PVS_INFO_STATE
+  RESET_PVS_INFO_STATE,
+  MI_DATA_SUCCESS,
+  MI_DATA_ERROR
 } from '../../actions/pvs'
 
 const initialState = {
@@ -26,7 +28,9 @@ const initialState = {
   startCommissioningStatus: null,
   startDiscoveryStatus: null,
   settingMetadata: false,
-  setMetadataStatus: null
+  setMetadataStatus: null,
+  miData: null,
+  miDataError: null
 }
 
 export const pvsReducer = createReducer(
@@ -93,7 +97,17 @@ export const pvsReducer = createReducer(
       settingMetadata: false,
       setMetadataStatus: payload
     }),
-    [RESET_PVS_INFO_STATE]: () => initialState
+    [RESET_PVS_INFO_STATE]: () => initialState,
+    [MI_DATA_SUCCESS]: (state, miData) => ({
+      ...state,
+      miData,
+      miDataError: null
+    }),
+    [MI_DATA_ERROR]: (state, miDataError) => ({
+      ...state,
+      miDataError,
+      miData: null
+    })
   },
   initialState
 )
