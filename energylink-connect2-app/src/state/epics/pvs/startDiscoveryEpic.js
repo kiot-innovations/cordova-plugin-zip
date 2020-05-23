@@ -4,14 +4,10 @@ import { catchError, exhaustMap, map } from 'rxjs/operators'
 import { path } from 'ramda'
 import * as pvsActions from 'state/actions/pvs'
 import { getApiPVS } from 'shared/api'
-import { FIRMWARE_UPDATE_COMPLETE } from 'state/actions/firmwareUpdate'
 
 export const startDiscoveryEpic = action$ =>
   action$.pipe(
-    ofType(
-      pvsActions.START_DISCOVERY_INIT.getType(),
-      FIRMWARE_UPDATE_COMPLETE.getType()
-    ),
+    ofType(pvsActions.START_DISCOVERY_INIT.getType()),
     exhaustMap(({ payload }) => {
       const promise = getApiPVS()
         .then(path(['apis', 'discovery']))
