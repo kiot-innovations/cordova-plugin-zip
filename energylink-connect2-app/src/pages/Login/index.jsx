@@ -35,6 +35,13 @@ function Login() {
       </div>
 
       <div className="auto">
+        <div className="mb-30 has-text-centered">
+          <p>{t('NO_ACCOUNT')}</p>
+          <Link className="link" to={paths.UNPROTECTED.GET_ASSISTANCE.path}>
+            {t('GET_ASSISTANCE')}
+          </Link>
+        </div>
+
         <div className="mt-10">
           <div className="field is-grouped is-grouped-centered">
             <p className="control">
@@ -67,13 +74,6 @@ function Login() {
             <p className="pl-20 pr-20">{t(error.message)}</p>
           </div>
         ) : null}
-
-        <div className="mt-30 has-text-centered">
-          <p>{t('NO_ACCOUNT')}</p>
-          <Link className="link" to={paths.UNPROTECTED.GET_ASSISTANCE.path}>
-            {t('GET_ASSISTANCE')}
-          </Link>
-        </div>
       </div>
     </section>
   )
