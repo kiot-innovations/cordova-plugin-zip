@@ -16,12 +16,12 @@ import './SystemConfiguration.scss'
 
 const GBI = <span className="sp-grid file level mr-15 is-size-4" />
 const voltageWarning = (t, measuredVoltage) => (
-  <>
-    <span className="is-size-7 ml-10 mr-10 sp-hey has-text-primary" />
-    <span className="is-size-7 has-text-primary">
+  <div className="voltage-warning">
+    <div className="is-size-6 ml-10 mr-10 sp-hey has-text-primary" />
+    <div className="is-size-6 mr-10 has-text-primary">
       {t('VOLTAGE_WARNING', measuredVoltage)}
-    </span>
-  </>
+    </div>
+  </div>
 )
 
 function GridBehaviorWidget() {
