@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import RightNow from '../../components/RightNow'
-import { useI18n } from '../../shared/i18n'
-import { roundDecimals } from '../../shared/rounding'
+import RightNow from 'components/RightNow'
+import { useI18n } from 'shared/i18n'
+import { roundDecimals } from 'shared/rounding'
 import {
   ENERGY_DATA_START_POLLING,
   ENERGY_DATA_STOP_POLLING
-} from '../../state/actions/energy-data'
+} from 'state/actions/energy-data'
 import { MI_DATA_START_POLLING, MI_DATA_STOP_POLLING } from 'state/actions/pvs'
 import { either } from 'shared/utils'
 
