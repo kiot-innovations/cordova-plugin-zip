@@ -10,8 +10,8 @@ import { Link } from 'react-router-dom'
 import paths from 'routes/paths'
 import { useI18n } from 'shared/i18n'
 import { either, geocodeByAddress, getGeocodeData } from 'shared/utils'
-import { SHOW_MODAL } from '../../state/actions/modal'
-import { CREATE_SITE_INIT, CREATE_SITE_RESET } from '../../state/actions/site'
+import { SHOW_MODAL } from 'state/actions/modal'
+import { CREATE_SITE_INIT, CREATE_SITE_RESET } from 'state/actions/site'
 
 function useGoogleMaps() {
   const [hasGoogleMaps, setGoogleMaps] = useState(!!window.google)
@@ -174,7 +174,7 @@ function CreateSite() {
                         return contains(country, VALID_COUNTRY_STRINGS)
                       })
                       .map(elem => ({
-                        value: elem.description,
+                        value: elem.formattedSuggestion.mainText,
                         label: elem.description
                       }))
                   }} //load options
