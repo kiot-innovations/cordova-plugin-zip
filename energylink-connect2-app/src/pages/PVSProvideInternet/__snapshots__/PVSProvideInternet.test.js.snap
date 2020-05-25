@@ -47,6 +47,74 @@ exports[`PVS Provide Internet page renders correctly 1`] = `
           >
             CONFIGURE_NETWORK
           </p>
+          <div
+            className="mb-10"
+          >
+            <InterfacesWidget>
+              <section
+                className="iw is-flex collapsible pl-0"
+              >
+                <div
+                  className="pvs"
+                >
+                  <span
+                    className="sp-pvs has-text-white"
+                  />
+                </div>
+                <div
+                  className="ifs ml-5"
+                >
+                  <div
+                    className="mb-5 has-text-white is-uppercase"
+                  >
+                    ZT188585000882A8888
+                  </div>
+                  <Interface
+                    icon="sp-eth"
+                    key="wan"
+                    name="NO_CONNECTION (wan)"
+                  >
+                    <p
+                      className="if"
+                    >
+                      <span
+                        className="sp-eth mr-10 has-text-white"
+                      />
+                      NO_CONNECTION (wan)
+                    </p>
+                  </Interface>
+                  <Interface
+                    icon="sp-wifi"
+                    key="sta0"
+                    name="NO_CONNECTION (wifi)"
+                  >
+                    <p
+                      className="if"
+                    >
+                      <span
+                        className="sp-wifi mr-10 has-text-white"
+                      />
+                      NO_CONNECTION (wifi)
+                    </p>
+                  </Interface>
+                  <Interface
+                    icon="sp-cell"
+                    key="cell"
+                    name="AT&T (cell)"
+                  >
+                    <p
+                      className="if"
+                    >
+                      <span
+                        className="sp-cell mr-10 has-text-white"
+                      />
+                      AT&T (cell)
+                    </p>
+                  </Interface>
+                </div>
+              </section>
+            </InterfacesWidget>
+          </div>
           <NetworkWidget
             expanded={true}
             hideWPSButton={true}
@@ -1376,7 +1444,7 @@ exports[`PVS Provide Internet page renders correctly 1`] = `
             </div>
           </NetworkWidget>
           <div
-            className="pvs-sn is-flex has-text-white is-size-6 is-bold is-text has-text-centered"
+            className="has-text-white is-size-6 is-bold is-text has-text-centered"
           >
             PVS_PROVIDE_INTERNET
           </div>
@@ -1384,11 +1452,10 @@ exports[`PVS Provide Internet page renders correctly 1`] = `
             className="container is-flex"
           >
             <button
-              className="button is-primary is-uppercase is-center auto"
-              disabled={true}
+              className="button is-uppercase is-center auto continue-button is-secondary"
               onClick={[Function]}
             >
-              CONTINUE
+              NOT_NOW
             </button>
           </div>
         </div>
