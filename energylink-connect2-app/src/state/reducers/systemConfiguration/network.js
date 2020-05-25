@@ -62,6 +62,7 @@ export const networkReducer = createReducer(
     }),
     [GET_INTERFACES_SUCCESS]: (state, interfaces) => {
       const connectedToAP = getConnectedAP(interfaces, state.aps)
+      const selectedAP = { ssid: connectedToAP.value }
       const error =
         state.isFetching &&
         state.selectedAP.ssid !== '' &&
@@ -72,9 +73,9 @@ export const networkReducer = createReducer(
         errorConnecting: error,
         errorFetching: null,
         isConnected: !error && !isEmpty(connectedToAP.label),
-        isFetching: false,
         isConnecting: false,
-        connectedToAP
+        connectedToAP,
+        selectedAP
       }
     },
 

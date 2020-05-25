@@ -156,6 +156,7 @@
   "DEVICES_NOT_FOUND": "There were some devices that were not found. Please check those devices before continuing.",
   "AP_CONNECTION_SUCCESS": "Connected to {0}",
   "AP_FETCHING": "Retrieving available Access Points...",
+  "AP_DD_FETCHING": "Retrieving...",
   "AP_CONNECTING": "Connecting to {0}...",
   "AP_FETCHING_ERROR": "Couldn't fetch the list of Access Points. Please verify that you're connected to the PVS",
   "AP_CONNECTION_ERROR": "An error happened connecting to {0}",

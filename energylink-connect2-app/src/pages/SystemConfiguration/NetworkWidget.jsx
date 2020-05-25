@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { compose, path, prop, isEmpty } from 'ramda'
 import { useI18n } from 'shared/i18n'
-import { buildAPsItems, either } from 'shared/utils'
+import { buildAPsItems, either, buildAPItem } from 'shared/utils'
 import {
   CONNECT_NETWORK_AP_INIT,
   GET_NETWORK_APS_INIT,
@@ -45,6 +45,7 @@ function NetworkWidget({ hideWPSButton, expanded }) {
   const disableInputs = isFetching || errorFetching
 
   const networkOptions = buildAPsItems(aps)
+  const placeholder = isFetching ? t('AP_DD_FETCHING') : t('SELECT_NETWORK')
 
   return (
     <div className="pb-15">
@@ -63,8 +64,8 @@ function NetworkWidget({ hideWPSButton, expanded }) {
                     disabled={disableInputs}
                     isSearchable={true}
                     onSelect={compose(dispatch, SET_SELECTED_AP, prop('ap'))}
-                    defaultInputValue={connectedToAP.value}
-                    placeholder={t('SELECT_NETWORK')}
+                    value={buildAPItem(selectedAP)}
+                    placeholder={placeholder}
                     options={networkOptions}
                   />
                 </div>

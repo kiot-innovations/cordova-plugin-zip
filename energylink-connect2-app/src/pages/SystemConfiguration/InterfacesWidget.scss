@@ -1,5 +1,30 @@
+@import '@sunpower/theme-dark/styles/_variables.scss';
+
 .iw {
+  padding-left: 0;
   span.sp-pvs {
     font-size: 7rem;
+  }
+
+  .if {
+    position: relative;
+    .connected {
+      color: $leaf;
+    }
+    .sp.connected, .sp.disconnected {
+      &::before {
+        content: '';
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        position: absolute;
+        left: -20px;
+        top: 7px;
+        background-color: $leaf;
+      }
+    }
+    .sp.disconnected::before {
+      background-color: $tomato;
+    }
   }
 }
