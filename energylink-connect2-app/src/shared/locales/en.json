@@ -124,7 +124,7 @@
   "NOT_NOW": "Not now",
   "INSTALL_SUCCESS": "Install successful",
   "INSTALL_SUBTITLE": "Please take a picture for your records of the module layout diagram before leaving the site",
-  "TURN_OF_SOLAR": "Turn off the solar breakers",
+  "TURN_OFF_SOLAR": "Turn off the solar breakers",
   "YOU_CAN": "You can now",
   "CONFIGURE": "Configure",
   "TURN_OFF_BREAKERS": "Please remember to turn off the breakers before leaving",
@@ -296,5 +296,6 @@
   "MI_SN": "Microinverters",
   "POWER_OUTPUT": "Power Output",
   "NO_MI_LIVE_DATA": "No MI power data available",
-  "WATTS": "watts"
+  "WATTS": "watts",
+  "GO_PANEL_LAYOUT": "Go to Panel layout tool"
 }

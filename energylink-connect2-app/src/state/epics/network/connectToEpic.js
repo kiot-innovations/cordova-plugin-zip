@@ -23,7 +23,6 @@ const isInvalidNetworkID = test(/INVALID_NETWORK_ID_TO_CONNECT/)
 const isWaitingForConnection = test(/WAITING_FOR_CONNECTION/)
 
 const connectToPVS = async (ssid, password) => {
-  console.warn('CONNECT TO PVS', { ssid, password })
   try {
     if (isIos()) {
       await window.WifiWizard2.iOSConnectNetwork(ssid, password)

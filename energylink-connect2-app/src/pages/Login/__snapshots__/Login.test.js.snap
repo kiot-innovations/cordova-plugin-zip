@@ -82,6 +82,31 @@ exports[`Login page renders without crashing 1`] = `
             className="auto"
           >
             <div
+              className="mb-30 has-text-centered"
+            >
+              <p>
+                NO_ACCOUNT
+              </p>
+              <Link
+                className="link"
+                to="/assistance"
+              >
+                <LinkAnchor
+                  className="link"
+                  href="/assistance"
+                  navigate={[Function]}
+                >
+                  <a
+                    className="link"
+                    href="/assistance"
+                    onClick={[Function]}
+                  >
+                    GET_ASSISTANCE
+                  </a>
+                </LinkAnchor>
+              </Link>
+            </div>
+            <div
               className="mt-10"
             >
               <div
@@ -108,31 +133,6 @@ exports[`Login page renders without crashing 1`] = `
                   LOGIN_TRY_AGAIN
                 </button>
               </p>
-            </div>
-            <div
-              className="mb-30 has-text-centered"
-            >
-              <p>
-                NO_ACCOUNT
-              </p>
-              <Link
-                className="link"
-                to="/assistance"
-              >
-                <LinkAnchor
-                  className="link"
-                  href="/assistance"
-                  navigate={[Function]}
-                >
-                  <a
-                    className="link"
-                    href="/assistance"
-                    onClick={[Function]}
-                  >
-                    GET_ASSISTANCE
-                  </a>
-                </LinkAnchor>
-              </Link>
             </div>
           </div>
         </section>
