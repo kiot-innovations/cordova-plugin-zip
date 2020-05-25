@@ -38,7 +38,7 @@ export const gridBehaviorReducer = createReducer(
       selectedOptions: {
         ...state.selectedOptions,
         exportLimit: payload.exportLimit.limit,
-        gridVoltage: payload.gridVoltage.body.grid_voltage
+        gridVoltage: payload.gridVoltage.body.selected
       }
     }),
     [FETCH_GRID_BEHAVIOR_ERR]: (state, payload) => ({

@@ -15,6 +15,14 @@ import SelectField from 'components/SelectField'
 import './SystemConfiguration.scss'
 
 const GBI = <span className="sp-grid file level mr-15 is-size-4" />
+const voltageWarning = (t, measuredVoltage) => (
+  <div className="voltage-warning">
+    <div className="is-size-6 ml-10 mr-10 sp-hey has-text-primary" />
+    <div className="is-size-6 mr-10 has-text-primary">
+      {t('VOLTAGE_WARNING', measuredVoltage)}
+    </div>
+  </div>
+)
 
 function GridBehaviorWidget() {
   const t = useI18n()
@@ -119,6 +127,8 @@ function GridBehaviorWidget() {
   ])
   const findExportLimitValue = findByPathValue(selfSupplyOptions, ['value'])
 
+  const showVoltageWarning = gridVoltage.selected !== gridVoltage.measured
+
   return (
     <div className="pb-15">
       <Collapsible title={t('GRID_BEHAVIOR')} icon={GBI}>
@@ -217,7 +227,7 @@ function GridBehaviorWidget() {
                   useDefaultDropDown
                   options={gridVoltageOptions}
                   defaultValue={
-                    gridVoltage.grid_voltage === 240
+                    gridVoltage.selected === 240
                       ? { label: '208', value: 208 }
                       : { label: '240', value: 240 }
                   }
@@ -225,6 +235,7 @@ function GridBehaviorWidget() {
                   onSelect={setGridVoltage}
                 />
                 <p className="control">volts</p>
+                {showVoltageWarning && voltageWarning(t, gridVoltage.measured)}
               </div>
             </div>
           </div>
