@@ -293,5 +293,9 @@
   "DONT_CLOSE_APP_UPGRADING": "We’re updating the PVS Please don’t close the application",
   "PVS_PROVIDE_INTERNET": "Connect the PVS to a network with Internet access",
   "CONFIGURE_NETWORK": "Configure PVS Network",
+  "MI_SN": "Microinverters",
+  "POWER_OUTPUT": "Power Output",
+  "NO_MI_LIVE_DATA": "No MI power data available",
+  "WATTS": "watts",
   "GO_PANEL_LAYOUT": "Go to Panel layout tool"
 }

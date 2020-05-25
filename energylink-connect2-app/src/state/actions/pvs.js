@@ -23,6 +23,11 @@ export const SET_METADATA_ERROR = createAction('SET_METADATA_ERROR')
 
 export const RESET_PVS_INFO_STATE = createAction('RESET_PVS_INFO_STATE')
 
+export const MI_DATA_START_POLLING = createAction('MI_DATA_START_POLLING')
+export const MI_DATA_STOP_POLLING = createAction('MI_DATA_STOP_POLLING')
+export const MI_DATA_SUCCESS = createAction('MI_DATA_SUCCESS')
+export const MI_DATA_ERROR = createAction('MI_DATA_ERROR')
+
 export const removeSN = serialNumber => {
   return dispatch => {
     dispatch(REMOVE_SN(serialNumber))
