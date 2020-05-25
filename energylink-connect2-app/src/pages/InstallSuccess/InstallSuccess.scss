@@ -2,6 +2,12 @@
 
 .install-success-screen {
   max-width: 85vw;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  flex-direction: column;
+  margin: auto;
+  text-align: center;
   .sp-pvs {
     font-size: 7rem;
   }

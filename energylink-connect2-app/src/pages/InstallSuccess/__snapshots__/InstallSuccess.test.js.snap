@@ -40,57 +40,48 @@ exports[`PVS connection successful component render correctly 1`] = `
     >
       <InstallSuccessful>
         <div
-          className="file level has-text-centered fill-parent install-success-screen auto"
+          className="fill-parent install-success-screen"
         >
-          <div
-            className="is-vertical file level is-vertical is-flex tile"
+          <span
+            className="is-uppercase has-text-weight-bold"
           >
+            INSTALL_SUCCESS
+          </span>
+          <span
+            className="sp-pvs has-text-white "
+          />
+          <span>
+            INSTALL_SUBTITLE
+          </span>
+          <span
+            className="has-text-white"
+          >
+            YOU_CAN
+             
             <span
-              className="is-uppercase has-text-weight-bold mb-25 mt-25 "
+              className="has-text-weight-bold"
             >
-              INSTALL_SUCCESS
+              TURN_OFF_SOLAR
             </span>
-            <span
-              className="sp-pvs has-text-white mb-30"
-            />
-            <span
-              className="mb-20"
-            >
-              INSTALL_SUBTITLE
-            </span>
-            <span
-              className="has-text-white"
-            >
-              YOU_CAN 
-              <span
-                className="has-text-weight-bold"
-              >
-                TURN_OF_SOLAR
-              </span>
-            </span>
-            <div
-              className="is-flex auto is-vertical tile"
-            >
-              <button
-                className="button is-primary is-uppercase is-center mt-50"
-                onClick={[Function]}
-              >
-                CONFIGURE
-              </button>
-              <button
-                className="configure-button has-text-primary is-uppercase is-center mt-50 has-text-weight-bold"
-                onClick={[Function]}
-              >
-                NOT_NOW
-              </button>
-              <button
-                className="configure-button has-text-primary is-uppercase is-center mt-50 has-text-weight-bold"
-                onClick={[Function]}
-              >
-                Go to Panel layout tool
-              </button>
-            </div>
-          </div>
+          </span>
+          <button
+            className="button is-primary is-uppercase is-center"
+            onClick={[Function]}
+          >
+            CONFIGURE
+          </button>
+          <button
+            className="configure-button has-text-primary is-uppercase is-center has-text-weight-bold"
+            onClick={[Function]}
+          >
+            NOT_NOW
+          </button>
+          <button
+            className="configure-button has-text-primary is-uppercase is-center has-text-weight-bold"
+            onClick={[Function]}
+          >
+            GO_PANEL_LAYOUT
+          </button>
         </div>
       </InstallSuccessful>
     </Provider>
