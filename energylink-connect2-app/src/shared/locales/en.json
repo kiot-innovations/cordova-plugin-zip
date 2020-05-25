@@ -124,7 +124,7 @@
   "NOT_NOW": "Not now",
   "INSTALL_SUCCESS": "Install successful",
   "INSTALL_SUBTITLE": "Please take a picture for your records of the module layout diagram before leaving the site",
-  "TURN_OF_SOLAR": "Turn off the solar breakers",
+  "TURN_OFF_SOLAR": "Turn off the solar breakers",
   "YOU_CAN": "You can now",
   "CONFIGURE": "Configure",
   "TURN_OFF_BREAKERS": "Please remember to turn off the breakers before leaving",
@@ -277,7 +277,8 @@
   "PVS_CONNECTION_EMPTY_SSID": "Error, no PVS WIFI SSID was provided",
   "UNKNOWN_ERROR": "An unknown error occurred, please try again",
   "REDISCOVER": "Rediscover",
-  "SUBMIT_GRID_PROFILE_ERROR": "Error while setting Grid Profile",
+  "SUBMIT_METER_DATA_ERROR": "Error while saving meter configuration",
+  "SUBMIT_GRID_PROFILE_ERROR": "Error while setting grid profile",
   "SUBMIT_EXPORT_LIMIT_ERROR": "Error while setting export limit",
   "SUBMIT_GRID_VOLTAGE_ERROR": "Error while setting grid voltage",
   "GRID_PROFILES_PACKAGE": "Grid Profiles Package",
@@ -292,5 +293,10 @@
   "DONT_CLOSE_APP_UPGRADING": "We’re updating the PVS Please don’t close the application",
   "PVS_PROVIDE_INTERNET": "Connect the PVS to a network with Internet access",
   "CONFIGURE_NETWORK": "Configure PVS Network",
-  "VOLTAGE_WARNING": "Your selection is different from the measured value ({0})"
+  "VOLTAGE_WARNING": "Your selection is different from the measured value ({0})",
+  "MI_SN": "Microinverters",
+  "POWER_OUTPUT": "Power Output",
+  "NO_MI_LIVE_DATA": "No MI power data available",
+  "WATTS": "watts",
+  "GO_PANEL_LAYOUT": "Go to Panel layout tool"
 }

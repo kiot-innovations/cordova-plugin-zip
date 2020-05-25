@@ -1,4 +1,9 @@
-import { Canvas, PanelsContainer } from '@sunpower/panel-layout-tool'
+import {
+  Canvas,
+  PanelsContainer,
+  ZoomControl,
+  ControlsContainer
+} from '@sunpower/panel-layout-tool'
 import React from 'react'
 import { useStore } from 'react-redux'
 import { useI18n } from 'shared/i18n'
@@ -30,18 +35,21 @@ const PanelLayoutTool = ({
         </span>
       )}
       <div className="canvas">
-        <Canvas
-          store={store}
-          width={window.innerWidth - 30}
-          height={window.innerWidth - 30}
-          onClick={onClick}
-        >
-          {Container ? (
-            <Container PanelComponent={panels} />
-          ) : (
-            <PanelsContainer PanelComponent={panels} />
-          )}
-        </Canvas>
+        <ControlsContainer>
+          <ZoomControl step={0.5} min={1} max={3} />
+          <Canvas
+            store={store}
+            width={window.innerWidth - 30}
+            height={window.innerWidth - 30}
+            onClick={onClick}
+          >
+            {Container ? (
+              <Container PanelComponent={panels} />
+            ) : (
+              <PanelsContainer PanelComponent={panels} />
+            )}
+          </Canvas>
+        </ControlsContainer>
       </div>
       {footer}
     </div>

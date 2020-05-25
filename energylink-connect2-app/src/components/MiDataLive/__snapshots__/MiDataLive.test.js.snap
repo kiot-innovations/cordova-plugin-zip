@@ -1,0 +1,76 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MiDataLive Component Renders Correctly when there is data to show 1`] = `
+<div
+  className="mi-data-live"
+>
+  <table
+    className="auto mb-50"
+  >
+    <thead>
+      <tr>
+        <th
+          className="is-uppercase has-text-white is-size-7 has-text-centered"
+        >
+          MI_SN
+        </th>
+        <th
+          className="is-uppercase has-text-white is-size-7 has-text-centered"
+        >
+          POWER_OUTPUT
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr
+        key="E00121837000376"
+      >
+        <td
+          className="pl-10 pt-10 pb-10 pr-10 has-text-white has-text-centered"
+        >
+          E00121837000376
+        </td>
+        <td
+          className="pt-10 has-text-white has-text-centered"
+        >
+          360
+           
+          WATTS
+        </td>
+      </tr>
+      <tr
+        key="E00121836037707"
+      >
+        <td
+          className="pl-10 pt-10 pb-10 pr-10 has-text-white has-text-centered"
+        >
+          E00121836037707
+        </td>
+        <td
+          className="pt-10 has-text-white has-text-centered"
+        >
+          360
+           
+          WATTS
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+`;
+
+exports[`MiDataLive Component Renders Correctly when there is no data 1`] = `
+<div
+  className="mi-data-live"
+>
+  <div
+    className="auto pl-30 pr-30"
+  >
+    <p
+      className="has-text-centered empty is-size-4"
+    >
+      NO_MI_LIVE_DATA
+    </p>
+  </div>
+</div>
+`;
