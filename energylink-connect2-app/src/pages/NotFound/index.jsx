@@ -24,7 +24,9 @@ function NotFound() {
         </div>
 
         <div className="mb-40">
-          <Link to={paths.PROTECTED.ROOT.path}>{t('404_BACK')}</Link>
+          <Link className="is-uppercase" to={paths.PROTECTED.ROOT.path}>
+            {t('404_BACK')}
+          </Link>
         </div>
       </section>
     </>

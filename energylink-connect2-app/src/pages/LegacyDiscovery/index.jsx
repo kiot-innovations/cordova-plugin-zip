@@ -89,7 +89,7 @@ const LegacyDiscovery = () => {
           <div className="inline-buttons">
             <button
               onClick={restartDiscovery}
-              className="button half-button-padding is-secondary trigger-scan mr-10"
+              className="button half-button-padding is-secondary is-uppercase trigger-scan mr-10"
             >
               {t('REDISCOVER')}
             </button>
@@ -97,7 +97,7 @@ const LegacyDiscovery = () => {
               disabled={claimingDevices}
               onClick={() => claimDevices(found, dispatch)}
               className={clsx(
-                'button half-button-padding is-primary trigger-scan',
+                'button half-button-padding is-primary is-uppercase trigger-scan',
                 { 'is-loading': claimingDevices }
               )}
             >

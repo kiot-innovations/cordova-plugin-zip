@@ -76,7 +76,7 @@ const ConnectionLost = ({ animationState }) => {
       <div className="actions is-flex">
         <button
           disabled={connecting}
-          className="button is-outlined is-primary"
+          className="button is-outlined is-primary is-uppercase"
           onClick={exitSite}
         >
           {t('EXIT_SITE')}

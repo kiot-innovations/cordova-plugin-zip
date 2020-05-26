@@ -84,7 +84,7 @@ function RSEWidget() {
 
           <div className="is-flex mt-15">
             <button
-              className="button is-primary auto"
+              className="button is-primary is-uppercase auto"
               disabled={isSetting || disableApplyBtn}
               onClick={() =>
                 sendNewRSEValue(invertedPowerProduction(RSES, rseValue).value)

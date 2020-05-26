@@ -137,13 +137,13 @@ exports[`Serial Number List Page renders correctly 1`] = `
                     className="sn-buttons"
                   >
                     <button
-                      className="button half-button-padding is-secondary trigger-scan mr-10"
+                      className="button half-button-padding is-secondary is-uppercase trigger-scan mr-10"
                       onClick={[Function]}
                     >
                       SCAN_MORE
                     </button>
                     <button
-                      className="button half-button-padding is-primary trigger-scan"
+                      className="button half-button-padding is-primary is-uppercase trigger-scan"
                       onClick={[Function]}
                     >
                       CONTINUE

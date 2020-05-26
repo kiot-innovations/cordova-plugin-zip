@@ -55,7 +55,7 @@ export default () => {
     <div className="plt-rotate-control-container">
       <span className="has-text-white mb-15">Moving array</span>
       <button
-        className="button half-button-padding is-secondary sp-rotate trigger-scan"
+        className="button half-button-padding is-secondary sp-rotate trigger-scan is-uppercase"
         disabled={selectedGroup === -1}
         onClick={rotateArray}
       >

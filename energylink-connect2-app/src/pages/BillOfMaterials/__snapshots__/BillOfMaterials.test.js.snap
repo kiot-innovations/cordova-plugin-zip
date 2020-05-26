@@ -197,16 +197,16 @@ exports[`BillOfMaterials component render correctly 1`] = `
             className="pb-50"
           >
             <Link
-              className="is-block is-full-width has-text-centered is-bold mb-30 has-text-weight-bold"
+              className="is-block is-full-width has-text-centered is-bold mb-30 has-text-weight-bold is-uppercase"
               to="/inventory-count"
             >
               <LinkAnchor
-                className="is-block is-full-width has-text-centered is-bold mb-30 has-text-weight-bold"
+                className="is-block is-full-width has-text-centered is-bold mb-30 has-text-weight-bold is-uppercase"
                 href="/inventory-count"
                 navigate={[Function]}
               >
                 <a
-                  className="is-block is-full-width has-text-centered is-bold mb-30 has-text-weight-bold"
+                  className="is-block is-full-width has-text-centered is-bold mb-30 has-text-weight-bold is-uppercase"
                   href="/inventory-count"
                   onClick={[Function]}
                 >

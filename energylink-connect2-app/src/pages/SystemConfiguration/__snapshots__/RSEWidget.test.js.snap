@@ -1397,7 +1397,7 @@ exports[`RSE Widget renders correctly 1`] = `
                   className="is-flex mt-15"
                 >
                   <button
-                    className="button is-primary auto"
+                    className="button is-primary is-uppercase auto"
                     disabled={false}
                     onClick={[Function]}
                   >

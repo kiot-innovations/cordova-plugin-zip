@@ -61,7 +61,7 @@ exports[`Bulk Scan screen renders correctly 1`] = `
             FOUND_SN 0
           </div>
           <button
-            className="button is-primary trigger-scan mt-15"
+            className="button is-primary is-uppercase trigger-scan mt-15"
             onClick={[Function]}
           >
             DONE

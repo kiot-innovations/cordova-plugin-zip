@@ -19,7 +19,7 @@ function Login() {
   const isAuthenticating = useSelector(state => state.user.isAuthenticating)
   const error = useSelector(state => state.user.err)
 
-  const loginClassName = clsx('button', 'is-primary', {
+  const loginClassName = clsx('button', 'is-primary', 'is-uppercase', {
     'is-loading': isAuthenticating
   })
 
@@ -37,7 +37,10 @@ function Login() {
       <div className="auto">
         <div className="mb-30 has-text-centered">
           <p>{t('NO_ACCOUNT')}</p>
-          <Link className="link" to={paths.UNPROTECTED.GET_ASSISTANCE.path}>
+          <Link
+            className="link is-uppercase"
+            to={paths.UNPROTECTED.GET_ASSISTANCE.path}
+          >
             {t('GET_ASSISTANCE')}
           </Link>
         </div>
@@ -60,7 +63,7 @@ function Login() {
             isAuthenticating,
             <p>
               <button
-                className="button has-text-primary is-text is-size-6 mt-20"
+                className="button has-text-primary is-text is-uppercase is-size-6 mt-20"
                 onClick={onSubmit(dispatch)}
               >
                 {t('LOGIN_TRY_AGAIN')}

@@ -261,7 +261,9 @@ function CreateSite() {
 
               {either(
                 !isSaving,
-                <Link to={paths.PROTECTED.ROOT.path}>{t('CANCEL')}</Link>
+                <Link className="is-uppercase" to={paths.PROTECTED.ROOT.path}>
+                  {t('CANCEL')}
+                </Link>
               )}
             </div>
           </form>

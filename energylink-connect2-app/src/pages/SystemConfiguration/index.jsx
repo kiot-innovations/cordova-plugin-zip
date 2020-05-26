@@ -74,7 +74,7 @@ function SystemConfiguration() {
     <div className="has-text-centered is-flex flex-column">
       <span className="has-text-white mb-10">{t('ERROR_CONFIGURATION')}</span>
       <button
-        className="button half-button-padding is-primary"
+        className="button half-button-padding is-primary is-uppercase"
         onClick={() => toggleModal()}
       >
         {t('CONTINUE')}
