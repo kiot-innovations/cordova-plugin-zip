@@ -50,10 +50,10 @@ exports[`Interfaces Widget renders correctly 1`] = `
             />
           </div>
           <div
-            className="ifs ml-5"
+            className="ifs"
           >
             <div
-              className="mb-5 has-text-white is-uppercase"
+              className="mb-5 has-text-white is-uppercase has-text-weight-bold"
             >
               ZT188585000882A8888
             </div>
@@ -63,12 +63,19 @@ exports[`Interfaces Widget renders correctly 1`] = `
               name="NO_CONNECTION (wan)"
             >
               <p
-                className="if"
+                className="if mt-5 ml-20"
               >
+                <span
+                  className="sp disconnected"
+                />
                 <span
                   className="sp-eth mr-10 has-text-white"
                 />
-                NO_CONNECTION (wan)
+                <span
+                  className="has-text-white"
+                >
+                  NO_CONNECTION (wan)
+                </span>
               </p>
             </Interface>
             <Interface
@@ -77,12 +84,19 @@ exports[`Interfaces Widget renders correctly 1`] = `
               name="NO_CONNECTION (wifi)"
             >
               <p
-                className="if"
+                className="if mt-5 ml-20"
               >
+                <span
+                  className="sp disconnected"
+                />
                 <span
                   className="sp-wifi mr-10 has-text-white"
                 />
-                NO_CONNECTION (wifi)
+                <span
+                  className="has-text-white"
+                >
+                  NO_CONNECTION (wifi)
+                </span>
               </p>
             </Interface>
             <Interface
@@ -91,12 +105,19 @@ exports[`Interfaces Widget renders correctly 1`] = `
               name="AT&T (cell)"
             >
               <p
-                className="if"
+                className="if mt-5 ml-20"
               >
                 <span
-                  className="sp-cell mr-10 has-text-white"
+                  className="sp connected"
                 />
-                AT&T (cell)
+                <span
+                  className="sp-cell mr-10 connected"
+                />
+                <span
+                  className="connected"
+                >
+                  AT&T (cell)
+                </span>
               </p>
             </Interface>
           </div>

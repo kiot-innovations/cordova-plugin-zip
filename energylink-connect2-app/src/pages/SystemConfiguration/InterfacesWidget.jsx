@@ -10,8 +10,10 @@ import {
   lt,
   filter,
   map,
+  propEq,
   path,
-  propEq
+  test,
+  not
 } from 'ramda'
 import { useDispatch, useSelector } from 'react-redux'
 import { useI18n } from 'shared/i18n'
@@ -19,14 +21,13 @@ import { GET_INTERFACES_INIT } from 'state/actions/systemConfiguration'
 
 import './InterfacesWidget.scss'
 
-function InterfacesWidget() {
+function InterfacesWidget(props) {
   const dispatch = useDispatch()
   const t = useI18n()
 
   const { data, isFetching, error } = useSelector(
     path(['systemConfiguration', 'interfaces'])
   )
-
   const { serialNumber } = useSelector(path(['pvs']))
 
   useEffect(() => {
@@ -38,15 +39,17 @@ function InterfacesWidget() {
       <div className="pvs">
         <span className="sp-pvs has-text-white" />
       </div>
-      <div className="ifs ml-5">
-        <div className="mb-5 has-text-white is-uppercase">{serialNumber}</div>
+      <div className="ifs">
+        <div className="mb-5 has-text-white is-uppercase has-text-weight-bold">
+          {serialNumber}
+        </div>
         {isFetching ? t('LOADING') : showInterfaces(data, error, t)}
       </div>
     </section>
   )
 }
 
-const isntPLC = iface => iface.interface !== 'plc'
+const isntPLC = compose(not, propEq('interface', 'plc'))
 const getInterfaces = t => compose(map(getInterface(t)), filter(isntPLC))
 
 const showInterfaces = (data, error, t) =>
@@ -68,11 +71,28 @@ const getInterface = t => ifc => (
 )
 
 function Interface({ icon, name }) {
-  const classes = clsx(icon, 'mr-10 has-text-white')
+  const t = useI18n()
+  const isConnected =
+    !test(new RegExp(t('NO_CONNECTION')), name) && !test(/UNKNOWN/, name)
+
+  const classConnected = {
+    connected: isConnected,
+    'has-text-white': !isConnected
+  }
+
+  const iconClasses = clsx(icon, 'mr-10', classConnected)
+  const textClasses = clsx(classConnected)
+
+  const indicator = clsx('sp', {
+    connected: isConnected,
+    disconnected: !isConnected
+  })
+
   return (
-    <p className="if">
-      <span className={classes} />
-      {name}
+    <p className="if mt-5 ml-20">
+      <span className={indicator} />
+      <span className={iconClasses} />
+      <span className={textClasses}>{name}</span>
     </p>
   )
 }

@@ -111,7 +111,6 @@ exports[`Network Widget after selecting network network is selected 1`] = `
                           className="control"
                         >
                           <SelectField
-                            defaultInputValue=""
                             isSearchable={true}
                             onSelect={[Function]}
                             options={
@@ -135,6 +134,20 @@ exports[`Network Widget after selecting network network is selected 1`] = `
                               ]
                             }
                             placeholder="SELECT_NETWORK"
+                            value={
+                              Object {
+                                "ap": Object {
+                                  "attributes": "wpa-psk",
+                                  "bssid": "b8:27:eb:4e:54:12",
+                                  "channel": "7",
+                                  "frequency": "2442",
+                                  "rssi": "-43",
+                                  "ssid": "2",
+                                },
+                                "label": "2",
+                                "value": "2",
+                              }
+                            }
                           >
                             <StateManager
                               cacheOptions={true}
@@ -175,6 +188,20 @@ exports[`Network Widget after selecting network network is selected 1`] = `
                               }
                               placeholder="SELECT_NETWORK"
                               theme={[Function]}
+                              value={
+                                Object {
+                                  "ap": Object {
+                                    "attributes": "wpa-psk",
+                                    "bssid": "b8:27:eb:4e:54:12",
+                                    "channel": "7",
+                                    "frequency": "2442",
+                                    "rssi": "-43",
+                                    "ssid": "2",
+                                  },
+                                  "label": "2",
+                                  "value": "2",
+                                }
+                              }
                             >
                               <Select
                                 backspaceRemovesValue={true}
@@ -247,7 +274,20 @@ exports[`Network Widget after selecting network network is selected 1`] = `
                                 tabIndex="0"
                                 tabSelectsValue={true}
                                 theme={[Function]}
-                                value={null}
+                                value={
+                                  Object {
+                                    "ap": Object {
+                                      "attributes": "wpa-psk",
+                                      "bssid": "b8:27:eb:4e:54:12",
+                                      "channel": "7",
+                                      "frequency": "2442",
+                                      "rssi": "-43",
+                                      "ssid": "2",
+                                    },
+                                    "label": "2",
+                                    "value": "2",
+                                  }
+                                }
                               >
                                 <SelectContainer
                                   className="field"
@@ -255,7 +295,7 @@ exports[`Network Widget after selecting network network is selected 1`] = `
                                   cx={[Function]}
                                   getStyles={[Function]}
                                   getValue={[Function]}
-                                  hasValue={false}
+                                  hasValue={true}
                                   innerProps={
                                     Object {
                                       "id": undefined,
@@ -356,7 +396,18 @@ exports[`Network Widget after selecting network network is selected 1`] = `
                                       "tabIndex": "0",
                                       "tabSelectsValue": true,
                                       "theme": [Function],
-                                      "value": null,
+                                      "value": Object {
+                                        "ap": Object {
+                                          "attributes": "wpa-psk",
+                                          "bssid": "b8:27:eb:4e:54:12",
+                                          "channel": "7",
+                                          "frequency": "2442",
+                                          "rssi": "-43",
+                                          "ssid": "2",
+                                        },
+                                        "label": "2",
+                                        "value": "2",
+                                      },
                                     }
                                   }
                                   setValue={[Function]}
@@ -414,7 +465,7 @@ exports[`Network Widget after selecting network network is selected 1`] = `
                                         cx={[Function]}
                                         getStyles={[Function]}
                                         getValue={[Function]}
-                                        hasValue={false}
+                                        hasValue={true}
                                         innerProps={
                                           Object {
                                             "onMouseDown": [Function],
@@ -517,7 +568,18 @@ exports[`Network Widget after selecting network network is selected 1`] = `
                                             "tabIndex": "0",
                                             "tabSelectsValue": true,
                                             "theme": [Function],
-                                            "value": null,
+                                            "value": Object {
+                                              "ap": Object {
+                                                "attributes": "wpa-psk",
+                                                "bssid": "b8:27:eb:4e:54:12",
+                                                "channel": "7",
+                                                "frequency": "2442",
+                                                "rssi": "-43",
+                                                "ssid": "2",
+                                              },
+                                              "label": "2",
+                                              "value": "2",
+                                            },
                                           }
                                         }
                                         setValue={[Function]}
@@ -592,7 +654,7 @@ exports[`Network Widget after selecting network network is selected 1`] = `
                                               cx={[Function]}
                                               getStyles={[Function]}
                                               getValue={[Function]}
-                                              hasValue={false}
+                                              hasValue={true}
                                               isDisabled={false}
                                               isMulti={false}
                                               isRtl={false}
@@ -686,7 +748,18 @@ exports[`Network Widget after selecting network network is selected 1`] = `
                                                   "tabIndex": "0",
                                                   "tabSelectsValue": true,
                                                   "theme": [Function],
-                                                  "value": null,
+                                                  "value": Object {
+                                                    "ap": Object {
+                                                      "attributes": "wpa-psk",
+                                                      "bssid": "b8:27:eb:4e:54:12",
+                                                      "channel": "7",
+                                                      "frequency": "2442",
+                                                      "rssi": "-43",
+                                                      "ssid": "2",
+                                                    },
+                                                    "label": "2",
+                                                    "value": "2",
+                                                  },
                                                 }
                                               }
                                               setValue={[Function]}
@@ -723,7 +796,7 @@ exports[`Network Widget after selecting network network is selected 1`] = `
                                               <EmotionCssPropInternal
                                                 __EMOTION_LABEL_PLEASE_DO_NOT_USE__="ValueContainer"
                                                 __EMOTION_TYPE_PLEASE_DO_NOT_USE__="div"
-                                                className="search__value-container"
+                                                className="search__value-container search__value-container--has-value"
                                                 css={
                                                   Object {
                                                     "WebkitOverflowScrolling": "touch",
@@ -739,19 +812,31 @@ exports[`Network Widget after selecting network network is selected 1`] = `
                                                 }
                                               >
                                                 <div
-                                                  className="search__value-container css-g1d714-ValueContainer"
+                                                  className="search__value-container search__value-container--has-value css-g1d714-ValueContainer"
                                                 >
-                                                  <Placeholder
+                                                  <SingleValue
                                                     clearValue={[Function]}
                                                     cx={[Function]}
+                                                    data={
+                                                      Object {
+                                                        "ap": Object {
+                                                          "attributes": "wpa-psk",
+                                                          "bssid": "b8:27:eb:4e:54:12",
+                                                          "channel": "7",
+                                                          "frequency": "2442",
+                                                          "rssi": "-43",
+                                                          "ssid": "2",
+                                                        },
+                                                        "label": "2",
+                                                        "value": "2",
+                                                      }
+                                                    }
                                                     getStyles={[Function]}
                                                     getValue={[Function]}
-                                                    hasValue={false}
+                                                    hasValue={true}
                                                     isDisabled={false}
-                                                    isFocused={false}
                                                     isMulti={false}
                                                     isRtl={false}
-                                                    key="placeholder"
                                                     options={
                                                       Array [
                                                         Object {
@@ -842,7 +927,18 @@ exports[`Network Widget after selecting network network is selected 1`] = `
                                                         "tabIndex": "0",
                                                         "tabSelectsValue": true,
                                                         "theme": [Function],
-                                                        "value": null,
+                                                        "value": Object {
+                                                          "ap": Object {
+                                                            "attributes": "wpa-psk",
+                                                            "bssid": "b8:27:eb:4e:54:12",
+                                                            "channel": "7",
+                                                            "frequency": "2442",
+                                                            "rssi": "-43",
+                                                            "ssid": "2",
+                                                          },
+                                                          "label": "2",
+                                                          "value": "2",
+                                                        },
                                                       }
                                                     }
                                                     setValue={[Function]}
@@ -877,29 +973,33 @@ exports[`Network Widget after selecting network network is selected 1`] = `
                                                     }
                                                   >
                                                     <EmotionCssPropInternal
-                                                      __EMOTION_LABEL_PLEASE_DO_NOT_USE__="Placeholder"
+                                                      __EMOTION_LABEL_PLEASE_DO_NOT_USE__="SingleValue"
                                                       __EMOTION_TYPE_PLEASE_DO_NOT_USE__="div"
-                                                      className="search__placeholder"
+                                                      className="search__single-value"
                                                       css={
                                                         Object {
                                                           "boxSizing": "border-box",
-                                                          "color": "hsl(0, 0%, 50%)",
-                                                          "label": "placeholder",
+                                                          "color": "white",
+                                                          "label": "singleValue",
                                                           "marginLeft": 2,
                                                           "marginRight": 2,
+                                                          "maxWidth": "calc(100% - 8px)",
+                                                          "overflow": "hidden",
                                                           "position": "absolute",
+                                                          "textOverflow": "ellipsis",
                                                           "top": "50%",
                                                           "transform": "translateY(-50%)",
+                                                          "whiteSpace": "nowrap",
                                                         }
                                                       }
                                                     >
                                                       <div
-                                                        className="search__placeholder css-1wa3eu0-placeholder"
+                                                        className="search__single-value css-5sz5u5-singleValue"
                                                       >
-                                                        SELECT_NETWORK
+                                                        2
                                                       </div>
                                                     </EmotionCssPropInternal>
-                                                  </Placeholder>
+                                                  </SingleValue>
                                                   <Input
                                                     aria-autocomplete="list"
                                                     autoCapitalize="none"
@@ -983,7 +1083,18 @@ exports[`Network Widget after selecting network network is selected 1`] = `
                                                         "tabIndex": "0",
                                                         "tabSelectsValue": true,
                                                         "theme": [Function],
-                                                        "value": null,
+                                                        "value": Object {
+                                                          "ap": Object {
+                                                            "attributes": "wpa-psk",
+                                                            "bssid": "b8:27:eb:4e:54:12",
+                                                            "channel": "7",
+                                                            "frequency": "2442",
+                                                            "rssi": "-43",
+                                                            "ssid": "2",
+                                                          },
+                                                          "label": "2",
+                                                          "value": "2",
+                                                        },
                                                       }
                                                     }
                                                     spellCheck="false"
@@ -1131,7 +1242,7 @@ exports[`Network Widget after selecting network network is selected 1`] = `
                                               cx={[Function]}
                                               getStyles={[Function]}
                                               getValue={[Function]}
-                                              hasValue={false}
+                                              hasValue={true}
                                               isDisabled={false}
                                               isMulti={false}
                                               isRtl={false}
@@ -1225,7 +1336,18 @@ exports[`Network Widget after selecting network network is selected 1`] = `
                                                   "tabIndex": "0",
                                                   "tabSelectsValue": true,
                                                   "theme": [Function],
-                                                  "value": null,
+                                                  "value": Object {
+                                                    "ap": Object {
+                                                      "attributes": "wpa-psk",
+                                                      "bssid": "b8:27:eb:4e:54:12",
+                                                      "channel": "7",
+                                                      "frequency": "2442",
+                                                      "rssi": "-43",
+                                                      "ssid": "2",
+                                                    },
+                                                    "label": "2",
+                                                    "value": "2",
+                                                  },
                                                 }
                                               }
                                               setValue={[Function]}
@@ -1281,7 +1403,7 @@ exports[`Network Widget after selecting network network is selected 1`] = `
                                                     cx={[Function]}
                                                     getStyles={[Function]}
                                                     getValue={[Function]}
-                                                    hasValue={false}
+                                                    hasValue={true}
                                                     isDisabled={false}
                                                     isFocused={false}
                                                     isMulti={false}
@@ -1376,7 +1498,18 @@ exports[`Network Widget after selecting network network is selected 1`] = `
                                                         "tabIndex": "0",
                                                         "tabSelectsValue": true,
                                                         "theme": [Function],
-                                                        "value": null,
+                                                        "value": Object {
+                                                          "ap": Object {
+                                                            "attributes": "wpa-psk",
+                                                            "bssid": "b8:27:eb:4e:54:12",
+                                                            "channel": "7",
+                                                            "frequency": "2442",
+                                                            "rssi": "-43",
+                                                            "ssid": "2",
+                                                          },
+                                                          "label": "2",
+                                                          "value": "2",
+                                                        },
                                                       }
                                                     }
                                                     setValue={[Function]}
@@ -1417,7 +1550,7 @@ exports[`Network Widget after selecting network network is selected 1`] = `
                                                     cx={[Function]}
                                                     getStyles={[Function]}
                                                     getValue={[Function]}
-                                                    hasValue={false}
+                                                    hasValue={true}
                                                     innerProps={
                                                       Object {
                                                         "aria-hidden": "true",
@@ -1519,7 +1652,18 @@ exports[`Network Widget after selecting network network is selected 1`] = `
                                                         "tabIndex": "0",
                                                         "tabSelectsValue": true,
                                                         "theme": [Function],
-                                                        "value": null,
+                                                        "value": Object {
+                                                          "ap": Object {
+                                                            "attributes": "wpa-psk",
+                                                            "bssid": "b8:27:eb:4e:54:12",
+                                                            "channel": "7",
+                                                            "frequency": "2442",
+                                                            "rssi": "-43",
+                                                            "ssid": "2",
+                                                          },
+                                                          "label": "2",
+                                                          "value": "2",
+                                                        },
                                                       }
                                                     }
                                                     setValue={[Function]}
@@ -1815,7 +1959,6 @@ exports[`Network Widget on initial state renders correctly 1`] = `
                           className="control"
                         >
                           <SelectField
-                            defaultInputValue=""
                             isSearchable={true}
                             onSelect={[Function]}
                             options={
@@ -1837,6 +1980,15 @@ exports[`Network Widget on initial state renders correctly 1`] = `
                               ]
                             }
                             placeholder="SELECT_NETWORK"
+                            value={
+                              Object {
+                                "ap": Object {
+                                  "label": "",
+                                },
+                                "label": undefined,
+                                "value": undefined,
+                              }
+                            }
                           >
                             <StateManager
                               cacheOptions={true}
@@ -1875,6 +2027,15 @@ exports[`Network Widget on initial state renders correctly 1`] = `
                               }
                               placeholder="SELECT_NETWORK"
                               theme={[Function]}
+                              value={
+                                Object {
+                                  "ap": Object {
+                                    "label": "",
+                                  },
+                                  "label": undefined,
+                                  "value": undefined,
+                                }
+                              }
                             >
                               <Select
                                 backspaceRemovesValue={true}
@@ -1945,7 +2106,15 @@ exports[`Network Widget on initial state renders correctly 1`] = `
                                 tabIndex="0"
                                 tabSelectsValue={true}
                                 theme={[Function]}
-                                value={null}
+                                value={
+                                  Object {
+                                    "ap": Object {
+                                      "label": "",
+                                    },
+                                    "label": undefined,
+                                    "value": undefined,
+                                  }
+                                }
                               >
                                 <SelectContainer
                                   className="field"
@@ -1953,7 +2122,7 @@ exports[`Network Widget on initial state renders correctly 1`] = `
                                   cx={[Function]}
                                   getStyles={[Function]}
                                   getValue={[Function]}
-                                  hasValue={false}
+                                  hasValue={true}
                                   innerProps={
                                     Object {
                                       "id": undefined,
@@ -2050,7 +2219,13 @@ exports[`Network Widget on initial state renders correctly 1`] = `
                                       "tabIndex": "0",
                                       "tabSelectsValue": true,
                                       "theme": [Function],
-                                      "value": null,
+                                      "value": Object {
+                                        "ap": Object {
+                                          "label": "",
+                                        },
+                                        "label": undefined,
+                                        "value": undefined,
+                                      },
                                     }
                                   }
                                   setValue={[Function]}
@@ -2108,7 +2283,7 @@ exports[`Network Widget on initial state renders correctly 1`] = `
                                         cx={[Function]}
                                         getStyles={[Function]}
                                         getValue={[Function]}
-                                        hasValue={false}
+                                        hasValue={true}
                                         innerProps={
                                           Object {
                                             "onMouseDown": [Function],
@@ -2207,7 +2382,13 @@ exports[`Network Widget on initial state renders correctly 1`] = `
                                             "tabIndex": "0",
                                             "tabSelectsValue": true,
                                             "theme": [Function],
-                                            "value": null,
+                                            "value": Object {
+                                              "ap": Object {
+                                                "label": "",
+                                              },
+                                              "label": undefined,
+                                              "value": undefined,
+                                            },
                                           }
                                         }
                                         setValue={[Function]}
@@ -2282,7 +2463,7 @@ exports[`Network Widget on initial state renders correctly 1`] = `
                                               cx={[Function]}
                                               getStyles={[Function]}
                                               getValue={[Function]}
-                                              hasValue={false}
+                                              hasValue={true}
                                               isDisabled={false}
                                               isMulti={false}
                                               isRtl={false}
@@ -2372,7 +2553,13 @@ exports[`Network Widget on initial state renders correctly 1`] = `
                                                   "tabIndex": "0",
                                                   "tabSelectsValue": true,
                                                   "theme": [Function],
-                                                  "value": null,
+                                                  "value": Object {
+                                                    "ap": Object {
+                                                      "label": "",
+                                                    },
+                                                    "label": undefined,
+                                                    "value": undefined,
+                                                  },
                                                 }
                                               }
                                               setValue={[Function]}
@@ -2409,7 +2596,7 @@ exports[`Network Widget on initial state renders correctly 1`] = `
                                               <EmotionCssPropInternal
                                                 __EMOTION_LABEL_PLEASE_DO_NOT_USE__="ValueContainer"
                                                 __EMOTION_TYPE_PLEASE_DO_NOT_USE__="div"
-                                                className="search__value-container"
+                                                className="search__value-container search__value-container--has-value"
                                                 css={
                                                   Object {
                                                     "WebkitOverflowScrolling": "touch",
@@ -2425,19 +2612,26 @@ exports[`Network Widget on initial state renders correctly 1`] = `
                                                 }
                                               >
                                                 <div
-                                                  className="search__value-container css-g1d714-ValueContainer"
+                                                  className="search__value-container search__value-container--has-value css-g1d714-ValueContainer"
                                                 >
-                                                  <Placeholder
+                                                  <SingleValue
                                                     clearValue={[Function]}
                                                     cx={[Function]}
+                                                    data={
+                                                      Object {
+                                                        "ap": Object {
+                                                          "label": "",
+                                                        },
+                                                        "label": undefined,
+                                                        "value": undefined,
+                                                      }
+                                                    }
                                                     getStyles={[Function]}
                                                     getValue={[Function]}
-                                                    hasValue={false}
+                                                    hasValue={true}
                                                     isDisabled={false}
-                                                    isFocused={false}
                                                     isMulti={false}
                                                     isRtl={false}
-                                                    key="placeholder"
                                                     options={
                                                       Array [
                                                         Object {
@@ -2524,7 +2718,13 @@ exports[`Network Widget on initial state renders correctly 1`] = `
                                                         "tabIndex": "0",
                                                         "tabSelectsValue": true,
                                                         "theme": [Function],
-                                                        "value": null,
+                                                        "value": Object {
+                                                          "ap": Object {
+                                                            "label": "",
+                                                          },
+                                                          "label": undefined,
+                                                          "value": undefined,
+                                                        },
                                                       }
                                                     }
                                                     setValue={[Function]}
@@ -2559,29 +2759,31 @@ exports[`Network Widget on initial state renders correctly 1`] = `
                                                     }
                                                   >
                                                     <EmotionCssPropInternal
-                                                      __EMOTION_LABEL_PLEASE_DO_NOT_USE__="Placeholder"
+                                                      __EMOTION_LABEL_PLEASE_DO_NOT_USE__="SingleValue"
                                                       __EMOTION_TYPE_PLEASE_DO_NOT_USE__="div"
-                                                      className="search__placeholder"
+                                                      className="search__single-value"
                                                       css={
                                                         Object {
                                                           "boxSizing": "border-box",
-                                                          "color": "hsl(0, 0%, 50%)",
-                                                          "label": "placeholder",
+                                                          "color": "white",
+                                                          "label": "singleValue",
                                                           "marginLeft": 2,
                                                           "marginRight": 2,
+                                                          "maxWidth": "calc(100% - 8px)",
+                                                          "overflow": "hidden",
                                                           "position": "absolute",
+                                                          "textOverflow": "ellipsis",
                                                           "top": "50%",
                                                           "transform": "translateY(-50%)",
+                                                          "whiteSpace": "nowrap",
                                                         }
                                                       }
                                                     >
                                                       <div
-                                                        className="search__placeholder css-1wa3eu0-placeholder"
-                                                      >
-                                                        SELECT_NETWORK
-                                                      </div>
+                                                        className="search__single-value css-5sz5u5-singleValue"
+                                                      />
                                                     </EmotionCssPropInternal>
-                                                  </Placeholder>
+                                                  </SingleValue>
                                                   <Input
                                                     aria-autocomplete="list"
                                                     autoCapitalize="none"
@@ -2663,7 +2865,13 @@ exports[`Network Widget on initial state renders correctly 1`] = `
                                                         "tabIndex": "0",
                                                         "tabSelectsValue": true,
                                                         "theme": [Function],
-                                                        "value": null,
+                                                        "value": Object {
+                                                          "ap": Object {
+                                                            "label": "",
+                                                          },
+                                                          "label": undefined,
+                                                          "value": undefined,
+                                                        },
                                                       }
                                                     }
                                                     spellCheck="false"
@@ -2811,7 +3019,7 @@ exports[`Network Widget on initial state renders correctly 1`] = `
                                               cx={[Function]}
                                               getStyles={[Function]}
                                               getValue={[Function]}
-                                              hasValue={false}
+                                              hasValue={true}
                                               isDisabled={false}
                                               isMulti={false}
                                               isRtl={false}
@@ -2901,7 +3109,13 @@ exports[`Network Widget on initial state renders correctly 1`] = `
                                                   "tabIndex": "0",
                                                   "tabSelectsValue": true,
                                                   "theme": [Function],
-                                                  "value": null,
+                                                  "value": Object {
+                                                    "ap": Object {
+                                                      "label": "",
+                                                    },
+                                                    "label": undefined,
+                                                    "value": undefined,
+                                                  },
                                                 }
                                               }
                                               setValue={[Function]}
@@ -2957,7 +3171,7 @@ exports[`Network Widget on initial state renders correctly 1`] = `
                                                     cx={[Function]}
                                                     getStyles={[Function]}
                                                     getValue={[Function]}
-                                                    hasValue={false}
+                                                    hasValue={true}
                                                     isDisabled={false}
                                                     isFocused={false}
                                                     isMulti={false}
@@ -3048,7 +3262,13 @@ exports[`Network Widget on initial state renders correctly 1`] = `
                                                         "tabIndex": "0",
                                                         "tabSelectsValue": true,
                                                         "theme": [Function],
-                                                        "value": null,
+                                                        "value": Object {
+                                                          "ap": Object {
+                                                            "label": "",
+                                                          },
+                                                          "label": undefined,
+                                                          "value": undefined,
+                                                        },
                                                       }
                                                     }
                                                     setValue={[Function]}
@@ -3089,7 +3309,7 @@ exports[`Network Widget on initial state renders correctly 1`] = `
                                                     cx={[Function]}
                                                     getStyles={[Function]}
                                                     getValue={[Function]}
-                                                    hasValue={false}
+                                                    hasValue={true}
                                                     innerProps={
                                                       Object {
                                                         "aria-hidden": "true",
@@ -3187,7 +3407,13 @@ exports[`Network Widget on initial state renders correctly 1`] = `
                                                         "tabIndex": "0",
                                                         "tabSelectsValue": true,
                                                         "theme": [Function],
-                                                        "value": null,
+                                                        "value": Object {
+                                                          "ap": Object {
+                                                            "label": "",
+                                                          },
+                                                          "label": undefined,
+                                                          "value": undefined,
+                                                        },
                                                       }
                                                     }
                                                     setValue={[Function]}
