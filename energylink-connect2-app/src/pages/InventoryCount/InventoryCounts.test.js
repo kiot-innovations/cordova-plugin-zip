@@ -12,7 +12,7 @@ describe('Inventory Count page', () => {
     { item: 'STRING_INVERTERS', value: '0' },
     { item: 'METERS', value: '0' },
     { item: 'MET_STATION', value: '0' },
-    { item: 'ESS', value: 'None' },
+    { item: 'ESS', value: '0' },
     { item: 'GCM', value: '0' }
   ]
 

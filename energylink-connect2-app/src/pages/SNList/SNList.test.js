@@ -51,7 +51,7 @@ describe('Serial Number List Page', () => {
         { item: 'DC_MODULES', value: '0' },
         { item: 'STRING_INVERTERS', value: '0' },
         { item: 'EXTERNAL_METERS', value: '0' },
-        { item: 'ESS', value: 'None' }
+        { item: 'ESS', value: '0' }
       ]
     }
   }
