@@ -115,15 +115,11 @@ exports[`Meter Widget renders correctly 1`] = `
                           options={
                             Array [
                               Object {
-                                "label": "NOT_USED",
-                                "value": "NOT_USED",
-                              },
-                              Object {
-                                "label": "CONSUMPTION_LOAD",
+                                "label": "NET_CONSUMPTION_LOADSIDE",
                                 "value": "NET_CONSUMPTION_LOADSIDE",
                               },
                               Object {
-                                "label": "CONSUMPTION_LINE",
+                                "label": "GROSS_CONSUMPTION_LINESIDE",
                                 "value": "GROSS_CONSUMPTION_LINESIDE",
                               },
                             ]
@@ -150,15 +146,11 @@ exports[`Meter Widget renders correctly 1`] = `
                             options={
                               Array [
                                 Object {
-                                  "label": "NOT_USED",
-                                  "value": "NOT_USED",
-                                },
-                                Object {
-                                  "label": "CONSUMPTION_LOAD",
+                                  "label": "NET_CONSUMPTION_LOADSIDE",
                                   "value": "NET_CONSUMPTION_LOADSIDE",
                                 },
                                 Object {
-                                  "label": "CONSUMPTION_LINE",
+                                  "label": "GROSS_CONSUMPTION_LINESIDE",
                                   "value": "GROSS_CONSUMPTION_LINESIDE",
                                 },
                               ]
@@ -212,15 +204,11 @@ exports[`Meter Widget renders correctly 1`] = `
                               options={
                                 Array [
                                   Object {
-                                    "label": "NOT_USED",
-                                    "value": "NOT_USED",
-                                  },
-                                  Object {
-                                    "label": "CONSUMPTION_LOAD",
+                                    "label": "NET_CONSUMPTION_LOADSIDE",
                                     "value": "NET_CONSUMPTION_LOADSIDE",
                                   },
                                   Object {
-                                    "label": "CONSUMPTION_LINE",
+                                    "label": "GROSS_CONSUMPTION_LINESIDE",
                                     "value": "GROSS_CONSUMPTION_LINESIDE",
                                   },
                                 ]
@@ -254,15 +242,11 @@ exports[`Meter Widget renders correctly 1`] = `
                                 options={
                                   Array [
                                     Object {
-                                      "label": "NOT_USED",
-                                      "value": "NOT_USED",
-                                    },
-                                    Object {
-                                      "label": "CONSUMPTION_LOAD",
+                                      "label": "NET_CONSUMPTION_LOADSIDE",
                                       "value": "NET_CONSUMPTION_LOADSIDE",
                                     },
                                     Object {
-                                      "label": "CONSUMPTION_LINE",
+                                      "label": "GROSS_CONSUMPTION_LINESIDE",
                                       "value": "GROSS_CONSUMPTION_LINESIDE",
                                     },
                                   ]
@@ -314,15 +298,11 @@ exports[`Meter Widget renders correctly 1`] = `
                                     "openMenuOnFocus": false,
                                     "options": Array [
                                       Object {
-                                        "label": "NOT_USED",
-                                        "value": "NOT_USED",
-                                      },
-                                      Object {
-                                        "label": "CONSUMPTION_LOAD",
+                                        "label": "NET_CONSUMPTION_LOADSIDE",
                                         "value": "NET_CONSUMPTION_LOADSIDE",
                                       },
                                       Object {
-                                        "label": "CONSUMPTION_LINE",
+                                        "label": "GROSS_CONSUMPTION_LINESIDE",
                                         "value": "GROSS_CONSUMPTION_LINESIDE",
                                       },
                                     ],
@@ -407,15 +387,11 @@ exports[`Meter Widget renders correctly 1`] = `
                                       options={
                                         Array [
                                           Object {
-                                            "label": "NOT_USED",
-                                            "value": "NOT_USED",
-                                          },
-                                          Object {
-                                            "label": "CONSUMPTION_LOAD",
+                                            "label": "NET_CONSUMPTION_LOADSIDE",
                                             "value": "NET_CONSUMPTION_LOADSIDE",
                                           },
                                           Object {
-                                            "label": "CONSUMPTION_LINE",
+                                            "label": "GROSS_CONSUMPTION_LINESIDE",
                                             "value": "GROSS_CONSUMPTION_LINESIDE",
                                           },
                                         ]
@@ -467,15 +443,11 @@ exports[`Meter Widget renders correctly 1`] = `
                                           "openMenuOnFocus": false,
                                           "options": Array [
                                             Object {
-                                              "label": "NOT_USED",
-                                              "value": "NOT_USED",
-                                            },
-                                            Object {
-                                              "label": "CONSUMPTION_LOAD",
+                                              "label": "NET_CONSUMPTION_LOADSIDE",
                                               "value": "NET_CONSUMPTION_LOADSIDE",
                                             },
                                             Object {
-                                              "label": "CONSUMPTION_LINE",
+                                              "label": "GROSS_CONSUMPTION_LINESIDE",
                                               "value": "GROSS_CONSUMPTION_LINESIDE",
                                             },
                                           ],
@@ -568,15 +540,11 @@ exports[`Meter Widget renders correctly 1`] = `
                                             options={
                                               Array [
                                                 Object {
-                                                  "label": "NOT_USED",
-                                                  "value": "NOT_USED",
-                                                },
-                                                Object {
-                                                  "label": "CONSUMPTION_LOAD",
+                                                  "label": "NET_CONSUMPTION_LOADSIDE",
                                                   "value": "NET_CONSUMPTION_LOADSIDE",
                                                 },
                                                 Object {
-                                                  "label": "CONSUMPTION_LINE",
+                                                  "label": "GROSS_CONSUMPTION_LINESIDE",
                                                   "value": "GROSS_CONSUMPTION_LINESIDE",
                                                 },
                                               ]
@@ -628,15 +596,11 @@ exports[`Meter Widget renders correctly 1`] = `
                                                 "openMenuOnFocus": false,
                                                 "options": Array [
                                                   Object {
-                                                    "label": "NOT_USED",
-                                                    "value": "NOT_USED",
-                                                  },
-                                                  Object {
-                                                    "label": "CONSUMPTION_LOAD",
+                                                    "label": "NET_CONSUMPTION_LOADSIDE",
                                                     "value": "NET_CONSUMPTION_LOADSIDE",
                                                   },
                                                   Object {
-                                                    "label": "CONSUMPTION_LINE",
+                                                    "label": "GROSS_CONSUMPTION_LINESIDE",
                                                     "value": "GROSS_CONSUMPTION_LINESIDE",
                                                   },
                                                 ],
@@ -716,15 +680,11 @@ exports[`Meter Widget renders correctly 1`] = `
                                                   options={
                                                     Array [
                                                       Object {
-                                                        "label": "NOT_USED",
-                                                        "value": "NOT_USED",
-                                                      },
-                                                      Object {
-                                                        "label": "CONSUMPTION_LOAD",
+                                                        "label": "NET_CONSUMPTION_LOADSIDE",
                                                         "value": "NET_CONSUMPTION_LOADSIDE",
                                                       },
                                                       Object {
-                                                        "label": "CONSUMPTION_LINE",
+                                                        "label": "GROSS_CONSUMPTION_LINESIDE",
                                                         "value": "GROSS_CONSUMPTION_LINESIDE",
                                                       },
                                                     ]
@@ -776,15 +736,11 @@ exports[`Meter Widget renders correctly 1`] = `
                                                       "openMenuOnFocus": false,
                                                       "options": Array [
                                                         Object {
-                                                          "label": "NOT_USED",
-                                                          "value": "NOT_USED",
-                                                        },
-                                                        Object {
-                                                          "label": "CONSUMPTION_LOAD",
+                                                          "label": "NET_CONSUMPTION_LOADSIDE",
                                                           "value": "NET_CONSUMPTION_LOADSIDE",
                                                         },
                                                         Object {
-                                                          "label": "CONSUMPTION_LINE",
+                                                          "label": "GROSS_CONSUMPTION_LINESIDE",
                                                           "value": "GROSS_CONSUMPTION_LINESIDE",
                                                         },
                                                       ],
@@ -916,15 +872,11 @@ exports[`Meter Widget renders correctly 1`] = `
                                             options={
                                               Array [
                                                 Object {
-                                                  "label": "NOT_USED",
-                                                  "value": "NOT_USED",
-                                                },
-                                                Object {
-                                                  "label": "CONSUMPTION_LOAD",
+                                                  "label": "NET_CONSUMPTION_LOADSIDE",
                                                   "value": "NET_CONSUMPTION_LOADSIDE",
                                                 },
                                                 Object {
-                                                  "label": "CONSUMPTION_LINE",
+                                                  "label": "GROSS_CONSUMPTION_LINESIDE",
                                                   "value": "GROSS_CONSUMPTION_LINESIDE",
                                                 },
                                               ]
@@ -976,15 +928,11 @@ exports[`Meter Widget renders correctly 1`] = `
                                                 "openMenuOnFocus": false,
                                                 "options": Array [
                                                   Object {
-                                                    "label": "NOT_USED",
-                                                    "value": "NOT_USED",
-                                                  },
-                                                  Object {
-                                                    "label": "CONSUMPTION_LOAD",
+                                                    "label": "NET_CONSUMPTION_LOADSIDE",
                                                     "value": "NET_CONSUMPTION_LOADSIDE",
                                                   },
                                                   Object {
-                                                    "label": "CONSUMPTION_LINE",
+                                                    "label": "GROSS_CONSUMPTION_LINESIDE",
                                                     "value": "GROSS_CONSUMPTION_LINESIDE",
                                                   },
                                                 ],
@@ -1059,15 +1007,11 @@ exports[`Meter Widget renders correctly 1`] = `
                                                   options={
                                                     Array [
                                                       Object {
-                                                        "label": "NOT_USED",
-                                                        "value": "NOT_USED",
-                                                      },
-                                                      Object {
-                                                        "label": "CONSUMPTION_LOAD",
+                                                        "label": "NET_CONSUMPTION_LOADSIDE",
                                                         "value": "NET_CONSUMPTION_LOADSIDE",
                                                       },
                                                       Object {
-                                                        "label": "CONSUMPTION_LINE",
+                                                        "label": "GROSS_CONSUMPTION_LINESIDE",
                                                         "value": "GROSS_CONSUMPTION_LINESIDE",
                                                       },
                                                     ]
@@ -1119,15 +1063,11 @@ exports[`Meter Widget renders correctly 1`] = `
                                                       "openMenuOnFocus": false,
                                                       "options": Array [
                                                         Object {
-                                                          "label": "NOT_USED",
-                                                          "value": "NOT_USED",
-                                                        },
-                                                        Object {
-                                                          "label": "CONSUMPTION_LOAD",
+                                                          "label": "NET_CONSUMPTION_LOADSIDE",
                                                           "value": "NET_CONSUMPTION_LOADSIDE",
                                                         },
                                                         Object {
-                                                          "label": "CONSUMPTION_LINE",
+                                                          "label": "GROSS_CONSUMPTION_LINESIDE",
                                                           "value": "GROSS_CONSUMPTION_LINESIDE",
                                                         },
                                                       ],
@@ -1194,15 +1134,11 @@ exports[`Meter Widget renders correctly 1`] = `
                                                   options={
                                                     Array [
                                                       Object {
-                                                        "label": "NOT_USED",
-                                                        "value": "NOT_USED",
-                                                      },
-                                                      Object {
-                                                        "label": "CONSUMPTION_LOAD",
+                                                        "label": "NET_CONSUMPTION_LOADSIDE",
                                                         "value": "NET_CONSUMPTION_LOADSIDE",
                                                       },
                                                       Object {
-                                                        "label": "CONSUMPTION_LINE",
+                                                        "label": "GROSS_CONSUMPTION_LINESIDE",
                                                         "value": "GROSS_CONSUMPTION_LINESIDE",
                                                       },
                                                     ]
@@ -1254,15 +1190,11 @@ exports[`Meter Widget renders correctly 1`] = `
                                                       "openMenuOnFocus": false,
                                                       "options": Array [
                                                         Object {
-                                                          "label": "NOT_USED",
-                                                          "value": "NOT_USED",
-                                                        },
-                                                        Object {
-                                                          "label": "CONSUMPTION_LOAD",
+                                                          "label": "NET_CONSUMPTION_LOADSIDE",
                                                           "value": "NET_CONSUMPTION_LOADSIDE",
                                                         },
                                                         Object {
-                                                          "label": "CONSUMPTION_LINE",
+                                                          "label": "GROSS_CONSUMPTION_LINESIDE",
                                                           "value": "GROSS_CONSUMPTION_LINESIDE",
                                                         },
                                                       ],
@@ -1455,12 +1387,12 @@ exports[`Meter Widget renders correctly 1`] = `
                           options={
                             Array [
                               Object {
-                                "label": "NOT_USED",
-                                "value": "NOT_USED",
+                                "label": "GROSS_PRODUCTION_SITE",
+                                "value": "GROSS_PRODUCTION_SITE",
                               },
                               Object {
-                                "label": "PRODUCTION_REVENUE",
-                                "value": "GROSS_PRODUCTION",
+                                "label": "GROSS_PRODUCTION_INVERTER",
+                                "value": "GROSS_PRODUCTION_INVERTER",
                               },
                             ]
                           }
@@ -1486,12 +1418,12 @@ exports[`Meter Widget renders correctly 1`] = `
                             options={
                               Array [
                                 Object {
-                                  "label": "NOT_USED",
-                                  "value": "NOT_USED",
+                                  "label": "GROSS_PRODUCTION_SITE",
+                                  "value": "GROSS_PRODUCTION_SITE",
                                 },
                                 Object {
-                                  "label": "PRODUCTION_REVENUE",
-                                  "value": "GROSS_PRODUCTION",
+                                  "label": "GROSS_PRODUCTION_INVERTER",
+                                  "value": "GROSS_PRODUCTION_INVERTER",
                                 },
                               ]
                             }
@@ -1544,12 +1476,12 @@ exports[`Meter Widget renders correctly 1`] = `
                               options={
                                 Array [
                                   Object {
-                                    "label": "NOT_USED",
-                                    "value": "NOT_USED",
+                                    "label": "GROSS_PRODUCTION_SITE",
+                                    "value": "GROSS_PRODUCTION_SITE",
                                   },
                                   Object {
-                                    "label": "PRODUCTION_REVENUE",
-                                    "value": "GROSS_PRODUCTION",
+                                    "label": "GROSS_PRODUCTION_INVERTER",
+                                    "value": "GROSS_PRODUCTION_INVERTER",
                                   },
                                 ]
                               }
@@ -1582,12 +1514,12 @@ exports[`Meter Widget renders correctly 1`] = `
                                 options={
                                   Array [
                                     Object {
-                                      "label": "NOT_USED",
-                                      "value": "NOT_USED",
+                                      "label": "GROSS_PRODUCTION_SITE",
+                                      "value": "GROSS_PRODUCTION_SITE",
                                     },
                                     Object {
-                                      "label": "PRODUCTION_REVENUE",
-                                      "value": "GROSS_PRODUCTION",
+                                      "label": "GROSS_PRODUCTION_INVERTER",
+                                      "value": "GROSS_PRODUCTION_INVERTER",
                                     },
                                   ]
                                 }
@@ -1638,12 +1570,12 @@ exports[`Meter Widget renders correctly 1`] = `
                                     "openMenuOnFocus": false,
                                     "options": Array [
                                       Object {
-                                        "label": "NOT_USED",
-                                        "value": "NOT_USED",
+                                        "label": "GROSS_PRODUCTION_SITE",
+                                        "value": "GROSS_PRODUCTION_SITE",
                                       },
                                       Object {
-                                        "label": "PRODUCTION_REVENUE",
-                                        "value": "GROSS_PRODUCTION",
+                                        "label": "GROSS_PRODUCTION_INVERTER",
+                                        "value": "GROSS_PRODUCTION_INVERTER",
                                       },
                                     ],
                                     "pageSize": 5,
@@ -1727,12 +1659,12 @@ exports[`Meter Widget renders correctly 1`] = `
                                       options={
                                         Array [
                                           Object {
-                                            "label": "NOT_USED",
-                                            "value": "NOT_USED",
+                                            "label": "GROSS_PRODUCTION_SITE",
+                                            "value": "GROSS_PRODUCTION_SITE",
                                           },
                                           Object {
-                                            "label": "PRODUCTION_REVENUE",
-                                            "value": "GROSS_PRODUCTION",
+                                            "label": "GROSS_PRODUCTION_INVERTER",
+                                            "value": "GROSS_PRODUCTION_INVERTER",
                                           },
                                         ]
                                       }
@@ -1783,12 +1715,12 @@ exports[`Meter Widget renders correctly 1`] = `
                                           "openMenuOnFocus": false,
                                           "options": Array [
                                             Object {
-                                              "label": "NOT_USED",
-                                              "value": "NOT_USED",
+                                              "label": "GROSS_PRODUCTION_SITE",
+                                              "value": "GROSS_PRODUCTION_SITE",
                                             },
                                             Object {
-                                              "label": "PRODUCTION_REVENUE",
-                                              "value": "GROSS_PRODUCTION",
+                                              "label": "GROSS_PRODUCTION_INVERTER",
+                                              "value": "GROSS_PRODUCTION_INVERTER",
                                             },
                                           ],
                                           "pageSize": 5,
@@ -1880,12 +1812,12 @@ exports[`Meter Widget renders correctly 1`] = `
                                             options={
                                               Array [
                                                 Object {
-                                                  "label": "NOT_USED",
-                                                  "value": "NOT_USED",
+                                                  "label": "GROSS_PRODUCTION_SITE",
+                                                  "value": "GROSS_PRODUCTION_SITE",
                                                 },
                                                 Object {
-                                                  "label": "PRODUCTION_REVENUE",
-                                                  "value": "GROSS_PRODUCTION",
+                                                  "label": "GROSS_PRODUCTION_INVERTER",
+                                                  "value": "GROSS_PRODUCTION_INVERTER",
                                                 },
                                               ]
                                             }
@@ -1936,12 +1868,12 @@ exports[`Meter Widget renders correctly 1`] = `
                                                 "openMenuOnFocus": false,
                                                 "options": Array [
                                                   Object {
-                                                    "label": "NOT_USED",
-                                                    "value": "NOT_USED",
+                                                    "label": "GROSS_PRODUCTION_SITE",
+                                                    "value": "GROSS_PRODUCTION_SITE",
                                                   },
                                                   Object {
-                                                    "label": "PRODUCTION_REVENUE",
-                                                    "value": "GROSS_PRODUCTION",
+                                                    "label": "GROSS_PRODUCTION_INVERTER",
+                                                    "value": "GROSS_PRODUCTION_INVERTER",
                                                   },
                                                 ],
                                                 "pageSize": 5,
@@ -2020,12 +1952,12 @@ exports[`Meter Widget renders correctly 1`] = `
                                                   options={
                                                     Array [
                                                       Object {
-                                                        "label": "NOT_USED",
-                                                        "value": "NOT_USED",
+                                                        "label": "GROSS_PRODUCTION_SITE",
+                                                        "value": "GROSS_PRODUCTION_SITE",
                                                       },
                                                       Object {
-                                                        "label": "PRODUCTION_REVENUE",
-                                                        "value": "GROSS_PRODUCTION",
+                                                        "label": "GROSS_PRODUCTION_INVERTER",
+                                                        "value": "GROSS_PRODUCTION_INVERTER",
                                                       },
                                                     ]
                                                   }
@@ -2076,12 +2008,12 @@ exports[`Meter Widget renders correctly 1`] = `
                                                       "openMenuOnFocus": false,
                                                       "options": Array [
                                                         Object {
-                                                          "label": "NOT_USED",
-                                                          "value": "NOT_USED",
+                                                          "label": "GROSS_PRODUCTION_SITE",
+                                                          "value": "GROSS_PRODUCTION_SITE",
                                                         },
                                                         Object {
-                                                          "label": "PRODUCTION_REVENUE",
-                                                          "value": "GROSS_PRODUCTION",
+                                                          "label": "GROSS_PRODUCTION_INVERTER",
+                                                          "value": "GROSS_PRODUCTION_INVERTER",
                                                         },
                                                       ],
                                                       "pageSize": 5,
@@ -2212,12 +2144,12 @@ exports[`Meter Widget renders correctly 1`] = `
                                             options={
                                               Array [
                                                 Object {
-                                                  "label": "NOT_USED",
-                                                  "value": "NOT_USED",
+                                                  "label": "GROSS_PRODUCTION_SITE",
+                                                  "value": "GROSS_PRODUCTION_SITE",
                                                 },
                                                 Object {
-                                                  "label": "PRODUCTION_REVENUE",
-                                                  "value": "GROSS_PRODUCTION",
+                                                  "label": "GROSS_PRODUCTION_INVERTER",
+                                                  "value": "GROSS_PRODUCTION_INVERTER",
                                                 },
                                               ]
                                             }
@@ -2268,12 +2200,12 @@ exports[`Meter Widget renders correctly 1`] = `
                                                 "openMenuOnFocus": false,
                                                 "options": Array [
                                                   Object {
-                                                    "label": "NOT_USED",
-                                                    "value": "NOT_USED",
+                                                    "label": "GROSS_PRODUCTION_SITE",
+                                                    "value": "GROSS_PRODUCTION_SITE",
                                                   },
                                                   Object {
-                                                    "label": "PRODUCTION_REVENUE",
-                                                    "value": "GROSS_PRODUCTION",
+                                                    "label": "GROSS_PRODUCTION_INVERTER",
+                                                    "value": "GROSS_PRODUCTION_INVERTER",
                                                   },
                                                 ],
                                                 "pageSize": 5,
@@ -2347,12 +2279,12 @@ exports[`Meter Widget renders correctly 1`] = `
                                                   options={
                                                     Array [
                                                       Object {
-                                                        "label": "NOT_USED",
-                                                        "value": "NOT_USED",
+                                                        "label": "GROSS_PRODUCTION_SITE",
+                                                        "value": "GROSS_PRODUCTION_SITE",
                                                       },
                                                       Object {
-                                                        "label": "PRODUCTION_REVENUE",
-                                                        "value": "GROSS_PRODUCTION",
+                                                        "label": "GROSS_PRODUCTION_INVERTER",
+                                                        "value": "GROSS_PRODUCTION_INVERTER",
                                                       },
                                                     ]
                                                   }
@@ -2403,12 +2335,12 @@ exports[`Meter Widget renders correctly 1`] = `
                                                       "openMenuOnFocus": false,
                                                       "options": Array [
                                                         Object {
-                                                          "label": "NOT_USED",
-                                                          "value": "NOT_USED",
+                                                          "label": "GROSS_PRODUCTION_SITE",
+                                                          "value": "GROSS_PRODUCTION_SITE",
                                                         },
                                                         Object {
-                                                          "label": "PRODUCTION_REVENUE",
-                                                          "value": "GROSS_PRODUCTION",
+                                                          "label": "GROSS_PRODUCTION_INVERTER",
+                                                          "value": "GROSS_PRODUCTION_INVERTER",
                                                         },
                                                       ],
                                                       "pageSize": 5,
@@ -2474,12 +2406,12 @@ exports[`Meter Widget renders correctly 1`] = `
                                                   options={
                                                     Array [
                                                       Object {
-                                                        "label": "NOT_USED",
-                                                        "value": "NOT_USED",
+                                                        "label": "GROSS_PRODUCTION_SITE",
+                                                        "value": "GROSS_PRODUCTION_SITE",
                                                       },
                                                       Object {
-                                                        "label": "PRODUCTION_REVENUE",
-                                                        "value": "GROSS_PRODUCTION",
+                                                        "label": "GROSS_PRODUCTION_INVERTER",
+                                                        "value": "GROSS_PRODUCTION_INVERTER",
                                                       },
                                                     ]
                                                   }
@@ -2530,12 +2462,12 @@ exports[`Meter Widget renders correctly 1`] = `
                                                       "openMenuOnFocus": false,
                                                       "options": Array [
                                                         Object {
-                                                          "label": "NOT_USED",
-                                                          "value": "NOT_USED",
+                                                          "label": "GROSS_PRODUCTION_SITE",
+                                                          "value": "GROSS_PRODUCTION_SITE",
                                                         },
                                                         Object {
-                                                          "label": "PRODUCTION_REVENUE",
-                                                          "value": "GROSS_PRODUCTION",
+                                                          "label": "GROSS_PRODUCTION_INVERTER",
+                                                          "value": "GROSS_PRODUCTION_INVERTER",
                                                         },
                                                       ],
                                                       "pageSize": 5,

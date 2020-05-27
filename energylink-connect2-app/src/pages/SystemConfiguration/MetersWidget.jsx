@@ -23,14 +23,19 @@ function MetersWidget() {
   )
 
   const CONSUMPTION_CT = [
-    { label: t('NOT_USED'), value: 'NOT_USED' },
-    { label: t('CONSUMPTION_LOAD'), value: 'NET_CONSUMPTION_LOADSIDE' },
-    { label: t('CONSUMPTION_LINE'), value: 'GROSS_CONSUMPTION_LINESIDE' }
+    { label: t('NET_CONSUMPTION_LOADSIDE'), value: 'NET_CONSUMPTION_LOADSIDE' },
+    {
+      label: t('GROSS_CONSUMPTION_LINESIDE'),
+      value: 'GROSS_CONSUMPTION_LINESIDE'
+    }
   ]
 
   const PRODUCTION_CT = [
-    { label: t('NOT_USED'), value: 'NOT_USED' },
-    { label: t('PRODUCTION_REVENUE'), value: 'GROSS_PRODUCTION' }
+    { label: t('GROSS_PRODUCTION_SITE'), value: 'GROSS_PRODUCTION_SITE' },
+    {
+      label: t('GROSS_PRODUCTION_INVERTER'),
+      value: 'GROSS_PRODUCTION_INVERTER'
+    }
   ]
 
   return (
