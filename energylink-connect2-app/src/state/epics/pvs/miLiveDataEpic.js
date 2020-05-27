@@ -21,7 +21,7 @@ import {
 
 const transformDevice = device => ({
   sn: device.SERIAL,
-  power: multiply(1000, device.p_mppt1_kw || 0)
+  power: multiply(1000, device.p_3phsum_kw || 0)
 })
 
 const getData = compose(
