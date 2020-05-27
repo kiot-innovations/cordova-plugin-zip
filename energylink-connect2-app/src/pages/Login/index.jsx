@@ -38,7 +38,7 @@ function Login() {
         <div className="mb-30 has-text-centered">
           <p>{t('NO_ACCOUNT')}</p>
           <Link
-            className="link is-uppercase"
+            className="has-text-weight-bold is-uppercase is-size-7"
             to={paths.UNPROTECTED.GET_ASSISTANCE.path}
           >
             {t('GET_ASSISTANCE')}

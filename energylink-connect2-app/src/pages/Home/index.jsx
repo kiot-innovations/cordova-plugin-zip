@@ -100,7 +100,7 @@ function Home() {
         <p>{t('CS_NOT_FOUND')}</p>
         <Link
           to={paths.PROTECTED.CREATE_SITE.path}
-          className="link is-uppercase"
+          className="has-text-weight-bold is-uppercase is-size-7"
         >
           <small>{t('CREATE_SITE')}</small>
         </Link>

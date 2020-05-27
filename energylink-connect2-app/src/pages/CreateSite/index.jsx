@@ -250,7 +250,7 @@ function CreateSite() {
                 <div className="message error mb-10">{t(serverError)}</div>
               )}
               <button
-                className={clsx('button is-primary is-uppercase mb-20 ml-10', {
+                className={clsx('button is-primary is-uppercase mb-20', {
                   'is-loading': isSaving
                 })}
                 type="submit"
@@ -261,7 +261,10 @@ function CreateSite() {
 
               {either(
                 !isSaving,
-                <Link className="is-uppercase" to={paths.PROTECTED.ROOT.path}>
+                <Link
+                  className="is-size-7 has-text-weight-bold is-uppercase"
+                  to={paths.PROTECTED.ROOT.path}
+                >
                   {t('CANCEL')}
                 </Link>
               )}

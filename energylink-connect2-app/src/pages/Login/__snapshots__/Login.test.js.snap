@@ -88,16 +88,16 @@ exports[`Login page renders without crashing 1`] = `
                 NO_ACCOUNT
               </p>
               <Link
-                className="link is-uppercase"
+                className="has-text-weight-bold is-uppercase is-size-7"
                 to="/assistance"
               >
                 <LinkAnchor
-                  className="link is-uppercase"
+                  className="has-text-weight-bold is-uppercase is-size-7"
                   href="/assistance"
                   navigate={[Function]}
                 >
                   <a
-                    className="link is-uppercase"
+                    className="has-text-weight-bold is-uppercase is-size-7"
                     href="/assistance"
                     onClick={[Function]}
                   >
