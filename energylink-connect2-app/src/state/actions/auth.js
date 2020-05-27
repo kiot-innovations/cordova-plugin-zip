@@ -103,7 +103,7 @@ export const handleUserProfile = (tokenInfo = {}) => {
           const details = prop('details', error)
 
           if (!details) {
-            dispatch(LOGIN_ERROR({ message: 'HTTP_ERROR' }))
+            dispatch(LOGIN_ERROR({ message: 'LOGGING_IN_ERROR' }))
             return
           }
 

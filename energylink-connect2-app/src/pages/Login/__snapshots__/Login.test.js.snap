@@ -121,7 +121,7 @@ exports[`Login page renders without crashing 1`] = `
                     onClick={[Function]}
                     type="button"
                   >
-                    BTN_LOGGIN_IN
+                    BTN_LOGGING_IN
                   </button>
                 </p>
               </div>

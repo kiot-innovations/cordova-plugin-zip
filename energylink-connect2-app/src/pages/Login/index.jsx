@@ -54,7 +54,7 @@ function Login() {
                 disabled={!!isAuthenticating}
                 onClick={onSubmit(dispatch)}
               >
-                {isAuthenticating ? t('BTN_LOGGIN_IN') : t('BTN_LOGIN')}
+                {isAuthenticating ? t('BTN_LOGGING_IN') : t('BTN_LOG_IN')}
               </button>
             </p>
           </div>
