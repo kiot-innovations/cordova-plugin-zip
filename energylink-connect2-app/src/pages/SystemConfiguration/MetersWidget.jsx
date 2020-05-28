@@ -22,7 +22,8 @@ function MetersWidget() {
     path(['systemConfiguration', 'meter'])
   )
 
-  const CONSUMPTION_CT = [
+  const CONSUMPTION_METER_TYPES = [
+    { label: t('NOT_USED'), value: 'NOT_USED' },
     { label: t('NET_CONSUMPTION_LOADSIDE'), value: 'NET_CONSUMPTION_LOADSIDE' },
     {
       label: t('GROSS_CONSUMPTION_LINESIDE'),
@@ -30,17 +31,38 @@ function MetersWidget() {
     }
   ]
 
-  const PRODUCTION_CT = [
-    { label: t('GROSS_PRODUCTION_SITE'), value: 'GROSS_PRODUCTION_SITE' },
-    {
-      label: t('GROSS_PRODUCTION_INVERTER'),
-      value: 'GROSS_PRODUCTION_INVERTER'
-    }
+  const PRODUCTION_METER_TYPES = [
+    { label: t('NOT_USED'), value: 'NOT_USED' },
+    { label: t('GROSS_PRODUCTION_SITE'), value: 'GROSS_PRODUCTION_SITE' }
   ]
 
   return (
     <div className="pb-15">
       <Collapsible title={t('METER_CT')} icon={MCI}>
+        <div className="field is-horizontal mb-15">
+          <div className="field-label">
+            <label htmlFor="siteName" className="label has-text-white">
+              {t('PRODUCTION_CT')}
+            </label>
+          </div>
+          <div className="field-body">
+            <div className="field">
+              <div className="control">
+                <SelectField
+                  isSearchable={false}
+                  useDefaultDropDown
+                  onSelect={compose(dispatch, SET_PRODUCTION_CT, prop('value'))}
+                  options={PRODUCTION_METER_TYPES}
+                  defaultValue={find(
+                    propEq('value', productionCT),
+                    PRODUCTION_METER_TYPES
+                  )}
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+
         <div className="field is-horizontal mb-15">
           <div className="field-label">
             <label htmlFor="siteName" className="label has-text-white">
@@ -58,10 +80,10 @@ function MetersWidget() {
                     SET_CONSUMPTION_CT,
                     prop('value')
                   )}
-                  options={CONSUMPTION_CT}
+                  options={CONSUMPTION_METER_TYPES}
                   defaultValue={find(
                     propEq('value', consumptionCT),
-                    CONSUMPTION_CT
+                    CONSUMPTION_METER_TYPES
                   )}
                 />
               </div>
@@ -92,30 +114,6 @@ function MetersWidget() {
                   )}
                 />
                 <p className="control">amps</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div className="field is-horizontal mb-15">
-          <div className="field-label">
-            <label htmlFor="siteName" className="label has-text-white">
-              {t('PRODUCTION_CT')}
-            </label>
-          </div>
-          <div className="field-body">
-            <div className="field">
-              <div className="control">
-                <SelectField
-                  isSearchable={false}
-                  useDefaultDropDown
-                  onSelect={compose(dispatch, SET_PRODUCTION_CT, prop('value'))}
-                  options={PRODUCTION_CT}
-                  defaultValue={find(
-                    propEq('value', productionCT),
-                    PRODUCTION_CT
-                  )}
-                />
               </div>
             </div>
           </div>
