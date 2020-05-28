@@ -36,14 +36,14 @@ const SelectedGraph = ({ selectedId, data, dataSource }) => {
           <div className="prod ml-10">
             <div>
               {lastDataPoint.pp}
-              <span className="unit">kW</span>
+              <span className="unit"> kW</span>
             </div>
             <div>produced</div>
           </div>
           <div className="cons mr-10">
             <div>
               {lastDataPoint.pc}
-              <span className="unit">kW</span>
+              <span className="unit"> kW</span>
             </div>
             <div>consumed</div>
           </div>
