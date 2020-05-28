@@ -48,7 +48,7 @@ exports[`RSE Widget renders correctly 1`] = `
                 className="sp-power file level mr-15 is-size-4"
               />
             }
-            title="RSE"
+            title="REMOTE_SYSTEM_ENERGYZE"
           >
             <div
               className="collapsible"
@@ -65,7 +65,7 @@ exports[`RSE Widget renders correctly 1`] = `
                     />
                   </span>
                   <span>
-                    RSE
+                    REMOTE_SYSTEM_ENERGYZE
                   </span>
                 </div>
                 <div
@@ -97,7 +97,7 @@ exports[`RSE Widget renders correctly 1`] = `
                       className="label has-text-white"
                       htmlFor="siteName"
                     >
-                      REMOTE_SYSTEM_ENERGYZE
+                      RSE
                     </label>
                   </div>
                   <div
