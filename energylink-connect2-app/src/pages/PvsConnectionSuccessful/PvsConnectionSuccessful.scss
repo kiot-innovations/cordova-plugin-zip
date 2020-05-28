@@ -3,13 +3,16 @@
 .pvs-connection-success-screen {
   display: grid;
   height: 100%;
-  grid-template-rows: minmax(29px, 1fr) minmax(120px, 1fr) minmax(20px, 1fr) minmax(
-      30px,
-      1fr
-    ) minmax(120px, 1fr) 1fr;
+  grid-template-rows:
+    minmax(29px, 1fr) minmax(120px, 1fr) minmax(20px, 1fr) minmax(30px, 1fr)
+    minmax(120px, 1fr) 1fr;
   align-items: center;
   justify-items: center;
+  .pvs-connected-to {
+    align-self: end;
+  }
   .pvs-sn {
+    align-self: start;
     flex-direction: column;
   }
   .sp-pvs {

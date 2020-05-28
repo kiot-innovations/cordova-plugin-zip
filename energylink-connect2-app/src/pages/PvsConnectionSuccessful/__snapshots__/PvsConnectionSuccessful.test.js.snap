@@ -50,7 +50,9 @@ exports[`PVS connection successful component render correctly 1`] = `
           <span
             className="sp-pvs has-text-white"
           />
-          <span>
+          <span
+            className="pvs-connected-to"
+          >
             CONNECTED_TO
           </span>
           <div
