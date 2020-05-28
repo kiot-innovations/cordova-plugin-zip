@@ -262,7 +262,7 @@
   "CONTINUE_TO_ADJUST": "Continue to adjust arrays",
   "SAVE": "Save",
   "MISSING_MODELS": "Please assign PV Module Models to all MIs before continuing",
-  "EDIT_MODELS": "Set PV Module Models",
+  "EDIT_MODELS": "Edit Microinverter Types",
   "ACCEPT": "Accept",
   "CLOSE": "Close",
   "CONNECTION_LOST": "Connection Lost",
