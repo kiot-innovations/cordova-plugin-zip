@@ -110,7 +110,7 @@
   "STORAGE": "Storage",
   "MICROINVERTERS": "Microinverters",
   "INVALID_ROLE": "You are not authorized to use this app",
-  "FETCH_SITE_ERROR": "Error happened during fetch",
+  "FETCH_SITE_ERROR": "Error occurred while determining sites for your account. Please restart the app.",
   "SUBMIT": "Submit",
   "PLACEHOLDER_FEEDBACK": "Tell us what you think or what you'd like to see in the future",
   "RATE_APP": "Please rate this application (1-5):",
