@@ -110,7 +110,7 @@ function ConnectToPVS() {
       <div className="pt-20">
         <button
           disabled={connecting}
-          className="button is-primary"
+          className="button is-primary is-uppercase"
           onClick={stopScanning(true)}
         >
           {connecting ? t('CONNECTING') : t('STOP_SCAN')}

@@ -1508,13 +1508,13 @@ Object {
                           className="inline-buttons"
                         >
                           <button
-                            className="mt-20 mr-10 button is-outlined is-primary"
+                            className="mt-20 mr-10 button is-outlined is-primary is-uppercase"
                             onClick={[Function]}
                           >
                             SELECT_ALL
                           </button>
                           <button
-                            className="mt-20 ml-10 button is-primary"
+                            className="mt-20 ml-10 button is-primary is-uppercase"
                             onClick={[Function]}
                           >
                             APPLY

@@ -7,7 +7,7 @@ const Welcome = () => (
   <div className="card has-background-white has-text-black">
     <p className>Here you can find stories regarding CM2 Components.</p>
 
-    <button className="button is-info " onClick={linkTo('Header')}>
+    <button className="button is-info is-uppercase " onClick={linkTo('Header')}>
       Click here to see a Header
     </button>
   </div>

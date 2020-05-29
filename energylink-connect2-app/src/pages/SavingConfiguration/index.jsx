@@ -50,11 +50,14 @@ const SavingConfiguration = () => {
               <span>{t('UPDATE_LAYOUT_ELA')}</span>
               <button
                 onClick={goToChangeAddress}
-                className="button is-secondary"
+                className="button is-secondary is-uppercase"
               >
                 {t('CONFIG_NEW_SITE')}
               </button>
-              <button onClick={goToData} className="button is-primary">
+              <button
+                onClick={goToData}
+                className="button is-primary is-uppercase"
+              >
                 {t('DONE')}
               </button>
             </div>
@@ -71,7 +74,10 @@ const SavingConfiguration = () => {
             <div className="status-message">
               <span>{t('CONFIG_ERROR_2')}</span>
               <span>{error}</span>
-              <button onClick={goToConfig} className="button is-primary">
+              <button
+                onClick={goToConfig}
+                className="button is-primary is-uppercase"
+              >
                 {t('RETRY')}
               </button>
             </div>

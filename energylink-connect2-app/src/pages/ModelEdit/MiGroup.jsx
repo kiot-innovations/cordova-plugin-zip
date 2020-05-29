@@ -136,7 +136,7 @@ const MiGroup = ({ title, data }) => {
         <div className="inline-buttons">
           <button
             onClick={e => selectAll(e, data.map(prop('SERIAL')))}
-            className="mt-20 mr-10 button is-outlined is-primary"
+            className="mt-20 mr-10 button is-outlined is-primary is-uppercase"
           >
             {t('SELECT_ALL')}
           </button>
@@ -144,7 +144,7 @@ const MiGroup = ({ title, data }) => {
             onClick={() =>
               applyModel(found, selectedModel, selectedMi, dispatch)
             }
-            className="mt-20 ml-10 button is-primary"
+            className="mt-20 ml-10 button is-primary is-uppercase"
           >
             {t('APPLY')}
           </button>

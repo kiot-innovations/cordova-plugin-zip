@@ -54,7 +54,7 @@ exports[`Connect to PVS page render correctly 1`] = `
             className="pt-20"
           >
             <button
-              className="button is-primary"
+              className="button is-primary is-uppercase"
               onClick={[Function]}
             >
               STOP_SCAN

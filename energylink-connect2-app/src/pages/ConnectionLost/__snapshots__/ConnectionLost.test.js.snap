@@ -78,7 +78,7 @@ exports[`ConnectionLost component render correctly 1`] = `
             className="actions is-flex"
           >
             <button
-              className="button is-outlined is-primary"
+              className="button is-outlined is-primary is-uppercase"
               onClick={[Function]}
             >
               EXIT_SITE

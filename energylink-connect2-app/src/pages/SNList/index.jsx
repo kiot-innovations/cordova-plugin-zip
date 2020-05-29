@@ -79,13 +79,13 @@ function SNList() {
         <span className="has-text-white mb-10">{text}</span>
         <div className="sn-buttons">
           <button
-            className="button half-button-padding is-secondary trigger-scan mr-10"
+            className="button half-button-padding is-secondary is-uppercase trigger-scan mr-10"
             onClick={() => toggleSerialNumbersModal()}
           >
             {t('CANCEL')}
           </button>
           <button
-            className="button half-button-padding is-primary trigger-scan"
+            className="button half-button-padding is-primary is-uppercase trigger-scan"
             onClick={submitSN}
           >
             {t('CONTINUE')}
@@ -130,13 +130,13 @@ function SNList() {
       </span>
       <div className="sn-buttons">
         <button
-          className="button half-button-padding is-secondary trigger-scan mr-10"
+          className="button half-button-padding is-secondary is-uppercase trigger-scan mr-10"
           onClick={() => toggleLegacyDiscoveryModal()}
         >
           {t('CANCEL')}
         </button>
         <button
-          className="button half-button-padding is-primary trigger-scan"
+          className="button half-button-padding is-primary is-uppercase trigger-scan"
           onClick={startLegacyDiscovery}
         >
           {t('CONTINUE')}

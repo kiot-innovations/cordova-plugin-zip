@@ -35,6 +35,7 @@ exports[`NotFound Page render correctly 1`] = `
       className="mb-40"
     >
       <Link
+        className="has-text-weight-bold is-uppercase is-size-7"
         to="/"
       >
         404_BACK

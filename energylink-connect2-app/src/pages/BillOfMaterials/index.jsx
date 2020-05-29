@@ -105,7 +105,7 @@ function BillOfMaterials() {
             </span>
             <Link
               to={paths.PROTECTED.INVENTORY_COUNT.path}
-              className="is-block is-full-width has-text-centered is-bold mb-30 has-text-weight-bold"
+              className="is-block is-full-width has-text-centered is-bold mb-30 has-text-weight-bold is-uppercase is-size-7"
             >
               {t('EDIT')}
             </Link>
@@ -127,7 +127,7 @@ function BillOfMaterials() {
         ) : (
           <Link
             to={paths.PROTECTED.INVENTORY_COUNT.path}
-            className="is-block is-full-width has-text-centered is-bold mb-30 has-text-weight-bold"
+            className="is-block is-full-width has-text-centered is-bold mb-30 has-text-weight-bold is-uppercase is-size-7"
           >
             {t('ADD_INVENTORY')}
           </Link>

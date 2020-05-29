@@ -1369,16 +1369,16 @@ Object {
                 CS_NOT_FOUND
               </p>
               <Link
-                className="link is-uppercase"
+                className="has-text-weight-bold is-uppercase is-size-7"
                 to="/create-site"
               >
                 <LinkAnchor
-                  className="link is-uppercase"
+                  className="has-text-weight-bold is-uppercase is-size-7"
                   href="/create-site"
                   navigate={[Function]}
                 >
                   <a
-                    className="link is-uppercase"
+                    className="has-text-weight-bold is-uppercase is-size-7"
                     href="/create-site"
                     onClick={[Function]}
                   >
@@ -2774,16 +2774,16 @@ Object {
                 CS_NOT_FOUND
               </p>
               <Link
-                className="link is-uppercase"
+                className="has-text-weight-bold is-uppercase is-size-7"
                 to="/create-site"
               >
                 <LinkAnchor
-                  className="link is-uppercase"
+                  className="has-text-weight-bold is-uppercase is-size-7"
                   href="/create-site"
                   navigate={[Function]}
                 >
                   <a
-                    className="link is-uppercase"
+                    className="has-text-weight-bold is-uppercase is-size-7"
                     href="/create-site"
                     onClick={[Function]}
                   >

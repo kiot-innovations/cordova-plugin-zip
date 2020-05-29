@@ -124,7 +124,7 @@ function NetworkWidget({ hideWPSButton, expanded }) {
               <div className="message error">
                 {t('AP_FETCHING_ERROR')}
                 <button
-                  className="button has-text-primary is-text pl-0"
+                  className="button has-text-primary is-uppercase is-text pl-0"
                   onClick={() => dispatch(GET_NETWORK_APS_INIT())}
                 >
                   {t('RETRY_CLICK')}
@@ -146,7 +146,7 @@ function NetworkWidget({ hideWPSButton, expanded }) {
               null,
               <p className="control">
                 <button
-                  className="button is-primary is-outlined"
+                  className="button is-primary is-uppercase is-outlined"
                   disabled={disallowConnecting}
                   onClick={() =>
                     dispatch(

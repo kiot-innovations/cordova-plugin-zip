@@ -49,12 +49,12 @@ function RSEWidget() {
 
   return (
     <div className="pb-15">
-      <Collapsible title={t('RSE')} icon={RSE}>
+      <Collapsible title={t('REMOTE_SYSTEM_ENERGYZE')} icon={RSE}>
         <React.Fragment>
           <div className="field is-horizontal mb-15">
             <div className="field-label">
               <label htmlFor="siteName" className="label has-text-white">
-                {t('REMOTE_SYSTEM_ENERGYZE')}
+                {t('RSE')}
               </label>
             </div>
             <div className="field-body">
@@ -84,7 +84,7 @@ function RSEWidget() {
 
           <div className="is-flex mt-15">
             <button
-              className="button is-primary auto"
+              className="button is-primary is-uppercase auto"
               disabled={isSetting || disableApplyBtn}
               onClick={() =>
                 sendNewRSEValue(invertedPowerProduction(RSES, rseValue).value)

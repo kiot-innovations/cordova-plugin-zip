@@ -88,16 +88,16 @@ exports[`Login page renders without crashing 1`] = `
                 NO_ACCOUNT
               </p>
               <Link
-                className="link"
+                className="has-text-weight-bold is-uppercase is-size-7"
                 to="/assistance"
               >
                 <LinkAnchor
-                  className="link"
+                  className="has-text-weight-bold is-uppercase is-size-7"
                   href="/assistance"
                   navigate={[Function]}
                 >
                   <a
-                    className="link"
+                    className="has-text-weight-bold is-uppercase is-size-7"
                     href="/assistance"
                     onClick={[Function]}
                   >
@@ -116,18 +116,18 @@ exports[`Login page renders without crashing 1`] = `
                   className="control"
                 >
                   <button
-                    className="button is-primary is-loading"
+                    className="button is-primary is-uppercase is-loading"
                     disabled={true}
                     onClick={[Function]}
                     type="button"
                   >
-                    BTN_LOGGIN_IN
+                    BTN_LOGGING_IN
                   </button>
                 </p>
               </div>
               <p>
                 <button
-                  className="button has-text-primary is-text is-size-6 mt-20"
+                  className="button has-text-primary is-text is-uppercase is-size-6 mt-20"
                   onClick={[Function]}
                 >
                   LOGIN_TRY_AGAIN

@@ -62,7 +62,7 @@ exports[`SavingConfiguration component renders correctly 1`] = `
             </span>
             <span />
             <button
-              className="button is-primary"
+              className="button is-primary is-uppercase"
               onClick={[Function]}
             >
               RETRY

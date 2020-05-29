@@ -60,7 +60,7 @@ function ScanDeviceLabels() {
       </div>
 
       <button
-        className="button is-primary trigger-scan mt-15"
+        className="button is-primary is-uppercase trigger-scan mt-15"
         onClick={finishedScanning}
       >
         {t('DONE')}

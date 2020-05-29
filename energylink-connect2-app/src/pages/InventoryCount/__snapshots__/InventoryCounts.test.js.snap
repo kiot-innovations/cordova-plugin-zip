@@ -2483,16 +2483,16 @@ exports[`Inventory Count page renders correctly 1`] = `
         </label>
         <select
           className="input mt-5"
-          defaultValue="None"
+          defaultValue="0"
           id="ESS"
           key="ESS"
           name="ESS"
           onChange={[Function]}
         >
           <option
-            key="None"
+            key="0"
             selected={true}
-            value="None"
+            value="0"
           >
             NONE
           </option>

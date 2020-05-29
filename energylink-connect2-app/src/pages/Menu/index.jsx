@@ -32,7 +32,7 @@ function Menu(props) {
         className="button has-text-centered is-uppercase mb-10 has-text-primary is-text"
         onClick={logout}
       >
-        {t('LOGOUT')}
+        {t('BTN_LOG_OUT')}
       </button>
     </section>
   )
