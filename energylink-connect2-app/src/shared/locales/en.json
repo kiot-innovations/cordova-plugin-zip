@@ -57,7 +57,7 @@
   "DC_MODULES": "DC Modules",
   "STRING_INVERTERS": "String Inverters",
   "EXTERNAL_METERS": "External Meters",
-  "ESS": "Equinox Storage (ESS)",
+  "ESS": "Equinox Storage",
   "NONE": "None",
   "16KWH_1INV": "1 Inverter (16kWh)",
   "26KWH_1INV": "1 Inverter (26kWh)",
