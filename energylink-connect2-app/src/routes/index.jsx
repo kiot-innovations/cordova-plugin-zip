@@ -36,6 +36,7 @@ import UpdateScreen from 'pages/UpdateScreen'
 import { validateSession } from 'state/actions/auth'
 import { updateBodyHeight } from 'shared/utils'
 import { deviceResumeListener } from 'state/actions/mobile'
+import useDownloader from 'hooks/useDownloader'
 
 import paths from './paths'
 
@@ -82,6 +83,7 @@ function AppRoutes() {
   })
 
   useUpgrade()
+  useDownloader()
   useCanceledPVSConnection()
 
   useEffect(() => {

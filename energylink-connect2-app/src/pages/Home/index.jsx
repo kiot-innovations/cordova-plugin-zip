@@ -9,7 +9,6 @@ import paths from 'routes/paths'
 import { useI18n } from 'shared/i18n'
 import { cleanString, either } from 'shared/utils'
 import { RESET_DISCOVERY } from 'state/actions/devices'
-import { getFile } from 'state/actions/fileDownloader'
 import { RESET_INVENTORY } from 'state/actions/inventory'
 import { RESET_PVS_CONNECTION } from 'state/actions/network'
 import { RESET_PVS_INFO_STATE } from 'state/actions/pvs'
@@ -18,6 +17,7 @@ import { GET_SITES_INIT, RESET_SITE, SET_SITE } from 'state/actions/site'
 
 import './Home.scss'
 import { RESET_LAST_VISITED_PAGE } from 'state/actions/global'
+import { FIRMWARE_GET_FILE } from 'state/actions/fileDownloader'
 
 const getString = compose(
   join(' '),
@@ -58,7 +58,7 @@ function Home() {
 
   useEffect(() => {
     dispatch(GET_SITES_INIT())
-    dispatch(getFile())
+    dispatch(FIRMWARE_GET_FILE())
   }, [dispatch])
 
   const notFoundText = t('NOT_FOUND')

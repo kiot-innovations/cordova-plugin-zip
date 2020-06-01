@@ -12,7 +12,6 @@ import {
   startWebserver,
   stopWebserver
 } from 'shared/webserver'
-import { getFileBlob, getPVSFileSystemName } from 'state/actions/fileDownloader'
 import {
   FIRMWARE_UPDATE_COMPLETE,
   FIRMWARE_UPDATE_ERROR,
@@ -27,6 +26,7 @@ import {
   PVS_CONNECTION_SUCCESS,
   STOP_NETWORK_POLLING
 } from 'state/actions/network'
+import { getFileBlob, getPVSFileSystemName } from 'shared/fileSystem'
 
 const getFirmwareFromState = path([
   'value',

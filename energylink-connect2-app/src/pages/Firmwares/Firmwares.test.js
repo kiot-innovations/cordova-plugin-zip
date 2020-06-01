@@ -29,7 +29,7 @@ describe('Firmwares component', () => {
     const { component } = mountWithProvider(<Firmwares />)({
       fileDownloader: {
         progress: { progress: 0, lastProgress: 0, downloading: false },
-        gridProfileProgress: {
+        gridProfileInfo: {
           progress: 0,
           lastProgress: 0,
           lastModified: null
@@ -40,9 +40,9 @@ describe('Firmwares component', () => {
     expect(component.html()).toMatchSnapshot()
   })
   it('should type-safe the file name', () => {
-    const name = 'file name'
-    let fileInfoObj = { name }
-    expect(getFileName(fileInfoObj)).toBe(name)
+    const displayName = 'file name'
+    let fileInfoObj = { displayName }
+    expect(getFileName(fileInfoObj)).toBe(displayName)
     fileInfoObj = {}
     expect(getFileName(fileInfoObj)).toBe(undefined)
   })

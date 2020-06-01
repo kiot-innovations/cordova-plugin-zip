@@ -8,10 +8,7 @@ import {
   GRID_PROFILE_UPLOAD_COMPLETE,
   GRID_PROFILE_UPLOAD_ERROR
 } from 'state/actions/firmwareUpdate'
-import {
-  getGridProfileFileInfo,
-  getFileBlob
-} from 'state/actions/gridProfileDownloader'
+import { getFileBlob, getGridProfileFilePath } from 'shared/fileSystem'
 
 /**
  * Will upload the Grid Profile file to the PVS
@@ -19,8 +16,7 @@ import {
  */
 const uploadGridProfile = async () => {
   try {
-    const fileInfo = await getGridProfileFileInfo()
-    const fileBlob = await getFileBlob(fileInfo)
+    const fileBlob = await getFileBlob(getGridProfileFilePath())
     const formData = new FormData()
     formData.append('file', fileBlob)
     return await fetch(process.env.REACT_APP_GRID_PROFILE_UPLOAD_ENDPOINT, {
