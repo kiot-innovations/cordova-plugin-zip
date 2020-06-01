@@ -26,7 +26,8 @@ import {
   toPairs,
   toUpper,
   values,
-  when
+  when,
+  propOr
 } from 'ramda'
 
 export const either = (condition, whenTrue, whenFalse = null) =>
@@ -50,6 +51,7 @@ export function geocodeByAddress(address) {
 
 export function getGeocodeData({ address_components, geometry }) {
   const data = address_components.map(elem => ({
+    long_name: elem.long_name,
     short_name: elem.short_name,
     type: elem.types.shift()
   }))
@@ -59,7 +61,12 @@ export function getGeocodeData({ address_components, geometry }) {
   //parsed data so we can use it in the setState
   const parsedData = {}
   data.forEach(elem => {
-    parsedData[elem.type] = elem.short_name
+    parsedData[`${elem.type}_long`] = propOr('', 'long_name', elem)
+    parsedData[elem.type] = propOr(
+      propOr('', 'long_name', elem),
+      'short_name',
+      elem
+    )
   })
   return { parsedData, lat, lng }
 }
