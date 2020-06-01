@@ -17,7 +17,12 @@ const GAproperty = process.env.REACT_APP_IS_MOBILE
 ReactGA.initialize(GAproperty)
 ReactGA.set({ checkProtocolTask: null })
 
-Sentry.init({ dsn: process.env.REACT_APP_SENTRY_DSN })
+Sentry.init({
+  dsn: process.env.REACT_APP_SENTRY_DSN,
+  ignoreErrors: [
+    /Non-Error promise rejection captured with keys: code, message/g
+  ]
+})
 
 const startApp = () => {
   ReactDOM.render(<App />, document.getElementById('root'))
