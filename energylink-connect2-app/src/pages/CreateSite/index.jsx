@@ -93,9 +93,9 @@ function CreateSite() {
     const { parsedData, lat, lng } = getGeocodeData(geocodeData)
     setInitialValues({
       siteName: siteName.input.value,
-      city: parsedData.locality || parsedData.political,
+      city: parsedData.locality_long || parsedData.political_long,
       postalCode: parsedData.postal_code,
-      state: parsedData.administrative_area_level_1,
+      state: parsedData.administrative_area_level_1_long,
       latitude: lat,
       longitude: lng,
       address: address.value
