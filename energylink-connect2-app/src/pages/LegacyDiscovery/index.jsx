@@ -8,14 +8,14 @@ import {
 } from 'state/actions/devices'
 import { START_DISCOVERY_INIT } from 'state/actions/pvs'
 import { filterInverters } from 'shared/utils'
+import useModal from 'hooks/useModal'
 import { groupBy, prop, propOr, length, pluck, reduce, add } from 'ramda'
 import clsx from 'clsx'
 import paths from 'routes/paths'
 import DeviceGroup from './DeviceGroup'
 import './LegacyDiscovery.scss'
 
-const claimDevices = (devices, dispatch) => {
-  const inverters = filterInverters(devices)
+const claimDevices = (inverters, dispatch) => {
   const claimObject = inverters.map(mi => {
     mi.OPERATION = 'add'
     return mi
@@ -33,6 +33,7 @@ const LegacyDiscovery = () => {
     found,
     progress
   } = useSelector(state => state.devices)
+  const inverters = filterInverters(found)
   const dispatch = useDispatch()
 
   const discoveryComplete = propOr(false, 'complete', progress)
@@ -60,8 +61,47 @@ const LegacyDiscovery = () => {
   const groupedDevices =
     length(found) > 0 ? groupBy(prop('DEVICE_TYPE'), found) : []
 
+  const continueWithZeroMIs = () => {
+    toggleMicroinvertersModal()
+    history.push(paths.PROTECTED.INSTALL_SUCCESS.path)
+  }
+
+  const microinvertersModalTitle = (
+    <span className="has-text-white has-text-weight-bold">
+      {t('ATTENTION')}
+    </span>
+  )
+
+  const microinvertersModalContent = (
+    <div className="sn-modal">
+      <span className="has-text-white mb-10">
+        {t('LEGACY_DISCOVERY_ZERO_MIS_WARNING')}
+      </span>
+      <div className="sn-buttons">
+        <button
+          className="button half-button-padding is-secondary is-uppercase trigger-scan mr-10"
+          onClick={() => toggleMicroinvertersModal()}
+        >
+          {t('CANCEL')}
+        </button>
+        <button
+          className="button half-button-padding is-primary is-uppercase trigger-scan"
+          onClick={continueWithZeroMIs}
+        >
+          {t('CONTINUE')}
+        </button>
+      </div>
+    </div>
+  )
+
+  const {
+    modal: microinvertersModal,
+    toggleModal: toggleMicroinvertersModal
+  } = useModal(microinvertersModalContent, microinvertersModalTitle, false)
+
   return (
     <div className="legacy-discovery fill-parent has-text-centered pr-15 pl-15">
+      {microinvertersModal}
       <div className="legacy-discovery__title">
         <span className="is-uppercase has-text-weight-bold mb-20">
           {t('LEGACY_DISCOVERY')}
@@ -95,7 +135,11 @@ const LegacyDiscovery = () => {
             </button>
             <button
               disabled={claimingDevices}
-              onClick={() => claimDevices(found, dispatch)}
+              onClick={() =>
+                length(inverters) > 0
+                  ? claimDevices(inverters, dispatch)
+                  : toggleMicroinvertersModal()
+              }
               className={clsx(
                 'button half-button-padding is-primary is-uppercase trigger-scan',
                 { 'is-loading': claimingDevices }
