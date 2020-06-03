@@ -1,19 +1,31 @@
-const { createMacro } = require('babel-plugin-macros')
+const { createMacro, MacroError } = require('babel-plugin-macros')
 const fs = require('fs')
 const path = require('path')
 const cheerio = require('cheerio')
+
 const configXmlPath = path.join(__dirname, '../../../config.xml')
 
-const $ = cheerio.load(fs.readFileSync(configXmlPath), { xmlMode: true })
+function appVersionMacro({ references, babel }) {
+  if (!fs.existsSync(configXmlPath)) {
+    throw new MacroError(
+      `Looked for "config.xml" in ${configXmlPath}, but didn't find it. App version data is read from it.`
+    )
+  }
 
-const appVersion = $('widget').attr('version')
+  const $ = cheerio.load(fs.readFileSync(configXmlPath), { xmlMode: true })
+  const appVersion = $('widget').attr('version')
 
-module.exports = createMacro(appVersionMacro)
+  if (!appVersion) {
+    throw new MacroError(
+      'Couldn\'t find app version data in "config.xml", check it contains the "version" attribute on the "widget" element.'
+    )
+  }
 
-function appVersionMacro({ references, state, babel }) {
   references.default.forEach(referencePath => {
     const functionCallPath = referencePath.parentPath
     const stringLiteralNode = babel.types.stringLiteral(appVersion)
     functionCallPath.replaceWith(stringLiteralNode)
   })
 }
+
+module.exports = createMacro(appVersionMacro)
