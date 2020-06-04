@@ -112,7 +112,10 @@ const paths = {
       footer: true,
       tab: TABS.INSTALL
     },
-    INVENTORY_COUNT: { path: '/inventory-count', header: true },
+    INVENTORY_COUNT: {
+      path: '/inventory-count',
+      header: true
+    },
     SYSTEM_CONFIGURATION: {
       path: '/system-configuration',
       header: true,
@@ -129,7 +132,12 @@ const paths = {
       path: '/connection-lost',
       header: true
     },
-    DATA: { path: '/data', header: true, footer: true, tab: TABS.DATA }
+    DATA: {
+      path: '/data',
+      header: true,
+      footer: true,
+      tab: TABS.DATA
+    }
   },
   UNPROTECTED: {
     LOGIN: {
