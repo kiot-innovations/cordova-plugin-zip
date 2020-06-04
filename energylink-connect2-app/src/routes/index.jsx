@@ -13,6 +13,7 @@ import CreateSite from 'pages/CreateSite'
 import Data from 'pages/Data'
 import Devices from 'pages/Devices'
 import Firmwares from 'pages/Firmwares'
+import VersionInformation from 'pages/VersionInformation'
 import GiveFeedback from 'pages/GiveFeedback'
 import Home from 'pages/Home'
 import InstallSuccessful from 'pages/InstallSuccess'
@@ -55,7 +56,7 @@ const mapComponents = {
   [paths.PROTECTED.PVS_PROVIDE_INTERNET.path]: PVSProvideInternet,
   [paths.PROTECTED.INSTALL_SUCCESS.path]: InstallSuccessful,
   [paths.PROTECTED.ROOT.path]: Home,
-  [paths.PROTECTED.VERSION_INFORMATION.path]: PanelLayoutTool,
+  [paths.PROTECTED.VERSION_INFORMATION.path]: VersionInformation,
   [paths.PROTECTED.INVENTORY_COUNT.path]: InventoryCount,
   [paths.PROTECTED.CONNECT_TO_PVS.path]: ConnectToPVS,
   [paths.PROTECTED.SCAN_LABELS.path]: ScanLabels,
