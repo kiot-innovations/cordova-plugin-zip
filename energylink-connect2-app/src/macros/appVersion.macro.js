@@ -17,7 +17,7 @@ function appVersionMacro({ references, babel }) {
 
   if (!appVersion) {
     throw new MacroError(
-      'Couldn\'t find app version data in "config.xml", check it contains the "version" attribute on the "widget" element.'
+      'Cannot find app version data in "config.xml", check it contains the "version" attribute on the "widget" element.'
     )
   }
 
