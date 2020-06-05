@@ -13,12 +13,18 @@ function VersionInformation() {
         {t('VERSION_INFORMATION')}
       </h1>
 
-      <div className="container">
-        <div className="logo">
-          <Logo />
+      <div className="main-container">
+        <div className="logo-container has-text-centered">
+          <Logo className="logo" />
+          <span className="is-uppercase has-text-white is-bold pt-20">
+            {t('APP_NAME')}
+          </span>
         </div>
 
-        <div className="data">{appVersion()}</div>
+        <div className="data has-text-white has-text-centered">
+          <span className="has-text-white is-bold pb-10">{t('VERSION')}</span>
+          <span className="is-size-4 is-bold">{appVersion()}</span>
+        </div>
       </div>
     </section>
   )

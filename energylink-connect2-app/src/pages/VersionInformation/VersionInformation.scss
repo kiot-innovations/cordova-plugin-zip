@@ -1,29 +1,32 @@
 @import '~@sunpower/theme-dark/styles/variables';
 
 .version-info {
-  .container {
+  align-items: center;
+
+  .main-container {
     display: flex;
     flex-direction: column;
     margin-top: 100px;
     align-items: center;
     width: 70%;
+
+    span {
+      display: block;
+    }
   }
 
-  .logo {
+  .logo-container {
     background-color: $space;
     padding: 60px 0;
     width: 100%;
-    text-align: center;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
   }
 
   .data {
     background-color: $space-dark;
-    color: $white;
     padding: 40px 0;
     width: 100%;
-    text-align: center;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
   }
