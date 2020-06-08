@@ -60,10 +60,22 @@ const paths = {
       path: '/create-site',
       header: true
     },
-    MENU: { path: '/menu', header: true },
-    MANAGE_FIRMWARES: { path: '/manage-firmwares', header: true },
-    VERSION_INFORMATION: { path: '/version-information', header: true },
-    GIVE_FEEDBACK: { path: '/give-feedback', header: true },
+    MENU: {
+      path: '/menu',
+      header: true
+    },
+    MANAGE_FIRMWARES: {
+      path: '/manage-firmwares',
+      header: true
+    },
+    VERSION_INFORMATION: {
+      path: '/version-information',
+      header: true
+    },
+    GIVE_FEEDBACK: {
+      path: '/give-feedback',
+      header: true
+    },
     PVS_CONNECTION_SUCCESS: {
       path: '/pvs-connection-success',
       header: true,
@@ -100,7 +112,10 @@ const paths = {
       footer: true,
       tab: TABS.INSTALL
     },
-    INVENTORY_COUNT: { path: '/inventory-count', header: true },
+    INVENTORY_COUNT: {
+      path: '/inventory-count',
+      header: true
+    },
     SYSTEM_CONFIGURATION: {
       path: '/system-configuration',
       header: true,
@@ -117,7 +132,12 @@ const paths = {
       path: '/connection-lost',
       header: true
     },
-    DATA: { path: '/data', header: true, footer: true, tab: TABS.DATA }
+    DATA: {
+      path: '/data',
+      header: true,
+      footer: true,
+      tab: TABS.DATA
+    }
   },
   UNPROTECTED: {
     LOGIN: {

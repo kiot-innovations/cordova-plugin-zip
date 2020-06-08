@@ -1,5 +1,5 @@
 {
-  "APP_NAME": "EnergyLink Connect",
+  "APP_NAME": "EnergyLink Connect 2.0",
   "ADDRESS": "Address",
   "CUSTOMER_INFORMATION": "Customer information",
   "HUB_PRODUCING": "Producing",
@@ -49,6 +49,7 @@
   "CHANGE_ADDRESS": "Change Address",
   "MANAGE_FIRMWARES": "Manage Firmware",
   "VERSION_INFORMATION": "Version Information",
+  "VERSION": "Version",
   "GIVE_FEEDBACK": "Give us Feedback",
   "VERIFY_SERIAL_PVS_CONN_SUCCESS": "Please verify that the above SN matches the SN of the PVS you just scanned.",
   "WRONG_CREDENTIALS": "Wrong username or password",
