@@ -300,5 +300,7 @@
   "POWER_OUTPUT": "Power Output",
   "NO_MI_LIVE_DATA": "No MI power data available",
   "WATTS": "watts",
-  "GO_PANEL_LAYOUT": "Go to Panel layout tool"
+  "GO_PANEL_LAYOUT": "Go to Panel layout tool",
+  "QRCODE_HINT": "You can find the code on the PVS6 when removing the frontplate",
+  "CONNECTING_PVS": "Hold on, we're connecting to the PVS6..."
 }

@@ -43,21 +43,34 @@ exports[`Connect to PVS page render correctly 1`] = `
           className="qr-layout has-text-centered"
         >
           <span
-            className="is-uppercase has-text-weight-bold mt-10"
+            className="is-uppercase has-text-weight-bold mt-30"
           >
             LOOK_FOR_QR
           </span>
           <div
-            id="scandit"
-          />
+            className="qr-icon"
+          >
+            <i
+              className="sp-qr has-text-white"
+            />
+          </div>
+          <div
+            className="mt-20 mb-20 pr-20 pl-20"
+          >
+            <span
+              className="is-size-6 has-text-centered"
+            >
+              QRCODE_HINT
+            </span>
+          </div>
           <div
             className="pt-20"
           >
             <button
-              className="button is-primary is-uppercase"
+              className="button is-primary"
               onClick={[Function]}
             >
-              STOP_SCAN
+              START_SCAN
             </button>
           </div>
         </div>
