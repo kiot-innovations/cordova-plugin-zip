@@ -166,7 +166,7 @@
   "NET_CONSUMPTION_LOADSIDE": "Load-Side PV",
   "GROSS_CONSUMPTION_LINESIDE": "Line-Side PV",
   "GROSS_PRODUCTION_SITE": "Site Level Production",
-  "GROSS_PRODUCTION_INVERTER": "Inverter Level Production (Revenue Grade)",
+  "GROSS_PRODUCTION_INVERTER": "Inverter Level Production",
   "SUBMIT_CONFIG": "Submit Configuration",
   "SUBMITTING": "Submitting...",
   "FETCHING_OPTIONS": "Fetching Options...",
