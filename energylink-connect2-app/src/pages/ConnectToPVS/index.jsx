@@ -34,7 +34,7 @@ const onSuccess = (setScanning, generatePassword, dispatch, t) => data => {
   }
 }
 
-function ConnectToPVS({ animationState }) {
+function ConnectToPVS() {
   const t = useI18n()
   const dispatch = useDispatch()
   const history = useHistory()
@@ -46,18 +46,7 @@ function ConnectToPVS({ animationState }) {
   }
 
   useEffect(() => {
-    if (!scanning && animationState === 'enter' && !connectionState.connected) {
-      setScanning(true)
-      scanBarcodes(
-        onSuccess(setScanning, generatePassword, dispatch, t),
-        onFail
-      )
-    }
-    if (
-      !connectionState.connecting &&
-      connectionState.connected &&
-      animationState !== 'leave'
-    ) {
+    if (!connectionState.connecting && connectionState.connected) {
       history.push(paths.PROTECTED.PVS_CONNECTION_SUCCESS.path)
     }
     if (!connectionState.connecting && connectionState.err) {
@@ -65,7 +54,6 @@ function ConnectToPVS({ animationState }) {
       alert(t('PVS_CONN_ERROR'))
     }
   }, [
-    animationState,
     connectionState.connected,
     connectionState.connecting,
     connectionState.err,
