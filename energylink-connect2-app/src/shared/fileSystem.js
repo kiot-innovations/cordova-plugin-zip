@@ -70,17 +70,7 @@ export const parseLuaFile = fileName =>
           fileEntry.file(function(file) {
             const reader = new FileReader()
             reader.onloadend = function() {
-              const urlRegex = /url\s=\s'\S*/gm
               const sizeRegex = /dlsize\s=\s\S*/gm
-
-              function getStringData(regex, luaFile) {
-                return regex
-                  .exec(luaFile)[0]
-                  .split("'")
-                  .splice(1, 1)
-                  .pop()
-              }
-
               function getIntegerData(regex, luaFile) {
                 return parseFloat(
                   regex
@@ -95,8 +85,7 @@ export const parseLuaFile = fileName =>
               const size = (
                 getIntegerData(sizeRegex, this.result) / 1000000
               ).toFixed(2)
-              const fileUrl = getStringData(urlRegex, this.result)
-              resolve({ fileUrl, size })
+              resolve(size)
             }
             reader.readAsText(file)
           }, reject)
@@ -109,13 +98,17 @@ export const parseLuaFile = fileName =>
   })
 
 export const getFileBlob = (fileName = '') =>
-  new Promise(async resolve => {
-    const file = await getFileInfo(fileName)
-    const reader = new FileReader()
-    reader.onloadend = function() {
-      resolve(new Blob([this.result]))
+  new Promise(async (resolve, reject) => {
+    try {
+      const file = await getFileInfo(fileName)
+      const reader = new FileReader()
+      reader.onloadend = function() {
+        resolve(new Blob([this.result]))
+      }
+      reader.readAsArrayBuffer(file)
+    } catch (e) {
+      reject(new Error(ERROR_CODES.NO_FILESYSTEM_FILE))
     }
-    reader.readAsArrayBuffer(file)
   })
 
 export const getFirmwareVersionData = async () => {

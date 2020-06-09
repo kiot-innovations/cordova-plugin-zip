@@ -1,4 +1,6 @@
+import { compose, join, slice, split } from 'ramda'
 import { getApiPVS } from 'shared/api'
+import { flipConcat } from 'shared/utils'
 
 export const sendCommandToPVS = async command => {
   const baseUrl = process.env.REACT_APP_PVS_SELECTEDADDRESS
@@ -8,11 +10,16 @@ export const sendCommandToPVS = async command => {
 
 export async function isThePVSAdama() {
   try {
-    const res = await sendCommandToPVS('GetSupervisorInformation')
-    if (!res.ok) throw new Error('PVS NOT CONNECTED')
     await getApiPVS()
     return false
   } catch (e) {
     return true
   }
 }
+
+export const getFileSystemFromLuaFile = compose(
+  flipConcat('/fwup_lua_usb.zip'),
+  join('/'),
+  slice(0, -2),
+  split('/')
+)

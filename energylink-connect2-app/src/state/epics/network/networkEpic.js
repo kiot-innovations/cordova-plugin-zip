@@ -1,5 +1,6 @@
 import { ofType } from 'redux-observable'
-import { from, of, timer } from 'rxjs'
+import { pathOr } from 'ramda'
+import { EMPTY, from, of, timer } from 'rxjs'
 import {
   catchError,
   exhaustMap,
@@ -35,12 +36,18 @@ export const networkPollingEpic = (action$, state$) => {
         exhaustMap(() => from(fetchSSID(state.network.SSID))),
         map(() => ({ type: 'DEVICE_IS_CONNECTED' })),
         catchError(() =>
-          of(
-            PVS_CONNECTION_INIT({
-              ssid: state.network.SSID,
-              password: state.network.password
-            })
+          pathOr(
+            false,
+            ['value', 'fileDownloader', 'progress', 'downloading'],
+            state$
           )
+            ? EMPTY
+            : of(
+                PVS_CONNECTION_INIT({
+                  ssid: state.network.SSID,
+                  password: state.network.password
+                })
+              )
         )
       )
     )

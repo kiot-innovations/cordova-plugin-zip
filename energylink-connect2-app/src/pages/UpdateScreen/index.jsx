@@ -1,4 +1,5 @@
 import { Loader } from 'components/Loader'
+import { pathOr } from 'ramda'
 import React from 'react'
 import { useSelector } from 'react-redux'
 import { useI18n } from 'shared/i18n'
@@ -12,7 +13,18 @@ import './UpdateScreen.scss'
 // }
 
 const UpdateScreen = () => {
-  const { status, percent } = useSelector(state => state.firmwareUpdate)
+  let { status, percent } = useSelector(state => state.firmwareUpdate)
+  const firmwareDownload = useSelector(
+    pathOr({}, ['fileDownloader', 'progress'])
+  )
+  const { fwFileInfo } = useSelector(({ fileDownloader }) => ({
+    fwFileInfo: fileDownloader.fileInfo
+  }))
+
+  const isDownloadingFirmware =
+    firmwareDownload.downloading &&
+    fwFileInfo.name === firmwareDownload.fileName
+
   const t = useI18n()
 
   return (
@@ -26,11 +38,20 @@ const UpdateScreen = () => {
           null,
           <>
             {either(
-              status !== 'UPLOADING_FS',
-              <span className="has-text-white is-size-1">{percent || 0}%</span>,
+              status !== 'UPLOADING_FS' || isDownloadingFirmware,
+              <span className="has-text-white is-size-1">
+                {(isDownloadingFirmware
+                  ? firmwareDownload.progress
+                  : percent) || 0}
+                %
+              </span>,
               <Loader />
             )}
-            <span className="has-text-white">{capitalize(t(status))}</span>
+            <span className="has-text-white">
+              {isDownloadingFirmware
+                ? t('DOWNLOADING_FIRMWARE')
+                : capitalize(t(status))}
+            </span>
           </>
         )}
       </div>

@@ -1,7 +1,7 @@
 import allSettled from 'promise.allsettled'
 import { compose, find, isEmpty, isNil, pathOr, propEq, test } from 'ramda'
 import { ofType } from 'redux-observable'
-import { from, of, timer } from 'rxjs'
+import { EMPTY, from, of, timer } from 'rxjs'
 import { catchError, exhaustMap, map, takeUntil } from 'rxjs/operators'
 
 import { getApiPVS } from 'shared/api'
@@ -101,12 +101,14 @@ export const waitForSwaggerEpic = (action$, state$) => {
                 !isWaitingForConnection(err.message)
               )
                 return of(PVS_CONNECTION_ERROR(t('PVS_CONNECTION_TIMEOUT')))
-              return of(
-                PVS_CONNECTION_INIT({
-                  ssid: state$.value.network.SSID,
-                  password: state$.value.network.password
-                })
-              )
+              return state$.value.fileDownloader.progress.downloading
+                ? EMPTY
+                : of(
+                    PVS_CONNECTION_INIT({
+                      ssid: state$.value.network.SSID,
+                      password: state$.value.network.password
+                    })
+                  )
             })
           )
         )

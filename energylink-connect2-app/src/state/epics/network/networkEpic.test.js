@@ -16,6 +16,11 @@ describe('The network epic tests', () => {
     network: {
       SSID: 'sunPower',
       password: '123456'
+    },
+    fileDownloader: {
+      progress: {
+        downloading: true
+      }
     }
   }
   beforeAll(() => {

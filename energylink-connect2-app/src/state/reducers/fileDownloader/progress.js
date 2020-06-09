@@ -3,7 +3,8 @@ import {
   DOWNLOAD_PROGRESS,
   DOWNLOAD_SUCCESS,
   DOWNLOAD_INIT,
-  DOWNLOAD_ERROR
+  DOWNLOAD_ERROR,
+  DOWNLOAD_FINISHED
 } from 'state/actions/fileDownloader'
 import { createReducer } from 'redux-act'
 
@@ -28,6 +29,10 @@ export default createReducer(
       progress,
       downloading: true,
       lastProgress: state.progress
+    }),
+    [DOWNLOAD_FINISHED]: state => ({
+      ...state,
+      downloading: false
     }),
     [DOWNLOAD_SUCCESS]: state => ({
       ...state,

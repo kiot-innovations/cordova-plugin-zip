@@ -55,6 +55,8 @@ function Firmwares() {
   const downloadGridProfiles = () =>
     dispatch(gridProfileDownloaderActions.GRID_PROFILE_DOWNLOAD_INIT())
 
+  const downloadAbort = () => dispatch(fileDownloaderActions.DOWNLOAD_ABORT())
+
   useEffect(() => {
     dispatch(fileDownloaderActions.FIRMWARE_GET_FILE())
     dispatch(gridProfileDownloaderActions.GRID_PROFILE_GET_FILE())
@@ -68,13 +70,10 @@ function Firmwares() {
         actions={
           !fwFileInfo.error ? (
             isDownloadingFirmware && (
-              <span
-                className={'is-size-4 sp-stop'}
-                onClick={() => window.downloader.abort()}
-              />
+              <span className="is-size-4 sp-stop" onClick={downloadAbort} />
             )
           ) : (
-            <span className={'is-size-4 sp-download'} onClick={downloadFile} />
+            <span className="is-size-4 sp-download" onClick={downloadFile} />
           )
         }
         expanded
@@ -88,11 +87,15 @@ function Firmwares() {
                 {either(
                   isDownloadingFirmware,
                   progress,
-                  getFileSize(fwFileInfo) ? 100 : 0
+                  fwFileInfo.exists ? 100 : 0
                 )}
                 %
               </span>
-              {!isDownloadingFirmware ? t('DOWNLOADED') : t('DOWNLOADING')}
+              {either(
+                isDownloadingFirmware,
+                t('DOWNLOADING'),
+                fwFileInfo.exists ? t('DOWNLOADED') : t('NOT_DOWNLOADED')
+              )}
               <span className="is-pulled-right has-text-white has-text-weight-bold">
                 {getFileSize(fwFileInfo)}MB
               </span>
@@ -112,13 +115,10 @@ function Firmwares() {
         title={t('GRID_PROFILES_PACKAGE')}
         actions={
           isDownloadingGridProfile ? (
-            <span
-              className={'is-size-4 sp-stop'}
-              onClick={() => window.downloader.abort()}
-            />
+            <span className="is-size-4 sp-stop" onClick={downloadAbort} />
           ) : (
             <span
-              className={'is-size-4 sp-download'}
+              className="is-size-4 sp-download"
               onClick={downloadGridProfiles}
             />
           )

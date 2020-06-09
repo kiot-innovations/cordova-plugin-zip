@@ -87,6 +87,8 @@
   "LOGGING_IN_ERROR": "Couldn't finish logging in. An error happened with the request",
   "DOWNLOADING": "downloading",
   "DOWNLOADED": "downloaded",
+  "NOT_DOWNLOADED": "not downloaded",
+  "DOWNLOADING_FIRMWARE": "Downloading FW image",
   "SCAN_EQUIPMENT": "Scan your Microinverters (MI's)",
   "BULK_SCAN_HINT": "Use Bulk Scan to get all the Microinverters (MI's) in one shot.",
   "BULK_SCAN": "Bulk Scan",
