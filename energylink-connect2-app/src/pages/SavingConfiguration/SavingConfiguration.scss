@@ -1,3 +1,5 @@
+@import '~@sunpower/theme-dark/styles/variables';
+
 .saving-configuration{
   display: grid;
   vertical-align: middle;
@@ -6,5 +8,15 @@
   .status-message{
     display: grid;
     grid-row-gap: 1em;
+  }
+
+  .error-message{
+    background-color: $silver-sand4;
+    padding: $font-size-big $font-size-big $font-size;
+    border-radius: 5px;
+    letter-spacing: 0;
+    font-family: $font;
+    font-size: $font-size;
+    text-align: left;
   }
 }

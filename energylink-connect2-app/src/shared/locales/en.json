@@ -303,6 +303,8 @@
   "NO_MI_LIVE_DATA": "No MI power data available",
   "WATTS": "watts",
   "GO_PANEL_LAYOUT": "Go to Panel layout tool",
+  "SITE_KEY_ERROR": "Unknown Site Key",
+  "PVS6_SN_ERROR": "Unknown PVS6 SN",
   "QRCODE_HINT": "You can find the code on the PVS6 when removing the frontplate",
   "CONNECTING_PVS": "Hold on, we're connecting to the PVS6..."
 }
