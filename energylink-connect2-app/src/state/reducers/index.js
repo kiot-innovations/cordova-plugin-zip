@@ -15,6 +15,7 @@ import { shareReducer } from './share'
 import { energyDataReducer } from './energy-data'
 import { energyLiveData } from './energy-live-data'
 import { storageReducer } from './storage'
+import { pltWizard } from './plt-wizard'
 
 import ui from './ui'
 import fileDownloader from './fileDownloader'
@@ -55,6 +56,7 @@ export default combineReducers({
   storage: storageReducer,
   energyLiveData,
   modal,
+  pltWizard,
   energyData: persistReducer(
     {
       key: 'energyData',

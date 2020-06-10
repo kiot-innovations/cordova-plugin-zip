@@ -8,6 +8,7 @@ import {
   withSelectableGroupsContainer
 } from '@sunpower/panel-layout-tool'
 import PanelLayoutTool from 'pages/PanelLayoutTool/Template'
+import { Redirect } from 'react-router-dom'
 import { path } from 'ramda'
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
@@ -28,6 +29,7 @@ export default () => {
   const t = useI18n()
   const err = useError()
   const panels = useSelector(path(['panel_layout_tool', 'panels']))
+  const { saving, saved } = useSelector(path(['pltWizard']))
   const selectedGroup = useSelector(
     path(['panel_layout_tool', 'selectedGroup'])
   )
@@ -43,7 +45,6 @@ export default () => {
 
   const submit = () => {
     dispatch(PLT_SAVE())
-    history.push(paths.PROTECTED.SYSTEM_CONFIGURATION.path)
   }
 
   const goBack = () => {
@@ -70,15 +71,19 @@ export default () => {
         <button
           className="button is-primary is-uppercase is-center"
           onClick={submit}
+          disabled={saving}
         >
-          {t('SUBMIT')}
+          {saving ? t('SAVING') : t('SUBMIT')}
         </button>
+        {saved && <Redirect to={paths.PROTECTED.SYSTEM_CONFIGURATION.path} />}
       </div>
     </div>
   )
   return (
     <PanelLayoutTool
       instruction={t('GROUP_PANEL_PLT')}
+      step={2}
+      step_name={t('PLT_STEP_GROUP_PANELS')}
       err={err}
       Container={EGroupsContainer}
       panels={EPanel}

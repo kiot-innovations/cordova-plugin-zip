@@ -44,6 +44,18 @@
       }
     }
   }
+
+  h1 {
+    font-weight: bold;
+  }
+
+  .step {
+    margin: .5rem;
+    color: white;
+    .step-number {
+      font-weight: bold;
+    }
+  }
 }
 .has-error-text {
   color: $error-red;
@@ -66,8 +78,7 @@
   width: 100%;
   button {
     padding: 0;
-  }
-  .is-secondary{
     width: 9rem;
+
   }
 }

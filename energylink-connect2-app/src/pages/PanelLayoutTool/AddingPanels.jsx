@@ -129,6 +129,8 @@ export default () => {
   return (
     <PanelLayoutTool
       err={err}
+      step={1}
+      step_name={t('PLT_STEP_ADD_POSITION_PANELS')}
       instruction={t('ADD_PANEL_PLT')}
       onClick={assign}
       panels={EPanel}
