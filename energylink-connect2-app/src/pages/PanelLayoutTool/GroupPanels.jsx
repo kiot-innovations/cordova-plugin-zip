@@ -14,6 +14,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import paths from 'routes/paths'
 import { useI18n } from 'shared/i18n'
+import { PLT_SAVE } from '../../state/actions/panel-layout-tool'
 import { useError } from './hooks'
 import './panelLayoutTool.scss'
 
@@ -40,7 +41,8 @@ export default () => {
 
   const history = useHistory()
 
-  const goToConfigure = () => {
+  const submit = () => {
+    dispatch(PLT_SAVE())
     history.push(paths.PROTECTED.SYSTEM_CONFIGURATION.path)
   }
 
@@ -67,7 +69,7 @@ export default () => {
         </button>
         <button
           className="button is-primary is-uppercase is-center"
-          onClick={goToConfigure}
+          onClick={submit}
         >
           {t('SUBMIT')}
         </button>

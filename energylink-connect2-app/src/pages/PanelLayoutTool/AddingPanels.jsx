@@ -8,12 +8,13 @@ import {
   withSelectablePanel
 } from '@sunpower/panel-layout-tool'
 import { compose, map, pathOr, pick, prop, without } from 'ramda'
-import React, { useCallback, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import paths from 'routes/paths'
 import { useI18n } from 'shared/i18n'
 import { either, renameKey } from 'shared/utils'
+import { PLT_LOAD } from '../../state/actions/panel-layout-tool'
 import { useError } from './hooks'
 import './panelLayoutTool.scss'
 import PanelLayoutTool from './Template'
@@ -40,9 +41,14 @@ export default () => {
   const serialNumbers = useSelector(pathOr([], ['pvs', 'serialNumbers']))
   const panels = useSelector(pathOr([], ['panel_layout_tool', 'panels']))
   const err = useError()
-  const [unassigned, setUnassigned] = useState(
-    without(map(prop('id'), panels), map(prop('serial_number'), serialNumbers))
+  const unassigned = without(
+    map(prop('id'), panels),
+    map(prop('serial_number'), serialNumbers)
   )
+
+  useEffect(() => {
+    dispatch(PLT_LOAD())
+  }, [dispatch])
 
   const [index, setIndex] = useState(0)
 
@@ -50,7 +56,6 @@ export default () => {
     e => {
       if (!unassigned[index]) return
       const position = getPosition(e)
-      setUnassigned(without(unassigned[index], unassigned))
       setIndex(index > 0 ? index - 1 : 0)
       dispatch(
         actions.add({
