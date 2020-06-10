@@ -18,19 +18,7 @@ const arrowDirections = {
   RIGHT: 'right'
 }
 
-function ArrowH(color, direction, value, disabled) {
-  if (disabled) {
-    return (
-      <svg
-        width="62"
-        height="26"
-        viewBox="0 0 33 63"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      />
-    )
-  }
-
+function ArrowH(color, direction, value) {
   if (value < 0.01) {
     return (
       <svg
