@@ -27,12 +27,13 @@ function MetersWidget() {
     {
       label: t('GROSS_CONSUMPTION_LINESIDE'),
       value: 'GROSS_CONSUMPTION_LINESIDE'
-    }
+    },
+    { label: t('NOT_USED'), value: 'UNKNOWN' }
   ]
 
   const PRODUCTION_METER_TYPES = [
     {
-      label: t('GROSS_PRODUCTION_INVERTER'),
+      label: t('NOT_USED'),
       value: 'GROSS_PRODUCTION_INVERTER'
     },
     { label: t('GROSS_PRODUCTION_SITE'), value: 'GROSS_PRODUCTION_SITE' }
