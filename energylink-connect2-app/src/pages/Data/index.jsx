@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { filter, head, length, pathOr } from 'ramda'
 import RightNow from 'components/RightNow'
 import { useI18n } from 'shared/i18n'
 import { roundDecimals } from 'shared/rounding'
@@ -20,6 +21,11 @@ export default () => {
   const dispatch = useDispatch()
   const { liveData = {} } = useSelector(state => state.energyLiveData)
   const { miData } = useSelector(state => state.pvs)
+
+  const inventory = useSelector(pathOr({}, ['inventory', 'bom']))
+  const storageInventory = inventoryItem => inventoryItem.item === 'ESS'
+  const storage = filter(storageInventory, inventory)
+  const hasStorage = length(storage) ? head(storage).value !== '0' : false
 
   useEffect(() => {
     dispatch(ENERGY_DATA_START_POLLING())
@@ -64,7 +70,7 @@ export default () => {
         <RightNow
           solarValue={data.powerSolar}
           gridValue={data.powerGrid}
-          hasStorage={true}
+          hasStorage={hasStorage}
           storageValue={data.powerStorage}
           homeValue={data.powerHomeUsage}
           batteryLevel={data.stateOfCharge}

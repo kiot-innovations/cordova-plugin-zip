@@ -18,16 +18,36 @@ const arrowDirections = {
   RIGHT: 'right'
 }
 
-function ArrowH(color, direction, value, disabled) {
-  if (disabled) {
+function ArrowH(color, direction, value, enabled = true) {
+  if (!enabled) {
     return (
       <svg
-        width="62"
-        height="26"
-        viewBox="0 0 33 63"
-        fill="none"
         xmlns="http://www.w3.org/2000/svg"
-      />
+        width="63"
+        height="25"
+        fill="none"
+        viewBox="0 0 63 25"
+        className="arrow fade-in"
+      >
+        <path stroke="#1c272f" strokeWidth="3" d="M0 12.5L63 12.5" />
+        <rect
+          width="31.897"
+          height="22.436"
+          x="16"
+          y="1.87"
+          fill="#1c272f"
+          rx="2"
+        />
+        <text
+          x="51%"
+          y="67%"
+          textAnchor="middle"
+          className="arrow-na"
+          fill="#828282"
+        >
+          N/A
+        </text>
+      </svg>
     )
   }
 
@@ -292,7 +312,7 @@ function RightNow({
           {GridSquare()}
         </div>
         <div className="right-column">
-          {ArrowH('#f7921e', storageDirection, storageValue, !hasStorage)}
+          {ArrowH('#f7921e', storageDirection, storageValue, hasStorage)}
           {StorageSquare(batteryLevel, hasStorage)}
         </div>
       </div>
