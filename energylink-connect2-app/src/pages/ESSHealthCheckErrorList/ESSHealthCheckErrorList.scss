@@ -1,0 +1,13 @@
+.ess-hc {
+  display: grid;
+  grid-template-rows: minmax(15px, 40px) 1fr minmax(10px, 50px) minmax(10px, 90px);
+  align-items: center;
+
+  .buttons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    button {
+      max-width: 120px;
+    }
+  }
+}

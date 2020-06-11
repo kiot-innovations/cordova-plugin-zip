@@ -117,7 +117,13 @@ const paths = {
       path: '/connection-lost',
       header: true
     },
-    DATA: { path: '/data', header: true, footer: true, tab: TABS.DATA }
+    DATA: { path: '/data', header: true, footer: true, tab: TABS.DATA },
+    ESS_HEALTH_CHECK_ERRORS: {
+      path: '/ess-health-check-errors',
+      header: true,
+      footer: true,
+      tab: TABS.INSTALL
+    }
   },
   UNPROTECTED: {
     LOGIN: {

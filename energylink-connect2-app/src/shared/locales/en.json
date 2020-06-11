@@ -298,5 +298,12 @@
   "POWER_OUTPUT": "Power Output",
   "NO_MI_LIVE_DATA": "No MI power data available",
   "WATTS": "watts",
-  "GO_PANEL_LAYOUT": "Go to Panel layout tool"
+  "GO_PANEL_LAYOUT": "Go to Panel layout tool",
+  "HEALTH_CHECK": "Health Check",
+  "HEALTH_REPORT": "Hold on. We're generating the Equinox Health Report",
+  "HEALTH_REPORT_ERROR": "Unable to generate Equinox Health Report",
+  "HEALTH_REPORT_ERROR_COUNT": "We detected {0} error(s)",
+  "HEALTH_REPORT_ERROR_INFO": "View the error list for more details",
+  "HEALTH_REPORT_ERROR_INFO2": "Please fix those issues and try again before continuing",
+  "HEALTH_REPORT_ERROR_LIST": "Error list"
 }

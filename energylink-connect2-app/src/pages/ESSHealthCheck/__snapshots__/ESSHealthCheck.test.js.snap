@@ -1,0 +1,127 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ESSHealthCheck component initial state render correctly 1`] = `
+Object {
+  "component": <BrowserRouter
+    keyLength={0}
+  >
+    <Router
+      history={
+        Object {
+          "action": "POP",
+          "block": [Function],
+          "createHref": [Function],
+          "go": [Function],
+          "goBack": [Function],
+          "goForward": [Function],
+          "length": 1,
+          "listen": [Function],
+          "location": Object {
+            "hash": "",
+            "pathname": "/",
+            "search": "",
+            "state": undefined,
+          },
+          "push": [Function],
+          "replace": [Function],
+        }
+      }
+    >
+      <Provider
+        store={
+          Object {
+            "clearActions": [Function],
+            "dispatch": [Function],
+            "getActions": [Function],
+            "getState": [Function],
+            "replaceReducer": [Function],
+            "subscribe": [Function],
+          }
+        }
+      >
+        <ESSHealthCheck>
+          <div
+            className="ess-hc page-height has-text-centered pt-10"
+          >
+            <span
+              className="is-uppercase has-text-weight-bold"
+            >
+              HEALTH_CHECK
+            </span>
+            <div
+              className="status-message"
+            >
+              <div
+                className="pt-20 pb-20"
+              >
+                <i
+                  className="sp-close has-text-white is-size-1"
+                />
+              </div>
+              <span>
+                 
+                HEALTH_REPORT_ERROR
+                 
+              </span>
+            </div>
+            <div
+              className="info is-size-7"
+            >
+              <Link
+                className="is-size-6"
+                to="/ess-health-check-errors"
+              >
+                <LinkAnchor
+                  className="is-size-6"
+                  href="/ess-health-check-errors"
+                  navigate={[Function]}
+                >
+                  <a
+                    className="is-size-6"
+                    href="/ess-health-check-errors"
+                    onClick={[Function]}
+                  >
+                    HEALTH_REPORT_ERROR_COUNT NaN
+                  </a>
+                </LinkAnchor>
+              </Link>
+              <p>
+                 
+                HEALTH_REPORT_ERROR_INFO
+                 
+              </p>
+              <p>
+                 
+                HEALTH_REPORT_ERROR_INFO2
+                 
+              </p>
+            </div>
+            <div
+              className="buttons are-small"
+            >
+              <button
+                className="button is-primary is-uppercase auto"
+              >
+                HEALTH_REPORT_ERROR_LIST
+              </button>
+              <button
+                className="button is-secondary auto"
+              >
+                RETRY
+              </button>
+            </div>
+          </div>
+        </ESSHealthCheck>
+      </Provider>
+    </Router>
+  </BrowserRouter>,
+  "store": Object {
+    "clearActions": [Function],
+    "dispatch": [Function],
+    "getActions": [Function],
+    "getState": [Function],
+    "replaceReducer": [Function],
+    "subscribe": [Function],
+  },
+}
+`;
