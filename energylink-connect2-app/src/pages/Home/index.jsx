@@ -1,10 +1,7 @@
-import SearchField from 'components/SearchField'
-import { compose, join, length, path, pick, prop, test, values } from 'ramda'
 import React, { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
 import { Link, useHistory } from 'react-router-dom'
-
-import paths from 'routes/paths'
+import { compose, join, path, pick, prop, map, pathOr, values } from 'ramda'
+import { useDispatch, useSelector } from 'react-redux'
 
 import { useI18n } from 'shared/i18n'
 import { cleanString, either } from 'shared/utils'
@@ -12,24 +9,29 @@ import { RESET_DISCOVERY } from 'state/actions/devices'
 import { RESET_INVENTORY } from 'state/actions/inventory'
 import { RESET_PVS_CONNECTION } from 'state/actions/network'
 import { RESET_PVS_INFO_STATE } from 'state/actions/pvs'
-
-import { GET_SITES_INIT, RESET_SITE, SET_SITE } from 'state/actions/site'
-
-import './Home.scss'
+import { RESET_SITE, SET_SITE, GET_SITES_ERROR } from 'state/actions/site'
 import { RESET_LAST_VISITED_PAGE } from 'state/actions/global'
 import { FIRMWARE_GET_FILE } from 'state/actions/fileDownloader'
+import { getApiSearch } from 'shared/api'
 
-const getString = compose(
-  join(' '),
+import paths from 'routes/paths'
+
+import SearchField from 'components/SearchField'
+import './Home.scss'
+
+const formatAddress = compose(
+  join(', '),
   values,
-  pick(['address1', 'city', 'postalCode'])
+  pick(['st_addr_lbl', 'city_id'])
 )
 
 const buildSelectValue = value => ({
-  label: getString(value),
-  value: value.siteKey,
+  label: formatAddress(value),
+  value: value.site_key,
   site: value
 })
+
+const accessValue = compose(buildSelectValue, prop('_source'))
 
 const setSite = (history, dispatch) => site => {
   resetCommissioning(dispatch)
@@ -51,13 +53,11 @@ function Home() {
   const dispatch = useDispatch()
   const history = useHistory()
 
-  const { isFetching, sites = [], error } = useSelector(state => state.site)
-
-  const found = length(sites) || 0
+  const { error } = useSelector(state => state.site)
+  const { access_token } = useSelector(state => state.user.auth)
   const errorMessage = path(['data', 'message'], error)
 
   useEffect(() => {
-    dispatch(GET_SITES_INIT())
     dispatch(FIRMWARE_GET_FILE())
   }, [dispatch])
 
@@ -65,14 +65,30 @@ function Home() {
 
   const filterSites = (inputValue, cb) => {
     const searchStr = cleanString(inputValue)
-    const matchValue = compose(test(new RegExp(searchStr, 'ig')), getString)
-    const results = sites.filter(matchValue).map(buildSelectValue)
-    cb(results)
+    getApiSearch(access_token)
+      .then(path(['apis', 'default']))
+      .then(api =>
+        api.get_v1_search_index__indexId_({
+          indexId: 'site',
+          q: searchStr,
+          pg: 1
+        })
+      )
+      .then(pathOr([], ['body', 'items', 'hits']))
+      .then(map(accessValue))
+      .then(results => {
+        dispatch(GET_SITES_ERROR(null))
+        cb(results)
+      })
+      .catch(error => {
+        dispatch(GET_SITES_ERROR(error))
+        cb([])
+      })
   }
 
   return (
-    <section className="home is-flex has-text-centered full-height">
-      <div className="section">
+    <section className="home has-text-centered full-height pl-15 pr-15">
+      <div className="search">
         <span className="sp sp-map has-text-white" />
         <h6 className="is-uppercase mt-20 mb-20">{t('SELECT_SITE')}</h6>
 
@@ -82,12 +98,6 @@ function Home() {
           notFoundText={notFoundText}
         />
 
-        <div className="message mb-10 mt-10">
-          <p className="pl-20 pr-20">
-            {isFetching ? t('FETCHING_SITES') : t('FOUND_SITES', found)}
-          </p>
-        </div>
-
         {either(
           error,
           <div className="message error mb-10 mt-10">
@@ -96,15 +106,15 @@ function Home() {
           </div>
         )}
       </div>
-      <section>
+      <article>
         <p>{t('CS_NOT_FOUND')}</p>
         <Link
           to={paths.PROTECTED.CREATE_SITE.path}
-          className="has-text-weight-bold is-uppercase is-size-7"
+          className="has-text-weight-bold is-uppercase is-size-6"
         >
           <small>{t('CREATE_SITE')}</small>
         </Link>
-      </section>
+      </article>
     </section>
   )
 }
