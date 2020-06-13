@@ -57,7 +57,7 @@ function GridBehaviorWidget() {
 
   useEffect(() => {
     dispatch(FETCH_GRID_BEHAVIOR())
-  }, [dispatch])
+  }, [])
 
   const findProfileById = pipe(
     findByPathValue(profiles, ['id']),
