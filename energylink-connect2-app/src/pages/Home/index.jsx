@@ -4,7 +4,7 @@ import { compose, join, path, pick, prop, map, pathOr, values } from 'ramda'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { useI18n } from 'shared/i18n'
-import { cleanString, either } from 'shared/utils'
+import { cleanString, either, renameKeys } from 'shared/utils'
 import { RESET_DISCOVERY } from 'state/actions/devices'
 import { RESET_INVENTORY } from 'state/actions/inventory'
 import { RESET_PVS_CONNECTION } from 'state/actions/network'
@@ -33,9 +33,14 @@ const buildSelectValue = value => ({
 
 const accessValue = compose(buildSelectValue, prop('_source'))
 
+const siteKeysMap = {
+  pst_zone_id: 'postalCode'
+}
+
 const setSite = (history, dispatch) => site => {
+  const siteKeysRenamed = renameKeys(siteKeysMap, site)
   resetCommissioning(dispatch)
-  dispatch(SET_SITE(site))
+  dispatch(SET_SITE(siteKeysRenamed))
   history.push(paths.PROTECTED.BILL_OF_MATERIALS.path)
 }
 
