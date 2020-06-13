@@ -57,7 +57,7 @@ function GridBehaviorWidget() {
 
   useEffect(() => {
     dispatch(FETCH_GRID_BEHAVIOR())
-  }, [])
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
   const findProfileById = pipe(
     findByPathValue(profiles, ['id']),
