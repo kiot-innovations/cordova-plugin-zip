@@ -77,7 +77,7 @@ function InternetInterface({ name }) {
 
   return (
     <p className="if mt-5 ml-20">
-      <span className="mr-10 sp-check connected" />
+      <span className="mr-10 sp-check up connected" />
       <span className="connected">{t('PVS_INTERNET_INTERFACE', name)}</span>
     </p>
   )

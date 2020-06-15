@@ -11,7 +11,12 @@
     .connected {
       color: $leaf;
     }
-    .sp.connected, .sp.disconnected {
+    .up {
+      position: absolute;
+      left: -20px;
+    }
+    .sp.connected,
+    .sp.disconnected {
       &::before {
         content: '';
         width: 6px;
