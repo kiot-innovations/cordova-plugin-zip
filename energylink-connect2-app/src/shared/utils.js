@@ -218,3 +218,12 @@ export const miTypes = {
   AC_Module_Type_C: 'Type C',
   AC_Module_Type_D: 'Type D'
 }
+
+export const renameKeys = (keysMap, obj) =>
+  Object.keys(obj).reduce(
+    (acc, key) => ({
+      ...acc,
+      ...{ [keysMap[key] || key]: obj[key] }
+    }),
+    {}
+  )
