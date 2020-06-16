@@ -7,7 +7,7 @@ import withHeaderAnimation from 'hocs/headerAnimation'
 import { trimString } from 'shared/trim'
 import { either } from 'shared/utils'
 import { toggleRoute } from 'shared/routing'
-import { useRouter } from 'hooks'
+import { useHistory } from 'react-router-dom'
 import paths from 'routes/paths'
 import './Header.scss'
 
@@ -19,7 +19,7 @@ export const Header = ({
   icon = 'sp-menu',
   iconOpen = 'sp-chevron-left'
 }) => {
-  const { history } = useRouter()
+  const history = useHistory()
   const { upgrading, status } = useSelector(state => state.firmwareUpdate)
 
   const shouldDisableMenu =

@@ -1,3 +1,4 @@
+import Banner from 'components/Banner'
 import Footer from 'components/Footer'
 import ModalWrapper from 'components/GlobalModal/Wrapper'
 import Header from 'components/Header'
@@ -14,6 +15,7 @@ const App = props => (
   <Provider store={store}>
     <PersistGate persistor={persistor}>
       <Router>
+        <Banner />
         <Header />
         <Routes />
         <Footer />
