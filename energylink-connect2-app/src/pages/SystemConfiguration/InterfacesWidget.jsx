@@ -110,8 +110,7 @@ function Interface({ icon, name }) {
     !test(new RegExp(t('NO_CONNECTION')), name) && !test(/UNKNOWN/, name)
 
   const classConnected = {
-    connected: isConnected,
-    'has-text-white': !isConnected
+    connected: isConnected
   }
 
   const iconClasses = clsx(icon, 'mr-10', classConnected)
