@@ -69,10 +69,10 @@ exports[`Interfaces Widget renders correctly 1`] = `
                   className="sp disconnected"
                 />
                 <span
-                  className="sp-eth mr-10 has-text-white"
+                  className="sp-eth mr-10"
                 />
                 <span
-                  className="has-text-white"
+                  className=""
                 >
                   NO_CONNECTION (wan)
                 </span>
@@ -90,10 +90,10 @@ exports[`Interfaces Widget renders correctly 1`] = `
                   className="sp disconnected"
                 />
                 <span
-                  className="sp-wifi mr-10 has-text-white"
+                  className="sp-wifi mr-10"
                 />
                 <span
-                  className="has-text-white"
+                  className=""
                 >
                   NO_CONNECTION (wifi)
                 </span>
