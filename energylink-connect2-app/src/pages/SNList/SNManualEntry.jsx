@@ -1,9 +1,10 @@
+import { compose } from 'ramda'
 import React from 'react'
 
 import TextField from '@sunpower/textfield'
 import { useDispatch } from 'react-redux'
 import { useI18n } from 'shared/i18n'
-import { isValidSN } from 'shared/utils'
+import { buildSN, isValidSN } from 'shared/utils'
 import { useField, useForm } from 'react-final-form-hooks'
 import { ADD_PVS_SN } from 'state/actions/pvs'
 import './SNManualEntry.scss'
@@ -11,13 +12,10 @@ import './SNManualEntry.scss'
 const ManualEntryForm = () => {
   const t = useI18n()
   const dispatch = useDispatch()
+  const addSN = compose(dispatch, ADD_PVS_SN, buildSN)
 
   const { form, handleSubmit } = useForm({
-    onSubmit: ({ barcode }) => {
-      const prefix =
-        barcode.length === 12 && barcode.startsWith('12') ? 'E00' : ''
-      dispatch(ADD_PVS_SN({ serial_number: `${prefix}${barcode}` }))
-    },
+    onSubmit: ({ barcode }) => addSN(barcode),
     validate: values => {
       const errors = {}
 
