@@ -1,5 +1,6 @@
 import {
   actions,
+  Control,
   GroupsContainer,
   Panel,
   utils,
@@ -57,13 +58,6 @@ export default () => {
   const footer = (
     <div className="plt-rotate-control-container">
       <span className="has-text-white mb-15">Moving array</span>
-      <button
-        className="button half-button-padding is-secondary sp-rotate trigger-scan is-uppercase"
-        disabled={selectedGroup === -1}
-        onClick={rotateArray}
-      >
-        {t('ROTATE')}
-      </button>
       <div className="plt-buttons-row mt-15">
         <button className="button is-secondary is-uppercase " onClick={goBack}>
           Back
@@ -87,6 +81,15 @@ export default () => {
       err={err}
       Container={EGroupsContainer}
       panels={EPanel}
+      controls={
+        <>
+          <Control
+            icon="sp-rotate"
+            disabled={selectedGroup === -1}
+            onClick={rotateArray}
+          />
+        </>
+      }
       footer={footer}
     />
   )

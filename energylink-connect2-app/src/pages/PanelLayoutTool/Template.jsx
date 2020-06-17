@@ -2,6 +2,7 @@ import {
   Canvas,
   PanelsContainer,
   ZoomControl,
+  PanelLayoutContainer,
   ControlsContainer
 } from '@sunpower/panel-layout-tool'
 import React from 'react'
@@ -10,6 +11,7 @@ import { useI18n } from 'shared/i18n'
 import { either } from 'shared/utils'
 
 const PanelLayoutTool = ({
+  controls,
   footer,
   step,
   step_name,
@@ -41,8 +43,7 @@ const PanelLayoutTool = ({
         </span>
       )}
       <div className="canvas">
-        <ControlsContainer>
-          <ZoomControl step={0.5} min={1} max={3} />
+        <PanelLayoutContainer>
           <Canvas
             store={store}
             width={window.innerWidth - 30}
@@ -55,7 +56,11 @@ const PanelLayoutTool = ({
               <PanelsContainer PanelComponent={panels} />
             )}
           </Canvas>
-        </ControlsContainer>
+          <ControlsContainer
+            center={controls}
+            right={<ZoomControl step={0.5} min={1} max={3} />}
+          />
+        </PanelLayoutContainer>
       </div>
       {footer}
     </div>

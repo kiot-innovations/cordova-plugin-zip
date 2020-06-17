@@ -1,7 +1,7 @@
 import {
   actions,
+  Control,
   Panel,
-  RotationSelector,
   utils,
   withDraggablePanel,
   withNotOverlappablePanel,
@@ -40,6 +40,7 @@ export default () => {
   const t = useI18n()
   const serialNumbers = useSelector(pathOr([], ['pvs', 'serialNumbers']))
   const panels = useSelector(pathOr([], ['panel_layout_tool', 'panels']))
+  const selected = useSelector(pathOr([], ['panel_layout_tool', 'selected']))
   const err = useError()
   const unassigned = without(
     map(prop('id'), panels),
@@ -58,10 +59,12 @@ export default () => {
       const position = getPosition(e)
       setIndex(index > 0 ? index - 1 : 0)
       dispatch(
-        actions.add({
-          id: unassigned[index],
-          ...position
-        })
+        actions.add(
+          utils.panelBuilder({
+            id: unassigned[index],
+            ...position
+          })
+        )
       )
     },
     [unassigned, dispatch, index]
@@ -102,16 +105,8 @@ export default () => {
           </button>
         )}
       </div>
-      <div className="has-text-centered has-text-weight-bold has-text-white is-size-7 is-capitalized">
-        {t('ORIENTATION')}
-      </div>
-      <RotationSelector />
     </div>,
     <div>
-      <div className="has-text-centered has-text-weight-bold has-text-white is-size-7 is-capitalized">
-        {t('ORIENTATION')}
-      </div>
-      <RotationSelector />
       <div className="all-panels-set">
         <span className="has-text-centered has-text-white has-text-weight-bold is-size-7">
           {t('ALL_PANELS_SET')}!
@@ -134,6 +129,20 @@ export default () => {
       instruction={t('ADD_PANEL_PLT')}
       onClick={assign}
       panels={EPanel}
+      controls={
+        <>
+          <Control
+            icon="sp-rotate"
+            disabled={selected === -1}
+            onClick={() => dispatch(actions.setRotation())}
+          />
+          <Control
+            icon="sp-trash"
+            disabled={selected === -1}
+            onClick={() => dispatch(actions.remove())}
+          />
+        </>
+      }
       footer={footer}
     />
   )
