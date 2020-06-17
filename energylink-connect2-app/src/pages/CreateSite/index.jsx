@@ -84,6 +84,14 @@ function CreateSite() {
   const address = useField('address', form)
   useField('latitude', form)
   useField('longitude', form)
+
+  const getUtcOffset = (lat, lng) =>
+    fetch(
+      `https://maps.googleapis.com/maps/api/timezone/json?location=${lat},${lng}&timestamp=1517434620&key=${process.env.REACT_APP_MAPS_API_KEY}`
+    )
+      .then(response => response.json())
+      .then(json => json.rawOffset)
+
   /**
    * All this handle is just to populate all the fields
    * @param address
@@ -91,6 +99,7 @@ function CreateSite() {
   const handleSelect = async address => {
     const geocodeData = await geocodeByAddress(address.value)
     const { parsedData, lat, lng } = getGeocodeData(geocodeData)
+    const utcOffset = await getUtcOffset(lat, lng)
     setInitialValues({
       siteName: siteName.input.value,
       city: parsedData.locality_long || parsedData.political_long,
@@ -98,6 +107,7 @@ function CreateSite() {
       state: parsedData.administrative_area_level_1_long,
       latitude: lat,
       longitude: lng,
+      utcOffset: utcOffset / 3600,
       address: address.value
     })
   }
