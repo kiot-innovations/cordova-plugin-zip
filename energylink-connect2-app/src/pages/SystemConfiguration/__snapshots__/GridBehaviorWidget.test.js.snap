@@ -64,7 +64,9 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                       className="sp-grid file level mr-15 is-size-4"
                     />
                   </span>
-                  <span>
+                  <span
+                    className="has-text-weight-bold"
+                  >
                     GRID_BEHAVIOR
                   </span>
                 </div>

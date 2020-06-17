@@ -7,7 +7,7 @@ import { useHistory } from 'react-router-dom'
 import paths from 'routes/paths'
 import { saveSerialNumber } from 'state/actions/pvs'
 import './ConnectToPVS.scss'
-import { Loader } from '../../components/Loader'
+import { Loader } from 'components/Loader'
 
 const onSuccess = (setScanning, generatePassword, dispatch, t) => data => {
   try {
@@ -16,7 +16,7 @@ const onSuccess = (setScanning, generatePassword, dispatch, t) => data => {
 
     try {
       wifiData = decodeQRData(data)
-    } catch {
+    } catch (err) {
       wifiData = ''
     }
 

@@ -21,7 +21,7 @@ function Collapsible({
       <div className="collapsible-header">
         <div className="collapsible-title">
           <span>{icon}</span>
-          <span>{title}</span>
+          <span className="has-text-weight-bold">{title}</span>
         </div>
         <div className="collapsible-actions">{actions}</div>
         <div className="collapsible-trigger">

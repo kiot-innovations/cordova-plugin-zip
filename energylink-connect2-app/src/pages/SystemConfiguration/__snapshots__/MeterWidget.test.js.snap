@@ -64,7 +64,9 @@ exports[`Meter Widget renders correctly 1`] = `
                       className="sp-meter file level mr-15 is-size-4"
                     />
                   </span>
-                  <span>
+                  <span
+                    className="has-text-weight-bold"
+                  >
                     METER_CT
                   </span>
                 </div>

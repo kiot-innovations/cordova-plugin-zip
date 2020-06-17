@@ -64,7 +64,9 @@ exports[`Network Widget after selecting network network is selected 1`] = `
                       className="sp-wifi file level mr-15 is-size-4"
                     />
                   </span>
-                  <span>
+                  <span
+                    className="has-text-weight-bold"
+                  >
                     NETWORK
                   </span>
                 </div>
@@ -1912,7 +1914,9 @@ exports[`Network Widget on initial state renders correctly 1`] = `
                       className="sp-wifi file level mr-15 is-size-4"
                     />
                   </span>
-                  <span>
+                  <span
+                    className="has-text-weight-bold"
+                  >
                     NETWORK
                   </span>
                 </div>

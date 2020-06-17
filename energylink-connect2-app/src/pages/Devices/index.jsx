@@ -16,7 +16,6 @@ import {
 import paths from 'routes/paths'
 import Collapsible from 'components/Collapsible'
 import ProgressIndicators from './ProgressIndicators'
-
 import './Devices.scss'
 
 const microInverterIcon = (

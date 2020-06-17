@@ -166,7 +166,9 @@ exports[`PVS Provide Internet page renders correctly 1`] = `
                           className="sp-wifi file level mr-15 is-size-4"
                         />
                       </span>
-                      <span>
+                      <span
+                        className="has-text-weight-bold"
+                      >
                         NETWORK
                       </span>
                     </div>

@@ -64,7 +64,9 @@ exports[`RSE Widget renders correctly 1`] = `
                       className="sp-power file level mr-15 is-size-4"
                     />
                   </span>
-                  <span>
+                  <span
+                    className="has-text-weight-bold"
+                  >
                     REMOTE_SYSTEM_ENERGYZE
                   </span>
                 </div>
