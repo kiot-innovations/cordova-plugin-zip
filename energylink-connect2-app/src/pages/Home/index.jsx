@@ -34,7 +34,12 @@ const buildSelectValue = value => ({
 const accessValue = compose(buildSelectValue, prop('_source'))
 
 const siteKeysMap = {
-  pst_zone_id: 'postalCode'
+  st_addr_lbl: 'address1',
+  city_id: 'city',
+  lat_deg: 'latitude',
+  long_deg: 'longitude',
+  pst_zone_id: 'postalCode',
+  site_key: 'siteKey'
 }
 
 const setSite = (history, dispatch) => site => {
