@@ -69,7 +69,7 @@ export const savePanelLayoutEpic = (action$, state$) =>
         )
       ).pipe(
         map(PLT_SAVE_FINISHED),
-        catchError(() => of(PLT_SAVE_ERROR.asError()))
+        catchError(() => of(PLT_SAVE_ERROR.asError('PLT_SAVE_ERROR')))
       )
     )
   )

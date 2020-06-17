@@ -30,7 +30,7 @@ export default () => {
   const t = useI18n()
   const err = useError()
   const panels = useSelector(path(['panel_layout_tool', 'panels']))
-  const { saving, saved } = useSelector(path(['pltWizard']))
+  const { saving, saved, error } = useSelector(path(['pltWizard']))
   const selectedGroup = useSelector(
     path(['panel_layout_tool', 'selectedGroup'])
   )
@@ -71,6 +71,11 @@ export default () => {
         </button>
         {saved && <Redirect to={paths.PROTECTED.SYSTEM_CONFIGURATION.path} />}
       </div>
+      {error && (
+        <div className="has-text-centered has-error-text is-size-7">
+          {t(error)}
+        </div>
+      )}
     </div>
   )
   return (

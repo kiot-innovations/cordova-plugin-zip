@@ -259,6 +259,8 @@
   "OVERLAPPING_PANELS": "Some panels are overlapping. Please move them to a valid location",
   "PLT_STEP_ADD_POSITION_PANELS": "Place your panels",
   "PLT_STEP_GROUP_PANELS": "Modules placed",
+  "PLT_SAVE_ERROR": "Error occurred while saving your panels layout",
+  "PLT_LINK": "Go To Panel Layout Tool",
   "ADD_PANEL_PLT": "Tap on the grid to place the module",
   "GROUP_PANEL_PLT": "Tap on the new location for the selected panel",
   "DISCOVERY_COMPLETE": "Discovery Complete",
