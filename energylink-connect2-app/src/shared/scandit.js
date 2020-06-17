@@ -1,10 +1,13 @@
 /* eslint-disable no-undef */
 import { path, map } from 'ramda'
+import { isIos } from './utils'
 
 export function scanM(onRecognize, nodeID = 'scandit') {
-  const key = process.env.REACT_APP_SCANDIT
+  const KEY = isIos()
+    ? process.env.REACT_APP_SCANDIT_IOS
+    : process.env.REACT_APP_SCANDIT_ANDROID
 
-  const context = Scandit.DataCaptureContext.forLicenseKey(key)
+  const context = Scandit.DataCaptureContext.forLicenseKey(KEY)
 
   // Use the world-facing (back) camera and set it as the frame source of the context. The camera is off by
   // default and must be turned on to start streaming frames to the data capture context for recognition.
