@@ -9,6 +9,7 @@ import liveEnergyData from './live-energy-data'
 import authEpics from './auth'
 import firmwareUpdateEpics from './fimwareUpdate'
 import downloader from './downloader'
+import panelLayoutToolEpics from './panel-layout-tool'
 
 export default combineEpics(
   ...downloader,
@@ -20,5 +21,6 @@ export default combineEpics(
   ...deviceEpics,
   ...systemConfigurationEpics,
   liveEnergyData,
-  ...authEpics
+  ...authEpics,
+  ...panelLayoutToolEpics
 )

@@ -30,11 +30,31 @@
   justify-content: space-around;
   .canvas {
     .controlsContainer {
-      border: 1px solid white;
+
+      > div {
+        display: flex;
+      }
+
+      .right {
+        justify-content: center;
+      }
+
+      .right {
+        justify-content: flex-end;
+      }
+
+      .control:disabled {
+        color: $faded;
+      }
+
+      .control {
+        padding: 0 0.5rem;
+      }
 
       .zoomControl {
         margin: 0;
         right: 0;
+        display: flex;
       }
       button {
         color: $sun;
@@ -42,6 +62,18 @@
         font-size: 1.5rem;
         border: none;
       }
+    }
+  }
+
+  h1 {
+    font-weight: bold;
+  }
+
+  .step {
+    margin: .5rem;
+    color: white;
+    .step-number {
+      font-weight: bold;
     }
   }
 }
@@ -66,8 +98,6 @@
   width: 100%;
   button {
     padding: 0;
-  }
-  .is-secondary{
     width: 9rem;
   }
 }
