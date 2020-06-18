@@ -40,7 +40,7 @@
   "REQ_EMAIL": "Email required",
   "REQ_PASSWORD": "Password required",
   "REQ_USERNAME": "Username required",
-  "SELECT_SITE": "Select customer site",
+  "SELECT_SITE": "Search for customer site",
   "SITE_NAME": "Site Name",
   "SITE_CREATE_ERROR": "Error creating site, please make sure the site doesn't exist already",
   "SITE_CREATED_MODAL_TITLE": "Site created!",

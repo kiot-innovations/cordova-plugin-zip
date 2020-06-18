@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react'
+import * as Sentry from '@sentry/browser'
 import { Link, useHistory } from 'react-router-dom'
 import { compose, join, path, pick, prop, map, pathOr, values } from 'ramda'
 import { useDispatch, useSelector } from 'react-redux'
@@ -91,7 +92,7 @@ function Home() {
         cb(results)
       })
       .catch(error => {
-        dispatch(GET_SITES_ERROR(error))
+        Sentry.captureMessage(error)
         cb([])
       })
   }
