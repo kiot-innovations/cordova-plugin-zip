@@ -5,7 +5,7 @@ import {
   PLT_LOAD,
   PLT_SAVE,
   PLT_SAVE_FINISHED
-} from '../../actions/panel-layout-tool'
+} from 'state/actions/panel-layout-tool'
 
 describe('epic panel-layout-tool', () => {
   describe('getPanelLayoutEpic', () => {
