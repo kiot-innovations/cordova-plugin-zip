@@ -32,16 +32,29 @@
     .controlsContainer {
 
       > div {
-        width: 30%;
+        display: flex;
+      }
+
+      .right {
+        justify-content: center;
+      }
+
+      .right {
+        justify-content: flex-end;
       }
 
       .control:disabled {
         color: $faded;
       }
 
+      .control {
+        padding: 0 0.5rem;
+      }
+
       .zoomControl {
         margin: 0;
         right: 0;
+        display: flex;
       }
       button {
         color: $sun;
