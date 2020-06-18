@@ -55,7 +55,7 @@ const downloadOSZipEpic = (action$, state$) =>
     exhaustMap(() =>
       fileTransferObservable(
         'EQS-FW-Package.zip',
-        'byers-1.0.0/Byers1.zip',
+        '/pvs-connected-devices-firmware/byers-1.0.0/Byers1.zip',
         pathOr('', ['value', 'user', 'auth', 'access_token'], state$)
       ).pipe(
         map(({ entry, percent }) => {
@@ -80,7 +80,7 @@ async function getExternalFirmwareMeta(accessToken) {
   }
 
   const res = await fetch(
-    `${process.env.REACT_APP_ARTIFACTORY_BASE}dists/byers-1.0.0/external-firmware-meta.json`,
+    `${process.env.REACT_APP_ARTIFACTORY_BASE}/pvs-connected-devices-firmware/dists/byers-1.0.0/external-firmware-meta.json`,
     requestOptions
   )
   return await res.json()
