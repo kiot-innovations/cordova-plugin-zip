@@ -21,6 +21,7 @@ import fileDownloader from './fileDownloader'
 import devicesReducer from './devices'
 import systemConfigurationReducer from './systemConfiguration'
 import firmwareUpdate from './firmware-update'
+import essReducer from './ess'
 
 export default combineReducers({
   ...getPLTReducer(),
@@ -71,6 +72,13 @@ export default combineReducers({
       version: storesVersions.energyDataReducer
     },
     energyDataReducer
+  ),
+  ess: persistReducer(
+    {
+      key: 'ess',
+      storage
+    },
+    essReducer
   )
   // Add reducers here
 })

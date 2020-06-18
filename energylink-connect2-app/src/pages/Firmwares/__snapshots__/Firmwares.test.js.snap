@@ -1,3 +1,259 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Firmwares component render correctly 1`] = `"<section class=\\"is-flex tile is-vertical pt-0 pr-10 pl-10 full-height\\"><h1 class=\\"has-text-centered is-uppercase pb-20\\">FIRMWARE</h1><div class=\\"collapsible\\"><div class=\\"collapsible-header\\"><div class=\\"collapsible-title\\"><span></span><span class=\\"has-text-weight-bold\\">Collapsible Title</span></div><div class=\\"collapsible-actions\\"></div><div class=\\"collapsible-trigger\\"><div class=\\"chevron down\\"><span class=\\"sp-chevron-up\\"></span></div></div></div><div class=\\"collapsible-content expanded\\"><section class=\\"mt-20 mb-10\\"><p class=\\"mb-5\\"><span class=\\"mr-10 has-text-white has-text-weight-bold\\">0%</span>NOT_DOWNLOADED<span class=\\"is-pulled-right has-text-white has-text-weight-bold\\">MB</span></p></section></div></div><div class=\\"separator\\"></div><div class=\\"collapsible\\"><div class=\\"collapsible-header\\"><div class=\\"collapsible-title\\"><span></span><span class=\\"has-text-weight-bold\\">GRID_PROFILES_PACKAGE</span></div><div class=\\"collapsible-actions\\"><span class=\\"is-size-4 sp-download\\"></span></div><div class=\\"collapsible-trigger\\"><div class=\\"chevron down\\"><span class=\\"sp-chevron-up\\"></span></div></div></div><div class=\\"collapsible-content expanded\\"><section class=\\"mt-20 mb-10\\"><p class=\\"mb-5\\">FILE_NOT_PRESENT</p></section></div></div></section>"`;
+exports[`Firmwares component render correctly 1`] = `
+<BrowserRouter
+  keyLength={0}
+>
+  <Router
+    history={
+      Object {
+        "action": "POP",
+        "block": [Function],
+        "createHref": [Function],
+        "go": [Function],
+        "goBack": [Function],
+        "goForward": [Function],
+        "length": 1,
+        "listen": [Function],
+        "location": Object {
+          "hash": "",
+          "pathname": "/",
+          "search": "",
+          "state": undefined,
+        },
+        "push": [Function],
+        "replace": [Function],
+      }
+    }
+  >
+    <Provider
+      store={
+        Object {
+          "clearActions": [Function],
+          "dispatch": [Function],
+          "getActions": [Function],
+          "getState": [Function],
+          "replaceReducer": [Function],
+          "subscribe": [Function],
+        }
+      }
+    >
+      <Firmwares>
+        <section
+          className="is-flex tile is-vertical pt-0 pr-10 pl-10 full-height"
+        >
+          <h1
+            className="has-text-centered is-uppercase pb-20"
+          >
+            FIRMWARE
+          </h1>
+          <Collapsible
+            actions={false}
+            expanded={true}
+          >
+            <div
+              className="collapsible"
+            >
+              <div
+                className="collapsible-header"
+              >
+                <div
+                  className="collapsible-title"
+                >
+                  <span />
+                  <span
+                    className="has-text-weight-bold"
+                  >
+                    Collapsible Title
+                  </span>
+                </div>
+                <div
+                  className="collapsible-actions"
+                />
+                <div
+                  className="collapsible-trigger"
+                >
+                  <div
+                    className="chevron down"
+                    onClick={[Function]}
+                  >
+                    <span
+                      className="sp-chevron-up"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div
+                className="collapsible-content expanded"
+              >
+                <section
+                  className="mt-20 mb-10"
+                >
+                  <p
+                    className="mb-5"
+                  >
+                    <span
+                      className="mr-10 has-text-white has-text-weight-bold"
+                    >
+                      0
+                      %
+                    </span>
+                    NOT_DOWNLOADED
+                    <span
+                      className="is-pulled-right has-text-white has-text-weight-bold"
+                    >
+                      MB
+                    </span>
+                  </p>
+                </section>
+              </div>
+            </div>
+          </Collapsible>
+          <Separator>
+            <div
+              className="mt-20"
+            />
+          </Separator>
+          <Collapsible
+            actions={
+              <span
+                className="is-size-4 sp-download"
+                onClick={[Function]}
+              />
+            }
+            expanded={true}
+            title="GRID_PROFILES_PACKAGE"
+          >
+            <div
+              className="collapsible"
+            >
+              <div
+                className="collapsible-header"
+              >
+                <div
+                  className="collapsible-title"
+                >
+                  <span />
+                  <span
+                    className="has-text-weight-bold"
+                  >
+                    GRID_PROFILES_PACKAGE
+                  </span>
+                </div>
+                <div
+                  className="collapsible-actions"
+                >
+                  <span
+                    className="is-size-4 sp-download"
+                    onClick={[Function]}
+                  />
+                </div>
+                <div
+                  className="collapsible-trigger"
+                >
+                  <div
+                    className="chevron down"
+                    onClick={[Function]}
+                  >
+                    <span
+                      className="sp-chevron-up"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div
+                className="collapsible-content expanded"
+              >
+                <section
+                  className="mt-20 mb-10"
+                >
+                  <p
+                    className="mb-5"
+                  >
+                    <GridProfileFileStatus
+                      downloading={false}
+                      gpLastModified={null}
+                    >
+                      FILE_NOT_PRESENT
+                    </GridProfileFileStatus>
+                  </p>
+                </section>
+              </div>
+            </div>
+          </Collapsible>
+          <Separator>
+            <div
+              className="mt-20"
+            />
+          </Separator>
+          <Collapsible
+            expanded={true}
+            title="ESS FIRMWARE"
+          >
+            <div
+              className="collapsible"
+            >
+              <div
+                className="collapsible-header"
+              >
+                <div
+                  className="collapsible-title"
+                >
+                  <span />
+                  <span
+                    className="has-text-weight-bold"
+                  >
+                    ESS FIRMWARE
+                  </span>
+                </div>
+                <div
+                  className="collapsible-actions"
+                />
+                <div
+                  className="collapsible-trigger"
+                >
+                  <div
+                    className="chevron down"
+                    onClick={[Function]}
+                  >
+                    <span
+                      className="sp-chevron-up"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div
+                className="collapsible-content expanded"
+              >
+                <section
+                  className="mt-20 mb-20"
+                >
+                  <p
+                    className="mb-5"
+                  >
+                    <EssFirmwareStatus
+                      error={null}
+                      file={
+                        Object {
+                          "name": "test file name",
+                        }
+                      }
+                      isDownloading={false}
+                    >
+                      <div>
+                        <div>
+                          test file name
+                        </div>
+                      </div>
+                    </EssFirmwareStatus>
+                  </p>
+                </section>
+              </div>
+            </div>
+          </Collapsible>
+        </section>
+      </Firmwares>
+    </Provider>
+  </Router>
+</BrowserRouter>
+`;

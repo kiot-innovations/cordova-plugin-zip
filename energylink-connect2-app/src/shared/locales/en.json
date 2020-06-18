@@ -307,5 +307,6 @@
   "SITE_KEY_ERROR": "Unknown Site Key",
   "PVS6_SN_ERROR": "Unknown PVS6 SN",
   "QRCODE_HINT": "You can find the code on the PVS6 when removing the frontplate",
-  "CONNECTING_PVS": "Hold on, we're connecting to the PVS6..."
+  "CONNECTING_PVS": "Hold on, we're connecting to the PVS6...",
+  "ERROR_DOWNLOADING_ESS": "I found an error downloading ESS firmware"
 }

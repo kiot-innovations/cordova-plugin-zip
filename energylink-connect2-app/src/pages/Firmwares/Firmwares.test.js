@@ -35,9 +35,14 @@ describe('Firmwares component', () => {
           lastModified: null
         },
         fileInfo: { name: 'test-file.zip', error: '' }
+      },
+      ess: {
+        error: null,
+        isDownloading: false,
+        file: { name: 'test file name' }
       }
     })
-    expect(component.html()).toMatchSnapshot()
+    expect(component).toMatchSnapshot()
   })
   it('should type-safe the file name', () => {
     const displayName = 'file name'
