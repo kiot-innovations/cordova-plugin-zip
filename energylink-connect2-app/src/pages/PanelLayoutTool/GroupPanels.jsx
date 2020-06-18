@@ -1,5 +1,6 @@
 import {
   actions,
+  Control,
   GroupsContainer,
   Panel,
   utils,
@@ -8,12 +9,14 @@ import {
   withSelectableGroupsContainer
 } from '@sunpower/panel-layout-tool'
 import PanelLayoutTool from 'pages/PanelLayoutTool/Template'
-import { path } from 'ramda'
+import { Redirect } from 'react-router-dom'
+import { path, prop } from 'ramda'
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import paths from 'routes/paths'
 import { useI18n } from 'shared/i18n'
+import { PLT_SAVE } from 'state/actions/panel-layout-tool'
 import { useError } from './hooks'
 import './panelLayoutTool.scss'
 
@@ -27,6 +30,7 @@ export default () => {
   const t = useI18n()
   const err = useError()
   const panels = useSelector(path(['panel_layout_tool', 'panels']))
+  const { saving, saved, error } = useSelector(prop('pltWizard'))
   const selectedGroup = useSelector(
     path(['panel_layout_tool', 'selectedGroup'])
   )
@@ -40,8 +44,8 @@ export default () => {
 
   const history = useHistory()
 
-  const goToConfigure = () => {
-    history.push(paths.PROTECTED.SYSTEM_CONFIGURATION.path)
+  const submit = () => {
+    dispatch(PLT_SAVE())
   }
 
   const goBack = () => {
@@ -54,32 +58,43 @@ export default () => {
   const footer = (
     <div className="plt-rotate-control-container">
       <span className="has-text-white mb-15">Moving array</span>
-      <button
-        className="button half-button-padding is-secondary sp-rotate trigger-scan is-uppercase"
-        disabled={selectedGroup === -1}
-        onClick={rotateArray}
-      >
-        {t('ROTATE')}
-      </button>
       <div className="plt-buttons-row mt-15">
         <button className="button is-secondary is-uppercase " onClick={goBack}>
           Back
         </button>
         <button
           className="button is-primary is-uppercase is-center"
-          onClick={goToConfigure}
+          onClick={submit}
+          disabled={saving}
         >
-          {t('SUBMIT')}
+          {saving ? t('SAVING') : t('SUBMIT')}
         </button>
+        {saved && <Redirect to={paths.PROTECTED.SYSTEM_CONFIGURATION.path} />}
       </div>
+      {error && (
+        <div className="has-text-centered has-error-text is-size-7">
+          {t(error)}
+        </div>
+      )}
     </div>
   )
   return (
     <PanelLayoutTool
       instruction={t('GROUP_PANEL_PLT')}
+      step={2}
+      step_name={t('PLT_STEP_GROUP_PANELS')}
       err={err}
       Container={EGroupsContainer}
       panels={EPanel}
+      controls={
+        <>
+          <Control
+            icon="sp-rotate"
+            disabled={selectedGroup === -1}
+            onClick={rotateArray}
+          />
+        </>
+      }
       footer={footer}
     />
   )

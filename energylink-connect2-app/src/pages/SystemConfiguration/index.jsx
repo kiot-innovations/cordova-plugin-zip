@@ -129,6 +129,13 @@ function SystemConfiguration() {
       <RSEWidget />
       <div className="submit-config">
         <button
+          onClick={() => history.push(paths.PROTECTED.PANEL_LAYOUT_TOOL.path)}
+          className="button is-secondary mb-10"
+        >
+          {t('PLT_LINK')}
+        </button>
+
+        <button
           onClick={submitConfig}
           className="button is-primary is-uppercase"
         >
