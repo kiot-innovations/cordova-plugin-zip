@@ -7,7 +7,12 @@ export function scanM(onRecognize, nodeID = 'scandit') {
     ? process.env.REACT_APP_SCANDIT_IOS
     : process.env.REACT_APP_SCANDIT_ANDROID
 
-  const context = Scandit.DataCaptureContext.forLicenseKey(KEY)
+  const keyBasedOnEnv =
+    process.env.REACT_APP_IS_TEST || process.env.REACT_APP_IS_DEV
+      ? process.env.REACT_APP_SCANDIT
+      : KEY
+
+  const context = Scandit.DataCaptureContext.forLicenseKey(keyBasedOnEnv)
 
   // Use the world-facing (back) camera and set it as the frame source of the context. The camera is off by
   // default and must be turned on to start streaming frames to the data capture context for recognition.
@@ -75,9 +80,16 @@ export function scanM(onRecognize, nodeID = 'scandit') {
 }
 
 export function scanSimple(onRecognize, nodeID = 'scandit') {
-  const key = process.env.REACT_APP_SCANDIT
+  const KEY = isIos()
+    ? process.env.REACT_APP_SCANDIT_IOS
+    : process.env.REACT_APP_SCANDIT_ANDROID
 
-  const context = Scandit.DataCaptureContext.forLicenseKey(key)
+  const keyBasedOnEnv =
+    process.env.REACT_APP_IS_TEST || process.env.REACT_APP_IS_DEV
+      ? process.env.REACT_APP_SCANDIT
+      : KEY
+
+  const context = Scandit.DataCaptureContext.forLicenseKey(keyBasedOnEnv)
 
   // Use the world-facing (back) camera and set it as the frame source of the context. The camera is off by
   // default and must be turned on to start streaming frames to the data capture context for recognition.
