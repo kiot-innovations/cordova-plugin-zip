@@ -1,0 +1,68 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Device Map Component Renders Correctly 1`] = `
+<div
+  className="device-map mb-10 mt-10"
+>
+  <div
+    className="head-device is-flex"
+  >
+    <span
+      className="has-text-white has-text-weight-bold is-size-5"
+    >
+      All in one
+    </span>
+    <span
+      className="has-text-weight-bold is-size-5"
+    >
+      048572340857NND
+    </span>
+  </div>
+  <div
+    className="rest-of-devices"
+  >
+    <div
+      className="mt-5 mb-5 is-flex child-device"
+    >
+      <span
+        className="has-text-white has-text-weight-bold"
+      >
+        Inverter
+      </span>
+      <span
+        className="has-text-weight-bold"
+      >
+        048572340857NND
+      </span>
+    </div>
+    <div
+      className="mt-5 mb-5 is-flex child-device"
+    >
+      <span
+        className="has-text-white has-text-weight-bold"
+      >
+        MIDC
+      </span>
+      <span
+        className="has-text-weight-bold"
+      >
+        048572340857NND
+      </span>
+    </div>
+    <div
+      className="mt-5 mb-5 is-flex child-device"
+    >
+      <span
+        className="has-text-white has-text-weight-bold"
+      >
+        Battery
+      </span>
+      <span
+        className="has-text-weight-bold"
+      >
+        048572340857NND
+      </span>
+    </div>
+  </div>
+</div>
+`;
