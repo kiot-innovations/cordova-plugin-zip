@@ -10,7 +10,7 @@ import {
   take,
   takeUntil
 } from 'rxjs/operators'
-import { getApiPVS } from 'shared/api'
+import { ERROR_CODES } from 'shared/fileSystem'
 import { translate } from 'shared/i18n'
 import { sendCommandToPVS } from 'shared/PVSUtils'
 import { getPVSVersionNumber, waitFor } from 'shared/utils'
@@ -19,6 +19,10 @@ import {
   startWebserver,
   stopWebserver
 } from 'shared/webserver'
+import {
+  FIRMWARE_DOWNLOADED,
+  FIRMWARE_GET_FILE
+} from 'state/actions/fileDownloader'
 import {
   FIRMWARE_UPDATE_COMPLETE,
   FIRMWARE_UPDATE_ERROR,
@@ -36,15 +40,6 @@ import {
   PVS_CONNECTION_SUCCESS,
   STOP_NETWORK_POLLING
 } from 'state/actions/network'
-import {
-  ERROR_CODES,
-  getFileBlob,
-  getPVSFileSystemName
-} from 'shared/fileSystem'
-import {
-  FIRMWARE_DOWNLOADED,
-  FIRMWARE_GET_FILE
-} from 'state/actions/fileDownloader'
 
 const getFirmwareFromState = path([
   'value',
@@ -52,37 +47,10 @@ const getFirmwareFromState = path([
   'versionBeforeUpgrade'
 ])
 
-/**
- * Will ask the PVS if the upgrade has finished
- * @returns {Promise<boolean>}
- */
-const getUpgradeStatus = async isAdama => {
-  if (isAdama) return await sendCommandToPVS('GetFWUpgradeStatus')
-
-  const swagger = await getApiPVS()
-  const res = await swagger.apis.firmware.getUpgradeStatus()
-  return res.body
-}
-
 async function uploadFirmwareToAdama() {
   await startWebserver()
   const fileUrl = await getFirmwareUpgradePackageURL()
   return await sendCommandToPVS(`StartFWUpgrade&url=${fileUrl}`)
-}
-
-async function uploadFirmwareToPVS(isAdama) {
-  if (isAdama) {
-    return await uploadFirmwareToAdama()
-  }
-  // Will upload the firmware to the PVS (Boomer or later)
-  const fileBlob = await getFileBlob(await getPVSFileSystemName())
-  const formData = new FormData()
-  formData.append('firmware', fileBlob)
-  //TODO use the SWAGGER client, for some reason it is not working at the moment (2020-27-02)
-  return await fetch('http://sunpowerconsole.com/cgi-bin/upload_firmware', {
-    method: 'POST',
-    body: formData
-  })
 }
 
 /**
@@ -93,17 +61,16 @@ async function uploadFirmwareToPVS(isAdama) {
 export const firmwareUpgradeInit = action$ =>
   action$.pipe(
     ofType(FIRMWARE_UPDATE_INIT.getType()),
-    exhaustMap(({ payload }) => {
-      const { isAdama } = payload
-      return from(uploadFirmwareToPVS(isAdama)).pipe(
-        map(() => FIRMWARE_UPDATE_POLL_INIT(isAdama)),
+    exhaustMap(() =>
+      from(uploadFirmwareToAdama()).pipe(
+        map(() => FIRMWARE_UPDATE_POLL_INIT()),
         catchError(err =>
           err.message === ERROR_CODES.NO_FILESYSTEM_FILE
             ? of(FIRMWARE_UPDATE_ERROR_NO_FILE())
             : of(FIRMWARE_UPDATE_ERROR.asError(err))
         )
       )
-    })
+    )
   )
 
 /**
@@ -147,10 +114,10 @@ export const firmwarePollStatus = (action$, state$) => {
   const stopPolling$ = action$.pipe(ofType(FIRMWARE_UPDATE_POLL_STOP.getType()))
   return action$.pipe(
     ofType(FIRMWARE_UPDATE_POLL_INIT.getType()),
-    exhaustMap(({ payload: isAdama }) =>
+    exhaustMap(() =>
       timer(0, 1500).pipe(
         takeUntil(stopPolling$),
-        exhaustMap(() => from(getUpgradeStatus(isAdama))),
+        exhaustMap(() => from(sendCommandToPVS('GetFWUpgradeStatus'))),
         map(status => {
           return path(['STATE'], status) === 'complete'
             ? FIRMWARE_UPDATE_POLL_STOP()
