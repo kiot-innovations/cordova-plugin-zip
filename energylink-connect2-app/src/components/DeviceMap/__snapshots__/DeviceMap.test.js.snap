@@ -10,7 +10,7 @@ exports[`Device Map Component Renders Correctly 1`] = `
     <span
       className="has-text-white has-text-weight-bold is-size-5"
     >
-      All in one
+      ALL IN ONE
     </span>
     <span
       className="has-text-weight-bold is-size-5"
@@ -23,6 +23,7 @@ exports[`Device Map Component Renders Correctly 1`] = `
   >
     <div
       className="mt-5 mb-5 is-flex child-device"
+      key="048572340857NND"
     >
       <span
         className="has-text-white has-text-weight-bold"
@@ -37,6 +38,7 @@ exports[`Device Map Component Renders Correctly 1`] = `
     </div>
     <div
       className="mt-5 mb-5 is-flex child-device"
+      key="048572340857NND"
     >
       <span
         className="has-text-white has-text-weight-bold"
@@ -51,6 +53,7 @@ exports[`Device Map Component Renders Correctly 1`] = `
     </div>
     <div
       className="mt-5 mb-5 is-flex child-device"
+      key="048572340857NND"
     >
       <span
         className="has-text-white has-text-weight-bold"
@@ -64,5 +67,29 @@ exports[`Device Map Component Renders Correctly 1`] = `
       </span>
     </div>
   </div>
+</div>
+`;
+
+exports[`Device Map Component Renders without data 1`] = `
+<div
+  className="device-map mb-10 mt-10"
+>
+  <div
+    className="head-device is-flex"
+  >
+    <span
+      className="has-text-white has-text-weight-bold is-size-5"
+    >
+      NO_DEVICEMAP
+    </span>
+    <span
+      className="has-text-weight-bold is-size-5"
+    >
+      DEVICEMAP_ERROR
+    </span>
+  </div>
+  <div
+    className="rest-of-devices"
+  />
 </div>
 `;

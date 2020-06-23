@@ -30,8 +30,14 @@ const deviceList = [
   }
 ]
 
-storiesOf('Device Map', module).add('Simple', () => (
-  <div className="full-min-height pr-10 pl-10">
-    <DeviceMap deviceList={deviceList} />
-  </div>
-))
+storiesOf('Device Map', module)
+  .add('Simple', () => (
+    <div className="full-min-height pr-10 pl-10">
+      <DeviceMap deviceList={deviceList} />
+    </div>
+  ))
+  .add('No devices provided', () => (
+    <div className="full-min-height pr-10 pl-10">
+      <DeviceMap />
+    </div>
+  ))
