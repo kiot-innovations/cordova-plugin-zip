@@ -7,7 +7,17 @@ import {
   withNotOverlappablePanel,
   withSelectablePanel
 } from '@sunpower/panel-layout-tool'
-import { compose, map, pathOr, pick, prop, without } from 'ramda'
+import {
+  compose,
+  concat,
+  map,
+  pathOr,
+  pick,
+  prop,
+  propEq,
+  filter,
+  without
+} from 'ramda'
 import React, { useCallback, useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
@@ -35,10 +45,21 @@ const getPosition = compose(
   prop('evt')
 )
 
+const getSerialNumbersLegacy = compose(
+  map(renameKey('SERIAL', 'serial_number')),
+  filter(propEq('DEVICE_TYPE', 'Inverter')),
+  pathOr([], ['devices', 'found'])
+)
+
+const getSerialNumbers = pathOr([], ['pvs', 'serialNumbers'])
+
 export default () => {
   const dispatch = useDispatch()
   const t = useI18n()
-  const serialNumbers = useSelector(pathOr([], ['pvs', 'serialNumbers']))
+  const serialNumbers = useSelector(state =>
+    concat(getSerialNumbers(state), getSerialNumbersLegacy(state))
+  )
+
   const panels = useSelector(pathOr([], ['panel_layout_tool', 'panels']))
   const selected = useSelector(pathOr([], ['panel_layout_tool', 'selected']))
   const err = useError()
