@@ -18,7 +18,7 @@ export async function isThePVSAdama() {
 }
 
 export const getFileSystemFromLuaFile = compose(
-  flipConcat('/fwup_lua_usb.zip'),
+  flipConcat('/fwup/rootfs.tgz'),
   join('/'),
   slice(0, -2),
   split('/')

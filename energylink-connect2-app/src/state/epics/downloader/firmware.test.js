@@ -148,7 +148,7 @@ describe('Epic firmware', () => {
         }),
         d: DOWNLOAD_INIT({
           fileName: 'staging-prod-boomer-8888.fs',
-          fileUrl: 'https://test/staging-prod-boomer/8888/fwup_lua_usb.zip',
+          fileUrl: 'https://test/staging-prod-boomer/8888/fwup/rootfs.tgz',
           folder: 'firmware',
           wifiOnly: false
         })
