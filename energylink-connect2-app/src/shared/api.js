@@ -54,3 +54,4 @@ export async function getApiAuth(access_token) {
     requestOptions(access_token)
   )
 }
+export const storageSwaggerTag = 'Commissioning'

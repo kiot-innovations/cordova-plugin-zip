@@ -10,6 +10,7 @@ import authEpics from './auth'
 import firmwareUpdateEpics from './fimwareUpdate'
 import downloader from './downloader'
 import panelLayoutToolEpics from './panel-layout-tool'
+import storageEpics from './storage'
 
 export default combineEpics(
   ...downloader,
@@ -22,5 +23,6 @@ export default combineEpics(
   ...systemConfigurationEpics,
   liveEnergyData,
   ...authEpics,
-  ...panelLayoutToolEpics
+  ...panelLayoutToolEpics,
+  ...storageEpics
 )
