@@ -1,21 +1,29 @@
 import { ofType } from 'redux-observable'
-import { from } from 'rxjs'
-import { switchMap, map } from 'rxjs/operators'
-import { GET_PREDISCOVERY } from 'state/actions/storage'
-import { GET_PREDISCOVERY_SUCCESS } from '../../actions/storage'
+import { from, of } from 'rxjs'
+import { exhaustMap, map, catchError } from 'rxjs/operators'
+import { path } from 'ramda'
+import {
+  GET_PREDISCOVERY,
+  GET_PREDISCOVERY_SUCCESS,
+  GET_PREDISCOVERY_ERROR
+} from 'state/actions/storage'
+import { getApiPVS } from 'shared/api'
 
-//TODO: Rewrite this epic when swagger docs & mock-server gets updated on the Pi
 export const getPreDiscoveryEpic = action$ => {
   return action$.pipe(
     ofType(GET_PREDISCOVERY.getType()),
-    switchMap(() => {
-      const promise = fetch(
-        'http://192.168.4.1:4000/cgi-bin/dl_cgi/energy-storage-systems/devices',
-        { method: 'GET' }
-      )
+    exhaustMap(() => {
+      const promise = getApiPVS()
+        .then(path(['apis', 'Commissioning']))
+        .then(api => api.getDeviceList())
 
       return from(promise).pipe(
-        map(response => GET_PREDISCOVERY_SUCCESS(response.body))
+        map(response =>
+          response.status === 200
+            ? GET_PREDISCOVERY_SUCCESS(response.body)
+            : GET_PREDISCOVERY_ERROR('PREDISCOVERY_ERROR')
+        ),
+        catchError(error => of(GET_PREDISCOVERY_ERROR(error)))
       )
     })
   )

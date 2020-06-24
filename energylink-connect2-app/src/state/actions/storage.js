@@ -2,6 +2,7 @@ import { createAction } from 'redux-act'
 
 export const GET_PREDISCOVERY = createAction('GET_PREDISCOVERY')
 export const GET_PREDISCOVERY_SUCCESS = createAction('GET_PREDISCOVERY_SUCCESS')
+export const GET_PREDISCOVERY_ERROR = createAction('GET_PREDISCOVERY_ERROR')
 
 export const POST_COMPONENT_MAPPING = createAction('POST_COMPONENT_MAPPING')
 export const POST_COMPONENT_MAPPING_SUCCESS = createAction(
