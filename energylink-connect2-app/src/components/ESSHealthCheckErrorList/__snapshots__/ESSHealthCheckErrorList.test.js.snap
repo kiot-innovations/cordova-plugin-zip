@@ -54,7 +54,9 @@ Object {
             >
               HEALTH_REPORT_ERROR_LIST
             </span>
-            <div />
+            <div
+              className="mt-15"
+            />
             <button
               className="button is-secondary auto"
               onClick={[Function]}

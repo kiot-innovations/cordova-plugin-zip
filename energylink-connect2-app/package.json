@@ -33,6 +33,7 @@
     "html2canvas": "^1.0.0-rc.3",
     "jwt-decode": "^2.2.0",
     "loaders.css": "^0.1.2",
+    "marked": "^1.1.0",
     "moment": "^2.24.0",
     "moment-timezone": "^0.5.26",
     "promise.allsettled": "^1.0.2",

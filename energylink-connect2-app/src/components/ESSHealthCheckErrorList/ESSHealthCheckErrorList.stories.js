@@ -150,7 +150,7 @@ const results = {
     {
       error_name: 'UNDER_VOLT_ALARM',
       last_occurrence: '2020-02-15 01:23:45',
-      error_code: '4.5.1',
+      error_code: '43043',
       device_sn: '048572340857NND',
       error_message: 'Critical: low battery SOH.',
       value: {
@@ -161,7 +161,7 @@ const results = {
     {
       error_name: 'UNDER_VOLT_ALARM',
       last_occurrence: '2020-02-15 01:23:45',
-      error_code: '4.5.1',
+      error_code: '11010',
       device_sn: '048572340857NNF',
       error_message: 'Critical: HubPlus Failing.',
       value: {

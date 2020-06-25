@@ -342,5 +342,7 @@
   "enclosure_temperature": "Enclosure temperature",
   "INVERTERS": "Inverters",
   "HUB_PLUS": "Hub Plus",
-  "ALL_IN_ONE": "All in one"
+  "ALL_IN_ONE": "All in one",
+  "POSSIBLE_CAUSES": "Possible Causes",
+  "ACTIONS": "Recommended Actions"
 }

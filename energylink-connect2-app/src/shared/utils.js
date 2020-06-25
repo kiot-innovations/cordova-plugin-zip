@@ -28,6 +28,7 @@ import {
   values,
   when,
   propOr,
+  indexBy,
   clone,
   contains,
   keys
@@ -218,6 +219,8 @@ export const getPVSVersionNumber = compose(
 )
 
 export const flipConcat = flip(concat)
+
+export const arrayToObject = (key, array) => indexBy(prop(key), array)
 
 const flatErrors = map(prop('device_sn'))
 
