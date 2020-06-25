@@ -1,4 +1,5 @@
 import React from 'react'
+import { useHistory } from 'react-router-dom'
 import { map } from 'ramda'
 import { useI18n } from 'shared/i18n'
 
@@ -6,8 +7,10 @@ import Collapsible from 'components/Collapsible'
 
 import './ESSHealthCheckErrorList.scss'
 
-function ESSHealthCheck({ results }) {
+function ESSHealthCheckErrorList({ results }) {
   const t = useI18n()
+  const history = useHistory()
+
   const { errors = [] } = results
   return (
     <div className="ess-hc page-height has-text-centered pt-10">
@@ -16,6 +19,10 @@ function ESSHealthCheck({ results }) {
       </span>
 
       <div>{map(renderErrors(t), errors)}</div>
+
+      <button className="button is-secondary auto" onClick={history.goBack}>
+        {t('BACK')}
+      </button>
     </div>
   )
 }
@@ -42,4 +49,4 @@ const renderErrors = t => err => {
   )
 }
 
-export default ESSHealthCheck
+export default ESSHealthCheckErrorList

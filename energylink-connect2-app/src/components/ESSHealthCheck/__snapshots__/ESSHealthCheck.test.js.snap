@@ -57,6 +57,15 @@ Object {
             <div
               className="status-messageee"
             />
+            <div
+              className="are-small"
+            >
+              <button
+                className="button auto is-primary"
+              >
+                CONTINUE
+              </button>
+            </div>
           </div>
         </ESSHealthCheck>
       </Provider>

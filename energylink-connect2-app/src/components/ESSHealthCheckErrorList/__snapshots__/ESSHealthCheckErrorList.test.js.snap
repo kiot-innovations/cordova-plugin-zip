@@ -39,7 +39,7 @@ Object {
           }
         }
       >
-        <ESSHealthCheck
+        <ESSHealthCheckErrorList
           results={
             Object {
               "errors": Array [],
@@ -55,8 +55,14 @@ Object {
               HEALTH_REPORT_ERROR_LIST
             </span>
             <div />
+            <button
+              className="button is-secondary auto"
+              onClick={[Function]}
+            >
+              BACK
+            </button>
           </div>
-        </ESSHealthCheck>
+        </ESSHealthCheckErrorList>
       </Provider>
     </Router>
   </BrowserRouter>,
