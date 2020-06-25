@@ -13,8 +13,7 @@ import { either } from 'shared/utils'
 const PanelLayoutTool = ({
   controls,
   footer,
-  step,
-  step_name,
+  stepHeader,
   instruction,
   err,
   onClick,
@@ -29,10 +28,7 @@ const PanelLayoutTool = ({
       <h1 className="is-uppercase has-text-centered is-size-6">
         {t('PANEL_LAYOUT_DESIGNER')}
       </h1>
-      <div className="step">
-        <span className="step-number">{step}/2</span>
-        <span className="step-name"> {step_name}</span>
-      </div>
+      {stepHeader}
       {either(
         err,
         <span className="has-text-centered has-error-text is-size-7">

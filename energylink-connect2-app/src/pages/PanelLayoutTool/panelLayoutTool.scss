@@ -33,6 +33,7 @@
 
       > div {
         display: flex;
+        flex: 1 0 0;
       }
 
       .right {
@@ -72,9 +73,6 @@
   .step {
     margin: .5rem;
     color: white;
-    .step-number {
-      font-weight: bold;
-    }
   }
 }
 .has-error-text {

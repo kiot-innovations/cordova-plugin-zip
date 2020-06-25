@@ -57,7 +57,6 @@ export default () => {
   }
   const footer = (
     <div className="plt-rotate-control-container">
-      <span className="has-text-white mb-15">Moving array</span>
       <div className="plt-buttons-row mt-15">
         <button className="button is-secondary is-uppercase " onClick={goBack}>
           Back
@@ -81,8 +80,6 @@ export default () => {
   return (
     <PanelLayoutTool
       instruction={t('GROUP_PANEL_PLT')}
-      step={2}
-      step_name={t('PLT_STEP_GROUP_PANELS')}
       err={err}
       Container={EGroupsContainer}
       panels={EPanel}
