@@ -1,18 +1,19 @@
 import React from 'react'
+import clsx from 'clsx'
 import { isEmpty, length, pathOr, isNil, path } from 'ramda'
 import { useI18n } from 'shared/i18n'
-import { either } from 'shared/utils'
+import { either, addHasErrorProp } from 'shared/utils'
 import { Loader } from 'components/Loader'
 
 import ESSHealthCheckReport from './ESSHealthCheckReport'
 import './ESSHealthCheck.scss'
-import clsx from 'clsx'
 
 function ESSHealthCheck(props) {
   const t = useI18n()
-  const errors = pathOr([], ['results', 'errors'], props)
-  const report = path(['results', 'ess_report'], props)
-  const loading = isNil(props.results) && !props.error
+  const results = addHasErrorProp(props.results)
+  const errors = pathOr([], ['errors'], results)
+  const report = path(['ess_report'], results)
+  const loading = isNil(results) && !props.error
   const classes = clsx('ess-hc page-height has-text-centered pt-10', {
     gridit: loading || props.error
   })
@@ -66,7 +67,7 @@ function ESSHealthCheck(props) {
         !isEmpty(errors) && !loading && !props.error,
         <>
           <div className="info is-size-7">
-            <p className="is-size-6 is-primary">
+            <p className="is-size-6 has-text-primary">
               {t('HEALTH_REPORT_ERROR_COUNT', length(errors))}
             </p>
             <p> {t('HEALTH_REPORT_ERROR_INFO')} </p>

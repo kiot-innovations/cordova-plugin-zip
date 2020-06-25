@@ -27,7 +27,10 @@ import {
   toUpper,
   values,
   when,
-  propOr
+  propOr,
+  clone,
+  contains,
+  keys
 } from 'ramda'
 
 export const either = (condition, whenTrue, whenFalse = null) =>
@@ -215,3 +218,27 @@ export const getPVSVersionNumber = compose(
 )
 
 export const flipConcat = flip(concat)
+
+const flatErrors = map(prop('device_sn'))
+
+export const addHasErrorProp = results => {
+  if (!results || !results.errors) return results
+
+  const copy = clone(results)
+  const snErrors = flatErrors(copy.errors)
+
+  keys(copy.ess_report).forEach(key => {
+    const keyValue = copy.ess_report[key]
+    const newValueForKey = Array.isArray(keyValue)
+      ? map(
+          value =>
+            assoc('hasError', contains(value.serial_number, snErrors), value),
+          keyValue
+        )
+      : assoc('hasError', contains(keyValue.serial_number, snErrors), keyValue)
+
+    copy.ess_report[key] = newValueForKey
+  })
+
+  return copy
+}
