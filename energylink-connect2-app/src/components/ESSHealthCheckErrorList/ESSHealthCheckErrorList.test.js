@@ -1,12 +1,16 @@
 import React from 'react'
 import * as reactRedux from 'react-redux'
-import ESSHealthCheck from '.'
+import ESSHealthCheckErrorList from '.'
 import * as i18n from 'shared/i18n'
 
-describe('ESSHealthCheck component', () => {
+describe('ESSHealthCheckErrorList', () => {
   describe('initial state', () => {
     let dispatchMock
-    let initialState = {}
+    let initialState = {
+      results: {
+        errors: []
+      }
+    }
 
     beforeEach(() => {
       dispatchMock = jest.fn()
@@ -21,7 +25,9 @@ describe('ESSHealthCheck component', () => {
     })
 
     test('render correctly', () => {
-      const component = mountWithProvider(<ESSHealthCheck />)(initialState)
+      const component = mountWithProvider(
+        <ESSHealthCheckErrorList {...initialState} />
+      )({})
       expect(component).toMatchSnapshot()
     })
   })

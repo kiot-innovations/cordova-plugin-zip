@@ -305,5 +305,14 @@
   "HEALTH_REPORT_ERROR_COUNT": "We detected {0} error(s)",
   "HEALTH_REPORT_ERROR_INFO": "View the error list for more details",
   "HEALTH_REPORT_ERROR_INFO2": "Please fix those issues and try again before continuing",
-  "HEALTH_REPORT_ERROR_LIST": "Error list"
+  "HEALTH_REPORT_ERROR_LIST": "Error list",
+  "BatteryErrorReport": "Battery Error Report",
+  "InverterErrorReport": "Inverter Error Report",
+  "HubPlusErrorReport": "HubPlus Error Report",
+  "AllInOneErrorReport": "All In One Error Report",
+  "error_name": "Error name",
+  "last_occurrence": "Last ocurrence",
+  "error_code": "Error code",
+  "device_sn": "Device Serial Number",
+  "NO_ERRORS_FOUND": "No error details found"
 }

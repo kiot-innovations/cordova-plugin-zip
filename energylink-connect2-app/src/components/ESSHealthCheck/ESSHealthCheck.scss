@@ -1,0 +1,27 @@
+.ess-hc {
+  &.gridit {
+    display: grid;
+    grid-template-rows: minmax(15px, 40px) 1fr;
+    align-items: center;
+    min-height: 100%;
+  }
+
+  .buttons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    button {
+      max-width: 120px;
+    }
+  }
+
+  .collapsible.mb-10 {
+    position: relative;
+    overflow-x: scroll;
+    .sp-hey,
+    .sp-check {
+      position: absolute;
+      right: 12px;
+      top: 12px;
+    }
+  }
+}
