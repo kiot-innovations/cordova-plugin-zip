@@ -16,7 +16,7 @@ export const scanBarcodes = (success, fail) => {
       showTorchButton: true, // iOS and Android
       torchOn: false, // Android, launch with the torch switched on (if available)
       saveHistory: false, // Android, save scan history (default false)
-      prompt: 'Find the QR code behind the PVS6 frontplate.', // Android
+      prompt: 'Find the QR code behind the PVS frontplate.', // Android
       formats: 'QR_CODE',
       orientation: 'portrait', // Android only (portrait|landscape), default unset so it rotates with the device
       disableAnimations: false, // iOS
