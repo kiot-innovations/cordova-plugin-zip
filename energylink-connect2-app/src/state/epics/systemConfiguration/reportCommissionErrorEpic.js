@@ -29,8 +29,8 @@ export const reportCommissionErrorEpic = (action$, state$) => {
       })
       Sentry.addBreadcrumb({
         category: 'commissionError',
-        message: `PVS6 SN: ${pathOr(
-          t('PVS6_SN_ERROR'),
+        message: `PVS SN: ${pathOr(
+          t('PVS_SN_ERROR'),
           ['value', 'pvs', 'serialNumber'],
           state$
         )}`,
