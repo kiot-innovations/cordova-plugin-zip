@@ -1,5 +1,5 @@
 import Swagger from 'swagger-client'
-let apiParty, apiSearch, apiSite, apiFirmware, apiScanSN
+let apiParty, apiSite, apiFirmware, apiScanSN
 
 const requestOptions = access_token => ({
   requestInterceptor: req => {
@@ -29,11 +29,11 @@ export async function getApiParty(access_token) {
   )
   return apiParty
 }
-export async function getApiSearch() {
-  if (!apiSearch)
-    apiSearch = await Swagger(process.env.REACT_APP_SWAGGER_SEARCH)
-
-  return apiSearch
+export async function getApiSearch(access_token) {
+  return await Swagger(
+    process.env.REACT_APP_SWAGGER_SEARCH,
+    requestOptions(access_token)
+  )
 }
 export async function getApiSite(access_token) {
   if (!apiSite)
@@ -54,3 +54,4 @@ export async function getApiAuth(access_token) {
     requestOptions(access_token)
   )
 }
+export const storageSwaggerTag = 'Commissioning'

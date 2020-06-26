@@ -4,16 +4,21 @@ import {
   anyPass,
   compose,
   cond,
+  head,
   isEmpty,
   isNil,
   length,
   lt,
   filter,
   map,
+  pathOr,
   propEq,
   path,
+  T,
   test,
-  not
+  not,
+  equals,
+  always
 } from 'ramda'
 import { useDispatch, useSelector } from 'react-redux'
 import { useI18n } from 'shared/i18n'
@@ -29,6 +34,7 @@ function InterfacesWidget(props) {
     path(['systemConfiguration', 'interfaces'])
   )
   const { serialNumber } = useSelector(path(['pvs']))
+  const upInterface = internetUpInterface(data)
 
   useEffect(() => {
     dispatch(GET_INTERFACES_INIT())
@@ -43,9 +49,37 @@ function InterfacesWidget(props) {
         <div className="mb-5 has-text-white is-uppercase has-text-weight-bold">
           {serialNumber}
         </div>
+        {upInterface ? <InternetInterface name={upInterface} /> : null}
         {isFetching ? t('LOADING') : showInterfaces(data, error, t)}
       </div>
     </section>
+  )
+}
+
+const interfaceName = cond([
+  [equals('sta0'), always('Wi-Fi')],
+  [equals('cell'), always('Cellular')],
+  [equals('wan'), always('Ethernet')],
+  [T, always('')]
+])
+const interfaceId = pathOr('', ['interface'])
+const internetUp = propEq('internet', 'up')
+const internetUpInterfaces = filter(internetUp)
+const internetUpInterface = compose(
+  interfaceName,
+  interfaceId,
+  head,
+  internetUpInterfaces
+)
+
+function InternetInterface({ name }) {
+  const t = useI18n()
+
+  return (
+    <p className="if mt-5 ml-20">
+      <span className="mr-10 sp-check up connected" />
+      <span className="connected">{t('PVS_INTERNET_INTERFACE', name)}</span>
+    </p>
   )
 }
 
@@ -76,8 +110,7 @@ function Interface({ icon, name }) {
     !test(new RegExp(t('NO_CONNECTION')), name) && !test(/UNKNOWN/, name)
 
   const classConnected = {
-    connected: isConnected,
-    'has-text-white': !isConnected
+    connected: isConnected
   }
 
   const iconClasses = clsx(icon, 'mr-10', classConnected)

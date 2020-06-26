@@ -1,0 +1,34 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Connected Device Update Component Renders Correctly 1`] = `
+<div
+  className="device-updating mb-10 mt-10"
+>
+  <div
+    className="device-info"
+  >
+    <span
+      className="has-text-white has-text-weight-bold"
+    >
+      Storage Inverter
+    </span>
+    <span
+      className="has-text-weight-bold"
+    >
+      ZT123456789
+    </span>
+    <span
+      className="has-text-weight-bold"
+    >
+      1.2.3
+    </span>
+  </div>
+  <div
+    className="device-updateprog"
+  >
+    <Loader
+      outerClass="height-100"
+    />
+  </div>
+</div>
+`;

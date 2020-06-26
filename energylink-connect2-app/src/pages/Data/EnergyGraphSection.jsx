@@ -1,6 +1,7 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import moment from 'moment'
+import { filter, head, length, pathOr } from 'ramda'
 import { useI18n } from '../../shared/i18n'
 import { GRAPHS, SELECT_ENERGY_GRAPH, DATA_SOURCES } from 'state/actions/user'
 import EnergyGraph, { VIEWS } from 'components/EnergyGraph'
@@ -8,11 +9,16 @@ import EnergySwitch from 'components/EnergySwitch'
 import './EnergyGraphSection.scss'
 
 const SelectedGraph = ({ selectedId, data, dataSource }) => {
+  const inventory = useSelector(pathOr({}, ['inventory', 'bom']))
+  const storageInventory = inventoryItem => inventoryItem.item === 'ESS'
+  const storage = filter(storageInventory, inventory)
+  const hasStorage = length(storage) ? head(storage).value !== '0' : false
+
   if (selectedId === GRAPHS.ENERGY) {
     return (
       <EnergyGraph
         className="mt-55"
-        hasStorage={true}
+        hasStorage={hasStorage}
         data={data}
         weather={true}
         view={VIEWS.LIVE}
@@ -55,7 +61,7 @@ const SelectedGraph = ({ selectedId, data, dataSource }) => {
         className="power-graph"
         series={['pp', 'pc', 'ps']}
         unitLabel="kW"
-        hasStorage={true}
+        hasStorage={hasStorage}
         power={true}
         data={data}
         weather={true}

@@ -1,5 +1,5 @@
 import ProgressiveImage from 'components/ProgressiveImage'
-import { prop } from 'ramda'
+import { prop, pathOr } from 'ramda'
 import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
@@ -42,8 +42,9 @@ function BillOfMaterials() {
   }))
 
   const { address1, latitude, longitude } = useSelector(
-    state => state.site.site || {}
+    pathOr({}, ['site', 'site'])
   )
+
   const googleMapsUrl = useMap(latitude, longitude)
   const imageURL = `https://maps.googleapis.com/maps/api/staticmap?center=${latitude},${longitude}&zoom=21&size=800x800&key=${process.env.REACT_APP_MAPS_API_KEY}&maptype=hybrid&markers=scale:4|blue|${latitude},${longitude}&scale=4`
 

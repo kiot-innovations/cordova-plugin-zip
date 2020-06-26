@@ -3,3 +3,23 @@ import { createAction } from 'redux-act'
 export const GET_ESS_STATUS_INIT = createAction('GET_ESS_STATUS_INIT')
 export const GET_ESS_STATUS_SUCCESS = createAction('GET_ESS_STATUS_SUCCESS')
 export const GET_ESS_STATUS_ERROR = createAction('GET_ESS_STATUS_ERROR')
+export const GET_PREDISCOVERY = createAction('GET_PREDISCOVERY')
+export const GET_PREDISCOVERY_SUCCESS = createAction('GET_PREDISCOVERY_SUCCESS')
+
+export const POST_COMPONENT_MAPPING = createAction('POST_COMPONENT_MAPPING')
+export const POST_COMPONENT_MAPPING_SUCCESS = createAction(
+  'POST_COMPONENT_MAPPING_SUCCESS'
+)
+export const POST_COMPONENT_MAPPING_ERROR = createAction(
+  'POST_COMPONENT_MAPPING_ERROR'
+)
+
+export const GET_COMPONENT_MAPPING_PROGRESS = createAction(
+  'GET_COMPONENT_MAPPING_PROGRESS'
+)
+export const GET_COMPONENT_MAPPING_COMPLETED = createAction(
+  'GET_COMPONENT_MAPPING_COMPLETED'
+)
+export const GET_COMPONENT_MAPPING_ERROR = createAction(
+  'GET_COMPONENT_MAPPING_ERROR'
+)

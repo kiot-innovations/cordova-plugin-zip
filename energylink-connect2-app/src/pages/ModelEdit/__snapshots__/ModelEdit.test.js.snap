@@ -144,7 +144,9 @@ Object {
                         className="collapsible-title"
                       >
                         <span />
-                        <span>
+                        <span
+                          className="has-text-weight-bold"
+                        >
                           Type E
                         </span>
                       </div>

@@ -1,13 +1,16 @@
-import { propOr } from 'ramda'
+import { propOr, pathOr } from 'ramda'
+import { of, EMPTY } from 'rxjs'
 import { ofType } from 'redux-observable'
-import { concatMap, map, take } from 'rxjs/operators'
+import { concatMap, map, switchMap, take } from 'rxjs/operators'
 
 import {
+  DOWNLOAD_ABORT,
   DOWNLOAD_INIT,
   DOWNLOAD_FINISHED,
   DOWNLOAD_SUCCESS,
   DOWNLOAD_ERROR
 } from 'state/actions/fileDownloader'
+import { PVS_CONNECTION_INIT } from 'state/actions/network'
 
 export const epicDownload = action$ =>
   action$.pipe(
@@ -38,4 +41,22 @@ export const epicDownload = action$ =>
     })
   )
 
-export default [epicDownload]
+export const abortDownload = (action$, state$) =>
+  action$.pipe(
+    ofType(PVS_CONNECTION_INIT.getType(), DOWNLOAD_ABORT.getType()),
+    switchMap(() => {
+      const isDownloading = pathOr(
+        false,
+        ['value', 'fileDownloader', 'progress', 'downloading'],
+        state$
+      )
+
+      if (isDownloading) {
+        return of(DOWNLOAD_FINISHED())
+      }
+
+      return EMPTY
+    })
+  )
+
+export default [epicDownload, abortDownload]

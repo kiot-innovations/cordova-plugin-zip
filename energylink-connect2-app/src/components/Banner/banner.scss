@@ -1,0 +1,11 @@
+.development-banner {
+  position: fixed;
+  background-color: indianred;
+  top: 17px;
+  right: -27px;
+  transform: rotateZ(45deg);
+  width: 100px;
+  text-align: center;
+  color: white;
+  z-index: 99999;
+}

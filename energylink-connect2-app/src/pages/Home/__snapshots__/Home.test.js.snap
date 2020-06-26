@@ -41,10 +41,10 @@ Object {
       >
         <Home>
           <section
-            className="home is-flex has-text-centered full-height"
+            className="home has-text-centered full-height pl-15 pr-15"
           >
             <div
-              className="section"
+              className="search"
             >
               <span
                 className="sp sp-map has-text-white"
@@ -1354,31 +1354,22 @@ Object {
                   </StateManager>
                 </Async>
               </SelectField>
-              <div
-                className="message mb-10 mt-10"
-              >
-                <p
-                  className="pl-20 pr-20"
-                >
-                  FOUND_SITES 0
-                </p>
-              </div>
             </div>
-            <section>
+            <article>
               <p>
                 CS_NOT_FOUND
               </p>
               <Link
-                className="has-text-weight-bold is-uppercase is-size-7"
+                className="has-text-weight-bold is-uppercase is-size-6"
                 to="/create-site"
               >
                 <LinkAnchor
-                  className="has-text-weight-bold is-uppercase is-size-7"
+                  className="has-text-weight-bold is-uppercase is-size-6"
                   href="/create-site"
                   navigate={[Function]}
                 >
                   <a
-                    className="has-text-weight-bold is-uppercase is-size-7"
+                    className="has-text-weight-bold is-uppercase is-size-6"
                     href="/create-site"
                     onClick={[Function]}
                   >
@@ -1388,7 +1379,7 @@ Object {
                   </a>
                 </LinkAnchor>
               </Link>
-            </section>
+            </article>
           </section>
         </Home>
       </Provider>
@@ -1446,10 +1437,10 @@ Object {
       >
         <Home>
           <section
-            className="home is-flex has-text-centered full-height"
+            className="home has-text-centered full-height pl-15 pr-15"
           >
             <div
-              className="section"
+              className="search"
             >
               <span
                 className="sp sp-map has-text-white"
@@ -2759,31 +2750,22 @@ Object {
                   </StateManager>
                 </Async>
               </SelectField>
-              <div
-                className="message mb-10 mt-10"
-              >
-                <p
-                  className="pl-20 pr-20"
-                >
-                  FOUND_SITES 3
-                </p>
-              </div>
             </div>
-            <section>
+            <article>
               <p>
                 CS_NOT_FOUND
               </p>
               <Link
-                className="has-text-weight-bold is-uppercase is-size-7"
+                className="has-text-weight-bold is-uppercase is-size-6"
                 to="/create-site"
               >
                 <LinkAnchor
-                  className="has-text-weight-bold is-uppercase is-size-7"
+                  className="has-text-weight-bold is-uppercase is-size-6"
                   href="/create-site"
                   navigate={[Function]}
                 >
                   <a
-                    className="has-text-weight-bold is-uppercase is-size-7"
+                    className="has-text-weight-bold is-uppercase is-size-6"
                     href="/create-site"
                     onClick={[Function]}
                   >
@@ -2793,7 +2775,7 @@ Object {
                   </a>
                 </LinkAnchor>
               </Link>
-            </section>
+            </article>
           </section>
         </Home>
       </Provider>

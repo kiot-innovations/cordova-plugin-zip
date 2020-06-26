@@ -9,7 +9,8 @@ import {
   GET_FILE_ERROR,
   SET_FILE_SIZE,
   SET_FILE_INFO,
-  FIRMWARE_DOWNLOAD_INIT
+  FIRMWARE_DOWNLOAD_INIT,
+  FIRMWARE_DOWNLOADED
 } from 'state/actions/fileDownloader'
 
 import { ERROR_CODES, getLuaZipFileURL } from 'shared/fileSystem'
@@ -31,7 +32,7 @@ describe('Epic firmware', () => {
       epicTest = epicTester(epicFirmwareGetFile)
     })
 
-    it('Dispatches FIRMWARE_GET_FILE_INFO if it receives FIRMWARE_GET_FILE and file is already downloaded', () => {
+    it('Dispatches SET_FILE_INFO, FIRMWARE_GET_FILE_INFO if it receives FIRMWARE_GET_FILE and file is already downloaded', () => {
       fileSystem.getPVSFileSystemName = jest.fn(() =>
         of('firmware/staging-prod-boomer-8888.fs')
       )
@@ -42,11 +43,12 @@ describe('Epic firmware', () => {
         a: FIRMWARE_GET_FILE()
       }
       const expectedValues = {
-        b: FIRMWARE_GET_FILE_INFO()
+        b: SET_FILE_INFO({ exists: true }),
+        c: FIRMWARE_GET_FILE_INFO()
       }
 
       const inputMarble = 'a'
-      const expectedMarble = 'b'
+      const expectedMarble = '(bc)'
 
       epicTest(inputMarble, expectedMarble, inputValues, expectedValues)
     })
@@ -62,7 +64,9 @@ describe('Epic firmware', () => {
         a: FIRMWARE_GET_FILE()
       }
       const expectedValues = {
-        b: FIRMWARE_DOWNLOAD_INIT()
+        b: FIRMWARE_DOWNLOAD_INIT({
+          wifiOnly: false
+        })
       }
 
       const inputMarble = 'a'
@@ -80,7 +84,7 @@ describe('Epic firmware', () => {
 
     it('Dispatches SET_FILE_SIZE, SET_FILE_NAME if it receives FIRMWARE_GET_FILE_INFO and metadata file exists', () => {
       fileSystem.parseLuaFile = jest.fn(() => {
-        return of({ fileUrl: 'https://test/rootfs.tgz', size: 50000 })
+        return of(50000)
       })
 
       fileSystem.getFirmwareVersionData = jest.fn(() =>
@@ -119,7 +123,7 @@ describe('Epic firmware', () => {
 
     it('Dispatches SET_FILE_SIZE, SET_FILE_NAME, DOWNLOAD_INIT if it receives FIRMWARE_DOWNLOAD_INIT and metadata file exists', () => {
       fileSystem.parseLuaFile = jest.fn(() => {
-        return of({ fileUrl: 'https://test/rootfs.tgz', size: 50000 })
+        return of(50000)
       })
 
       fileSystem.getFirmwareVersionData = jest.fn(() =>
@@ -139,13 +143,14 @@ describe('Epic firmware', () => {
         b: SET_FILE_SIZE(50000),
         c: SET_FILE_INFO({
           displayName: `staging prod boomer - 8888`,
-          name: 'staging-prod-boomer-8888.fs'
+          name: 'staging-prod-boomer-8888.fs',
+          exists: false
         }),
         d: DOWNLOAD_INIT({
           fileName: 'staging-prod-boomer-8888.fs',
-          fileUrl: 'https://test/rootfs.tgz',
+          fileUrl: 'https://test/staging-prod-boomer/8888/fwup/rootfs.tgz',
           folder: 'firmware',
-          wifiOnly: true
+          wifiOnly: false
         })
       }
 
@@ -207,7 +212,8 @@ describe('Epic firmware', () => {
       const expectedValues = {
         b: SET_FILE_INFO({
           displayName: 'staging prod boomer - 8888',
-          name: 'staging-prod-boomer-8888.lua'
+          name: 'staging-prod-boomer-8888.lua',
+          exists: false
         }),
         c: DOWNLOAD_INIT({
           fileName: 'staging-prod-boomer-8888.lua',
@@ -297,11 +303,12 @@ describe('Epic firmware', () => {
         a: DOWNLOAD_SUCCESS({ name: 'staging-prod-boomer-8888.fs' })
       }
       const expectedValues = {
-        b: FIRMWARE_DOWNLOAD_LUA_FILES(8888)
+        b: FIRMWARE_DOWNLOAD_LUA_FILES(8888),
+        c: FIRMWARE_DOWNLOADED()
       }
 
       const inputMarble = 'a'
-      const expectedMarble = 'b'
+      const expectedMarble = '(bc)'
 
       epicTest(inputMarble, expectedMarble, inputValues, expectedValues)
     })

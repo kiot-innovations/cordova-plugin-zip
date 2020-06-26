@@ -15,9 +15,9 @@ export const scanBarcodes = (success, fail) => {
       showFlipCameraButton: false, // iOS and Android
       showTorchButton: true, // iOS and Android
       torchOn: false, // Android, launch with the torch switched on (if available)
-      saveHistory: true, // Android, save scan history (default false)
-      prompt: 'Place a QR Code inside the scan area', // Android
-      resultDisplayDuration: 500, // Android, display scanned text for X ms. 0 suppresses it entirely, default 1500
+      saveHistory: false, // Android, save scan history (default false)
+      prompt: 'Find the QR code behind the PVS frontplate.', // Android
+      formats: 'QR_CODE',
       orientation: 'portrait', // Android only (portrait|landscape), default unset so it rotates with the device
       disableAnimations: false, // iOS
       disableSuccessBeep: false // iOS and Android

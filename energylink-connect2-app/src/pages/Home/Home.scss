@@ -1,10 +1,8 @@
 .home {
-  flex-direction: column;
-  .section {
-    margin: auto 0;
-    overflow-x: hidden;
-  }
+  display: grid;
+  grid-template-rows: 1fr  minmax(15px, 50px);
+  align-items: center;
   span.sp-map {
-    font-size: 4rem;
+    font-size: 6rem;
   }
 }

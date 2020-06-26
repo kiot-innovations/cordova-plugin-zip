@@ -73,13 +73,17 @@ const SavingConfiguration = () => {
           controls: (
             <div className="status-message">
               <span>{t('CONFIG_ERROR_2')}</span>
-              <span>{error}</span>
-              <button
-                onClick={goToConfig}
-                className="button is-primary is-uppercase"
-              >
-                {t('RETRY')}
-              </button>
+              <div className="error-message mt-5 mb-5">
+                <span>{error}</span>
+              </div>
+              <div className="has-text-centered">
+                <button
+                  onClick={goToConfig}
+                  className="button is-primary is-uppercase"
+                >
+                  {t('RETRY')}
+                </button>
+              </div>
             </div>
           )
         }

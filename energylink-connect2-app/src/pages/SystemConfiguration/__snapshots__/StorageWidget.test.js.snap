@@ -65,7 +65,9 @@ exports[`Storage Widget renders correctly 1`] = `
                       className="sp-battery file level mr-15 is-size-4"
                     />
                   </span>
-                  <span>
+                  <span
+                    className="has-text-weight-bold"
+                  >
                     STORAGE
                   </span>
                 </div>

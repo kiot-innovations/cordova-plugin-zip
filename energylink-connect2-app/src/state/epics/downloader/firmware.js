@@ -1,35 +1,30 @@
 import { pathOr } from 'ramda'
 import { ofType } from 'redux-observable'
-import { from, of, EMPTY } from 'rxjs'
+import { EMPTY, from, of } from 'rxjs'
+import { catchError, concatMap, exhaustMap, switchMap } from 'rxjs/operators'
 import {
-  catchError,
-  concatMap,
-  exhaustMap,
-  map,
-  switchMap
-} from 'rxjs/operators'
+  getFileInfo,
+  getFirmwareVersionData,
+  getLuaZipFileURL,
+  getPVSFileSystemName,
+  parseLuaFile
+} from 'shared/fileSystem'
+import { getFileSystemFromLuaFile } from 'shared/PVSUtils'
 
 import {
   DOWNLOAD_ERROR,
   DOWNLOAD_INIT,
   DOWNLOAD_SUCCESS,
-  FIRMWARE_METADATA_DOWNLOAD_INIT,
-  FIRMWARE_GET_FILE_INFO,
+  FIRMWARE_DOWNLOAD_INIT,
+  FIRMWARE_DOWNLOAD_LUA_FILES,
+  FIRMWARE_DOWNLOADED,
   FIRMWARE_GET_FILE,
+  FIRMWARE_GET_FILE_INFO,
+  FIRMWARE_METADATA_DOWNLOAD_INIT,
   GET_FILE_ERROR,
   SET_FILE_INFO,
-  FIRMWARE_DOWNLOAD_LUA_FILES,
-  SET_FILE_SIZE,
-  FIRMWARE_DOWNLOAD_INIT
+  SET_FILE_SIZE
 } from 'state/actions/fileDownloader'
-
-import {
-  getFileInfo,
-  getFirmwareVersionData,
-  getPVSFileSystemName,
-  getLuaZipFileURL,
-  parseLuaFile
-} from 'shared/fileSystem'
 
 /**
  * Init download of metadata file and sets file name for the UI
@@ -45,7 +40,8 @@ export const epicGetFirmwareMetadataFile = action$ =>
           of(
             SET_FILE_INFO({
               displayName: `${luaFileName} - ${version}`,
-              name: luaDownloadName
+              name: luaDownloadName,
+              exists: false
             }),
             DOWNLOAD_INIT({
               fileUrl: fileURL,
@@ -101,12 +97,20 @@ export const epicFirmwareMetadataFileDownloaded = action$ =>
 export const epicFirmwareGetFile = action$ =>
   action$.pipe(
     ofType(FIRMWARE_GET_FILE.getType()),
-    exhaustMap(() =>
+    exhaustMap(action =>
       from(getPVSFileSystemName()).pipe(
         switchMap(fileName =>
           from(getFileInfo(fileName)).pipe(
-            map(() => FIRMWARE_GET_FILE_INFO()),
-            catchError(() => of(FIRMWARE_DOWNLOAD_INIT()))
+            switchMap(() =>
+              of(SET_FILE_INFO({ exists: true }), FIRMWARE_GET_FILE_INFO())
+            ),
+            catchError(() =>
+              of(
+                FIRMWARE_DOWNLOAD_INIT({
+                  wifiOnly: pathOr(false, ['payload', 'wifiOnly'], action)
+                })
+              )
+            )
           )
         ),
         catchError(() => of(FIRMWARE_DOWNLOAD_INIT()))
@@ -127,7 +131,7 @@ export const epicFirmwareGetFileInfo = action$ =>
         switchMap(
           ({ luaFileName, version, pvsFileSystemName, luaDownloadName }) =>
             from(parseLuaFile(luaDownloadName)).pipe(
-              switchMap(({ size }) =>
+              switchMap(size =>
                 of(
                   SET_FILE_SIZE(size),
                   SET_FILE_INFO({
@@ -157,20 +161,27 @@ export const epicFirmwareDownloadInit = action$ =>
     switchMap(action =>
       from(getFirmwareVersionData()).pipe(
         switchMap(
-          ({ pvsFileSystemName, luaFileName, version, luaDownloadName }) =>
+          ({
+            pvsFileSystemName,
+            luaFileName,
+            version,
+            luaDownloadName,
+            fileURL
+          }) =>
             from(parseLuaFile(luaDownloadName)).pipe(
-              switchMap(({ size, fileUrl }) =>
+              switchMap(size =>
                 of(
                   SET_FILE_SIZE(size),
                   SET_FILE_INFO({
                     displayName: `${luaFileName} - ${version}`,
-                    name: pvsFileSystemName
+                    name: pvsFileSystemName,
+                    exists: false
                   }),
                   DOWNLOAD_INIT({
-                    fileUrl: fileUrl,
+                    fileUrl: getFileSystemFromLuaFile(fileURL),
                     folder: 'firmware',
                     fileName: pvsFileSystemName,
-                    wifiOnly: true
+                    wifiOnly: pathOr(false, ['payload', 'wifiOnly'], action)
                   })
                 )
               ),
@@ -195,7 +206,7 @@ export const epicFirmwareFileDownloaded = action$ =>
       from(getFirmwareVersionData()).pipe(
         concatMap(({ pvsFileSystemName, version }) =>
           pathOr('', ['payload', 'name'], action) === pvsFileSystemName
-            ? of(FIRMWARE_DOWNLOAD_LUA_FILES(version))
+            ? of(FIRMWARE_DOWNLOAD_LUA_FILES(version), FIRMWARE_DOWNLOADED())
             : EMPTY
         ),
         catchError(() =>

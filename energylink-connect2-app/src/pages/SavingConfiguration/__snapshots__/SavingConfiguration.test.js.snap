@@ -60,13 +60,21 @@ exports[`SavingConfiguration component renders correctly 1`] = `
             <span>
               CONFIG_ERROR_2
             </span>
-            <span />
-            <button
-              className="button is-primary is-uppercase"
-              onClick={[Function]}
+            <div
+              className="error-message mt-5 mb-5"
             >
-              RETRY
-            </button>
+              <span />
+            </div>
+            <div
+              className="has-text-centered"
+            >
+              <button
+                className="button is-primary is-uppercase"
+                onClick={[Function]}
+              >
+                RETRY
+              </button>
+            </div>
           </div>
         </div>
       </SavingConfiguration>

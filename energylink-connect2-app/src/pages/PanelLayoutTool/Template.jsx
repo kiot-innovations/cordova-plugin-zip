@@ -2,6 +2,7 @@ import {
   Canvas,
   PanelsContainer,
   ZoomControl,
+  PanelLayoutContainer,
   ControlsContainer
 } from '@sunpower/panel-layout-tool'
 import React from 'react'
@@ -10,7 +11,9 @@ import { useI18n } from 'shared/i18n'
 import { either } from 'shared/utils'
 
 const PanelLayoutTool = ({
+  controls,
   footer,
+  stepHeader,
   instruction,
   err,
   onClick,
@@ -25,6 +28,7 @@ const PanelLayoutTool = ({
       <h1 className="is-uppercase has-text-centered is-size-6">
         {t('PANEL_LAYOUT_DESIGNER')}
       </h1>
+      {stepHeader}
       {either(
         err,
         <span className="has-text-centered has-error-text is-size-7">
@@ -35,8 +39,7 @@ const PanelLayoutTool = ({
         </span>
       )}
       <div className="canvas">
-        <ControlsContainer>
-          <ZoomControl step={0.5} min={1} max={3} />
+        <PanelLayoutContainer>
           <Canvas
             store={store}
             width={window.innerWidth - 30}
@@ -49,7 +52,11 @@ const PanelLayoutTool = ({
               <PanelsContainer PanelComponent={panels} />
             )}
           </Canvas>
-        </ControlsContainer>
+          <ControlsContainer
+            center={controls}
+            right={<ZoomControl step={0.5} min={1} max={3} />}
+          />
+        </PanelLayoutContainer>
       </div>
       {footer}
     </div>

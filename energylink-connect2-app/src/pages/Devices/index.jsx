@@ -4,7 +4,7 @@ import useModal from 'hooks/useModal'
 import { length, pathOr } from 'ramda'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
-import { either } from 'shared/utils'
+import { either, miTypes } from 'shared/utils'
 import { useI18n } from 'shared/i18n'
 import {
   CLAIM_DEVICES_INIT,
@@ -16,7 +16,6 @@ import {
 import paths from 'routes/paths'
 import Collapsible from 'components/Collapsible'
 import ProgressIndicators from './ProgressIndicators'
-
 import './Devices.scss'
 
 const microInverterIcon = (
@@ -298,7 +297,7 @@ function Devices() {
                       {either(
                         elem.indicator === 'OK',
                         <span className="has-text-weight-bold ml-10">
-                          {elem.miType}
+                          {miTypes[elem.MODEL] || ''}
                         </span>
                       )}
                     </span>

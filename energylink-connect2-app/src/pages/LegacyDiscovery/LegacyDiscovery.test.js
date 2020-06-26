@@ -1,4 +1,5 @@
 import React from 'react'
+import * as ReactDOM from 'react-dom'
 import * as reactRedux from 'react-redux'
 import * as i18n from 'shared/i18n'
 import LegacyDiscovery from '.'
@@ -15,6 +16,12 @@ describe('Legacy Discovery Results page', () => {
       progress: []
     }
   }
+
+  beforeAll(() => {
+    ReactDOM.createPortal = jest.fn((element, node) => {
+      return element
+    })
+  })
 
   beforeEach(() => {
     dispatchMock = jest.fn()

@@ -1,17 +1,17 @@
-import { createAction } from 'redux-act'
 import {
-  pipe,
+  converge,
   equals,
   head,
+  identity,
   last,
-  prop,
   merge,
   omit,
-  identity,
-  converge,
-  useWith,
-  pathOr
+  pathOr,
+  pipe,
+  prop,
+  useWith
 } from 'ramda'
+import { createAction } from 'redux-act'
 import { getApiAuth } from 'shared/api'
 import authClient from 'shared/auth/sdk'
 
@@ -21,11 +21,6 @@ export const LOGIN_ERROR = createAction('LOGIN_ERROR')
 export const LOGOUT = createAction('LOGOUT')
 export const REFRESH_TOKEN_INIT = createAction('REFRESH_TOKEN_INIT')
 export const REFRESH_TOKEN_SUCCESS = createAction('REFRESH_TOKEN_SUCCESS')
-
-const ROLES = {
-  PARTNER: 'partner',
-  PARTNER_PRO: 'partner_pro'
-}
 
 export const requestLogin = () => {
   return (dispatch, state) => {
@@ -90,13 +85,7 @@ export const handleUserProfile = (tokenInfo = {}) => {
         .then(buildUser)
         .then(user => {
           const payload = { data: user, auth: tokenInfo }
-          const ug = user.userGroup.toLowerCase()
-          if (ug !== ROLES.PARTNER && ug !== ROLES.PARTNER_PRO) {
-            dispatch(LOGIN_ERROR({ message: 'INVALID_ROLE' }))
-          } else {
-            dispatch(LOGIN_SUCCESS(payload))
-            //dispatch(fetchInventory())
-          }
+          dispatch(LOGIN_SUCCESS(payload))
         })
         .catch(error => {
           console.error(error)

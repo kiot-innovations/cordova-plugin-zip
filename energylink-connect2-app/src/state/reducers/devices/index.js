@@ -21,7 +21,7 @@ import {
 
 const initialState = {
   isFetching: false,
-  found: {},
+  found: [],
   progress: {},
   error: '',
   isFetchingCandidates: false,

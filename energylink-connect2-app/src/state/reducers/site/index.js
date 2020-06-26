@@ -18,7 +18,7 @@ const initialState = {
   isFetching: false,
   isSaving: false,
   sites: [], // []
-  site: null, // { address1, city, latitude, longitude }
+  site: null,
   error: null,
   saveError: '',
   saveModal: false,

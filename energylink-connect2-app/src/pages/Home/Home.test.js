@@ -16,13 +16,15 @@ describe('Home component', () => {
       site: {
         sites: [],
         isFetching: false
-      }
+      },
+      user: { auth: { access_token: '123' } }
     })
     expect(component).toMatchSnapshot()
   })
 
   test('renders correctly when there are sites available', () => {
     const component = mountWithProvider(<Home />)({
+      user: { auth: { access_token: '123' } },
       site: {
         sites: [{}, {}, {}],
         site: {

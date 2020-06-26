@@ -6,19 +6,11 @@ import { groupBy, path, prop, length } from 'ramda'
 import { useI18n } from 'shared/i18n'
 import { SET_METADATA_INIT } from 'state/actions/pvs'
 import { CLAIM_DEVICES_RESET } from 'state/actions/devices'
-import { filterInverters } from 'shared/utils'
+import { filterInverters, miTypes } from 'shared/utils'
 import useModal from 'hooks/useModal'
 import paths from 'routes/paths'
 import MiGroup from './MiGroup'
 import './ModelEdit.scss'
-
-const miTypes = {
-  AC_Module_Type_E: 'Type E',
-  AC_Module_Type_G: 'Type G',
-  AC_Module_Type_C: 'Type C',
-  AC_Module_Type_D: 'Type D'
-}
-
 const ModelEdit = () => {
   const t = useI18n()
   const history = useHistory()

@@ -15,12 +15,14 @@ import { shareReducer } from './share'
 import { energyDataReducer } from './energy-data'
 import { energyLiveData } from './energy-live-data'
 import { storageReducer } from './storage'
+import { pltWizard } from './plt-wizard'
 
 import ui from './ui'
 import fileDownloader from './fileDownloader'
 import devicesReducer from './devices'
 import systemConfigurationReducer from './systemConfiguration'
 import firmwareUpdate from './firmware-update'
+import essReducer from './ess'
 
 export default combineReducers({
   ...getPLTReducer(),
@@ -52,8 +54,10 @@ export default combineReducers({
   devices: devicesReducer,
   share: shareReducer,
   systemConfiguration: systemConfigurationReducer,
+  storage: storageReducer,
   energyLiveData,
   modal,
+  pltWizard,
   energyData: persistReducer(
     {
       key: 'energyData',
@@ -71,6 +75,12 @@ export default combineReducers({
     },
     energyDataReducer
   ),
-  storage: storageReducer
+  ess: persistReducer(
+    {
+      key: 'ess',
+      storage
+    },
+    essReducer
+  )
   // Add reducers here
 })

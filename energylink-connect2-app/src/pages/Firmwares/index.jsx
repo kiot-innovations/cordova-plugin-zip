@@ -1,16 +1,20 @@
 import Collapsible from 'components/Collapsible'
 import moment from 'moment'
+import EssFirmwareStatus from 'pages/Firmwares/ESSFirmwareStatus'
 import { pathOr, prop } from 'ramda'
 import React, { useCallback, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { getGridProfileFileName } from 'shared/fileSystem'
 import { useI18n } from 'shared/i18n'
 import { either } from 'shared/utils'
-import { getGridProfileFileName } from 'shared/fileSystem'
+import { DOWNLOAD_META_INIT, DOWNLOAD_OS_INIT } from 'state/actions/ess'
 import * as fileDownloaderActions from 'state/actions/fileDownloader'
 import * as gridProfileDownloaderActions from 'state/actions/gridProfileDownloader'
 
 export const getFileName = prop('displayName')
 export const getFileSize = prop('size')
+
+const Separator = () => <div className="mt-20" />
 
 const GridProfileFileStatus = ({ downloading, gpLastModified }) => {
   const t = useI18n()
@@ -55,10 +59,15 @@ function Firmwares() {
   const downloadGridProfiles = () =>
     dispatch(gridProfileDownloaderActions.GRID_PROFILE_DOWNLOAD_INIT())
 
+  const downloadAbort = () => dispatch(fileDownloaderActions.DOWNLOAD_ABORT())
+
   useEffect(() => {
     dispatch(fileDownloaderActions.FIRMWARE_GET_FILE())
     dispatch(gridProfileDownloaderActions.GRID_PROFILE_GET_FILE())
+    dispatch(DOWNLOAD_OS_INIT())
+    dispatch(DOWNLOAD_META_INIT())
   }, [dispatch])
+  const essState = useSelector(prop('ess'))
 
   return (
     <section className="is-flex tile is-vertical pt-0 pr-10 pl-10 full-height">
@@ -68,13 +77,10 @@ function Firmwares() {
         actions={
           !fwFileInfo.error ? (
             isDownloadingFirmware && (
-              <span
-                className={'is-size-4 sp-stop'}
-                onClick={() => window.downloader.abort()}
-              />
+              <span className="is-size-4 sp-stop" onClick={downloadAbort} />
             )
           ) : (
-            <span className={'is-size-4 sp-download'} onClick={downloadFile} />
+            <span className="is-size-4 sp-download" onClick={downloadFile} />
           )
         }
         expanded
@@ -88,11 +94,15 @@ function Firmwares() {
                 {either(
                   isDownloadingFirmware,
                   progress,
-                  getFileSize(fwFileInfo) ? 100 : 0
+                  fwFileInfo.exists ? 100 : 0
                 )}
                 %
               </span>
-              {!isDownloadingFirmware ? t('DOWNLOADED') : t('DOWNLOADING')}
+              {either(
+                isDownloadingFirmware,
+                t('DOWNLOADING'),
+                fwFileInfo.exists ? t('DOWNLOADED') : t('NOT_DOWNLOADED')
+              )}
               <span className="is-pulled-right has-text-white has-text-weight-bold">
                 {getFileSize(fwFileInfo)}MB
               </span>
@@ -107,18 +117,15 @@ function Firmwares() {
           </section>
         )}
       </Collapsible>
-      <div className="separator" />
+      <Separator />
       <Collapsible
         title={t('GRID_PROFILES_PACKAGE')}
         actions={
           isDownloadingGridProfile ? (
-            <span
-              className={'is-size-4 sp-stop'}
-              onClick={() => window.downloader.abort()}
-            />
+            <span className="is-size-4 sp-stop" onClick={downloadAbort} />
           ) : (
             <span
-              className={'is-size-4 sp-download'}
+              className="is-size-4 sp-download"
               onClick={downloadGridProfiles}
             />
           )
@@ -139,6 +146,25 @@ function Firmwares() {
               <progress
                 className="progress is-tiny is-white"
                 value={progress}
+                max="100"
+              />
+            )}
+          </section>
+        )}
+      </Collapsible>
+      <Separator />
+      <Collapsible title={'ESS FIRMWARE'} expanded>
+        {either(
+          essState.error,
+          <span>{t('ERROR_DOWNLOADING_ESS')}</span>,
+          <section className="mt-20 mb-20">
+            <p className="mb-5">
+              <EssFirmwareStatus {...essState} />
+            </p>
+            {essState.isDownloading && (
+              <progress
+                className="progress is-tiny is-white"
+                value={essState.progress}
                 max="100"
               />
             )}

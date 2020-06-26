@@ -1,4 +1,4 @@
-@import '~@sunpower/theme-dark/styles/variables';
+@import '../../../node_modules/@sunpower/theme-dark/styles/variables';
 
 .sunpower-devices {
   .equipment-list {
@@ -63,4 +63,8 @@
     display: grid;
     align-items: center;
   }
+}
+
+.eqs-device{
+  border-bottom: 1px solid $silver-sand4;
 }

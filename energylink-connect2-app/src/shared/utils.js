@@ -140,12 +140,8 @@ export const cleanString = (str = '') => {
   return str.replace(regex, ' ')
 }
 
-const decideModel = barcode =>
-  barcode.startsWith('1') || barcode.startsWith('E001') ? 'Type E' : 'Type G'
-
 export const buildSN = barcode => ({
   serial_number: barcode.startsWith('1') ? `E00${barcode}` : barcode,
-  miType: decideModel(barcode),
   type: 'SOLARBRIDGE'
 })
 export const trace = t => x => {
@@ -245,3 +241,19 @@ export const addHasErrorProp = results => {
 
   return copy
 }
+
+export const miTypes = {
+  AC_Module_Type_E: 'Type E',
+  AC_Module_Type_G: 'Type G',
+  AC_Module_Type_C: 'Type C',
+  AC_Module_Type_D: 'Type D'
+}
+
+export const renameKeys = (keysMap, obj) =>
+  Object.keys(obj).reduce(
+    (acc, key) => ({
+      ...acc,
+      ...{ [keysMap[key] || key]: obj[key] }
+    }),
+    {}
+  )
