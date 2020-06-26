@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import clsx from 'clsx'
 import useModal from 'hooks/useModal'
-import { length, pathOr } from 'ramda'
+import { length, pathOr, find, propEq } from 'ramda'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import { either, miTypes } from 'shared/utils'
@@ -13,8 +13,10 @@ import {
   RESET_DISCOVERY,
   FETCH_DEVICES_LIST
 } from 'state/actions/devices'
+import { GET_PREDISCOVERY } from 'state/actions/storage'
 import paths from 'routes/paths'
 import Collapsible from 'components/Collapsible'
+import StorageDevices from 'components/PrediscoveryDevices/StorageDevices'
 import ProgressIndicators from './ProgressIndicators'
 import './Devices.scss'
 
@@ -199,7 +201,7 @@ function Devices() {
   const t = useI18n()
 
   const { serialNumbers } = useSelector(state => state.pvs)
-
+  const { bom } = useSelector(state => state.inventory)
   const {
     discoveryComplete,
     candidates,
@@ -209,6 +211,8 @@ function Devices() {
     error,
     progress
   } = useSelector(state => state.devices)
+
+  const { prediscovery } = useSelector(state => state.storage)
 
   const { okMI, nonOkMI, pendingMI } = filterFoundMI(serialNumbers, candidates)
 
@@ -238,9 +242,12 @@ function Devices() {
     toggleModal()
   }
 
+  const essValue = find(propEq('item', 'ESS'), bom)
+
   useEffect(() => {
+    if (essValue.value !== '0') dispatch(GET_PREDISCOVERY())
     dispatch(FETCH_CANDIDATES_INIT())
-  }, [dispatch])
+  }, [dispatch, essValue.value])
 
   useEffect(() => {
     if (expected === okMICount + errMICount) {
@@ -253,7 +260,7 @@ function Devices() {
       dispatch(FETCH_DEVICES_LIST())
       history.push(paths.PROTECTED.MODEL_EDIT.path)
     }
-  }, [claimedDevices, dispatch, history])
+  }, [bom.ESS, claimedDevices, dispatch, history])
 
   const retryDiscovery = () => {
     dispatch(RESET_DISCOVERY())
@@ -320,6 +327,9 @@ function Devices() {
           </ul>
         </Collapsible>
         <ProgressIndicators progressList={pathOr([], ['progress'], progress)} />
+        {prediscovery.pre_discovery_report && (
+          <StorageDevices devices={prediscovery} />
+        )}
       </div>
       {discoveryStatus(
         error,
