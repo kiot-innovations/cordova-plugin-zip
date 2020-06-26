@@ -28,7 +28,7 @@ function MetersWidget() {
       label: t('GROSS_CONSUMPTION_LINESIDE'),
       value: 'GROSS_CONSUMPTION_LINESIDE'
     },
-    { label: t('NOT_USED'), value: 'UNKNOWN' }
+    { label: t('NOT_USED'), value: 'NOT_USED' }
   ]
 
   const PRODUCTION_METER_TYPES = [
