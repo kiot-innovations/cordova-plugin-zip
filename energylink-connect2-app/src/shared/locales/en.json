@@ -355,6 +355,7 @@
   "POSSIBLE_CAUSES": "Possible Causes",
   "ACTIONS": "Recommended Actions",
   "SITE_KEY_ERROR": "Unknown Site Key",
+  "AIO_COMPONENTS": "All In One Components",
   "FWUP_PENDING": "Pending",
   "FWUP_INPROGRESS": "Updating",
   "FWUP_COMPLETED": "Up to date",

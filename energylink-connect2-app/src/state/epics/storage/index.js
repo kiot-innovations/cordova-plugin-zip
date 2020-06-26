@@ -1,3 +1,4 @@
+import { getPreDiscoveryEpic } from './preDiscovery'
 import {
   postComponentMappingEpic,
   getComponentMappingEpic
@@ -6,6 +7,7 @@ import {
 import { getHealthCheckEpic } from './getHealthCheckEpic'
 
 export default [
+  getPreDiscoveryEpic,
   postComponentMappingEpic,
   getComponentMappingEpic,
   getHealthCheckEpic

@@ -1,6 +1,7 @@
 import React from 'react'
 import Collapsible from 'components/Collapsible'
 import 'pages/Devices/Devices.scss'
+import { useI18n } from 'shared/i18n'
 import { pathOr } from 'ramda'
 
 const renderDevice = device => (
@@ -11,9 +12,10 @@ const renderDevice = device => (
 )
 function StorageDevices({ devices }) {
   const deviceList = pathOr([], ['pre_discovery_report', 'devices'], devices)
+  const t = useI18n()
   return (
     <div className="mt-5 mb-5">
-      <Collapsible expanded title="All In One Components">
+      <Collapsible expanded title={t('AIO_COMPONENTS')}>
         {deviceList.map(renderDevice)}
       </Collapsible>
     </div>
