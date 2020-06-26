@@ -14,6 +14,7 @@ import { siteReducer } from './site'
 import { shareReducer } from './share'
 import { energyDataReducer } from './energy-data'
 import { energyLiveData } from './energy-live-data'
+import { storageReducer } from './storage'
 
 import ui from './ui'
 import fileDownloader from './fileDownloader'
@@ -69,6 +70,7 @@ export default combineReducers({
       version: storesVersions.energyDataReducer
     },
     energyDataReducer
-  )
+  ),
+  storage: storageReducer
   // Add reducers here
 })

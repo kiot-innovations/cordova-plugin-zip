@@ -23,7 +23,7 @@ function ESSHealthCheckErrorList({ results }) {
       <div className="mt-15">{map(renderErrors(t), errors)}</div>
 
       <button className="button is-secondary auto" onClick={history.goBack}>
-        {t('BACK')}
+        {t('RETRY')}
       </button>
     </div>
   )
@@ -54,7 +54,7 @@ const renderErrors = t => err => {
   const recommendatios = { __html: marked(recommended_actions) }
 
   return (
-    <div className="mb-10">
+    <div className="mb-10" key={error_code}>
       <Collapsible title={message}>
         <div>
           <p>
@@ -62,7 +62,7 @@ const renderErrors = t => err => {
             <span>{new Date(last_occurrence).toLocaleString()}</span>
           </p>
           {Object.keys(rest).map(ekey => (
-            <p>
+            <p key={ekey}>
               <span className="mr-5">{t(ekey)}:</span>
               <span>{err[ekey]}</span>
             </p>

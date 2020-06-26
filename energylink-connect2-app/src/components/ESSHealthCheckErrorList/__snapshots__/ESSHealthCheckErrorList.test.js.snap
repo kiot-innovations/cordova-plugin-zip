@@ -61,7 +61,7 @@ Object {
               className="button is-secondary auto"
               onClick={[Function]}
             >
-              BACK
+              RETRY
             </button>
           </div>
         </ESSHealthCheckErrorList>
