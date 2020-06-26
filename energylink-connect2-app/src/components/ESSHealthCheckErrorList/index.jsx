@@ -7,8 +7,6 @@ import marked from 'marked'
 
 import Collapsible from 'components/Collapsible'
 
-import './ESSHealthCheckErrorList.scss'
-
 function ESSHealthCheckErrorList({ results }) {
   const t = useI18n()
   const history = useHistory()
