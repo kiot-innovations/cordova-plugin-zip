@@ -27,7 +27,11 @@ import {
   toUpper,
   values,
   when,
-  propOr
+  propOr,
+  indexBy,
+  clone,
+  contains,
+  keys
 } from 'ramda'
 
 export const either = (condition, whenTrue, whenFalse = null) =>
@@ -211,6 +215,32 @@ export const getPVSVersionNumber = compose(
 )
 
 export const flipConcat = flip(concat)
+
+export const arrayToObject = (key, array) => indexBy(prop(key), array)
+
+const flatErrors = map(prop('device_sn'))
+
+export const addHasErrorProp = results => {
+  if (!results || !results.errors) return results
+
+  const copy = clone(results)
+  const snErrors = flatErrors(copy.errors)
+
+  keys(copy.ess_report).forEach(key => {
+    const keyValue = copy.ess_report[key]
+    const newValueForKey = Array.isArray(keyValue)
+      ? map(
+          value =>
+            assoc('hasError', contains(value.serial_number, snErrors), value),
+          keyValue
+        )
+      : assoc('hasError', contains(keyValue.serial_number, snErrors), keyValue)
+
+    copy.ess_report[key] = newValueForKey
+  })
+
+  return copy
+}
 
 export const miTypes = {
   AC_Module_Type_E: 'Type E',

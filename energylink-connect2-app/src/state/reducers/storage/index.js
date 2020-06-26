@@ -1,5 +1,8 @@
 import { createReducer } from 'redux-act'
 import {
+  GET_ESS_STATUS_SUCCESS,
+  GET_ESS_STATUS_ERROR,
+  GET_ESS_STATUS_INIT,
   GET_PREDISCOVERY,
   GET_PREDISCOVERY_SUCCESS,
   GET_PREDISCOVERY_ERROR,
@@ -14,7 +17,11 @@ const initialState = {
   currentStep: '',
   prediscovery: {},
   componentMapping: {},
-  error: ''
+  error: '',
+  status: {
+    results: null,
+    error: null
+  }
 }
 
 const eqsSteps = {
@@ -24,6 +31,18 @@ const eqsSteps = {
 
 export const storageReducer = createReducer(
   {
+    [GET_ESS_STATUS_INIT]: state => ({
+      ...state,
+      status: { results: null, error: null }
+    }),
+    [GET_ESS_STATUS_SUCCESS]: (state, results) => ({
+      ...state,
+      status: { results, error: null }
+    }),
+    [GET_ESS_STATUS_ERROR]: (state, error) => ({
+      ...state,
+      status: { error }
+    }),
     [GET_PREDISCOVERY]: state => ({
       ...state,
       currentStep: eqsSteps.PREDISCOVERY

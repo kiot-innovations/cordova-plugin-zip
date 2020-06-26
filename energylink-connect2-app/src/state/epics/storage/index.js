@@ -4,8 +4,11 @@ import {
   getComponentMappingEpic
 } from './componentMapping'
 
+import { getHealthCheckEpic } from './getHealthCheckEpic'
+
 export default [
   getPreDiscoveryEpic,
   postComponentMappingEpic,
-  getComponentMappingEpic
+  getComponentMappingEpic,
+  getHealthCheckEpic
 ]

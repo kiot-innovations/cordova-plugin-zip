@@ -33,6 +33,8 @@ import SNList from 'pages/SNList'
 import SystemConfiguration from 'pages/SystemConfiguration'
 import ConnectionLost from 'pages/ConnectionLost'
 import UpdateScreen from 'pages/UpdateScreen'
+import ESSHealthCheck from 'pages/ESSHealthCheck'
+import ESSHealthCheckErrors from 'pages/ESSHealthCheckErrors'
 
 import { validateSession } from 'state/actions/auth'
 import { updateBodyHeight } from 'shared/utils'
@@ -66,6 +68,8 @@ const mapComponents = {
   [paths.PROTECTED.MODEL_EDIT.path]: ModelEdit,
   [paths.PROTECTED.LEGACY_DISCOVERY.path]: LegacyDiscovery,
   [paths.PROTECTED.CONNECTION_LOST.path]: ConnectionLost,
+  [paths.PROTECTED.ESS_HEALTH_CHECK.path]: ESSHealthCheck,
+  [paths.PROTECTED.ESS_HEALTH_CHECK_ERRORS.path]: ESSHealthCheckErrors,
   [paths.UNPROTECTED.FORGOT_PASSWORD.path]: NotFound,
   [paths.UNPROTECTED.GET_ASSISTANCE.path]: NotFound,
   [paths.UNPROTECTED.LOGIN.path]: Login

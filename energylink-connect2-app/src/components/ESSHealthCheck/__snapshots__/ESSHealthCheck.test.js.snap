@@ -1,0 +1,83 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ESSHealthCheck component initial state render correctly 1`] = `
+Object {
+  "component": <BrowserRouter
+    keyLength={0}
+  >
+    <Router
+      history={
+        Object {
+          "action": "POP",
+          "block": [Function],
+          "createHref": [Function],
+          "go": [Function],
+          "goBack": [Function],
+          "goForward": [Function],
+          "length": 1,
+          "listen": [Function],
+          "location": Object {
+            "hash": "",
+            "pathname": "/",
+            "search": "",
+            "state": undefined,
+          },
+          "push": [Function],
+          "replace": [Function],
+        }
+      }
+    >
+      <Provider
+        store={
+          Object {
+            "clearActions": [Function],
+            "dispatch": [Function],
+            "getActions": [Function],
+            "getState": [Function],
+            "replaceReducer": [Function],
+            "subscribe": [Function],
+          }
+        }
+      >
+        <ESSHealthCheck
+          results={
+            Object {
+              "errors": Array [],
+            }
+          }
+        >
+          <div
+            className="ess-hc page-height has-text-centered pt-10"
+          >
+            <span
+              className="is-uppercase has-text-weight-bold"
+            >
+              HEALTH_CHECK
+            </span>
+            <div
+              className="status-messageee"
+            />
+            <div
+              className="are-small"
+            >
+              <button
+                className="button auto is-primary"
+              >
+                CONTINUE
+              </button>
+            </div>
+          </div>
+        </ESSHealthCheck>
+      </Provider>
+    </Router>
+  </BrowserRouter>,
+  "store": Object {
+    "clearActions": [Function],
+    "dispatch": [Function],
+    "getActions": [Function],
+    "getState": [Function],
+    "replaceReducer": [Function],
+    "subscribe": [Function],
+  },
+}
+`;
