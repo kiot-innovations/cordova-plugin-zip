@@ -54,9 +54,3 @@ export async function getApiAuth(access_token) {
     requestOptions(access_token)
   )
 }
-export async function getApiEQS(access_token) {
-  return await Swagger(
-    process.env.REACT_APP_SWAGGER_EQS,
-    requestOptions(access_token)
-  )
-}
