@@ -10,6 +10,7 @@ import {
 import {
   compose,
   concat,
+  length,
   map,
   pathOr,
   pick,
@@ -52,6 +53,15 @@ const getSerialNumbersLegacy = compose(
 )
 
 const getSerialNumbers = pathOr([], ['pvs', 'serialNumbers'])
+
+const StepHeader = ({ name, panelsAdded, panelsAvailable }) => (
+  <div className="step">
+    <span className="mr-10 has-text-weight-bold">
+      {panelsAdded}/{panelsAvailable}
+    </span>
+    <span className="step-name">{name}</span>
+  </div>
+)
 
 export default () => {
   const dispatch = useDispatch()
@@ -145,8 +155,13 @@ export default () => {
   return (
     <PanelLayoutTool
       err={err}
-      step={1}
-      step_name={t('PLT_STEP_ADD_POSITION_PANELS')}
+      stepHeader={
+        <StepHeader
+          name={t('PLT_MODULES_PLACED')}
+          panelsAvailable={length(serialNumbers)}
+          panelsAdded={length(panels)}
+        />
+      }
       instruction={t('ADD_PANEL_PLT')}
       onClick={assign}
       panels={EPanel}

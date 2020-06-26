@@ -1359,7 +1359,7 @@ exports[`Meter Widget renders correctly 1`] = `
                               },
                               Object {
                                 "label": "NOT_USED",
-                                "value": "UNKNOWN",
+                                "value": "NOT_USED",
                               },
                             ]
                           }
@@ -1394,7 +1394,7 @@ exports[`Meter Widget renders correctly 1`] = `
                                 },
                                 Object {
                                   "label": "NOT_USED",
-                                  "value": "UNKNOWN",
+                                  "value": "NOT_USED",
                                 },
                               ]
                             }
@@ -1456,7 +1456,7 @@ exports[`Meter Widget renders correctly 1`] = `
                                   },
                                   Object {
                                     "label": "NOT_USED",
-                                    "value": "UNKNOWN",
+                                    "value": "NOT_USED",
                                   },
                                 ]
                               }
@@ -1498,7 +1498,7 @@ exports[`Meter Widget renders correctly 1`] = `
                                     },
                                     Object {
                                       "label": "NOT_USED",
-                                      "value": "UNKNOWN",
+                                      "value": "NOT_USED",
                                     },
                                   ]
                                 }
@@ -1558,7 +1558,7 @@ exports[`Meter Widget renders correctly 1`] = `
                                       },
                                       Object {
                                         "label": "NOT_USED",
-                                        "value": "UNKNOWN",
+                                        "value": "NOT_USED",
                                       },
                                     ],
                                     "pageSize": 5,
@@ -1651,7 +1651,7 @@ exports[`Meter Widget renders correctly 1`] = `
                                           },
                                           Object {
                                             "label": "NOT_USED",
-                                            "value": "UNKNOWN",
+                                            "value": "NOT_USED",
                                           },
                                         ]
                                       }
@@ -1711,7 +1711,7 @@ exports[`Meter Widget renders correctly 1`] = `
                                             },
                                             Object {
                                               "label": "NOT_USED",
-                                              "value": "UNKNOWN",
+                                              "value": "NOT_USED",
                                             },
                                           ],
                                           "pageSize": 5,
@@ -1812,7 +1812,7 @@ exports[`Meter Widget renders correctly 1`] = `
                                                 },
                                                 Object {
                                                   "label": "NOT_USED",
-                                                  "value": "UNKNOWN",
+                                                  "value": "NOT_USED",
                                                 },
                                               ]
                                             }
@@ -1872,7 +1872,7 @@ exports[`Meter Widget renders correctly 1`] = `
                                                   },
                                                   Object {
                                                     "label": "NOT_USED",
-                                                    "value": "UNKNOWN",
+                                                    "value": "NOT_USED",
                                                   },
                                                 ],
                                                 "pageSize": 5,
@@ -1960,7 +1960,7 @@ exports[`Meter Widget renders correctly 1`] = `
                                                       },
                                                       Object {
                                                         "label": "NOT_USED",
-                                                        "value": "UNKNOWN",
+                                                        "value": "NOT_USED",
                                                       },
                                                     ]
                                                   }
@@ -2020,7 +2020,7 @@ exports[`Meter Widget renders correctly 1`] = `
                                                         },
                                                         Object {
                                                           "label": "NOT_USED",
-                                                          "value": "UNKNOWN",
+                                                          "value": "NOT_USED",
                                                         },
                                                       ],
                                                       "pageSize": 5,
@@ -2160,7 +2160,7 @@ exports[`Meter Widget renders correctly 1`] = `
                                                 },
                                                 Object {
                                                   "label": "NOT_USED",
-                                                  "value": "UNKNOWN",
+                                                  "value": "NOT_USED",
                                                 },
                                               ]
                                             }
@@ -2220,7 +2220,7 @@ exports[`Meter Widget renders correctly 1`] = `
                                                   },
                                                   Object {
                                                     "label": "NOT_USED",
-                                                    "value": "UNKNOWN",
+                                                    "value": "NOT_USED",
                                                   },
                                                 ],
                                                 "pageSize": 5,
@@ -2303,7 +2303,7 @@ exports[`Meter Widget renders correctly 1`] = `
                                                       },
                                                       Object {
                                                         "label": "NOT_USED",
-                                                        "value": "UNKNOWN",
+                                                        "value": "NOT_USED",
                                                       },
                                                     ]
                                                   }
@@ -2363,7 +2363,7 @@ exports[`Meter Widget renders correctly 1`] = `
                                                         },
                                                         Object {
                                                           "label": "NOT_USED",
-                                                          "value": "UNKNOWN",
+                                                          "value": "NOT_USED",
                                                         },
                                                       ],
                                                       "pageSize": 5,
@@ -2438,7 +2438,7 @@ exports[`Meter Widget renders correctly 1`] = `
                                                       },
                                                       Object {
                                                         "label": "NOT_USED",
-                                                        "value": "UNKNOWN",
+                                                        "value": "NOT_USED",
                                                       },
                                                     ]
                                                   }
@@ -2498,7 +2498,7 @@ exports[`Meter Widget renders correctly 1`] = `
                                                         },
                                                         Object {
                                                           "label": "NOT_USED",
-                                                          "value": "UNKNOWN",
+                                                          "value": "NOT_USED",
                                                         },
                                                       ],
                                                       "pageSize": 5,
