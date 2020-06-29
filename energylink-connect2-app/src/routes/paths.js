@@ -132,7 +132,30 @@ const paths = {
       path: '/connection-lost',
       header: true
     },
-    DATA: { path: '/data', header: true, footer: true, tab: TABS.DATA },
+    DATA: {
+      path: '/data',
+      header: true,
+      footer: true,
+      tab: TABS.DATA
+    },
+    ESS_DEVICE_MAPPING: {
+      path: '/ess-device-mapping',
+      header: true,
+      footer: true,
+      tab: TABS.INSTALL
+    },
+    ESS_DEVICE_MAPPING_ERROR: {
+      path: '/ess-device-mapping-error',
+      header: true,
+      footer: true,
+      tab: TABS.INSTALL
+    },
+    ESS_DEVICE_MAPPING_SUCCESS: {
+      path: '/ess-device-mapping-success',
+      header: true,
+      footer: true,
+      tab: TABS.INSTALL
+    },
     ESS_HEALTH_CHECK: {
       path: '/ess-health-check',
       header: true,
