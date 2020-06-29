@@ -1,3 +1,4 @@
+import ErrorDetailScreen from 'pages/ErrorDetailScreen/ErrorDetail'
 import React, { useLayoutEffect, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Route, Switch } from 'react-router-dom'
@@ -8,12 +9,12 @@ import useUpgrade from 'hooks/useUpgrade'
 import useCanceledPVSConnection from 'hooks/useCanceledPVSConnection'
 
 import BillOfMaterials from 'pages/BillOfMaterials'
+import ConnectionLost from 'pages/ConnectionLost'
 import ConnectToPVS from 'pages/ConnectToPVS'
 import CreateSite from 'pages/CreateSite'
 import Data from 'pages/Data'
 import Devices from 'pages/Devices'
 import Firmwares from 'pages/Firmwares'
-import VersionInformation from 'pages/VersionInformation'
 import GiveFeedback from 'pages/GiveFeedback'
 import Home from 'pages/Home'
 import InstallSuccessful from 'pages/InstallSuccess'
@@ -31,10 +32,8 @@ import SavingConfiguration from 'pages/SavingConfiguration'
 import ScanLabels from 'pages/ScanLabels'
 import SNList from 'pages/SNList'
 import SystemConfiguration from 'pages/SystemConfiguration'
-import ConnectionLost from 'pages/ConnectionLost'
 import UpdateScreen from 'pages/UpdateScreen'
-import ESSHealthCheck from 'pages/ESSHealthCheck'
-import ESSHealthCheckErrors from 'pages/ESSHealthCheckErrors'
+import VersionInformation from 'pages/VersionInformation'
 
 import { validateSession } from 'state/actions/auth'
 import { updateBodyHeight } from 'shared/utils'
@@ -44,6 +43,7 @@ import useDownloader from 'hooks/useDownloader'
 import paths from './paths'
 
 const mapComponents = {
+  [paths.PROTECTED.ERROR_DETAIL.path]: ErrorDetailScreen,
   [paths.PROTECTED.DEVICES.path]: Devices,
   [paths.PROTECTED.UPDATE.path]: UpdateScreen,
   [paths.PROTECTED.BILL_OF_MATERIALS.path]: BillOfMaterials,
@@ -68,8 +68,6 @@ const mapComponents = {
   [paths.PROTECTED.MODEL_EDIT.path]: ModelEdit,
   [paths.PROTECTED.LEGACY_DISCOVERY.path]: LegacyDiscovery,
   [paths.PROTECTED.CONNECTION_LOST.path]: ConnectionLost,
-  [paths.PROTECTED.ESS_HEALTH_CHECK.path]: ESSHealthCheck,
-  [paths.PROTECTED.ESS_HEALTH_CHECK_ERRORS.path]: ESSHealthCheckErrors,
   [paths.UNPROTECTED.FORGOT_PASSWORD.path]: NotFound,
   [paths.UNPROTECTED.GET_ASSISTANCE.path]: NotFound,
   [paths.UNPROTECTED.LOGIN.path]: Login
@@ -103,7 +101,7 @@ function AppRoutes() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  const isLoggedIn = useSelector(({ user }) => user.auth.access_token)
+  const isLoggedIn =  useSelector(({ user }) => user.auth.access_token)
   return (
     <div>
       <Switch>

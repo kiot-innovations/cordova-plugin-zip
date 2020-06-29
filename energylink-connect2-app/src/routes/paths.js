@@ -12,6 +12,11 @@ export const TABS = {
  */
 const paths = {
   PROTECTED: {
+    ERROR_DETAIL: {
+      path: '/error/:errorCode',
+      header: true,
+      footer: false
+    },
     BILL_OF_MATERIALS: {
       path: '/bill-of-materials',
       header: true,
@@ -160,3 +165,8 @@ const paths = {
 }
 export const protectedRoutes = Object.values(paths.PROTECTED)
 export default paths
+export const setParams = (params, url) =>
+  url
+    .split(':')
+    .map((elem, i) => (i > 0 ? params[i - 1] : elem))
+    .join('')
