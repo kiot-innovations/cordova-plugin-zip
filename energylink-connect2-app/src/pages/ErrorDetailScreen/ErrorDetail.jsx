@@ -44,7 +44,7 @@ const ErrorDetailScreen = () => {
           <h1 className="has-text-white is-size-5 has-text-weight-bold mb-10">
             {code.error_description}
           </h1>
-          <span className="is-size-7">Error code {code.event_code}</span>
+          <span className="is-size-7">{t('ERROR_CODE', code.event_code)}</span>
           {time && <span>{time}</span>}
           {affectedDevices && (
             <AffectedDevices devices={affectedDevices} t={t} />

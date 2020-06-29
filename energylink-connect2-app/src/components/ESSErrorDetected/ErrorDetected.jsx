@@ -8,11 +8,11 @@ import { useI18n } from 'shared/i18n'
  *
  * @param number
  * @param url
- * @param errorInfo {time, affectedDevices, apiResponse}
+ * @param onRetry Function
  * @returns {null|React.Component}
  * @constructor
  */
-const ErrorDetected = ({ number = 0, url = '' }) => {
+const ErrorDetected = ({ number = 0, url = '', onRetry }) => {
   const t = useI18n()
   if (number === 0) return null
   return (
@@ -28,7 +28,10 @@ const ErrorDetected = ({ number = 0, url = '' }) => {
         >
           {t('ERROR_LIST')}
         </Link>
-        <button className="button button-transparent is-uppercase pl-20 pr-20 is-transparent mt-20">
+        <button
+          className="button button-transparent is-uppercase pl-20 pr-20 is-transparent mt-20"
+          onClick={onRetry}
+        >
           {t('RETRY')}
         </button>
       </div>
