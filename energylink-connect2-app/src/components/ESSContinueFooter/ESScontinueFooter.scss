@@ -1,5 +1,13 @@
-.continue-footer{
+@import '~@sunpower/theme-dark/styles/variables';
+
+.continue-footer {
+  background: $black;
+  position: fixed;
+  bottom: 90px;
+  padding: 0 27px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  left: 0;
+  right: 0;
 }
