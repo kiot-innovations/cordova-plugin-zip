@@ -365,6 +365,8 @@
   "CONNECTING_PVS": "Hold on, we're connecting to the PVS...",
   "DEVICE_MAP": "ESS Device Map",
   "DEVICE_MAPPING": "ESS Device Mapping",
+  "DEVICE_MAPPING_ERROR": "Unable to generate system map.",
+  "DEVICE_MAPPING_ERROR_ADVICE": "Please make sure you're connected to the PVS. If you keep getting this error, reboot the PVS and try again.",
   "NO_DEVICEMAP": "No devices provided",
   "DEVICEMAP_ERROR": "Something went wrong, please retry the device mapping.",
   "ERROR_DOWNLOADING_ESS": "Something went wrong while downloading the ESS firmware files. Please try again."
