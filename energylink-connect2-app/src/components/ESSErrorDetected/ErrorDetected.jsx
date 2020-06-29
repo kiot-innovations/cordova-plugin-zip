@@ -12,7 +12,7 @@ import { useI18n } from 'shared/i18n'
  * @returns {null|React.Component}
  * @constructor
  */
-const ErrorDetected = ({ number = 0, url = '', errorInfo }) => {
+const ErrorDetected = ({ number = 0, url = '' }) => {
   const t = useI18n()
   if (number === 0) return null
   return (
@@ -24,7 +24,7 @@ const ErrorDetected = ({ number = 0, url = '', errorInfo }) => {
       <div>
         <Link
           className="button is-primary is-uppercase pl-20 pr-20 mt-20"
-          to={{ pathname: url, state: { ...errorInfo } }}
+          to={url}
         >
           {t('ERROR_LIST')}
         </Link>
