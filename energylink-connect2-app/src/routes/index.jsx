@@ -1,6 +1,6 @@
 import ErrorDetailScreen from 'pages/ErrorDetailScreen/ErrorDetail'
 import React, { useLayoutEffect, useEffect } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { Route, Switch } from 'react-router-dom'
 import { withTracker } from 'shared/ga'
 import { routeAuthorization, setLayout } from 'hocs'
@@ -101,7 +101,7 @@ function AppRoutes() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  const isLoggedIn = true
+  const isLoggedIn =  useSelector(({ user }) => user.auth.access_token)
   return (
     <div>
       <Switch>

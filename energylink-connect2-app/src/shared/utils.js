@@ -1,17 +1,26 @@
 import {
   assoc,
+  clone,
   compose,
+  concat,
+  contains,
   curry,
   defaultTo,
   dissoc,
+  filter,
   find,
   flip,
   includes,
   indexBy,
   join,
+  keys,
+  last,
+  length,
   lensIndex,
   lt,
+  map,
   over,
+  path,
   pathEq,
   pickBy,
   prop,
@@ -224,3 +233,24 @@ export const renameKeys = (keysMap, obj) =>
   )
 
 export const arrayToObject = (key, array) => indexBy(prop(key), array)
+const flatErrors = map(prop('device_sn'))
+
+export const addHasErrorProp = results => {
+  if (!results || !results.errors) return results
+
+  const copy = clone(results)
+  const snErrors = flatErrors(copy.errors)
+
+  keys(copy.ess_report).forEach(key => {
+    const keyValue = copy.ess_report[key]
+    const newValueForKey = Array.isArray(keyValue)
+      ? map(
+          value =>
+            assoc('hasError', contains(value.serial_number, snErrors), value),
+          keyValue
+        )
+      : assoc('hasError', contains(keyValue.serial_number, snErrors), keyValue)
+
+    copy.ess_report[key] = newValueForKey
+  })
+}
