@@ -2615,5 +2615,6 @@ const errorCodes = [
   }
 ]
 
-const keyedErrors = arrayToObject('event_code', errorCodes)
+export const keyedErrors = arrayToObject('event_code', errorCodes)
 export const getError = (errorCode = '') => propOr(null, errorCode, keyedErrors)
+export default errorCodes
