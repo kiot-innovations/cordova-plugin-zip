@@ -1,8 +1,9 @@
 import React from 'react'
 import './ErrorListScreen.scss'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import paths, { setParams } from 'routes/paths'
 import { useI18n } from 'shared/i18n'
+import { omit } from 'ramda'
 
 const ErrorComponent = ({ title, code, errorInfo, t }) => (
   <div className="error-component">
@@ -21,6 +22,14 @@ const ErrorComponent = ({ title, code, errorInfo, t }) => (
   </div>
 )
 
+const getErrorInfo = omit([
+  'error_message',
+  'error_code',
+  'error_code',
+  'error_description',
+  'event_code',
+  'event_code'
+])
 /**
  *
  * @param errors array of errors {error_description,code,event_code}
@@ -29,17 +38,24 @@ const ErrorComponent = ({ title, code, errorInfo, t }) => (
  */
 const ErrorListScreen = ({ errors = [] }) => {
   const t = useI18n()
+  const history = useHistory()
   return (
     <div className="error-list-screen">
       {errors.map(elem => (
         <ErrorComponent
-          title={elem.error_description}
-          code={elem.code}
-          key={elem.event_code}
-          errorInfo={elem.errorInfo}
+          title={elem.error_description || elem.error_message}
+          code={elem.event_code || elem.error_code}
+          key={elem.event_code || elem.error_code}
+          errorInfo={getErrorInfo(elem)}
           t={t}
         />
       ))}
+      <button
+        className="button is-primary is-outlined is-center mt-10 mb-10"
+        onClick={() => history.goBack()}
+      >
+        Go back
+      </button>
       <div className="actions">
         <button className="button button-transparent has-text-primary is-uppercase mb-20 mt-20">
           {t('CANCEL_COMMISSION')}

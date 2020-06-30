@@ -380,5 +380,6 @@
   "ERROR_CODE": "Error code {0}",
   "CANCEL_COMMISSION": "Cancel commissioning",
   "EQS_FW_UPDATE_SUCCESS": "All components updated",
-  "ERROR_LIST": "Error list"
+  "ERROR_LIST": "Error list",
+  "API_RESPONSE": "Api response"
 }
