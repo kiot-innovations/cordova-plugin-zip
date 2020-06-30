@@ -1,3 +1,4 @@
+import * as Sentry from '@sentry/browser'
 import { ofType } from 'redux-observable'
 import { from, of } from 'rxjs'
 import { exhaustMap, map, catchError } from 'rxjs/operators'
@@ -23,7 +24,10 @@ export const getPreDiscoveryEpic = action$ => {
             ? GET_PREDISCOVERY_SUCCESS(response.body)
             : GET_PREDISCOVERY_ERROR('PREDISCOVERY_ERROR')
         ),
-        catchError(error => of(GET_PREDISCOVERY_ERROR(error)))
+        catchError(error => {
+          Sentry.captureException(error)
+          return of(GET_PREDISCOVERY_ERROR('PREDISCOVERY_ERROR'))
+        })
       )
     })
   )

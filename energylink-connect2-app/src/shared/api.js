@@ -14,7 +14,9 @@ export async function getApiFirmware() {
   return apiFirmware
 }
 export async function getApiPVS() {
-  return await Swagger(process.env.REACT_APP_PVS_ADDRESS)
+  return await Swagger(
+    process.env.REACT_APP_MOCK_SERVER || process.env.REACT_APP_PVS_ADDRESS
+  )
 }
 export async function getApiDevice(access_token) {
   return await Swagger(

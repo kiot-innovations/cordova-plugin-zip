@@ -15,8 +15,7 @@ function ESSHealthCheck() {
     dispatch(GET_ESS_STATUS_INIT())
   }, [dispatch])
 
-  const onContinue = () =>
-    history.push(paths.PROTECTED.SAVING_CONFIGURATION.path)
+  const onContinue = () => history.push(paths.PROTECTED.INSTALL_SUCCESS.path)
   const onRetry = () => dispatch(GET_ESS_STATUS_INIT())
   const onSeeErrors = () =>
     history.push(paths.PROTECTED.ESS_HEALTH_CHECK_ERRORS.path)
