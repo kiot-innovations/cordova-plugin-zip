@@ -54,7 +54,7 @@ export const getComponentMappingEpic = action$ => {
     switchMap(() =>
       timer(0, 5000).pipe(
         takeUntil(stopPolling$),
-        exhaustMap(() => {
+        exhaustMap(timeElapsed => {
           const promise = getApiPVS()
             .then(path(['apis', storageSwaggerTag]))
             .then(api => api.getComponentMapping())
@@ -81,6 +81,10 @@ export const getComponentMappingEpic = action$ => {
                   always(GET_COMPONENT_MAPPING_COMPLETED(response.body))
                 ]
               ])
+
+              if (timeElapsed > 4 && status === 'RUNNING') {
+                return GET_COMPONENT_MAPPING_ERROR('COMPONENT_MAPPING_ERROR')
+              }
 
               return statusMatcher(status)
             }),
