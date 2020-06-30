@@ -19,6 +19,7 @@ import paths from 'routes/paths'
 
 import SearchField from 'components/SearchField'
 import './Home.scss'
+import { DOWNLOAD_OS_INIT } from 'state/actions/ess'
 
 const formatAddress = compose(
   join(', '),
@@ -70,6 +71,7 @@ function Home() {
 
   useEffect(() => {
     dispatch(FIRMWARE_GET_FILE())
+    dispatch(DOWNLOAD_OS_INIT())
   }, [dispatch])
 
   const notFoundText = t('NOT_FOUND')
