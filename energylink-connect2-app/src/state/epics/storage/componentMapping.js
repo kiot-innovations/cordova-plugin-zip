@@ -34,7 +34,9 @@ export const postComponentMappingEpic = action$ => {
             ? POST_COMPONENT_MAPPING_SUCCESS()
             : POST_COMPONENT_MAPPING_ERROR('COMPONENT_MAPPING_ERROR')
         ),
-        catchError(error => of(POST_COMPONENT_MAPPING_ERROR(error)))
+        catchError(() =>
+          of(POST_COMPONENT_MAPPING_ERROR('COMPONENT_MAPPING_ERROR'))
+        )
       )
     })
   )
@@ -52,7 +54,7 @@ export const getComponentMappingEpic = action$ => {
     switchMap(() =>
       timer(0, 5000).pipe(
         takeUntil(stopPolling$),
-        exhaustMap(() => {
+        exhaustMap(timeElapsed => {
           const promise = getApiPVS()
             .then(path(['apis', storageSwaggerTag]))
             .then(api => api.getComponentMapping())
@@ -80,9 +82,15 @@ export const getComponentMappingEpic = action$ => {
                 ]
               ])
 
+              if (timeElapsed > 4 && status === 'RUNNING') {
+                return GET_COMPONENT_MAPPING_ERROR('COMPONENT_MAPPING_ERROR')
+              }
+
               return statusMatcher(status)
             }),
-            catchError(error => of(GET_COMPONENT_MAPPING_ERROR(error)))
+            catchError(() =>
+              of(GET_COMPONENT_MAPPING_ERROR('COMPONENT_MAPPING_ERROR'))
+            )
           )
         })
       )

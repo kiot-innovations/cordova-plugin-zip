@@ -33,6 +33,10 @@ import ScanLabels from 'pages/ScanLabels'
 import SNList from 'pages/SNList'
 import SystemConfiguration from 'pages/SystemConfiguration'
 import UpdateScreen from 'pages/UpdateScreen'
+import ESSDeviceMapping from 'pages/ESSDeviceMapping'
+import ESSDeviceMappingError from 'pages/ESSDeviceMappingError'
+import ESSDeviceMappingErrorList from 'pages/ESSDeviceMappingErrorList'
+import ESSDeviceMappingSuccess from 'pages/ESSDeviceMappingSuccess'
 import EQSUpdate from 'pages/EQSUpdate'
 import EQSUpdateErrors from 'pages/EQSUpdateErrors'
 import ESSHealthCheck from 'pages/ESSHealthCheck'
@@ -73,6 +77,11 @@ const mapComponents = {
   [paths.PROTECTED.MODEL_EDIT.path]: ModelEdit,
   [paths.PROTECTED.LEGACY_DISCOVERY.path]: LegacyDiscovery,
   [paths.PROTECTED.CONNECTION_LOST.path]: ConnectionLost,
+  [paths.PROTECTED.ESS_DEVICE_MAPPING.path]: ESSDeviceMapping,
+  [paths.PROTECTED.ESS_DEVICE_MAPPING_ERROR.path]: ESSDeviceMappingError,
+  [paths.PROTECTED.ESS_DEVICE_MAPPING_ERROR_LIST
+    .path]: ESSDeviceMappingErrorList,
+  [paths.PROTECTED.ESS_DEVICE_MAPPING_SUCCESS.path]: ESSDeviceMappingSuccess,
   [paths.PROTECTED.EQS_UPDATE.path]: EQSUpdate,
   [paths.PROTECTED.EQS_UPDATE_ERRORS.path]: EQSUpdateErrors,
   [paths.PROTECTED.ESS_HEALTH_CHECK.path]: ESSHealthCheck,
