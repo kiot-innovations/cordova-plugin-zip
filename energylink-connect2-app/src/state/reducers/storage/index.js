@@ -18,7 +18,8 @@ import {
   UPDATE_EQS_FIRMWARE_ERROR,
   GET_COMPONENT_MAPPING_PROGRESS,
   GET_COMPONENT_MAPPING_COMPLETED,
-  GET_COMPONENT_MAPPING_ERROR
+  GET_COMPONENT_MAPPING_ERROR,
+  RESET_COMPONENT_MAPPING
 } from 'state/actions/storage'
 
 const initialState = {
@@ -123,6 +124,11 @@ export const storageReducer = createReducer(
     [GET_COMPONENT_MAPPING_ERROR]: (state, payload) => ({
       ...state,
       error: payload
+    }),
+    [RESET_COMPONENT_MAPPING]: state => ({
+      ...state,
+      error: '',
+      componentMapping: {}
     })
   },
   initialState

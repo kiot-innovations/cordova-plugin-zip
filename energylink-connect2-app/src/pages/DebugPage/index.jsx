@@ -25,6 +25,11 @@ const DebugPage = () => {
       <div>
         {renderDebugLink(
           history,
+          'EQS Device Mapping',
+          paths.PROTECTED.ESS_DEVICE_MAPPING.path
+        )}
+        {renderDebugLink(
+          history,
           'EQS Connected Device Update',
           paths.PROTECTED.EQS_UPDATE.path
         )}

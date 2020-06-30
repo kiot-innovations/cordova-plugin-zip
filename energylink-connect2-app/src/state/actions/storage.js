@@ -24,6 +24,7 @@ export const GET_COMPONENT_MAPPING_COMPLETED = createAction(
 export const GET_COMPONENT_MAPPING_ERROR = createAction(
   'GET_COMPONENT_MAPPING_ERROR'
 )
+export const RESET_COMPONENT_MAPPING = createAction('RESET_COMPONENT_MAPPING')
 
 export const UPLOAD_EQS_FIRMWARE = createAction('UPLOAD_EQS_FIRMWARE')
 export const UPLOAD_EQS_FIRMWARE_SUCCESS = createAction(

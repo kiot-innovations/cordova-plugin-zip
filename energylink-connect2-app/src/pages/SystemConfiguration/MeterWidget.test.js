@@ -7,6 +7,7 @@ describe('Meter Widget', () => {
   let dispatchMock
 
   let initialState = {
+    inventory: { bom: [{ item: 'ESS', value: '0' }] },
     systemConfiguration: {
       meter: {
         consumptionCT: 1,
