@@ -1,6 +1,6 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { path, compose, prop, find, propEq } from 'ramda'
+import { path, compose, prop, find, propEq, propOr } from 'ramda'
 import { useI18n } from 'shared/i18n'
 
 import Collapsible from 'components/Collapsible'
@@ -17,19 +17,30 @@ const MCI = <span className="sp-meter file level mr-15 is-size-4" />
 function MetersWidget() {
   const t = useI18n()
   const dispatch = useDispatch()
+  const bom = useSelector(path(['inventory', 'bom']))
+  const essValue = propOr('0', 'value', find(propEq('item', 'ESS'), bom))
 
   const { consumptionCT, productionCT, ratedCurrent } = useSelector(
     path(['systemConfiguration', 'meter'])
   )
 
   const CONSUMPTION_METER_TYPES = [
-    { label: t('NET_CONSUMPTION_LOADSIDE'), value: 'NET_CONSUMPTION_LOADSIDE' },
+    {
+      label: t('NET_CONSUMPTION_LOADSIDE'),
+      value: 'NET_CONSUMPTION_LOADSIDE'
+    },
     {
       label: t('GROSS_CONSUMPTION_LINESIDE'),
       value: 'GROSS_CONSUMPTION_LINESIDE'
     },
     { label: t('NOT_USED'), value: 'NOT_USED' }
   ]
+
+  useEffect(() => {
+    if (essValue !== '0') {
+      dispatch(SET_CONSUMPTION_CT('GROSS_CONSUMPTION_LINESIDE'))
+    }
+  }, [dispatch, essValue])
 
   const PRODUCTION_METER_TYPES = [
     {
@@ -77,6 +88,7 @@ function MetersWidget() {
               <div className="control">
                 <SelectField
                   isSearchable={false}
+                  disabled={essValue !== '0'}
                   useDefaultDropDown
                   onSelect={compose(
                     dispatch,
@@ -85,7 +97,12 @@ function MetersWidget() {
                   )}
                   options={CONSUMPTION_METER_TYPES}
                   defaultValue={find(
-                    propEq('value', consumptionCT),
+                    propEq(
+                      'value',
+                      essValue === '0'
+                        ? consumptionCT
+                        : 'GROSS_CONSUMPTION_LINESIDE'
+                    ),
                     CONSUMPTION_METER_TYPES
                   )}
                 />
