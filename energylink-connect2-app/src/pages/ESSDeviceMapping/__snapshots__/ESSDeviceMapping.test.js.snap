@@ -1,0 +1,85 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ESSDeviceMapping component renders correctly 1`] = `
+Object {
+  "component": <BrowserRouter
+    keyLength={0}
+  >
+    <Router
+      history={
+        Object {
+          "action": "POP",
+          "block": [Function],
+          "createHref": [Function],
+          "go": [Function],
+          "goBack": [Function],
+          "goForward": [Function],
+          "length": 1,
+          "listen": [Function],
+          "location": Object {
+            "hash": "",
+            "pathname": "/",
+            "search": "",
+            "state": undefined,
+          },
+          "push": [Function],
+          "replace": [Function],
+        }
+      }
+    >
+      <Provider
+        store={
+          Object {
+            "clearActions": [Function],
+            "dispatch": [Function],
+            "getActions": [Function],
+            "getState": [Function],
+            "replaceReducer": [Function],
+            "subscribe": [Function],
+          }
+        }
+      >
+        <DeviceMapping>
+          <section
+            className="ess-device-mapping is-flex tile is-vertical has-text-weight-bold pt-0 pr-10 pl-10 full-height"
+          >
+            <h1
+              className="has-text-centered is-uppercase pb-20"
+            >
+              DEVICE_MAPPING
+            </h1>
+            <div
+              className="main-container"
+            >
+              <div
+                className="pt-20 pb-20"
+              >
+                <div
+                  className="inline-loader"
+                >
+                  <div
+                    className="ball-scale-ripple"
+                  >
+                    <div />
+                  </div>
+                </div>
+              </div>
+              <div>
+                DEVICE_MAPPING_IN_PROGRESS
+              </div>
+            </div>
+          </section>
+        </DeviceMapping>
+      </Provider>
+    </Router>
+  </BrowserRouter>,
+  "store": Object {
+    "clearActions": [Function],
+    "dispatch": [Function],
+    "getActions": [Function],
+    "getState": [Function],
+    "replaceReducer": [Function],
+    "subscribe": [Function],
+  },
+}
+`;
