@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import clsx from 'clsx'
 import { useHistory } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { groupBy, path, prop, length } from 'ramda'
+import { groupBy, path, prop, propEq, find, length } from 'ramda'
 import { useI18n } from 'shared/i18n'
 import { SET_METADATA_INIT } from 'state/actions/pvs'
 import { CLAIM_DEVICES_RESET } from 'state/actions/devices'
@@ -17,7 +17,9 @@ const ModelEdit = () => {
   const dispatch = useDispatch()
   const { settingMetadata, setMetadataStatus } = useSelector(state => state.pvs)
   const { candidates, found } = useSelector(state => state.devices)
+  const { bom } = useSelector(state => state.inventory)
   const siteKey = useSelector(path(['site', 'site', 'siteKey']))
+  const essValue = find(propEq('item', 'ESS'), bom)
 
   const resetClaim = () => {
     dispatch(CLAIM_DEVICES_RESET())
@@ -70,7 +72,11 @@ const ModelEdit = () => {
 
   useEffect(() => {
     if (setMetadataStatus === 'success') {
-      history.push(paths.PROTECTED.INSTALL_SUCCESS.path)
+      if (essValue.value !== '0') {
+        history.push(paths.PROTECTED.EQS_UPDATE.path)
+      } else {
+        history.push(paths.PROTECTED.INSTALL_SUCCESS.path)
+      }
     }
   })
 

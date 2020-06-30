@@ -8,6 +8,14 @@ import {
   GET_PREDISCOVERY_ERROR,
   POST_COMPONENT_MAPPING,
   POST_COMPONENT_MAPPING_ERROR,
+  UPLOAD_EQS_FIRMWARE,
+  UPLOAD_EQS_FIRMWARE_SUCCESS,
+  UPLOAD_EQS_FIRMWARE_ERROR,
+  TRIGGER_EQS_FIRMWARE_SUCCESS,
+  TRIGGER_EQS_FIRMWARE_ERROR,
+  UPDATE_EQS_FIRMWARE_PROGRESS,
+  UPDATE_EQS_FIRMWARE_COMPLETED,
+  UPDATE_EQS_FIRMWARE_ERROR,
   GET_COMPONENT_MAPPING_PROGRESS,
   GET_COMPONENT_MAPPING_COMPLETED,
   GET_COMPONENT_MAPPING_ERROR
@@ -17,16 +25,22 @@ const initialState = {
   currentStep: '',
   prediscovery: {},
   componentMapping: {},
-  error: '',
+  deviceUpdate: {},
   status: {
     results: null,
     error: null
-  }
+  },
+  error: ''
 }
 
-const eqsSteps = {
+export const eqsSteps = {
   PREDISCOVERY: 'PREDISCOVERY',
-  COMPONENT_MAPPING: 'COMPONENT_MAPPING'
+  COMPONENT_MAPPING: 'COMPONENT_MAPPING',
+  FW_UPLOAD: 'FW_UPLOAD',
+  FW_UPDATE: 'FW_UPDATE',
+  FW_POLL: 'FW_POLL',
+  FW_COMPLETED: 'FW_COMPLETED',
+  FW_ERROR: 'FW_ERROR'
 }
 
 export const storageReducer = createReducer(
@@ -62,6 +76,41 @@ export const storageReducer = createReducer(
     [POST_COMPONENT_MAPPING_ERROR]: (state, payload) => ({
       ...state,
       error: payload
+    }),
+    [UPLOAD_EQS_FIRMWARE]: state => ({
+      ...state,
+      currentStep: eqsSteps.FW_UPLOAD
+    }),
+    [UPLOAD_EQS_FIRMWARE_SUCCESS]: state => ({
+      ...state,
+      currentStep: eqsSteps.FW_UPDATE
+    }),
+    [UPLOAD_EQS_FIRMWARE_ERROR]: (state, payload) => ({
+      ...state,
+      error: payload
+    }),
+    [TRIGGER_EQS_FIRMWARE_SUCCESS]: state => ({
+      ...state,
+      currentStep: eqsSteps.FW_POLL
+    }),
+    [TRIGGER_EQS_FIRMWARE_ERROR]: (state, payload) => ({
+      ...state,
+      error: payload
+    }),
+    [UPDATE_EQS_FIRMWARE_PROGRESS]: (state, payload) => ({
+      ...state,
+      deviceUpdate: payload
+    }),
+    [UPDATE_EQS_FIRMWARE_COMPLETED]: (state, payload) => ({
+      ...state,
+      deviceUpdate: payload,
+      currentStep: eqsSteps.FW_COMPLETED
+    }),
+    [UPDATE_EQS_FIRMWARE_ERROR]: (state, payload) => ({
+      ...state,
+      error: payload.error,
+      deviceUpdate: payload.response,
+      currentStep: eqsSteps.FW_ERROR
     }),
     [GET_COMPONENT_MAPPING_PROGRESS]: (state, payload) => ({
       ...state,
