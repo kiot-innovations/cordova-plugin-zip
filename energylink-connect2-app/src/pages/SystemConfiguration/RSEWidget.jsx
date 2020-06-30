@@ -1,106 +1,150 @@
-import Collapsible from 'components/Collapsible'
-import SelectField from 'components/SelectField'
-import { curry, compose, equals, pathOr, prop } from 'ramda'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
+import { curry, compose, equals, path, prop, isNil, propEq, find } from 'ramda'
 import { useDispatch, useSelector } from 'react-redux'
+
+import {
+  GET_RSE_INIT,
+  SET_RSE_INIT,
+  SET_SELECTED_POWER_PRODUCTION
+} from 'state/actions/systemConfiguration'
+
 import { useI18n } from 'shared/i18n'
 import { either } from 'shared/utils'
-import { GET_RSE_INIT, SET_RSE_INIT } from 'state/actions/systemConfiguration'
+
+import Collapsible from 'components/Collapsible'
+import SelectField from 'components/SelectField'
+import { Loader } from 'components/Loader'
 
 const RSE = <span className="sp-power file level mr-15 is-size-4" />
 
-const invertedPowerProduction = curry((RSES, pp) =>
-  pp === RSES[0].value ? RSES[1] : RSES[0]
+const getPowerProductionDropDownValue = curry((RSES, pp) =>
+  find(propEq('value', pp), RSES)
 )
 
 function RSEWidget() {
   const t = useI18n()
   const dispatch = useDispatch()
 
-  const { isSetting, error, data = {} } = useSelector(
-    pathOr({}, ['systemConfiguration', 'rse'])
-  )
+  const {
+    isSetting,
+    isPolling,
+    error,
+    data = {},
+    selectedPowerProduction
+  } = useSelector(path(['systemConfiguration', 'rse']))
 
-  const { powerProduction = 'Off', progress = 100 } = data
+  const { powerProduction, progress = 100 } = data
 
-  const RSES = [
-    { label: t('ON'), value: 'On' },
-    { label: t('OFF'), value: 'Off' }
+  const dropDownValues = [
+    { label: t('ON'), value: 'Off' },
+    { label: t('OFF'), value: 'On' }
   ]
 
-  const [rseValue, setRSEValue] = useState(powerProduction)
-
-  const disableApplyBtn = !equals(powerProduction, rseValue)
-  const sendNewRSEValue = compose(dispatch, SET_RSE_INIT)
-  const onSelectRSE = compose(
-    setRSEValue,
-    prop('value'),
-    invertedPowerProduction(RSES),
+  const applyPowerProductionValue = compose(dispatch, SET_RSE_INIT)
+  const onApplyPowerProductionValue = compose(
+    applyPowerProductionValue,
     prop('value')
   )
+
+  const changePowerProductionValue = compose(
+    dispatch,
+    SET_SELECTED_POWER_PRODUCTION
+  )
+
+  const onChangePowerProductionValue = compose(
+    changePowerProductionValue,
+    prop('value')
+  )
+
+  const disableApplyBtn =
+    equals(powerProduction, selectedPowerProduction) ||
+    isNil(selectedPowerProduction)
 
   useEffect(() => {
     dispatch(GET_RSE_INIT())
   }, [dispatch])
 
-  useEffect(() => {
-    setRSEValue(powerProduction)
-  }, [powerProduction])
+  const isWorking = isSetting || isPolling
 
   return (
     <div className="pb-15">
-      <Collapsible title={t('REMOTE_SYSTEM_ENERGYZE')} icon={RSE}>
-        <React.Fragment>
-          <div className="field is-horizontal mb-15">
-            <div className="field-label">
-              <label htmlFor="siteName" className="label has-text-white">
-                {t('RSE')}
-              </label>
-            </div>
-            <div className="field-body">
-              <div className="field">
-                <div className="control">
-                  <SelectField
-                    disabled={isSetting}
-                    isSearchable={false}
-                    options={RSES}
-                    value={invertedPowerProduction(RSES, rseValue)}
-                    onSelect={onSelectRSE}
-                  />
+      <Collapsible title={t('REMOTE_SYSTEM_ENERGIZE')} icon={RSE}>
+        {selectedPowerProduction ? (
+          <React.Fragment>
+            <div className="field is-horizontal mb-15">
+              <div className="field-label">
+                <label htmlFor="siteName" className="label has-text-white">
+                  {t('RSE')}
+                </label>
+              </div>
+              <div className="field-body">
+                <div className="field">
+                  <div className="control">
+                    <SelectField
+                      disabled={isWorking}
+                      isSearchable={false}
+                      options={dropDownValues}
+                      value={getPowerProductionDropDownValue(
+                        dropDownValues,
+                        selectedPowerProduction
+                      )}
+                      onSelect={onChangePowerProductionValue}
+                    />
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
 
-          {renderRSEDescription(
-            invertedPowerProduction(RSES, rseValue).value,
-            t
-          )}
+            {renderRSEDescription(
+              getPowerProductionDropDownValue(
+                dropDownValues,
+                selectedPowerProduction
+              ).value,
+              t
+            )}
 
-          {either(
-            error,
-            <div className="message error mt-10 mb-10">{t(error)}</div>
-          )}
+            {either(
+              error,
+              <div className="block">
+                <div className="message error">
+                  {t(error)}
+                  <button
+                    className="button has-text-primary is-uppercase is-text pl-0"
+                    onClick={() => dispatch(GET_RSE_INIT())}
+                  >
+                    {t('RETRY_CLICK')}
+                  </button>
+                </div>
+              </div>
+            )}
 
-          <div className="is-flex mt-15">
-            <button
-              className="button is-primary is-uppercase auto"
-              disabled={isSetting || disableApplyBtn}
-              onClick={() =>
-                sendNewRSEValue(invertedPowerProduction(RSES, rseValue).value)
-              }
-            >
-              {either(
-                isSetting,
-                t(
-                  'APPLYING',
-                  progress && progress < 100 ? `${progress}%` : '...'
-                ),
-                t('APPLY')
-              )}
-            </button>
-          </div>
-        </React.Fragment>
+            <div className="is-flex mt-15">
+              <button
+                className="button is-primary is-uppercase auto"
+                disabled={isSetting || disableApplyBtn}
+                onClick={() =>
+                  onApplyPowerProductionValue(
+                    getPowerProductionDropDownValue(
+                      dropDownValues,
+                      selectedPowerProduction
+                    )
+                  )
+                }
+              >
+                {either(
+                  isWorking,
+                  t(
+                    'APPLYING',
+                    progress && progress < 100 ? `${progress}%` : '...'
+                  ),
+                  t('APPLY')
+                )}
+              </button>
+            </div>
+          </React.Fragment>
+        ) : (
+          <Loader />
+        )}
       </Collapsible>
     </div>
   )
