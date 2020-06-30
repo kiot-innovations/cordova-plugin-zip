@@ -368,6 +368,8 @@
   "DEVICE_MAPPING_IN_PROGRESS": "Hold on, we're generating the ESS map.",
   "DEVICE_MAPPING_ERROR": "Unable to generate system map.",
   "DEVICE_MAPPING_ERROR_ADVICE": "Please make sure you're connected to the PVS. If you keep getting this error, reboot the PVS and try again.",
+  "DEVICE_MAPPING_SUCCESS": "System Map Generated",
+  "DEVICE_MAPPING_UNKNOWN_DEVICE": "Unknown Device",
   "NO_DEVICEMAP": "No devices provided",
   "AFFECTED_DEVICES": "Affected devices",
   "ERRORS_DETECTED": "We detected {0} errors",
