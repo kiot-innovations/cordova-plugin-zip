@@ -1,7 +1,9 @@
 import {
   assoc,
+  clone,
   compose,
   concat,
+  contains,
   curry,
   defaultTo,
   dissoc,
@@ -9,7 +11,9 @@ import {
   find,
   flip,
   includes,
+  indexBy,
   join,
+  keys,
   last,
   length,
   lensIndex,
@@ -21,17 +25,13 @@ import {
   pickBy,
   prop,
   propEq,
+  propOr,
   replace,
   split,
   toPairs,
   toUpper,
   values,
-  when,
-  propOr,
-  indexBy,
-  clone,
-  contains,
-  keys
+  when
 } from 'ramda'
 
 export const either = (condition, whenTrue, whenFalse = null) =>
@@ -216,8 +216,23 @@ export const getPVSVersionNumber = compose(
 
 export const flipConcat = flip(concat)
 
-export const arrayToObject = (key, array) => indexBy(prop(key), array)
+export const miTypes = {
+  AC_Module_Type_E: 'Type E',
+  AC_Module_Type_G: 'Type G',
+  AC_Module_Type_C: 'Type C',
+  AC_Module_Type_D: 'Type D'
+}
 
+export const renameKeys = (keysMap, obj) =>
+  Object.keys(obj).reduce(
+    (acc, key) => ({
+      ...acc,
+      ...{ [keysMap[key] || key]: obj[key] }
+    }),
+    {}
+  )
+
+export const arrayToObject = (key, array) => indexBy(prop(key), array)
 const flatErrors = map(prop('device_sn'))
 
 export const addHasErrorProp = results => {
@@ -238,22 +253,4 @@ export const addHasErrorProp = results => {
 
     copy.ess_report[key] = newValueForKey
   })
-
-  return copy
 }
-
-export const miTypes = {
-  AC_Module_Type_E: 'Type E',
-  AC_Module_Type_G: 'Type G',
-  AC_Module_Type_C: 'Type C',
-  AC_Module_Type_D: 'Type D'
-}
-
-export const renameKeys = (keysMap, obj) =>
-  Object.keys(obj).reduce(
-    (acc, key) => ({
-      ...acc,
-      ...{ [keysMap[key] || key]: obj[key] }
-    }),
-    {}
-  )

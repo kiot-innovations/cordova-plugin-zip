@@ -1,0 +1,27 @@
+@import '~@sunpower/theme-dark/styles/variables';
+
+.error-list-detected {
+  background: $black;
+  position: fixed;
+  bottom: 90px;
+  padding: 0 27px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  left: 0;
+  right: 0;
+
+  div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    width: 100%;
+  }
+
+  .button-transparent {
+    color: $sun;
+    border: 1px solid $sun;
+  }
+  .title-error {
+  }
+}
