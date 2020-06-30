@@ -34,7 +34,9 @@ export const postComponentMappingEpic = action$ => {
             ? POST_COMPONENT_MAPPING_SUCCESS()
             : POST_COMPONENT_MAPPING_ERROR('COMPONENT_MAPPING_ERROR')
         ),
-        catchError(error => of(POST_COMPONENT_MAPPING_ERROR(error)))
+        catchError(() =>
+          of(POST_COMPONENT_MAPPING_ERROR('COMPONENT_MAPPING_ERROR'))
+        )
       )
     })
   )
@@ -82,7 +84,9 @@ export const getComponentMappingEpic = action$ => {
 
               return statusMatcher(status)
             }),
-            catchError(error => of(GET_COMPONENT_MAPPING_ERROR(error)))
+            catchError(() =>
+              of(GET_COMPONENT_MAPPING_ERROR('COMPONENT_MAPPING_ERROR'))
+            )
           )
         })
       )
