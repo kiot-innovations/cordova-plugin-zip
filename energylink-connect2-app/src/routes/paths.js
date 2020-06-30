@@ -173,6 +173,12 @@ const paths = {
       footer: true,
       tab: TABS.INSTALL
     },
+    ESS_DEVICE_MAPPING_ERROR_LIST: {
+      path: '/ess-device-mapping-error-list',
+      header: true,
+      footer: true,
+      tab: TABS.INSTALL
+    },
     ESS_HEALTH_CHECK: {
       path: '/ess-health-check',
       header: true,

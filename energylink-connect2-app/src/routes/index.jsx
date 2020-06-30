@@ -35,6 +35,7 @@ import SystemConfiguration from 'pages/SystemConfiguration'
 import UpdateScreen from 'pages/UpdateScreen'
 import ESSDeviceMapping from 'pages/ESSDeviceMapping'
 import ESSDeviceMappingError from 'pages/ESSDeviceMappingError'
+import ESSDeviceMappingErrorList from 'pages/ESSDeviceMappingErrorList'
 import ESSDeviceMappingSuccess from 'pages/ESSDeviceMappingSuccess'
 import EQSUpdate from 'pages/EQSUpdate'
 import EQSUpdateErrors from 'pages/EQSUpdateErrors'
@@ -78,6 +79,8 @@ const mapComponents = {
   [paths.PROTECTED.CONNECTION_LOST.path]: ConnectionLost,
   [paths.PROTECTED.ESS_DEVICE_MAPPING.path]: ESSDeviceMapping,
   [paths.PROTECTED.ESS_DEVICE_MAPPING_ERROR.path]: ESSDeviceMappingError,
+  [paths.PROTECTED.ESS_DEVICE_MAPPING_ERROR_LIST
+    .path]: ESSDeviceMappingErrorList,
   [paths.PROTECTED.ESS_DEVICE_MAPPING_SUCCESS.path]: ESSDeviceMappingSuccess,
   [paths.PROTECTED.EQS_UPDATE.path]: EQSUpdate,
   [paths.PROTECTED.EQS_UPDATE_ERRORS.path]: EQSUpdateErrors,
