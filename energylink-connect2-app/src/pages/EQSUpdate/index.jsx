@@ -90,7 +90,7 @@ const EQSUpdate = () => {
         </div>
       )}
       {fileReady === 1 && (
-        <div>
+        <div className="has-text-centered pl-10 pr-10">
           <div className="pt-20 pb-20">
             <i className="sp-close has-text-white is-size-1" />
           </div>
@@ -100,7 +100,7 @@ const EQSUpdate = () => {
         </div>
       )}
       {either(
-        isEmpty(updateProgress),
+        fileReady !== 1 && isEmpty(updateProgress),
         <div className="has-text-centered">
           <Loader />
           <span>{t('FW_UPDATE_WAIT')}</span>
