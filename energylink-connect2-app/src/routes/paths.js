@@ -129,6 +129,12 @@ const paths = {
       footer: true,
       tab: TABS.INSTALL
     },
+    EQS_PREDISCOVERY_ERRORS: {
+      path: '/eqs-prediscovery-errors',
+      header: true,
+      footer: true,
+      tab: TABS.INSTALL
+    },
     INVENTORY_COUNT: {
       path: '/inventory-count',
       header: true

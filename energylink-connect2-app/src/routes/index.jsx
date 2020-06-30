@@ -35,6 +35,7 @@ import SystemConfiguration from 'pages/SystemConfiguration'
 import UpdateScreen from 'pages/UpdateScreen'
 import EQSUpdate from 'pages/EQSUpdate'
 import EQSUpdateErrors from 'pages/EQSUpdateErrors'
+import EQSPrediscoveryErrors from 'pages/EQSPrediscoveryErrors'
 import ESSHealthCheck from 'pages/ESSHealthCheck'
 import ESSHealthCheckErrors from 'pages/ESSHealthCheckErrors'
 import VersionInformation from 'pages/VersionInformation'
@@ -75,6 +76,7 @@ const mapComponents = {
   [paths.PROTECTED.CONNECTION_LOST.path]: ConnectionLost,
   [paths.PROTECTED.EQS_UPDATE.path]: EQSUpdate,
   [paths.PROTECTED.EQS_UPDATE_ERRORS.path]: EQSUpdateErrors,
+  [paths.PROTECTED.EQS_PREDISCOVERY_ERRORS.path]: EQSPrediscoveryErrors,
   [paths.PROTECTED.ESS_HEALTH_CHECK.path]: ESSHealthCheck,
   [paths.PROTECTED.ESS_HEALTH_CHECK_ERRORS.path]: ESSHealthCheckErrors,
   [paths.UNPROTECTED.FORGOT_PASSWORD.path]: NotFound,
