@@ -117,6 +117,18 @@ const paths = {
       footer: true,
       tab: TABS.INSTALL
     },
+    EQS_UPDATE: {
+      path: '/eqs-update',
+      header: true,
+      footer: true,
+      tab: TABS.INSTALL
+    },
+    EQS_UPDATE_ERRORS: {
+      path: '/eqs-update-errors',
+      header: true,
+      footer: true,
+      tab: TABS.INSTALL
+    },
     INVENTORY_COUNT: {
       path: '/inventory-count',
       header: true
@@ -142,7 +154,11 @@ const paths = {
       path: '/ess-health-check',
       header: true,
       footer: true,
-      tab: TABS.INSTALL
+      tab: TABS.CONFIGURE
+    },
+    DEBUG_PAGE: {
+      path: '/debug',
+      header: true
     },
     ESS_HEALTH_CHECK_ERRORS: {
       path: '/ess-health-check-errors',

@@ -3,12 +3,19 @@ import {
   postComponentMappingEpic,
   getComponentMappingEpic
 } from './componentMapping'
-
 import { getHealthCheckEpic } from './getHealthCheckEpic'
+import {
+  uploadEqsFwEpic,
+  triggerFwUpdateEpic,
+  pollFwUpdateEpic
+} from './deviceUpdate'
 
 export default [
-  getPreDiscoveryEpic,
+  uploadEqsFwEpic,
+  triggerFwUpdateEpic,
+  pollFwUpdateEpic,
   postComponentMappingEpic,
   getComponentMappingEpic,
-  getHealthCheckEpic
+  getHealthCheckEpic,
+  getPreDiscoveryEpic
 ]

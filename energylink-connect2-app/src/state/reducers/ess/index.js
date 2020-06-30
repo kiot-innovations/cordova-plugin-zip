@@ -27,6 +27,7 @@ export default createReducer(
     [DOWNLOAD_OS_PROGRESS]: (state, progress) => ({
       ...state,
       progress,
+      error: null,
       isDownloading: true
     }),
     [DOWNLOAD_OS_ERROR]: (state, error) => ({
@@ -41,6 +42,7 @@ export default createReducer(
     [DOWNLOAD_OS_SUCCESS]: (state, entryFile) => ({
       ...state,
       file: entryFile,
+      error: null,
       isDownloading: false
     }),
     [DOWNLOAD_META_INIT]: state => ({

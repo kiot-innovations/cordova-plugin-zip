@@ -33,7 +33,12 @@ import ScanLabels from 'pages/ScanLabels'
 import SNList from 'pages/SNList'
 import SystemConfiguration from 'pages/SystemConfiguration'
 import UpdateScreen from 'pages/UpdateScreen'
+import EQSUpdate from 'pages/EQSUpdate'
+import EQSUpdateErrors from 'pages/EQSUpdateErrors'
+import ESSHealthCheck from 'pages/ESSHealthCheck'
+import ESSHealthCheckErrors from 'pages/ESSHealthCheckErrors'
 import VersionInformation from 'pages/VersionInformation'
+import DebugPage from 'pages/DebugPage'
 
 import { validateSession } from 'state/actions/auth'
 import { updateBodyHeight } from 'shared/utils'
@@ -68,11 +73,17 @@ const mapComponents = {
   [paths.PROTECTED.MODEL_EDIT.path]: ModelEdit,
   [paths.PROTECTED.LEGACY_DISCOVERY.path]: LegacyDiscovery,
   [paths.PROTECTED.CONNECTION_LOST.path]: ConnectionLost,
+  [paths.PROTECTED.EQS_UPDATE.path]: EQSUpdate,
+  [paths.PROTECTED.EQS_UPDATE_ERRORS.path]: EQSUpdateErrors,
+  [paths.PROTECTED.ESS_HEALTH_CHECK.path]: ESSHealthCheck,
+  [paths.PROTECTED.ESS_HEALTH_CHECK_ERRORS.path]: ESSHealthCheckErrors,
   [paths.UNPROTECTED.FORGOT_PASSWORD.path]: NotFound,
   [paths.UNPROTECTED.GET_ASSISTANCE.path]: NotFound,
-  [paths.UNPROTECTED.LOGIN.path]: Login
+  [paths.UNPROTECTED.LOGIN.path]: Login,
+  ...(process.env.REACT_APP_IS_TEST && {
+    [paths.PROTECTED.DEBUG_PAGE.path]: DebugPage
+  })
 }
-
 /**
  * The router of this app
  * @returns {*}
@@ -101,7 +112,7 @@ function AppRoutes() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  const isLoggedIn =  useSelector(({ user }) => user.auth.access_token)
+  const isLoggedIn = useSelector(({ user }) => user.auth.access_token)
   return (
     <div>
       <Switch>

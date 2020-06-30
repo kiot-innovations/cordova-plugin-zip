@@ -23,6 +23,15 @@ describe('MI Model Editing page', () => {
   })
 
   const mockedStore = {
+    inventory: {
+      bom: [
+        { item: 'AC_MODULES', value: '0' },
+        { item: 'DC_MODULES', value: '0' },
+        { item: 'STRING_INVERTERS', value: '0' },
+        { item: 'EXTERNAL_METERS', value: '0' },
+        { item: 'ESS', value: '0' }
+      ]
+    },
     pvs: {
       settingMetadata: false,
       setMetadataStatus: null

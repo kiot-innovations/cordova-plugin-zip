@@ -1,7 +1,6 @@
 import React from 'react'
 import './ErrorDetected.scss'
 import { Link } from 'react-router-dom'
-import paths from 'routes/paths'
 import { useI18n } from 'shared/i18n'
 
 /**

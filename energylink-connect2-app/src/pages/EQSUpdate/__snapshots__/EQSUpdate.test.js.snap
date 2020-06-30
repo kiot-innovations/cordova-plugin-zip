@@ -1,0 +1,90 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EQS Connected Device Update Renders Correctly 1`] = `
+<BrowserRouter
+  keyLength={0}
+>
+  <Router
+    history={
+      Object {
+        "action": "POP",
+        "block": [Function],
+        "createHref": [Function],
+        "go": [Function],
+        "goBack": [Function],
+        "goForward": [Function],
+        "length": 1,
+        "listen": [Function],
+        "location": Object {
+          "hash": "",
+          "pathname": "/",
+          "search": "",
+          "state": undefined,
+        },
+        "push": [Function],
+        "replace": [Function],
+      }
+    }
+  >
+    <Provider
+      store={
+        Object {
+          "clearActions": [Function],
+          "dispatch": [Function],
+          "getActions": [Function],
+          "getState": [Function],
+          "replaceReducer": [Function],
+          "subscribe": [Function],
+        }
+      }
+    >
+      <EQSUpdate>
+        <div
+          className="eqs-fw-update pl-10 pr-10"
+        >
+          <div
+            className="has-text-centered mb-25"
+          >
+            <span
+              className="has-text-weight-bold is-uppercase"
+            >
+              FW_UPDATE
+            </span>
+          </div>
+          <div
+            className="has-text-centered"
+          >
+            <Loader>
+              <div
+                className="custom-loader"
+              >
+                <div
+                  className="loader-inner line-scale-pulse-out-rapid"
+                >
+                  <div />
+                   
+                  <div />
+                   
+                  <div />
+                   
+                  <div />
+                   
+                  <div />
+                </div>
+              </div>
+            </Loader>
+            <span>
+              FW_UPDATE_WAIT
+            </span>
+          </div>
+          <ErrorDetected
+            number={0}
+            onRetry={[Function]}
+            url="/eqs-update-errors"
+          />
+        </div>
+      </EQSUpdate>
+    </Provider>
+  </Router>
+</BrowserRouter>
+`;
