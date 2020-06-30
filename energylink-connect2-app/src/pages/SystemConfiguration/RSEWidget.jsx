@@ -68,7 +68,7 @@ function RSEWidget() {
 
   return (
     <div className="pb-15">
-      <Collapsible title={t('REMOTE_SYSTEM_ENERGYZE')} icon={RSE}>
+      <Collapsible title={t('REMOTE_SYSTEM_ENERGIZE')} icon={RSE}>
         {selectedPowerProduction ? (
           <React.Fragment>
             <div className="field is-horizontal mb-15">
