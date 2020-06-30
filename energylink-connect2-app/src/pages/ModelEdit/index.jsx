@@ -73,7 +73,7 @@ const ModelEdit = () => {
   useEffect(() => {
     if (setMetadataStatus === 'success') {
       if (essValue.value !== '0') {
-        history.push(paths.PROTECTED.EQS_UPDATE.path)
+        history.push(paths.PROTECTED.ESS_DEVICE_MAPPING.path)
       } else {
         history.push(paths.PROTECTED.INSTALL_SUCCESS.path)
       }
