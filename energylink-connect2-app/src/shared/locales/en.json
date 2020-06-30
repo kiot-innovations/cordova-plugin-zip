@@ -381,5 +381,6 @@
   "CANCEL_COMMISSION": "Cancel commissioning",
   "EQS_FW_UPDATE_SUCCESS": "All components updated",
   "ERROR_LIST": "Error list",
-  "API_RESPONSE": "Api response"
+  "API_RESPONSE": "Api response",
+  "GO_BACK": "Go back"
 }

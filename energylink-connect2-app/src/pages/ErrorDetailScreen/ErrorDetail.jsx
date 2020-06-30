@@ -19,12 +19,13 @@ const AffectedDevices = ({ devices, t }) => (
 )
 const BackButton = () => {
   const history = useHistory()
+  const t = useI18n()
   return (
     <button
       className="button is-primary is-outlined is-center mt-10 mb-10"
       onClick={() => history.goBack()}
     >
-      Go back
+      {t('GO_BACK')}
     </button>
   )
 }

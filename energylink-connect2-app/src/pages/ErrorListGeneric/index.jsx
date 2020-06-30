@@ -54,7 +54,7 @@ const ErrorListScreen = ({ errors = [] }) => {
         className="button is-primary is-outlined is-center mt-10 mb-10"
         onClick={() => history.goBack()}
       >
-        Go back
+        {t('GO_BACK')}
       </button>
       <div className="actions">
         <button className="button button-transparent has-text-primary is-uppercase mb-20 mt-20">
