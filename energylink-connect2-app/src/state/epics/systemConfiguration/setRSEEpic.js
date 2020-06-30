@@ -1,3 +1,4 @@
+import * as Sentry from '@sentry/browser'
 import { ofType } from 'redux-observable'
 import { from, of, timer } from 'rxjs'
 import { catchError, map, mergeMap, switchMap, takeUntil } from 'rxjs/operators'
@@ -19,6 +20,7 @@ const setRSE = async powerProduction => {
     )
     return res.body
   } catch (e) {
+    Sentry.captureException(e)
     throw new Error('SET_RSE_ERROR')
   }
 }
@@ -54,7 +56,7 @@ export const pollRSEEpic = (action$, state$) => {
       timer(500, 3500).pipe(
         takeUntil(stopPolling$),
         map(timeLapsed =>
-          currentProgress < 100 || timeLapsed < 12
+          currentProgress < 100 || timeLapsed < 5
             ? GET_RSE_INIT(true)
             : SET_RSE_SUCCESS()
         )

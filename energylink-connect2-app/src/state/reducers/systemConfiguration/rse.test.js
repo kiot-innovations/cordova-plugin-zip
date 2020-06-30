@@ -31,14 +31,15 @@ describe('RSE Reducer', () => {
 
   it('populates the reducer state after GET_RSE_SUCCESS action is fired', () => {
     reducerTest(
-      { data: {} },
+      { data: {}, isSetting: false, selectedPowerProduction: null },
       systemConfigurationReducers.GET_RSE_SUCCESS({
         powerProduction: 'On',
         result: 'Pass',
         progress: 100
       }),
       {
-        data: { powerProduction: 'On', result: 'Pass', progress: 100 }
+        data: { powerProduction: 'On', result: 'Pass', progress: 100 },
+        selectedPowerProduction: 'On'
       }
     )
   })
