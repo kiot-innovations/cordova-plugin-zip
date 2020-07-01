@@ -8,6 +8,7 @@ import { useI18n } from 'shared/i18n'
 import { cleanString, either, renameKeys } from 'shared/utils'
 import { RESET_DISCOVERY } from 'state/actions/devices'
 import { RESET_INVENTORY } from 'state/actions/inventory'
+import { DOWNLOAD_OS_INIT } from 'state/actions/ess'
 import { RESET_PVS_CONNECTION } from 'state/actions/network'
 import { RESET_PVS_INFO_STATE } from 'state/actions/pvs'
 import { RESET_SITE, SET_SITE, GET_SITES_ERROR } from 'state/actions/site'
@@ -69,6 +70,7 @@ function Home() {
   const errorMessage = path(['data', 'message'], error)
 
   useEffect(() => {
+    dispatch(DOWNLOAD_OS_INIT())
     dispatch(FIRMWARE_GET_FILE())
   }, [dispatch])
 

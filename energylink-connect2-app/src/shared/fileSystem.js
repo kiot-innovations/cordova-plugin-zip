@@ -13,6 +13,7 @@ export const getFileInfo = path =>
   new Promise((resolve, reject) => {
     const type = window.PERSISTENT
     const size = 5 * 1024 * 1024
+
     function successCallback(fs) {
       fs.root.getFile(
         path,
@@ -28,6 +29,7 @@ export const getFileInfo = path =>
         reject
       )
     }
+
     window.requestFileSystem(type, size, successCallback, () => {
       reject(new Error(ERROR_CODES.NO_FILESYSTEM_FILE))
     })
@@ -48,6 +50,7 @@ export const getLuaName = compose(
   slice(-4, -3),
   split('/')
 )
+
 const getBuildNumber = compose(
   Number,
   join(' '),
@@ -71,6 +74,7 @@ export const parseLuaFile = fileName =>
             const reader = new FileReader()
             reader.onloadend = function() {
               const sizeRegex = /dlsize\s=\s\S*/gm
+
               function getIntegerData(regex, luaFile) {
                 return parseFloat(
                   regex
@@ -138,4 +142,32 @@ export const getLuaZipFileURL = version =>
 export const getPVSFileSystemName = async () => {
   const { pvsFileSystemName } = await getFirmwareVersionData()
   return `firmware/${pvsFileSystemName}`
+}
+
+export function listDir(path) {
+  return new Promise((resolve, reject) => {
+    window.resolveLocalFileSystemURL(
+      path,
+      function(fileSystem) {
+        const reader = fileSystem.createReader()
+        reader.readEntries(resolve, reject)
+      },
+      reject
+    )
+  })
+}
+
+export const fileExists = async (path = '') => {
+  const getDirPath = compose(join('/'), slice(0, -1), split('/'))
+  const getFilePath = compose(last, split('persistent'))
+  try {
+    const fileEntries = await listDir(getDirPath(path))
+    const file = getFilePath(path)
+    for (let entry in fileEntries) {
+      if (fileEntries[entry].fullPath === file) return fileEntries[entry]
+    }
+    return false
+  } catch (e) {
+    return false
+  }
 }

@@ -1,6 +1,5 @@
 import Collapsible from 'components/Collapsible'
 import moment from 'moment'
-import EssFirmwareStatus from 'pages/Firmwares/ESSFirmwareStatus'
 import { pathOr, prop } from 'ramda'
 import React, { useCallback, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
@@ -10,6 +9,7 @@ import { either } from 'shared/utils'
 import { DOWNLOAD_META_INIT, DOWNLOAD_OS_INIT } from 'state/actions/ess'
 import * as fileDownloaderActions from 'state/actions/fileDownloader'
 import * as gridProfileDownloaderActions from 'state/actions/gridProfileDownloader'
+import EssCollapsible from './EssCollapsible'
 
 export const getFileName = prop('displayName')
 export const getFileSize = prop('size')
@@ -67,7 +67,6 @@ function Firmwares() {
     dispatch(DOWNLOAD_OS_INIT())
     dispatch(DOWNLOAD_META_INIT())
   }, [dispatch])
-  const essState = useSelector(prop('ess'))
 
   return (
     <section className="is-flex tile is-vertical pt-0 pr-10 pl-10 full-height">
@@ -153,24 +152,7 @@ function Firmwares() {
         )}
       </Collapsible>
       <Separator />
-      <Collapsible title={'ESS FIRMWARE'} expanded>
-        {either(
-          essState.error,
-          <span>{t('ERROR_DOWNLOADING_ESS')}</span>,
-          <section className="mt-20 mb-20">
-            <p className="mb-5">
-              <EssFirmwareStatus {...essState} />
-            </p>
-            {essState.isDownloading && (
-              <progress
-                className="progress is-tiny is-white"
-                value={essState.progress}
-                max="100"
-              />
-            )}
-          </section>
-        )}
-      </Collapsible>
+      <EssCollapsible />
     </section>
   )
 }

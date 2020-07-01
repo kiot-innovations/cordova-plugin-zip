@@ -14,6 +14,7 @@ const initialState = {
   error: null,
   file: null,
   meta: null,
+  total: 0,
   isDownloading: false
 }
 
@@ -21,12 +22,13 @@ export default createReducer(
   {
     [DOWNLOAD_OS_INIT]: state => ({
       ...initialState,
-      ...state,
+      meta: state.meta,
       isDownloading: true
     }),
-    [DOWNLOAD_OS_PROGRESS]: (state, progress) => ({
+    [DOWNLOAD_OS_PROGRESS]: (state, { progress, total }) => ({
       ...state,
       progress,
+      total,
       error: null,
       isDownloading: true
     }),

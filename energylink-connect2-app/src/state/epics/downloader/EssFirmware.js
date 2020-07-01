@@ -1,4 +1,4 @@
-import { compose, head, multiply, pathOr, split, toString } from 'ramda'
+import { pathOr } from 'ramda'
 import { ofType } from 'redux-observable'
 import { from, Observable, of } from 'rxjs'
 import { catchError, exhaustMap, map } from 'rxjs/operators'
@@ -11,21 +11,11 @@ import {
   DOWNLOAD_OS_PROGRESS,
   DOWNLOAD_OS_SUCCESS
 } from 'state/actions/ess'
+import { fileExists } from 'shared/fileSystem'
 
-const getPercentLoaded = (loaded = 0, total = 0) => {
-  const percent = Number.parseFloat(loaded / total).toFixed(2)
-
-  return compose(head, split('.'), toString, multiply(100))(percent)
-}
-
-const fileTransferObservable = (path, url, accessToken) =>
+const fileTransferObservable = (path, url, accessToken, retry = false) =>
   new Observable(subscriber => {
-    const fileTransfer = new window.FileTransfer()
-    const uri = encodeURI(`${process.env.REACT_APP_ARTIFACTORY_BASE}${url}`)
-    fileTransfer.onprogress = ({ loaded, total }) => {
-      const percent = getPercentLoaded(loaded, total)
-      subscriber.next({ percent })
-    }
+    const localFileUrl = `cdvfile://localhost/persistent/ESS/${path}`
     const successCallback = entry => {
       subscriber.next({ entry })
       subscriber.complete()
@@ -34,34 +24,46 @@ const fileTransferObservable = (path, url, accessToken) =>
       subscriber.error(error)
       subscriber.complete()
     }
-
-    fileTransfer.download(
-      uri,
-      `cdvfile://localhost/persistent/ESS/${path}`,
-      successCallback,
-      errorCallback,
-      true,
-      {
-        headers: {
-          Authorization: `Bearer ${accessToken}`
+    fileExists(localFileUrl).then(entry => {
+      if (!entry || retry) {
+        const fileTransfer = new window.FileTransfer()
+        const uri = encodeURI(`${process.env.REACT_APP_ARTIFACTORY_BASE}${url}`)
+        fileTransfer.onprogress = data => {
+          const { loaded, total } = data
+          const progress = ((loaded / total) * 100).toFixed(0)
+          subscriber.next({ progress, total })
         }
-      }
-    )
+        fileTransfer.download(
+          uri,
+          localFileUrl,
+          successCallback,
+          errorCallback,
+          true,
+          {
+            headers: {
+              Authorization: `Bearer ${accessToken}`
+            }
+          }
+        )
+      } else successCallback(entry)
+    })
   })
 
 const downloadOSZipEpic = (action$, state$) =>
   action$.pipe(
     ofType(DOWNLOAD_OS_INIT.getType()),
-    exhaustMap(() =>
+    exhaustMap(({ payload = false }) =>
       fileTransferObservable(
         'EQS-FW-Package.zip',
-        '/pvs-connected-devices-firmware/byers-1.0.0/Byers1.zip',
-        pathOr('', ['value', 'user', 'auth', 'access_token'], state$)
+        '/pvs-connected-devices-firmware/byers-2.1.0/Byers2.1.zip',
+        pathOr('', ['value', 'user', 'auth', 'access_token'], state$),
+        payload
       ).pipe(
-        map(({ entry, percent }) => {
-          if (percent) return DOWNLOAD_OS_PROGRESS(percent)
-          return DOWNLOAD_OS_SUCCESS(entry)
-        }),
+        map(({ entry, progress, total }) =>
+          progress
+            ? DOWNLOAD_OS_PROGRESS({ progress, total })
+            : DOWNLOAD_OS_SUCCESS(entry)
+        ),
         catchError(err => {
           console.warn(err)
           return of(DOWNLOAD_OS_ERROR.asError(err))
