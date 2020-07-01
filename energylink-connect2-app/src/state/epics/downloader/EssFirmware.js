@@ -11,7 +11,7 @@ import {
   DOWNLOAD_OS_PROGRESS,
   DOWNLOAD_OS_SUCCESS
 } from 'state/actions/ess'
-import { fileExists } from 'shared/utils'
+import { fileExists } from 'shared/fileSystem'
 
 const getPercentLoaded = (loaded = 0, total = 0) => {
   const percent = Number.parseFloat(loaded / total).toFixed(2)
