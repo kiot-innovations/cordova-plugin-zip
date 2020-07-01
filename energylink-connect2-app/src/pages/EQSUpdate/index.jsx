@@ -32,11 +32,12 @@ const EQSUpdate = () => {
   const { error } = useSelector(path(['storage']))
 
   const startUpdate = useCallback(async () => {
+    setFileReady(0)
     try {
       const file = await getFileBlob('/ESS/EQS-FW-Package.zip')
       dispatch(UPLOAD_EQS_FIRMWARE(file))
       setFileReady(2)
-    } catch {
+    } catch (err) {
       setFileReady(1)
     }
   }, [dispatch])
@@ -74,8 +75,8 @@ const EQSUpdate = () => {
           {t('FW_UPDATE')}
         </span>
       </div>
-      {includes(error, possibleErrors) && (
-        <div>
+      {fileReady !== 2 && includes(error, possibleErrors) && (
+        <div className="has-text-centered">
           <div className="pt-20 pb-20">
             <i className="sp-close has-text-white is-size-1" />
           </div>
@@ -100,15 +101,16 @@ const EQSUpdate = () => {
         </div>
       )}
       {either(
-        fileReady !== 1 && isEmpty(updateProgress),
+        fileReady === 2 && !isEmpty(updateProgress),
+        <div>{map(renderUpdateComponent, updateProgress)}</div>,
         <div className="has-text-centered">
           <Loader />
           <span>{t('FW_UPDATE_WAIT')}</span>
-        </div>,
-        <div>{map(renderUpdateComponent, updateProgress)}</div>
+        </div>
       )}
       {either(
-        includes(updateStatus, ['RUNNING', 'SUCCEEDED']) &&
+        fileReady === 2 &&
+          includes(updateStatus, ['FAILED', 'SUCCEEDED']) &&
           isEmpty(updateErrors),
         <ContinueFooter
           url={paths.PROTECTED.ESS_HEALTH_CHECK.path}

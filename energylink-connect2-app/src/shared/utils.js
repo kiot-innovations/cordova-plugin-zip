@@ -253,4 +253,6 @@ export const addHasErrorProp = results => {
 
     copy.ess_report[key] = newValueForKey
   })
+
+  return copy
 }
