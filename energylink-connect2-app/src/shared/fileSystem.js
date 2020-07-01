@@ -116,7 +116,7 @@ export const getFirmwareVersionData = async () => {
     // const swagger = await getApiFirmware()
     // const response = await swagger.apis.pvs6.firmwareUpdate({ fwver: 0 })
     const fileURL =
-      'https://fw-assets-pvs6-dev.dev-edp.sunpower.com/staging-prod-boomer/7144/fwup/fwup.lua'
+      'https://fw-assets-pvs6-dev.dev-edp.sunpower.com/staging-prod-cylon/8056/fwup/fwup.lua'
     const luaFileName = getLuaName(fileURL)
     const version = getBuildNumber(fileURL)
     const name = `${luaFileName}-${version}`.replace(/ /g, '-')
@@ -133,7 +133,7 @@ export const getFirmwareVersionData = async () => {
 }
 
 export const getLuaZipFileURL = version =>
-  `https://fw-assets-pvs6-dev.dev-edp.sunpower.com/staging-prod-boomer/${version}/fwup_lua_cm2.zip`
+  `https://fw-assets-pvs6-dev.dev-edp.sunpower.com/staging-prod-cylon/${version}/fwup_lua_cm2.zip`
 
 export const getPVSFileSystemName = async () => {
   const { pvsFileSystemName } = await getFirmwareVersionData()

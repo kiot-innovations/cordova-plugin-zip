@@ -125,14 +125,15 @@ export const pollFwUpdateEpic = action$ => {
               ])
               return matchStatus(updateStatus)
             }),
-            catchError(error =>
-              of(
+            catchError(err => {
+              Sentry.captureException(new Error(err))
+              return of(
                 UPDATE_EQS_FIRMWARE_ERROR({
                   error: eqsUpdateErrors.TRIGGER_EQS_FIRMWARE_ERROR,
                   response: {}
                 })
               )
-            )
+            })
           )
         })
       )
