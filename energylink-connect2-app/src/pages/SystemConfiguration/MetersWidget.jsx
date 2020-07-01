@@ -38,7 +38,7 @@ function MetersWidget() {
 
   useEffect(() => {
     if (essValue !== '0') {
-      dispatch(SET_CONSUMPTION_CT('GROSS_CONSUMPTION_LINESIDE'))
+      dispatch(SET_CONSUMPTION_CT('NET_CONSUMPTION_LOADSIDE'))
     }
   }, [dispatch, essValue])
 
@@ -101,7 +101,7 @@ function MetersWidget() {
                       'value',
                       essValue === '0'
                         ? consumptionCT
-                        : 'GROSS_CONSUMPTION_LINESIDE'
+                        : 'NET_CONSUMPTION_LOADSIDE'
                     ),
                     CONSUMPTION_METER_TYPES
                   )}
