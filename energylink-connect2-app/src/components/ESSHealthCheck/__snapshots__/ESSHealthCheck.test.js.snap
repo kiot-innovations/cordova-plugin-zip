@@ -47,7 +47,7 @@ Object {
           }
         >
           <div
-            className="ess-hc page-height has-text-centered pt-10 gridit"
+            className="ess-hc page-height has-text-centered pt-10"
           >
             <span
               className="is-uppercase has-text-weight-bold"
@@ -56,31 +56,15 @@ Object {
             </span>
             <div
               className="status-messageee"
+            />
+            <div
+              className="are-small"
             >
-              <Loader>
-                <div
-                  className="custom-loader"
-                >
-                  <div
-                    className="loader-inner line-scale-pulse-out-rapid"
-                  >
-                    <div />
-                     
-                    <div />
-                     
-                    <div />
-                     
-                    <div />
-                     
-                    <div />
-                  </div>
-                </div>
-              </Loader>
-              <span>
-                 
-                HEALTH_REPORT
-                 
-              </span>
+              <button
+                className="button auto is-primary"
+              >
+                CONTINUE
+              </button>
             </div>
           </div>
         </ESSHealthCheck>
