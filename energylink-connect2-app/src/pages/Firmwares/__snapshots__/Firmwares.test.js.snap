@@ -186,71 +186,84 @@ exports[`Firmwares component render correctly 1`] = `
               className="mt-20"
             />
           </Separator>
-          <Collapsible
-            expanded={true}
-            title="ESS FIRMWARE"
-          >
-            <div
-              className="collapsible"
+          <EssCollapsible>
+            <Collapsible
+              actions={
+                <span
+                  className="is-size-4 sp-download"
+                  onClick={[Function]}
+                />
+              }
+              expanded={true}
+              title="ESS FIRMWARE"
             >
               <div
-                className="collapsible-header"
+                className="collapsible"
               >
                 <div
-                  className="collapsible-title"
-                >
-                  <span />
-                  <span
-                    className="has-text-weight-bold"
-                  >
-                    ESS FIRMWARE
-                  </span>
-                </div>
-                <div
-                  className="collapsible-actions"
-                />
-                <div
-                  className="collapsible-trigger"
+                  className="collapsible-header"
                 >
                   <div
-                    className="chevron down"
-                    onClick={[Function]}
+                    className="collapsible-title"
+                  >
+                    <span />
+                    <span
+                      className="has-text-weight-bold"
+                    >
+                      ESS FIRMWARE
+                    </span>
+                  </div>
+                  <div
+                    className="collapsible-actions"
                   >
                     <span
-                      className="sp-chevron-up"
+                      className="is-size-4 sp-download"
+                      onClick={[Function]}
                     />
                   </div>
+                  <div
+                    className="collapsible-trigger"
+                  >
+                    <div
+                      className="chevron down"
+                      onClick={[Function]}
+                    >
+                      <span
+                        className="sp-chevron-up"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div
+                  className="collapsible-content expanded"
+                >
+                  <section
+                    className="mt-20 mb-20"
+                  >
+                    <p
+                      className="mb-5"
+                    >
+                      <EssFirmwareStatus
+                        error={null}
+                        file={
+                          Object {
+                            "name": "test file name",
+                          }
+                        }
+                        isDownloading={false}
+                      >
+                        <div>
+                          <div>
+                            test file name
+                          </div>
+                        </div>
+                      </EssFirmwareStatus>
+                    </p>
+                  </section>
                 </div>
               </div>
-              <div
-                className="collapsible-content expanded"
-              >
-                <section
-                  className="mt-20 mb-20"
-                >
-                  <p
-                    className="mb-5"
-                  >
-                    <EssFirmwareStatus
-                      error={null}
-                      file={
-                        Object {
-                          "name": "test file name",
-                        }
-                      }
-                      isDownloading={false}
-                    >
-                      <div>
-                        <div>
-                          test file name
-                        </div>
-                      </div>
-                    </EssFirmwareStatus>
-                  </p>
-                </section>
-              </div>
-            </div>
-          </Collapsible>
+            </Collapsible>
+          </EssCollapsible>
         </section>
       </Firmwares>
     </Provider>

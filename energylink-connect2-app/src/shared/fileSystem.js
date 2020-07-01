@@ -168,7 +168,6 @@ export const fileExists = async (path = '') => {
     }
     return false
   } catch (e) {
-    console.warn(e)
     return false
   }
 }
