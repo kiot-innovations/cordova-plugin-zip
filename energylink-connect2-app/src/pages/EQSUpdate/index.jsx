@@ -37,7 +37,7 @@ const EQSUpdate = () => {
       const file = await getFileBlob('/ESS/EQS-FW-Package.zip')
       dispatch(UPLOAD_EQS_FIRMWARE(file))
       setFileReady(2)
-    } catch {
+    } catch (err) {
       setFileReady(1)
     }
   }, [dispatch])
