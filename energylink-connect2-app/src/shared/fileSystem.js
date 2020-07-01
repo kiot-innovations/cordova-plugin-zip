@@ -160,10 +160,15 @@ export function listDir(path) {
 export const fileExists = async (path = '') => {
   const getDirPath = compose(join('/'), slice(0, -1), split('/'))
   const getFilePath = compose(last, split('persistent'))
-  const fileEntries = await listDir(getDirPath(path))
-  const file = getFilePath(path)
-  for (let entry in fileEntries) {
-    if (fileEntries[entry].fullPath === file) return fileEntries[entry]
+  try {
+    const fileEntries = await listDir(getDirPath(path))
+    const file = getFilePath(path)
+    for (let entry in fileEntries) {
+      if (fileEntries[entry].fullPath === file) return fileEntries[entry]
+    }
+    return false
+  } catch (e) {
+    console.warn(e)
+    return false
   }
-  return false
 }
