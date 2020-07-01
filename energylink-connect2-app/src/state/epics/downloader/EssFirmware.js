@@ -11,6 +11,7 @@ import {
   DOWNLOAD_OS_PROGRESS,
   DOWNLOAD_OS_SUCCESS
 } from 'state/actions/ess'
+import { fileExists } from 'shared/utils'
 
 const getPercentLoaded = (loaded = 0, total = 0) => {
   const percent = Number.parseFloat(loaded / total).toFixed(2)
@@ -20,12 +21,7 @@ const getPercentLoaded = (loaded = 0, total = 0) => {
 
 const fileTransferObservable = (path, url, accessToken) =>
   new Observable(subscriber => {
-    const fileTransfer = new window.FileTransfer()
-    const uri = encodeURI(`${process.env.REACT_APP_ARTIFACTORY_BASE}${url}`)
-    fileTransfer.onprogress = ({ loaded, total }) => {
-      const percent = getPercentLoaded(loaded, total)
-      subscriber.next({ percent })
-    }
+    const localFileUrl = `cdvfile://localhost/persistent/ESS/${path}`
     const successCallback = entry => {
       subscriber.next({ entry })
       subscriber.complete()
@@ -34,19 +30,28 @@ const fileTransferObservable = (path, url, accessToken) =>
       subscriber.error(error)
       subscriber.complete()
     }
-
-    fileTransfer.download(
-      uri,
-      `cdvfile://localhost/persistent/ESS/${path}`,
-      successCallback,
-      errorCallback,
-      true,
-      {
-        headers: {
-          Authorization: `Bearer ${accessToken}`
+    fileExists(localFileUrl).then(entry => {
+      if (!entry) {
+        const fileTransfer = new window.FileTransfer()
+        const uri = encodeURI(`${process.env.REACT_APP_ARTIFACTORY_BASE}${url}`)
+        fileTransfer.onprogress = ({ loaded, total }) => {
+          const percent = getPercentLoaded(loaded, total)
+          subscriber.next({ percent })
         }
-      }
-    )
+        fileTransfer.download(
+          uri,
+          localFileUrl,
+          successCallback,
+          errorCallback,
+          true,
+          {
+            headers: {
+              Authorization: `Bearer ${accessToken}`
+            }
+          }
+        )
+      } else successCallback(entry)
+    })
   })
 
 const downloadOSZipEpic = (action$, state$) =>

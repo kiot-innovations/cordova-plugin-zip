@@ -27,6 +27,7 @@ import {
   propEq,
   propOr,
   replace,
+  slice,
   split,
   toPairs,
   toUpper,
@@ -253,4 +254,28 @@ export const addHasErrorProp = results => {
 
     copy.ess_report[key] = newValueForKey
   })
+}
+
+export function listDir(path) {
+  return new Promise((resolve, reject) => {
+    window.resolveLocalFileSystemURL(
+      path,
+      function(fileSystem) {
+        const reader = fileSystem.createReader()
+        reader.readEntries(resolve, reject)
+      },
+      reject
+    )
+  })
+}
+
+export const fileExists = async (path = '') => {
+  const getDirPath = compose(join('/'), slice(0, -1), split('/'))
+  const getFilePath = compose(last, split('persistent'))
+  const fileEntries = await listDir(getDirPath(path))
+  const file = getFilePath(path)
+  for (let entry in fileEntries) {
+    if (fileEntries[entry].fullPath === file) return fileEntries[entry]
+  }
+  return false
 }
