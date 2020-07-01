@@ -60,7 +60,7 @@ Object {
                 onSelect={[Function]}
               >
                 <Async
-                  cacheOptions={true}
+                  cacheOptions={false}
                   className="field"
                   classNamePrefix="search"
                   components={
@@ -81,7 +81,7 @@ Object {
                   theme={[Function]}
                 >
                   <StateManager
-                    cacheOptions={true}
+                    cacheOptions={false}
                     className="field"
                     classNamePrefix="search"
                     components={
@@ -108,7 +108,7 @@ Object {
                     <Select
                       backspaceRemovesValue={true}
                       blurInputOnSelect={true}
-                      cacheOptions={true}
+                      cacheOptions={false}
                       captureMenuScroll={false}
                       className="field"
                       classNamePrefix="search"
@@ -184,7 +184,7 @@ Object {
                             "autoFocus": undefined,
                             "backspaceRemovesValue": true,
                             "blurInputOnSelect": true,
-                            "cacheOptions": true,
+                            "cacheOptions": false,
                             "captureMenuScroll": false,
                             "className": "field",
                             "classNamePrefix": "search",
@@ -310,7 +310,7 @@ Object {
                                   "autoFocus": undefined,
                                   "backspaceRemovesValue": true,
                                   "blurInputOnSelect": true,
-                                  "cacheOptions": true,
+                                  "cacheOptions": false,
                                   "captureMenuScroll": false,
                                   "className": "field",
                                   "classNamePrefix": "search",
@@ -444,7 +444,7 @@ Object {
                                         "autoFocus": undefined,
                                         "backspaceRemovesValue": true,
                                         "blurInputOnSelect": true,
-                                        "cacheOptions": true,
+                                        "cacheOptions": false,
                                         "captureMenuScroll": false,
                                         "className": "field",
                                         "classNamePrefix": "search",
@@ -565,7 +565,7 @@ Object {
                                               "autoFocus": undefined,
                                               "backspaceRemovesValue": true,
                                               "blurInputOnSelect": true,
-                                              "cacheOptions": true,
+                                              "cacheOptions": false,
                                               "captureMenuScroll": false,
                                               "className": "field",
                                               "classNamePrefix": "search",
@@ -688,7 +688,7 @@ Object {
                                               "autoFocus": undefined,
                                               "backspaceRemovesValue": true,
                                               "blurInputOnSelect": true,
-                                              "cacheOptions": true,
+                                              "cacheOptions": false,
                                               "captureMenuScroll": false,
                                               "className": "field",
                                               "classNamePrefix": "search",
@@ -895,7 +895,7 @@ Object {
                                         "autoFocus": undefined,
                                         "backspaceRemovesValue": true,
                                         "blurInputOnSelect": true,
-                                        "cacheOptions": true,
+                                        "cacheOptions": false,
                                         "captureMenuScroll": false,
                                         "className": "field",
                                         "classNamePrefix": "search",
@@ -1011,7 +1011,7 @@ Object {
                                               "autoFocus": undefined,
                                               "backspaceRemovesValue": true,
                                               "blurInputOnSelect": true,
-                                              "cacheOptions": true,
+                                              "cacheOptions": false,
                                               "captureMenuScroll": false,
                                               "className": "field",
                                               "classNamePrefix": "search",
@@ -1119,7 +1119,7 @@ Object {
                                               "autoFocus": undefined,
                                               "backspaceRemovesValue": true,
                                               "blurInputOnSelect": true,
-                                              "cacheOptions": true,
+                                              "cacheOptions": false,
                                               "captureMenuScroll": false,
                                               "className": "field",
                                               "classNamePrefix": "search",
@@ -1225,7 +1225,7 @@ Object {
                                                 "autoFocus": undefined,
                                                 "backspaceRemovesValue": true,
                                                 "blurInputOnSelect": true,
-                                                "cacheOptions": true,
+                                                "cacheOptions": false,
                                                 "captureMenuScroll": false,
                                                 "className": "field",
                                                 "classNamePrefix": "search",
@@ -1456,7 +1456,7 @@ Object {
                 onSelect={[Function]}
               >
                 <Async
-                  cacheOptions={true}
+                  cacheOptions={false}
                   className="field"
                   classNamePrefix="search"
                   components={
@@ -1477,7 +1477,7 @@ Object {
                   theme={[Function]}
                 >
                   <StateManager
-                    cacheOptions={true}
+                    cacheOptions={false}
                     className="field"
                     classNamePrefix="search"
                     components={
@@ -1504,7 +1504,7 @@ Object {
                     <Select
                       backspaceRemovesValue={true}
                       blurInputOnSelect={true}
-                      cacheOptions={true}
+                      cacheOptions={false}
                       captureMenuScroll={false}
                       className="field"
                       classNamePrefix="search"
@@ -1580,7 +1580,7 @@ Object {
                             "autoFocus": undefined,
                             "backspaceRemovesValue": true,
                             "blurInputOnSelect": true,
-                            "cacheOptions": true,
+                            "cacheOptions": false,
                             "captureMenuScroll": false,
                             "className": "field",
                             "classNamePrefix": "search",
@@ -1706,7 +1706,7 @@ Object {
                                   "autoFocus": undefined,
                                   "backspaceRemovesValue": true,
                                   "blurInputOnSelect": true,
-                                  "cacheOptions": true,
+                                  "cacheOptions": false,
                                   "captureMenuScroll": false,
                                   "className": "field",
                                   "classNamePrefix": "search",
@@ -1840,7 +1840,7 @@ Object {
                                         "autoFocus": undefined,
                                         "backspaceRemovesValue": true,
                                         "blurInputOnSelect": true,
-                                        "cacheOptions": true,
+                                        "cacheOptions": false,
                                         "captureMenuScroll": false,
                                         "className": "field",
                                         "classNamePrefix": "search",
@@ -1961,7 +1961,7 @@ Object {
                                               "autoFocus": undefined,
                                               "backspaceRemovesValue": true,
                                               "blurInputOnSelect": true,
-                                              "cacheOptions": true,
+                                              "cacheOptions": false,
                                               "captureMenuScroll": false,
                                               "className": "field",
                                               "classNamePrefix": "search",
@@ -2084,7 +2084,7 @@ Object {
                                               "autoFocus": undefined,
                                               "backspaceRemovesValue": true,
                                               "blurInputOnSelect": true,
-                                              "cacheOptions": true,
+                                              "cacheOptions": false,
                                               "captureMenuScroll": false,
                                               "className": "field",
                                               "classNamePrefix": "search",
@@ -2291,7 +2291,7 @@ Object {
                                         "autoFocus": undefined,
                                         "backspaceRemovesValue": true,
                                         "blurInputOnSelect": true,
-                                        "cacheOptions": true,
+                                        "cacheOptions": false,
                                         "captureMenuScroll": false,
                                         "className": "field",
                                         "classNamePrefix": "search",
@@ -2407,7 +2407,7 @@ Object {
                                               "autoFocus": undefined,
                                               "backspaceRemovesValue": true,
                                               "blurInputOnSelect": true,
-                                              "cacheOptions": true,
+                                              "cacheOptions": false,
                                               "captureMenuScroll": false,
                                               "className": "field",
                                               "classNamePrefix": "search",
@@ -2515,7 +2515,7 @@ Object {
                                               "autoFocus": undefined,
                                               "backspaceRemovesValue": true,
                                               "blurInputOnSelect": true,
-                                              "cacheOptions": true,
+                                              "cacheOptions": false,
                                               "captureMenuScroll": false,
                                               "className": "field",
                                               "classNamePrefix": "search",
@@ -2621,7 +2621,7 @@ Object {
                                                 "autoFocus": undefined,
                                                 "backspaceRemovesValue": true,
                                                 "blurInputOnSelect": true,
-                                                "cacheOptions": true,
+                                                "cacheOptions": false,
                                                 "captureMenuScroll": false,
                                                 "className": "field",
                                                 "classNamePrefix": "search",

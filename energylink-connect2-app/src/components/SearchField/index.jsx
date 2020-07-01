@@ -32,7 +32,6 @@ function SelectField(props) {
 
   return (
     <AsyncSelect
-      cacheOptions
       isSearchable
       placeholder=""
       onChange={onSelect}
