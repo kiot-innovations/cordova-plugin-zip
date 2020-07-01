@@ -53,7 +53,9 @@ function ConnectedDeviceUpdate({ device }) {
         ) : (
           <div className="device-updatepercentage">
             <span className={fwVersionClass}>{t(updateStatus)}</span>
-            <span className={percentageClass}>{device.progress}%</span>
+            <span className={percentageClass}>
+              {Math.floor(device.progress)}%
+            </span>
           </div>
         )}
       </div>
