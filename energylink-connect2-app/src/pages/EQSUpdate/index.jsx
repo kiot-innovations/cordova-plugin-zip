@@ -110,7 +110,7 @@ const EQSUpdate = () => {
       )}
       {either(
         fileReady === 2 &&
-          includes(updateStatus, ['RUNNING', 'SUCCEEDED']) &&
+          includes(updateStatus, ['FAILED', 'SUCCEEDED']) &&
           isEmpty(updateErrors),
         <ContinueFooter
           url={paths.PROTECTED.ESS_HEALTH_CHECK.path}
