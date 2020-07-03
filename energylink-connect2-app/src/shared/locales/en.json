@@ -177,7 +177,7 @@
   "SAVING": "Saving",
   "SAVING_CONFIGURATION": "Hold on, we're saving your configuration",
   "SAVED_CONFIGURATION": "The configuration was correctly saved",
-  "ERROR_CONFIGURATION": "There was an error saving your configurations, please check the values and try again",
+  "ERROR_CONFIGURATION": "Some parameters were left unset, do you want to continue? They can be configured later in EnergyLink Admin",
   "INVERTER": "Inverter",
   "INVERTER_GATEWAY": "Inverter Gateway",
   "INSTALLED": "Installed",
