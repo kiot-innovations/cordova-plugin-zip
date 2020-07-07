@@ -11,6 +11,7 @@ import {
   prop,
   useWith
 } from 'ramda'
+import moment from 'moment'
 import { createAction } from 'redux-act'
 import { getApiAuth } from 'shared/api'
 import authClient from 'shared/auth/sdk'
@@ -135,15 +136,13 @@ export const VALIDATE_SESSION_ERROR = createAction('VALIDATE_SESSION_ERROR')
 export const validateSession = () => {
   return (dispatch, getState) => {
     const { user } = getState()
-    const access_token = pathOr(null, ['auth', 'access_token'], user)
     const expires = pathOr(0, ['data', 'exp'], user) * 1000
     const now = new Date().getTime()
 
-    const shouldValidateSession = now - expires > 0
+    const isValid = moment(expires).isAfter(now)
 
-    if (access_token && shouldValidateSession) {
-      dispatch(VALIDATE_SESSION_INIT())
-      dispatch(verifyToken(user.auth.access_token, user.auth.refresh_token))
+    if (!isValid) {
+      dispatch(REFRESH_TOKEN_INIT(user.auth.refresh_token))
     }
   }
 }
