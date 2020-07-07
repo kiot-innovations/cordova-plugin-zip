@@ -120,7 +120,7 @@ export const verifyToken = (access_token, refresh_token) => {
   return dispatch => {
     try {
       const isValidToken = authClient.verifyTokenOAuth(access_token)
-      if (isValidToken) dispatch(REFRESH_TOKEN_INIT(refresh_token))
+      if (!isValidToken) dispatch(REFRESH_TOKEN_INIT(refresh_token))
     } catch (error) {
       console.error(error)
       dispatch(REFRESH_TOKEN_INIT(refresh_token))
