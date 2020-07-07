@@ -118,18 +118,13 @@ export const handleUserProfile = (tokenInfo = {}) => {
 
 export const verifyToken = (access_token, refresh_token) => {
   return dispatch => {
-    authClient
-      .verifyTokenOAuth(access_token)
-      .then(response => {
-        if (!response.uniqueId) {
-          dispatch(REFRESH_TOKEN_INIT(refresh_token))
-        }
-      })
-      .catch(error => {
-        console.error('Auth Verification Error')
-        console.error(error)
-        dispatch(REFRESH_TOKEN_INIT(refresh_token))
-      })
+    try {
+      const isValidToken = authClient.verifyTokenOAuth(access_token)
+      if (isValidToken) dispatch(REFRESH_TOKEN_INIT(refresh_token))
+    } catch (error) {
+      console.error(error)
+      dispatch(REFRESH_TOKEN_INIT(refresh_token))
+    }
   }
 }
 
