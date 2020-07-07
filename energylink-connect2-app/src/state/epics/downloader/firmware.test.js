@@ -322,12 +322,12 @@ describe('Epic firmware', () => {
 
     it('Dispatches DOWNLOAD_INIT if it receives FIRMWARE_DOWNLOAD_LUA_FILES', () => {
       const inputValues = {
-        a: FIRMWARE_DOWNLOAD_LUA_FILES(8888)
+        a: FIRMWARE_DOWNLOAD_LUA_FILES()
       }
 
       const expectedValues = {
         b: DOWNLOAD_INIT({
-          fileUrl: getLuaZipFileURL(8888),
+          fileUrl: getLuaZipFileURL(),
           folder: 'luaFiles',
           unzip: true
         })

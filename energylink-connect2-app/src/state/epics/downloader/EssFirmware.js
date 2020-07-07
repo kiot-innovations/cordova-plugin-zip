@@ -4,6 +4,7 @@ import { ofType } from 'redux-observable'
 import { from, Observable, of } from 'rxjs'
 import { catchError, exhaustMap, map } from 'rxjs/operators'
 import { fileExists } from 'shared/fileSystem'
+import { getEnvironment } from 'shared/utils'
 import {
   DOWNLOAD_META_ERROR,
   DOWNLOAD_META_INIT,
@@ -22,7 +23,7 @@ const fileTransferObservable = (path, url, accessToken, retry = false) =>
       subscriber.complete()
     }
     const errorCallback = error => {
-      subscriber.error(error)
+      subscriber.error({ ...error, url })
       subscriber.complete()
     }
     fileExists(localFileUrl).then(entry => {
@@ -66,7 +67,17 @@ const downloadOSZipEpic = (action$, state$) =>
             : DOWNLOAD_OS_SUCCESS(entry)
         ),
         catchError(err => {
-          Sentry.captureException(err)
+          Sentry.addBreadcrumb({
+            data: {
+              ...payload,
+              baseUrl: process.env.REACT_APP_ARTIFACTORY_BASE,
+              environment: getEnvironment()
+            },
+            category: 'ESS-Firmware-download',
+            message: 'Failed to download ESS firmware',
+            level: Sentry.Severity.Error
+          })
+          Sentry.captureMessage('Failed to download ESS firmware')
           return of(DOWNLOAD_OS_ERROR.asError(err))
         })
       )

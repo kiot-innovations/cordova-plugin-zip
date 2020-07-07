@@ -237,7 +237,7 @@ export const epicDownloadLuaFilesInit = action$ =>
     switchMap(action =>
       of(
         DOWNLOAD_INIT({
-          fileUrl: getLuaZipFileURL(pathOr('', ['payload'], action)),
+          fileUrl: getLuaZipFileURL(),
           unzip: true,
           folder: 'luaFiles'
         })

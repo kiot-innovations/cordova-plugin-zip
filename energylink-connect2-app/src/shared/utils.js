@@ -256,3 +256,9 @@ export const addHasErrorProp = results => {
 
   return copy
 }
+
+export function getEnvironment() {
+  if (process.env.REACT_APP_IS_TEST) return 'test'
+  if (process.env.REACT_APP_IS_DEV) return 'dev'
+  return 'prod'
+}
