@@ -197,7 +197,7 @@
   "BACK_TO_SCAN": "Back to scan",
   "LEGACY_DISCOVERY": "Legacy discovery",
   "LEGACY_DISCOVERY_WARNING": "A legacy discovery takes longer to complete and can't be canceled. Do you want to continue?",
-  "SN_MANUAL_ENTRY": "Can’t find all my MI's",
+  "SN_MANUAL_ENTRY": "Enter Serial Numbers Manually",
   "LOADING": "Loading...",
   "NO_DATA": "No data",
   "NO_CONNECTION": "No Connection",

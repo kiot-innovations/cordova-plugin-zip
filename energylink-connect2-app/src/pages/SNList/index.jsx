@@ -232,7 +232,7 @@ function SNList() {
               />
               <button
                 onClick={toggleManualMode}
-                className="button has-text-centered is-uppercase is-secondary has-no-border"
+                className="button has-text-centered is-uppercase is-secondary has-no-border is-paddingless"
               >
                 {t('SN_MANUAL_ENTRY')}
               </button>
