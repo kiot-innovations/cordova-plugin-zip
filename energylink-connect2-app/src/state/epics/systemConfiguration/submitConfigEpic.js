@@ -1,3 +1,4 @@
+import * as Sentry from '@sentry/browser'
 import { ofType } from 'redux-observable'
 import { from, of } from 'rxjs'
 import { catchError, exhaustMap, map } from 'rxjs/operators'
@@ -89,9 +90,10 @@ export const submitExportLimitEpic = (action$, state$) => {
             ? SUBMIT_GRIDVOLTAGE(payload)
             : SUBMIT_CONFIG_ERROR(t('SUBMIT_EXPORT_LIMIT_ERROR'))
         ),
-        catchError(err =>
-          of(SUBMIT_CONFIG_ERROR(t('SUBMIT_EXPORT_LIMIT_ERROR')))
-        )
+        catchError(err => {
+          Sentry.captureException(err)
+          return of(SUBMIT_CONFIG_ERROR(t('SUBMIT_EXPORT_LIMIT_ERROR')))
+        })
       )
     })
   )
@@ -117,9 +119,10 @@ export const submitGridVoltageEpic = (action$, state$) => {
             ? SUBMIT_CONFIG_SUCCESS(response)
             : SUBMIT_CONFIG_ERROR(t('SUBMIT_GRID_VOLTAGE_ERROR'))
         ),
-        catchError(err =>
-          of(SUBMIT_CONFIG_ERROR(t('SUBMIT_GRID_VOLTAGE_ERROR')))
-        )
+        catchError(err => {
+          Sentry.captureException(err)
+          return of(SUBMIT_CONFIG_ERROR(t('SUBMIT_GRID_VOLTAGE_ERROR')))
+        })
       )
     })
   )

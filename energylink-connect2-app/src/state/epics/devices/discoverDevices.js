@@ -1,3 +1,4 @@
+import * as Sentry from '@sentry/browser'
 import { pathOr } from 'ramda'
 import { ofType } from 'redux-observable'
 import { from, of, timer } from 'rxjs'
@@ -48,7 +49,10 @@ export const scanDevicesEpic = action$ => {
                 ? DISCOVER_COMPLETE(response)
                 : DISCOVER_UPDATE(response)
             ),
-            catchError(error => of(DISCOVER_ERROR.asError(error.message)))
+            catchError(error => {
+              Sentry.captureException(error)
+              return of(DISCOVER_ERROR.asError(error.message))
+            })
           )
         )
       )

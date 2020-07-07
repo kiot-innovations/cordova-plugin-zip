@@ -35,7 +35,10 @@ export const setRSEEpic = action$ => {
             ? SET_RSE_ERROR(response.error)
             : SET_RSE_STATUS(response)
         ),
-        catchError(error => of(SET_RSE_ERROR(error.message)))
+        catchError(error => {
+          Sentry.captureException(error)
+          return of(SET_RSE_ERROR(error.message))
+        })
       )
     )
   )

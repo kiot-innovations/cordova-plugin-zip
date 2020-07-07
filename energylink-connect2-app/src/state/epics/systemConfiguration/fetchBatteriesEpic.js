@@ -1,3 +1,4 @@
+import * as Sentry from '@sentry/browser'
 import { ofType } from 'redux-observable'
 import { from, of } from 'rxjs'
 import { catchError, mergeMap, map } from 'rxjs/operators'
@@ -24,7 +25,10 @@ export const fetchBatteriesEpic = action$ =>
     mergeMap(() =>
       from(fetchBatteries()).pipe(
         map(response => GET_STORAGE_SUCCESS(response)),
-        catchError(err => of(GET_STORAGE_ERROR(err.message)))
+        catchError(err => {
+          Sentry.captureException(err)
+          return of(GET_STORAGE_ERROR(err.message))
+        })
       )
     )
   )

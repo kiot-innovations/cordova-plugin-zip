@@ -1,3 +1,4 @@
+import * as Sentry from '@sentry/browser'
 import { ofType } from 'redux-observable'
 import { of, from } from 'rxjs'
 import { catchError, exhaustMap, map } from 'rxjs/operators'
@@ -31,7 +32,10 @@ export const connectNetworkAPEpic = (action$, state$) => {
             ? GET_INTERFACES_INIT()
             : CONNECT_NETWORK_AP_ERROR(response.error)
         ),
-        catchError(err => of(CONNECT_NETWORK_AP_ERROR(err)))
+        catchError(err => {
+          Sentry.captureException(err)
+          return of(CONNECT_NETWORK_AP_ERROR(err))
+        })
       )
     })
   )

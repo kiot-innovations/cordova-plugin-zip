@@ -1,3 +1,4 @@
+import * as Sentry from '@sentry/browser'
 import { ofType } from 'redux-observable'
 import { of, from } from 'rxjs'
 import { catchError, mergeMap, map } from 'rxjs/operators'
@@ -29,7 +30,10 @@ export const pvsScanEpic = (action$, state$) => {
               )
             : pvsActions.GET_SN_ERROR('NOT_FOUND')
         }),
-        catchError(err => of(pvsActions.GET_SN_ERROR(err)))
+        catchError(err => {
+          Sentry.captureException(err)
+          return of(pvsActions.GET_SN_ERROR(err))
+        })
       )
     })
   )

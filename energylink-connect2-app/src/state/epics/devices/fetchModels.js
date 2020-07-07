@@ -1,3 +1,4 @@
+import * as Sentry from '@sentry/browser'
 import { ofType } from 'redux-observable'
 import { from, of } from 'rxjs'
 import { catchError, mergeMap, map } from 'rxjs/operators'
@@ -47,8 +48,10 @@ export const fetchModelsEpic = (action$, state$) => {
             buildModelFilter(payload, pathOr([], ['body', 'items'], models))
           )
         ),
-        catchError(err =>
-          of(
+        catchError(err => {
+          Sentry.captureException(err)
+
+          return of(
             FETCH_MODELS_SUCCESS(
               buildModelFilter(
                 payload,
@@ -56,7 +59,7 @@ export const fetchModelsEpic = (action$, state$) => {
               )
             )
           )
-        )
+        })
       )
     })
   )

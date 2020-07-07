@@ -1,3 +1,4 @@
+import * as Sentry from '@sentry/browser'
 import { ofType } from 'redux-observable'
 import { from, of } from 'rxjs'
 import { catchError, map, mergeMap } from 'rxjs/operators'
@@ -34,7 +35,10 @@ const checkVersionPVS = action$ =>
             ? FIRMWARE_UPDATE_INIT({ PVSversion })
             : FIRMWARE_GET_VERSION_COMPLETE()
         ),
-        catchError(err => of(FIRMWARE_GET_VERSION_ERROR.asError(err.message)))
+        catchError(err => {
+          Sentry.captureException(err)
+          return of(FIRMWARE_GET_VERSION_ERROR.asError(err.message))
+        })
       )
     )
   )

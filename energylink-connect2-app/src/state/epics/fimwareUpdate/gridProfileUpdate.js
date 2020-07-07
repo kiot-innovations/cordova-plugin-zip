@@ -1,7 +1,7 @@
+import * as Sentry from '@sentry/browser'
 import { ofType } from 'redux-observable'
 import { from, of } from 'rxjs'
 import { catchError, map, switchMap } from 'rxjs/operators'
-import * as Sentry from '@sentry/browser'
 
 import {
   FIRMWARE_GET_VERSION_COMPLETE,
@@ -34,7 +34,10 @@ export const epicUploadGridProfile = action$ =>
     switchMap(() =>
       from(uploadGridProfile()).pipe(
         map(() => GRID_PROFILE_UPLOAD_COMPLETE()),
-        catchError(err => of(GRID_PROFILE_UPLOAD_ERROR.asError(err.message)))
+        catchError(err => {
+          Sentry.captureException(err)
+          return of(GRID_PROFILE_UPLOAD_ERROR.asError(err.message))
+        })
       )
     )
   )

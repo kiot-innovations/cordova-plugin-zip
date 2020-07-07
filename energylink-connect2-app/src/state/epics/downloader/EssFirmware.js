@@ -1,3 +1,4 @@
+import * as Sentry from '@sentry/browser'
 import { pathOr } from 'ramda'
 import { ofType } from 'redux-observable'
 import { from, Observable, of } from 'rxjs'
@@ -65,7 +66,7 @@ const downloadOSZipEpic = (action$, state$) =>
             : DOWNLOAD_OS_SUCCESS(entry)
         ),
         catchError(err => {
-          console.warn(err)
+          Sentry.captureException(err)
           return of(DOWNLOAD_OS_ERROR.asError(err))
         })
       )
