@@ -19,6 +19,10 @@ export const submitMeterDataEpic = (action$, state$) => {
   return action$.pipe(
     ofType(SUBMIT_CONFIG.getType()),
     exhaustMap(({ payload }) => {
+      if (!payload.metaData) {
+        return of(SUBMIT_GRIDPROFILE(payload))
+      }
+
       const promise = getApiPVS()
         .then(path(['apis', 'meta']))
         .then(api =>
@@ -42,6 +46,10 @@ export const submitGridProfileEpic = (action$, state$) => {
   return action$.pipe(
     ofType(SUBMIT_GRIDPROFILE.getType()),
     exhaustMap(({ payload }) => {
+      if (!payload.gridProfile) {
+        return of(SUBMIT_GRIDVOLTAGE(payload))
+      }
+
       const promise = getApiPVS()
         .then(path(['apis', 'grid']))
         .then(api =>
@@ -104,6 +112,10 @@ export const submitGridVoltageEpic = (action$, state$) => {
   return action$.pipe(
     ofType(SUBMIT_GRIDVOLTAGE.getType()),
     exhaustMap(({ payload }) => {
+      if (!payload.gridVoltage) {
+        return of(SUBMIT_CONFIG_SUCCESS())
+      }
+
       const promise = getApiPVS()
         .then(path(['apis', 'grid']))
         .then(api =>

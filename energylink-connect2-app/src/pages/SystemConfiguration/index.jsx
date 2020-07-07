@@ -73,12 +73,20 @@ function SystemConfiguration() {
   const modalContent = (
     <div className="has-text-centered is-flex flex-column">
       <span className="has-text-white mb-10">{t('ERROR_CONFIGURATION')}</span>
-      <button
-        className="button half-button-padding is-primary is-uppercase"
-        onClick={() => toggleModal()}
-      >
-        {t('CONTINUE')}
-      </button>
+      <div className="inline-buttons">
+        <button
+          className="button half-button-padding is-primary is-outlined is-uppercase mr-10"
+          onClick={() => toggleModal()}
+        >
+          {t('CANCEL')}
+        </button>
+        <button
+          className="button half-button-padding is-primary is-uppercase ml-10"
+          onClick={() => forceSubmit()}
+        >
+          {t('CONTINUE')}
+        </button>
+      </div>
     </div>
   )
 
@@ -93,16 +101,22 @@ function SystemConfiguration() {
     return true
   }
 
+  const generateConfigObject = () => {
+    const metaData = createMeterConfig(found, meter, dispatch, siteKey)
+    const configObject = {
+      metaData,
+      gridProfile: selectedOptions.profile.id,
+      lazyGridProfile: selectedOptions.lazyGridProfile,
+      exportLimit: selectedOptions.exportLimit,
+      gridVoltage: selectedOptions.gridVoltage
+    }
+
+    return configObject
+  }
+
   const submitConfig = () => {
     try {
-      const metaData = createMeterConfig(found, meter, dispatch, siteKey)
-      const configObject = {
-        metaData,
-        gridProfile: selectedOptions.profile.id,
-        lazyGridProfile: selectedOptions.lazyGridProfile,
-        exportLimit: selectedOptions.exportLimit,
-        gridVoltage: selectedOptions.gridVoltage
-      }
+      const configObject = generateConfigObject()
       if (validateConfig(configObject)) {
         dispatch(SUBMIT_CONFIG(configObject))
         history.push(paths.PROTECTED.SAVING_CONFIGURATION.path)
@@ -111,6 +125,12 @@ function SystemConfiguration() {
     } catch (err) {
       console.error(err)
     }
+  }
+
+  const forceSubmit = () => {
+    const configObject = generateConfigObject()
+    dispatch(SUBMIT_CONFIG(configObject))
+    history.push(paths.PROTECTED.SAVING_CONFIGURATION.path)
   }
 
   return (
