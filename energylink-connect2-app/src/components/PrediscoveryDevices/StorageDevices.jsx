@@ -2,7 +2,6 @@ import React from 'react'
 import Collapsible from 'components/Collapsible'
 import 'pages/Devices/Devices.scss'
 import { useI18n } from 'shared/i18n'
-import { pathOr } from 'ramda'
 
 const renderDevice = device => (
   <div className="eqs-device is-flex is-vertical has-text-white pt-5 pb-5">
@@ -11,12 +10,11 @@ const renderDevice = device => (
   </div>
 )
 function StorageDevices({ devices }) {
-  const deviceList = pathOr([], ['pre_discovery_report', 'devices'], devices)
   const t = useI18n()
   return (
     <div className="mt-5 mb-5">
       <Collapsible expanded title={t('AIO_COMPONENTS')}>
-        {deviceList.map(renderDevice)}
+        {devices.map(renderDevice)}
       </Collapsible>
     </div>
   )

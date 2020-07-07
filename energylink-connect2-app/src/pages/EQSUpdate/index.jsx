@@ -49,7 +49,8 @@ const EQSUpdate = () => {
       !includes(currentStep, [
         eqsSteps.FW_UPLOAD,
         eqsSteps.FW_UPDATE,
-        eqsSteps.FW_POLL
+        eqsSteps.FW_POLL,
+        eqsSteps.FW_ERROR
       ])
     ) {
       startUpdate()
@@ -75,18 +76,13 @@ const EQSUpdate = () => {
           {t('FW_UPDATE')}
         </span>
       </div>
-      {fileReady !== 2 && includes(error, possibleErrors) && (
-        <div className="has-text-centered">
+      {includes(error, possibleErrors) && (
+        <div className="has-text-centered mb-15">
           <div className="pt-20 pb-20">
             <i className="sp-close has-text-white is-size-1" />
           </div>
           <div className="mt-20">
             <span>{t('EQS_UPDATE_ERROR')}</span>
-          </div>
-          <div className="mt-20 has-text-centered">
-            <button onClick={startUpdate} className="button is-primary">
-              {t('RETRY')}
-            </button>
           </div>
         </div>
       )}
@@ -100,17 +96,20 @@ const EQSUpdate = () => {
           </div>
         </div>
       )}
-      {either(
-        fileReady === 2 && !isEmpty(updateProgress),
-        <div>{map(renderUpdateComponent, updateProgress)}</div>,
+      {isEmpty(updateProgress) && isEmpty(updateErrors) ? (
         <div className="has-text-centered">
           <Loader />
           <span>{t('FW_UPDATE_WAIT')}</span>
         </div>
+      ) : (
+        ''
+      )}
+      {!isEmpty(updateProgress) && (
+        <div>{map(renderUpdateComponent, updateProgress)}</div>
       )}
       {either(
         fileReady === 2 &&
-          includes(updateStatus, ['FAILED', 'SUCCEEDED']) &&
+          includes(updateStatus, ['NOT_RUNNING', 'FAILED', 'SUCCEEDED']) &&
           isEmpty(updateErrors),
         <ContinueFooter
           url={paths.PROTECTED.ESS_HEALTH_CHECK.path}
