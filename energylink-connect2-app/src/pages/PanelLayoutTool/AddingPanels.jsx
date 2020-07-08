@@ -9,7 +9,6 @@ import {
 } from '@sunpower/panel-layout-tool'
 import {
   compose,
-  concat,
   length,
   map,
   pathOr,
@@ -46,13 +45,10 @@ const getPosition = compose(
   prop('evt')
 )
 
-const getSerialNumbersLegacy = compose(
-  map(renameKey('SERIAL', 'serial_number')),
+const getSerialNumbers = compose(
   filter(propEq('DEVICE_TYPE', 'Inverter')),
   pathOr([], ['devices', 'found'])
 )
-
-const getSerialNumbers = pathOr([], ['pvs', 'serialNumbers'])
 
 const StepHeader = ({ name, panelsAdded, panelsAvailable }) => (
   <div className="step">
@@ -66,16 +62,13 @@ const StepHeader = ({ name, panelsAdded, panelsAvailable }) => (
 export default () => {
   const dispatch = useDispatch()
   const t = useI18n()
-  const serialNumbers = useSelector(state =>
-    concat(getSerialNumbers(state), getSerialNumbersLegacy(state))
-  )
-
+  const serialNumbers = useSelector(getSerialNumbers)
   const panels = useSelector(pathOr([], ['panel_layout_tool', 'panels']))
   const selected = useSelector(pathOr([], ['panel_layout_tool', 'selected']))
   const err = useError()
   const unassigned = without(
     map(prop('id'), panels),
-    map(prop('serial_number'), serialNumbers)
+    map(prop('SERIAL'), serialNumbers)
   )
 
   useEffect(() => {
