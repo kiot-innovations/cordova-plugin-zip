@@ -198,7 +198,7 @@ function CreateSite() {
               </div>
             </article>
 
-            <div className="is-flex level">
+            <div className="is-flex">
               <article className="mb-15 mr-5">
                 <label htmlFor="apt" className="has-text-white">
                   {t('APT')}
@@ -226,7 +226,7 @@ function CreateSite() {
               </article>
             </div>
 
-            <div className="is-flex level">
+            <div className="is-flex">
               <article className="mb-15 mr-5">
                 <label htmlFor="state" className="has-text-white">
                   {t('STATE')}

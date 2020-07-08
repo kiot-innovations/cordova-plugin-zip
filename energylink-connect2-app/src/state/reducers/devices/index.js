@@ -16,6 +16,7 @@ import {
   CLAIM_DEVICES_UPDATE,
   CLAIM_DEVICES_COMPLETE,
   FETCH_MODELS_SUCCESS,
+  FETCH_MODELS_LOAD_DEFAULT,
   UPDATE_DEVICES_LIST
 } from 'state/actions/devices'
 
@@ -106,6 +107,10 @@ export default createReducer(
       ...initialState
     }),
     [FETCH_MODELS_SUCCESS]: (state, payload) => ({
+      ...state,
+      miModels: [...state.miModels, payload]
+    }),
+    [FETCH_MODELS_LOAD_DEFAULT]: (state, payload) => ({
       ...state,
       miModels: [...state.miModels, payload]
     }),
