@@ -14,6 +14,7 @@ import {
   DOWNLOAD_OS_PROGRESS,
   DOWNLOAD_OS_SUCCESS
 } from 'state/actions/ess'
+import { DOWNLOAD_SUCCESS } from 'state/actions/fileDownloader'
 
 const fileTransferObservable = (path, url, accessToken, retry = false) =>
   new Observable(subscriber => {
@@ -53,7 +54,7 @@ const fileTransferObservable = (path, url, accessToken, retry = false) =>
 
 const downloadOSZipEpic = (action$, state$) =>
   action$.pipe(
-    ofType(DOWNLOAD_OS_INIT.getType()),
+    ofType(DOWNLOAD_OS_INIT.getType(), DOWNLOAD_SUCCESS.getType()),
     exhaustMap(({ payload = false }) =>
       fileTransferObservable(
         'EQS-FW-Package.zip',
@@ -77,7 +78,7 @@ const downloadOSZipEpic = (action$, state$) =>
             message: 'Failed to download ESS firmware',
             level: Sentry.Severity.Error
           })
-          Sentry.captureMessage('Failed to download ESS firmware')
+          Sentry.captureException(err)
           return of(DOWNLOAD_OS_ERROR.asError(err))
         })
       )
