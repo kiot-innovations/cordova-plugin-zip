@@ -141,7 +141,7 @@ export const validateSession = () => {
 
     const isValid = moment(expires).isAfter(now)
 
-    if (!isValid) {
+    if (expires > 0 && !isValid) {
       dispatch(REFRESH_TOKEN_INIT(user.auth.refresh_token))
     }
   }
