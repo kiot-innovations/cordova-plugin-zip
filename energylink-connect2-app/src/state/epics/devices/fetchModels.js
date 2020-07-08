@@ -1,3 +1,4 @@
+import * as Sentry from '@sentry/browser'
 import { ofType } from 'redux-observable'
 import { from, of } from 'rxjs'
 import { catchError, mergeMap, map } from 'rxjs/operators'
@@ -55,7 +56,10 @@ export const fetchModelsEpic = (action$, state$) => {
 
           return nextAction
         }),
-        catchError(() => of(FETCH_MODELS_ERROR(MIType)))
+        catchError(error => {
+          Sentry.captureException(error)
+          return of(FETCH_MODELS_ERROR(MIType))
+        })
       )
     })
   )
