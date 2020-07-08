@@ -72,7 +72,8 @@ const downloadOSZipEpic = (action$, state$) =>
             data: {
               ...payload,
               baseUrl: process.env.REACT_APP_ARTIFACTORY_BASE,
-              environment: getEnvironment()
+              environment: getEnvironment(),
+              AT: pathOr('', ['value', 'user', 'auth', 'access_token'], state$)
             },
             category: 'ESS-Firmware-download',
             message: 'Failed to download ESS firmware',
@@ -95,7 +96,7 @@ async function getExternalFirmwareMeta(accessToken) {
   }
 
   const res = await fetch(
-    `${process.env.REACT_APP_ARTIFACTORY_BASE}/pvs-connected-devices-firmware/dists/byers-1.0.0/external-firmware-meta.json`,
+    `${process.env.REACT_APP_ARTIFACTORY_BASE}/pvs-connected-devices-firmware/dists/byers-2.1.0/external-firmware-meta.json`,
     requestOptions
   )
   return await res.json()
