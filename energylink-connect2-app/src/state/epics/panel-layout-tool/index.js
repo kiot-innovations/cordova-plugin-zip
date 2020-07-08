@@ -8,6 +8,7 @@ import { getApiPVS } from 'shared/api'
 import {
   PLT_LOAD,
   PLT_LOAD_ERROR,
+  PLT_LOAD_FINISHED,
   PLT_SAVE,
   PLT_SAVE_ERROR,
   PLT_SAVE_FINISHED
@@ -38,7 +39,7 @@ export const getPanelLayoutEpic = (action$, state$) =>
     ofType(PLT_LOAD.getType()),
     exhaustMap(() =>
       from(getPanelLayout()).pipe(
-        map(panels => actions.init(panels)),
+        switchMap(panels => of(actions.init(panels), PLT_LOAD_FINISHED())),
         catchError(() => of(PLT_LOAD_ERROR.asError()))
       )
     )
