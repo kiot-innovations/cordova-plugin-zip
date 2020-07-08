@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
+import { add, length, pluck, propOr, reduce } from 'ramda'
 import { GET_ESS_STATUS_INIT } from 'state/actions/storage'
 import paths from 'routes/paths'
 import ESSHealthCheckComponent from 'components/ESSHealthCheck'
-import { add, length, pluck, propOr, reduce } from 'ramda'
 
 function ESSHealthCheck() {
   const history = useHistory()
