@@ -1,4 +1,14 @@
 .ess-hc {
+
+  .status-message{
+    display: flex;
+    flex-direction: column;
+  }
+
+  .discovery-percentage{
+    line-height: 3rem;
+  }
+
   &.gridit {
     display: grid;
     grid-template-rows: minmax(15px, 40px) 1fr;
