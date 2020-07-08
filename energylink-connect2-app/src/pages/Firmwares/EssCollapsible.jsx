@@ -5,7 +5,7 @@ import { either } from 'shared/utils'
 import Collapsible from 'components/Collapsible'
 import { useI18n } from 'shared/i18n'
 import { useDispatch, useSelector } from 'react-redux'
-import { DOWNLOAD_OS_INIT } from '../../state/actions/ess'
+import { DOWNLOAD_OS_INIT } from 'state/actions/ess'
 
 const parseName = compose(join(' '), split('-'), propOr('', 'name'))
 
