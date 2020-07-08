@@ -3,7 +3,6 @@ import clsx from 'clsx'
 import { isEmpty, length, pathOr, isNil, path } from 'ramda'
 import { useI18n } from 'shared/i18n'
 import { either, addHasErrorProp } from 'shared/utils'
-import { Loader } from 'components/Loader'
 
 import ESSHealthCheckReport from './ESSHealthCheckReport'
 import './ESSHealthCheck.scss'
@@ -18,7 +17,7 @@ function ESSHealthCheck(props) {
     gridit: loading || props.error
   })
 
-  const { onContinue, onRetry, onSeeErrors } = props
+  const { waiting, progress, onContinue, onRetry, onSeeErrors } = props
 
   return (
     <div className={classes}>
@@ -26,8 +25,13 @@ function ESSHealthCheck(props) {
         {t('HEALTH_CHECK')}
       </span>
 
-      <div className="status-messageee">
-        {either(loading, <Loader />)}
+      <div className="status-message">
+        {either(
+          waiting,
+          <span className="discovery-percentage mb-20 has-text-weight-bold is-size-1 has-text-white">
+            {progress || 0}%
+          </span>
+        )}
         {either(loading, <span> {t('HEALTH_REPORT')} </span>)}
 
         {either(

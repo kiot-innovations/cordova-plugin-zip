@@ -16,6 +16,7 @@ import {
   DISCOVER_UPDATE,
   FETCH_CANDIDATES_COMPLETE
 } from 'state/actions/devices'
+import { START_DISCOVERY_SUCCESS } from '../../actions/pvs'
 
 const fetchDiscovery = async () => {
   try {
@@ -38,7 +39,11 @@ export const scanDevicesEpic = action$ => {
   const stopPolling$ = action$.pipe(ofType(DISCOVER_COMPLETE.getType()))
 
   return action$.pipe(
-    ofType(FETCH_CANDIDATES_COMPLETE.getType(), DISCOVER_ERROR.getType()),
+    ofType(
+      FETCH_CANDIDATES_COMPLETE.getType(),
+      START_DISCOVERY_SUCCESS.getType(),
+      DISCOVER_ERROR.getType()
+    ),
     switchMap(() =>
       timer(0, 2500).pipe(
         takeUntil(stopPolling$),

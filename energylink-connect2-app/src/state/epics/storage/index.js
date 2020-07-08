@@ -3,7 +3,12 @@ import {
   postComponentMappingEpic,
   getComponentMappingEpic
 } from './componentMapping'
-import { getHealthCheckEpic } from './getHealthCheckEpic'
+import {
+  startHealthCheckEpic,
+  waitHealthCheckEpic,
+  errorHealthCheckEpic,
+  getHealthCheckEpic
+} from './getHealthCheckEpic'
 import {
   uploadEqsFwEpic,
   triggerFwUpdateEpic,
@@ -16,6 +21,9 @@ export default [
   pollFwUpdateEpic,
   postComponentMappingEpic,
   getComponentMappingEpic,
+  startHealthCheckEpic,
+  waitHealthCheckEpic,
+  errorHealthCheckEpic,
   getHealthCheckEpic,
   getPreDiscoveryEpic
 ]
