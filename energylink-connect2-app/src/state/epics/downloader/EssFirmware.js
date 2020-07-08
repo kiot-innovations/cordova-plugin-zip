@@ -1,7 +1,10 @@
+import * as Sentry from '@sentry/browser'
 import { pathOr } from 'ramda'
 import { ofType } from 'redux-observable'
 import { from, Observable, of } from 'rxjs'
 import { catchError, exhaustMap, map } from 'rxjs/operators'
+import { fileExists } from 'shared/fileSystem'
+import { getEnvironment } from 'shared/utils'
 import {
   DOWNLOAD_META_ERROR,
   DOWNLOAD_META_INIT,
@@ -11,9 +14,6 @@ import {
   DOWNLOAD_OS_PROGRESS,
   DOWNLOAD_OS_SUCCESS
 } from 'state/actions/ess'
-import { fileExists } from 'shared/fileSystem'
-import * as Sentry from '@sentry/browser'
-import { getEnvironment } from 'shared/utils'
 
 const fileTransferObservable = (path, url, accessToken, retry = false) =>
   new Observable(subscriber => {

@@ -1,3 +1,4 @@
+import * as Sentry from '@sentry/browser'
 import {
   compose,
   map as mapRamda,
@@ -46,7 +47,10 @@ export const miLiveDataEpic = action$ => {
           return from(promise).pipe(
             map(getData),
             map(MI_DATA_SUCCESS),
-            catchError(error => of(MI_DATA_ERROR(error)))
+            catchError(error => {
+              Sentry.captureException(error)
+              return of(MI_DATA_ERROR(error))
+            })
           )
         })
       )

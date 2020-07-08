@@ -1,3 +1,4 @@
+import * as Sentry from '@sentry/browser'
 import { ofType } from 'redux-observable'
 import { catchError, map, mergeMap } from 'rxjs/operators'
 import { from, of } from 'rxjs'
@@ -23,7 +24,10 @@ export const claimDevicesEpic = action$ => {
             ? CLAIM_DEVICES_SUCCESS(response)
             : CLAIM_DEVICES_ERROR('ERROR_EXECUTING_COMMAND')
         ),
-        catchError(err => of(CLAIM_DEVICES_ERROR(err)))
+        catchError(err => {
+          Sentry.captureException(err)
+          return of(CLAIM_DEVICES_ERROR(err))
+        })
       )
     })
   )

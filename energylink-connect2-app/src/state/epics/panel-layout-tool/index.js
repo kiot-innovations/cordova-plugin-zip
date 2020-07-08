@@ -1,3 +1,4 @@
+import * as Sentry from '@sentry/browser'
 import { actions, mapToPVS, mapFromPVS } from '@sunpower/panel-layout-tool'
 import { pathOr } from 'ramda'
 import { ofType } from 'redux-observable'
@@ -53,7 +54,10 @@ export const savePanelLayoutEpic = (action$, state$) =>
         )
       ).pipe(
         map(PLT_SAVE_FINISHED),
-        catchError(() => of(PLT_SAVE_ERROR.asError('PLT_SAVE_ERROR')))
+        catchError(err => {
+          Sentry.captureException(err)
+          return of(PLT_SAVE_ERROR.asError('PLT_SAVE_ERROR'))
+        })
       )
     )
   )

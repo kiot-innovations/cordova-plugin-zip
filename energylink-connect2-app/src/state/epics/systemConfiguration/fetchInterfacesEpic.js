@@ -1,3 +1,4 @@
+import * as Sentry from '@sentry/browser'
 import { ofType } from 'redux-observable'
 import { from, of } from 'rxjs'
 import { catchError, concatMap, map } from 'rxjs/operators'
@@ -26,7 +27,10 @@ export const fetchInterfacesEpic = action$ =>
 
       return from(promise).pipe(
         map(payload => GET_INTERFACES_SUCCESS(payload)),
-        catchError(err => of(GET_INTERFACES_ERROR.asError(err.message)))
+        catchError(err => {
+          Sentry.captureException(err)
+          return of(GET_INTERFACES_ERROR.asError(err.message))
+        })
       )
     })
   )

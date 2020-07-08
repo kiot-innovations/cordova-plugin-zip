@@ -1,8 +1,13 @@
+import * as Sentry from '@sentry/browser'
 import { ofType } from 'redux-observable'
-import { from } from 'rxjs'
-import { switchMap, map } from 'rxjs/operators'
+import { from, of } from 'rxjs'
+import { switchMap, map, catchError } from 'rxjs/operators'
 import { getApiPVS } from 'shared/api'
-import { FETCH_DEVICES_LIST, UPDATE_DEVICES_LIST } from 'state/actions/devices'
+import {
+  FETCH_DEVICES_LIST,
+  UPDATE_DEVICES_LIST,
+  UPDATE_DEVICES_LIST_ERROR
+} from 'state/actions/devices'
 import { path } from 'ramda'
 
 export const fetchDeviceListEpic = action$ => {
@@ -16,7 +21,11 @@ export const fetchDeviceListEpic = action$ => {
       return from(promise).pipe(
         map(response =>
           UPDATE_DEVICES_LIST(path(['body', 'devices'], response))
-        )
+        ),
+        catchError(err => {
+          Sentry.captureException(err)
+          return of(UPDATE_DEVICES_LIST_ERROR(err))
+        })
       )
     })
   )

@@ -1,3 +1,4 @@
+import * as Sentry from '@sentry/browser'
 import { ofType } from 'redux-observable'
 import { of, from } from 'rxjs'
 import { catchError, mergeMap, map } from 'rxjs/operators'
@@ -19,7 +20,10 @@ export const startCommissioningEpic = action$ =>
             ? pvsActions.START_COMMISSIONING_SUCCESS(response) // { result: "succeed", supervisor: {...} }
             : pvsActions.START_COMMISSIONING_ERROR('SEND_COMMAND_ERROR')
         ),
-        catchError(err => of(pvsActions.START_COMMISSIONING_ERROR(err)))
+        catchError(err => {
+          Sentry.captureException(err)
+          return of(pvsActions.START_COMMISSIONING_ERROR(err))
+        })
       )
     })
   )

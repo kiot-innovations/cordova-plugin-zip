@@ -1,3 +1,4 @@
+import * as Sentry from '@sentry/browser'
 import { ofType } from 'redux-observable'
 import { of, from } from 'rxjs'
 import { catchError, map, concatMap, retry } from 'rxjs/operators'
@@ -26,7 +27,10 @@ export const fetchNetworkAPsEpic = (action$, state$) => {
             ? GET_NETWORK_APS_SUCCESS(filterDuplicateAPs(response.aps))
             : GET_NETWORK_APS_ERROR(response.error)
         ),
-        catchError(err => of(GET_NETWORK_APS_ERROR.asError(err)))
+        catchError(err => {
+          Sentry.captureException(err)
+          return of(GET_NETWORK_APS_ERROR.asError(err))
+        })
       )
     }),
     retry(2)

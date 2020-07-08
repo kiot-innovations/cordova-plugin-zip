@@ -1,3 +1,4 @@
+import * as Sentry from '@sentry/browser'
 import { ofType } from 'redux-observable'
 import { from, of } from 'rxjs'
 import { catchError, exhaustMap, map } from 'rxjs/operators'
@@ -24,7 +25,10 @@ export const fetchRSEEpic = action$ => {
     exhaustMap(() =>
       from(fetchRSE()).pipe(
         map(GET_RSE_SUCCESS),
-        catchError(error => of(GET_RSE_ERROR(error.message)))
+        catchError(error => {
+          Sentry.captureException(error)
+          return of(GET_RSE_ERROR(error.message))
+        })
       )
     )
   )

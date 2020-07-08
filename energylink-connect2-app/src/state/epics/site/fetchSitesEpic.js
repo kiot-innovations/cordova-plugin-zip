@@ -1,3 +1,4 @@
+import * as Sentry from '@sentry/browser'
 import { ofType } from 'redux-observable'
 import { of, from } from 'rxjs'
 import { catchError, mergeMap, map } from 'rxjs/operators'
@@ -40,7 +41,10 @@ export const fetchSitesEpic = (action$, state$) => {
             ? siteActions.GET_SITES_SUCCESS(sites)
             : siteActions.GET_SITES_ERROR({ message: 'NO_SITES' })
         }),
-        catchError(error => of(siteActions.GET_SITES_ERROR(error)))
+        catchError(error => {
+          Sentry.captureException(error)
+          return of(siteActions.GET_SITES_ERROR(error))
+        })
       )
     )
   )

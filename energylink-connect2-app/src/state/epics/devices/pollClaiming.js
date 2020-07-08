@@ -1,3 +1,4 @@
+import * as Sentry from '@sentry/browser'
 import { path, pathOr, prop } from 'ramda'
 import { ofType } from 'redux-observable'
 import { from, of, timer } from 'rxjs'
@@ -49,7 +50,10 @@ export const pollClaimingEpic = action$ => {
               const claimProgress = pathOr([], ['body'], response)
               return updateClaimProgress(claimProgress)
             }),
-            catchError(error => of(CLAIM_DEVICES_ERROR(error)))
+            catchError(error => {
+              Sentry.captureException(error)
+              return of(CLAIM_DEVICES_ERROR(error))
+            })
           )
         })
       )

@@ -1,3 +1,4 @@
+import * as Sentry from '@sentry/browser'
 import { path } from 'ramda'
 import { ofType } from 'redux-observable'
 import { from, of } from 'rxjs'
@@ -19,7 +20,10 @@ export const setMetaDataEpic = action$ => {
             ? pvsActions.SET_METADATA_SUCCESS('success')
             : pvsActions.SET_METADATA_ERROR({ status, data })
         ),
-        catchError(err => of(pvsActions.SET_METADATA_ERROR(err)))
+        catchError(err => {
+          Sentry.captureException(err)
+          return of(pvsActions.SET_METADATA_ERROR(err))
+        })
       )
     })
   )

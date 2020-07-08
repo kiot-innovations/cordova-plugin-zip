@@ -1,3 +1,4 @@
+import * as Sentry from '@sentry/browser'
 import { ofType } from 'redux-observable'
 import { of, from } from 'rxjs'
 import { catchError, exhaustMap, map } from 'rxjs/operators'
@@ -47,7 +48,10 @@ export const createSiteEpic = (action$, state$) => {
     exhaustMap(({ payload }) =>
       from(createSite(state$.value)(payload)).pipe(
         map(response => siteActions.CREATE_SITE_SUCCESS()),
-        catchError(error => of(siteActions.CREATE_SITE_ERROR.asError(error)))
+        catchError(error => {
+          Sentry.captureException(error)
+          return of(siteActions.CREATE_SITE_ERROR.asError(error))
+        })
       )
     )
   )
