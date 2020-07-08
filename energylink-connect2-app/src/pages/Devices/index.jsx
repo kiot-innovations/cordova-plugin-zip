@@ -223,6 +223,11 @@ function Devices() {
   } = useSelector(state => state.devices)
 
   const { prediscovery } = useSelector(state => state.storage)
+  const storageDeviceList = pathOr(
+    [],
+    ['pre_discovery_report', 'devices'],
+    prediscovery
+  )
   const prediscoveryErrors = propOr([], 'errors', prediscovery)
 
   const { okMI, nonOkMI, pendingMI } = filterFoundMI(serialNumbers, candidates)
@@ -338,8 +343,8 @@ function Devices() {
           </ul>
         </Collapsible>
         <ProgressIndicators progressList={pathOr([], ['progress'], progress)} />
-        {prediscovery.pre_discovery_report && (
-          <StorageDevices devices={prediscovery} />
+        {!isEmpty(storageDeviceList) && (
+          <StorageDevices devices={storageDeviceList} />
         )}
       </div>
       {discoveryStatus(
