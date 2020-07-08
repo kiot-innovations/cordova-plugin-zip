@@ -118,7 +118,7 @@ exports[`Meter Widget renders correctly 1`] = `
                             Array [
                               Object {
                                 "label": "NOT_USED",
-                                "value": "GROSS_PRODUCTION_INVERTER",
+                                "value": "NOT_USED",
                               },
                               Object {
                                 "label": "GROSS_PRODUCTION_SITE",
@@ -149,7 +149,7 @@ exports[`Meter Widget renders correctly 1`] = `
                               Array [
                                 Object {
                                   "label": "NOT_USED",
-                                  "value": "GROSS_PRODUCTION_INVERTER",
+                                  "value": "NOT_USED",
                                 },
                                 Object {
                                   "label": "GROSS_PRODUCTION_SITE",
@@ -207,7 +207,7 @@ exports[`Meter Widget renders correctly 1`] = `
                                 Array [
                                   Object {
                                     "label": "NOT_USED",
-                                    "value": "GROSS_PRODUCTION_INVERTER",
+                                    "value": "NOT_USED",
                                   },
                                   Object {
                                     "label": "GROSS_PRODUCTION_SITE",
@@ -245,7 +245,7 @@ exports[`Meter Widget renders correctly 1`] = `
                                   Array [
                                     Object {
                                       "label": "NOT_USED",
-                                      "value": "GROSS_PRODUCTION_INVERTER",
+                                      "value": "NOT_USED",
                                     },
                                     Object {
                                       "label": "GROSS_PRODUCTION_SITE",
@@ -301,7 +301,7 @@ exports[`Meter Widget renders correctly 1`] = `
                                     "options": Array [
                                       Object {
                                         "label": "NOT_USED",
-                                        "value": "GROSS_PRODUCTION_INVERTER",
+                                        "value": "NOT_USED",
                                       },
                                       Object {
                                         "label": "GROSS_PRODUCTION_SITE",
@@ -390,7 +390,7 @@ exports[`Meter Widget renders correctly 1`] = `
                                         Array [
                                           Object {
                                             "label": "NOT_USED",
-                                            "value": "GROSS_PRODUCTION_INVERTER",
+                                            "value": "NOT_USED",
                                           },
                                           Object {
                                             "label": "GROSS_PRODUCTION_SITE",
@@ -446,7 +446,7 @@ exports[`Meter Widget renders correctly 1`] = `
                                           "options": Array [
                                             Object {
                                               "label": "NOT_USED",
-                                              "value": "GROSS_PRODUCTION_INVERTER",
+                                              "value": "NOT_USED",
                                             },
                                             Object {
                                               "label": "GROSS_PRODUCTION_SITE",
@@ -543,7 +543,7 @@ exports[`Meter Widget renders correctly 1`] = `
                                               Array [
                                                 Object {
                                                   "label": "NOT_USED",
-                                                  "value": "GROSS_PRODUCTION_INVERTER",
+                                                  "value": "NOT_USED",
                                                 },
                                                 Object {
                                                   "label": "GROSS_PRODUCTION_SITE",
@@ -599,7 +599,7 @@ exports[`Meter Widget renders correctly 1`] = `
                                                 "options": Array [
                                                   Object {
                                                     "label": "NOT_USED",
-                                                    "value": "GROSS_PRODUCTION_INVERTER",
+                                                    "value": "NOT_USED",
                                                   },
                                                   Object {
                                                     "label": "GROSS_PRODUCTION_SITE",
@@ -683,7 +683,7 @@ exports[`Meter Widget renders correctly 1`] = `
                                                     Array [
                                                       Object {
                                                         "label": "NOT_USED",
-                                                        "value": "GROSS_PRODUCTION_INVERTER",
+                                                        "value": "NOT_USED",
                                                       },
                                                       Object {
                                                         "label": "GROSS_PRODUCTION_SITE",
@@ -739,7 +739,7 @@ exports[`Meter Widget renders correctly 1`] = `
                                                       "options": Array [
                                                         Object {
                                                           "label": "NOT_USED",
-                                                          "value": "GROSS_PRODUCTION_INVERTER",
+                                                          "value": "NOT_USED",
                                                         },
                                                         Object {
                                                           "label": "GROSS_PRODUCTION_SITE",
@@ -875,7 +875,7 @@ exports[`Meter Widget renders correctly 1`] = `
                                               Array [
                                                 Object {
                                                   "label": "NOT_USED",
-                                                  "value": "GROSS_PRODUCTION_INVERTER",
+                                                  "value": "NOT_USED",
                                                 },
                                                 Object {
                                                   "label": "GROSS_PRODUCTION_SITE",
@@ -931,7 +931,7 @@ exports[`Meter Widget renders correctly 1`] = `
                                                 "options": Array [
                                                   Object {
                                                     "label": "NOT_USED",
-                                                    "value": "GROSS_PRODUCTION_INVERTER",
+                                                    "value": "NOT_USED",
                                                   },
                                                   Object {
                                                     "label": "GROSS_PRODUCTION_SITE",
@@ -1010,7 +1010,7 @@ exports[`Meter Widget renders correctly 1`] = `
                                                     Array [
                                                       Object {
                                                         "label": "NOT_USED",
-                                                        "value": "GROSS_PRODUCTION_INVERTER",
+                                                        "value": "NOT_USED",
                                                       },
                                                       Object {
                                                         "label": "GROSS_PRODUCTION_SITE",
@@ -1066,7 +1066,7 @@ exports[`Meter Widget renders correctly 1`] = `
                                                       "options": Array [
                                                         Object {
                                                           "label": "NOT_USED",
-                                                          "value": "GROSS_PRODUCTION_INVERTER",
+                                                          "value": "NOT_USED",
                                                         },
                                                         Object {
                                                           "label": "GROSS_PRODUCTION_SITE",
@@ -1137,7 +1137,7 @@ exports[`Meter Widget renders correctly 1`] = `
                                                     Array [
                                                       Object {
                                                         "label": "NOT_USED",
-                                                        "value": "GROSS_PRODUCTION_INVERTER",
+                                                        "value": "NOT_USED",
                                                       },
                                                       Object {
                                                         "label": "GROSS_PRODUCTION_SITE",
@@ -1193,7 +1193,7 @@ exports[`Meter Widget renders correctly 1`] = `
                                                       "options": Array [
                                                         Object {
                                                           "label": "NOT_USED",
-                                                          "value": "GROSS_PRODUCTION_INVERTER",
+                                                          "value": "NOT_USED",
                                                         },
                                                         Object {
                                                           "label": "GROSS_PRODUCTION_SITE",

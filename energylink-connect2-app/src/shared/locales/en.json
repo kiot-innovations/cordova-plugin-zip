@@ -383,7 +383,7 @@
   "FW_UPDATE": "Firmware Update",
   "FW_UPDATE_WAIT": "Uploading firmware update package. Please wait...",
   "DEBUG_ROUTES": "Debug Routes",
-  "EQS_FILE_NOTREADY": "Firmware files not downloaded yet. Please connect to a wifi network with internet connection and restart the app.",
+  "EQS_FILE_NOTREADY": "Firmware files not downloaded yet. Please connect to a wifi network with internet connection and go to Manage Firmwares to download the FW Package",
   "EQS_UPDATE_ERROR": "An error occurred during the firmware update. Please make sure you're connected to the PVS and try again.",
   "GO_BACK_AND_FIX": "Go back and try again to verify the errors have been fixed",
   "PLEASE_FIX_ERRORS": "Please make sure to fix the errors above",
