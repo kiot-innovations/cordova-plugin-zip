@@ -16,7 +16,7 @@ import {
   DISCOVER_UPDATE,
   FETCH_CANDIDATES_COMPLETE
 } from 'state/actions/devices'
-import { START_DISCOVERY_SUCCESS } from '../../actions/pvs'
+import { START_DISCOVERY_SUCCESS } from 'state/actions/pvs'
 
 const fetchDiscovery = async () => {
   try {
