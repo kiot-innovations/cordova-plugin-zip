@@ -96,13 +96,13 @@ const EQSUpdate = () => {
           </div>
         </div>
       )}
-      {isEmpty(updateProgress) && isEmpty(updateErrors) ? (
+      {either(
+        isEmpty(updateProgress) && isEmpty(updateErrors),
+
         <div className="has-text-centered">
           <Loader />
           <span>{t('FW_UPDATE_WAIT')}</span>
         </div>
-      ) : (
-        ''
       )}
       {!isEmpty(updateProgress) && (
         <div>{map(renderUpdateComponent, updateProgress)}</div>
