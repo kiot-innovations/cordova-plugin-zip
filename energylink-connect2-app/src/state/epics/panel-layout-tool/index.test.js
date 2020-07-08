@@ -3,6 +3,7 @@ import { actions } from '@sunpower/panel-layout-tool'
 import * as rxjs from 'rxjs'
 import {
   PLT_LOAD,
+  PLT_LOAD_FINISHED,
   PLT_SAVE,
   PLT_SAVE_FINISHED
 } from 'state/actions/panel-layout-tool'
@@ -33,11 +34,12 @@ describe('epic panel-layout-tool', () => {
           a: PLT_LOAD()
         }
         const expectedValues = {
-          b: actions.init([])
+          b: actions.init([]),
+          c: PLT_LOAD_FINISHED()
         }
 
         const inputMarble = 'a'
-        const expectedMarble = 'b'
+        const expectedMarble = '(bc)'
 
         epicTest(inputMarble, expectedMarble, inputValues, expectedValues, {
           network: { SSID: 'SunPower85888', password: '18858888' }

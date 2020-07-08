@@ -260,6 +260,7 @@
   "PLT_MODULES_PLACED": "Panels placed",
   "PLT_SAVE_ERROR": "Error occurred while saving your panels layout",
   "PLT_LINK": "Go To Panel Layout Tool",
+  "PLT_LOADING": "Hold on, we're fetching the panel layout data",
   "ADD_PANEL_PLT": "Tap on the grid to place the module",
   "GROUP_PANEL_PLT": "Tap on an array to make adjustments",
   "DISCOVERY_COMPLETE": "Discovery Complete",

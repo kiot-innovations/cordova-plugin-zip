@@ -1,5 +1,8 @@
 import { createReducer } from 'redux-act'
 import {
+  PLT_LOAD,
+  PLT_LOAD_ERROR,
+  PLT_LOAD_FINISHED,
   PLT_SAVE,
   PLT_SAVE_ERROR,
   PLT_SAVE_FINISHED
@@ -8,11 +11,24 @@ import {
 const initialState = {
   saving: false,
   saved: false,
-  error: ''
+  error: '',
+  loading: false
 }
 
 export const pltWizard = createReducer(
   {
+    [PLT_LOAD]: state => ({
+      ...state,
+      loading: true
+    }),
+    [PLT_LOAD_FINISHED]: state => ({
+      ...state,
+      loading: false
+    }),
+    [PLT_LOAD_ERROR]: state => ({
+      ...state,
+      loading: false
+    }),
     [PLT_SAVE]: state => ({
       ...state,
       saving: true,
