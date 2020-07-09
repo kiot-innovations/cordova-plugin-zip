@@ -28,7 +28,9 @@ export const uploadEqsFwEpic = action$ => {
     exhaustMap(({ payload }) => {
       const promise = getApiPVS()
         .then(path(['apis', storageSwaggerTag]))
-        .then(api => api.uploadFirmware({ id: 1 }, { requestBody: payload }))
+        .then(api =>
+          api.uploadExternalFirmware({ id: 1 }, { requestBody: payload })
+        )
 
       return from(promise).pipe(
         map(response =>
@@ -100,7 +102,7 @@ export const pollFwUpdateEpic = action$ => {
             map(response => {
               const updateStatus = pathOr(
                 'FAILED',
-                ['body', 'firmware_update_status'],
+                ['body', 'result', 'firmware_update_status'],
                 response
               )
               const matchStatus = cond([
@@ -109,18 +111,26 @@ export const pollFwUpdateEpic = action$ => {
                   always(
                     UPDATE_EQS_FIRMWARE_ERROR({
                       error: eqsUpdateErrors.TRIGGER_EQS_FIRMWARE_ERROR,
-                      response: response.body
+                      response: response.body.result
                     })
                   )
                 ],
-                [equals('NOT_RUNNING'), always(UPLOAD_EQS_FIRMWARE_SUCCESS())],
+                [
+                  equals('NOT_RUNNING'),
+                  always(
+                    UPDATE_EQS_FIRMWARE_ERROR({
+                      error: eqsUpdateErrors.TRIGGER_EQS_FIRMWARE_ERROR,
+                      response: response.body.result
+                    })
+                  )
+                ],
                 [
                   equals('RUNNING'),
-                  always(UPDATE_EQS_FIRMWARE_PROGRESS(response.body))
+                  always(UPDATE_EQS_FIRMWARE_PROGRESS(response.body.result))
                 ],
                 [
                   equals('COMPLETED'),
-                  always(UPDATE_EQS_FIRMWARE_COMPLETED(response.body))
+                  always(UPDATE_EQS_FIRMWARE_COMPLETED(response.body.result))
                 ]
               ])
               return matchStatus(updateStatus)

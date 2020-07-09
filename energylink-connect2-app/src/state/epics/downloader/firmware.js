@@ -1,3 +1,4 @@
+import * as Sentry from '@sentry/browser'
 import { pathOr } from 'ramda'
 import { ofType } from 'redux-observable'
 import { EMPTY, from, of } from 'rxjs'
@@ -50,13 +51,14 @@ export const epicGetFirmwareMetadataFile = action$ =>
             })
           )
         ),
-        catchError(() =>
-          of(
+        catchError(err => {
+          Sentry.captureException(err)
+          return of(
             GET_FILE_ERROR({
               error: 'I ran into an error getting the PVS filename'
             })
           )
-        )
+        })
       )
     )
   )
@@ -77,13 +79,15 @@ export const epicFirmwareMetadataFileDownloaded = action$ =>
             ? of(FIRMWARE_DOWNLOAD_INIT())
             : EMPTY
         ),
-        catchError(() =>
-          of(
+        catchError(err => {
+          Sentry.captureException(err)
+
+          return of(
             GET_FILE_ERROR({
               error: 'I ran into an error getting the PVS filename'
             })
           )
-        )
+        })
       )
     )
   )
@@ -209,13 +213,14 @@ export const epicFirmwareFileDownloaded = action$ =>
             ? of(FIRMWARE_DOWNLOAD_LUA_FILES(version), FIRMWARE_DOWNLOADED())
             : EMPTY
         ),
-        catchError(() =>
-          of(
+        catchError(err => {
+          Sentry.captureException(err)
+          return of(
             GET_FILE_ERROR({
               error: 'I ran into an error getting the PVS filename'
             })
           )
-        )
+        })
       )
     )
   )

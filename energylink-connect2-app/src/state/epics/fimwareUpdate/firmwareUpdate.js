@@ -174,7 +174,10 @@ const firmwareUpdateSuccessEpic = (action$, state$) => {
           const firmware = getFirmwareFromState(state$)
           return from(didThePVSUpgrade(firmware)).pipe(
             map(FIRMWARE_UPDATE_COMPLETE),
-            catchError(err => of(FIRMWARE_UPDATE_ERROR(t(err.message))))
+            catchError(err => {
+              Sentry.captureException(err)
+              return of(FIRMWARE_UPDATE_ERROR(t(err.message)))
+            })
           )
         })
       )

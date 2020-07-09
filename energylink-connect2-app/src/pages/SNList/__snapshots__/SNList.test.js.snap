@@ -151,7 +151,7 @@ exports[`Serial Number List Page renders correctly 1`] = `
                   </div>
                 </ScanButtons>
                 <button
-                  className="button has-text-centered is-uppercase is-secondary has-no-border"
+                  className="button has-text-centered is-uppercase is-secondary has-no-border is-paddingless"
                   onClick={[Function]}
                 >
                   SN_MANUAL_ENTRY

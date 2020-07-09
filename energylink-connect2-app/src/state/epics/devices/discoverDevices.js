@@ -1,3 +1,4 @@
+import * as Sentry from '@sentry/browser'
 import { pathOr } from 'ramda'
 import { ofType } from 'redux-observable'
 import { from, of, timer } from 'rxjs'
@@ -15,6 +16,7 @@ import {
   DISCOVER_UPDATE,
   FETCH_CANDIDATES_COMPLETE
 } from 'state/actions/devices'
+import { START_DISCOVERY_SUCCESS } from 'state/actions/pvs'
 
 const fetchDiscovery = async () => {
   try {
@@ -37,7 +39,11 @@ export const scanDevicesEpic = action$ => {
   const stopPolling$ = action$.pipe(ofType(DISCOVER_COMPLETE.getType()))
 
   return action$.pipe(
-    ofType(FETCH_CANDIDATES_COMPLETE.getType(), DISCOVER_ERROR.getType()),
+    ofType(
+      FETCH_CANDIDATES_COMPLETE.getType(),
+      START_DISCOVERY_SUCCESS.getType(),
+      DISCOVER_ERROR.getType()
+    ),
     switchMap(() =>
       timer(0, 2500).pipe(
         takeUntil(stopPolling$),
@@ -48,7 +54,10 @@ export const scanDevicesEpic = action$ => {
                 ? DISCOVER_COMPLETE(response)
                 : DISCOVER_UPDATE(response)
             ),
-            catchError(error => of(DISCOVER_ERROR.asError(error.message)))
+            catchError(error => {
+              Sentry.captureException(error)
+              return of(DISCOVER_ERROR.asError(error.message))
+            })
           )
         )
       )

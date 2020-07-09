@@ -1,3 +1,4 @@
+import * as Sentry from '@sentry/browser'
 import { length, path, pathOr } from 'ramda'
 import { ofType } from 'redux-observable'
 import { from, of, timer } from 'rxjs'
@@ -44,7 +45,10 @@ export const fetchCandidatesEpic = action$ => {
                 ? FETCH_CANDIDATES_ERROR('EMPTY_CANDIDATES')
                 : FETCH_CANDIDATES_UPDATE(candidatesList)
             }),
-            catchError(error => of(FETCH_CANDIDATES_ERROR(error)))
+            catchError(error => {
+              Sentry.captureException(error)
+              return of(FETCH_CANDIDATES_ERROR(error))
+            })
           )
         })
       )

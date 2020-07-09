@@ -1,3 +1,4 @@
+import * as Sentry from '@sentry/browser'
 import { ofType } from 'redux-observable'
 import { catchError, map, mergeMap } from 'rxjs/operators'
 import { path, pathOr } from 'ramda'
@@ -25,8 +26,9 @@ export const submitConfigObjectEpic = (action$, state$) => {
             ? SUBMIT_COMMISSION_SUCCESS(response)
             : SUBMIT_COMMISSION_ERROR(response.result)
         ),
-        catchError(response =>
-          of(
+        catchError(response => {
+          Sentry.captureException(response)
+          return of(
             SUBMIT_COMMISSION_ERROR(
               pathOr(
                 t('UNKNOWN_ERROR'),
@@ -35,7 +37,7 @@ export const submitConfigObjectEpic = (action$, state$) => {
               )
             )
           )
-        )
+        })
       )
     })
   )

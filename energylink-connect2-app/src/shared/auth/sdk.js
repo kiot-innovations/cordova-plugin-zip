@@ -1,5 +1,6 @@
 import { split, map, fromPairs, toPairs, join, pipe, tail, head } from 'ramda'
 import jwtDecode from 'jwt-decode'
+import moment from 'moment'
 import config from './config'
 import { createExternalLinkHandler } from 'shared/routing'
 
@@ -33,16 +34,9 @@ const getUserInfoOAuth = access_token =>
   })
 
 const verifyTokenOAuth = access_token => {
-  const params = {
-    token: access_token
-  }
-
-  const headers = {
-    'Content-Type': 'application/x-www-form-urlencoded',
-    Authorization: `Basic ${config.token_secret}`,
-    access_token_manager_id: 'atm:jwt'
-  }
-  return post(getBaseApiUrlOAuth(true, true), headers, params)
+  const { exp } = atob(access_token.split('.')[1])
+  const isValid = moment(exp * 1000).isAfter(Date.now())
+  return isValid
 }
 
 const refreshTokenOAuth = refresh_token => {

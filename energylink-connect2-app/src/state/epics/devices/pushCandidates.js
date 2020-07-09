@@ -1,3 +1,4 @@
+import * as Sentry from '@sentry/browser'
 import { ofType } from 'redux-observable'
 import { catchError, map, mergeMap } from 'rxjs/operators'
 import { path } from 'ramda'
@@ -24,7 +25,10 @@ export const pushCandidatesEpic = action$ => {
             ? PUSH_CANDIDATES_SUCCESS(response)
             : PUSH_CANDIDATES_ERROR('ERROR_EXECUTING_COMMAND')
         ),
-        catchError(err => of(PUSH_CANDIDATES_ERROR(err)))
+        catchError(err => {
+          Sentry.captureException(err)
+          return of(PUSH_CANDIDATES_ERROR(err))
+        })
       )
     })
   )

@@ -1,17 +1,16 @@
 import React, { useEffect } from 'react'
 import * as Sentry from '@sentry/browser'
 import { Link, useHistory } from 'react-router-dom'
-import { compose, join, path, pick, prop, map, pathOr, values } from 'ramda'
+import { compose, join, map, path, pathOr, pick, prop, values } from 'ramda'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { useI18n } from 'shared/i18n'
 import { cleanString, either, renameKeys } from 'shared/utils'
 import { RESET_DISCOVERY } from 'state/actions/devices'
 import { RESET_INVENTORY } from 'state/actions/inventory'
-import { DOWNLOAD_OS_INIT } from 'state/actions/ess'
 import { RESET_PVS_CONNECTION } from 'state/actions/network'
 import { RESET_PVS_INFO_STATE } from 'state/actions/pvs'
-import { RESET_SITE, SET_SITE, GET_SITES_ERROR } from 'state/actions/site'
+import { GET_SITES_ERROR, RESET_SITE, SET_SITE } from 'state/actions/site'
 import { RESET_LAST_VISITED_PAGE } from 'state/actions/global'
 import { FIRMWARE_GET_FILE } from 'state/actions/fileDownloader'
 import { getApiSearch } from 'shared/api'
@@ -70,7 +69,6 @@ function Home() {
   const errorMessage = path(['data', 'message'], error)
 
   useEffect(() => {
-    dispatch(DOWNLOAD_OS_INIT())
     dispatch(FIRMWARE_GET_FILE())
   }, [dispatch])
 

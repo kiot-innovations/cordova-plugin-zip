@@ -1,3 +1,4 @@
+import * as Sentry from '@sentry/browser'
 import { ofType } from 'redux-observable'
 import { from, of, timer } from 'rxjs'
 import {
@@ -34,9 +35,10 @@ export const postComponentMappingEpic = action$ => {
             ? POST_COMPONENT_MAPPING_SUCCESS()
             : POST_COMPONENT_MAPPING_ERROR('COMPONENT_MAPPING_ERROR')
         ),
-        catchError(() =>
-          of(POST_COMPONENT_MAPPING_ERROR('COMPONENT_MAPPING_ERROR'))
-        )
+        catchError(error => {
+          Sentry.captureException(error)
+          return of(POST_COMPONENT_MAPPING_ERROR('COMPONENT_MAPPING_ERROR'))
+        })
       )
     })
   )
@@ -88,9 +90,10 @@ export const getComponentMappingEpic = action$ => {
 
               return statusMatcher(status)
             }),
-            catchError(() =>
-              of(GET_COMPONENT_MAPPING_ERROR('COMPONENT_MAPPING_ERROR'))
-            )
+            catchError(err => {
+              Sentry.captureException(err)
+              return of(GET_COMPONENT_MAPPING_ERROR('COMPONENT_MAPPING_ERROR'))
+            })
           )
         })
       )

@@ -1,3 +1,4 @@
+import * as Sentry from '@sentry/browser'
 import { ofType } from 'redux-observable'
 import { from, of } from 'rxjs'
 import { catchError, switchMap } from 'rxjs/operators'
@@ -30,7 +31,10 @@ export const fetchGridBehaviorEpic = action$ => {
     switchMap(() =>
       from(fetchGridBehavior()).pipe(
         switchMap(async response => FETCH_GRID_BEHAVIOR_SUCCESS(response)),
-        catchError(error => of(FETCH_GRID_BEHAVIOR_ERR(error.message)))
+        catchError(error => {
+          Sentry.captureException(error)
+          return of(FETCH_GRID_BEHAVIOR_ERR(error.message))
+        })
       )
     )
   )

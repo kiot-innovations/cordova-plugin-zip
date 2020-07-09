@@ -1,3 +1,4 @@
+import * as Sentry from '@sentry/browser'
 import { ofType } from 'redux-observable'
 import { of, from } from 'rxjs'
 import { catchError, exhaustMap, map } from 'rxjs/operators'
@@ -19,7 +20,10 @@ export const startDiscoveryEpic = action$ =>
             ? pvsActions.START_DISCOVERY_SUCCESS(response)
             : pvsActions.START_DISCOVERY_ERROR('SEND_COMMAND_ERROR')
         ),
-        catchError(err => of(pvsActions.START_DISCOVERY_ERROR(err)))
+        catchError(err => {
+          Sentry.captureException(err)
+          return of(pvsActions.START_DISCOVERY_ERROR(err))
+        })
       )
     })
   )

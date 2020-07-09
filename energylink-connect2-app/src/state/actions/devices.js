@@ -25,7 +25,13 @@ export const RESET_DISCOVERY = createAction('RESET_DISCOVERY')
 export const FETCH_MODELS_INIT = createAction('FETCH_MODELS_INIT')
 export const FETCH_MODELS_SUCCESS = createAction('FETCH_MODELS_SUCCESS')
 export const FETCH_MODELS_ERROR = createAction('FETCH_MODELS_ERROR')
+export const FETCH_MODELS_LOAD_DEFAULT = createAction(
+  'FETCH_MODELS_LOAD_DEFAULT'
+)
 
 export const FETCH_DEVICES_LIST = createAction('FETCH_DEVICES_LIST')
 export const UPDATE_DEVICES_LIST = createAction('UPDATE_DEVICES_LIST')
+export const UPDATE_DEVICES_LIST_ERROR = createAction(
+  'UPDATE_DEVICES_LIST_ERROR'
+)
 export const UPDATE_MI_MODELS = createAction('UPDATE_MI_MODELS')

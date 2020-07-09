@@ -21,7 +21,7 @@ export const getPreDiscoveryEpic = action$ => {
       return from(promise).pipe(
         map(response =>
           response.status === 200
-            ? GET_PREDISCOVERY_SUCCESS(response.body)
+            ? GET_PREDISCOVERY_SUCCESS(response.body.result)
             : GET_PREDISCOVERY_ERROR('PREDISCOVERY_ERROR')
         ),
         catchError(error => {

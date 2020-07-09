@@ -1,3 +1,4 @@
+import * as Sentry from '@sentry/browser'
 import { actions, mapToPVS, mapFromPVS } from '@sunpower/panel-layout-tool'
 import { pathOr } from 'ramda'
 import { ofType } from 'redux-observable'
@@ -7,6 +8,7 @@ import { getApiPVS } from 'shared/api'
 import {
   PLT_LOAD,
   PLT_LOAD_ERROR,
+  PLT_LOAD_FINISHED,
   PLT_SAVE,
   PLT_SAVE_ERROR,
   PLT_SAVE_FINISHED
@@ -37,7 +39,7 @@ export const getPanelLayoutEpic = (action$, state$) =>
     ofType(PLT_LOAD.getType()),
     exhaustMap(() =>
       from(getPanelLayout()).pipe(
-        map(panels => actions.init(panels)),
+        switchMap(panels => of(actions.init(panels), PLT_LOAD_FINISHED())),
         catchError(() => of(PLT_LOAD_ERROR.asError()))
       )
     )
@@ -53,7 +55,10 @@ export const savePanelLayoutEpic = (action$, state$) =>
         )
       ).pipe(
         map(PLT_SAVE_FINISHED),
-        catchError(() => of(PLT_SAVE_ERROR.asError('PLT_SAVE_ERROR')))
+        catchError(err => {
+          Sentry.captureException(err)
+          return of(PLT_SAVE_ERROR.asError('PLT_SAVE_ERROR'))
+        })
       )
     )
   )

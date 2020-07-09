@@ -9,7 +9,6 @@ import {
 } from '@sunpower/panel-layout-tool'
 import {
   compose,
-  concat,
   length,
   map,
   pathOr,
@@ -26,6 +25,7 @@ import paths from 'routes/paths'
 import { useI18n } from 'shared/i18n'
 import { either, renameKey } from 'shared/utils'
 import { PLT_LOAD } from 'state/actions/panel-layout-tool'
+import { Loader } from '../../components/Loader'
 import { useError } from './hooks'
 import './panelLayoutTool.scss'
 import PanelLayoutTool from './Template'
@@ -46,13 +46,10 @@ const getPosition = compose(
   prop('evt')
 )
 
-const getSerialNumbersLegacy = compose(
-  map(renameKey('SERIAL', 'serial_number')),
+const getSerialNumbers = compose(
   filter(propEq('DEVICE_TYPE', 'Inverter')),
   pathOr([], ['devices', 'found'])
 )
-
-const getSerialNumbers = pathOr([], ['pvs', 'serialNumbers'])
 
 const StepHeader = ({ name, panelsAdded, panelsAvailable }) => (
   <div className="step">
@@ -63,24 +60,17 @@ const StepHeader = ({ name, panelsAdded, panelsAvailable }) => (
   </div>
 )
 
-export default () => {
+export const AddingPanels = () => {
   const dispatch = useDispatch()
   const t = useI18n()
-  const serialNumbers = useSelector(state =>
-    concat(getSerialNumbers(state), getSerialNumbersLegacy(state))
-  )
-
+  const serialNumbers = useSelector(getSerialNumbers)
   const panels = useSelector(pathOr([], ['panel_layout_tool', 'panels']))
   const selected = useSelector(pathOr([], ['panel_layout_tool', 'selected']))
   const err = useError()
   const unassigned = without(
     map(prop('id'), panels),
-    map(prop('serial_number'), serialNumbers)
+    map(prop('SERIAL'), serialNumbers)
   )
-
-  useEffect(() => {
-    dispatch(PLT_LOAD())
-  }, [dispatch])
 
   const [index, setIndex] = useState(0)
 
@@ -181,5 +171,28 @@ export default () => {
       }
       footer={footer}
     />
+  )
+}
+
+export default () => {
+  const t = useI18n()
+  const dispatch = useDispatch()
+  const { loading } = useSelector(prop('pltWizard'))
+
+  useEffect(() => {
+    dispatch(PLT_LOAD())
+  }, [dispatch])
+
+  return either(
+    loading,
+    <div className="plt-loading has-text-centered pt-20 pr-20 pl-20">
+      <Loader />
+
+      <div className="status-message">
+        <div className="pb-20">{t('PLT_LOADING')}</div>
+        <div className="has-text-weight-bold">{t('DONT_CLOSE_APP')}</div>
+      </div>
+    </div>,
+    <AddingPanels />
   )
 }

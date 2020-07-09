@@ -45,7 +45,7 @@ function MetersWidget() {
   const PRODUCTION_METER_TYPES = [
     {
       label: t('NOT_USED'),
-      value: 'GROSS_PRODUCTION_INVERTER'
+      value: 'NOT_USED'
     },
     { label: t('GROSS_PRODUCTION_SITE'), value: 'GROSS_PRODUCTION_SITE' }
   ]

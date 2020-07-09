@@ -36,7 +36,7 @@
         flex: 1 0 0;
       }
 
-      .right {
+      .center {
         justify-content: center;
       }
 
@@ -98,4 +98,10 @@
     padding: 0;
     width: 9rem;
   }
+}
+.plt-loading {
+  display: grid;
+  vertical-align: middle;
+  align-content: center;
+  height: 100%;
 }
