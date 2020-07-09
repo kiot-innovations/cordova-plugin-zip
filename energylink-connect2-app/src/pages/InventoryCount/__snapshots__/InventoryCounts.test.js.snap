@@ -2497,11 +2497,11 @@ exports[`Inventory Count page renders correctly 1`] = `
             NONE
           </option>
           <option
-            key="16kWh"
+            key="13kWh"
             selected={false}
-            value="16kWh"
+            value="13kWh"
           >
-            16KWH_1INV
+            13KWH_1INV
           </option>
           <option
             key="26kWh (1 inverter)"
