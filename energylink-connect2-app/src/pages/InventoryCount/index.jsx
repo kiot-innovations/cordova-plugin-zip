@@ -90,8 +90,8 @@ function InventoryCount() {
   }
 
   const batteryOptions = [
-    { value: '0', text: 'None' },
-    { value: '16kWh', text: '16KWH_1INV' },
+    { value: '0', text: 'NONE' },
+    { value: '13kWh', text: '13KWH_1INV' },
     { value: '26kWh (1 inverter)', text: '26KWH_1INV' },
     { value: '26kWh (2 inverters)', text: '26KWH_2INV' }
   ]

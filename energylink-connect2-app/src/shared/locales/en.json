@@ -60,7 +60,7 @@
   "EXTERNAL_METERS": "External Meters",
   "ESS": "Storage System Configuration",
   "NONE": "Not Installed",
-  "16KWH_1INV": "13 kWh (1 Inverter)",
+  "13KWH_1INV": "13 kWh (1 Inverter)",
   "26KWH_1INV": "26 kWh (1 Inverter)",
   "26KWH_2INV": "26 kWh (2 Inverters)",
   "STORAGE_INVERTERS": "Storage Inverters",
