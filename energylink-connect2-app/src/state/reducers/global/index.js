@@ -26,7 +26,7 @@ const initialState = {
   isFeedbackSuccessful: false,
   selectedDataSource: DATA_SOURCES.LIVE,
   feedbackError: null,
-  lastVisitedPage: paths.PROTECTED.CONNECT_TO_PVS.path
+  lastVisitedPage: paths.PROTECTED.INVENTORY_COUNT.path
 }
 
 export const globalReducer = createReducer(

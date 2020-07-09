@@ -113,7 +113,7 @@ function InventoryCount() {
 
   return (
     <section className="inventory-count">
-      {toBom ? <Redirect to={paths.PROTECTED.BILL_OF_MATERIALS.path} /> : null}
+      {toBom ? <Redirect to={paths.PROTECTED.CONNECT_TO_PVS.path} /> : null}
       <h1 className="has-text-centered is-uppercase has-text-weight-bold">
         {t('INVENTORY_COUNT')}
       </h1>

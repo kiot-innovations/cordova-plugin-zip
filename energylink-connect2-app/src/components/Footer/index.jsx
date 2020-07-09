@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useHistory, useLocation } from 'react-router-dom'
 import Nav from '@sunpower/nav'
 import clsx from 'clsx'
@@ -38,7 +38,7 @@ const Footer = () => {
     if (active.install) {
       const destination = connected
         ? location.pathname
-        : paths.PROTECTED.CONNECT_TO_PVS.path
+        : paths.PROTECTED.INVENTORY_COUNT.path
       dispatch(SET_LAST_VISITED_PAGE(destination))
     }
   }, [active, connected, dispatch, location])
