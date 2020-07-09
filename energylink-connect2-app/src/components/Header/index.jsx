@@ -13,9 +13,9 @@ import './Header.scss'
 const getCount = window => (window.innerWidth > 375 ? 35 : 30)
 const isMenuPath = history =>
   history.location.pathname === paths.PROTECTED.MENU.path ||
-  history.location.pathname !== paths.PROTECTED.MANAGE_FIRMWARES.path ||
-  history.location.pathname !== paths.PROTECTED.VERSION_INFORMATION.path ||
-  history.location.pathname !== paths.PROTECTED.GIVE_FEEDBACK.path
+  history.location.pathname === paths.PROTECTED.MANAGE_FIRMWARES.path ||
+  history.location.pathname === paths.PROTECTED.VERSION_INFORMATION.path ||
+  history.location.pathname === paths.PROTECTED.GIVE_FEEDBACK.path
 
 export const Header = ({
   text,
