@@ -394,5 +394,6 @@
   "EQS_FW_UPDATE_SUCCESS": "All components updated",
   "ERROR_LIST": "Error list",
   "API_RESPONSE": "Api response",
-  "GO_BACK": "Go back"
+  "GO_BACK": "Go back",
+  "DATABASE_ERROR": "There was a problem with the database"
 }

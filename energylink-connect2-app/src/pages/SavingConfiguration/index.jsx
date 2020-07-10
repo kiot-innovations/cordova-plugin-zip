@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux'
 import { useI18n } from 'shared/i18n'
 import { useHistory } from 'react-router-dom'
 import { Loader } from 'components/Loader'
-import { isEmpty } from 'ramda'
+import { isEmpty, test } from 'ramda'
 import { SUBMIT_CLEAR } from 'state/actions/systemConfiguration'
 import { STOP_NETWORK_POLLING } from 'state/actions/network'
 import paths from 'routes/paths'
@@ -17,6 +17,9 @@ const SavingConfiguration = () => {
   const { submitting, commissioned, error } = useSelector(
     state => state.systemConfiguration.submit
   )
+
+  const errorMap = e =>
+    test(/database|table|foreign/gi, e) ? t('DATABASE_ERROR') : e
 
   const goToChangeAddress = () => {
     dispatch(STOP_NETWORK_POLLING())
@@ -74,7 +77,7 @@ const SavingConfiguration = () => {
             <div className="status-message">
               <span>{t('CONFIG_ERROR_2')}</span>
               <div className="error-message mt-5 mb-5">
-                <span>{error}</span>
+                <span>{errorMap(error)}</span>
               </div>
               <div className="has-text-centered">
                 <button
