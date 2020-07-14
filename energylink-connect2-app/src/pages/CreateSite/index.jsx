@@ -97,7 +97,7 @@ function CreateSite() {
    * @param address
    */
   const handleSelect = async address => {
-    const geocodeData = await geocodeByAddress(address.value)
+    const geocodeData = await geocodeByAddress(address.label)
     const { parsedData, lat, lng } = getGeocodeData(geocodeData)
     const utcOffset = await getUtcOffset(lat, lng)
     setInitialValues({
