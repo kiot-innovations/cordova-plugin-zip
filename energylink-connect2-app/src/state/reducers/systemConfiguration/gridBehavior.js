@@ -62,6 +62,10 @@ export const gridBehaviorReducer = createReducer(
     }),
     [SET_GRID_VOLTAGE]: (state, payload) => ({
       ...state,
+      gridVoltage: {
+        ...state.gridVoltage,
+        selected: payload
+      },
       selectedOptions: {
         ...state.selectedOptions,
         gridVoltage: payload
