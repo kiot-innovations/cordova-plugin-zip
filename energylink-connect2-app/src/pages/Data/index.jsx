@@ -36,7 +36,7 @@ export default () => {
   const storage = filter(storageInventory, inventory)
   const hasStorage = length(storage) ? head(storage).value !== '0' : false
   const storageStatus = useSelector(pathOr({}, ['storage', 'status']))
-  const essState = pathOr({}, ['results', 'ess_report', 'ess_state'])(
+  const essState = pathOr({}, ['results', 'ess_report', 'ess_state', 0])(
     storageStatus
   )
 
