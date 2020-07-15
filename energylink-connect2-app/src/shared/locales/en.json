@@ -128,7 +128,7 @@
   "TURN_OFF_SOLAR": "Turn off the solar breakers",
   "YOU_CAN": "You can now",
   "CONFIGURE": "Configure",
-  "TURN_OFF_BREAKERS": "Please remember to turn off the breakers before leaving",
+  "TURN_OFF_BREAKERS": "Please remember to turn off the solar circuit breakers before leaving the site.",
   "ATTENTION": "Attention",
   "SCAN_MI_LABELS": "Microinverters SN list",
   "SCAN_MORE": "Scan More",
