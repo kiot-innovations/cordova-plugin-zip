@@ -1,17 +1,18 @@
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { useCallback, useEffect } from 'react'
 import { useI18n } from 'shared/i18n'
 import { useDispatch, useSelector } from 'react-redux'
-import { path, pathOr, map, length, includes, values, isEmpty } from 'ramda'
+import { path, pathOr, map, length, includes, isEmpty } from 'ramda'
 import { UPLOAD_EQS_FIRMWARE } from 'state/actions/storage'
 import { Loader } from 'components/Loader'
 import { getFileBlob } from 'shared/fileSystem'
 import { either } from 'shared/utils'
 import { eqsSteps } from 'state/reducers/storage'
-import { eqsUpdateErrors } from 'state/epics/storage/deviceUpdate'
+import { eqsUpdateStates } from 'state/epics/storage/deviceUpdate'
 import ConnectedDeviceUpdate from 'components/ConnectedDeviceUpdate'
 import ContinueFooter from 'components/ESSContinueFooter'
 import ErrorDetected from 'components/ESSErrorDetected/ErrorDetected'
 import paths from 'routes/paths'
+import * as Sentry from '@sentry/browser'
 
 const renderUpdateComponent = device => (
   <ConnectedDeviceUpdate device={device} />
@@ -20,25 +21,13 @@ const renderUpdateComponent = device => (
 const EQSUpdate = () => {
   const t = useI18n()
   const dispatch = useDispatch()
-  const possibleErrors = values(eqsUpdateErrors)
-
-  /*----------------------------
-  fileReady
-  0 = Checking file availability
-  1 = File not available
-  2 = File available, uploading
-  ------------------------------*/
-  const [fileReady, setFileReady] = useState(0)
-  const { error } = useSelector(path(['storage']))
 
   const startUpdate = useCallback(async () => {
-    setFileReady(0)
     try {
       const file = await getFileBlob('/ESS/EQS-FW-Package.zip')
       dispatch(UPLOAD_EQS_FIRMWARE(file))
-      setFileReady(2)
     } catch (err) {
-      setFileReady(1)
+      Sentry.captureException(new Error(err))
     }
   }, [dispatch])
 
@@ -50,7 +39,8 @@ const EQSUpdate = () => {
         eqsSteps.FW_UPLOAD,
         eqsSteps.FW_UPDATE,
         eqsSteps.FW_POLL,
-        eqsSteps.FW_ERROR
+        eqsSteps.FW_ERROR,
+        eqsSteps.FW_COMPLETED
       ])
     ) {
       startUpdate()
@@ -76,7 +66,19 @@ const EQSUpdate = () => {
           {t('FW_UPDATE')}
         </span>
       </div>
-      {includes(error, possibleErrors) && (
+      {either(
+        isEmpty(updateStatus),
+        <div className="has-text-centered">
+          <Loader />
+          <span>{t('FW_UPDATE_WAIT')}</span>
+        </div>
+      )}
+
+      {either(
+        includes(updateStatus, [
+          eqsUpdateStates.FAILED,
+          eqsUpdateStates.NOT_RUNNING
+        ]),
         <div className="has-text-centered mb-15">
           <div className="pt-20 pb-20">
             <i className="sp-close has-text-white is-size-1" />
@@ -86,31 +88,27 @@ const EQSUpdate = () => {
           </div>
         </div>
       )}
-      {fileReady === 1 && (
-        <div className="has-text-centered pl-10 pr-10">
-          <div className="pt-20 pb-20">
-            <i className="sp-close has-text-white is-size-1" />
-          </div>
-          <div className="mt-20">
-            <span>{t('EQS_FILE_NOTREADY')}</span>
-          </div>
-        </div>
-      )}
-      {either(
-        isEmpty(updateProgress) && isEmpty(updateErrors),
 
-        <div className="has-text-centered">
-          <Loader />
-          <span>{t('FW_UPDATE_WAIT')}</span>
-        </div>
+      {either(
+        includes(
+          updateStatus,
+          [eqsUpdateStates.FAILED, eqsUpdateStates.NOT_RUNNING] &&
+            isEmpty(updateErrors),
+          <div className="mt-20 has-text-centered">
+            <button onClick={startUpdate} className="button is-primary">
+              {t('RETRY')}
+            </button>
+          </div>
+        )
       )}
-      {!isEmpty(updateProgress) && (
+
+      {either(
+        !isEmpty(updateProgress),
         <div>{map(renderUpdateComponent, updateProgress)}</div>
       )}
+
       {either(
-        fileReady === 2 &&
-          includes(updateStatus, ['NOT_RUNNING', 'FAILED', 'SUCCEEDED']) &&
-          isEmpty(updateErrors),
+        updateStatus === eqsUpdateStates.SUCCEEDED && isEmpty(updateErrors),
         <ContinueFooter
           url={paths.PROTECTED.ESS_HEALTH_CHECK.path}
           text={'EQS_FW_UPDATE_SUCCESS'}

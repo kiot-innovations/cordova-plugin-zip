@@ -21,6 +21,7 @@ import {
   GET_COMPONENT_MAPPING_ERROR,
   RESET_COMPONENT_MAPPING
 } from 'state/actions/storage'
+import { isEmpty } from 'ramda'
 
 const initialState = {
   currentStep: '',
@@ -124,7 +125,10 @@ export const storageReducer = createReducer(
     }),
     [GET_COMPONENT_MAPPING_ERROR]: (state, payload) => ({
       ...state,
-      error: payload
+      componentMapping: !isEmpty(payload.payload)
+        ? payload.payload
+        : state.componentMapping,
+      error: payload.error
     }),
     [RESET_COMPONENT_MAPPING]: state => ({
       ...state,

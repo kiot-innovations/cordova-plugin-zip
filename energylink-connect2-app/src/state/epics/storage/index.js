@@ -7,7 +7,8 @@ import {
   startHealthCheckEpic,
   waitHealthCheckEpic,
   errorHealthCheckEpic,
-  getHealthCheckEpic
+  getHealthCheckEpic,
+  runSystemCheckEpic
 } from './getHealthCheckEpic'
 import {
   uploadEqsFwEpic,
@@ -25,5 +26,6 @@ export default [
   waitHealthCheckEpic,
   errorHealthCheckEpic,
   getHealthCheckEpic,
+  runSystemCheckEpic,
   getPreDiscoveryEpic
 ]

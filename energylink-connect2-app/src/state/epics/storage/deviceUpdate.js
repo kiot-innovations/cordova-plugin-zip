@@ -9,13 +9,19 @@ import {
   UPLOAD_EQS_FIRMWARE_ERROR,
   TRIGGER_EQS_FIRMWARE_SUCCESS,
   TRIGGER_EQS_FIRMWARE_ERROR,
-  UPDATE_EQS_FIRMWARE_SUCCESS,
   UPDATE_EQS_FIRMWARE_ERROR,
   UPDATE_EQS_FIRMWARE_PROGRESS,
   UPDATE_EQS_FIRMWARE_COMPLETED
 } from 'state/actions/storage'
 import { storageSwaggerTag } from 'shared/api'
 import * as Sentry from '@sentry/browser'
+
+export const eqsUpdateStates = {
+  FAILED: 'FAILED',
+  NOT_RUNNING: 'NOT_RUNNING',
+  RUNNING: 'RUNNING',
+  SUCCEEDED: 'SUCCEEDED'
+}
 
 export const eqsUpdateErrors = {
   UPLOAD_EQS_FIRMWARE_ERROR: 'UPLOAD_EQS_FIRMWARE_ERROR',
@@ -26,11 +32,19 @@ export const uploadEqsFwEpic = action$ => {
   return action$.pipe(
     ofType(UPLOAD_EQS_FIRMWARE.getType()),
     exhaustMap(({ payload }) => {
-      const promise = getApiPVS()
-        .then(path(['apis', storageSwaggerTag]))
-        .then(api =>
-          api.uploadExternalFirmware({ id: 1 }, { requestBody: payload })
-        )
+      const formdata = new FormData()
+      formdata.append('firmware', payload, 'Byers2.1.zip')
+
+      const requestOptions = {
+        method: 'POST',
+        body: formdata,
+        redirect: 'follow'
+      }
+
+      const promise = fetch(
+        'http://sunpowerconsole.com/cgi-bin/upload-ess-firmware',
+        requestOptions
+      )
 
       return from(promise).pipe(
         map(response =>
@@ -83,7 +97,7 @@ export const triggerFwUpdateEpic = action$ => {
 export const pollFwUpdateEpic = action$ => {
   const stopPolling$ = action$.pipe(
     ofType(
-      UPDATE_EQS_FIRMWARE_SUCCESS.getType(),
+      UPDATE_EQS_FIRMWARE_COMPLETED.getType(),
       UPDATE_EQS_FIRMWARE_ERROR.getType()
     )
   )
@@ -101,36 +115,36 @@ export const pollFwUpdateEpic = action$ => {
           return from(promise).pipe(
             map(response => {
               const updateStatus = pathOr(
-                'FAILED',
-                ['body', 'result', 'firmware_update_status'],
+                eqsUpdateStates.FAILED,
+                ['body', 'firmware_update_status'],
                 response
               )
               const matchStatus = cond([
                 [
-                  equals('FAILED'),
+                  equals(eqsUpdateStates.FAILED),
                   always(
                     UPDATE_EQS_FIRMWARE_ERROR({
                       error: eqsUpdateErrors.TRIGGER_EQS_FIRMWARE_ERROR,
-                      response: response.body.result
+                      response: response.body
                     })
                   )
                 ],
                 [
-                  equals('NOT_RUNNING'),
+                  equals(eqsUpdateStates.NOT_RUNNING),
                   always(
                     UPDATE_EQS_FIRMWARE_ERROR({
                       error: eqsUpdateErrors.TRIGGER_EQS_FIRMWARE_ERROR,
-                      response: response.body.result
+                      response: response.body
                     })
                   )
                 ],
                 [
-                  equals('RUNNING'),
-                  always(UPDATE_EQS_FIRMWARE_PROGRESS(response.body.result))
+                  equals(eqsUpdateStates.RUNNING),
+                  always(UPDATE_EQS_FIRMWARE_PROGRESS(response.body))
                 ],
                 [
-                  equals('COMPLETED'),
-                  always(UPDATE_EQS_FIRMWARE_COMPLETED(response.body.result))
+                  equals(eqsUpdateStates.SUCCEEDED),
+                  always(UPDATE_EQS_FIRMWARE_COMPLETED(response.body))
                 ]
               ])
               return matchStatus(updateStatus)

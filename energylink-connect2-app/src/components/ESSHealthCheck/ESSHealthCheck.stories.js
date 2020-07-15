@@ -6,173 +6,178 @@ import ESSHealthCheck from '.'
 import { action } from '@storybook/addon-actions/dist'
 
 const results = {
+  errors: [],
   ess_report: {
-    last_updated: '2020-02-15 01:23:45',
     battery_status: [
       {
-        serial_number: '048572340857NND',
-        last_updated: '2020-02-15 01:23:45',
         battery_amperage: {
-          value: 0,
-          unit: 'string'
+          unit: 'A',
+          value: 0
         },
         battery_voltage: {
-          value: 0,
-          unit: 'string'
+          unit: 'V',
+          value: 53.2
         },
+        last_updated: '2020-07-14 23:03:59',
+        serial_number: '',
         state_of_charge: {
-          value: 0,
-          unit: 'string'
+          unit: '%',
+          value: 0.88
         },
         temperature: {
-          value: 0,
-          unit: 'string'
+          unit: 'C',
+          value: 26.3
         }
-      },
+      }
+    ],
+    ess_state: [
       {
-        serial_number: '048572340857NNA',
-        last_updated: '2020-02-15 01:23:45',
-        battery_amperage: {
-          value: 0,
-          unit: 'string'
-        },
-        battery_voltage: {
-          value: 0,
-          unit: 'string'
-        },
-        state_of_charge: {
-          value: 0,
-          unit: 'string'
-        },
-        temperature: {
-          value: 0,
-          unit: 'string'
-        }
+        operational_mode: 'STANDBY',
+        permission_to_operate: false,
+        storage_controller_status: 'NOT_RUNNING'
       }
     ],
     ess_status: [
       {
-        last_updated: '2020-02-15 01:23:45',
-        serial_number: '048572340857NNN',
         enclosure_humidity: {
-          value: 0,
-          unit: 'string'
+          unit: '%',
+          value: 21
         },
         enclosure_temperature: {
-          value: 0,
-          unit: 'string'
-        }
+          unit: 'C',
+          value: 33
+        },
+        ess_meter_reading: {
+          agg_power: {
+            unit: 'kW',
+            value: -0.028
+          },
+          last_updated: '2020-07-14 23:03:59',
+          meter_a: {
+            reading: {
+              current: {
+                unit: 'A',
+                value: 0
+              },
+              last_updated: '2020-07-14 23:03:59',
+              power: {
+                unit: 'W',
+                value: 0
+              },
+              voltage: {
+                unit: 'V',
+                value: 120.26
+              }
+            }
+          },
+          meter_b: {
+            reading: {
+              current: {
+                unit: 'A',
+                value: 0
+              },
+              last_updated: '2020-07-14 23:03:59',
+              power: {
+                unit: 'W',
+                value: 0
+              },
+              voltage: {
+                unit: 'V',
+                value: 120.26
+              }
+            }
+          }
+        },
+        last_updated: '2020-07-14 23:03:59',
+        serial_number: '00001B3E5A44_29_17'
       }
     ],
     hub_plus_status: {
-      serial_number: '048572340857NNF',
-      last_updated: '2020-02-15 01:23:45',
-      contactor_error: 'NONE',
-      contactor_position: 'UNKNOWN',
-      grid_voltage_state: 'METER_VOLTAGE_IN_RANGE',
-      grid_frequency_state: 'METER_FREQ_IN_RANGE',
-      load_voltage_state: 'METER_VOLTAGE_IN_RANGE',
-      load_frequency_state: 'METER_FREQ_IN_RANGE',
-      hub_temperature: {
-        value: 0,
-        unit: 'string'
-      },
-      hub_humidity: {
-        value: 0,
-        unit: 'string'
-      },
-      jump_start_voltage: {
-        value: 0,
-        unit: 'string'
-      },
       aux_port_voltage: {
-        value: 0,
-        unit: 'string'
+        unit: 'V',
+        value: 11.364
       },
-      main_voltage: {
-        value: 0,
-        unit: 'string'
-      },
-      inverter_connection_voltage: {
-        value: 0,
-        unit: 'string'
-      },
+      contactor_error: 'NONE',
+      contactor_position: 'CLOSED',
+      grid_frequency_state: 'METER_FREQ_IN_RANGE',
       grid_phase1_voltage: {
-        value: 0,
-        unit: 'string'
+        unit: 'V',
+        value: 121.2
       },
       grid_phase2_voltage: {
-        value: 0,
-        unit: 'string'
+        unit: 'V',
+        value: 121.30000000000001
       },
+      grid_voltage_state: 'METER_VOLTAGE_IN_RANGE',
+      hub_humidity: {
+        unit: '%',
+        value: 26
+      },
+      hub_temperature: {
+        unit: 'C',
+        value: 29
+      },
+      inverter_connection_voltage: {
+        unit: 'V',
+        value: 0.267
+      },
+      jump_start_voltage: {
+        unit: 'V',
+        value: 0.748
+      },
+      last_updated: '2020-07-14 23:04:07',
+      load_frequency_state: 'METER_FREQ_IN_RANGE',
       load_phase1_voltage: {
-        value: 0,
-        unit: 'string'
+        unit: 'V',
+        value: 121.2
       },
       load_phase2_voltage: {
-        value: 0,
-        unit: 'string'
-      }
+        unit: 'V',
+        value: 121.4
+      },
+      load_voltage_state: 'METER_VOLTAGE_IN_RANGE',
+      main_voltage: {
+        unit: 'V',
+        value: 11.243
+      },
+      serial_number: 'Serial-MIDC-Mercury'
     },
     inverter_status: [
       {
-        serial_number: '048572340857NNO',
-        last_updated: '2020-02-15 01:23:45',
-        ac_current: {
-          value: 0,
-          unit: 'string'
-        },
-        phase_a_current: {
-          value: 0,
-          unit: 'string'
-        },
-        phase_b_current: {
-          value: 0,
-          unit: 'string'
-        },
         a_n_voltage: {
-          value: 0,
-          unit: 'string'
+          unit: 'V',
+          value: 120.26
         },
-        b_n_voltage: {
-          value: 0,
-          unit: 'string'
+        ac_current: {
+          unit: 'A',
+          value: 0
         },
         ac_power: {
-          value: 0,
-          unit: 'string'
+          unit: 'kW',
+          value: -0.028
         },
+        b_n_voltage: {
+          unit: 'V',
+          value: 120.26
+        },
+        last_updated: '2020-07-14 23:03:59',
+        phase_a_current: {
+          unit: 'A',
+          value: 0
+        },
+        phase_b_current: {
+          unit: 'A',
+          value: 0
+        },
+        serial_number: '00001B3E5A44',
         temperature: {
-          value: 0,
-          unit: 'string'
+          unit: 'C',
+          value: 27.68
         }
       }
-    ]
-  },
-  errors: [
-    {
-      error_name: 'UNDER_VOLT_ALARM',
-      last_occurrence: '2020-02-15 01:23:45',
-      error_code: '4.5.1',
-      device_sn: '048572340857NND',
-      error_message: 'Critical: low battery SOH.',
-      value: {
-        value: 0,
-        unit: 'string'
-      }
-    },
-    {
-      error_name: 'UNDER_VOLT_ALARM',
-      last_occurrence: '2020-02-15 01:23:45',
-      error_code: '4.5.1',
-      device_sn: '048572340857NNF',
-      error_message: 'Critical: HubPlus Failing.',
-      value: {
-        value: 0,
-        unit: 'string'
-      }
-    }
-  ]
+    ],
+    last_updated: '2020-07-14 23:04:09'
+  }
 }
 
 const actions = {

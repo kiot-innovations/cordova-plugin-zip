@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { add, length, pluck, propOr, reduce } from 'ramda'
 import { GET_ESS_STATUS_INIT } from 'state/actions/storage'
+import { RESET_DISCOVERY } from 'state/actions/devices'
 import paths from 'routes/paths'
 import ESSHealthCheckComponent from 'components/ESSHealthCheck'
 
@@ -19,6 +20,7 @@ function ESSHealthCheck() {
   )
 
   useEffect(() => {
+    dispatch(RESET_DISCOVERY())
     dispatch(GET_ESS_STATUS_INIT())
   }, [dispatch])
 

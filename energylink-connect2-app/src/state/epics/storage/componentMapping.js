@@ -56,7 +56,7 @@ export const getComponentMappingEpic = action$ => {
     switchMap(() =>
       timer(0, 5000).pipe(
         takeUntil(stopPolling$),
-        exhaustMap(timeElapsed => {
+        exhaustMap(() => {
           const promise = getApiPVS()
             .then(path(['apis', storageSwaggerTag]))
             .then(api => api.getComponentMapping())
@@ -71,7 +71,12 @@ export const getComponentMappingEpic = action$ => {
               const statusMatcher = cond([
                 [
                   equals('FAILED'),
-                  always(GET_COMPONENT_MAPPING_ERROR('COMPONENT_MAPPING_ERROR'))
+                  always(
+                    GET_COMPONENT_MAPPING_ERROR({
+                      payload: response.body,
+                      error: 'COMPONENT_MAPPING_ERROR'
+                    })
+                  )
                 ],
                 [equals('NOT_RUNNING'), always(POST_COMPONENT_MAPPING())],
                 [
@@ -79,20 +84,20 @@ export const getComponentMappingEpic = action$ => {
                   always(GET_COMPONENT_MAPPING_PROGRESS(response.body))
                 ],
                 [
-                  equals('COMPLETED'),
+                  equals('SUCCEEDED'),
                   always(GET_COMPONENT_MAPPING_COMPLETED(response.body))
                 ]
               ])
-
-              if (timeElapsed > 4 && status === 'RUNNING') {
-                return GET_COMPONENT_MAPPING_ERROR('COMPONENT_MAPPING_ERROR')
-              }
-
               return statusMatcher(status)
             }),
             catchError(err => {
               Sentry.captureException(err)
-              return of(GET_COMPONENT_MAPPING_ERROR('COMPONENT_MAPPING_ERROR'))
+              return of(
+                GET_COMPONENT_MAPPING_ERROR({
+                  payload: '',
+                  error: 'COMPONENT_MAPPING_ERROR'
+                })
+              )
             })
           )
         })

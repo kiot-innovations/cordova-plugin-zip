@@ -4,6 +4,13 @@ export const GET_ESS_STATUS_INIT = createAction('GET_ESS_STATUS_INIT')
 export const GET_ESS_STATUS = createAction('GET_ESS_STATUS')
 export const GET_ESS_STATUS_SUCCESS = createAction('GET_ESS_STATUS_SUCCESS')
 export const GET_ESS_STATUS_ERROR = createAction('GET_ESS_STATUS_ERROR')
+export const GET_ESS_STATUS_COMPLETE = createAction('GET_ESS_STATUS_COMPLETE')
+
+export const RUN_EQS_SYSTEMCHECK = createAction('RUN_EQS_SYSTEMCHECK')
+export const RUN_EQS_SYSTEMCHECK_SUCCESS = createAction(
+  'RUN_EQS_SYSTEMCHECK_SUCCESS'
+)
+
 export const GET_PREDISCOVERY = createAction('GET_PREDISCOVERY')
 export const GET_PREDISCOVERY_SUCCESS = createAction('GET_PREDISCOVERY_SUCCESS')
 export const GET_PREDISCOVERY_ERROR = createAction('GET_PREDISCOVERY_ERROR')

@@ -1,7 +1,7 @@
 import React from 'react'
 import clsx from 'clsx'
 import moment from 'moment'
-import { map, keys, propOr } from 'ramda'
+import { map, keys, propOr, pathOr } from 'ramda'
 import { useI18n } from 'shared/i18n'
 
 function ESSHealthCheckReport({ report }) {
@@ -9,6 +9,13 @@ function ESSHealthCheckReport({ report }) {
 
   return (
     <>
+      <section>
+        <h6 className="has-text-white has-text-weight-bold mb-10">
+          {t('SUNVAULT_STATE')}
+        </h6>
+        {map(renderItem, report.ess_state)}
+      </section>
+
       <section>
         <h6 className="has-text-white has-text-weight-bold mb-10 mt-10">
           {t('BATTERIES')}
@@ -60,7 +67,7 @@ function ESSHealthCheckReportItem({
     <div className="collapsible mb-10">
       <i className={icon} />
       <p className="has-text-white has-text-weight-bold mb-10">
-        {serial_number}
+        {t(serial_number)}
       </p>
       <p>
         <span className="has-text-weight-bold mr-5">{t('LAST_UPDATED')}:</span>
@@ -72,12 +79,36 @@ function ESSHealthCheckReportItem({
   )
 }
 
-const renderRestValues = (t, rest) => key => (
-  <p key={key}>
-    <span className="mr-5 has-text-weight-bold">{t(key)}:</span>
-    <span className="mr-5">{propOr(rest[key], 'value', rest[key])}</span>
-    {propOr('', 'unit', rest[key])}
-  </p>
-)
+const generateMeterObject = (meter, name) => {
+  return {
+    [`meter_${name}_current`]: pathOr('', ['reading', 'current'], meter),
+    [`meter_${name}_power`]: pathOr('', ['reading', 'power'], meter),
+    [`meter_${name}_voltage`]: pathOr('', ['reading', 'voltage'], meter)
+  }
+}
+
+const renderEssMeterReading = meterData => {
+  const meterReadingObject = {
+    serial_number: 'METER_READINGS',
+    last_updated: pathOr('', ['last_updated'], meterData),
+    ...(meterData.meter_a && generateMeterObject(meterData.meter_a, 'a')),
+    ...(meterData.meter_b && generateMeterObject(meterData.meter_b, 'b'))
+  }
+  return renderItem(meterReadingObject)
+}
+
+const renderRestValues = (t, rest) => key => {
+  if (key === 'ess_meter_reading') {
+    return renderEssMeterReading(rest[key])
+  } else {
+    return (
+      <p key={key}>
+        <span className="mr-5 has-text-weight-bold">{t(key)}:</span>
+        <span className="mr-5">{propOr(rest[key], 'value', rest[key])}</span>
+        {propOr('', 'unit', rest[key])}
+      </p>
+    )
+  }
+}
 
 export default ESSHealthCheckReport

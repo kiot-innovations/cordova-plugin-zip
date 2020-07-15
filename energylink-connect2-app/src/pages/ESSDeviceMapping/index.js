@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { useI18n } from 'shared/i18n'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
-import { pathOr, isEmpty, includes } from 'ramda'
+import { pathOr } from 'ramda'
 import paths from 'routes/paths'
 import { POST_COMPONENT_MAPPING } from 'state/actions/storage'
 import './ESSDeviceMapping.scss'
@@ -29,7 +29,7 @@ function DeviceMapping() {
   }, [error, history])
 
   useEffect(() => {
-    if (!isEmpty(componentMapping) && !includes(status, progressStatus)) {
+    if (status === 'SUCCEEDED') {
       history.push(paths.PROTECTED.ESS_DEVICE_MAPPING_SUCCESS.path)
     }
   }, [componentMapping, history, progressStatus, status])

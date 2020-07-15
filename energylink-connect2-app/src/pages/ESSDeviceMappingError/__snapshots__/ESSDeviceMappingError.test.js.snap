@@ -62,21 +62,50 @@ Object {
                 DEVICE_MAPPING_ERROR
               </div>
             </div>
-            <div
-              className="has-text-centered pr-20 pl-20"
+            <ErrorDetected
+              number={1}
+              onRetry={[Function]}
+              url="/ess-device-mapping-error-list"
             >
-              DEVICE_MAPPING_ERROR_ADVICE
-            </div>
-            <div
-              className="are-small mt-20"
-            >
-              <button
-                className="button auto is-uppercase is-secondary"
-                onClick={[Function]}
+              <div
+                className="error-list-detected"
               >
-                RETRY
-              </button>
-            </div>
+                <span
+                  className="has-text-primary has-text-weight-bold mb-10 is-size-5"
+                >
+                  ERRORS_DETECTED 1
+                </span>
+                <span>
+                  FIX_ERRORS
+                </span>
+                <div>
+                  <Link
+                    className="button is-primary is-uppercase pl-20 pr-20 mt-20"
+                    to="/ess-device-mapping-error-list"
+                  >
+                    <LinkAnchor
+                      className="button is-primary is-uppercase pl-20 pr-20 mt-20"
+                      href="/ess-device-mapping-error-list"
+                      navigate={[Function]}
+                    >
+                      <a
+                        className="button is-primary is-uppercase pl-20 pr-20 mt-20"
+                        href="/ess-device-mapping-error-list"
+                        onClick={[Function]}
+                      >
+                        ERROR_LIST
+                      </a>
+                    </LinkAnchor>
+                  </Link>
+                  <button
+                    className="button button-transparent is-uppercase pl-20 pr-20 is-transparent mt-20"
+                    onClick={[Function]}
+                  >
+                    RETRY
+                  </button>
+                </div>
+              </div>
+            </ErrorDetected>
           </section>
         </DeviceMappingError>
       </Provider>

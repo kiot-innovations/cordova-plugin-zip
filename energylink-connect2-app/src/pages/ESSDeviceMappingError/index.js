@@ -1,15 +1,21 @@
 import React from 'react'
 import { useI18n } from 'shared/i18n'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import { RESET_COMPONENT_MAPPING } from 'state/actions/storage'
+import { pathOr, isEmpty, length } from 'ramda'
+import { either } from 'shared/utils'
 import paths from 'routes/paths'
+import ErrorDetected from 'components/ESSErrorDetected/ErrorDetected'
 import './ESSDeviceMappingError.scss'
 
 function DeviceMappingError() {
   const t = useI18n()
   const history = useHistory()
   const dispatch = useDispatch()
+  const { componentMapping } = useSelector(pathOr({}, ['storage']))
+  const errors = pathOr([], ['errors'], componentMapping)
+
   const retryMapping = () => {
     dispatch(RESET_COMPONENT_MAPPING())
     history.push(paths.PROTECTED.ESS_DEVICE_MAPPING.path)
@@ -28,17 +34,27 @@ function DeviceMappingError() {
         <div>{t('DEVICE_MAPPING_ERROR')}</div>
       </div>
 
-      <div className="has-text-centered pr-20 pl-20">
-        {t('DEVICE_MAPPING_ERROR_ADVICE')}
-      </div>
-      <div className="are-small mt-20">
-        <button
-          className="button auto is-uppercase is-secondary"
-          onClick={retryMapping}
-        >
-          {t('RETRY')}
-        </button>
-      </div>
+      {either(
+        isEmpty(errors),
+        <div className="has-text-centered">
+          <div className="has-text-centered pr-20 pl-20">
+            {t('DEVICE_MAPPING_ERROR_ADVICE')}
+          </div>
+          <div className="are-small mt-20">
+            <button
+              className="button auto is-uppercase is-secondary"
+              onClick={retryMapping}
+            >
+              {t('RETRY')}
+            </button>
+          </div>
+        </div>,
+        <ErrorDetected
+          number={length(errors)}
+          onRetry={retryMapping}
+          url={paths.PROTECTED.ESS_DEVICE_MAPPING_ERROR_LIST.path}
+        />
+      )}
     </section>
   )
 }

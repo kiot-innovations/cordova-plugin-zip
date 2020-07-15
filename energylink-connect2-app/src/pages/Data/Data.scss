@@ -1,3 +1,5 @@
+@import '~@sunpower/theme-dark/styles/variables';
+
 .data {
   overflow-x: hidden;
   flex-direction: column;
@@ -6,5 +8,15 @@
   }
   span.sp-map {
     font-size: 4rem;
+  }
+
+  .eqs-status {
+    background-color: $space-dark;
+    text-align: left;
+    margin: 10px;
+    padding: 10px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
   }
 }
