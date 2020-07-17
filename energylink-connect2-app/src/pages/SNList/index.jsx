@@ -215,7 +215,10 @@ function SNList() {
         </div>
         <div className="sn-container">
           {serialNumbersList.length > 0 ? (
-            serialNumbersList
+            <>
+              <span>{t('TAP_SN_TO_EDIT')}</span>
+              {serialNumbersList}
+            </>
           ) : (
             <span>{t('SCAN_HINT')}</span>
           )}

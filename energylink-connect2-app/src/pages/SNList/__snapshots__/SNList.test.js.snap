@@ -71,6 +71,9 @@ exports[`Serial Number List Page renders correctly 1`] = `
               <div
                 className="sn-container"
               >
+                <span>
+                  TAP_SN_TO_EDIT
+                </span>
                 <div
                   className="sn-item mt-10 mb-10 pb-5"
                   key="E00121852014339"
