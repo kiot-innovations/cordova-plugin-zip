@@ -8,16 +8,21 @@ import { useField, useForm } from 'react-final-form-hooks'
 import { ADD_PVS_SN } from 'state/actions/pvs'
 import './SNManualEntry.scss'
 
-const ManualEntryForm = ({ serialNumber }) => {
+const ManualEntryForm = ({ serialNumber, callback }) => {
   const t = useI18n()
   const dispatch = useDispatch()
   const addSN = compose(dispatch, ADD_PVS_SN, buildSN)
 
   const { form, handleSubmit } = useForm({
     initialValues: {
-      barcode: serialNumber
+      barcode: serialNumber.startsWith('E00')
+        ? serialNumber.slice(3)
+        : serialNumber
     },
-    onSubmit: ({ barcode }) => addSN(barcode),
+    onSubmit: ({ barcode }) => {
+      addSN(barcode)
+      callback && serialNumber && callback()
+    },
     validate: values => {
       const errors = {}
 

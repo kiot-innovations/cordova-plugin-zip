@@ -77,6 +77,7 @@ exports[`Serial Number List Page renders correctly 1`] = `
                 >
                   <span
                     className="is-uppercase has-text-weight-bold has-text-white"
+                    onClick={[Function]}
                   >
                     E00121852014339
                   </span>
@@ -95,6 +96,7 @@ exports[`Serial Number List Page renders correctly 1`] = `
                 >
                   <span
                     className="is-uppercase has-text-weight-bold has-text-white"
+                    onClick={[Function]}
                   >
                     E00121852014348
                   </span>
@@ -113,6 +115,7 @@ exports[`Serial Number List Page renders correctly 1`] = `
                 >
                   <span
                     className="is-uppercase has-text-weight-bold has-text-white"
+                    onClick={[Function]}
                   >
                     E00121929013075
                   </span>
