@@ -209,7 +209,7 @@ function SNList() {
         <div className="sn-buttons">
           {isManualMode ? (
             <>
-              <SNManualEntry toggleOpen={toggleManualMode} />
+              <SNManualEntry />
               <button
                 onClick={toggleManualMode}
                 className="button has-text-centered is-uppercase is-secondary has-no-border mr-40 pl-0 pr-0"
