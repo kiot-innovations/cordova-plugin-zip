@@ -1,6 +1,5 @@
-import { compose } from 'ramda'
 import React from 'react'
-
+import { compose } from 'ramda'
 import TextField from '@sunpower/textfield'
 import { useDispatch } from 'react-redux'
 import { useI18n } from 'shared/i18n'
