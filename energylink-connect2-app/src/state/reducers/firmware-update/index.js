@@ -39,7 +39,7 @@ export default createReducer(
       ...initialState,
       ...state,
       status: 'WAITING_FOR_NETWORK',
-      percent: 100
+      percent: state.percent == null ? 0 : 100
     }),
     [FIRMWARE_UPDATE_COMPLETE]: () => ({
       ...initialState,

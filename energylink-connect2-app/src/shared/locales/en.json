@@ -365,7 +365,7 @@
   "FWUP_PENDING": "Pending",
   "FWUP_INPROGRESS": "Updating",
   "FWUP_COMPLETED": "Up to date",
-  "FWUP_ERROR": "Error",
+  "FWUP_ERROR": "Error upgrading. Please power cycle your PVS and check that the Firmware package were downloaded",
   "PVS_SN_ERROR": "Unknown PVS SN",
   "QRCODE_HINT": "You can find the code on the PVS when removing the frontplate",
   "CONNECTING_PVS": "Hold on, we're connecting to the PVS...",
@@ -411,5 +411,6 @@
   "operational_mode": "Operational Mode",
   "permission_to_operate": "Permission to operate",
   "storage_controller_status": "Storage Controller Status",
-  "CONTROLLER_DATA_ERROR": "Please go through the install process first."
+  "CONTROLLER_DATA_ERROR": "Please go through the install process first.",
+  "START_OVER": "Start Over"
 }

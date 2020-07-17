@@ -80,7 +80,10 @@ export const firmwareUpgradeInit = action$ =>
  */
 export const firmwareDisconnectFromPVS = action$ =>
   action$.pipe(
-    ofType(FIRMWARE_UPDATE_ERROR_NO_FILE.getType()),
+    ofType(
+      FIRMWARE_UPDATE_ERROR_NO_FILE.getType(),
+      FIRMWARE_UPDATE_ERROR.getType()
+    ),
     map(PVS_CONNECTION_CLOSE)
   )
 
@@ -111,7 +114,9 @@ export const initFirmwareDownload = (action$, state$) =>
 
 export const firmwarePollStatus = (action$, state$) => {
   const t = translate(state$.value.language)
-  const stopPolling$ = action$.pipe(ofType(FIRMWARE_UPDATE_POLL_STOP.getType()))
+  const stopPolling$ = action$.pipe(
+    ofType(FIRMWARE_UPDATE_POLL_STOP.getType(), FIRMWARE_UPDATE_ERROR.getType())
+  )
   return action$.pipe(
     ofType(FIRMWARE_UPDATE_POLL_INIT.getType()),
     exhaustMap(() =>

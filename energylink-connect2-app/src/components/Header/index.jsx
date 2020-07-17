@@ -5,7 +5,7 @@ import isNil from 'ramda/src/isNil'
 import Logo from '@sunpower/sunpowerimage'
 import withHeaderAnimation from 'hocs/headerAnimation'
 import { trimString } from 'shared/trim'
-import { either } from 'shared/utils'
+import { either, isError } from 'shared/utils'
 import { toggleRoute } from 'shared/routing'
 import { useHistory } from 'react-router-dom'
 import paths from 'routes/paths'
@@ -20,12 +20,11 @@ export const Header = ({
   iconOpen = 'sp-chevron-left'
 }) => {
   const history = useHistory()
-  const { upgrading, status } = useSelector(state => state.firmwareUpdate)
+  const { upgrading, status, percent } = useSelector(
+    state => state.firmwareUpdate
+  )
 
-  const shouldDisableMenu =
-    upgrading ||
-    (history.location.path === paths.PROTECTED.UPDATE.path &&
-      status !== 'UPGRADE_COMPLETE')
+  const shouldDisableMenu = upgrading && !isError(status, percent)
 
   const menuOpen = isMenuPath(history, paths.PROTECTED.MENU.path)
   const menuIcon = menuOpen ? iconOpen : icon
