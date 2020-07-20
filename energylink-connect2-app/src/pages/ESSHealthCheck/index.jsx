@@ -15,8 +15,10 @@ function ESSHealthCheck() {
 
   const discoveryProgress = propOr([], 'progress', progress)
   const deviceProgress = pluck('PROGR', discoveryProgress)
+  const deviceStartProgress =
+    waiting && deviceProgress === 100 ? 0 : deviceProgress
   const overallProgress = Math.floor(
-    reduce(add, 0, deviceProgress) / length(deviceProgress)
+    reduce(add, 0, deviceStartProgress) / length(deviceProgress)
   )
 
   useEffect(() => {

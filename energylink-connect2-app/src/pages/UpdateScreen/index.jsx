@@ -1,19 +1,21 @@
-import { Loader } from 'components/Loader'
+import React, { useEffect } from 'react'
 import { pathOr } from 'ramda'
-import React from 'react'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
+import { useHistory } from 'react-router-dom'
+import { Loader } from 'components/Loader'
 import { useI18n } from 'shared/i18n'
-import { capitalize, either } from 'shared/utils'
+import { capitalize, either, isError } from 'shared/utils'
+import { FIRMWARE_UPDATE_ERROR } from 'state/actions/firmwareUpdate'
+import paths from 'routes/paths'
 import './UpdateScreen.scss'
 
-// const states = {
-//   UPGRADE_COMPLETE: '#fff',
-//   UPLOADING_FS: '#b224ff',
-//   WAITING_FOR_NETWORK: '#42ff28'
-// }
-
 const UpdateScreen = () => {
-  let { status, percent } = useSelector(state => state.firmwareUpdate)
+  const t = useI18n()
+  const dispatch = useDispatch()
+  const history = useHistory()
+  const { status, percent, upgrading } = useSelector(
+    state => state.firmwareUpdate
+  )
   const firmwareDownload = useSelector(
     pathOr({}, ['fileDownloader', 'progress'])
   )
@@ -25,33 +27,79 @@ const UpdateScreen = () => {
     firmwareDownload.downloading &&
     fwFileInfo.name === firmwareDownload.fileName
 
-  const t = useI18n()
+  const errorUpdating = isError(status, percent)
+
+  const onGoBack = () => {
+    history.push(paths.PROTECTED.CONNECT_TO_PVS.path)
+  }
+
+  const onGotoFirmware = () => {
+    history.push(paths.PROTECTED.MANAGE_FIRMWARES.path)
+  }
+
+  useEffect(() => {
+    if (errorUpdating && upgrading) {
+      dispatch(FIRMWARE_UPDATE_ERROR())
+    }
+  }, [errorUpdating, dispatch, upgrading])
 
   return (
     <div className="pvs-update-screen page-height pr-20 pl-30">
       <span className="is-uppercase has-text-weight-bold">HOLD ON</span>
       <span className="sp-pvs" />
-      <span>{t('DONT_CLOSE_APP_UPGRADING')}</span>
+      {either(!errorUpdating, <span>{t('DONT_CLOSE_APP_UPGRADING')}</span>)}
       <div className="percent-loader">
         {either(
           status === 'UPGRADE_COMPLETE',
           null,
           <>
             {either(
-              status !== 'UPLOADING_FS' || isDownloadingFirmware,
+              (status !== 'UPLOADING_FS' && !errorUpdating) ||
+                (isDownloadingFirmware && !errorUpdating),
+
               <span className="has-text-white is-size-1">
                 {(isDownloadingFirmware
                   ? firmwareDownload.progress
                   : percent) || 0}
                 %
-              </span>,
-              <Loader />
+              </span>
             )}
-            <span className="has-text-white">
-              {isDownloadingFirmware
-                ? t('DOWNLOADING_FIRMWARE')
-                : capitalize(t(status))}
-            </span>
+
+            {either(
+              errorUpdating,
+              <>
+                <span className="mt-20"> {t('FWUP_ERROR')} </span>
+                <div className="mt-20 is-flex actions">
+                  <button
+                    className="button mb-15 is-primary"
+                    onClick={onGoBack}
+                  >
+                    {t('START_OVER')}
+                  </button>
+                  <button
+                    className="button is-secondary"
+                    onClick={onGotoFirmware}
+                  >
+                    {t('FIRMWARE')}
+                  </button>
+                </div>
+              </>,
+
+              <>
+                {either(
+                  isDownloadingFirmware,
+                  <div>
+                    <Loader />
+                    <span className="has-text-white">
+                      {t('DOWNLOADING_FIRMWARE')}
+                    </span>
+                  </div>,
+                  <span className="has-text-white">
+                    {capitalize(t(status))}
+                  </span>
+                )}
+              </>
+            )}
           </>
         )}
       </div>
