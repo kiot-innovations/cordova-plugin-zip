@@ -30,18 +30,8 @@
   justify-content: space-around;
   .canvas {
     .controlsContainer {
-
-      > div {
-        display: flex;
-        flex: 1 0 0;
-      }
-
-      .center {
-        justify-content: center;
-      }
-
-      .right {
-        justify-content: flex-end;
+      .section {
+        padding: .5rem 0rem;
       }
 
       .control:disabled {

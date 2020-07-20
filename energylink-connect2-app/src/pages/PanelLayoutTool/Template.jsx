@@ -1,12 +1,14 @@
 import {
+  actions,
   Canvas,
   PanelsContainer,
+  Control,
   ZoomControl,
   PanelLayoutContainer,
   ControlsContainer
 } from '@sunpower/panel-layout-tool'
 import React from 'react'
-import { useStore } from 'react-redux'
+import { useDispatch, useStore } from 'react-redux'
 import { useI18n } from 'shared/i18n'
 import { either } from 'shared/utils'
 
@@ -22,6 +24,7 @@ const PanelLayoutTool = ({
 }) => {
   const t = useI18n()
   const store = useStore()
+  const dispatch = useDispatch()
 
   return (
     <div className={'plt-screen-container'}>
@@ -53,6 +56,12 @@ const PanelLayoutTool = ({
             )}
           </Canvas>
           <ControlsContainer
+            left={
+              <Control
+                icon="sp-center"
+                onClick={() => dispatch(actions.setCanvasOffset([0, 0]))}
+              />
+            }
             center={controls}
             right={<ZoomControl step={0.5} min={1} max={3} />}
           />
