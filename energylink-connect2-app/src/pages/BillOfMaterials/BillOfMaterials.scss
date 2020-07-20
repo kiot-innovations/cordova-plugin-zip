@@ -1,5 +1,8 @@
 @import '~@sunpower/theme-dark/styles/variables';
 .home {
+  .button-container {
+    align-items: center;
+  }
   > div > img {
     border: 3px solid $white;
     border-radius: 5px;
