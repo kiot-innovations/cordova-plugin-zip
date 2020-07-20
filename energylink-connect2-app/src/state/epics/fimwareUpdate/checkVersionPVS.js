@@ -7,7 +7,6 @@ import { sendCommandToPVS } from 'shared/PVSUtils'
 import { getPVSVersionNumber } from 'shared/utils'
 import {
   FIRMWARE_GET_VERSION_COMPLETE,
-  FIRMWARE_GET_VERSION_ERROR,
   FIRMWARE_UPDATE_INIT
 } from 'state/actions/firmwareUpdate'
 import { PVS_CONNECTION_SUCCESS } from 'state/actions/network'
@@ -37,7 +36,7 @@ const checkVersionPVS = action$ =>
         ),
         catchError(err => {
           Sentry.captureException(err)
-          return of(FIRMWARE_GET_VERSION_ERROR.asError(err.message))
+          return of(FIRMWARE_GET_VERSION_COMPLETE())
         })
       )
     )

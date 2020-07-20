@@ -262,3 +262,8 @@ export function getEnvironment() {
   if (process.env.REACT_APP_IS_DEV) return 'dev'
   return 'prod'
 }
+
+export const isError = (status = '', percent) =>
+  status.toLowerCase() === 'error' ||
+  (status === 'WAITING_FOR_NETWORK' && percent === 0) ||
+  (status === '' && percent === 0)
