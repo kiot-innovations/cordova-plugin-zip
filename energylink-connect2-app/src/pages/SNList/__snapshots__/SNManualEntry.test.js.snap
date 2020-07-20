@@ -38,7 +38,9 @@ exports[`SNManualEntry renders correctly 1`] = `
         }
       }
     >
-      <ManualEntryForm>
+      <ManualEntryForm
+        serialNumber=""
+      >
         <form
           className="sn-manual-entry"
           onSubmit={[Function]}
@@ -74,7 +76,7 @@ exports[`SNManualEntry renders correctly 1`] = `
                     "dirty": false,
                     "dirtySinceLastSubmit": false,
                     "error": "SN_FIELD_ERROR_REGEX",
-                    "initial": undefined,
+                    "initial": "",
                     "invalid": true,
                     "length": undefined,
                     "modified": false,
@@ -121,6 +123,139 @@ exports[`SNManualEntry renders correctly 1`] = `
                 type="submit"
               >
                 ADD
+              </button>
+            </div>
+          </div>
+        </form>
+      </ManualEntryForm>
+    </Provider>
+  </Router>
+</BrowserRouter>
+`;
+
+exports[`SNManualEntry renders correctly when editing a serial number 1`] = `
+<BrowserRouter
+  keyLength={0}
+>
+  <Router
+    history={
+      Object {
+        "action": "POP",
+        "block": [Function],
+        "createHref": [Function],
+        "go": [Function],
+        "goBack": [Function],
+        "goForward": [Function],
+        "length": 1,
+        "listen": [Function],
+        "location": Object {
+          "hash": "",
+          "pathname": "/",
+          "search": "",
+          "state": undefined,
+        },
+        "push": [Function],
+        "replace": [Function],
+      }
+    }
+  >
+    <Provider
+      store={
+        Object {
+          "clearActions": [Function],
+          "dispatch": [Function],
+          "getActions": [Function],
+          "getState": [Function],
+          "replaceReducer": [Function],
+          "subscribe": [Function],
+        }
+      }
+    >
+      <ManualEntryForm
+        serialNumber="123456789123"
+      >
+        <form
+          className="sn-manual-entry"
+          onSubmit={[Function]}
+        >
+          <label
+            className="has-text-white is-flex"
+            htmlFor="barcode"
+          >
+            EDITING_MI_SN_LABEL
+          </label>
+          <div
+            className="field is-grouped is-grouped-centered"
+          >
+            <div
+              className="control control-barcode"
+            >
+              <Component
+                autoComplete="barcode"
+                className="field-barcode"
+                input={
+                  Object {
+                    "name": "barcode",
+                    "onBlur": [Function],
+                    "onChange": [Function],
+                    "onFocus": [Function],
+                    "value": "123456789123",
+                  }
+                }
+                meta={
+                  Object {
+                    "active": false,
+                    "data": Object {},
+                    "dirty": false,
+                    "dirtySinceLastSubmit": false,
+                    "error": undefined,
+                    "initial": "123456789123",
+                    "invalid": false,
+                    "length": undefined,
+                    "modified": false,
+                    "pristine": true,
+                    "submitError": undefined,
+                    "submitFailed": false,
+                    "submitSucceeded": false,
+                    "submitting": false,
+                    "touched": false,
+                    "valid": true,
+                    "validating": false,
+                    "visited": false,
+                  }
+                }
+                type="text"
+              >
+                <div
+                  className="field"
+                >
+                  <p
+                    className="control"
+                  >
+                    <input
+                      autoComplete="barcode"
+                      className="input field-barcode"
+                      disabled={false}
+                      id="barcode"
+                      name="barcode"
+                      onBlur={[Function]}
+                      onChange={[Function]}
+                      onFocus={[Function]}
+                      type="text"
+                      value="123456789123"
+                    />
+                  </p>
+                </div>
+              </Component>
+            </div>
+            <div
+              className="control control-add"
+            >
+              <button
+                className="button is-primary is-uppercase pl-10 pr-10 pb-30 pt-10"
+                type="submit"
+              >
+                SAVE
               </button>
             </div>
           </div>

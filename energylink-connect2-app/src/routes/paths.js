@@ -12,6 +12,12 @@ export const TABS = {
  */
 const paths = {
   PROTECTED: {
+    PVS_SELECTION_SCREEN: {
+      path: '/pvs-selection',
+      header: true,
+      footer: true,
+      tab: TABS.INSTALL
+    },
     ERROR_DETAIL: {
       path: '/error/:errorCode',
       header: true,

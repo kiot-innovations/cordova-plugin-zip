@@ -131,6 +131,7 @@
   "TURN_OFF_BREAKERS": "Please remember to turn off the solar circuit breakers before leaving the site.",
   "ATTENTION": "Attention",
   "SCAN_MI_LABELS": "Microinverters SN list",
+  "TAP_SN_TO_EDIT": "Tap on the serial number to edit",
   "SCAN_MORE": "Scan More",
   "SCAN_HINT": "Tap on Scan More to scan MI barcodes",
   "MI_COUNT_MISMATCH": "Inventory Count Mismatch",
@@ -193,6 +194,7 @@
   "RETRY": "Retry",
   "RETRY_CLICK": "Click to Retry",
   "MI_SN_LABEL": "MI Serial Number",
+  "EDITING_MI_SN_LABEL": "Editing MI Serial Number",
   "SN_FIELD_ERROR_REGEX": "It should contain only numbers and at least 12 digits ",
   "BACK_TO_SCAN": "Back to scan",
   "LEGACY_DISCOVERY": "Legacy discovery",
@@ -395,5 +397,7 @@
   "ERROR_LIST": "Error list",
   "API_RESPONSE": "Api response",
   "GO_BACK": "Go back",
-  "DATABASE_ERROR": "There was a problem with the database"
+  "DATABASE_ERROR": "There was a problem with the database",
+  "ADD": "Add",
+  "START_INSTALL": "Start install"
 }
