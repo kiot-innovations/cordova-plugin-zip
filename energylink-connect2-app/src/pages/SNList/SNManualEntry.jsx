@@ -1,6 +1,5 @@
-import { compose } from 'ramda'
 import React from 'react'
-
+import { compose, isEmpty } from 'ramda'
 import TextField from '@sunpower/textfield'
 import { useDispatch } from 'react-redux'
 import { useI18n } from 'shared/i18n'
@@ -9,13 +8,21 @@ import { useField, useForm } from 'react-final-form-hooks'
 import { ADD_PVS_SN } from 'state/actions/pvs'
 import './SNManualEntry.scss'
 
-const ManualEntryForm = () => {
+const ManualEntryForm = ({ serialNumber, callback }) => {
   const t = useI18n()
   const dispatch = useDispatch()
   const addSN = compose(dispatch, ADD_PVS_SN, buildSN)
 
   const { form, handleSubmit } = useForm({
-    onSubmit: ({ barcode }) => addSN(barcode),
+    initialValues: {
+      barcode: serialNumber.startsWith('E00')
+        ? serialNumber.slice(3)
+        : serialNumber
+    },
+    onSubmit: ({ barcode }) => {
+      addSN(barcode)
+      callback && serialNumber && callback()
+    },
     validate: values => {
       const errors = {}
 
@@ -37,7 +44,7 @@ const ManualEntryForm = () => {
       }}
     >
       <label htmlFor="barcode" className="has-text-white is-flex">
-        {t('MI_SN_LABEL')}
+        {isEmpty(serialNumber) ? t('MI_SN_LABEL') : t('EDITING_MI_SN_LABEL')}
       </label>
 
       <div className="field is-grouped is-grouped-centered">
@@ -55,7 +62,7 @@ const ManualEntryForm = () => {
             className="button is-primary is-uppercase pl-10 pr-10 pb-30 pt-10"
             type="submit"
           >
-            {t('ADD')}
+            {isEmpty(serialNumber) ? t('ADD') : t('SAVE')}
           </button>
         </div>
       </div>
