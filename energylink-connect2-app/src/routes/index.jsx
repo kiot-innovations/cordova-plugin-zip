@@ -1,5 +1,5 @@
 import ErrorDetailScreen from 'pages/ErrorDetailScreen/ErrorDetail'
-import React, { useLayoutEffect, useEffect } from 'react'
+import React, { useEffect, useLayoutEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Route, Switch } from 'react-router-dom'
 import { withTracker } from 'shared/ga'
@@ -44,6 +44,7 @@ import ESSHealthCheck from 'pages/ESSHealthCheck'
 import ESSHealthCheckErrors from 'pages/ESSHealthCheckErrors'
 import VersionInformation from 'pages/VersionInformation'
 import DebugPage from 'pages/DebugPage'
+import PvsSelection from 'pages/PvsSelection'
 
 import { validateSession } from 'state/actions/auth'
 import { updateBodyHeight } from 'shared/utils'
@@ -56,6 +57,7 @@ const mapComponents = {
   [paths.PROTECTED.ERROR_DETAIL.path]: ErrorDetailScreen,
   [paths.PROTECTED.DEVICES.path]: Devices,
   [paths.PROTECTED.UPDATE.path]: UpdateScreen,
+  [paths.PROTECTED.PVS_SELECTION_SCREEN.path]: PvsSelection,
   [paths.PROTECTED.BILL_OF_MATERIALS.path]: BillOfMaterials,
   [paths.PROTECTED.CREATE_SITE.path]: CreateSite,
   [paths.PROTECTED.GIVE_FEEDBACK.path]: GiveFeedback,
@@ -95,6 +97,7 @@ const mapComponents = {
     [paths.PROTECTED.DEBUG_PAGE.path]: DebugPage
   })
 }
+
 /**
  * The router of this app
  * @returns {*}

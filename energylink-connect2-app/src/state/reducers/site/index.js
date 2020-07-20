@@ -11,7 +11,8 @@ import {
   GET_SITES_ERROR,
   SET_SITE,
   SET_MAP_VIEW_SRC,
-  RESET_SITE
+  RESET_SITE,
+  GET_SITE_SUCCESS
 } from 'state/actions/site'
 
 const initialState = {
@@ -22,7 +23,8 @@ const initialState = {
   error: null,
   saveError: '',
   saveModal: false,
-  mapViewSrc: false
+  mapViewSrc: false,
+  sitePVS: null
 }
 
 export const siteReducer = createReducer(
@@ -69,7 +71,8 @@ export const siteReducer = createReducer(
 
     [SET_SITE]: (state, payload) => ({
       ...state,
-      site: payload
+      site: payload,
+      sitePVS: null
     }),
 
     [SET_MAP_VIEW_SRC]: (state, mapViewSrc) => ({
@@ -80,7 +83,12 @@ export const siteReducer = createReducer(
       ...state,
       mapViewSrc: null,
       error: null,
-      site: null
+      site: null,
+      sitePVS: null
+    }),
+    [GET_SITE_SUCCESS]: (state, payload) => ({
+      ...state,
+      sitePVS: payload
     })
   },
   initialState

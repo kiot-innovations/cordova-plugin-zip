@@ -10,3 +10,7 @@ export const CREATE_SITE_INIT = createAction('CREATE_SITE_INIT')
 export const CREATE_SITE_SUCCESS = createAction('CREATE_SITE_SUCCESS')
 export const CREATE_SITE_ERROR = createAction('CREATE_SITE_ERROR')
 export const CREATE_SITE_RESET = createAction('CREATE_SITE_RESET')
+
+export const GET_SITE_INIT = createAction('GET_SITE_INIT')
+export const GET_SITE_SUCCESS = createAction('GET_SITE_SUCCESS')
+export const GET_SITE_ERROR = createAction('GET_SITE_ERROR')

@@ -395,5 +395,6 @@
   "ERROR_LIST": "Error list",
   "API_RESPONSE": "Api response",
   "GO_BACK": "Go back",
-  "DATABASE_ERROR": "There was a problem with the database"
+  "DATABASE_ERROR": "There was a problem with the database",
+  "START_INSTALL": "Start install"
 }

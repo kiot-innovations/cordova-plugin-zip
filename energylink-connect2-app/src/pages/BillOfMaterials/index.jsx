@@ -1,26 +1,14 @@
-import ProgressiveImage from 'components/ProgressiveImage'
-import { prop, pathOr } from 'ramda'
 import React, { useEffect, useState } from 'react'
-import { useSelector } from 'react-redux'
+import ProgressiveImage from 'components/ProgressiveImage'
+import { pathOr, prop } from 'ramda'
+import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { either } from 'shared/utils'
 import { createExternalLinkHandler } from 'shared/routing'
-import paths from '../../routes/paths'
-import { useI18n } from '../../shared/i18n'
+import paths from 'routes/paths'
+import { useI18n } from 'shared/i18n'
 import './BillOfMaterials.scss'
-
-function drawTable(t, inventory) {
-  return inventory.map(item => {
-    return (
-      <tr key={item.item}>
-        <td className="pl-10 pt-10 pb-10 pr-10 has-text-white">
-          {t(item.item)}
-        </td>
-        <td className="pt-10 has-text-white">{item.value}</td>
-      </tr>
-    )
-  })
-}
+import { GET_SITE_INIT } from 'state/actions/site'
 
 const useMap = (latitude, longitude) => {
   const [url, setUrl] = useState('')
@@ -34,6 +22,7 @@ const useMap = (latitude, longitude) => {
 
 function BillOfMaterials() {
   const t = useI18n()
+  const dispatch = useDispatch()
 
   const data = useSelector(({ user, inventory }) => ({
     phone: user.data.phoneNumber,
@@ -41,9 +30,14 @@ function BillOfMaterials() {
     bom: inventory.bom
   }))
 
-  const { address1, latitude, longitude } = useSelector(
+  const { address1, latitude, longitude, siteKey } = useSelector(
     pathOr({}, ['site', 'site'])
   )
+  const sitesPVS = useSelector(pathOr(null, ['site', 'sitePVS']))
+
+  useEffect(() => {
+    dispatch(GET_SITE_INIT(siteKey))
+  }, [dispatch, siteKey])
 
   const googleMapsUrl = useMap(latitude, longitude)
   const imageURL = `https://maps.googleapis.com/maps/api/staticmap?center=${latitude},${longitude}&zoom=21&size=800x800&key=${process.env.REACT_APP_MAPS_API_KEY}&maptype=hybrid&markers=scale:4|blue|${latitude},${longitude}&scale=4`
@@ -98,41 +92,17 @@ function BillOfMaterials() {
           </div>
         </div>
       </section>
-      <section className="pb-50">
-        {data.bom ? (
-          <div>
-            <span className="is-block is-full-width has-text-centered is-bold mb-5 has-text-weight-bold">
-              {t('INVENTORY')}
-            </span>
-            <Link
-              to={paths.PROTECTED.INVENTORY_COUNT.path}
-              className="is-block is-full-width has-text-centered is-bold mb-30 has-text-weight-bold is-uppercase is-size-7"
-            >
-              {t('EDIT')}
-            </Link>
-            <table className="bill-of-materials auto mb-50">
-              <thead>
-                <tr>
-                  <th className="is-uppercase pl-10 has-text-white is-size-7">
-                    {t('ITEM')}
-                  </th>
-
-                  <th className="is-uppercase pl-10 has-text-white is-size-7">
-                    {t('QUANTITY')}
-                  </th>
-                </tr>
-              </thead>
-              <tbody>{drawTable(t, data.bom)}</tbody>
-            </table>
-          </div>
-        ) : (
-          <Link
-            to={paths.PROTECTED.INVENTORY_COUNT.path}
-            className="is-block is-full-width has-text-centered is-bold mb-30 has-text-weight-bold is-uppercase is-size-7"
-          >
-            {t('ADD_INVENTORY')}
-          </Link>
-        )}
+      <section className="tile is-flex is-vertical button-container">
+        <Link
+          className="button pt-0 pb-0 pl-20 pr-20 is-uppercase is-primary"
+          to={
+            sitesPVS
+              ? paths.PROTECTED.PVS_SELECTION_SCREEN.path
+              : paths.PROTECTED.INVENTORY_COUNT.path
+          }
+        >
+          {t('START_INSTALL')}
+        </Link>
       </section>
     </main>
   )
