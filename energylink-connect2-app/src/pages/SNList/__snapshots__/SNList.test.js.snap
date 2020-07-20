@@ -91,7 +91,7 @@ exports[`Serial Number List Page renders correctly 1`] = `
                     onClick={[Function]}
                   >
                     <i
-                      className="sp-trash"
+                      className="sp-close"
                     />
                   </button>
                 </div>
@@ -110,7 +110,7 @@ exports[`Serial Number List Page renders correctly 1`] = `
                     onClick={[Function]}
                   >
                     <i
-                      className="sp-trash"
+                      className="sp-close"
                     />
                   </button>
                 </div>
@@ -129,7 +129,7 @@ exports[`Serial Number List Page renders correctly 1`] = `
                     onClick={[Function]}
                   >
                     <i
-                      className="sp-trash"
+                      className="sp-close"
                     />
                   </button>
                 </div>

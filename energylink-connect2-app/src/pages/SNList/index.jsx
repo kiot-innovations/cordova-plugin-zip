@@ -73,7 +73,7 @@ function SNList() {
           onClick={() => handleRemoveSN(serialNumber)}
           className="has-text-white is-size-6"
         >
-          <i className="sp-trash" />
+          <i className="sp-close" />
         </button>
       </div>
     )
