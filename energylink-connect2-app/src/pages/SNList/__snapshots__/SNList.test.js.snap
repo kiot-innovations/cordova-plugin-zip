@@ -71,7 +71,9 @@ exports[`Serial Number List Page renders correctly 1`] = `
               <div
                 className="sn-container"
               >
-                <span>
+                <span
+                  className="has-text-weight-bold"
+                >
                   TAP_SN_TO_EDIT
                 </span>
                 <div

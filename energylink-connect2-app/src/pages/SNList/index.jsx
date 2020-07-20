@@ -216,7 +216,9 @@ function SNList() {
         <div className="sn-container">
           {serialNumbersList.length > 0 ? (
             <>
-              <span>{t('TAP_SN_TO_EDIT')}</span>
+              <span className="has-text-weight-bold">
+                {t('TAP_SN_TO_EDIT')}
+              </span>
               {serialNumbersList}
             </>
           ) : (
