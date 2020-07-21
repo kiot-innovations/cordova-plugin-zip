@@ -1,4 +1,4 @@
-import { fetchSitesEpic } from './fetchSitesEpic'
+import { fetchSiteData, fetchSitesEpic } from './fetchSitesEpic'
 import { createSiteEpic } from './createSiteEpic'
 
-export default [fetchSitesEpic, createSiteEpic]
+export default [fetchSitesEpic, createSiteEpic, fetchSiteData]

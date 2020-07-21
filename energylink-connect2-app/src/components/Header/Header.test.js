@@ -8,12 +8,12 @@ describe('Header Component', () => {
   })
   test('Renders correctly', () => {
     const { component } = mountWithProvider(<Header />)({})
-    expect(component.html()).toMatchSnapshot()
+    expect(component).toMatchSnapshot()
   })
 
   test('Renders text instead of logo', () => {
     const { component } = mountWithProvider(<Header text="ADDRESS" />)({})
     expect(component.find('.text').text()).toBe('ADDRESS')
-    expect(component.html()).toMatchSnapshot()
+    expect(component).toMatchSnapshot()
   })
 })
