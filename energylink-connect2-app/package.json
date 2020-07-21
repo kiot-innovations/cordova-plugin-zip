@@ -17,7 +17,7 @@
   "dependencies": {
     "@sentry/browser": "^5.12.1",
     "@sunpower/nav": "^0.1.32",
-    "@sunpower/panel-layout-tool": "^1.1.5",
+    "@sunpower/panel-layout-tool": "^1.1.7",
     "@sunpower/sunpowerimage": "^0.1.2",
     "@sunpower/tabs": "^0.1.32",
     "@sunpower/textfield": "^0.1.5",
