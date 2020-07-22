@@ -10,15 +10,14 @@ const ProgressiveImage = ({ src }) => {
   const dispatch = useDispatch()
   const { mapViewSrc } = useSelector(state => state.site)
   useEffect(() => {
-    if (!mapViewSrc !== src) {
+    if (mapViewSrc !== src) {
       const i = new Image()
       i.onload = function() {
         dispatch(SET_MAP_VIEW_SRC(src))
       }
       i.src = src
     }
-    // eslint-disable-next-line
-  }, [])
+  }, [dispatch, mapViewSrc, src])
 
   return either(
     mapViewSrc,

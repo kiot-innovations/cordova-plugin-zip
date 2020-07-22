@@ -47,7 +47,7 @@ exports[`BillOfMaterials component render correctly 1`] = `
             onClick={[Function]}
           >
             <ProgressiveImage
-              src="https://maps.googleapis.com/maps/api/staticmap?center=20.6881818,-103.4218501&zoom=21&size=800x800&key=undefined&maptype=hybrid&markers=scale:4|blue|20.6881818,-103.4218501&scale=4"
+              src="https://maps.googleapis.com/maps/api/staticmap?center=20.6881818,-103.4218501&zoom=19&size=320x320&key=undefined&maptype=hybrid&markers=scale:1|blue|20.6881818,-103.4218501&scale=1"
             >
               <div
                 className="ic is-flex"

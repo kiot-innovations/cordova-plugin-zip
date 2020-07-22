@@ -46,13 +46,13 @@ function BillOfMaterials() {
   )
 
   const googleMapsUrl = useMap(latitude, longitude)
-  const imageURL = `https://maps.googleapis.com/maps/api/staticmap?center=${latitude},${longitude}&zoom=21&size=800x800&key=${process.env.REACT_APP_MAPS_API_KEY}&maptype=hybrid&markers=scale:4|blue|${latitude},${longitude}&scale=4`
+  const imageURL = `https://maps.googleapis.com/maps/api/staticmap?center=${latitude},${longitude}&zoom=19&size=320x320&key=${process.env.REACT_APP_MAPS_API_KEY}&maptype=hybrid&markers=scale:1|blue|${latitude},${longitude}&scale=1`
 
   return (
     <main className="full-height pl-10 pr-10 home">
       <div
         className="pl-10 pr-10 mb-20"
-        onClick={() => createExternalLinkHandler(googleMapsUrl)()}
+        onClick={createExternalLinkHandler(googleMapsUrl)}
       >
         <ProgressiveImage src={imageURL} />
       </div>
