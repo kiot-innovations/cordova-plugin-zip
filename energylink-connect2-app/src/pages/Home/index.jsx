@@ -10,7 +10,7 @@ import { RESET_DISCOVERY } from 'state/actions/devices'
 import { RESET_INVENTORY } from 'state/actions/inventory'
 import { RESET_PVS_CONNECTION } from 'state/actions/network'
 import { RESET_PVS_INFO_STATE } from 'state/actions/pvs'
-import { GET_SITES_ERROR, RESET_SITE, SET_SITE } from 'state/actions/site'
+import { RESET_SITE, SET_SITE } from 'state/actions/site'
 import { RESET_LAST_VISITED_PAGE } from 'state/actions/global'
 import { FIRMWARE_GET_FILE } from 'state/actions/fileDownloader'
 import { getApiSearch } from 'shared/api'
@@ -44,18 +44,18 @@ const siteKeysMap = {
 }
 
 const setSite = (history, dispatch) => site => {
-  const siteKeysRenamed = renameKeys(siteKeysMap, site)
   resetCommissioning(dispatch)
+  const siteKeysRenamed = renameKeys(siteKeysMap, site)
   dispatch(SET_SITE(siteKeysRenamed))
   history.push(paths.PROTECTED.BILL_OF_MATERIALS.path)
 }
 
 const resetCommissioning = dispatch => {
+  dispatch(RESET_SITE())
   dispatch(RESET_PVS_INFO_STATE())
   dispatch(RESET_PVS_CONNECTION())
   dispatch(RESET_DISCOVERY())
   dispatch(RESET_INVENTORY())
-  dispatch(RESET_SITE())
   dispatch(RESET_LAST_VISITED_PAGE())
 }
 
@@ -85,10 +85,7 @@ function Home() {
       )
       .then(pathOr([], ['body', 'items', 'hits']))
       .then(map(accessValue))
-      .then(results => {
-        dispatch(GET_SITES_ERROR(null))
-        cb(results)
-      })
+      .then(cb)
       .catch(error => {
         Sentry.captureMessage(error)
         cb([])
