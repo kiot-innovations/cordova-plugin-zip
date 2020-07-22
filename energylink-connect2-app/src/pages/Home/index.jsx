@@ -5,7 +5,7 @@ import { compose, join, map, path, pathOr, pick, prop, values } from 'ramda'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { useI18n } from 'shared/i18n'
-import { cleanString, either, renameKeys } from 'shared/utils'
+import { cleanString, renameKeys } from 'shared/utils'
 import { RESET_DISCOVERY } from 'state/actions/devices'
 import { RESET_INVENTORY } from 'state/actions/inventory'
 import { RESET_PVS_CONNECTION } from 'state/actions/network'
@@ -64,9 +64,7 @@ function Home() {
   const dispatch = useDispatch()
   const history = useHistory()
 
-  const { error } = useSelector(state => state.site)
   const { access_token } = useSelector(state => state.user.auth)
-  const errorMessage = path(['data', 'message'], error)
 
   useEffect(() => {
     dispatch(FIRMWARE_GET_FILE())
@@ -108,14 +106,6 @@ function Home() {
           onSelect={compose(setSite(history, dispatch), prop('site'))}
           notFoundText={notFoundText}
         />
-
-        {either(
-          error,
-          <div className="message error mb-10 mt-10">
-            <p className="pl-20 pr-20"> {t('FETCH_SITE_ERROR')} </p>
-            <p className="pl-20 pr-20"> {errorMessage} </p>
-          </div>
-        )}
       </div>
       <article>
         <p>{t('CS_NOT_FOUND')}</p>
