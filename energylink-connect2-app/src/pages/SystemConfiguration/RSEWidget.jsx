@@ -152,7 +152,7 @@ function RSEWidget() {
 
 const renderRSEDescription = (powerProduction, t) =>
   either(
-    equals(powerProduction, 'On'),
+    equals(powerProduction, 'Off'),
     <article>
       <p className="text-center">{t('RSE_ON_SYSTEM')}</p>
       <ul>
