@@ -29,10 +29,10 @@ function BillOfMaterials() {
     bom: inventory.bom
   }))
 
-  const { address1, latitude, longitude, siteName } = useSelector(
+  const { address1, latitude, longitude, siteName, siteKey } = useSelector(
     pathOr({}, ['site', 'site'])
   )
-  
+
   const sitesPVS = useSelector(pathOr(null, ['site', 'sitePVS']))
 
   useEffect(() => {
