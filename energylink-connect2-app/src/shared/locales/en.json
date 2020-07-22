@@ -398,6 +398,12 @@
   "API_RESPONSE": "Api response",
   "GO_BACK": "Go back",
   "DATABASE_ERROR": "There was a problem with the database",
-  "ADD": "Add",
-  "START_INSTALL": "Start install"
+  "START_INSTALL": "Start install",
+  "FIRST_CONNECTION": "First connection: {0}",
+  "SELECT_PVS": "Select a PVS",
+  "ADD_NEW_PVS": "Add new PVS",
+  "REPLACE_PVS": "Replace PVS",
+  "EDIT_DEVICES": "Edit devices",
+  "SELECT_PVS_MODAL": "Please select a PVS to continue",
+  "ADD": "Add"
 }

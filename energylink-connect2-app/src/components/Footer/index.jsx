@@ -38,7 +38,7 @@ const Footer = () => {
     if (active.install) {
       const destination = connected
         ? location.pathname
-        : paths.PROTECTED.INVENTORY_COUNT.path
+        : paths.PROTECTED.PVS_SELECTION_SCREEN.path
       dispatch(SET_LAST_VISITED_PAGE(destination))
     }
   }, [active, connected, dispatch, location])
