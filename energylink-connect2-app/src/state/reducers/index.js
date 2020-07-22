@@ -23,6 +23,7 @@ import devicesReducer from './devices'
 import systemConfigurationReducer from './systemConfiguration'
 import firmwareUpdate from './firmware-update'
 import essReducer from './ess'
+import RMAReducer from 'state/reducers/rma'
 
 export default combineReducers({
   ...getPLTReducer(),
@@ -50,6 +51,7 @@ export default combineReducers({
   inventory: inventoryReducer,
   network: networkReducer,
   pvs: pvsReducer,
+  rma: RMAReducer,
   site: siteReducer,
   devices: devicesReducer,
   share: shareReducer,

@@ -53,7 +53,7 @@ function BillOfMaterials() {
       <span className="is-uppercase is-block is-full-width has-text-centered is-bold mb-30 ">
         {t('CUSTOMER_INFORMATION')}
       </span>
-      <section className="mb-40">
+      <section className="mb-20">
         <div className="is-flex is-vertical">
           <div className="is-flex is-vertical tile pl-15">
             <div className="tile is-flex is-vertical">
@@ -88,13 +88,13 @@ function BillOfMaterials() {
             <span className=" is-uppercase is-size-7">{`${t(
               'UTILITY'
             )}:`}</span>
-            <span className="has-text-white mb-10">PG&E</span>
+            <span className="has-text-white mb-15">PG&E</span>
           </div>
         </div>
       </section>
-      <section className="tile is-flex is-vertical button-container">
+      <section className="tile is-flex is-vertical button-container mb-10">
         <Link
-          className="button pt-0 pb-0 pl-20 pr-20 is-uppercase is-primary"
+          className="button pt-0 pb-0 pl-20 pr-20 is-primary"
           to={
             sitesPVS
               ? paths.PROTECTED.PVS_SELECTION_SCREEN.path

@@ -143,7 +143,9 @@ const paths = {
     },
     INVENTORY_COUNT: {
       path: '/inventory-count',
-      header: true
+      header: true,
+      footer: true,
+      tab: TABS.INSTALL
     },
     SYSTEM_CONFIGURATION: {
       path: '/system-configuration',
