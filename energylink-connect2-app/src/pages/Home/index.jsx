@@ -40,7 +40,8 @@ const siteKeysMap = {
   lat_deg: 'latitude',
   long_deg: 'longitude',
   pst_zone_id: 'postalCode',
-  site_key: 'siteKey'
+  site_key: 'siteKey',
+  site_addr_nm: 'siteName'
 }
 
 const setSite = (history, dispatch) => site => {

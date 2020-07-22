@@ -37,11 +37,10 @@ function BillOfMaterials() {
 
   const data = useSelector(({ user, inventory }) => ({
     phone: user.data.phoneNumber,
-    name: user.data.name,
     bom: inventory.bom
   }))
 
-  const { address1, latitude, longitude } = useSelector(
+  const { address1, latitude, longitude, siteName } = useSelector(
     pathOr({}, ['site', 'site'])
   )
 
@@ -65,7 +64,7 @@ function BillOfMaterials() {
             <div className="tile is-flex is-vertical">
               <span className="is-uppercase is-size-7 ">{`${t('NAME')}:`}</span>
               <span className="has-text-white mb-10 is-capitalized">
-                {data.name}
+                {siteName}
               </span>
             </div>
             <div className="tile is-flex is-vertical">
