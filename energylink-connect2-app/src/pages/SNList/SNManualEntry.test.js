@@ -17,7 +17,14 @@ describe('SNManualEntry', () => {
   })
 
   test('renders correctly', () => {
-    const { component } = mountWithProvider(<SNManualEntry />)()
+    const { component } = mountWithProvider(<SNManualEntry serialNumber="" />)()
+    expect(component).toMatchSnapshot()
+  })
+
+  test('renders correctly when editing a serial number', () => {
+    const { component } = mountWithProvider(
+      <SNManualEntry serialNumber="123456789123" />
+    )()
     expect(component).toMatchSnapshot()
   })
 })

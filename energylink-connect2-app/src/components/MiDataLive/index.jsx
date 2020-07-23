@@ -2,6 +2,7 @@ import React from 'react'
 import { isEmpty, map, compose } from 'ramda'
 import { either } from 'shared/utils'
 import { useI18n } from 'shared/i18n'
+import { roundDecimals } from 'shared/rounding'
 
 import './MiDataLive.scss'
 
@@ -44,7 +45,7 @@ const renderDataItem = t => value => (
       {value.sn}
     </td>
     <td className="pt-10 has-text-white has-text-centered">
-      {value.power} {t('WATTS')}
+      {roundDecimals(value.power)} {t('WATTS')}
     </td>
   </tr>
 )

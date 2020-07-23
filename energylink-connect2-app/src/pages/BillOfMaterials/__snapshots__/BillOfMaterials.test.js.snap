@@ -111,7 +111,7 @@ exports[`BillOfMaterials component render correctly 1`] = `
             CUSTOMER_INFORMATION
           </span>
           <section
-            className="mb-40"
+            className="mb-20"
           >
             <div
               className="is-flex is-vertical"
@@ -186,7 +186,7 @@ exports[`BillOfMaterials component render correctly 1`] = `
                   UTILITY:
                 </span>
                 <span
-                  className="has-text-white mb-10"
+                  className="has-text-white mb-15"
                 >
                   PG&E
                 </span>
@@ -194,23 +194,23 @@ exports[`BillOfMaterials component render correctly 1`] = `
             </div>
           </section>
           <section
-            className="pb-50"
+            className="tile is-flex is-vertical button-container mb-10"
           >
             <Link
-              className="is-block is-full-width has-text-centered is-bold mb-30 has-text-weight-bold is-uppercase is-size-7"
-              to="/inventory-count"
+              className="button pt-0 pb-0 pl-20 pr-20 is-primary"
+              to="/pvs-selection"
             >
               <LinkAnchor
-                className="is-block is-full-width has-text-centered is-bold mb-30 has-text-weight-bold is-uppercase is-size-7"
-                href="/inventory-count"
+                className="button pt-0 pb-0 pl-20 pr-20 is-primary"
+                href="/pvs-selection"
                 navigate={[Function]}
               >
                 <a
-                  className="is-block is-full-width has-text-centered is-bold mb-30 has-text-weight-bold is-uppercase is-size-7"
-                  href="/inventory-count"
+                  className="button pt-0 pb-0 pl-20 pr-20 is-primary"
+                  href="/pvs-selection"
                   onClick={[Function]}
                 >
-                  ADD_INVENTORY
+                  START_INSTALL
                 </a>
               </LinkAnchor>
             </Link>

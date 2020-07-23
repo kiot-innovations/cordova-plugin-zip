@@ -27,11 +27,13 @@ function SNList() {
 
   const [isManualMode, setManualMode] = useState(isManualModeDefault)
   const { serialNumbers, fetchingSN } = useSelector(state => state.pvs)
+  const [editingSn, setEditingSn] = useState('')
   const { bom } = useSelector(state => state.inventory)
 
-  const toggleManualMode = useCallback(() => setManualMode(!isManualMode), [
-    isManualMode
-  ])
+  const toggleManualMode = useCallback(() => {
+    setManualMode(!isManualMode)
+    setEditingSn('')
+  }, [isManualMode])
 
   const modulesOnInventory = bom.filter(item => {
     return item.item === 'AC_MODULES'
@@ -43,21 +45,35 @@ function SNList() {
     history.push(paths.PROTECTED.SCAN_LABELS.path)
   }
 
+  const handleEditSN = serialNumber => {
+    setEditingSn(serialNumber)
+    setManualMode(true)
+  }
+
   const handleRemoveSN = serialNumber => {
     dispatch(REMOVE_SN(serialNumber))
+  }
+
+  const afterEditCallback = () => {
+    setEditingSn('')
+    setManualMode(false)
+    dispatch(REMOVE_SN(editingSn))
   }
 
   const createSnItem = serialNumber => {
     return (
       <div key={serialNumber} className="sn-item mt-10 mb-10 pb-5">
-        <span className="is-uppercase has-text-weight-bold has-text-white">
+        <span
+          className="is-uppercase has-text-weight-bold has-text-white"
+          onClick={() => handleEditSN(serialNumber)}
+        >
           {serialNumber}
         </span>
         <button
           onClick={() => handleRemoveSN(serialNumber)}
           className="has-text-white is-size-6"
         >
-          <i className="sp-trash" />
+          <i className="sp-close" />
         </button>
       </div>
     )
@@ -199,7 +215,12 @@ function SNList() {
         </div>
         <div className="sn-container">
           {serialNumbersList.length > 0 ? (
-            serialNumbersList
+            <>
+              <span className="has-text-weight-bold">
+                {t('TAP_SN_TO_EDIT')}
+              </span>
+              {serialNumbersList}
+            </>
           ) : (
             <span>{t('SCAN_HINT')}</span>
           )}
@@ -209,7 +230,10 @@ function SNList() {
         <div className="sn-buttons">
           {isManualMode ? (
             <>
-              <SNManualEntry toggleOpen={toggleManualMode} />
+              <SNManualEntry
+                serialNumber={editingSn}
+                callback={afterEditCallback}
+              />
               <button
                 onClick={toggleManualMode}
                 className="button has-text-centered is-uppercase is-secondary has-no-border mr-40 pl-0 pr-0"
