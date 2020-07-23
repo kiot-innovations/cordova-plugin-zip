@@ -3,6 +3,8 @@ import clsx from 'clsx'
 import moment from 'moment'
 import { map, keys, propOr, pathOr } from 'ramda'
 import { useI18n } from 'shared/i18n'
+import { roundDecimals } from 'shared/rounding'
+import { isFloatNumber } from 'shared/isFloatNumber'
 
 function ESSHealthCheckReport({ report }) {
   const t = useI18n()
@@ -101,10 +103,16 @@ const renderRestValues = (t, rest) => key => {
   if (key === 'ess_meter_reading') {
     return renderEssMeterReading(rest[key])
   } else {
+    const keyValue = propOr(rest[key], 'value', rest[key])
+
     return (
       <p key={key}>
         <span className="mr-5 has-text-weight-bold">{t(key)}:</span>
-        <span className="mr-5">{propOr(rest[key], 'value', rest[key])}</span>
+        <span className="mr-5">
+          {isFloatNumber(keyValue)
+            ? roundDecimals(keyValue).toFixed(1)
+            : keyValue}
+        </span>
         {propOr('', 'unit', rest[key])}
       </p>
     )
