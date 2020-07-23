@@ -25,17 +25,22 @@ const DebugPage = () => {
       <div>
         {renderDebugLink(
           history,
-          'EQS Device Mapping',
-          paths.PROTECTED.ESS_DEVICE_MAPPING.path
+          'SunVault PreDiscovery',
+          paths.PROTECTED.STORAGE_PREDISCOVERY.path
         )}
         {renderDebugLink(
           history,
-          'EQS Connected Device Update',
+          'SunVault Connected Device Update',
           paths.PROTECTED.EQS_UPDATE.path
         )}
         {renderDebugLink(
           history,
-          'EQS Health Check',
+          'SunVault Device Mapping',
+          paths.PROTECTED.ESS_DEVICE_MAPPING.path
+        )}
+        {renderDebugLink(
+          history,
+          'SunVault Health Check',
           paths.PROTECTED.ESS_HEALTH_CHECK.path
         )}
       </div>

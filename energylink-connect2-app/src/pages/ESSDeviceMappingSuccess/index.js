@@ -69,7 +69,7 @@ function DeviceMappingSuccess() {
       {either(
         isEmpty(mappingErrors),
         <ContinueFooter
-          url={paths.PROTECTED.EQS_UPDATE.path}
+          url={paths.PROTECTED.ESS_HEALTH_CHECK.path}
           text={'DEVICE_MAPPING_SUCCESS'}
         />,
         <ErrorDetected

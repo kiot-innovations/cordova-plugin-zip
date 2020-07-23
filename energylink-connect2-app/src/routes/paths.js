@@ -135,6 +135,12 @@ const paths = {
       footer: true,
       tab: TABS.INSTALL
     },
+    STORAGE_PREDISCOVERY: {
+      path: '/storage-prediscovery',
+      header: true,
+      footer: true,
+      tab: TABS.INSTALL
+    },
     EQS_PREDISCOVERY_ERRORS: {
       path: '/eqs-prediscovery-errors',
       header: true,

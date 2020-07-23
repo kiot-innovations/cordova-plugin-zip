@@ -42,6 +42,7 @@ import EQSUpdateErrors from 'pages/EQSUpdateErrors'
 import EQSPrediscoveryErrors from 'pages/EQSPrediscoveryErrors'
 import ESSHealthCheck from 'pages/ESSHealthCheck'
 import ESSHealthCheckErrors from 'pages/ESSHealthCheckErrors'
+import StoragePrediscovery from 'pages/StoragePrediscovery'
 import VersionInformation from 'pages/VersionInformation'
 import DebugPage from 'pages/DebugPage'
 import PvsSelection from 'pages/PvsSelection'
@@ -87,6 +88,7 @@ const mapComponents = {
   [paths.PROTECTED.ESS_DEVICE_MAPPING_SUCCESS.path]: ESSDeviceMappingSuccess,
   [paths.PROTECTED.EQS_UPDATE.path]: EQSUpdate,
   [paths.PROTECTED.EQS_UPDATE_ERRORS.path]: EQSUpdateErrors,
+  [paths.PROTECTED.STORAGE_PREDISCOVERY.path]: StoragePrediscovery,
   [paths.PROTECTED.EQS_PREDISCOVERY_ERRORS.path]: EQSPrediscoveryErrors,
   [paths.PROTECTED.ESS_HEALTH_CHECK.path]: ESSHealthCheck,
   [paths.PROTECTED.ESS_HEALTH_CHECK_ERRORS.path]: ESSHealthCheckErrors,

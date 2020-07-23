@@ -104,7 +104,7 @@ function CreateSite() {
       siteName: siteName.input.value,
       city: parsedData.locality_long || parsedData.political_long,
       postalCode: parsedData.postal_code,
-      state: parsedData.administrative_area_level_1_long,
+      state: parsedData.administrative_area_level_1,
       latitude: lat,
       longitude: lng,
       utcOffset: utcOffset / 3600,
