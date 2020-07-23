@@ -5,7 +5,7 @@ import moment from 'moment'
 import { useI18n } from 'shared/i18n'
 import { either } from 'shared/utils'
 import { Loader } from 'components/Loader'
-import { GET_PREDISCOVERY } from 'state/actions/storage'
+import { GET_PREDISCOVERY, GET_PREDISCOVERY_RESET } from 'state/actions/storage'
 import ContinueFooter from 'components/ESSContinueFooter'
 import ErrorDetected from 'components/ESSErrorDetected/ErrorDetected'
 import StorageDevices from 'components/PrediscoveryDevices/StorageDevices'
@@ -36,6 +36,7 @@ function StoragePrediscovery() {
   }, [dispatch])
 
   const retryPrediscovery = () => {
+    dispatch(GET_PREDISCOVERY_RESET())
     setWaiting(true)
     const then = moment
       .utc(lastTimestamp)
