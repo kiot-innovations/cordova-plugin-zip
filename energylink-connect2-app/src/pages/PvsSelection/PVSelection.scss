@@ -1,0 +1,54 @@
+@import '~@sunpower/theme-dark/styles/variables';
+
+.pvs-selection-screen {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  .select-pvs-title {
+    font-family: $font;
+  }
+
+
+  .new-pvs {
+    display: flex;
+    align-items: center;
+    height: 64px;
+  }
+  .new-pvs,
+  .label {
+    transition: border-width 250ms, background-color 100ms;
+    padding: 15px;
+    border-radius: 10px;
+    width: 100%;
+    color: white;
+    background-color: rgba(196, 196, 196, 0.1);
+    border-width: 0;
+    border-color: rgba(0, 0, 0, 0);
+    font-family: $font;
+    letter-spacing: 0;
+    p {
+      color: #a0a0a0;
+    }
+  }
+  .label-selected {
+    border-width: 2px;
+    border-color: white;
+    border-style: solid;
+  }
+  .select-pvs-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+  }
+  .pvs-buttons {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+  }
+  .new-pvs:active,
+  .label:active {
+    background-color: rgba(196, 196, 196, 0.2);
+  }
+}

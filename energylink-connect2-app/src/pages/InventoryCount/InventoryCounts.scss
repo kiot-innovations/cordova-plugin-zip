@@ -2,9 +2,13 @@
 
 .inventory-count {
   height: 100%;
-  padding-left: 2em;
-  padding-right: 2em;
   display: grid;
+  .inline-buttons {
+    justify-content: center;
+    button {
+      padding: 0 30px;
+    }
+  }
 }
 
 .form-container {
@@ -13,7 +17,7 @@
   grid-column-gap: 1em;
   grid-row-gap: 1em;
 
-  .double{
+  .double {
     grid-column: span 2;
   }
 
