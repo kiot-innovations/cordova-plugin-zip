@@ -12,6 +12,12 @@ export const TABS = {
  */
 const paths = {
   PROTECTED: {
+    PVS_SELECTION_SCREEN: {
+      path: '/pvs-selection',
+      header: true,
+      footer: true,
+      tab: TABS.INSTALL
+    },
     ERROR_DETAIL: {
       path: '/error/:errorCode',
       header: true,
@@ -137,7 +143,9 @@ const paths = {
     },
     INVENTORY_COUNT: {
       path: '/inventory-count',
-      header: true
+      header: true,
+      footer: true,
+      tab: TABS.INSTALL
     },
     SYSTEM_CONFIGURATION: {
       path: '/system-configuration',
