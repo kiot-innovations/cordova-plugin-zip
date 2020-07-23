@@ -3,7 +3,6 @@ import clsx from 'clsx'
 import moment from 'moment'
 import { map, keys, propOr, pathOr, is } from 'ramda'
 import { useI18n } from 'shared/i18n'
-import { roundDecimals } from 'shared/rounding'
 
 function ESSHealthCheckReport({ report }) {
   const t = useI18n()
@@ -108,9 +107,7 @@ const renderRestValues = (t, rest) => key => {
       <p key={key}>
         <span className="mr-5 has-text-weight-bold">{t(key)}:</span>
         <span className="mr-5">
-          {is(Number, keyValue)
-            ? roundDecimals(parseFloat(keyValue)).toFixed(2)
-            : keyValue}
+          {is(Number, keyValue) ? parseFloat(keyValue).toFixed(2) : keyValue}
         </span>
         {propOr('', 'unit', rest[key])}
       </p>
