@@ -1,7 +1,7 @@
 import React from 'react'
 import clsx from 'clsx'
 import moment from 'moment'
-import { map, keys, propOr, pathOr } from 'ramda'
+import { map, keys, propOr, pathOr, is } from 'ramda'
 import { useI18n } from 'shared/i18n'
 
 function ESSHealthCheckReport({ report }) {
@@ -101,10 +101,14 @@ const renderRestValues = (t, rest) => key => {
   if (key === 'ess_meter_reading') {
     return renderEssMeterReading(rest[key])
   } else {
+    const keyValue = propOr(rest[key], 'value', rest[key])
+
     return (
       <p key={key}>
         <span className="mr-5 has-text-weight-bold">{t(key)}:</span>
-        <span className="mr-5">{propOr(rest[key], 'value', rest[key])}</span>
+        <span className="mr-5">
+          {is(Number, keyValue) ? parseFloat(keyValue).toFixed(2) : keyValue}
+        </span>
         {propOr('', 'unit', rest[key])}
       </p>
     )
