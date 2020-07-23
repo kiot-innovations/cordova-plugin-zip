@@ -16,17 +16,17 @@ const results = {
         },
         battery_voltage: {
           unit: 'V',
-          value: 53.2
+          value: 53.2567
         },
         last_updated: '2020-07-14 23:03:59',
         serial_number: '',
         state_of_charge: {
           unit: '%',
-          value: 0.88
+          value: 0.88567
         },
         temperature: {
           unit: 'C',
-          value: 26.3
+          value: 26.3567
         }
       }
     ],
@@ -41,16 +41,16 @@ const results = {
       {
         enclosure_humidity: {
           unit: '%',
-          value: 21
+          value: 21.567
         },
         enclosure_temperature: {
           unit: 'C',
-          value: 33
+          value: 33.567
         },
         ess_meter_reading: {
           agg_power: {
             unit: 'kW',
-            value: -0.028
+            value: -0.0285
           },
           last_updated: '2020-07-14 23:03:59',
           meter_a: {
@@ -66,7 +66,7 @@ const results = {
               },
               voltage: {
                 unit: 'V',
-                value: 120.26
+                value: 120.2678
               }
             }
           },
@@ -83,7 +83,7 @@ const results = {
               },
               voltage: {
                 unit: 'V',
-                value: 120.26
+                value: 120.2678
               }
             }
           }
@@ -102,7 +102,7 @@ const results = {
       grid_frequency_state: 'METER_FREQ_IN_RANGE',
       grid_phase1_voltage: {
         unit: 'V',
-        value: 121.2
+        value: 121.2567
       },
       grid_phase2_voltage: {
         unit: 'V',
@@ -111,7 +111,7 @@ const results = {
       grid_voltage_state: 'METER_VOLTAGE_IN_RANGE',
       hub_humidity: {
         unit: '%',
-        value: 26
+        value: 26.567
       },
       hub_temperature: {
         unit: 'C',
