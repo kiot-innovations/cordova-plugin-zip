@@ -1,5 +1,14 @@
 .recommendations {
+  ul,
   ol {
-    padding: 1em;
+    padding: 0.6em 1.1em 0 1.1em;
+  }
+
+  li {
+    padding-top: 0.1em;
+  }
+
+  p {
+    padding-top: 0.6em;
   }
 }
