@@ -51,6 +51,7 @@ const renderErrors = t => err => {
       ? error_description
       : error_message
 
+  const possibleCauses = { __html: marked(possible_causes) }
   const recommendations = { __html: marked(recommended_actions) }
 
   return (
@@ -71,7 +72,10 @@ const renderErrors = t => err => {
 
         <div className="collapsible mt-10 mb-15">
           <p className="has-text-white">{t('POSSIBLE_CAUSES')}</p>
-          <p>{possible_causes}</p>
+          <div
+            className="recommendations"
+            dangerouslySetInnerHTML={possibleCauses}
+          />
         </div>
 
         <div className="collapsible">
