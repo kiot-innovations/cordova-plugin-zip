@@ -6,6 +6,7 @@ import {
   GET_PREDISCOVERY,
   GET_PREDISCOVERY_SUCCESS,
   GET_PREDISCOVERY_ERROR,
+  GET_PREDISCOVERY_RESET,
   POST_COMPONENT_MAPPING,
   POST_COMPONENT_MAPPING_ERROR,
   UPLOAD_EQS_FIRMWARE,
@@ -71,6 +72,11 @@ export const storageReducer = createReducer(
     [GET_PREDISCOVERY_ERROR]: (state, payload) => ({
       ...state,
       error: payload
+    }),
+    [GET_PREDISCOVERY_RESET]: state => ({
+      ...state,
+      prediscovery: {},
+      error: ''
     }),
     [POST_COMPONENT_MAPPING]: state => ({
       ...state,

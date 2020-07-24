@@ -110,7 +110,7 @@ const EQSUpdate = () => {
       {either(
         updateStatus === eqsUpdateStates.SUCCEEDED && isEmpty(updateErrors),
         <ContinueFooter
-          url={paths.PROTECTED.ESS_HEALTH_CHECK.path}
+          url={paths.PROTECTED.ESS_DEVICE_MAPPING.path}
           text={'EQS_FW_UPDATE_SUCCESS'}
         />,
         <ErrorDetected

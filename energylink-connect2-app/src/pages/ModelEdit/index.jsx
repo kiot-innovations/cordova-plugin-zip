@@ -17,6 +17,7 @@ const ModelEdit = () => {
   const dispatch = useDispatch()
   const { settingMetadata, setMetadataStatus } = useSelector(state => state.pvs)
   const { candidates, found } = useSelector(state => state.devices)
+  const rmaPvs = useSelector(path(['rma', 'pvs']))
   const { bom } = useSelector(state => state.inventory)
   const siteKey = useSelector(path(['site', 'site', 'siteKey']))
   const essValue = find(propEq('item', 'ESS'), bom)
@@ -73,9 +74,13 @@ const ModelEdit = () => {
   useEffect(() => {
     if (setMetadataStatus === 'success') {
       if (essValue.value !== '0') {
-        history.push(paths.PROTECTED.ESS_DEVICE_MAPPING.path)
+        history.push(paths.PROTECTED.STORAGE_PREDISCOVERY.path)
       } else {
-        history.push(paths.PROTECTED.INSTALL_SUCCESS.path)
+        history.push(
+          rmaPvs
+            ? paths.PROTECTED.SYSTEM_CONFIGURATION.path
+            : paths.PROTECTED.INSTALL_SUCCESS.path
+        )
       }
     }
   })
