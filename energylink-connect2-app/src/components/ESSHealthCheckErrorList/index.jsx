@@ -7,6 +7,8 @@ import marked from 'marked'
 
 import Collapsible from 'components/Collapsible'
 
+import './ESSHealthCheckErrorList.scss'
+
 function ESSHealthCheckErrorList({ results }) {
   const t = useI18n()
   const history = useHistory()
@@ -74,7 +76,10 @@ const renderErrors = t => err => {
 
         <div className="collapsible">
           <p className="has-text-white">{t('ACTIONS')}</p>
-          <div dangerouslySetInnerHTML={recommendations} />
+          <div
+            className="recommendations"
+            dangerouslySetInnerHTML={recommendations}
+          />
         </div>
       </Collapsible>
     </div>
