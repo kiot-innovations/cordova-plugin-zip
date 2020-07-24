@@ -9,7 +9,7 @@ import {
 import { START_DISCOVERY_INIT } from 'state/actions/pvs'
 import { filterInverters } from 'shared/utils'
 import useModal from 'hooks/useModal'
-import { groupBy, prop, propOr, length, pluck, reduce, add } from 'ramda'
+import { groupBy, prop, propOr, length, pluck, reduce, add, path } from 'ramda'
 import clsx from 'clsx'
 import paths from 'routes/paths'
 import DeviceGroup from './DeviceGroup'
@@ -33,6 +33,7 @@ const LegacyDiscovery = () => {
     found,
     progress
   } = useSelector(state => state.devices)
+  const rmaPvs = useSelector(path(['rma', 'pvs']))
   const inverters = filterInverters(found)
   const dispatch = useDispatch()
 
@@ -63,7 +64,11 @@ const LegacyDiscovery = () => {
 
   const continueWithZeroMIs = () => {
     toggleMicroinvertersModal()
-    history.push(paths.PROTECTED.INSTALL_SUCCESS.path)
+    history.push(
+      rmaPvs
+        ? paths.PROTECTED.SYSTEM_CONFIGURATION.path
+        : paths.PROTECTED.INSTALL_SUCCESS.path
+    )
   }
 
   const microinvertersModalTitle = (

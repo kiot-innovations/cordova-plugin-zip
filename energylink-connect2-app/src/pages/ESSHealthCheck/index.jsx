@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
-import { add, length, pluck, propOr, reduce } from 'ramda'
+import { add, path, length, pluck, propOr, reduce } from 'ramda'
 import { GET_ESS_STATUS_INIT } from 'state/actions/storage'
 import { RESET_DISCOVERY } from 'state/actions/devices'
 import paths from 'routes/paths'
@@ -12,6 +12,7 @@ function ESSHealthCheck() {
   const dispatch = useDispatch()
   const { waiting, results, error } = useSelector(state => state.storage.status)
   const { progress } = useSelector(state => state.devices)
+  const rmaPvs = useSelector(path(['rma', 'pvs']))
 
   const discoveryProgress = propOr([], 'progress', progress)
   const deviceProgress = pluck('PROGR', discoveryProgress)
@@ -26,7 +27,12 @@ function ESSHealthCheck() {
     dispatch(GET_ESS_STATUS_INIT())
   }, [dispatch])
 
-  const onContinue = () => history.push(paths.PROTECTED.INSTALL_SUCCESS.path)
+  const onContinue = () =>
+    history.push(
+      rmaPvs
+        ? paths.PROTECTED.SYSTEM_CONFIGURATION.path
+        : paths.PROTECTED.INSTALL_SUCCESS.path
+    )
   const onRetry = () => dispatch(GET_ESS_STATUS_INIT())
   const onSeeErrors = () =>
     history.push(paths.PROTECTED.ESS_HEALTH_CHECK_ERRORS.path)
