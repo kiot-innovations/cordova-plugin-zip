@@ -83,7 +83,7 @@ const errorCodes = [
     code: '11020',
     in_use: true,
     display: true,
-    error_description: 'Hub+ power supply under voltate',
+    error_description: 'Hub+ power supply under voltage',
     possible_causes: 'Check user manual',
     recommended_actions: 'Check user manual'
   },
@@ -103,7 +103,7 @@ const errorCodes = [
     code: '11024',
     in_use: true,
     display: true,
-    error_description: 'Hub+ jumpstart out of range',
+    error_description: 'Hub+ jump-start out of range',
     possible_causes: 'Check user manual',
     recommended_actions: 'Check user manual'
   },
@@ -153,7 +153,7 @@ const errorCodes = [
     possible_causes:
       'Battery may have been exposed ot harsh environmental conditions or may have been used aggressively.',
     recommended_actions:
-      'Check battery location: temperature and airflow into batttery. Contact SunPower'
+      'Check battery location: temperature and airflow into battery. Contact SunPower'
   },
   {
     event_code: '13003',
@@ -162,8 +162,8 @@ const errorCodes = [
     in_use: true,
     display: true,
     error_description: 'Battery internal fault',
-    possible_causes: 'A battery inernal fault occurred',
-    recommended_actions: 'Please contac SunPower'
+    possible_causes: 'A battery internal fault occurred',
+    recommended_actions: 'Please contact SunPower'
   },
   {
     event_code: '13004',
@@ -172,8 +172,8 @@ const errorCodes = [
     in_use: true,
     display: true,
     error_description: 'Battery internal fault',
-    possible_causes: 'A battery inernal fault occurred',
-    recommended_actions: 'Please contac SunPower'
+    possible_causes: 'A battery internal fault occurred',
+    recommended_actions: 'Please contact SunPower'
   },
   {
     event_code: '13005',
@@ -182,8 +182,8 @@ const errorCodes = [
     in_use: true,
     display: true,
     error_description: 'Battery internal fault',
-    possible_causes: 'A battery inernal fault occurred',
-    recommended_actions: 'Please contac SunPower'
+    possible_causes: 'A battery internal fault occurred',
+    recommended_actions: 'Please contact SunPower'
   },
   {
     event_code: '13006',
@@ -192,8 +192,8 @@ const errorCodes = [
     in_use: true,
     display: true,
     error_description: 'Battery internal fault',
-    possible_causes: 'A battery inernal fault occurred',
-    recommended_actions: 'Please contac SunPower'
+    possible_causes: 'A battery internal fault occurred',
+    recommended_actions: 'Please contact SunPower'
   },
   {
     event_code: '13007',
@@ -202,8 +202,8 @@ const errorCodes = [
     in_use: true,
     display: true,
     error_description: 'Battery internal fault',
-    possible_causes: 'A battery inernal fault occurred',
-    recommended_actions: 'Please contac SunPower'
+    possible_causes: 'A battery internal fault occurred',
+    recommended_actions: 'Please contact SunPower'
   },
   {
     event_code: '13008',
@@ -212,8 +212,8 @@ const errorCodes = [
     in_use: true,
     display: true,
     error_description: 'Battery internal fault',
-    possible_causes: 'A battery inernal fault occurred',
-    recommended_actions: 'Please contac SunPower'
+    possible_causes: 'A battery internal fault occurred',
+    recommended_actions: 'Please contact SunPower'
   },
   {
     event_code: '13009',
@@ -222,8 +222,8 @@ const errorCodes = [
     in_use: true,
     display: true,
     error_description: 'Battery internal fault',
-    possible_causes: 'A battery inernal fault occurred',
-    recommended_actions: 'Please contac SunPower'
+    possible_causes: 'A battery internal fault occurred',
+    recommended_actions: 'Please contact SunPower'
   },
   {
     event_code: '13010',
@@ -232,8 +232,8 @@ const errorCodes = [
     in_use: true,
     display: true,
     error_description: 'Battery internal fault',
-    possible_causes: 'A battery inernal fault occurred',
-    recommended_actions: 'Please contac SunPower'
+    possible_causes: 'A battery internal fault occurred',
+    recommended_actions: 'Please contact SunPower'
   },
   {
     event_code: '13011',
@@ -242,8 +242,8 @@ const errorCodes = [
     in_use: true,
     display: true,
     error_description: 'Battery internal fault',
-    possible_causes: 'A battery inernal fault occurred',
-    recommended_actions: 'Please contac SunPower'
+    possible_causes: 'A battery internal fault occurred',
+    recommended_actions: 'Please contact SunPower'
   },
   {
     event_code: '13012',
@@ -252,8 +252,8 @@ const errorCodes = [
     in_use: true,
     display: true,
     error_description: 'Battery internal fault',
-    possible_causes: 'A battery inernal fault occurred',
-    recommended_actions: 'Please contac SunPower'
+    possible_causes: 'A battery internal fault occurred',
+    recommended_actions: 'Please contact SunPower'
   },
   {
     event_code: '13013',
@@ -262,8 +262,8 @@ const errorCodes = [
     in_use: true,
     display: true,
     error_description: 'Battery internal fault',
-    possible_causes: 'A battery inernal fault occurred',
-    recommended_actions: 'Please contac SunPower'
+    possible_causes: 'A battery internal fault occurred',
+    recommended_actions: 'Please contact SunPower'
   },
   {
     event_code: '13014',
@@ -272,8 +272,8 @@ const errorCodes = [
     in_use: true,
     display: true,
     error_description: 'Battery internal fault',
-    possible_causes: 'A battery inernal fault occurred',
-    recommended_actions: 'Please contac SunPower'
+    possible_causes: 'A battery internal fault occurred',
+    recommended_actions: 'Please contact SunPower'
   },
   {
     event_code: '13015',
@@ -282,8 +282,8 @@ const errorCodes = [
     in_use: true,
     display: true,
     error_description: 'Battery internal fault',
-    possible_causes: 'A battery inernal fault occurred',
-    recommended_actions: 'Please contac SunPower'
+    possible_causes: 'A battery internal fault occurred',
+    recommended_actions: 'Please contact SunPower'
   },
   {
     event_code: '13016',
@@ -292,8 +292,8 @@ const errorCodes = [
     in_use: true,
     display: true,
     error_description: 'Battery internal fault',
-    possible_causes: 'A battery inernal fault occurred',
-    recommended_actions: 'Please contac SunPower'
+    possible_causes: 'A battery internal fault occurred',
+    recommended_actions: 'Please contact SunPower'
   },
   {
     event_code: '13017',
@@ -324,8 +324,8 @@ const errorCodes = [
     in_use: true,
     display: true,
     error_description: 'Battery internal fault',
-    possible_causes: 'A battery inernal fault occurred',
-    recommended_actions: 'Please contac SunPower'
+    possible_causes: 'A battery internal fault occurred',
+    recommended_actions: 'Please contact SunPower'
   },
   {
     event_code: '14000',
@@ -357,7 +357,7 @@ const errorCodes = [
     code: '14003',
     in_use: true,
     display: true,
-    error_description: 'ESS humidiy is too high',
+    error_description: 'ESS humidity is too high',
     possible_causes: 'Water intrusion into ESS enclosure.',
     recommended_actions:
       'Please ensure that the all-in-one enclosure door is properly closed. Check for water or ice intrusion.'
@@ -432,7 +432,7 @@ const errorCodes = [
     possible_causes:
       'Conductor terminations flipped, CT terminations are incorrectly installed.',
     recommended_actions:
-      'Check installation of load terminations. Check that CT voltage sensing is correclty installed.'
+      'Check installation of load terminations. Check that CT voltage sensing is correctly installed.'
   },
   {
     event_code: '16001',
@@ -444,7 +444,7 @@ const errorCodes = [
     possible_causes:
       'Conductor terminations flipped, CT terminations are incorrectly installed.',
     recommended_actions:
-      'Check installation of load terminations. Check that CT voltage sensing is correclty installed.'
+      'Check installation of load terminations. Check that CT voltage sensing is correctly installed.'
   },
   {
     event_code: '16002',
@@ -456,7 +456,7 @@ const errorCodes = [
     possible_causes:
       'Conductor terminations flipped, CT terminations are incorrectly installed.',
     recommended_actions:
-      'Check installation of load terminations. Check that CT voltage sensing is correclty installed.'
+      'Check installation of load terminations. Check that CT voltage sensing is correctly installed.'
   },
   {
     event_code: '16003',
@@ -468,7 +468,7 @@ const errorCodes = [
     possible_causes:
       'Conductor terminations flipped, CT terminations are incorrectly installed.',
     recommended_actions:
-      'Check installation of load terminations. Check that CT voltage sensing is correclty installed.'
+      'Check installation of load terminations. Check that CT voltage sensing is correctly installed.'
   },
   {
     event_code: '16004',
@@ -480,7 +480,7 @@ const errorCodes = [
     possible_causes:
       'Conductor terminations flipped, CT terminations are incorrectly installed.',
     recommended_actions:
-      'Check installation of load terminations. Check that CT voltage sensing is correclty installed.'
+      'Check installation of load terminations. Check that CT voltage sensing is correctly installed.'
   },
   {
     event_code: '16005',
@@ -492,7 +492,7 @@ const errorCodes = [
     possible_causes:
       'Conductor terminations flipped, CT terminations are incorrectly installed.',
     recommended_actions:
-      'Check installation of load terminations. Check that CT voltage sensing is correclty installed.'
+      'Check installation of load terminations. Check that CT voltage sensing is correctly installed.'
   },
   {
     event_code: '16006',
@@ -502,7 +502,7 @@ const errorCodes = [
     display: true,
     error_description: 'AC Grid under frequency',
     possible_causes: 'This is likely a grid disturbance',
-    recommended_actions: 'Check with utlity.'
+    recommended_actions: 'Check with utility.'
   },
   {
     event_code: '16007',
@@ -512,7 +512,7 @@ const errorCodes = [
     display: true,
     error_description: 'AC grid over frequency',
     possible_causes: 'This is likely a grid disturbance',
-    recommended_actions: 'Check with utlity.'
+    recommended_actions: 'Check with utility.'
   },
   {
     event_code: '23003',
@@ -522,7 +522,7 @@ const errorCodes = [
     display: true,
     error_description: 'Battery internal fault',
     possible_causes: 'A battery internal fault occurred',
-    recommended_actions: 'Please contac SunPower'
+    recommended_actions: 'Please contact SunPower'
   },
   {
     event_code: '23004',
@@ -532,7 +532,7 @@ const errorCodes = [
     display: true,
     error_description: 'Battery internal fault',
     possible_causes: 'A battery internal fault occurred',
-    recommended_actions: 'Please contac SunPower'
+    recommended_actions: 'Please contact SunPower'
   },
   {
     event_code: '23005',
@@ -542,7 +542,7 @@ const errorCodes = [
     display: true,
     error_description: 'Battery internal fault',
     possible_causes: 'A battery internal fault occurred',
-    recommended_actions: 'Please contac SunPower'
+    recommended_actions: 'Please contact SunPower'
   },
   {
     event_code: '23006',
@@ -552,7 +552,7 @@ const errorCodes = [
     display: true,
     error_description: 'Battery internal fault',
     possible_causes: 'A battery internal fault occurred',
-    recommended_actions: 'Please contac SunPower'
+    recommended_actions: 'Please contact SunPower'
   },
   {
     event_code: '23007',
@@ -562,7 +562,7 @@ const errorCodes = [
     display: true,
     error_description: 'Battery internal fault',
     possible_causes: 'A battery internal fault occurred',
-    recommended_actions: 'Please contac SunPower'
+    recommended_actions: 'Please contact SunPower'
   },
   {
     event_code: '23008',
@@ -572,7 +572,7 @@ const errorCodes = [
     display: true,
     error_description: 'Battery internal fault',
     possible_causes: 'A battery internal fault occurred',
-    recommended_actions: 'Please contac SunPower'
+    recommended_actions: 'Please contact SunPower'
   },
   {
     event_code: '23009',
@@ -582,7 +582,7 @@ const errorCodes = [
     display: true,
     error_description: 'Battery internal fault',
     possible_causes: 'A battery internal fault occurred',
-    recommended_actions: 'Please contac SunPower'
+    recommended_actions: 'Please contact SunPower'
   },
   {
     event_code: '23010',
@@ -592,7 +592,7 @@ const errorCodes = [
     display: true,
     error_description: 'Battery internal fault',
     possible_causes: 'A battery internal fault occurred',
-    recommended_actions: 'Please contac SunPower'
+    recommended_actions: 'Please contact SunPower'
   },
   {
     event_code: '23011',
@@ -602,7 +602,7 @@ const errorCodes = [
     display: true,
     error_description: 'Battery internal fault',
     possible_causes: 'A battery internal fault occurred',
-    recommended_actions: 'Please contac SunPower'
+    recommended_actions: 'Please contact SunPower'
   },
   {
     event_code: '23012',
@@ -612,7 +612,7 @@ const errorCodes = [
     display: true,
     error_description: 'Battery internal fault',
     possible_causes: 'A battery internal fault occurred',
-    recommended_actions: 'Please contac SunPower'
+    recommended_actions: 'Please contact SunPower'
   },
   {
     event_code: '23013',
@@ -622,7 +622,7 @@ const errorCodes = [
     display: true,
     error_description: 'Battery internal fault',
     possible_causes: 'A battery internal fault occurred',
-    recommended_actions: 'Please contac SunPower'
+    recommended_actions: 'Please contact SunPower'
   },
   {
     event_code: '23014',
@@ -632,7 +632,7 @@ const errorCodes = [
     display: true,
     error_description: 'Battery internal fault',
     possible_causes: 'A battery internal fault occurred',
-    recommended_actions: 'Please contac SunPower'
+    recommended_actions: 'Please contact SunPower'
   },
   {
     event_code: '23015',
@@ -642,7 +642,7 @@ const errorCodes = [
     display: true,
     error_description: 'Battery internal fault',
     possible_causes: 'A battery internal fault occurred',
-    recommended_actions: 'Please contac SunPower'
+    recommended_actions: 'Please contact SunPower'
   },
   {
     event_code: '23016',
@@ -652,7 +652,7 @@ const errorCodes = [
     display: true,
     error_description: 'Battery internal fault',
     possible_causes: 'A battery internal fault occurred',
-    recommended_actions: 'Please contac SunPower'
+    recommended_actions: 'Please contact SunPower'
   },
   {
     event_code: '30000',
@@ -1069,7 +1069,7 @@ const errorCodes = [
     in_use: true,
     display: true,
     error_description: 'Contactor error unknown',
-    possible_causes: 'Unkown',
+    possible_causes: 'Unknown',
     recommended_actions: 'Unknown'
   },
   {
@@ -1977,7 +1977,7 @@ const errorCodes = [
     possible_causes:
       'Battery may have been exposed ot harsh environmental conditions or may have been used aggressively.',
     recommended_actions:
-      'Check battery location: temperature and airflow into batttery. Contact SunPower'
+      'Check battery location: temperature and airflow into battery. Contact SunPower'
   },
   {
     event_code: '33002',
@@ -1988,7 +1988,7 @@ const errorCodes = [
     error_description: 'Battery communication outage',
     possible_causes: 'PVS cannot reach the battery',
     recommended_actions:
-      'Check Etherned and CAN connections between battery gateway, PVS and MIO board.'
+      'Check Ethernet and CAN connections between battery gateway, PVS and MIO board.'
   },
   {
     event_code: '33003',
@@ -2351,7 +2351,7 @@ const errorCodes = [
     error_description: 'MIO communication outage',
     possible_causes: 'PVS cannot reach MIO board',
     recommended_actions:
-      'Check Etherned and CAN connections between PVS and MIO board'
+      'Check Ethernet and CAN connections between PVS and MIO board'
   },
   {
     event_code: '34011',
@@ -2568,7 +2568,7 @@ const errorCodes = [
     code: '35000',
     in_use: true,
     display: true,
-    error_description: 'Gateway communiciation outage',
+    error_description: 'Gateway communication outage',
     possible_causes: 'PVS cannot communicate with Schneider gateway',
     recommended_actions:
       'Check Ethernet connector between PVS and Schneider gateway'
