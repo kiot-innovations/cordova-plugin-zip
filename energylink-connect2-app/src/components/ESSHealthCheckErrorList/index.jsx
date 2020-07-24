@@ -74,7 +74,7 @@ const renderErrors = t => err => {
 
         <div className="collapsible">
           <p className="has-text-white">{t('ACTIONS')}</p>
-          <p dangerouslySetInnerHTML={recommendations} />
+          <div dangerouslySetInnerHTML={recommendations} />
         </div>
       </Collapsible>
     </div>
