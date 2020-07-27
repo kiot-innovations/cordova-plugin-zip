@@ -309,7 +309,7 @@
   "MI_SN": "Microinverters",
   "POWER_OUTPUT": "Power Output",
   "NO_MI_LIVE_DATA": "No MI power data available",
-  "WATTS": "watts",
+  "WATTS": "W",
   "GO_PANEL_LAYOUT": "Go to Panel layout tool",
   "HEALTH_CHECK": "Health Check",
   "HEALTH_REPORT": "Hold on. We're generating the SunVault Health Report",
@@ -427,5 +427,9 @@
   "REPLACE_PVS": "Replace PVS",
   "EDIT_DEVICES": "Edit devices",
   "SELECT_PVS_MODAL": "Please select a PVS to continue",
-  "ADD": "Add"
+  "ADD": "Add",
+  "SUNVAULT_STATUS": "SunVault Status",
+  "POWER_PRODUCTION": "Power Production",
+  "INVERTERS": "Inverters",
+  "INVERTER": "Inverter"
 }

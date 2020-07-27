@@ -23,6 +23,9 @@ import { either } from 'shared/utils'
 import EnergyGraphSection from './EnergyGraphSection'
 import RightNow from 'components/RightNow'
 import MiDataLive from 'components/MiDataLive'
+import Collapsible from 'components/Collapsible'
+import { ButtonLink } from 'components/ButtonLink'
+import paths from 'routes/paths'
 import './Data.scss'
 
 export default () => {
@@ -91,22 +94,26 @@ export default () => {
   }
 
   return (
-    <section className="data is-flex has-text-centered full-height">
+    <section className="data is-flex has-text-centered full-height pl-10 pr-10">
       <section>
-        <div className="eqs-status">
-          <span className="has-text-white has-text-weight-bold mb-2">
-            {t('EQS_STATUS')}
+        <Collapsible title={t('SUNVAULT_STATUS')}>
+          <span className="has-text-weight-bold has-text-white mt-10 mb-10">
+            {either(
+              !isEmpty(essState),
+              <span>
+                {storageStatus.error
+                  ? t('EQS_ERROR')
+                  : t(essDisplayStatus(essState))}
+              </span>,
+              <span className="loader-label">{t('LOADING')}</span>
+            )}
           </span>
-          {either(
-            !isEmpty(essState),
-            <span>
-              {storageStatus.error
-                ? t('EQS_ERROR')
-                : t(essDisplayStatus(essState))}
-            </span>,
-            <span className="loader-label">{t('LOADING')}</span>
-          )}
-        </div>
+          <ButtonLink
+            title={t('HEALTH_CHECK')}
+            path={paths.PROTECTED.ESS_HEALTH_CHECK.path}
+          />
+        </Collapsible>
+        {either(miData, <MiDataLive data={miData} />)}
       </section>
       <section>
         <h6 className="is-uppercase mt-20 mb-20">{t('RIGHT_NOW')}</h6>
@@ -119,8 +126,6 @@ export default () => {
           batteryLevel={data.stateOfCharge}
         />
       </section>
-      <div className="separator" />
-      {either(miData, <MiDataLive data={miData} />)}
       <div className="separator" />
       <EnergyGraphSection />
     </section>
