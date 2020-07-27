@@ -1,6 +1,8 @@
-@import '../../../node_modules/@sunpower/theme-dark/styles/variables';
+@import '~@sunpower/theme-dark/styles/variables';
 
 .sunpower-devices {
+  font-family: $font;
+
   .equipment-list {
     max-height: 250px;
     .equipment-piece {

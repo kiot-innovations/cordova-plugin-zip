@@ -34,8 +34,12 @@ describe('MiDataLive Component', () => {
     ]
 
     const component = shallow(<MiDataLive data={data} />)
-    expect(component.find('.mi-data-live table').exists()).toBe(true)
-    expect(component.find('.mi-data-live tbody tr').length).toBe(2)
+    expect(component.find('.mi-data-live .power-production').exists()).toBe(
+      true
+    )
+    expect(
+      component.find('.mi-data-live .power-production .power-row').length
+    ).toBe(2)
     expect(component).toMatchSnapshot()
   })
 })

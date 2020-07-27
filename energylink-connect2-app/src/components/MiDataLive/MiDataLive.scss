@@ -1,12 +1,12 @@
 .mi-data-live {
-  border-style: hidden;
-  td {
-    border-top: 1px dashed white;
-    border-bottom: 1px dashed white;
-  }
-  tr {
-    td:first-child {
-      width: 60%;
+  .power-production {
+    .count-value {
+      line-height: initial;
+    }
+
+    .power-row {
+      display: grid;
+      grid-template-columns: 60% 1fr;
     }
   }
 }
