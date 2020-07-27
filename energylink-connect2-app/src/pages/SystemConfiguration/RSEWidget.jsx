@@ -36,8 +36,8 @@ function RSEWidget() {
   const { powerProduction, progress = 100 } = data
 
   const dropDownValues = [
-    { label: t('ON'), value: 'Off' },
-    { label: t('OFF'), value: 'On' }
+    { label: t('ON'), value: 'On' },
+    { label: t('OFF'), value: 'Off' }
   ]
 
   const applyPowerProductionValue = compose(dispatch, SET_RSE_INIT)
@@ -154,19 +154,19 @@ const renderRSEDescription = (powerProduction, t) =>
   either(
     equals(powerProduction, 'Off'),
     <article>
-      <p className="text-center">{t('RSE_ON_SYSTEM')}</p>
+      <p className="text-center">{t('RSE_OFF_SYSTEM')}</p>
       <ul>
-        <li>{t('RSE_ON_1')}</li>
-        <li>{t('RSE_ON_2')}</li>
+        <li>{t('RSE_OFF_1')}</li>
+        <li>{t('RSE_OFF_2')}</li>
       </ul>
 
-      <p className="text-center mt-10">{t('RSE_ON_MICROINVERTERS')}</p>
+      <p className="text-center mt-10">{t('RSE_OFF_MICROINVERTERS')}</p>
       <ul>
-        <li>{t('RSE_ON_3')}</li>
-        <li>{t('RSE_ON_4')}</li>
+        <li>{t('RSE_OFF_3')}</li>
+        <li>{t('RSE_OFF_4')}</li>
       </ul>
     </article>,
-    <p className="text-center">{t('RSE_OFF')}</p>
+    <p className="text-center">{t('RSE_ON')}</p>
   )
 
 export default RSEWidget

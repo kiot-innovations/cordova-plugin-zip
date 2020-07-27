@@ -94,15 +94,17 @@ const filterFoundMI = (SNList, candidatesList) => {
 
 const discoveryStatus = (
   error,
-  discoveryComplete,
+  expected,
+  okMICount,
   errMICount,
   claimError,
   claimingDevices,
   claimDevices,
   t,
+  discoveryComplete,
   retryDiscovery
 ) => {
-  if (discoveryComplete) {
+  if (expected === okMICount + errMICount && discoveryComplete) {
     if (errMICount > 0) {
       return (
         <>
@@ -179,7 +181,17 @@ const discoveryStatus = (
       </>
     )
   } else {
-    return (
+    return error ? (
+      <>
+        <button
+          className="button is-primary is-uppercase is-paddingless ml-75 mr-75"
+          onClick={retryDiscovery}
+        >
+          {t('RETRY')}
+        </button>
+        <span className="has-text-weight-bold mt-20">{t(error)}</span>
+      </>
+    ) : (
       <span className="has-text-weight-bold mb-20">
         {claimingDevices ? t('CLAIMING_DEVICES') : t('DISCOVERY_IN_PROGRESS')}
       </span>
@@ -201,13 +213,13 @@ function Devices() {
   const { serialNumbers } = useSelector(state => state.pvs)
 
   const {
-    discoveryComplete,
     candidates,
     claimingDevices,
     claimedDevices,
     claimError,
     error,
-    progress
+    progress,
+    discoveryComplete
   } = useSelector(state => state.devices)
 
   const { okMI, nonOkMI, pendingMI } = filterFoundMI(serialNumbers, candidates)
@@ -323,12 +335,14 @@ function Devices() {
       </div>
       {discoveryStatus(
         error,
-        discoveryComplete,
+        expected,
+        okMICount,
         errMICount,
         claimError,
         claimingDevices,
         claimDevices,
         t,
+        discoveryComplete,
         retryDiscovery
       )}
     </div>
