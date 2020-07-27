@@ -2,75 +2,93 @@
 
 exports[`MiDataLive Component Renders Correctly when there is data to show 1`] = `
 <div
-  className="mi-data-live"
+  className="mt-10 mb-10"
 >
-  <table
-    className="auto mb-50"
+  <Collapsible
+    actions="0.72 kW"
+    title="POWER_PRODUCTION"
   >
-    <thead>
-      <tr>
-        <th
-          className="is-uppercase has-text-white is-size-7 has-text-centered"
-        >
-          MI_SN
-        </th>
-        <th
-          className="is-uppercase has-text-white is-size-7 has-text-centered"
-        >
-          POWER_OUTPUT
-        </th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr
-        key="E00121837000376"
+    <div
+      className="mi-data-live"
+    >
+      <div
+        className="power-production"
       >
-        <td
-          className="pl-10 pt-10 pb-10 pr-10 has-text-white has-text-centered"
+        <div
+          className="inverter-count"
         >
-          E00121837000376
-        </td>
-        <td
-          className="pt-10 has-text-white has-text-centered"
+          <span
+            className="count-value has-text-weight-bold is-size-1"
+          >
+            2
+          </span>
+          <span
+            className="ml-10 has-text-weight-bold"
+          >
+            INVERTERS
+          </span>
+        </div>
+        <div
+          className="power-row mt-5 mb-5"
+          key="E00121837000376"
         >
-          360
-           
-          WATTS
-        </td>
-      </tr>
-      <tr
-        key="E00121836037707"
-      >
-        <td
-          className="pl-10 pt-10 pb-10 pr-10 has-text-white has-text-centered"
+          <span
+            className="has-text-white"
+          >
+            E00121837000376
+          </span>
+          <span
+            className="has-text-white has-text-weight-bold has-text-right"
+          >
+            360
+             
+            WATTS
+          </span>
+        </div>
+        <div
+          className="power-row mt-5 mb-5"
+          key="E00121836037707"
         >
-          E00121836037707
-        </td>
-        <td
-          className="pt-10 has-text-white has-text-centered"
-        >
-          360
-           
-          WATTS
-        </td>
-      </tr>
-    </tbody>
-  </table>
+          <span
+            className="has-text-white"
+          >
+            E00121836037707
+          </span>
+          <span
+            className="has-text-white has-text-weight-bold has-text-right"
+          >
+            360
+             
+            WATTS
+          </span>
+        </div>
+      </div>
+    </div>
+  </Collapsible>
 </div>
 `;
 
 exports[`MiDataLive Component Renders Correctly when there is no data 1`] = `
 <div
-  className="mi-data-live"
+  className="mt-10 mb-10"
 >
-  <div
-    className="auto pl-30 pr-30"
+  <Collapsible
+    actions="0.00 kW"
+    title="POWER_PRODUCTION"
   >
-    <p
-      className="has-text-centered empty is-size-4"
+    <div
+      className="mi-data-live"
     >
-      NO_MI_LIVE_DATA
-    </p>
-  </div>
+      <div
+        className="auto pl-30 pr-30"
+      >
+        <p
+          className="has-text-centered empty is-size-4"
+        >
+          NO_MI_LIVE_DATA
+        </p>
+      </div>
+    </div>
+  </Collapsible>
 </div>
 `;
