@@ -55,7 +55,7 @@ const renderErrors = t => err => {
   const recommendations = { __html: marked(recommended_actions) }
 
   return (
-    <div className="mb-10" key={error_code}>
+    <div className="ess-health-check-error-list mb-10" key={error_code}>
       <Collapsible title={message}>
         <div>
           <p>
@@ -73,7 +73,7 @@ const renderErrors = t => err => {
         <div className="collapsible mt-10 mb-15">
           <p className="has-text-white">{t('POSSIBLE_CAUSES')}</p>
           <div
-            className="recommendations"
+            className="error-info"
             dangerouslySetInnerHTML={possibleCauses}
           />
         </div>
@@ -81,7 +81,7 @@ const renderErrors = t => err => {
         <div className="collapsible">
           <p className="has-text-white">{t('ACTIONS')}</p>
           <div
-            className="recommendations"
+            className="error-info"
             dangerouslySetInnerHTML={recommendations}
           />
         </div>
