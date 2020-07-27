@@ -59,7 +59,7 @@ export const pollRSEEpic = (action$, state$) => {
       timer(500, 3500).pipe(
         takeUntil(stopPolling$),
         map(timeLapsed =>
-          currentProgress < 100 || timeLapsed < 5
+          currentProgress < 100 || timeLapsed < 3
             ? GET_RSE_INIT(true)
             : SET_RSE_SUCCESS()
         )

@@ -30,8 +30,7 @@ const rseReducer = createReducer(
       data: {
         ...state.data,
         progress: null
-      },
-      selectedPowerProduction: state.data.powerProduction
+      }
     }),
     [GET_RSE_SUCCESS]: (state, payload) => ({
       ...state,
