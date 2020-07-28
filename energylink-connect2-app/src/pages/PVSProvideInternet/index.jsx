@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { pathOr } from 'ramda'
+import { pathOr, length } from 'ramda'
 import clsx from 'clsx'
 import { useI18n } from 'shared/i18n'
 import { useSelector, useDispatch } from 'react-redux'
@@ -30,8 +30,16 @@ const PVSProvideInternet = () => {
     pathOr(false, ['systemConfiguration', 'network'])
   )
 
+  const rmaPvs = useSelector(pathOr(false, ['rma', 'pvs']))
+  const { bom } = useSelector(state => state.inventory)
+  const modulesOnInventory = bom.filter(item => {
+    return item.item === 'AC_MODULES'
+  })
+
   const goToScanLabels = () => {
-    history.push(paths.PROTECTED.SCAN_LABELS.path)
+    if (rmaPvs && length(modulesOnInventory) < 1)
+      history.push(paths.PROTECTED.DEVICES.path)
+    else history.push(paths.PROTECTED.SCAN_LABELS.path)
   }
 
   useEffect(() => {
