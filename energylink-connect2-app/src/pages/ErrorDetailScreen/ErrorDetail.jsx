@@ -69,7 +69,10 @@ const ErrorDetailScreen = () => {
           <h1 className="has-text-white is-size-5 has-text-weight-bold mb-10">
             {t('POSSIBLE_CAUSES')}
           </h1>
-          <span>{code.possible_causes}</span>
+          <div
+            className="error-info"
+            dangerouslySetInnerHTML={createMarkup(code.possible_causes)}
+          />
         </div>
         <div className="mt-10 mb-10 ml-10 mr-10">
           {either(
@@ -79,6 +82,7 @@ const ErrorDetailScreen = () => {
                 {t('ACTIONS')}
               </h1>
               <div
+                className="error-info"
                 dangerouslySetInnerHTML={createMarkup(code.recommended_actions)}
               />
             </>
