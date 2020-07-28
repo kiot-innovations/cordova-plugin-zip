@@ -1,12 +1,25 @@
+@import '~@sunpower/theme-dark/styles/variables';
+
 .qr-layout{
   height: 100%;
   display: grid;
-  grid-template-rows: 10% 1fr 15% 10%;
+  grid-template-rows: 10% 1fr 25% 25%;
 
   #scandit {
     // height: 330px;
     width: 105%;
     margin-left: -10px;
+  }
+
+  .manual-entry{
+    input {
+      background: $dark;
+      color: $loblolly;
+      padding: 10px;
+      border: none;
+      border-radius: 10px;
+      width: 90%;
+    }
   }
 }
 
@@ -18,4 +31,11 @@
   i{
     font-size: 8em;
   }
+}
+
+.ReactSwipeableBottomSheet--open, .ReactSwipeableBottomSheet--closed {
+  padding: 1rem;
+  background-color: $light-black !important;
+  border-radius: 20px;
+  margin-bottom: 100px;
 }

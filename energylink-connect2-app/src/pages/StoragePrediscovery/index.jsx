@@ -86,7 +86,7 @@ function StoragePrediscovery() {
               isEmpty(error) ? (
                 <ContinueFooter
                   url={paths.PROTECTED.EQS_UPDATE.path}
-                  text={'DEVICE_MAPPING_SUCCESS'}
+                  text={'PREDISCOVERY_SUCCESS'}
                 />
               ) : (
                 <div className="prediscovery-retry has-text-centered is-flex mt-15 mb-15 pl-15 pr-15">
