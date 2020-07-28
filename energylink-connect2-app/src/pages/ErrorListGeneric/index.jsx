@@ -1,10 +1,12 @@
 import React, { useState } from 'react'
-import './ErrorListScreen.scss'
+import { omit } from 'ramda'
 import { Link, useHistory } from 'react-router-dom'
+
 import paths, { setParams } from 'routes/paths'
 import { useI18n } from 'shared/i18n'
-import { omit } from 'ramda'
 import { getError } from 'shared/errorCodes'
+
+import './ErrorListScreen.scss'
 
 const ErrorComponent = ({ title, code, errorInfo, t }) => (
   <div className="error-component">
@@ -40,9 +42,7 @@ const getErrorInfo = omit([
 const ErrorListScreen = ({ errors = [] }) => {
   const t = useI18n()
   const history = useHistory()
-  const [parsedErrors] = useState(() =>
-    errors.map(elem => getError(elem.error_code))
-  )
+  const [parsedErrors] = useState(() => errors.map(getError))
   return (
     <div className="error-list-screen">
       {parsedErrors.map(elem => (

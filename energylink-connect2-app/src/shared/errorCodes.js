@@ -1,4 +1,5 @@
-import { propOr } from 'ramda'
+import * as Sentry from '@sentry/browser'
+import { prop } from 'ramda'
 import { arrayToObject } from 'shared/utils'
 
 const errorCodes = [
@@ -2615,6 +2616,22 @@ const errorCodes = [
   }
 ]
 
+const unknownError = code => {
+  Sentry.captureException(`Error code not found ${code}`)
+  return null
+}
+
 export const keyedErrors = arrayToObject('event_code', errorCodes)
-export const getError = (errorCode = '') => propOr(null, errorCode, keyedErrors)
+export const getError = error => {
+  const { code, error_message } = error
+  const errorObj = prop(code, keyedErrors)
+  //in case we found the error in the object above
+  if (errorObj) return errorObj
+  //in case there is an error message
+  // for formatting reasons, will replace all _ to ' '
+  else if (error_message)
+    return { ...error, error_message: error_message.replace(/_/gm, ' ') }
+  //in case error_message doesn't exist
+  return unknownError(code)
+}
 export default errorCodes
