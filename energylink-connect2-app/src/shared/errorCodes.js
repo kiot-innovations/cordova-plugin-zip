@@ -83,7 +83,7 @@ const errorCodes = [
     code: '11020',
     in_use: true,
     display: true,
-    error_description: 'Hub+ power supply under voltate',
+    error_description: 'Hub+ power supply under voltage',
     possible_causes: 'Check user manual',
     recommended_actions: 'Check user manual'
   },
@@ -103,7 +103,7 @@ const errorCodes = [
     code: '11024',
     in_use: true,
     display: true,
-    error_description: 'Hub+ jumpstart out of range',
+    error_description: 'Hub+ jump-start out of range',
     possible_causes: 'Check user manual',
     recommended_actions: 'Check user manual'
   },
@@ -153,7 +153,7 @@ const errorCodes = [
     possible_causes:
       'Battery may have been exposed ot harsh environmental conditions or may have been used aggressively.',
     recommended_actions:
-      'Check battery location: temperature and airflow into batttery. Contact SunPower'
+      'Check battery location: temperature and airflow into battery. Contact SunPower'
   },
   {
     event_code: '13003',
@@ -162,8 +162,8 @@ const errorCodes = [
     in_use: true,
     display: true,
     error_description: 'Battery internal fault',
-    possible_causes: 'A battery inernal fault occurred',
-    recommended_actions: 'Please contac SunPower'
+    possible_causes: 'A battery internal fault occurred',
+    recommended_actions: 'Please contact SunPower'
   },
   {
     event_code: '13004',
@@ -172,8 +172,8 @@ const errorCodes = [
     in_use: true,
     display: true,
     error_description: 'Battery internal fault',
-    possible_causes: 'A battery inernal fault occurred',
-    recommended_actions: 'Please contac SunPower'
+    possible_causes: 'A battery internal fault occurred',
+    recommended_actions: 'Please contact SunPower'
   },
   {
     event_code: '13005',
@@ -182,8 +182,8 @@ const errorCodes = [
     in_use: true,
     display: true,
     error_description: 'Battery internal fault',
-    possible_causes: 'A battery inernal fault occurred',
-    recommended_actions: 'Please contac SunPower'
+    possible_causes: 'A battery internal fault occurred',
+    recommended_actions: 'Please contact SunPower'
   },
   {
     event_code: '13006',
@@ -192,8 +192,8 @@ const errorCodes = [
     in_use: true,
     display: true,
     error_description: 'Battery internal fault',
-    possible_causes: 'A battery inernal fault occurred',
-    recommended_actions: 'Please contac SunPower'
+    possible_causes: 'A battery internal fault occurred',
+    recommended_actions: 'Please contact SunPower'
   },
   {
     event_code: '13007',
@@ -202,8 +202,8 @@ const errorCodes = [
     in_use: true,
     display: true,
     error_description: 'Battery internal fault',
-    possible_causes: 'A battery inernal fault occurred',
-    recommended_actions: 'Please contac SunPower'
+    possible_causes: 'A battery internal fault occurred',
+    recommended_actions: 'Please contact SunPower'
   },
   {
     event_code: '13008',
@@ -212,8 +212,8 @@ const errorCodes = [
     in_use: true,
     display: true,
     error_description: 'Battery internal fault',
-    possible_causes: 'A battery inernal fault occurred',
-    recommended_actions: 'Please contac SunPower'
+    possible_causes: 'A battery internal fault occurred',
+    recommended_actions: 'Please contact SunPower'
   },
   {
     event_code: '13009',
@@ -222,8 +222,8 @@ const errorCodes = [
     in_use: true,
     display: true,
     error_description: 'Battery internal fault',
-    possible_causes: 'A battery inernal fault occurred',
-    recommended_actions: 'Please contac SunPower'
+    possible_causes: 'A battery internal fault occurred',
+    recommended_actions: 'Please contact SunPower'
   },
   {
     event_code: '13010',
@@ -232,8 +232,8 @@ const errorCodes = [
     in_use: true,
     display: true,
     error_description: 'Battery internal fault',
-    possible_causes: 'A battery inernal fault occurred',
-    recommended_actions: 'Please contac SunPower'
+    possible_causes: 'A battery internal fault occurred',
+    recommended_actions: 'Please contact SunPower'
   },
   {
     event_code: '13011',
@@ -242,8 +242,8 @@ const errorCodes = [
     in_use: true,
     display: true,
     error_description: 'Battery internal fault',
-    possible_causes: 'A battery inernal fault occurred',
-    recommended_actions: 'Please contac SunPower'
+    possible_causes: 'A battery internal fault occurred',
+    recommended_actions: 'Please contact SunPower'
   },
   {
     event_code: '13012',
@@ -252,8 +252,8 @@ const errorCodes = [
     in_use: true,
     display: true,
     error_description: 'Battery internal fault',
-    possible_causes: 'A battery inernal fault occurred',
-    recommended_actions: 'Please contac SunPower'
+    possible_causes: 'A battery internal fault occurred',
+    recommended_actions: 'Please contact SunPower'
   },
   {
     event_code: '13013',
@@ -262,8 +262,8 @@ const errorCodes = [
     in_use: true,
     display: true,
     error_description: 'Battery internal fault',
-    possible_causes: 'A battery inernal fault occurred',
-    recommended_actions: 'Please contac SunPower'
+    possible_causes: 'A battery internal fault occurred',
+    recommended_actions: 'Please contact SunPower'
   },
   {
     event_code: '13014',
@@ -272,8 +272,8 @@ const errorCodes = [
     in_use: true,
     display: true,
     error_description: 'Battery internal fault',
-    possible_causes: 'A battery inernal fault occurred',
-    recommended_actions: 'Please contac SunPower'
+    possible_causes: 'A battery internal fault occurred',
+    recommended_actions: 'Please contact SunPower'
   },
   {
     event_code: '13015',
@@ -282,8 +282,8 @@ const errorCodes = [
     in_use: true,
     display: true,
     error_description: 'Battery internal fault',
-    possible_causes: 'A battery inernal fault occurred',
-    recommended_actions: 'Please contac SunPower'
+    possible_causes: 'A battery internal fault occurred',
+    recommended_actions: 'Please contact SunPower'
   },
   {
     event_code: '13016',
@@ -292,8 +292,8 @@ const errorCodes = [
     in_use: true,
     display: true,
     error_description: 'Battery internal fault',
-    possible_causes: 'A battery inernal fault occurred',
-    recommended_actions: 'Please contac SunPower'
+    possible_causes: 'A battery internal fault occurred',
+    recommended_actions: 'Please contact SunPower'
   },
   {
     event_code: '13017',
@@ -324,8 +324,8 @@ const errorCodes = [
     in_use: true,
     display: true,
     error_description: 'Battery internal fault',
-    possible_causes: 'A battery inernal fault occurred',
-    recommended_actions: 'Please contac SunPower'
+    possible_causes: 'A battery internal fault occurred',
+    recommended_actions: 'Please contact SunPower'
   },
   {
     event_code: '14000',
@@ -357,7 +357,7 @@ const errorCodes = [
     code: '14003',
     in_use: true,
     display: true,
-    error_description: 'ESS humidiy is too high',
+    error_description: 'ESS humidity is too high',
     possible_causes: 'Water intrusion into ESS enclosure.',
     recommended_actions:
       'Please ensure that the all-in-one enclosure door is properly closed. Check for water or ice intrusion.'
@@ -432,7 +432,7 @@ const errorCodes = [
     possible_causes:
       'Conductor terminations flipped, CT terminations are incorrectly installed.',
     recommended_actions:
-      'Check installation of load terminations. Check that CT voltage sensing is correclty installed.'
+      'Check installation of load terminations. Check that CT voltage sensing is correctly installed.'
   },
   {
     event_code: '16001',
@@ -444,7 +444,7 @@ const errorCodes = [
     possible_causes:
       'Conductor terminations flipped, CT terminations are incorrectly installed.',
     recommended_actions:
-      'Check installation of load terminations. Check that CT voltage sensing is correclty installed.'
+      'Check installation of load terminations. Check that CT voltage sensing is correctly installed.'
   },
   {
     event_code: '16002',
@@ -456,7 +456,7 @@ const errorCodes = [
     possible_causes:
       'Conductor terminations flipped, CT terminations are incorrectly installed.',
     recommended_actions:
-      'Check installation of load terminations. Check that CT voltage sensing is correclty installed.'
+      'Check installation of load terminations. Check that CT voltage sensing is correctly installed.'
   },
   {
     event_code: '16003',
@@ -468,7 +468,7 @@ const errorCodes = [
     possible_causes:
       'Conductor terminations flipped, CT terminations are incorrectly installed.',
     recommended_actions:
-      'Check installation of load terminations. Check that CT voltage sensing is correclty installed.'
+      'Check installation of load terminations. Check that CT voltage sensing is correctly installed.'
   },
   {
     event_code: '16004',
@@ -480,7 +480,7 @@ const errorCodes = [
     possible_causes:
       'Conductor terminations flipped, CT terminations are incorrectly installed.',
     recommended_actions:
-      'Check installation of load terminations. Check that CT voltage sensing is correclty installed.'
+      'Check installation of load terminations. Check that CT voltage sensing is correctly installed.'
   },
   {
     event_code: '16005',
@@ -492,7 +492,7 @@ const errorCodes = [
     possible_causes:
       'Conductor terminations flipped, CT terminations are incorrectly installed.',
     recommended_actions:
-      'Check installation of load terminations. Check that CT voltage sensing is correclty installed.'
+      'Check installation of load terminations. Check that CT voltage sensing is correctly installed.'
   },
   {
     event_code: '16006',
@@ -502,7 +502,7 @@ const errorCodes = [
     display: true,
     error_description: 'AC Grid under frequency',
     possible_causes: 'This is likely a grid disturbance',
-    recommended_actions: 'Check with utlity.'
+    recommended_actions: 'Check with utility.'
   },
   {
     event_code: '16007',
@@ -512,7 +512,7 @@ const errorCodes = [
     display: true,
     error_description: 'AC grid over frequency',
     possible_causes: 'This is likely a grid disturbance',
-    recommended_actions: 'Check with utlity.'
+    recommended_actions: 'Check with utility.'
   },
   {
     event_code: '23003',
@@ -522,7 +522,7 @@ const errorCodes = [
     display: true,
     error_description: 'Battery internal fault',
     possible_causes: 'A battery internal fault occurred',
-    recommended_actions: 'Please contac SunPower'
+    recommended_actions: 'Please contact SunPower'
   },
   {
     event_code: '23004',
@@ -532,7 +532,7 @@ const errorCodes = [
     display: true,
     error_description: 'Battery internal fault',
     possible_causes: 'A battery internal fault occurred',
-    recommended_actions: 'Please contac SunPower'
+    recommended_actions: 'Please contact SunPower'
   },
   {
     event_code: '23005',
@@ -542,7 +542,7 @@ const errorCodes = [
     display: true,
     error_description: 'Battery internal fault',
     possible_causes: 'A battery internal fault occurred',
-    recommended_actions: 'Please contac SunPower'
+    recommended_actions: 'Please contact SunPower'
   },
   {
     event_code: '23006',
@@ -552,7 +552,7 @@ const errorCodes = [
     display: true,
     error_description: 'Battery internal fault',
     possible_causes: 'A battery internal fault occurred',
-    recommended_actions: 'Please contac SunPower'
+    recommended_actions: 'Please contact SunPower'
   },
   {
     event_code: '23007',
@@ -562,7 +562,7 @@ const errorCodes = [
     display: true,
     error_description: 'Battery internal fault',
     possible_causes: 'A battery internal fault occurred',
-    recommended_actions: 'Please contac SunPower'
+    recommended_actions: 'Please contact SunPower'
   },
   {
     event_code: '23008',
@@ -572,7 +572,7 @@ const errorCodes = [
     display: true,
     error_description: 'Battery internal fault',
     possible_causes: 'A battery internal fault occurred',
-    recommended_actions: 'Please contac SunPower'
+    recommended_actions: 'Please contact SunPower'
   },
   {
     event_code: '23009',
@@ -582,7 +582,7 @@ const errorCodes = [
     display: true,
     error_description: 'Battery internal fault',
     possible_causes: 'A battery internal fault occurred',
-    recommended_actions: 'Please contac SunPower'
+    recommended_actions: 'Please contact SunPower'
   },
   {
     event_code: '23010',
@@ -592,7 +592,7 @@ const errorCodes = [
     display: true,
     error_description: 'Battery internal fault',
     possible_causes: 'A battery internal fault occurred',
-    recommended_actions: 'Please contac SunPower'
+    recommended_actions: 'Please contact SunPower'
   },
   {
     event_code: '23011',
@@ -602,7 +602,7 @@ const errorCodes = [
     display: true,
     error_description: 'Battery internal fault',
     possible_causes: 'A battery internal fault occurred',
-    recommended_actions: 'Please contac SunPower'
+    recommended_actions: 'Please contact SunPower'
   },
   {
     event_code: '23012',
@@ -612,7 +612,7 @@ const errorCodes = [
     display: true,
     error_description: 'Battery internal fault',
     possible_causes: 'A battery internal fault occurred',
-    recommended_actions: 'Please contac SunPower'
+    recommended_actions: 'Please contact SunPower'
   },
   {
     event_code: '23013',
@@ -622,7 +622,7 @@ const errorCodes = [
     display: true,
     error_description: 'Battery internal fault',
     possible_causes: 'A battery internal fault occurred',
-    recommended_actions: 'Please contac SunPower'
+    recommended_actions: 'Please contact SunPower'
   },
   {
     event_code: '23014',
@@ -632,7 +632,7 @@ const errorCodes = [
     display: true,
     error_description: 'Battery internal fault',
     possible_causes: 'A battery internal fault occurred',
-    recommended_actions: 'Please contac SunPower'
+    recommended_actions: 'Please contact SunPower'
   },
   {
     event_code: '23015',
@@ -642,7 +642,7 @@ const errorCodes = [
     display: true,
     error_description: 'Battery internal fault',
     possible_causes: 'A battery internal fault occurred',
-    recommended_actions: 'Please contac SunPower'
+    recommended_actions: 'Please contact SunPower'
   },
   {
     event_code: '23016',
@@ -652,7 +652,7 @@ const errorCodes = [
     display: true,
     error_description: 'Battery internal fault',
     possible_causes: 'A battery internal fault occurred',
-    recommended_actions: 'Please contac SunPower'
+    recommended_actions: 'Please contact SunPower'
   },
   {
     event_code: '30000',
@@ -662,9 +662,9 @@ const errorCodes = [
     display: true,
     error_description: 'No MIDC',
     possible_causes:
-      'The PVS cannot connect with the MIDC board. The MIDC board drives the transfer switch on the Hub+. It also connects to the MIO board, so if you’re seeing this error, it is likely that other errors are occurring as well. You should focus on fixing this error first before you proceed to fix the others.\n\nThis problem may be due to one of the following causes:\n\n1. The MIDC board is not powered\n\n1. The MIDC board is not connected to the MIO board.\n\n1. PVS MIDC CAN connector is bad\n\n1. The MIDC board is damaged\n\n1. The AUX cable between inverter and MIDC board is not properly connected and/or terminated.',
+      'The PVS cannot connect with the MIDC board. The MIDC board drives the transfer switch on the Hub+. It also connects to the MIO board, so if you’re seeing this error, it is likely that other errors are occurring as well. You should focus on fixing this error first before you proceed to fix the others.\n\nThis problem may be due to one of the following causes:\n1. The MIDC board is not powered\n1. The MIDC board is not connected to the MIO board.\n1. PVS MIDC CAN connector is bad\n1. The MIDC board is damaged\n1. The AUX cable between inverter and MIDC board is not properly connected and/or terminated.',
     recommended_actions:
-      'Please try the following steps\n\n1. Check that the line-side and load-side AC cables to the MIDC board.\n\n1. Check that the gray ethernet cable and connectors between the MIDC (J14) board and MIO (J1) board is connected and terminated properly.\n\n1. Check that PVS MIDC CAN (J13) connector board cable is in place\n\n1. Check that the gray cable between the Aux port on the inverter and the J16 port on the MIDC board is correctly connected and terminated.\n\n1. Attempt commissioning again.\n\nIf the problem persists, this may be a sign that the MIDC board is damaged. Please contact SunPower.'
+      'Please try the following steps\n1. Check that the line-side and load-side AC cables to the MIDC board.\n1. Check that the gray ethernet cable and connectors between the MIDC (J14) board and MIO (J1) board is connected and terminated properly.\n1. Check that PVS MIDC CAN (J13) connector board cable is in place\n1. Check that the gray cable between the Aux port on the inverter and the J16 port on the MIDC board is correctly connected and terminated.\n1. Attempt commissioning again.\n\nIf the problem persists, this may be a sign that the MIDC board is damaged. Please contact SunPower.'
   },
   {
     event_code: '30001',
@@ -674,9 +674,9 @@ const errorCodes = [
     display: true,
     error_description: 'No MIO',
     possible_causes:
-      'The PVS cannot connect with the MIO board. The MIO board is a hub for data connections to the batteries, inverter, and gateway, so if you’re seeing this error, it is likely you’re also seeing other errors such as missing batteries or inverters.\n\nThis problem may be due to one of the following causes:\n\n1. Faulty data connection between the Hub+ and the MIO board.\n\n1. MIO lost power.\n\n1. Faulty data connection with another MIO board (applicable to Power Expansion packs only)',
+      'The PVS cannot connect with the MIO board. The MIO board is a hub for data connections to the batteries, inverter, and gateway, so if you’re seeing this error, it is likely you’re also seeing other errors such as missing batteries or inverters.\n\nThis problem may be due to one of the following causes:\n1. Faulty data connection between the Hub+ and the MIO board.\n1. MIO lost power.\n1. Faulty data connection with another MIO board (applicable to Power Expansion packs only)',
     recommended_actions:
-      'Please try the following steps:\n\n1. Check that the MIO board is powered: one LED should be blinking and the other one should be solid.\n\n1.  Check that the gray ethernet cable from the J1 port on the MIO board is connected to the J14 port on the MIDC. Check that the cable is terminated correctly. \n\n1. Check that the 48V DC connection on the MIO board is connected to the DC terminals on the inverter and properly grounded and terminated.\n\n1. If this install involves one or more power expansion packs (above 26kWh or 6.8kW), please check that the MIO board is connected to the adjacent MIO by checking that the purple J2 cable is correctly connected and terminated.\n\n1. Attempt commissioning again.\n\nIf the problem persists, this may be a sign that the MIO board is damaged. Please contact SunPower.'
+      'Please try the following steps:\n1. Check that the MIO board is powered: one LED should be blinking and the other one should be solid.\n1.  Check that the gray ethernet cable from the J1 port on the MIO board is connected to the J14 port on the MIDC. Check that the cable is terminated correctly. \n1. Check that the 48V DC connection on the MIO board is connected to the DC terminals on the inverter and properly grounded and terminated.\n1. If this install involves one or more power expansion packs (above 26kWh or 6.8kW), please check that the MIO board is connected to the adjacent MIO by checking that the purple J2 cable is correctly connected and terminated.\n1. Attempt commissioning again.\n\nIf the problem persists, this may be a sign that the MIO board is damaged. Please contact SunPower.'
   },
   {
     event_code: '30002',
@@ -686,9 +686,9 @@ const errorCodes = [
     display: true,
     error_description: 'No Gateway',
     possible_causes:
-      'The Schneider Gateway connects the inverter with PVS and batteries. If you’re seeing this error it is likely you’re also seeing other errors such as batteries  or inverter(s) missing.\n\nThis problem may be due to the following causes:\n\n1. Gateway lost power.\n\n1. The ethernet connector between the gateway and PVS is not connected or terminated correctly.',
+      'The Schneider Gateway connects the inverter with PVS and batteries. If you’re seeing this error it is likely you’re also seeing other errors such as batteries  or inverter(s) missing.\n\nThis problem may be due to the following causes:\n1. Gateway lost power.\n1. The ethernet connector between the gateway and PVS is not connected or terminated correctly.',
     recommended_actions:
-      '1- Check that the gateway has power: the LEDs should be blinking.\n\n1. Check that the green cable and its orange, orange/white, green, blue and blue/white conductors in the metal ferules on the gateway side are properly connected to the J4 port on the MIO board.\n\n1. Check the black ethernet cable is connected to the black ethernet port on the PVS. Check also that the cable is correctly terminated.\n\n1. Check that the cable mentioned in 3 is connected to the port labeled as ‘ethernet’ on the Schneider gateway.\n\n1. Attempt commissioning again\n\nIf the problem persists, this may be a sign that the Schneider Gateway is damaged. Please contact SunPower.'
+      '1. Check that the gateway has power: the LEDs should be blinking.\n1. Check that the green cable and its orange, orange/white, green, blue and blue/white conductors in the metal ferules on the gateway side are properly connected to the J4 port on the MIO board.\n1. Check the black ethernet cable is connected to the black ethernet port on the PVS. Check also that the cable is correctly terminated.\n1. Check that the cable mentioned in 3 is connected to the port labeled as ‘ethernet’ on the Schneider gateway.\n1. Attempt commissioning again\n\nIf the problem persists, this may be a sign that the Schneider Gateway is damaged. Please contact SunPower.'
   },
   {
     event_code: '30003',
@@ -700,7 +700,7 @@ const errorCodes = [
     possible_causes:
       'The PVS cannot connect to the Schneider inverter. If you’re also seeing an error that indicates that the gateway is missing, this error may be due to the fact that the gateway is not properly connected. ',
     recommended_actions:
-      'Please try the following steps:\n\n1. If you’re also seeing a ‘missing gateway’ error, please try to fix that problem first following the instructions in the error message.\n\n1. Check that the yellow XANBUS connector between the Schneider gateway and the inverter is correctly terminated and connected to the port labeled as XANBUS in he inverter (underneath the inverter, to the right of the SYNC port left of BTS port and AUX ports).\n\n1. Check that the RPO cable in the inverter (port labeled as BTS) is connected to the J5 (red) termination in the MIO board.\n\n1. Check that any of LEDs on inverter are On. \n\n1. Check that the DC conductors have at least 48V between terminations.\n\n1. Ensure that the DC terminations are done correctly\n\n1. Ensure that the DC breakers are closed.\n\n1. Ensure that the batteries are on. If not, press the ON button on the batteries.\n\n1. Check that the gray AUX connector from the inverter is connected to the J16 termination on the MIDC board.\n\n1. Attempt commissioning again.\n\nIf the problem persists, this may be a sign that the inverter is damaged. Please contact SunPower.'
+      'Please try the following steps:\n1. If you’re also seeing a ‘missing gateway’ error, please try to fix that problem first following the instructions in the error message.\n1. Check that the yellow XANBUS connector between the Schneider gateway and the inverter is correctly terminated and connected to the port labeled as XANBUS in he inverter (underneath the inverter, to the right of the SYNC port left of BTS port and AUX ports).\n1. Check that the RPO cable in the inverter (port labeled as BTS) is connected to the J5 (red) termination in the MIO board.\n1. Check that any of LEDs on inverter are On. \n1. Check that the DC conductors have at least 48V between terminations.\n1. Ensure that the DC terminations are done correctly\n1. Ensure that the DC breakers are closed.\n1. Ensure that the batteries are on. If not, press the ON button on the batteries.\n1. Check that the gray AUX connector from the inverter is connected to the J16 termination on the MIDC board.\n1. Attempt commissioning again.\n\nIf the problem persists, this may be a sign that the inverter is damaged. Please contact SunPower.'
   },
   {
     event_code: '30004',
@@ -710,9 +710,9 @@ const errorCodes = [
     display: true,
     error_description: 'No BMS',
     possible_causes:
-      'The PVS cannot connect with the batteries. This could be due because there are other connections missing. If you’re also seeing a missing gateway error, missing MIDC or missing MIO board, this ’No BMS’ error is likely due to any of these errors and you should try to fix them before you attempt to fix this.\n\nThis problem may be due to the following causes:\n\n1. Gateway is not connected. If this is the case, you’ll also be seeing a ‘No gateway’ error and you should attempt fixing the problem first.\n\n1. CAN bus connection (green) between the MIO board (J4) and Schneider gateway is not properly made.\n\n1. The CAN bus connection on the Gateway side is not properly made or terminated (white-orange, orange, white-green, white-blue, and blue conductors).\n\n1. The CAN cable between J4 port on MIO and gateway is cut off.\n\n1. Connection between the batteries (orange) and the MIO board is not properly made\n\n1. Batteries are not powered on.',
+      'The PVS cannot connect with the batteries. This could be due because there are other connections missing. If you’re also seeing a missing gateway error, missing MIDC or missing MIO board, this ’No BMS’ error is likely due to any of these errors and you should try to fix them before you attempt to fix this.\n\nThis problem may be due to the following causes:\n1. Gateway is not connected. If this is the case, you’ll also be seeing a ‘No gateway’ error and you should attempt fixing the problem first.\n1. CAN bus connection (green) between the MIO board (J4) and Schneider gateway is not properly made.\n1. The CAN bus connection on the Gateway side is not properly made or terminated (white-orange, orange, white-green, white-blue, and blue conductors).\n1. The CAN cable between J4 port on MIO and gateway is cut off.\n1. Connection between the batteries (orange) and the MIO board is not properly made\n1. Batteries are not powered on.',
     recommended_actions:
-      'Please try the following steps\n\n1. If you’re also seeing a ‘missing gateway’ error, please try to fix that problem first following the instructions in the error message.\n\n1. Check that the CAN bus connection on the Gateway side is not properly made or terminated (white-orange, orange, white-green, white-blue, and blue conductors).\n\n1. Check that the orange cable between the master battery and the MIO board is properly connected and terminated.\n\n1. Check that the batteries are powered on (check status of LEDs around the power button on the side of the batteries).\n\n1. Check that the DC breakers are on the closed position.\n\n1. Attempt commissioning again.\n\nIf the problem persists, this may be a sign that one or more batteries are damaged. Please contact SunPower.'
+      'Please try the following steps\n1. If you’re also seeing a ‘missing gateway’ error, please try to fix that problem first following the instructions in the error message.\n1. Check that the CAN bus connection on the Gateway side is not properly made or terminated (white-orange, orange, white-green, white-blue, and blue conductors).\n1. Check that the orange cable between the master battery and the MIO board is properly connected and terminated.\n1. Check that the batteries are powered on (check status of LEDs around the power button on the side of the batteries).\n1. Check that the DC breakers are on the closed position.\n1. Attempt commissioning again.\n\nIf the problem persists, this may be a sign that one or more batteries are damaged. Please contact SunPower.'
   },
   {
     event_code: '30007',
@@ -722,9 +722,9 @@ const errorCodes = [
     display: true,
     error_description: 'Cannot find one or more batteries',
     possible_causes:
-      'This problem may be due to the following causes:\n\n1. One or more batteries data cables are disconnected from the master battery.\n\n1. One or more batteries are off\n\n1. One or more batteries are not electrically connected',
+      'This problem may be due to the following causes:\n1. One or more batteries data cables are disconnected from the master battery.\n1. One or more batteries are off\n1. One or more batteries are not electrically connected',
     recommended_actions:
-      'Please try the following steps\n\n1. Check that the gray connection between master and secondary batteries is properly connected and terminated between the master (Com2) port and the secondary (Com2) batteries.\n\n1. Check that the batteries are on by checking the ON/OFF button position\n\n1. Check that the DC breakers are in the closed position\n\n1. Check that the battery DC power connections to the XW pro inverter are in place and correctly terminated.\n\n1. Attempt commissioning again\n\nIf the problem persists, this may be a sign that one or more batteries are damaged. Please contact SunPower.'
+      'Please try the following steps\n1. Check that the gray connection between master and secondary batteries is properly connected and terminated between the master (Com2) port and the secondary (Com2) batteries.\n1. Check that the batteries are on by checking the ON/OFF button position\n1. Check that the DC breakers are in the closed position\n1. Check that the battery DC power connections to the XW pro inverter are in place and correctly terminated.\n1. Attempt commissioning again\n\nIf the problem persists, this may be a sign that one or more batteries are damaged. Please contact SunPower.'
   },
   {
     event_code: '30008',
@@ -736,7 +736,7 @@ const errorCodes = [
     possible_causes:
       'The PVS cannot connect to the Schneider inverter. If you’re also seeing an error that indicates that the gateway is missing, this error may be due to the fact that the gateway is not properly connected. ',
     recommended_actions:
-      'Please try the following steps:\n\n1. If you’re also seeing a ‘missing gateway’ error, please try to fix that problem first following the instructions in the error message.\n\n1. Check that the yellow XANBUS connector between the Schneider gateway and the inverter is correctly terminated and connected to the port labeled as XANBUS in he inverter (underneath the inverter, to the right of the SYNC port left of BTS port and AUX ports).\n\n1. Check that the RPO cable in the inverter (port labeled as BTS) is connected to the J5 (red) termination in the MIO board.\n\n1. Check that any of LEDs on inverter are On. \n\n1. Check that the DC conductors have at least 48V between terminations.\n\n1. Ensure that the DC terminations are done correctly\n\n1. Ensure that the DC breakers are closed.\n\n1. Ensure that the batteries are on. If not, press the ON button on the batteries.\n\n1. Check that the gray AUX connector from the inverter is connected to the J16 termination on the MIDC board.\n\n1. Attempt commissioning again.\n\nIf the problem persists, this may be a sign that the inverter is damaged. Please contact SunPower.'
+      'Please try the following steps:\n1. If you’re also seeing a ‘missing gateway’ error, please try to fix that problem first following the instructions in the error message.\n1. Check that the yellow XANBUS connector between the Schneider gateway and the inverter is correctly terminated and connected to the port labeled as XANBUS in he inverter (underneath the inverter, to the right of the SYNC port left of BTS port and AUX ports).\n1. Check that the RPO cable in the inverter (port labeled as BTS) is connected to the J5 (red) termination in the MIO board.\n1. Check that any of LEDs on inverter are On. \n1. Check that the DC conductors have at least 48V between terminations.\n1. Ensure that the DC terminations are done correctly\n1. Ensure that the DC breakers are closed.\n1. Ensure that the batteries are on. If not, press the ON button on the batteries.\n1. Check that the gray AUX connector from the inverter is connected to the J16 termination on the MIDC board.\n1. Attempt commissioning again.\n\nIf the problem persists, this may be a sign that the inverter is damaged. Please contact SunPower.'
   },
   {
     event_code: '30015',
@@ -746,9 +746,9 @@ const errorCodes = [
     display: true,
     error_description: 'Could not find batteries',
     possible_causes:
-      'The PVS cannot connect with the batteries. This could be due because there are other connections missing. If you’re also seeing a missing gateway error, missing MIDC or missing MIO board, this ’No BMS’ error is likely due to any of these errors and you should try to fix them before you attempt to fix this.\n\nThis problem may be due to the following causes:\n\n1. Gateway is not connected. If this is the case, you’ll also be seeing a ‘No gateway’ error and you should attempt fixing the problem first.\n\n1. CAN bus connection (green) between the MIO board (J4) and Schneider gateway is not properly made.\n\n1. The CAN bus connection on the Gateway side is not properly made or terminated (white-orange, orange, white-green, white-blue, and blue conductors).\n\n1. The CAN cable between J4 port on MIO and gateway is cut off.\n\n1. Connection between the batteries (orange) and the MIO board is not properly made\n\n1. Batteries are not powered on.',
+      'The PVS cannot connect with the batteries. This could be due because there are other connections missing. If you’re also seeing a missing gateway error, missing MIDC or missing MIO board, this ’No BMS’ error is likely due to any of these errors and you should try to fix them before you attempt to fix this.\n\nThis problem may be due to the following causes:\n1. Gateway is not connected. If this is the case, you’ll also be seeing a ‘No gateway’ error and you should attempt fixing the problem first.\n1. CAN bus connection (green) between the MIO board (J4) and Schneider gateway is not properly made.\n1. The CAN bus connection on the Gateway side is not properly made or terminated (white-orange, orange, white-green, white-blue, and blue conductors).\n1. The CAN cable between J4 port on MIO and gateway is cut off.\n1. Connection between the batteries (orange) and the MIO board is not properly made\n1. Batteries are not powered on.',
     recommended_actions:
-      'Please try the following steps\n\n1. If you’re also seeing a ‘missing gateway’ error, please try to fix that problem first following the instructions in the error message.\n\n1. Check that the CAN bus connection on the Gateway side is not properly made or terminated (white-orange, orange, white-green, white-blue, and blue conductors).\n\n1. Check that the orange cable between the master battery and the MIO board is properly connected and terminated.\n\n1. Check that the batteries are powered on (check status of LEDs around the power button on the side of the batteries).\n\n1. Check that the DC breakers are on the closed position.\n\n1. Attempt commissioning again.\n\nIf the problem persists, this may be a sign that one or more batteries are damaged. Please contact SunPower.'
+      'Please try the following steps\n1. If you’re also seeing a ‘missing gateway’ error, please try to fix that problem first following the instructions in the error message.\n1. Check that the CAN bus connection on the Gateway side is not properly made or terminated (white-orange, orange, white-green, white-blue, and blue conductors).\n1. Check that the orange cable between the master battery and the MIO board is properly connected and terminated.\n1. Check that the batteries are powered on (check status of LEDs around the power button on the side of the batteries).\n1. Check that the DC breakers are on the closed position.\n1. Attempt commissioning again.\n\nIf the problem persists, this may be a sign that one or more batteries are damaged. Please contact SunPower.'
   },
   {
     event_code: '30017',
@@ -760,7 +760,7 @@ const errorCodes = [
     possible_causes:
       'The PVS cannot connect to the Schneider inverter. If you’re also seeing an error that indicates that the gateway is missing, this error may be due to the fact that the gateway is not properly connected. ',
     recommended_actions:
-      'Please try the following steps:\n\n1. If you’re also seeing a ‘missing gateway’ error, please try to fix that problem first following the instructions in the error message.\n\n1. Check that the yellow XANBUS connector between the Schneider gateway and the inverter is correctly terminated and connected to the port labeled as XANBUS in he inverter (underneath the inverter, to the right of the SYNC port left of BTS port and AUX ports).\n\n1. Check that the RPO cable in the inverter (port labeled as BTS) is connected to the J5 (red) termination in the MIO board.\n\n1. Check that any of LEDs on inverter are On. \n\n1. Check that the DC conductors have at least 48V between terminations.\n\n1. Ensure that the DC terminations are done correctly\n\n1. Ensure that the DC breakers are closed.\n\n1. Ensure that the batteries are on. If not, press the ON button on the batteries.\n\n1. Check that the gray AUX connector from the inverter is connected to the J16 termination on the MIDC board.\n\n1. Attempt commissioning again.\n\nIf the problem persists, this may be a sign that the inverter is damaged. Please contact SunPower.'
+      'Please try the following steps:\n1. If you’re also seeing a ‘missing gateway’ error, please try to fix that problem first following the instructions in the error message.\n1. Check that the yellow XANBUS connector between the Schneider gateway and the inverter is correctly terminated and connected to the port labeled as XANBUS in he inverter (underneath the inverter, to the right of the SYNC port left of BTS port and AUX ports).\n1. Check that the RPO cable in the inverter (port labeled as BTS) is connected to the J5 (red) termination in the MIO board.\n1. Check that any of LEDs on inverter are On. \n1. Check that the DC conductors have at least 48V between terminations.\n1. Ensure that the DC terminations are done correctly\n1. Ensure that the DC breakers are closed.\n1. Ensure that the batteries are on. If not, press the ON button on the batteries.\n1. Check that the gray AUX connector from the inverter is connected to the J16 termination on the MIDC board.\n1. Attempt commissioning again.\n\nIf the problem persists, this may be a sign that the inverter is damaged. Please contact SunPower.'
   },
   {
     event_code: '30018',
@@ -772,7 +772,7 @@ const errorCodes = [
     possible_causes:
       'The PVS cannot connect to the Schneider inverter. If you’re also seeing an error that indicates that the gateway is missing, this error may be due to the fact that the gateway is not properly connected. ',
     recommended_actions:
-      'Please try the following steps:\n\n1. If you’re also seeing a ‘missing gateway’ error, please try to fix that problem first following the instructions in the error message.\n\n1. Check that the yellow XANBUS connector between the Schneider gateway and the inverter is correctly terminated and connected to the port labeled as XANBUS in he inverter (underneath the inverter, to the right of the SYNC port left of BTS port and AUX ports).\n\n1. Check that the RPO cable in the inverter (port labeled as BTS) is connected to the J5 (red) termination in the MIO board.\n\n1. Check that any of LEDs on inverter are On. \n\n1. Check that the DC conductors have at least 48V between terminations.\n\n1. Ensure that the DC terminations are done correctly\n\n1. Ensure that the DC breakers are closed.\n\n1. Ensure that the batteries are on. If not, press the ON button on the batteries.\n\n1. Check that the gray AUX connector from the inverter is connected to the J16 termination on the MIDC board.\n\n1. Attempt commissioning again.\n\nIf the problem persists, this may be a sign that the inverter is damaged. Please contact SunPower.'
+      'Please try the following steps:\n1. If you’re also seeing a ‘missing gateway’ error, please try to fix that problem first following the instructions in the error message.\n1. Check that the yellow XANBUS connector between the Schneider gateway and the inverter is correctly terminated and connected to the port labeled as XANBUS in he inverter (underneath the inverter, to the right of the SYNC port left of BTS port and AUX ports).\n1. Check that the RPO cable in the inverter (port labeled as BTS) is connected to the J5 (red) termination in the MIO board.\n1. Check that any of LEDs on inverter are On. \n1. Check that the DC conductors have at least 48V between terminations.\n1. Ensure that the DC terminations are done correctly\n1. Ensure that the DC breakers are closed.\n1. Ensure that the batteries are on. If not, press the ON button on the batteries.\n1. Check that the gray AUX connector from the inverter is connected to the J16 termination on the MIDC board.\n1. Attempt commissioning again.\n\nIf the problem persists, this may be a sign that the inverter is damaged. Please contact SunPower.'
   },
   {
     event_code: '30019',
@@ -782,9 +782,9 @@ const errorCodes = [
     display: true,
     error_description: 'Cannot find one or more batteries',
     possible_causes:
-      'This problem may be due to the following causes:\n\n1. One or more batteries data cables are disconnected from the master battery.\n\n1. One or more batteries are off\n\n1. One or more batteries are not electrically connected',
+      'This problem may be due to the following causes:\n1. One or more batteries data cables are disconnected from the master battery.\n1. One or more batteries are off\n1. One or more batteries are not electrically connected',
     recommended_actions:
-      'Please try the following steps\n\n1. Check that the gray connection between master and secondary batteries is properly connected and terminated between the master (Com2) port and the secondary (Com2) batteries.\n\n1. Check that the batteries are on by checking the ON/OFF button position\n\n1. Check that the DC breakers are in the closed position\n\n1. Check that the battery DC power connections to the XW pro inverter are in place and correctly terminated.\n\n1. Attempt commissioning again\n\nIf the problem persists, this may be a sign that one or more batteries are damaged. Please contact SunPower.'
+      'Please try the following steps\n1. Check that the gray connection between master and secondary batteries is properly connected and terminated between the master (Com2) port and the secondary (Com2) batteries.\n1. Check that the batteries are on by checking the ON/OFF button position\n1. Check that the DC breakers are in the closed position\n1. Check that the battery DC power connections to the XW pro inverter are in place and correctly terminated.\n1. Attempt commissioning again\n\nIf the problem persists, this may be a sign that one or more batteries are damaged. Please contact SunPower.'
   },
   {
     event_code: '30021',
@@ -794,9 +794,9 @@ const errorCodes = [
     display: true,
     error_description: 'No MIO',
     possible_causes:
-      'The PVS cannot connect with the MIO board. The MIO board is a hub for data connections to the batteries, inverter, and gateway, so if you’re seeing this error, it is likely you’re also seeing other errors such as missing batteries or inverters.\n\nThis problem may be due to one of the following causes:\n\n1. Faulty data connection between the Hub+ and the MIO board.\n\n1. MIO lost power.\n\n1. Faulty data connection with another MIO board (applicable to Power Expansion packs only)',
+      'The PVS cannot connect with the MIO board. The MIO board is a hub for data connections to the batteries, inverter, and gateway, so if you’re seeing this error, it is likely you’re also seeing other errors such as missing batteries or inverters.\n\nThis problem may be due to one of the following causes:\n1. Faulty data connection between the Hub+ and the MIO board.\n1. MIO lost power.\n1. Faulty data connection with another MIO board (applicable to Power Expansion packs only)',
     recommended_actions:
-      'Please try the following steps:\n\n1. Check that the MIO board is powered: one LED should be blinking and the other one should be solid.\n\n1.  Check that the gray ethernet cable from the J1 port on the MIO board is connected to the J14 port on the MIDC. Check that the cable is terminated correctly. \n\n1. Check that the 48V DC connection on the MIO board is connected to the DC terminals on the inverter and properly grounded and terminated.\n\n1. If this install involves one or more power expansion packs (above 26kWh or 6.8kW), please check that the MIO board is connected to the adjacent MIO by checking that the purple J2 cable is correctly connected and terminated.\n\n1. Attempt commissioning again.\n\nIf the problem persists, this may be a sign that the MIO board is damaged. Please contact SunPower.'
+      'Please try the following steps:\n1. Check that the MIO board is powered: one LED should be blinking and the other one should be solid.\n1.  Check that the gray ethernet cable from the J1 port on the MIO board is connected to the J14 port on the MIDC. Check that the cable is terminated correctly. \n1. Check that the 48V DC connection on the MIO board is connected to the DC terminals on the inverter and properly grounded and terminated.\n1. If this install involves one or more power expansion packs (above 26kWh or 6.8kW), please check that the MIO board is connected to the adjacent MIO by checking that the purple J2 cable is correctly connected and terminated.\n1. Attempt commissioning again.\n\nIf the problem persists, this may be a sign that the MIO board is damaged. Please contact SunPower.'
   },
   {
     event_code: '30023',
@@ -806,9 +806,9 @@ const errorCodes = [
     display: true,
     error_description: 'No MIO',
     possible_causes:
-      'The PVS cannot connect with the MIO board. The MIO board is a hub for data connections to the batteries, inverter, and gateway, so if you’re seeing this error, it is likely you’re also seeing other errors such as missing batteries or inverters.\n\nThis problem may be due to one of the following causes:\n\n1. Faulty data connection between the Hub+ and the MIO board.\n\n1. MIO lost power.\n\n1. Faulty data connection with another MIO board (applicable to Power Expansion packs only)',
+      'The PVS cannot connect with the MIO board. The MIO board is a hub for data connections to the batteries, inverter, and gateway, so if you’re seeing this error, it is likely you’re also seeing other errors such as missing batteries or inverters.\n\nThis problem may be due to one of the following causes:\n1. Faulty data connection between the Hub+ and the MIO board.\n1. MIO lost power.\n1. Faulty data connection with another MIO board (applicable to Power Expansion packs only)',
     recommended_actions:
-      'Please try the following steps:\n\n1. Check that the MIO board is powered: one LED should be blinking and the other one should be solid.\n\n1.  Check that the gray ethernet cable from the J1 port on the MIO board is connected to the J14 port on the MIDC. Check that the cable is terminated correctly. \n\n1. Check that the 48V DC connection on the MIO board is connected to the DC terminals on the inverter and properly grounded and terminated.\n\n1. If this install involves one or more power expansion packs (above 26kWh or 6.8kW), please check that the MIO board is connected to the adjacent MIO by checking that the purple J2 cable is correctly connected and terminated.\n\n1. Attempt commissioning again.\n\nIf the problem persists, this may be a sign that the MIO board is damaged. Please contact SunPower.'
+      'Please try the following steps:\n1. Check that the MIO board is powered: one LED should be blinking and the other one should be solid.\n1.  Check that the gray ethernet cable from the J1 port on the MIO board is connected to the J14 port on the MIDC. Check that the cable is terminated correctly. \n1. Check that the 48V DC connection on the MIO board is connected to the DC terminals on the inverter and properly grounded and terminated.\n1. If this install involves one or more power expansion packs (above 26kWh or 6.8kW), please check that the MIO board is connected to the adjacent MIO by checking that the purple J2 cable is correctly connected and terminated.\n1. Attempt commissioning again.\n\nIf the problem persists, this may be a sign that the MIO board is damaged. Please contact SunPower.'
   },
   {
     event_code: '30025',
@@ -818,9 +818,9 @@ const errorCodes = [
     display: true,
     error_description: 'No BMS',
     possible_causes:
-      'The PVS cannot connect with the batteries. This could be due because there are other connections missing. If you’re also seeing a missing gateway error, missing MIDC or missing MIO board, this ’No BMS’ error is likely due to any of these errors and you should try to fix them before you attempt to fix this.\n\nThis problem may be due to the following causes:\n\n1. Gateway is not connected. If this is the case, you’ll also be seeing a ‘No gateway’ error and you should attempt fixing the problem first.\n\n1. CAN bus connection (green) between the MIO board (J4) and Schneider gateway is not properly made.\n\n1. The CAN bus connection on the Gateway side is not properly made or terminated (white-orange, orange, white-green, white-blue, and blue conductors).\n\n1. The CAN cable between J4 port on MIO and gateway is cut off.\n\n1. Connection between the batteries (orange) and the MIO board is not properly made\n\n1. Batteries are not powered on.',
+      'The PVS cannot connect with the batteries. This could be due because there are other connections missing. If you’re also seeing a missing gateway error, missing MIDC or missing MIO board, this ’No BMS’ error is likely due to any of these errors and you should try to fix them before you attempt to fix this.\n\nThis problem may be due to the following causes:\n1. Gateway is not connected. If this is the case, you’ll also be seeing a ‘No gateway’ error and you should attempt fixing the problem first.\n1. CAN bus connection (green) between the MIO board (J4) and Schneider gateway is not properly made.\n1. The CAN bus connection on the Gateway side is not properly made or terminated (white-orange, orange, white-green, white-blue, and blue conductors).\n1. The CAN cable between J4 port on MIO and gateway is cut off.\n1. Connection between the batteries (orange) and the MIO board is not properly made\n1. Batteries are not powered on.',
     recommended_actions:
-      'Please try the following steps\n\n1. If you’re also seeing a ‘missing gateway’ error, please try to fix that problem first following the instructions in the error message.\n\n1. Check that the CAN bus connection on the Gateway side is not properly made or terminated (white-orange, orange, white-green, white-blue, and blue conductors).\n\n1. Check that the orange cable between the master battery and the MIO board is properly connected and terminated.\n\n1. Check that the batteries are powered on (check status of LEDs around the power button on the side of the batteries).\n\n1. Check that the DC breakers are on the closed position.\n\n1. Attempt commissioning again.\n\nIf the problem persists, this may be a sign that one or more batteries are damaged. Please contact SunPower.'
+      'Please try the following steps\n1. If you’re also seeing a ‘missing gateway’ error, please try to fix that problem first following the instructions in the error message.\n1. Check that the CAN bus connection on the Gateway side is not properly made or terminated (white-orange, orange, white-green, white-blue, and blue conductors).\n1. Check that the orange cable between the master battery and the MIO board is properly connected and terminated.\n1. Check that the batteries are powered on (check status of LEDs around the power button on the side of the batteries).\n1. Check that the DC breakers are on the closed position.\n1. Attempt commissioning again.\n\nIf the problem persists, this may be a sign that one or more batteries are damaged. Please contact SunPower.'
   },
   {
     event_code: '30028',
@@ -832,7 +832,7 @@ const errorCodes = [
     possible_causes:
       'The PVS cannot connect to the Schneider inverter. If you’re also seeing an error that indicates that the gateway is missing, this error may be due to the fact that the gateway is not properly connected. ',
     recommended_actions:
-      'Please try the following steps:\n\n1. If you’re also seeing a ‘missing gateway’ error, please try to fix that problem first following the instructions in the error message.\n\n1. Check that the yellow XANBUS connector between the Schneider gateway and the inverter is correctly terminated and connected to the port labeled as XANBUS in he inverter (underneath the inverter, to the right of the SYNC port left of BTS port and AUX ports).\n\n1. Check that the RPO cable in the inverter (port labeled as BTS) is connected to the J5 (red) termination in the MIO board.\n\n1. Check that any of LEDs on inverter are On. \n\n1. Check that the DC conductors have at least 48V between terminations.\n\n1. Ensure that the DC terminations are done correctly\n\n1. Ensure that the DC breakers are closed.\n\n1. Ensure that the batteries are on. If not, press the ON button on the batteries.\n\n1. Check that the gray AUX connector from the inverter is connected to the J16 termination on the MIDC board.\n\n1. Attempt commissioning again.\n\nIf the problem persists, this may be a sign that the inverter is damaged. Please contact SunPower.'
+      'Please try the following steps:\n1. If you’re also seeing a ‘missing gateway’ error, please try to fix that problem first following the instructions in the error message.\n1. Check that the yellow XANBUS connector between the Schneider gateway and the inverter is correctly terminated and connected to the port labeled as XANBUS in he inverter (underneath the inverter, to the right of the SYNC port left of BTS port and AUX ports).\n1. Check that the RPO cable in the inverter (port labeled as BTS) is connected to the J5 (red) termination in the MIO board.\n1. Check that any of LEDs on inverter are On. \n1. Check that the DC conductors have at least 48V between terminations.\n1. Ensure that the DC terminations are done correctly\n1. Ensure that the DC breakers are closed.\n1. Ensure that the batteries are on. If not, press the ON button on the batteries.\n1. Check that the gray AUX connector from the inverter is connected to the J16 termination on the MIDC board.\n1. Attempt commissioning again.\n\nIf the problem persists, this may be a sign that the inverter is damaged. Please contact SunPower.'
   },
   {
     event_code: '30400',
@@ -862,9 +862,9 @@ const errorCodes = [
     display: true,
     error_description: 'Could not find all-in one',
     possible_causes:
-      'The PVS cannot connect with the MIO board. The MIO board is a hub for data connections to the batteries, inverter, and gateway, so if you’re seeing this error, it is likely you’re also seeing other errors such as missing batteries or inverters.\n\nThis problem may be due to one of the following causes:\n\n1. Faulty data connection between the Hub+ and the MIO board.\n\n1. MIO lost power.\n\n1. Faulty data connection with another MIO board (applicable to Power Expansion packs only)',
+      'The PVS cannot connect with the MIO board. The MIO board is a hub for data connections to the batteries, inverter, and gateway, so if you’re seeing this error, it is likely you’re also seeing other errors such as missing batteries or inverters.\n\nThis problem may be due to one of the following causes:\n1. Faulty data connection between the Hub+ and the MIO board.\n1. MIO lost power.\n1. Faulty data connection with another MIO board (applicable to Power Expansion packs only)',
     recommended_actions:
-      'Please try the following steps:\n\n1. Check that the MIO board is powered: one LED should be blinking and the other one should be solid.\n\n1.  Check that the gray ethernet cable from the J1 port on the MIO board is connected to the J14 port on the MIDC. Check that the cable is terminated correctly. \n\n1. Check that the 48V DC connection on the MIO board is connected to the DC terminals on the inverter and properly grounded and terminated.\n\n1. If this install involves one or more power expansion packs (above 26kWh or 6.8kW), please check that the MIO board is connected to the adjacent MIO by checking that the purple J2 cable is correctly connected and terminated.\n\n1. Attempt commissioning again.\n\nIf the problem persists, this may be a sign that the MIO board is damaged. Please contact SunPower.'
+      'Please try the following steps:\n1. Check that the MIO board is powered: one LED should be blinking and the other one should be solid.\n1.  Check that the gray ethernet cable from the J1 port on the MIO board is connected to the J14 port on the MIDC. Check that the cable is terminated correctly. \n1. Check that the 48V DC connection on the MIO board is connected to the DC terminals on the inverter and properly grounded and terminated.\n1. If this install involves one or more power expansion packs (above 26kWh or 6.8kW), please check that the MIO board is connected to the adjacent MIO by checking that the purple J2 cable is correctly connected and terminated.\n1. Attempt commissioning again.\n\nIf the problem persists, this may be a sign that the MIO board is damaged. Please contact SunPower.'
   },
   {
     event_code: '30403',
@@ -874,9 +874,9 @@ const errorCodes = [
     display: true,
     error_description: 'Cannot find one or more batteries',
     possible_causes:
-      'This problem may be due to the following causes:\n\n1. One or more batteries data cables are disconnected from the master battery.\n\n1. One or more batteries are off\n\n1. One or more batteries are not electrically connected',
+      'This problem may be due to the following causes:\n1. One or more batteries data cables are disconnected from the master battery.\n1. One or more batteries are off\n1. One or more batteries are not electrically connected',
     recommended_actions:
-      'Please try the following steps\n\n1. Check that the gray connection between master and secondary batteries is properly connected and terminated between the master (Com2) port and the secondary (Com2) batteries.\n\n1. Check that the batteries are on by checking the ON/OFF button position\n\n1. Check that the DC breakers are in the closed position\n\n1. Check that the battery DC power connections to the XW pro inverter are in place and correctly terminated.\n\n1. Attempt commissioning again\n\nIf the problem persists, this may be a sign that one or more batteries are damaged. Please contact SunPower.'
+      'Please try the following steps\n1. Check that the gray connection between master and secondary batteries is properly connected and terminated between the master (Com2) port and the secondary (Com2) batteries.\n1. Check that the batteries are on by checking the ON/OFF button position\n1. Check that the DC breakers are in the closed position\n1. Check that the battery DC power connections to the XW pro inverter are in place and correctly terminated.\n1. Attempt commissioning again\n\nIf the problem persists, this may be a sign that one or more batteries are damaged. Please contact SunPower.'
   },
   {
     event_code: '30404',
@@ -888,7 +888,7 @@ const errorCodes = [
     possible_causes:
       'The PVS cannot connect to the Schneider inverter. If you’re also seeing an error that indicates that the gateway is missing, this error may be due to the fact that the gateway is not properly connected. ',
     recommended_actions:
-      'Please try the following steps:\n\n1. If you’re also seeing a ‘missing gateway’ error, please try to fix that problem first following the instructions in the error message.\n\n1. Check that the yellow XANBUS connector between the Schneider gateway and the inverter is correctly terminated and connected to the port labeled as XANBUS in he inverter (underneath the inverter, to the right of the SYNC port left of BTS port and AUX ports).\n\n1. Check that the RPO cable in the inverter (port labeled as BTS) is connected to the J5 (red) termination in the MIO board.\n\n1. Check that any of LEDs on inverter are On. \n\n1. Check that the DC conductors have at least 48V between terminations.\n\n1. Ensure that the DC terminations are done correctly\n\n1. Ensure that the DC breakers are closed.\n\n1. Ensure that the batteries are on. If not, press the ON button on the batteries.\n\n1. Check that the gray AUX connector from the inverter is connected to the J16 termination on the MIDC board.\n\n1. Attempt commissioning again.\n\nIf the problem persists, this may be a sign that the inverter is damaged. Please contact SunPower.'
+      'Please try the following steps:\n1. If you’re also seeing a ‘missing gateway’ error, please try to fix that problem first following the instructions in the error message.\n1. Check that the yellow XANBUS connector between the Schneider gateway and the inverter is correctly terminated and connected to the port labeled as XANBUS in he inverter (underneath the inverter, to the right of the SYNC port left of BTS port and AUX ports).\n1. Check that the RPO cable in the inverter (port labeled as BTS) is connected to the J5 (red) termination in the MIO board.\n1. Check that any of LEDs on inverter are On. \n1. Check that the DC conductors have at least 48V between terminations.\n1. Ensure that the DC terminations are done correctly\n1. Ensure that the DC breakers are closed.\n1. Ensure that the batteries are on. If not, press the ON button on the batteries.\n1. Check that the gray AUX connector from the inverter is connected to the J16 termination on the MIDC board.\n1. Attempt commissioning again.\n\nIf the problem persists, this may be a sign that the inverter is damaged. Please contact SunPower.'
   },
   {
     event_code: '30406',
@@ -910,7 +910,7 @@ const errorCodes = [
     possible_causes:
       'The PVS cannot connect to the Schneider inverter. If you’re also seeing an error that indicates that the gateway is missing, this error may be due to the fact that the gateway is not properly connected. ',
     recommended_actions:
-      'Please try the following steps:\n\n1. If you’re also seeing a ‘missing gateway’ error, please try to fix that problem first following the instructions in the error message.\n\n1. Check that the yellow XANBUS connector between the Schneider gateway and the inverter is correctly terminated and connected to the port labeled as XANBUS in he inverter (underneath the inverter, to the right of the SYNC port left of BTS port and AUX ports).\n\n1. Check that the RPO cable in the inverter (port labeled as BTS) is connected to the J5 (red) termination in the MIO board.\n\n1. Check that any of LEDs on inverter are On. \n\n1. Check that the DC conductors have at least 48V between terminations.\n\n1. Ensure that the DC terminations are done correctly\n\n1. Ensure that the DC breakers are closed.\n\n1. Ensure that the batteries are on. If not, press the ON button on the batteries.\n\n1. Check that the gray AUX connector from the inverter is connected to the J16 termination on the MIDC board.\n\n1. Attempt commissioning again.\n\nIf the problem persists, this may be a sign that the inverter is damaged. Please contact SunPower.'
+      'Please try the following steps:\n1. If you’re also seeing a ‘missing gateway’ error, please try to fix that problem first following the instructions in the error message.\n1. Check that the yellow XANBUS connector between the Schneider gateway and the inverter is correctly terminated and connected to the port labeled as XANBUS in he inverter (underneath the inverter, to the right of the SYNC port left of BTS port and AUX ports).\n1. Check that the RPO cable in the inverter (port labeled as BTS) is connected to the J5 (red) termination in the MIO board.\n1. Check that any of LEDs on inverter are On. \n1. Check that the DC conductors have at least 48V between terminations.\n1. Ensure that the DC terminations are done correctly\n1. Ensure that the DC breakers are closed.\n1. Ensure that the batteries are on. If not, press the ON button on the batteries.\n1. Check that the gray AUX connector from the inverter is connected to the J16 termination on the MIDC board.\n1. Attempt commissioning again.\n\nIf the problem persists, this may be a sign that the inverter is damaged. Please contact SunPower.'
   },
   {
     event_code: '30408',
@@ -920,9 +920,9 @@ const errorCodes = [
     display: true,
     error_description: 'Cannot find one or more batteries',
     possible_causes:
-      'This problem may be due to the following causes:\n\n1. One or more batteries data cables are disconnected from the master battery.\n\n1. One or more batteries are off\n\n1. One or more batteries are not electrically connected',
+      'This problem may be due to the following causes:\n1. One or more batteries data cables are disconnected from the master battery.\n1. One or more batteries are off\n1. One or more batteries are not electrically connected',
     recommended_actions:
-      'Please try the following steps\n\n1. Check that the gray connection between master and secondary batteries is properly connected and terminated between the master (Com2) port and the secondary (Com2) batteries.\n\n1. Check that the batteries are on by checking the ON/OFF button position\n\n1. Check that the DC breakers are in the closed position\n\n1. Check that the battery DC power connections to the XW pro inverter are in place and correctly terminated.\n\n1. Attempt commissioning again\n\nIf the problem persists, this may be a sign that one or more batteries are damaged. Please contact SunPower.'
+      'Please try the following steps\n1. Check that the gray connection between master and secondary batteries is properly connected and terminated between the master (Com2) port and the secondary (Com2) batteries.\n1. Check that the batteries are on by checking the ON/OFF button position\n1. Check that the DC breakers are in the closed position\n1. Check that the battery DC power connections to the XW pro inverter are in place and correctly terminated.\n1. Attempt commissioning again\n\nIf the problem persists, this may be a sign that one or more batteries are damaged. Please contact SunPower.'
   },
   {
     event_code: '30409',
@@ -1069,7 +1069,7 @@ const errorCodes = [
     in_use: true,
     display: true,
     error_description: 'Contactor error unknown',
-    possible_causes: 'Unkown',
+    possible_causes: 'Unknown',
     recommended_actions: 'Unknown'
   },
   {
@@ -1977,7 +1977,7 @@ const errorCodes = [
     possible_causes:
       'Battery may have been exposed ot harsh environmental conditions or may have been used aggressively.',
     recommended_actions:
-      'Check battery location: temperature and airflow into batttery. Contact SunPower'
+      'Check battery location: temperature and airflow into battery. Contact SunPower'
   },
   {
     event_code: '33002',
@@ -1988,7 +1988,7 @@ const errorCodes = [
     error_description: 'Battery communication outage',
     possible_causes: 'PVS cannot reach the battery',
     recommended_actions:
-      'Check Etherned and CAN connections between battery gateway, PVS and MIO board.'
+      'Check Ethernet and CAN connections between battery gateway, PVS and MIO board.'
   },
   {
     event_code: '33003',
@@ -2351,7 +2351,7 @@ const errorCodes = [
     error_description: 'MIO communication outage',
     possible_causes: 'PVS cannot reach MIO board',
     recommended_actions:
-      'Check Etherned and CAN connections between PVS and MIO board'
+      'Check Ethernet and CAN connections between PVS and MIO board'
   },
   {
     event_code: '34011',
@@ -2568,7 +2568,7 @@ const errorCodes = [
     code: '35000',
     in_use: true,
     display: true,
-    error_description: 'Gateway communiciation outage',
+    error_description: 'Gateway communication outage',
     possible_causes: 'PVS cannot communicate with Schneider gateway',
     recommended_actions:
       'Check Ethernet connector between PVS and Schneider gateway'
