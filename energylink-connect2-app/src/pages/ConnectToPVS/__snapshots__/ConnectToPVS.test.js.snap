@@ -48,7 +48,7 @@ exports[`Connect to PVS page render correctly 1`] = `
             LOOK_FOR_QR
           </span>
           <div
-            className="qr-icon"
+            className="qr-icon mt-20 mb-20"
           >
             <i
               className="sp-qr has-text-white"
@@ -62,17 +62,214 @@ exports[`Connect to PVS page render correctly 1`] = `
             >
               QRCODE_HINT
             </span>
+            <div
+              className="mt-20"
+            >
+              <button
+                className="button is-primary"
+                onClick={[Function]}
+              >
+                START_SCAN
+              </button>
+            </div>
           </div>
           <div
-            className="pt-20"
+            className="mt-30"
           >
-            <button
-              className="button is-primary"
-              onClick={[Function]}
-            >
-              START_SCAN
-            </button>
+            <span>
+              MANUAL_ENTRY_HINT
+            </span>
+            <div>
+              <button
+                className="mt-20 button is-primary is-outlined"
+                onClick={[Function]}
+              >
+                MANUAL_ENTRY
+              </button>
+            </div>
           </div>
+          <SwipeableBottomSheet
+            defaultOpen={false}
+            fullScreen={false}
+            marginTop={0}
+            onChange={[Function]}
+            open={false}
+            overflowHeight={0}
+            overlay={true}
+            scrollTopAtClose={true}
+            shadowTip={true}
+            swipeableViewsProps={Object {}}
+            topShadow={true}
+          >
+            <div
+              style={
+                Object {
+                  "bottom": 0,
+                  "height": 0,
+                  "left": 0,
+                  "position": "fixed",
+                  "right": 0,
+                }
+              }
+            >
+              <HeightUpdater
+                height={768}
+                onHeightChange={[Function]}
+              />
+              <div
+                onClick={[Function]}
+                style={
+                  Object {
+                    "backgroundColor": "black",
+                    "height": 768,
+                    "left": 0,
+                    "opacity": 0,
+                    "pointerEvents": "none",
+                    "position": "fixed",
+                    "right": 0,
+                    "top": 0,
+                    "transition": "opacity 450ms",
+                  }
+                }
+              />
+              <ReactSwipableView
+                animateHeight={false}
+                animateTransitions={true}
+                axis="y"
+                containerStyle={
+                  Object {
+                    "boxSizing": "border-box",
+                  }
+                }
+                disableLazyLoading={false}
+                disabled={false}
+                enableMouseEvents={true}
+                hysteresis={0.6}
+                ignoreNativeScroll={false}
+                index={0}
+                onChangeIndex={[Function]}
+                onTransitionEnd={[Function]}
+                resistance={false}
+                slideStyle={
+                  Object {
+                    "boxSizing": "border-box",
+                    "marginBottom": -0,
+                    "overflow": "visible",
+                  }
+                }
+                springConfig={
+                  Object {
+                    "delay": "0s",
+                    "duration": "0.35s",
+                    "easeFunction": "cubic-bezier(0.15, 0.3, 0.25, 1)",
+                  }
+                }
+                style={
+                  Object {
+                    "boxSizing": "border-box",
+                    "overflowY": "initial",
+                  }
+                }
+                threshold={5}
+              >
+                <div
+                  onMouseDown={[Function]}
+                  onMouseLeave={[Function]}
+                  onMouseMove={[Function]}
+                  onMouseUp={[Function]}
+                  onScroll={[Function]}
+                  onTouchEnd={[Function]}
+                  onTouchStart={[Function]}
+                  style={
+                    Object {
+                      "boxSizing": "border-box",
+                      "overflowY": "initial",
+                    }
+                  }
+                >
+                  <div
+                    className="react-swipeable-view-container"
+                    style={
+                      Object {
+                        "WebkitFlexDirection": "column",
+                        "WebkitTransition": "all 0s ease 0s",
+                        "boxSizing": "border-box",
+                        "direction": "ltr",
+                        "display": "flex",
+                        "flexDirection": "column",
+                        "height": null,
+                        "transition": "all 0s ease 0s",
+                        "willChange": "transform",
+                      }
+                    }
+                  >
+                    <div
+                      aria-hidden={false}
+                      data-swipeable="true"
+                      key=".0"
+                      style={
+                        Object {
+                          "WebkitFlexShrink": 0,
+                          "boxSizing": "border-box",
+                          "flexShrink": 0,
+                          "marginBottom": -0,
+                          "overflow": "visible",
+                          "width": "100%",
+                        }
+                      }
+                    >
+                      <div
+                        className="ReactSwipeableBottomSheet--closed"
+                        style={
+                          Object {
+                            "backgroundColor": "white",
+                            "height": "initial",
+                            "maxHeight": 768,
+                            "overflow": "hidden",
+                          }
+                        }
+                      >
+                        <div
+                          className="manual-entry"
+                        >
+                          <span
+                            className="has-text-weight-bold"
+                          >
+                            PVS_SN
+                          </span>
+                          <div
+                            className="mt-20 mb-20"
+                          >
+                            <input
+                              onChange={[Function]}
+                              placeholder="ZT00000000000000000"
+                              type="text"
+                            />
+                          </div>
+                          <span
+                            className="mt-10 mb-10"
+                          >
+                            SERIAL_NUMBER_HINT
+                          </span>
+                          <div
+                            className="mt-10 mb-20"
+                          >
+                            <button
+                              className="button is-primary"
+                              disabled={true}
+                              onClick={[Function]}
+                            >
+                              CONNECT
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </ReactSwipableView>
+            </div>
+          </SwipeableBottomSheet>
         </div>
       </ConnectToPVS>
     </Provider>

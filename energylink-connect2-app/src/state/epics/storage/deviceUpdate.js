@@ -1,9 +1,19 @@
+import * as Sentry from '@sentry/browser'
 import { ofType } from 'redux-observable'
 import { path, pathOr, cond, always, equals } from 'ramda'
 import { from, of, timer } from 'rxjs'
-import { exhaustMap, map, catchError, takeUntil } from 'rxjs/operators'
-import { getApiPVS } from 'shared/api'
 import {
+  exhaustMap,
+  map,
+  catchError,
+  takeUntil,
+  switchMap
+} from 'rxjs/operators'
+import { storageSwaggerTag, getApiPVS } from 'shared/api'
+import { getFileBlob, getFileInfo } from 'shared/fileSystem'
+import {
+  CHECK_EQS_FIRMWARE,
+  GETFILE_EQS_FIRMWARE,
   UPLOAD_EQS_FIRMWARE,
   UPLOAD_EQS_FIRMWARE_SUCCESS,
   UPLOAD_EQS_FIRMWARE_ERROR,
@@ -13,8 +23,6 @@ import {
   UPDATE_EQS_FIRMWARE_PROGRESS,
   UPDATE_EQS_FIRMWARE_COMPLETED
 } from 'state/actions/storage'
-import { storageSwaggerTag } from 'shared/api'
-import * as Sentry from '@sentry/browser'
 
 export const eqsUpdateStates = {
   FAILED: 'FAILED',
@@ -24,8 +32,52 @@ export const eqsUpdateStates = {
 }
 
 export const eqsUpdateErrors = {
+  CHECKFILE_EQS_FIRMWARE_ERROR: 'CHECKFILE_EQS_FIRMWARE_ERROR',
+  GETFILE_EQS_FIRMWARE_ERROR: 'GETFILE_EQS_FIRMWARE_ERROR',
   UPLOAD_EQS_FIRMWARE_ERROR: 'UPLOAD_EQS_FIRMWARE_ERROR',
   TRIGGER_EQS_FIRMWARE_ERROR: 'TRIGGER_EQS_FIRMWARE_ERROR'
+}
+
+const fwPackagePath = '/ESS/EQS-FW-Package.zip'
+
+export const checkEqsFwFile = action$ => {
+  return action$.pipe(
+    ofType(CHECK_EQS_FIRMWARE.getType()),
+    exhaustMap(() =>
+      from(getFileInfo(fwPackagePath)).pipe(
+        switchMap(() => of(GETFILE_EQS_FIRMWARE())),
+        catchError(err => {
+          Sentry.captureException(err)
+
+          return of(
+            UPLOAD_EQS_FIRMWARE_ERROR(
+              eqsUpdateErrors.CHECKFILE_EQS_FIRMWARE_ERROR
+            )
+          )
+        })
+      )
+    )
+  )
+}
+
+export const getEqsFwFile = action$ => {
+  return action$.pipe(
+    ofType(GETFILE_EQS_FIRMWARE.getType()),
+    exhaustMap(() =>
+      from(getFileBlob(fwPackagePath)).pipe(
+        map(UPLOAD_EQS_FIRMWARE),
+        catchError(err => {
+          Sentry.captureException(err)
+
+          return of(
+            UPLOAD_EQS_FIRMWARE_ERROR(
+              eqsUpdateErrors.GETFILE_EQS_FIRMWARE_ERROR
+            )
+          )
+        })
+      )
+    )
+  )
 }
 
 export const uploadEqsFwEpic = action$ => {

@@ -1,13 +1,25 @@
 @import '~@sunpower/theme-dark/styles/variables';
 
 .error-list-screen {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-rows: 1fr 35%;
   align-items: center;
   height: 100%;
   & > h1 {
     letter-spacing: 1.1px;
   }
+
+  .error-list-container {
+    overflow-y: scroll;
+  }
+
+  .error-list-hint {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+  }
+
   .button-transparent {
     border: 1px solid $sun;
   }
@@ -20,22 +32,15 @@
   }
 }
 .error-component {
-  margin: 10px 25px;
-  padding: 15px;
+  padding: 10px;
   background-color: rgba(196, 196, 196, 0.1);
-  width: 90%;
   border-radius: 10px;
   display: grid;
-  grid-template-areas: 'title button' 'code button';
   grid-template-columns: 1fr 40px;
   h1 {
     grid-area: title;
   }
-  .error-code {
-    grid-area: code;
-  }
   .details {
-    grid-area: button;
     height: 100%;
     width: 100%;
   }

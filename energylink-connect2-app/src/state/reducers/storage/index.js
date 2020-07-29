@@ -9,6 +9,7 @@ import {
   GET_PREDISCOVERY_RESET,
   POST_COMPONENT_MAPPING,
   POST_COMPONENT_MAPPING_ERROR,
+  CHECK_EQS_FIRMWARE,
   UPLOAD_EQS_FIRMWARE,
   UPLOAD_EQS_FIRMWARE_SUCCESS,
   UPLOAD_EQS_FIRMWARE_ERROR,
@@ -23,6 +24,7 @@ import {
   RESET_COMPONENT_MAPPING
 } from 'state/actions/storage'
 import { isEmpty } from 'ramda'
+import { eqsUpdateStates } from 'state/epics/storage/deviceUpdate'
 
 const initialState = {
   currentStep: '',
@@ -86,6 +88,12 @@ export const storageReducer = createReducer(
       ...state,
       error: payload
     }),
+    [CHECK_EQS_FIRMWARE]: state => ({
+      ...state,
+      error: initialState.error,
+      currentStep: eqsSteps.FW_UPLOAD,
+      deviceUpdate: initialState.deviceUpdate
+    }),
     [UPLOAD_EQS_FIRMWARE]: state => ({
       ...state,
       currentStep: eqsSteps.FW_UPLOAD
@@ -96,6 +104,8 @@ export const storageReducer = createReducer(
     }),
     [UPLOAD_EQS_FIRMWARE_ERROR]: (state, payload) => ({
       ...state,
+      currentStep: eqsSteps.FW_ERROR,
+      deviceUpdate: { firmware_update_status: eqsUpdateStates.FAILED },
       error: payload
     }),
     [TRIGGER_EQS_FIRMWARE_SUCCESS]: state => ({

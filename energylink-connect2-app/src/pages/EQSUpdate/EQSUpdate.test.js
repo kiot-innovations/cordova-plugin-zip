@@ -19,6 +19,7 @@ describe('EQS Connected Device Update', () => {
   test('Renders Correctly', () => {
     const { component } = mountWithProvider(<EQSUpdate />)({
       storage: {
+        error: 'EQS_UPDATE_ERROR',
         firmware_update_status: 'RUNNING',
         status_report: [
           {
