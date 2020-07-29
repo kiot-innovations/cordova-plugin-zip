@@ -1,5 +1,6 @@
 import { createAction } from 'redux-act'
 
+// Health Check
 export const GET_ESS_STATUS_INIT = createAction('GET_ESS_STATUS_INIT')
 export const GET_ESS_STATUS = createAction('GET_ESS_STATUS')
 export const GET_ESS_STATUS_SUCCESS = createAction('GET_ESS_STATUS_SUCCESS')
@@ -11,11 +12,13 @@ export const RUN_EQS_SYSTEMCHECK_SUCCESS = createAction(
   'RUN_EQS_SYSTEMCHECK_SUCCESS'
 )
 
+// Prediscovery
 export const GET_PREDISCOVERY = createAction('GET_PREDISCOVERY')
 export const GET_PREDISCOVERY_SUCCESS = createAction('GET_PREDISCOVERY_SUCCESS')
 export const GET_PREDISCOVERY_ERROR = createAction('GET_PREDISCOVERY_ERROR')
 export const GET_PREDISCOVERY_RESET = createAction('GET_PREDISCOVERY_RESET')
 
+// Device/Component Mapping
 export const POST_COMPONENT_MAPPING = createAction('POST_COMPONENT_MAPPING')
 export const POST_COMPONENT_MAPPING_SUCCESS = createAction(
   'POST_COMPONENT_MAPPING_SUCCESS'
@@ -35,6 +38,9 @@ export const GET_COMPONENT_MAPPING_ERROR = createAction(
 )
 export const RESET_COMPONENT_MAPPING = createAction('RESET_COMPONENT_MAPPING')
 
+// Connected Device Update
+export const CHECK_EQS_FIRMWARE = createAction('CHECK_EQS_FIRMWARE')
+export const GETFILE_EQS_FIRMWARE = createAction('GETFILE_EQS_FIRMWARE')
 export const UPLOAD_EQS_FIRMWARE = createAction('UPLOAD_EQS_FIRMWARE')
 export const UPLOAD_EQS_FIRMWARE_SUCCESS = createAction(
   'UPLOAD_EQS_FIRMWARE_SUCCESS'
