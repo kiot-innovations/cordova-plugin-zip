@@ -1,18 +1,21 @@
-import React, { useCallback, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { useI18n } from 'shared/i18n'
 import { useDispatch, useSelector } from 'react-redux'
-import { path, pathOr, map, length, includes, isEmpty } from 'ramda'
-import { UPLOAD_EQS_FIRMWARE } from 'state/actions/storage'
+import { useHistory } from 'react-router-dom'
+import { includes, isEmpty, length, map, pathOr, prop } from 'ramda'
+
+import { CHECK_EQS_FIRMWARE } from 'state/actions/storage'
 import { Loader } from 'components/Loader'
-import { getFileBlob } from 'shared/fileSystem'
 import { either } from 'shared/utils'
 import { eqsSteps } from 'state/reducers/storage'
-import { eqsUpdateStates } from 'state/epics/storage/deviceUpdate'
+import {
+  eqsUpdateErrors,
+  eqsUpdateStates
+} from 'state/epics/storage/deviceUpdate'
 import ConnectedDeviceUpdate from 'components/ConnectedDeviceUpdate'
 import ContinueFooter from 'components/ESSContinueFooter'
 import ErrorDetected from 'components/ESSErrorDetected/ErrorDetected'
 import paths from 'routes/paths'
-import * as Sentry from '@sentry/browser'
 
 const renderUpdateComponent = device => (
   <ConnectedDeviceUpdate device={device} />
@@ -21,17 +24,9 @@ const renderUpdateComponent = device => (
 const EQSUpdate = () => {
   const t = useI18n()
   const dispatch = useDispatch()
+  const history = useHistory()
 
-  const startUpdate = useCallback(async () => {
-    try {
-      const file = await getFileBlob('/ESS/EQS-FW-Package.zip')
-      dispatch(UPLOAD_EQS_FIRMWARE(file))
-    } catch (err) {
-      Sentry.captureException(new Error(err))
-    }
-  }, [dispatch])
-
-  const { currentStep } = useSelector(path(['storage']))
+  const { currentStep, error } = useSelector(prop('storage'))
 
   useEffect(() => {
     if (
@@ -43,9 +38,9 @@ const EQSUpdate = () => {
         eqsSteps.FW_COMPLETED
       ])
     ) {
-      startUpdate()
+      dispatch(CHECK_EQS_FIRMWARE())
     }
-  }, [currentStep, startUpdate])
+  }, [currentStep, dispatch])
 
   const updateProgress = useSelector(
     pathOr([], ['storage', 'deviceUpdate', 'status_report'])
@@ -67,7 +62,7 @@ const EQSUpdate = () => {
         </span>
       </div>
       {either(
-        isEmpty(updateStatus),
+        isEmpty(updateStatus) && isEmpty(error),
         <div className="has-text-centered">
           <Loader />
           <span>{t('FW_UPDATE_WAIT')}</span>
@@ -75,10 +70,45 @@ const EQSUpdate = () => {
       )}
 
       {either(
+        includes(error, [
+          eqsUpdateErrors.CHECKFILE_EQS_FIRMWARE_ERROR,
+          eqsUpdateErrors.GETFILE_EQS_FIRMWARE_ERROR,
+          eqsUpdateErrors.UPLOAD_EQS_FIRMWARE_ERROR
+        ]),
+        <div className="has-text-centered mb-15">
+          <div className="pt-20 pb-20">
+            <i className="sp-close has-text-white is-size-1" />
+          </div>
+          <div className="mt-20">
+            <span>{t(error)}</span>
+            <div className="mt-20">
+              <button
+                className="button is-primary is-outlined"
+                onClick={() =>
+                  history.push(paths.PROTECTED.MANAGE_FIRMWARES.path)
+                }
+              >
+                {t('MANAGE_FIRMWARES')}
+              </button>
+            </div>
+
+            <div className="mt-20">
+              <button
+                onClick={() => dispatch(CHECK_EQS_FIRMWARE())}
+                className="button is-primary"
+              >
+                {t('RETRY')}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {either(
         includes(updateStatus, [
           eqsUpdateStates.FAILED,
           eqsUpdateStates.NOT_RUNNING
-        ]),
+        ]) && !isEmpty(updateErrors),
         <div className="has-text-centered mb-15">
           <div className="pt-20 pb-20">
             <i className="sp-close has-text-white is-size-1" />
@@ -90,16 +120,18 @@ const EQSUpdate = () => {
       )}
 
       {either(
-        includes(
-          updateStatus,
-          [eqsUpdateStates.FAILED, eqsUpdateStates.NOT_RUNNING] &&
-            isEmpty(updateErrors),
-          <div className="mt-20 has-text-centered">
-            <button onClick={startUpdate} className="button is-primary">
-              {t('RETRY')}
-            </button>
-          </div>
-        )
+        includes(updateStatus, [
+          eqsUpdateStates.FAILED,
+          eqsUpdateStates.NOT_RUNNING
+        ]) && !isEmpty(updateErrors),
+        <div className="mt-20 has-text-centered">
+          <button
+            onClick={() => dispatch(CHECK_EQS_FIRMWARE())}
+            className="button is-primary"
+          >
+            {t('RETRY')}
+          </button>
+        </div>
       )}
 
       {either(
@@ -116,7 +148,7 @@ const EQSUpdate = () => {
         <ErrorDetected
           url={paths.PROTECTED.EQS_UPDATE_ERRORS.path}
           number={length(updateErrors)}
-          onRetry={startUpdate}
+          onRetry={() => dispatch(CHECK_EQS_FIRMWARE())}
         />
       )}
     </div>

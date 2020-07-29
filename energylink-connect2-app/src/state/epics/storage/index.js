@@ -11,12 +11,16 @@ import {
   runSystemCheckEpic
 } from './getHealthCheckEpic'
 import {
+  checkEqsFwFile,
+  getEqsFwFile,
   uploadEqsFwEpic,
   triggerFwUpdateEpic,
   pollFwUpdateEpic
 } from './deviceUpdate'
 
 export default [
+  checkEqsFwFile,
+  getEqsFwFile,
   uploadEqsFwEpic,
   triggerFwUpdateEpic,
   pollFwUpdateEpic,
