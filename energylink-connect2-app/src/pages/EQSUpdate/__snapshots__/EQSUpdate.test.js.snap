@@ -51,32 +51,6 @@ exports[`EQS Connected Device Update Renders Correctly 1`] = `
               FW_UPDATE
             </span>
           </div>
-          <div
-            className="has-text-centered"
-          >
-            <Loader>
-              <div
-                className="custom-loader"
-              >
-                <div
-                  className="loader-inner line-scale-pulse-out-rapid"
-                >
-                  <div />
-                   
-                  <div />
-                   
-                  <div />
-                   
-                  <div />
-                   
-                  <div />
-                </div>
-              </div>
-            </Loader>
-            <span>
-              FW_UPDATE_WAIT
-            </span>
-          </div>
           <ErrorDetected
             number={0}
             onRetry={[Function]}
