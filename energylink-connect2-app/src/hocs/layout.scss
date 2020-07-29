@@ -42,12 +42,11 @@ html {
 
 .header-transition{
   transition: max-height 250ms ease-out,opacity 250ms ease-out;
-
 }
 
 .show-footer {
   opacity: 1;
-  max-height: 90px;
+  max-height: 70px;
 }
 
 .hide-footer {
