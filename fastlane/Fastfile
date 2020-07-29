@@ -1,3 +1,5 @@
+APP_NAME = ENV.fetch("APP_NAME", "EnergylinkConnect2-dev")
+
 platform :android do
     lane :build do
         cordova(
@@ -14,7 +16,7 @@ platform :android do
             json_key: ENV.fetch("PLAY_STORE_API_CRED", "./google-api.json"),
             package_name: CredentialsManager::AppfileConfig.try_fetch_value(:app_identifier),
             release_status: "completed",
-            track: "beta"
+            track: ENV.fetch("RELEASE_TRACK", "beta")
         )
     end
 end
@@ -33,7 +35,7 @@ platform :ios do
             readonly: true
         )
         automatic_code_signing(
-            path:           "./platforms/ios/EnergyLinkConnect2.xcodeproj",
+            path:           "./platforms/ios/#{APP_NAME}.xcodeproj",
             team_id:        CredentialsManager::AppfileConfig.try_fetch_value(:team_id),
             profile_name:   "match AppStore #{CredentialsManager::AppfileConfig.try_fetch_value(:app_identifier)}"
         )
@@ -42,7 +44,7 @@ platform :ios do
 
     lane :release do
         upload_to_testflight(
-            ipa:                "./platforms/ios/build/device/EnergyLinkConnect2.ipa",
+            ipa:                "./platforms/ios/build/device/#{APP_NAME}.ipa",
             skip_submission:    true,
             skip_waiting_for_build_processing: true
         )
