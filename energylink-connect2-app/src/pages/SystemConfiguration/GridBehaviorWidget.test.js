@@ -28,9 +28,9 @@ describe('GridBehaviorWidget', () => {
         },
         profiles: [],
         gridVoltage: {
-          grid: {
-            voltage: 1
-          }
+          grid_voltage: 240,
+          measured: 0,
+          selected: 0
         }
       }
     },
@@ -47,7 +47,7 @@ describe('GridBehaviorWidget', () => {
       )
   })
 
-  test('renders correctly', () => {
+  test('renders correctly with grid voltage measured equals to 0', () => {
     const { component } = mountWithProvider(<GridBehaviorWidget />)(
       initialState
     )

@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`GridBehaviorWidget renders correctly 1`] = `
+exports[`GridBehaviorWidget renders correctly with grid voltage measured equals to 0 1`] = `
 <BrowserRouter
   keyLength={0}
 >
@@ -3678,12 +3678,7 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                         className="control"
                       >
                         <SelectField
-                          defaultValue={
-                            Object {
-                              "label": "240",
-                              "value": 240,
-                            }
-                          }
+                          defaultValue={null}
                           isSearchable={false}
                           onSelect={[Function]}
                           options={
@@ -3718,12 +3713,7 @@ exports[`GridBehaviorWidget renders correctly 1`] = `
                             }
                             defaultInputValue=""
                             defaultMenuIsOpen={false}
-                            defaultValue={
-                              Object {
-                                "label": "240",
-                                "value": 240,
-                              }
-                            }
+                            defaultValue={null}
                             hideSelectedOptions={true}
                             isSearchable={false}
                             noOptionsMessage={[Function]}
