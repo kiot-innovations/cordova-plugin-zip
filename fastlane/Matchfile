@@ -1,4 +1,4 @@
-app_identifier(["com.sunpower.energylink.commissioning2"])
+app_identifier([ENV.fetch("APP_ID", "com.sunpower.energylink.commissioning2.dev")])
 git_url("https://github.com/SunPower/firmware-mobile-certificates")
 
 # available types: appstore, adhoc, enterprise, development
