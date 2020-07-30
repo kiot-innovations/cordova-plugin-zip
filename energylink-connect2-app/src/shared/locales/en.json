@@ -305,7 +305,7 @@
   "PVS_PROVIDE_INTERNET": "Connect the PVS to a network with Internet access",
   "PVS_INTERNET_INTERFACE": "PVS is online via {0}",
   "CONFIGURE_NETWORK": "Configure PVS Network",
-  "VOLTAGE_WARNING": "Your selection is different from the measured value ({0})",
+  "VOLTAGE_WARNING": "Your selection is different from the measured value ({0} volts)",
   "MI_SN": "Microinverters",
   "POWER_OUTPUT": "Power Output",
   "NO_MI_LIVE_DATA": "No MI power data available",
