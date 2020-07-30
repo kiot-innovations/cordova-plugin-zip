@@ -127,6 +127,8 @@ function GridBehaviorWidget() {
   ])
   const findExportLimitValue = findByPathValue(selfSupplyOptions, ['value'])
 
+  const showPreselectedVoltage =
+    gridVoltage.measured === 208 || gridVoltage.measured === 240
   const showVoltageWarning = gridVoltage.selected !== gridVoltage.measured
 
   return (
@@ -227,9 +229,12 @@ function GridBehaviorWidget() {
                   useDefaultDropDown
                   options={gridVoltageOptions}
                   defaultValue={
-                    gridVoltage.selected === 240
-                      ? { label: '208', value: 208 }
-                      : { label: '240', value: 240 }
+                    showPreselectedVoltage
+                      ? {
+                          label: `${gridVoltage.measured}`,
+                          value: gridVoltage.measured
+                        }
+                      : null
                   }
                   value={findVoltageByValue(selectedOptions.gridVoltage)}
                   onSelect={setGridVoltage}
