@@ -6,7 +6,7 @@ import GridBehaviorWidget from './GridBehaviorWidget'
 describe('GridBehaviorWidget', () => {
   let dispatchMock
 
-  let initialState = {
+  const gridVoltageZero = {
     systemConfiguration: {
       gridBehavior: {
         selectedOptions: {
@@ -19,18 +19,80 @@ describe('GridBehaviorWidget', () => {
                 min: 90001
               }
             ],
-            filename: 'cb8e4e2f.meta',
-            id: 'cb8e4e2f365c5cd1434dd678566a208f0c866661',
-            name: 'CA CPUC R21 Reactive Power Priority'
+            filename: '816bf330.meta',
+            id: '816bf3302d337a42680b996227ddbc46abf9cd05',
+            name: 'IEEE-1547a-2014 + 2020 CA Rule21'
           },
           lazyGridProfile: 0,
           exportLimit: -1
         },
         profiles: [],
         gridVoltage: {
-          grid: {
-            voltage: 1
-          }
+          grid_voltage: 240,
+          measured: 0,
+          selected: 0
+        }
+      }
+    },
+    site: {}
+  }
+
+  const gridVoltage240 = {
+    systemConfiguration: {
+      gridBehavior: {
+        selectedOptions: {
+          gridVoltage: 240,
+          profile: {
+            selfsupply: false,
+            zipcodes: [
+              {
+                max: 96162,
+                min: 90001
+              }
+            ],
+            filename: '816bf330.meta',
+            id: '816bf3302d337a42680b996227ddbc46abf9cd05',
+            name: 'IEEE-1547a-2014 + 2020 CA Rule21'
+          },
+          lazyGridProfile: 0,
+          exportLimit: -1
+        },
+        profiles: [],
+        gridVoltage: {
+          grid_voltage: 240,
+          measured: 240,
+          selected: 0
+        }
+      }
+    },
+    site: {}
+  }
+
+  const gridVoltage208 = {
+    systemConfiguration: {
+      gridBehavior: {
+        selectedOptions: {
+          gridVoltage: 240,
+          profile: {
+            selfsupply: false,
+            zipcodes: [
+              {
+                max: 96162,
+                min: 90001
+              }
+            ],
+            filename: '816bf330.meta',
+            id: '816bf3302d337a42680b996227ddbc46abf9cd05',
+            name: 'IEEE-1547a-2014 + 2020 CA Rule21'
+          },
+          lazyGridProfile: 0,
+          exportLimit: -1
+        },
+        profiles: [],
+        gridVoltage: {
+          grid_voltage: 208,
+          measured: 208,
+          selected: 0
         }
       }
     },
@@ -47,9 +109,23 @@ describe('GridBehaviorWidget', () => {
       )
   })
 
-  test('renders correctly', () => {
+  test('renders correctly with grid voltage measured equals to 0', () => {
     const { component } = mountWithProvider(<GridBehaviorWidget />)(
-      initialState
+      gridVoltageZero
+    )
+    expect(component).toMatchSnapshot()
+  })
+
+  test('renders correctly with grid voltage measured equals to 240', () => {
+    const { component } = mountWithProvider(<GridBehaviorWidget />)(
+      gridVoltage240
+    )
+    expect(component).toMatchSnapshot()
+  })
+
+  test('renders correctly with grid voltage measured equals to 208', () => {
+    const { component } = mountWithProvider(<GridBehaviorWidget />)(
+      gridVoltage208
     )
     expect(component).toMatchSnapshot()
   })

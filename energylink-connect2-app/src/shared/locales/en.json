@@ -305,7 +305,7 @@
   "PVS_PROVIDE_INTERNET": "Connect the PVS to a network with Internet access",
   "PVS_INTERNET_INTERFACE": "PVS is online via {0}",
   "CONFIGURE_NETWORK": "Configure PVS Network",
-  "VOLTAGE_WARNING": "Your selection is different from the measured value ({0})",
+  "VOLTAGE_WARNING": "Your selection is different from the measured value ({0} volts)",
   "MI_SN": "Microinverters",
   "POWER_OUTPUT": "Power Output",
   "NO_MI_LIVE_DATA": "No MI power data available",
@@ -435,9 +435,8 @@
   "PVS_SN": "PVS Serial Number",
   "SUNVAULT_STATUS": "SunVault Status",
   "POWER_PRODUCTION": "Power Production",
-  "INVERTERS": "Inverters",
-  "INVERTER": "Inverter",
   "CHECKFILE_EQS_FIRMWARE_ERROR": "Storage Firmware Files not found on the device. Please make sure they are properly downloaded and try again.",
   "GETFILE_EQS_FIRMWARE_ERROR": "There was an issue with the Storage Firmware File. Please download it again and retry.",
-  "UPLOAD_EQS_FIRMWARE_ERROR": "An error occured while uploading the Storage Firmware file. Please try again."
+  "UPLOAD_EQS_FIRMWARE_ERROR": "An error occured while uploading the Storage Firmware file. Please try again.",
+  "HEALTH_CHECK_SUCCESSFUL": "Health Check Successful"
 }

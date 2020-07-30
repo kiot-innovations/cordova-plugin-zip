@@ -57,15 +57,42 @@ Object {
             <div
               className="status-message"
             />
-            <div
-              className="are-small"
+            <ContinueFooter
+              text="HEALTH_CHECK_SUCCESSFUL"
             >
-              <button
-                className="button auto is-primary"
+              <div
+                className="continue-footer"
               >
-                CONTINUE
-              </button>
-            </div>
+                <span
+                  className="is-size-6 has-text-white has-text-weight-bold"
+                >
+                  NO_ERRORS_DETECTED
+                </span>
+                <span
+                  className="is-size-6"
+                >
+                  HEALTH_CHECK_SUCCESSFUL
+                </span>
+                <Link
+                  className="button is-primary is-uppercase pl-20 pr-20 mt-20"
+                  to=""
+                >
+                  <LinkAnchor
+                    className="button is-primary is-uppercase pl-20 pr-20 mt-20"
+                    href="/"
+                    navigate={[Function]}
+                  >
+                    <a
+                      className="button is-primary is-uppercase pl-20 pr-20 mt-20"
+                      href="/"
+                      onClick={[Function]}
+                    >
+                      CONTINUE
+                    </a>
+                  </LinkAnchor>
+                </Link>
+              </div>
+            </ContinueFooter>
           </div>
         </ESSHealthCheck>
       </Provider>
