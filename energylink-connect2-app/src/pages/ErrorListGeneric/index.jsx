@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
 import { omit } from 'ramda'
 import { Link, useHistory } from 'react-router-dom'
-
 import paths, { setParams } from 'routes/paths'
 import { useI18n } from 'shared/i18n'
 import { getError } from 'shared/errorCodes'
+import './ErrorListScreen.scss'
 
 const ErrorComponent = ({ title, code, errorInfo, t }) => {
   const toParams = {
