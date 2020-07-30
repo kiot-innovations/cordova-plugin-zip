@@ -6,67 +6,101 @@ import ESSHealthCheck from '.'
 import { action } from '@storybook/addon-actions/dist'
 
 const results = {
-  errors: [],
+  errors: [
+    {
+      device_sn: '00001B3DDACD',
+      error_code: '32058',
+      error_message: 'f72_external_contactor_malfunction_critical',
+      error_name: 'f72_external_contactor_malfunction_critical',
+      last_occurence: '2020-07-30 18:37:20',
+      value: {
+        unit: '',
+        value: 256
+      }
+    },
+    {
+      device_sn: 'Serial-MIDC-Saturn',
+      error_code: '11018',
+      error_message: 'hubplus_inverter_aux_under_voltage_warning',
+      error_name: 'hubplus_inverter_aux_under_voltage_warning',
+      last_occurence: '2020-07-30 18:37:20',
+      value: {
+        unit: '',
+        value: 0
+      }
+    },
+    {
+      device_sn: 'Serial-MIDC-Saturn',
+      error_code: '31003',
+      error_message: 'contactor_stuck_open_critical',
+      error_name: 'contactor_stuck_open_critical',
+      last_occurence: '2020-07-30 18:37:20',
+      value: {
+        unit: '',
+        value: 1
+      }
+    }
+  ],
   ess_report: {
     battery_status: [
       {
         battery_amperage: {
           unit: 'A',
-          value: 0
+          value: -0.6
         },
         battery_voltage: {
           unit: 'V',
-          value: 53.2567
+          value: 52.5
         },
-        last_updated: '2020-07-14 23:03:59',
-        serial_number: '',
+        last_updated: '2020-07-30 18:37:10',
+        serial_number: 'F2191700087033751040',
         state_of_charge: {
           unit: '%',
-          value: 0.88567
+          value: 0.35000000000000003
         },
         temperature: {
           unit: 'C',
-          value: 26.3567
+          value: 29.1
         }
       }
     ],
     ess_state: [
       {
-        operational_mode: 'STANDBY',
+        operational_mode: 'MANUAL_CHARGE',
         permission_to_operate: false,
-        storage_controller_status: 'NOT_RUNNING'
+        storage_controller_status: 'RUNNING'
       }
     ],
     ess_status: [
       {
         enclosure_humidity: {
           unit: '%',
-          value: 21.567
+          value: 20
         },
         enclosure_temperature: {
           unit: 'C',
-          value: 33.567
+          value: 33
         },
         ess_meter_reading: {
           agg_power: {
             unit: 'kW',
-            value: -0.0285
+            value: -0.006
           },
-          last_updated: '2020-07-14 23:03:59',
+          last_updated: '2020-07-30 18:37:10',
           meter_a: {
             reading: {
               current: {
                 unit: 'A',
                 value: 0
               },
-              last_updated: '2020-07-14 23:03:59',
+              last_updated: '2020-07-30 18:37:10',
               power: {
                 unit: 'W',
                 value: 0
               },
               voltage: {
                 unit: 'V',
-                value: 120.2678
+                value: 0.21
               }
             }
           },
@@ -76,46 +110,46 @@ const results = {
                 unit: 'A',
                 value: 0
               },
-              last_updated: '2020-07-14 23:03:59',
+              last_updated: '2020-07-30 18:37:10',
               power: {
                 unit: 'W',
                 value: 0
               },
               voltage: {
                 unit: 'V',
-                value: 120.2678
+                value: 0.21
               }
             }
           }
         },
-        last_updated: '2020-07-14 23:03:59',
-        serial_number: '00001B3E5A44_29_17'
+        last_updated: '2020-07-30 18:37:10',
+        serial_number: '00001B3DDACD_16777216'
       }
     ],
     hub_plus_status: {
       aux_port_voltage: {
         unit: 'V',
-        value: 11.364
+        value: 0
       },
-      contactor_error: 'NONE',
-      contactor_position: 'CLOSED',
-      grid_frequency_state: 'METER_FREQ_IN_RANGE',
+      contactor_error: 'STUCK_OPEN',
+      contactor_position: 'OPEN',
+      grid_frequency_state: 'METER_FREQ_OUT_RANGE',
       grid_phase1_voltage: {
         unit: 'V',
-        value: 121.2567
+        value: 79.600000000000009
       },
       grid_phase2_voltage: {
         unit: 'V',
-        value: 121.30000000000001
+        value: 79.2
       },
-      grid_voltage_state: 'METER_VOLTAGE_IN_RANGE',
+      grid_voltage_state: 'METER_VOLTAGE_OUT_RANGE',
       hub_humidity: {
         unit: '%',
-        value: 26.567
+        value: 25
       },
       hub_temperature: {
         unit: 'C',
-        value: 29
+        value: 32
       },
       inverter_connection_voltage: {
         unit: 'V',
@@ -123,30 +157,30 @@ const results = {
       },
       jump_start_voltage: {
         unit: 'V',
-        value: 0.748
+        value: 0.66
       },
-      last_updated: '2020-07-14 23:04:07',
-      load_frequency_state: 'METER_FREQ_IN_RANGE',
+      last_updated: '2020-07-30 18:37:18',
+      load_frequency_state: 'METER_FREQ_OUT_RANGE',
       load_phase1_voltage: {
         unit: 'V',
-        value: 121.2
+        value: 79.4
       },
       load_phase2_voltage: {
         unit: 'V',
-        value: 121.4
+        value: 79.300000000000011
       },
-      load_voltage_state: 'METER_VOLTAGE_IN_RANGE',
+      load_voltage_state: 'METER_VOLTAGE_OUT_RANGE',
       main_voltage: {
         unit: 'V',
-        value: 11.243
+        value: 11.21
       },
-      serial_number: 'Serial-MIDC-Mercury'
+      serial_number: 'Serial-MIDC-Saturn'
     },
     inverter_status: [
       {
         a_n_voltage: {
           unit: 'V',
-          value: 120.26
+          value: 0.21
         },
         ac_current: {
           unit: 'A',
@@ -154,13 +188,13 @@ const results = {
         },
         ac_power: {
           unit: 'kW',
-          value: -0.028
+          value: -0.006
         },
         b_n_voltage: {
           unit: 'V',
-          value: 120.26
+          value: 0.21
         },
-        last_updated: '2020-07-14 23:03:59',
+        last_updated: '2020-07-30 18:37:10',
         phase_a_current: {
           unit: 'A',
           value: 0
@@ -169,21 +203,21 @@ const results = {
           unit: 'A',
           value: 0
         },
-        serial_number: '00001B3E5A44',
+        serial_number: '00001B3DDACD',
         temperature: {
           unit: 'C',
-          value: 27.68
+          value: 32.43
         }
       }
     ],
-    last_updated: '2020-07-14 23:04:09'
+    last_updated: '2020-07-30 18:37:20'
   }
 }
 
 const actions = {
   onRetry: linkTo('ESSHealthCheck Page', 'Generating report'),
-  onContinue: action('Continue action triggered'),
-  onSeeErrors: linkTo('ESSHealthCheck Error List')
+  pathToContinue: action('Continue action triggered'),
+  pathToErrors: linkTo('ESSHealthCheck Error List')
 }
 
 storiesOf('ESSHealthCheck Page', module)

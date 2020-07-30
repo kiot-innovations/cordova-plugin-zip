@@ -1,13 +1,13 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
-import ESSHealthCheckErrorsComponent from 'components/ESSHealthCheckErrorList'
+import ErrorListScreen from 'pages/ErrorListGeneric'
 
 function ESSHealthCheckErrors() {
-  const { results, error } = useSelector(state => state.storage.status)
-
+  const { results } = useSelector(state => state.storage.status)
+  const { errors = [] } = results
   return (
     <div className="pl-10 pr-10">
-      <ESSHealthCheckErrorsComponent results={results} error={error} />
+      <ErrorListScreen errors={errors} />
     </div>
   )
 }
