@@ -140,7 +140,7 @@ jobs:
           echo "::set-env name=BRANCH_NAME::$BRANCH_NAME"
       - name: Send slack notification
         uses: hbfernandes/slack-action@1.0
-        if: matrix.app_env == "prod"
+        if: matrix.app_env == 'prod'
         env:
           SLACK_TOKEN: ${{ secrets.SLACK_TOKEN }}
         with:
