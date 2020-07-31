@@ -20,7 +20,7 @@ export const submitMeterDataEpic = (action$, state$) => {
     ofType(SUBMIT_CONFIG.getType()),
     exhaustMap(({ payload }) => {
       if (!payload.metaData) {
-        return of(SUBMIT_GRIDPROFILE(payload))
+        return of(SUBMIT_GRIDVOLTAGE(payload))
       }
 
       const promise = getApiPVS()
@@ -32,7 +32,7 @@ export const submitMeterDataEpic = (action$, state$) => {
       return from(promise).pipe(
         map(response =>
           response.status === 200
-            ? SUBMIT_GRIDPROFILE(payload)
+            ? SUBMIT_GRIDVOLTAGE(payload)
             : SUBMIT_CONFIG_ERROR(t('SUBMIT_METER_DATA_ERROR'))
         ),
         catchError(err => of(SUBMIT_CONFIG_ERROR(t('SUBMIT_METER_DATA_ERROR'))))
@@ -47,7 +47,7 @@ export const submitGridProfileEpic = (action$, state$) => {
     ofType(SUBMIT_GRIDPROFILE.getType()),
     exhaustMap(({ payload }) => {
       if (!payload.gridProfile) {
-        return of(SUBMIT_GRIDVOLTAGE(payload))
+        return of(SUBMIT_EXPORTLIMIT(payload))
       }
 
       const promise = getApiPVS()
@@ -95,7 +95,7 @@ export const submitExportLimitEpic = (action$, state$) => {
       return from(promise).pipe(
         map(response =>
           response.status === 200
-            ? SUBMIT_GRIDVOLTAGE(payload)
+            ? SUBMIT_CONFIG_SUCCESS(response)
             : SUBMIT_CONFIG_ERROR(t('SUBMIT_EXPORT_LIMIT_ERROR'))
         ),
         catchError(err => {
@@ -113,7 +113,7 @@ export const submitGridVoltageEpic = (action$, state$) => {
     ofType(SUBMIT_GRIDVOLTAGE.getType()),
     exhaustMap(({ payload }) => {
       if (!payload.gridVoltage) {
-        return of(SUBMIT_CONFIG_SUCCESS())
+        return of(SUBMIT_GRIDPROFILE())
       }
 
       const promise = getApiPVS()
@@ -128,7 +128,7 @@ export const submitGridVoltageEpic = (action$, state$) => {
       return from(promise).pipe(
         map(response =>
           response.status === 200
-            ? SUBMIT_CONFIG_SUCCESS(response)
+            ? SUBMIT_GRIDPROFILE(payload)
             : SUBMIT_CONFIG_ERROR(t('SUBMIT_GRID_VOLTAGE_ERROR'))
         ),
         catchError(err => {
