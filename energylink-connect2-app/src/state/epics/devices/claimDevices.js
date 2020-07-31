@@ -25,6 +25,7 @@ export const claimDevicesEpic = action$ => {
             : CLAIM_DEVICES_ERROR('ERROR_EXECUTING_COMMAND')
         ),
         catchError(err => {
+          Sentry.addBreadcrumb({ message: 'Claim devices init' })
           Sentry.captureException(err)
           return of(CLAIM_DEVICES_ERROR(err))
         })

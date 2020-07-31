@@ -35,7 +35,11 @@ export const submitMeterDataEpic = (action$, state$) => {
             ? SUBMIT_GRIDPROFILE(payload)
             : SUBMIT_CONFIG_ERROR(t('SUBMIT_METER_DATA_ERROR'))
         ),
-        catchError(err => of(SUBMIT_CONFIG_ERROR(t('SUBMIT_METER_DATA_ERROR'))))
+        catchError(err => {
+          Sentry.addBreadcrumb({ message: 'Submit config' })
+          Sentry.captureException(err)
+          return of(SUBMIT_CONFIG_ERROR(t('SUBMIT_METER_DATA_ERROR')))
+        })
       )
     })
   )
@@ -70,9 +74,11 @@ export const submitGridProfileEpic = (action$, state$) => {
             ? SUBMIT_EXPORTLIMIT(payload)
             : SUBMIT_CONFIG_ERROR(t('SUBMIT_GRID_PROFILE_ERROR'))
         ),
-        catchError(err =>
-          of(SUBMIT_CONFIG_ERROR(t('SUBMIT_GRID_PROFILE_ERROR')))
-        )
+        catchError(err => {
+          Sentry.addBreadcrumb({ message: 'Submit grid profile' })
+          Sentry.captureException(err)
+          return of(SUBMIT_CONFIG_ERROR(t('SUBMIT_GRID_PROFILE_ERROR')))
+        })
       )
     })
   )
@@ -99,6 +105,7 @@ export const submitExportLimitEpic = (action$, state$) => {
             : SUBMIT_CONFIG_ERROR(t('SUBMIT_EXPORT_LIMIT_ERROR'))
         ),
         catchError(err => {
+          Sentry.addBreadcrumb({ message: 'Submit export limit' })
           Sentry.captureException(err)
           return of(SUBMIT_CONFIG_ERROR(t('SUBMIT_EXPORT_LIMIT_ERROR')))
         })
@@ -132,6 +139,7 @@ export const submitGridVoltageEpic = (action$, state$) => {
             : SUBMIT_CONFIG_ERROR(t('SUBMIT_GRID_VOLTAGE_ERROR'))
         ),
         catchError(err => {
+          Sentry.addBreadcrumb({ message: 'Submit grid voltage' })
           Sentry.captureException(err)
           return of(SUBMIT_CONFIG_ERROR(t('SUBMIT_GRID_VOLTAGE_ERROR')))
         })
