@@ -8,6 +8,9 @@ describe('Serial Number List Page', () => {
   let dispatchMock
 
   let initialState = {
+    devices: {
+      found: [{ SERIAL: '194355110333120', DEVICE_TYPE: 'Inverter' }]
+    },
     pvs: {
       serialNumbers: [
         {

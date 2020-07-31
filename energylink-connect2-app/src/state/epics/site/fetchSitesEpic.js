@@ -1,7 +1,13 @@
 import * as Sentry from '@sentry/browser'
 import { ofType } from 'redux-observable'
 import { from, of } from 'rxjs'
-import { catchError, exhaustMap, map, mergeMap } from 'rxjs/operators'
+import {
+  catchError,
+  exhaustMap,
+  map,
+  mergeMap,
+  switchMap
+} from 'rxjs/operators'
 import {
   compose,
   converge,
@@ -13,6 +19,7 @@ import {
   prop
 } from 'ramda'
 import * as siteActions from 'state/actions/site'
+import * as devicesActions from 'state/actions/devices'
 import * as authActions from 'state/actions/auth'
 import { getApiParty, getApiSite } from 'shared/api'
 
@@ -64,14 +71,19 @@ export const fetchSiteData = (action$, state$) => {
   async function getSiteDataPromise(accessToken, siteKey = '') {
     const api = await getApiSite(accessToken)
     const res = await api.apis.default.get_v1_site_assignment({ siteKey })
-    return filterPVS(JSON.parse(res.data))
+    return JSON.parse(res.data)
   }
 
   return action$.pipe(
     ofType(siteActions.GET_SITE_INIT.getType()),
     exhaustMap(({ payload }) =>
       from(getSiteDataPromise(getAccessToken(state$.value), payload)).pipe(
-        map(siteActions.GET_SITE_SUCCESS),
+        switchMap(siteData =>
+          of(
+            siteActions.GET_SITE_SUCCESS(filterPVS(siteData)),
+            devicesActions.FETCH_DEVICES_LIST()
+          )
+        ),
         catchError(error => {
           Sentry.captureException(error)
           return of(
