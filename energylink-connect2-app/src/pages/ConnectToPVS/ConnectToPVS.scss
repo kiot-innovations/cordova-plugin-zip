@@ -34,8 +34,8 @@
 }
 
 .ReactSwipeableBottomSheet--open, .ReactSwipeableBottomSheet--closed {
-  padding: 1rem;
+  padding: 1rem 1rem 2rem 1rem;
   background-color: $light-black !important;
   border-radius: 20px;
-  margin-bottom: 100px;
+  margin-bottom: 70px;
 }

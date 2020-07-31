@@ -69,7 +69,8 @@ export const storageReducer = createReducer(
     }),
     [GET_PREDISCOVERY_SUCCESS]: (state, payload) => ({
       ...state,
-      prediscovery: payload
+      prediscovery: payload,
+      error: initialState.error
     }),
     [GET_PREDISCOVERY_ERROR]: (state, payload) => ({
       ...state,
