@@ -121,7 +121,9 @@
   "FOUND_SITES": "Customer Sites: {0}",
   "SCANNING_SN": "Scanning...",
   "FETCHING_SN": "Hold on, we're looking for barcodes...",
-  "FOUND_SN": "Found {0} Serial Numbers",
+  "FOUND_SN": "{0} Total Inverters",
+  "NEW_INVERTERS": "New Inverters",
+  "EXISTING_INVERTERS": "Existing Inverters",
   "NOT_NOW": "Not now",
   "INSTALL_SUCCESS": "PVS Installation Successful",
   "INSTALL_SUBTITLE": "Please take a photo of the module layout diagram before leaving the site.",
@@ -130,7 +132,7 @@
   "CONFIGURE": "Configure",
   "TURN_OFF_BREAKERS": "Please remember to turn off the solar circuit breakers before leaving the site.",
   "ATTENTION": "Attention",
-  "SCAN_MI_LABELS": "Microinverters SN list",
+  "SCAN_MI_LABELS": "Microinverters on site",
   "TAP_SN_TO_EDIT": "Tap on the serial number to edit",
   "SCAN_MORE": "Scan More",
   "SCAN_HINT": "Tap on Scan More to scan MI barcodes",
@@ -435,9 +437,8 @@
   "PVS_SN": "PVS Serial Number",
   "SUNVAULT_STATUS": "SunVault Status",
   "POWER_PRODUCTION": "Power Production",
-  "INVERTERS": "Inverters",
-  "INVERTER": "Inverter",
   "CHECKFILE_EQS_FIRMWARE_ERROR": "Storage Firmware Files not found on the device. Please make sure they are properly downloaded and try again.",
   "GETFILE_EQS_FIRMWARE_ERROR": "There was an issue with the Storage Firmware File. Please download it again and retry.",
-  "UPLOAD_EQS_FIRMWARE_ERROR": "An error occured while uploading the Storage Firmware file. Please try again."
+  "UPLOAD_EQS_FIRMWARE_ERROR": "An error occured while uploading the Storage Firmware file. Please try again.",
+  "HEALTH_CHECK_SUCCESSFUL": "Health Check Successful"
 }

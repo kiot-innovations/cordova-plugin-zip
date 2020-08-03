@@ -5,6 +5,9 @@ import { useI18n } from 'shared/i18n'
 import { either, addHasErrorProp } from 'shared/utils'
 
 import ESSHealthCheckReport from './ESSHealthCheckReport'
+import ErrorDetected from 'components/ESSErrorDetected/ErrorDetected'
+import ContinueFooter from 'components/ESSContinueFooter'
+
 import './ESSHealthCheck.scss'
 
 function ESSHealthCheck(props) {
@@ -17,7 +20,7 @@ function ESSHealthCheck(props) {
     gridit: loading || props.error
   })
 
-  const { waiting, progress, onContinue, onRetry, onSeeErrors } = props
+  const { waiting, progress, onRetry, pathToContinue, pathToErrors } = props
 
   return (
     <div className={classes}>
@@ -38,58 +41,23 @@ function ESSHealthCheck(props) {
           !props.error && report,
           <ESSHealthCheckReport report={report} />
         )}
-
-        {either(
-          !loading && props.error,
-          <>
-            <div className="pt-20 pb-20">
-              <i className="sp-close has-text-white is-size-1" />
-            </div>
-            <span> {t('HEALTH_REPORT_ERROR')} </span>
-            <div className="are-small mt-20">
-              <button className="button auto is-secondary" onClick={onRetry}>
-                {t('RETRY')}
-              </button>
-            </div>
-          </>
-        )}
       </div>
 
       {either(
-        isEmpty(errors) && !loading && !props.error,
-        <div className="are-small">
-          <button
-            className={clsx('button auto is-primary')}
-            onClick={onContinue}
-          >
-            {t('CONTINUE')}
-          </button>
-        </div>
+        isEmpty(errors) && !loading,
+        <ContinueFooter
+          url={pathToContinue}
+          text={t('HEALTH_CHECK_SUCCESSFUL')}
+        />
       )}
 
       {either(
-        !isEmpty(errors) && !loading && !props.error,
-        <>
-          <div className="info is-size-7">
-            <p className="is-size-6 has-text-primary">
-              {t('HEALTH_REPORT_ERROR_COUNT', length(errors))}
-            </p>
-            <p> {t('HEALTH_REPORT_ERROR_INFO')} </p>
-            <p> {t('HEALTH_REPORT_ERROR_INFO2')} </p>
-          </div>
-
-          <div className="buttons are-small">
-            <button
-              className="button is-primary is-uppercase auto"
-              onClick={onSeeErrors}
-            >
-              {t('HEALTH_REPORT_ERROR_LIST')}
-            </button>
-            <button className="button is-secondary auto" onClick={onRetry}>
-              {t('RETRY')}
-            </button>
-          </div>
-        </>
+        !isEmpty(errors) && !loading,
+        <ErrorDetected
+          url={pathToErrors}
+          number={length(errors)}
+          onRetry={onRetry}
+        />
       )}
     </div>
   )

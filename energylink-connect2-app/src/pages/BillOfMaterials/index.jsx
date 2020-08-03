@@ -33,8 +33,6 @@ function BillOfMaterials() {
     pathOr({}, ['site', 'site'])
   )
 
-  const sitesPVS = useSelector(pathOr(null, ['site', 'sitePVS']))
-
   useEffect(() => {
     dispatch(GET_SITE_INIT(siteKey))
   }, [dispatch, siteKey])
@@ -95,11 +93,7 @@ function BillOfMaterials() {
       <section className="tile is-flex is-vertical button-container mb-10">
         <Link
           className="button pt-0 pb-0 pl-20 pr-20 is-primary"
-          to={
-            sitesPVS
-              ? paths.PROTECTED.PVS_SELECTION_SCREEN.path
-              : paths.PROTECTED.INVENTORY_COUNT.path
-          }
+          to={paths.PROTECTED.PVS_SELECTION_SCREEN.path}
         >
           {t('START_INSTALL')}
         </Link>
