@@ -1,12 +1,12 @@
+import { path, pathOr } from 'ramda'
 import * as Sentry from '@sentry/browser'
-import { pathOr } from 'ramda'
 import { ofType } from 'redux-observable'
 import { EMPTY, from, of } from 'rxjs'
-import { catchError, concatMap, exhaustMap, switchMap } from 'rxjs/operators'
+import { catchError, exhaustMap, map, switchMap } from 'rxjs/operators'
 import {
   getFileInfo,
   getFirmwareVersionData,
-  getLuaZipFileURL,
+  getFS,
   getPVSFileSystemName,
   parseLuaFile
 } from 'shared/fileSystem'
@@ -22,134 +22,148 @@ import {
   FIRMWARE_GET_FILE,
   FIRMWARE_GET_FILE_INFO,
   FIRMWARE_METADATA_DOWNLOAD_INIT,
-  GET_FILE_ERROR,
+  GET_FIRMWARE_URL,
+  GET_FIRMWARE_URL_ERROR,
+  GET_FIRMWARE_URL_SUCCESS,
   SET_FILE_INFO,
   SET_FILE_SIZE
 } from 'state/actions/fileDownloader'
+import { EMPTY_ACTION } from 'state/actions/share'
+
+export const getFirmwareUrlFromState = path([
+  'value',
+  'fileDownloader',
+  'fileInfo',
+  'updateURL'
+])
+
+async function getLaterstCylonUrl() {
+  const res = await fetch(process.env.REACT_APP_LATEST_FIRMWARE_URL)
+  return await res.text()
+}
+
+export const epicGetLatestFirmwareURL = action$ => {
+  return action$.pipe(
+    ofType(GET_FIRMWARE_URL.getType()),
+    switchMap(() =>
+      from(getLaterstCylonUrl()).pipe(
+        map(GET_FIRMWARE_URL_SUCCESS),
+        catchError(err => {
+          Sentry.captureException(err)
+          return GET_FIRMWARE_URL_ERROR(err.message)
+        })
+      )
+    )
+  )
+}
 
 /**
  * Init download of metadata file and sets file name for the UI
  * @param action$
+ * @param state$
  * @returns {*}
  */
-export const epicGetFirmwareMetadataFile = action$ =>
+export const epicGetFirmwareMetadataFile = (action$, state$) =>
   action$.pipe(
     ofType(FIRMWARE_METADATA_DOWNLOAD_INIT.getType()),
-    switchMap(() =>
-      from(getFirmwareVersionData()).pipe(
-        switchMap(({ luaFileName, luaDownloadName, fileURL, version }) =>
-          of(
-            SET_FILE_INFO({
-              displayName: `${luaFileName} - ${version}`,
-              name: luaDownloadName,
-              exists: false
-            }),
-            DOWNLOAD_INIT({
-              fileUrl: fileURL,
-              folder: 'firmware',
-              fileName: luaDownloadName
-            })
-          )
-        ),
-        catchError(err => {
-          Sentry.captureException(err)
-          return of(
-            GET_FILE_ERROR({
-              error: 'I ran into an error getting the PVS filename'
-            })
-          )
+    switchMap(() => {
+      const {
+        luaFileName,
+        luaDownloadName,
+        fileURL,
+        version
+      } = getFirmwareVersionData(getFirmwareUrlFromState(state$))
+      return of(
+        SET_FILE_INFO({
+          displayName: `${luaFileName} - ${version}`,
+          name: luaDownloadName,
+          exists: false
+        }),
+        DOWNLOAD_INIT({
+          fileUrl: fileURL,
+          folder: 'firmware',
+          fileName: luaDownloadName
         })
       )
-    )
+    })
   )
 
 /**
  * This epic starts after lua file is downloaded
  * it triggers FIRMWARE_DOWNLOAD_INIT
  * @param action$
+ * @param state$
  * @returns {*}
  */
-export const epicFirmwareMetadataFileDownloaded = action$ =>
+export const epicFirmwareMetadataFileDownloaded = (action$, state$) =>
   action$.pipe(
     ofType(DOWNLOAD_SUCCESS.getType(), DOWNLOAD_ERROR.getType()),
-    switchMap(action =>
-      from(getFirmwareVersionData()).pipe(
-        concatMap(({ luaDownloadName }) =>
-          pathOr('', ['payload', 'name'], action) === `${luaDownloadName}`
-            ? of(FIRMWARE_DOWNLOAD_INIT())
-            : EMPTY
-        ),
-        catchError(err => {
-          Sentry.captureException(err)
-
-          return of(
-            GET_FILE_ERROR({
-              error: 'I ran into an error getting the PVS filename'
-            })
-          )
-        })
+    map(action => {
+      const { luaDownloadName } = getFirmwareVersionData(
+        getFirmwareUrlFromState(state$)
       )
-    )
+      return pathOr('', ['payload', 'name'], action) === `${luaDownloadName}`
+        ? FIRMWARE_DOWNLOAD_INIT()
+        : EMPTY_ACTION()
+    })
   )
 
 /**
  * It triggers FIRMWARE_GET_FILE_INFO if file exists in the FS,
  * if it doesn't it triggers: FIRMWARE_GET_FILE_INFO
  * @param action$
+ * @param state$
  * @returns {*}
  */
-export const epicFirmwareGetFile = action$ =>
+export const epicFirmwareGetFile = (action$, state$) =>
   action$.pipe(
     ofType(FIRMWARE_GET_FILE.getType()),
-    exhaustMap(action =>
-      from(getPVSFileSystemName()).pipe(
-        switchMap(fileName =>
-          from(getFileInfo(fileName)).pipe(
-            switchMap(() =>
-              of(SET_FILE_INFO({ exists: true }), FIRMWARE_GET_FILE_INFO())
-            ),
-            catchError(() =>
-              of(
-                FIRMWARE_DOWNLOAD_INIT({
-                  wifiOnly: pathOr(false, ['payload', 'wifiOnly'], action)
-                })
-              )
-            )
-          )
+    exhaustMap(action => {
+      const fileName = getPVSFileSystemName(getFirmwareUrlFromState(state$))
+      return from(getFileInfo(fileName)).pipe(
+        switchMap(() =>
+          of(SET_FILE_INFO({ exists: true }), FIRMWARE_GET_FILE_INFO())
         ),
-        catchError(() => of(FIRMWARE_DOWNLOAD_INIT()))
+        catchError(() =>
+          of(
+            FIRMWARE_DOWNLOAD_INIT({
+              wifiOnly: pathOr(false, ['payload', 'wifiOnly'], action)
+            })
+          )
+        )
       )
-    )
+    })
   )
 
 /**
  * Gets File Info From metadata to display it on the screen
  * @param action$
+ * @param state$
  * @returns {*}
  */
-export const epicFirmwareGetFileInfo = action$ =>
+export const epicFirmwareGetFileInfo = (action$, state$) =>
   action$.pipe(
     ofType(FIRMWARE_GET_FILE_INFO.getType()),
-    switchMap(action =>
-      from(getFirmwareVersionData()).pipe(
-        switchMap(
-          ({ luaFileName, version, pvsFileSystemName, luaDownloadName }) =>
-            from(parseLuaFile(luaDownloadName)).pipe(
-              switchMap(size =>
-                of(
-                  SET_FILE_SIZE(size),
-                  SET_FILE_INFO({
-                    displayName: `${luaFileName} - ${version}`,
-                    name: pvsFileSystemName
-                  })
-                )
-              ),
-              catchError(() => of(FIRMWARE_METADATA_DOWNLOAD_INIT()))
-            )
+    switchMap(() => {
+      const {
+        luaFileName,
+        version,
+        pvsFileSystemName,
+        luaDownloadName
+      } = getFirmwareVersionData(getFirmwareUrlFromState(state$))
+      return from(parseLuaFile(luaDownloadName)).pipe(
+        switchMap(size =>
+          of(
+            SET_FILE_SIZE(size),
+            SET_FILE_INFO({
+              displayName: `${luaFileName} - ${version}`,
+              name: pvsFileSystemName
+            })
+          )
         ),
         catchError(() => of(FIRMWARE_METADATA_DOWNLOAD_INIT()))
       )
-    )
+    })
   )
 
 /**
@@ -157,87 +171,76 @@ export const epicFirmwareGetFileInfo = action$ =>
  * It assumes lua metadata file exists, if it doesn't it triggers an error that
  * inits epicGetFirmwareMetadataFile
  * @param action$
+ * @param state$
  * @returns {*}
  */
-export const epicFirmwareDownloadInit = action$ =>
+export const epicFirmwareDownloadInit = (action$, state$) =>
   action$.pipe(
     ofType(FIRMWARE_DOWNLOAD_INIT.getType()),
-    switchMap(action =>
-      from(getFirmwareVersionData()).pipe(
-        switchMap(
-          ({
-            pvsFileSystemName,
-            luaFileName,
-            version,
-            luaDownloadName,
-            fileURL
-          }) =>
-            from(parseLuaFile(luaDownloadName)).pipe(
-              switchMap(size =>
-                of(
-                  SET_FILE_SIZE(size),
-                  SET_FILE_INFO({
-                    displayName: `${luaFileName} - ${version}`,
-                    name: pvsFileSystemName,
-                    exists: false
-                  }),
-                  DOWNLOAD_INIT({
-                    fileUrl: getFileSystemFromLuaFile(fileURL),
-                    folder: 'firmware',
-                    fileName: pvsFileSystemName,
-                    wifiOnly: pathOr(false, ['payload', 'wifiOnly'], action)
-                  })
-                )
-              ),
-              catchError(() => of(FIRMWARE_METADATA_DOWNLOAD_INIT()))
-            )
+    switchMap(action => {
+      const {
+        pvsFileSystemName,
+        luaFileName,
+        version,
+        luaDownloadName,
+        fileURL
+      } = getFirmwareVersionData(getFirmwareUrlFromState(state$))
+      return from(parseLuaFile(luaDownloadName)).pipe(
+        switchMap(size =>
+          of(
+            SET_FILE_SIZE(size),
+            SET_FILE_INFO({
+              displayName: `${luaFileName} - ${version}`,
+              name: pvsFileSystemName,
+              exists: false
+            }),
+            DOWNLOAD_INIT({
+              fileUrl: getFileSystemFromLuaFile(fileURL),
+              folder: 'firmware',
+              fileName: pvsFileSystemName,
+              wifiOnly: pathOr(false, ['payload', 'wifiOnly'], action)
+            })
+          )
         ),
         catchError(() => of(FIRMWARE_METADATA_DOWNLOAD_INIT()))
       )
-    )
+    })
   )
 
 /**
  * This epic starts after firmware file is downloaded
  * it triggers FIRMWARE_GET_FILE
  * @param action$
+ * @param state$
  * @returns {*}
  */
-export const epicFirmwareFileDownloaded = action$ =>
+export const epicFirmwareFileDownloaded = (action$, state$) =>
   action$.pipe(
     ofType(DOWNLOAD_SUCCESS.getType(), DOWNLOAD_ERROR.getType()),
-    switchMap(action =>
-      from(getFirmwareVersionData()).pipe(
-        concatMap(({ pvsFileSystemName, version }) =>
-          pathOr('', ['payload', 'name'], action) === pvsFileSystemName
-            ? of(FIRMWARE_DOWNLOAD_LUA_FILES(version), FIRMWARE_DOWNLOADED())
-            : EMPTY
-        ),
-        catchError(err => {
-          Sentry.captureException(err)
-          return of(
-            GET_FILE_ERROR({
-              error: 'I ran into an error getting the PVS filename'
-            })
-          )
-        })
+    switchMap(action => {
+      const { pvsFileSystemName, version } = getFirmwareVersionData(
+        getFirmwareUrlFromState(state$)
       )
-    )
+      return pathOr('', ['payload', 'name'], action) === pvsFileSystemName
+        ? of(FIRMWARE_DOWNLOAD_LUA_FILES(version), FIRMWARE_DOWNLOADED())
+        : EMPTY
+    })
   )
 
 /**
  * Starts Downloading lua files
  * inits epicGetFirmwareMetadataFile
  * @param action$
+ * @param state$
  * @returns {*}
  */
-export const epicDownloadLuaFilesInit = action$ =>
+export const epicDownloadLuaFilesInit = (action$, state$) =>
   action$.pipe(
     ofType(FIRMWARE_DOWNLOAD_LUA_FILES.getType()),
-    switchMap(action =>
+    switchMap(() =>
       of(
         DOWNLOAD_INIT({
-          fileUrl: getLuaZipFileURL(),
+          fileUrl: getFS(getFirmwareUrlFromState(state$)),
           unzip: true,
           folder: 'luaFiles'
         })

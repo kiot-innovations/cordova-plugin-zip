@@ -1,4 +1,4 @@
-import { compose, head, join, last, slice, split } from 'ramda'
+import { compose, defaultTo, head, join, last, slice, split } from 'ramda'
 import { flipConcat } from 'shared/utils'
 
 export const ERROR_CODES = {
@@ -47,18 +47,22 @@ export const getGridProfileFilePath = () =>
 export const getLuaName = compose(
   join(' '),
   split('-'),
+  defaultTo(''),
   head,
   slice(-4, -3),
-  split('/')
+  split('/'),
+  defaultTo('')
 )
 
 const getBuildNumber = compose(
   Number,
   join(' '),
   split('-'),
+  defaultTo(''),
   head,
   slice(-3, -2),
-  split('/')
+  split('/'),
+  defaultTo('')
 )
 
 export const parseLuaFile = fileName =>
@@ -116,38 +120,28 @@ export const getFileBlob = (fileName = '') =>
     }
   })
 
-export const getFirmwareVersionData = async () => {
-  try {
-    // const swagger = await getApiFirmware()
-    // const response = await swagger.apis.pvs6.firmwareUpdate({ fwver: 0 })
-    const fileURL = process.env.REACT_APP_FIRMWARE_URL
-    const luaFileName = getLuaName(fileURL)
-    const version = getBuildNumber(fileURL)
-    const name = `${luaFileName}-${version}`.replace(/ /g, '-')
-    return {
-      luaFileName,
-      fileURL,
-      version,
-      pvsFileSystemName: `${name}.fs`,
-      luaDownloadName: `${name}.lua`
-    }
-  } catch (e) {
-    throw new Error(ERROR_CODES.getVersionInfo)
+export const getFirmwareVersionData = fileURL => {
+  const luaFileName = getLuaName(fileURL)
+  const version = getBuildNumber(fileURL)
+  const name = `${luaFileName}-${version}`.replace(/ /g, '-')
+  return {
+    luaFileName,
+    fileURL,
+    version,
+    pvsFileSystemName: `${name}.fs`,
+    luaDownloadName: `${name}.lua`
   }
 }
 
-const getFS = compose(
+export const getFS = compose(
   flipConcat('/fwup_lua_cm2.zip'),
   join('/'),
   slice(0, -2),
   split('/')
 )
 
-export const getLuaZipFileURL = () =>
-  getFS(process.env.REACT_APP_FIRMWARE_URL || '')
-
-export const getPVSFileSystemName = async () => {
-  const { pvsFileSystemName } = await getFirmwareVersionData()
+export const getPVSFileSystemName = fileUrl => {
+  const { pvsFileSystemName } = getFirmwareVersionData(fileUrl)
   return `firmware/${pvsFileSystemName}`
 }
 

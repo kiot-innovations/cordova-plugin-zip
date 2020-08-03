@@ -5,7 +5,7 @@ import {
   FIRMWARE_DOWNLOAD_INIT,
   FIRMWARE_DOWNLOADED,
   FIRMWARE_GET_FILE,
-  GET_FILE_ERROR,
+  GET_FIRMWARE_URL_SUCCESS,
   SET_FILE_INFO,
   SET_FILE_SIZE
 } from 'state/actions/fileDownloader'
@@ -16,11 +16,16 @@ const initialState = {
   displayName: '',
   size: 0,
   error: '',
-  exists: false
+  exists: false,
+  updateURL: process.env.REACT_APP_FIRMWARE_URL
 }
 
 export default createReducer(
   {
+    [GET_FIRMWARE_URL_SUCCESS]: (state, updateURL) => ({
+      ...state,
+      updateURL
+    }),
     [FIRMWARE_GET_FILE]: state => ({
       ...state,
       error: '',
@@ -43,7 +48,6 @@ export default createReducer(
       error: ''
     }),
     [FIRMWARE_DOWNLOADED]: state => ({ ...state, error: '', exists: true }),
-    [GET_FILE_ERROR]: (state, { error }) => ({ ...state, error }),
     [DOWNLOAD_NO_WIFI]: state => ({ ...state, error: 'NO WIFI' })
   },
   initialState
