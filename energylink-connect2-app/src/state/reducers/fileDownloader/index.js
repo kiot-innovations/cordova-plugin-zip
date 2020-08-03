@@ -1,10 +1,20 @@
 import { combineReducers } from 'redux'
+import { persistReducer } from 'redux-persist'
+import storage from 'redux-persist/lib/storage'
+
 import fileInfo from './info'
 import progress from './progress'
 import gridProfileInfo from './gridProfileInfo'
 
 export default combineReducers({
   progress,
-  fileInfo,
+  fileInfo: persistReducer(
+    {
+      key: 'file-info',
+      whitelist: ['updateURL'],
+      storage
+    },
+    fileInfo
+  ),
   gridProfileInfo
 })

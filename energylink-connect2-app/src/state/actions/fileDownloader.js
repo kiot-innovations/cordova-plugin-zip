@@ -1,7 +1,5 @@
 import { createAction } from 'redux-act'
 
-export const GET_FILE_ERROR = createAction('GET FILE ERROR')
-export const SET_FILE_NAME = createAction('SET FILE NAME')
 export const SET_FILE_INFO = createAction('SET FILE INFO')
 
 export const DOWNLOAD_PROGRESS = createAction('UPDATE DOWNLOAD PROGRESS')
@@ -22,3 +20,6 @@ export const FIRMWARE_GET_FILE_INFO = createAction('FIRMWARE_GET_FILE_INFO')
 export const FIRMWARE_DOWNLOAD_LUA_FILES = createAction(
   'FIRMWARE_DOWNLOAD_LUA_FILES'
 )
+export const GET_FIRMWARE_URL = createAction('GET_FIRMWARE_URL')
+export const GET_FIRMWARE_URL_ERROR = createAction('GET_FIRMWARE_URL_ERROR')
+export const GET_FIRMWARE_URL_SUCCESS = createAction('GET_FIRMWARE_URL_SUCCESS')
