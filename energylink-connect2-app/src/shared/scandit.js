@@ -55,7 +55,7 @@ export function scanM(onRecognize, nodeID = 'scandit') {
 
   // Add a barcode tracking overlay to the data capture view to render the location of captured barcodes on top of
   // the video preview. This is optional, but recommended for better visual feedback.
-  /* const overlay = Scandit.BarcodeTrackingBasicOverlay.withBarcodeTrackingForView(
+  const overlay = Scandit.BarcodeTrackingBasicOverlay.withBarcodeTrackingForView(
     barcodeTracking,
     view
   )
@@ -66,7 +66,7 @@ export function scanM(onRecognize, nodeID = 'scandit') {
   overlay.listener = {
     brushForTrackedBarcode: (overlay, trackedBarcode) =>
       new Scandit.Brush(fill, stroke, 2)
-  } */
+  }
 
   // Switch camera on to start streaming frames and enable the barcode tracking mode.
   // The camera is started asynchronously and will take some time to completely turn on.
