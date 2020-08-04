@@ -81,10 +81,8 @@ jobs:
           ruby-version: "2.7"
       - name: Install RubyGems
         run: bundle install --jobs 4 --retry 3
-      - name: Install Cordova
-        run: |
-          npm install
-          npm install -g cordova@9.0.0
+      - name: Install NPM packages
+        run: npm install
       #
       # iOS Application
       #
