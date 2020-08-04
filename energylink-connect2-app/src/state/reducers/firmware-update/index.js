@@ -39,7 +39,8 @@ export default createReducer(
       ...initialState,
       ...state,
       status: 'WAITING_FOR_NETWORK',
-      percent: state.percent == null ? 0 : 100
+      percent: state.percent == null ? 0 : 100,
+      canContinue: true
     }),
     [FIRMWARE_UPDATE_COMPLETE]: () => ({
       ...initialState,
@@ -51,14 +52,15 @@ export default createReducer(
       ...initialState,
       ...state,
       upgrading: false,
-      status: 'ERROR'
+      status: 'ERROR',
+      canContinue: true
     }),
     [GRID_PROFILE_UPLOAD_ERROR]: state => ({
       ...initialState,
       ...state,
       status: 'ERROR'
     }),
-    [RESET_FIRMWARE_UPDATE]: () => initialState,
+    [RESET_FIRMWARE_UPDATE]: () => ({ ...initialState, canContinue: true }),
     [FIRMWARE_GET_VERSION_COMPLETE]: ({ versionBeforeUpgrade }) => ({
       ...initialState,
       canContinue: true,

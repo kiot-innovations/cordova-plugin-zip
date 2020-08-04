@@ -2,4 +2,4 @@
 #
 # Ensure this file is checked in to source control!
 
-gem 'fastlane-plugin-cordova', '2.2.1'
+gem 'fastlane-plugin-cordova', '3.0.0'
