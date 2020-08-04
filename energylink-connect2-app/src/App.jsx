@@ -11,6 +11,10 @@ import { configureStore } from 'state/store'
 
 const { store, persistor } = configureStore({})
 
+if (window && window.StatusBar) {
+  window.StatusBar.backgroundColorByHexString('#15202e')
+}
+
 const App = props => (
   <Provider store={store}>
     <PersistGate persistor={persistor}>

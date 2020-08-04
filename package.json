@@ -31,6 +31,7 @@
     "cordova-plugin-nabto": "^2.6.3",
     "cordova-plugin-network-information": "^2.0.2",
     "cordova-plugin-networkinterface": "^2.0.0",
+    "cordova-plugin-statusbar": "^2.4.3",
     "cordova-plugin-wifiwizard2": "git+https://github.com/tripflex/wifiwizard2.git",
     "cordova-plugin-wkwebview-engine": "^1.1.4",
     "cordova-plugin-wkwebviewxhrfix": "git+https://github.com/TheMattRay/cordova-plugin-wkwebviewxhrfix.git",
@@ -75,7 +76,8 @@
       "scandit-cordova-datacapture-core": {},
       "scandit-cordova-datacapture-barcode": {},
       "cordova-plugin-networkinterface": {},
-      "cordova-plugin-httpd": {}
+      "cordova-plugin-httpd": {},
+      "cordova-plugin-statusbar": {}
     },
     "platforms": [
       "android",
