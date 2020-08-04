@@ -78,7 +78,7 @@ jobs:
           java-version: 8
       - uses: actions/setup-ruby@v1
         with:
-          ruby-version: "2.4"
+          ruby-version: "2.7"
       - name: Install RubyGems
         run: bundle install --jobs 4 --retry 3
       - name: Install Cordova
