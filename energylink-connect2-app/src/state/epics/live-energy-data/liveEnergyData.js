@@ -14,7 +14,7 @@ import * as energyDataActions from '../../actions/energy-data'
 import * as networkActions from '../../actions/network'
 
 import { roundDecimals } from 'shared/rounding'
-import compose, { always, equals, ifElse, pathOr } from 'ramda'
+import { compose, always, equals, ifElse, pathOr } from 'ramda'
 
 const createWebsocketObservable = () =>
   new Observable(subscriber => {
