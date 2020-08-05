@@ -45,7 +45,7 @@ const SavingConfiguration = () => {
             </div>
           ),
           controls: (
-            <div className="status-message">
+            <div className="success status-message">
               <span className="has-text-white has-text-weight-bold">
                 {t('SAVED_CONFIGURATION')}
               </span>
