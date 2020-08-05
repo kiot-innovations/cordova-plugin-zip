@@ -65,7 +65,7 @@ const getMeterConfig = pathOr('', [
 
 const getProductionValueCorrectly = (state, production) =>
   compose(
-    ifElse(equals('GROSS_CONSUMPTION_LINESIDE'), always(production), always(0)),
+    ifElse(equals('NET_CONSUMPTION_LOADSIDE'), always(0), always(production)),
     getMeterConfig
   )(state)
 
@@ -120,10 +120,10 @@ export const liveEnergyData = (action$, state$) =>
               // net_en :: energy storage energy (KwH)
               const s = data.ess_en < 0.01 ? 0 : data.ess_en * -1
 
-              const lineSide = getProductionValueCorrectly(state$, p)
+              const loadSide = getProductionValueCorrectly(state$, p)
 
               // c :: consumption
-              const c = p + s + net_en - lineSide
+              const c = s + net_en + loadSide
 
               return energyDataActions.LIVE_ENERGY_DATA_NOTIFICATION({
                 [new Date(data.time * 1000).toISOString()]: {
