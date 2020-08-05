@@ -264,6 +264,4 @@ export function getEnvironment() {
 }
 
 export const isError = (status = '', percent) =>
-  status.toLowerCase() === 'error' ||
-  (status === 'WAITING_FOR_NETWORK' && percent === 0) ||
-  (status === '' && percent === 0)
+  status.toLowerCase() === 'error'
