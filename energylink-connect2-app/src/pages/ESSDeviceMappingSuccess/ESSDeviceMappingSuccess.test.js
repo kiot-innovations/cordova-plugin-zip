@@ -19,20 +19,20 @@ describe('ESSDeviceMappingSuccess component', () => {
           ess_list: [
             {
               inverter: {
-                serial_number: 'string',
+                serial_number: '00001',
                 last_mapped: '2020-02-15 01:23:45',
                 device_type: 'MIDC',
                 device_fw_ver: '1.2.3'
               },
               mio_board: {
-                serial_number: 'string',
+                serial_number: '00002',
                 last_mapped: '2020-02-15 01:23:45',
                 device_type: 'MIDC',
                 device_fw_ver: '1.2.3'
               },
               batteries: [
                 {
-                  serial_number: 'string',
+                  serial_number: '00003',
                   last_mapped: '2020-02-15 01:23:45',
                   device_type: 'MIDC',
                   device_fw_ver: '1.2.3'
@@ -41,13 +41,13 @@ describe('ESSDeviceMappingSuccess component', () => {
             }
           ],
           hub_plus: {
-            serial_number: 'string',
+            serial_number: '00004',
             last_mapped: '2020-02-15 01:23:45',
             device_type: 'MIDC',
             device_fw_ver: '1.2.3'
           },
           gateway: {
-            serial_number: 'string',
+            serial_number: '00005',
             last_mapped: '2020-02-15 01:23:45',
             device_type: 'MIDC',
             device_fw_ver: '1.2.3'

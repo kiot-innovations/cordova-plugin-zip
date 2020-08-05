@@ -37,7 +37,7 @@ const applyModel = (miList, selectedModel, selectedMi, dispatch) => {
   dispatch(UPDATE_DEVICES_LIST(updatedList))
 }
 
-const MiGroup = ({ title, data }) => {
+const MiGroup = ({ title = 'UNKNOWN_MI_TYPE', data }) => {
   const t = useI18n()
   const dispatch = useDispatch()
   const [selectedMi, setSelectedMi] = useState([])

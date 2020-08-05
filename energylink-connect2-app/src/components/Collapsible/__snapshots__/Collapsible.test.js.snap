@@ -14,7 +14,7 @@ exports[`Collapsible Component Renders Correctly 1`] = `
       <span
         className="has-text-weight-bold"
       >
-        Collapsible Title
+        COLLAPSIBLE TITLE
       </span>
     </div>
     <div
