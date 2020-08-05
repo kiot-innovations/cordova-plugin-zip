@@ -440,5 +440,6 @@
   "CHECKFILE_EQS_FIRMWARE_ERROR": "Storage Firmware Files not found on the device. Please make sure they are properly downloaded and try again.",
   "GETFILE_EQS_FIRMWARE_ERROR": "There was an issue with the Storage Firmware File. Please download it again and retry.",
   "UPLOAD_EQS_FIRMWARE_ERROR": "An error occured while uploading the Storage Firmware file. Please try again.",
-  "HEALTH_CHECK_SUCCESSFUL": "Health Check Successful"
+  "HEALTH_CHECK_SUCCESSFUL": "Health Check Successful",
+  "CREATE_HOMEOWNER_ACCOUNT": "Create Homeowner Account"
 }
