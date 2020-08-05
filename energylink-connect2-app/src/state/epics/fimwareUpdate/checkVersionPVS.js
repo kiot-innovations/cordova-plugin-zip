@@ -10,10 +10,11 @@ import {
   FIRMWARE_UPDATE_INIT
 } from 'state/actions/firmwareUpdate'
 import { PVS_CONNECTION_SUCCESS } from 'state/actions/network'
+import { getFirmwareUrlFromState } from 'state/epics/downloader/firmware'
 
-const checkIfNeedToUpdatePVSToLatestVersion = async () => {
+const checkIfNeedToUpdatePVSToLatestVersion = async url => {
   try {
-    const { version: serverVersion } = await getFirmwareVersionData()
+    const { version: serverVersion } = getFirmwareVersionData(url)
     const PVSversion =
       getPVSVersionNumber(await sendCommandToPVS('GetSupervisorInformation')) ||
       '-1'
@@ -24,11 +25,13 @@ const checkIfNeedToUpdatePVSToLatestVersion = async () => {
   }
 }
 
-const checkVersionPVS = action$ =>
+const checkVersionPVS = (action$, state$) =>
   action$.pipe(
     ofType(PVS_CONNECTION_SUCCESS.getType()),
     mergeMap(() =>
-      from(checkIfNeedToUpdatePVSToLatestVersion()).pipe(
+      from(
+        checkIfNeedToUpdatePVSToLatestVersion(getFirmwareUrlFromState(state$))
+      ).pipe(
         map(({ shouldUpdate, PVSversion }) =>
           shouldUpdate
             ? FIRMWARE_UPDATE_INIT({ PVSversion })
@@ -41,4 +44,5 @@ const checkVersionPVS = action$ =>
       )
     )
   )
+
 export default checkVersionPVS

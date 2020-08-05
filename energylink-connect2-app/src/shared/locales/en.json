@@ -252,7 +252,7 @@
   "GETTING_PV_INFO": "Fetching PV information",
   "PV_INFO_OK": "PV information successfully retrieved.",
   "PV_INFO_ERROR": "Error communicating with MI. Please check connections and remove possible sources of interference.",
-  "OK": "MI is working as expected",
+  "MI_OK": "MI is working as expected",
   "CONNECTED": "Connected",
   "WAITING_GOOGLE_MAPS": "Waiting for Google Maps to load",
   "DOWNLOAD_ANYWAY": "Download anyways",
@@ -440,5 +440,6 @@
   "CHECKFILE_EQS_FIRMWARE_ERROR": "Storage Firmware Files not found on the device. Please make sure they are properly downloaded and try again.",
   "GETFILE_EQS_FIRMWARE_ERROR": "There was an issue with the Storage Firmware File. Please download it again and retry.",
   "UPLOAD_EQS_FIRMWARE_ERROR": "An error occured while uploading the Storage Firmware file. Please try again.",
-  "HEALTH_CHECK_SUCCESSFUL": "Health Check Successful"
+  "HEALTH_CHECK_SUCCESSFUL": "Health Check Successful",
+  "UNKNOWN_MI_TYPE": "Unknown Type"
 }

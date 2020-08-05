@@ -65,204 +65,74 @@ exports[`Serial Number List Page renders correctly 1`] = `
                 <span
                   className="has-text-white"
                 >
-                  FOUND_SN 4
+                  FOUND_SN 3
                 </span>
               </div>
               <div
-                className="flex-inverter-list"
+                className="sn-container"
               >
-                <Collapsible
-                  actions={
-                    <span
-                      className="is-secondary has-no-border"
-                    >
-                      3
-                    </span>
-                  }
-                  title="NEW_INVERTERS"
+                <span
+                  className="has-text-weight-bold"
                 >
-                  <div
-                    className="collapsible"
-                  >
-                    <div
-                      className="collapsible-header"
-                    >
-                      <div
-                        className="collapsible-title"
-                      >
-                        <span />
-                        <span
-                          className="has-text-weight-bold"
-                        >
-                          NEW_INVERTERS
-                        </span>
-                      </div>
-                      <div
-                        className="collapsible-actions"
-                      >
-                        <span
-                          className="is-secondary has-no-border"
-                        >
-                          3
-                        </span>
-                      </div>
-                      <div
-                        className="collapsible-trigger"
-                      >
-                        <div
-                          className="chevron"
-                          onClick={[Function]}
-                        >
-                          <span
-                            className="sp-chevron-up"
-                          />
-                        </div>
-                      </div>
-                    </div>
-                    <div
-                      className="collapsible-content collapsed"
-                    >
-                      <div
-                        className="sn-container"
-                      >
-                        <span
-                          className="has-text-weight-bold"
-                        >
-                          TAP_SN_TO_EDIT
-                        </span>
-                        <div
-                          className="sn-item mt-10 mb-10 pb-5"
-                          key="E00121852014339"
-                        >
-                          <span
-                            className="is-uppercase has-text-weight-bold has-text-white"
-                            onClick={[Function]}
-                          >
-                            E00121852014339
-                          </span>
-                          <button
-                            className="has-text-white is-size-6"
-                            onClick={[Function]}
-                          >
-                            <i
-                              className="sp-close"
-                            />
-                          </button>
-                        </div>
-                        <div
-                          className="sn-item mt-10 mb-10 pb-5"
-                          key="E00121852014348"
-                        >
-                          <span
-                            className="is-uppercase has-text-weight-bold has-text-white"
-                            onClick={[Function]}
-                          >
-                            E00121852014348
-                          </span>
-                          <button
-                            className="has-text-white is-size-6"
-                            onClick={[Function]}
-                          >
-                            <i
-                              className="sp-close"
-                            />
-                          </button>
-                        </div>
-                        <div
-                          className="sn-item mt-10 mb-10 pb-5"
-                          key="E00121929013075"
-                        >
-                          <span
-                            className="is-uppercase has-text-weight-bold has-text-white"
-                            onClick={[Function]}
-                          >
-                            E00121929013075
-                          </span>
-                          <button
-                            className="has-text-white is-size-6"
-                            onClick={[Function]}
-                          >
-                            <i
-                              className="sp-close"
-                            />
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </Collapsible>
+                  TAP_SN_TO_EDIT
+                </span>
                 <div
-                  className="mt-20"
-                />
-                <Collapsible
-                  actions={
-                    <span
-                      className="is-secondary has-no-border"
-                    >
-                      1
-                    </span>
-                  }
-                  title="EXISTING_INVERTERS"
+                  className="sn-item mt-10 mb-10 pb-5"
+                  key="E00121852014339"
                 >
-                  <div
-                    className="collapsible"
+                  <span
+                    className="is-uppercase has-text-weight-bold has-text-white"
+                    onClick={[Function]}
                   >
-                    <div
-                      className="collapsible-header"
-                    >
-                      <div
-                        className="collapsible-title"
-                      >
-                        <span />
-                        <span
-                          className="has-text-weight-bold"
-                        >
-                          EXISTING_INVERTERS
-                        </span>
-                      </div>
-                      <div
-                        className="collapsible-actions"
-                      >
-                        <span
-                          className="is-secondary has-no-border"
-                        >
-                          1
-                        </span>
-                      </div>
-                      <div
-                        className="collapsible-trigger"
-                      >
-                        <div
-                          className="chevron"
-                          onClick={[Function]}
-                        >
-                          <span
-                            className="sp-chevron-up"
-                          />
-                        </div>
-                      </div>
-                    </div>
-                    <div
-                      className="collapsible-content collapsed"
-                    >
-                      <div
-                        className="sn-container"
-                      >
-                        <div
-                          className="sn-item mt-10 mb-10 pb-5"
-                          key="194355110333120"
-                        >
-                          <span
-                            className="is-uppercase has-text-weight-bold has-text-white"
-                            onClick={[Function]}
-                          >
-                            194355110333120
-                          </span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </Collapsible>
+                    E00121852014339
+                  </span>
+                  <button
+                    className="has-text-white is-size-6"
+                    onClick={[Function]}
+                  >
+                    <i
+                      className="sp-close"
+                    />
+                  </button>
+                </div>
+                <div
+                  className="sn-item mt-10 mb-10 pb-5"
+                  key="E00121852014348"
+                >
+                  <span
+                    className="is-uppercase has-text-weight-bold has-text-white"
+                    onClick={[Function]}
+                  >
+                    E00121852014348
+                  </span>
+                  <button
+                    className="has-text-white is-size-6"
+                    onClick={[Function]}
+                  >
+                    <i
+                      className="sp-close"
+                    />
+                  </button>
+                </div>
+                <div
+                  className="sn-item mt-10 mb-10 pb-5"
+                  key="E00121929013075"
+                >
+                  <span
+                    className="is-uppercase has-text-weight-bold has-text-white"
+                    onClick={[Function]}
+                  >
+                    E00121929013075
+                  </span>
+                  <button
+                    className="has-text-white is-size-6"
+                    onClick={[Function]}
+                  >
+                    <i
+                      className="sp-close"
+                    />
+                  </button>
+                </div>
               </div>
               <div
                 className="sn-buttons"

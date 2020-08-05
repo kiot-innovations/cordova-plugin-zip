@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import clsx from 'clsx'
+import { useI18n } from 'shared/i18n'
 import './Collapsible.scss'
 
 function Collapsible({
@@ -10,6 +11,7 @@ function Collapsible({
   expanded = false,
   className = ''
 }) {
+  const t = useI18n()
   const [expand, setExpand] = useState(expanded)
 
   const toggle = () => {
@@ -21,7 +23,7 @@ function Collapsible({
       <div className="collapsible-header">
         <div className="collapsible-title">
           <span>{icon}</span>
-          <span className="has-text-weight-bold">{title}</span>
+          <span className="has-text-weight-bold">{t(title)}</span>
         </div>
         <div className="collapsible-actions">{actions}</div>
         <div className="collapsible-trigger">

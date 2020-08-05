@@ -17,7 +17,7 @@ import {
 export const getPanelLayout = async () => {
   const { apis } = await getApiPVS()
   const response = await apis.panels.getPanelsLayout()
-  const panels = pathOr([], ['body', 'body', 'result', 'panels'], response)
+  const panels = pathOr([], ['body', 'result', 'panels'], response)
   return mapFromPVS(panels)
 }
 
