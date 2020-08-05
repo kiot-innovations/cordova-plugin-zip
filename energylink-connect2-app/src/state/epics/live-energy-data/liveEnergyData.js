@@ -7,12 +7,14 @@ import {
   tap,
   delay
 } from 'rxjs/operators'
+import { ofType } from 'redux-observable'
 import { Client as WebSocket } from 'rpc-websockets'
+
 import * as energyDataActions from '../../actions/energy-data'
 import * as networkActions from '../../actions/network'
 
-import { roundDecimals } from '../../../shared/rounding'
-import { ofType } from 'redux-observable'
+import { roundDecimals } from 'shared/rounding'
+import { compose, always, equals, ifElse, pathOr } from 'ramda'
 
 const createWebsocketObservable = () =>
   new Observable(subscriber => {
@@ -53,6 +55,19 @@ const createWebsocketObservable = () =>
       }
     })
   })
+
+const getMeterConfig = pathOr('', [
+  'value',
+  'systemConfiguration',
+  'meter',
+  'consumptionCT'
+])
+
+const getProductionValueCorrectly = (state, production) =>
+  compose(
+    ifElse(equals('NET_CONSUMPTION_LOADSIDE'), always(0), always(production)),
+    getMeterConfig
+  )(state)
 
 export const liveEnergyData = (action$, state$) =>
   action$.pipe(
@@ -104,8 +119,11 @@ export const liveEnergyData = (action$, state$) =>
               const net_en = data.net_en < 0.01 ? 0 : data.net_en
               // net_en :: energy storage energy (KwH)
               const s = data.ess_en < 0.01 ? 0 : data.ess_en * -1
+
+              const loadSide = getProductionValueCorrectly(state$, p)
+
               // c :: consumption
-              const c = p + s + net_en
+              const c = s + net_en + loadSide
 
               return energyDataActions.LIVE_ENERGY_DATA_NOTIFICATION({
                 [new Date(data.time * 1000).toISOString()]: {
