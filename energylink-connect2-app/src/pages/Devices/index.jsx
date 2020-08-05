@@ -37,11 +37,11 @@ const miStates = {
   GETTING_PV_INFO: 'LOADING',
   PV_INFO_OK: 'LOADING',
   PV_INFO_ERROR: 'ERROR',
-  OK: 'OK'
+  OK: 'MI_OK'
 }
 
 const miIndicators = {
-  OK: <span className="is-size-4 mr-10 sp-check has-text-white" />,
+  MI_OK: <span className="is-size-4 mr-10 sp-check has-text-white" />,
   ERROR: <span className="is-size-4 mr-10 sp-hey has-text-primary" />,
   LOADING: (
     <div className="inline-loader">
@@ -64,7 +64,7 @@ const filterFoundMI = (SNList, candidatesList) => {
       if (foundCandidate) {
         deviceCopy = { ...deviceCopy, ...foundCandidate }
         deviceCopy.indicator = miStates[deviceCopy.STATEDESCR]
-        if (deviceCopy.indicator === 'OK') {
+        if (deviceCopy.indicator === 'MI_OK') {
           okMI.push(deviceCopy)
         } else {
           if (deviceCopy.indicator === 'LOADING') {
@@ -307,7 +307,7 @@ function Devices() {
                       </span>
                       {elem.serial_number}
                       {either(
-                        elem.indicator === 'OK',
+                        elem.indicator === 'MI_OK',
                         <span className="has-text-weight-bold ml-10">
                           {miTypes[elem.MODEL] || ''}
                         </span>

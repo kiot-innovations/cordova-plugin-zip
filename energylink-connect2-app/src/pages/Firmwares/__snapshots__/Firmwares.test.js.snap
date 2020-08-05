@@ -64,7 +64,7 @@ exports[`Firmwares component render correctly 1`] = `
                   <span
                     className="has-text-weight-bold"
                   >
-                    Collapsible Title
+                    COLLAPSIBLE TITLE
                   </span>
                 </div>
                 <div
