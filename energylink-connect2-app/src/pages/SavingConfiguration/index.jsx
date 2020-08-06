@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { useI18n } from 'shared/i18n'
-import SwipeableBottomSheet from 'react-swipeable-bottom-sheet'
 import { useHistory } from 'react-router-dom'
 import { Loader } from 'components/Loader'
+import HomeownerAccountCreation from 'components/HomeownerAccountCreation'
 import { isEmpty, test } from 'ramda'
 import { SUBMIT_CLEAR } from 'state/actions/systemConfiguration'
 import { STOP_NETWORK_POLLING } from 'state/actions/network'
@@ -71,39 +71,12 @@ const SavingConfiguration = () => {
               >
                 {t('DONE')}
               </button>
-              <SwipeableBottomSheet
+              <HomeownerAccountCreation
                 open={showHomeownerCreation}
                 onChange={() =>
                   setShowHomeownerCreation(!showHomeownerCreation)
                 }
-              >
-                <div className="homeowner-creation">
-                  <span className="has-text-weight-bold">
-                    {t('CREATE_HOMEOWNER_ACCOUNT')}
-                  </span>
-                  <input
-                    type="text"
-                    placeholder={t('FIRST_NAME')}
-                    onChange={() => {}}
-                  />
-                  <input
-                    type="text"
-                    placeholder={t('LAST_NAME')}
-                    onChange={() => {}}
-                  />
-                  <input
-                    type="text"
-                    placeholder={t('HOMEOWNER_EMAIL')}
-                    onChange={() => {}}
-                  />
-                  <button
-                    className="button is-primary is-uppercase"
-                    onClick={() => {}}
-                  >
-                    {t('CREATE')}
-                  </button>
-                </div>
-              </SwipeableBottomSheet>
+              />
             </div>
           )
         }

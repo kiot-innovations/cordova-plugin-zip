@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import ProgressiveImage from 'components/ProgressiveImage'
+import HomeownerAccountCreation from 'components/HomeownerAccountCreation'
 import { pathOr, prop } from 'ramda'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
@@ -23,6 +24,8 @@ const useMap = (latitude, longitude) => {
 function BillOfMaterials() {
   const t = useI18n()
   const dispatch = useDispatch()
+
+  const [showHomeownerCreation, setShowHomeownerCreation] = useState(false)
 
   const data = useSelector(({ user, inventory }) => ({
     phone: user.data.phoneNumber,
@@ -89,6 +92,14 @@ function BillOfMaterials() {
             <span className="has-text-white mb-15">PG&E</span>
           </div>
         </div>
+        <div className="tile pt-15 is-flex is-vertical">
+          <button
+            onClick={() => setShowHomeownerCreation(true)}
+            className="button is-secondary is-uppercase homeowner-account-creation"
+          >
+            {t('CREATE_HOMEOWNER_ACCOUNT')}
+          </button>
+        </div>
       </section>
       <section className="tile is-flex is-vertical button-container mb-10">
         <Link
@@ -98,6 +109,10 @@ function BillOfMaterials() {
           {t('START_INSTALL')}
         </Link>
       </section>
+      <HomeownerAccountCreation
+        open={showHomeownerCreation}
+        onChange={() => setShowHomeownerCreation(!showHomeownerCreation)}
+      />
     </main>
   )
 }
