@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
-import { omit } from 'ramda'
+import { omit, not } from 'ramda'
 import { Link, useHistory } from 'react-router-dom'
 import paths, { setParams } from 'routes/paths'
 import { useI18n } from 'shared/i18n'
 import { getError } from 'shared/errorCodes'
+import { either } from 'shared/utils'
 import './ErrorListScreen.scss'
 
 const ErrorComponent = ({ title, code, errorInfo, t }) => {
@@ -18,7 +19,11 @@ const ErrorComponent = ({ title, code, errorInfo, t }) => {
         <h1 className="has-text-white has-text-weight-bold is-size-5 mb-10">
           {title}
         </h1>
-        <span className="error-code"> {t('ERROR_CODE', code)}</span>
+        <p className="error-code"> {t('ERROR_CODE', code)}</p>
+        {either(
+          not(`${code}`.startsWith('1')),
+          <p className="has-text-primary"> {t('FIX_ERRORS_TO_PROCEED')}</p>
+        )}
       </div>
       <div>
         <Link
