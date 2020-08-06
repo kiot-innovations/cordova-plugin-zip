@@ -19,9 +19,11 @@ const HomeownerAccountCreation = ({ open, onChange }) => {
           placeholder={t('HOMEOWNER_EMAIL')}
           onChange={() => {}}
         />
-        <button className="button is-primary is-uppercase" onClick={() => {}}>
-          {t('CREATE')}
-        </button>
+        <div className="mb-20">
+          <button className="button is-primary is-uppercase" onClick={() => {}}>
+            {t('CREATE')}
+          </button>
+        </div>
       </div>
     </SwipeableBottomSheet>
   )

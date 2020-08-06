@@ -201,12 +201,16 @@ exports[`HomeownerAccountCreation Component Renders correctly 1`] = `
                           placeholder="Homeowner's Email"
                           type="text"
                         />
-                        <button
-                          className="button is-primary is-uppercase"
-                          onClick={[Function]}
+                        <div
+                          className="mb-20"
                         >
-                          Create
-                        </button>
+                          <button
+                            className="button is-primary is-uppercase"
+                            onClick={[Function]}
+                          >
+                            Create
+                          </button>
+                        </div>
                       </div>
                     </div>
                   </div>

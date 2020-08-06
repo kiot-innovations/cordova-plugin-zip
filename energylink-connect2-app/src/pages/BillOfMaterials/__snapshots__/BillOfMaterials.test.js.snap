@@ -393,12 +393,16 @@ exports[`BillOfMaterials component render correctly 1`] = `
                               placeholder="HOMEOWNER_EMAIL"
                               type="text"
                             />
-                            <button
-                              className="button is-primary is-uppercase"
-                              onClick={[Function]}
+                            <div
+                              className="mb-20"
                             >
-                              CREATE
-                            </button>
+                              <button
+                                className="button is-primary is-uppercase"
+                                onClick={[Function]}
+                              >
+                                CREATE
+                              </button>
+                            </div>
                           </div>
                         </div>
                       </div>
