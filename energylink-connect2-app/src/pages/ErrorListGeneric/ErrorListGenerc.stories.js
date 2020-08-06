@@ -10,7 +10,7 @@ storiesOf('Error list - All with known errors', module).add(
         errors={[
           {
             device_sn: 'Serial-MIO-Mercury',
-            error_code: '43042',
+            error_code: '13042',
             error_message: 'esshub_firmware_update_failure_critical',
             error_name: 'esshub_firmware_update_failure_critical',
             last_occurence: '2020-07-16 21:50:29',
