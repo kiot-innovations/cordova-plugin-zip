@@ -14,8 +14,8 @@ function ErrorDetected({
   const t = useI18n()
   if (number === 0 && warnings === 0) return null
   return (
-    <div className="error-list-detected">
-      <p className="has-text-primary has-text-weight-bold has-text-centered mb-10 is-size-5">
+    <div className="error-list-detected pl-20 pr-20">
+      <p className="has-text-primary has-text-weight-bold has-text-centered mb-10 is-size-6">
         {t('ERRORS_DETECTED', number)} &nbsp;
         {either(warnings > 0, t('WARNINGS_DETECTED', warnings))}
       </p>

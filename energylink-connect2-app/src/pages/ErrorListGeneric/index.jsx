@@ -5,7 +5,7 @@ import paths, { setParams } from 'routes/paths'
 import { useI18n } from 'shared/i18n'
 import { getError } from 'shared/errorCodes'
 import { either } from 'shared/utils'
-import './ErrorListScreen.scss'
+import './ErrorListGeneric.scss'
 
 const ErrorComponent = ({ title, code, errorInfo, t }) => {
   const toParams = {
@@ -26,10 +26,9 @@ const ErrorComponent = ({ title, code, errorInfo, t }) => {
         )}
       </div>
       <div>
-        <Link
-          className="sp sp-chevron-right has-text-primary is-size-1 details"
-          to={toParams}
-        />
+        <Link className="has-text-primary details is-flex" to={toParams}>
+          <span className="sp sp-chevron-right auto is-size-2" />
+        </Link>
       </div>
     </div>
   )

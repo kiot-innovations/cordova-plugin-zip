@@ -70,10 +70,10 @@ Object {
               warnings={0}
             >
               <div
-                className="error-list-detected"
+                className="error-list-detected pl-20 pr-20"
               >
                 <p
-                  className="has-text-primary has-text-weight-bold has-text-centered mb-10 is-size-5"
+                  className="has-text-primary has-text-weight-bold has-text-centered mb-10 is-size-6"
                 >
                   ERRORS_DETECTED 1
                     
