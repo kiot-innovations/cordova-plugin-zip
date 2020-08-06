@@ -31,7 +31,8 @@ import {
   toPairs,
   toUpper,
   values,
-  when
+  when,
+  propSatisfies
 } from 'ramda'
 
 export const either = (condition, whenTrue, whenFalse = null) =>
@@ -265,3 +266,12 @@ export function getEnvironment() {
 
 export const isError = (status = '', percent) =>
   status.toLowerCase() === 'error'
+
+const _strStartsWith = what => str => str.startsWith(what)
+
+/* [a] -> Number */
+export const warningsLength = compose(
+  length,
+  filter(propSatisfies(_strStartsWith('1'), 'error_code')),
+  defaultTo([])
+)
