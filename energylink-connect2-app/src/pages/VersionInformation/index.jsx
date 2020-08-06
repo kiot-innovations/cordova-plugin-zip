@@ -9,7 +9,7 @@ import './VersionInformation.scss'
 function VersionInformation() {
   const t = useI18n()
   const history = useHistory()
-  const isTest = process.env.REACT_APP_IS_TEST
+  const isTest = process.env.REACT_APP_IS_TEST || process.env.REACT_APP_IS_DEV
 
   return (
     <section className="version-info is-flex tile is-vertical has-text-weight-bold pt-0 pr-10 pl-10 full-height">
