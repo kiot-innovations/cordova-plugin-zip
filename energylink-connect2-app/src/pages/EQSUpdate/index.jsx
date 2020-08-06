@@ -6,7 +6,7 @@ import { includes, isEmpty, length, map, pathOr, prop } from 'ramda'
 
 import { CHECK_EQS_FIRMWARE } from 'state/actions/storage'
 import { Loader } from 'components/Loader'
-import { either } from 'shared/utils'
+import { either, warningsLength } from 'shared/utils'
 import { eqsSteps } from 'state/reducers/storage'
 import {
   eqsUpdateErrors,
@@ -14,7 +14,7 @@ import {
 } from 'state/epics/storage/deviceUpdate'
 import ConnectedDeviceUpdate from 'components/ConnectedDeviceUpdate'
 import ContinueFooter from 'components/ESSContinueFooter'
-import ErrorDetected from 'components/ESSErrorDetected/ErrorDetected'
+import ErrorDetected from 'components/ESSErrorDetected'
 import paths from 'routes/paths'
 
 const renderUpdateComponent = device => (
@@ -146,9 +146,11 @@ const EQSUpdate = () => {
           text={'EQS_FW_UPDATE_SUCCESS'}
         />,
         <ErrorDetected
-          url={paths.PROTECTED.EQS_UPDATE_ERRORS.path}
-          number={length(updateErrors)}
+          number={length(updateErrors) - warningsLength(updateErrors)}
+          warnings={warningsLength(updateErrors)}
           onRetry={() => dispatch(CHECK_EQS_FIRMWARE())}
+          url={paths.PROTECTED.EQS_UPDATE_ERRORS.path}
+          next={paths.PROTECTED.ESS_DEVICE_MAPPING.path}
         />
       )}
     </div>

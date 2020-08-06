@@ -52,9 +52,11 @@ exports[`EQS Connected Device Update Renders Correctly 1`] = `
             </span>
           </div>
           <ErrorDetected
+            next="/ess-device-mapping"
             number={0}
             onRetry={[Function]}
             url="/eqs-update-errors"
+            warnings={0}
           />
         </div>
       </EQSUpdate>
