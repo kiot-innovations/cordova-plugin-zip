@@ -1,5 +1,11 @@
 @import '~@sunpower/theme-dark/styles/variables';
 
+.error-list-detected {
+  .level {
+    margin-bottom: 0;
+  }
+}
+
 .is-outlined {
   border: 1px solid $sun;
 }
