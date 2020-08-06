@@ -441,5 +441,8 @@
   "GETFILE_EQS_FIRMWARE_ERROR": "There was an issue with the Storage Firmware File. Please download it again and retry.",
   "UPLOAD_EQS_FIRMWARE_ERROR": "An error occured while uploading the Storage Firmware file. Please try again.",
   "HEALTH_CHECK_SUCCESSFUL": "Health Check Successful",
-  "CREATE_HOMEOWNER_ACCOUNT": "Create Homeowner Account"
+  "CREATE_HOMEOWNER_ACCOUNT": "Create Homeowner Account",
+  "FIRST_NAME": "First Name",
+  "LAST_NAME": "Last Name",
+  "HOMEOWNER_EMAIL": "Homeowner's Email"
 }

@@ -8,7 +8,7 @@
 
   .success {
     button {
-      padding: unset !important;
+      padding: unset;
     }
   }
 
@@ -26,4 +26,32 @@
     font-size: $font-size;
     text-align: left;
   }
+
+  .homeowner-creation {
+    input:nth-of-type(1) {
+      margin-top: 20px;
+    }
+
+    input {
+      background: $dark;
+      color: $loblolly;
+      padding: 10px;
+      border: none;
+      border-radius: 10px;
+      width: 90%;
+      margin-bottom: 20px;
+    }
+
+    button {
+      padding: 0 60px;
+    }
+  }
+}
+
+.ReactSwipeableBottomSheet--open,
+.ReactSwipeableBottomSheet--closed {
+  padding: 1rem 1rem 2rem 1rem;
+  background-color: $light-black !important;
+  border-radius: 20px;
+  margin-bottom: 70px;
 }

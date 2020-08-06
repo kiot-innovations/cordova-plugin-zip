@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { useI18n } from 'shared/i18n'
+import SwipeableBottomSheet from 'react-swipeable-bottom-sheet'
 import { useHistory } from 'react-router-dom'
 import { Loader } from 'components/Loader'
 import { isEmpty, test } from 'ramda'
@@ -14,6 +15,7 @@ const SavingConfiguration = () => {
   const t = useI18n()
   const history = useHistory()
   const dispatch = useDispatch()
+  const [showHomeownerCreation, setShowHomeownerCreation] = useState(false)
   const { submitting, commissioned, error } = useSelector(
     state => state.systemConfiguration.submit
   )
@@ -58,11 +60,50 @@ const SavingConfiguration = () => {
                 {t('CONFIG_NEW_SITE')}
               </button>
               <button
+                onClick={() => setShowHomeownerCreation(true)}
+                className="button is-secondary is-uppercase"
+              >
+                {t('CREATE_HOMEOWNER_ACCOUNT')}
+              </button>
+              <button
                 onClick={goToData}
                 className="button is-primary is-uppercase"
               >
                 {t('DONE')}
               </button>
+              <SwipeableBottomSheet
+                open={showHomeownerCreation}
+                onChange={() =>
+                  setShowHomeownerCreation(!showHomeownerCreation)
+                }
+              >
+                <div className="homeowner-creation">
+                  <span className="has-text-weight-bold">
+                    {t('CREATE_HOMEOWNER_ACCOUNT')}
+                  </span>
+                  <input
+                    type="text"
+                    placeholder={t('FIRST_NAME')}
+                    onChange={() => {}}
+                  />
+                  <input
+                    type="text"
+                    placeholder={t('LAST_NAME')}
+                    onChange={() => {}}
+                  />
+                  <input
+                    type="text"
+                    placeholder={t('HOMEOWNER_EMAIL')}
+                    onChange={() => {}}
+                  />
+                  <button
+                    className="button is-primary is-uppercase"
+                    onClick={() => {}}
+                  >
+                    {t('CREATE')}
+                  </button>
+                </div>
+              </SwipeableBottomSheet>
             </div>
           )
         }
@@ -96,6 +137,7 @@ const SavingConfiguration = () => {
       <span className="is-uppercase has-text-weight-bold">
         {submitting ? t('HOLD_ON') : configContent.title}
       </span>
+
       {submitting ? <Loader /> : configContent.indicator}
 
       {submitting ? (
