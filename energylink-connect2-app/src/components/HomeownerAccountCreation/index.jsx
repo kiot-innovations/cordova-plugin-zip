@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import SwipeableBottomSheet from 'react-swipeable-bottom-sheet'
-import { useI18n } from 'shared/i18n'
 import { isEmpty } from 'ramda'
+import { useI18n } from 'shared/i18n'
+import { createExternalLinkHandler } from 'shared/routing'
 import './HomeownerAccountCreation.scss'
 
 const HomeownerAccountCreation = ({ open, onChange, pvs }) => {
@@ -9,6 +10,11 @@ const HomeownerAccountCreation = ({ open, onChange, pvs }) => {
   const [firstName, setFirstName] = useState('')
   const [lastName, setLastName] = useState('')
   const [email, setEmail] = useState('')
+  const sendEmail = `mailto:${email}?subject=${t(
+    'HOMEOWNER_ACCOUNT_EMAIL_SUBJECT'
+  )}&body=${encodeURIComponent(
+    t('HOMEOWNER_ACCOUNT_EMAIL_BODY_TEMPLATE', firstName, lastName, pvs)
+  )}`
 
   return (
     <SwipeableBottomSheet open={open} onChange={onChange}>
@@ -35,21 +41,7 @@ const HomeownerAccountCreation = ({ open, onChange, pvs }) => {
           <button
             disabled={isEmpty(firstName) || isEmpty(lastName) || isEmpty(email)}
             className="button is-primary is-uppercase"
-            onClick={() =>
-              window.open(
-                `mailto:${email}?subject=${t(
-                  'HOMEOWNER_ACCOUNT_EMAIL_SUBJECT'
-                )}&body=${encodeURIComponent(
-                  t(
-                    'HOMEOWNER_ACCOUNT_EMAIL_BODY_TEMPLATE',
-                    firstName,
-                    lastName,
-                    pvs
-                  )
-                )}`,
-                '_system'
-              )
-            }
+            onClick={createExternalLinkHandler(sendEmail)}
           >
             {t('SEND_EMAIL')}
           </button>
