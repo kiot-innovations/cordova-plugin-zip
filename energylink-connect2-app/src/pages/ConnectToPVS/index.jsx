@@ -137,8 +137,9 @@ function ConnectToPVS() {
       </div>
 
       <SwipeableBottomSheet
+        shadowTip={false}
         open={manualEntry}
-        onChange={() => showManualEntry(this)}
+        onChange={() => showManualEntry(!manualEntry)}
       >
         <div className="manual-entry">
           <span className="has-text-weight-bold">{t('PVS_SN')}</span>

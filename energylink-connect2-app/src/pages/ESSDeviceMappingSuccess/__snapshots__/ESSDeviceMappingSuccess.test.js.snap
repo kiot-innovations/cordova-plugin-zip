@@ -55,26 +55,26 @@ Object {
                     "device_fw_ver": "1.2.3",
                     "device_type": "MIDC",
                     "last_mapped": "2020-02-15 01:23:45",
-                    "serial_number": "string",
+                    "serial_number": "00002",
                   },
                   Object {
                     "device_fw_ver": "1.2.3",
                     "device_type": "MIDC",
                     "last_mapped": "2020-02-15 01:23:45",
-                    "serial_number": "string",
+                    "serial_number": "00001",
                   },
                   Object {
                     "device_fw_ver": "1.2.3",
                     "device_type": "MIDC",
                     "last_mapped": "2020-02-15 01:23:45",
-                    "serial_number": "string",
+                    "serial_number": "00002",
                   },
                   Array [
                     Object {
                       "device_fw_ver": "1.2.3",
                       "device_type": "MIDC",
                       "last_mapped": "2020-02-15 01:23:45",
-                      "serial_number": "string",
+                      "serial_number": "00003",
                     },
                   ],
                 ]
@@ -94,7 +94,7 @@ Object {
                   <span
                     className="has-text-weight-bold is-size-5"
                   >
-                    STRING
+                    00002
                   </span>
                 </div>
                 <div
@@ -102,7 +102,7 @@ Object {
                 >
                   <div
                     className="mt-5 mb-5 is-flex child-device"
-                    key="string"
+                    key="00001"
                   >
                     <span
                       className="has-text-white has-text-weight-bold"
@@ -112,12 +112,12 @@ Object {
                     <span
                       className="has-text-weight-bold"
                     >
-                      string
+                      00001
                     </span>
                   </div>
                   <div
                     className="mt-5 mb-5 is-flex child-device"
-                    key="string"
+                    key="00002"
                   >
                     <span
                       className="has-text-white has-text-weight-bold"
@@ -127,7 +127,7 @@ Object {
                     <span
                       className="has-text-weight-bold"
                     >
-                      string
+                      00002
                     </span>
                   </div>
                   <div
@@ -141,7 +141,7 @@ Object {
                     <span
                       className="has-text-weight-bold"
                     >
-                      string
+                      00003
                     </span>
                   </div>
                 </div>
@@ -154,7 +154,7 @@ Object {
                     "device_fw_ver": "1.2.3",
                     "device_type": "MIDC",
                     "last_mapped": "2020-02-15 01:23:45",
-                    "serial_number": "string",
+                    "serial_number": "00004",
                   },
                 ]
               }
@@ -173,7 +173,7 @@ Object {
                   <span
                     className="has-text-weight-bold is-size-5"
                   >
-                    STRING
+                    00004
                   </span>
                 </div>
                 <div
@@ -188,7 +188,7 @@ Object {
                     "device_fw_ver": "1.2.3",
                     "device_type": "MIDC",
                     "last_mapped": "2020-02-15 01:23:45",
-                    "serial_number": "string",
+                    "serial_number": "00005",
                   },
                 ]
               }
@@ -207,7 +207,7 @@ Object {
                   <span
                     className="has-text-weight-bold is-size-5"
                   >
-                    STRING
+                    00005
                   </span>
                 </div>
                 <div

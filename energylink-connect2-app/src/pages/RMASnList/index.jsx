@@ -1,24 +1,22 @@
 import React, { useCallback, useState } from 'react'
-import { Loader } from 'components/Loader'
-import useModal from 'hooks/useModal'
-import { pathOr } from 'ramda'
-
-import BlockUI from 'react-block-ui'
-
-import 'react-block-ui/style.css'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory, useLocation } from 'react-router-dom'
-import paths from 'routes/paths'
+import { pathOr, length } from 'ramda'
+import BlockUI from 'react-block-ui'
+import 'react-block-ui/style.css'
+import useModal from 'hooks/useModal'
 import { useI18n } from 'shared/i18n'
 import { PUSH_CANDIDATES_INIT } from 'state/actions/devices'
 import { UPDATE_MI_COUNT } from 'state/actions/inventory'
-
 import { REMOVE_SN, START_DISCOVERY_INIT } from 'state/actions/pvs'
-import './SNList.scss'
-import SNManualEntry from './SNManualEntry'
-import SNScanButtons from './SNScanButtons'
+import SNManualEntry from 'pages/SNList/SNManualEntry'
+import SNScanButtons from 'pages/SNList/SNScanButtons'
+import { Loader } from 'components/Loader'
+import Collapsible from 'components/Collapsible'
+import paths from 'routes/paths'
+import './RMASnList.scss'
 
-function SNList() {
+function RMASnList() {
   const t = useI18n()
   const dispatch = useDispatch()
   const history = useHistory()
@@ -26,9 +24,13 @@ function SNList() {
   const { isManualModeDefault = false } = pathOr({}, ['state'], location)
 
   const [isManualMode, setManualMode] = useState(isManualModeDefault)
-  const { serialNumbers, fetchingSN } = useSelector(state => state.pvs)
+  const { serialNumbers: serialNumbersNew, fetchingSN } = useSelector(
+    state => state.pvs
+  )
+  const { found: serialNumbersExisting } = useSelector(state => state.devices)
   const [editingSn, setEditingSn] = useState('')
   const { bom } = useSelector(state => state.inventory)
+  const total = length(serialNumbersExisting) + length(serialNumbersNew)
 
   const toggleManualMode = useCallback(() => {
     setManualMode(!isManualMode)
@@ -39,7 +41,7 @@ function SNList() {
     return item.item === 'AC_MODULES'
   })
   const expectedMICount = modulesOnInventory[0].value
-  const scannedMICount = serialNumbers.length
+  const scannedMICount = length(serialNumbersNew)
 
   const onScanMore = () => {
     history.push(paths.PROTECTED.SCAN_LABELS.path)
@@ -60,31 +62,33 @@ function SNList() {
     dispatch(REMOVE_SN(editingSn))
   }
 
-  const createSnItem = serialNumber => {
+  const createSnItem = (serialNumber, withDelete = true, withEdit = true) => {
     return (
       <div key={serialNumber} className="sn-item mt-10 mb-10 pb-5">
         <span
           className="is-uppercase has-text-weight-bold has-text-white"
-          onClick={() => handleEditSN(serialNumber)}
+          onClick={() => (withEdit ? handleEditSN(serialNumber) : null)}
         >
           {serialNumber}
         </span>
-        <button
-          onClick={() => handleRemoveSN(serialNumber)}
-          className="has-text-white is-size-6"
-        >
-          <i className="sp-close" />
-        </button>
+        {withDelete && (
+          <button
+            onClick={() => handleRemoveSN(serialNumber)}
+            className="has-text-white is-size-6"
+          >
+            <i className="sp-close" />
+          </button>
+        )}
       </div>
     )
   }
 
   const submitSN = () => {
-    const snList = serialNumbers.map(device => {
+    const snList = serialNumbersNew.map(device => {
       return { DEVICE_TYPE: 'Inverter', SERIAL: device.serial_number }
     })
     toggleSerialNumbersModal()
-    dispatch(UPDATE_MI_COUNT(serialNumbers.length))
+    dispatch(UPDATE_MI_COUNT(serialNumbersNew.length))
     dispatch(PUSH_CANDIDATES_INIT(snList))
     history.push(paths.PROTECTED.DEVICES.path)
   }
@@ -185,12 +189,20 @@ function SNList() {
     }
   }
 
-  const serialNumbersList = serialNumbers
-    ? serialNumbers
+  const serialNumbersNewList = serialNumbersNew
+    ? serialNumbersNew
         .sort(function(a, b) {
           return a.serial_number > b.serial_number
         })
         .map(device => createSnItem(device.serial_number))
+    : []
+
+  const serialNumbersExistingList = serialNumbersExisting
+    ? serialNumbersExisting
+        .sort(function(a, b) {
+          return a.SERIAL > b.SERIAL
+        })
+        .map(device => createSnItem(device.SERIAL, false, false))
     : []
 
   return (
@@ -208,23 +220,50 @@ function SNList() {
             {t('SCAN_MI_LABELS')}
           </span>
           <span className="has-text-white">
-            {serialNumbers.length > 0
-              ? t('FOUND_SN', serialNumbers.length)
-              : ''}
+            {total > 0 ? t('FOUND_SN', total) : ''}
           </span>
         </div>
-        <div className="sn-container">
-          {serialNumbersList.length > 0 ? (
-            <>
-              <span className="has-text-weight-bold">
-                {t('TAP_SN_TO_EDIT')}
+        <div className="flex-inverter-list">
+          <Collapsible
+            title={t('NEW_INVERTERS')}
+            actions={
+              <span className="is-secondary has-no-border">
+                {length(serialNumbersNewList)}
               </span>
-              {serialNumbersList}
-            </>
-          ) : (
-            <span>{t('SCAN_HINT')}</span>
-          )}
-          {fetchingSN ? <Loader /> : ''}
+            }
+          >
+            <div className="sn-container">
+              {length(serialNumbersNewList) > 0 ? (
+                <>
+                  <span className="has-text-weight-bold">
+                    {t('TAP_SN_TO_EDIT')}
+                  </span>
+                  {serialNumbersNewList}
+                </>
+              ) : (
+                <span>{t('SCAN_HINT')}</span>
+              )}
+              {fetchingSN ? <Loader /> : ''}
+            </div>
+          </Collapsible>
+          <div className="mt-20" />
+          <Collapsible
+            title={t('EXISTING_INVERTERS')}
+            actions={
+              <span className="is-secondary has-no-border">
+                {length(serialNumbersExistingList)}
+              </span>
+            }
+          >
+            <div className="sn-container">
+              {length(serialNumbersExistingList) > 0 ? (
+                <>{serialNumbersExistingList}</>
+              ) : (
+                <span>{t('SCAN_HINT')}</span>
+              )}
+              {fetchingSN ? <Loader /> : ''}
+            </div>
+          </Collapsible>
         </div>
 
         <div className="sn-buttons">
@@ -268,4 +307,4 @@ function SNList() {
   )
 }
 
-export default SNList
+export default RMASnList

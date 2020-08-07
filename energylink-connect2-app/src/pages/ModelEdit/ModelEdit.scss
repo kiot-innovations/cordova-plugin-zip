@@ -6,6 +6,10 @@
   grid-row-gap: 1rem;
   height: -webkit-fill-available;
 
+  .missing-models-warning {
+    flex-direction: column;
+  }
+
   .model-container{
     .collapsible{
       margin-bottom: 1em;

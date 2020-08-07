@@ -97,7 +97,7 @@ exports[`Connect to PVS page render correctly 1`] = `
             overflowHeight={0}
             overlay={true}
             scrollTopAtClose={true}
-            shadowTip={true}
+            shadowTip={false}
             swipeableViewsProps={Object {}}
             topShadow={true}
           >

@@ -34,7 +34,7 @@ function EssCollapsible() {
 
   return (
     <Collapsible
-      title={'ESS FIRMWARE'}
+      title={'STORAGE_FW_FILE'}
       expanded
       actions={
         !essState.isDownloading && (
