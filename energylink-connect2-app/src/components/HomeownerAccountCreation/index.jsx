@@ -27,7 +27,7 @@ const HomeownerAccountCreation = ({ open, onChange, pvs }) => {
           onChange={event => setLastName(event.target.value)}
         />
         <input
-          type="text"
+          type="email"
           placeholder={t('HOMEOWNER_EMAIL')}
           onChange={event => setEmail(event.target.value)}
         />

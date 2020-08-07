@@ -392,7 +392,7 @@ exports[`BillOfMaterials component render correctly 1`] = `
                             <input
                               onChange={[Function]}
                               placeholder="HOMEOWNER_EMAIL"
-                              type="text"
+                              type="email"
                             />
                             <div
                               className="mb-20"

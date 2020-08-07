@@ -199,7 +199,7 @@ exports[`HomeownerAccountCreation Component Renders correctly 1`] = `
                         <input
                           onChange={[Function]}
                           placeholder="Homeowner's Email"
-                          type="text"
+                          type="email"
                         />
                         <div
                           className="mb-20"
