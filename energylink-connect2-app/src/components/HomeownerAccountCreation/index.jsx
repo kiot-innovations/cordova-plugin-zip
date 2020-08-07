@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
+import SwipeableBottomSheet from 'react-swipeable-bottom-sheet'
 import { useI18n } from 'shared/i18n'
 import { isEmpty } from 'ramda'
-import SwipeableBottomSheet from 'react-swipeable-bottom-sheet'
 import './HomeownerAccountCreation.scss'
 
 const HomeownerAccountCreation = ({ open, onChange, pvs }) => {
