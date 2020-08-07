@@ -184,21 +184,21 @@ exports[`HomeownerAccountCreation Component Renders correctly 1`] = `
                         <span
                           className="has-text-weight-bold"
                         >
-                          Create Homeowner Account
+                          Create homeowner account
                         </span>
                         <input
                           onChange={[Function]}
-                          placeholder="First Name"
+                          placeholder="First name"
                           type="text"
                         />
                         <input
                           onChange={[Function]}
-                          placeholder="Last Name"
+                          placeholder="Last name"
                           type="text"
                         />
                         <input
                           onChange={[Function]}
-                          placeholder="Homeowner's Email"
+                          placeholder="Homeowner's email"
                           type="email"
                         />
                         <div
@@ -209,7 +209,7 @@ exports[`HomeownerAccountCreation Component Renders correctly 1`] = `
                             disabled={true}
                             onClick={[Function]}
                           >
-                            Send Email
+                            Send email
                           </button>
                         </div>
                       </div>
