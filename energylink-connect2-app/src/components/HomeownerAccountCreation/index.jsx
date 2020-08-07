@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { useI18n } from 'shared/i18n'
+import { isEmpty } from 'ramda'
 import SwipeableBottomSheet from 'react-swipeable-bottom-sheet'
 import './HomeownerAccountCreation.scss'
 
@@ -32,6 +33,7 @@ const HomeownerAccountCreation = ({ open, onChange }) => {
         />
         <div className="mb-20">
           <button
+            disabled={isEmpty(firstName) || isEmpty(lastName) || isEmpty(email)}
             className="button is-primary is-uppercase"
             onClick={() =>
               window.open(

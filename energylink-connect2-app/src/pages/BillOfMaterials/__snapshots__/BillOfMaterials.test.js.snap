@@ -398,6 +398,7 @@ exports[`BillOfMaterials component render correctly 1`] = `
                             >
                               <button
                                 className="button is-primary is-uppercase"
+                                disabled={true}
                                 onClick={[Function]}
                               >
                                 SEND_EMAIL
