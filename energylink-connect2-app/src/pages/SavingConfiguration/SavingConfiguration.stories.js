@@ -8,7 +8,15 @@ import SavingConfiguration from './index'
 storiesOf('Saving Configuration Page', module)
   .add('Successful Configuration', () => {
     const { store } = configureStore({
-      systemConfiguration: { submit: { commissioned: true, error: '' } }
+      systemConfiguration: {
+        submit: {
+          commissioned: true,
+          error: ''
+        }
+      },
+      pvs: {
+        serialNumber: 'ZT190885000549A1374'
+      }
     })
 
     return (
@@ -22,7 +30,10 @@ storiesOf('Saving Configuration Page', module)
   .add('Unsuccessful Configuration', () => {
     const { store } = configureStore({
       systemConfiguration: {
-        submit: { commissioned: false, error: 'Something wrong happened.' }
+        submit: {
+          commissioned: false,
+          error: 'Something wrong happened.'
+        }
       }
     })
 
