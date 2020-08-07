@@ -20,8 +20,20 @@ const HomeownerAccountCreation = ({ open, onChange }) => {
           onChange={() => {}}
         />
         <div className="mb-20">
-          <button className="button is-primary is-uppercase" onClick={() => {}}>
-            {t('CREATE')}
+          <button
+            className="button is-primary is-uppercase"
+            onClick={() =>
+              window.open(
+                `mailto:pepe@example.com?subject=${t(
+                  'HOMEOWNER_ACCOUNT_EMAIL_SUBJECT'
+                )}&body=${encodeURIComponent(
+                  t('HOMEOWNER_ACCOUNT_EMAIL_BODY_TEMPLATE')
+                )}`,
+                '_system'
+              )
+            }
+          >
+            {t('SEND_EMAIL')}
           </button>
         </div>
       </div>
