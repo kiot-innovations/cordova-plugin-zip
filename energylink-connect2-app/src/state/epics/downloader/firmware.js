@@ -37,7 +37,7 @@ export const getFirmwareUrlFromState = path([
   'updateURL'
 ])
 
-async function getLaterstCylonUrl() {
+async function getLatestCylonUrl() {
   const res = await fetch(process.env.REACT_APP_LATEST_FIRMWARE_URL)
   return await res.text()
 }
@@ -46,7 +46,7 @@ export const epicGetLatestFirmwareURL = action$ => {
   return action$.pipe(
     ofType(GET_FIRMWARE_URL.getType()),
     switchMap(() =>
-      from(getLaterstCylonUrl()).pipe(
+      from(getLatestCylonUrl()).pipe(
         map(GET_FIRMWARE_URL_SUCCESS),
         catchError(err => {
           Sentry.captureException(err)
@@ -65,7 +65,10 @@ export const epicGetLatestFirmwareURL = action$ => {
  */
 export const epicGetFirmwareMetadataFile = (action$, state$) =>
   action$.pipe(
-    ofType(FIRMWARE_METADATA_DOWNLOAD_INIT.getType()),
+    ofType(
+      FIRMWARE_METADATA_DOWNLOAD_INIT.getType(),
+      GET_FIRMWARE_URL_SUCCESS.getType()
+    ),
     switchMap(() => {
       const {
         luaFileName,
@@ -249,6 +252,7 @@ export const epicDownloadLuaFilesInit = (action$, state$) =>
   )
 
 export default [
+  epicGetLatestFirmwareURL,
   epicFirmwareGetFileInfo,
   epicGetFirmwareMetadataFile,
   epicFirmwareMetadataFileDownloaded,
