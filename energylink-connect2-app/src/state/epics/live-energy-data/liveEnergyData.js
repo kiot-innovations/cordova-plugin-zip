@@ -1,11 +1,11 @@
 import { Observable, of } from 'rxjs'
 import {
-  map,
   catchError,
+  delay,
+  map,
   mergeMap,
   retryWhen,
-  tap,
-  delay
+  tap
 } from 'rxjs/operators'
 import { ofType } from 'redux-observable'
 import { Client as WebSocket } from 'rpc-websockets'
@@ -14,7 +14,7 @@ import * as energyDataActions from '../../actions/energy-data'
 import * as networkActions from '../../actions/network'
 
 import { roundDecimals } from 'shared/rounding'
-import { compose, always, equals, ifElse, pathOr } from 'ramda'
+import { always, compose, equals, ifElse, pathOr } from 'ramda'
 
 const createWebsocketObservable = () =>
   new Observable(subscriber => {
@@ -46,7 +46,7 @@ const createWebsocketObservable = () =>
         )
         .catch(err =>
           subscriber.error(
-            new Error(`Error colleting daily metrics: ${err.message}`)
+            new Error(`Error collecting daily metrics: ${err.message}`)
           )
         )*/
 
@@ -63,9 +63,13 @@ const getMeterConfig = pathOr('', [
   'consumptionCT'
 ])
 
-const getProductionValueCorrectly = (state, production) =>
+const getLoadSideProduction = (state, energyProduction) =>
   compose(
-    ifElse(equals('NET_CONSUMPTION_LOADSIDE'), always(0), always(production)),
+    ifElse(
+      equals('NET_CONSUMPTION_LOADSIDE'),
+      always(energyProduction),
+      always(0)
+    ),
     getMeterConfig
   )(state)
 
@@ -91,48 +95,69 @@ export const liveEnergyData = (action$, state$) =>
             case 'dailyPower':
               // eslint-disable-next-line no-case-declarations
               const diffData = {
-                soc: data.today[1],
-                net_en: data.today[5] - (data.yesterday[5] || 0),
-                pv_en: data.today[6] - (data.yesterday[6] || 0),
-                ess_en: data.today[7] - (data.yesterday[7] || 0)
+                soc: data.today[1] || 0,
+                net_en: (data.today[5] || 0) - (data.yesterday[5] || 0),
+                pv_en: (data.today[6] || 0) - (data.yesterday[6] || 0),
+                ess_en: (data.today[7] || 0) - (data.yesterday[7] || 0)
               }
+              // eslint-disable-next-line no-case-declarations
+              const loadSidePVEnergy = getLoadSideProduction(
+                state$,
+                diffData.pv_en
+              )
+
               return energyDataActions.LIVE_ENERGY_DATA_DAILY({
                 soc: diffData.soc,
                 p: diffData.pv_en,
                 s: diffData.ess_en,
-                c: diffData.pv_en + diffData.ess_en + diffData.net_en
+                c: loadSidePVEnergy + diffData.ess_en + diffData.net_en
               })
             case 'power':
             default: {
-              // pp/pv_p :: power production (Kw)
-              const pp = data.pv_p < 0.01 ? 0 : data.pv_p
-              // ps/ess_p :: energy storage power (kw)
-              const ps = data.ess_p < 0.01 ? 0 : data.ess_p * -1
-              // net_p :: grid power (Kw)
-              const net = data.net_p < 0.01 ? 0 : data.net_p
+              const {
+                pv_p = 0,
+                ess_p = 0,
+                net_p = 0, // net_p :: grid power (kW)
+                pv_en = 0,
+                net_en = 0, // net_en :: grid energy (kWh)
+                ess_en = 0
+              } = data
+              // powerProduction/pv_p :: power production (kW)
+              const powerProduction = pv_p < 0.01 ? 0 : pv_p
+              // energyStoragePower/ess_p :: energy storage power (kW)
+              const energyStoragePower = Math.abs(ess_p) < 0.01 ? 0 : ess_p
 
-              // pc :: power consumption (Kw)
-              const pc = pp + ps + net
-              // p/pv_en :: energy production (KwH)
-              const p = data.pv_en < 0.01 ? 0 : data.pv_en
-              // net_en :: grid energy (KwH)
-              const net_en = data.net_en < 0.01 ? 0 : data.net_en
-              // net_en :: energy storage energy (KwH)
-              const s = data.ess_en < 0.01 ? 0 : data.ess_en * -1
+              const gridPower = Math.abs(net_p) < 0.01 ? 0 : net_p
+              const loadSidePower = getLoadSideProduction(
+                state$,
+                powerProduction
+              )
 
-              const loadSide = getProductionValueCorrectly(state$, p)
+              // powerConsumption :: power consumption (kW)
+              const powerConsumption =
+                loadSidePower + energyStoragePower + gridPower
+              // p/pv_en :: energy production (kWh)
+              const energyProduction = pv_en
+
+              // ess_en :: energy storage energy (kWh)
+              const essEnergy = ess_en
+
+              const loadSideEnergy = getLoadSideProduction(
+                state$,
+                energyProduction
+              )
 
               // c :: consumption
-              const c = s + net_en + loadSide
+              const consumption = essEnergy + net_en + loadSideEnergy
 
               return energyDataActions.LIVE_ENERGY_DATA_NOTIFICATION({
                 [new Date(data.time * 1000).toISOString()]: {
-                  p: roundDecimals(p),
-                  s: roundDecimals(s),
-                  c: roundDecimals(c),
-                  pp: roundDecimals(pp),
-                  pc: roundDecimals(pc),
-                  ps: roundDecimals(ps),
+                  p: roundDecimals(energyProduction),
+                  s: roundDecimals(essEnergy),
+                  c: roundDecimals(consumption),
+                  pp: roundDecimals(powerProduction),
+                  pc: roundDecimals(powerConsumption),
+                  ps: roundDecimals(energyStoragePower),
                   // soc:: stage of charge
                   soc: roundDecimals(data.soc)
                 }
