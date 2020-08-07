@@ -228,6 +228,7 @@ exports[`BillOfMaterials component render correctly 1`] = `
           <HomeownerAccountCreation
             onChange={[Function]}
             open={false}
+            pvs="ZTXXXXXXXXXXXXXXXXX"
           >
             <SwipeableBottomSheet
               defaultOpen={false}
