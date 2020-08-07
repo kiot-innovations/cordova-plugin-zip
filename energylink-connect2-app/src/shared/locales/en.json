@@ -389,7 +389,7 @@
   "ERRORS_DETECTED": "We detected {0} errors",
   "WARNINGS_DETECTED": "and {0} warnings",
   "WARNING_LIST": "Warning list",
-  "IGNORE_WARNINGS": "Ignrore warnings and continue",
+  "IGNORE_WARNINGS": "Ignore warnings and continue",
   "NO_ERRORS_DETECTED": "No errors detected",
   "DEVICEMAP_ERROR": "Something went wrong, please retry the device mapping.",
   "ERROR_DOWNLOADING_ESS": "Something went wrong while downloading the SunVault firmware files. Please try again.",
@@ -445,5 +445,6 @@
   "UPLOAD_EQS_FIRMWARE_ERROR": "An error occured while uploading the Storage Firmware file. Please try again.",
   "HEALTH_CHECK_SUCCESSFUL": "Health Check Successful",
   "UNKNOWN_MI_TYPE": "Unknown Type",
-  "FIX_ERRORS_TO_PROCEED": "Please fix this error to proceed"
+  "FIX_ERRORS_TO_PROCEED": "Please fix this error to proceed",
+  "STORAGE_FW_FILE": "SunVault Firmware Package"
 }
