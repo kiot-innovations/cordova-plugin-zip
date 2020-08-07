@@ -4,7 +4,7 @@ import { isEmpty } from 'ramda'
 import SwipeableBottomSheet from 'react-swipeable-bottom-sheet'
 import './HomeownerAccountCreation.scss'
 
-const HomeownerAccountCreation = ({ open, onChange }) => {
+const HomeownerAccountCreation = ({ open, onChange, pvs }) => {
   const t = useI18n()
   const [firstName, setFirstName] = useState('')
   const [lastName, setLastName] = useState('')
@@ -43,7 +43,8 @@ const HomeownerAccountCreation = ({ open, onChange }) => {
                   t(
                     'HOMEOWNER_ACCOUNT_EMAIL_BODY_TEMPLATE',
                     firstName,
-                    lastName
+                    lastName,
+                    pvs
                   )
                 )}`,
                 '_system'
