@@ -22,6 +22,7 @@ function RMASnList() {
   const history = useHistory()
   const location = useLocation()
   const { isManualModeDefault = false } = pathOr({}, ['state'], location)
+  const { canAccessScandit } = useSelector(state => state.global)
 
   const [isManualMode, setManualMode] = useState(isManualModeDefault)
   const { serialNumbers: serialNumbersNew, fetchingSN } = useSelector(
@@ -292,6 +293,7 @@ function RMASnList() {
                 fetchingSN={fetchingSN}
                 onScanMore={onScanMore}
                 countSN={countSN}
+                canScanMore={canAccessScandit}
               />
               <button
                 onClick={toggleManualMode}
