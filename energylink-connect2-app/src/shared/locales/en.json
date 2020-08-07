@@ -444,5 +444,8 @@
   "CREATE_HOMEOWNER_ACCOUNT": "Create Homeowner Account",
   "FIRST_NAME": "First Name",
   "LAST_NAME": "Last Name",
-  "HOMEOWNER_EMAIL": "Homeowner's Email"
+  "HOMEOWNER_EMAIL": "Homeowner's Email",
+  "SEND_EMAIL": "Send Email",
+  "HOMEOWNER_ACCOUNT_EMAIL_SUBJECT": "SunPower Monitoring System Registration",
+  "HOMEOWNER_ACCOUNT_EMAIL_BODY_TEMPLATE": "Hi,\n\nYour solar comes with SunPower online monitoring system that will allow you to monitor its production at the touch of your fingertips!\n\nPlease follow these steps on how to register to your SunPower Monitoring System.\n\nSign in Page: https://monitor.us.sunpower.com/#/login\n\n1. Click on 'Create account' and then enter your email address.\n2. Enter your device serial number (ZTXXXXXXXXXXXXXXXXX) then click on 'Lookup'.\n3. Confirm your address.\n4. Supply all the information needed.\n5. Click 'Create' and check your email for the validation link.\n\nNote: The SunPower App is also available on your smart phone and android devices! Simply search 'SunPower Customer Portal' via apple store or google play.\n\nIn the future, if you need any help or have any questions, please don't hesitate to contact us at 1800-786-7693. Our Customer Service Hotline is open from Monday to Friday, 6AM - 7PM PST; And, Saturday, 7AM - 4PM PST. You may also Chat with a SunPower agent. Go to your monitoring portal, go to Support tab and click on chat button on the lower right part of your monitoring dashboard.\n\nRegards,\n\nAimee\n\nAimee de Guzman | Customer Service Representative\n\nGlobal Business and Finance Services | office 1.800.SUNPOWER | ELfeedback@sunpowercorp.com\n\nSUNPOWER"
 }

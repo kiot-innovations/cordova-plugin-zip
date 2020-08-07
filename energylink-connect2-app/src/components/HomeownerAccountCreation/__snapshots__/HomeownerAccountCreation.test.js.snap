@@ -208,7 +208,7 @@ exports[`HomeownerAccountCreation Component Renders correctly 1`] = `
                             className="button is-primary is-uppercase"
                             onClick={[Function]}
                           >
-                            Create
+                            Send Email
                           </button>
                         </div>
                       </div>

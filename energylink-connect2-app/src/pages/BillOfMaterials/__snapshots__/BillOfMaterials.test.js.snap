@@ -400,7 +400,7 @@ exports[`BillOfMaterials component render correctly 1`] = `
                                 className="button is-primary is-uppercase"
                                 onClick={[Function]}
                               >
-                                CREATE
+                                SEND_EMAIL
                               </button>
                             </div>
                           </div>
