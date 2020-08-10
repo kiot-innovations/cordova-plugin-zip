@@ -11,10 +11,15 @@ const HomeownerAccountCreation = ({ open, onChange, pvs }) => {
   const t = useI18n()
   const onSubmit = ({ firstName, lastName, email }) =>
     createExternalLinkHandler(
-      `mailto:${email}?subject=${t(
+      `mailto:${email.trim()}?subject=${t(
         'HOMEOWNER_ACCOUNT_EMAIL_SUBJECT'
       )}&body=${encodeURIComponent(
-        t('HOMEOWNER_ACCOUNT_EMAIL_BODY_TEMPLATE', firstName, lastName, pvs)
+        t(
+          'HOMEOWNER_ACCOUNT_EMAIL_BODY_TEMPLATE',
+          firstName.trim(),
+          lastName.trim(),
+          pvs
+        )
       )}`
     )()
   const { form, handleSubmit } = useForm({
