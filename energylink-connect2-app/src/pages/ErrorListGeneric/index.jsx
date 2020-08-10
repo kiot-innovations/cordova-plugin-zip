@@ -22,7 +22,9 @@ const ErrorComponent = ({ title, code, errorInfo, t }) => {
         <p className="error-code"> {t('ERROR_CODE', code)}</p>
         {either(
           not(`${code}`.startsWith('1')),
-          <p className="has-text-primary"> {t('FIX_ERROR_TO_PROCEED')}</p>
+          <p className="has-text-primary has-text-weight-bold">
+            {t('FIX_ERROR_TO_PROCEED')}
+          </p>
         )}
       </div>
       <div>
