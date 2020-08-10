@@ -1,0 +1,388 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`HomeownerAccountCreation Component Renders correctly 1`] = `
+<BrowserRouter
+  keyLength={0}
+>
+  <Router
+    history={
+      Object {
+        "action": "POP",
+        "block": [Function],
+        "createHref": [Function],
+        "go": [Function],
+        "goBack": [Function],
+        "goForward": [Function],
+        "length": 1,
+        "listen": [Function],
+        "location": Object {
+          "hash": "",
+          "pathname": "/",
+          "search": "",
+          "state": undefined,
+        },
+        "push": [Function],
+        "replace": [Function],
+      }
+    }
+  >
+    <Provider
+      store={
+        Object {
+          "clearActions": [Function],
+          "dispatch": [Function],
+          "getActions": [Function],
+          "getState": [Function],
+          "replaceReducer": [Function],
+          "subscribe": [Function],
+        }
+      }
+    >
+      <HomeownerAccountCreation>
+        <SwipeableBottomSheet
+          defaultOpen={false}
+          fullScreen={false}
+          marginTop={0}
+          overflowHeight={0}
+          overlay={true}
+          scrollTopAtClose={true}
+          shadowTip={true}
+          swipeableViewsProps={Object {}}
+          topShadow={true}
+        >
+          <div
+            style={
+              Object {
+                "bottom": 0,
+                "height": 0,
+                "left": 0,
+                "position": "fixed",
+                "right": 0,
+              }
+            }
+          >
+            <HeightUpdater
+              height={768}
+              onHeightChange={[Function]}
+            />
+            <div
+              onClick={[Function]}
+              style={
+                Object {
+                  "backgroundColor": "black",
+                  "height": 768,
+                  "left": 0,
+                  "opacity": 0,
+                  "pointerEvents": "none",
+                  "position": "fixed",
+                  "right": 0,
+                  "top": 0,
+                  "transition": "opacity 450ms",
+                }
+              }
+            />
+            <ReactSwipableView
+              animateHeight={false}
+              animateTransitions={true}
+              axis="y"
+              containerStyle={
+                Object {
+                  "boxSizing": "border-box",
+                }
+              }
+              disableLazyLoading={false}
+              disabled={false}
+              enableMouseEvents={true}
+              hysteresis={0.6}
+              ignoreNativeScroll={false}
+              index={0}
+              onChangeIndex={[Function]}
+              onTransitionEnd={[Function]}
+              resistance={false}
+              slideStyle={
+                Object {
+                  "boxSizing": "border-box",
+                  "marginBottom": -0,
+                  "overflow": "visible",
+                }
+              }
+              springConfig={
+                Object {
+                  "delay": "0s",
+                  "duration": "0.35s",
+                  "easeFunction": "cubic-bezier(0.15, 0.3, 0.25, 1)",
+                }
+              }
+              style={
+                Object {
+                  "boxSizing": "border-box",
+                  "overflowY": "initial",
+                }
+              }
+              threshold={5}
+            >
+              <div
+                onMouseDown={[Function]}
+                onMouseLeave={[Function]}
+                onMouseMove={[Function]}
+                onMouseUp={[Function]}
+                onScroll={[Function]}
+                onTouchEnd={[Function]}
+                onTouchStart={[Function]}
+                style={
+                  Object {
+                    "boxSizing": "border-box",
+                    "overflowY": "initial",
+                  }
+                }
+              >
+                <div
+                  className="react-swipeable-view-container"
+                  style={
+                    Object {
+                      "WebkitFlexDirection": "column",
+                      "WebkitTransition": "all 0s ease 0s",
+                      "boxSizing": "border-box",
+                      "direction": "ltr",
+                      "display": "flex",
+                      "flexDirection": "column",
+                      "height": null,
+                      "transition": "all 0s ease 0s",
+                      "willChange": "transform",
+                    }
+                  }
+                >
+                  <div
+                    aria-hidden={false}
+                    data-swipeable="true"
+                    key=".0"
+                    style={
+                      Object {
+                        "WebkitFlexShrink": 0,
+                        "boxSizing": "border-box",
+                        "flexShrink": 0,
+                        "marginBottom": -0,
+                        "overflow": "visible",
+                        "width": "100%",
+                      }
+                    }
+                  >
+                    <div
+                      className="ReactSwipeableBottomSheet--closed"
+                      style={
+                        Object {
+                          "backgroundColor": "white",
+                          "height": "initial",
+                          "maxHeight": 768,
+                          "overflow": "hidden",
+                        }
+                      }
+                    >
+                      <div
+                        className="homeowner-account-creation has-text-centered"
+                      >
+                        <span
+                          className="has-text-weight-bold"
+                        >
+                          Create homeowner account
+                        </span>
+                        <form
+                          onSubmit={[Function]}
+                        >
+                          <Component
+                            className="mt-20"
+                            input={
+                              Object {
+                                "name": "firstName",
+                                "onBlur": [Function],
+                                "onChange": [Function],
+                                "onFocus": [Function],
+                                "value": "",
+                              }
+                            }
+                            meta={
+                              Object {
+                                "active": false,
+                                "data": Object {},
+                                "dirty": false,
+                                "dirtySinceLastSubmit": false,
+                                "error": "Required",
+                                "initial": "",
+                                "invalid": true,
+                                "length": undefined,
+                                "modified": false,
+                                "pristine": true,
+                                "submitError": undefined,
+                                "submitFailed": false,
+                                "submitSucceeded": false,
+                                "submitting": false,
+                                "touched": false,
+                                "valid": false,
+                                "validating": false,
+                                "visited": false,
+                              }
+                            }
+                            placeholder="First name"
+                            type="text"
+                          >
+                            <div
+                              className="field"
+                            >
+                              <p
+                                className="control"
+                              >
+                                <input
+                                  autoComplete="off"
+                                  className="input mt-20"
+                                  disabled={false}
+                                  id="firstName"
+                                  name="firstName"
+                                  onBlur={[Function]}
+                                  onChange={[Function]}
+                                  onFocus={[Function]}
+                                  placeholder="First name"
+                                  type="text"
+                                  value=""
+                                />
+                              </p>
+                            </div>
+                          </Component>
+                          <Component
+                            input={
+                              Object {
+                                "name": "lastName",
+                                "onBlur": [Function],
+                                "onChange": [Function],
+                                "onFocus": [Function],
+                                "value": "",
+                              }
+                            }
+                            meta={
+                              Object {
+                                "active": false,
+                                "data": Object {},
+                                "dirty": false,
+                                "dirtySinceLastSubmit": false,
+                                "error": "Required",
+                                "initial": "",
+                                "invalid": true,
+                                "length": undefined,
+                                "modified": false,
+                                "pristine": true,
+                                "submitError": undefined,
+                                "submitFailed": false,
+                                "submitSucceeded": false,
+                                "submitting": false,
+                                "touched": false,
+                                "valid": false,
+                                "validating": false,
+                                "visited": false,
+                              }
+                            }
+                            placeholder="Last name"
+                            type="text"
+                          >
+                            <div
+                              className="field"
+                            >
+                              <p
+                                className="control"
+                              >
+                                <input
+                                  autoComplete="off"
+                                  className="input"
+                                  disabled={false}
+                                  id="lastName"
+                                  name="lastName"
+                                  onBlur={[Function]}
+                                  onChange={[Function]}
+                                  onFocus={[Function]}
+                                  placeholder="Last name"
+                                  type="text"
+                                  value=""
+                                />
+                              </p>
+                            </div>
+                          </Component>
+                          <Component
+                            input={
+                              Object {
+                                "name": "email",
+                                "onBlur": [Function],
+                                "onChange": [Function],
+                                "onFocus": [Function],
+                                "value": "",
+                              }
+                            }
+                            meta={
+                              Object {
+                                "active": false,
+                                "data": Object {},
+                                "dirty": false,
+                                "dirtySinceLastSubmit": false,
+                                "error": "Required",
+                                "initial": "",
+                                "invalid": true,
+                                "length": undefined,
+                                "modified": false,
+                                "pristine": true,
+                                "submitError": undefined,
+                                "submitFailed": false,
+                                "submitSucceeded": false,
+                                "submitting": false,
+                                "touched": false,
+                                "valid": false,
+                                "validating": false,
+                                "visited": false,
+                              }
+                            }
+                            placeholder="Homeowner's email"
+                            type="email"
+                          >
+                            <div
+                              className="field"
+                            >
+                              <p
+                                className="control"
+                              >
+                                <input
+                                  autoComplete="off"
+                                  className="input"
+                                  disabled={false}
+                                  id="email"
+                                  name="email"
+                                  onBlur={[Function]}
+                                  onChange={[Function]}
+                                  onFocus={[Function]}
+                                  placeholder="Homeowner's email"
+                                  type="email"
+                                  value=""
+                                />
+                              </p>
+                            </div>
+                          </Component>
+                          <div
+                            className="mt-20 mb-20"
+                          >
+                            <button
+                              className="button is-primary is-uppercase"
+                              disabled={true}
+                              type="submit"
+                            >
+                              Send email
+                            </button>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </ReactSwipableView>
+          </div>
+        </SwipeableBottomSheet>
+      </HomeownerAccountCreation>
+    </Provider>
+  </Router>
+</BrowserRouter>
+`;
