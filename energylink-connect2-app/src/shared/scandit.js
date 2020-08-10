@@ -60,8 +60,8 @@ export function scanM(onRecognize, nodeID = 'scandit') {
     view
   )
 
-  const fill = Scandit.Color.fromRGBA(230, 126, 34, 0.3)
-  const stroke = Scandit.Color.fromRGBA(230, 126, 34, 1)
+  const fill = Scandit.Color.fromRGBA(0, 255, 0, 0.3)
+  const stroke = Scandit.Color.fromRGBA(0, 255, 0, 1)
 
   overlay.listener = {
     brushForTrackedBarcode: (overlay, trackedBarcode) =>
