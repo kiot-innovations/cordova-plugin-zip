@@ -23,7 +23,29 @@ const HomeownerAccountCreation = ({ open, onChange, pvs }) => {
       )}`
     )()
   const { form, handleSubmit } = useForm({
-    onSubmit
+    onSubmit,
+    initialValues: {
+      firstName: '',
+      lastName: '',
+      email: ''
+    },
+    validate: ({ firstName, lastName, email }) => {
+      const errors = {}
+
+      if (isEmpty(firstName.trim())) {
+        errors.firstName = 'Required'
+      }
+
+      if (isEmpty(lastName.trim())) {
+        errors.lastName = 'Required'
+      }
+
+      if (isEmpty(email.trim())) {
+        errors.email = 'Required'
+      }
+
+      return errors
+    }
   })
   const firstName = useField('firstName', form)
   const lastName = useField('lastName', form)
