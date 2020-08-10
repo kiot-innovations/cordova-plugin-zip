@@ -379,32 +379,193 @@ exports[`BillOfMaterials component render correctly 1`] = `
                             >
                               CREATE_HOMEOWNER_ACCOUNT
                             </span>
-                            <input
-                              onChange={[Function]}
-                              placeholder="FIRST_NAME"
-                              type="text"
-                            />
-                            <input
-                              onChange={[Function]}
-                              placeholder="LAST_NAME"
-                              type="text"
-                            />
-                            <input
-                              onChange={[Function]}
-                              placeholder="HOMEOWNER_EMAIL"
-                              type="email"
-                            />
-                            <div
-                              className="mb-20"
+                            <form
+                              onSubmit={[Function]}
                             >
-                              <button
-                                className="button is-primary is-uppercase"
-                                disabled={true}
-                                onClick={[Function]}
+                              <Component
+                                className="mt-20"
+                                input={
+                                  Object {
+                                    "name": "firstName",
+                                    "onBlur": [Function],
+                                    "onChange": [Function],
+                                    "onFocus": [Function],
+                                    "value": "",
+                                  }
+                                }
+                                meta={
+                                  Object {
+                                    "active": false,
+                                    "data": Object {},
+                                    "dirty": false,
+                                    "dirtySinceLastSubmit": false,
+                                    "error": undefined,
+                                    "initial": undefined,
+                                    "invalid": false,
+                                    "length": undefined,
+                                    "modified": false,
+                                    "pristine": true,
+                                    "submitError": undefined,
+                                    "submitFailed": false,
+                                    "submitSucceeded": false,
+                                    "submitting": false,
+                                    "touched": false,
+                                    "valid": true,
+                                    "validating": false,
+                                    "visited": false,
+                                  }
+                                }
+                                placeholder="FIRST_NAME"
+                                type="text"
                               >
-                                SEND_EMAIL
-                              </button>
-                            </div>
+                                <div
+                                  className="field"
+                                >
+                                  <p
+                                    className="control"
+                                  >
+                                    <input
+                                      autoComplete="off"
+                                      className="input mt-20"
+                                      disabled={false}
+                                      id="firstName"
+                                      name="firstName"
+                                      onBlur={[Function]}
+                                      onChange={[Function]}
+                                      onFocus={[Function]}
+                                      placeholder="FIRST_NAME"
+                                      type="text"
+                                      value=""
+                                    />
+                                  </p>
+                                </div>
+                              </Component>
+                              <Component
+                                input={
+                                  Object {
+                                    "name": "lastName",
+                                    "onBlur": [Function],
+                                    "onChange": [Function],
+                                    "onFocus": [Function],
+                                    "value": "",
+                                  }
+                                }
+                                meta={
+                                  Object {
+                                    "active": false,
+                                    "data": Object {},
+                                    "dirty": false,
+                                    "dirtySinceLastSubmit": false,
+                                    "error": undefined,
+                                    "initial": undefined,
+                                    "invalid": false,
+                                    "length": undefined,
+                                    "modified": false,
+                                    "pristine": true,
+                                    "submitError": undefined,
+                                    "submitFailed": false,
+                                    "submitSucceeded": false,
+                                    "submitting": false,
+                                    "touched": false,
+                                    "valid": true,
+                                    "validating": false,
+                                    "visited": false,
+                                  }
+                                }
+                                placeholder="LAST_NAME"
+                                type="text"
+                              >
+                                <div
+                                  className="field"
+                                >
+                                  <p
+                                    className="control"
+                                  >
+                                    <input
+                                      autoComplete="off"
+                                      className="input"
+                                      disabled={false}
+                                      id="lastName"
+                                      name="lastName"
+                                      onBlur={[Function]}
+                                      onChange={[Function]}
+                                      onFocus={[Function]}
+                                      placeholder="LAST_NAME"
+                                      type="text"
+                                      value=""
+                                    />
+                                  </p>
+                                </div>
+                              </Component>
+                              <Component
+                                input={
+                                  Object {
+                                    "name": "email",
+                                    "onBlur": [Function],
+                                    "onChange": [Function],
+                                    "onFocus": [Function],
+                                    "value": "",
+                                  }
+                                }
+                                meta={
+                                  Object {
+                                    "active": false,
+                                    "data": Object {},
+                                    "dirty": false,
+                                    "dirtySinceLastSubmit": false,
+                                    "error": undefined,
+                                    "initial": undefined,
+                                    "invalid": false,
+                                    "length": undefined,
+                                    "modified": false,
+                                    "pristine": true,
+                                    "submitError": undefined,
+                                    "submitFailed": false,
+                                    "submitSucceeded": false,
+                                    "submitting": false,
+                                    "touched": false,
+                                    "valid": true,
+                                    "validating": false,
+                                    "visited": false,
+                                  }
+                                }
+                                placeholder="HOMEOWNER_EMAIL"
+                                type="email"
+                              >
+                                <div
+                                  className="field"
+                                >
+                                  <p
+                                    className="control"
+                                  >
+                                    <input
+                                      autoComplete="off"
+                                      className="input"
+                                      disabled={false}
+                                      id="email"
+                                      name="email"
+                                      onBlur={[Function]}
+                                      onChange={[Function]}
+                                      onFocus={[Function]}
+                                      placeholder="HOMEOWNER_EMAIL"
+                                      type="email"
+                                      value=""
+                                    />
+                                  </p>
+                                </div>
+                              </Component>
+                              <div
+                                className="mt-20 mb-20"
+                              >
+                                <button
+                                  className="button is-primary is-uppercase"
+                                  disabled={true}
+                                  type="submit"
+                                >
+                                  SEND_EMAIL
+                                </button>
+                              </div>
+                            </form>
                           </div>
                         </div>
                       </div>
