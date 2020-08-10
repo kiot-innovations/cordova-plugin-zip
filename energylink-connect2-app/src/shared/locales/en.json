@@ -445,5 +445,5 @@
   "UPLOAD_EQS_FIRMWARE_ERROR": "An error occured while uploading the Storage Firmware file. Please try again.",
   "HEALTH_CHECK_SUCCESSFUL": "Health Check Successful",
   "UNKNOWN_MI_TYPE": "Unknown Type",
-  "FIX_ERRORS_TO_PROCEED": "Please fix this error to proceed"
+  "FIX_ERROR_TO_PROCEED": "Please fix this error to proceed"
 }
