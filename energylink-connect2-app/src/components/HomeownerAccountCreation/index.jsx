@@ -29,9 +29,9 @@ const HomeownerAccountCreation = ({ open, onChange, pvs }) => {
   const lastName = useField('lastName', form)
   const email = useField('email', form)
   const submitDisabled =
-    isEmpty(firstName.input.value) ||
-    isEmpty(lastName.input.value) ||
-    isEmpty(email.input.value)
+    isEmpty(firstName.input.value.trim()) ||
+    isEmpty(lastName.input.value.trim()) ||
+    isEmpty(email.input.value.trim())
 
   return (
     <SwipeableBottomSheet open={open} onChange={onChange}>
