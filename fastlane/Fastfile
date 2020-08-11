@@ -4,6 +4,7 @@ platform :android do
     lane :build do
         cordova(
             platform: "android",
+            release: ENV.fetch("CORDOVA_RELEASE", true),
             keystore_path: ENV.fetch("KEYSTORE_PATH", "./upload-keystore.jks"),
             keystore_password: ENV.fetch("KEYSTORE_PASSWORD", "my-password-123"),
             keystore_alias: ENV.fetch("KEYSTORE_ALIAS", "key0")
@@ -12,7 +13,7 @@ platform :android do
 
     lane :release do
         upload_to_play_store(
-            apk: "./platforms/android/app/build/outputs/apk/release/app-release.apk",
+            apk: ENV.fetch("ANDROID_APK_PATH", "./platforms/android/app/build/outputs/apk/release/app-release.apk"),
             json_key: ENV.fetch("PLAY_STORE_API_CRED", "./google-api.json"),
             package_name: CredentialsManager::AppfileConfig.try_fetch_value(:app_identifier),
             release_status: "completed",
