@@ -14,8 +14,19 @@ jobs:
     # because MacOS builds are 10x more expensive (minute multiplier is 10)
     # https://help.github.com/en/github/setting-up-and-managing-billing-and-payments-on-github/about-billing-for-github-actions#about-billing-for-github-actions
     runs-on: ubuntu-18.04
+    env:
+      ANDROID_APK_PATH: platforms/android/app/build/outputs/apk/debug/app-debug.apk
+      APP_ENV: dev
+      APP_ID: com.sunpower.energylink.commissioning2.dev
+      APP_NAME: EnergylinkConnect2-dev
+      CORDOVA_RELEASE: false
+      RELEASE_TRACK: beta
     steps:
       - uses: actions/checkout@v2
+      - name: Set Application environment to ${{ env.APP_ENV }}
+        run: |
+          sed -i"" -E "s/com.sunpower.energylink.commissioning2.dev/${APP_ID}/" config.xml
+          sed -i"" -E "s/EnergylinkConnect2-dev/${APP_NAME}/" config.xml
       - uses: actions/setup-node@v1
         with:
           node-version: "10.15.3"
@@ -34,9 +45,43 @@ jobs:
           CI: 1
         working-directory: energylink-connect2-app
 
-      - name: Decrypt .env
-        run: openssl enc -aes256 -d -base64 -md md5 -pass pass:'${{ secrets.ENVFILE_PASSWORD }}' -in .env.enc -out .env
+      - name: Set and decrypt .env
+        run: |
+          cp .env.enc.${APP_ENV} .env.enc
+          openssl enc -aes256 -d -base64 -md md5 -pass pass:'${{ secrets.ENVFILE_PASSWORD }}' -in .env.enc -out .env
         working-directory: energylink-connect2-app
 
       - run: npm run build
         working-directory: energylink-connect2-app
+
+      #
+      # Configure environment for Android
+      #
+      - uses: actions/setup-java@v1
+        with:
+          java-version: 8
+      - uses: actions/setup-ruby@v1
+        with:
+          ruby-version: "2.7"
+      - name: Install RubyGems
+        run: bundle install --jobs 4 --retry 3
+      - name: Install NPM packages
+        run: npm install
+
+      #
+      # Android Application
+      #
+      - name: Configure credentials
+        run: |
+          echo "${{ secrets.GOOGLE_PLAY_UPLOAD_KEYSTORE }}" | base64 -d > upload-keystore.jks
+          echo "${{ secrets.GOOGLE_PLAY_API_KEY }}" | base64 -d > google-api.json
+      - name: Build Android Application
+        run: |
+          npx phonegap prepare android
+          bundle exec fastlane android build
+        env:
+          KEYSTORE_PASSWORD: ${{ secrets.GOOGLE_PLAY_UPLOAD_KEYSTORE_PASSWORD }}
+      - uses: actions/upload-artifact@v1
+        with:
+          name: Android-${{ env.APP_ENV }}
+          path: ${{ env.ANDROID_APK_PATH }}
