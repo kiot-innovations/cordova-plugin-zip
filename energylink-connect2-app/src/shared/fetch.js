@@ -31,6 +31,16 @@ export const httpGet = (path, state = null, token) => {
     .catch(err => console.error(err))
 }
 
+export const plainHttpGet = fullpath => {
+  return fetch(fullpath, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      'Cache-Control': 'no-store'
+    }
+  }).then(parseResponse)
+}
+
 /* return new Promise((res, rej) =>
     window.cordovaHTTP.get(
       process.env.REACT_APP_EDP_API_URL + path,

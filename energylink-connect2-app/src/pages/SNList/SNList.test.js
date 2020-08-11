@@ -11,6 +11,9 @@ describe('Serial Number List Page', () => {
     devices: {
       found: [{ SERIAL: '194355110333120', DEVICE_TYPE: 'Inverter' }]
     },
+    global: {
+      canAccessScandit: true
+    },
     pvs: {
       serialNumbers: [
         {

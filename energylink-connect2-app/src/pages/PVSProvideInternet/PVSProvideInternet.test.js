@@ -8,6 +8,9 @@ describe('PVS Provide Internet page', () => {
     pvs: {
       serialNumber: 'ZT188585000882A8888'
     },
+    global: {
+      canAccessScandit: true
+    },
     inventory: {
       bom: []
     },

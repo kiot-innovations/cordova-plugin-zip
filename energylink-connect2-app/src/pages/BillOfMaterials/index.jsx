@@ -10,6 +10,7 @@ import paths from 'routes/paths'
 import { useI18n } from 'shared/i18n'
 import './BillOfMaterials.scss'
 import { GET_SITE_INIT } from 'state/actions/site'
+import { GET_SCANDIT_USERS } from 'state/actions/scandit'
 
 const useMap = (latitude, longitude) => {
   const [url, setUrl] = useState('')
@@ -41,6 +42,10 @@ function BillOfMaterials() {
   const { address1, latitude, longitude, siteName, siteKey } = useSelector(
     pathOr({}, ['site', 'site'])
   )
+
+  useEffect(() => {
+    dispatch(GET_SCANDIT_USERS())
+  }, [dispatch])
 
   useEffect(() => {
     dispatch(GET_SITE_INIT(siteKey))
