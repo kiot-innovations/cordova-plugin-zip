@@ -38,9 +38,7 @@ export const plainHttpGet = fullpath => {
       'Content-Type': 'application/json',
       'Cache-Control': 'no-store'
     }
-  })
-    .then(parseResponse)
-    .catch(console.error)
+  }).then(parseResponse)
 }
 
 /* return new Promise((res, rej) =>
