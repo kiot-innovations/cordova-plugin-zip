@@ -1,23 +1,15 @@
 @import '~@sunpower/theme-dark/styles/variables';
 
 .error-list-detected {
-  background: $black;
-  padding: 0 27px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  .level {
+    margin-bottom: 0;
+  }
+}
 
-  div {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    width: 100%;
-  }
+.is-outlined {
+  border: 1px solid $sun;
+}
 
-  .button-transparent {
-    color: $sun;
-    border: 1px solid $sun;
-  }
-  .title-error {
-  }
+.button.is-fullwidth {
+  padding: 0;
 }

@@ -1,0 +1,108 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ErrorDetected component render correctly when errors 1`] = `
+<div
+  className="error-list-detected pl-20 pr-20"
+>
+  <p
+    className="has-text-primary has-text-weight-bold has-text-centered mb-10 is-size-6"
+  >
+    ERRORS_DETECTED 3
+      
+  </p>
+  <p
+    className="has-text-centered"
+  >
+    FIX_ERRORS
+  </p>
+  <div
+    className="is-flex level"
+  >
+    <Link
+      className="button is-primary is-uppercase mt-20 is-fullwidth mr-5"
+      to="Error List"
+    >
+      ERROR_LIST
+    </Link>
+    <button
+      className="button is-primary is-outlined is-uppercase mt-20 is-fullwidth ml-5"
+    >
+      RETRY
+    </button>
+  </div>
+</div>
+`;
+
+exports[`ErrorDetected component render correctly when errors and warnings 1`] = `
+<div
+  className="error-list-detected pl-20 pr-20"
+>
+  <p
+    className="has-text-primary has-text-weight-bold has-text-centered mb-10 is-size-6"
+  >
+    ERRORS_DETECTED 1
+      
+    WARNINGS_DETECTED 2
+  </p>
+  <p
+    className="has-text-centered"
+  >
+    FIX_ERRORS
+  </p>
+  <div
+    className="is-flex level"
+  >
+    <Link
+      className="button is-primary is-uppercase mt-20 is-fullwidth mr-5"
+      to="Error List"
+    >
+      ERROR_LIST
+    </Link>
+    <button
+      className="button is-primary is-outlined is-uppercase mt-20 is-fullwidth ml-5"
+    >
+      RETRY
+    </button>
+  </div>
+</div>
+`;
+
+exports[`ErrorDetected component render correctly when warnings 1`] = `
+<div
+  className="error-list-detected pl-20 pr-20"
+>
+  <p
+    className="has-text-primary has-text-weight-bold has-text-centered mb-10 is-size-6"
+  >
+    ERRORS_DETECTED 0
+      
+    WARNINGS_DETECTED 3
+  </p>
+  <p
+    className="has-text-centered"
+  >
+    FIX_ERRORS
+  </p>
+  <div
+    className="is-flex level"
+  >
+    <Link
+      className="button is-primary is-uppercase mt-20 is-fullwidth mr-5"
+      to="Error List"
+    >
+      WARNING_LIST
+    </Link>
+    <button
+      className="button is-primary is-outlined is-uppercase mt-20 is-fullwidth ml-5"
+    >
+      RETRY
+    </button>
+  </div>
+  <Link
+    className="button is-primary is-outlined is-uppercase mt-10 is-fullwidth"
+    to="Continue Link"
+  >
+    IGNORE_WARNINGS
+  </Link>
+</div>
+`;

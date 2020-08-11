@@ -4,9 +4,9 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import { RESET_COMPONENT_MAPPING } from 'state/actions/storage'
 import { pathOr, isEmpty, length } from 'ramda'
-import { either } from 'shared/utils'
+import { either, warningsLength } from 'shared/utils'
 import paths from 'routes/paths'
-import ErrorDetected from 'components/ESSErrorDetected/ErrorDetected'
+import ErrorDetected from 'components/ESSErrorDetected'
 import './ESSDeviceMappingError.scss'
 
 function DeviceMappingError() {
@@ -50,9 +50,11 @@ function DeviceMappingError() {
           </div>
         </div>,
         <ErrorDetected
-          number={length(errors)}
+          number={length(errors) - warningsLength(errors)}
+          warnings={warningsLength(errors)}
           onRetry={retryMapping}
           url={paths.PROTECTED.ESS_DEVICE_MAPPING_ERROR_LIST.path}
+          next={paths.PROTECTED.ESS_DEVICE_MAPPING_ERROR_LIST.path}
         />
       )}
     </section>

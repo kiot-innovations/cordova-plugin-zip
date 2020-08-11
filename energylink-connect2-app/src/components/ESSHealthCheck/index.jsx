@@ -2,10 +2,10 @@ import React from 'react'
 import clsx from 'clsx'
 import { isEmpty, length, pathOr, isNil, path } from 'ramda'
 import { useI18n } from 'shared/i18n'
-import { either, addHasErrorProp } from 'shared/utils'
+import { either, addHasErrorProp, warningsLength } from 'shared/utils'
 
 import ESSHealthCheckReport from './ESSHealthCheckReport'
-import ErrorDetected from 'components/ESSErrorDetected/ErrorDetected'
+import ErrorDetected from 'components/ESSErrorDetected'
 import ContinueFooter from 'components/ESSContinueFooter'
 
 import './ESSHealthCheck.scss'
@@ -54,9 +54,11 @@ function ESSHealthCheck(props) {
       {either(
         !isEmpty(errors) && !loading,
         <ErrorDetected
-          url={pathToErrors}
-          number={length(errors)}
+          number={length(errors) - warningsLength(errors)}
+          warnings={warningsLength(errors)}
           onRetry={onRetry}
+          url={pathToErrors}
+          next={pathToContinue}
         />
       )}
     </div>

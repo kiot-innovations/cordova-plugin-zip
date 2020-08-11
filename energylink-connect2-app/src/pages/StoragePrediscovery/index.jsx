@@ -3,11 +3,11 @@ import { useSelector, useDispatch } from 'react-redux'
 import { pathOr, propOr, isEmpty, length } from 'ramda'
 import moment from 'moment'
 import { useI18n } from 'shared/i18n'
-import { either } from 'shared/utils'
+import { either, warningsLength } from 'shared/utils'
 import { Loader } from 'components/Loader'
 import { GET_PREDISCOVERY, GET_PREDISCOVERY_RESET } from 'state/actions/storage'
 import ContinueFooter from 'components/ESSContinueFooter'
-import ErrorDetected from 'components/ESSErrorDetected/ErrorDetected'
+import ErrorDetected from 'components/ESSErrorDetected'
 import StorageDevices from 'components/PrediscoveryDevices/StorageDevices'
 import paths from 'routes/paths'
 import './StoragePrediscovery.scss'
@@ -100,9 +100,14 @@ function StoragePrediscovery() {
                 </div>
               ),
               <ErrorDetected
-                number={length(prediscoveryErrors)}
+                number={
+                  length(prediscoveryErrors) -
+                  warningsLength(prediscoveryErrors)
+                }
+                warnings={warningsLength(prediscoveryErrors)}
                 onRetry={retryPrediscovery}
                 url={paths.PROTECTED.EQS_PREDISCOVERY_ERRORS.path}
+                next={paths.PROTECTED.EQS_UPDATE.path}
               />
             )}
           </div>

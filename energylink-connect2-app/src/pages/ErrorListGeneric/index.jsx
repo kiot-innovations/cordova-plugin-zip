@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
-import { omit } from 'ramda'
+import { omit, not } from 'ramda'
 import { Link, useHistory } from 'react-router-dom'
 import paths, { setParams } from 'routes/paths'
 import { useI18n } from 'shared/i18n'
 import { getError } from 'shared/errorCodes'
-import './ErrorListScreen.scss'
+import { either } from 'shared/utils'
+import './ErrorListGeneric.scss'
 
 const ErrorComponent = ({ title, code, errorInfo, t }) => {
   const toParams = {
@@ -18,13 +19,18 @@ const ErrorComponent = ({ title, code, errorInfo, t }) => {
         <h1 className="has-text-white has-text-weight-bold is-size-5 mb-10">
           {title}
         </h1>
-        <span className="error-code"> {t('ERROR_CODE', code)}</span>
+        <p className="error-code"> {t('ERROR_CODE', code)}</p>
+        {either(
+          not(`${code}`.startsWith('1')),
+          <p className="has-text-primary has-text-weight-bold">
+            {t('FIX_ERROR_TO_PROCEED')}
+          </p>
+        )}
       </div>
       <div>
-        <Link
-          className="sp sp-chevron-right has-text-primary is-size-1 details"
-          to={toParams}
-        />
+        <Link className="has-text-primary details is-flex" to={toParams}>
+          <span className="sp sp-chevron-right auto is-size-2" />
+        </Link>
       </div>
     </div>
   )

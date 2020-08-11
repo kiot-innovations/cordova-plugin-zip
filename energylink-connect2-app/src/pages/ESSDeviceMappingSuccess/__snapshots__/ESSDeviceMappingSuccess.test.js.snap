@@ -216,33 +216,40 @@ Object {
               </div>
             </DeviceMap>
             <ErrorDetected
+              next="/ess-health-check"
               number={1}
               onRetry={[Function]}
               url="/ess-device-mapping-error-list"
+              warnings={0}
             >
               <div
-                className="error-list-detected"
+                className="error-list-detected pl-20 pr-20"
               >
-                <span
-                  className="has-text-primary has-text-weight-bold mb-10 is-size-5"
+                <p
+                  className="has-text-primary has-text-weight-bold has-text-centered mb-10 is-size-6"
                 >
                   ERRORS_DETECTED 1
-                </span>
-                <span>
+                    
+                </p>
+                <p
+                  className="has-text-centered"
+                >
                   FIX_ERRORS
-                </span>
-                <div>
+                </p>
+                <div
+                  className="is-flex level"
+                >
                   <Link
-                    className="button is-primary is-uppercase pl-20 pr-20 mt-20"
+                    className="button is-primary is-uppercase mt-20 is-fullwidth mr-5"
                     to="/ess-device-mapping-error-list"
                   >
                     <LinkAnchor
-                      className="button is-primary is-uppercase pl-20 pr-20 mt-20"
+                      className="button is-primary is-uppercase mt-20 is-fullwidth mr-5"
                       href="/ess-device-mapping-error-list"
                       navigate={[Function]}
                     >
                       <a
-                        className="button is-primary is-uppercase pl-20 pr-20 mt-20"
+                        className="button is-primary is-uppercase mt-20 is-fullwidth mr-5"
                         href="/ess-device-mapping-error-list"
                         onClick={[Function]}
                       >
@@ -251,7 +258,7 @@ Object {
                     </LinkAnchor>
                   </Link>
                   <button
-                    className="button button-transparent is-uppercase pl-20 pr-20 is-transparent mt-20"
+                    className="button is-primary is-outlined is-uppercase mt-20 is-fullwidth ml-5"
                     onClick={[Function]}
                   >
                     RETRY

@@ -3,12 +3,12 @@ import { useSelector, useDispatch } from 'react-redux'
 import { useI18n } from 'shared/i18n'
 import DeviceMap from 'components/DeviceMap'
 import { pathOr, isEmpty, length, head } from 'ramda'
-import { either } from 'shared/utils'
+import { either, warningsLength } from 'shared/utils'
 import paths from 'routes/paths'
 import { useHistory } from 'react-router-dom'
 import { RESET_COMPONENT_MAPPING } from 'state/actions/storage'
 import ContinueFooter from 'components/ESSContinueFooter'
-import ErrorDetected from 'components/ESSErrorDetected/ErrorDetected'
+import ErrorDetected from 'components/ESSErrorDetected'
 
 function DeviceMappingSuccess() {
   const t = useI18n()
@@ -74,8 +74,10 @@ function DeviceMappingSuccess() {
         />,
         <ErrorDetected
           number={length(mappingErrors)}
+          warnings={warningsLength(mappingErrors)}
           onRetry={retryMapping}
           url={paths.PROTECTED.ESS_DEVICE_MAPPING_ERROR_LIST.path}
+          next={paths.PROTECTED.ESS_HEALTH_CHECK.path}
         />
       )}
     </section>

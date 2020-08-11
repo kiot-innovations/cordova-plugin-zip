@@ -94,11 +94,11 @@ const mapComponents = {
   [paths.PROTECTED.ESS_HEALTH_CHECK_ERRORS.path]: ESSHealthCheckErrors,
   [paths.UNPROTECTED.FORGOT_PASSWORD.path]: NotFound,
   [paths.UNPROTECTED.GET_ASSISTANCE.path]: NotFound,
-  [paths.UNPROTECTED.LOGIN.path]: Login,
-  ...(process.env.REACT_APP_IS_TEST && {
-    [paths.PROTECTED.DEBUG_PAGE.path]: DebugPage
-  })
+  [paths.UNPROTECTED.LOGIN.path]: Login
 }
+
+if (process.env.REACT_APP_IS_TEST || process.env.REACT_APP_IS_DEV)
+  mapComponents[paths.PROTECTED.DEBUG_PAGE.path] = DebugPage
 
 /**
  * The router of this app
