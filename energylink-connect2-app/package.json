@@ -7,7 +7,7 @@
   "homepage": "./",
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build && cp -a ./build/. ../www/",
+    "build": "react-scripts build && cp -a ./build/. ../www/ && find ../www -name 'precache*' -delete && find ../www/static/js -name '*.js.map' -delete",
     "build.ci": "eslint src && cross-env CI=true react-scripts test && cross-env NODE_ENV=production react-scripts build",
     "test": "cross-env SKIP_PREFLIGHT_CHECK=true react-scripts test",
     "lint": "eslint --fix src",

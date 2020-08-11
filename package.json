@@ -32,7 +32,7 @@
     "cordova-plugin-network-information": "^2.0.2",
     "cordova-plugin-networkinterface": "^2.0.0",
     "cordova-plugin-statusbar": "^2.4.3",
-    "cordova-plugin-wifiwizard2": "git+https://github.com/tripflex/wifiwizard2.git",
+    "cordova-plugin-wifiwizard2": "git@github.com:SunPower/WifiWizard2-private.git",
     "cordova-plugin-wkwebview-engine": "^1.1.4",
     "cordova-plugin-wkwebviewxhrfix": "git+https://github.com/TheMattRay/cordova-plugin-wkwebviewxhrfix.git",
     "cordova-plugin-zip": "^3.1.0",
