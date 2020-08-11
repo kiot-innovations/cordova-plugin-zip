@@ -17,6 +17,7 @@ import {
   RESET_LAST_VISITED_PAGE
 } from 'state/actions/global'
 import paths from 'routes/paths'
+import { SET_SCANDIT_ACCESS } from 'state/actions/scandit'
 
 const initialState = {
   isAccountCreated: false,
@@ -26,7 +27,8 @@ const initialState = {
   isFeedbackSuccessful: false,
   selectedDataSource: DATA_SOURCES.LIVE,
   feedbackError: null,
-  lastVisitedPage: paths.PROTECTED.PVS_SELECTION_SCREEN.path
+  lastVisitedPage: paths.PROTECTED.PVS_SELECTION_SCREEN.path,
+  canAccessScandit: false
 }
 
 export const globalReducer = createReducer(
@@ -39,8 +41,14 @@ export const globalReducer = createReducer(
       ...state,
       selectedDataSource: action
     }),
-    [DEVICE_RESUME]: state => ({ ...state, isDeviceResumeListened: true }),
-    [SEND_FEEDBACK_INIT]: state => ({ ...state, isSendingFeedback: true }),
+    [DEVICE_RESUME]: state => ({
+      ...state,
+      isDeviceResumeListened: true
+    }),
+    [SEND_FEEDBACK_INIT]: state => ({
+      ...state,
+      isSendingFeedback: true
+    }),
     [SEND_FEEDBACK_SUCCESS]: state => ({
       ...state,
       isSendingFeedback: false,
@@ -52,7 +60,10 @@ export const globalReducer = createReducer(
       feedbackError: payload,
       isSendingFeedback: false
     }),
-    [RESET_FEEDBACK_FORM]: state => ({ ...state, isFeedbackSuccessful: false }),
+    [RESET_FEEDBACK_FORM]: state => ({
+      ...state,
+      isFeedbackSuccessful: false
+    }),
     [SET_LAST_VISITED_PAGE]: (state, lastVisitedPage) => ({
       ...state,
       lastVisitedPage
@@ -60,6 +71,10 @@ export const globalReducer = createReducer(
     [RESET_LAST_VISITED_PAGE]: state => ({
       ...state,
       lastVisitedPage: initialState.lastVisitedPage
+    }),
+    [SET_SCANDIT_ACCESS]: (state, canAccessScandit) => ({
+      ...state,
+      canAccessScandit
     })
   },
   initialState

@@ -1,16 +1,23 @@
 @import '~@sunpower/theme-dark/styles/variables';
 
-.saving-configuration{
+.saving-configuration {
   display: grid;
   vertical-align: middle;
   align-content: center;
   height: 100%;
-  .status-message{
+
+  .success {
+    button {
+      padding: unset;
+    }
+  }
+
+  .status-message {
     display: grid;
     grid-row-gap: 1em;
   }
 
-  .error-message{
+  .error-message {
     background-color: $silver-sand4;
     padding: $font-size-big $font-size-big $font-size;
     border-radius: 5px;

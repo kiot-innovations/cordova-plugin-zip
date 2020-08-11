@@ -29,6 +29,10 @@
 
 <!-- List questions or concerns directed to the reviewers, if necessary. -->
 
+#### Notes about Environment Variables
+
+<!-- Mention the modifications made to the environment variables. -->
+
 #### Checklist
 
 <!-- Verify that you have done all of the following and mark them as done. -->

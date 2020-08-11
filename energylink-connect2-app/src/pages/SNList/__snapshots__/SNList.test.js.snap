@@ -138,6 +138,7 @@ exports[`Serial Number List Page renders correctly 1`] = `
                 className="sn-buttons"
               >
                 <ScanButtons
+                  canScanMore={true}
                   countSN={[Function]}
                   onScanMore={[Function]}
                 >

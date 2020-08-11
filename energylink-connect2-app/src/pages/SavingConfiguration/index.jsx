@@ -1,9 +1,11 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { useI18n } from 'shared/i18n'
 import { useHistory } from 'react-router-dom'
 import { Loader } from 'components/Loader'
-import { isEmpty, test } from 'ramda'
+import HomeownerAccountCreation from 'components/HomeownerAccountCreation'
+import { isEmpty, test, pathOr } from 'ramda'
+import { either } from 'shared/utils'
 import { SUBMIT_CLEAR } from 'state/actions/systemConfiguration'
 import { STOP_NETWORK_POLLING } from 'state/actions/network'
 import paths from 'routes/paths'
@@ -14,9 +16,11 @@ const SavingConfiguration = () => {
   const t = useI18n()
   const history = useHistory()
   const dispatch = useDispatch()
+  const [showHomeownerCreation, setShowHomeownerCreation] = useState(false)
   const { submitting, commissioned, error } = useSelector(
     state => state.systemConfiguration.submit
   )
+  const commissioningPvs = useSelector(pathOr('', ['pvs', 'serialNumber']))
 
   const errorMap = e =>
     test(/database|table|foreign/gi, e) ? t('DATABASE_ERROR') : e
@@ -45,7 +49,7 @@ const SavingConfiguration = () => {
             </div>
           ),
           controls: (
-            <div className="status-message">
+            <div className="success status-message">
               <span className="has-text-white has-text-weight-bold">
                 {t('SAVED_CONFIGURATION')}
               </span>
@@ -57,12 +61,31 @@ const SavingConfiguration = () => {
               >
                 {t('CONFIG_NEW_SITE')}
               </button>
+              {either(
+                !isEmpty(commissioningPvs),
+                <button
+                  onClick={() => setShowHomeownerCreation(true)}
+                  className="button is-secondary is-uppercase"
+                >
+                  {t('CREATE_HOMEOWNER_ACCOUNT')}
+                </button>
+              )}
               <button
                 onClick={goToData}
                 className="button is-primary is-uppercase"
               >
                 {t('DONE')}
               </button>
+              {either(
+                !isEmpty(commissioningPvs),
+                <HomeownerAccountCreation
+                  open={showHomeownerCreation}
+                  onChange={() =>
+                    setShowHomeownerCreation(!showHomeownerCreation)
+                  }
+                  pvs={commissioningPvs}
+                />
+              )}
             </div>
           )
         }
@@ -96,6 +119,7 @@ const SavingConfiguration = () => {
       <span className="is-uppercase has-text-weight-bold">
         {submitting ? t('HOLD_ON') : configContent.title}
       </span>
+
       {submitting ? <Loader /> : configContent.indicator}
 
       {submitting ? (

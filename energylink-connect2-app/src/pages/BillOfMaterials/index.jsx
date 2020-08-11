@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import ProgressiveImage from 'components/ProgressiveImage'
-import { pathOr, prop } from 'ramda'
+import HomeownerAccountCreation from 'components/HomeownerAccountCreation'
+import { pathOr, prop, map, pick, compose, isEmpty, head } from 'ramda'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { either } from 'shared/utils'
@@ -9,6 +10,7 @@ import paths from 'routes/paths'
 import { useI18n } from 'shared/i18n'
 import './BillOfMaterials.scss'
 import { GET_SITE_INIT } from 'state/actions/site'
+import { GET_SCANDIT_USERS } from 'state/actions/scandit'
 
 const useMap = (latitude, longitude) => {
   const [url, setUrl] = useState('')
@@ -24,6 +26,14 @@ function BillOfMaterials() {
   const t = useI18n()
   const dispatch = useDispatch()
 
+  const [showHomeownerCreation, setShowHomeownerCreation] = useState(false)
+
+  const getPvsSerialNumbers = compose(
+    map(pick(['deviceSerialNumber', 'assignmentEffectiveTimestamp'])),
+    pathOr([], ['site', 'sitePVS'])
+  )
+  const PVS = useSelector(getPvsSerialNumbers)
+
   const data = useSelector(({ user, inventory }) => ({
     phone: user.data.phoneNumber,
     bom: inventory.bom
@@ -32,6 +42,10 @@ function BillOfMaterials() {
   const { address1, latitude, longitude, siteName, siteKey } = useSelector(
     pathOr({}, ['site', 'site'])
   )
+
+  useEffect(() => {
+    dispatch(GET_SCANDIT_USERS())
+  }, [dispatch])
 
   useEffect(() => {
     dispatch(GET_SITE_INIT(siteKey))
@@ -89,6 +103,17 @@ function BillOfMaterials() {
             <span className="has-text-white mb-15">PG&E</span>
           </div>
         </div>
+        {either(
+          !isEmpty(PVS),
+          <div className="tile pt-15 is-flex is-vertical">
+            <button
+              onClick={() => setShowHomeownerCreation(true)}
+              className="button is-secondary is-uppercase homeowner-account-creation"
+            >
+              {t('CREATE_HOMEOWNER_ACCOUNT')}
+            </button>
+          </div>
+        )}
       </section>
       <section className="tile is-flex is-vertical button-container mb-10">
         <Link
@@ -98,6 +123,14 @@ function BillOfMaterials() {
           {t('START_INSTALL')}
         </Link>
       </section>
+      {either(
+        !isEmpty(PVS),
+        <HomeownerAccountCreation
+          open={showHomeownerCreation}
+          onChange={() => setShowHomeownerCreation(!showHomeownerCreation)}
+          pvs={pathOr('ZTXXXXXXXXXXXXXXXXX', ['deviceSerialNumber'], head(PVS))}
+        />
+      )}
     </main>
   )
 }
