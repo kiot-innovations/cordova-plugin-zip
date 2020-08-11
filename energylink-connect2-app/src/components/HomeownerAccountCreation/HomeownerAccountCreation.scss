@@ -1,0 +1,15 @@
+@import '~@sunpower/theme-dark/styles/variables';
+
+.homeowner-account-creation {
+  button {
+    padding: 0 60px !important;
+  }
+}
+
+.ReactSwipeableBottomSheet--open,
+.ReactSwipeableBottomSheet--closed {
+  padding: 1rem 1rem 2rem 1rem;
+  background-color: $light-black !important;
+  border-radius: 20px;
+  margin-bottom: 70px;
+}
