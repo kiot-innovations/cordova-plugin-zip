@@ -30,6 +30,7 @@ const PVSProvideInternet = () => {
     pathOr(false, ['systemConfiguration', 'network'])
   )
 
+  const { canAccessScandit } = useSelector(state => state.global)
   const rmaPvs = useSelector(pathOr(false, ['rma', 'pvs']))
   const { bom } = useSelector(state => state.inventory)
   const modulesOnInventory = bom.filter(item => {
@@ -39,7 +40,12 @@ const PVSProvideInternet = () => {
   const goToScanLabels = () => {
     if (rmaPvs && length(modulesOnInventory) < 1)
       history.push(paths.PROTECTED.DEVICES.path)
-    else history.push(paths.PROTECTED.SCAN_LABELS.path)
+    else
+      history.push(
+        canAccessScandit
+          ? paths.PROTECTED.SCAN_LABELS.path
+          : paths.PROTECTED.SN_LIST.path
+      )
   }
 
   useEffect(() => {

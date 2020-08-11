@@ -29,6 +29,7 @@ function SNList() {
   const { serialNumbers, fetchingSN } = useSelector(state => state.pvs)
   const [editingSn, setEditingSn] = useState('')
   const { bom } = useSelector(state => state.inventory)
+  const { canAccessScandit } = useSelector(state => state.global)
 
   const toggleManualMode = useCallback(() => {
     setManualMode(!isManualMode)
@@ -253,6 +254,7 @@ function SNList() {
                 fetchingSN={fetchingSN}
                 onScanMore={onScanMore}
                 countSN={countSN}
+                canScanMore={canAccessScandit}
               />
               <button
                 onClick={toggleManualMode}
