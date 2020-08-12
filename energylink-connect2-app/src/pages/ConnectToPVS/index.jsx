@@ -1,19 +1,22 @@
 import React, { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
-import { length } from 'ramda'
+import { length, compose, not } from 'ramda'
 import SwipeableBottomSheet from 'react-swipeable-bottom-sheet'
 import { useI18n } from 'shared/i18n'
 import { decodeQRData, scanBarcodes } from 'shared/scanning'
-import { PVS_CLEAR_ERROR, PVS_CONNECTION_INIT } from 'state/actions/network'
+import { isAndroid10 } from 'shared/utils'
+import {
+  PVS_CONNECTION_INIT,
+  STOP_NETWORK_POLLING
+} from 'state/actions/network'
 import { saveSerialNumber } from 'state/actions/pvs'
 import { Loader } from 'components/Loader'
 import paths from 'routes/paths'
 import './ConnectToPVS.scss'
 
-const onSuccess = (setScanning, generatePassword, dispatch, t) => data => {
+const onSuccess = (generatePassword, dispatch, t) => data => {
   try {
-    setScanning(false)
     let wifiData
 
     try {
@@ -41,8 +44,8 @@ function ConnectToPVS() {
   const dispatch = useDispatch()
   const history = useHistory()
   const connectionState = useSelector(state => state.network)
-  const [scanning, setScanning] = useState(false)
   const [manualEntry, showManualEntry] = useState(false)
+  const [manualInstructions, showManualInstructions] = useState(false)
   const [serialNumber, setSerialNumber] = useState('')
 
   const onFail = err => {
@@ -50,22 +53,20 @@ function ConnectToPVS() {
   }
 
   useEffect(() => {
+    if (connectionState.connecting && !manualEntry) checkAndroidVersion()
+  }, [connectionState.connecting, manualEntry])
+
+  useEffect(() => {
     if (!connectionState.connecting && connectionState.connected) {
       history.push(paths.PROTECTED.PVS_CONNECTION_SUCCESS.path)
     }
-    if (!connectionState.connecting && connectionState.err) {
-      alert(t('PVS_CONN_ERROR'))
-      dispatch(PVS_CLEAR_ERROR())
+  }, [connectionState.connected, connectionState.connecting, dispatch, history])
+
+  const checkAndroidVersion = () => {
+    if (isAndroid10()) {
+      showManualInstructions(true)
     }
-  }, [
-    connectionState.connected,
-    connectionState.connecting,
-    connectionState.err,
-    dispatch,
-    history,
-    scanning,
-    t
-  ])
+  }
 
   const manualConnect = () => {
     showManualEntry(false)
@@ -73,6 +74,7 @@ function ConnectToPVS() {
     const password = generatePassword(serialNumber)
     dispatch(saveSerialNumber(serialNumber))
     dispatch(PVS_CONNECTION_INIT({ ssid, password }))
+    checkAndroidVersion()
   }
 
   const generateSSID = serialNumber => {
@@ -89,6 +91,16 @@ function ConnectToPVS() {
       serialNumber.substring(2, 6) +
       serialNumber.substring(lastIndex - 4, lastIndex)
     return password
+  }
+
+  const copyPasswordToClipboard = () => {
+    window.cordova.plugins.clipboard.copy(connectionState.password)
+    window.cordova.plugins.diagnostic.switchToWifiSettings()
+  }
+
+  const abortConnection = () => {
+    dispatch(STOP_NETWORK_POLLING())
+    showManualInstructions(false)
   }
 
   return (
@@ -112,10 +124,7 @@ function ConnectToPVS() {
             disabled={connectionState.connecting}
             className="button is-primary"
             onClick={() =>
-              scanBarcodes(
-                onSuccess(setScanning, generatePassword, dispatch, t),
-                onFail
-              )
+              scanBarcodes(onSuccess(generatePassword, dispatch, t), onFail)
             }
           >
             {t('START_SCAN')}
@@ -135,6 +144,43 @@ function ConnectToPVS() {
           </button>
         </div>
       </div>
+
+      <SwipeableBottomSheet
+        shadowTip={false}
+        open={manualInstructions}
+        onChange={compose(showManualInstructions, not)}
+      >
+        <div className="manual-instructions is-flex">
+          <span className="has-text-weight-bold has-text-white mb-10">
+            {t('MANUAL_CONNECT_INSTRUCTIONS_1')}
+          </span>
+          <span className="mb-10">{t('MANUAL_CONNECT_INSTRUCTIONS_2')}</span>
+          <div className="mb-15 is-flex network-details">
+            <span className="has-text-white">
+              <b>{t('SSID')}</b>
+              {connectionState.SSID}
+            </span>
+            <span className="has-text-white">
+              <b>{t('PASSWORD')}</b>
+              {connectionState.password}
+            </span>
+          </div>
+          <div className="mt-10 mb-20">
+            <button
+              className="button is-primary is-fullwidth mb-20"
+              onClick={copyPasswordToClipboard}
+            >
+              {t('COPY_PWD_TO_CLIPBOARD')}
+            </button>
+            <button
+              className="button is-primary is-outlined is-fullwidth"
+              onClick={abortConnection}
+            >
+              {t('ABORT_CONNECTION')}
+            </button>
+          </div>
+        </div>
+      </SwipeableBottomSheet>
 
       <SwipeableBottomSheet
         shadowTip={false}

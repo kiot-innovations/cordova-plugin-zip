@@ -20,14 +20,26 @@ const initialState = {
 
 export const networkReducer = createReducer(
   {
-    [PVS_CONNECTION_INIT]: (state, { ssid, password }) => ({
-      ...state,
-      SSID: ssid,
-      password: password,
-      connecting: true,
-      connected: false,
-      err: ''
-    }),
+    [PVS_CONNECTION_INIT]: (state, { ssid, password }) => {
+      const newState = {
+        ...state,
+        SSID: ssid,
+        password: password,
+        connecting: true,
+        connected: false,
+        err: ''
+      }
+
+      if (
+        state.SSID === ssid &&
+        state.password === password &&
+        state.connecting &&
+        !state.connected
+      )
+        return state
+
+      return newState
+    },
     [PVS_CONNECTION_SUCCESS]: state => ({
       ...state,
       connected: true,

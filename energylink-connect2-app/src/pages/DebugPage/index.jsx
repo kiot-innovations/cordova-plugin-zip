@@ -43,6 +43,11 @@ const DebugPage = () => {
           'SunVault Health Check',
           paths.PROTECTED.ESS_HEALTH_CHECK.path
         )}
+        {renderDebugLink(
+          history,
+          'Connection Recovery Page',
+          paths.PROTECTED.CONNECTION_LOST.path
+        )}
       </div>
     </div>
   )
