@@ -23,6 +23,8 @@ jobs:
       RELEASE_TRACK: beta
     steps:
       - uses: actions/checkout@v2
+        with:
+          persist-credentials: false
       - name: Set Application environment to ${{ env.APP_ENV }}
         run: |
           sed -i"" -E "s/com.sunpower.energylink.commissioning2.dev/${APP_ID}/" config.xml
@@ -66,7 +68,9 @@ jobs:
       - name: Install RubyGems
         run: bundle install --jobs 4 --retry 3
       - name: Install NPM packages
-        run: npm install
+        run: |
+          git config --global url."https://${{ secrets.ACCESS_TOKEN }}@github.com/".insteadOf ssh://git@github.com/
+          npm install
 
       #
       # Android Application
