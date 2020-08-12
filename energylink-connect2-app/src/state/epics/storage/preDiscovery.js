@@ -35,11 +35,17 @@ export const getPreDiscoveryEpic = action$ => {
   )
 }
 
+const getTimeoutToRetry = compose(calculateTimeout, prop('payload'))
+
 export const getDelayedPreDiscoveryEpic = action$ => {
   return action$.pipe(
     ofType(GET_DELAYED_PREDISCOVERY.getType()),
-    map(compose(calculateTimeout, prop('payload'))),
-    delayWhen(timeout => timer(timeout)),
-    map(GET_PREDISCOVERY())
+    map(getTimeoutToRetry),
+    delayWhen(timer),
+    map(GET_PREDISCOVERY),
+    catchError(error => {
+      Sentry.captureException(error)
+      return of(GET_PREDISCOVERY())
+    })
   )
 }
