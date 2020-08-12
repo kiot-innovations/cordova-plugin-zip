@@ -108,6 +108,10 @@ export const capitalize = when(
 
 export const isIos = () => window.device.platform === 'iOS'
 
+export const isAndroid10 = () =>
+  window.device.platform === 'Android' &&
+  parseInt(window.device.version, 10) >= 10
+
 /* ACCESS POINT HELPERS */
 export const buildAPItem = ap => ({ label: ap.ssid, value: ap.ssid, ap })
 export const buildAPsItems = map(buildAPItem)

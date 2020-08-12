@@ -1,6 +1,6 @@
 @import '~@sunpower/theme-dark/styles/variables';
 
-.qr-layout{
+.qr-layout, .pvs-connection-lost-screen{
   height: 100%;
   display: grid;
   grid-template-rows: 10% 1fr 25% 25%;
@@ -11,6 +11,13 @@
     margin-left: -10px;
   }
 
+  .manual-instructions {
+    flex-direction: column;
+
+    .network-details {
+      flex-direction: column;
+    }
+  }
   .manual-entry{
     input {
       background: $dark;
