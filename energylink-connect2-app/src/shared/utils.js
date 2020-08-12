@@ -1,3 +1,5 @@
+import moment from 'moment'
+
 import {
   assoc,
   clone,
@@ -279,3 +281,12 @@ export const warningsLength = compose(
   filter(propSatisfies(_strStartsWith('1'), 'error_code')),
   defaultTo([])
 )
+
+export const calculateTimeout = lastUpdated => {
+  const then = moment
+    .utc(lastUpdated)
+    .local()
+    .add(1, 'minutes')
+  const diff = moment().diff(then, 'milliseconds')
+  return diff < 0 ? Math.abs(diff) + 3000 : 0
+}

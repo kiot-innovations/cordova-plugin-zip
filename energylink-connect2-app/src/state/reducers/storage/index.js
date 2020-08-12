@@ -21,7 +21,8 @@ import {
   GET_COMPONENT_MAPPING_PROGRESS,
   GET_COMPONENT_MAPPING_COMPLETED,
   GET_COMPONENT_MAPPING_ERROR,
-  RESET_COMPONENT_MAPPING
+  RESET_COMPONENT_MAPPING,
+  GET_DELAYED_PREDISCOVERY
 } from 'state/actions/storage'
 import { isEmpty } from 'ramda'
 import { eqsUpdateStates } from 'state/epics/storage/deviceUpdate'
@@ -36,7 +37,8 @@ const initialState = {
     results: null,
     error: null
   },
-  error: ''
+  error: '',
+  loadingPrediscovery: false
 }
 
 export const eqsSteps = {
@@ -65,16 +67,24 @@ export const storageReducer = createReducer(
     }),
     [GET_PREDISCOVERY]: state => ({
       ...state,
-      currentStep: eqsSteps.PREDISCOVERY
+      currentStep: eqsSteps.PREDISCOVERY,
+      loadingPrediscovery: true
+    }),
+    [GET_DELAYED_PREDISCOVERY]: state => ({
+      ...state,
+      currentStep: eqsSteps.PREDISCOVERY,
+      loadingPrediscovery: true
     }),
     [GET_PREDISCOVERY_SUCCESS]: (state, payload) => ({
       ...state,
       prediscovery: payload,
-      error: initialState.error
+      error: '',
+      loadingPrediscovery: false
     }),
     [GET_PREDISCOVERY_ERROR]: (state, payload) => ({
       ...state,
-      error: payload
+      error: payload,
+      loadingPrediscovery: false
     }),
     [GET_PREDISCOVERY_RESET]: state => ({
       ...state,
