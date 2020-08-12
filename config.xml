@@ -111,5 +111,5 @@
         <variable name="ANDROIDX_VERSION" value="1.+" />
     </plugin>
     <plugin name="cordova-clipboard" spec="^1.3.0" />
-    <plugin name="wifiwizard2" spec="git+ssh://git@github.com/SunPower/WifiWizard2-private.git" />
+    <plugin name="wifiwizard2" spec="~3.1.1" />
 </widget>
