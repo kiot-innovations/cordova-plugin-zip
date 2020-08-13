@@ -13,7 +13,7 @@ platform :android do
 
     lane :release do
         upload_to_play_store(
-            apk: ENV.fetch("ANDROID_APK_PATH", "./platforms/android/app/build/outputs/apk/release/app-release.apk"),
+            apk: ENV.fetch("CORDOVA_ANDROID_RELEASE_BUILD_PATH", "./platforms/android/app/build/outputs/apk/release/app-release.apk"),
             json_key: ENV.fetch("PLAY_STORE_API_CRED", "./google-api.json"),
             package_name: CredentialsManager::AppfileConfig.try_fetch_value(:app_identifier),
             release_status: "completed",
@@ -32,21 +32,17 @@ platform :ios do
             password: ENV.fetch("KEYCHAIN_PASSWORD", "123"),
             unlock: true
         )
-        sync_code_signing(
-            readonly: true
+        sync_code_signing(readonly: true)
+        cordova(
+            platform: "ios",
+            release: ENV.fetch("CORDOVA_RELEASE", true)
         )
-        automatic_code_signing(
-            path:           "./platforms/ios/#{APP_NAME}.xcodeproj",
-            team_id:        CredentialsManager::AppfileConfig.try_fetch_value(:team_id),
-            profile_name:   "match AppStore #{CredentialsManager::AppfileConfig.try_fetch_value(:app_identifier)}"
-        )
-        cordova(platform: "ios")
     end
 
     lane :release do
         upload_to_testflight(
-            ipa:                "./platforms/ios/build/device/#{APP_NAME}.ipa",
-            skip_submission:    true,
+            ipa: ENV.fetch("CORDOVA_IOS_RELEASE_BUILD_PATH", "./platforms/ios/build/device/#{APP_NAME}.ipa"),
+            skip_submission: true,
             skip_waiting_for_build_processing: true
         )
     end
