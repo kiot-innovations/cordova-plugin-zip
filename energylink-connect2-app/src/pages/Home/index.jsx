@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import * as Sentry from '@sentry/browser'
 import { Link, useHistory } from 'react-router-dom'
 import { compose, join, map, path, pathOr, pick, prop, values } from 'ramda'
@@ -12,10 +12,6 @@ import { RESET_PVS_CONNECTION } from 'state/actions/network'
 import { RESET_PVS_INFO_STATE } from 'state/actions/pvs'
 import { RESET_SITE, SET_SITE } from 'state/actions/site'
 import { RESET_LAST_VISITED_PAGE } from 'state/actions/global'
-import {
-  FIRMWARE_GET_FILE,
-  GET_FIRMWARE_URL
-} from 'state/actions/fileDownloader'
 import { getApiSearch } from 'shared/api'
 
 import paths from 'routes/paths'
@@ -69,11 +65,6 @@ function Home() {
   const history = useHistory()
 
   const { access_token } = useSelector(state => state.user.auth)
-
-  useEffect(() => {
-    dispatch(FIRMWARE_GET_FILE())
-    dispatch(GET_FIRMWARE_URL())
-  }, [dispatch])
 
   const notFoundText = t('NOT_FOUND')
 
