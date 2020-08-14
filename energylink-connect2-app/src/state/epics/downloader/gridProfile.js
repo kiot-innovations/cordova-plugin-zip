@@ -1,6 +1,6 @@
 import { pathOr } from 'ramda'
 import { ofType } from 'redux-observable'
-import { from, of, EMPTY } from 'rxjs'
+import { EMPTY, from, of } from 'rxjs'
 import { catchError, concatMap, exhaustMap, map } from 'rxjs/operators'
 
 import {
@@ -9,15 +9,16 @@ import {
   DOWNLOAD_SUCCESS
 } from 'state/actions/fileDownloader'
 import {
+  GRID_PROFILE_DOWNLOAD_INIT,
   GRID_PROFILE_GET_FILE,
-  GRID_PROFILE_SET_FILE_INFO,
-  GRID_PROFILE_DOWNLOAD_INIT
+  GRID_PROFILE_SET_FILE_INFO
 } from 'state/actions/gridProfileDownloader'
 import {
-  getFileInfo,
+  fileExists,
   getGridProfileFileName,
   getGridProfileFilePath
 } from 'shared/fileSystem'
+import { PERSIST_DATA_PATH } from 'shared/utils'
 
 /**
  * Sets the file info if the file is in the FS
@@ -29,7 +30,7 @@ export const epicGetGridProfileFromFS = action$ =>
   action$.pipe(
     ofType(GRID_PROFILE_GET_FILE.getType()),
     exhaustMap(() =>
-      from(getFileInfo(getGridProfileFilePath())).pipe(
+      from(fileExists(`${PERSIST_DATA_PATH}${getGridProfileFilePath()}`)).pipe(
         map(fileInfo => GRID_PROFILE_SET_FILE_INFO({ ...fileInfo })),
         catchError(() => of(GRID_PROFILE_DOWNLOAD_INIT()))
       )

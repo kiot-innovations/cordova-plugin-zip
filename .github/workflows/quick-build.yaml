@@ -1,13 +1,18 @@
 ####
 # Quick version of build workflow
 #
-# This is shorter version of build workflow. For pull requests we want to
-# have quick result, so we only want to test and build the application.
+# 1. Native application energylink-connect2-app
+#    - test
+#    - build
+# 2. Android application (BUILD_TYPE=debug, APP_ENV=dev)
+#    - build with code signing
+#    - store APK file as a build artifact
 on:
   pull_request:
   push:
     branches:
       - develop
+
 jobs:
   build:
     # Run Quick Builds on Ubutnu 18.04 (Linux) instead of MacOS
@@ -15,23 +20,16 @@ jobs:
     # https://help.github.com/en/github/setting-up-and-managing-billing-and-payments-on-github/about-billing-for-github-actions#about-billing-for-github-actions
     runs-on: ubuntu-18.04
     env:
-      ANDROID_APK_PATH: platforms/android/app/build/outputs/apk/debug/app-debug.apk
       APP_ENV: dev
-      APP_ID: com.sunpower.energylink.commissioning2.dev
-      APP_NAME: EnergylinkConnect2-dev
-      CORDOVA_RELEASE: false
-      RELEASE_TRACK: beta
+      BUILD_TYPE: debug
     steps:
       - uses: actions/checkout@v2
         with:
-          persist-credentials: false
-      - name: Set Application environment to ${{ env.APP_ENV }}
-        run: |
-          sed -i"" -E "s/com.sunpower.energylink.commissioning2.dev/${APP_ID}/" config.xml
-          sed -i"" -E "s/EnergylinkConnect2-dev/${APP_NAME}/" config.xml
+          token: ${{ secrets.ACCESS_TOKEN }}
+      - run: .github/workflows/setup_environment.sh
       - uses: actions/setup-node@v1
         with:
-          node-version: "10.15.3"
+          node-version: ${{ env.NODE_VERSION }}
           registry-url: "https://registry.npmjs.org"
 
       #
@@ -47,7 +45,7 @@ jobs:
           CI: 1
         working-directory: energylink-connect2-app
 
-      - name: Set and decrypt .env
+      - name: Decrypt and create .env file
         run: |
           cp .env.enc.${APP_ENV} .env.enc
           openssl enc -aes256 -d -base64 -md md5 -pass pass:'${{ secrets.ENVFILE_PASSWORD }}' -in .env.enc -out .env
@@ -57,16 +55,23 @@ jobs:
         working-directory: energylink-connect2-app
 
       #
-      # Configure environment for Android
+      # Configure environment for iOS and Android build
       #
+      - name: Set the application environment to ${{ env.APP_ENV }}
+        run: |
+          sed -i"" -E "s/com.sunpower.energylink.commissioning2.dev/${APP_ID}/" config.xml
+          sed -i"" -E "s/EnergylinkConnect2-dev/${APP_NAME}/" config.xml
+
       - uses: actions/setup-java@v1
         with:
-          java-version: 8
+          java-version: ${{ env.JAVA_VERSION }}
+
       - uses: actions/setup-ruby@v1
         with:
-          ruby-version: "2.7"
+          ruby-version: ${{ env.RUBY_VERSION }}
       - name: Install RubyGems
         run: bundle install --jobs 4 --retry 3
+
       - name: Install NPM packages
         run: |
           git config --global url."https://${{ secrets.ACCESS_TOKEN }}@github.com/".insteadOf ssh://git@github.com/
@@ -75,17 +80,15 @@ jobs:
       #
       # Android Application
       #
-      - name: Configure credentials
+      - name: Set credentials to Google Play store
         run: |
           echo "${{ secrets.GOOGLE_PLAY_UPLOAD_KEYSTORE }}" | base64 -d > upload-keystore.jks
           echo "${{ secrets.GOOGLE_PLAY_API_KEY }}" | base64 -d > google-api.json
       - name: Build Android Application
-        run: |
-          npx phonegap prepare android
-          bundle exec fastlane android build
+        run: bundle exec fastlane android build
         env:
           KEYSTORE_PASSWORD: ${{ secrets.GOOGLE_PLAY_UPLOAD_KEYSTORE_PASSWORD }}
       - uses: actions/upload-artifact@v1
         with:
           name: Android-${{ env.APP_ENV }}
-          path: ${{ env.ANDROID_APK_PATH }}
+          path: ${{ env.CORDOVA_ANDROID_RELEASE_BUILD_PATH }}

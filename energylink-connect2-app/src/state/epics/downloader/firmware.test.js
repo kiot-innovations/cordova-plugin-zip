@@ -37,7 +37,7 @@ describe('Epic firmware', () => {
         of('firmware/staging-prod-boomer-8888.fs')
       )
 
-      fileSystem.getFileInfo = jest.fn(() => of({ size: 1000 }))
+      fileSystem.fileExists = jest.fn(() => of({ size: 1000 }))
 
       const inputValues = {
         a: FIRMWARE_GET_FILE()
@@ -58,7 +58,7 @@ describe('Epic firmware', () => {
         of('firmware/staging-prod-boomer-8888.fs')
       )
 
-      fileSystem.getFileInfo = jest.fn(() => throwError(new Error('No file')))
+      fileSystem.fileExists = jest.fn(() => throwError(new Error('No file')))
 
       const inputValues = {
         a: FIRMWARE_GET_FILE()

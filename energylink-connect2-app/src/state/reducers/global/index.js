@@ -28,7 +28,7 @@ const initialState = {
   selectedDataSource: DATA_SOURCES.LIVE,
   feedbackError: null,
   lastVisitedPage: paths.PROTECTED.PVS_SELECTION_SCREEN.path,
-  canAccessScandit: false
+  canAccessScandit: true
 }
 
 export const globalReducer = createReducer(

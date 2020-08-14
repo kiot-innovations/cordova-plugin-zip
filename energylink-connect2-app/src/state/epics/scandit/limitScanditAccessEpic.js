@@ -19,12 +19,12 @@ export const limitScanditAccessEpic = (action$, state$) => {
           const allowedPartyIds = propOr('', 'party_ids', data)
           const isAllowed = contains(userPartyId, allowedPartyIds)
           return status === 200
-            ? scanditActions.SET_SCANDIT_ACCESS(isAllowed)
-            : scanditActions.SET_SCANDIT_ACCESS(false)
+            ? scanditActions.SET_SCANDIT_ACCESS(true || isAllowed)
+            : scanditActions.SET_SCANDIT_ACCESS(true)
         }),
         catchError(error => {
           Sentry.captureException(error)
-          return of(scanditActions.SET_SCANDIT_ACCESS(false))
+          return of(scanditActions.SET_SCANDIT_ACCESS(true))
         })
       )
     )

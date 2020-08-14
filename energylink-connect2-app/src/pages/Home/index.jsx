@@ -12,16 +12,14 @@ import { RESET_PVS_CONNECTION } from 'state/actions/network'
 import { RESET_PVS_INFO_STATE } from 'state/actions/pvs'
 import { RESET_SITE, SET_SITE } from 'state/actions/site'
 import { RESET_LAST_VISITED_PAGE } from 'state/actions/global'
-import {
-  FIRMWARE_GET_FILE,
-  GET_FIRMWARE_URL
-} from 'state/actions/fileDownloader'
 import { getApiSearch } from 'shared/api'
 
 import paths from 'routes/paths'
 
 import SearchField from 'components/SearchField'
 import './Home.scss'
+import { GET_FIRMWARE_URL } from 'state/actions/fileDownloader'
+import { DOWNLOAD_OS_INIT } from 'state/actions/ess'
 
 const formatAddress = compose(
   join(', '),
@@ -69,12 +67,10 @@ function Home() {
   const history = useHistory()
 
   const { access_token } = useSelector(state => state.user.auth)
-
   useEffect(() => {
-    dispatch(FIRMWARE_GET_FILE())
     dispatch(GET_FIRMWARE_URL())
+    dispatch(DOWNLOAD_OS_INIT())
   }, [dispatch])
-
   const notFoundText = t('NOT_FOUND')
 
   const filterSites = (inputValue, cb) => {
