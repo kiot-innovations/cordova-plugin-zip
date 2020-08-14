@@ -273,7 +273,7 @@ export function getEnvironment() {
 export const isError = (status = '', percent) =>
   status.toLowerCase() === 'error'
 
-const _strStartsWith = what => str => str.startsWith(what)
+const _strStartsWith = what => (str = '') => str.startsWith(what)
 
 /* [a] -> Number */
 export const warningsLength = compose(
