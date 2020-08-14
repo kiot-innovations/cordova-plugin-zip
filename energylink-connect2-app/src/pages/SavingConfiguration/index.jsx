@@ -11,6 +11,7 @@ import { STOP_NETWORK_POLLING } from 'state/actions/network'
 import paths from 'routes/paths'
 import './SavingConfiguration.scss'
 import { useSelector } from 'react-redux'
+import PanelLayoutToolSavingStatus from './PanelLayoutToolSavingStatus'
 
 const SavingConfiguration = () => {
   const t = useI18n()
@@ -20,6 +21,7 @@ const SavingConfiguration = () => {
   const { submitting, commissioned, error } = useSelector(
     state => state.systemConfiguration.submit
   )
+
   const commissioningPvs = useSelector(pathOr('', ['pvs', 'serialNumber']))
 
   const errorMap = e =>
@@ -53,8 +55,7 @@ const SavingConfiguration = () => {
               <span className="has-text-white has-text-weight-bold">
                 {t('SAVED_CONFIGURATION')}
               </span>
-              <span className="has-text-weight-bold">{t('ONE_LAST_STEP')}</span>
-              <span>{t('UPDATE_LAYOUT_ELA')}</span>
+              <PanelLayoutToolSavingStatus />
               <button
                 onClick={goToChangeAddress}
                 className="button is-secondary is-uppercase"

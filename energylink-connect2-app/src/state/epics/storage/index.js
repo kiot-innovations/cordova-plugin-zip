@@ -1,4 +1,4 @@
-import { getPreDiscoveryEpic } from './preDiscovery'
+import { getPreDiscoveryEpic, getDelayedPreDiscoveryEpic } from './preDiscovery'
 import {
   postComponentMappingEpic,
   getComponentMappingEpic
@@ -31,5 +31,6 @@ export default [
   errorHealthCheckEpic,
   getHealthCheckEpic,
   runSystemCheckEpic,
-  getPreDiscoveryEpic
+  getPreDiscoveryEpic,
+  getDelayedPreDiscoveryEpic
 ]
