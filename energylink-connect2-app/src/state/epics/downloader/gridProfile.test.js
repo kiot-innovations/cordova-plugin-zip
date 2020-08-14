@@ -14,7 +14,7 @@ describe('Epic gridProfile', () => {
 
     jest.doMock('../../../shared/fileSystem', () => ({
       getGridProfileFilePath,
-      getFileInfo: jest.fn(() => {
+      fileExists: jest.fn(() => {
         return of({ fileUrl: 'https://test/rootfs.tgz', size: 50000 })
       })
     }))

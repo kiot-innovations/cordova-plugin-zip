@@ -1,3 +1,5 @@
+import moment from 'moment'
+
 import {
   assoc,
   clone,
@@ -271,7 +273,7 @@ export function getEnvironment() {
 export const isError = (status = '', percent) =>
   status.toLowerCase() === 'error'
 
-const _strStartsWith = what => str => str.startsWith(what)
+const _strStartsWith = what => (str = '') => str.startsWith(what)
 
 /* [a] -> Number */
 export const warningsLength = compose(
@@ -279,3 +281,15 @@ export const warningsLength = compose(
   filter(propSatisfies(_strStartsWith('1'), 'error_code')),
   defaultTo([])
 )
+
+
+export const PERSIST_DATA_PATH = 'cdvfile://localhost/persistent/'
+
+export const calculateTimeout = lastUpdated => {
+  const then = moment
+    .utc(lastUpdated)
+    .local()
+    .add(1, 'minutes')
+  const diff = moment().diff(then, 'milliseconds')
+  return diff < 0 ? Math.abs(diff) + 3000 : 0
+}
