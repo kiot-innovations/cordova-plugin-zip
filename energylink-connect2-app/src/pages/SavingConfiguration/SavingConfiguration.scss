@@ -12,6 +12,16 @@
     }
   }
 
+  .plt-status {
+    background-color: $silver-sand4;
+    padding: 1rem;
+    align-items: center;
+
+    .has-no-border {
+      border: 0;
+    }
+  }
+
   .status-message {
     display: grid;
     grid-row-gap: 1em;
