@@ -14,6 +14,7 @@ export const RUN_EQS_SYSTEMCHECK_SUCCESS = createAction(
 
 // Prediscovery
 export const GET_PREDISCOVERY = createAction('GET_PREDISCOVERY')
+export const GET_DELAYED_PREDISCOVERY = createAction('GET_DELAYED_PREDISCOVERY')
 export const GET_PREDISCOVERY_SUCCESS = createAction('GET_PREDISCOVERY_SUCCESS')
 export const GET_PREDISCOVERY_ERROR = createAction('GET_PREDISCOVERY_ERROR')
 export const GET_PREDISCOVERY_RESET = createAction('GET_PREDISCOVERY_RESET')
