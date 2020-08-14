@@ -9,14 +9,12 @@ import {
   withSelectableGroupsContainer
 } from '@sunpower/panel-layout-tool'
 import PanelLayoutTool from 'pages/PanelLayoutTool/Template'
-import { Redirect } from 'react-router-dom'
-import { path, prop } from 'ramda'
+import { path } from 'ramda'
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import paths from 'routes/paths'
 import { useI18n } from 'shared/i18n'
-import { PLT_SAVE } from 'state/actions/panel-layout-tool'
 import { useError } from './hooks'
 import './panelLayoutTool.scss'
 
@@ -30,7 +28,6 @@ export default () => {
   const t = useI18n()
   const err = useError()
   const panels = useSelector(path(['panel_layout_tool', 'panels']))
-  const { saving, saved, error } = useSelector(prop('pltWizard'))
   const selectedGroup = useSelector(
     path(['panel_layout_tool', 'selectedGroup'])
   )
@@ -44,8 +41,8 @@ export default () => {
 
   const history = useHistory()
 
-  const submit = () => {
-    dispatch(PLT_SAVE())
+  const onContinue = () => {
+    history.push(paths.PROTECTED.SYSTEM_CONFIGURATION.path)
   }
 
   const goBack = () => {
@@ -63,18 +60,12 @@ export default () => {
         </button>
         <button
           className="button is-primary is-uppercase is-center"
-          onClick={submit}
-          disabled={saving}
+          onClick={onContinue}
+          disabled={err}
         >
-          {saving ? t('SAVING') : t('SUBMIT')}
+          {t('CONTINUE')}
         </button>
-        {saved && <Redirect to={paths.PROTECTED.SYSTEM_CONFIGURATION.path} />}
       </div>
-      {error && (
-        <div className="has-text-centered has-error-text is-size-7">
-          {t(error)}
-        </div>
-      )}
     </div>
   )
   return (

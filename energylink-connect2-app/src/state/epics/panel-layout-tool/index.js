@@ -13,6 +13,7 @@ import {
   PLT_SAVE_ERROR,
   PLT_SAVE_FINISHED
 } from 'state/actions/panel-layout-tool'
+import { SUBMIT_COMMISSION_SUCCESS } from 'state/actions/systemConfiguration'
 
 export const getPanelLayout = async () => {
   const { apis } = await getApiPVS()
@@ -34,7 +35,7 @@ export const savePanelLayout = async panels => {
   )
 }
 
-export const getPanelLayoutEpic = (action$, state$) =>
+export const getPanelLayoutEpic = action$ =>
   action$.pipe(
     ofType(PLT_LOAD.getType()),
     exhaustMap(() =>
@@ -47,7 +48,7 @@ export const getPanelLayoutEpic = (action$, state$) =>
 
 export const savePanelLayoutEpic = (action$, state$) =>
   action$.pipe(
-    ofType(PLT_SAVE.getType()),
+    ofType(PLT_SAVE.getType(), SUBMIT_COMMISSION_SUCCESS.getType()),
     switchMap(() =>
       from(
         savePanelLayout(
