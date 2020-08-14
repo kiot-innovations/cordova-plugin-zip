@@ -176,6 +176,7 @@
   "GRID_PROFILES_NOT_FOUND": "No Grid Profiles found",
   "SELECT_A_GRID_PROFILE": "Please select a Grid Profile",
   "LAZY_GRID_PROFILE": "Immediately apply Grid Profile",
+  "SET_GRID_VOLTAGE": "Grid voltage must be set",
   "NO_SELF_SUPPLY": "No Self Supply",
   "SAVING": "Saving",
   "SAVING_CONFIGURATION": "Hold on, we're saving your configuration",
