@@ -34,7 +34,7 @@ export const eqsUpdateErrors = {
   TRIGGER_EQS_FIRMWARE_ERROR: 'TRIGGER_EQS_FIRMWARE_ERROR'
 }
 
-const fwPackagePath = '/ESS/EQS-FW-Package.zip'
+const fwPackagePath = 'ESS/EQS-FW-Package.zip'
 
 export const checkEqsFwFile = action$ => {
   return action$.pipe(

@@ -84,11 +84,14 @@ export const getFileBlob = (fileName = '') =>
   new Promise(async (resolve, reject) => {
     try {
       const file = await fileExists(`${PERSIST_DATA_PATH}${fileName}`)
-      const reader = new FileReader()
-      reader.onloadend = function() {
-        resolve(new Blob([this.result]))
-      }
-      reader.readAsArrayBuffer(file)
+      if (!file) reject(ERROR_CODES.NO_FILESYSTEM_FILE)
+      file.file(function(file) {
+        const reader = new FileReader()
+        reader.onloadend = function() {
+          resolve(new Blob([this.result]))
+        }
+        reader.readAsArrayBuffer(file)
+      }, reject)
     } catch (e) {
       reject(new Error(ERROR_CODES.NO_FILESYSTEM_FILE))
     }
