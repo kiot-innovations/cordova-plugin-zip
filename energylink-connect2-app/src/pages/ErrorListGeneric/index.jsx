@@ -7,7 +7,7 @@ import { getError } from 'shared/errorCodes'
 import { either } from 'shared/utils'
 import './ErrorListGeneric.scss'
 
-const ErrorComponent = ({ title, code, errorInfo, t }) => {
+const ErrorComponent = ({ title, code = '', errorInfo, t }) => {
   const toParams = {
     pathname: setParams([code], paths.PROTECTED.ERROR_DETAIL.path),
     state: { ...errorInfo }
