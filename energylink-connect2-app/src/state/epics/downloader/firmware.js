@@ -2,9 +2,16 @@ import { path, pathOr } from 'ramda'
 import * as Sentry from '@sentry/browser'
 import { ofType } from 'redux-observable'
 import { EMPTY, from, of } from 'rxjs'
-import { catchError, exhaustMap, map, switchMap } from 'rxjs/operators'
 import {
-  getFileInfo,
+  catchError,
+  concatMap,
+  exhaustMap,
+  map,
+  switchMap
+} from 'rxjs/operators'
+
+import {
+  fileExists,
   getFirmwareVersionData,
   getFS,
   getPVSFileSystemName,
@@ -29,6 +36,7 @@ import {
   SET_FILE_SIZE
 } from 'state/actions/fileDownloader'
 import { EMPTY_ACTION } from 'state/actions/share'
+import { PERSIST_DATA_PATH } from 'shared/utils'
 
 export const getFirmwareUrlFromState = path([
   'value',
@@ -47,7 +55,9 @@ export const epicGetLatestFirmwareURL = action$ => {
     ofType(GET_FIRMWARE_URL.getType()),
     switchMap(() =>
       from(getLatestCylonUrl()).pipe(
-        map(GET_FIRMWARE_URL_SUCCESS),
+        switchMap(url =>
+          of(GET_FIRMWARE_URL_SUCCESS(url), FIRMWARE_GET_FILE())
+        ),
         catchError(err => {
           Sentry.captureException(err)
           return GET_FIRMWARE_URL_ERROR(err.message)
@@ -123,7 +133,7 @@ export const epicFirmwareGetFile = (action$, state$) =>
     ofType(FIRMWARE_GET_FILE.getType()),
     exhaustMap(action => {
       const fileName = getPVSFileSystemName(getFirmwareUrlFromState(state$))
-      return from(getFileInfo(fileName)).pipe(
+      return from(fileExists(`${PERSIST_DATA_PATH}${fileName}`)).pipe(
         switchMap(() =>
           of(SET_FILE_INFO({ exists: true }), FIRMWARE_GET_FILE_INFO())
         ),
@@ -180,7 +190,7 @@ export const epicFirmwareGetFileInfo = (action$, state$) =>
 export const epicFirmwareDownloadInit = (action$, state$) =>
   action$.pipe(
     ofType(FIRMWARE_DOWNLOAD_INIT.getType()),
-    switchMap(action => {
+    concatMap(action => {
       const {
         pvsFileSystemName,
         luaFileName,

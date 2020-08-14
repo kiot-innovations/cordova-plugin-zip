@@ -1,14 +1,17 @@
-import Collapsible from 'components/Collapsible'
+import React, { useCallback, useEffect } from 'react'
 import moment from 'moment'
 import { pathOr, prop } from 'ramda'
-import React, { useCallback, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+
 import { getGridProfileFileName } from 'shared/fileSystem'
 import { useI18n } from 'shared/i18n'
 import { either } from 'shared/utils'
 import { DOWNLOAD_META_INIT, DOWNLOAD_OS_INIT } from 'state/actions/ess'
 import * as fileDownloaderActions from 'state/actions/fileDownloader'
+
 import * as gridProfileDownloaderActions from 'state/actions/gridProfileDownloader'
+import Collapsible from 'components/Collapsible'
+
 import EssCollapsible from './EssCollapsible'
 
 export const getFileName = prop('displayName')
@@ -62,7 +65,7 @@ function Firmwares() {
   const downloadAbort = () => dispatch(fileDownloaderActions.DOWNLOAD_ABORT())
 
   useEffect(() => {
-    dispatch(fileDownloaderActions.FIRMWARE_GET_FILE())
+    dispatch(fileDownloaderActions.GET_FIRMWARE_URL())
     dispatch(gridProfileDownloaderActions.GRID_PROFILE_GET_FILE())
     dispatch(DOWNLOAD_OS_INIT())
     dispatch(DOWNLOAD_META_INIT())
