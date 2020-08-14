@@ -110,6 +110,8 @@ jobs:
         run: |
           echo "${{ secrets.GOOGLE_PLAY_UPLOAD_KEYSTORE }}" | base64 -d > upload-keystore.jks
           echo "${{ secrets.GOOGLE_PLAY_API_KEY }}" | base64 -d > google-api.json
+      - name: Install NDK 21.0.6113669
+        run: echo "y" | sudo ${ANDROID_HOME}/tools/bin/sdkmanager --install "ndk;21.0.6113669"
       - name: Build Android Application
         run: bundle exec fastlane android build
         env:
