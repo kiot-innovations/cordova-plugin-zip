@@ -1,5 +1,5 @@
 import { compose, defaultTo, head, join, last, slice, split } from 'ramda'
-import { flipConcat } from 'shared/utils'
+import { flipConcat, PERSIST_DATA_PATH } from 'shared/utils'
 
 export const ERROR_CODES = {
   NO_FILESYSTEM_FILE: 'no filesystem file',
@@ -9,32 +9,6 @@ export const ERROR_CODES = {
   parseLuaFile: 'parseLuaFile',
   noWifi: 'No wifi'
 }
-
-export const getFileInfo = path =>
-  new Promise((resolve, reject) => {
-    const type = window.PERSISTENT
-    const size = 5 * 1024 * 1024
-
-    function successCallback(fs) {
-      fs.root.getFile(
-        path,
-        {},
-        function(fileEntry) {
-          fileEntry.file(
-            file => {
-              resolve(file)
-            },
-            () => reject(new Error(ERROR_CODES.NO_FILESYSTEM_FILE))
-          )
-        },
-        reject
-      )
-    }
-
-    window.requestFileSystem(type, size, successCallback, () => {
-      reject(new Error(ERROR_CODES.NO_FILESYSTEM_FILE))
-    })
-  })
 
 export const getFileNameFromURL = compose(last, split('/'))
 
@@ -109,7 +83,7 @@ export const parseLuaFile = fileName =>
 export const getFileBlob = (fileName = '') =>
   new Promise(async (resolve, reject) => {
     try {
-      const file = await getFileInfo(fileName)
+      const file = await fileExists(`${PERSIST_DATA_PATH}${fileName}`)
       const reader = new FileReader()
       reader.onloadend = function() {
         resolve(new Blob([this.result]))

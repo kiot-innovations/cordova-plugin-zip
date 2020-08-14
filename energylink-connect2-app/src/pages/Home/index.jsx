@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import * as Sentry from '@sentry/browser'
 import { Link, useHistory } from 'react-router-dom'
 import { compose, join, map, path, pathOr, pick, prop, values } from 'ramda'
@@ -18,6 +18,8 @@ import paths from 'routes/paths'
 
 import SearchField from 'components/SearchField'
 import './Home.scss'
+import { GET_FIRMWARE_URL } from 'state/actions/fileDownloader'
+import { DOWNLOAD_OS_INIT } from 'state/actions/ess'
 
 const formatAddress = compose(
   join(', '),
@@ -65,7 +67,10 @@ function Home() {
   const history = useHistory()
 
   const { access_token } = useSelector(state => state.user.auth)
-
+  useEffect(() => {
+    dispatch(GET_FIRMWARE_URL())
+    dispatch(DOWNLOAD_OS_INIT())
+  }, [dispatch])
   const notFoundText = t('NOT_FOUND')
 
   const filterSites = (inputValue, cb) => {

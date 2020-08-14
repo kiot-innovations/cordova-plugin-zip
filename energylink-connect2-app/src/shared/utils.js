@@ -282,6 +282,9 @@ export const warningsLength = compose(
   defaultTo([])
 )
 
+
+export const PERSIST_DATA_PATH = 'cdvfile://localhost/persistent/'
+
 export const calculateTimeout = lastUpdated => {
   const then = moment
     .utc(lastUpdated)
