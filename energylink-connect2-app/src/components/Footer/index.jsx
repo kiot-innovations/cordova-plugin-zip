@@ -75,7 +75,7 @@ const Footer = () => {
     },
     {
       icon: 'sp-data',
-      text: 'Live Data',
+      text: 'Live Status',
       onClick: liveDataClickHandler,
       active: active.data
     }
