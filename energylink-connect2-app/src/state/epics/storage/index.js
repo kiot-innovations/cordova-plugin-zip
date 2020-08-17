@@ -13,8 +13,8 @@ import {
 import {
   checkEqsFwFile,
   getEqsFwFile,
-  uploadEqsFwEpic,
   triggerFwUpdateEpic,
+  uploadEqsFwEpic,
   pollFwUpdateEpic
 } from './deviceUpdate'
 

@@ -1,14 +1,15 @@
-import useModal from 'hooks/useModal'
-import { compose, endsWith, isEmpty, not, path } from 'ramda'
 import React from 'react'
+import { compose, endsWith, isEmpty, not, path } from 'ramda'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
+
 import paths from 'routes/paths'
 import { useI18n } from 'shared/i18n'
 import { UPDATE_DEVICES_LIST } from 'state/actions/devices'
 import { SUBMIT_CONFIG } from 'state/actions/systemConfiguration'
-import GridBehaviorWidget from './GridBehaviorWidget'
+import { useShowModal } from 'hooks/useGlobalModal'
 
+import GridBehaviorWidget from './GridBehaviorWidget'
 import InterfacesWidget from './InterfacesWidget'
 import MetersWidget from './MetersWidget'
 import NetworkWidget from './NetworkWidget'
@@ -52,7 +53,6 @@ function SystemConfiguration() {
   const t = useI18n()
   const dispatch = useDispatch()
   const history = useHistory()
-
   const { selectedOptions } = useSelector(
     state => state.systemConfiguration.gridBehavior
   )
@@ -64,33 +64,6 @@ function SystemConfiguration() {
   const hasStorage = useSelector(
     compose(not, isEmpty, path(['systemConfiguration', 'storage', 'data']))
   )
-  const modalTitle = (
-    <span className="has-text-white has-text-weight-bold">
-      {t('ATTENTION')}
-    </span>
-  )
-
-  const modalContent = (
-    <div className="has-text-centered is-flex flex-column">
-      <span className="has-text-white mb-10">{t('ERROR_CONFIGURATION')}</span>
-      <div className="inline-buttons">
-        <button
-          className="button half-button-padding is-primary is-outlined is-uppercase mr-10"
-          onClick={() => toggleModal()}
-        >
-          {t('CANCEL')}
-        </button>
-        <button
-          className="button half-button-padding is-primary is-uppercase ml-10"
-          onClick={() => forceSubmit()}
-        >
-          {t('CONTINUE')}
-        </button>
-      </div>
-    </div>
-  )
-
-  const { modal, toggleModal } = useModal(modalContent, modalTitle, false)
 
   const validateConfig = configObject => {
     for (const value of Object.values(configObject)) {
@@ -121,7 +94,9 @@ function SystemConfiguration() {
         dispatch(SUBMIT_CONFIG(configObject))
         history.push(paths.PROTECTED.SAVING_CONFIGURATION.path)
       }
-      toggleModal()
+
+      if (!configObject.gridProfile) showNoGridModal()
+      else showErrorConfigurationModal()
     } catch (err) {
       console.error(err)
     }
@@ -132,10 +107,19 @@ function SystemConfiguration() {
     dispatch(SUBMIT_CONFIG(configObject))
     history.push(paths.PROTECTED.SAVING_CONFIGURATION.path)
   }
-
+  const showErrorConfigurationModal = useShowModal({
+    title: t('ATTENTION'),
+    componentPath: './ErrorSystemConfiguration.jsx',
+    componentProps: { forceSubmit },
+    dismissable: true
+  })
+  const showNoGridModal = useShowModal({
+    title: t('ATTENTION'),
+    componentPath: './NoGridModal.jsx',
+    dismissable: true
+  })
   return (
     <div className="fill-parent is-flex tile is-vertical has-text-centered system-config pl-10 pr-10">
-      {modal}
       <span className="is-uppercase has-text-weight-bold mb-20">
         {t('SYSTEM_CONFIGURATION')}
       </span>

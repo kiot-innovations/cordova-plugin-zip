@@ -1,5 +1,4 @@
 import clsx from 'clsx'
-import { Loader } from 'components/Loader'
 import useGlobalModal, { useGlobalHideModal } from 'hooks/useGlobalModal'
 import React, { lazy, Suspense } from 'react'
 import { useI18n } from 'shared/i18n'
@@ -43,7 +42,7 @@ const ModalWrapper = () => {
           )}
         </div>
         <div className="modal-body">
-          <Suspense fallback={<Loader />}>
+          <Suspense fallback={null}>
             {either(
               componentPath,
               <CustomComponent {...componentProps} />,

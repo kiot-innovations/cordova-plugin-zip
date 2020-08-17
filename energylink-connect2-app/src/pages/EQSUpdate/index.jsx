@@ -3,8 +3,10 @@ import { useI18n } from 'shared/i18n'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import { includes, isEmpty, length, map, pathOr, prop } from 'ramda'
-
-import { CHECK_EQS_FIRMWARE } from 'state/actions/storage'
+import {
+  CHECK_EQS_FIRMWARE,
+  UPLOAD_EQS_FIRMWARE_SUCCESS
+} from 'state/actions/storage'
 import { Loader } from 'components/Loader'
 import { either, warningsLength } from 'shared/utils'
 import { eqsSteps } from 'state/reducers/storage'
@@ -61,6 +63,7 @@ const EQSUpdate = () => {
           {t('FW_UPDATE')}
         </span>
       </div>
+
       {either(
         isEmpty(updateStatus) && isEmpty(error),
         <div className="has-text-centered">
@@ -116,27 +119,41 @@ const EQSUpdate = () => {
           <div className="mt-20">
             <span>{t('EQS_UPDATE_ERROR')}</span>
           </div>
-        </div>
-      )}
-
-      {either(
-        includes(updateStatus, [
-          eqsUpdateStates.FAILED,
-          eqsUpdateStates.NOT_RUNNING
-        ]) && !isEmpty(updateErrors),
-        <div className="mt-20 has-text-centered">
-          <button
-            onClick={() => dispatch(CHECK_EQS_FIRMWARE())}
-            className="button is-primary"
-          >
-            {t('RETRY')}
-          </button>
+          <div className="mt-20 has-text-centered">
+            <button
+              onClick={() => dispatch(UPLOAD_EQS_FIRMWARE_SUCCESS())}
+              className="button is-primary"
+            >
+              {t('RETRY')}
+            </button>
+          </div>
         </div>
       )}
 
       {either(
         !isEmpty(updateProgress),
         <div>{map(renderUpdateComponent, updateProgress)}</div>
+      )}
+
+      {either(
+        error === eqsUpdateErrors.TRIGGER_EQS_FIRMWARE_ERROR &&
+          isEmpty(updateStatus),
+        <div className="has-text-centered mb-15">
+          <div className="pt-20 pb-20">
+            <i className="sp-close has-text-white is-size-1" />
+          </div>
+          <div className="mt-20">
+            <span>{t('EQS_UPDATE_TRIGGER_ERROR')}</span>
+          </div>
+          <div className="mt-20">
+            <button
+              onClick={() => dispatch(UPLOAD_EQS_FIRMWARE_SUCCESS())}
+              className="button is-primary"
+            >
+              {t('RETRY')}
+            </button>
+          </div>
+        </div>
       )}
 
       {either(

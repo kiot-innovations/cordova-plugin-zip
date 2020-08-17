@@ -1,7 +1,7 @@
 import TextField from '@sunpower/textfield'
 import clsx from 'clsx'
 import SearchField from 'components/SearchField'
-import { compose, contains, path } from 'ramda'
+import { compose, contains, path, append, length } from 'ramda'
 import React, { useEffect, useState } from 'react'
 import { useField, useForm } from 'react-final-form-hooks'
 import PlacesAutocomplete from 'react-places-autocomplete'
@@ -67,6 +67,10 @@ function CreateSite() {
 
       if (!values.state) {
         errors.state = 'Required'
+      }
+
+      if (values.state && length(values.state) !== 2) {
+        errors.state = 'Use two letters'
       }
 
       if (!values.postalCode) {
@@ -175,7 +179,7 @@ function CreateSite() {
                       'Mexique'
                     ]
                     getInputProps().onChange({ target: { value: newAddress } })
-                    return suggestions
+                    const suggestionsToShow = suggestions
                       .filter(elem => {
                         const country = path(
                           ['terms', elem.terms.length - 1, 'value'],
@@ -187,6 +191,10 @@ function CreateSite() {
                         value: elem.formattedSuggestion.mainText,
                         label: elem.description
                       }))
+                    return append(
+                      { value: newAddress, label: newAddress },
+                      suggestionsToShow
+                    )
                   }} //load options
                   onSelect={handleSelect} //onchange
                   className="mt-10"
