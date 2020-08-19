@@ -1,6 +1,6 @@
 import * as Sentry from '@sentry/browser'
 import { actions, mapToPVS, mapFromPVS } from '@sunpower/panel-layout-tool'
-import { pathOr } from 'ramda'
+import { pathOr, filter, propIs, compose } from 'ramda'
 import { ofType } from 'redux-observable'
 import { map, catchError, switchMap, exhaustMap } from 'rxjs/operators'
 import { from, of } from 'rxjs'
@@ -18,7 +18,12 @@ import { SUBMIT_COMMISSION_SUCCESS } from 'state/actions/systemConfiguration'
 export const getPanelLayout = async () => {
   const { apis } = await getApiPVS()
   const response = await apis.panels.getPanelsLayout()
-  const panels = pathOr([], ['body', 'result', 'panels'], response)
+  // filters out not-assigned panels
+  const panels = compose(
+    filter(propIs(Number, 'xCoordinate')),
+    pathOr([], ['body', 'result', 'panels'])
+  )(response)
+
   return mapFromPVS(panels)
 }
 
