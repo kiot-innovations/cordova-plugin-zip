@@ -1,14 +1,16 @@
 import {
+  GRID_PROFILE_DOWNLOAD_ERROR,
   GRID_PROFILE_DOWNLOAD_INIT,
-  GRID_PROFILE_FILE_ERROR,
-  GRID_PROFILE_SET_FILE_INFO
+  GRID_PROFILE_DOWNLOAD_PROGRESS,
+  GRID_PROFILE_DOWNLOAD_SUCCESS
 } from 'state/actions/gridProfileDownloader'
 import { createReducer } from 'redux-act'
 
 const initialState = {
   size: 0,
   lastModified: 0,
-  error: ''
+  error: '',
+  progress: 0
 }
 export default createReducer(
   {
@@ -17,13 +19,17 @@ export default createReducer(
       size: 0,
       error: ''
     }),
-    [GRID_PROFILE_SET_FILE_INFO]: (state, { lastModified, size }) => ({
+    [GRID_PROFILE_DOWNLOAD_PROGRESS]: (state, progress) => ({
+      ...state,
+      progress
+    }),
+    [GRID_PROFILE_DOWNLOAD_SUCCESS]: (state, { lastModified, size }) => ({
       ...state,
       size,
       lastModified,
-      error: ''
+      progress: 100
     }),
-    [GRID_PROFILE_FILE_ERROR]: (state, { error }) => ({
+    [GRID_PROFILE_DOWNLOAD_ERROR]: (state, error) => ({
       ...state,
       error,
       lastModified: 0,

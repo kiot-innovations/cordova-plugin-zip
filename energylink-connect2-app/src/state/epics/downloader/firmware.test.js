@@ -1,324 +1,178 @@
+import * as Sentry from '@sentry/browser'
 import { of, throwError } from 'rxjs'
 import {
-  DOWNLOAD_INIT,
-  DOWNLOAD_SUCCESS,
-  FIRMWARE_DOWNLOAD_INIT,
-  FIRMWARE_DOWNLOAD_LUA_FILES,
-  FIRMWARE_DOWNLOADED,
-  FIRMWARE_GET_FILE,
-  FIRMWARE_GET_FILE_INFO,
-  FIRMWARE_METADATA_DOWNLOAD_INIT,
-  SET_FILE_INFO,
-  SET_FILE_SIZE
+  PVS_DECOMPRESS_LUA_FILES_ERROR,
+  PVS_DECOMPRESS_LUA_FILES_INIT,
+  PVS_DECOMPRESS_LUA_FILES_SUCCESS,
+  PVS_FIRMWARE_DOWNLOAD_INIT,
+  PVS_FIRMWARE_DOWNLOAD_PROGRESS,
+  PVS_FIRMWARE_DOWNLOAD_SUCCESS,
+  PVS_FIRMWARE_REPORT_SUCCESS,
+  PVS_FIRMWARE_UPDATE_URL,
+  PVS_SET_FILE_INFO
 } from 'state/actions/fileDownloader'
 
 import * as fileSystem from 'shared/fileSystem'
-import { ERROR_CODES } from 'shared/fileSystem'
-import { TestScheduler } from 'rxjs/testing'
+import * as fileTransferObservable from 'state/epics/observables/downloader'
+import * as unzipObservable from 'state/epics/observables/unzip'
+import { EMPTY_ACTION } from 'state/actions/share'
 
 describe('Epic firmware', () => {
   let epicTest
-  let epicFirmwareGetFile
-  let epicFirmwareGetFileInfo
-  let epicFirmwareDownloadInit
-  let epicGetFirmwareMetadataFile
-  let epicFirmwareMetadataFileDownloaded
-  let epicFirmwareFileDownloaded
-  let epicDownloadLuaFilesInit
+  const url =
+    'https://fw-assets-pvs6-dev.dev-edp.sunpower.com/staging-prod-cylon/8110/fwup/fwup.lua'
+  describe('updatePVSFirmwareEpic', () => {
+    it('should dispatch PVS_FIRMWARE_UPDATE_URL with no retry when there is no payload', function() {
+      epicTest = epicTester(require('./firmware').updatePVSFirmwareUrl)
 
-  describe('epicFirmwareGetFile', () => {
-    beforeEach(() => {
-      epicFirmwareGetFile = require('./firmware').epicFirmwareGetFile
-      epicTest = epicTester(epicFirmwareGetFile)
-    })
-
-    it('Dispatches SET_FILE_INFO, FIRMWARE_GET_FILE_INFO if it receives FIRMWARE_GET_FILE and file is already downloaded', () => {
-      fileSystem.getPVSFileSystemName = jest.fn(() =>
-        of('firmware/staging-prod-boomer-8888.fs')
-      )
-
-      fileSystem.fileExists = jest.fn(() => of({ size: 1000 }))
-
+      fileSystem.getLatestPVSFirmwareUrl = jest.fn(() => of(url))
       const inputValues = {
-        a: FIRMWARE_GET_FILE()
+        a: PVS_FIRMWARE_DOWNLOAD_INIT(),
+        b: PVS_FIRMWARE_DOWNLOAD_INIT(true)
       }
       const expectedValues = {
-        b: SET_FILE_INFO({ exists: true }),
-        c: FIRMWARE_GET_FILE_INFO()
-      }
-
-      const inputMarble = 'a'
-      const expectedMarble = '(bc)'
-
-      epicTest(inputMarble, expectedMarble, inputValues, expectedValues)
-    })
-
-    it('Dispatches FIRMWARE_GET_FILE_INFO if it receives FIRMWARE_GET_FILE and file is not in FS', () => {
-      fileSystem.getPVSFileSystemName = jest.fn(() =>
-        of('firmware/staging-prod-boomer-8888.fs')
-      )
-
-      fileSystem.fileExists = jest.fn(() => throwError(new Error('No file')))
-
-      const inputValues = {
-        a: FIRMWARE_GET_FILE()
-      }
-      const expectedValues = {
-        b: FIRMWARE_DOWNLOAD_INIT({
-          wifiOnly: false
-        })
-      }
-
-      const inputMarble = 'a'
-      const expectedMarble = 'b'
-
-      epicTest(inputMarble, expectedMarble, inputValues, expectedValues)
-    })
-  })
-
-  describe('epicFirmwareGetFileInfo', () => {
-    beforeEach(() => {
-      epicFirmwareGetFileInfo = require('./firmware').epicFirmwareGetFileInfo
-      epicTest = epicTester(epicFirmwareGetFileInfo)
-    })
-
-    it('Dispatches SET_FILE_SIZE, SET_FILE_NAME if it receives FIRMWARE_GET_FILE_INFO and metadata file exists', () => {
-      fileSystem.parseLuaFile = jest.fn(() => {
-        return of(50000)
-      })
-
-      fileSystem.getFirmwareVersionData = jest.fn(() => ({
-        luaFileName: 'staging prod boomer',
-        fileURL: 'https://test/staging-prod-boomer/8888/fwup/fwup.lua',
-        version: 8888,
-        pvsFileSystemName: 'staging-prod-boomer-8888.fs',
-        luaDownloadName: 'staging-prod-boomer-8888.lua'
-      }))
-
-      const inputValues = {
-        a: FIRMWARE_GET_FILE_INFO()
-      }
-      const expectedValues = {
-        b: SET_FILE_SIZE(50000),
-        c: SET_FILE_INFO({
-          displayName: `staging prod boomer - 8888`,
-          name: 'staging-prod-boomer-8888.fs'
-        })
-      }
-
-      const inputMarble = 'a'
-      const expectedMarble = '(bc)'
-
-      epicTest(inputMarble, expectedMarble, inputValues, expectedValues)
-    })
-  })
-
-  describe('epicFirmwareDownloadInit', () => {
-    beforeEach(() => {
-      epicFirmwareDownloadInit = require('./firmware').epicFirmwareDownloadInit
-      epicTest = epicTester(epicFirmwareDownloadInit)
-    })
-
-    it('Dispatches SET_FILE_SIZE, SET_FILE_NAME, DOWNLOAD_INIT if it receives FIRMWARE_DOWNLOAD_INIT and metadata file exists', () => {
-      fileSystem.parseLuaFile = jest.fn(() => {
-        return of(50000)
-      })
-
-      fileSystem.getFirmwareVersionData = jest.fn(() => ({
-        luaFileName: 'staging prod boomer',
-        fileURL: 'https://test/staging-prod-boomer/8888/fwup/fwup.lua',
-        version: 8888,
-        pvsFileSystemName: 'staging-prod-boomer-8888.fs',
-        luaDownloadName: 'staging-prod-boomer-8888.lua'
-      }))
-
-      const inputValues = {
-        a: FIRMWARE_DOWNLOAD_INIT()
-      }
-      const expectedValues = {
-        b: SET_FILE_SIZE(50000),
-        c: SET_FILE_INFO({
-          displayName: `staging prod boomer - 8888`,
-          name: 'staging-prod-boomer-8888.fs',
-          exists: false
+        a: PVS_FIRMWARE_UPDATE_URL({
+          url,
+          shouldRetry: false
         }),
-        d: DOWNLOAD_INIT({
-          fileName: 'staging-prod-boomer-8888.fs',
-          fileUrl: 'https://test/staging-prod-boomer/8888/fwup/rootfs.tgz',
-          folder: 'firmware',
-          wifiOnly: false
+        b: PVS_FIRMWARE_UPDATE_URL({
+          url,
+          shouldRetry: true
         })
       }
-
-      const inputMarble = 'a'
-      const expectedMarble = '(bcd)'
-
-      epicTest(inputMarble, expectedMarble, inputValues, expectedValues)
-    })
-
-    it('Dispatches FIRMWARE_METADATA_DOWNLOAD_INIT if it receives FIRMWARE_DOWNLOAD_INIT and metadata doesnt exists', () => {
-      fileSystem.parseLuaFile = jest.fn(() => {
-        return throwError(new Error(ERROR_CODES.getVersionInfo))
-      })
-      fileSystem.getFirmwareVersionData = jest.fn(() => ({
-        luaFileName: 'staging prod boomer',
-        fileURL: 'https://test/staging-prod-boomer/8888/fwup/fwup.lua',
-        version: 8888,
-        pvsFileSystemName: 'staging-prod-boomer-8888.fs',
-        luaDownloadName: 'staging-prod-boomer-8888.lua'
-      }))
-
-      const inputValues = {
-        a: FIRMWARE_DOWNLOAD_INIT()
-      }
-      const expectedValues = {
-        b: FIRMWARE_METADATA_DOWNLOAD_INIT()
-      }
-
-      const inputMarble = 'a'
-      const expectedMarble = 'b'
-
+      const inputMarble = 'a-b'
+      const expectedMarble = 'a-b'
       epicTest(inputMarble, expectedMarble, inputValues, expectedValues)
     })
   })
-
-  describe('epicGetFirmwareMetadataFile', () => {
-    beforeEach(() => {
-      epicGetFirmwareMetadataFile = require('./firmware')
-        .epicGetFirmwareMetadataFile
-      epicTest = epicTester(epicGetFirmwareMetadataFile)
-    })
-
-    it('Dispatches DOWNLOAD_INIT if it receives FIRMWARE_METADATA_DOWNLOAD_INIT', () => {
-      fileSystem.getFirmwareVersionData = jest.fn(() => ({
-        luaFileName: 'staging prod boomer',
-        fileURL: 'https://test/staging-prod-boomer/8888/fwup/fwup.lua',
-        version: 8888,
-        pvsFileSystemName: 'staging-prod-boomer-8888.fs',
-        luaDownloadName: 'staging-prod-boomer-8888.lua'
-      }))
-
-      const inputValues = {
-        a: FIRMWARE_METADATA_DOWNLOAD_INIT()
-      }
-      const expectedValues = {
-        b: SET_FILE_INFO({
-          displayName: 'staging prod boomer - 8888',
-          name: 'staging-prod-boomer-8888.lua',
-          exists: false
-        }),
-        c: DOWNLOAD_INIT({
-          fileName: 'staging-prod-boomer-8888.lua',
-          fileUrl: 'https://test/staging-prod-boomer/8888/fwup/fwup.lua',
-          folder: 'firmware'
-        })
-      }
-
-      const inputMarble = 'a'
-      const expectedMarble = '(bc)'
-
-      epicTest(inputMarble, expectedMarble, inputValues, expectedValues)
-    })
-  })
-
-  describe('epicFirmwareMetadataFileDownloaded', () => {
-    beforeEach(() => {
-      epicFirmwareMetadataFileDownloaded = require('./firmware')
-        .epicFirmwareMetadataFileDownloaded
-      epicTest = epicTester(epicFirmwareMetadataFileDownloaded)
-    })
-
-    it('Dispatches FIRMWARE_DOWNLOAD_INIT if it receives DOWNLOAD_SUCCESS', () => {
-      fileSystem.getFirmwareVersionData = jest.fn(() => ({
-        luaFileName: 'staging prod boomer',
-        fileURL: 'https://test/staging-prod-boomer/8888/fwup/fwup.lua',
-        version: 8888,
-        pvsFileSystemName: 'staging-prod-boomer-8888.fs',
-        luaDownloadName: 'staging-prod-boomer-8888.lua'
-      }))
-
-      const inputValues = {
-        a: DOWNLOAD_SUCCESS({ name: 'staging-prod-boomer-8888.lua' })
-      }
-      const expectedValues = {
-        b: FIRMWARE_DOWNLOAD_INIT()
-      }
-
-      const inputMarble = 'a'
-      const expectedMarble = 'b'
-
-      epicTest(inputMarble, expectedMarble, inputValues, expectedValues)
-    })
-  })
-
-  describe('epicFirmwareFileDownloaded', () => {
-    beforeEach(() => {
-      epicFirmwareFileDownloaded = require('./firmware')
-        .epicFirmwareFileDownloaded
-      epicTest = epicTester(epicFirmwareFileDownloaded)
-    })
-
-    it('Dispatches FIRMWARE_DOWNLOAD_LUA_FILES if it receives DOWNLOAD_SUCCESS', () => {
-      fileSystem.getFirmwareVersionData = jest.fn(() => ({
-        luaFileName: 'staging prod boomer',
-        fileURL: 'https://test/staging-prod-boomer/8888/fwup/fwup.lua',
-        version: 8888,
-        pvsFileSystemName: 'staging-prod-boomer-8888.fs',
-        luaDownloadName: 'staging-prod-boomer-8888.lua'
-      }))
-
-      const inputValues = {
-        a: DOWNLOAD_SUCCESS({ name: 'staging-prod-boomer-8888.fs' })
-      }
-      const expectedValues = {
-        b: FIRMWARE_DOWNLOAD_LUA_FILES(8888),
-        c: FIRMWARE_DOWNLOADED()
-      }
-
-      const inputMarble = 'a'
-      const expectedMarble = '(bc)'
-
-      epicTest(inputMarble, expectedMarble, inputValues, expectedValues)
-    })
-  })
-
-  describe('epicDownloadLuaFilesInit', () => {
-    beforeEach(() => {
-      epicDownloadLuaFilesInit = require('./firmware').epicDownloadLuaFilesInit
-      epicTest = epicTester(epicDownloadLuaFilesInit)
-    })
-
-    it('Dispatches DOWNLOAD_INIT if it receives FIRMWARE_DOWNLOAD_LUA_FILES', async () => {
-      fileSystem.getFirmwareVersionData = jest.fn(() => ({
-        luaFileName: 'staging prod boomer',
-        fileURL: 'https://test/staging-prod-boomer/8888/fwup/fwup.lua',
-        version: 8888,
-        pvsFileSystemName: 'staging-prod-boomer-8888.fs',
-        luaDownloadName: 'staging-prod-boomer-8888.lua'
-      }))
-      const testScheduler = new TestScheduler((a, b) => {
-        return (
-          b.fileUrl === 'https://test/staging-prod-boomer/8888/fwup/fwup.lua'
+  describe('downloadPVSFirmware', function() {
+    it('should dispatch Download progress and success based on answers', function() {
+      epicTest = epicTester(require('./firmware').downloadPVSFirmware)
+      fileTransferObservable.default = jest.fn(() =>
+        of(
+          { progress: 10, total: 1000000 },
+          { progress: 20, total: 1000000 },
+          { total: 1000000 }
         )
-      })
+      )
 
-      testScheduler.run(({ hot, expectObservable }) => {
-        const action$ = hot('-a', {
-          a: FIRMWARE_DOWNLOAD_LUA_FILES()
+      const inputValues = {
+        a: PVS_FIRMWARE_UPDATE_URL({
+          url,
+          shouldRetry: false
         })
-        const output$ = epicDownloadLuaFilesInit(action$)
+      }
+      const expectedValues = {
+        a: PVS_FIRMWARE_DOWNLOAD_PROGRESS({
+          progress: 10,
+          size: '1.00'
+        }),
+        b: PVS_FIRMWARE_DOWNLOAD_PROGRESS({
+          progress: 20,
+          size: '1.00'
+        }),
+        c: PVS_FIRMWARE_REPORT_SUCCESS('firmware/staging-prod-cylon-8110.fs')
+      }
 
-        expectObservable(output$).toBe('---a', {
-          a: {
-            type: DOWNLOAD_INIT.getType(),
-            payload: {
-              fileUrl: 'https://test/staging-prod-boomer/8888/fwup/fwup.lua',
-              unzip: true,
-              folder: 'luaFiles'
-            }
-          }
+      const inputMarble = 'a'
+      const expectedMarble = '(abc)'
+
+      epicTest(inputMarble, expectedMarble, inputValues, expectedValues)
+    })
+    it('should go from reportSuccess to actual sucess', function() {
+      epicTest = epicTester(require('./firmware').reportPVSDownloadSuccessEpic)
+      fileSystem.getLuaFileSize = jest.fn(() =>
+        of({
+          lastModified: 1597608047172,
+          size: 1000000
         })
-      })
+      )
+      const inputValues = {
+        a: PVS_FIRMWARE_REPORT_SUCCESS('firmware/staging-prod-cylon-8110.fs')
+      }
+      const expectedValues = {
+        a: PVS_FIRMWARE_DOWNLOAD_SUCCESS({
+          lastModified: 1597608047172,
+          size: '1.00'
+        })
+      }
+
+      const inputMarble = 'a'
+      const expectedMarble = 'a'
+
+      epicTest(inputMarble, expectedMarble, inputValues, expectedValues)
+    })
+  })
+
+  describe('setPVSFirmwareInfoData', function() {
+    it('should dispatch PVS_SET_FILE_INFO', function() {
+      epicTest = epicTester(require('./firmware').setPVSFirmwareInfoData)
+
+      const inputValues = { a: PVS_FIRMWARE_UPDATE_URL({ url }) }
+      const expectedValues = {
+        a: PVS_SET_FILE_INFO({
+          displayName: 'staging prod cylon - 8110',
+          name: 'firmware/staging-prod-cylon-8110.fs'
+        })
+      }
+      const inputMarble = 'a'
+      const expectedMarble = '(a)'
+
+      epicTest(inputMarble, expectedMarble, inputValues, expectedValues)
+    })
+  })
+  describe('decompressLuaFiles', function() {
+    it('should dispatch PVS_DECOMPRESS_SUCCESS once it finishes decompressing and must be called with PVS_DECOMPRESS_LUA_FILES', function() {
+      epicTest = epicTester(require('./firmware').decompressLuaFiles)
+      unzipObservable.default = jest.fn(() => of({ complete: true }))
+      const inputValues = { a: PVS_DECOMPRESS_LUA_FILES_INIT() }
+      const expectedValues = {
+        a: PVS_DECOMPRESS_LUA_FILES_SUCCESS({ complete: true })
+      }
+      const inputMarble = 'a'
+      const expectedMarble = '(a)'
+
+      epicTest(inputMarble, expectedMarble, inputValues, expectedValues)
+    })
+    it('should dispatch PVS_DECOMPRESS_ERROR in case of an error', function() {
+      const errorData = {
+        error: 'Error decompressing the zip file',
+        file: 'luaFiles/all.zip'
+      }
+      epicTest = epicTester(require('./firmware').decompressLuaFiles)
+      Sentry.addBreadcrumb = jest.fn(() => {})
+      Sentry.captureException = jest.fn(() => {})
+      unzipObservable.default = jest.fn(() => throwError(errorData))
+
+      const inputValues = { a: PVS_DECOMPRESS_LUA_FILES_INIT() }
+      const expectedValues = {
+        a: PVS_DECOMPRESS_LUA_FILES_ERROR(errorData)
+      }
+      const inputMarble = 'a'
+      const expectedMarble = '(a)'
+
+      epicTest(inputMarble, expectedMarble, inputValues, expectedValues)
+    })
+  })
+  describe('epicDownloadLuaFilesInit', function() {
+    it('should download LUA files ith a new UpdateUrl', function() {
+      epicTest = epicTester(require('./firmware').epicDownloadLuaFilesInit)
+      fileTransferObservable.default = jest.fn(() =>
+        of(
+          { progress: 10 },
+          { progress: 90 },
+          { entry: { fullPath: '/luaFiles/all.zip' } }
+        )
+      )
+      const inputValues = { a: PVS_FIRMWARE_UPDATE_URL({ url }) }
+      const expectedValues = {
+        a: EMPTY_ACTION('Downloading lua files'),
+        b: PVS_DECOMPRESS_LUA_FILES_INIT()
+      }
+      const inputMarble = 'a'
+      const expectedMarble = '(aab)'
+
+      epicTest(inputMarble, expectedMarble, inputValues, expectedValues)
     })
   })
 })

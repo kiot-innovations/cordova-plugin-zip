@@ -18,8 +18,9 @@ import paths from 'routes/paths'
 
 import SearchField from 'components/SearchField'
 import './Home.scss'
-import { GET_FIRMWARE_URL } from 'state/actions/fileDownloader'
+import { PVS_FIRMWARE_DOWNLOAD_INIT } from 'state/actions/fileDownloader'
 import { DOWNLOAD_OS_INIT } from 'state/actions/ess'
+import { GRID_PROFILE_DOWNLOAD_INIT } from 'state/actions/gridProfileDownloader'
 
 const formatAddress = compose(
   join(', '),
@@ -68,8 +69,9 @@ function Home() {
 
   const { access_token } = useSelector(state => state.user.auth)
   useEffect(() => {
-    dispatch(GET_FIRMWARE_URL())
+    dispatch(PVS_FIRMWARE_DOWNLOAD_INIT())
     dispatch(DOWNLOAD_OS_INIT())
+    dispatch(GRID_PROFILE_DOWNLOAD_INIT())
   }, [dispatch])
   const notFoundText = t('NOT_FOUND')
 

@@ -80,7 +80,7 @@ export const uploadEqsFwEpic = action$ => {
     ofType(UPLOAD_EQS_FIRMWARE.getType()),
     exhaustMap(({ payload }) => {
       const formdata = new FormData()
-      formdata.append('firmware', payload, 'Byers2.1.zip')
+      formdata.append('firmware', payload, 'ChiefHopper.zip')
 
       const requestOptions = {
         method: 'POST',

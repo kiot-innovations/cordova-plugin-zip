@@ -1,13 +1,11 @@
 import { propOr } from 'ramda'
 import {
-  DOWNLOAD_NO_WIFI,
-  DOWNLOAD_PROGRESS,
-  FIRMWARE_DOWNLOAD_INIT,
-  FIRMWARE_DOWNLOADED,
-  FIRMWARE_GET_FILE,
-  GET_FIRMWARE_URL_SUCCESS,
-  SET_FILE_INFO,
-  SET_FILE_SIZE
+  PVS_FIRMWARE_DOWNLOAD_ERROR,
+  PVS_FIRMWARE_DOWNLOAD_INIT,
+  PVS_FIRMWARE_DOWNLOAD_PROGRESS,
+  PVS_FIRMWARE_DOWNLOAD_SUCCESS,
+  PVS_FIRMWARE_UPDATE_URL,
+  PVS_SET_FILE_INFO
 } from 'state/actions/fileDownloader'
 import { createReducer } from 'redux-act'
 
@@ -22,33 +20,38 @@ const initialState = {
 
 export default createReducer(
   {
-    [GET_FIRMWARE_URL_SUCCESS]: (state, updateURL) => ({
+    [PVS_FIRMWARE_UPDATE_URL]: (state, { url }) => ({
       ...state,
-      updateURL
+      updateURL: url
     }),
-    [FIRMWARE_GET_FILE]: state => ({
+    [PVS_FIRMWARE_DOWNLOAD_ERROR]: state => ({
+      ...state,
+      error: 'Error downloading PVS'
+    }),
+    [PVS_FIRMWARE_DOWNLOAD_INIT]: state => ({
       ...state,
       error: '',
       exists: false
     }),
-    [FIRMWARE_DOWNLOAD_INIT]: state => ({
+    [PVS_FIRMWARE_DOWNLOAD_SUCCESS]: (state, { lastModified, size }) => ({
       ...state,
-      error: '',
-      exists: false
+      lastModified,
+      size,
+      exists: true,
+      error: ''
     }),
-    [SET_FILE_INFO]: (state, props) => ({
+    [PVS_FIRMWARE_DOWNLOAD_PROGRESS]: (state, { size }) => ({
+      ...state,
+      size: size,
+      error: ''
+    }),
+    [PVS_SET_FILE_INFO]: (state, props) => ({
       ...state,
       name: propOr(state.name, 'name', props),
       displayName: propOr(state.displayName, 'displayName', props),
-      exists: propOr(state.exists, 'exists', props)
-    }),
-    [SET_FILE_SIZE]: (state, size) => ({ ...state, size }),
-    [DOWNLOAD_PROGRESS]: state => ({
-      ...state,
-      error: ''
-    }),
-    [FIRMWARE_DOWNLOADED]: state => ({ ...state, error: '', exists: true }),
-    [DOWNLOAD_NO_WIFI]: state => ({ ...state, error: 'NO WIFI' })
+      exists: propOr(state.exists, 'exists', props),
+      size: propOr(state.size, 'size', props)
+    })
   },
   initialState
 )

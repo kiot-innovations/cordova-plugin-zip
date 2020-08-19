@@ -1,42 +1,61 @@
 import { of } from 'rxjs'
 import {
-  GRID_PROFILE_GET_FILE,
-  GRID_PROFILE_SET_FILE_INFO
-} from '../../actions/gridProfileDownloader'
+  GRID_PROFILE_DOWNLOAD_INIT,
+  GRID_PROFILE_DOWNLOAD_PROGRESS,
+  GRID_PROFILE_DOWNLOAD_SUCCESS,
+  GRID_PROFILE_REPORT_SUCCESS
+} from 'state/actions/gridProfileDownloader'
+import * as fileTransferObservable from 'state/epics/observables/downloader'
+import * as fileSystem from 'shared/fileSystem'
 
 describe('Epic gridProfile', () => {
-  let epicTest
-  let epicGetGridProfileFromFS
-  let getGridProfileFilePath
+  it('should show the progress of the download, if complete set the file info', () => {
+    const epicTest = epicTester(
+      require('./gridProfile').epicInitDownloadGridProfile
+    )
 
-  beforeEach(() => {
-    getGridProfileFilePath = jest.fn(() => 'gridprofile.tar.gz')
-
-    jest.doMock('../../../shared/fileSystem', () => ({
-      getGridProfileFilePath,
-      fileExists: jest.fn(() => {
-        return of({ fileUrl: 'https://test/rootfs.tgz', size: 50000 })
-      })
-    }))
-
-    epicGetGridProfileFromFS = require('./gridProfile').epicGetGridProfileFromFS
-    epicTest = epicTester(epicGetGridProfileFromFS)
-  })
-
-  it('Emits GRID_PROFILE_SET_FILE_INFO if GRID_PROFILE_GET_FILE', () => {
+    fileTransferObservable.default = jest.fn(() =>
+      of(
+        { progress: 10 },
+        { progress: 20 },
+        { progress: 90 },
+        { entry: { name: 'gridProfile.tar.gz' }, total: 10000 }
+      )
+    )
     const inputValues = {
-      a: GRID_PROFILE_GET_FILE()
+      a: GRID_PROFILE_DOWNLOAD_INIT()
     }
     const expectedValues = {
-      b: GRID_PROFILE_SET_FILE_INFO({
-        fileUrl: 'https://test/rootfs.tgz',
-        size: 50000
-      })
+      a: GRID_PROFILE_DOWNLOAD_PROGRESS(10),
+      b: GRID_PROFILE_DOWNLOAD_PROGRESS(20),
+      c: GRID_PROFILE_DOWNLOAD_PROGRESS(90),
+      d: GRID_PROFILE_REPORT_SUCCESS('firmware/gridProfile.tar.gz')
     }
 
     const inputMarble = 'a'
-    const expectedMarble = 'b'
+    const expectedMarble = '(abcd)'
 
     epicTest(inputMarble, expectedMarble, inputValues, expectedValues)
+  })
+  it('should dispatch GRID_PROFILE_DOWNLOAD_SUCCESS if it could run all of it correctly', function() {
+    fileSystem.getFileInfo = jest.fn(() =>
+      of({
+        lastModified: 1597608047172,
+        size: 1000000
+      })
+    )
+    const epicTest = epicTester(
+      require('./gridProfile').epicGridProfileReportSuccess
+    )
+    const inputValues = {
+      a: GRID_PROFILE_REPORT_SUCCESS('firmware/gridProfile.tar.gz')
+    }
+    const expectedValues = {
+      a: GRID_PROFILE_DOWNLOAD_SUCCESS({
+        lastModified: 1597608047172,
+        size: 1000000
+      })
+    }
+    epicTest('a', 'a', inputValues, expectedValues)
   })
 })

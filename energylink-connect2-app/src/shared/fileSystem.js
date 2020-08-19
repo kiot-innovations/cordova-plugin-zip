@@ -96,6 +96,24 @@ export const getFileBlob = (fileName = '') =>
       reject(new Error(ERROR_CODES.NO_FILESYSTEM_FILE))
     }
   })
+export const getFileInfo = (fileName = '') =>
+  new Promise(async (resolve, reject) => {
+    try {
+      const file = await fileExists(`${PERSIST_DATA_PATH}${fileName}`)
+      if (!file) reject(`The file doesn't exist ${fileName}`)
+      file.file(resolve, reject)
+    } catch (e) {
+      reject(e)
+    }
+  })
+export const getFileSize = async (fileName = '') => {
+  const info = await getFileInfo(fileName)
+  return {
+    byte: info.size,
+    kb: (info.size / 1000).toFixed(2),
+    mb: (info.size / 1000000).toFixed(2)
+  }
+}
 
 export const getFirmwareVersionData = fileURL => {
   const luaFileName = getLuaName(fileURL)
@@ -148,4 +166,50 @@ export const fileExists = async (path = '') => {
   } catch (e) {
     return false
   }
+}
+
+export const deleteFile = (path = '') =>
+  new Promise((resolve, reject) => {
+    fileExists(path)
+      .then(file => {
+        if (!file) resolve()
+        file.remove(resolve, reject, resolve)
+      })
+      .catch(reject)
+  })
+
+export async function getLatestPVSFirmwareUrl() {
+  const res = await fetch(process.env.REACT_APP_LATEST_FIRMWARE_URL)
+  return await res.text()
+}
+
+export const readFile = path =>
+  new Promise(async (resolve, reject) => {
+    const fileEntry = await fileExists(`${PERSIST_DATA_PATH}${path}`)
+    if (!fileEntry) reject("The file doesn't exist")
+    fileEntry.file(function(file) {
+      const reader = new FileReader()
+      reader.onloadend = function() {
+        resolve(this.result)
+      }
+      reader.readAsText(file)
+    }, reject)
+  })
+
+export const getDownloadSizeFromLuaFile = compose(
+  parseInt,
+  head,
+  split(','),
+  last,
+  split('dlsize = ')
+)
+
+export const getLuaFileSize = async rootFSPath => {
+  const dlSize = getDownloadSizeFromLuaFile(
+    (await readFile('luaFiles/fwup002.lua')) || ''
+  )
+
+  const { lastModified, size } = await getFileInfo(rootFSPath)
+  if (size === dlSize) return { lastModified, size }
+  throw new Error('The download is not the same size as expected')
 }

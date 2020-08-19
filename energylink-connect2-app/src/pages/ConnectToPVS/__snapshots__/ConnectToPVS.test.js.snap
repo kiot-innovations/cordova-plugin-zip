@@ -256,7 +256,7 @@ exports[`Connect to PVS page render correctly 1`] = `
                               className="has-text-white"
                             >
                               <b>
-                                PASSWORD
+                                WIFI_PASSWORD
                               </b>
                             </span>
                           </div>

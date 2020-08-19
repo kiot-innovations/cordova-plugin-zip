@@ -3,13 +3,12 @@ import moment from 'moment'
 import { pathOr, prop } from 'ramda'
 import { useDispatch, useSelector } from 'react-redux'
 
-import { getGridProfileFileName } from 'shared/fileSystem'
 import { useI18n } from 'shared/i18n'
 import { either } from 'shared/utils'
 import { DOWNLOAD_META_INIT, DOWNLOAD_OS_INIT } from 'state/actions/ess'
-import * as fileDownloaderActions from 'state/actions/fileDownloader'
 
-import * as gridProfileDownloaderActions from 'state/actions/gridProfileDownloader'
+import { PVS_FIRMWARE_DOWNLOAD_INIT } from 'state/actions/fileDownloader'
+import { GRID_PROFILE_DOWNLOAD_INIT } from 'state/actions/gridProfileDownloader'
 import Collapsible from 'components/Collapsible'
 
 import EssCollapsible from './EssCollapsible'
@@ -36,37 +35,30 @@ function Firmwares() {
   const t = useI18n()
   const dispatch = useDispatch()
 
-  const { fileName: downloadingFileName, progress, downloading } = useSelector(
+  const { progress, downloading: isDownloading } = useSelector(
     pathOr({}, ['fileDownloader', 'progress'])
   )
 
-  const { fwFileInfo } = useSelector(({ fileDownloader }) => ({
-    fwFileInfo: fileDownloader.fileInfo
-  }))
+  const fwFileInfo = useSelector(pathOr('', ['fileDownloader', 'fileInfo']))
 
-  const { gpError, gpLastModified } = useSelector(({ fileDownloader }) => ({
-    gpError: fileDownloader.gridProfileInfo.error,
-    gpLastModified: fileDownloader.gridProfileInfo.lastModified
-  }))
-
-  const isDownloadingGridProfile =
-    downloading && getGridProfileFileName() === downloadingFileName
-  const isDownloadingFirmware =
-    downloading && fwFileInfo.name === downloadingFileName
+  const { gpError, gpLastModified, isDownloadingGridProfile } = useSelector(
+    ({ fileDownloader }) => ({
+      gpError: fileDownloader.gridProfileInfo.error,
+      isDownloadingGridProfile: fileDownloader.gridProfileInfo.progress !== 100,
+      gpLastModified: fileDownloader.gridProfileInfo.lastModified
+    })
+  )
 
   const downloadFile = useCallback(
-    () => dispatch(fileDownloaderActions.FIRMWARE_DOWNLOAD_INIT()),
+    () => dispatch(PVS_FIRMWARE_DOWNLOAD_INIT(true)),
     [dispatch]
   )
 
-  const downloadGridProfiles = () =>
-    dispatch(gridProfileDownloaderActions.GRID_PROFILE_DOWNLOAD_INIT())
-
-  const downloadAbort = () => dispatch(fileDownloaderActions.DOWNLOAD_ABORT())
+  const downloadGridProfiles = () => dispatch(GRID_PROFILE_DOWNLOAD_INIT(true))
 
   useEffect(() => {
-    dispatch(fileDownloaderActions.GET_FIRMWARE_URL())
-    dispatch(gridProfileDownloaderActions.GRID_PROFILE_GET_FILE())
+    dispatch(PVS_FIRMWARE_DOWNLOAD_INIT())
+    dispatch(GRID_PROFILE_DOWNLOAD_INIT())
     dispatch(DOWNLOAD_OS_INIT())
     dispatch(DOWNLOAD_META_INIT())
   }, [dispatch])
@@ -75,16 +67,11 @@ function Firmwares() {
     <section className="is-flex tile is-vertical pt-0 pr-10 pl-10 full-height">
       <h1 className="has-text-centered is-uppercase pb-20">{t('FIRMWARE')}</h1>
       <Collapsible
+        actions={either(
+          fwFileInfo.error,
+          <span className="is-size-4 sp-download" onClick={downloadFile} />
+        )}
         title={getFileName(fwFileInfo)}
-        actions={
-          !fwFileInfo.error ? (
-            isDownloadingFirmware && (
-              <span className="is-size-4 sp-stop" onClick={downloadAbort} />
-            )
-          ) : (
-            <span className="is-size-4 sp-download" onClick={downloadFile} />
-          )
-        }
         expanded
       >
         {either(
@@ -93,15 +80,10 @@ function Firmwares() {
           <section className="mt-20 mb-10">
             <p className="mb-5">
               <span className="mr-10 has-text-white has-text-weight-bold">
-                {either(
-                  isDownloadingFirmware,
-                  progress,
-                  fwFileInfo.exists ? 100 : 0
-                )}
-                %
+                {either(isDownloading, progress, fwFileInfo.exists ? 100 : 0)}%
               </span>
               {either(
-                isDownloadingFirmware,
+                isDownloading,
                 t('DOWNLOADING'),
                 fwFileInfo.exists ? t('DOWNLOADED') : t('NOT_DOWNLOADED')
               )}
@@ -109,7 +91,7 @@ function Firmwares() {
                 {getFileSize(fwFileInfo)}MB
               </span>
             </p>
-            {isDownloadingFirmware && (
+            {isDownloading && (
               <progress
                 className="progress is-tiny is-white"
                 value={progress}
@@ -123,9 +105,7 @@ function Firmwares() {
       <Collapsible
         title={t('GRID_PROFILES_PACKAGE')}
         actions={
-          isDownloadingGridProfile ? (
-            <span className="is-size-4 sp-stop" onClick={downloadAbort} />
-          ) : (
+          isDownloadingGridProfile ? null : (
             <span
               className="is-size-4 sp-download"
               onClick={downloadGridProfiles}

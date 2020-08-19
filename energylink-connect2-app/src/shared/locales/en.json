@@ -105,6 +105,7 @@
   "NETWORK": "Network",
   "SELECT_NETWORK": "Select Network",
   "PASSWORD": "Password",
+  "WIFI_PASSWORD": "Password: ",
   "USE_WPS": "Use WPS",
   "CONNECT": "Connect",
   "RESCAN": "Rescan",
@@ -458,10 +459,11 @@
   "UNKNOWN_MI_TYPE": "Unknown Type",
   "STORAGE_FW_FILE": "SunVault Firmware Package",
   "SSID": "SSID: ",
-  "PASSWORD": "Password: ",
+
   "MANUAL_CONNECT_INSTRUCTIONS_1": "The automatic connect feature is not currently supported in Android 10.",
   "MANUAL_CONNECT_INSTRUCTIONS_2": "Please go to your phone’s wifi settings and connect to the following network:",
   "COPY_PWD_TO_CLIPBOARD": "Copy password to clipboard",
   "ABORT_CONNECTION": "Abort Connection",
-  "FIX_ERROR_TO_PROCEED": "Please fix this error to proceed"
+  "FIX_ERROR_TO_PROCEED": "Please fix this error to proceed",
+  "NO_INTERNET": "Could not download the required firmware packages, please make sure you’re connected to the internet and try again."
 }

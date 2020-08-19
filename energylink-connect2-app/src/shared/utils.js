@@ -28,13 +28,13 @@ import {
   prop,
   propEq,
   propOr,
+  propSatisfies,
   replace,
   split,
   toPairs,
   toUpper,
   values,
-  when,
-  propSatisfies
+  when
 } from 'ramda'
 
 export const either = (condition, whenTrue, whenFalse = null) =>
@@ -282,7 +282,6 @@ export const warningsLength = compose(
   defaultTo([])
 )
 
-
 export const PERSIST_DATA_PATH = 'cdvfile://localhost/persistent/'
 
 export const calculateTimeout = lastUpdated => {
@@ -293,3 +292,10 @@ export const calculateTimeout = lastUpdated => {
   const diff = moment().diff(then, 'milliseconds')
   return diff < 0 ? Math.abs(diff) + 3000 : 0
 }
+
+export const hasInternetConnection = () =>
+  new Promise((resolve, reject) =>
+    fetch(process.env.REACT_APP_SWAGGER_FIRMWARE)
+      .then(() => resolve())
+      .catch(() => reject())
+  )
