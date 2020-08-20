@@ -12,7 +12,6 @@ import {
   length,
   map,
   pathOr,
-  pick,
   prop,
   propEq,
   filter,
@@ -23,7 +22,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import paths from 'routes/paths'
 import { useI18n } from 'shared/i18n'
-import { either, renameKey } from 'shared/utils'
+import { either } from 'shared/utils'
 import { PLT_LOAD } from 'state/actions/panel-layout-tool'
 import { Loader } from '../../components/Loader'
 import { useError } from './hooks'
@@ -37,14 +36,6 @@ const getEPanel = compose(
 )
 
 const EPanel = getEPanel(Panel)
-
-const getPosition = compose(
-  utils.roundXY,
-  renameKey('offsetX', 'x'),
-  renameKey('offsetY', 'y'),
-  pick(['offsetX', 'offsetY']),
-  prop('evt')
-)
 
 const getSerialNumbers = compose(
   filter(propEq('DEVICE_TYPE', 'Inverter')),
@@ -75,9 +66,8 @@ export const AddingPanels = () => {
   const [index, setIndex] = useState(0)
 
   const assign = useCallback(
-    e => {
+    (e, position) => {
       if (!unassigned[index]) return
-      const position = getPosition(e)
       setIndex(index > 0 ? index - 1 : 0)
       dispatch(
         actions.add(
