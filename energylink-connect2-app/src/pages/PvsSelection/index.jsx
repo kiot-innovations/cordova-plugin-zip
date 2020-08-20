@@ -1,5 +1,5 @@
 import React from 'react'
-import { compose, map, path, pathOr, pick } from 'ramda'
+import { compose, map, path, pathOr, pick, uniqBy, prop } from 'ramda'
 import { useDispatch, useSelector } from 'react-redux'
 import clsx from 'clsx'
 import { useHistory } from 'react-router-dom'
@@ -14,6 +14,7 @@ import './PVSelection.scss'
 
 const getPvsSerialNumbers = compose(
   map(pick(['deviceSerialNumber', 'assignmentEffectiveTimestamp'])),
+  uniqBy(prop('deviceSerialNumber')),
   pathOr([], ['site', 'sitePVS'])
 )
 
