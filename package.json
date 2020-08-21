@@ -1,8 +1,8 @@
 {
   "name": "com.sunpower.energylink.commissioning2",
-  "displayName": "EnergylinkConnect2",
+  "displayName": "SunPower Pro Connect",
   "version": "0.32.0",
-  "description": "SunPower EnergyLink Connect 2",
+  "description": "PVS Commissioning by SunPower",
   "author": "SunPower Corporation",
   "private": true,
   "main": "index.js",
