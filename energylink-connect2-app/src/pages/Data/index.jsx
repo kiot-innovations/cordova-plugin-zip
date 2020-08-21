@@ -96,23 +96,26 @@ export default () => {
   return (
     <section className="data is-flex has-text-centered full-height pl-10 pr-10">
       <section>
-        <Collapsible title={t('SUNVAULT_STATUS')}>
-          <span className="has-text-weight-bold has-text-white mt-10 mb-10">
-            {either(
-              !isEmpty(essState),
-              <span>
-                {storageStatus.error
-                  ? t('EQS_ERROR')
-                  : t(essDisplayStatus(essState))}
-              </span>,
-              <span className="loader-label">{t('LOADING')}</span>
-            )}
-          </span>
-          <ButtonLink
-            title={t('HEALTH_CHECK')}
-            path={paths.PROTECTED.ESS_HEALTH_CHECK.path}
-          />
-        </Collapsible>
+        {either(
+          hasStorage,
+          <Collapsible title={t('SUNVAULT_STATUS')}>
+            <span className="has-text-weight-bold has-text-white mt-10 mb-10">
+              {either(
+                !isEmpty(essState),
+                <span>
+                  {storageStatus.error
+                    ? t('EQS_ERROR')
+                    : t(essDisplayStatus(essState))}
+                </span>,
+                <span className="loader-label">{t('LOADING')}</span>
+              )}
+            </span>
+            <ButtonLink
+              title={t('HEALTH_CHECK')}
+              path={paths.PROTECTED.ESS_HEALTH_CHECK.path}
+            />
+          </Collapsible>
+        )}
         {either(miData, <MiDataLive data={miData} />)}
       </section>
       <section>
