@@ -214,6 +214,18 @@ const paths = {
       header: true,
       footer: true,
       tab: TABS.INSTALL
+    },
+    RMA_INVENTORY: {
+      path: '/rma-inventory',
+      header: true,
+      footer: true,
+      tab: TABS.INSTALL
+    },
+    RMA_SN_LIST: {
+      path: '/rma-sn-list',
+      header: true,
+      footer: true,
+      tab: TABS.INSTALL
     }
   },
   UNPROTECTED: {

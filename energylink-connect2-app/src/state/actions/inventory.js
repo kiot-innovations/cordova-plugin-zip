@@ -6,6 +6,7 @@ export const FETCH_INVENTORY_SUCCESS = createAction('FETCH_INVENTORY_SUCCESS')
 export const SAVE_INVENTORY_INIT = createAction('SAVE_INVENTORY_INIT')
 export const SAVE_INVENTORY_ERROR = createAction('SAVE_INVENTORY_ERROR')
 export const SAVE_INVENTORY_SUCCESS = createAction('SAVE_INVENTORY_SUCCESS')
+export const SAVE_INVENTORY_RMA = createAction('SAVE_INVENTORY_RMA')
 export const UPDATE_MI_COUNT = createAction('UPDATE_MI_COUNT')
 export const RESET_INVENTORY = createAction('RESET_INVENTORY')
 

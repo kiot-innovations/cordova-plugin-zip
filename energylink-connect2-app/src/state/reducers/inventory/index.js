@@ -8,7 +8,8 @@ import {
   SAVE_INVENTORY_SUCCESS,
   SAVE_INVENTORY_ERROR,
   UPDATE_MI_COUNT,
-  RESET_INVENTORY
+  RESET_INVENTORY,
+  SAVE_INVENTORY_RMA
 } from '../../actions/inventory'
 
 const initialState = {
@@ -19,6 +20,11 @@ const initialState = {
     { item: 'EXTERNAL_METERS', value: '0' },
     { item: 'ESS', value: '0' }
   ],
+  rma: {
+    ess: '',
+    mi_count: 0,
+    other: false
+  },
   fetchingInventory: false,
   savingInventory: false
 }
@@ -65,7 +71,17 @@ export const inventoryReducer = createReducer(
         })
       ]
     }),
-    [RESET_INVENTORY]: () => ({ ...initialState, bom: clone(initialState.bom) })
+    [RESET_INVENTORY]: () => ({
+      ...initialState,
+      bom: clone(initialState.bom)
+    }),
+    [SAVE_INVENTORY_RMA]: (state, payload) => ({
+      ...state,
+      rma: {
+        ...state.rma,
+        [payload.name]: payload.value
+      }
+    })
   },
   initialState
 )

@@ -465,5 +465,11 @@
   "COPY_PWD_TO_CLIPBOARD": "Copy password to clipboard",
   "ABORT_CONNECTION": "Abort Connection",
   "FIX_ERROR_TO_PROCEED": "Please fix this error to proceed",
-  "NO_INTERNET": "Could not download the required firmware packages, please make sure you’re connected to the internet and try again."
+  "NO_INTERNET": "Could not download the required firmware packages, please make sure you’re connected to the internet and try again.",
+  "RMA_ADD_DEVICES_TITLE": "Select devices you're adding",
+  "RMA_ADD_DEVICES_TIP": "If you're not installing new equipment, feel free to continue",
+  "RMA_MI_NUMBER": "Number to add",
+  "RMA_SELECT_DEVICE_ERROR": "Please select at least one piece of equipment before continuing",
+  "OTHER_DEVICES": "Other Devices",
+  "EQUINOX_STORAGE_SYSTEM": "Equinox Storage System"
 }

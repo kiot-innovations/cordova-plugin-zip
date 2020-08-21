@@ -46,6 +46,8 @@ import StoragePrediscovery from 'pages/StoragePrediscovery'
 import VersionInformation from 'pages/VersionInformation'
 import DebugPage from 'pages/DebugPage'
 import PvsSelection from 'pages/PvsSelection'
+import RMAInventory from 'pages/RMAInventory'
+import RMASnList from 'pages/RMASnList'
 
 import { validateSession } from 'state/actions/auth'
 import { updateBodyHeight } from 'shared/utils'
@@ -54,6 +56,8 @@ import { deviceResumeListener } from 'state/actions/mobile'
 import paths from './paths'
 
 const mapComponents = {
+  [paths.PROTECTED.RMA_INVENTORY.path]: RMAInventory,
+  [paths.PROTECTED.RMA_SN_LIST.path]: RMASnList,
   [paths.PROTECTED.ERROR_DETAIL.path]: ErrorDetailScreen,
   [paths.PROTECTED.DEVICES.path]: Devices,
   [paths.PROTECTED.UPDATE.path]: UpdateScreen,
