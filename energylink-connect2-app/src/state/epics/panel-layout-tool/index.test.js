@@ -42,7 +42,8 @@ describe('epic panel-layout-tool', () => {
         const expectedMarble = '(bc)'
 
         epicTest(inputMarble, expectedMarble, inputValues, expectedValues, {
-          network: { SSID: 'SunPower85888', password: '18858888' }
+          network: { SSID: 'SunPower85888', password: '18858888' },
+          panel_layout_tool: { panels: [{}] }
         })
       })
     })
@@ -79,7 +80,9 @@ describe('epic panel-layout-tool', () => {
         const inputMarble = 'a'
         const expectedMarble = 'b'
 
-        epicTest(inputMarble, expectedMarble, inputValues, expectedValues, {})
+        epicTest(inputMarble, expectedMarble, inputValues, expectedValues, {
+          panel_layout_tool: { panels: [{}] }
+        })
       })
     })
   })

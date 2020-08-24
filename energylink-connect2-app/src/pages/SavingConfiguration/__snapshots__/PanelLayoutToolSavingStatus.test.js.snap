@@ -41,7 +41,32 @@ exports[`PanelLayoutToolSavingStatus component renders correctly 1`] = `
       <PanelLayoutToolSavingStatus>
         <div
           className="plt-status is-flex is-vertical tile"
-        />
+        >
+          <span
+            className="has-text-weight-bold"
+          >
+            PLT_SAVING
+          </span>
+          <Loader>
+            <div
+              className="custom-loader"
+            >
+              <div
+                className="loader-inner line-scale-pulse-out-rapid"
+              >
+                <div />
+                 
+                <div />
+                 
+                <div />
+                 
+                <div />
+                 
+                <div />
+              </div>
+            </div>
+          </Loader>
+        </div>
       </PanelLayoutToolSavingStatus>
     </Provider>
   </Router>
