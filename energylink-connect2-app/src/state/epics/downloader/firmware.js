@@ -19,6 +19,7 @@ import { EMPTY_ACTION } from 'state/actions/share'
 import unzipObservable from 'state/epics/observables/unzip'
 import fileTransferObservable from 'state/epics/observables/downloader'
 import {
+  fileExists,
   getFirmwareVersionData,
   getFS,
   getLatestPVSFirmwareUrl,
@@ -134,17 +135,24 @@ export const epicDownloadLuaFilesInit = action$ =>
   action$.pipe(
     ofType(PVS_FIRMWARE_UPDATE_URL.getType()),
     exhaustMap(({ payload }) => {
-      const { url, shouldRetry } = payload
-      return fileTransferObservable(
-        'luaFiles/all.zip',
-        getFS(url),
-        shouldRetry
-      ).pipe(
+      const { url } = payload
+      return fileTransferObservable('luaFiles/all.zip', getFS(url), true).pipe(
         map(({ progress }) =>
           progress
             ? EMPTY_ACTION('Downloading lua files')
             : PVS_DECOMPRESS_LUA_FILES_INIT()
-        )
+        ),
+        catchError(err => {
+          const { code } = err
+          //error code 3 network disconnection
+          return code === 3
+            ? fileExists('luaFiles/all.zip').then(file =>
+                !file
+                  ? PVS_FIRMWARE_DOWNLOAD_ERROR("The lua zip file doesn't exist")
+                  : PVS_DECOMPRESS_LUA_FILES_INIT()
+              )
+            : of(PVS_FIRMWARE_DOWNLOAD_ERROR("The lua zip file doesn't exist"))
+        })
       )
     })
   )
