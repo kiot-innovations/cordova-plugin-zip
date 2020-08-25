@@ -58,6 +58,11 @@ const DebugPage = () => {
           'RMA - New Inventory Count',
           paths.PROTECTED.RMA_INVENTORY.path
         )}
+        {renderDebugLink(
+          history,
+          'RMA Devices List',
+          paths.PROTECTED.RMA_SN_LIST.path
+        )}
       </div>
     </div>
   )
