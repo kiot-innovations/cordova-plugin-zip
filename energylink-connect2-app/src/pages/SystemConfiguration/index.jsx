@@ -90,13 +90,16 @@ function SystemConfiguration() {
   const submitConfig = () => {
     try {
       const configObject = generateConfigObject()
-      if (validateConfig(configObject)) {
-        dispatch(SUBMIT_CONFIG(configObject))
-        history.push(paths.PROTECTED.SAVING_CONFIGURATION.path)
+      if (!configObject.gridProfile) {
+        showNoGridModal()
+      } else {
+        if (validateConfig(configObject)) {
+          dispatch(SUBMIT_CONFIG(configObject))
+          history.push(paths.PROTECTED.SAVING_CONFIGURATION.path)
+        } else {
+          showErrorConfigurationModal()
+        }
       }
-
-      if (!configObject.gridProfile) showNoGridModal()
-      else showErrorConfigurationModal()
     } catch (err) {
       console.error(err)
     }
