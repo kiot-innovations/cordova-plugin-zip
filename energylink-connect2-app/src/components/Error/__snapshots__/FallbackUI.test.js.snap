@@ -1,0 +1,63 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FallbackUI component render correctly when error 1`] = `
+<section
+  className="fbui pr-15 pl-15"
+>
+  <h1
+    className="is-size-3 has-text-white has-text-centered"
+  >
+    UPS
+  </h1>
+  <p
+    className="mt-20 has-text-centered"
+  >
+    UPS_TEXT
+  </p>
+  <p
+    className="error-message is-size-5 mt-20 pl-10 pr-10 pt-10 pb-10"
+  >
+    TypeError: something bad happened
+  </p>
+  <div
+    className="is-flex"
+  >
+    <Link
+      className="button is-primary is-fullwidth is-uppercase"
+      to="/bill-of-materials"
+    >
+      START_OVER
+    </Link>
+  </div>
+</section>
+`;
+
+exports[`FallbackUI component render correctly when no error 1`] = `
+<section
+  className="fbui pr-15 pl-15"
+>
+  <h1
+    className="is-size-3 has-text-white has-text-centered"
+  >
+    UPS
+  </h1>
+  <p
+    className="mt-20 has-text-centered"
+  >
+    UPS_TEXT
+  </p>
+  <p
+    className="error-message is-size-5 mt-20 pl-10 pr-10 pt-10 pb-10"
+  />
+  <div
+    className="is-flex"
+  >
+    <Link
+      className="button is-primary is-fullwidth is-uppercase"
+      to="/bill-of-materials"
+    >
+      START_OVER
+    </Link>
+  </div>
+</section>
+`;

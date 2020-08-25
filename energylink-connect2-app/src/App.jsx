@@ -1,13 +1,15 @@
-import Banner from 'components/Banner'
-import Footer from 'components/Footer'
-import ModalWrapper from 'components/GlobalModal/Wrapper'
-import Header from 'components/Header'
 import React from 'react'
 import { Provider } from 'react-redux'
 import { HashRouter as Router } from 'react-router-dom'
 import { PersistGate } from 'redux-persist/integration/react'
-import Routes from 'routes'
+
 import { configureStore } from 'state/store'
+
+import Banner from 'components/Banner'
+import Footer from 'components/Footer'
+import ModalWrapper from 'components/GlobalModal/Wrapper'
+import Header from 'components/Header'
+import Routes from 'routes'
 
 const { store, persistor } = configureStore({})
 
