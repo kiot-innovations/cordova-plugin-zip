@@ -9,7 +9,7 @@ import './ErrorListGeneric.scss'
 
 const ErrorComponent = ({ title, code = '', errorInfo, t }) => {
   const toParams = {
-    pathname: setParams([code], paths.PROTECTED.ERROR_DETAIL.path),
+    pathname: setParams([code, errorInfo], paths.PROTECTED.ERROR_DETAIL.path),
     state: { ...errorInfo }
   }
 
