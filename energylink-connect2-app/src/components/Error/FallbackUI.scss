@@ -1,0 +1,18 @@
+@import '~@sunpower/theme-dark/styles/variables';
+
+.fbui {
+  display: grid;
+  grid-template-rows: 50px 100px 1fr 100px;
+  align-items: center;
+  height: 100%;
+
+  .error-message {
+    background-color: $silver-sand4;
+    padding: $font-size-big $font-size-big $font-size;
+    border-radius: 5px;
+    letter-spacing: 0;
+    font-family: $font;
+    height: 100%;
+    text-align: left;
+  }
+}

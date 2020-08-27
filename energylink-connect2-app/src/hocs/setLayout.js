@@ -3,14 +3,14 @@ import clsx from 'clsx'
 import { useDispatch } from 'react-redux'
 import { setHeader, setFooter } from 'state/actions/ui'
 import './layout.scss'
+import ErrorBoundary from 'components/Error'
 
 const setLayout = (header, footer) => ChildComponent => props => {
   const dispatch = useDispatch()
   useEffect(() => {
     dispatch(setHeader(header))
     dispatch(setFooter(footer))
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, [dispatch])
 
   return (
     <div
@@ -21,7 +21,9 @@ const setLayout = (header, footer) => ChildComponent => props => {
         'without-header': !header
       })}
     >
-      <ChildComponent {...props} />
+      <ErrorBoundary>
+        <ChildComponent {...props} />
+      </ErrorBoundary>
     </div>
   )
 }
