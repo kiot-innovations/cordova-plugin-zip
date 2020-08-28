@@ -15,7 +15,7 @@ on:
 
 jobs:
   build:
-    # Run Quick Builds on Ubutnu 18.04 (Linux) instead of MacOS
+    # Run Quick Builds on Ubuntu 18.04 (Linux) instead of MacOS
     # because MacOS builds are 10x more expensive (minute multiplier is 10)
     # https://help.github.com/en/github/setting-up-and-managing-billing-and-payments-on-github/about-billing-for-github-actions#about-billing-for-github-actions
     runs-on: ubuntu-18.04
@@ -30,7 +30,7 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: ${{ env.NODE_VERSION }}
-          registry-url: "https://registry.npmjs.org"
+          registry-url: 'https://registry.npmjs.org'
 
       #
       # Native Application
@@ -40,6 +40,11 @@ jobs:
           NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
         working-directory: energylink-connect2-app
 
+      - run: npm run validate-env-files
+        env:
+          CM2_ENVFILE_PASSWORD: ${{ secrets.ENVFILE_PASSWORD }}
+        working-directory: energylink-connect2-app
+
       - run: npm run test
         env:
           CI: 1
@@ -47,8 +52,7 @@ jobs:
 
       - name: Decrypt and create .env file
         run: |
-          cp .env.enc.${APP_ENV} .env.enc
-          openssl enc -aes256 -d -base64 -md md5 -pass pass:'${{ secrets.ENVFILE_PASSWORD }}' -in .env.enc -out .env
+          openssl enc -aes256 -d -base64 -md md5 -pass pass:'${{ secrets.ENVFILE_PASSWORD }}' -in .env.enc.${APP_ENV} -out .env
         working-directory: energylink-connect2-app
 
       - run: npm run build

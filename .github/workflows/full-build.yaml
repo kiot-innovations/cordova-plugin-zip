@@ -23,7 +23,7 @@ on:
     branches:
       - master
     tags:
-      - "*"
+      - '*'
 
 jobs:
   build:
@@ -41,7 +41,7 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: ${{ env.NODE_VERSION }}
-          registry-url: "https://registry.npmjs.org"
+          registry-url: 'https://registry.npmjs.org'
 
       #
       # Native Application
@@ -58,8 +58,7 @@ jobs:
 
       - name: Decrypt and create .env file
         run: |
-          cp .env.enc.${APP_ENV} .env.enc
-          openssl enc -aes256 -d -base64 -md md5 -pass pass:'${{ secrets.ENVFILE_PASSWORD }}' -in .env.enc -out .env
+          openssl enc -aes256 -d -base64 -md md5 -pass pass:'${{ secrets.ENVFILE_PASSWORD }}' -in .env.enc.${APP_ENV} -out .env
         working-directory: energylink-connect2-app
 
       - run: npm run build
