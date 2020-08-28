@@ -1,0 +1,33 @@
+@import '~@sunpower/theme-dark/styles/variables';
+
+.existing-devices {
+  display: grid;
+  height: 100%;
+  grid-template-rows: 5% 1fr 6rem;
+
+  &-header {
+    display: grid;
+    grid-template-columns: 10% 1fr 10%;
+    align-items: center;
+  }
+
+  .device-item {
+    flex-direction: column;
+    text-align: left;
+    padding-bottom: 5px;
+    border-bottom: 2px solid;
+  }
+
+  .device-item-deletable {
+    display: grid;
+    grid-template-columns: 90% 1fr;
+    text-align: left;
+    padding-bottom: 5px;
+    border-bottom: 2px solid;
+
+    button{
+      background: transparent;
+      border: none;
+    }
+  }
+}

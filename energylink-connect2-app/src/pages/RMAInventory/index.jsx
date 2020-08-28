@@ -90,7 +90,7 @@ const RMAInventory = () => {
             <SelectField
               isSearchable={false}
               onSelect={handleChange('mi_count')}
-              defaultValue={prop('mi_other', rma)}
+              defaultValue={prop('mi_count', rma)}
               options={[...Array(99).keys()].map(number => ({
                 label: number,
                 value: number

@@ -8,6 +8,8 @@ export const SAVE_INVENTORY_ERROR = createAction('SAVE_INVENTORY_ERROR')
 export const SAVE_INVENTORY_SUCCESS = createAction('SAVE_INVENTORY_SUCCESS')
 export const SAVE_INVENTORY_RMA = createAction('SAVE_INVENTORY_RMA')
 export const UPDATE_MI_COUNT = createAction('UPDATE_MI_COUNT')
+export const UPDATE_STORAGE_INVENTORY = createAction('UPDATE_STORAGE_INVENTORY')
+export const UPDATE_OTHER_INVENTORY = createAction('UPDATE_OTHER_INVENTORY')
 export const RESET_INVENTORY = createAction('RESET_INVENTORY')
 
 const mockedInventory = [
