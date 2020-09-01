@@ -485,5 +485,6 @@
   "RMA_MI_NUMBER": "Number to add",
   "RMA_SELECT_DEVICE_ERROR": "Please select at least one piece of equipment before continuing",
   "OTHER_DEVICES": "Other Devices",
-  "EQUINOX_STORAGE_SYSTEM": "Equinox Storage System"
+  "EQUINOX_STORAGE_SYSTEM": "Equinox Storage System",
+  "ERROR_LIST": "Error List"
 }
