@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Route, Switch } from 'react-router-dom'
 import { withTracker } from 'shared/ga'
 import { routeAuthorization, setLayout } from 'hocs'
-
 import useUpgrade from 'hooks/useUpgrade'
 import useCanceledPVSConnection from 'hooks/useCanceledPVSConnection'
 
@@ -46,15 +45,19 @@ import StoragePrediscovery from 'pages/StoragePrediscovery'
 import VersionInformation from 'pages/VersionInformation'
 import DebugPage from 'pages/DebugPage'
 import PvsSelection from 'pages/PvsSelection'
+import ExistingDevices from 'pages/ExistingDevices'
+import RMAInventory from 'pages/RMAInventory'
+import RMASnList from 'pages/RMASnList'
 
 import { validateSession } from 'state/actions/auth'
 import { updateBodyHeight } from 'shared/utils'
 import { deviceResumeListener } from 'state/actions/mobile'
-import useDownloader from 'hooks/useDownloader'
 
 import paths from './paths'
 
 const mapComponents = {
+  [paths.PROTECTED.RMA_INVENTORY.path]: RMAInventory,
+  [paths.PROTECTED.RMA_SN_LIST.path]: RMASnList,
   [paths.PROTECTED.ERROR_DETAIL.path]: ErrorDetailScreen,
   [paths.PROTECTED.DEVICES.path]: Devices,
   [paths.PROTECTED.UPDATE.path]: UpdateScreen,
@@ -92,6 +95,7 @@ const mapComponents = {
   [paths.PROTECTED.EQS_PREDISCOVERY_ERRORS.path]: EQSPrediscoveryErrors,
   [paths.PROTECTED.ESS_HEALTH_CHECK.path]: ESSHealthCheck,
   [paths.PROTECTED.ESS_HEALTH_CHECK_ERRORS.path]: ESSHealthCheckErrors,
+  [paths.PROTECTED.RMA_EXISTING_DEVICES.path]: ExistingDevices,
   [paths.UNPROTECTED.FORGOT_PASSWORD.path]: NotFound,
   [paths.UNPROTECTED.GET_ASSISTANCE.path]: NotFound,
   [paths.UNPROTECTED.LOGIN.path]: Login
@@ -113,7 +117,6 @@ function AppRoutes() {
   })
 
   useUpgrade()
-  useDownloader()
   useCanceledPVSConnection()
 
   useEffect(() => {

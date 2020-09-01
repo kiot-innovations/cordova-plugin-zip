@@ -10,7 +10,14 @@ import {
   FIRMWARE_UPDATE_INIT
 } from 'state/actions/firmwareUpdate'
 import { PVS_CONNECTION_SUCCESS } from 'state/actions/network'
-import { getFirmwareUrlFromState } from 'state/epics/downloader/firmware'
+import { path } from 'ramda'
+
+export const getFirmwareUrlFromState = path([
+  'value',
+  'fileDownloader',
+  'fileInfo',
+  'updateURL'
+])
 
 const checkIfNeedToUpdatePVSToLatestVersion = async url => {
   try {

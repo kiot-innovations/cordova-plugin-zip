@@ -1,8 +1,8 @@
 {
   "name": "com.sunpower.energylink.commissioning2",
-  "displayName": "EnergylinkConnect2",
+  "displayName": "SunPower Pro Connect",
   "version": "0.32.0",
-  "description": "SunPower EnergyLink Connect 2",
+  "description": "PVS Commissioning by SunPower",
   "author": "SunPower Corporation",
   "private": true,
   "main": "index.js",
@@ -25,8 +25,6 @@
     "cordova-plugin-customurlscheme": "^5.0.0",
     "cordova-plugin-device": "^2.0.3",
     "cordova-plugin-file": "^6.0.2",
-    "cordova-plugin-file-downloader": "^0.4.0",
-    "cordova-plugin-file-md5": "^0.3.3",
     "cordova-plugin-file-transfer": "^1.7.1",
     "cordova-plugin-http": "^1.2.0",
     "cordova-plugin-httpd": "^0.9.3",
@@ -86,6 +84,8 @@
       },
       "cordova-clipboard": {},
       "cordova-plugin-wifiwizard2": {}
+      "cordova-plugin-zip": {},
+      "cordova-plugin-file-transfer": {}
     },
     "platforms": [
       "ios",

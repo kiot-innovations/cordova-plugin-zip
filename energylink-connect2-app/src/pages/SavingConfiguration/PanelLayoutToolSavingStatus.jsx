@@ -11,6 +11,10 @@ const PanelLayoutToolSavingStatus = () => {
   const t = useI18n()
   const dispatch = useDispatch()
 
+  if (!saved && !saving && !error) {
+    return null
+  }
+
   return (
     <div className="plt-status is-flex is-vertical tile">
       {either(saved, t('PLT_SAVED'))}

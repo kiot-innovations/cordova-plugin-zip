@@ -12,6 +12,9 @@ describe('Connect to PVS page', () => {
         connecting: false,
         err: ''
       }
+    },
+    rma: {
+      rmaMode: 'REPLACE_PVS'
     }
   }
   beforeEach(() => {

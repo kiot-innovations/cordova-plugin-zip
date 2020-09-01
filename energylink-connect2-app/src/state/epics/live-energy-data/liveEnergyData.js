@@ -159,7 +159,7 @@ export const liveEnergyData = (action$, state$) =>
                   pc: roundDecimals(powerConsumption),
                   ps: roundDecimals(energyStoragePower),
                   // soc:: stage of charge
-                  soc: roundDecimals(data.soc)
+                  soc: roundDecimals(data.soc * 100)
                 }
               })
             }

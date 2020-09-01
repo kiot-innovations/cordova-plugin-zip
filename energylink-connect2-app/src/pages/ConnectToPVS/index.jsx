@@ -157,7 +157,7 @@ function ConnectToPVS() {
               {connectionState.SSID}
             </span>
             <span className="has-text-white">
-              <b>{t('PASSWORD')}</b>
+              <b>{t('WIFI_PASSWORD')}</b>
               {connectionState.password}
             </span>
           </div>

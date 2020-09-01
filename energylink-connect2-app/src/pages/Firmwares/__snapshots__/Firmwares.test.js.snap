@@ -48,7 +48,7 @@ exports[`Firmwares component render correctly 1`] = `
             FIRMWARE
           </h1>
           <Collapsible
-            actions={false}
+            actions={null}
             expanded={true}
           >
             <div
@@ -115,12 +115,7 @@ exports[`Firmwares component render correctly 1`] = `
             />
           </Separator>
           <Collapsible
-            actions={
-              <span
-                className="is-size-4 sp-download"
-                onClick={[Function]}
-              />
-            }
+            actions={null}
             expanded={true}
             title="GRID_PROFILES_PACKAGE"
           >
@@ -142,12 +137,7 @@ exports[`Firmwares component render correctly 1`] = `
                 </div>
                 <div
                   className="collapsible-actions"
-                >
-                  <span
-                    className="is-size-4 sp-download"
-                    onClick={[Function]}
-                  />
-                </div>
+                />
                 <div
                   className="collapsible-trigger"
                 >
@@ -171,12 +161,17 @@ exports[`Firmwares component render correctly 1`] = `
                     className="mb-5"
                   >
                     <GridProfileFileStatus
-                      downloading={false}
+                      downloading={true}
                       gpLastModified={null}
                     >
-                      FILE_NOT_PRESENT
+                      DOWNLOADING
                     </GridProfileFileStatus>
                   </p>
+                  <progress
+                    className="progress is-tiny is-white"
+                    max="100"
+                    value={0}
+                  />
                 </section>
               </div>
             </div>
@@ -253,9 +248,10 @@ exports[`Firmwares component render correctly 1`] = `
                         isDownloading={false}
                       >
                         <div>
-                          <div>
-                            test file name
-                          </div>
+                          <span>
+                            100% 
+                            DOWNLOADED
+                          </span>
                         </div>
                       </EssFirmwareStatus>
                     </p>

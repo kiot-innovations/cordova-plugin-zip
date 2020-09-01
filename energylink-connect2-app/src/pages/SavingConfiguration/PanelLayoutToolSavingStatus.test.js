@@ -17,7 +17,9 @@ describe('PanelLayoutToolSavingStatus component', () => {
   beforeEach(() => {
     dispatchMock = jest.fn()
     jest.spyOn(reactRedux, 'useDispatch').mockImplementation(() => dispatchMock)
-    jest.spyOn(reactRedux, 'useSelector').mockImplementation(() => initialState)
+    jest
+      .spyOn(reactRedux, 'useSelector')
+      .mockImplementation(fn => fn(initialState))
     jest
       .spyOn(i18n, 'useI18n')
       .mockImplementation(path => (key, ...params) =>

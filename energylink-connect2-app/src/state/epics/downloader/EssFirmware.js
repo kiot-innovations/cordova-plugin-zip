@@ -1,11 +1,9 @@
 import * as Sentry from '@sentry/browser'
-import { always, identity, ifElse, is, pathOr } from 'ramda'
+import { always, curry, identity, ifElse, is, path, pathOr } from 'ramda'
 import { ofType } from 'redux-observable'
-import { from, Observable, of } from 'rxjs'
+import { from, of } from 'rxjs'
 import { catchError, exhaustMap, map } from 'rxjs/operators'
-
-import { fileExists } from 'shared/fileSystem'
-import { getEnvironment, PERSIST_DATA_PATH } from 'shared/utils'
+import { getEnvironment } from 'shared/utils'
 import {
   DOWNLOAD_META_ERROR,
   DOWNLOAD_META_INIT,
@@ -13,69 +11,37 @@ import {
   DOWNLOAD_OS_ERROR,
   DOWNLOAD_OS_INIT,
   DOWNLOAD_OS_PROGRESS,
+  DOWNLOAD_OS_REPORT_SUCCESS,
   DOWNLOAD_OS_SUCCESS
 } from 'state/actions/ess'
-import { DOWNLOAD_SUCCESS } from 'state/actions/fileDownloader'
 
-const fileTransferObservable = (path, url, accessToken, retry = false) =>
-  new Observable(subscriber => {
-    const localFileUrl = `${PERSIST_DATA_PATH}ESS/${path}`
-    const successCallback = entry => {
-      subscriber.next({ entry })
-      subscriber.complete()
-    }
-    const errorCallback = error => {
-      subscriber.error({ ...error, url })
-      subscriber.complete()
-    }
-    fileExists(localFileUrl).then(entry => {
-      if (!entry || retry) {
-        const fileTransfer = new window.FileTransfer()
-        const uri = encodeURI(`${process.env.REACT_APP_ARTIFACTORY_BASE}${url}`)
-        fileTransfer.onprogress = data => {
-          const { loaded, total } = data
-          const progress = ((loaded / total) * 100).toFixed(0)
-          subscriber.next({ progress, total })
-        }
-        fileTransfer.download(
-          uri,
-          localFileUrl,
-          successCallback,
-          errorCallback,
-          true,
-          {
-            headers: {
-              Authorization: `Bearer ${accessToken}`
-            }
-          }
-        )
-      } else successCallback(entry)
-    })
-  })
+import fileTransferObservable from 'state/epics/observables/downloader'
+import { checkMD5 } from 'shared/cordovaMapping'
 
 const downloadOSZipEpic = (action$, state$) => {
   const shouldRetry = ifElse(is(Boolean), identity, always(false))
   return action$.pipe(
-    ofType(DOWNLOAD_OS_INIT.getType(), DOWNLOAD_SUCCESS.getType()),
-    exhaustMap(({ payload = false }) =>
-      fileTransferObservable(
-        'EQS-FW-Package.zip',
-        '/pvs-connected-devices-firmware/byers-2.1.0/Byers2.1.zip',
+    ofType(DOWNLOAD_OS_INIT.getType()),
+    exhaustMap(({ payload = false }) => {
+      const filePath = 'ESS/EQS-FW-Package.zip'
+      return fileTransferObservable(
+        filePath,
+        `${process.env.REACT_APP_ARTIFACTORY_BASE}/pvs-connected-devices-firmware/chief_hopper/ChiefHopper.zip`,
+        shouldRetry(payload),
         pathOr('', ['value', 'user', 'auth', 'access_token'], state$),
-        shouldRetry(payload)
+        ['x-checksum-md5']
       ).pipe(
-        map(({ entry, progress, total }) =>
+        map(({ entry, progress, total, serverHeaders }) =>
           progress
             ? DOWNLOAD_OS_PROGRESS({ progress, total })
-            : DOWNLOAD_OS_SUCCESS(entry)
+            : DOWNLOAD_OS_REPORT_SUCCESS({ serverHeaders, entry, filePath })
         ),
         catchError(err => {
           Sentry.addBreadcrumb({
             data: {
               ...payload,
               baseUrl: process.env.REACT_APP_ARTIFACTORY_BASE,
-              environment: getEnvironment(),
-              AT: pathOr('', ['value', 'user', 'auth', 'access_token'], state$)
+              environment: getEnvironment()
             },
             category: 'ESS-Firmware-download',
             message: 'Failed to download ESS firmware',
@@ -85,7 +51,7 @@ const downloadOSZipEpic = (action$, state$) => {
           return of(DOWNLOAD_OS_ERROR.asError(err))
         })
       )
-    )
+    })
   )
 }
 
@@ -119,5 +85,34 @@ const downloadMetaInformationEpic = (action$, state$) =>
       )
     )
   )
+const getMd5 = curry((state, payload) =>
+  ifElse(
+    path(['serverHeaders', 'x-checksum-md5']),
+    path(['serverHeaders', 'x-checksum-md5']),
+    () => path(['value', 'ess', 'md5'], state)
+  )(payload)
+)
+const checkIntegrityESSDownload = (action$, state$) =>
+  action$.pipe(
+    ofType(DOWNLOAD_OS_REPORT_SUCCESS.getType()),
+    exhaustMap(({ payload }) => {
+      const { filePath, entry } = payload
+      const md5 = getMd5(state$, payload)
 
-export default [downloadMetaInformationEpic, downloadOSZipEpic]
+      return from(checkMD5(filePath, md5)).pipe(
+        map(() => DOWNLOAD_OS_SUCCESS(entry)),
+        catchError(err => {
+          Sentry.addBreadcrumb({ message: `filePath ${filePath}` })
+          Sentry.addBreadcrumb({ message: `expected md5 ${md5}` })
+          Sentry.captureException(err)
+          return of(DOWNLOAD_OS_ERROR.asError(err))
+        })
+      )
+    })
+  )
+
+export default [
+  downloadMetaInformationEpic,
+  downloadOSZipEpic,
+  checkIntegrityESSDownload
+]

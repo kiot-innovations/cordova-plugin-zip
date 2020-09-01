@@ -4,6 +4,7 @@ import { unionWith, eqBy, prop } from 'ramda'
 import {
   ADD_PVS_SN,
   SAVE_PVS_SN,
+  UPDATE_SN,
   GET_SN_INIT,
   GET_SN_SUCCESS,
   GET_SN_ERROR,
@@ -46,6 +47,10 @@ export const pvsReducer = createReducer(
     [SAVE_PVS_SN]: (state, payload) => ({
       ...state,
       serialNumber: payload
+    }),
+    [UPDATE_SN]: (state, payload) => ({
+      ...state,
+      serialNumbers: payload
     }),
     [SET_METADATA_INIT]: state => ({
       ...state,

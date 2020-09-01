@@ -48,6 +48,16 @@ const DebugPage = () => {
           'Connection Recovery Page',
           paths.PROTECTED.CONNECTION_LOST.path
         )}
+        {renderDebugLink(
+          history,
+          'RMA - Existing Devices for PVS Replacement',
+          paths.PROTECTED.RMA_EXISTING_DEVICES.path
+        )}
+        {renderDebugLink(
+          history,
+          'RMA - New Inventory Count',
+          paths.PROTECTED.RMA_INVENTORY.path
+        )}
       </div>
     </div>
   )

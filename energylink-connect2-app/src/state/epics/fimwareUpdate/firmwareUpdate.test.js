@@ -1,8 +1,8 @@
 import { of, throwError } from 'rxjs'
 import { ERROR_CODES } from 'shared/fileSystem'
 import {
-  FIRMWARE_DOWNLOADED,
-  FIRMWARE_GET_FILE
+  PVS_FIRMWARE_DOWNLOAD_INIT,
+  PVS_FIRMWARE_DOWNLOAD_SUCCESS
 } from 'state/actions/fileDownloader'
 
 import {
@@ -93,10 +93,10 @@ describe('Epic firmware update', () => {
 
       const inputValues = {
         a: PVS_CONNECTION_CLOSE_FINISHED(),
-        b: FIRMWARE_DOWNLOADED()
+        b: PVS_FIRMWARE_DOWNLOAD_SUCCESS()
       }
       const expectedValues = {
-        c: FIRMWARE_GET_FILE({ wifiOnly: false }),
+        c: PVS_FIRMWARE_DOWNLOAD_INIT(),
         d: PVS_CONNECTION_INIT({ ssid: 'SunPower85888', password: '18858888' })
       }
 

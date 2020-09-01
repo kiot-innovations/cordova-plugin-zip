@@ -1,27 +1,42 @@
-import React from 'react'
-import { compose, map, path, pathOr, pick } from 'ramda'
+import React, { useEffect, useState } from 'react'
+import { compose, map, path, pathOr, pick, uniqBy, prop, isEmpty } from 'ramda'
 import { useDispatch, useSelector } from 'react-redux'
 import clsx from 'clsx'
+import SwipeableBottomSheet from 'react-swipeable-bottom-sheet'
 import { useHistory } from 'react-router-dom'
 import moment from 'moment'
-
 import paths from 'routes/paths'
 import { useI18n } from 'shared/i18n'
+import { either } from 'shared/utils'
 import { useShowModal } from 'hooks/useGlobalModal'
-import { RMA_SELECT_PVS } from 'state/actions/rma'
-
+import { rmaModes } from 'state/reducers/rma'
+import {
+  RMA_SELECT_PVS,
+  SET_RMA_MODE,
+  FETCH_DEVICE_TREE
+} from 'state/actions/rma'
+import { Loader } from 'components/Loader'
 import './PVSelection.scss'
 
 const getPvsSerialNumbers = compose(
   map(pick(['deviceSerialNumber', 'assignmentEffectiveTimestamp'])),
+  uniqBy(prop('deviceSerialNumber')),
   pathOr([], ['site', 'sitePVS'])
 )
 
 function PvsSelection() {
   const PVS = useSelector(getPvsSerialNumbers)
+  const { rmaMode, cloudDeviceTree } = useSelector(state => state.rma)
+  const [fetchDevicesStatus, showFetchDevicesStatus] = useState(false)
   const history = useHistory()
   const dispatch = useDispatch()
   const t = useI18n()
+
+  useEffect(() => {
+    if (rmaMode === rmaModes.REPLACE_PVS && !isEmpty(cloudDeviceTree.devices)) {
+      history.push(paths.PROTECTED.RMA_EXISTING_DEVICES.path)
+    }
+  })
 
   const showNoPVSSelected = useShowModal({
     title: '',
@@ -33,6 +48,16 @@ function PvsSelection() {
   const shouldMoveNewRoute = route => {
     if (PVSSelected) history.push(route)
     else showNoPVSSelected({ body: t('SELECT_PVS_MODAL') })
+  }
+
+  const replacePVS = () => {
+    if (PVSSelected) {
+      showFetchDevicesStatus(true)
+      dispatch(SET_RMA_MODE(rmaModes.REPLACE_PVS))
+      dispatch(FETCH_DEVICE_TREE())
+    } else {
+      showNoPVSSelected({ body: t('SELECT_PVS_MODAL') })
+    }
   }
 
   return (
@@ -73,9 +98,7 @@ function PvsSelection() {
       <section className="pvs-buttons mb-20">
         <button
           className="button has-text-centered is-uppercase is-secondary pt-0 pb-0 pl-10 pr-10"
-          onClick={() =>
-            shouldMoveNewRoute(paths.PROTECTED.CONNECT_TO_PVS.path)
-          }
+          onClick={replacePVS}
         >
           {t('REPLACE_PVS')}
         </button>
@@ -88,6 +111,27 @@ function PvsSelection() {
           {t('EDIT_DEVICES')}
         </button>
       </section>
+
+      <SwipeableBottomSheet shadowTip={false} open={fetchDevicesStatus}>
+        <div className="fetch-devices-status is-flex">
+          <span className="has-text-weight-bold has-text-white mb-40">
+            {either(
+              cloudDeviceTree.error,
+              t('FETCH_DEVICETREE_ERROR'),
+              t('FETCH_DEVICETREE_WAIT')
+            )}
+          </span>
+          {either(
+            cloudDeviceTree.fetching,
+            <Loader />,
+            <div>
+              <button className="button is-primary mb-20" onClick={replacePVS}>
+                {t('TRY_AGAIN')}
+              </button>
+            </div>
+          )}
+        </div>
+      </SwipeableBottomSheet>
     </main>
   )
 }
