@@ -6,8 +6,10 @@ import {
   DOWNLOAD_OS_ERROR,
   DOWNLOAD_OS_INIT,
   DOWNLOAD_OS_PROGRESS,
+  DOWNLOAD_OS_REPORT_SUCCESS,
   DOWNLOAD_OS_SUCCESS
 } from 'state/actions/ess'
+import { assoc, path } from 'ramda'
 
 const initialState = {
   progress: 0,
@@ -15,7 +17,8 @@ const initialState = {
   file: null,
   meta: null,
   total: 0,
-  isDownloading: false
+  isDownloading: false,
+  md5: ''
 }
 
 export default createReducer(
@@ -23,6 +26,7 @@ export default createReducer(
     [DOWNLOAD_OS_INIT]: state => ({
       ...initialState,
       meta: state.meta,
+      md5: state.md5,
       isDownloading: true
     }),
     [DOWNLOAD_OS_PROGRESS]: (state, { progress, total }) => ({
@@ -54,7 +58,12 @@ export default createReducer(
     [DOWNLOAD_META_SUCCESS]: (state, meta) => ({
       ...state,
       meta
-    })
+    }),
+    [DOWNLOAD_OS_REPORT_SUCCESS]: (state, payload) => {
+      const md5 = path(['serverHeaders', 'x-checksum-md5'], payload)
+      if (md5) return assoc('md5', md5, state)
+      return state
+    }
   },
   initialState
 )

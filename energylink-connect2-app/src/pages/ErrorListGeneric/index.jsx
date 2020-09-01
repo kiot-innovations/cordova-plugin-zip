@@ -1,30 +1,32 @@
 import React, { useState } from 'react'
+import { useSelector } from 'react-redux'
 import { omit, not } from 'ramda'
 import { Link, useHistory } from 'react-router-dom'
 import paths, { setParams } from 'routes/paths'
 import { useI18n } from 'shared/i18n'
 import { getError } from 'shared/errorCodes'
 import { either } from 'shared/utils'
+import { eqsSteps } from 'state/reducers/storage'
 import './ErrorListGeneric.scss'
 
 const ErrorComponent = ({ title, code = '', errorInfo, t }) => {
   const toParams = {
-    pathname: setParams([code], paths.PROTECTED.ERROR_DETAIL.path),
+    pathname: setParams([code, errorInfo], paths.PROTECTED.ERROR_DETAIL.path),
     state: { ...errorInfo }
   }
 
   return (
     <div className="error-component mb-10">
       <div className="error-text">
-        <h1 className="has-text-white has-text-weight-bold is-size-5 mb-10">
+        <span className="error-title has-text-white has-text-weight-bold">
           {title}
-        </h1>
-        <p className="error-code"> {t('ERROR_CODE', code)}</p>
+        </span>
+        <span className="error-code"> {t('ERROR_CODE', code)}</span>
         {either(
           not(`${code}`.startsWith('1')),
-          <p className="has-text-primary has-text-weight-bold">
+          <span className="has-text-primary has-text-weight-bold">
             {t('FIX_ERROR_TO_PROCEED')}
-          </p>
+          </span>
         )}
       </div>
       <div>
@@ -44,6 +46,17 @@ const getErrorInfo = omit([
   'event_code',
   'event_code'
 ])
+
+const storageRoutesMap = {
+  [eqsSteps.PREDISCOVERY]: paths.PROTECTED.STORAGE_PREDISCOVERY.path,
+  [eqsSteps.FW_UPLOAD]: paths.PROTECTED.EQS_UPDATE.path,
+  [eqsSteps.FW_ERROR]: paths.PROTECTED.EQS_UPDATE.path,
+  [eqsSteps.FW_COMPLETED]: paths.PROTECTED.EQS_UPDATE.path,
+  [eqsSteps.FW_POLL]: paths.PROTECTED.EQS_UPDATE.path,
+  [eqsSteps.FW_UPDATE]: paths.PROTECTED.EQS_UPDATE.path,
+  [eqsSteps.COMPONENT_MAPPING]: paths.PROTECTED.ESS_DEVICE_MAPPING.path,
+  [eqsSteps.HEALTH_CHECK]: paths.PROTECTED.ESS_HEALTH_CHECK.path
+}
 /**
  *
  * @param errors array of errors {error_description,code,event_code}
@@ -54,8 +67,18 @@ const ErrorListScreen = ({ errors = [] }) => {
   const t = useI18n()
   const history = useHistory()
   const [parsedErrors] = useState(() => errors.map(getError))
+  const { currentStep } = useSelector(state => state.storage)
+
   return (
-    <div className="error-list-screen pr-10 pl-10">
+    <div className="error-list pr-10 pl-10">
+      <div className="error-list-header has-text-centered">
+        <span
+          className="has-text-primary sp-chevron-left is-size-4"
+          onClick={() => history.push(storageRoutesMap[currentStep])}
+        />
+        <span className="has-text-weight-bold">{t('ERROR_LIST')}</span>
+        <span />
+      </div>
       <div className="error-list-container">
         {parsedErrors.map(elem => (
           <ErrorComponent
@@ -67,23 +90,15 @@ const ErrorListScreen = ({ errors = [] }) => {
           />
         ))}
       </div>
-      <div className="mt-10">
-        <div className="has-text-centered">
-          <button
-            className="button is-primary is-outlined is-center"
-            onClick={history.goBack}
-          >
-            {t('GO_BACK')}
-          </button>
-        </div>
-        <div className="has-text-centered">
-          <button className="button button-transparent has-text-primary is-uppercase mb-20 mt-20">
-            {t('CANCEL_COMMISSION')}
-          </button>
-        </div>
+      <div>
         <div className="has-text-centered error-list-hint">
-          <span className="mt-10">{t('PLEASE_FIX_ERRORS')}</span>
+          <span>{t('PLEASE_FIX_ERRORS')}</span>
           <span>{t('GO_BACK_AND_FIX')}</span>
+        </div>
+        <div className="has-text-centered mt-10">
+          <span className="has-text-primary has-text-weight-bold">
+            {t('CANCEL_COMMISSION')}
+          </span>
         </div>
       </div>
     </div>

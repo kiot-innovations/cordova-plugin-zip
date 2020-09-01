@@ -14,6 +14,7 @@ import {
   flip,
   includes,
   indexBy,
+  isNil,
   join,
   keys,
   last,
@@ -29,6 +30,7 @@ import {
   propEq,
   propOr,
   propSatisfies,
+  reject,
   replace,
   split,
   toPairs,
@@ -299,3 +301,5 @@ export const hasInternetConnection = () =>
       .then(() => resolve())
       .catch(() => reject())
   )
+
+export const removeUndefined = reject(isNil)

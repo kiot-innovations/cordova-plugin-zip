@@ -8,9 +8,11 @@ import {
   SAVE_INVENTORY_SUCCESS,
   SAVE_INVENTORY_ERROR,
   UPDATE_MI_COUNT,
+  UPDATE_STORAGE_INVENTORY,
+  UPDATE_OTHER_INVENTORY,
   RESET_INVENTORY,
   SAVE_INVENTORY_RMA
-} from '../../actions/inventory'
+} from 'state/actions/inventory'
 
 const initialState = {
   bom: [
@@ -62,6 +64,10 @@ export const inventoryReducer = createReducer(
     }),
     [UPDATE_MI_COUNT]: (state, payload) => ({
       ...state,
+      rma: {
+        ...state.rma,
+        mi_count: payload
+      },
       bom: [
         ...state.bom.map(item => {
           if (item.item === 'AC_MODULES') {
@@ -80,6 +86,28 @@ export const inventoryReducer = createReducer(
       rma: {
         ...state.rma,
         [payload.name]: payload.value
+      }
+    }),
+    [UPDATE_STORAGE_INVENTORY]: (state, payload) => ({
+      ...state,
+      rma: {
+        ...state.rma,
+        ess: payload
+      },
+      bom: [
+        ...state.bom.map(item => {
+          if (item.item === 'ESS') {
+            item.value = payload
+          }
+          return item
+        })
+      ]
+    }),
+    [UPDATE_OTHER_INVENTORY]: (state, payload) => ({
+      ...state,
+      rma: {
+        ...state.rma,
+        other: payload
       }
     })
   },

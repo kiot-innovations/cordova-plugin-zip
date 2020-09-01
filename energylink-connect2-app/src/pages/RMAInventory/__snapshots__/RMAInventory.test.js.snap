@@ -71,6 +71,7 @@ exports[`RMAInventory renders correctly 1`] = `
                 className="field  mb-20 mt-20"
               >
                 <mockConstructor
+                  defaultValue={0}
                   isSearchable={false}
                   onSelect={[Function]}
                   options={

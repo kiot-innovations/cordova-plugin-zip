@@ -215,6 +215,12 @@ const paths = {
       footer: true,
       tab: TABS.INSTALL
     },
+    RMA_EXISTING_DEVICES: {
+      path: '/rma-existing-devices',
+      header: true,
+      footer: true,
+      tab: TABS.INSTALL
+    },
     RMA_INVENTORY: {
       path: '/rma-inventory',
       header: true,
