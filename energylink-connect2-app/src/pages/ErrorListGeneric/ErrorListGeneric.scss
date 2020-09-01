@@ -1,15 +1,21 @@
 @import '~@sunpower/theme-dark/styles/variables';
 
-.error-list-screen {
+.error-list {
   display: grid;
-  grid-template-rows: 1fr 35%;
-  align-items: center;
+  grid-template-rows: 10% 1fr 15%;
+  align-items: flex-start;
   height: 100%;
   & > h1 {
     letter-spacing: 1.1px;
   }
 
-  .error-list-hint {
+  &-header {
+    display: grid;
+    grid-template-columns: 10% 1fr 10%;
+    align-items: center;
+  }
+
+  &-hint {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -33,9 +39,16 @@
   border-radius: 10px;
   display: grid;
   grid-template-columns: 1fr 40px;
-  h1 {
-    grid-area: title;
+
+  .error-text {
+    display: flex;
+    flex-direction: column;
+
+    .error-title {
+      text-transform: capitalize;
+    }
   }
+
   .details {
     height: 100%;
     width: 100%;

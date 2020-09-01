@@ -118,7 +118,7 @@ const ExistingDevices = () => {
     <div className="existing-devices pl-10 pr-10">
       <div className="existing-devices-header has-text-centered">
         <span
-          className="has-text-primary sp-chevron-left"
+          className="has-text-primary sp-chevron-left is-size-4"
           onClick={backToPvsSelection}
         />
         <span className="has-text-weight-bold">{t('EXISTING_DEVICES')}</span>

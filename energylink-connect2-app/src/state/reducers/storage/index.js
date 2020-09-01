@@ -48,14 +48,16 @@ export const eqsSteps = {
   FW_UPDATE: 'FW_UPDATE',
   FW_POLL: 'FW_POLL',
   FW_COMPLETED: 'FW_COMPLETED',
-  FW_ERROR: 'FW_ERROR'
+  FW_ERROR: 'FW_ERROR',
+  HEALTH_CHECK: 'HEALTH_CHECK'
 }
 
 export const storageReducer = createReducer(
   {
     [GET_ESS_STATUS_INIT]: state => ({
       ...state,
-      status: { waiting: true, results: null, error: null }
+      status: { waiting: true, results: null, error: null },
+      currentStep: eqsSteps.HEALTH_CHECK
     }),
     [GET_ESS_STATUS_SUCCESS]: (state, results) => ({
       ...state,
