@@ -2,7 +2,7 @@ import { PERSIST_DATA_PATH } from 'shared/utils'
 import { compose, join, slice, split } from 'ramda'
 import { Observable } from 'rxjs'
 
-const unzipObservable = (sourceFile = '', deleteOriginal = false) =>
+const unzipObservable = (sourceFile = '') =>
   new Observable(subscriber => {
     const getExtractionFolder = compose(join('/'), slice(0, -1), split('/'))
 

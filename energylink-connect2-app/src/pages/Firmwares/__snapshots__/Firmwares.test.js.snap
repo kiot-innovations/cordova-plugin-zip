@@ -248,9 +248,10 @@ exports[`Firmwares component render correctly 1`] = `
                         isDownloading={false}
                       >
                         <div>
-                          <div>
-                            test file name
-                          </div>
+                          <span>
+                            100% 
+                            DOWNLOADED
+                          </span>
                         </div>
                       </EssFirmwareStatus>
                     </p>

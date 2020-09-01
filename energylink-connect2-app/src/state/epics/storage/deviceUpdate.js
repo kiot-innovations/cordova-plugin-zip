@@ -18,7 +18,6 @@ import {
   UPLOAD_EQS_FIRMWARE_ERROR,
   UPLOAD_EQS_FIRMWARE_SUCCESS
 } from 'state/actions/storage'
-import { PERSIST_DATA_PATH } from 'shared/utils'
 
 export const eqsUpdateStates = {
   FAILED: 'FAILED',
@@ -40,7 +39,7 @@ export const checkEqsFwFile = action$ => {
   return action$.pipe(
     ofType(CHECK_EQS_FIRMWARE.getType()),
     exhaustMap(() =>
-      from(fileExists(`${PERSIST_DATA_PATH}${fwPackagePath}`)).pipe(
+      from(fileExists(fwPackagePath)).pipe(
         map(GETFILE_EQS_FIRMWARE),
         catchError(err => {
           Sentry.captureException(err)
