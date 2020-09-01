@@ -1,10 +1,22 @@
 import { Observable } from 'rxjs'
-import { PERSIST_DATA_PATH } from 'shared/utils'
-import { fileExists } from 'shared/fileSystem'
+import { createFile, deleteFile, fileExists } from 'shared/fileSystem'
 
-const fileTransferObservable = (path, url, retry = false, accessToken) =>
+const parseHeaders = (headers, xhr) => {
+  const result = {}
+  headers.forEach(elem => {
+    result[elem] = xhr.getResponseHeader(elem)
+  })
+  return result
+}
+
+const fileTransferObservable = (
+  path,
+  url,
+  retry = false,
+  accessToken,
+  headers = ['']
+) =>
   new Observable(subscriber => {
-    const localFileUrl = `${PERSIST_DATA_PATH}${path}`
     let fileSize = 0
     const successCallback = entry => {
       subscriber.next({ entry, total: fileSize })
@@ -14,13 +26,17 @@ const fileTransferObservable = (path, url, retry = false, accessToken) =>
       subscriber.error({ ...error, url })
       subscriber.complete()
     }
-    fileExists(localFileUrl).then(entry => {
+    fileExists(path).then(async entry => {
+      if (retry) await deleteFile(path)
       if (!entry || retry) {
-        const fileTransfer = new window.FileTransfer()
+        const xhr = new XMLHttpRequest()
         const uri = encodeURI(url)
+        xhr.open('GET', uri, true)
+        xhr.responseType = 'blob'
+        if (accessToken)
+          xhr.setRequestHeader('Authorization', `Bearer ${accessToken}`)
         let lastProgress = 0
-        fileTransfer.onprogress = data => {
-          const { loaded, total } = data
+        xhr.onprogress = ({ loaded, total }) => {
           if (fileSize === 0) fileSize = total
           const progress = ((loaded / total) * 100).toFixed(0)
           if (lastProgress !== progress) {
@@ -28,20 +44,41 @@ const fileTransferObservable = (path, url, retry = false, accessToken) =>
             subscriber.next({ progress, total })
           }
         }
-        fileTransfer.download(
-          uri,
-          localFileUrl,
-          successCallback,
-          errorCallback,
-          true,
-          accessToken
-            ? {
-                headers: {
-                  Authorization: `Bearer ${accessToken}`
+        xhr.onload = function() {
+          if (xhr.status !== 200)
+            errorCallback({
+              status: xhr.status,
+              text: xhr.statusText
+            })
+          const blob = this.response
+
+          createFile(path).then(fileEntry => {
+            fileEntry.createWriter(fileWritter => {
+              let written = 0
+              const BLOCK_SIZE = 1 * 1024 * 1024 // 1 MB Chunk
+              function writeNext(cbFinish) {
+                const sz = Math.min(BLOCK_SIZE, blob.size - written)
+                const sub = blob.slice(written, written + sz)
+                fileWritter.write(sub)
+                written += sz
+                fileWritter.onwrite = function() {
+                  if (written < blob.size) writeNext(cbFinish)
+                  else cbFinish()
                 }
               }
-            : {}
-        )
+              writeNext(() => {
+                subscriber.next({
+                  total: fileSize,
+                  serverHeaders: parseHeaders(headers, xhr),
+                  entry: fileEntry
+                })
+                subscriber.complete()
+              })
+            })
+          })
+        }
+        xhr.onerror = errorCallback
+        xhr.send()
       } else successCallback(entry)
     })
   })
