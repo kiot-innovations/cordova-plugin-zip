@@ -83,7 +83,7 @@ export const parseLuaFile = fileName =>
 export const getFileBlob = (fileName = '') =>
   new Promise(async (resolve, reject) => {
     try {
-      const file = await fileExists(`${PERSIST_DATA_PATH}${fileName}`)
+      const file = await fileExists(fileName)
       if (!file) reject(ERROR_CODES.NO_FILESYSTEM_FILE)
       file.file(function(file) {
         const reader = new FileReader()
@@ -99,7 +99,7 @@ export const getFileBlob = (fileName = '') =>
 export const getFileInfo = (fileName = '') =>
   new Promise(async (resolve, reject) => {
     try {
-      const file = await fileExists(`${PERSIST_DATA_PATH}${fileName}`)
+      const file = await fileExists(fileName)
       if (!file) reject(`The file doesn't exist ${fileName}`)
       file.file(resolve, reject)
     } catch (e) {
@@ -139,28 +139,28 @@ export const getPVSFileSystemName = fileUrl => {
   const { pvsFileSystemName } = getFirmwareVersionData(fileUrl)
   return `firmware/${pvsFileSystemName}`
 }
+export const getDir = (path = '') =>
+  new Promise((resolve, reject) => {
+    window.resolveLocalFileSystemURL(PERSIST_DATA_PATH + path, resolve, reject)
+  })
 
 export function listDir(path) {
   return new Promise((resolve, reject) => {
-    window.resolveLocalFileSystemURL(
-      path,
-      function(fileSystem) {
+    getDir(path)
+      .then(fileSystem => {
         const reader = fileSystem.createReader()
         reader.readEntries(resolve, reject)
-      },
-      reject
-    )
+      })
+      .catch(reject)
   })
 }
+const getDirPath = compose(join('/'), slice(0, -1), split('/'))
 
 export const fileExists = async (path = '') => {
-  const getDirPath = compose(join('/'), slice(0, -1), split('/'))
-  const getFilePath = compose(last, split('persistent'))
   try {
     const fileEntries = await listDir(getDirPath(path))
-    const file = getFilePath(path)
     for (let entry in fileEntries) {
-      if (fileEntries[entry].fullPath === file) return fileEntries[entry]
+      if (fileEntries[entry].fullPath === `/${path}`) return fileEntries[entry]
     }
     return false
   } catch (e) {
@@ -185,7 +185,7 @@ export async function getLatestPVSFirmwareUrl() {
 
 export const readFile = path =>
   new Promise(async (resolve, reject) => {
-    const fileEntry = await fileExists(`${PERSIST_DATA_PATH}${path}`)
+    const fileEntry = await fileExists(path)
     if (!fileEntry) reject("The file doesn't exist")
     fileEntry.file(function(file) {
       const reader = new FileReader()
@@ -213,3 +213,42 @@ export const getLuaFileSize = async rootFSPath => {
   if (size === dlSize) return { lastModified, size }
   throw new Error('The download is not the same size as expected')
 }
+
+export const createSingleDirectory = (fs, newFolder = '') =>
+  new Promise((resolve, reject) => {
+    fs.getDirectory(newFolder, { create: true }, resolve, reject)
+  })
+
+const getFoldersToCreate = split('/')
+
+export const createDirectoryStructure = (path = '') =>
+  new Promise(async (resolve, reject) => {
+    try {
+      const fs = await getDir(path)
+      resolve(fs)
+    } catch (e) {
+      if (e.code === 1) {
+        const newFolders = getFoldersToCreate(path)
+        for (let i = 0; i < newFolders.length; i++) {
+          const newFolder = newFolders[i]
+          const fs = await getDir(newFolders.slice(0, i).join('/'))
+          await createSingleDirectory(fs, newFolder)
+        }
+        resolve(await getDir(path))
+      }
+      reject(e)
+    }
+  })
+export const createFile = path =>
+  new Promise(async (resolve, reject) => {
+    const getFileName = compose(last, split('/'))
+    try {
+      const file = await fileExists(path)
+      if (file) await deleteFile(path)
+      const fs = await createDirectoryStructure(getDirPath(path))
+      const fileName = getFileName(path)
+      fs.getFile(fileName, { create: true }, resolve, reject)
+    } catch (e) {
+      reject(e)
+    }
+  })
