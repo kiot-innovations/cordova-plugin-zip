@@ -45,7 +45,7 @@ export default createReducer(
     }),
     [PVS_FIRMWARE_DOWNLOAD_PROGRESS]: (state, { size, step }) => ({
       ...state,
-      size: size,
+      size: isNaN(size) ? state.size : size,
       error: '',
       step
     }),

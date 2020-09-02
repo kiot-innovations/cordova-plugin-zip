@@ -17,7 +17,6 @@ const fileTransferObservable = (
   headers = ['']
 ) =>
   new Observable(subscriber => {
-    console.warn({ path, url, retry, accessToken, headers })
     let fileSize = 0
     const successCallback = entry => {
       subscriber.next({ entry, total: fileSize })
@@ -60,7 +59,6 @@ const fileTransferObservable = (
               text: xhr.statusText
             })
           const blob = this.response
-          console.warn('BLOB', blob.type)
           createFile(path).then(fileEntry => {
             fileEntry.createWriter(fileWritter => {
               let written = 0
@@ -73,8 +71,7 @@ const fileTransferObservable = (
                 fileWritter.onwrite = function() {
                   subscriber.next({
                     step: 'WRITING_FILE',
-                    progress: ((written / blob.size) * 100).toFixed(0),
-                    size: fileSize
+                    progress: ((written / blob.size) * 100).toFixed(0)
                   })
                   if (written < blob.size) writeNext(cbFinish)
                   else cbFinish()
