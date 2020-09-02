@@ -31,9 +31,9 @@ const downloadOSZipEpic = (action$, state$) => {
         pathOr('', ['value', 'user', 'auth', 'access_token'], state$),
         ['x-checksum-md5']
       ).pipe(
-        map(({ entry, progress, total, serverHeaders }) =>
+        map(({ entry, progress, total, serverHeaders, step }) =>
           progress
-            ? DOWNLOAD_OS_PROGRESS({ progress, total })
+            ? DOWNLOAD_OS_PROGRESS({ progress, total, step })
             : DOWNLOAD_OS_REPORT_SUCCESS({ serverHeaders, entry, filePath })
         ),
         catchError(err => {

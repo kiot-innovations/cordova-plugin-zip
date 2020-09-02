@@ -87,6 +87,8 @@
   "LOGGING_IN_ERROR": "Couldn't finish logging in. An error happened with the request",
   "DOWNLOADING": "downloading",
   "DOWNLOADED": "downloaded",
+  "WRITING_FILE": "writing file",
+  "INITIALIZING": "initializing",
   "NOT_DOWNLOADED": "not downloaded",
   "DOWNLOADING_FIRMWARE": "Downloading FW image",
   "SCAN_EQUIPMENT": "Scan your Microinverters (MI's)",
