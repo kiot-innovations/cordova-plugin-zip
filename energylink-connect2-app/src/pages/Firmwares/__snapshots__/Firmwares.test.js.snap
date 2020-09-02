@@ -246,10 +246,15 @@ exports[`Firmwares component render correctly 1`] = `
                           }
                         }
                         isDownloading={false}
+                        step="INITIALIZING"
                       >
                         <div>
+                          <span
+                            className="has-text-white has-text-weight-bold mr-10"
+                          >
+                            100%
+                          </span>
                           <span>
-                            100% 
                             DOWNLOADED
                           </span>
                         </div>
