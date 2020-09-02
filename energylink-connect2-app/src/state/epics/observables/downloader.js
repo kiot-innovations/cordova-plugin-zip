@@ -60,7 +60,7 @@ const fileTransferObservable = (
               text: xhr.statusText
             })
           const blob = this.response
-
+          console.warn('BLOB', blob.type)
           createFile(path).then(fileEntry => {
             fileEntry.createWriter(fileWritter => {
               let written = 0
@@ -73,7 +73,8 @@ const fileTransferObservable = (
                 fileWritter.onwrite = function() {
                   subscriber.next({
                     step: 'WRITING_FILE',
-                    progress: ((written / blob.size) * 100).toFixed(0)
+                    progress: ((written / blob.size) * 100).toFixed(0),
+                    size: fileSize
                   })
                   if (written < blob.size) writeNext(cbFinish)
                   else cbFinish()
