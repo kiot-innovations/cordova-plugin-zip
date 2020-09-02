@@ -16,11 +16,11 @@ import {
 
 const initialState = {
   bom: [
-    { item: 'AC_MODULES', value: '0' },
-    { item: 'DC_MODULES', value: '0' },
-    { item: 'STRING_INVERTERS', value: '0' },
-    { item: 'EXTERNAL_METERS', value: '0' },
-    { item: 'ESS', value: '0' }
+    { item: 'AC_MODULES', value: '0', disabled: false },
+    { item: 'DC_MODULES', value: '0', disabled: true },
+    { item: 'STRING_INVERTERS', value: '0', disabled: true },
+    { item: 'EXTERNAL_METERS', value: '0', disabled: true },
+    { item: 'ESS', value: '0,', disabled: false }
   ],
   rma: {
     ess: '',
