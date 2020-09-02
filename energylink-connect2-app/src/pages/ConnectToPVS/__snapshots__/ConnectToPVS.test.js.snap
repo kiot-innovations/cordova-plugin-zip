@@ -67,6 +67,7 @@ exports[`Connect to PVS page render correctly 1`] = `
             >
               <button
                 className="button is-primary"
+                disabled={false}
                 onClick={[Function]}
               >
                 START_SCAN
