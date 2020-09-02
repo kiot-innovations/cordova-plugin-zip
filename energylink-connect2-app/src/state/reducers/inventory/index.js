@@ -20,7 +20,7 @@ const initialState = {
     { item: 'DC_MODULES', value: '0', disabled: true },
     { item: 'STRING_INVERTERS', value: '0', disabled: true },
     { item: 'EXTERNAL_METERS', value: '0', disabled: true },
-    { item: 'ESS', value: '0,', disabled: false }
+    { item: 'ESS', value: '0', disabled: false }
   ],
   rma: {
     ess: '',
