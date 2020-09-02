@@ -15,6 +15,7 @@ import {
   RESET_LAST_VISITED_PAGE,
   CHECK_APP_UPDATE_INIT
 } from 'state/actions/global'
+import { RESET_SYSTEM_CONFIGURATION } from 'state/actions/systemConfiguration'
 import { getApiSearch } from 'shared/api'
 
 import paths from 'routes/paths'
@@ -63,6 +64,7 @@ const resetCommissioning = dispatch => {
   dispatch(RESET_DISCOVERY())
   dispatch(RESET_INVENTORY())
   dispatch(RESET_LAST_VISITED_PAGE())
+  dispatch(RESET_SYSTEM_CONFIGURATION())
 }
 
 function Home() {

@@ -3,7 +3,8 @@ import { createReducer } from 'redux-act'
 import {
   SET_CONSUMPTION_CT,
   SET_PRODUCTION_CT,
-  SET_RATED_CURRENT
+  SET_RATED_CURRENT,
+  RESET_SYSTEM_CONFIGURATION
 } from 'state/actions/systemConfiguration'
 
 const initialState = {
@@ -25,7 +26,8 @@ export const meterReducer = createReducer(
     [SET_RATED_CURRENT]: (state, payload) => ({
       ...state,
       ratedCurrent: payload
-    })
+    }),
+    [RESET_SYSTEM_CONFIGURATION]: () => initialState
   },
   initialState
 )

@@ -8,7 +8,8 @@ import {
   SET_RSE_SUCCESS,
   SET_RSE_STATUS,
   SET_RSE_ERROR,
-  SET_SELECTED_POWER_PRODUCTION
+  SET_SELECTED_POWER_PRODUCTION,
+  RESET_SYSTEM_CONFIGURATION
 } from 'state/actions/systemConfiguration'
 
 const initialState = {
@@ -66,7 +67,8 @@ const rseReducer = createReducer(
     [SET_SELECTED_POWER_PRODUCTION]: (state, selectedPowerProduction) => ({
       ...state,
       selectedPowerProduction
-    })
+    }),
+    [RESET_SYSTEM_CONFIGURATION]: () => initialState
   },
   initialState
 )

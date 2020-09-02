@@ -6,7 +6,8 @@ import {
   SUBMIT_CONFIG_SUCCESS,
   SUBMIT_CONFIG_ERROR,
   SUBMIT_COMMISSION_SUCCESS,
-  SUBMIT_COMMISSION_ERROR
+  SUBMIT_COMMISSION_ERROR,
+  RESET_SYSTEM_CONFIGURATION
 } from 'state/actions/systemConfiguration'
 
 const initialState = {
@@ -43,7 +44,8 @@ export const submitConfigReducer = createReducer(
       submitting: false,
       error: payload
     }),
-    [SUBMIT_CLEAR]: () => initialState
+    [SUBMIT_CLEAR]: () => initialState,
+    [RESET_SYSTEM_CONFIGURATION]: () => initialState
   },
   initialState
 )
