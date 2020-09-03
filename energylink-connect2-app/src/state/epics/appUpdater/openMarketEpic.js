@@ -10,9 +10,14 @@ import {
 import { getEnvironment, isIos } from 'shared/utils'
 import { createExternalLinkHandler } from 'shared/routing'
 
-const APPLE_ID = '1485622626'
-const APPLE_URL = 'itms-apps://itunes.apple.com/app/'
-const ANDROID_ID = 'com.sunpower.energylink.commissioning2'
+const APPLE_ID = process.env.REACT_APP_APPLE_ID
+const ANDROID_ID = process.env.REACT_APP_ANDROID_ID
+const TYPE =
+  process.env.REACT_APP_IS_DEV || process.env.REACT_APP_IS_TEST
+    ? 'beta'
+    : 'apps'
+
+const APPLE_URL = `itms-${TYPE}://itunes.apple.com/app/`
 
 const handleAppStore = () => {
   createExternalLinkHandler(APPLE_URL + APPLE_ID)()
