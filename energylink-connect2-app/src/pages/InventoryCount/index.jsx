@@ -7,9 +7,9 @@ import { saveInventory } from 'state/actions/inventory'
 import clsx from 'clsx'
 import paths from 'routes/paths'
 import './InventoryCounts.scss'
+import SwipeableBottomSheet from 'react-swipeable-bottom-sheet'
 
-function submitInventory(event, inventory, dispatch, redirect) {
-  event.preventDefault()
+function submitInventory(inventory, dispatch, redirect) {
   dispatch(saveInventory(inventory))
   redirect(true)
 }
@@ -82,6 +82,23 @@ function InventoryCount() {
 
   const [inventory, setInventory] = useState(storedInventory)
   const [toBom, setToBom] = useState(false)
+  const [configWarning, setConfigWarning] = useState(false)
+  const [storageWarning, setStorageWarning] = useState(false)
+
+  const validateInventory = (event, inventory, dispatch, redirect) => {
+    event.preventDefault()
+    const miValue = find(propEq('item', 'AC_MODULES'), inventory)
+    const storageValue = find(propEq('item', 'ESS'), inventory)
+    if (miValue.value === '0') {
+      if (storageValue.value === '0') {
+        setConfigWarning(true)
+      } else {
+        setStorageWarning(true)
+      }
+    } else {
+      submitInventory(inventory, dispatch, redirect)
+    }
+  }
 
   const goToSelectPVS = () => {
     history.push(paths.PROTECTED.PVS_SELECTION_SCREEN.path)
@@ -144,11 +161,67 @@ function InventoryCount() {
         <button
           className="button is-primary mb-15 ml-10"
           type="submit"
-          onClick={e => submitInventory(e, inventory, dispatch, setToBom)}
+          onClick={e => validateInventory(e, inventory, dispatch, setToBom)}
         >
           {t('DONE')}
         </button>
       </div>
+
+      <SwipeableBottomSheet
+        shadowTip={false}
+        open={storageWarning}
+        onChange={() => setStorageWarning(!storageWarning)}
+      >
+        <div className="inventory-warning has-text-centered">
+          <span className="has-text-weight-bold">
+            {t('INVENTORY_STORAGE_ONLY')}
+          </span>
+          <div className="mt-20 mb-20">
+            <div className="modal-inline-buttons">
+              <button
+                className="button is-primary is-outlined"
+                onClick={() => setStorageWarning(!storageWarning)}
+              >
+                {t('CANCEL')}
+              </button>
+              <button
+                className="button is-primary"
+                onClick={() => submitInventory(inventory, dispatch, setToBom)}
+              >
+                {t('CONTINUE')}
+              </button>
+            </div>
+          </div>
+        </div>
+      </SwipeableBottomSheet>
+
+      <SwipeableBottomSheet
+        shadowTip={false}
+        open={configWarning}
+        onChange={() => setConfigWarning(!configWarning)}
+      >
+        <div className="inventory-warning has-text-centered">
+          <span className="has-text-weight-bold">
+            {t('INVENTORY_CONFIG_ONLY')}
+          </span>
+          <div className="mt-20 mb-20">
+            <div className="modal-inline-buttons">
+              <button
+                className="button is-primary is-outlined"
+                onClick={() => setConfigWarning(!configWarning)}
+              >
+                {t('CANCEL')}
+              </button>
+              <button
+                className="button is-primary"
+                onClick={() => submitInventory(inventory, dispatch, setToBom)}
+              >
+                {t('CONTINUE')}
+              </button>
+            </div>
+          </div>
+        </div>
+      </SwipeableBottomSheet>
     </section>
   )
 }

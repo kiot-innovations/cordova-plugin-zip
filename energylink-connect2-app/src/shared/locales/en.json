@@ -488,5 +488,7 @@
   "RMA_SELECT_DEVICE_ERROR": "Please select at least one piece of equipment before continuing",
   "OTHER_DEVICES": "Other Devices",
   "EQUINOX_STORAGE_SYSTEM": "Equinox Storage System",
-  "ERROR_LIST": "Error List"
+  "ERROR_LIST": "Error List",
+  "INVENTORY_STORAGE_ONLY": "No microinverters on inventory, do you want to proceed to storage configuration?",
+  "INVENTORY_CONFIG_ONLY": "No inventory selected, do you want to proceed to system configuration?"
 }
