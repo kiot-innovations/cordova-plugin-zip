@@ -12,7 +12,6 @@ function useAppUpdate() {
   const onUpdate = useCallback(compose(dispatch, APP_UPDATE_OPEN_MARKET), [])
 
   useEffect(() => {
-    console.warn({ updateAvailable, updateVersion })
     if (updateAvailable) {
       dispatch(
         SHOW_MODAL({
