@@ -12,6 +12,8 @@ on:
   push:
     branches:
       - develop
+      - claire
+      - staging-dr-wong
 
 jobs:
   build:
