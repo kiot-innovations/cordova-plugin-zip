@@ -5,6 +5,7 @@ import { Route, Switch } from 'react-router-dom'
 import { withTracker } from 'shared/ga'
 import { routeAuthorization, setLayout } from 'hocs'
 import useUpgrade from 'hooks/useUpgrade'
+import useAppUpdate from 'hooks/useAppUpdate'
 import useCanceledPVSConnection from 'hooks/useCanceledPVSConnection'
 
 import BillOfMaterials from 'pages/BillOfMaterials'
@@ -116,6 +117,7 @@ function AppRoutes() {
     window.scrollTo(0, 0)
   })
 
+  useAppUpdate()
   useUpgrade()
   useCanceledPVSConnection()
 
@@ -128,8 +130,7 @@ function AppRoutes() {
     return () => {
       document.removeEventListener('keyboardDidHide', updateBodyHeight)
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, [dispatch])
 
   const isLoggedIn = useSelector(({ user }) => user.auth.access_token)
   return (

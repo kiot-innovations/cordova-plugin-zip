@@ -47,6 +47,7 @@
     "xcode": "^2.1.0"
   },
   "devDependencies": {
+    "cordova-plugin-market": "git+https://github.com/xmartlabs/cordova-plugin-market.git",
     "cordova-plugin-whitelist": "^1.3.4"
   },
   "cordova": {
@@ -86,7 +87,8 @@
       },
       "cordova-clipboard": {},
       "cordova-plugin-zip": {},
-      "cordova-plugin-file-transfer": {}
+      "cordova-plugin-file-transfer": {},
+      "cordova-plugin-market": {}
     },
     "platforms": [
       "ios",
