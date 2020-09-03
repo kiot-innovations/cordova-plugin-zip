@@ -25,14 +25,19 @@ function ScanDeviceLabels() {
 
   const onDone = useRef(null)
 
-  const finishedScanning = () => {
+  const turnOffScandit = () => {
     if (typeof onDone.current === 'function') {
       onDone.current()
-      history.push(paths.PROTECTED.SN_LIST.path)
     }
   }
 
+  const finishedScanning = () => {
+    turnOffScandit()
+    history.push(paths.PROTECTED.SN_LIST.path)
+  }
+
   const triggerManualEntry = () => {
+    turnOffScandit()
     history.push({
       pathname: paths.PROTECTED.SN_LIST.path,
       state: {

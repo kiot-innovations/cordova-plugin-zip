@@ -15,7 +15,7 @@ import { Loader } from 'components/Loader'
 import paths from 'routes/paths'
 import './ConnectToPVS.scss'
 
-const onSuccess = (generatePassword, dispatch, t) => data => {
+const onSuccess = (generatePassword, dispatch, t, setStarted) => data => {
   try {
     let wifiData
 
@@ -37,6 +37,8 @@ const onSuccess = (generatePassword, dispatch, t) => data => {
   } catch (error) {
     console.warn(error)
   }
+
+  setStarted(false)
 }
 
 function ConnectToPVS() {
@@ -47,9 +49,11 @@ function ConnectToPVS() {
   const [manualEntry, showManualEntry] = useState(false)
   const [manualInstructions, showManualInstructions] = useState(false)
   const [serialNumber, setSerialNumber] = useState('')
+  const [started, setStarted] = useState(false)
 
   const onFail = err => {
     alert(err)
+    setStarted(false)
   }
 
   useEffect(() => {
@@ -99,6 +103,11 @@ function ConnectToPVS() {
     showManualInstructions(false)
   }
 
+  const getBarcode = () => {
+    setStarted(true)
+    scanBarcodes(onSuccess(generatePassword, dispatch, t, setStarted), onFail)
+  }
+
   return (
     <div className="qr-layout has-text-centered">
       <span className="is-uppercase has-text-weight-bold mt-30">
@@ -117,11 +126,9 @@ function ConnectToPVS() {
         </span>
         <div className="mt-20">
           <button
-            disabled={connectionState.connecting}
+            disabled={connectionState.connecting || started}
             className="button is-primary"
-            onClick={() =>
-              scanBarcodes(onSuccess(generatePassword, dispatch, t), onFail)
-            }
+            onClick={getBarcode}
           >
             {t('START_SCAN')}
           </button>
