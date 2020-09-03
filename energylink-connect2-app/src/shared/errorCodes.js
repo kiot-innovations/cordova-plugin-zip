@@ -2906,7 +2906,7 @@ const errorCodes = [
     code: '35002',
     in_use: true,
     error_description: 'Inverter bulk settings update error',
-    display: false,
+    display: true,
     possible_causes: 'Could not update settings in the inverter.',
     recommended_actions:
       "1- Reboot the gateway by  pulling the ethernet connectors from the left-side of the Gateway and plugging them back into the same ports they were in. It may take a few minutes for the gateway to reboot.\n1. Try applying bulk settings again by tapping 'retry' or running the firmware update step again.\nIf the problem persists, please contact SunPower."
