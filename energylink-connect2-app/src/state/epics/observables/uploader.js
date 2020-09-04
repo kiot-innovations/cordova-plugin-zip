@@ -7,6 +7,7 @@ const uploaderObservable = ({ file, url, accessToken }) =>
     xhr.open('POST', url)
     if (accessToken)
       xhr.setRequestHeader('Authorization', `Bearer ${accessToken}`)
+    xhr.setRequestHeader('Content-Type', 'application/octet-stream')
     xhr.upload.onprogress = function(event) {
       const { loaded, total } = event
       const progress = ((loaded / total) * 100).toFixed(0)
