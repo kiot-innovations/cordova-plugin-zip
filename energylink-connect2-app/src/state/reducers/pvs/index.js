@@ -20,10 +20,12 @@ import {
   MI_DATA_SUCCESS,
   MI_DATA_ERROR
 } from '../../actions/pvs'
+import { PUSH_CANDIDATES_ERROR } from 'state/actions/devices'
 
 const initialState = {
   serialNumber: '',
   serialNumbers: [],
+  serialNumbersError: [],
   fetchingSN: false,
   takenImage: null,
   startCommissioningStatus: null,
@@ -36,6 +38,10 @@ const initialState = {
 
 export const pvsReducer = createReducer(
   {
+    [PUSH_CANDIDATES_ERROR]: (state, { candidates }) => ({
+      ...state,
+      serialNumbersError: candidates
+    }),
     [ADD_PVS_SN]: (state, sn) => ({
       ...state,
       serialNumbers: unionWith(
