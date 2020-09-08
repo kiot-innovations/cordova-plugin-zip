@@ -10,35 +10,38 @@ import {
   SUBMIT_CONFIG_SUCCESS,
   SUBMIT_CONFIG_ERROR,
   SUBMIT_EXPORTLIMIT,
-  SUBMIT_GRIDVOLTAGE,
-  SUBMIT_GRIDPROFILE
+  SUBMIT_GRIDPROFILE,
+  SUBMIT_METERCONFIG
 } from 'state/actions/systemConfiguration'
 
-export const submitMeterDataEpic = (action$, state$) => {
+export const submitGridVoltageEpic = (action$, state$) => {
   const t = translate(state$.value.language)
   return action$.pipe(
     ofType(SUBMIT_CONFIG.getType()),
     exhaustMap(({ payload }) => {
-      if (!payload.metaData) {
-        return of(SUBMIT_GRIDVOLTAGE(payload))
+      if (!payload.gridVoltage) {
+        return of(SUBMIT_GRIDPROFILE())
       }
 
       const promise = getApiPVS()
-        .then(path(['apis', 'meta']))
+        .then(path(['apis', 'grid']))
         .then(api =>
-          api.setMetaData({ id: 1 }, { requestBody: payload.metaData })
+          api.setGridVoltage(
+            { id: 1 },
+            { requestBody: { body: { grid_voltage: payload.gridVoltage } } }
+          )
         )
 
       return from(promise).pipe(
         map(response =>
           response.status === 200
-            ? SUBMIT_GRIDVOLTAGE(payload)
-            : SUBMIT_CONFIG_ERROR(t('SUBMIT_METER_DATA_ERROR'))
+            ? SUBMIT_GRIDPROFILE(payload)
+            : SUBMIT_CONFIG_ERROR(t('SUBMIT_GRID_VOLTAGE_ERROR'))
         ),
         catchError(err => {
-          Sentry.addBreadcrumb({ message: 'Submit config' })
+          Sentry.addBreadcrumb({ message: t('SUBMIT_GRID_VOLTAGE_ERROR') })
           Sentry.captureException(err)
-          return of(SUBMIT_CONFIG_ERROR(t('SUBMIT_METER_DATA_ERROR')))
+          return of(SUBMIT_CONFIG_ERROR(t('SUBMIT_GRID_VOLTAGE_ERROR')))
         })
       )
     })
@@ -75,7 +78,7 @@ export const submitGridProfileEpic = (action$, state$) => {
             : SUBMIT_CONFIG_ERROR(t('SUBMIT_GRID_PROFILE_ERROR'))
         ),
         catchError(err => {
-          Sentry.addBreadcrumb({ message: 'Submit grid profile' })
+          Sentry.addBreadcrumb({ message: t('SUBMIT_GRID_PROFILE_ERROR') })
           Sentry.captureException(err)
           return of(SUBMIT_CONFIG_ERROR(t('SUBMIT_GRID_PROFILE_ERROR')))
         })
@@ -101,11 +104,11 @@ export const submitExportLimitEpic = (action$, state$) => {
       return from(promise).pipe(
         map(response =>
           response.status === 200
-            ? SUBMIT_CONFIG_SUCCESS(response)
+            ? SUBMIT_METERCONFIG(payload)
             : SUBMIT_CONFIG_ERROR(t('SUBMIT_EXPORT_LIMIT_ERROR'))
         ),
         catchError(err => {
-          Sentry.addBreadcrumb({ message: 'Submit export limit' })
+          Sentry.addBreadcrumb({ message: t('SUBMIT_EXPORT_LIMIT_ERROR') })
           Sentry.captureException(err)
           return of(SUBMIT_CONFIG_ERROR(t('SUBMIT_EXPORT_LIMIT_ERROR')))
         })
@@ -114,34 +117,31 @@ export const submitExportLimitEpic = (action$, state$) => {
   )
 }
 
-export const submitGridVoltageEpic = (action$, state$) => {
+export const submitMeterDataEpic = (action$, state$) => {
   const t = translate(state$.value.language)
   return action$.pipe(
-    ofType(SUBMIT_GRIDVOLTAGE.getType()),
+    ofType(SUBMIT_METERCONFIG.getType()),
     exhaustMap(({ payload }) => {
-      if (!payload.gridVoltage) {
-        return of(SUBMIT_GRIDPROFILE())
+      if (!payload.metaData) {
+        return of(SUBMIT_CONFIG_SUCCESS(payload))
       }
 
       const promise = getApiPVS()
-        .then(path(['apis', 'grid']))
+        .then(path(['apis', 'meta']))
         .then(api =>
-          api.setGridVoltage(
-            { id: 1 },
-            { requestBody: { body: { grid_voltage: payload.gridVoltage } } }
-          )
+          api.setMetaData({ id: 1 }, { requestBody: payload.metaData })
         )
 
       return from(promise).pipe(
         map(response =>
           response.status === 200
-            ? SUBMIT_GRIDPROFILE(payload)
-            : SUBMIT_CONFIG_ERROR(t('SUBMIT_GRID_VOLTAGE_ERROR'))
+            ? SUBMIT_CONFIG_SUCCESS(response)
+            : SUBMIT_CONFIG_ERROR(t('SUBMIT_METER_DATA_ERROR'))
         ),
         catchError(err => {
-          Sentry.addBreadcrumb({ message: 'Submit grid voltage' })
+          Sentry.addBreadcrumb({ message: t('SUBMIT_METER_DATA_ERROR') })
           Sentry.captureException(err)
-          return of(SUBMIT_CONFIG_ERROR(t('SUBMIT_GRID_VOLTAGE_ERROR')))
+          return of(SUBMIT_CONFIG_ERROR(t('SUBMIT_METER_DATA_ERROR')))
         })
       )
     })

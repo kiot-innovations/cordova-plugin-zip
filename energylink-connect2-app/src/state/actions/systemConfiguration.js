@@ -31,6 +31,7 @@ export const SUBMIT_CONFIG_ERROR = createAction('SUBMIT_CONFIG_ERROR')
 export const SUBMIT_GRIDPROFILE = createAction('SUBMIT_GRIDPROFILE')
 export const SUBMIT_EXPORTLIMIT = createAction('SUBMIT_EXPORTLIMIT')
 export const SUBMIT_GRIDVOLTAGE = createAction('SUBMIT_GRIDVOLTAGE')
+export const SUBMIT_METERCONFIG = createAction('SUBMIT_METERCONFIG')
 
 export const GET_STORAGE_INIT = createAction('GET_BATTERIES_INIT')
 export const GET_STORAGE_ERROR = createAction('GET_BATTERIES_ERROR')
