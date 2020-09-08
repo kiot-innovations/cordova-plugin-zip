@@ -375,6 +375,7 @@
   "FWUP_PENDING": "Pending",
   "FWUP_INPROGRESS": "Updating",
   "FWUP_COMPLETED": "Up to date",
+  "FWUP_COMPONENT_ERROR": "Error",
   "FWUP_ERROR": "Error upgrading. Please power cycle your PVS and check that the Firmware package were downloaded",
   "PVS_SN_ERROR": "Unknown PVS SN",
   "QRCODE_HINT": "You can find the code on the PVS when removing the frontplate",
