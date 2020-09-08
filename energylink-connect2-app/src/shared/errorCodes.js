@@ -9,7 +9,7 @@ const errorCodes = [
     code: '00550',
     in_use: true,
     error_description: 'Microinverter firmware does not support backup mode',
-    display: false,
+    display: true,
     possible_causes: 'Microinverter firmware is not up to date',
     recommended_actions:
       'This message is for informational purposes only. No action is necessary at this time. Microinverter firmware may be updated remotely by SunPower at a later time.'
@@ -20,7 +20,7 @@ const errorCodes = [
     code: '01001',
     in_use: true,
     error_description: 'Contactor is open',
-    display: false,
+    display: true,
     possible_causes: 'Contactor was opened',
     recommended_actions:
       'This message is for informational purposes only. No action required.'
@@ -31,7 +31,7 @@ const errorCodes = [
     code: '01002',
     in_use: true,
     error_description: 'Contactor is closed',
-    display: false,
+    display: true,
     possible_causes: 'Contactor was closed',
     recommended_actions:
       'This message is for informational purposes only. No action required.'
@@ -42,7 +42,7 @@ const errorCodes = [
     code: '01015',
     in_use: true,
     error_description: 'Rapid shutdown was activated.',
-    display: false,
+    display: true,
     possible_causes: 'The rapid shutdown button was pressed.',
     recommended_actions:
       'This message is for informational purposes only. No action is necessary at this time.'
@@ -53,7 +53,7 @@ const errorCodes = [
     code: '01022',
     in_use: true,
     error_description: 'Hub plus jumpstart detected',
-    display: false,
+    display: true,
     possible_causes: 'PVS caused the hubplus to jumpstart',
     recommended_actions:
       'This message is for informational purposes only. No action is required.'
@@ -64,7 +64,7 @@ const errorCodes = [
     code: '01023',
     in_use: true,
     error_description: 'Hub plus jumpstart is active',
-    display: false,
+    display: true,
     possible_causes: 'PVS caused the hubplus to jumpstart',
     recommended_actions:
       'This message is for informational purposes only. No action is required.'
@@ -75,7 +75,7 @@ const errorCodes = [
     code: '01048',
     in_use: true,
     error_description: 'Contactor is open',
-    display: false,
+    display: true,
     possible_causes: 'Contactor was opened',
     recommended_actions:
       'This message is for informational purposes only. No action required.'
@@ -86,7 +86,7 @@ const errorCodes = [
     code: '01049',
     in_use: true,
     error_description: 'Contactor is closed',
-    display: false,
+    display: true,
     possible_causes: 'Contactor was closed',
     recommended_actions:
       'This message is for informational purposes only. No action required.'
@@ -97,7 +97,7 @@ const errorCodes = [
     code: '01050',
     in_use: true,
     error_description: 'Contactor was moved',
-    display: false,
+    display: true,
     possible_causes: 'Contactor was moved manually or for an unknown reason.',
     recommended_actions:
       'This message is for informational purposes only. No action required.'
@@ -108,7 +108,7 @@ const errorCodes = [
     code: '01051',
     in_use: true,
     error_description: 'Grid phase loss',
-    display: false,
+    display: true,
     possible_causes: 'Hub plus cannot detect a phase voltage on the grid side.',
     recommended_actions:
       'Check that L1 and L2 terminations on the grid side are made properly and that the MIDC board is installed correctly. Check that the white connector at the top of the MIDC board is connected and seated properly. '
@@ -119,7 +119,7 @@ const errorCodes = [
     code: '01052',
     in_use: true,
     error_description: 'Load phase loss',
-    display: false,
+    display: true,
     possible_causes: 'Hub plus cannot detect a phase voltage on the load side.',
     recommended_actions:
       'Check that L1 and L2 terminations on the load side are made properly and that the MIDC board is installed correctly. Check that the white connector at the top of the MIDC board is connected and seated properly. '
@@ -130,7 +130,7 @@ const errorCodes = [
     code: '01060',
     in_use: true,
     error_description: 'Meter phase loss',
-    display: false,
+    display: true,
     possible_causes: 'Hub plus cannot detect a phase presence.',
     recommended_actions:
       'Make sure production and consumption CTs are connected to the PVS.'
@@ -141,7 +141,7 @@ const errorCodes = [
     code: '02050',
     in_use: true,
     error_description: 'Inverter overload',
-    display: false,
+    display: true,
     possible_causes:
       'Inverter was loaded over its continuous capacity of 7.5kW.',
     recommended_actions:
@@ -153,7 +153,7 @@ const errorCodes = [
     code: '02053',
     in_use: true,
     error_description: 'The transformer in the inverter is over temperature',
-    display: false,
+    display: true,
     possible_causes: 'High load on inverter.',
     recommended_actions:
       'If this problem continues to occur, consider replacing the inverter.'
@@ -164,7 +164,7 @@ const errorCodes = [
     code: '02058',
     in_use: true,
     error_description: 'Contactor malfunction',
-    display: false,
+    display: true,
     possible_causes:
       'Inverter detected a problem with the contactor in the Hub+.',
     recommended_actions:
@@ -176,7 +176,7 @@ const errorCodes = [
     code: '02067',
     in_use: true,
     error_description: 'The inverter formed a microgrid',
-    display: false,
+    display: true,
     possible_causes: 'The inverter is now powering the backed-up loads.',
     recommended_actions:
       'This message is for informational purposes only. No action is required.'
@@ -187,7 +187,7 @@ const errorCodes = [
     code: '11010',
     in_use: true,
     error_description: 'Hub+ temperature too low',
-    display: false,
+    display: true,
     possible_causes:
       'Low ambient temperature (below -10C) or faulty temperature sensor in Hub+',
     recommended_actions:
@@ -199,7 +199,7 @@ const errorCodes = [
     code: '11011',
     in_use: true,
     error_description: 'Hub+ temperature too high',
-    display: false,
+    display: true,
     possible_causes:
       'The Hub+ may be located in a hot location or facing direct sun. This could also be caused by loads/generation above Hub+ rating.',
     recommended_actions:
@@ -211,7 +211,7 @@ const errorCodes = [
     code: '11013',
     in_use: true,
     error_description: 'Hub+ humidity warning',
-    display: false,
+    display: true,
     possible_causes: 'Water intrusion into Hub+',
     recommended_actions:
       'Ensure that the Hub+ door is closed and check for water intrusion.'
@@ -222,7 +222,7 @@ const errorCodes = [
     code: '11014',
     in_use: true,
     error_description: 'Rapid shutdown button is disconnected.',
-    display: false,
+    display: true,
     possible_causes:
       'Connection between the Hub+ and rapid shutdown button was severed or the shunts are not properly connected.',
     recommended_actions:
@@ -234,7 +234,7 @@ const errorCodes = [
     code: '11016',
     in_use: true,
     error_description: 'Hub+ power supply under voltage',
-    display: false,
+    display: true,
     possible_causes: 'Check user manual',
     recommended_actions: 'Check user manual'
   },
@@ -244,7 +244,7 @@ const errorCodes = [
     code: '11017',
     in_use: true,
     error_description: 'Hub+ power supply over voltage',
-    display: false,
+    display: true,
     possible_causes: 'Check user manual',
     recommended_actions: 'Check user manual'
   },
@@ -254,7 +254,7 @@ const errorCodes = [
     code: '11018',
     in_use: true,
     error_description: 'Aux cable voltage low',
-    display: false,
+    display: true,
     possible_causes:
       'Aux cable between inverter and MIDC board in the Hub+ may not be properly made or installed.',
     recommended_actions:
@@ -266,7 +266,7 @@ const errorCodes = [
     code: '11019',
     in_use: true,
     error_description: 'Aux cable voltage high',
-    display: false,
+    display: true,
     possible_causes:
       'Aux cable between inverter and MIDC board in the Hub+ may not be properly made or installed.',
     recommended_actions:
@@ -278,7 +278,7 @@ const errorCodes = [
     code: '11020',
     in_use: true,
     error_description: 'Hub+ power supply voltage is low',
-    display: false,
+    display: true,
     possible_causes: 'Check user manual',
     recommended_actions: 'Check user manual'
   },
@@ -288,7 +288,7 @@ const errorCodes = [
     code: '11021',
     in_use: true,
     error_description: 'Hub+ power supply voltage is high',
-    display: false,
+    display: true,
     possible_causes: 'Check user manual',
     recommended_actions: 'Check user manual'
   },
@@ -298,7 +298,7 @@ const errorCodes = [
     code: '11024',
     in_use: true,
     error_description: 'Hub+ jumpstart voltage out of range',
-    display: false,
+    display: true,
     possible_causes: 'Check user manual',
     recommended_actions: 'Check user manual'
   },
@@ -308,7 +308,7 @@ const errorCodes = [
     code: '11056',
     in_use: true,
     error_description: 'MIDC board rebooted',
-    display: false,
+    display: true,
     possible_causes: 'MIDC board rebooted',
     recommended_actions: 'No action required at this time.'
   },
@@ -318,7 +318,7 @@ const errorCodes = [
     code: '11057',
     in_use: true,
     error_description: 'WDT reboot',
-    display: false,
+    display: true,
     possible_causes: 'A component rebooted',
     recommended_actions: 'No action required at this time.'
   },
@@ -328,7 +328,7 @@ const errorCodes = [
     code: '11058',
     in_use: true,
     error_description: 'UART Timeout',
-    display: false,
+    display: true,
     possible_causes: 'UART timed out',
     recommended_actions: 'No action required at this time.'
   },
@@ -338,7 +338,7 @@ const errorCodes = [
     code: '11059',
     in_use: true,
     error_description: 'Grid meter voltage out of range',
-    display: false,
+    display: true,
     possible_causes: 'Hub plus cannot detect a phase voltage on the grid side.',
     recommended_actions:
       'Check that L1 and L2 terminations on the load side are made properly and that the MIDC board is installed correctly. Check that the white connector at the top of the MIDC board is connected and seated properly. '
@@ -349,7 +349,7 @@ const errorCodes = [
     code: '12000',
     in_use: true,
     error_description: 'Storage inverter under temperature',
-    display: false,
+    display: true,
     possible_causes:
       'Water or ice may have intruded into the all-in-one enclosure. The all-in-one door may be closed.',
     recommended_actions:
@@ -361,7 +361,7 @@ const errorCodes = [
     code: '12001',
     in_use: true,
     error_description: 'Storage inverter over temperature',
-    display: false,
+    display: true,
     possible_causes:
       'The ESS enclosure may be located in an overly hot location.\nESS enclosure fans may be blocked or faulty. ',
     recommended_actions:
@@ -373,7 +373,7 @@ const errorCodes = [
     code: '12068',
     in_use: true,
     error_description: 'Microgrid overload',
-    display: false,
+    display: true,
     possible_causes: 'Load is to high for the batteries. ',
     recommended_actions:
       'Make sure the loads on the back-up side are sized appropriately for the inverter power capacity.'
@@ -384,7 +384,7 @@ const errorCodes = [
     code: '13000',
     in_use: true,
     error_description: 'Battery has low state of charge',
-    display: false,
+    display: true,
     possible_causes:
       'Battery is typically charged from PV energy. Long periods of bad weather may have caused the battery to drain excessively. Inverter may be malfunctioning.',
     recommended_actions:
@@ -396,7 +396,7 @@ const errorCodes = [
     code: '13001',
     in_use: true,
     error_description: 'Battery has degraded (low state of health)',
-    display: false,
+    display: true,
     possible_causes:
       'Battery may have been exposed ot harsh environmental conditions or may have been used aggressively.',
     recommended_actions:
@@ -408,7 +408,7 @@ const errorCodes = [
     code: '13003',
     in_use: true,
     error_description: 'Battery internal fault',
-    display: false,
+    display: true,
     possible_causes: 'A battery internal fault occurred',
     recommended_actions: 'Please contact SunPower'
   },
@@ -418,7 +418,7 @@ const errorCodes = [
     code: '13004',
     in_use: true,
     error_description: 'Battery internal fault',
-    display: false,
+    display: true,
     possible_causes: 'A battery internal fault occurred',
     recommended_actions: 'Please contact SunPower'
   },
@@ -428,7 +428,7 @@ const errorCodes = [
     code: '13005',
     in_use: true,
     error_description: 'Battery internal fault',
-    display: false,
+    display: true,
     possible_causes: 'A battery internal fault occurred',
     recommended_actions: 'Please contact SunPower'
   },
@@ -438,7 +438,7 @@ const errorCodes = [
     code: '13006',
     in_use: true,
     error_description: 'Battery internal fault',
-    display: false,
+    display: true,
     possible_causes: 'A battery internal fault occurred',
     recommended_actions: 'Please contact SunPower'
   },
@@ -448,7 +448,7 @@ const errorCodes = [
     code: '13007',
     in_use: true,
     error_description: 'Battery internal fault',
-    display: false,
+    display: true,
     possible_causes: 'A battery internal fault occurred',
     recommended_actions: 'Please contact SunPower'
   },
@@ -458,7 +458,7 @@ const errorCodes = [
     code: '13008',
     in_use: true,
     error_description: 'Battery internal fault',
-    display: false,
+    display: true,
     possible_causes: 'A battery internal fault occurred',
     recommended_actions: 'Please contact SunPower'
   },
@@ -468,7 +468,7 @@ const errorCodes = [
     code: '13009',
     in_use: true,
     error_description: 'Battery internal fault',
-    display: false,
+    display: true,
     possible_causes: 'A battery internal fault occurred',
     recommended_actions: 'Please contact SunPower'
   },
@@ -478,7 +478,7 @@ const errorCodes = [
     code: '13010',
     in_use: true,
     error_description: 'Battery internal fault',
-    display: false,
+    display: true,
     possible_causes: 'A battery internal fault occurred',
     recommended_actions: 'Please contact SunPower'
   },
@@ -488,7 +488,7 @@ const errorCodes = [
     code: '13011',
     in_use: true,
     error_description: 'Battery internal fault',
-    display: false,
+    display: true,
     possible_causes: 'A battery internal fault occurred',
     recommended_actions: 'Please contact SunPower'
   },
@@ -498,7 +498,7 @@ const errorCodes = [
     code: '13012',
     in_use: true,
     error_description: 'Battery internal fault',
-    display: false,
+    display: true,
     possible_causes: 'A battery internal fault occurred',
     recommended_actions: 'Please contact SunPower'
   },
@@ -508,7 +508,7 @@ const errorCodes = [
     code: '13013',
     in_use: true,
     error_description: 'Battery internal fault',
-    display: false,
+    display: true,
     possible_causes: 'A battery internal fault occurred',
     recommended_actions: 'Please contact SunPower'
   },
@@ -518,7 +518,7 @@ const errorCodes = [
     code: '13014',
     in_use: true,
     error_description: 'Battery internal fault',
-    display: false,
+    display: true,
     possible_causes: 'A battery internal fault occurred',
     recommended_actions: 'Please contact SunPower'
   },
@@ -528,7 +528,7 @@ const errorCodes = [
     code: '13015',
     in_use: true,
     error_description: 'Battery internal fault',
-    display: false,
+    display: true,
     possible_causes: 'A battery internal fault occurred',
     recommended_actions: 'Please contact SunPower'
   },
@@ -538,7 +538,7 @@ const errorCodes = [
     code: '13016',
     in_use: true,
     error_description: 'Battery internal fault',
-    display: false,
+    display: true,
     possible_causes: 'A battery internal fault occurred',
     recommended_actions: 'Please contact SunPower'
   },
@@ -548,7 +548,7 @@ const errorCodes = [
     code: '13017',
     in_use: true,
     error_description: 'Battery has low state of charge',
-    display: false,
+    display: true,
     possible_causes:
       'Battery is typically charged from PV energy. Long periods of bad weather may have caused the battery to drain excessively. Inverter may be malfunctioning.',
     recommended_actions:
@@ -560,7 +560,7 @@ const errorCodes = [
     code: '13018',
     in_use: true,
     error_description: 'Battery pack will be turned off',
-    display: false,
+    display: true,
     possible_causes: 'Check user manual',
     recommended_actions: 'Check user manual'
   },
@@ -570,7 +570,7 @@ const errorCodes = [
     code: '13019',
     in_use: true,
     error_description: 'Battery internal fault',
-    display: false,
+    display: true,
     possible_causes: 'A battery internal fault occurred',
     recommended_actions: 'Please contact SunPower'
   },
@@ -580,7 +580,7 @@ const errorCodes = [
     code: '14000',
     in_use: true,
     error_description: 'ESS temperature too low',
-    display: false,
+    display: true,
     possible_causes:
       'Water or ice may have intruded into the all-in-one enclosure. The all-in-one door may be closed.',
     recommended_actions:
@@ -592,7 +592,7 @@ const errorCodes = [
     code: '14001',
     in_use: true,
     error_description: 'ESS temperature too high',
-    display: false,
+    display: true,
     possible_causes:
       'The ESS enclosure may be located in an overly hot location.\nESS enclosure fans may be blocked or faulty. ',
     recommended_actions:
@@ -604,7 +604,7 @@ const errorCodes = [
     code: '14003',
     in_use: true,
     error_description: 'ESS enclosure high humidity warning',
-    display: false,
+    display: true,
     possible_causes: 'Water intrusion into ESS enclosure',
     recommended_actions:
       'Ensure that the ESS enclosure door is closed and check for water intrusion.'
@@ -615,7 +615,7 @@ const errorCodes = [
     code: '14004',
     in_use: true,
     error_description: 'ESS gateway power supply under voltage',
-    display: false,
+    display: true,
     possible_causes: 'Check user manual',
     recommended_actions: 'Check user manual'
   },
@@ -625,7 +625,7 @@ const errorCodes = [
     code: '14005',
     in_use: true,
     error_description: 'ESS gateway power supply over voltage',
-    display: false,
+    display: true,
     possible_causes: 'Check user manual',
     recommended_actions: 'Check user manual'
   },
@@ -635,7 +635,7 @@ const errorCodes = [
     code: '14006',
     in_use: true,
     error_description: 'MIO board supply under voltage',
-    display: false,
+    display: true,
     possible_causes: 'Check user manual',
     recommended_actions: 'Check user manual'
   },
@@ -645,7 +645,7 @@ const errorCodes = [
     code: '14007',
     in_use: true,
     error_description: 'MIO board auxiliary power supply over voltage',
-    display: false,
+    display: true,
     possible_causes: 'Check user manual',
     recommended_actions: 'Check user manual'
   },
@@ -655,7 +655,7 @@ const errorCodes = [
     code: '14008',
     in_use: true,
     error_description: 'MIO board supply under voltage',
-    display: false,
+    display: true,
     possible_causes: 'Check user manual',
     recommended_actions: 'Check user manual'
   },
@@ -665,7 +665,7 @@ const errorCodes = [
     code: '14009',
     in_use: true,
     error_description: 'MIO board auxiliary power supply over voltage',
-    display: false,
+    display: true,
     possible_causes: 'Check user manual',
     recommended_actions: 'Check user manual'
   },
@@ -675,7 +675,7 @@ const errorCodes = [
     code: '16000',
     in_use: true,
     error_description: 'Consumption meter phase 1 under voltage.',
-    display: false,
+    display: true,
     possible_causes:
       'Conductor terminations flipped, CT terminations are incorrectly installed.',
     recommended_actions:
@@ -687,7 +687,7 @@ const errorCodes = [
     code: '16001',
     in_use: true,
     error_description: 'Consumption meter phase 1 over voltage.',
-    display: false,
+    display: true,
     possible_causes:
       'Conductor terminations flipped, CT terminations are incorrectly installed.',
     recommended_actions:
@@ -699,7 +699,7 @@ const errorCodes = [
     code: '16002',
     in_use: true,
     error_description: 'Consumption meter phase 2 under voltage.',
-    display: false,
+    display: true,
     possible_causes:
       'Conductor terminations flipped, CT terminations are incorrectly installed.',
     recommended_actions:
@@ -711,7 +711,7 @@ const errorCodes = [
     code: '16003',
     in_use: true,
     error_description: 'Consumption meter phase 2 over voltage.',
-    display: false,
+    display: true,
     possible_causes:
       'Conductor terminations flipped, CT terminations are incorrectly installed.',
     recommended_actions:
@@ -723,7 +723,7 @@ const errorCodes = [
     code: '16004',
     in_use: true,
     error_description: 'Consumption meter phase 1-2 under voltage.',
-    display: false,
+    display: true,
     possible_causes:
       'Conductor terminations flipped, CT terminations are incorrectly installed.',
     recommended_actions:
@@ -735,7 +735,7 @@ const errorCodes = [
     code: '16005',
     in_use: true,
     error_description: 'Consumption meter phase 1-2 over voltage.',
-    display: false,
+    display: true,
     possible_causes:
       'Conductor terminations flipped, CT terminations are incorrectly installed.',
     recommended_actions:
@@ -747,7 +747,7 @@ const errorCodes = [
     code: '16006',
     in_use: true,
     error_description: 'AC Grid under frequency',
-    display: false,
+    display: true,
     possible_causes: 'This is likely a grid disturbance',
     recommended_actions: 'Check with utlity.'
   },
@@ -757,7 +757,7 @@ const errorCodes = [
     code: '16007',
     in_use: true,
     error_description: 'AC grid over frequency',
-    display: false,
+    display: true,
     possible_causes: 'This is likely a grid disturbance',
     recommended_actions: 'Check with utlity.'
   },
@@ -767,7 +767,7 @@ const errorCodes = [
     code: '21055',
     in_use: true,
     error_description: 'Rapid shutdown button pressed',
-    display: false,
+    display: true,
     possible_causes: 'The rapid shutdown button may have been pressed',
     recommended_actions:
       "Pull remote shutdown push-button. Rebool inverter by pressing the 'on/off' button for a few seconds until you see 'Off' in the display, then press the on/of button again."
@@ -778,7 +778,7 @@ const errorCodes = [
     code: '23003',
     in_use: true,
     error_description: 'Battery internal fault',
-    display: false,
+    display: true,
     possible_causes: 'A battery internal fault occurred',
     recommended_actions:
       'Reboot both batteries to clear this fault. If the problem persists, please contact SunPower'
@@ -789,7 +789,7 @@ const errorCodes = [
     code: '23004',
     in_use: true,
     error_description: 'Battery internal fault',
-    display: false,
+    display: true,
     possible_causes: 'A battery internal fault occurred',
     recommended_actions:
       'Reboot both batteries to clear this fault. If the problem persists, please contact SunPower'
@@ -800,7 +800,7 @@ const errorCodes = [
     code: '23005',
     in_use: true,
     error_description: 'Battery internal fault',
-    display: false,
+    display: true,
     possible_causes: 'A battery internal fault occurred',
     recommended_actions:
       'Reboot both batteries to clear this fault. If the problem persists, please contact SunPower'
@@ -811,7 +811,7 @@ const errorCodes = [
     code: '23006',
     in_use: true,
     error_description: 'Battery internal fault',
-    display: false,
+    display: true,
     possible_causes: 'A battery internal fault occurred',
     recommended_actions:
       'Reboot both batteries to clear this fault. If the problem persists, please contact SunPower'
@@ -822,7 +822,7 @@ const errorCodes = [
     code: '23007',
     in_use: true,
     error_description: 'Battery internal fault',
-    display: false,
+    display: true,
     possible_causes: 'A battery internal fault occurred',
     recommended_actions:
       'Reboot both batteries to clear this fault. If the problem persists, please contact SunPower'
@@ -833,7 +833,7 @@ const errorCodes = [
     code: '23008',
     in_use: true,
     error_description: 'Battery internal fault',
-    display: false,
+    display: true,
     possible_causes: 'A battery internal fault occurred',
     recommended_actions:
       'Reboot both batteries to clear this fault. If the problem persists, please contact SunPower'
@@ -844,7 +844,7 @@ const errorCodes = [
     code: '23009',
     in_use: true,
     error_description: 'Battery internal fault',
-    display: false,
+    display: true,
     possible_causes: 'A battery internal fault occurred',
     recommended_actions:
       'Reboot both batteries to clear this fault. If the problem persists, please contact SunPower'
@@ -855,7 +855,7 @@ const errorCodes = [
     code: '23010',
     in_use: true,
     error_description: 'Battery internal fault',
-    display: false,
+    display: true,
     possible_causes: 'A battery internal fault occurred',
     recommended_actions:
       'Reboot both batteries to clear this fault. If the problem persists, please contact SunPower'
@@ -866,7 +866,7 @@ const errorCodes = [
     code: '23011',
     in_use: true,
     error_description: 'Battery internal fault',
-    display: false,
+    display: true,
     possible_causes: 'A battery internal fault occurred',
     recommended_actions:
       'Reboot both batteries to clear this fault. If the problem persists, please contact SunPower'
@@ -877,7 +877,7 @@ const errorCodes = [
     code: '23012',
     in_use: true,
     error_description: 'Battery internal fault',
-    display: false,
+    display: true,
     possible_causes: 'A battery internal fault occurred',
     recommended_actions:
       'Reboot both batteries to clear this fault. If the problem persists, please contact SunPower'
@@ -888,7 +888,7 @@ const errorCodes = [
     code: '23013',
     in_use: true,
     error_description: 'Battery internal fault',
-    display: false,
+    display: true,
     possible_causes: 'A battery internal fault occurred',
     recommended_actions:
       'Reboot both batteries to clear this fault. If the problem persists, please contact SunPower'
@@ -899,7 +899,7 @@ const errorCodes = [
     code: '23014',
     in_use: true,
     error_description: 'Battery internal fault',
-    display: false,
+    display: true,
     possible_causes: 'A battery internal fault occurred',
     recommended_actions:
       'Reboot both batteries to clear this fault. If the problem persists, please contact SunPower'
@@ -910,7 +910,7 @@ const errorCodes = [
     code: '23015',
     in_use: true,
     error_description: 'Battery internal fault',
-    display: false,
+    display: true,
     possible_causes: 'A battery internal fault occurred',
     recommended_actions:
       'Reboot both batteries to clear this fault. If the problem persists, please contact SunPower'
@@ -921,7 +921,7 @@ const errorCodes = [
     code: '23016',
     in_use: true,
     error_description: 'Battery internal fault',
-    display: false,
+    display: true,
     possible_causes: 'A battery internal fault occurred',
     recommended_actions:
       'Reboot both batteries to clear this fault. If the problem persists, please contact SunPower'
@@ -932,7 +932,7 @@ const errorCodes = [
     code: '30000',
     in_use: true,
     error_description: 'PVS could not connect to MIDC board',
-    display: false,
+    display: true,
     possible_causes:
       "The PVS cannot connect with the MIDC board. The MIDC board drives the transfer switch on the Hub+. It also connects to the MIO board, so if you're seeing this error, it is likely that other errors are occurring as well. You should focus on fixing this error first before you proceed to fix the others.\n\nThis problem may be due to one of the following causes:\n1. The MIDC board is not powered\n2. The MIDC board is not connected to the MIO board.\n3. PVS MIDC CAN connector is bad\n4. The MIDC board is damaged\n5. The AUX cable between inverter and MIDC board is not properly connected and/or terminated.",
     recommended_actions:
@@ -944,7 +944,7 @@ const errorCodes = [
     code: '30001',
     in_use: true,
     error_description: 'PVS could not connect to MIO board',
-    display: false,
+    display: true,
     possible_causes:
       "The PVS cannot connect with the MIO board. The MIO board is a hub for data connections to the batteries, inverter, and gateway, so if you're seeing this error, it is likely you're also seeing other errors such as missing batteries or inverters.\n\nThis problem may be due to one of the following causes:\n1. Faulty data connection between the Hub+ and the MIO board.\n2. MIO lost power.\n3. Faulty data connection with another MIO board (applicable to Power Expansion packs only)",
     recommended_actions:
@@ -956,7 +956,7 @@ const errorCodes = [
     code: '30002',
     in_use: true,
     error_description: 'PVS could not connect to ESS Gateway',
-    display: false,
+    display: true,
     possible_causes:
       "The Schneider Gateway connects the inverter with PVS and batteries. If you're seeing this error it is likely you're also seeing other errors such as batteries  or inverter(s) missing.\n\nThis problem may be due to the following causes:\n1. Gateway lost power.\n2. The ethernet connector between the gateway and PVS is not connected or terminated correctly.\n3. Gateway may need to be rebooted.",
     recommended_actions:
@@ -968,7 +968,7 @@ const errorCodes = [
     code: '30003',
     in_use: true,
     error_description: 'PVS could not connect to inverter',
-    display: false,
+    display: true,
     possible_causes:
       "The PVS cannot connect to the Schneider inverter.\n1.  If you're also seeing an error that indicates that the gateway is missing, this error may be due to the fact that the gateway is not properly connected. Please address the problem with the gateway first if you're seeing a gateway error. \n2. The inverter may need to be rebooted.\n3. A data connection between the inverter.MIO and PVS is not properly made.\n",
     recommended_actions:
@@ -980,7 +980,7 @@ const errorCodes = [
     code: '30004',
     in_use: true,
     error_description: 'PVS could not connect to batteries',
-    display: false,
+    display: true,
     possible_causes:
       "The PVS cannot connect with the batteries. This could be due because there are other connections missing. If you're also seeing a missing gateway error, missing MIDC or missing MIO board, this 'No BMS' error is likely due to any of these errors and you should try to fix them before you attempt to fix this.\n\nThis problem may be due to the following causes:\n1. Gateway is not connected. If this is the case, you'll also be seeing a 'No gateway' error and you should attempt fixing the problem first.\n2. CAN bus connection (green) between the MIO board (J4) and Schneider gateway is not properly made.\n3. The CAN bus connection on the Gateway side is not properly made or terminated (white-orange, orange, white-green, white-blue, and blue conductors).\n4. The CAN cable between J4 port on MIO and gateway is cut off.\n5. Connection between the batteries (orange) and the MIO board is not properly made\n6. Batteries are not powered on.",
     recommended_actions:
@@ -992,7 +992,7 @@ const errorCodes = [
     code: '30005',
     in_use: true,
     error_description: 'Too many inverters',
-    display: false,
+    display: true,
     possible_causes: 'N/A',
     recommended_actions: 'N/A'
   },
@@ -1002,7 +1002,7 @@ const errorCodes = [
     code: '30006',
     in_use: true,
     error_description: 'MIO could not connect to inverter',
-    display: false,
+    display: true,
     possible_causes:
       "The PVS cannot connect to the Schneider inverter.\n1.  If you're also seeing an error that indicates that the gateway is missing, this error may be due to the fact that the gateway is not properly connected. Please address the problem with the gateway first if you're seeing a gateway error. \n2. The inverter may need to be rebooted.\n3. A data connection between the inverter.MIO and PVS is not properly made.\n",
     recommended_actions:
@@ -1014,7 +1014,7 @@ const errorCodes = [
     code: '30007',
     in_use: true,
     error_description: 'PVS could not connect to batteries',
-    display: false,
+    display: true,
     possible_causes:
       "The PVS cannot connect with the batteries. This could be due because there are other connections missing. If you're also seeing a missing gateway error, missing MIDC or missing MIO board, this 'No BMS' error is likely due to any of these errors and you should try to fix them before you attempt to fix this.\n\nThis problem may be due to the following causes:\n1. Gateway is not connected. If this is the case, you'll also be seeing a 'No gateway' error and you should attempt fixing the problem first.\n2. CAN bus connection (green) between the MIO board (J4) and Schneider gateway is not properly made.\n3. The CAN bus connection on the Gateway side is not properly made or terminated (white-orange, orange, white-green, white-blue, and blue conductors).\n4. The CAN cable between J4 port on MIO and gateway is cut off.\n5. Connection between the batteries (orange) and the MIO board is not properly made\n6. Batteries are not powered on.",
     recommended_actions:
@@ -1026,7 +1026,7 @@ const errorCodes = [
     code: '30008',
     in_use: true,
     error_description: 'PVS could not connect to one or more inverters',
-    display: false,
+    display: true,
     possible_causes:
       "The PVS cannot connect to the Schneider inverter.\n1.  If you're also seeing an error that indicates that the gateway is missing, this error may be due to the fact that the gateway is not properly connected. Please address the problem with the gateway first if you're seeing a gateway error. \n2. The inverter may need to be rebooted.\n3. A data connection between the inverter.MIO and PVS is not properly made.\n",
     recommended_actions:
@@ -1038,7 +1038,7 @@ const errorCodes = [
     code: '30015',
     in_use: true,
     error_description: 'PVS could not connect to batteries',
-    display: false,
+    display: true,
     possible_causes:
       "The PVS cannot connect with the batteries. This could be due because there are other connections missing. If you're also seeing a missing gateway error, missing MIDC or missing MIO board, this 'No BMS' error is likely due to any of these errors and you should try to fix them before you attempt to fix this.\n\nThis problem may be due to the following causes:\n1. Gateway is not connected. If this is the case, you'll also be seeing a 'No gateway' error and you should attempt fixing the problem first.\n2. CAN bus connection (green) between the MIO board (J4) and Schneider gateway is not properly made.\n3. The CAN bus connection on the Gateway side is not properly made or terminated (white-orange, orange, white-green, white-blue, and blue conductors).\n4. The CAN cable between J4 port on MIO and gateway is cut off.\n5. Connection between the batteries (orange) and the MIO board is not properly made\n6. Batteries are not powered on.",
     recommended_actions:
@@ -1050,7 +1050,7 @@ const errorCodes = [
     code: '30018',
     in_use: true,
     error_description: 'PVS could not connect to one or more inverters',
-    display: false,
+    display: true,
     possible_causes:
       "The PVS cannot connect to the Schneider inverter.\n1.  If you're also seeing an error that indicates that the gateway is missing, this error may be due to the fact that the gateway is not properly connected. Please address the problem with the gateway first if you're seeing a gateway error. \n2. The inverter may need to be rebooted.\n3. A data connection between the inverter.MIO and PVS is not properly made.\n",
     recommended_actions:
@@ -1062,7 +1062,7 @@ const errorCodes = [
     code: '30021',
     in_use: true,
     error_description: 'PVS could not connect to MIO board',
-    display: false,
+    display: true,
     possible_causes:
       "The PVS cannot connect with the MIO board. The MIO board is a hub for data connections to the batteries, inverter, and gateway, so if you're seeing this error, it is likely you're also seeing other errors such as missing batteries or inverters.\n\nThis problem may be due to one of the following causes:\n1. Faulty data connection between the Hub+ and the MIO board.\n2. MIO lost power.\n3. Faulty data connection with another MIO board (applicable to Power Expansion packs only)",
     recommended_actions:
@@ -1074,7 +1074,7 @@ const errorCodes = [
     code: '30022',
     in_use: true,
     error_description: 'PVS found too many MIO boards',
-    display: false,
+    display: true,
     possible_causes: 'N/A',
     recommended_actions: 'N/A'
   },
@@ -1084,7 +1084,7 @@ const errorCodes = [
     code: '30025',
     in_use: true,
     error_description: 'PVS could not connect to batteries',
-    display: false,
+    display: true,
     possible_causes:
       "The PVS cannot connect with the batteries. This could be due because there are other connections missing. If you're also seeing a missing gateway error, missing MIDC or missing MIO board, this 'No BMS' error is likely due to any of these errors and you should try to fix them before you attempt to fix this.\n\nThis problem may be due to the following causes:\n1. Gateway is not connected. If this is the case, you'll also be seeing a 'No gateway' error and you should attempt fixing the problem first.\n2. CAN bus connection (green) between the MIO board (J4) and Schneider gateway is not properly made.\n3. The CAN bus connection on the Gateway side is not properly made or terminated (white-orange, orange, white-green, white-blue, and blue conductors).\n4. The CAN cable between J4 port on MIO and gateway is cut off.\n5. Connection between the batteries (orange) and the MIO board is not properly made\n6. Batteries are not powered on.",
     recommended_actions:
@@ -1096,7 +1096,7 @@ const errorCodes = [
     code: '30026',
     in_use: true,
     error_description: 'PVS could not connect to one or more inverters',
-    display: false,
+    display: true,
     possible_causes:
       "The PVS cannot connect to the Schneider inverter.\n1.  If you're also seeing an error that indicates that the gateway is missing, this error may be due to the fact that the gateway is not properly connected. Please address the problem with the gateway first if you're seeing a gateway error. \n2. The inverter may need to be rebooted.\n3. A data connection between the inverter.MIO and PVS is not properly made.\n",
     recommended_actions:
@@ -1108,7 +1108,7 @@ const errorCodes = [
     code: '30028',
     in_use: true,
     error_description: 'PVS could not connet to one or more inverters',
-    display: false,
+    display: true,
     possible_causes:
       "The PVS cannot connect to the Schneider inverter.\n1.  If you're also seeing an error that indicates that the gateway is missing, this error may be due to the fact that the gateway is not properly connected. Please address the problem with the gateway first if you're seeing a gateway error. \n2. The inverter may need to be rebooted.\n3. A data connection between the inverter.MIO and PVS is not properly made.\n",
     recommended_actions:
@@ -1120,7 +1120,7 @@ const errorCodes = [
     code: '30029',
     in_use: true,
     error_description: 'PVS could not connect to ESS Gateway',
-    display: false,
+    display: true,
     possible_causes:
       "The Schneider Gateway connects the inverter with PVS and batteries. If you're seeing this error it is likely you're also seeing other errors such as batteries  or inverter(s) missing.\n\nThis problem may be due to the following causes:\n1. Gateway lost power.\n2. The ethernet connector between the gateway and PVS is not connected or terminated correctly.\n3. Gateway may need to be rebooted.",
     recommended_actions:
@@ -1132,7 +1132,7 @@ const errorCodes = [
     code: '30030',
     in_use: true,
     error_description: 'PVS could not connect to MIDC board',
-    display: false,
+    display: true,
     possible_causes:
       "The PVS cannot connect with the MIDC board. The MIDC board drives the transfer switch on the Hub+. It also connects to the MIO board, so if you're seeing this error, it is likely that other errors are occurring as well. You should focus on fixing this error first before you proceed to fix the others.\n\nThis problem may be due to one of the following causes:\n1. The MIDC board is not powered\n2. The MIDC board is not connected to the MIO board.\n3. PVS MIDC CAN connector is bad\n4. The MIDC board is damaged\n5. The AUX cable between inverter and MIDC board is not properly connected and/or terminated.",
     recommended_actions:
@@ -1145,7 +1145,7 @@ const errorCodes = [
     in_use: true,
     error_description:
       'Gateway could not connect to inverter or more than one gateway was installed',
-    display: false,
+    display: true,
     possible_causes:
       'The ESS gateway could not connect to inverter . Or more than one gateway was installed. ',
     recommended_actions:
@@ -1157,7 +1157,7 @@ const errorCodes = [
     code: '30032',
     in_use: true,
     error_description: 'Too many MIDC boards',
-    display: false,
+    display: true,
     possible_causes: 'N/A',
     recommended_actions: 'N/A'
   },
@@ -1167,7 +1167,7 @@ const errorCodes = [
     code: '31000',
     in_use: true,
     error_description: 'Microgrid interconect contactor position unknown',
-    display: false,
+    display: true,
     possible_causes:
       'The connection between PVS and MIDC board has been lost.\nMIDC board can no longer control the transfer switch.',
     recommended_actions:
@@ -1179,7 +1179,7 @@ const errorCodes = [
     code: '31003',
     in_use: true,
     error_description: 'Transfer switch contactor stuck open ',
-    display: false,
+    display: true,
     possible_causes:
       'A fault with the MIDC board or with the transfer switch has occurred.',
     recommended_actions:
@@ -1191,7 +1191,7 @@ const errorCodes = [
     code: '31004',
     in_use: true,
     error_description: 'Transfer switch contactor stuck closed',
-    display: false,
+    display: true,
     possible_causes:
       'A fault with the MIDC board or with the transfer switch has occurred.',
     recommended_actions:
@@ -1203,7 +1203,7 @@ const errorCodes = [
     code: '31005',
     in_use: true,
     error_description: 'Contactor mismatched open',
-    display: false,
+    display: true,
     possible_causes:
       'Aux feedback and voltage sense does not match. A fault with the MIDC board or with the transfer switch has occurred.',
     recommended_actions:
@@ -1215,7 +1215,7 @@ const errorCodes = [
     code: '31006',
     in_use: true,
     error_description: 'Contactor mismatched closed',
-    display: false,
+    display: true,
     possible_causes:
       'Aux feedback and voltage sense does not match. A fault with the MIDC board or with the transfer switch has occurred.',
     recommended_actions:
@@ -1227,7 +1227,7 @@ const errorCodes = [
     code: '31007',
     in_use: true,
     error_description: 'Contactor mismatched and stuck open',
-    display: false,
+    display: true,
     possible_causes:
       'Aux feedback and voltage sense does not match. A fault with the MIDC board or with the transfer switch has occurred.',
     recommended_actions:
@@ -1239,7 +1239,7 @@ const errorCodes = [
     code: '31008',
     in_use: true,
     error_description: 'Contactor mismatched and stuck closed',
-    display: false,
+    display: true,
     possible_causes:
       'Aux feedback and voltage sense does not match. A fault with the MIDC board or with the transfer switch has occurred.',
     recommended_actions:
@@ -1251,7 +1251,7 @@ const errorCodes = [
     code: '31009',
     in_use: true,
     error_description: 'Contactor error unknown',
-    display: false,
+    display: true,
     possible_causes: 'Problem unknown',
     recommended_actions:
       'Check MIDC LEDs\nCheck MID cables for damage\nCheck for damage between PVS and MIDC communications cables.\nCheck the Aux cable is correctly connected an terminated.\nIf problem persists, you may need to replace the MID and/or MIDC.\n'
@@ -1262,7 +1262,7 @@ const errorCodes = [
     code: '31011',
     in_use: true,
     error_description: 'Hub+ over temperature',
-    display: false,
+    display: true,
     possible_causes:
       'The Hub+ may be located in a hot location or facing direct sun. This could also be caused by loads/generation above Hub+ rating.',
     recommended_actions:
@@ -1274,7 +1274,7 @@ const errorCodes = [
     code: '31025',
     in_use: true,
     error_description: 'PVS could not connect to MIDC board',
-    display: false,
+    display: true,
     possible_causes:
       "The PVS cannot connect with the MIDC board. The MIDC board drives the transfer switch on the Hub+. It also connects to the MIO board, so if you're seeing this error, it is likely that other errors are occurring as well. You should focus on fixing this error first before you proceed to fix the others.\n\nThis problem may be due to one of the following causes:\n1. The MIDC board is not powered\n2. The MIDC board is not connected to the MIO board.\n3. PVS MIDC CAN connector is bad\n4. The MIDC board is damaged\n5. The AUX cable between inverter and MIDC board is not properly connected and/or terminated.",
     recommended_actions:
@@ -1286,7 +1286,7 @@ const errorCodes = [
     code: '31028',
     in_use: true,
     error_description: 'MIDC firmware update failure',
-    display: false,
+    display: true,
     possible_causes: 'We could not update the firmware in the MIDC',
     recommended_actions:
       'Please try again, if the problem persists, contact SunPower.'
@@ -1297,7 +1297,7 @@ const errorCodes = [
     code: '31029',
     in_use: true,
     error_description: 'MIDC firmware error',
-    display: false,
+    display: true,
     possible_causes: 'There is a problem with the firmware in the MIDC board.',
     recommended_actions: 'If the problem persists, please contact SunPower.'
   },
@@ -1307,7 +1307,7 @@ const errorCodes = [
     code: '31030',
     in_use: true,
     error_description: 'MIDC firmware error',
-    display: false,
+    display: true,
     possible_causes: 'There is a problem with the firmware in the MIDC board.',
     recommended_actions: 'If the problem persists, please contact SunPower.'
   },
@@ -1317,7 +1317,7 @@ const errorCodes = [
     code: '31031',
     in_use: true,
     error_description: 'MIDC firmware error',
-    display: false,
+    display: true,
     possible_causes: 'There is a problem with the firmware in the MIDC board.',
     recommended_actions: 'If the problem persists, please contact SunPower.'
   },
@@ -1327,7 +1327,7 @@ const errorCodes = [
     code: '31032',
     in_use: true,
     error_description: 'MIDC firmware error',
-    display: false,
+    display: true,
     possible_causes: 'There is a problem with the firmware in the MIDC board.',
     recommended_actions: 'If the problem persists, please contact SunPower.'
   },
@@ -1337,7 +1337,7 @@ const errorCodes = [
     code: '31033',
     in_use: true,
     error_description: 'MIDC firmware error',
-    display: false,
+    display: true,
     possible_causes: 'There is a problem with the firmware in the MIDC board.',
     recommended_actions: 'If the problem persists, please contact SunPower.'
   },
@@ -1347,7 +1347,7 @@ const errorCodes = [
     code: '31034',
     in_use: true,
     error_description: 'MIDC firmware error',
-    display: false,
+    display: true,
     possible_causes: 'There is a problem with the firmware in the MIDC board.',
     recommended_actions: 'If the problem persists, please contact SunPower.'
   },
@@ -1357,7 +1357,7 @@ const errorCodes = [
     code: '31035',
     in_use: true,
     error_description: 'MIDC firmware error',
-    display: false,
+    display: true,
     possible_causes: 'There is a problem with the firmware in the MIDC board.',
     recommended_actions: 'If the problem persists, please contact SunPower.'
   },
@@ -1367,7 +1367,7 @@ const errorCodes = [
     code: '31036',
     in_use: true,
     error_description: 'MIDC firmware error',
-    display: false,
+    display: true,
     possible_causes: 'There is a problem with the firmware in the MIDC board.',
     recommended_actions: 'If the problem persists, please contact SunPower.'
   },
@@ -1377,7 +1377,7 @@ const errorCodes = [
     code: '31037',
     in_use: true,
     error_description: 'MIDC firmware error',
-    display: false,
+    display: true,
     possible_causes: 'There is a problem with the firmware in the MIDC board.',
     recommended_actions: 'If the problem persists, please contact SunPower.'
   },
@@ -1387,7 +1387,7 @@ const errorCodes = [
     code: '31038',
     in_use: true,
     error_description: 'MIDC firmware error',
-    display: false,
+    display: true,
     possible_causes: 'There is a problem with the firmware in the MIDC board.',
     recommended_actions: 'If the problem persists, please contact SunPower.'
   },
@@ -1397,7 +1397,7 @@ const errorCodes = [
     code: '31039',
     in_use: true,
     error_description: 'MIDC firmware error',
-    display: false,
+    display: true,
     possible_causes: 'There is a problem with the firmware in the MIDC board.',
     recommended_actions: 'If the problem persists, please contact SunPower.'
   },
@@ -1407,7 +1407,7 @@ const errorCodes = [
     code: '31040',
     in_use: true,
     error_description: 'MIDC firmware error',
-    display: false,
+    display: true,
     possible_causes: 'There is a problem with the firmware in the MIDC board.',
     recommended_actions: 'If the problem persists, please contact SunPower.'
   },
@@ -1417,7 +1417,7 @@ const errorCodes = [
     code: '31041',
     in_use: true,
     error_description: 'MIDC firmware error',
-    display: false,
+    display: true,
     possible_causes: 'There is a problem with the firmware in the MIDC board.',
     recommended_actions: 'If the problem persists, please contact SunPower.'
   },
@@ -1427,7 +1427,7 @@ const errorCodes = [
     code: '31042',
     in_use: true,
     error_description: 'MIDC firmware error',
-    display: false,
+    display: true,
     possible_causes: 'There is a problem with the firmware in the MIDC board.',
     recommended_actions: 'If the problem persists, please contact SunPower.'
   },
@@ -1437,7 +1437,7 @@ const errorCodes = [
     code: '31043',
     in_use: true,
     error_description: 'MIDC firmware error',
-    display: false,
+    display: true,
     possible_causes: 'There is a problem with the firmware in the MIDC board.',
     recommended_actions: 'If the problem persists, please contact SunPower.'
   },
@@ -1447,7 +1447,7 @@ const errorCodes = [
     code: '31044',
     in_use: true,
     error_description: 'MIDC firmware error',
-    display: false,
+    display: true,
     possible_causes: 'There is a problem with the firmware in the MIDC board.',
     recommended_actions: 'If the problem persists, please contact SunPower.'
   },
@@ -1457,7 +1457,7 @@ const errorCodes = [
     code: '31045',
     in_use: true,
     error_description: 'MIDC firmware error',
-    display: false,
+    display: true,
     possible_causes: 'There is a problem with the firmware in the MIDC board.',
     recommended_actions: 'If the problem persists, please contact SunPower.'
   },
@@ -1467,7 +1467,7 @@ const errorCodes = [
     code: '31046',
     in_use: true,
     error_description: 'MIDC firmware error',
-    display: false,
+    display: true,
     possible_causes: 'There is a problem with the firmware in the MIDC board.',
     recommended_actions: 'If the problem persists, please contact SunPower.'
   },
@@ -1477,7 +1477,7 @@ const errorCodes = [
     code: '31047',
     in_use: true,
     error_description: 'MIDC firmware error',
-    display: false,
+    display: true,
     possible_causes: 'There is a problem with the firmware in the MIDC board.',
     recommended_actions: 'If the problem persists, please contact SunPower.'
   },
@@ -1487,7 +1487,7 @@ const errorCodes = [
     code: '31053',
     in_use: true,
     error_description: 'MIDC over voltage event',
-    display: false,
+    display: true,
     possible_causes: 'MIDC may have been damaged.',
     recommended_actions: 'Consider replacing MIDC board.'
   },
@@ -1497,7 +1497,7 @@ const errorCodes = [
     code: '31054',
     in_use: true,
     error_description: 'MIDC under voltage event',
-    display: false,
+    display: true,
     possible_causes: 'MIDC may have been damaged.',
     recommended_actions: 'Consider replacing MIDC board.'
   },
@@ -1507,7 +1507,7 @@ const errorCodes = [
     code: '32001',
     in_use: true,
     error_description: 'Temperature of inverter critically high',
-    display: false,
+    display: true,
     possible_causes:
       'Inverter may be overloaded and/or exposed to high ambient temperature',
     recommended_actions:
@@ -1519,7 +1519,7 @@ const errorCodes = [
     code: '32002',
     in_use: true,
     error_description: 'AC Output Under Voltage',
-    display: false,
+    display: true,
     possible_causes:
       'AC under voltage shutdown at 108V. The inverter has shut down to protect the loads.',
     recommended_actions:
@@ -1531,7 +1531,7 @@ const errorCodes = [
     code: '32003',
     in_use: true,
     error_description: 'AC Oputput Over Voltage',
-    display: false,
+    display: true,
     possible_causes:
       'AC over voltage shutdown at 135V. The inverter has shut down to protect the loads.',
     recommended_actions:
@@ -1543,7 +1543,7 @@ const errorCodes = [
     code: '32004',
     in_use: true,
     error_description: 'Inverter internal fault',
-    display: false,
+    display: true,
     possible_causes: 'Check inverter manual',
     recommended_actions: 'Check inverter manual'
   },
@@ -1553,7 +1553,7 @@ const errorCodes = [
     code: '32005',
     in_use: true,
     error_description: 'Inverter internal fault',
-    display: false,
+    display: true,
     possible_causes: 'Check inverter manual',
     recommended_actions: 'Check inverter manual'
   },
@@ -1563,7 +1563,7 @@ const errorCodes = [
     code: '32006',
     in_use: true,
     error_description: 'Inverter internal fault',
-    display: false,
+    display: true,
     possible_causes: 'Check inverter manual',
     recommended_actions: 'Check inverter manual'
   },
@@ -1573,7 +1573,7 @@ const errorCodes = [
     code: '32007',
     in_use: true,
     error_description: 'Inverter internal fault',
-    display: false,
+    display: true,
     possible_causes: 'Check inverter manual',
     recommended_actions: 'Check inverter manual'
   },
@@ -1583,7 +1583,7 @@ const errorCodes = [
     code: '32008',
     in_use: true,
     error_description: 'Inverter internal fault',
-    display: false,
+    display: true,
     possible_causes: 'Check inverter manual',
     recommended_actions: 'Check inverter manual'
   },
@@ -1593,7 +1593,7 @@ const errorCodes = [
     code: '32009',
     in_use: true,
     error_description: 'Inverter internal fault',
-    display: false,
+    display: true,
     possible_causes: 'Check inverter manual',
     recommended_actions: 'Check inverter manual'
   },
@@ -1603,7 +1603,7 @@ const errorCodes = [
     code: '32010',
     in_use: true,
     error_description: 'Inverter anti islanding fault',
-    display: false,
+    display: true,
     possible_causes: 'An unexpected condition occurred in the grid.',
     recommended_actions:
       'Clear the fault and attempt restart. If the problem persists, please contact SunPower.'
@@ -1614,7 +1614,7 @@ const errorCodes = [
     code: '32011',
     in_use: true,
     error_description: 'Inverter anti islanding fault',
-    display: false,
+    display: true,
     possible_causes: 'An unexpected condition occurred in the grid.',
     recommended_actions:
       'Clear the fault and attempt restart. If the problem persists, please contact SunPower.'
@@ -1625,7 +1625,7 @@ const errorCodes = [
     code: '32012',
     in_use: true,
     error_description: 'Inverter anti islanding fault',
-    display: false,
+    display: true,
     possible_causes: 'An unexpected condition occurred in the grid.',
     recommended_actions:
       'Clear the fault and attempt restart. If the problem persists, please contact SunPower.'
@@ -1636,7 +1636,7 @@ const errorCodes = [
     code: '32013',
     in_use: true,
     error_description: 'Inverter anti islanding fault',
-    display: false,
+    display: true,
     possible_causes: 'An unexpected condition occurred in the grid.',
     recommended_actions:
       'Clear the fault and attempt restart. If the problem persists, please contact SunPower.'
@@ -1647,7 +1647,7 @@ const errorCodes = [
     code: '32014',
     in_use: true,
     error_description: 'Inverter anti islanding fault',
-    display: false,
+    display: true,
     possible_causes: 'An unexpected condition occurred in the grid.',
     recommended_actions:
       'Clear the fault and attempt restart. If the problem persists, please contact SunPower.'
@@ -1658,7 +1658,7 @@ const errorCodes = [
     code: '32015',
     in_use: true,
     error_description: 'Inverter anti islanding fault',
-    display: false,
+    display: true,
     possible_causes: 'An unexpected condition occurred in the grid.',
     recommended_actions:
       'Clear the fault and attempt restart. If the problem persists, please contact SunPower.'
@@ -1669,7 +1669,7 @@ const errorCodes = [
     code: '32016',
     in_use: true,
     error_description: 'Inverter anti islanding fault',
-    display: false,
+    display: true,
     possible_causes: 'An unexpected condition occurred in the grid.',
     recommended_actions:
       'Clear the fault and attempt restart. If the problem persists, please contact SunPower.'
@@ -1680,7 +1680,7 @@ const errorCodes = [
     code: '32017',
     in_use: true,
     error_description: 'Inverter anti islanding fault',
-    display: false,
+    display: true,
     possible_causes: 'An unexpected condition occurred in the grid.',
     recommended_actions:
       'Clear the fault and attempt restart. If the problem persists, please contact SunPower.'
@@ -1691,7 +1691,7 @@ const errorCodes = [
     code: '32018',
     in_use: true,
     error_description: 'Inverter anti islanding fault',
-    display: false,
+    display: true,
     possible_causes: 'An unexpected condition occurred in the grid.',
     recommended_actions:
       'Clear the fault and attempt restart. If the problem persists, please contact SunPower.'
@@ -1702,7 +1702,7 @@ const errorCodes = [
     code: '32019',
     in_use: true,
     error_description: 'Inverter anti islanding fault',
-    display: false,
+    display: true,
     possible_causes: 'An unexpected condition occurred in the grid.',
     recommended_actions:
       'Clear the fault and attempt restart. If the problem persists, please contact SunPower.'
@@ -1713,7 +1713,7 @@ const errorCodes = [
     code: '32020',
     in_use: true,
     error_description: 'Inverter anti islanding fault',
-    display: false,
+    display: true,
     possible_causes: 'An unexpected condition occurred in the grid.',
     recommended_actions:
       'Clear the fault and attempt restart. If the problem persists, please contact SunPower.'
@@ -1724,7 +1724,7 @@ const errorCodes = [
     code: '32021',
     in_use: true,
     error_description: 'Inverter anti islanding fault',
-    display: false,
+    display: true,
     possible_causes: 'An unexpected condition occurred in the grid.',
     recommended_actions:
       'Clear the fault and attempt restart. If the problem persists, please contact SunPower.'
@@ -1735,7 +1735,7 @@ const errorCodes = [
     code: '32022',
     in_use: true,
     error_description: 'Inverter anti islanding fault',
-    display: false,
+    display: true,
     possible_causes: 'An unexpected condition occurred in the grid.',
     recommended_actions:
       'Clear the fault and attempt restart. If the problem persists, please contact SunPower.'
@@ -1746,7 +1746,7 @@ const errorCodes = [
     code: '32023',
     in_use: true,
     error_description: 'Inverter anti islanding fault',
-    display: false,
+    display: true,
     possible_causes: 'An unexpected condition occurred in the grid.',
     recommended_actions:
       'Clear the fault and attempt restart. If the problem persists, please contact SunPower.'
@@ -1757,7 +1757,7 @@ const errorCodes = [
     code: '32024',
     in_use: true,
     error_description: 'Inverter anti islanding fault',
-    display: false,
+    display: true,
     possible_causes: 'An unexpected condition occurred in the grid.',
     recommended_actions:
       'Clear the fault and attempt restart. If the problem persists, please contact SunPower.'
@@ -1768,7 +1768,7 @@ const errorCodes = [
     code: '32025',
     in_use: true,
     error_description: 'Inverter anti islanding fault',
-    display: false,
+    display: true,
     possible_causes: 'An unexpected condition occurred in the grid.',
     recommended_actions:
       'Clear the fault and attempt restart. If the problem persists, please contact SunPower.'
@@ -1779,7 +1779,7 @@ const errorCodes = [
     code: '32026',
     in_use: true,
     error_description: 'Inverter anti islanding fault',
-    display: false,
+    display: true,
     possible_causes: 'An unexpected condition occurred in the grid.',
     recommended_actions:
       'Clear the fault and attempt restart. If the problem persists, please contact SunPower.'
@@ -1790,7 +1790,7 @@ const errorCodes = [
     code: '32027',
     in_use: true,
     error_description: 'Inverter anti islanding fault',
-    display: false,
+    display: true,
     possible_causes: 'An unexpected condition occurred in the grid.',
     recommended_actions:
       'Clear the fault and attempt restart. If the problem persists, please contact SunPower.'
@@ -1801,7 +1801,7 @@ const errorCodes = [
     code: '32028',
     in_use: true,
     error_description: 'Auxiliary power source under voltage',
-    display: false,
+    display: true,
     possible_causes: 'Auxiliary power source voltage too low.',
     recommended_actions:
       'Clear the fault and attempt restart. If problem persists, call customer service.'
@@ -1812,7 +1812,7 @@ const errorCodes = [
     code: '32029',
     in_use: true,
     error_description: 'Auxiliary power source over voltage',
-    display: false,
+    display: true,
     possible_causes: 'Auxiliary power source voltage is too high.',
     recommended_actions:
       'Clear the fault and attempt restart. If problem persists, call customer service.'
@@ -1823,7 +1823,7 @@ const errorCodes = [
     code: '32030',
     in_use: true,
     error_description: 'Battery over temperature',
-    display: false,
+    display: true,
     possible_causes: 'Battery temperature too high.',
     recommended_actions:
       'Clear the fault and attempt restart. Stop charging, check battery voltage and temperature. Check for excessive ambient temperature and adequate ventilation in the battery compartment. NOTE: Shutdown temperature is above 60C, Revovery occurs at 50C where the Conext XW pro will be enabled again.'
@@ -1834,7 +1834,7 @@ const errorCodes = [
     code: '32031',
     in_use: true,
     error_description: 'Capacitor over temperature',
-    display: false,
+    display: true,
     possible_causes: 'Capacitor over-tempeature shutdown at 105C.',
     recommended_actions:
       'Clear the fault and attempt restart. Ensure adequate ventilation around the Conext XW Pro. Reduce AC loads.'
@@ -1845,7 +1845,7 @@ const errorCodes = [
     code: '32032',
     in_use: true,
     error_description: 'Controller fault',
-    display: false,
+    display: true,
     possible_causes: 'Controller fault.',
     recommended_actions: 'Service required.'
   },
@@ -1855,7 +1855,7 @@ const errorCodes = [
     code: '32033',
     in_use: true,
     error_description: 'DC Under voltage',
-    display: false,
+    display: true,
     possible_causes:
       'DC under-voltage shutdown (immediate) occurs if DC voltage is below 32V. The fault clears and the inverter restarts when DC voltage reaches V+4V.',
     recommended_actions:
@@ -1867,7 +1867,7 @@ const errorCodes = [
     code: '32034',
     in_use: true,
     error_description: 'DC Under voltage',
-    display: false,
+    display: true,
     possible_causes:
       'DC under-voltage shutdown (immediate) occurs if DC voltage is below 32V. The fault clears and the inverter restarts when DC voltage reaches V+4V.',
     recommended_actions:
@@ -1879,7 +1879,7 @@ const errorCodes = [
     code: '32035',
     in_use: true,
     error_description: 'DC over voltage',
-    display: false,
+    display: true,
     possible_causes:
       'DC over-voltage shutdown. Occurs if DC voltage goes over its setting. The fault can also occur when batteries are disconnected at the DC breaker while the Conext XW Pro is operating.',
     recommended_actions:
@@ -1891,7 +1891,7 @@ const errorCodes = [
     code: '32036',
     in_use: true,
     error_description: 'EEPROM Error',
-    display: false,
+    display: true,
     possible_causes: 'Internal inverter error',
     recommended_actions:
       'No action. Clear fault and resume operating or configuring the unit. If the fault persists, have the unit serviced.'
@@ -1902,7 +1902,7 @@ const errorCodes = [
     code: '32037',
     in_use: true,
     error_description: 'EEPROM Error',
-    display: false,
+    display: true,
     possible_causes: 'Internal inverter error',
     recommended_actions:
       'No action. Clear fault and resume operating or configuring the unit. If the fault persists, have the unit serviced.'
@@ -1913,7 +1913,7 @@ const errorCodes = [
     code: '32038',
     in_use: true,
     error_description: 'EEPROM Error',
-    display: false,
+    display: true,
     possible_causes: 'Internal inverter error',
     recommended_actions:
       'No action. Clear fault and resume operating or configuring the unit. If the fault persists, have the unit serviced.'
@@ -1924,7 +1924,7 @@ const errorCodes = [
     code: '32039',
     in_use: true,
     error_description: 'EEPROM Error',
-    display: false,
+    display: true,
     possible_causes: 'Internal inverter error',
     recommended_actions:
       'No action. Clear fault and resume operating or configuring the unit. If the fault persists, have the unit serviced.'
@@ -1935,7 +1935,7 @@ const errorCodes = [
     code: '32040',
     in_use: true,
     error_description: 'EEPROM Error',
-    display: false,
+    display: true,
     possible_causes: 'Internal inverter error',
     recommended_actions:
       'No action. Clear fault and resume operating or configuring the unit. If the fault persists, have the unit serviced.'
@@ -1946,7 +1946,7 @@ const errorCodes = [
     code: '32041',
     in_use: true,
     error_description: 'EEPROM Error',
-    display: false,
+    display: true,
     possible_causes: 'Internal inverter error',
     recommended_actions:
       'No action. Clear fault and resume operating or configuring the unit. If the fault persists, have the unit serviced.'
@@ -1957,7 +1957,7 @@ const errorCodes = [
     code: '32042',
     in_use: true,
     error_description: 'FET1 Over Temperature Shutdown',
-    display: false,
+    display: true,
     possible_causes:
       'This error may be due to one of the following causes:\n- Internal temperature is over 105C\n- AC input voltage may be too high while charging\n- Operating too large of a load for too long\n- Inverter cooling fan may have failed\n- Inverter airflow intake may be blocked\n- Charging setting is to high based on ambient temperature around inverter',
     recommended_actions:
@@ -1969,7 +1969,7 @@ const errorCodes = [
     code: '32043',
     in_use: true,
     error_description: 'FET2 Over Temperature Shutdown',
-    display: false,
+    display: true,
     possible_causes:
       'This error may be due to one of the following causes:\n- Internal temperature is over 105C\n- AC input voltage may be too high while charging\n- Operating too large of a load for too long\n- Inverter cooling fan may have failed\n- Inverter airflow intake may be blocked\n- Charging setting is to high based on ambient temperature around inverter',
     recommended_actions:
@@ -1981,7 +1981,7 @@ const errorCodes = [
     code: '32044',
     in_use: true,
     error_description: 'Error configuring the inverter',
-    display: false,
+    display: true,
     possible_causes: 'Auto-configuration process failed.',
     recommended_actions: 'N/A'
   },
@@ -1991,7 +1991,7 @@ const errorCodes = [
     code: '32045',
     in_use: true,
     error_description: 'Invalid input error',
-    display: false,
+    display: true,
     possible_causes: 'Internal inverter error',
     recommended_actions:
       'No action. Clear fault and resume operating or configuring the unit. If the fault persists, have the unit serviced.'
@@ -2002,7 +2002,7 @@ const errorCodes = [
     code: '32046',
     in_use: true,
     error_description: 'Invalid input error',
-    display: false,
+    display: true,
     possible_causes: 'Internal inverter error',
     recommended_actions:
       'No action. Clear fault and resume operating or configuring the unit. If the fault persists, have the unit serviced.'
@@ -2013,7 +2013,7 @@ const errorCodes = [
     code: '32047',
     in_use: true,
     error_description: 'Invalid interrupt',
-    display: false,
+    display: true,
     possible_causes: 'Internal inverter error',
     recommended_actions:
       'No action. Clear fault and resume operating or configuring the unit. If the fault persists, have the unit serviced.'
@@ -2024,7 +2024,7 @@ const errorCodes = [
     code: '32048',
     in_use: true,
     error_description: 'AC Overload',
-    display: false,
+    display: true,
     possible_causes: 'Excessive load on the AC output.',
     recommended_actions:
       "Check for loads above the inverter's capacity. Turn off some loads if necessary. To clear the fault: Turn off th eunit by holding the power button for 5 sec. Disconnect the Conext XW Pro Inverter from the battery bank for 20 seconds."
@@ -2035,7 +2035,7 @@ const errorCodes = [
     code: '32049',
     in_use: true,
     error_description: 'AC Overload L1',
-    display: false,
+    display: true,
     possible_causes: 'Excessive load on the AC output.',
     recommended_actions:
       "Check for loads above the inverter's capacity. Turn off some loads if necessary. To clear the fault: Turn off th eunit by holding the power button for 5 sec. Disconnect the Conext XW Pro Inverter from the battery bank for 20 seconds."
@@ -2046,7 +2046,7 @@ const errorCodes = [
     code: '32050',
     in_use: true,
     error_description: 'AC Overload L2',
-    display: false,
+    display: true,
     possible_causes: 'Excessive load on the AC output.',
     recommended_actions:
       "Check for loads above the inverter's capacity. Turn off some loads if necessary. To clear the fault: Turn off th eunit by holding the power button for 5 sec. Disconnect the Conext XW Pro Inverter from the battery bank for 20 seconds."
@@ -2057,7 +2057,7 @@ const errorCodes = [
     code: '32051',
     in_use: true,
     error_description: 'System configuration fault',
-    display: false,
+    display: true,
     possible_causes: 'Multi-unit configuration settings are incorrect.',
     recommended_actions:
       'Ensure only one unit is configured as the master. Ensure each unit has a unique Device Number and that connections have been configured correctly. Ensure there is only one primary charger.'
@@ -2068,7 +2068,7 @@ const errorCodes = [
     code: '32052',
     in_use: true,
     error_description: 'Watchdog error',
-    display: false,
+    display: true,
     possible_causes: 'Inverter firmware error.',
     recommended_actions: 'Service required.'
   },
@@ -2078,7 +2078,7 @@ const errorCodes = [
     code: '32053',
     in_use: true,
     error_description: 'Transformer over termperature',
-    display: false,
+    display: true,
     possible_causes: 'The transformer temperature is over 140C.',
     recommended_actions:
       'The fault clears when the transformer temperature falls to 125C. Ensure adequate ventilation around the Conext XW Pro inverter. Reduce AC loads.'
@@ -2089,7 +2089,7 @@ const errorCodes = [
     code: '32054',
     in_use: true,
     error_description: 'External Sync Failed',
-    display: false,
+    display: true,
     possible_causes: 'Inverter could not synch with the grid.',
     recommended_actions:
       'Check connections and cable on external AC sync port. In a signle-inverter system, nothing must be plugged into the AC sync port. Clear fault and try again. If these steps fail, the unit requires service.'
@@ -2100,7 +2100,7 @@ const errorCodes = [
     code: '32055',
     in_use: true,
     error_description: '3-phase configuration fault',
-    display: false,
+    display: true,
     possible_causes: 'N/A',
     recommended_actions: 'N/A'
   },
@@ -2110,7 +2110,7 @@ const errorCodes = [
     code: '32056',
     in_use: true,
     error_description: 'Inverter disconnected from battery',
-    display: false,
+    display: true,
     possible_causes:
       'Check connections between inverter, batteries and MIO board.',
     recommended_actions:
@@ -2122,7 +2122,7 @@ const errorCodes = [
     code: '32057',
     in_use: true,
     error_description: 'Battery discharge over current',
-    display: false,
+    display: true,
     possible_causes: 'There is an excessive load on the Li-Ion battery. ',
     recommended_actions: 'Reduce the load.'
   },
@@ -2132,7 +2132,7 @@ const errorCodes = [
     code: '32058',
     in_use: true,
     error_description: 'MID contactor malfunction',
-    display: false,
+    display: true,
     possible_causes:
       'Could be one of the following:\n- Aux Cable severed\n- Aux Cable terminations are incorrect\n- Bad inverter comm card',
     recommended_actions:
@@ -2144,7 +2144,7 @@ const errorCodes = [
     code: '32059',
     in_use: true,
     error_description: 'Battery charge over current',
-    display: false,
+    display: true,
     possible_causes: 'Battery is being charged at an overly high rate.',
     recommended_actions: 'N/A'
   },
@@ -2154,7 +2154,7 @@ const errorCodes = [
     code: '32060',
     in_use: true,
     error_description: 'Battery under voltage',
-    display: false,
+    display: true,
     possible_causes: 'Batteries have been discharged.',
     recommended_actions:
       'Clear the fault and attempt restart. If the problem persists, try charging the batteries. If the problem still persists, the batteries need to be serviced.'
@@ -2165,7 +2165,7 @@ const errorCodes = [
     code: '32061',
     in_use: true,
     error_description: 'Battery over voltage',
-    display: false,
+    display: true,
     possible_causes: 'Batteries are charged above capacity.',
     recommended_actions:
       'Clear the fault and attempt restart. If the problem persists, try discharging the batteries. If the problem still persists, the batteries need to be serviced.'
@@ -2176,7 +2176,7 @@ const errorCodes = [
     code: '32062',
     in_use: true,
     error_description: 'Inverter cannot read battery SOC',
-    display: false,
+    display: true,
     possible_causes:
       "The PVS cannot connect with the batteries. This could be due because there are other connections missing. If you're also seeing a missing gateway error, missing MIDC or missing MIO board, this 'No BMS' error is likely due to any of these errors and you should try to fix them before you attempt to fix this.\n\nThis problem may be due to the following causes:\n1. Gateway is not connected. If this is the case, you'll also be seeing a 'No gateway' error and you should attempt fixing the problem first.\n2. CAN bus connection (green) between the MIO board (J4) and Schneider gateway is not properly made.\n3. The CAN bus connection on the Gateway side is not properly made or terminated (white-orange, orange, white-green, white-blue, and blue conductors).\n4. The CAN cable between J4 port on MIO and gateway is cut off.\n5. Connection between the batteries (orange) and the MIO board is not properly made\n6. Batteries are not powered on.",
     recommended_actions:
@@ -2188,7 +2188,7 @@ const errorCodes = [
     code: '32063',
     in_use: true,
     error_description: 'Inverter cannot communicate with the gateway.',
-    display: false,
+    display: true,
     possible_causes:
       "The Schneider Gateway connects the inverter with PVS and batteries. If you're seeing this error it is likely you're also seeing other errors such as batteries  or inverter(s) missing.\n\nThis problem may be due to the following causes:\n1. Gateway lost power.\n2. The ethernet connector between the gateway and PVS is not connected or terminated correctly.\n3. Gateway may need to be rebooted.",
     recommended_actions:
@@ -2200,7 +2200,7 @@ const errorCodes = [
     code: '32064',
     in_use: true,
     error_description: 'Inverter cannot communicate with the PVS',
-    display: false,
+    display: true,
     possible_causes:
       "Schneider Connext XW Pro inverter cannot connect to PVS.\n1.  If you're also seeing an error that indicates that the gateway is missing, this error may be due to the fact that the gateway is not properly connected. Please address the problem with the gateway first if you're seeing a gateway error. \n2. The inverter may need to be rebooted.\n3. A data connection between the inverter.MIO and PVS is not properly made.\n",
     recommended_actions:
@@ -2212,7 +2212,7 @@ const errorCodes = [
     code: '32065',
     in_use: true,
     error_description: 'Failure updating inverter firmware.',
-    display: false,
+    display: true,
     possible_causes:
       'Something went wrong while updating Conext XW Pro inverter.',
     recommended_actions:
@@ -2224,7 +2224,7 @@ const errorCodes = [
     code: '32066',
     in_use: true,
     error_description: 'Inverter cannot communicate with the PVS',
-    display: false,
+    display: true,
     possible_causes:
       "Schneider Connext XW Pro inverter cannot connect to PVS.\n1.  If you're also seeing an error that indicates that the gateway is missing, this error may be due to the fact that the gateway is not properly connected. Please address the problem with the gateway first if you're seeing a gateway error. \n2. The inverter may need to be rebooted.\n3. A data connection between the inverter.MIO and PVS is not properly made.\n",
     recommended_actions:
@@ -2236,7 +2236,7 @@ const errorCodes = [
     code: '33000',
     in_use: true,
     error_description: 'Batteries have a low state of charge.',
-    display: false,
+    display: true,
     possible_causes: 'Batteries have been discharged.',
     recommended_actions:
       'Clear the fault and attempt restart. If the problem persists, try charging the batteries. If the problem still persists, the batteries need to be serviced.'
@@ -2247,7 +2247,7 @@ const errorCodes = [
     code: '33001',
     in_use: true,
     error_description: 'Batteries have low state of health',
-    display: false,
+    display: true,
     possible_causes: 'Batteries have been degraded.',
     recommended_actions:
       'Clear the fault and attempt restart. If the problem still persists, the batteries need to be serviced.'
@@ -2258,7 +2258,7 @@ const errorCodes = [
     code: '33002',
     in_use: true,
     error_description: 'PVS cannot communicate with the batteries.',
-    display: false,
+    display: true,
     possible_causes:
       "The PVS cannot connect with the batteries. This could be due because there are other connections missing. If you're also seeing a missing gateway error, missing MIDC or missing MIO board, this 'No BMS' error is likely due to any of these errors and you should try to fix them before you attempt to fix this.\n\nThis problem may be due to the following causes:\n1. Gateway is not connected. If this is the case, you'll also be seeing a 'No gateway' error and you should attempt fixing the problem first.\n2. CAN bus connection (green) between the MIO board (J4) and Schneider gateway is not properly made.\n3. The CAN bus connection on the Gateway side is not properly made or terminated (white-orange, orange, white-green, white-blue, and blue conductors).\n4. The CAN cable between J4 port on MIO and gateway is cut off.\n5. Connection between the batteries (orange) and the MIO board is not properly made\n6. Batteries are not powered on.",
     recommended_actions:
@@ -2270,7 +2270,7 @@ const errorCodes = [
     code: '33003',
     in_use: true,
     error_description: 'Battery under voltage',
-    display: false,
+    display: true,
     possible_causes: 'Batteries have been discharged.',
     recommended_actions:
       'Clear the fault and attempt restart. If the problem persists, try charging the batteries. If the problem still persists, the batteries need to be serviced.'
@@ -2281,7 +2281,7 @@ const errorCodes = [
     code: '33004',
     in_use: true,
     error_description: 'Battery over voltage',
-    display: false,
+    display: true,
     possible_causes: 'Batteries are charged above capacity.',
     recommended_actions:
       'Clear the fault and attempt restart. If the problem persists, try discharging the batteries. If the problem still persists, the batteries need to be serviced.'
@@ -2292,7 +2292,7 @@ const errorCodes = [
     code: '33005',
     in_use: true,
     error_description: 'Battery over current during charge',
-    display: false,
+    display: true,
     possible_causes: 'The batteries are being charged at a fast rate',
     recommended_actions:
       'Make sure that both DC breakers are closed. Clear the fault and restart. If the problem persists, the batteries may need to be serviced.'
@@ -2303,7 +2303,7 @@ const errorCodes = [
     code: '33006',
     in_use: true,
     error_description: 'Battery over power during charge',
-    display: false,
+    display: true,
     possible_causes: 'The batteries are being charged at a fast rate',
     recommended_actions:
       'Make sure that both DC breakers are closed. Clear the fault and restart. If the problem persists, the batteries may need to be serviced.'
@@ -2314,7 +2314,7 @@ const errorCodes = [
     code: '33007',
     in_use: true,
     error_description: 'Battery over current during discharge',
-    display: false,
+    display: true,
     possible_causes:
       'This could be due to one of the following causes:\n- The loads are too high.\n- One of the DC breakers was left open.',
     recommended_actions:
@@ -2326,7 +2326,7 @@ const errorCodes = [
     code: '33008',
     in_use: true,
     error_description: 'Battery over power during discharge',
-    display: false,
+    display: true,
     possible_causes:
       'This could be due to one of the following causes:\n- The loads are too high.\n- One of the DC breakers was left open.',
     recommended_actions:
@@ -2338,7 +2338,7 @@ const errorCodes = [
     code: '33009',
     in_use: true,
     error_description: 'Battery over current during charge',
-    display: false,
+    display: true,
     possible_causes: 'The batteries are being charged at a fast rate',
     recommended_actions:
       'Make sure that both DC breakers are closed. Clear the fault and restart. If the problem persists, the batteries may need to be serviced.'
@@ -2349,7 +2349,7 @@ const errorCodes = [
     code: '33010',
     in_use: true,
     error_description: 'Battery over power during charge',
-    display: false,
+    display: true,
     possible_causes: 'The batteries are being charged at a fast rate',
     recommended_actions:
       'Make sure that both DC breakers are closed. Clear the fault and restart. If the problem persists, the batteries may need to be serviced.'
@@ -2360,7 +2360,7 @@ const errorCodes = [
     code: '33011',
     in_use: true,
     error_description: 'Battery over current during discharge',
-    display: false,
+    display: true,
     possible_causes:
       'This could be due to one of the following causes:\n- The loads are too high.\n- One of the DC breakers was left open.',
     recommended_actions:
@@ -2372,7 +2372,7 @@ const errorCodes = [
     code: '33012',
     in_use: true,
     error_description: 'Battery over power during discharge',
-    display: false,
+    display: true,
     possible_causes:
       'This could be due to one of the following causes:\n- The loads are too high.\n- One of the DC breakers was left open.',
     recommended_actions:
@@ -2384,7 +2384,7 @@ const errorCodes = [
     code: '33013',
     in_use: true,
     error_description: 'Battery under temperature during discharge',
-    display: false,
+    display: true,
     possible_causes: 'Battery temperature is too low.',
     recommended_actions:
       'Make sure the ESS enclosure is not exposed to unduly low temperatures.'
@@ -2395,7 +2395,7 @@ const errorCodes = [
     code: '33014',
     in_use: true,
     error_description: 'Battery over temperature',
-    display: false,
+    display: true,
     possible_causes: 'Battery temperature too high.',
     recommended_actions:
       'Clear the fault and attempt restart. Stop charging, check battery voltage and temperature. Check for excessive ambient temperature and adequate ventilation in the battery compartment. '
@@ -2406,7 +2406,7 @@ const errorCodes = [
     code: '33015',
     in_use: true,
     error_description: 'Battery cell delta voltage too high',
-    display: false,
+    display: true,
     possible_causes: 'Voltage mismatch in battery cells.',
     recommended_actions:
       'Clear the fault and attempt restart. If the problem persists, please service the batteries.'
@@ -2417,7 +2417,7 @@ const errorCodes = [
     code: '33016',
     in_use: true,
     error_description: 'Battery cell temperature difference too high',
-    display: false,
+    display: true,
     possible_causes: 'Temperature mismatch in battery cells.',
     recommended_actions:
       'Clear the fault and attempt restart. If the problem persists, please service the batteries.'
@@ -2428,7 +2428,7 @@ const errorCodes = [
     code: '33020',
     in_use: true,
     error_description: 'Battery under voltage',
-    display: false,
+    display: true,
     possible_causes: 'Battery voltage low',
     recommended_actions:
       'Clear the fault and attempt restart. If the problem persists, please service the batteries.'
@@ -2439,7 +2439,7 @@ const errorCodes = [
     code: '33021',
     in_use: true,
     error_description: 'Battery over voltage',
-    display: false,
+    display: true,
     possible_causes: 'Battery voltage high',
     recommended_actions:
       'Clear the fault and attempt restart. If the problem persists, try discharging the batteries. If the problem persists, please service the batteries.'
@@ -2450,7 +2450,7 @@ const errorCodes = [
     code: '33022',
     in_use: true,
     error_description: 'Battery over current',
-    display: false,
+    display: true,
     possible_causes:
       'This could be due to one of the following causes:\n- The loads are too high.\n- One of the DC breakers was left open.',
     recommended_actions:
@@ -2462,7 +2462,7 @@ const errorCodes = [
     code: '33023',
     in_use: true,
     error_description: 'Battery over temperature',
-    display: false,
+    display: true,
     possible_causes: 'Battery temperature too high.',
     recommended_actions:
       'Clear the fault and attempt restart. Stop charging, check battery voltage and temperature. Check for excessive ambient temperature and adequate ventilation in the battery compartment. '
@@ -2473,7 +2473,7 @@ const errorCodes = [
     code: '33024',
     in_use: true,
     error_description: 'Internal battery error',
-    display: false,
+    display: true,
     possible_causes: 'Internal battery error',
     recommended_actions:
       'Clear the fault and attempt restart. If the problem persists, please contact SunPower support for  further help.'
@@ -2484,7 +2484,7 @@ const errorCodes = [
     code: '33025',
     in_use: true,
     error_description: 'Internal battery error',
-    display: false,
+    display: true,
     possible_causes: 'Internal battery error',
     recommended_actions:
       'Clear the fault and attempt restart. If the problem persists, please contact SunPower support for  further help.'
@@ -2495,7 +2495,7 @@ const errorCodes = [
     code: '33026',
     in_use: true,
     error_description: 'Internal battery error',
-    display: false,
+    display: true,
     possible_causes: 'Internal battery error',
     recommended_actions:
       'Clear the fault and attempt restart. If the problem persists, please contact SunPower support for  further help.'
@@ -2506,7 +2506,7 @@ const errorCodes = [
     code: '33027',
     in_use: true,
     error_description: 'Internal battery error',
-    display: false,
+    display: true,
     possible_causes: 'Internal battery error',
     recommended_actions:
       'Clear the fault and attempt restart. If the problem persists, please contact SunPower support for  further help.'
@@ -2517,7 +2517,7 @@ const errorCodes = [
     code: '33028',
     in_use: true,
     error_description: 'Internal battery error',
-    display: false,
+    display: true,
     possible_causes: 'Internal battery error',
     recommended_actions:
       'Clear the fault and attempt restart. If the problem persists, please contact SunPower support for  further help.'
@@ -2528,7 +2528,7 @@ const errorCodes = [
     code: '33029',
     in_use: true,
     error_description: 'Internal battery error',
-    display: false,
+    display: true,
     possible_causes: 'Internal battery error',
     recommended_actions:
       'Clear the fault and attempt restart. If the problem persists, please contact SunPower support for  further help.'
@@ -2539,7 +2539,7 @@ const errorCodes = [
     code: '33030',
     in_use: true,
     error_description: 'Internal battery error',
-    display: false,
+    display: true,
     possible_causes: 'Internal battery error',
     recommended_actions:
       'Clear the fault and attempt restart. If the problem persists, please contact SunPower support for  further help.'
@@ -2550,7 +2550,7 @@ const errorCodes = [
     code: '33031',
     in_use: true,
     error_description: 'Internal battery error',
-    display: false,
+    display: true,
     possible_causes: 'Internal battery error',
     recommended_actions:
       'Clear the fault and attempt restart. If the problem persists, please contact SunPower support for  further help.'
@@ -2561,7 +2561,7 @@ const errorCodes = [
     code: '33032',
     in_use: true,
     error_description: 'Internal battery error',
-    display: false,
+    display: true,
     possible_causes: 'Internal battery error',
     recommended_actions:
       'Clear the fault and attempt restart. If the problem persists, please contact SunPower support for  further help.'
@@ -2572,7 +2572,7 @@ const errorCodes = [
     code: '33033',
     in_use: true,
     error_description: 'Internal battery error',
-    display: false,
+    display: true,
     possible_causes: 'Internal battery error',
     recommended_actions:
       'Clear the fault and attempt restart. If the problem persists, please contact SunPower support for  further help.'
@@ -2583,7 +2583,7 @@ const errorCodes = [
     code: '33034',
     in_use: true,
     error_description: 'Internal battery error',
-    display: false,
+    display: true,
     possible_causes: 'Internal battery error',
     recommended_actions:
       'Clear the fault and attempt restart. If the problem persists, please contact SunPower support for  further help.'
@@ -2594,7 +2594,7 @@ const errorCodes = [
     code: '33035',
     in_use: true,
     error_description: 'Internal battery error',
-    display: false,
+    display: true,
     possible_causes: 'Internal battery error',
     recommended_actions:
       'Clear the fault and attempt restart. If the problem persists, please contact SunPower support for  further help.'
@@ -2605,7 +2605,7 @@ const errorCodes = [
     code: '33036',
     in_use: true,
     error_description: 'Internal battery error',
-    display: false,
+    display: true,
     possible_causes: 'Internal battery error',
     recommended_actions:
       'Clear the fault and attempt restart. If the problem persists, please contact SunPower support for  further help.'
@@ -2616,7 +2616,7 @@ const errorCodes = [
     code: '33037',
     in_use: true,
     error_description: 'Internal battery communication error',
-    display: false,
+    display: true,
     possible_causes: 'Master battery cannot communicate with slave',
     recommended_actions:
       'Check that battery communication cable is connected and both batteries are on. Clear the fault and attempt restart. If the problem persists, please service the batteries.'
@@ -2627,7 +2627,7 @@ const errorCodes = [
     code: '33038',
     in_use: true,
     error_description: 'Internal battery error',
-    display: false,
+    display: true,
     possible_causes: 'Internal battery error',
     recommended_actions:
       'Clear the fault and attempt restart. If the problem persists, please service the batteries.'
@@ -2638,7 +2638,7 @@ const errorCodes = [
     code: '33039',
     in_use: true,
     error_description: 'Internal battery error',
-    display: false,
+    display: true,
     possible_causes: 'Internal battery error',
     recommended_actions:
       'Clear the fault and attempt restart. If the problem persists, please service the batteries.'
@@ -2649,7 +2649,7 @@ const errorCodes = [
     code: '33044',
     in_use: true,
     error_description: 'Internal battery error',
-    display: false,
+    display: true,
     possible_causes: 'Internal battery error',
     recommended_actions:
       'Clear the fault and attempt restart. If the problem persists, please service the batteries.'
@@ -2660,7 +2660,7 @@ const errorCodes = [
     code: '34001',
     in_use: true,
     error_description: 'ESS enclosure over temperarture',
-    display: false,
+    display: true,
     possible_causes:
       'The ESS enclosure may be located in an overly hot location.\nESS enclosure fans may be blocked or faulty. ',
     recommended_actions:
@@ -2672,7 +2672,7 @@ const errorCodes = [
     code: '34010',
     in_use: true,
     error_description: 'MIO Communication outage',
-    display: false,
+    display: true,
     possible_causes:
       "The PVS cannot connect with the MIO board. The MIO board is a hub for data connections to the batteries, inverter, and gateway, so if you're seeing this error, it is likely you're also seeing other errors such as missing batteries or inverters.\n\nThis problem may be due to one of the following causes:\n1. Faulty data connection between the Hub+ and the MIO board.\n2. MIO lost power.\n3. Faulty data connection with another MIO board (applicable to Power Expansion packs only)",
     recommended_actions:
@@ -2684,7 +2684,7 @@ const errorCodes = [
     code: '34011',
     in_use: true,
     error_description: 'MIO firmware error',
-    display: false,
+    display: true,
     possible_causes: 'There is a problem with the firmware in the MIDC board.',
     recommended_actions: 'If the problem persists, please contact SunPower.'
   },
@@ -2694,7 +2694,7 @@ const errorCodes = [
     code: '34012',
     in_use: true,
     error_description: 'MIO firmware error',
-    display: false,
+    display: true,
     possible_causes: 'There is a problem with the firmware in the MIDC board.',
     recommended_actions: 'If the problem persists, please contact SunPower.'
   },
@@ -2704,7 +2704,7 @@ const errorCodes = [
     code: '34013',
     in_use: true,
     error_description: 'MIO firmware error',
-    display: false,
+    display: true,
     possible_causes: 'There is a problem with the firmware in the MIDC board.',
     recommended_actions: 'If the problem persists, please contact SunPower.'
   },
@@ -2714,7 +2714,7 @@ const errorCodes = [
     code: '34014',
     in_use: true,
     error_description: 'MIO firmware error',
-    display: false,
+    display: true,
     possible_causes: 'There is a problem with the firmware in the MIDC board.',
     recommended_actions: 'If the problem persists, please contact SunPower.'
   },
@@ -2724,7 +2724,7 @@ const errorCodes = [
     code: '34015',
     in_use: true,
     error_description: 'MIO firmware error',
-    display: false,
+    display: true,
     possible_causes: 'There is a problem with the firmware in the MIDC board.',
     recommended_actions: 'If the problem persists, please contact SunPower.'
   },
@@ -2734,7 +2734,7 @@ const errorCodes = [
     code: '34016',
     in_use: true,
     error_description: 'MIO firmware error',
-    display: false,
+    display: true,
     possible_causes: 'There is a problem with the firmware in the MIDC board.',
     recommended_actions: 'If the problem persists, please contact SunPower.'
   },
@@ -2744,7 +2744,7 @@ const errorCodes = [
     code: '34017',
     in_use: true,
     error_description: 'MIO firmware error',
-    display: false,
+    display: true,
     possible_causes: 'There is a problem with the firmware in the MIDC board.',
     recommended_actions: 'If the problem persists, please contact SunPower.'
   },
@@ -2754,7 +2754,7 @@ const errorCodes = [
     code: '34018',
     in_use: true,
     error_description: 'MIO firmware error',
-    display: false,
+    display: true,
     possible_causes: 'There is a problem with the firmware in the MIDC board.',
     recommended_actions: 'If the problem persists, please contact SunPower.'
   },
@@ -2764,7 +2764,7 @@ const errorCodes = [
     code: '34019',
     in_use: true,
     error_description: 'MIO firmware error',
-    display: false,
+    display: true,
     possible_causes: 'There is a problem with the firmware in the MIDC board.',
     recommended_actions: 'If the problem persists, please contact SunPower.'
   },
@@ -2774,7 +2774,7 @@ const errorCodes = [
     code: '34020',
     in_use: true,
     error_description: 'MIO firmware error',
-    display: false,
+    display: true,
     possible_causes: 'There is a problem with the firmware in the MIDC board.',
     recommended_actions: 'If the problem persists, please contact SunPower.'
   },
@@ -2784,7 +2784,7 @@ const errorCodes = [
     code: '34021',
     in_use: true,
     error_description: 'MIO firmware error',
-    display: false,
+    display: true,
     possible_causes: 'There is a problem with the firmware in the MIDC board.',
     recommended_actions: 'If the problem persists, please contact SunPower.'
   },
@@ -2794,7 +2794,7 @@ const errorCodes = [
     code: '34022',
     in_use: true,
     error_description: 'MIO firmware error',
-    display: false,
+    display: true,
     possible_causes: 'There is a problem with the firmware in the MIDC board.',
     recommended_actions: 'If the problem persists, please contact SunPower.'
   },
@@ -2804,7 +2804,7 @@ const errorCodes = [
     code: '34023',
     in_use: true,
     error_description: 'MIO firmware error',
-    display: false,
+    display: true,
     possible_causes: 'There is a problem with the firmware in the MIDC board.',
     recommended_actions: 'If the problem persists, please contact SunPower.'
   },
@@ -2814,7 +2814,7 @@ const errorCodes = [
     code: '34024',
     in_use: true,
     error_description: 'MIO firmware error',
-    display: false,
+    display: true,
     possible_causes: 'There is a problem with the firmware in the MIDC board.',
     recommended_actions: 'If the problem persists, please contact SunPower.'
   },
@@ -2824,7 +2824,7 @@ const errorCodes = [
     code: '34025',
     in_use: true,
     error_description: 'MIO firmware error',
-    display: false,
+    display: true,
     possible_causes: 'There is a problem with the firmware in the MIDC board.',
     recommended_actions: 'If the problem persists, please contact SunPower.'
   },
@@ -2834,7 +2834,7 @@ const errorCodes = [
     code: '34026',
     in_use: true,
     error_description: 'MIO firmware error',
-    display: false,
+    display: true,
     possible_causes: 'There is a problem with the firmware in the MIDC board.',
     recommended_actions: 'If the problem persists, please contact SunPower.'
   },
@@ -2844,7 +2844,7 @@ const errorCodes = [
     code: '34027',
     in_use: true,
     error_description: 'MIO firmware error',
-    display: false,
+    display: true,
     possible_causes: 'There is a problem with the firmware in the MIDC board.',
     recommended_actions: 'If the problem persists, please contact SunPower.'
   },
@@ -2854,7 +2854,7 @@ const errorCodes = [
     code: '34028',
     in_use: true,
     error_description: 'MIO firmware error',
-    display: false,
+    display: true,
     possible_causes: 'There is a problem with the firmware in the MIDC board.',
     recommended_actions: 'If the problem persists, please contact SunPower.'
   },
@@ -2864,7 +2864,7 @@ const errorCodes = [
     code: '34029',
     in_use: true,
     error_description: 'MIO firmware error',
-    display: false,
+    display: true,
     possible_causes: 'There is a problem with the firmware in the MIDC board.',
     recommended_actions: 'If the problem persists, please contact SunPower.'
   },
@@ -2874,7 +2874,7 @@ const errorCodes = [
     code: '34030',
     in_use: true,
     error_description: 'MIO firmware update error',
-    display: false,
+    display: true,
     possible_causes:
       'There is a problem with updating firmware in the MIDC board.',
     recommended_actions:
@@ -2886,7 +2886,7 @@ const errorCodes = [
     code: '35000',
     in_use: true,
     error_description: 'PVS could not connect to ESS Gateway',
-    display: false,
+    display: true,
     possible_causes:
       "The Schneider Gateway connects the inverter with PVS and batteries. If you're seeing this error it is likely you're also seeing other errors such as batteries  or inverter(s) missing.\n\nThis problem may be due to the following causes:\n1. Gateway lost power.\n2. The ethernet connector between the gateway and PVS is not connected or terminated correctly.\n3. Gateway may need to be rebooted.",
     recommended_actions:
@@ -2898,7 +2898,7 @@ const errorCodes = [
     code: '35001',
     in_use: true,
     error_description: 'Gateway firmware update error',
-    display: false,
+    display: true,
     possible_causes: 'Could not update gateway firmware.',
     recommended_actions:
       '1. Reboot the gateway by  pulling the ethernet connectors from the left-side of the Gateway and plugging them back into the same ports they were in. It may take a few minutes for the gateway to reboot.\n2. Try updating the firmware again. \nIf the problem persists, please contact SunPower.'
@@ -2909,7 +2909,7 @@ const errorCodes = [
     code: '35002',
     in_use: true,
     error_description: 'Inverter bulk settings update error',
-    display: false,
+    display: true,
     possible_causes: 'Could not update settings in the inverter.',
     recommended_actions:
       "1. Reboot the gateway by  pulling the ethernet connectors from the left-side of the Gateway and plugging them back into the same ports they were in. It may take a few minutes for the gateway to reboot.\n2. Try applying bulk settings again by tapping 'retry' or running the firmware update step again.\nIf the problem persists, please contact SunPower."
@@ -2920,7 +2920,7 @@ const errorCodes = [
     code: '43040',
     in_use: true,
     error_description: 'Battery under voltage',
-    display: false,
+    display: true,
     possible_causes: 'Battery voltage low',
     recommended_actions:
       'Clear the fault and attempt restart. If the problem persists, please service the batteries.'
@@ -2931,7 +2931,7 @@ const errorCodes = [
     code: '43041',
     in_use: true,
     error_description: 'Battery over voltage',
-    display: false,
+    display: true,
     possible_causes: 'Battery voltage high',
     recommended_actions:
       'Clear the fault and attempt restart. If the problem persists, try discharging the batteries. If the problem persists, please contact SunPower.'
@@ -2942,7 +2942,7 @@ const errorCodes = [
     code: '43042',
     in_use: true,
     error_description: 'Battery cell delta voltage too high',
-    display: false,
+    display: true,
     possible_causes: 'Voltage mismatch in battery cells.',
     recommended_actions:
       'Clear the fault and attempt restart. If the problem persists, please contact SunPower.'
@@ -2953,7 +2953,7 @@ const errorCodes = [
     code: '43043',
     in_use: true,
     error_description: 'Batteries have low state of health',
-    display: false,
+    display: true,
     possible_causes: 'Batteries have been degraded.',
     recommended_actions:
       'Clear the fault and attempt restart. If the problem still persists, the batteries need to be serviced.'
