@@ -275,7 +275,9 @@ const devTestDifferentValueVars = [
   'REACT_APP_IS_DEV',
   'REACT_APP_IS_TEST',
   'REACT_APP_SCANDIT',
-  'REACT_APP_GRID_PROFILE_URL'
+  'REACT_APP_GRID_PROFILE_URL',
+  'REACT_APP_APPLE_ID',
+  'REACT_APP_ANDROID_ID'
 ]
 const devTestSameValueVars = compose(
   without(devTestDifferentValueVars),
@@ -296,7 +298,9 @@ if (!isEmpty(sameValueDevTestInconsistencies)) {
 // Env vars values inconsistencies across 'training' and 'prod' envs
 const trainingProdDifferentValueVars = [
   'REACT_APP_SCANDIT_ANDROID',
-  'REACT_APP_SCANDIT_IOS'
+  'REACT_APP_SCANDIT_IOS',
+  'REACT_APP_APPLE_ID',
+  'REACT_APP_ANDROID_ID'
 ]
 const trainingProdSameValueVars = compose(
   without(trainingProdDifferentValueVars),
