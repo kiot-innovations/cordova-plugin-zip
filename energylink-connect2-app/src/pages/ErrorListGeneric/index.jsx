@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { useSelector } from 'react-redux'
-import { omit, not } from 'ramda'
+import { omit, not, map, compose } from 'ramda'
 import { Link, useHistory } from 'react-router-dom'
 import paths, { setParams } from 'routes/paths'
 import { useI18n } from 'shared/i18n'
@@ -41,11 +41,19 @@ const ErrorComponent = ({ title, code = '', errorInfo, t }) => {
 const getErrorInfo = omit([
   'error_message',
   'error_code',
-  'error_code',
   'error_description',
-  'event_code',
   'event_code'
 ])
+
+const renderError = t => error => (
+  <ErrorComponent
+    title={error.error_description || error.error_message}
+    code={error.event_code || error.error_code}
+    key={error.event_code || error.error_code}
+    errorInfo={getErrorInfo(error)}
+    t={t}
+  />
+)
 
 const storageRoutesMap = {
   [eqsSteps.PREDISCOVERY]: paths.PROTECTED.STORAGE_PREDISCOVERY.path,
@@ -66,7 +74,6 @@ const storageRoutesMap = {
 const ErrorListScreen = ({ errors = [] }) => {
   const t = useI18n()
   const history = useHistory()
-  const [parsedErrors] = useState(() => errors.map(getError))
   const { currentStep } = useSelector(state => state.storage)
 
   return (
@@ -80,15 +87,7 @@ const ErrorListScreen = ({ errors = [] }) => {
         <span />
       </div>
       <div className="error-list-container">
-        {parsedErrors.map(elem => (
-          <ErrorComponent
-            title={elem.error_description || elem.error_message}
-            code={elem.event_code || elem.error_code}
-            key={elem.event_code || elem.error_code}
-            errorInfo={getErrorInfo(elem)}
-            t={t}
-          />
-        ))}
+        {map(compose(renderError(t), getError), errors)}
       </div>
       <div>
         <div className="has-text-centered error-list-hint">
