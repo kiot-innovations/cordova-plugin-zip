@@ -95,7 +95,15 @@ function PvsSelection() {
           <span>{t('ADD_NEW_PVS')}</span>
         </div>
       </section>
-      <section className="pvs-buttons mb-20">
+      {/*
+          @todo: This section is hidden until we finish the RMA flow
+          [CM2-1048]. Enable the buttons once we finish that.
+      */}
+      <section
+        className={clsx('pvs-buttons mb-20', {
+          'is-hidden': !process.env.REACT_APP_IS_DEV
+        })}
+      >
         <button
           className="button has-text-centered is-uppercase is-secondary pt-0 pb-0 pl-10 pr-10"
           onClick={replacePVS}
