@@ -1,7 +1,7 @@
 import React, { useCallback, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory, useLocation } from 'react-router-dom'
-import { pathOr, length } from 'ramda'
+import { length, pathOr } from 'ramda'
 import BlockUI from 'react-block-ui'
 import 'react-block-ui/style.css'
 import useModal from 'hooks/useModal'
