@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { pathOr } from 'ramda'
+import { find, pathOr, propEq } from 'ramda'
 import clsx from 'clsx'
 import { useI18n } from 'shared/i18n'
 import { useSelector, useDispatch } from 'react-redux'
@@ -26,6 +26,9 @@ const PVSProvideInternet = () => {
 
   const { rmaMode, newEquipment, rma } = useSelector(state => state.rma)
   const { serialNumbers } = useSelector(state => state.pvs)
+  const { bom } = useSelector(state => state.inventory)
+  const miValue = find(propEq('item', 'AC_MODULES'), bom)
+  const storageValue = find(propEq('item', 'ESS'), bom)
 
   const versionChecked = useSelector(
     pathOr(false, ['firmwareUpdate', 'canContinue'])
@@ -55,12 +58,21 @@ const PVSProvideInternet = () => {
           history.push(paths.PROTECTED.DEVICES.path)
         }
       }
-    } else
-      history.push(
-        canAccessScandit
-          ? paths.PROTECTED.SCAN_LABELS.path
-          : paths.PROTECTED.SN_LIST.path
-      )
+    } else {
+      if (miValue.value > 0) {
+        history.push(
+          canAccessScandit
+            ? paths.PROTECTED.SCAN_LABELS.path
+            : paths.PROTECTED.SN_LIST.path
+        )
+      } else {
+        if (storageValue.value !== '0') {
+          history.push(paths.PROTECTED.STORAGE_PREDISCOVERY.path)
+        } else {
+          history.push(paths.PROTECTED.SYSTEM_CONFIGURATION.path)
+        }
+      }
+    }
   }
 
   useEffect(() => {
