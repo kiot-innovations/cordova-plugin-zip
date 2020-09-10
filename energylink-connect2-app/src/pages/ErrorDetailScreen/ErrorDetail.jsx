@@ -54,7 +54,7 @@ const ErrorDetailScreen = () => {
   } = propOr({}, 'state', useLocation())
 
   const errorObject = {
-    code: errorCode,
+    error_code: errorCode,
     error_message: error_name,
     device_sn,
     time: last_occurrence,

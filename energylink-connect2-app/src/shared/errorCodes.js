@@ -6075,8 +6075,8 @@ const unknownError = code => {
 
 export const keyedErrors = arrayToObject('event_code', errorCodes)
 export const getError = error => {
-  const { code, error_message } = error
-  const errorObj = prop(code, keyedErrors)
+  const { error_code, error_message } = error
+  const errorObj = prop(error_code, keyedErrors)
   //in case we found the error in the object above
   if (errorObj) return errorObj
   //in case there is an error message
@@ -6084,6 +6084,6 @@ export const getError = error => {
   else if (error_message)
     return { ...error, error_message: error_message.replace(/_/gm, ' ') }
   //in case error_message doesn't exist
-  return unknownError(code)
+  return unknownError(error_code)
 }
 export default errorCodes
