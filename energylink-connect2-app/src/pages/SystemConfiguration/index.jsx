@@ -90,7 +90,7 @@ function SystemConfiguration() {
   const submitConfig = () => {
     try {
       const configObject = generateConfigObject()
-      if (!configObject.gridProfile) {
+      if (!configObject.gridVoltage) {
         showNoGridModal()
       } else {
         if (validateConfig(configObject)) {
