@@ -71,10 +71,6 @@ const paths = {
       path: '/create-site',
       header: true
     },
-    MENU: {
-      path: '/menu',
-      header: true
-    },
     MANAGE_FIRMWARES: {
       path: '/manage-firmwares',
       header: true
