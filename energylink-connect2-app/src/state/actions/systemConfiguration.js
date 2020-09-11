@@ -25,6 +25,7 @@ export const SET_RATED_CURRENT = createAction('SET_RATED_CURRENT')
 export const SET_PRODUCTION_CT = createAction('SET_PRODUCTION_CT')
 
 export const SUBMIT_CLEAR = createAction('SUBMIT_CLEAR')
+export const REPLACE_RMA_PVS = createAction('REPLACE_RMA_PVS')
 export const SUBMIT_CONFIG = createAction('SUBMIT_CONFIG')
 export const SUBMIT_CONFIG_SUCCESS = createAction('SUBMIT_CONFIG_SUCCESS')
 export const SUBMIT_CONFIG_ERROR = createAction('SUBMIT_CONFIG_ERROR')

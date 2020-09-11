@@ -2,6 +2,7 @@ import { createReducer } from 'redux-act'
 
 import {
   SUBMIT_CLEAR,
+  REPLACE_RMA_PVS,
   SUBMIT_CONFIG,
   SUBMIT_CONFIG_SUCCESS,
   SUBMIT_CONFIG_ERROR,
@@ -20,6 +21,10 @@ const initialState = {
 
 export const submitConfigReducer = createReducer(
   {
+    [REPLACE_RMA_PVS]: (state, payload) => ({
+      ...state,
+      submitting: true
+    }),
     [SUBMIT_CONFIG]: (state, payload) => ({
       ...state,
       submitting: true,

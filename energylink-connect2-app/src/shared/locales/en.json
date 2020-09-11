@@ -293,6 +293,7 @@
   "PVS_CONNECTION_TIMEOUT": "Could not connect to the PVS after 1 minute. Please check the equipment",
   "PVS_CONNECTION_EMPTY_SSID": "Error, no PVS WiFi SSID was provided",
   "UNKNOWN_ERROR": "Please refer to installation manual or contact support for assistance",
+  "REPLACE_RMA_PVS_ERROR": "An error ocurred while replacing the old PVS",
   "REDISCOVER": "Rediscover",
   "SUBMIT_METER_DATA_ERROR": "Error while saving meter configuration",
   "SUBMIT_GRID_PROFILE_ERROR": "Error while setting grid profile",
