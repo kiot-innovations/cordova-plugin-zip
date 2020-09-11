@@ -70,7 +70,7 @@ const ErrorDetailScreen = () => {
   const { currentStep } = useSelector(state => state.storage)
 
   const errorObject = {
-    code: errorCode,
+    error_code: errorCode,
     error_message: error_name,
     device_sn,
     time: last_occurrence,
