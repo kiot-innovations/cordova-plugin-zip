@@ -11,7 +11,7 @@ import * as fileSystem from 'shared/fileSystem'
 describe('Epic gridProfile', () => {
   it('should show the progress of the download, if complete set the file info', () => {
     const epicTest = epicTester(
-      require('./gridProfile').epicInitDownloadGridProfile
+      require('./gridProfile').initDownloadGridProfileEpic
     )
 
     fileTransferObservable.default = jest.fn(() =>
@@ -35,7 +35,13 @@ describe('Epic gridProfile', () => {
     const inputMarble = 'a'
     const expectedMarble = '(abcd)'
 
-    epicTest(inputMarble, expectedMarble, inputValues, expectedValues)
+    epicTest(inputMarble, expectedMarble, inputValues, expectedValues, {
+      fileDownloader: {
+        settings: {
+          allowDownloadWithPVS: true
+        }
+      }
+    })
   })
   it('should dispatch GRID_PROFILE_DOWNLOAD_SUCCESS if it could run all of it correctly', function() {
     fileSystem.getFileInfo = jest.fn(() =>
@@ -45,7 +51,7 @@ describe('Epic gridProfile', () => {
       })
     )
     const epicTest = epicTester(
-      require('./gridProfile').epicGridProfileReportSuccess
+      require('./gridProfile').gridProfileReportSuccessEpic
     )
     const inputValues = {
       a: GRID_PROFILE_REPORT_SUCCESS('firmware/gridProfile.tar.gz')
