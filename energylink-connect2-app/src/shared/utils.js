@@ -303,3 +303,19 @@ export const hasInternetConnection = () =>
   )
 
 export const removeUndefined = reject(isNil)
+
+export const generateSSID = serialNumber => {
+  const lastIndex = serialNumber.length
+  const ssidPt1 = serialNumber.substring(4, 6)
+  const ssidPt2 = serialNumber.substring(lastIndex - 3, lastIndex)
+
+  return `SunPower${ssidPt1}${ssidPt2}`
+}
+
+export const generatePassword = serialNumber => {
+  let lastIndex = serialNumber.length
+  let password =
+    serialNumber.substring(2, 6) +
+    serialNumber.substring(lastIndex - 4, lastIndex)
+  return password
+}

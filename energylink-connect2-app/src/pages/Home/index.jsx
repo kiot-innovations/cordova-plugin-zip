@@ -25,6 +25,7 @@ import './Home.scss'
 import { PVS_FIRMWARE_DOWNLOAD_INIT } from 'state/actions/fileDownloader'
 import { DOWNLOAD_OS_INIT } from 'state/actions/ess'
 import { GRID_PROFILE_DOWNLOAD_INIT } from 'state/actions/gridProfileDownloader'
+import { RESET_RMA_PVS } from 'state/actions/rma'
 
 const formatAddress = compose(
   join(', '),
@@ -65,6 +66,7 @@ const resetCommissioning = dispatch => {
   dispatch(RESET_INVENTORY())
   dispatch(RESET_LAST_VISITED_PAGE())
   dispatch(RESET_SYSTEM_CONFIGURATION())
+  dispatch(RESET_RMA_PVS())
 }
 
 function Home() {
