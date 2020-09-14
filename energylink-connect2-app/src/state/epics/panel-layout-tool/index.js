@@ -4,11 +4,13 @@ import { pathOr, filter, propIs, compose, length } from 'ramda'
 import { ofType } from 'redux-observable'
 import { map, catchError, switchMap, exhaustMap } from 'rxjs/operators'
 import { EMPTY, from, of } from 'rxjs'
+
 import { getApiPVS } from 'shared/api'
 import {
   PLT_LOAD,
   PLT_LOAD_ERROR,
   PLT_LOAD_FINISHED,
+  PLT_MARK_AS_CHANGED,
   PLT_SAVE,
   PLT_SAVE_ERROR,
   PLT_SAVE_FINISHED
@@ -68,4 +70,21 @@ export const savePanelLayoutEpic = (action$, state$) =>
     })
   )
 
-export default [getPanelLayoutEpic, savePanelLayoutEpic]
+export const markPanelLayoutAsChangedEpic = action$ =>
+  action$.pipe(
+    ofType(
+      actions.add.getType(),
+      actions.updatePosition.getType(),
+      actions.updateGroupPosition.getType(),
+      actions.setRotation.getType(),
+      actions.remove.getType(),
+      actions.rotateSelectedGroup.getType()
+    ),
+    map(PLT_MARK_AS_CHANGED)
+  )
+
+export default [
+  getPanelLayoutEpic,
+  savePanelLayoutEpic,
+  markPanelLayoutAsChangedEpic
+]
