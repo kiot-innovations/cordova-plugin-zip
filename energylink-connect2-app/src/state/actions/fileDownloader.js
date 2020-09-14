@@ -26,3 +26,8 @@ export const PVS_DECOMPRESS_LUA_FILES_ERROR = createAction(
 export const PVS_FIRMWARE_REPORT_SUCCESS = createAction(
   'PVS_FIRMWARE_REPORT_SUCCESS'
 )
+export const PVS_FIRMWARE_MODAL_IS_CONNECTED = createAction(
+  'PVS_FIRMWARE_MODAL_IS_CONNECTED'
+)
+
+export const DOWNLOAD_ALLOW_WITH_PVS = createAction('DOWNLOAD_ALLOW_WITH_PVS')

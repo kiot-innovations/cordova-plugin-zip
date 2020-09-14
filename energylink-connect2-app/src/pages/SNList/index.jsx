@@ -26,7 +26,9 @@ function SNList() {
   const { isManualModeDefault = false } = pathOr({}, ['state'], location)
 
   const [isManualMode, setManualMode] = useState(isManualModeDefault)
-  const { serialNumbers, fetchingSN } = useSelector(state => state.pvs)
+  const { serialNumbers, fetchingSN, serialNumbersError } = useSelector(
+    state => state.pvs
+  )
   const [editingSn, setEditingSn] = useState('')
   const { bom } = useSelector(state => state.inventory)
   const { canAccessScandit } = useSelector(state => state.global)
@@ -81,9 +83,11 @@ function SNList() {
   }
 
   const submitSN = () => {
-    const snList = serialNumbers.map(device => {
-      return { DEVICE_TYPE: 'Inverter', SERIAL: device.serial_number }
-    })
+    const snList = serialNumbers.map(device => ({
+      DEVICE_TYPE: 'Inverter',
+      SERIAL: device.serial_number
+    }))
+    serialNumbersError.forEach(snList.push)
     toggleSerialNumbersModal()
     dispatch(UPDATE_MI_COUNT(serialNumbers.length))
     dispatch(PUSH_CANDIDATES_INIT(snList))

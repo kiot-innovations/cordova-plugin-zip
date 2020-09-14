@@ -25,12 +25,14 @@ export const SET_RATED_CURRENT = createAction('SET_RATED_CURRENT')
 export const SET_PRODUCTION_CT = createAction('SET_PRODUCTION_CT')
 
 export const SUBMIT_CLEAR = createAction('SUBMIT_CLEAR')
+export const REPLACE_RMA_PVS = createAction('REPLACE_RMA_PVS')
 export const SUBMIT_CONFIG = createAction('SUBMIT_CONFIG')
 export const SUBMIT_CONFIG_SUCCESS = createAction('SUBMIT_CONFIG_SUCCESS')
 export const SUBMIT_CONFIG_ERROR = createAction('SUBMIT_CONFIG_ERROR')
 export const SUBMIT_GRIDPROFILE = createAction('SUBMIT_GRIDPROFILE')
 export const SUBMIT_EXPORTLIMIT = createAction('SUBMIT_EXPORTLIMIT')
 export const SUBMIT_GRIDVOLTAGE = createAction('SUBMIT_GRIDVOLTAGE')
+export const SUBMIT_METERCONFIG = createAction('SUBMIT_METERCONFIG')
 
 export const GET_STORAGE_INIT = createAction('GET_BATTERIES_INIT')
 export const GET_STORAGE_ERROR = createAction('GET_BATTERIES_ERROR')
@@ -60,4 +62,8 @@ export const SUBMIT_COMMISSION_SUCCESS = createAction(
 export const SUBMIT_COMMISSION_ERROR = createAction('SUBMIT_COMMISSION_ERROR')
 export const COMMISSION_ERROR_REPORTED = createAction(
   'COMMISSION_ERROR_REPORTED'
+)
+
+export const RESET_SYSTEM_CONFIGURATION = createAction(
+  'RESET_SYSTEM_CONFIGURATION'
 )

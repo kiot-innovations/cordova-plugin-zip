@@ -14,7 +14,9 @@ import {
 } from '../../actions/user'
 import {
   SET_LAST_VISITED_PAGE,
-  RESET_LAST_VISITED_PAGE
+  RESET_LAST_VISITED_PAGE,
+  CHECK_APP_UPDATE_SUCCESS,
+  CHECK_APP_UPDATE_ERROR
 } from 'state/actions/global'
 import paths from 'routes/paths'
 import { SET_SCANDIT_ACCESS } from 'state/actions/scandit'
@@ -28,7 +30,9 @@ const initialState = {
   selectedDataSource: DATA_SOURCES.LIVE,
   feedbackError: null,
   lastVisitedPage: paths.PROTECTED.PVS_SELECTION_SCREEN.path,
-  canAccessScandit: true
+  canAccessScandit: true,
+  updateAvailable: false,
+  updateVersion: 0
 }
 
 export const globalReducer = createReducer(
@@ -75,6 +79,16 @@ export const globalReducer = createReducer(
     [SET_SCANDIT_ACCESS]: (state, canAccessScandit) => ({
       ...state,
       canAccessScandit
+    }),
+    [CHECK_APP_UPDATE_SUCCESS]: (state, updateVersion) => ({
+      ...state,
+      updateAvailable: true,
+      updateVersion
+    }),
+    [CHECK_APP_UPDATE_ERROR]: state => ({
+      ...state,
+      updateAvailable: false,
+      updateVersion: 0
     })
   },
   initialState

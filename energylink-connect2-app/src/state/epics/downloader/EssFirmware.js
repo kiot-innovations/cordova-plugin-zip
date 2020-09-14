@@ -1,5 +1,14 @@
 import * as Sentry from '@sentry/browser'
-import { always, curry, identity, ifElse, is, path, pathOr } from 'ramda'
+import {
+  always,
+  curry,
+  identity,
+  ifElse,
+  is,
+  path,
+  pathOr,
+  propOr
+} from 'ramda'
 import { ofType } from 'redux-observable'
 import { from, of } from 'rxjs'
 import { catchError, exhaustMap, map } from 'rxjs/operators'
@@ -17,40 +26,46 @@ import {
 
 import fileTransferObservable from 'state/epics/observables/downloader'
 import { checkMD5 } from 'shared/cordovaMapping'
+import { PVS_FIRMWARE_MODAL_IS_CONNECTED } from 'state/actions/fileDownloader'
+import { wifiCheckOperator } from './downloadOperators'
 
 const downloadOSZipEpic = (action$, state$) => {
   const shouldRetry = ifElse(is(Boolean), identity, always(false))
   return action$.pipe(
     ofType(DOWNLOAD_OS_INIT.getType()),
-    exhaustMap(({ payload = false }) => {
+    wifiCheckOperator(state$),
+    exhaustMap(({ action, canDownload }) => {
       const filePath = 'ESS/EQS-FW-Package.zip'
-      return fileTransferObservable(
-        filePath,
-        `${process.env.REACT_APP_ARTIFACTORY_BASE}/pvs-connected-devices-firmware/chief_hopper/ChiefHopper.zip`,
-        shouldRetry(payload),
-        pathOr('', ['value', 'user', 'auth', 'access_token'], state$),
-        ['x-checksum-md5']
-      ).pipe(
-        map(({ entry, progress, total, serverHeaders }) =>
-          progress
-            ? DOWNLOAD_OS_PROGRESS({ progress, total })
-            : DOWNLOAD_OS_REPORT_SUCCESS({ serverHeaders, entry, filePath })
-        ),
-        catchError(err => {
-          Sentry.addBreadcrumb({
-            data: {
-              ...payload,
-              baseUrl: process.env.REACT_APP_ARTIFACTORY_BASE,
-              environment: getEnvironment()
-            },
-            category: 'ESS-Firmware-download',
-            message: 'Failed to download ESS firmware',
-            level: Sentry.Severity.Error
-          })
-          Sentry.captureException(err)
-          return of(DOWNLOAD_OS_ERROR.asError(err))
-        })
-      )
+      const payload = propOr(false, 'payload', action)
+      return canDownload
+        ? fileTransferObservable(
+            filePath,
+            `${process.env.REACT_APP_ARTIFACTORY_BASE}/pvs-connected-devices-firmware/chief_hopper/ChiefHopper.zip`,
+            shouldRetry(payload),
+            pathOr('', ['value', 'user', 'auth', 'access_token'], state$),
+            ['x-checksum-md5']
+          ).pipe(
+            map(({ entry, progress, total, serverHeaders }) =>
+              progress
+                ? DOWNLOAD_OS_PROGRESS({ progress, total })
+                : DOWNLOAD_OS_REPORT_SUCCESS({ serverHeaders, entry, filePath })
+            ),
+            catchError(err => {
+              Sentry.addBreadcrumb({
+                data: {
+                  ...payload,
+                  baseUrl: process.env.REACT_APP_ARTIFACTORY_BASE,
+                  environment: getEnvironment()
+                },
+                category: 'ESS-Firmware-download',
+                message: 'Failed to download ESS firmware',
+                level: Sentry.Severity.Error
+              })
+              Sentry.captureException(err)
+              return of(DOWNLOAD_OS_ERROR.asError(err))
+            })
+          )
+        : of(PVS_FIRMWARE_MODAL_IS_CONNECTED(action))
     })
   )
 }

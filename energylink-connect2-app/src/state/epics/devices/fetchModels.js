@@ -18,6 +18,26 @@ const buildModelFilter = (type, models) => {
 }
 
 const defaultMIModelsByType = {
+  C: [
+    'SPR-E19-320-C-AC',
+    'SPR-E20-327-C-AC',
+    'SPR-X21-335-BLK-C-AC',
+    'SPR-X21-335-C-AC',
+    'SPR-X21-345-C-AC',
+    'SPR-X22-360-C-AC'
+  ],
+  D: [
+    'SPR-E20-327-D-AC',
+    'SPR-X19-315-D-AC',
+    'SPR-X20-327-BLK-D-AC',
+    'SPR-X20-327-D-AC',
+    'SPR-X21-335-BLK-D-AC',
+    'SPR-X21-335-D-AC',
+    'SPR-X21-345-D-AC',
+    'SPR-X21-350-BLK-D-AC',
+    'SPR-X22-360-D-AC',
+    'SPR-X22-370-D-AC'
+  ],
   E: [
     'SPR-E19-320-E-AC',
     'SPR-E20-327-E-AC',
@@ -30,6 +50,13 @@ const defaultMIModelsByType = {
     'SPR-X21-350-BLK-E-AC',
     'SPR-X22-360-E-AC',
     'SPR-X22-370-E-AC'
+  ],
+  G: [
+    'SPR-A390-G-AC',
+    'SPR-A400-G-AC',
+    'SPR-A410-G-AC',
+    'SPR-A415-G-AC',
+    'SPR-A420-G-AC'
   ]
 }
 

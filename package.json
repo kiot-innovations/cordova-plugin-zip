@@ -85,12 +85,12 @@
       "cordova-clipboard": {},
       "cordova-plugin-wifiwizard2": {},
       "cordova-plugin-zip": {},
-      "cordova-plugin-file-transfer": {}
+      "cordova-plugin-file-transfer": {},
+      "cordova-plugin-market": {}
     },
     "platforms": [
       "ios",
       "android"
     ]
-  },
-  "devDependencies": {}
+  }
 }

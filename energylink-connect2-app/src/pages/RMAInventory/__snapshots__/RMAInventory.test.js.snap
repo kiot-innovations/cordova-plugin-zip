@@ -40,7 +40,7 @@ exports[`RMAInventory renders correctly 1`] = `
     >
       <RMAInventory>
         <div
-          className="rma-add-devices full-height pr-20 pl-20"
+          className="rma-add-devices pr-20 pl-20"
         >
           <div
             className="rma-form"
@@ -71,7 +71,12 @@ exports[`RMAInventory renders correctly 1`] = `
                 className="field  mb-20 mt-20"
               >
                 <mockConstructor
-                  defaultValue={0}
+                  defaultValue={
+                    Object {
+                      "label": 0,
+                      "value": 0,
+                    }
+                  }
                   isSearchable={false}
                   onSelect={[Function]}
                   options={
@@ -500,7 +505,6 @@ exports[`RMAInventory renders correctly 1`] = `
                 className="field  mb-20 mt-20"
               >
                 <mockConstructor
-                  defaultValue=""
                   isSearchable={false}
                   onSelect={[Function]}
                   options={
@@ -514,6 +518,12 @@ exports[`RMAInventory renders correctly 1`] = `
                         "value": "13kWh",
                       },
                     ]
+                  }
+                  value={
+                    Object {
+                      "label": "NONE",
+                      "value": "",
+                    }
                   }
                 >
                   <div />

@@ -23,11 +23,14 @@ export const pushCandidatesEpic = action$ => {
         map(response =>
           response.status === 200
             ? PUSH_CANDIDATES_SUCCESS(response)
-            : PUSH_CANDIDATES_ERROR('ERROR_EXECUTING_COMMAND')
+            : PUSH_CANDIDATES_ERROR({
+                msg: 'ERROR_EXECUTING_COMMAND',
+                candidates: payload
+              })
         ),
         catchError(err => {
           Sentry.captureException(err)
-          return of(PUSH_CANDIDATES_ERROR(err))
+          return of(PUSH_CANDIDATES_ERROR({ error: err, candidates: payload }))
         })
       )
     })

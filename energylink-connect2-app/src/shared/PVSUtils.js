@@ -1,6 +1,9 @@
-import { compose, join, slice, split } from 'ramda'
+import allSettled from 'promise.allsettled'
+import { compose, find, join, propEq, slice, split } from 'ramda'
 import { getApiPVS } from 'shared/api'
 import { flipConcat } from 'shared/utils'
+
+const parsePromises = compose(Boolean, find(propEq('status', 'fulfilled')))
 
 export const sendCommandToPVS = async command => {
   const baseUrl = process.env.REACT_APP_PVS_SELECTEDADDRESS
@@ -23,3 +26,8 @@ export const getFileSystemFromLuaFile = compose(
   slice(0, -2),
   split('/')
 )
+
+export async function isConnectedToPVS() {
+  const promises = [getApiPVS(), sendCommandToPVS('GetSupervisorInformation')]
+  return parsePromises(await allSettled(promises))
+}
