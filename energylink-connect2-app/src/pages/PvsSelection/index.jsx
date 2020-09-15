@@ -97,13 +97,13 @@ function PvsSelection() {
       </section>
       <section className="pvs-buttons mb-20">
         <button
-          className="button has-text-centered is-uppercase is-secondary pt-0 pb-0 pl-10 pr-10"
+          className="button has-text-centered is-uppercase is-secondary is-fullwidth mr-5"
           onClick={replacePVS}
         >
           {t('REPLACE_PVS')}
         </button>
         <button
-          className="button has-text-centered is-uppercase is-secondary pt-0 pb-0 pl-10 pr-10"
+          className="button has-text-centered is-uppercase is-secondary is-fullwidth ml-5"
           onClick={() =>
             shouldMoveNewRoute(paths.PROTECTED.INVENTORY_COUNT.path)
           }
@@ -114,8 +114,8 @@ function PvsSelection() {
 
       <SwipeableBottomSheet
         shadowTip={false}
-        onChange={() => showFetchDevicesStatus(!fetchDevicesStatus)}
         open={fetchDevicesStatus}
+        onChange={() => showFetchDevicesStatus(!fetchDevicesStatus)}
       >
         <div className="fetch-devices-status is-flex">
           <span className="has-text-weight-bold has-text-white mb-40">
