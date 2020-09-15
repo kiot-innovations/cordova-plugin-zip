@@ -489,6 +489,7 @@
   "OTHER_DEVICES": "Other Devices",
   "EQUINOX_STORAGE_SYSTEM": "Equinox Storage System",
   "ERROR_LIST": "Error List",
+  "ENTER_SERIAL_MANUALLY": "Enter serial manually...",
   "UPDATE_HEADER": "There is a new version of the app available. Please update to get the latest features and improvements",
   "UPDATE_TITLE": "Update Notice - v{0}",
   "DOWNLOAD_CONNECTED_TO_PVS": "A new version of the firmware exists. Please disconnect your phone from the PVS to download the latest version. If you choose to continue without disconnecting, the download may take several minutes."
