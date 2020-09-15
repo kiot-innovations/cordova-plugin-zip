@@ -3,6 +3,7 @@ import {
   PLT_LOAD,
   PLT_LOAD_ERROR,
   PLT_LOAD_FINISHED,
+  PLT_MARK_AS_CHANGED,
   PLT_SAVE,
   PLT_SAVE_ERROR,
   PLT_SAVE_FINISHED
@@ -12,7 +13,8 @@ const initialState = {
   saving: false,
   saved: false,
   error: '',
-  loading: false
+  loading: false,
+  changed: false
 }
 
 export const pltWizard = createReducer(
@@ -23,7 +25,8 @@ export const pltWizard = createReducer(
     }),
     [PLT_LOAD_FINISHED]: state => ({
       ...state,
-      loading: false
+      loading: false,
+      changed: false
     }),
     [PLT_LOAD_ERROR]: state => ({
       ...state,
@@ -39,13 +42,15 @@ export const pltWizard = createReducer(
       ...state,
       saving: false,
       saved: true,
-      error: ''
+      error: '',
+      changed: false
     }),
     [PLT_SAVE_ERROR]: (state, error) => ({
       ...state,
       saving: false,
       error
-    })
+    }),
+    [PLT_MARK_AS_CHANGED]: state => ({ ...state, changed: true })
   },
   initialState
 )

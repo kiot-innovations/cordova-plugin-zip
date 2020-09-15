@@ -2,7 +2,8 @@ import { createReducer } from 'redux-act'
 import {
   GET_STORAGE_INIT,
   GET_STORAGE_SUCCESS,
-  GET_STORAGE_ERROR
+  GET_STORAGE_ERROR,
+  RESET_SYSTEM_CONFIGURATION
 } from 'state/actions/systemConfiguration'
 
 const initialState = {
@@ -26,7 +27,8 @@ const storageReducer = createReducer(
       ...state,
       isFetching: false,
       error: payload
-    })
+    }),
+    [RESET_SYSTEM_CONFIGURATION]: () => initialState
   },
   initialState
 )

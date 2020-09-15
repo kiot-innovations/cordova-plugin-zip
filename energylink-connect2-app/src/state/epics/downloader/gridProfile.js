@@ -1,68 +1,79 @@
-import { pathOr } from 'ramda'
+import { propOr } from 'ramda'
+import { from, of } from 'rxjs'
+import { catchError, exhaustMap, map } from 'rxjs/operators'
 import { ofType } from 'redux-observable'
-import { EMPTY, from, of } from 'rxjs'
-import { catchError, concatMap, exhaustMap, map } from 'rxjs/operators'
+import * as Sentry from '@sentry/browser'
 
 import {
-  DOWNLOAD_ERROR,
-  DOWNLOAD_INIT,
-  DOWNLOAD_SUCCESS
-} from 'state/actions/fileDownloader'
-import {
+  GRID_PROFILE_DOWNLOAD_ERROR,
   GRID_PROFILE_DOWNLOAD_INIT,
-  GRID_PROFILE_GET_FILE,
-  GRID_PROFILE_SET_FILE_INFO
+  GRID_PROFILE_DOWNLOAD_PROGRESS,
+  GRID_PROFILE_DOWNLOAD_SUCCESS,
+  GRID_PROFILE_REPORT_SUCCESS
 } from 'state/actions/gridProfileDownloader'
-import {
-  fileExists,
-  getGridProfileFileName,
-  getGridProfileFilePath
-} from 'shared/fileSystem'
-import { PERSIST_DATA_PATH } from 'shared/utils'
+import { PVS_FIRMWARE_MODAL_IS_CONNECTED } from 'state/actions/fileDownloader'
+import { getFileInfo, getGridProfileFileName } from 'shared/fileSystem'
+import fileTransferObservable from 'state/epics/observables/downloader'
+import { hasInternetConnection } from 'shared/utils'
+import { modalNoInternet } from 'state/epics/downloader/firmware'
+import { wifiCheckOperator } from './downloadOperators'
 
-/**
- * Sets the file info if the file is in the FS
- * Or triggers GRID_PROFILE_DOWNLOAD_INIT to start a new download
- * @param action$
- * @returns {*}
- */
-export const epicGetGridProfileFromFS = action$ =>
+export const initDownloadGridProfileEpic = (action$, state$) =>
   action$.pipe(
-    ofType(GRID_PROFILE_GET_FILE.getType()),
-    exhaustMap(() =>
-      from(fileExists(`${PERSIST_DATA_PATH}${getGridProfileFilePath()}`)).pipe(
-        map(fileInfo => GRID_PROFILE_SET_FILE_INFO({ ...fileInfo })),
-        catchError(() => of(GRID_PROFILE_DOWNLOAD_INIT()))
-      )
+    ofType(GRID_PROFILE_DOWNLOAD_INIT.getType()),
+    wifiCheckOperator(state$),
+    exhaustMap(({ action, canDownload }) =>
+      canDownload
+        ? fileTransferObservable(
+            `firmware/${getGridProfileFileName()}`,
+            process.env.REACT_APP_GRID_PROFILE_URL,
+            propOr(false, 'payload', action)
+          ).pipe(
+            map(({ entry, progress }) =>
+              progress
+                ? GRID_PROFILE_DOWNLOAD_PROGRESS(progress)
+                : GRID_PROFILE_REPORT_SUCCESS(`firmware/${entry.name}`)
+            ),
+            catchError(err => {
+              Sentry.addBreadcrumb({ message: 'Downloading grid profile' })
+              Sentry.captureException(err)
+              return of(GRID_PROFILE_DOWNLOAD_ERROR(err))
+            })
+          )
+        : of(PVS_FIRMWARE_MODAL_IS_CONNECTED(action))
     )
   )
 
-export const epicInitDownloadGridProfile = action$ =>
+export const gridProfileReportSuccessEpic = action$ =>
   action$.pipe(
-    ofType(GRID_PROFILE_DOWNLOAD_INIT.getType()),
-    exhaustMap(() =>
-      of(
-        DOWNLOAD_INIT({
-          fileUrl: process.env.REACT_APP_GRID_PROFILE_URL,
-          folder: 'firmware',
-          fileName: getGridProfileFileName()
+    ofType(GRID_PROFILE_REPORT_SUCCESS.getType()),
+    exhaustMap(({ payload }) =>
+      from(getFileInfo(payload)).pipe(
+        map(({ size, lastModified }) =>
+          GRID_PROFILE_DOWNLOAD_SUCCESS({ size, lastModified })
+        ),
+        catchError(err => {
+          Sentry.addBreadcrumb({ message: 'epic grid profile report success' })
+          Sentry.captureException(err)
+          return of(GRID_PROFILE_DOWNLOAD_ERROR(err))
         })
       )
     )
   )
 
-export const epicDownloadGridProfile = action$ =>
+export const gridProfileManageErrorsEpic = action$ =>
   action$.pipe(
-    ofType(DOWNLOAD_SUCCESS.getType(), DOWNLOAD_ERROR.getType()),
-    concatMap(action =>
-      pathOr('', ['payload', 'name'], action) === getGridProfileFileName()
-        ? of(GRID_PROFILE_GET_FILE())
-        : EMPTY
-    )
+    ofType(GRID_PROFILE_DOWNLOAD_ERROR.getType()),
+    exhaustMap(({ payload }) => {
+      return from(hasInternetConnection()).pipe(
+        map(() => GRID_PROFILE_DOWNLOAD_INIT(true)),
+        catchError(() => of(modalNoInternet()))
+      )
+    })
   )
 
 export default [
-  epicGetGridProfileFromFS,
-  epicDownloadGridProfile,
-  epicInitDownloadGridProfile
+  initDownloadGridProfileEpic,
+  gridProfileReportSuccessEpic,
+  gridProfileManageErrorsEpic
 ]

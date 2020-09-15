@@ -111,7 +111,7 @@ const EQSUpdate = () => {
         includes(updateStatus, [
           eqsUpdateStates.FAILED,
           eqsUpdateStates.NOT_RUNNING
-        ]) && !isEmpty(updateErrors),
+        ]) && isEmpty(updateErrors),
         <div className="has-text-centered mb-15">
           <div className="pt-20 pb-20">
             <i className="sp-close has-text-white is-size-1" />

@@ -1,18 +1,19 @@
 import * as Sentry from '@sentry/browser'
 import { ofType } from 'redux-observable'
 import { from, of } from 'rxjs'
-import { exhaustMap, map, catchError } from 'rxjs/operators'
-import { path } from 'ramda'
+import { catchError, exhaustMap, map } from 'rxjs/operators'
+import { compose, lensPath, multiply, over, path } from 'ramda'
 import { getApiPVS, storageSwaggerTag } from 'shared/api'
 import { START_DISCOVERY_ERROR, START_DISCOVERY_INIT } from 'state/actions/pvs'
-import { DISCOVER_ERROR, DISCOVER_COMPLETE } from 'state/actions/devices'
+import { DISCOVER_COMPLETE, DISCOVER_ERROR } from 'state/actions/devices'
 import {
+  GET_ESS_STATUS_ERROR,
   GET_ESS_STATUS_INIT,
   GET_ESS_STATUS_SUCCESS,
-  GET_ESS_STATUS_ERROR,
+  RUN_EQS_SYSTEMCHECK,
   RUN_EQS_SYSTEMCHECK_SUCCESS
 } from 'state/actions/storage'
-import { RUN_EQS_SYSTEMCHECK } from 'state/actions/storage'
+import { roundDecimals } from 'shared/rounding'
 
 export const startHealthCheckEpic = action$ => {
   return action$.pipe(
@@ -55,6 +56,16 @@ export const runSystemCheckEpic = action$ => {
   )
 }
 
+const updateSoc = over(
+  lensPath(['ess_report', 'battery_status']),
+  map(
+    over(
+      lensPath(['state_of_charge', 'value']),
+      compose(roundDecimals, multiply(100))
+    )
+  )
+)
+
 export const getHealthCheckEpic = action$ => {
   return action$.pipe(
     ofType(RUN_EQS_SYSTEMCHECK_SUCCESS.getType()),
@@ -66,7 +77,7 @@ export const getHealthCheckEpic = action$ => {
       return from(promise).pipe(
         map(response =>
           response.status === 200
-            ? GET_ESS_STATUS_SUCCESS(response.body)
+            ? GET_ESS_STATUS_SUCCESS(updateSoc(response.body))
             : GET_ESS_STATUS_ERROR('ESS_STATUS_ERROR')
         ),
         catchError(error => {

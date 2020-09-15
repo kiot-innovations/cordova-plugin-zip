@@ -1,9 +1,13 @@
 import React from 'react'
 import * as i18n from 'shared/i18n'
+import { rmaModes } from 'state/reducers/rma'
 import PVSProvideInternet from '.'
 
 describe('PVS Provide Internet page', () => {
   let initialState = {
+    rma: {
+      rmaMode: rmaModes.REPLACE_PVS
+    },
     firmwareUpdate: { canContinue: true },
     pvs: {
       serialNumber: 'ZT188585000882A8888'

@@ -4,6 +4,7 @@ import { unionWith, eqBy, prop } from 'ramda'
 import {
   ADD_PVS_SN,
   SAVE_PVS_SN,
+  UPDATE_SN,
   GET_SN_INIT,
   GET_SN_SUCCESS,
   GET_SN_ERROR,
@@ -19,10 +20,12 @@ import {
   MI_DATA_SUCCESS,
   MI_DATA_ERROR
 } from '../../actions/pvs'
+import { PUSH_CANDIDATES_ERROR } from 'state/actions/devices'
 
 const initialState = {
   serialNumber: '',
   serialNumbers: [],
+  serialNumbersError: [],
   fetchingSN: false,
   takenImage: null,
   startCommissioningStatus: null,
@@ -35,6 +38,10 @@ const initialState = {
 
 export const pvsReducer = createReducer(
   {
+    [PUSH_CANDIDATES_ERROR]: (state, { candidates }) => ({
+      ...state,
+      serialNumbersError: candidates
+    }),
     [ADD_PVS_SN]: (state, sn) => ({
       ...state,
       serialNumbers: unionWith(
@@ -46,6 +53,10 @@ export const pvsReducer = createReducer(
     [SAVE_PVS_SN]: (state, payload) => ({
       ...state,
       serialNumber: payload
+    }),
+    [UPDATE_SN]: (state, payload) => ({
+      ...state,
+      serialNumbers: payload
     }),
     [SET_METADATA_INIT]: state => ({
       ...state,

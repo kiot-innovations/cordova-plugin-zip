@@ -11,15 +11,20 @@ import { RESET_INVENTORY } from 'state/actions/inventory'
 import { RESET_PVS_CONNECTION } from 'state/actions/network'
 import { RESET_PVS_INFO_STATE } from 'state/actions/pvs'
 import { RESET_SITE, SET_SITE } from 'state/actions/site'
-import { RESET_LAST_VISITED_PAGE } from 'state/actions/global'
+import {
+  RESET_LAST_VISITED_PAGE,
+  CHECK_APP_UPDATE_INIT
+} from 'state/actions/global'
+import { RESET_SYSTEM_CONFIGURATION } from 'state/actions/systemConfiguration'
 import { getApiSearch } from 'shared/api'
 
 import paths from 'routes/paths'
 
 import SearchField from 'components/SearchField'
 import './Home.scss'
-import { GET_FIRMWARE_URL } from 'state/actions/fileDownloader'
+import { PVS_FIRMWARE_DOWNLOAD_INIT } from 'state/actions/fileDownloader'
 import { DOWNLOAD_OS_INIT } from 'state/actions/ess'
+import { GRID_PROFILE_DOWNLOAD_INIT } from 'state/actions/gridProfileDownloader'
 
 const formatAddress = compose(
   join(', '),
@@ -59,6 +64,7 @@ const resetCommissioning = dispatch => {
   dispatch(RESET_DISCOVERY())
   dispatch(RESET_INVENTORY())
   dispatch(RESET_LAST_VISITED_PAGE())
+  dispatch(RESET_SYSTEM_CONFIGURATION())
 }
 
 function Home() {
@@ -68,8 +74,10 @@ function Home() {
 
   const { access_token } = useSelector(state => state.user.auth)
   useEffect(() => {
-    dispatch(GET_FIRMWARE_URL())
+    dispatch(PVS_FIRMWARE_DOWNLOAD_INIT())
     dispatch(DOWNLOAD_OS_INIT())
+    dispatch(GRID_PROFILE_DOWNLOAD_INIT())
+    dispatch(CHECK_APP_UPDATE_INIT())
   }, [dispatch])
   const notFoundText = t('NOT_FOUND')
 

@@ -1,5 +1,5 @@
 import Swagger from 'swagger-client'
-let apiParty, apiSite, apiFirmware, apiScanSN
+let apiParty, apiSite, apiScanSN
 
 const requestOptions = access_token => ({
   requestInterceptor: req => {
@@ -7,12 +7,6 @@ const requestOptions = access_token => ({
     return req
   }
 })
-
-export async function getApiFirmware() {
-  if (!apiFirmware)
-    apiFirmware = await Swagger(process.env.REACT_APP_SWAGGER_FIRMWARE)
-  return apiFirmware
-}
 export async function getApiPVS() {
   return await Swagger(
     process.env.REACT_APP_MOCK_SERVER || process.env.REACT_APP_PVS_ADDRESS

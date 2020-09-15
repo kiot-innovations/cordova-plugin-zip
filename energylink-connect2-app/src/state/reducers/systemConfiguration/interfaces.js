@@ -2,7 +2,8 @@ import { createReducer } from 'redux-act'
 import {
   GET_INTERFACES_INIT,
   GET_INTERFACES_SUCCESS,
-  GET_INTERFACES_ERROR
+  GET_INTERFACES_ERROR,
+  RESET_SYSTEM_CONFIGURATION
 } from 'state/actions/systemConfiguration'
 
 const initialState = {
@@ -26,7 +27,8 @@ const interfacesReducer = createReducer(
       ...state,
       isFetching: false,
       error: payload
-    })
+    }),
+    [RESET_SYSTEM_CONFIGURATION]: () => initialState
   },
   initialState
 )

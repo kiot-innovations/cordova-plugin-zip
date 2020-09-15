@@ -1,29 +1,39 @@
 import React from 'react'
+import * as Sentry from '@sentry/browser'
+import { either, getEnvironment } from 'shared/utils'
+import { translate } from 'shared/i18n'
+import FallBackUI from './FallbackUI'
 
 class ErrorBoundary extends React.Component {
   constructor(props) {
     super(props)
-    this.state = { hasError: false }
+    this.state = { hasError: false, error: null }
   }
 
   static getDerivedStateFromError(error) {
-    // Update state so the next render will show the fallback UI.
-    return { hasError: true }
+    return { hasError: true, error }
   }
 
-  componentDidCatch(error, errorInfo) {
-    // You can also log the error to an error reporting service
-    alert(error)
-    alert(errorInfo)
+  componentDidCatch(error) {
+    const t = translate()
+    Sentry.addBreadcrumb({
+      data: {
+        path: window.location.hash,
+        environment: getEnvironment()
+      },
+      category: t('UPS_SENTRY'),
+      message: error.message,
+      level: Sentry.Severity.Error
+    })
+    Sentry.captureException(error)
   }
 
   render() {
-    if (this.state.hasError) {
-      // You can render any custom fallback UI
-      return <h1>Something went wrong.</h1>
-    }
-
-    return this.props.children
+    return either(
+      this.state.hasError,
+      <FallBackUI error={this.state.error} />,
+      this.props.children
+    )
   }
 }
 

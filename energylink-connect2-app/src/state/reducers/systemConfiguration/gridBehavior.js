@@ -6,8 +6,9 @@ import {
   SET_GRID_PROFILE,
   SET_LAZY_GRID_PROFILE,
   SET_EXPORT_LIMIT,
-  SET_GRID_VOLTAGE
-} from '../../actions/systemConfiguration'
+  SET_GRID_VOLTAGE,
+  RESET_SYSTEM_CONFIGURATION
+} from 'state/actions/systemConfiguration'
 
 const initialState = {
   fetchingGridBehavior: false,
@@ -77,7 +78,8 @@ export const gridBehaviorReducer = createReducer(
         ...state.selectedOptions,
         lazyGridProfile: payload
       }
-    })
+    }),
+    [RESET_SYSTEM_CONFIGURATION]: () => initialState
   },
   initialState
 )

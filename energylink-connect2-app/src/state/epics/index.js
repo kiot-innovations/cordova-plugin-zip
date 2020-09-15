@@ -12,6 +12,8 @@ import downloader from './downloader'
 import panelLayoutToolEpics from './panel-layout-tool'
 import storageEpics from './storage'
 import scanditEpics from './scandit'
+import rmaEpics from './rma'
+import appUpdaterEpics from './appUpdater'
 
 export default combineEpics(
   ...downloader,
@@ -26,5 +28,7 @@ export default combineEpics(
   ...authEpics,
   ...panelLayoutToolEpics,
   ...storageEpics,
-  ...scanditEpics
+  ...scanditEpics,
+  ...rmaEpics,
+  ...appUpdaterEpics
 )

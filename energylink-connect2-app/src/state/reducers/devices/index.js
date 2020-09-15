@@ -5,6 +5,8 @@ import {
   DISCOVER_INIT,
   DISCOVER_UPDATE,
   DISCOVER_ERROR,
+  PUSH_CANDIDATES_INIT,
+  PUSH_CANDIDATES_ERROR,
   FETCH_CANDIDATES_INIT,
   FETCH_CANDIDATES_UPDATE,
   FETCH_CANDIDATES_COMPLETE,
@@ -25,6 +27,7 @@ const initialState = {
   found: [],
   progress: {},
   error: '',
+  pushCandidatesError: false,
   isFetchingCandidates: false,
   candidates: [],
   allCandidatesFound: false,
@@ -55,6 +58,14 @@ export default createReducer(
       ...state,
       isFetching: false,
       progress: {},
+      error: payload
+    }),
+    [PUSH_CANDIDATES_INIT]: state => ({
+      ...state,
+      pushCandidatesError: initialState.error
+    }),
+    [PUSH_CANDIDATES_ERROR]: (state, payload) => ({
+      ...state,
       error: payload
     }),
     [FETCH_CANDIDATES_INIT]: state => ({

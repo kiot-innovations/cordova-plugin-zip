@@ -35,6 +35,8 @@ function NetworkWidget({ hideWPSButton, expanded }) {
     dispatch(GET_NETWORK_APS_INIT())
   }, [dispatch])
 
+  const [showPassword, setShowPassword] = useState(false)
+
   const disallowConnecting =
     isFetching ||
     isConnecting ||
@@ -43,6 +45,10 @@ function NetworkWidget({ hideWPSButton, expanded }) {
     selectedAP.ssid === path(['ap', 'ssid'], connectedToAP)
 
   const disableInputs = isFetching || errorFetching
+
+  const handleCheckbox = () => {
+    setShowPassword(!showPassword)
+  }
 
   const networkOptions = buildAPsItems(aps)
   const placeholder = isFetching ? t('AP_DD_FETCHING') : t('SELECT_NETWORK')
@@ -73,7 +79,7 @@ function NetworkWidget({ hideWPSButton, expanded }) {
             </div>
           </div>
 
-          <div className="field is-horizontal mb-15">
+          <div className="field is-horizontal">
             <div className="field-label">
               <label htmlFor="siteName" className="label has-text-white">
                 {t('PASSWORD')}
@@ -85,13 +91,33 @@ function NetworkWidget({ hideWPSButton, expanded }) {
                   <input
                     disabled={disableInputs}
                     className="input"
-                    type="password"
+                    type={showPassword ? 'text' : 'password'}
                     placeholder="********"
                     onChange={compose(setPassword, path(['target', 'value']))}
                     value={password}
                   />
                 </div>
               </div>
+            </div>
+          </div>
+
+          <div className="field is-flex mb-15 level-right">
+            <div>
+              <label
+                htmlFor="showPassword"
+                className="label has-text-white is-small"
+              >
+                {t('SHOW_PASSWORD')}
+              </label>
+            </div>
+            <div className="control">
+              <input
+                type="checkbox"
+                id="showPassword"
+                onChange={handleCheckbox}
+                className="checkbox is-small ml-5 mr-5"
+                checked={showPassword}
+              />
             </div>
           </div>
 

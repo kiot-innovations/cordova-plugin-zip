@@ -19,10 +19,7 @@ import {
   startWebserver,
   stopWebserver
 } from 'shared/webserver'
-import {
-  FIRMWARE_DOWNLOADED,
-  FIRMWARE_GET_FILE
-} from 'state/actions/fileDownloader'
+
 import {
   FIRMWARE_UPDATE_COMPLETE,
   FIRMWARE_UPDATE_ERROR,
@@ -40,6 +37,10 @@ import {
   PVS_CONNECTION_SUCCESS,
   STOP_NETWORK_POLLING
 } from 'state/actions/network'
+import {
+  PVS_FIRMWARE_DOWNLOAD_INIT,
+  PVS_FIRMWARE_DOWNLOAD_SUCCESS
+} from 'state/actions/fileDownloader'
 
 const getFirmwareFromState = path([
   'value',
@@ -97,9 +98,9 @@ export const initFirmwareDownload = (action$, state$) =>
     ofType(PVS_CONNECTION_CLOSE_FINISHED.getType()),
     mergeMap(() =>
       concat(
-        of(FIRMWARE_GET_FILE({ wifiOnly: false })),
+        of(PVS_FIRMWARE_DOWNLOAD_INIT()),
         action$.pipe(
-          ofType(FIRMWARE_DOWNLOADED.getType()),
+          ofType(PVS_FIRMWARE_DOWNLOAD_SUCCESS.getType()),
           take(1),
           map(() =>
             PVS_CONNECTION_INIT({

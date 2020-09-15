@@ -20,8 +20,8 @@ const ManualEntryForm = ({ serialNumber, callback }) => {
         : serialNumber
     },
     onSubmit: ({ barcode }) => {
-      addSN(barcode)
       callback && serialNumber && callback()
+      addSN(barcode)
     },
     validate: values => {
       const errors = {}

@@ -44,12 +44,24 @@ const hasEventCode = propOr(false, 'event_code')
 
 const ErrorDetailScreen = () => {
   const { errorCode } = useParams()
-  const { time, affectedDevices, apiResponse } = propOr(
-    {},
-    'state',
-    useLocation()
-  )
-  const code = getError(errorCode)
+  const {
+    error_name,
+    last_occurrence,
+    device_sn,
+    time,
+    affectedDevices,
+    apiResponse
+  } = propOr({}, 'state', useLocation())
+
+  const errorObject = {
+    error_code: errorCode,
+    error_message: error_name,
+    device_sn,
+    time: last_occurrence,
+    affectedDevices,
+    apiResponse
+  }
+  const code = getError(errorObject)
   const t = useI18n()
   if (shouldShowError(code))
     return (

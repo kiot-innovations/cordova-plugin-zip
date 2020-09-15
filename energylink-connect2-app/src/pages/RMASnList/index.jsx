@@ -25,10 +25,16 @@ function RMASnList() {
   const { canAccessScandit } = useSelector(state => state.global)
 
   const [isManualMode, setManualMode] = useState(isManualModeDefault)
-  const { serialNumbers: serialNumbersNew, fetchingSN } = useSelector(
+  const { serialNumbers, fetchingSN, serialNumbersError } = useSelector(
     state => state.pvs
   )
   const { found: serialNumbersExisting } = useSelector(state => state.devices)
+  const serialNumbersNew = serialNumbers.filter(
+    device =>
+      !serialNumbersExisting.find(
+        existing => existing.SERIAL === device.serial_number
+      )
+  )
   const [editingSn, setEditingSn] = useState('')
   const { bom } = useSelector(state => state.inventory)
   const total = length(serialNumbersExisting) + length(serialNumbersNew)
@@ -85,9 +91,11 @@ function RMASnList() {
   }
 
   const submitSN = () => {
-    const snList = serialNumbersNew.map(device => {
-      return { DEVICE_TYPE: 'Inverter', SERIAL: device.serial_number }
-    })
+    const snList = serialNumbersNew.map(device => ({
+      DEVICE_TYPE: 'Inverter',
+      SERIAL: device.serial_number
+    }))
+    serialNumbersError.forEach(snList.push)
     toggleSerialNumbersModal()
     dispatch(UPDATE_MI_COUNT(serialNumbersNew.length))
     dispatch(PUSH_CANDIDATES_INIT(snList))
@@ -200,6 +208,7 @@ function RMASnList() {
 
   const serialNumbersExistingList = serialNumbersExisting
     ? serialNumbersExisting
+        .filter(({ DEVICE_TYPE }) => DEVICE_TYPE === 'Inverter')
         .sort(function(a, b) {
           return a.SERIAL > b.SERIAL
         })

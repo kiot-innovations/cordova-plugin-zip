@@ -1,25 +1,33 @@
 import { createAction } from 'redux-act'
 
-export const SET_FILE_INFO = createAction('SET FILE INFO')
+export const PVS_FIRMWARE_UPDATE_URL = createAction('PVS_FIRMWARE_UPDATE_URL')
+export const PVS_FIRMWARE_DOWNLOAD_INIT = createAction(
+  'PVS_FIRMWARE_DOWNLOAD_INIT'
+)
+export const PVS_FIRMWARE_DOWNLOAD_PROGRESS = createAction(
+  'PVS_FIRMWARE_DOWNLOAD_PROGRESS'
+)
+export const PVS_FIRMWARE_DOWNLOAD_SUCCESS = createAction(
+  'PVS_FIRMWARE_DOWNLOAD_SUCCESS'
+)
+export const PVS_FIRMWARE_DOWNLOAD_ERROR = createAction(
+  'PVS_FIRMWARE_DOWNLOAD_ERROR'
+)
+export const PVS_SET_FILE_INFO = createAction('PVS_SET_FILE_INFO')
+export const PVS_DECOMPRESS_LUA_FILES_INIT = createAction(
+  'PVS_DECOMPRESS_LUA_FILES_INIT'
+)
+export const PVS_DECOMPRESS_LUA_FILES_SUCCESS = createAction(
+  'PVS_DECOMPRESS_LUA_FILES_SUCCESS'
+)
+export const PVS_DECOMPRESS_LUA_FILES_ERROR = createAction(
+  'PVS_DECOMPRESS_LUA_FILES_ERROR'
+)
+export const PVS_FIRMWARE_REPORT_SUCCESS = createAction(
+  'PVS_FIRMWARE_REPORT_SUCCESS'
+)
+export const PVS_FIRMWARE_MODAL_IS_CONNECTED = createAction(
+  'PVS_FIRMWARE_MODAL_IS_CONNECTED'
+)
 
-export const DOWNLOAD_PROGRESS = createAction('UPDATE DOWNLOAD PROGRESS')
-export const DOWNLOAD_ABORT = createAction('DOWNLOAD_ABORT')
-export const DOWNLOAD_FINISHED = createAction('DOWNLOAD FINISHED')
-export const DOWNLOAD_SUCCESS = createAction('DOWNLOAD SUCCESS')
-export const DOWNLOAD_ERROR = createAction('DOWNLOAD ERROR')
-export const DOWNLOAD_NO_WIFI = createAction('NO WIFI')
-export const DOWNLOAD_INIT = createAction('DOWNLOAD_INIT')
-export const SET_FILE_SIZE = createAction('SET DOWNLOAD SIZE')
-export const FIRMWARE_DOWNLOAD_INIT = createAction('FIRMWARE_DOWNLOAD_INIT')
-export const FIRMWARE_METADATA_DOWNLOAD_INIT = createAction(
-  'FIRMWARE_METADATA_DOWNLOAD_INIT'
-)
-export const FIRMWARE_DOWNLOADED = createAction('FIRMWARE_DOWNLOADED')
-export const FIRMWARE_GET_FILE = createAction('FIRMWARE_GET_FILE')
-export const FIRMWARE_GET_FILE_INFO = createAction('FIRMWARE_GET_FILE_INFO')
-export const FIRMWARE_DOWNLOAD_LUA_FILES = createAction(
-  'FIRMWARE_DOWNLOAD_LUA_FILES'
-)
-export const GET_FIRMWARE_URL = createAction('GET_FIRMWARE_URL')
-export const GET_FIRMWARE_URL_ERROR = createAction('GET_FIRMWARE_URL_ERROR')
-export const GET_FIRMWARE_URL_SUCCESS = createAction('GET_FIRMWARE_URL_SUCCESS')
+export const DOWNLOAD_ALLOW_WITH_PVS = createAction('DOWNLOAD_ALLOW_WITH_PVS')

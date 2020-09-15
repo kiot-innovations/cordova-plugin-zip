@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { pathOr, length } from 'ramda'
+import { find, pathOr, propEq } from 'ramda'
 import clsx from 'clsx'
 import { useI18n } from 'shared/i18n'
 import { useSelector, useDispatch } from 'react-redux'
@@ -8,6 +8,8 @@ import {
   START_COMMISSIONING_INIT,
   START_DISCOVERY_INIT
 } from 'state/actions/pvs'
+import { PUSH_CANDIDATES_INIT } from 'state/actions/devices'
+import { rmaModes } from 'state/reducers/rma'
 
 import paths from 'routes/paths'
 
@@ -22,6 +24,12 @@ const PVSProvideInternet = () => {
   const history = useHistory()
   const dispatch = useDispatch()
 
+  const { rmaMode, newEquipment, rma } = useSelector(state => state.rma)
+  const { serialNumbers } = useSelector(state => state.pvs)
+  const { bom } = useSelector(state => state.inventory)
+  const miValue = find(propEq('item', 'AC_MODULES'), bom)
+  const storageValue = find(propEq('item', 'ESS'), bom)
+
   const versionChecked = useSelector(
     pathOr(false, ['firmwareUpdate', 'canContinue'])
   )
@@ -31,21 +39,40 @@ const PVSProvideInternet = () => {
   )
 
   const { canAccessScandit } = useSelector(state => state.global)
-  const rmaPvs = useSelector(pathOr(false, ['rma', 'pvs']))
-  const { bom } = useSelector(state => state.inventory)
-  const modulesOnInventory = bom.filter(item => {
-    return item.item === 'AC_MODULES'
-  })
 
   const goToScanLabels = () => {
-    if (rmaPvs && length(modulesOnInventory) < 1)
-      history.push(paths.PROTECTED.DEVICES.path)
-    else
-      history.push(
-        canAccessScandit
-          ? paths.PROTECTED.SCAN_LABELS.path
-          : paths.PROTECTED.SN_LIST.path
-      )
+    // If we're going through a PVS replacement
+    if (rmaMode === rmaModes.REPLACE_PVS) {
+      // If there's new equipment, take them to inventory count
+      if (newEquipment) {
+        history.push(paths.PROTECTED.RMA_INVENTORY.path)
+      } else {
+        // If there's no new equipment
+        if (pathOr(false, ['other'], rma)) {
+          // Do a legacy discovery if site contains legacy devices.
+          dispatch(START_DISCOVERY_INIT({ Device: 'allplusmime' }))
+          history.push(paths.PROTECTED.LEGACY_DISCOVERY.path)
+        } else {
+          // Do a standard MI discovery if site doesn't contain legacy devices.
+          dispatch(PUSH_CANDIDATES_INIT(serialNumbers))
+          history.push(paths.PROTECTED.DEVICES.path)
+        }
+      }
+    } else {
+      if (miValue.value > 0) {
+        history.push(
+          canAccessScandit
+            ? paths.PROTECTED.SCAN_LABELS.path
+            : paths.PROTECTED.SN_LIST.path
+        )
+      } else {
+        if (storageValue.value !== '0') {
+          history.push(paths.PROTECTED.STORAGE_PREDISCOVERY.path)
+        } else {
+          history.push(paths.PROTECTED.SYSTEM_CONFIGURATION.path)
+        }
+      }
+    }
   }
 
   useEffect(() => {

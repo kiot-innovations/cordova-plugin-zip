@@ -1,5 +1,5 @@
 import React from 'react'
-import { compose, join, prop, propOr, split } from 'ramda'
+import { prop } from 'ramda'
 
 import { either } from 'shared/utils'
 import Collapsible from 'components/Collapsible'
@@ -7,9 +7,7 @@ import { useI18n } from 'shared/i18n'
 import { useDispatch, useSelector } from 'react-redux'
 import { DOWNLOAD_OS_INIT } from 'state/actions/ess'
 
-const parseName = compose(join(' '), split('-'), propOr('', 'name'))
-
-const EssFirmwareStatus = ({ isDownloading, file, progress }) => {
+const EssFirmwareStatus = ({ isDownloading, progress }) => {
   const t = useI18n()
   return (
     <div>
@@ -21,7 +19,7 @@ const EssFirmwareStatus = ({ isDownloading, file, progress }) => {
           </span>
           <span className="is-capitalized">{t('DOWNLOADING')}</span>
         </div>,
-        <div>{parseName(file)}</div>
+        <span>100% {t('DOWNLOADED')}</span>
       )}
     </div>
   )

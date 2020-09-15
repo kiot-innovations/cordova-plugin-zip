@@ -1,6 +1,6 @@
 import gridProfile from './gridProfile'
 import firmware from './firmware'
-import downloader from './downloader'
 import ess from './EssFirmware'
+import downloadModalEpics from './downloadModalEpics'
 
-export default [...downloader, ...gridProfile, ...firmware, ...ess]
+export default [...gridProfile, ...firmware, ...ess, ...downloadModalEpics]

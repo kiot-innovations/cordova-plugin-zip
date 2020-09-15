@@ -15,6 +15,7 @@ function submitInventory(event, inventory, dispatch, redirect) {
 }
 
 function createSelectField(
+  disabled,
   t,
   translation,
   changeHandler,
@@ -64,6 +65,7 @@ function createSelectField(
         className="input mt-5"
         onChange={changeHandler}
         defaultValue={itemValue}
+        disabled={disabled}
       >
         {options}
       </select>
@@ -104,6 +106,7 @@ function InventoryCount() {
   const fields = inventory.map(item => {
     if (item.item === 'ESS') {
       return createSelectField(
+        item.disabled,
         t,
         item.item,
         changeHandler,
@@ -112,7 +115,13 @@ function InventoryCount() {
         'double'
       )
     } else {
-      return createSelectField(t, item.item, changeHandler, inventory)
+      return createSelectField(
+        item.disabled,
+        t,
+        item.item,
+        changeHandler,
+        inventory
+      )
     }
   })
 
