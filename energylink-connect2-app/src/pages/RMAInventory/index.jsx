@@ -67,12 +67,7 @@ const RMAInventory = () => {
   }
 
   const handleCancel = () => {
-    /**
-     * @todo
-     * Current Device List Page is not ready yet (CM2-757),
-     * so we redirect to homepage for now
-     */
-    history.push(paths.PROTECTED.BILL_OF_MATERIALS.path)
+    history.push(paths.PROTECTED.RMA_DEVICES.path)
   }
 
   return (

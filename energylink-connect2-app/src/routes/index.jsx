@@ -45,6 +45,7 @@ import PvsSelection from 'pages/PvsSelection'
 import ExistingDevices from 'pages/ExistingDevices'
 import RMAInventory from 'pages/RMAInventory'
 import RMASnList from 'pages/RMASnList'
+import RMADevices from 'pages/RMADevices'
 
 import { validateSession } from 'state/actions/auth'
 import { updateBodyHeight } from 'shared/utils'
@@ -91,6 +92,7 @@ const mapComponents = {
   [paths.PROTECTED.RMA_EXISTING_DEVICES.path]: ExistingDevices,
   [paths.UNPROTECTED.FORGOT_PASSWORD.path]: NotFound,
   [paths.UNPROTECTED.GET_ASSISTANCE.path]: NotFound,
+  [paths.PROTECTED.RMA_DEVICES.path]: RMADevices,
   [paths.UNPROTECTED.LOGIN.path]: Login
 }
 
