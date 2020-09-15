@@ -45,12 +45,6 @@ exports[`SNManualEntry renders correctly 1`] = `
           className="sn-manual-entry"
           onSubmit={[Function]}
         >
-          <label
-            className="has-text-white is-flex"
-            htmlFor="barcode"
-          >
-            MI_SN_LABEL
-          </label>
           <div
             className="field is-grouped is-grouped-centered"
           >
@@ -91,6 +85,7 @@ exports[`SNManualEntry renders correctly 1`] = `
                     "visited": false,
                   }
                 }
+                placeholder="ENTER_SERIAL_MANUALLY"
                 type="text"
               >
                 <div
@@ -108,6 +103,7 @@ exports[`SNManualEntry renders correctly 1`] = `
                       onBlur={[Function]}
                       onChange={[Function]}
                       onFocus={[Function]}
+                      placeholder="ENTER_SERIAL_MANUALLY"
                       type="text"
                       value=""
                     />
@@ -119,7 +115,7 @@ exports[`SNManualEntry renders correctly 1`] = `
               className="control control-add"
             >
               <button
-                className="button is-primary is-uppercase pl-10 pr-10 pb-30 pt-10"
+                className="has-text-primary has-text-weight-bold is-uppercase"
                 type="submit"
               >
                 ADD
@@ -178,12 +174,6 @@ exports[`SNManualEntry renders correctly when editing a serial number 1`] = `
           className="sn-manual-entry"
           onSubmit={[Function]}
         >
-          <label
-            className="has-text-white is-flex"
-            htmlFor="barcode"
-          >
-            EDITING_MI_SN_LABEL
-          </label>
           <div
             className="field is-grouped is-grouped-centered"
           >
@@ -224,6 +214,7 @@ exports[`SNManualEntry renders correctly when editing a serial number 1`] = `
                     "visited": false,
                   }
                 }
+                placeholder="ENTER_SERIAL_MANUALLY"
                 type="text"
               >
                 <div
@@ -241,6 +232,7 @@ exports[`SNManualEntry renders correctly when editing a serial number 1`] = `
                       onBlur={[Function]}
                       onChange={[Function]}
                       onFocus={[Function]}
+                      placeholder="ENTER_SERIAL_MANUALLY"
                       type="text"
                       value="123456789123"
                     />
@@ -252,7 +244,7 @@ exports[`SNManualEntry renders correctly when editing a serial number 1`] = `
               className="control control-add"
             >
               <button
-                className="button is-primary is-uppercase pl-10 pr-10 pb-30 pt-10"
+                className="has-text-primary has-text-weight-bold is-uppercase"
                 type="submit"
               >
                 SAVE

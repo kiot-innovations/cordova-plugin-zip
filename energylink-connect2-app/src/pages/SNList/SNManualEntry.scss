@@ -1,6 +1,9 @@
 .sn-manual-entry {
+  .is-grouped-centered {
+    align-items: center;
+  }
+
   .control-barcode {
-    height: 6rem;
     flex-grow: 1;
 
     .field-barcode {
@@ -15,6 +18,11 @@
   }
   .control-add {
     flex-grow: 0;
+
+    button {
+      border: none;
+      background-color: transparent;
+    }
   }
 
 }

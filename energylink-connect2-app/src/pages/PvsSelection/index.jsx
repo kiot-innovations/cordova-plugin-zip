@@ -112,7 +112,11 @@ function PvsSelection() {
         </button>
       </section>
 
-      <SwipeableBottomSheet shadowTip={false} open={fetchDevicesStatus}>
+      <SwipeableBottomSheet
+        shadowTip={false}
+        onChange={() => showFetchDevicesStatus(!fetchDevicesStatus)}
+        open={fetchDevicesStatus}
+      >
         <div className="fetch-devices-status is-flex">
           <span className="has-text-weight-bold has-text-white mb-40">
             {either(
