@@ -76,7 +76,6 @@
       "cordova-plugin-networkinterface": {},
       "cordova-plugin-httpd": {},
       "cordova-plugin-statusbar": {},
-      "cordova-plugin-market": {},
       "cordova-plugin-androidx": {},
       "cordova-plugin-androidx-adapter": {},
       "cordova.plugins.diagnostic": {
