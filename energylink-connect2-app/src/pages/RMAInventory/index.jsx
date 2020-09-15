@@ -7,6 +7,7 @@ import paths from 'routes/paths'
 import { useI18n } from 'shared/i18n'
 import { SAVE_INVENTORY_RMA } from 'state/actions/inventory'
 import { START_DISCOVERY_INIT } from 'state/actions/pvs'
+import { discoveryTypes } from 'state/reducers/devices'
 import { SHOW_MODAL } from 'state/actions/modal'
 import SelectField from 'components/SelectField'
 
@@ -43,7 +44,12 @@ const RMAInventory = () => {
 
   const handleContinue = () => {
     if (prop('other', rma)) {
-      dispatch(START_DISCOVERY_INIT({ Device: 'allplusmime' }))
+      dispatch(
+        START_DISCOVERY_INIT({
+          Device: 'allplusmime',
+          type: discoveryTypes.LEGACY
+        })
+      )
       history.push(paths.PROTECTED.LEGACY_DISCOVERY.path)
     } else if (prop('mi_count', rma)) {
       history.push(paths.PROTECTED.SCAN_LABELS.path)

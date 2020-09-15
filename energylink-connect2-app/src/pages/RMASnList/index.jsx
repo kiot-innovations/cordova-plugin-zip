@@ -9,6 +9,7 @@ import { useI18n } from 'shared/i18n'
 import { PUSH_CANDIDATES_INIT } from 'state/actions/devices'
 import { UPDATE_MI_COUNT } from 'state/actions/inventory'
 import { REMOVE_SN, START_DISCOVERY_INIT } from 'state/actions/pvs'
+import { discoveryTypes } from 'state/reducers/devices'
 import SNManualEntry from 'pages/SNList/SNManualEntry'
 import SNScanButtons from 'pages/SNList/SNScanButtons'
 import { Loader } from 'components/Loader'
@@ -140,7 +141,12 @@ function RMASnList() {
   )
 
   const startLegacyDiscovery = () => {
-    dispatch(START_DISCOVERY_INIT({ Device: 'allplusmime' }))
+    dispatch(
+      START_DISCOVERY_INIT({
+        Device: 'allplusmime',
+        type: discoveryTypes.LEGACY
+      })
+    )
     history.push(paths.PROTECTED.LEGACY_DISCOVERY.path)
   }
 
