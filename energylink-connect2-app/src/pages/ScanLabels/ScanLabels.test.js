@@ -13,6 +13,9 @@ describe('Bulk Scan screen', () => {
 
   test('renders correctly', () => {
     const { component } = mountWithProvider(<ScanLabels />)({
+      rma: {
+        rmaMode: 'NONE'
+      },
       pvs: {
         serialNumbers: [],
         fetchingSN: false

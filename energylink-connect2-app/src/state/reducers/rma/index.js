@@ -49,6 +49,7 @@ const RMAReducer = createReducer(
       ...state,
       cloudDeviceTree: {
         ...state.cloudDeviceTree,
+        error: initialState.cloudDeviceTree.error,
         fetching: true
       }
     }),
