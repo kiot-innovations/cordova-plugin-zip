@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
-import { length, compose, not, isEmpty, isNil, path } from 'ramda'
+import { length, compose, not, isEmpty, isNil, path, equals } from 'ramda'
 import SwipeableBottomSheet from 'react-swipeable-bottom-sheet'
 import { useI18n } from 'shared/i18n'
 import { decodeQRData, scanBarcodes } from 'shared/scanning'
 import { isAndroid10, generateSSID, generatePassword } from 'shared/utils'
+import { rmaModes } from 'state/reducers/rma'
 import {
   PVS_CONNECTION_INIT,
   STOP_NETWORK_POLLING
@@ -47,6 +48,7 @@ function ConnectToPVS() {
   const history = useHistory()
   const connectionState = useSelector(state => state.network)
   const rmaPVSSelectedSN = useSelector(path(['rma', 'pvs']))
+  const rmaMode = useSelector(path(['rma', 'rmaMode']))
   const [manualEntry, showManualEntry] = useState(false)
   const [manualInstructions, showManualInstructions] = useState(false)
   const [serialNumber, setSerialNumber] = useState('')
@@ -62,13 +64,17 @@ function ConnectToPVS() {
   }, [connectionState.connecting, manualEntry])
 
   useEffect(() => {
-    if (!isEmpty(rmaPVSSelectedSN) && !isNil(rmaPVSSelectedSN)) {
+    if (
+      !isEmpty(rmaPVSSelectedSN) &&
+      !isNil(rmaPVSSelectedSN) &&
+      equals(rmaMode, rmaModes.EDIT_DEVICES)
+    ) {
       const ssid = generateSSID(rmaPVSSelectedSN)
       const password = generatePassword(rmaPVSSelectedSN)
       dispatch(SAVE_PVS_SN(rmaPVSSelectedSN))
       dispatch(PVS_CONNECTION_INIT({ ssid, password }))
     }
-  }, [dispatch, rmaPVSSelectedSN])
+  }, [dispatch, rmaMode, rmaPVSSelectedSN])
 
   useEffect(() => {
     if (!connectionState.connecting && connectionState.connected) {
