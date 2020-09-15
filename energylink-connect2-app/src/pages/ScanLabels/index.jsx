@@ -6,6 +6,7 @@ import { useI18n } from 'shared/i18n'
 import { scanM } from 'shared/scandit'
 import { buildSN } from 'shared/utils'
 import { ADD_PVS_SN } from 'state/actions/pvs'
+import { rmaModes } from 'state/reducers/rma'
 import paths from 'routes/paths'
 
 import './ScanLabels.scss'
@@ -22,6 +23,7 @@ function ScanDeviceLabels() {
   const dispatch = useDispatch()
   const history = useHistory()
   const { serialNumbers } = useSelector(state => state.pvs)
+  const { rmaMode } = useSelector(state => state.rma)
 
   const onDone = useRef(null)
 
@@ -33,17 +35,25 @@ function ScanDeviceLabels() {
 
   const finishedScanning = () => {
     turnOffScandit()
-    history.push(paths.PROTECTED.SN_LIST.path)
+    const redirectTo =
+      rmaMode !== rmaModes.NONE
+        ? paths.PROTECTED.RMA_SN_LIST.path
+        : paths.PROTECTED.SN_LIST.path
+    history.push(redirectTo)
   }
 
   const triggerManualEntry = () => {
     turnOffScandit()
-    history.push({
-      pathname: paths.PROTECTED.SN_LIST.path,
-      state: {
-        isManualModeDefault: true
-      }
-    })
+    const redirectTo =
+      rmaMode !== rmaModes.NONE
+        ? paths.PROTECTED.RMA_SN_LIST.path
+        : {
+            pathname: paths.PROTECTED.SN_LIST.path,
+            state: {
+              isManualModeDefault: true
+            }
+          }
+    history.push(redirectTo)
   }
 
   useEffect(() => {
