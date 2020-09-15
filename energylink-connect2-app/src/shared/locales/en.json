@@ -30,6 +30,7 @@
   "CREATE": "Create",
   "CS_NOT_FOUND": "Can’t find the customer’s site?",
   "FORGOT_PASSWORD": "Forgot password?",
+  "SHOW_PASSWORD": "Show password",
   "GET_ASSISTANCE": "Get assistance",
   "NO_ACCOUNT": "Don't have an account yet?",
   "NOT_FOUND": "Nothing found",
