@@ -34,17 +34,15 @@ function ESSHealthCheck() {
   const pathToErrors = paths.PROTECTED.ESS_HEALTH_CHECK_ERRORS.path
 
   return (
-    <div className="pl-10 pr-10">
-      <ESSHealthCheckComponent
-        waiting={waiting}
-        progress={overallProgress}
-        results={results}
-        error={error}
-        onRetry={onRetry}
-        pathToContinue={pathToContinue}
-        pathToErrors={pathToErrors}
-      />
-    </div>
+    <ESSHealthCheckComponent
+      waiting={waiting}
+      progress={overallProgress}
+      results={results}
+      error={error}
+      onRetry={onRetry}
+      pathToContinue={pathToContinue}
+      pathToErrors={pathToErrors}
+    />
   )
 }
 

@@ -7,7 +7,7 @@ exports[`ErrorDetected component render correctly when a global status error hap
   <p
     className="has-text-primary has-text-weight-bold has-text-centered mb-10 is-size-6"
   >
-    ERRORS_DETECTED 1
+    HEALTH_CHECK_FAILED
   </p>
   <p
     className="has-text-centered"

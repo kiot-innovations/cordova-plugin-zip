@@ -395,6 +395,7 @@
   "AFFECTED_DEVICES": "Affected devices",
   "WARNINGS_ONLY": "We detected {0} warnings",
   "ERRORS_DETECTED": "We detected {0} errors",
+  "HEALTH_CHECK_FAILED": "Health check failed, please retry. If this persists, reboot the PVS and try again.",
   "WARNINGS_DETECTED": "and {0} warnings",
   "WARNING_LIST": "Warning list",
   "IGNORE_WARNINGS": "Ignore warnings and continue",
