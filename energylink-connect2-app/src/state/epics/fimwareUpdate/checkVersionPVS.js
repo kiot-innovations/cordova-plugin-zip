@@ -22,10 +22,12 @@ export const getFirmwareUrlFromState = path([
 const checkIfNeedToUpdatePVSToLatestVersion = async url => {
   try {
     const { version: serverVersion } = getFirmwareVersionData(url)
-    const PVSversion =
-      getPVSVersionNumber(await sendCommandToPVS('GetSupervisorInformation')) ||
-      '-1'
-    const shouldUpdate = serverVersion > PVSversion
+    const info = await sendCommandToPVS('GetSupervisorInformation')
+    const PVSversion = getPVSVersionNumber(info) || '-1'
+    const model = path(['supervisor', 'MODEL'], info) || ''
+    const shouldUpdate = model.startsWith('PVS5')
+      ? false
+      : serverVersion > PVSversion
     return { shouldUpdate, PVSversion }
   } catch (e) {
     return { shouldUpdate: false }
