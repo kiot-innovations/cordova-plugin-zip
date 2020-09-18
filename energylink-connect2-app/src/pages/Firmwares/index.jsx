@@ -84,7 +84,7 @@ function Firmwares() {
               </span>
               {either(
                 isDownloading,
-                t('DOWNLOADING'),
+                t(fwFileInfo.step),
                 fwFileInfo.exists ? t('DOWNLOADED') : t('NOT_DOWNLOADED')
               )}
               <span className="is-pulled-right has-text-white has-text-weight-bold">

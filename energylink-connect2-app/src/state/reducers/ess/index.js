@@ -18,7 +18,8 @@ const initialState = {
   meta: null,
   total: 0,
   isDownloading: false,
-  md5: ''
+  md5: '',
+  step: ''
 }
 
 export default createReducer(
@@ -27,13 +28,15 @@ export default createReducer(
       ...initialState,
       meta: state.meta,
       md5: state.md5,
-      isDownloading: true
+      isDownloading: true,
+      step: 'INITIALIZING'
     }),
-    [DOWNLOAD_OS_PROGRESS]: (state, { progress, total }) => ({
+    [DOWNLOAD_OS_PROGRESS]: (state, { progress, total, step }) => ({
       ...state,
       progress,
       total,
       error: null,
+      step,
       isDownloading: true
     }),
     [DOWNLOAD_OS_ERROR]: (state, error) => ({
@@ -49,7 +52,8 @@ export default createReducer(
       ...state,
       file: entryFile,
       error: null,
-      isDownloading: false
+      isDownloading: false,
+      step: ''
     }),
     [DOWNLOAD_META_INIT]: state => ({
       ...initialState,

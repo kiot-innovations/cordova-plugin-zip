@@ -20,7 +20,7 @@ export const submitGridVoltageEpic = (action$, state$) => {
     ofType(SUBMIT_CONFIG.getType()),
     exhaustMap(({ payload }) => {
       if (!payload.gridVoltage) {
-        return of(SUBMIT_GRIDPROFILE())
+        return of(SUBMIT_GRIDPROFILE(payload))
       }
 
       const promise = getApiPVS()

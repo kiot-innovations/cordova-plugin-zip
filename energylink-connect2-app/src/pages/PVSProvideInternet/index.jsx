@@ -9,6 +9,7 @@ import {
   START_DISCOVERY_INIT
 } from 'state/actions/pvs'
 import { PUSH_CANDIDATES_INIT } from 'state/actions/devices'
+import { discoveryTypes } from 'state/reducers/devices'
 import { rmaModes } from 'state/reducers/rma'
 
 import paths from 'routes/paths'
@@ -50,7 +51,12 @@ const PVSProvideInternet = () => {
         // If there's no new equipment
         if (pathOr(false, ['other'], rma)) {
           // Do a legacy discovery if site contains legacy devices.
-          dispatch(START_DISCOVERY_INIT({ Device: 'allplusmime' }))
+          dispatch(
+            START_DISCOVERY_INIT({
+              Device: 'allplusmime',
+              type: discoveryTypes.LEGACY
+            })
+          )
           history.push(paths.PROTECTED.LEGACY_DISCOVERY.path)
         } else {
           // Do a standard MI discovery if site doesn't contain legacy devices.
@@ -79,7 +85,11 @@ const PVSProvideInternet = () => {
     if (versionChecked) {
       dispatch(START_COMMISSIONING_INIT())
       dispatch(
-        START_DISCOVERY_INIT({ Device: 'allnomi', Interfaces: ['mime'] })
+        START_DISCOVERY_INIT({
+          Device: 'allnomi',
+          Interfaces: ['mime'],
+          type: discoveryTypes.ALLNOMI
+        })
       )
     }
   }, [dispatch, versionChecked])

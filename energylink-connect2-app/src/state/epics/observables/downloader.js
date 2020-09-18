@@ -22,17 +22,25 @@ const fileTransferObservable = (
       subscriber.next({ entry, total: fileSize })
       subscriber.complete()
     }
-    const errorCallback = error => {
-      subscriber.error({ ...error, url })
-      subscriber.complete()
-    }
+    const errorCallback = error =>
+      deleteFile(path).then(() => {
+        subscriber.error({ ...error, url })
+        subscriber.complete()
+      })
     fileExists(path).then(async entry => {
       if (retry) await deleteFile(path)
       if (!entry || retry) {
         const xhr = new XMLHttpRequest()
-        const uri = encodeURI(url)
-        xhr.open('GET', uri, true)
+        xhr.open('GET', url, true)
         xhr.responseType = 'blob'
+        xhr.setRequestHeader(
+          'Cache-Control',
+          'no-cache, must-revalidate, post-check=0, pre-check=0'
+        )
+        xhr.setRequestHeader('Cache-Control', 'max-age=0')
+        xhr.setRequestHeader('expires', '0')
+        xhr.setRequestHeader('expires', 'Tue, 01 Jan 1980 1:00:00 GMT')
+        xhr.setRequestHeader('pragma', 'no-cache')
         if (accessToken)
           xhr.setRequestHeader('Authorization', `Bearer ${accessToken}`)
         let lastProgress = 0
@@ -41,7 +49,7 @@ const fileTransferObservable = (
           const progress = ((loaded / total) * 100).toFixed(0)
           if (lastProgress !== progress) {
             lastProgress = progress
-            subscriber.next({ progress, total })
+            subscriber.next({ progress, total, step: 'DOWNLOADING' })
           }
         }
         xhr.onload = function() {
@@ -62,6 +70,10 @@ const fileTransferObservable = (
                 fileWritter.write(sub)
                 written += sz
                 fileWritter.onwrite = function() {
+                  subscriber.next({
+                    step: 'WRITING_FILE',
+                    progress: ((written / blob.size) * 100).toFixed(0)
+                  })
                   if (written < blob.size) writeNext(cbFinish)
                   else cbFinish()
                 }
