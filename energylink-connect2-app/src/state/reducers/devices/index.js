@@ -19,7 +19,9 @@ import {
   CLAIM_DEVICES_COMPLETE,
   FETCH_MODELS_SUCCESS,
   FETCH_MODELS_LOAD_DEFAULT,
-  UPDATE_DEVICES_LIST
+  FETCH_DEVICES_LIST,
+  UPDATE_DEVICES_LIST,
+  UPDATE_DEVICES_LIST_ERROR
 } from 'state/actions/devices'
 
 export const discoveryTypes = {
@@ -41,7 +43,8 @@ const initialState = {
   claimProgress: 0,
   claimedDevices: false,
   claimError: '',
-  miModels: []
+  miModels: [],
+  fetchingDevices: false
 }
 
 export default createReducer(
@@ -130,9 +133,18 @@ export default createReducer(
       ...state,
       miModels: [...state.miModels, payload]
     }),
+    [FETCH_DEVICES_LIST]: state => ({
+      ...state,
+      fetchingDevices: true
+    }),
     [UPDATE_DEVICES_LIST]: (state, payload) => ({
       ...state,
-      found: payload
+      found: payload,
+      fetchingDevices: false
+    }),
+    [UPDATE_DEVICES_LIST_ERROR]: state => ({
+      ...state,
+      fetchingDevices: false
     })
   },
   initialState

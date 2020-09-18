@@ -2,21 +2,24 @@ import React, { useState, useEffect } from 'react'
 import clsx from 'clsx'
 import { useHistory } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { groupBy, path, prop, propEq, find } from 'ramda'
+import { groupBy, path, prop, propEq, find, length } from 'ramda'
 import SwipeableBottomSheet from 'react-swipeable-bottom-sheet'
 import { useI18n } from 'shared/i18n'
 import { SET_METADATA_INIT } from 'state/actions/pvs'
 import { CLAIM_DEVICES_RESET } from 'state/actions/devices'
 import { filterInverters, miTypes } from 'shared/utils'
 import paths from 'routes/paths'
+import { Loader } from 'components/Loader'
 import MiGroup from './MiGroup'
 import './ModelEdit.scss'
+import { either } from '../../shared/utils'
+
 const ModelEdit = () => {
   const t = useI18n()
   const history = useHistory()
   const dispatch = useDispatch()
   const { settingMetadata, setMetadataStatus } = useSelector(state => state.pvs)
-  const { found } = useSelector(state => state.devices)
+  const { fetchingDevices, found } = useSelector(state => state.devices)
   const rmaPvs = useSelector(path(['rma', 'pvs']))
   const { bom } = useSelector(state => state.inventory)
   const siteKey = useSelector(path(['site', 'site', 'siteKey']))
@@ -79,24 +82,40 @@ const ModelEdit = () => {
         {t('EDIT_MODELS')}
       </span>
 
-      <div className="model-container">{collapsibleElements()}</div>
-      <div>
-        <button
-          className="button is-uppercase is-outlined is-primary has-text-primary mb-20 mr-10"
-          onClick={resetClaim}
-        >
-          {t('BACK')}
-        </button>
-        <button
-          className={clsx('button is-primary is-uppercase mb-20 ml-10', {
-            'is-loading': settingMetadata
-          })}
-          disabled={settingMetadata}
-          onClick={validateModels}
-        >
-          {t('SAVE')}
-        </button>
+      <div className="model-container">
+        {either(
+          fetchingDevices,
+          <>
+            <Loader />
+            <span className="mt-10 mb-10">{t('FETCHING_MODELS')}</span>
+          </>,
+          length(miSource) > 0 ? (
+            collapsibleElements()
+          ) : (
+            <span className="mt-20 mb-20 is-size-4">{t('NO_MI_FOUND')}</span>
+          )
+        )}
       </div>
+      {either(
+        !fetchingDevices,
+        <div>
+          <button
+            className="button is-uppercase is-outlined is-primary has-text-primary mb-20 mr-10"
+            onClick={resetClaim}
+          >
+            {t('BACK')}
+          </button>
+          <button
+            className={clsx('button is-primary is-uppercase mb-20 ml-10', {
+              'is-loading': settingMetadata
+            })}
+            disabled={settingMetadata}
+            onClick={validateModels}
+          >
+            {t('SAVE')}
+          </button>
+        </div>
+      )}
 
       <SwipeableBottomSheet
         shadowTip={false}
