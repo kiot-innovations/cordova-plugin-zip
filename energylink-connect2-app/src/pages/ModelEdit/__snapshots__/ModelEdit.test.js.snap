@@ -128,7 +128,18 @@ Object {
                           isSearchable={true}
                           notFoundText="NOT_FOUND"
                           onSelect={[Function]}
-                          options={Array []}
+                          options={
+                            Array [
+                              Object {
+                                "label": "SPR1234",
+                                "value": "SPR1234",
+                              },
+                              Object {
+                                "label": "SPR5678",
+                                "value": "SPR5678",
+                              },
+                            ]
+                          }
                         >
                           <StateManager
                             cacheOptions={true}
@@ -147,7 +158,18 @@ Object {
                             isSearchable={true}
                             noOptionsMessage={[Function]}
                             onChange={[Function]}
-                            options={Array []}
+                            options={
+                              Array [
+                                Object {
+                                  "label": "SPR1234",
+                                  "value": "SPR1234",
+                                },
+                                Object {
+                                  "label": "SPR5678",
+                                  "value": "SPR5678",
+                                },
+                              ]
+                            }
                             theme={[Function]}
                           >
                             <Select
@@ -194,7 +216,18 @@ Object {
                               onMenuOpen={[Function]}
                               openMenuOnClick={true}
                               openMenuOnFocus={false}
-                              options={Array []}
+                              options={
+                                Array [
+                                  Object {
+                                    "label": "SPR1234",
+                                    "value": "SPR1234",
+                                  },
+                                  Object {
+                                    "label": "SPR5678",
+                                    "value": "SPR5678",
+                                  },
+                                ]
+                              }
                               pageSize={5}
                               placeholder="Select..."
                               screenReaderStatus={[Function]}
@@ -221,7 +254,18 @@ Object {
                                 isFocused={false}
                                 isMulti={false}
                                 isRtl={false}
-                                options={Array []}
+                                options={
+                                  Array [
+                                    Object {
+                                      "label": "SPR1234",
+                                      "value": "SPR1234",
+                                    },
+                                    Object {
+                                      "label": "SPR5678",
+                                      "value": "SPR5678",
+                                    },
+                                  ]
+                                }
                                 selectOption={[Function]}
                                 selectProps={
                                   Object {
@@ -267,7 +311,16 @@ Object {
                                     "onMenuOpen": [Function],
                                     "openMenuOnClick": true,
                                     "openMenuOnFocus": false,
-                                    "options": Array [],
+                                    "options": Array [
+                                      Object {
+                                        "label": "SPR1234",
+                                        "value": "SPR1234",
+                                      },
+                                      Object {
+                                        "label": "SPR5678",
+                                        "value": "SPR5678",
+                                      },
+                                    ],
                                     "pageSize": 5,
                                     "placeholder": "Select...",
                                     "screenReaderStatus": [Function],
@@ -346,7 +399,18 @@ Object {
                                       isMulti={false}
                                       isRtl={false}
                                       menuIsOpen={false}
-                                      options={Array []}
+                                      options={
+                                        Array [
+                                          Object {
+                                            "label": "SPR1234",
+                                            "value": "SPR1234",
+                                          },
+                                          Object {
+                                            "label": "SPR5678",
+                                            "value": "SPR5678",
+                                          },
+                                        ]
+                                      }
                                       selectOption={[Function]}
                                       selectProps={
                                         Object {
@@ -392,7 +456,16 @@ Object {
                                           "onMenuOpen": [Function],
                                           "openMenuOnClick": true,
                                           "openMenuOnFocus": false,
-                                          "options": Array [],
+                                          "options": Array [
+                                            Object {
+                                              "label": "SPR1234",
+                                              "value": "SPR1234",
+                                            },
+                                            Object {
+                                              "label": "SPR5678",
+                                              "value": "SPR5678",
+                                            },
+                                          ],
                                           "pageSize": 5,
                                           "placeholder": "Select...",
                                           "screenReaderStatus": [Function],
@@ -479,7 +552,18 @@ Object {
                                             isDisabled={false}
                                             isMulti={false}
                                             isRtl={false}
-                                            options={Array []}
+                                            options={
+                                              Array [
+                                                Object {
+                                                  "label": "SPR1234",
+                                                  "value": "SPR1234",
+                                                },
+                                                Object {
+                                                  "label": "SPR5678",
+                                                  "value": "SPR5678",
+                                                },
+                                              ]
+                                            }
                                             selectOption={[Function]}
                                             selectProps={
                                               Object {
@@ -525,7 +609,16 @@ Object {
                                                 "onMenuOpen": [Function],
                                                 "openMenuOnClick": true,
                                                 "openMenuOnFocus": false,
-                                                "options": Array [],
+                                                "options": Array [
+                                                  Object {
+                                                    "label": "SPR1234",
+                                                    "value": "SPR1234",
+                                                  },
+                                                  Object {
+                                                    "label": "SPR5678",
+                                                    "value": "SPR5678",
+                                                  },
+                                                ],
                                                 "pageSize": 5,
                                                 "placeholder": "Select...",
                                                 "screenReaderStatus": [Function],
@@ -599,7 +692,18 @@ Object {
                                                   isMulti={false}
                                                   isRtl={false}
                                                   key="placeholder"
-                                                  options={Array []}
+                                                  options={
+                                                    Array [
+                                                      Object {
+                                                        "label": "SPR1234",
+                                                        "value": "SPR1234",
+                                                      },
+                                                      Object {
+                                                        "label": "SPR5678",
+                                                        "value": "SPR5678",
+                                                      },
+                                                    ]
+                                                  }
                                                   selectOption={[Function]}
                                                   selectProps={
                                                     Object {
@@ -645,7 +749,16 @@ Object {
                                                       "onMenuOpen": [Function],
                                                       "openMenuOnClick": true,
                                                       "openMenuOnFocus": false,
-                                                      "options": Array [],
+                                                      "options": Array [
+                                                        Object {
+                                                          "label": "SPR1234",
+                                                          "value": "SPR1234",
+                                                        },
+                                                        Object {
+                                                          "label": "SPR5678",
+                                                          "value": "SPR5678",
+                                                        },
+                                                      ],
                                                       "pageSize": 5,
                                                       "placeholder": "Select...",
                                                       "screenReaderStatus": [Function],
@@ -769,7 +882,16 @@ Object {
                                                       "onMenuOpen": [Function],
                                                       "openMenuOnClick": true,
                                                       "openMenuOnFocus": false,
-                                                      "options": Array [],
+                                                      "options": Array [
+                                                        Object {
+                                                          "label": "SPR1234",
+                                                          "value": "SPR1234",
+                                                        },
+                                                        Object {
+                                                          "label": "SPR5678",
+                                                          "value": "SPR5678",
+                                                        },
+                                                      ],
                                                       "pageSize": 5,
                                                       "placeholder": "Select...",
                                                       "screenReaderStatus": [Function],
@@ -929,7 +1051,18 @@ Object {
                                             isDisabled={false}
                                             isMulti={false}
                                             isRtl={false}
-                                            options={Array []}
+                                            options={
+                                              Array [
+                                                Object {
+                                                  "label": "SPR1234",
+                                                  "value": "SPR1234",
+                                                },
+                                                Object {
+                                                  "label": "SPR5678",
+                                                  "value": "SPR5678",
+                                                },
+                                              ]
+                                            }
                                             selectOption={[Function]}
                                             selectProps={
                                               Object {
@@ -975,7 +1108,16 @@ Object {
                                                 "onMenuOpen": [Function],
                                                 "openMenuOnClick": true,
                                                 "openMenuOnFocus": false,
-                                                "options": Array [],
+                                                "options": Array [
+                                                  Object {
+                                                    "label": "SPR1234",
+                                                    "value": "SPR1234",
+                                                  },
+                                                  Object {
+                                                    "label": "SPR5678",
+                                                    "value": "SPR5678",
+                                                  },
+                                                ],
                                                 "pageSize": 5,
                                                 "placeholder": "Select...",
                                                 "screenReaderStatus": [Function],
@@ -1044,7 +1186,18 @@ Object {
                                                   isFocused={false}
                                                   isMulti={false}
                                                   isRtl={false}
-                                                  options={Array []}
+                                                  options={
+                                                    Array [
+                                                      Object {
+                                                        "label": "SPR1234",
+                                                        "value": "SPR1234",
+                                                      },
+                                                      Object {
+                                                        "label": "SPR5678",
+                                                        "value": "SPR5678",
+                                                      },
+                                                    ]
+                                                  }
                                                   selectOption={[Function]}
                                                   selectProps={
                                                     Object {
@@ -1090,7 +1243,16 @@ Object {
                                                       "onMenuOpen": [Function],
                                                       "openMenuOnClick": true,
                                                       "openMenuOnFocus": false,
-                                                      "options": Array [],
+                                                      "options": Array [
+                                                        Object {
+                                                          "label": "SPR1234",
+                                                          "value": "SPR1234",
+                                                        },
+                                                        Object {
+                                                          "label": "SPR5678",
+                                                          "value": "SPR5678",
+                                                        },
+                                                      ],
                                                       "pageSize": 5,
                                                       "placeholder": "Select...",
                                                       "screenReaderStatus": [Function],
@@ -1151,7 +1313,18 @@ Object {
                                                   isFocused={false}
                                                   isMulti={false}
                                                   isRtl={false}
-                                                  options={Array []}
+                                                  options={
+                                                    Array [
+                                                      Object {
+                                                        "label": "SPR1234",
+                                                        "value": "SPR1234",
+                                                      },
+                                                      Object {
+                                                        "label": "SPR5678",
+                                                        "value": "SPR5678",
+                                                      },
+                                                    ]
+                                                  }
                                                   selectOption={[Function]}
                                                   selectProps={
                                                     Object {
@@ -1197,7 +1370,16 @@ Object {
                                                       "onMenuOpen": [Function],
                                                       "openMenuOnClick": true,
                                                       "openMenuOnFocus": false,
-                                                      "options": Array [],
+                                                      "options": Array [
+                                                        Object {
+                                                          "label": "SPR1234",
+                                                          "value": "SPR1234",
+                                                        },
+                                                        Object {
+                                                          "label": "SPR5678",
+                                                          "value": "SPR5678",
+                                                        },
+                                                      ],
                                                       "pageSize": 5,
                                                       "placeholder": "Select...",
                                                       "screenReaderStatus": [Function],
