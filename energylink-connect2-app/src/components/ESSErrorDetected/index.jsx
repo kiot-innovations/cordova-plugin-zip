@@ -20,9 +20,8 @@ function ErrorDetected({
         number === 0 && warnings === 0,
         <>
           <p className="has-text-primary has-text-weight-bold has-text-centered mb-10 is-size-6">
-            {t('ERRORS_DETECTED', 1)}
+            {t('HEALTH_CHECK_FAILED')}
           </p>
-          <p className="has-text-centered">{globalError}</p>
           <button
             className="button is-primary is-outlined is-uppercase mt-20 is-fullwidth ml-5"
             onClick={onRetry}

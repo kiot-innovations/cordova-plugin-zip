@@ -16,7 +16,7 @@ function ESSHealthCheck(props) {
   const errors = pathOr([], ['errors'], results)
   const report = path(['ess_report'], results)
   const loading = isNil(results) && !props.error
-  const classes = clsx('ess-hc page-height has-text-centered pt-10', {
+  const classes = clsx('ess-hc has-text-centered pt-10 pl-10 pr-10', {
     gridit: loading || props.error
   })
   const hasErrors = !isEmpty(errors) || props.error
