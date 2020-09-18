@@ -81,11 +81,12 @@ export const downloadPVSFirmware = action$ =>
         getFileSystemFromLuaFile(fileURL),
         shouldRetry
       ).pipe(
-        map(({ progress, total }) =>
+        map(({ progress, total, step }) =>
           progress
             ? PVS_FIRMWARE_DOWNLOAD_PROGRESS({
                 progress,
-                size: (total / 1000000).toFixed(2)
+                size: (total / 1000000).toFixed(2),
+                step
               })
             : PVS_FIRMWARE_REPORT_SUCCESS(`firmware/${pvsFileSystemName}`)
         ),

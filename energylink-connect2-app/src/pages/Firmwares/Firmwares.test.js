@@ -18,28 +18,31 @@ describe('Firmwares component', () => {
   beforeEach(() => {
     dispatchMock = jest.fn()
     jest.spyOn(reactRedux, 'useDispatch').mockImplementation(() => dispatchMock)
-    jest
-      .spyOn(i18n, 'useI18n')
-      .mockImplementation(() => (key, ...params) =>
-        `${key.toUpperCase()} ${params.join('_')}`.trim()
-      )
+    jest.spyOn(i18n, 'useI18n').mockImplementation(() => (key, ...params) => {
+      return `${key.toUpperCase()} ${params.join('_')}`.trim()
+    })
   })
 
   test('render correctly', () => {
     const { component } = mountWithProvider(<Firmwares />)({
       fileDownloader: {
-        progress: { progress: 0, lastProgress: 0, downloading: false },
+        progress: {
+          progress: 0,
+          lastProgress: 0,
+          downloading: false
+        },
         gridProfileInfo: {
           progress: 0,
           lastProgress: 0,
           lastModified: null
         },
-        fileInfo: { name: 'test-file.zip', error: '' }
+        fileInfo: { name: 'test-file.zip', error: '', step: 'INITIALIZING' }
       },
       ess: {
         error: null,
         isDownloading: false,
-        file: { name: 'test file name' }
+        file: { name: 'test file name' },
+        step: 'INITIALIZING'
       }
     })
     expect(component).toMatchSnapshot()

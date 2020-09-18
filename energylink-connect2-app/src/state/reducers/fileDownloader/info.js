@@ -15,14 +15,16 @@ const initialState = {
   size: 0,
   error: '',
   exists: false,
-  updateURL: process.env.REACT_APP_FIRMWARE_URL
+  updateURL: process.env.REACT_APP_FIRMWARE_URL,
+  step: ''
 }
 
 export default createReducer(
   {
     [PVS_FIRMWARE_UPDATE_URL]: (state, { url }) => ({
       ...state,
-      updateURL: url
+      updateURL: url,
+      step: 'UPDATING_URL'
     }),
     [PVS_FIRMWARE_DOWNLOAD_ERROR]: state => ({
       ...state,
@@ -31,7 +33,8 @@ export default createReducer(
     [PVS_FIRMWARE_DOWNLOAD_INIT]: state => ({
       ...state,
       error: '',
-      exists: false
+      exists: false,
+      step: 'INITIALIZING'
     }),
     [PVS_FIRMWARE_DOWNLOAD_SUCCESS]: (state, { lastModified, size }) => ({
       ...state,
@@ -40,10 +43,11 @@ export default createReducer(
       exists: true,
       error: ''
     }),
-    [PVS_FIRMWARE_DOWNLOAD_PROGRESS]: (state, { size }) => ({
+    [PVS_FIRMWARE_DOWNLOAD_PROGRESS]: (state, { size, step }) => ({
       ...state,
-      size: size,
-      error: ''
+      size: isNaN(size) ? state.size : size,
+      error: '',
+      step
     }),
     [PVS_SET_FILE_INFO]: (state, props) => ({
       ...state,

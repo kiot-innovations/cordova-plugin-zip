@@ -9,6 +9,7 @@ import {
   GET_SN_SUCCESS,
   GET_SN_ERROR,
   REMOVE_SN,
+  START_DISCOVERY_INIT,
   START_COMMISSIONING_ERROR,
   START_COMMISSIONING_SUCCESS,
   START_DISCOVERY_ERROR,
@@ -19,7 +20,7 @@ import {
   RESET_PVS_INFO_STATE,
   MI_DATA_SUCCESS,
   MI_DATA_ERROR
-} from '../../actions/pvs'
+} from 'state/actions/pvs'
 import { PUSH_CANDIDATES_ERROR } from 'state/actions/devices'
 
 const initialState = {
@@ -33,11 +34,16 @@ const initialState = {
   settingMetadata: false,
   setMetadataStatus: null,
   miData: null,
-  miDataError: null
+  miDataError: null,
+  lastDiscoveryType: ''
 }
 
 export const pvsReducer = createReducer(
   {
+    [START_DISCOVERY_INIT]: (state, payload) => ({
+      ...state,
+      lastDiscoveryType: payload.type
+    }),
     [PUSH_CANDIDATES_ERROR]: (state, { candidates }) => ({
       ...state,
       serialNumbersError: candidates

@@ -7,6 +7,7 @@ import {
   FETCH_CANDIDATES_COMPLETE
 } from 'state/actions/devices'
 import { START_DISCOVERY_INIT } from 'state/actions/pvs'
+import { discoveryTypes } from 'state/reducers/devices'
 import { filterInverters } from 'shared/utils'
 import useModal from 'hooks/useModal'
 import { groupBy, prop, propOr, length, pluck, reduce, add, path } from 'ramda'
@@ -49,7 +50,12 @@ const LegacyDiscovery = () => {
   }, [claimedDevices, discoveryComplete, dispatch, history])
 
   const restartDiscovery = () => {
-    dispatch(START_DISCOVERY_INIT({ Device: 'allplusmime' }))
+    dispatch(
+      START_DISCOVERY_INIT({
+        Device: 'allplusmime',
+        type: discoveryTypes.LEGACY
+      })
+    )
     dispatch(FETCH_CANDIDATES_COMPLETE())
   }
 

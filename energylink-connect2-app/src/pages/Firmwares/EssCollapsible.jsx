@@ -7,7 +7,7 @@ import { useI18n } from 'shared/i18n'
 import { useDispatch, useSelector } from 'react-redux'
 import { DOWNLOAD_OS_INIT } from 'state/actions/ess'
 
-const EssFirmwareStatus = ({ isDownloading, progress }) => {
+const EssFirmwareStatus = ({ isDownloading, progress, step }) => {
   const t = useI18n()
   return (
     <div>
@@ -17,9 +17,14 @@ const EssFirmwareStatus = ({ isDownloading, progress }) => {
           <span className="has-text-white has-text-weight-bold mr-10">
             {progress}%
           </span>
-          <span className="is-capitalized">{t('DOWNLOADING')}</span>
+          <span>{t(step)}</span>
         </div>,
-        <span>100% {t('DOWNLOADED')}</span>
+        <>
+          <span className="has-text-white has-text-weight-bold mr-10">
+            100%
+          </span>
+          <span>{t('DOWNLOADED')}</span>
+        </>
       )}
     </div>
   )

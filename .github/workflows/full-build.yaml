@@ -146,7 +146,7 @@ jobs:
                 "color": "good",
                 "fields": [{
                     "title": "Revision",
-                    "value": "${{ env.BRANCH_NAME }}",
+                    "value": "<https://sunpowercorp.atlassian.net/issues/?jql=labels%20%3D%20%22${{ env.BRANCH_NAME }}%22|${{ env.BRANCH_NAME }}>",
                     "short": true
                   },
                   {
