@@ -1,22 +1,11 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import {
-  compose,
-  includes,
-  prop,
-  path,
-  map,
-  pluck,
-  equals,
-  pathOr,
-  union
-} from 'ramda'
-import { useI18n } from 'shared/i18n'
-import { FETCH_MODELS_INIT } from 'state/actions/devices'
-import { UPDATE_DEVICES_LIST } from 'state/actions/devices'
+import { equals, includes, map, path, pathOr, pluck, prop, union } from 'ramda'
 
-import Collapsible from '../../components/Collapsible'
-import SelectField from '../../components/SelectField'
+import { useI18n } from 'shared/i18n'
+import { UPDATE_DEVICES_LIST } from 'state/actions/devices'
+import Collapsible from 'components/Collapsible'
+import SelectField from 'components/SelectField'
 
 import './ModelEdit.scss'
 
@@ -24,8 +13,6 @@ const buildSelectValue = value => ({
   label: value,
   value: value
 })
-
-const getModels = compose(map(buildSelectValue), pathOr([], [0, 'models']))
 
 const applyModel = (miList, selectedModel, selectedMi, dispatch) => {
   const updatedList = miList.map(mi => {
@@ -37,7 +24,7 @@ const applyModel = (miList, selectedModel, selectedMi, dispatch) => {
   dispatch(UPDATE_DEVICES_LIST(updatedList))
 }
 
-const MiGroup = ({ title = 'UNKNOWN_MI_TYPE', data }) => {
+const MiGroup = ({ title = 'UNKNOWN_MI_TYPE', data, type }) => {
   const t = useI18n()
   const dispatch = useDispatch()
   const [selectedMi, setSelectedMi] = useState([])
@@ -49,37 +36,15 @@ const MiGroup = ({ title = 'UNKNOWN_MI_TYPE', data }) => {
     includes(device.SERIAL, serialNumbers)
   )
 
-  const miTypes = {
-    'Type E': 'E',
-    'Type G': 'G',
-    'Type C': 'C',
-    'Type D': 'D'
-  }
-
-  useEffect(() => {
-    dispatch(FETCH_MODELS_INIT(miTypes[title]))
-    //eslint-disable-next-line
-  }, [])
-
-  const modelOptions = useSelector(state =>
-    pathOr([], ['devices', 'miModels'], state)
-  )
-
-  const filteredOptions = modelOptions.filter(
-    options => options.type === miTypes[title]
-  )
+  const filteredOptions = useSelector(pathOr([], ['devices', 'miModels', type]))
 
   const selectMi = serialNumber => {
-    const currentSelections = selectedMi
-    const filterDuplicates = union(currentSelections, [serialNumber])
+    const filterDuplicates = union(selectedMi, [serialNumber])
     setSelectedMi(filterDuplicates)
   }
 
   const unSelectMi = serialNumber => {
-    const currentSelections = selectedMi
-    const filteredSelections = currentSelections.filter(
-      item => item !== serialNumber
-    )
+    const filteredSelections = selectedMi.filter(item => item !== serialNumber)
     setSelectedMi(filteredSelections)
   }
 
@@ -92,8 +57,7 @@ const MiGroup = ({ title = 'UNKNOWN_MI_TYPE', data }) => {
 
   const selectAll = (e, miGroup) => {
     e.preventDefault()
-    const currentSelections = selectedMi
-    const filterDuplicates = union(currentSelections, miGroup)
+    const filterDuplicates = union(selectedMi, miGroup)
     setSelectedMi(filterDuplicates)
   }
 
@@ -127,7 +91,7 @@ const MiGroup = ({ title = 'UNKNOWN_MI_TYPE', data }) => {
         <span className="has-text-white">Specify the model to apply</span>
         <SelectField
           isSearchable={true}
-          options={getModels(filteredOptions)}
+          options={map(buildSelectValue, filteredOptions)}
           onSelect={selectModel}
           notFoundText={notFoundText}
           className="mt-10 mb-10"
