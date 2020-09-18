@@ -1,14 +1,14 @@
 import * as Sentry from '@sentry/browser'
 import { ofType } from 'redux-observable'
 import { from, of } from 'rxjs'
-import { catchError, mergeMap, map } from 'rxjs/operators'
+import { catchError, map, mergeMap } from 'rxjs/operators'
 import {
-  FETCH_MODELS_INIT,
-  FETCH_MODELS_SUCCESS,
   FETCH_MODELS_ERROR,
-  FETCH_MODELS_LOAD_DEFAULT
+  FETCH_MODELS_INIT,
+  FETCH_MODELS_LOAD_DEFAULT,
+  FETCH_MODELS_SUCCESS
 } from 'state/actions/devices'
-import { pathOr, path, pluck, isEmpty } from 'ramda'
+import { isEmpty, path, pathOr, pluck } from 'ramda'
 import { getApiDevice } from 'shared/api'
 
 const getAccessToken = path(['user', 'auth', 'access_token'])
@@ -75,13 +75,11 @@ export const fetchModelsEpic = (action$, state$) => {
       return from(promise).pipe(
         map(moduleModels => {
           const models = pathOr([], ['body'], moduleModels)
-          const nextAction = isEmpty(models)
+          return isEmpty(models)
             ? FETCH_MODELS_ERROR(MIType)
             : FETCH_MODELS_SUCCESS(
                 buildModelFilter(MIType, getModelName(models))
               )
-
-          return nextAction
         }),
         catchError(error => {
           Sentry.captureException(error)
