@@ -12,6 +12,7 @@ import {
   filter,
   find,
   flip,
+  head,
   includes,
   indexBy,
   isNil,
@@ -301,5 +302,22 @@ export const hasInternetConnection = () =>
       .then(() => resolve())
       .catch(() => reject())
   )
+
+export const parseMD5FromResponse = compose(head, split(' '))
+export const renameExtension = replace(/\.tar\.gz$/, '.md5')
+
+export const getExpectedMD5 = async url => {
+  const requestOptions = {
+    method: 'GET',
+    headers: new Headers()
+  }
+
+  const res = await fetch(renameExtension(url), requestOptions)
+  if (res.ok) {
+    return parseMD5FromResponse(await res.text())
+  }
+
+  throw new Error(`getExpectedMD5: Failed fetching md5 for: ${url}`)
+}
 
 export const removeUndefined = reject(isNil)

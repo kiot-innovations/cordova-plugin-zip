@@ -494,6 +494,7 @@
   "ERROR_LIST": "Error List",
   "INVENTORY_STORAGE_ONLY": "No microinverters on inventory, do you want to proceed to storage configuration?",
   "INVENTORY_CONFIG_ONLY": "No inventory selected, do you want to proceed to system configuration?",
+  "MD5_INTEGRITY_ERROR": "Failed integrity check for grid profile",
   "FETCHING_MODELS": "We're fetching the available models",
   "NO_MI_FOUND": "No microinverters found"
 }

@@ -3,6 +3,7 @@ import { flipConcat, PERSIST_DATA_PATH } from 'shared/utils'
 
 export const ERROR_CODES = {
   NO_FILESYSTEM_FILE: 'no filesystem file',
+  MD5_NOT_MATCHING: 'MD5_NOT_MATCHING',
   getVersionInfo: 'getVersionInfo',
   getLuaFile: 'getLuaFile',
   noLuaFile: 'noLuaFile',
