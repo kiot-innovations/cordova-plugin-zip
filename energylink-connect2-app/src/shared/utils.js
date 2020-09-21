@@ -298,7 +298,7 @@ export const calculateTimeout = lastUpdated => {
 
 export const hasInternetConnection = () =>
   new Promise((resolve, reject) =>
-    fetch(process.env.REACT_APP_SWAGGER_FIRMWARE)
+    fetch(process.env.REACT_APP_LATEST_FIRMWARE_URL)
       .then(() => resolve())
       .catch(() => reject())
   )
