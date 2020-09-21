@@ -3,43 +3,77 @@ import {
   assoc,
   compose,
   dissoc,
-  equals,
   filter,
   has,
   ifElse,
   map,
   pathOr,
   prop,
+  propEq,
   reject
 } from 'ramda'
+import { useDispatch, useSelector } from 'react-redux'
 
 import Collapsible from 'components/Collapsible'
-
-import './RMADevices.scss'
-import { useDispatch, useSelector } from 'react-redux'
 import { FETCH_DEVICES_LIST } from 'state/actions/devices'
 import { GET_ESS_STATUS_INIT, GET_PREDISCOVERY } from 'state/actions/storage'
 import { useI18n } from 'shared/i18n'
 
-const Checkbox = ({ label, isChecked, onChange, className }) => (
-  <label className={className}>
-    <input
-      type="checkbox"
-      value={label}
-      checked={isChecked}
-      onChange={onChange}
-      className="mr-10"
-    />
+import './RMADevices.scss'
 
-    {label}
-  </label>
-)
-const RMADevices = () => {
+const DrawMicroinverters = ({ microinverters, MiSelected, toggleCheckbox }) =>
+  map(inverter => {
+    const serial = prop('SERIAL', inverter)
+    const isChecked = has(serial, MiSelected)
+    return (
+      <label
+        className="has-text-weight-bold has-text-white pb-10 pt-10 "
+        key={serial}
+      >
+        <input
+          type="checkbox"
+          value={serial}
+          checked={isChecked}
+          onChange={() => toggleCheckbox(serial)}
+          className="mr-10"
+        />
+        {serial}
+      </label>
+    )
+  }, microinverters)
+
+const DrawStorage = ({ devices }) =>
+  map(essDevice => {
+    const type = prop('device_type', essDevice)
+    const serialNumber = prop('serial_number', essDevice)
+    return (
+      <div key={serialNumber}>
+        <span className="has-text-weight-bold has-text-white">{type}</span>
+        <span className="ml-10">{serialNumber}</span>
+      </div>
+    )
+  }, devices)
+
+const DrawOtherDevices = ({ devices }) =>
+  map(OtherDevice => {
+    const model = prop('MODEL', OtherDevice)
+    const serial = prop('SERIAL', OtherDevice)
+    return (
+      <div key={serial}>
+        <span className="has-text-weight-bold has-text-white">{model}</span>
+        <span className="ml-10">{serial}</span>
+      </div>
+    )
+  }, devices)
+
+function RMADevices() {
   const dispatch = useDispatch()
+  const t = useI18n()
   const devicesData = useSelector(pathOr([], ['devices', 'found']))
   const essData = useSelector(
     pathOr([], ['storage', 'prediscovery', 'pre_discovery_report', 'devices'])
   )
+
   const [inverters, setInverters] = useState([])
   const [essDevices, setESSDevices] = useState([])
   const [otherDevices, setOtherDevices] = useState([])
@@ -47,6 +81,7 @@ const RMADevices = () => {
 
   const toggleCheckbox = id =>
     compose(setSelectedMi, ifElse(has(id), dissoc(id), assoc(id)))(MiSelected)
+
   const selectAllMi = () => {
     let newMiSelected = {}
 
@@ -64,21 +99,14 @@ const RMADevices = () => {
   }, [dispatch])
 
   useEffect(() => {
-    const inverters = filter(
-      compose(equals('Inverter'), prop('DEVICE_TYPE')),
-      devicesData
-    )
+    const inverters = filter(propEq('Inverter', 'DEVICE_TYPE'), devicesData)
+    const otherData = reject(propEq('Inverter', 'DEVICE_TYPE'), devicesData)
 
-    const otherData = reject(
-      compose(equals('Inverter'), prop('DEVICE_TYPE')),
-      devicesData
-    )
     setInverters(inverters)
     setESSDevices(essData)
     setOtherDevices(otherData)
   }, [devicesData, essData])
 
-  const t = useI18n()
   return (
     <main className="full-height pl-10 pr-10 rma-devices-screen">
       <div className="header mb-20">
@@ -88,19 +116,11 @@ const RMADevices = () => {
         </span>
       </div>
       <Collapsible title={t('MICROINVERTERS')} expanded>
-        {map(inverter => {
-          const serial = prop('SERIAL', inverter)
-          const isChecked = has(serial, MiSelected)
-          return (
-            <Checkbox
-              key={serial}
-              label={serial}
-              onChange={() => toggleCheckbox(serial)}
-              isChecked={isChecked}
-              className={'has-text-weight-bold has-text-white pb-10 pt-10 '}
-            />
-          )
-        }, inverters)}
+        <DrawMicroinverters
+          microinverters={inverters}
+          MiSelected={MiSelected}
+          toggleCheckbox={toggleCheckbox}
+        />
         <div className="buttons-container">
           <button
             onClick={selectAllMi}
@@ -118,18 +138,7 @@ const RMADevices = () => {
       </Collapsible>
       <div className="mt-10" />
       <Collapsible title="Storage Equipment" expanded>
-        {map(essDevice => {
-          const type = prop('device_type', essDevice)
-          const serialNumber = prop('serial_number', essDevice)
-          return (
-            <div key={serialNumber}>
-              <span className="has-text-weight-bold has-text-white">
-                {type}
-              </span>
-              <span className="ml-10">{serialNumber}</span>
-            </div>
-          )
-        }, essDevices)}
+        <DrawStorage devices={essDevices} />
         <button className="button is-paddingless has-text-primary button-transparent">
           {t('ADD_REPLACE_EQUIPMENT')}
         </button>
@@ -137,18 +146,7 @@ const RMADevices = () => {
       <div className="mt-10" />
       <Collapsible title={t('OTHER_DEVICES')} expanded>
         <div className="other-components">
-          {map(OtherDevice => {
-            const model = prop('MODEL', OtherDevice)
-            const serial = prop('SERIAL', OtherDevice)
-            return (
-              <div key={serial}>
-                <span className="has-text-weight-bold has-text-white">
-                  {model}
-                </span>
-                <span className="ml-10">{serial}</span>
-              </div>
-            )
-          }, otherDevices)}
+          <DrawOtherDevices devices={otherDevices} />
         </div>
       </Collapsible>
     </main>
