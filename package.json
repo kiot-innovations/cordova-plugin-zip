@@ -25,6 +25,7 @@
     "cordova-plugin-customurlscheme": "^5.0.0",
     "cordova-plugin-device": "^2.0.3",
     "cordova-plugin-file": "^6.0.2",
+    "cordova-plugin-file-hash": "^0.4.1",
     "cordova-plugin-file-md5": "^0.3.3",
     "cordova-plugin-file-transfer": "^1.7.1",
     "cordova-plugin-http": "^1.2.0",
@@ -87,7 +88,8 @@
       "cordova-plugin-zip": {},
       "cordova-plugin-file-transfer": {},
       "cordova-plugin-market": {},
-      "cordova-plugin-file-md5": {}
+      "cordova-plugin-file-md5": {},
+      "cordova-plugin-file-hash": {}
     },
     "platforms": [
       "ios",
