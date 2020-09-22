@@ -53,10 +53,6 @@ function ConnectToPVS() {
   }
 
   useEffect(() => {
-    if (connectionState.connecting && !manualEntry) checkAndroidVersion()
-  }, [connectionState.connecting, manualEntry])
-
-  useEffect(() => {
     if (!connectionState.connecting && connectionState.connected) {
       history.push(paths.PROTECTED.PVS_CONNECTION_SUCCESS.path)
     }
