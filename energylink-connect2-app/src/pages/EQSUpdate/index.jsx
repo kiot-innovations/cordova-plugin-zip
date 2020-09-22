@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { useI18n } from 'shared/i18n'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
-import { includes, isEmpty, length, map, pathOr, prop } from 'ramda'
+import { includes, isEmpty, length, map, pathOr, pluck, prop } from 'ramda'
 import {
   CHECK_EQS_FIRMWARE,
   UPLOAD_EQS_FIRMWARE_SUCCESS
@@ -22,6 +22,21 @@ import paths from 'routes/paths'
 const renderUpdateComponent = device => (
   <ConnectedDeviceUpdate device={device} />
 )
+
+const checkForErrors = (errorList, devices) => {
+  const affectedDevices = pluck('device_sn', errorList)
+  const updatedDevices = devices.map(device => {
+    if (
+      device.progress < 0 ||
+      includes(device.serial_number, affectedDevices)
+    ) {
+      device.progress = device.progress < 0 ? 0 : device.progress
+      device.error = true
+    }
+    return device
+  })
+  return updatedDevices
+}
 
 const EQSUpdate = () => {
   const t = useI18n()
@@ -55,6 +70,8 @@ const EQSUpdate = () => {
   const updateErrors = useSelector(
     pathOr([], ['storage', 'deviceUpdate', 'errors'])
   )
+
+  const updatingDevices = checkForErrors(updateErrors, updateProgress)
 
   return (
     <div className="eqs-fw-update pl-10 pr-10">
@@ -131,8 +148,8 @@ const EQSUpdate = () => {
       )}
 
       {either(
-        !isEmpty(updateProgress),
-        <div>{map(renderUpdateComponent, updateProgress)}</div>
+        !isEmpty(updatingDevices),
+        <div>{map(renderUpdateComponent, updatingDevices)}</div>
       )}
 
       {either(

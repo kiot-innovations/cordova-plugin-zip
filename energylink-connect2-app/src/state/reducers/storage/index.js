@@ -1,30 +1,31 @@
 import { createReducer } from 'redux-act'
+import { isEmpty } from 'ramda'
 import {
-  GET_ESS_STATUS_SUCCESS,
-  GET_ESS_STATUS_ERROR,
-  GET_ESS_STATUS_INIT,
-  GET_PREDISCOVERY,
-  GET_PREDISCOVERY_SUCCESS,
-  GET_PREDISCOVERY_ERROR,
-  GET_PREDISCOVERY_RESET,
-  POST_COMPONENT_MAPPING,
-  POST_COMPONENT_MAPPING_ERROR,
   CHECK_EQS_FIRMWARE,
-  UPLOAD_EQS_FIRMWARE,
-  UPLOAD_EQS_FIRMWARE_SUCCESS,
-  UPLOAD_EQS_FIRMWARE_ERROR,
-  TRIGGER_EQS_FIRMWARE_SUCCESS,
-  TRIGGER_EQS_FIRMWARE_ERROR,
-  UPDATE_EQS_FIRMWARE_PROGRESS,
-  UPDATE_EQS_FIRMWARE_COMPLETED,
-  UPDATE_EQS_FIRMWARE_ERROR,
-  GET_COMPONENT_MAPPING_PROGRESS,
   GET_COMPONENT_MAPPING_COMPLETED,
   GET_COMPONENT_MAPPING_ERROR,
+  GET_COMPONENT_MAPPING_PROGRESS,
+  GET_DELAYED_PREDISCOVERY,
+  GET_ESS_STATUS_ERROR,
+  GET_ESS_STATUS_INIT,
+  GET_ESS_STATUS_SUCCESS,
+  GET_PREDISCOVERY,
+  GET_PREDISCOVERY_ERROR,
+  GET_PREDISCOVERY_RESET,
+  GET_PREDISCOVERY_SUCCESS,
+  POST_COMPONENT_MAPPING,
+  POST_COMPONENT_MAPPING_ERROR,
   RESET_COMPONENT_MAPPING,
-  GET_DELAYED_PREDISCOVERY
+  TRIGGER_EQS_FIRMWARE_ERROR,
+  TRIGGER_EQS_FIRMWARE_SUCCESS,
+  UPDATE_EQS_FIRMWARE_COMPLETED,
+  UPDATE_EQS_FIRMWARE_ERROR,
+  UPDATE_EQS_FIRMWARE_PROGRESS,
+  UPLOAD_EQS_FIRMWARE,
+  UPLOAD_EQS_FIRMWARE_ERROR,
+  UPLOAD_EQS_FIRMWARE_PROGRESS,
+  UPLOAD_EQS_FIRMWARE_SUCCESS
 } from 'state/actions/storage'
-import { isEmpty } from 'ramda'
 import { eqsUpdateStates } from 'state/epics/storage/deviceUpdate'
 
 const initialState = {
@@ -32,6 +33,7 @@ const initialState = {
   prediscovery: {},
   componentMapping: {},
   deviceUpdate: {},
+  updateProgress: 0,
   status: {
     waiting: false,
     results: null,
@@ -109,13 +111,18 @@ export const storageReducer = createReducer(
     }),
     [UPLOAD_EQS_FIRMWARE]: state => ({
       ...state,
-      currentStep: eqsSteps.FW_UPLOAD
+      currentStep: eqsSteps.FW_UPLOAD,
+      updateProgress: 0
     }),
     [UPLOAD_EQS_FIRMWARE_SUCCESS]: state => ({
       ...state,
       error: initialState.error,
       deviceUpdate: initialState.deviceUpdate,
       currentStep: eqsSteps.FW_UPDATE
+    }),
+    [UPLOAD_EQS_FIRMWARE_PROGRESS]: (state, { progress = 0 }) => ({
+      ...state,
+      updateProgress: progress
     }),
     [UPLOAD_EQS_FIRMWARE_ERROR]: (state, payload) => ({
       ...state,

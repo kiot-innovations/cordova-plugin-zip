@@ -19,6 +19,12 @@ function ESSHealthCheck(props) {
   const classes = clsx('ess-hc page-height has-text-centered pt-10', {
     gridit: loading || props.error
   })
+  const hasErrors = !isEmpty(errors) || props.error
+
+  const statusErrorMessage = path(
+    ['error', 'response', 'body', 'result'],
+    props
+  )
 
   const { waiting, progress, onRetry, pathToContinue, pathToErrors } = props
 
@@ -44,7 +50,7 @@ function ESSHealthCheck(props) {
       </div>
 
       {either(
-        isEmpty(errors) && !loading,
+        !hasErrors && !loading,
         <ContinueFooter
           url={pathToContinue}
           text={t('HEALTH_CHECK_SUCCESSFUL')}
@@ -52,12 +58,13 @@ function ESSHealthCheck(props) {
       )}
 
       {either(
-        !isEmpty(errors) && !loading,
+        hasErrors && !loading,
         <ErrorDetected
           number={length(errors) - warningsLength(errors)}
           warnings={warningsLength(errors)}
           onRetry={onRetry}
           url={pathToErrors}
+          globalError={statusErrorMessage}
           next={pathToContinue}
         />
       )}

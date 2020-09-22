@@ -110,7 +110,7 @@ const ModelEdit = () => {
         onChange={() => toggleWarning(!warning)}
       >
         <div className="missing-models-warning is-flex">
-          <span className="has-text-weight-bold">{t('HOLD_ON')}</span>
+          <span className="has-text-weight-bold">{t('ATTENTION')}</span>
           <span className="mt-10 mb-10">{t('MISSING_MODELS')}</span>
           <div className="mt-10 mb-20">
             <button

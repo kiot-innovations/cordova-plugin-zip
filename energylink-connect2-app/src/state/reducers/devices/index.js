@@ -22,6 +22,11 @@ import {
   UPDATE_DEVICES_LIST
 } from 'state/actions/devices'
 
+export const discoveryTypes = {
+  LEGACY: 'LEGACY',
+  ALLNOMI: 'ALLNOMI'
+}
+
 const initialState = {
   isFetching: false,
   found: [],

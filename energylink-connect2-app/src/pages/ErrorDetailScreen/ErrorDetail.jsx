@@ -1,11 +1,26 @@
-import marked from 'marked'
-import { compose, equals, filter, length, propOr, props } from 'ramda'
 import React from 'react'
+import marked from 'marked'
+import { useSelector } from 'react-redux'
+import { compose, equals, filter, length, propOr, props } from 'ramda'
 import { useHistory, useLocation, useParams } from 'react-router-dom'
 import { getError } from 'shared/errorCodes'
 import { useI18n } from 'shared/i18n'
 import { either } from 'shared/utils'
+import { eqsSteps } from 'state/reducers/storage'
+import paths from 'routes/paths'
 import './ErrorDetail.scss'
+
+const storageRoutesMap = {
+  [eqsSteps.PREDISCOVERY]: paths.PROTECTED.EQS_PREDISCOVERY_ERRORS.path,
+  [eqsSteps.FW_UPLOAD]: paths.PROTECTED.EQS_UPDATE_ERRORS.path,
+  [eqsSteps.FW_ERROR]: paths.PROTECTED.EQS_UPDATE_ERRORS.path,
+  [eqsSteps.FW_COMPLETED]: paths.PROTECTED.EQS_UPDATE_ERRORS.path,
+  [eqsSteps.FW_POLL]: paths.PROTECTED.EQS_UPDATE_ERRORS.path,
+  [eqsSteps.FW_UPDATE]: paths.PROTECTED.EQS_UPDATE_ERRORS.path,
+  [eqsSteps.COMPONENT_MAPPING]:
+    paths.PROTECTED.ESS_DEVICE_MAPPING_ERROR_LIST.path,
+  [eqsSteps.HEALTH_CHECK]: paths.PROTECTED.ESS_HEALTH_CHECK_ERRORS.path
+}
 
 const AffectedDevices = ({ devices, t }) => (
   <>
@@ -17,13 +32,13 @@ const AffectedDevices = ({ devices, t }) => (
     </ul>
   </>
 )
-const BackButton = () => {
+const BackButton = ({ currentStep }) => {
   const history = useHistory()
   const t = useI18n()
   return (
     <button
       className="button is-primary is-outlined is-center mt-10 mb-10"
-      onClick={() => history.goBack()}
+      onClick={() => history.push(storageRoutesMap[currentStep])}
     >
       {t('GO_BACK')}
     </button>
@@ -52,6 +67,7 @@ const ErrorDetailScreen = () => {
     affectedDevices,
     apiResponse
   } = propOr({}, 'state', useLocation())
+  const { currentStep } = useSelector(state => state.storage)
 
   const errorObject = {
     error_code: errorCode,
@@ -66,7 +82,7 @@ const ErrorDetailScreen = () => {
   if (shouldShowError(code))
     return (
       <main className="error-detail-screen">
-        <BackButton />
+        <BackButton currentStep={currentStep} />
         <div className="affected-devices">
           <h1 className="has-text-white is-size-5 has-text-weight-bold mb-10">
             {code.error_description}

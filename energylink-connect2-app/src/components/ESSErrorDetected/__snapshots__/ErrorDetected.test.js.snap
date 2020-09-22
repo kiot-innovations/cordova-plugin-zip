@@ -1,5 +1,27 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`ErrorDetected component render correctly when a global status error happens 1`] = `
+<div
+  className="error-list-detected pl-20 pr-20"
+>
+  <p
+    className="has-text-primary has-text-weight-bold has-text-centered mb-10 is-size-6"
+  >
+    ERRORS_DETECTED 1
+  </p>
+  <p
+    className="has-text-centered"
+  >
+    Make sure you have run discovery successful completion
+  </p>
+  <button
+    className="button is-primary is-outlined is-uppercase mt-20 is-fullwidth ml-5"
+  >
+    RETRY
+  </button>
+</div>
+`;
+
 exports[`ErrorDetected component render correctly when errors 1`] = `
 <div
   className="error-list-detected pl-20 pr-20"
@@ -19,13 +41,13 @@ exports[`ErrorDetected component render correctly when errors 1`] = `
     className="is-flex level"
   >
     <Link
-      className="button is-primary is-uppercase mt-20 is-fullwidth mr-5"
+      className="button is-primary is-outlined is-uppercase mt-20 is-fullwidth mr-5"
       to="Error List"
     >
       ERROR_LIST
     </Link>
     <button
-      className="button is-primary is-outlined is-uppercase mt-20 is-fullwidth ml-5"
+      className="button is-primary is-uppercase mt-20 is-fullwidth ml-5"
     >
       RETRY
     </button>
@@ -53,13 +75,13 @@ exports[`ErrorDetected component render correctly when errors and warnings 1`] =
     className="is-flex level"
   >
     <Link
-      className="button is-primary is-uppercase mt-20 is-fullwidth mr-5"
+      className="button is-primary is-outlined is-uppercase mt-20 is-fullwidth mr-5"
       to="Error List"
     >
       ERROR_LIST
     </Link>
     <button
-      className="button is-primary is-outlined is-uppercase mt-20 is-fullwidth ml-5"
+      className="button is-primary is-uppercase mt-20 is-fullwidth ml-5"
     >
       RETRY
     </button>
@@ -74,9 +96,8 @@ exports[`ErrorDetected component render correctly when warnings 1`] = `
   <p
     className="has-text-primary has-text-weight-bold has-text-centered mb-10 is-size-6"
   >
-    ERRORS_DETECTED 0
       
-    WARNINGS_DETECTED 3
+    WARNINGS_ONLY 3
   </p>
   <p
     className="has-text-centered"
@@ -87,13 +108,13 @@ exports[`ErrorDetected component render correctly when warnings 1`] = `
     className="is-flex level"
   >
     <Link
-      className="button is-primary is-uppercase mt-20 is-fullwidth mr-5"
+      className="button is-primary is-outlined is-uppercase mt-20 is-fullwidth mr-5"
       to="Error List"
     >
       WARNING_LIST
     </Link>
     <button
-      className="button is-primary is-outlined is-uppercase mt-20 is-fullwidth ml-5"
+      className="button is-primary is-uppercase mt-20 is-fullwidth ml-5"
     >
       RETRY
     </button>
