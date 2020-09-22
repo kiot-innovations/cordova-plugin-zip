@@ -35,7 +35,7 @@
     "cordova-plugin-network-information": "^2.0.2",
     "cordova-plugin-networkinterface": "^2.0.0",
     "cordova-plugin-statusbar": "^2.4.3",
-    "cordova-plugin-wifiwizard2": "git+https://github.com/tripflex/wifiwizard2.git",
+    "cordova-plugin-wifiwizard2": "git+ssh://git@github.com/SunPower/WifiWizard2-private.git",
     "cordova-plugin-wkwebview-engine": "^1.1.4",
     "cordova-plugin-wkwebviewxhrfix": "git+https://github.com/TheMattRay/cordova-plugin-wkwebviewxhrfix.git",
     "cordova-plugin-zip": "^3.1.0",
@@ -44,7 +44,6 @@
     "phonegap-plugin-barcodescanner": "^8.1.0",
     "scandit-cordova-datacapture-barcode": "^6.2.0",
     "scandit-cordova-datacapture-core": "^6.2.0",
-    "wifiwizard2": "^3.1.1",
     "xcode": "^2.1.0"
   },
   "devDependencies": {
@@ -58,7 +57,6 @@
       },
       "cordova-plugin-network-information": {},
       "cordova-plugin-file": {},
-      "wifiwizard2": {},
       "cordova-plugin-customurlscheme": {
         "URL_SCHEME": "com.sunpower.elc2",
         "ANDROID_SCHEME": " ",
@@ -86,6 +84,7 @@
         "ANDROIDX_VERSION": "1.+"
       },
       "cordova-clipboard": {},
+      "cordova-plugin-wifiwizard2": {},
       "cordova-plugin-zip": {},
       "cordova-plugin-file-transfer": {},
       "cordova-plugin-file-md5": {}
