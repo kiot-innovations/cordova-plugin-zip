@@ -83,4 +83,17 @@ describe('ErrorDetected component', () => {
     )
     expect(component).toMatchSnapshot()
   })
+
+  test('render correctly when a global status error happens', () => {
+    const component = shallow(
+      <ErrorDetected
+        number={0}
+        warnings={0}
+        globalError="Make sure you have run discovery successful completion"
+        url="Error List"
+        next="Continue Link"
+      />
+    )
+    expect(component).toMatchSnapshot()
+  })
 })

@@ -9,7 +9,7 @@ const status = {
   PENDING: 'FWUP_PENDING',
   INPROGRESS: 'FWUP_INPROGRESS',
   COMPLETED: 'FWUP_COMPLETED',
-  ERROR: 'FWUP_ERROR'
+  ERROR: 'FWUP_COMPONENT_ERROR'
 }
 
 const getStatus = cond([

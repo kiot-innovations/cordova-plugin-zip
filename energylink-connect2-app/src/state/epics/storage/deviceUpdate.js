@@ -16,8 +16,10 @@ import {
   UPDATE_EQS_FIRMWARE_PROGRESS,
   UPLOAD_EQS_FIRMWARE,
   UPLOAD_EQS_FIRMWARE_ERROR,
+  UPLOAD_EQS_FIRMWARE_PROGRESS,
   UPLOAD_EQS_FIRMWARE_SUCCESS
 } from 'state/actions/storage'
+import uploaderObservable from 'state/epics/observables/uploader'
 
 export const eqsUpdateStates = {
   FAILED: 'FAILED',
@@ -77,28 +79,15 @@ export const getEqsFwFile = action$ => {
 export const uploadEqsFwEpic = action$ => {
   return action$.pipe(
     ofType(UPLOAD_EQS_FIRMWARE.getType()),
-    exhaustMap(({ payload }) => {
-      const formdata = new FormData()
-      formdata.append('firmware', payload, 'ChiefHopper.zip')
-
-      const requestOptions = {
-        method: 'POST',
-        body: formdata,
-        redirect: 'follow'
-      }
-
-      const promise = fetch(
-        'http://sunpowerconsole.com/cgi-bin/upload-ess-firmware',
-        requestOptions
-      )
-
-      return from(promise).pipe(
+    exhaustMap(({ payload }) =>
+      uploaderObservable({
+        url: 'http://sunpowerconsole.com/cgi-bin/upload-ess-firmware',
+        file: payload
+      }).pipe(
         map(response =>
-          response.status === 200
+          response.message === 'UPLOAD_COMPLETE'
             ? UPLOAD_EQS_FIRMWARE_SUCCESS()
-            : UPLOAD_EQS_FIRMWARE_ERROR(
-                eqsUpdateErrors.UPLOAD_EQS_FIRMWARE_ERROR
-              )
+            : UPLOAD_EQS_FIRMWARE_PROGRESS(response)
         ),
         catchError(err => {
           Sentry.captureException(new Error(err))
@@ -107,7 +96,7 @@ export const uploadEqsFwEpic = action$ => {
           )
         })
       )
-    })
+    )
   )
 }
 

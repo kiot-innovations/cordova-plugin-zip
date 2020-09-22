@@ -244,3 +244,17 @@ storiesOf('ESSHealthCheck Page', module)
       />
     </div>
   ))
+  .add('When errors on status request', () => (
+    <div className="full-min-height pl-10 pr-10">
+      <ESSHealthCheck
+        error={{
+          response: {
+            body: {
+              result: 'Make sure you have run discovery successful completion'
+            }
+          }
+        }}
+        {...actions}
+      />
+    </div>
+  ))
