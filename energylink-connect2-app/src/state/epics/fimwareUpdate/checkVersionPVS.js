@@ -10,7 +10,7 @@ import {
   FIRMWARE_UPDATE_INIT
 } from 'state/actions/firmwareUpdate'
 import { PVS_CONNECTION_SUCCESS } from 'state/actions/network'
-import { path } from 'ramda'
+import { path, pathOr } from 'ramda'
 
 export const getFirmwareUrlFromState = path([
   'value',
@@ -24,10 +24,8 @@ const checkIfNeedToUpdatePVSToLatestVersion = async url => {
     const { version: serverVersion } = getFirmwareVersionData(url)
     const info = await sendCommandToPVS('GetSupervisorInformation')
     const PVSversion = getPVSVersionNumber(info) || '-1'
-    const model = path(['supervisor', 'MODEL'], info) || ''
-    const shouldUpdate = model.startsWith('PVS5')
-      ? false
-      : serverVersion > PVSversion
+    const model = pathOr('', ['supervisor', 'MODEL'], info)
+    const shouldUpdate = !model.startsWith('PVS5') && serverVersion > PVSversion
     return { shouldUpdate, PVSversion }
   } catch (e) {
     return { shouldUpdate: false }
