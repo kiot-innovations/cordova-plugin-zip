@@ -168,7 +168,7 @@ export const downloadLuaFilesInitEpic = action$ =>
                     )
                   : PVS_DECOMPRESS_LUA_FILES_INIT()
               )
-            : of(PVS_FIRMWARE_DOWNLOAD_ERROR("The lua zip file doesn't exist"))
+            : of(PVS_FIRMWARE_DOWNLOAD_ERROR('LUA_ZIP_FILE_NOT_EXIST'))
         })
       )
     })

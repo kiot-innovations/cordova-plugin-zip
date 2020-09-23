@@ -1,13 +1,29 @@
 import React, { useEffect } from 'react'
 import { pathOr } from 'ramda'
-import { useSelector, useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
+
 import { Loader } from 'components/Loader'
 import { useI18n } from 'shared/i18n'
 import { capitalize, either, isError } from 'shared/utils'
 import { FIRMWARE_UPDATE_ERROR } from 'state/actions/firmwareUpdate'
 import paths from 'routes/paths'
+import useTimer from 'hooks/useTimer'
+
 import './UpdateScreen.scss'
+
+const WaitForConnection = () => {
+  const [formattedTime] = useTimer(100, true)
+  const t = useI18n()
+  return (
+    <>
+      <span className="has-text-white is-size-4">
+        {t('WAITING_FOR_NETWORK', formattedTime)}
+      </span>
+      <span className="has-text-white is-size-6">{t('TIME_LEFT')}</span>
+    </>
+  )
+}
 
 const UpdateScreen = () => {
   const t = useI18n()
@@ -22,7 +38,6 @@ const UpdateScreen = () => {
   const { fwFileInfo } = useSelector(({ fileDownloader }) => ({
     fwFileInfo: fileDownloader.fileInfo
   }))
-
   const isDownloadingFirmware =
     firmwareDownload.downloading &&
     fwFileInfo.name === firmwareDownload.fileName
@@ -54,7 +69,9 @@ const UpdateScreen = () => {
           null,
           <>
             {either(
-              (status !== 'UPLOADING_FS' && !errorUpdating) ||
+              (status !== 'UPLOADING_FS' &&
+                !errorUpdating &&
+                status !== 'WAITING_FOR_NETWORK') ||
                 (isDownloadingFirmware && !errorUpdating),
 
               <span className="has-text-white is-size-1">
@@ -84,7 +101,6 @@ const UpdateScreen = () => {
                   </button>
                 </div>
               </>,
-
               <>
                 {either(
                   isDownloadingFirmware,
@@ -94,9 +110,13 @@ const UpdateScreen = () => {
                       {t('DOWNLOADING_FIRMWARE')}
                     </span>
                   </div>,
-                  <span className="has-text-white">
-                    {capitalize(t(status))}
-                  </span>
+                  either(
+                    status === 'WAITING_FOR_NETWORK',
+                    <WaitForConnection />,
+                    <span className="has-text-white">
+                      {capitalize(t(status))}
+                    </span>
+                  )
                 )}
               </>
             )}

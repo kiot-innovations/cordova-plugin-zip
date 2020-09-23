@@ -39,7 +39,6 @@ const fileTransferObservable = (
         )
         xhr.setRequestHeader('Cache-Control', 'max-age=0')
         xhr.setRequestHeader('expires', '0')
-        xhr.setRequestHeader('expires', 'Tue, 01 Jan 1980 1:00:00 GMT')
         xhr.setRequestHeader('pragma', 'no-cache')
         if (accessToken)
           xhr.setRequestHeader('Authorization', `Bearer ${accessToken}`)
@@ -72,12 +71,14 @@ const fileTransferObservable = (
                 fileWritter.onwrite = function() {
                   subscriber.next({
                     step: 'WRITING_FILE',
-                    progress: ((written / blob.size) * 100).toFixed(0)
+                    progress: ((written / blob.size) * 100).toFixed(0),
+                    total: fileSize
                   })
                   if (written < blob.size) writeNext(cbFinish)
                   else cbFinish()
                 }
               }
+
               writeNext(() => {
                 subscriber.next({
                   total: fileSize,
