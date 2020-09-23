@@ -6,7 +6,8 @@ import {
   pathOr,
   multiply,
   filter,
-  propEq
+  propEq,
+  reject
 } from 'ramda'
 import { ofType } from 'redux-observable'
 import { from, of, timer } from 'rxjs'
@@ -22,10 +23,14 @@ import {
 
 const transformDevice = device => ({
   sn: device.SERIAL,
-  power: multiply(1000, device.p_3phsum_kw || 0)
+  power: multiply(1000, device.p_3phsum_kw || 0),
+  state: device.STATE
 })
 
+const isUnclaimed = device => device.state === 'discovered'
+
 const getData = compose(
+  reject(isUnclaimed),
   mapRamda(transformDevice),
   filter(propEq('DEVICE_TYPE', 'Inverter')),
   pathOr([], ['body', 'devices'])
