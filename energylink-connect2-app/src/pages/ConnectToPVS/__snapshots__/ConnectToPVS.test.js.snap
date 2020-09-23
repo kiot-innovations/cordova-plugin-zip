@@ -94,7 +94,6 @@ exports[`Connect to PVS page render correctly 1`] = `
             fullScreen={false}
             marginTop={0}
             onChange={[Function]}
-            open={false}
             overflowHeight={0}
             overlay={true}
             scrollTopAtClose={true}
