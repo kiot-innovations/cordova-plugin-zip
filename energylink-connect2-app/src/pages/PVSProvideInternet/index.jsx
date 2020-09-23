@@ -61,7 +61,7 @@ const PVSProvideInternet = () => {
         } else {
           // Do a standard MI discovery if site doesn't contain legacy devices.
           dispatch(PUSH_CANDIDATES_INIT(serialNumbers))
-          history.push(paths.PROTECTED.DEVICES.path)
+          history.push(paths.PROTECTED.RMA_MI_DISCOVERY.path)
         }
       }
     } else {

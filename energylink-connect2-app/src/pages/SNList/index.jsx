@@ -92,7 +92,7 @@ function SNList() {
     toggleSerialNumbersModal()
     dispatch(UPDATE_MI_COUNT(serialNumbers.length))
     dispatch(PUSH_CANDIDATES_INIT(snList))
-    history.push(paths.PROTECTED.RMA_MI_DISCOVERY.path)
+    history.push(paths.PROTECTED.DEVICES.path)
   }
 
   const serialNumbersModalTemplate = text => {
@@ -192,7 +192,7 @@ function SNList() {
       toggleSerialNumbersModal()
     } else {
       submitSN()
-      history.push(paths.PROTECTED.RMA_MI_DISCOVERY.path)
+      history.push(paths.PROTECTED.DEVICES.path)
     }
   }
 
