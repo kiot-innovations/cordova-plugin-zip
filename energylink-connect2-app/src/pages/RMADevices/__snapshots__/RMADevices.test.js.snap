@@ -93,11 +93,6 @@ exports[`RMA devices component render correctly 1`] = `
               <div
                 className="collapsible-content expanded"
               >
-                <DrawMicroinverters
-                  MiSelected={Object {}}
-                  microinverters={Array []}
-                  toggleCheckbox={[Function]}
-                />
                 <div
                   className="buttons-container"
                 >

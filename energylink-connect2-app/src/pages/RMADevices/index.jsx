@@ -10,6 +10,7 @@ import {
   pathOr,
   prop,
   propEq,
+  propOr,
   reject
 } from 'ramda'
 import { useDispatch, useSelector } from 'react-redux'
@@ -20,27 +21,6 @@ import { GET_ESS_STATUS_INIT, GET_PREDISCOVERY } from 'state/actions/storage'
 import { useI18n } from 'shared/i18n'
 
 import './RMADevices.scss'
-
-const DrawMicroinverters = ({ microinverters, MiSelected, toggleCheckbox }) =>
-  map(inverter => {
-    const serial = prop('SERIAL', inverter)
-    const isChecked = has(serial, MiSelected)
-    return (
-      <label
-        className="has-text-weight-bold has-text-white pb-10 pt-10 "
-        key={serial}
-      >
-        <input
-          type="checkbox"
-          value={serial}
-          checked={isChecked}
-          onChange={() => toggleCheckbox(serial)}
-          className="mr-10"
-        />
-        {serial}
-      </label>
-    )
-  }, microinverters)
 
 const DrawStorage = ({ devices }) =>
   map(essDevice => {
@@ -69,15 +49,13 @@ const DrawOtherDevices = ({ devices }) =>
 function RMADevices() {
   const dispatch = useDispatch()
   const t = useI18n()
+  const [MiSelected, setSelectedMi] = useState({})
   const devicesData = useSelector(pathOr([], ['devices', 'found']))
-  const essData = useSelector(
+  const essDevices = useSelector(
     pathOr([], ['storage', 'prediscovery', 'pre_discovery_report', 'devices'])
   )
-
-  const [inverters, setInverters] = useState([])
-  const [essDevices, setESSDevices] = useState([])
-  const [otherDevices, setOtherDevices] = useState([])
-  const [MiSelected, setSelectedMi] = useState({})
+  const microInverters = filter(propEq('Inverter', 'DEVICE_TYPE'), devicesData)
+  const otherDevices = reject(propEq('Inverter', 'DEVICE_TYPE'), devicesData)
 
   const toggleCheckbox = id =>
     compose(setSelectedMi, ifElse(has(id), dissoc(id), assoc(id)))(MiSelected)
@@ -85,7 +63,7 @@ function RMADevices() {
   const selectAllMi = () => {
     let newMiSelected = {}
 
-    inverters.forEach(inverter => {
+    microInverters.forEach(inverter => {
       const serial = prop('SERIAL', inverter)
       newMiSelected = assoc(serial, serial, newMiSelected)
     })
@@ -98,14 +76,25 @@ function RMADevices() {
     dispatch(GET_ESS_STATUS_INIT())
   }, [dispatch])
 
-  useEffect(() => {
-    const inverters = filter(propEq('Inverter', 'DEVICE_TYPE'), devicesData)
-    const otherData = reject(propEq('Inverter', 'DEVICE_TYPE'), devicesData)
-
-    setInverters(inverters)
-    setESSDevices(essData)
-    setOtherDevices(otherData)
-  }, [devicesData, essData])
+  const renderMicroinverter = inverter => {
+    const serial = propOr('', 'SERIAL', inverter)
+    const isChecked = has(serial, MiSelected)
+    return (
+      <label
+        className="has-text-weight-bold has-text-white pb-10 pt-10 "
+        key={serial}
+      >
+        <input
+          type="checkbox"
+          value={serial}
+          checked={isChecked}
+          onChange={() => toggleCheckbox(serial)}
+          className="mr-10"
+        />
+        {serial}
+      </label>
+    )
+  }
 
   return (
     <main className="full-height pl-10 pr-10 rma-devices-screen">
@@ -116,11 +105,7 @@ function RMADevices() {
         </span>
       </div>
       <Collapsible title={t('MICROINVERTERS')} expanded>
-        <DrawMicroinverters
-          microinverters={inverters}
-          MiSelected={MiSelected}
-          toggleCheckbox={toggleCheckbox}
-        />
+        {map(renderMicroinverter, microInverters)}
         <div className="buttons-container">
           <button
             onClick={selectAllMi}

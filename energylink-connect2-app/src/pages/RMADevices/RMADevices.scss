@@ -26,22 +26,24 @@
     }
   }
 
- .buttons-container{
-   display: flex;
-   align-items: center;
-   justify-content: space-between;
+  .buttons-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 
-   .button-transparent {
-     background: transparent;
-     border: none;
-     color: $sun;
-   }
+    .button-transparent {
+      background: transparent;
+      border: none;
+      color: $sun;
+    }
+  }
 
- }
-  .storage-button{
+  .storage-button {
     display: flex;
   }
-  .other-components{
-display: flex;flex-direction: column;
+
+  .other-components {
+    display: flex;
+    flex-direction: column;
   }
 }
