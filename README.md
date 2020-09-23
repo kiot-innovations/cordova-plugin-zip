@@ -82,3 +82,6 @@ git push origin X.Y.Z
 - Has One Site Assocciated
 - username: spwr_dev_partner_pro@outlook.com
 - password: ThisisIt01
+
+# Example of how to decrypt the env files
+openssl aes-256-cbc -d -a -salt -in .env.enc.dev -out dr-wong-develop

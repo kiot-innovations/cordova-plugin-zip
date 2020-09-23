@@ -81,11 +81,12 @@ export const downloadPVSFirmware = action$ =>
         getFileSystemFromLuaFile(fileURL),
         shouldRetry
       ).pipe(
-        map(({ progress, total }) =>
+        map(({ progress, total, step }) =>
           progress
             ? PVS_FIRMWARE_DOWNLOAD_PROGRESS({
                 progress,
-                size: (total / 1000000).toFixed(2)
+                size: (total / 1000000).toFixed(2),
+                step
               })
             : PVS_FIRMWARE_REPORT_SUCCESS(`firmware/${pvsFileSystemName}`)
         ),
@@ -167,7 +168,7 @@ export const downloadLuaFilesInitEpic = action$ =>
                     )
                   : PVS_DECOMPRESS_LUA_FILES_INIT()
               )
-            : of(PVS_FIRMWARE_DOWNLOAD_ERROR("The lua zip file doesn't exist"))
+            : of(PVS_FIRMWARE_DOWNLOAD_ERROR('LUA_ZIP_FILE_NOT_EXIST'))
         })
       )
     })

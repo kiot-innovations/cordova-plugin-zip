@@ -51,6 +51,11 @@ jobs:
           NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
         working-directory: energylink-connect2-app
 
+      - run: npm run validate-env-files
+        env:
+          CM2_ENVFILE_PASSWORD: ${{ secrets.ENVFILE_PASSWORD }}
+        working-directory: energylink-connect2-app
+
       - run: npm run test
         env:
           CI: 1
@@ -83,7 +88,9 @@ jobs:
         run: bundle install --jobs 4 --retry 3
 
       - name: Install NPM packages
-        run: npm install
+        run: |
+          git config --global url."https://${{ secrets.ACCESS_TOKEN }}@github.com/".insteadOf ssh://git@github.com/
+          npm install
 
       #
       # iOS Application
@@ -146,7 +153,7 @@ jobs:
                 "color": "good",
                 "fields": [{
                     "title": "Revision",
-                    "value": "${{ env.BRANCH_NAME }}",
+                    "value": "<https://sunpowercorp.atlassian.net/issues/?jql=labels%20%3D%20%22${{ env.BRANCH_NAME }}%22|${{ env.BRANCH_NAME }}>",
                     "short": true
                   },
                   {

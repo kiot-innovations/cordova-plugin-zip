@@ -47,68 +47,76 @@ exports[`Firmwares component render correctly 1`] = `
           >
             FIRMWARE
           </h1>
-          <Collapsible
-            actions={null}
-            expanded={true}
+          <FileCollapsible
+            downloadFile={[Function]}
+            error=""
+            isDownloading={false}
+            progress={0}
+            step="INITIALIZING"
           >
-            <div
-              className="collapsible"
+            <Collapsible
+              actions={null}
+              expanded={true}
+              title=""
             >
               <div
-                className="collapsible-header"
+                className="collapsible"
               >
                 <div
-                  className="collapsible-title"
-                >
-                  <span />
-                  <span
-                    className="has-text-weight-bold"
-                  >
-                    COLLAPSIBLE TITLE
-                  </span>
-                </div>
-                <div
-                  className="collapsible-actions"
-                />
-                <div
-                  className="collapsible-trigger"
+                  className="collapsible-header"
                 >
                   <div
-                    className="chevron down"
-                    onClick={[Function]}
+                    className="collapsible-title"
                   >
+                    <span />
                     <span
-                      className="sp-chevron-up"
+                      className="has-text-weight-bold"
                     />
                   </div>
+                  <div
+                    className="collapsible-actions"
+                  />
+                  <div
+                    className="collapsible-trigger"
+                  >
+                    <div
+                      className="chevron down"
+                      onClick={[Function]}
+                    >
+                      <span
+                        className="sp-chevron-up"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div
+                  className="collapsible-content expanded"
+                >
+                  <section
+                    className="mt-20 mb-10"
+                  >
+                    <p
+                      className="mb-5"
+                    >
+                      <span
+                        className="mr-10 has-text-white has-text-weight-bold"
+                      >
+                        100
+                        %
+                      </span>
+                      NOT_DOWNLOADED
+                      <span
+                        className="is-pulled-right has-text-white has-text-weight-bold"
+                      >
+                        10
+                         MB
+                      </span>
+                    </p>
+                  </section>
                 </div>
               </div>
-              <div
-                className="collapsible-content expanded"
-              >
-                <section
-                  className="mt-20 mb-10"
-                >
-                  <p
-                    className="mb-5"
-                  >
-                    <span
-                      className="mr-10 has-text-white has-text-weight-bold"
-                    >
-                      0
-                      %
-                    </span>
-                    NOT_DOWNLOADED
-                    <span
-                      className="is-pulled-right has-text-white has-text-weight-bold"
-                    >
-                      MB
-                    </span>
-                  </p>
-                </section>
-              </div>
-            </div>
-          </Collapsible>
+            </Collapsible>
+          </FileCollapsible>
           <Separator>
             <div
               className="mt-20"
@@ -181,14 +189,20 @@ exports[`Firmwares component render correctly 1`] = `
               className="mt-20"
             />
           </Separator>
-          <EssCollapsible>
-            <Collapsible
-              actions={
-                <span
-                  className="is-size-4 sp-download"
-                  onClick={[Function]}
-                />
+          <FileCollapsible
+            downloadFile={[Function]}
+            error={null}
+            fileName="STORAGE_FW_FILE"
+            isDownloaded={
+              Object {
+                "name": "test file name",
               }
+            }
+            isDownloading={false}
+            step="INITIALIZING"
+          >
+            <Collapsible
+              actions={null}
               expanded={true}
               title="STORAGE_FW_FILE"
             >
@@ -210,12 +224,7 @@ exports[`Firmwares component render correctly 1`] = `
                   </div>
                   <div
                     className="collapsible-actions"
-                  >
-                    <span
-                      className="is-size-4 sp-download"
-                      onClick={[Function]}
-                    />
-                  </div>
+                  />
                   <div
                     className="collapsible-trigger"
                   >
@@ -233,33 +242,30 @@ exports[`Firmwares component render correctly 1`] = `
                   className="collapsible-content expanded"
                 >
                   <section
-                    className="mt-20 mb-20"
+                    className="mt-20 mb-10"
                   >
                     <p
                       className="mb-5"
                     >
-                      <EssFirmwareStatus
-                        error={null}
-                        file={
-                          Object {
-                            "name": "test file name",
-                          }
-                        }
-                        isDownloading={false}
+                      <span
+                        className="mr-10 has-text-white has-text-weight-bold"
                       >
-                        <div>
-                          <span>
-                            100% 
-                            DOWNLOADED
-                          </span>
-                        </div>
-                      </EssFirmwareStatus>
+                        100
+                        %
+                      </span>
+                      DOWNLOADED
+                      <span
+                        className="is-pulled-right has-text-white has-text-weight-bold"
+                      >
+                        10
+                         MB
+                      </span>
                     </p>
                   </section>
                 </div>
               </div>
             </Collapsible>
-          </EssCollapsible>
+          </FileCollapsible>
         </section>
       </Firmwares>
     </Provider>

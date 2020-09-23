@@ -87,16 +87,16 @@ Object {
                   className="is-flex level"
                 >
                   <Link
-                    className="button is-primary is-uppercase mt-20 is-fullwidth mr-5"
+                    className="button is-primary is-outlined is-uppercase mt-20 is-fullwidth mr-5"
                     to="/ess-device-mapping-error-list"
                   >
                     <LinkAnchor
-                      className="button is-primary is-uppercase mt-20 is-fullwidth mr-5"
+                      className="button is-primary is-outlined is-uppercase mt-20 is-fullwidth mr-5"
                       href="/ess-device-mapping-error-list"
                       navigate={[Function]}
                     >
                       <a
-                        className="button is-primary is-uppercase mt-20 is-fullwidth mr-5"
+                        className="button is-primary is-outlined is-uppercase mt-20 is-fullwidth mr-5"
                         href="/ess-device-mapping-error-list"
                         onClick={[Function]}
                       >
@@ -105,7 +105,7 @@ Object {
                     </LinkAnchor>
                   </Link>
                   <button
-                    className="button is-primary is-outlined is-uppercase mt-20 is-fullwidth ml-5"
+                    className="button is-primary is-uppercase mt-20 is-fullwidth ml-5"
                     onClick={[Function]}
                   >
                     RETRY

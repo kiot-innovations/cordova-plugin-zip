@@ -1,8 +1,8 @@
 import * as Sentry from '@sentry/browser'
 import { ofType } from 'redux-observable'
 import { from, of } from 'rxjs'
-import { catchError, exhaustMap, map } from 'rxjs/operators'
-import { compose, lensPath, multiply, over, path } from 'ramda'
+import { exhaustMap, map, catchError } from 'rxjs/operators'
+import { compose, lensPath, multiply, over, path, pathOr } from 'ramda'
 import { getApiPVS, storageSwaggerTag } from 'shared/api'
 import { START_DISCOVERY_ERROR, START_DISCOVERY_INIT } from 'state/actions/pvs'
 import { DISCOVER_COMPLETE, DISCOVER_ERROR } from 'state/actions/devices'
@@ -14,12 +14,23 @@ import {
   RUN_EQS_SYSTEMCHECK_SUCCESS
 } from 'state/actions/storage'
 import { roundDecimals } from 'shared/rounding'
+import { discoveryTypes } from 'state/reducers/devices'
 
-export const startHealthCheckEpic = action$ => {
+export const startHealthCheckEpic = (action$, state$) => {
   return action$.pipe(
     ofType(GET_ESS_STATUS_INIT.getType()),
-    exhaustMap(() => {
-      return of(START_DISCOVERY_INIT({ Device: 'allnomi' }))
+    map(() => {
+      const lastDiscovery = pathOr(
+        '',
+        ['value', 'pvs', 'lastDiscoveryType'],
+        state$
+      )
+      return lastDiscovery === discoveryTypes.LEGACY
+        ? RUN_EQS_SYSTEMCHECK()
+        : START_DISCOVERY_INIT({
+            Device: 'allnomi',
+            type: discoveryTypes.LEGACY
+          })
     })
   )
 }

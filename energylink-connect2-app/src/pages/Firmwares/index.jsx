@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect } from 'react'
 import moment from 'moment'
-import { pathOr, prop } from 'ramda'
+import { always, compose, pathOr, prop } from 'ramda'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { useI18n } from 'shared/i18n'
@@ -10,8 +10,7 @@ import { DOWNLOAD_META_INIT, DOWNLOAD_OS_INIT } from 'state/actions/ess'
 import { PVS_FIRMWARE_DOWNLOAD_INIT } from 'state/actions/fileDownloader'
 import { GRID_PROFILE_DOWNLOAD_INIT } from 'state/actions/gridProfileDownloader'
 import Collapsible from 'components/Collapsible'
-
-import EssCollapsible from './EssCollapsible'
+import FileCollapsible from 'components/FileCollapsible'
 
 export const getFileName = prop('displayName')
 export const getFileSize = prop('size')
@@ -41,6 +40,9 @@ function Firmwares() {
 
   const fwFileInfo = useSelector(pathOr('', ['fileDownloader', 'fileInfo']))
 
+  const essState = useSelector(prop('ess'))
+  const forceDownloadESS = compose(dispatch, DOWNLOAD_OS_INIT, always(true))
+
   const { gpError, gpLastModified, isDownloadingGridProfile } = useSelector(
     ({ fileDownloader }) => ({
       gpError: fileDownloader.gridProfileInfo.error,
@@ -66,41 +68,17 @@ function Firmwares() {
   return (
     <section className="is-flex tile is-vertical pt-0 pr-10 pl-10 full-height">
       <h1 className="has-text-centered is-uppercase pb-20">{t('FIRMWARE')}</h1>
-      <Collapsible
-        actions={either(
-          fwFileInfo.error,
-          <span className="is-size-4 sp-download" onClick={downloadFile} />
-        )}
-        title={getFileName(fwFileInfo)}
-        expanded
-      >
-        {either(
-          fwFileInfo.error,
-          <span>{t('FIRMWARE_ERROR_FOUND')}</span>,
-          <section className="mt-20 mb-10">
-            <p className="mb-5">
-              <span className="mr-10 has-text-white has-text-weight-bold">
-                {either(isDownloading, progress, fwFileInfo.exists ? 100 : 0)}%
-              </span>
-              {either(
-                isDownloading,
-                t('DOWNLOADING'),
-                fwFileInfo.exists ? t('DOWNLOADED') : t('NOT_DOWNLOADED')
-              )}
-              <span className="is-pulled-right has-text-white has-text-weight-bold">
-                {getFileSize(fwFileInfo)}MB
-              </span>
-            </p>
-            {isDownloading && (
-              <progress
-                className="progress is-tiny is-white"
-                value={progress}
-                max="100"
-              />
-            )}
-          </section>
-        )}
-      </Collapsible>
+      <FileCollapsible
+        fileName={getFileName(fwFileInfo)}
+        error={fwFileInfo.error}
+        downloadFile={downloadFile}
+        isDownloaded={fwFileInfo.exists}
+        isDownloading={isDownloading}
+        step={fwFileInfo.step}
+        size={getFileSize(fwFileInfo)}
+        progress={progress}
+      />
+
       <Separator />
       <Collapsible
         title={t('GRID_PROFILES_PACKAGE')}
@@ -135,7 +113,16 @@ function Firmwares() {
         )}
       </Collapsible>
       <Separator />
-      <EssCollapsible />
+      <FileCollapsible
+        fileName="STORAGE_FW_FILE"
+        downloadFile={forceDownloadESS}
+        error={essState.error}
+        isDownloading={essState.isDownloading}
+        progress={essState.progress}
+        step={essState.step}
+        isDownloaded={essState.file}
+        size={essState.total}
+      />
     </section>
   )
 }

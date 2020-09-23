@@ -36,12 +36,6 @@ function MetersWidget() {
     { label: t('NOT_USED'), value: 'NOT_USED' }
   ]
 
-  useEffect(() => {
-    if (essValue !== '0') {
-      dispatch(SET_CONSUMPTION_CT('NET_CONSUMPTION_LOADSIDE'))
-    }
-  }, [dispatch, essValue])
-
   const PRODUCTION_METER_TYPES = [
     {
       label: t('NOT_USED'),
@@ -49,6 +43,13 @@ function MetersWidget() {
     },
     { label: t('GROSS_PRODUCTION_SITE'), value: 'GROSS_PRODUCTION_SITE' }
   ]
+
+  useEffect(() => {
+    if (essValue !== '0') {
+      dispatch(SET_CONSUMPTION_CT('NET_CONSUMPTION_LOADSIDE'))
+      dispatch(SET_PRODUCTION_CT('GROSS_PRODUCTION_SITE'))
+    }
+  }, [dispatch, essValue])
 
   return (
     <div className="pb-15">
@@ -65,10 +66,14 @@ function MetersWidget() {
                 <SelectField
                   isSearchable={false}
                   useDefaultDropDown
+                  disabled={essValue !== '0'}
                   onSelect={compose(dispatch, SET_PRODUCTION_CT, prop('value'))}
                   options={PRODUCTION_METER_TYPES}
                   defaultValue={find(
-                    propEq('value', productionCT),
+                    propEq(
+                      'value',
+                      essValue === '0' ? productionCT : 'GROSS_PRODUCTION_SITE'
+                    ),
                     PRODUCTION_METER_TYPES
                   )}
                 />
