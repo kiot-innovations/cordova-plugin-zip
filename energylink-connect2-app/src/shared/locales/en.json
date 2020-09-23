@@ -498,5 +498,8 @@
   "UPDATE_TITLE": "Update Notice - v{0}",
   "DOWNLOAD_CONNECTED_TO_PVS": "A new version of the firmware exists. Please disconnect your phone from the PVS to download the latest version. If you choose to continue without disconnecting, the download may take several minutes.",
   "INVENTORY_STORAGE_ONLY": "No microinverters on inventory, do you want to proceed to storage configuration?",
-  "INVENTORY_CONFIG_ONLY": "No inventory selected, do you want to proceed to system configuration?"
+  "INVENTORY_CONFIG_ONLY": "No inventory selected, do you want to proceed to system configuration?",
+  "RMA_MI_ERROR": "{0} Microinverters not found",
+  "RMA_MI_ERROR_SINGLE": "One microinverter was not found",
+  "RMA_MI_ERROR_CONTINUE": "Press continue to proceed only with found microinverters"
 }

@@ -45,6 +45,7 @@ import PvsSelection from 'pages/PvsSelection'
 import ExistingDevices from 'pages/ExistingDevices'
 import RMAInventory from 'pages/RMAInventory'
 import RMASnList from 'pages/RMASnList'
+import RMAMiDiscovery from 'pages/RMAMiDiscovery'
 
 import { validateSession } from 'state/actions/auth'
 import { updateBodyHeight } from 'shared/utils'
@@ -89,6 +90,7 @@ const mapComponents = {
   [paths.PROTECTED.ESS_HEALTH_CHECK.path]: ESSHealthCheck,
   [paths.PROTECTED.ESS_HEALTH_CHECK_ERRORS.path]: ESSHealthCheckErrors,
   [paths.PROTECTED.RMA_EXISTING_DEVICES.path]: ExistingDevices,
+  [paths.PROTECTED.RMA_MI_DISCOVERY.path]: RMAMiDiscovery,
   [paths.UNPROTECTED.FORGOT_PASSWORD.path]: NotFound,
   [paths.UNPROTECTED.GET_ASSISTANCE.path]: NotFound,
   [paths.UNPROTECTED.LOGIN.path]: Login
