@@ -1,0 +1,96 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`File Collapsible component renders correctly complete 1`] = `
+<Collapsible
+  actions={null}
+  expanded={true}
+  title="test fileName"
+>
+  <section
+    className="mt-20 mb-10"
+  >
+    <p
+      className="mb-5"
+    >
+      <span
+        className="mr-10 has-text-white has-text-weight-bold"
+      >
+        100
+        %
+      </span>
+      DOWNLOADED
+      <span
+        className="is-pulled-right has-text-white has-text-weight-bold"
+      >
+        40
+         MB
+      </span>
+    </p>
+  </section>
+</Collapsible>
+`;
+
+exports[`File Collapsible component renders correctly while downloading 1`] = `
+<Collapsible
+  actions={null}
+  expanded={true}
+  title="test fileName"
+>
+  <section
+    className="mt-20 mb-10"
+  >
+    <p
+      className="mb-5"
+    >
+      <span
+        className="mr-10 has-text-white has-text-weight-bold"
+      >
+        80
+        %
+      </span>
+      DOWNLOADING
+      <span
+        className="is-pulled-right has-text-white has-text-weight-bold"
+      >
+        40
+         MB
+      </span>
+    </p>
+    <progress
+      className="progress is-tiny is-white"
+      max="100"
+      value={80}
+    />
+  </section>
+</Collapsible>
+`;
+
+exports[`File Collapsible component renders correctly with no props 1`] = `
+<Collapsible
+  actions={null}
+  expanded={true}
+  title=""
+>
+  <section
+    className="mt-20 mb-10"
+  >
+    <p
+      className="mb-5"
+    >
+      <span
+        className="mr-10 has-text-white has-text-weight-bold"
+      >
+        100
+        %
+      </span>
+      NOT_DOWNLOADED
+      <span
+        className="is-pulled-right has-text-white has-text-weight-bold"
+      >
+        10
+         MB
+      </span>
+    </p>
+  </section>
+</Collapsible>
+`;
