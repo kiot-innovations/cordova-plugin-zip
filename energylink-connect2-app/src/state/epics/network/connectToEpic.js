@@ -1,8 +1,24 @@
+import * as Sentry from '@sentry/browser'
 import allSettled from 'promise.allsettled'
-import { compose, find, isEmpty, isNil, pathOr, propEq, test } from 'ramda'
+import {
+  compose,
+  find,
+  isEmpty,
+  isNil,
+  pathOr,
+  propEq,
+  test,
+  always
+} from 'ramda'
 import { ofType } from 'redux-observable'
 import { EMPTY, from, of, timer } from 'rxjs'
-import { catchError, exhaustMap, map, takeUntil } from 'rxjs/operators'
+import {
+  catchError,
+  exhaustMap,
+  map,
+  takeUntil,
+  delayWhen
+} from 'rxjs/operators'
 
 import { getApiPVS } from 'shared/api'
 import { translate } from 'shared/i18n'
@@ -13,7 +29,9 @@ import {
   PVS_CONNECTION_INIT,
   PVS_CONNECTION_SUCCESS,
   STOP_NETWORK_POLLING,
-  WAIT_FOR_SWAGGER
+  WAIT_FOR_SWAGGER,
+  PVS_TIMEOUT_FOR_CONNECTION,
+  SHOW_MANUAL_INSTRUCTIONS
 } from 'state/actions/network'
 
 const WPA = 'WPA'
@@ -116,5 +134,17 @@ export const waitForSwaggerEpic = (action$, state$) => {
     )
   )
 }
+
+export const pvsTimeoutForConnectionEpic = action$ =>
+  action$.pipe(
+    ofType(PVS_TIMEOUT_FOR_CONNECTION.getType()),
+    map(always(90 * 1000)),
+    delayWhen(timer),
+    map(SHOW_MANUAL_INSTRUCTIONS),
+    catchError(error => {
+      Sentry.captureException(error)
+      return of(SHOW_MANUAL_INSTRUCTIONS())
+    })
+  )
 
 export default connectToEpic
