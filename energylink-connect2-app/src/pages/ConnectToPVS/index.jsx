@@ -1,15 +1,17 @@
 import React, { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
-import { length, compose, not, isEmpty, isNil, path, equals } from 'ramda'
+import { length, compose, isEmpty, isNil, path, equals } from 'ramda'
 import SwipeableBottomSheet from 'react-swipeable-bottom-sheet'
 import { useI18n } from 'shared/i18n'
 import { decodeQRData, scanBarcodes } from 'shared/scanning'
-import { isAndroid10, generateSSID, generatePassword } from 'shared/utils'
+import { generateSSID, generatePassword } from 'shared/utils'
 import { rmaModes } from 'state/reducers/rma'
 import {
   PVS_CONNECTION_INIT,
-  STOP_NETWORK_POLLING
+  STOP_NETWORK_POLLING,
+  PVS_TIMEOUT_FOR_CONNECTION,
+  HIDE_MANUAL_INSTRUCTIONS
 } from 'state/actions/network'
 import { SAVE_PVS_SN } from 'state/actions/pvs'
 import { Loader } from 'components/Loader'
@@ -50,7 +52,6 @@ function ConnectToPVS() {
   const rmaPVSSelectedSN = useSelector(path(['rma', 'pvs']))
   const rmaMode = useSelector(path(['rma', 'rmaMode']))
   const [manualEntry, showManualEntry] = useState(false)
-  const [manualInstructions, showManualInstructions] = useState(false)
   const [serialNumber, setSerialNumber] = useState('')
   const [started, setStarted] = useState(false)
 
@@ -60,8 +61,8 @@ function ConnectToPVS() {
   }
 
   useEffect(() => {
-    if (connectionState.connecting && !manualEntry) checkAndroidVersion()
-  }, [connectionState.connecting, manualEntry])
+    if (connectionState.connecting) dispatch(PVS_TIMEOUT_FOR_CONNECTION())
+  }, [connectionState.connecting, dispatch])
 
   useEffect(() => {
     if (
@@ -82,19 +83,12 @@ function ConnectToPVS() {
     }
   }, [connectionState.connected, connectionState.connecting, dispatch, history])
 
-  const checkAndroidVersion = () => {
-    if (isAndroid10()) {
-      showManualInstructions(true)
-    }
-  }
-
   const manualConnect = () => {
     showManualEntry(false)
     const ssid = generateSSID(serialNumber)
     const password = generatePassword(serialNumber)
     dispatch(SAVE_PVS_SN(serialNumber))
     dispatch(PVS_CONNECTION_INIT({ ssid, password }))
-    checkAndroidVersion()
   }
 
   const copyPasswordToClipboard = () => {
@@ -104,7 +98,7 @@ function ConnectToPVS() {
 
   const abortConnection = () => {
     dispatch(STOP_NETWORK_POLLING())
-    showManualInstructions(false)
+    dispatch(HIDE_MANUAL_INSTRUCTIONS())
   }
 
   const getBarcode = () => {
@@ -154,8 +148,8 @@ function ConnectToPVS() {
 
       <SwipeableBottomSheet
         shadowTip={false}
-        open={manualInstructions}
-        onChange={compose(showManualInstructions, not)}
+        open={connectionState.showManualInstructions}
+        onChange={compose(dispatch, HIDE_MANUAL_INSTRUCTIONS)}
       >
         <div className="manual-instructions is-flex">
           <span className="has-text-weight-bold has-text-white mb-10">
