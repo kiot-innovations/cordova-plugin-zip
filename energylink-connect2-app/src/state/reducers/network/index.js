@@ -6,13 +6,16 @@ import {
   PVS_CONNECTION_ERROR,
   PVS_CLEAR_ERROR,
   RESET_PVS_CONNECTION,
-  STOP_NETWORK_POLLING
+  STOP_NETWORK_POLLING,
+  SHOW_MANUAL_INSTRUCTIONS,
+  HIDE_MANUAL_INSTRUCTIONS
 } from '../../actions/network'
 
 const initialState = {
   connected: false,
   connecting: false,
   connectionCanceled: false,
+  showManualInstructions: false,
   err: '',
   SSID: '',
   password: ''
@@ -27,6 +30,7 @@ export const networkReducer = createReducer(
         password: password,
         connecting: true,
         connected: false,
+        showManualInstructions: false,
         err: ''
       }
 
@@ -45,6 +49,7 @@ export const networkReducer = createReducer(
       connected: true,
       connecting: false,
       connectionCanceled: false,
+      showManualInstructions: false,
       err: ''
     }),
     [PVS_CONNECTION_ERROR]: (state, payload) => ({
@@ -65,7 +70,15 @@ export const networkReducer = createReducer(
       connected: false,
       connectionCanceled: propOr(false, 'canceled', payload)
     }),
-    [RESET_PVS_CONNECTION]: () => initialState
+    [RESET_PVS_CONNECTION]: () => initialState,
+    [SHOW_MANUAL_INSTRUCTIONS]: state => ({
+      ...state,
+      showManualInstructions: true
+    }),
+    [HIDE_MANUAL_INSTRUCTIONS]: state => ({
+      ...state,
+      showManualInstructions: false
+    })
   },
   initialState
 )
