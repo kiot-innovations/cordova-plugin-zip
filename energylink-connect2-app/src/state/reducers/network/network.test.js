@@ -11,9 +11,20 @@ describe('Network Reducer', () => {
 
   it('populates the reducer state after PVS_CONNECTION_SUCCESS action is fired', () => {
     reducerTest(
-      { connected: false, connecting: false, err: '' },
+      {
+        connected: false,
+        connecting: false,
+        err: '',
+        showManualInstructions: false
+      },
       networkActions.PVS_CONNECTION_SUCCESS(),
-      { connected: true, connecting: false, err: '', connectionCanceled: false }
+      {
+        connected: true,
+        connecting: false,
+        err: '',
+        connectionCanceled: false,
+        showManualInstructions: false
+      }
     )
   })
 })
