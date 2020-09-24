@@ -1,6 +1,7 @@
 import { createAction } from 'redux-act'
 
 export const FIRMWARE_UPDATE_INIT = createAction('INIT FIRMWARE UPDATE')
+export const FIRMWARE_SHOW_MODAL = createAction('SHOW MODAL FIRMWARE UPDATE')
 export const RESET_FIRMWARE_UPDATE = createAction('RESET FIRMWARE UPDATE')
 export const FIRMWARE_UPDATE_POLL_INIT = createAction(
   'FIRMWARE UPDATE START POLLING'
