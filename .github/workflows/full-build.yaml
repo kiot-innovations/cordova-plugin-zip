@@ -28,6 +28,7 @@ on:
 jobs:
   build:
     runs-on: macos-10.15
+    timeout-minutes: 45
     strategy:
       matrix:
         app_env: [dev, test, training, prod]
