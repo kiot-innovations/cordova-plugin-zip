@@ -1,24 +1,24 @@
 import { createReducer } from 'redux-act'
 import { length, pathOr, propOr } from 'ramda'
 import {
+  CLAIM_DEVICES_COMPLETE,
+  CLAIM_DEVICES_ERROR,
+  CLAIM_DEVICES_INIT,
+  CLAIM_DEVICES_RESET,
+  CLAIM_DEVICES_UPDATE,
   DISCOVER_COMPLETE,
+  DISCOVER_ERROR,
   DISCOVER_INIT,
   DISCOVER_UPDATE,
-  DISCOVER_ERROR,
-  PUSH_CANDIDATES_INIT,
-  PUSH_CANDIDATES_ERROR,
-  FETCH_CANDIDATES_INIT,
-  FETCH_CANDIDATES_UPDATE,
   FETCH_CANDIDATES_COMPLETE,
   FETCH_CANDIDATES_ERROR,
-  CLAIM_DEVICES_INIT,
-  CLAIM_DEVICES_ERROR,
-  CLAIM_DEVICES_RESET,
-  RESET_DISCOVERY,
-  CLAIM_DEVICES_UPDATE,
-  CLAIM_DEVICES_COMPLETE,
-  FETCH_MODELS_SUCCESS,
+  FETCH_CANDIDATES_INIT,
+  FETCH_CANDIDATES_UPDATE,
   FETCH_MODELS_LOAD_DEFAULT,
+  FETCH_MODELS_SUCCESS,
+  PUSH_CANDIDATES_ERROR,
+  PUSH_CANDIDATES_INIT,
+  RESET_DISCOVERY,
   UPDATE_DEVICES_LIST
 } from 'state/actions/devices'
 
@@ -119,16 +119,17 @@ export default createReducer(
       claimedDevices: initialState.claimedDevices,
       claimError: initialState.claimError
     }),
-    [RESET_DISCOVERY]: () => ({
-      ...initialState
+    [RESET_DISCOVERY]: state => ({
+      ...initialState,
+      miModels: state.miModels
     }),
-    [FETCH_MODELS_SUCCESS]: (state, payload) => ({
+    [FETCH_MODELS_SUCCESS]: (state, miModels) => ({
       ...state,
-      miModels: [...state.miModels, payload]
+      miModels
     }),
-    [FETCH_MODELS_LOAD_DEFAULT]: (state, payload) => ({
+    [FETCH_MODELS_LOAD_DEFAULT]: (state, miModels) => ({
       ...state,
-      miModels: [...state.miModels, payload]
+      miModels
     }),
     [UPDATE_DEVICES_LIST]: (state, payload) => ({
       ...state,
