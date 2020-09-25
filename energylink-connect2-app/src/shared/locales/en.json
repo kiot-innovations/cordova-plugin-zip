@@ -288,6 +288,7 @@
   "CLOSE": "Close",
   "CONNECTION_LOST": "Connection Lost",
   "RECONNECT": "Reconnect",
+  "RECONNECT0": "Please make sure your WIFI is On and your Mobile Data is Off",
   "RECONNECT1": "Tap on",
   "RECONNECT2": "to connect and continue on PVS SN:",
   "RECONNECT3": "Or tap on Exit site to abort and go to another site",
