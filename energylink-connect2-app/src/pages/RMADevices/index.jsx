@@ -4,7 +4,6 @@ import {
   compose,
   dissoc,
   filter,
-  flip,
   has,
   ifElse,
   map,
@@ -23,7 +22,7 @@ import { useI18n } from 'shared/i18n'
 
 import './RMADevices.scss'
 
-const renderMicroinverter = ({ inverter, toggleCheckbox, MiSelected }) => {
+const renderMicroinverter = (toggleCheckbox, MiSelected) => inverter => {
   const serial = propOr('', 'SERIAL', inverter)
   const isChecked = has(serial, MiSelected)
   return (
@@ -64,7 +63,6 @@ const renderOtherDevice = OtherDevice => {
     </div>
   )
 }
-const assocMicroInverter = flip(assoc('inverter'))
 
 function RMADevices() {
   const dispatch = useDispatch()
@@ -79,10 +77,7 @@ function RMADevices() {
 
   const toggleCheckbox = id =>
     compose(setSelectedMi, ifElse(has(id), dissoc(id), assoc(id)))(MiSelected)
-  const addPropsToMicroInverters = compose(
-    renderMicroinverter,
-    assocMicroInverter({ toggleCheckbox, MiSelected })
-  )
+
   const selectAllMi = () => {
     let newMiSelected = {}
 
@@ -108,7 +103,7 @@ function RMADevices() {
         </span>
       </div>
       <Collapsible title={t('MICROINVERTERS')} expanded>
-        {map(addPropsToMicroInverters, microInverters)}
+        {map(renderMicroinverter(toggleCheckbox, MiSelected), microInverters)}
         <div className="buttons-container">
           <button
             onClick={selectAllMi}
