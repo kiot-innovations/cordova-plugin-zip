@@ -55,6 +55,11 @@ const defaultMIModelsByType = {
     'SPR-A420-G-AC'
   ]
 }
+const getAllMiModelsFromResponse = reduce((acc, elem) => {
+  const { modelName, miType } = elem
+  if (miType === null) return acc
+  return assoc(miType, [...propOr([], miType, acc), modelName], acc)
+}, {})
 
 export const fetchModelsEpic = (action$, state$) => {
   return action$.pipe(
@@ -67,14 +72,9 @@ export const fetchModelsEpic = (action$, state$) => {
       return from(promise).pipe(
         map(moduleModels => {
           const models = pathOr([], ['body'], moduleModels)
-          const parseResponse = reduce((acc, elem) => {
-            const { modelName, miType } = elem
-            if (miType === null) return acc
-            return assoc(miType, [...propOr([], miType, acc), modelName], acc)
-          }, {})
           return isEmpty(models)
             ? FETCH_MODELS_ERROR(MIType)
-            : FETCH_MODELS_SUCCESS(parseResponse(models))
+            : FETCH_MODELS_SUCCESS(getAllMiModelsFromResponse(models))
         }),
         catchError(error => {
           Sentry.captureException(error)
