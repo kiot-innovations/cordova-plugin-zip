@@ -148,7 +148,7 @@ const firmwareWaitForWifi = (action$, state$) =>
       concat(
         of(STOP_NETWORK_POLLING()),
         of(FIRMWARE_UPDATE_WAITING_FOR_NETWORK()),
-        from(waitFor(1000 * 80)).pipe(
+        from(waitFor(1000 * 100)).pipe(
           map(() =>
             PVS_CONNECTION_INIT({
               ssid: state$.value.network.SSID,
