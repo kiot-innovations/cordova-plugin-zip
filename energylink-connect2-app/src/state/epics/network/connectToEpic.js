@@ -20,6 +20,9 @@ const WPA = 'WPA'
 const hasCode7 = test(/Code=7/)
 const isTimeout = test(/CONNECT_FAILED_TIMEOUT/)
 const isInvalidNetworkID = test(/INVALID_NETWORK_ID_TO_CONNECT/)
+const isNetworkUnavailable = test(/ERROR_REQUESTED_NETWORK_UNAVAILABLE/)
+const isInterrupted = test(/INTERPUT_EXCEPT_WHILE_CONNECTING/)
+const isWIFIDisabled = test(/WIFI_NOT_ENABLED/)
 const isWaitingForConnection = test(/WAITING_FOR_CONNECTION/)
 
 const connectToPVS = async (ssid, password) => {
@@ -29,7 +32,6 @@ const connectToPVS = async (ssid, password) => {
     } else {
       //looks like wifiwizard works like this in andrdoid
       // I don't know why (ET)
-      await window.WifiWizard2.getConnectedSSID()
       await window.WifiWizard2.connect(ssid, true, password, WPA, false)
     }
   } catch (err) {
@@ -60,6 +62,9 @@ const connectToEpic = (action$, state$) =>
           if (
             hasCode7(err) ||
             isInvalidNetworkID(err) ||
+            isNetworkUnavailable(err) ||
+            isInterrupted(err) ||
+            isWIFIDisabled(err) ||
             isTimeoutAndNotUpgrading
           ) {
             return of(STOP_NETWORK_POLLING({ canceled: true }))
