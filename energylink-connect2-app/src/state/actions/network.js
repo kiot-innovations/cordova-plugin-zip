@@ -21,3 +21,8 @@ export const clearPVSErr = () => {
     dispatch(PVS_CLEAR_ERROR())
   }
 }
+export const PVS_TIMEOUT_FOR_CONNECTION = createAction(
+  'PVS_TIMEOUT_FOR_CONNECTION'
+)
+export const SHOW_MANUAL_INSTRUCTIONS = createAction('SHOW_MANUAL_INSTRUCTIONS')
+export const HIDE_MANUAL_INSTRUCTIONS = createAction('HIDE_MANUAL_INSTRUCTIONS')
