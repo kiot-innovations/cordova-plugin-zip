@@ -1,16 +1,19 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import clsx from 'clsx'
 import { useHistory } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { groupBy, path, prop, propEq, find } from 'ramda'
+import { compose, find, groupBy, last, path, prop, propEq, split } from 'ramda'
 import SwipeableBottomSheet from 'react-swipeable-bottom-sheet'
 import { useI18n } from 'shared/i18n'
 import { SET_METADATA_INIT } from 'state/actions/pvs'
-import { CLAIM_DEVICES_RESET } from 'state/actions/devices'
+import { CLAIM_DEVICES_RESET, FETCH_MODELS_INIT } from 'state/actions/devices'
 import { filterInverters, miTypes } from 'shared/utils'
 import paths from 'routes/paths'
 import MiGroup from './MiGroup'
 import './ModelEdit.scss'
+
+const getDeviceType = compose(last, split('_'))
+
 const ModelEdit = () => {
   const t = useI18n()
   const history = useHistory()
@@ -49,15 +52,9 @@ const ModelEdit = () => {
     }
   }
 
-  const collapsibleElements = () => {
-    return Object.keys(groupedSerialNumbers).map((key, i) => (
-      <MiGroup
-        key={key}
-        title={miTypes[key]}
-        data={groupedSerialNumbers[key]}
-      />
-    ))
-  }
+  useEffect(() => {
+    dispatch(FETCH_MODELS_INIT())
+  }, [dispatch])
 
   useEffect(() => {
     if (setMetadataStatus === 'success') {
@@ -71,7 +68,7 @@ const ModelEdit = () => {
         )
       }
     }
-  })
+  }, [history, essValue.value, rmaPvs, setMetadataStatus])
 
   return (
     <div className="model-edit is-vertical has-text-centered pr-10 pl-10">
@@ -79,7 +76,16 @@ const ModelEdit = () => {
         {t('EDIT_MODELS')}
       </span>
 
-      <div className="model-container">{collapsibleElements()}</div>
+      <div className="model-container">
+        {Object.keys(groupedSerialNumbers).map(key => (
+          <MiGroup
+            key={key}
+            title={miTypes[key]}
+            data={groupedSerialNumbers[key]}
+            type={getDeviceType(key)}
+          />
+        ))}
+      </div>
       <div>
         <button
           className="button is-uppercase is-outlined is-primary has-text-primary mb-20 mr-10"

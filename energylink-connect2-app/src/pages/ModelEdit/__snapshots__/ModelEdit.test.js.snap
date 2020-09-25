@@ -75,6 +75,7 @@ Object {
                 }
                 key="AC_Module_Type_E"
                 title="Type E"
+                type="E"
               >
                 <Collapsible
                   title="Type E"
@@ -133,6 +134,10 @@ Object {
                                 "label": "SPR1234",
                                 "value": "SPR1234",
                               },
+                              Object {
+                                "label": "SPR5678",
+                                "value": "SPR5678",
+                              },
                             ]
                           }
                         >
@@ -158,6 +163,10 @@ Object {
                                 Object {
                                   "label": "SPR1234",
                                   "value": "SPR1234",
+                                },
+                                Object {
+                                  "label": "SPR5678",
+                                  "value": "SPR5678",
                                 },
                               ]
                             }
@@ -213,6 +222,10 @@ Object {
                                     "label": "SPR1234",
                                     "value": "SPR1234",
                                   },
+                                  Object {
+                                    "label": "SPR5678",
+                                    "value": "SPR5678",
+                                  },
                                 ]
                               }
                               pageSize={5}
@@ -246,6 +259,10 @@ Object {
                                     Object {
                                       "label": "SPR1234",
                                       "value": "SPR1234",
+                                    },
+                                    Object {
+                                      "label": "SPR5678",
+                                      "value": "SPR5678",
                                     },
                                   ]
                                 }
@@ -298,6 +315,10 @@ Object {
                                       Object {
                                         "label": "SPR1234",
                                         "value": "SPR1234",
+                                      },
+                                      Object {
+                                        "label": "SPR5678",
+                                        "value": "SPR5678",
                                       },
                                     ],
                                     "pageSize": 5,
@@ -384,6 +405,10 @@ Object {
                                             "label": "SPR1234",
                                             "value": "SPR1234",
                                           },
+                                          Object {
+                                            "label": "SPR5678",
+                                            "value": "SPR5678",
+                                          },
                                         ]
                                       }
                                       selectOption={[Function]}
@@ -435,6 +460,10 @@ Object {
                                             Object {
                                               "label": "SPR1234",
                                               "value": "SPR1234",
+                                            },
+                                            Object {
+                                              "label": "SPR5678",
+                                              "value": "SPR5678",
                                             },
                                           ],
                                           "pageSize": 5,
@@ -529,6 +558,10 @@ Object {
                                                   "label": "SPR1234",
                                                   "value": "SPR1234",
                                                 },
+                                                Object {
+                                                  "label": "SPR5678",
+                                                  "value": "SPR5678",
+                                                },
                                               ]
                                             }
                                             selectOption={[Function]}
@@ -580,6 +613,10 @@ Object {
                                                   Object {
                                                     "label": "SPR1234",
                                                     "value": "SPR1234",
+                                                  },
+                                                  Object {
+                                                    "label": "SPR5678",
+                                                    "value": "SPR5678",
                                                   },
                                                 ],
                                                 "pageSize": 5,
@@ -661,6 +698,10 @@ Object {
                                                         "label": "SPR1234",
                                                         "value": "SPR1234",
                                                       },
+                                                      Object {
+                                                        "label": "SPR5678",
+                                                        "value": "SPR5678",
+                                                      },
                                                     ]
                                                   }
                                                   selectOption={[Function]}
@@ -712,6 +753,10 @@ Object {
                                                         Object {
                                                           "label": "SPR1234",
                                                           "value": "SPR1234",
+                                                        },
+                                                        Object {
+                                                          "label": "SPR5678",
+                                                          "value": "SPR5678",
                                                         },
                                                       ],
                                                       "pageSize": 5,
@@ -841,6 +886,10 @@ Object {
                                                         Object {
                                                           "label": "SPR1234",
                                                           "value": "SPR1234",
+                                                        },
+                                                        Object {
+                                                          "label": "SPR5678",
+                                                          "value": "SPR5678",
                                                         },
                                                       ],
                                                       "pageSize": 5,
@@ -1008,6 +1057,10 @@ Object {
                                                   "label": "SPR1234",
                                                   "value": "SPR1234",
                                                 },
+                                                Object {
+                                                  "label": "SPR5678",
+                                                  "value": "SPR5678",
+                                                },
                                               ]
                                             }
                                             selectOption={[Function]}
@@ -1059,6 +1112,10 @@ Object {
                                                   Object {
                                                     "label": "SPR1234",
                                                     "value": "SPR1234",
+                                                  },
+                                                  Object {
+                                                    "label": "SPR5678",
+                                                    "value": "SPR5678",
                                                   },
                                                 ],
                                                 "pageSize": 5,
@@ -1135,6 +1192,10 @@ Object {
                                                         "label": "SPR1234",
                                                         "value": "SPR1234",
                                                       },
+                                                      Object {
+                                                        "label": "SPR5678",
+                                                        "value": "SPR5678",
+                                                      },
                                                     ]
                                                   }
                                                   selectOption={[Function]}
@@ -1186,6 +1247,10 @@ Object {
                                                         Object {
                                                           "label": "SPR1234",
                                                           "value": "SPR1234",
+                                                        },
+                                                        Object {
+                                                          "label": "SPR5678",
+                                                          "value": "SPR5678",
                                                         },
                                                       ],
                                                       "pageSize": 5,
@@ -1254,6 +1319,10 @@ Object {
                                                         "label": "SPR1234",
                                                         "value": "SPR1234",
                                                       },
+                                                      Object {
+                                                        "label": "SPR5678",
+                                                        "value": "SPR5678",
+                                                      },
                                                     ]
                                                   }
                                                   selectOption={[Function]}
@@ -1305,6 +1374,10 @@ Object {
                                                         Object {
                                                           "label": "SPR1234",
                                                           "value": "SPR1234",
+                                                        },
+                                                        Object {
+                                                          "label": "SPR5678",
+                                                          "value": "SPR5678",
                                                         },
                                                       ],
                                                       "pageSize": 5,
