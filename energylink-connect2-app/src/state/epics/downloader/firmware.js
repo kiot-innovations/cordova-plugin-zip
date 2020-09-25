@@ -25,7 +25,7 @@ import {
   getFirmwareVersionData,
   getFS,
   getLatestPVSFirmwareUrl,
-  getLuaFileSize
+  verifySHA256
 } from 'shared/fileSystem'
 import { getFileSystemFromLuaFile } from 'shared/PVSUtils'
 import { getFirmwareUrlFromState } from 'state/epics/fimwareUpdate/checkVersionPVS'
@@ -113,7 +113,7 @@ export const reportPVSDownloadSuccessEpic = action$ => {
   return action$.pipe(
     ofType(PVS_FIRMWARE_REPORT_SUCCESS.getType()),
     exhaustMap(({ payload }) =>
-      from(getLuaFileSize(payload)).pipe(
+      from(verifySHA256(payload)).pipe(
         map(({ lastModified, size }) =>
           PVS_FIRMWARE_DOWNLOAD_SUCCESS({
             lastModified,

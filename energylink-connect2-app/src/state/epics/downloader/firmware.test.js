@@ -89,7 +89,7 @@ describe('Epic firmware', () => {
     })
     it('should go from reportSuccess to actual sucess', function() {
       epicTest = epicTester(require('./firmware').reportPVSDownloadSuccessEpic)
-      fileSystem.getLuaFileSize = jest.fn(() =>
+      fileSystem.verifySHA256 = jest.fn(() =>
         of({
           lastModified: 1597608047172,
           size: 1000000

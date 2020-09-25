@@ -55,6 +55,12 @@ Object {
                     "device_fw_ver": "1.2.3",
                     "device_type": "MIDC",
                     "last_mapped": "2020-02-15 01:23:45",
+                    "serial_number": "00005",
+                  },
+                  Object {
+                    "device_fw_ver": "1.2.3",
+                    "device_type": "MIDC",
+                    "last_mapped": "2020-02-15 01:23:45",
                     "serial_number": "00002",
                   },
                   Object {
@@ -62,12 +68,6 @@ Object {
                     "device_type": "MIDC",
                     "last_mapped": "2020-02-15 01:23:45",
                     "serial_number": "00001",
-                  },
-                  Object {
-                    "device_fw_ver": "1.2.3",
-                    "device_type": "MIDC",
-                    "last_mapped": "2020-02-15 01:23:45",
-                    "serial_number": "00002",
                   },
                   Array [
                     Object {
@@ -94,27 +94,12 @@ Object {
                   <span
                     className="has-text-weight-bold is-size-5"
                   >
-                    00002
+                    00005
                   </span>
                 </div>
                 <div
                   className="rest-of-devices"
                 >
-                  <div
-                    className="mt-5 mb-5 is-flex child-device"
-                    key="00001"
-                  >
-                    <span
-                      className="has-text-white has-text-weight-bold"
-                    >
-                      MIDC
-                    </span>
-                    <span
-                      className="has-text-weight-bold"
-                    >
-                      00001
-                    </span>
-                  </div>
                   <div
                     className="mt-5 mb-5 is-flex child-device"
                     key="00002"
@@ -128,6 +113,21 @@ Object {
                       className="has-text-weight-bold"
                     >
                       00002
+                    </span>
+                  </div>
+                  <div
+                    className="mt-5 mb-5 is-flex child-device"
+                    key="00001"
+                  >
+                    <span
+                      className="has-text-white has-text-weight-bold"
+                    >
+                      MIDC
+                    </span>
+                    <span
+                      className="has-text-weight-bold"
+                    >
+                      00001
                     </span>
                   </div>
                   <div
@@ -174,40 +174,6 @@ Object {
                     className="has-text-weight-bold is-size-5"
                   >
                     00004
-                  </span>
-                </div>
-                <div
-                  className="rest-of-devices"
-                />
-              </div>
-            </DeviceMap>
-            <DeviceMap
-              deviceList={
-                Array [
-                  Object {
-                    "device_fw_ver": "1.2.3",
-                    "device_type": "MIDC",
-                    "last_mapped": "2020-02-15 01:23:45",
-                    "serial_number": "00005",
-                  },
-                ]
-              }
-            >
-              <div
-                className="device-map mb-10 mt-10"
-              >
-                <div
-                  className="head-device is-flex"
-                >
-                  <span
-                    className="has-text-white has-text-weight-bold is-size-5"
-                  >
-                    MIDC
-                  </span>
-                  <span
-                    className="has-text-weight-bold is-size-5"
-                  >
-                    00005
                   </span>
                 </div>
                 <div
