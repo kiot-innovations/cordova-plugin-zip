@@ -24,8 +24,8 @@ export const cdvfileToNativePath = (filePath = '') =>
       .catch(reject)
   })
 
-export const getMD5FromFile = (filePath = '') => {
-  return new Promise((resolve, reject) => {
+export const getSHA256FromFile = (filePath = '') =>
+  new Promise((resolve, reject) => {
     cdvfileToNativePath(filePath)
       .then(nativePath => {
         window.FileHash.sha256(
@@ -36,4 +36,3 @@ export const getMD5FromFile = (filePath = '') => {
       })
       .catch(reject)
   })
-}

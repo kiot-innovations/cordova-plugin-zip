@@ -1,6 +1,6 @@
 import { compose, defaultTo, head, join, last, slice, split } from 'ramda'
 import { flipConcat, PERSIST_DATA_PATH } from 'shared/utils'
-import { getMD5FromFile } from 'shared/cordovaMapping'
+import { getSHA256FromFile } from 'shared/cordovaMapping'
 
 export const ERROR_CODES = {
   NO_FILESYSTEM_FILE: 'no filesystem file',
@@ -208,7 +208,7 @@ export const verifySHA256 = async luaPath => {
   const expectedSHA = getSHA256FromLuaFile(
     (await readFile('luaFiles/fwup002.lua')) || ''
   )
-  const receivedSHA = await getMD5FromFile(luaPath)
+  const receivedSHA = await getSHA256FromFile(luaPath)
 
   if (receivedSHA === expectedSHA) {
     const { lastModified, size } = await getFileInfo(luaPath)
