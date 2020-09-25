@@ -154,108 +154,76 @@ exports[`RMA devices component render correctly 1`] = `
               <div
                 className="collapsible-content expanded"
               >
-                <DrawStorage
-                  devices={
-                    Array [
-                      Object {
-                        "device_fw_ver": "10600.386",
-                        "device_type": "STORAGE_INVERTER",
-                        "serial_number": "00001B3DDACD",
-                      },
-                      Object {
-                        "device_fw_ver": "0",
-                        "device_type": "BATTERY",
-                        "serial_number": "F2191700087033685504",
-                      },
-                      Object {
-                        "device_fw_ver": "v1.08.415",
-                        "device_type": "GATEWAY",
-                        "serial_number": "F21917000870",
-                      },
-                      Object {
-                        "device_fw_ver": "0.6.13",
-                        "device_type": "MIDC",
-                        "serial_number": "Serial-MIDC-Saturn",
-                      },
-                      Object {
-                        "device_fw_ver": "0.6.3",
-                        "device_type": "MIO",
-                        "serial_number": "Serial-MIO-Saturn",
-                      },
-                    ]
-                  }
+                <div
+                  key="00001B3DDACD"
                 >
-                  <div
-                    key="00001B3DDACD"
+                  <span
+                    className="has-text-weight-bold has-text-white"
                   >
-                    <span
-                      className="has-text-weight-bold has-text-white"
-                    >
-                      STORAGE_INVERTER
-                    </span>
-                    <span
-                      className="ml-10"
-                    >
-                      00001B3DDACD
-                    </span>
-                  </div>
-                  <div
-                    key="F2191700087033685504"
+                    STORAGE_INVERTER
+                  </span>
+                  <span
+                    className="ml-10"
                   >
-                    <span
-                      className="has-text-weight-bold has-text-white"
-                    >
-                      BATTERY
-                    </span>
-                    <span
-                      className="ml-10"
-                    >
-                      F2191700087033685504
-                    </span>
-                  </div>
-                  <div
-                    key="F21917000870"
+                    00001B3DDACD
+                  </span>
+                </div>
+                <div
+                  key="F2191700087033685504"
+                >
+                  <span
+                    className="has-text-weight-bold has-text-white"
                   >
-                    <span
-                      className="has-text-weight-bold has-text-white"
-                    >
-                      GATEWAY
-                    </span>
-                    <span
-                      className="ml-10"
-                    >
-                      F21917000870
-                    </span>
-                  </div>
-                  <div
-                    key="Serial-MIDC-Saturn"
+                    BATTERY
+                  </span>
+                  <span
+                    className="ml-10"
                   >
-                    <span
-                      className="has-text-weight-bold has-text-white"
-                    >
-                      MIDC
-                    </span>
-                    <span
-                      className="ml-10"
-                    >
-                      Serial-MIDC-Saturn
-                    </span>
-                  </div>
-                  <div
-                    key="Serial-MIO-Saturn"
+                    F2191700087033685504
+                  </span>
+                </div>
+                <div
+                  key="F21917000870"
+                >
+                  <span
+                    className="has-text-weight-bold has-text-white"
                   >
-                    <span
-                      className="has-text-weight-bold has-text-white"
-                    >
-                      MIO
-                    </span>
-                    <span
-                      className="ml-10"
-                    >
-                      Serial-MIO-Saturn
-                    </span>
-                  </div>
-                </DrawStorage>
+                    GATEWAY
+                  </span>
+                  <span
+                    className="ml-10"
+                  >
+                    F21917000870
+                  </span>
+                </div>
+                <div
+                  key="Serial-MIDC-Saturn"
+                >
+                  <span
+                    className="has-text-weight-bold has-text-white"
+                  >
+                    MIDC
+                  </span>
+                  <span
+                    className="ml-10"
+                  >
+                    Serial-MIDC-Saturn
+                  </span>
+                </div>
+                <div
+                  key="Serial-MIO-Saturn"
+                >
+                  <span
+                    className="has-text-weight-bold has-text-white"
+                  >
+                    MIO
+                  </span>
+                  <span
+                    className="ml-10"
+                  >
+                    Serial-MIO-Saturn
+                  </span>
+                </div>
                 <button
                   className="button is-paddingless has-text-primary button-transparent"
                 >
@@ -309,220 +277,76 @@ exports[`RMA devices component render correctly 1`] = `
                 <div
                   className="other-components"
                 >
-                  <DrawOtherDevices
-                    devices={
-                      Array [
-                        Object {
-                          "CURTIME": "2020,09,15,16,32,25",
-                          "DATATIME": "2020,09,15,16,32,23",
-                          "DETAIL": "detail",
-                          "DEVICE_TYPE": "PVS",
-                          "HWVER": "6.02",
-                          "MODEL": "PV Supervisor PVS6",
-                          "SERIAL": "ZT191585000549A0355",
-                          "STATE": "working",
-                          "STATEDESCR": "Working",
-                          "SWVER": "2020.9, Build 8126",
-                          "dl_comm_err": "0",
-                          "dl_cpu_load": "1.14",
-                          "dl_err_count": "0",
-                          "dl_flash_avail": "107329",
-                          "dl_mem_used": "51476",
-                          "dl_scan_time": "0",
-                          "dl_skipped_scans": "0",
-                          "dl_untransmitted": "0",
-                          "dl_uptime": "6235",
-                          "panid": 453726776,
-                        },
-                        Object {
-                          "CAL0": "50",
-                          "CURTIME": "2020,09,15,16,32,26",
-                          "DATATIME": "2020,09,15,16,32,25",
-                          "DESCR": "Power Meter PVS6M19150355p",
-                          "DEVICE_TYPE": "Power Meter",
-                          "ISDETAIL": true,
-                          "MODEL": "PVS6M0400p",
-                          "OPERATION": "noop",
-                          "PORT": "",
-                          "SERIAL": "PVS6M19150355p",
-                          "STATE": "working",
-                          "STATEDESCR": "Working",
-                          "SWVER": "3000",
-                          "TYPE": "PVS5-METER-P",
-                          "ct_scl_fctr": "50",
-                          "freq_hz": "0",
-                          "net_ltea_3phsum_kwh": "301.5777",
-                          "origin": "data_logger",
-                          "p_3phsum_kw": "0",
-                          "q_3phsum_kvar": "0",
-                          "s_3phsum_kva": "0",
-                          "tot_pf_rto": "1",
-                        },
-                        Object {
-                          "CAL0": "100",
-                          "CURTIME": "2020,09,15,16,32,26",
-                          "DATATIME": "2020,09,15,16,32,25",
-                          "DESCR": "Power Meter PVS6M19150355c",
-                          "DEVICE_TYPE": "Power Meter",
-                          "ISDETAIL": true,
-                          "MODEL": "PVS6M0400c",
-                          "OPERATION": "noop",
-                          "PORT": "",
-                          "SERIAL": "PVS6M19150355c",
-                          "STATE": "working",
-                          "STATEDESCR": "Working",
-                          "SWVER": "3000",
-                          "TYPE": "PVS5-METER-C",
-                          "ct_scl_fctr": "100",
-                          "freq_hz": "0",
-                          "i1_a": "0",
-                          "i2_a": "0",
-                          "neg_ltea_3phsum_kwh": "165.6923",
-                          "net_ltea_3phsum_kwh": "-25.2471",
-                          "origin": "data_logger",
-                          "p1_kw": "0",
-                          "p2_kw": "0",
-                          "p_3phsum_kw": "0",
-                          "pos_ltea_3phsum_kwh": "140.4451",
-                          "q_3phsum_kvar": "0",
-                          "s_3phsum_kva": "0",
-                          "tot_pf_rto": "0",
-                          "v12_v": "0",
-                          "v1n_v": "0",
-                          "v2n_v": "0",
-                        },
-                        Object {
-                          "CURTIME": "2020,09,15,16,32,26",
-                          "DATATIME": "2020,09,15,16,32,23",
-                          "DESCR": "Inverter E00121939001311",
-                          "DEVICE_TYPE": "Inverter",
-                          "ISDETAIL": true,
-                          "MODEL": "AC_Module_Type_E",
-                          "MOD_SN": "",
-                          "NMPLT_SKU": "",
-                          "OPERATION": "noop",
-                          "PANEL": "SPR-E19-320-E-AC",
-                          "PORT": "",
-                          "SERIAL": "E00121939001311",
-                          "STATE": "working",
-                          "STATEDESCR": "Working",
-                          "SWVER": "4.14.5",
-                          "TYPE": "SOLARBRIDGE",
-                          "freq_hz": "0",
-                          "i_3phsum_a": "0",
-                          "i_mppt1_a": "0.02",
-                          "ltea_3phsum_kwh": "0",
-                          "origin": "data_logger",
-                          "p_3phsum_kw": "0",
-                          "p_mppt1_kw": "0.001",
-                          "stat_ind": "0",
-                          "t_htsnk_degc": "27",
-                          "v_mppt1_v": "48.25",
-                          "vln_3phavg_v": "0",
-                        },
-                        Object {
-                          "CURTIME": "2020,09,15,16,32,26",
-                          "DATATIME": "2020,09,15,16,32,23",
-                          "DESCR": "Inverter E00121939002888",
-                          "DEVICE_TYPE": "Inverter",
-                          "ISDETAIL": true,
-                          "MODEL": "AC_Module_Type_E",
-                          "MOD_SN": "",
-                          "NMPLT_SKU": "",
-                          "OPERATION": "noop",
-                          "PANEL": "SPR-E19-320-E-AC",
-                          "PORT": "",
-                          "SERIAL": "E00121939002888",
-                          "STATE": "working",
-                          "STATEDESCR": "Working",
-                          "SWVER": "4.14.5",
-                          "TYPE": "SOLARBRIDGE",
-                          "freq_hz": "0",
-                          "i_3phsum_a": "0",
-                          "i_mppt1_a": "0.03",
-                          "ltea_3phsum_kwh": "0",
-                          "origin": "data_logger",
-                          "p_3phsum_kw": "0",
-                          "p_mppt1_kw": "0.0016",
-                          "stat_ind": "0",
-                          "t_htsnk_degc": "31",
-                          "v_mppt1_v": "48.2",
-                          "vln_3phavg_v": "0",
-                        },
-                      ]
-                    }
+                  <div
+                    key="ZT191585000549A0355"
                   >
-                    <div
-                      key="ZT191585000549A0355"
+                    <span
+                      className="has-text-weight-bold has-text-white"
                     >
-                      <span
-                        className="has-text-weight-bold has-text-white"
-                      >
-                        PV Supervisor PVS6
-                      </span>
-                      <span
-                        className="ml-10"
-                      >
-                        ZT191585000549A0355
-                      </span>
-                    </div>
-                    <div
-                      key="PVS6M19150355p"
+                      PV Supervisor PVS6
+                    </span>
+                    <span
+                      className="ml-10"
                     >
-                      <span
-                        className="has-text-weight-bold has-text-white"
-                      >
-                        PVS6M0400p
-                      </span>
-                      <span
-                        className="ml-10"
-                      >
-                        PVS6M19150355p
-                      </span>
-                    </div>
-                    <div
-                      key="PVS6M19150355c"
+                      ZT191585000549A0355
+                    </span>
+                  </div>
+                  <div
+                    key="PVS6M19150355p"
+                  >
+                    <span
+                      className="has-text-weight-bold has-text-white"
                     >
-                      <span
-                        className="has-text-weight-bold has-text-white"
-                      >
-                        PVS6M0400c
-                      </span>
-                      <span
-                        className="ml-10"
-                      >
-                        PVS6M19150355c
-                      </span>
-                    </div>
-                    <div
-                      key="E00121939001311"
+                      PVS6M0400p
+                    </span>
+                    <span
+                      className="ml-10"
                     >
-                      <span
-                        className="has-text-weight-bold has-text-white"
-                      >
-                        AC_Module_Type_E
-                      </span>
-                      <span
-                        className="ml-10"
-                      >
-                        E00121939001311
-                      </span>
-                    </div>
-                    <div
-                      key="E00121939002888"
+                      PVS6M19150355p
+                    </span>
+                  </div>
+                  <div
+                    key="PVS6M19150355c"
+                  >
+                    <span
+                      className="has-text-weight-bold has-text-white"
                     >
-                      <span
-                        className="has-text-weight-bold has-text-white"
-                      >
-                        AC_Module_Type_E
-                      </span>
-                      <span
-                        className="ml-10"
-                      >
-                        E00121939002888
-                      </span>
-                    </div>
-                  </DrawOtherDevices>
+                      PVS6M0400c
+                    </span>
+                    <span
+                      className="ml-10"
+                    >
+                      PVS6M19150355c
+                    </span>
+                  </div>
+                  <div
+                    key="E00121939001311"
+                  >
+                    <span
+                      className="has-text-weight-bold has-text-white"
+                    >
+                      AC_Module_Type_E
+                    </span>
+                    <span
+                      className="ml-10"
+                    >
+                      E00121939001311
+                    </span>
+                  </div>
+                  <div
+                    key="E00121939002888"
+                  >
+                    <span
+                      className="has-text-weight-bold has-text-white"
+                    >
+                      AC_Module_Type_E
+                    </span>
+                    <span
+                      className="ml-10"
+                    >
+                      E00121939002888
+                    </span>
+                  </div>
                 </div>
               </div>
             </div>

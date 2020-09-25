@@ -4,6 +4,7 @@ import {
   compose,
   dissoc,
   filter,
+  flip,
   has,
   ifElse,
   map,
@@ -22,29 +23,48 @@ import { useI18n } from 'shared/i18n'
 
 import './RMADevices.scss'
 
-const DrawStorage = ({ devices }) =>
-  map(essDevice => {
-    const type = prop('device_type', essDevice)
-    const serialNumber = prop('serial_number', essDevice)
-    return (
-      <div key={serialNumber}>
-        <span className="has-text-weight-bold has-text-white">{type}</span>
-        <span className="ml-10">{serialNumber}</span>
-      </div>
-    )
-  }, devices)
+const renderMicroinverter = ({ inverter, toggleCheckbox, MiSelected }) => {
+  const serial = propOr('', 'SERIAL', inverter)
+  const isChecked = has(serial, MiSelected)
+  return (
+    <label
+      className="has-text-weight-bold has-text-white pb-10 pt-10 "
+      key={serial}
+    >
+      <input
+        type="checkbox"
+        value={serial}
+        checked={isChecked}
+        onChange={() => toggleCheckbox(serial)}
+        className="mr-10"
+      />
+      {serial}
+    </label>
+  )
+}
 
-const DrawOtherDevices = ({ devices }) =>
-  map(OtherDevice => {
-    const model = prop('MODEL', OtherDevice)
-    const serial = prop('SERIAL', OtherDevice)
-    return (
-      <div key={serial}>
-        <span className="has-text-weight-bold has-text-white">{model}</span>
-        <span className="ml-10">{serial}</span>
-      </div>
-    )
-  }, devices)
+const renderStorage = essDevice => {
+  const type = prop('device_type', essDevice)
+  const serialNumber = prop('serial_number', essDevice)
+  return (
+    <div key={serialNumber}>
+      <span className="has-text-weight-bold has-text-white">{type}</span>
+      <span className="ml-10">{serialNumber}</span>
+    </div>
+  )
+}
+
+const renderOtherDevice = OtherDevice => {
+  const model = prop('MODEL', OtherDevice)
+  const serial = prop('SERIAL', OtherDevice)
+  return (
+    <div key={serial}>
+      <span className="has-text-weight-bold has-text-white">{model}</span>
+      <span className="ml-10">{serial}</span>
+    </div>
+  )
+}
+const assocMicroInverter = flip(assoc('inverter'))
 
 function RMADevices() {
   const dispatch = useDispatch()
@@ -59,7 +79,10 @@ function RMADevices() {
 
   const toggleCheckbox = id =>
     compose(setSelectedMi, ifElse(has(id), dissoc(id), assoc(id)))(MiSelected)
-
+  const addPropsToMicroInverters = compose(
+    renderMicroinverter,
+    assocMicroInverter({ toggleCheckbox, MiSelected })
+  )
   const selectAllMi = () => {
     let newMiSelected = {}
 
@@ -76,26 +99,6 @@ function RMADevices() {
     dispatch(GET_ESS_STATUS_INIT())
   }, [dispatch])
 
-  const renderMicroinverter = inverter => {
-    const serial = propOr('', 'SERIAL', inverter)
-    const isChecked = has(serial, MiSelected)
-    return (
-      <label
-        className="has-text-weight-bold has-text-white pb-10 pt-10 "
-        key={serial}
-      >
-        <input
-          type="checkbox"
-          value={serial}
-          checked={isChecked}
-          onChange={() => toggleCheckbox(serial)}
-          className="mr-10"
-        />
-        {serial}
-      </label>
-    )
-  }
-
   return (
     <main className="full-height pl-10 pr-10 rma-devices-screen">
       <div className="header mb-20">
@@ -105,7 +108,7 @@ function RMADevices() {
         </span>
       </div>
       <Collapsible title={t('MICROINVERTERS')} expanded>
-        {map(renderMicroinverter, microInverters)}
+        {map(addPropsToMicroInverters, microInverters)}
         <div className="buttons-container">
           <button
             onClick={selectAllMi}
@@ -123,7 +126,7 @@ function RMADevices() {
       </Collapsible>
       <div className="mt-10" />
       <Collapsible title="Storage Equipment" expanded>
-        <DrawStorage devices={essDevices} />
+        {map(renderStorage, essDevices)}
         <button className="button is-paddingless has-text-primary button-transparent">
           {t('ADD_REPLACE_EQUIPMENT')}
         </button>
@@ -131,7 +134,7 @@ function RMADevices() {
       <div className="mt-10" />
       <Collapsible title={t('OTHER_DEVICES')} expanded>
         <div className="other-components">
-          <DrawOtherDevices devices={otherDevices} />
+          {map(renderOtherDevice, otherDevices)}
         </div>
       </Collapsible>
     </main>
