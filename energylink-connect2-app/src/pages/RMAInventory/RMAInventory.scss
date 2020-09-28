@@ -17,24 +17,4 @@
     display: flex;
     justify-content: center;
   }
-
-  .checkbox {
-    grid-area: checkbox;
-    -webkit-appearance: none;
-    background-color: $black;
-    border: 1px solid $silver-sand2;
-    padding: 10px;
-    border-radius: 3px;
-    display: inline-block;
-    position: relative;
-
-    &:checked:after {
-      content: '\2713';
-      font-size: 20px;
-      position: absolute;
-      top: -4px;
-      left: 1px;
-      color: #99a1a7;
-    }
-  }
 }
