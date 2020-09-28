@@ -499,5 +499,6 @@
   "OK": "Ok",
   "FW_NEW_UPDATE_AVAILABLE": "New Firmware update is available",
   "FROM_FW_VERSION": "Current version: {0}",
-  "TO_FW_VERSION": "New Version: {0}"
+  "TO_FW_VERSION": "New Version: {0}",
+  "UPDATING_URL": "Checking file..."
 }
