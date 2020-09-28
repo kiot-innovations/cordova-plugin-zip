@@ -22,9 +22,9 @@ import { useI18n } from 'shared/i18n'
 
 import './RMADevices.scss'
 
-const renderMicroinverter = (toggleCheckbox, MiSelected) => inverter => {
+const renderMicroinverter = (toggleCheckbox, selectedMIs) => inverter => {
   const serial = propOr('', 'SERIAL', inverter)
-  const isChecked = has(serial, MiSelected)
+  const isChecked = has(serial, selectedMIs)
   return (
     <label
       className="has-text-weight-bold has-text-white pb-10 pt-10 "
@@ -65,9 +65,9 @@ const renderOtherDevice = OtherDevice => {
 }
 
 function RMADevices() {
-  const dispatch = useDispatch()
   const t = useI18n()
-  const [MiSelected, setSelectedMi] = useState({})
+  const dispatch = useDispatch()
+  const [selectedMIs, setSelectedMIs] = useState({})
   const devicesData = useSelector(pathOr([], ['devices', 'found']))
   const essDevices = useSelector(
     pathOr([], ['storage', 'prediscovery', 'pre_discovery_report', 'devices'])
@@ -76,7 +76,7 @@ function RMADevices() {
   const otherDevices = reject(propEq('Inverter', 'DEVICE_TYPE'), devicesData)
 
   const toggleCheckbox = id =>
-    compose(setSelectedMi, ifElse(has(id), dissoc(id), assoc(id)))(MiSelected)
+    compose(setSelectedMIs, ifElse(has(id), dissoc(id), assoc(id)))(selectedMIs)
 
   const selectAllMi = () => {
     let newMiSelected = {}
@@ -85,7 +85,7 @@ function RMADevices() {
       const serial = prop('SERIAL', inverter)
       newMiSelected = assoc(serial, serial, newMiSelected)
     })
-    setSelectedMi(newMiSelected)
+    setSelectedMIs(newMiSelected)
   }
 
   useEffect(() => {
@@ -103,7 +103,7 @@ function RMADevices() {
         </span>
       </div>
       <Collapsible title={t('MICROINVERTERS')} expanded>
-        {map(renderMicroinverter(toggleCheckbox, MiSelected), microInverters)}
+        {map(renderMicroinverter(toggleCheckbox, selectedMIs), microInverters)}
         <div className="buttons-container">
           <button
             onClick={selectAllMi}
@@ -112,7 +112,7 @@ function RMADevices() {
             {t('SELECT_ALL')}
           </button>
           <button
-            disabled={Object.values(MiSelected).length === 0}
+            disabled={Object.values(selectedMIs).length === 0}
             className="button is-paddingless has-text-primary button-transparent"
           >
             {t('REMOVE')}
