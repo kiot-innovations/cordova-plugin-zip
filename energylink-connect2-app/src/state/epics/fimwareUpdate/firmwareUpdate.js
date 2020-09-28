@@ -21,6 +21,7 @@ import {
 } from 'shared/webserver'
 
 import {
+  FIRMWARE_SHOW_MODAL,
   FIRMWARE_UPDATE_COMPLETE,
   FIRMWARE_UPDATE_ERROR,
   FIRMWARE_UPDATE_ERROR_NO_FILE,
@@ -41,6 +42,7 @@ import {
   PVS_FIRMWARE_DOWNLOAD_INIT,
   PVS_FIRMWARE_DOWNLOAD_SUCCESS
 } from 'state/actions/fileDownloader'
+import { SHOW_MODAL } from 'state/actions/modal'
 
 const getFirmwareFromState = path([
   'value',
@@ -52,6 +54,20 @@ async function uploadFirmwareToAdama() {
   await startWebserver()
   const fileUrl = await getFirmwareUpgradePackageURL()
   return await sendCommandToPVS(`StartFWUpgrade&url=${fileUrl}`)
+}
+
+export const firmwareShowModal = action$ => {
+  const t = translate()
+  return action$.pipe(
+    ofType(FIRMWARE_SHOW_MODAL.getType()),
+    map(({ payload }) =>
+      SHOW_MODAL({
+        title: t('ATTENTION'),
+        componentPath: './FirmwareUpdate.jsx',
+        componentProps: payload
+      })
+    )
+  )
 }
 
 /**
@@ -197,5 +213,6 @@ export default [
   firmwareWaitForWifi,
   firmwareUpdateSuccessEpic,
   firmwareDisconnectFromPVS,
-  initFirmwareDownload
+  initFirmwareDownload,
+  firmwareShowModal
 ]
