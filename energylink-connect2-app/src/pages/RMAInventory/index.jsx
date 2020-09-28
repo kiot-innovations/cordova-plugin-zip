@@ -136,7 +136,7 @@ const RMAInventory = () => {
                 id="other"
                 name="other"
                 onChange={handleCheckbox}
-                className="mr-10 checkbox"
+                className="mr-10 checkbox-dark"
                 defaultChecked={prop('other', rma)}
               />
               <label className="has-text-weight-bold" htmlFor="other">
