@@ -53,17 +53,6 @@ exports[`PVS connection successful component render correctly 1`] = `
           <span>
             INSTALL_SUBTITLE
           </span>
-          <span
-            className="has-text-white"
-          >
-            YOU_CAN
-             
-            <span
-              className="has-text-weight-bold"
-            >
-              TURN_OFF_SOLAR
-            </span>
-          </span>
           <button
             className="button is-primary is-uppercase is-center"
             onClick={[Function]}
@@ -71,16 +60,10 @@ exports[`PVS connection successful component render correctly 1`] = `
             CONFIGURE
           </button>
           <button
-            className="configure-button has-text-primary is-uppercase is-center has-text-weight-bold"
+            className="configure-button has-text-primary is-uppercase is-center has-text-weight-bold mb-20"
             onClick={[Function]}
           >
             NOT_NOW
-          </button>
-          <button
-            className="configure-button has-text-primary is-uppercase is-center has-text-weight-bold"
-            onClick={[Function]}
-          >
-            GO_PANEL_LAYOUT
           </button>
         </div>
       </InstallSuccessful>
