@@ -23,11 +23,11 @@ const getPercent = prop('PERCENT')
 
 export default createReducer(
   {
-    [FIRMWARE_UPDATE_INIT]: (state, { PVSversion }) => ({
+    [FIRMWARE_UPDATE_INIT]: (state, { PVSFromVersion }) => ({
       ...initialState,
       status: 'UPLOADING_FS',
       upgrading: true,
-      versionBeforeUpgrade: PVSversion
+      versionBeforeUpgrade: PVSFromVersion
     }),
     [FIRMWARE_UPDATE_POLLING]: (state, payload) => ({
       ...initialState,
