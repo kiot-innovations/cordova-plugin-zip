@@ -21,7 +21,7 @@
 on:
   push:
     tags:
-      - '*.*.0'
+      - '*.0'
 
 jobs:
   build:
