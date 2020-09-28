@@ -44,10 +44,6 @@ const InstallSuccessful = () => {
     history.push(paths.PROTECTED.SYSTEM_CONFIGURATION.path)
   }
 
-  const goToPanelLayoutTool = () => {
-    history.push(paths.PROTECTED.PANEL_LAYOUT_TOOL.path)
-  }
-
   return (
     <>
       {modal}
@@ -57,10 +53,6 @@ const InstallSuccessful = () => {
         </span>
         <span className="sp-pvs has-text-white " />
         <span>{t('INSTALL_SUBTITLE')}</span>
-        <span className="has-text-white">
-          {t('YOU_CAN')}&nbsp;
-          <span className="has-text-weight-bold">{t('TURN_OFF_SOLAR')}</span>
-        </span>
         <button
           onClick={goToConfigure}
           className="button is-primary is-uppercase is-center"
@@ -68,16 +60,10 @@ const InstallSuccessful = () => {
           {t('CONFIGURE')}
         </button>
         <button
-          className="configure-button has-text-primary is-uppercase is-center has-text-weight-bold"
+          className="configure-button has-text-primary is-uppercase is-center has-text-weight-bold mb-20"
           onClick={toggleModal}
         >
           {t('NOT_NOW')}
-        </button>
-        <button
-          className="configure-button has-text-primary is-uppercase is-center has-text-weight-bold"
-          onClick={goToPanelLayoutTool}
-        >
-          {t('GO_PANEL_LAYOUT')}
         </button>
       </div>
     </>
