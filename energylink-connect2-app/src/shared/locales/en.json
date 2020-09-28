@@ -499,5 +499,9 @@
   "DOWNLOAD_CONNECTED_TO_PVS": "A new version of the firmware exists. Please disconnect your phone from the PVS to download the latest version. If you choose to continue without disconnecting, the download may take several minutes.",
   "INVENTORY_STORAGE_ONLY": "No microinverters on inventory, do you want to proceed to storage configuration?",
   "INVENTORY_CONFIG_ONLY": "No inventory selected, do you want to proceed to system configuration?",
+  "OK": "Ok",
+  "FW_NEW_UPDATE_AVAILABLE": "New Firmware update is available",
+  "FROM_FW_VERSION": "Current version: {0}",
+  "TO_FW_VERSION": "New Version: {0}",
   "UPDATING_URL": "Checking file..."
 }
