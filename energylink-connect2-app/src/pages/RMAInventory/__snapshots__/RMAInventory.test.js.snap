@@ -540,7 +540,7 @@ exports[`RMAInventory renders correctly 1`] = `
                   className="collapsible-title"
                 >
                   <input
-                    className="mr-10 checkbox"
+                    className="mr-10 checkbox-dark"
                     defaultChecked={false}
                     id="other"
                     name="other"
