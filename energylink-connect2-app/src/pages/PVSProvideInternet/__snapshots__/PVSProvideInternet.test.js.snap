@@ -1543,7 +1543,7 @@ exports[`PVS Provide Internet page renders correctly 1`] = `
                         >
                           <input
                             checked={false}
-                            className="checkbox is-small ml-5 mr-5"
+                            className="checkbox-dark is-small ml-5 mr-5"
                             id="showPassword"
                             onChange={[Function]}
                             type="checkbox"

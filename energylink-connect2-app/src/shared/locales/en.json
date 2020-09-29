@@ -129,7 +129,7 @@
   "NEW_INVERTERS": "New Inverters",
   "EXISTING_INVERTERS": "Existing Inverters",
   "NOT_NOW": "Not now",
-  "INSTALL_SUCCESS": "PVS Installation Successful",
+  "INSTALL_SUCCESS": "Device association complete",
   "INSTALL_SUBTITLE": "Please take a photo of the module layout diagram before leaving the site.",
   "TURN_OFF_SOLAR": "turn off the solar breakers.",
   "YOU_CAN": "You can now",
@@ -162,6 +162,9 @@
   "ON": "Enabled",
   "OFF": "Disabled",
   "APPLY": "Apply",
+  "RMA_DEVICES": "Devices on this PVS",
+  "REMOVE": "Remove",
+  "ADD_REPLACE_EQUIPMENT": "Add or replace equipment",
   "DEVICES_NOT_FOUND": "There were some devices that were not found. Please check those devices before continuing.",
   "AP_CONNECTION_SUCCESS": "Connected to {0}",
   "AP_FETCHING": "Retrieving available Access Points...",
@@ -498,5 +501,10 @@
   "INVENTORY_CONFIG_ONLY": "No inventory selected, do you want to proceed to system configuration?",
   "RMA_MI_ERROR": "{0} Microinverters not found",
   "RMA_MI_ERROR_SINGLE": "One microinverter was not found",
-  "RMA_MI_ERROR_CONTINUE": "Press continue to proceed only with found microinverters"
+  "RMA_MI_ERROR_CONTINUE": "Press continue to proceed only with found microinverters",
+  "OK": "Ok",
+  "FW_NEW_UPDATE_AVAILABLE": "New Firmware update is available",
+  "FROM_FW_VERSION": "Current version: {0}",
+  "TO_FW_VERSION": "New Version: {0}",
+  "UPDATING_URL": "Checking file..."
 }

@@ -46,6 +46,7 @@ import ExistingDevices from 'pages/ExistingDevices'
 import RMAInventory from 'pages/RMAInventory'
 import RMASnList from 'pages/RMASnList'
 import RMAMiDiscovery from 'pages/RMAMiDiscovery'
+import RMADevices from 'pages/RMADevices'
 
 import { validateSession } from 'state/actions/auth'
 import { updateBodyHeight } from 'shared/utils'
@@ -93,6 +94,7 @@ const mapComponents = {
   [paths.PROTECTED.RMA_MI_DISCOVERY.path]: RMAMiDiscovery,
   [paths.UNPROTECTED.FORGOT_PASSWORD.path]: NotFound,
   [paths.UNPROTECTED.GET_ASSISTANCE.path]: NotFound,
+  [paths.PROTECTED.RMA_DEVICES.path]: RMADevices,
   [paths.UNPROTECTED.LOGIN.path]: Login
 }
 

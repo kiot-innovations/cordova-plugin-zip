@@ -69,11 +69,16 @@ function GridBehaviorWidget() {
 
   const filterProfiles =
     profiles && site
-      ? profiles.filter(
-          profile =>
-            site.postalCode >= pathOr(0, ['zipcodes', 0, 'min'], profile) &&
-            site.postalCode <= pathOr(0, ['zipcodes', 0, 'max'], profile)
-        )
+      ? profiles.filter(profile => {
+          if (profile.zipcodes.includes(site.postalCode)) {
+            return true
+          } else {
+            return (
+              site.postalCode >= pathOr(0, ['zipcodes', 0, 'min'], profile) &&
+              site.postalCode <= pathOr(0, ['zipcodes', 0, 'max'], profile)
+            )
+          }
+        })
       : []
 
   let defaultGridProfile = null
@@ -112,8 +117,8 @@ function GridBehaviorWidget() {
   }
 
   const lazyGridProfileOptions = [
-    { label: 'No', value: 0 },
-    { label: 'Yes', value: 1 }
+    { label: 'No', value: 1 },
+    { label: 'Yes', value: 0 }
   ]
 
   const gridVoltageOptions = [
