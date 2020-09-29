@@ -48,7 +48,7 @@ function ESSHealthCheckReport({ report }) {
 }
 
 const renderItem = item => (
-  <ESSHealthCheckReportItem key={item.serial_number} {...item} />
+  <ESSHealthCheckReportItem key={item.serial_number || 'NO_SN'} {...item} />
 )
 
 function ESSHealthCheckReportItem({
