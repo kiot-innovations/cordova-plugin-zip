@@ -9,7 +9,7 @@ export const loggedIn = user => {
     $last_name: lastName,
     $email: email,
     'User Name': email,
-    'Dealer Type': recordType // recordType.toLowerCase.charAt(0).toUpperCase()
+    'Dealer Type': recordType
   })
   mixpanel.track('Login', { Success: true })
 }
