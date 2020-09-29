@@ -115,7 +115,7 @@ function NetworkWidget({ hideWPSButton, expanded }) {
                 type="checkbox"
                 id="showPassword"
                 onChange={handleCheckbox}
-                className="checkbox is-small ml-5 mr-5"
+                className="checkbox-dark is-small ml-5 mr-5"
                 checked={showPassword}
               />
             </div>

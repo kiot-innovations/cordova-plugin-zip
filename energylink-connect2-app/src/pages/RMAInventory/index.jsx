@@ -73,12 +73,7 @@ const RMAInventory = () => {
   }
 
   const handleCancel = () => {
-    /**
-     * @todo
-     * Current Device List Page is not ready yet (CM2-757),
-     * so we redirect to homepage for now
-     */
-    history.push(paths.PROTECTED.BILL_OF_MATERIALS.path)
+    history.push(paths.PROTECTED.RMA_DEVICES.path)
   }
 
   return (
@@ -136,7 +131,7 @@ const RMAInventory = () => {
                 id="other"
                 name="other"
                 onChange={handleCheckbox}
-                className="mr-10 checkbox"
+                className="mr-10 checkbox-dark"
                 defaultChecked={prop('other', rma)}
               />
               <label className="has-text-weight-bold" htmlFor="other">
