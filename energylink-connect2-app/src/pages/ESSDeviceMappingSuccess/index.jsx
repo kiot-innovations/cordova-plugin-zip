@@ -73,7 +73,7 @@ function DeviceMappingSuccess() {
           text={'DEVICE_MAPPING_SUCCESS'}
         />,
         <ErrorDetected
-          number={length(mappingErrors)}
+          number={length(mappingErrors) - warningsLength(mappingErrors)}
           warnings={warningsLength(mappingErrors)}
           onRetry={retryMapping}
           url={paths.PROTECTED.ESS_DEVICE_MAPPING_ERROR_LIST.path}
