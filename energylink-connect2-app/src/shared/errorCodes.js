@@ -182,9 +182,18 @@ const errorCodes = [
       'This message is for informational purposes only. No action is required.'
   },
   {
+    code: '10009',
+    in_use: true,
+    error_description: 'Could not detect one or more batteries',
+    display: true,
+    possible_causes:
+      'We detected an odd number of batteries. We expect the system to have an even number of batteries',
+    recommended_actions:
+      'Please check that both batteries are turned on and that the ethernet cable connecting the batteries is properly placed. If the problem persists, please contact SunPower.'
+  },
+  {
     event_code: '11010',
     event_name: 'hubplus_under_temperature_warning',
-    code: '11010',
     in_use: true,
     error_description: 'Hub+ temperature too low',
     display: true,

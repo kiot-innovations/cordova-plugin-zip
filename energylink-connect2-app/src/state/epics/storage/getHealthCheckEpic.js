@@ -13,8 +13,8 @@ import {
   RUN_EQS_SYSTEMCHECK,
   RUN_EQS_SYSTEMCHECK_SUCCESS
 } from 'state/actions/storage'
-import { roundDecimals } from 'shared/rounding'
 import { discoveryTypes } from 'state/reducers/devices'
+import { roundDecimals } from 'shared/rounding'
 
 export const startHealthCheckEpic = (action$, state$) => {
   return action$.pipe(

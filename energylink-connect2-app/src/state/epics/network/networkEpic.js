@@ -33,21 +33,24 @@ export const networkPollingEpic = (action$, state$) => {
     switchMap(() =>
       timer(0, 1000).pipe(
         takeUntil(stopPolling$),
-        exhaustMap(() => from(fetchSSID(state.network.SSID))),
-        map(() => ({ type: 'DEVICE_IS_CONNECTED' })),
-        catchError(() =>
-          pathOr(
-            false,
-            ['value', 'fileDownloader', 'progress', 'downloading'],
-            state$
-          )
-            ? EMPTY
-            : of(
-                PVS_CONNECTION_INIT({
-                  ssid: state.network.SSID,
-                  password: state.network.password
-                })
+        exhaustMap(() =>
+          from(fetchSSID(state.network.SSID)).pipe(
+            map(() => ({ type: 'DEVICE_IS_CONNECTED' })),
+            catchError(() =>
+              pathOr(
+                false,
+                ['value', 'fileDownloader', 'progress', 'downloading'],
+                state$
               )
+                ? EMPTY
+                : of(
+                    PVS_CONNECTION_INIT({
+                      ssid: state.network.SSID,
+                      password: state.network.password
+                    })
+                  )
+            )
+          )
         )
       )
     )

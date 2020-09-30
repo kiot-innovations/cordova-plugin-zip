@@ -75,7 +75,8 @@ describe('MI Model Editing page', () => {
           CURTIME: '2020,04,20,22,17,23'
         }
       ],
-      miModels: { E: ['SPR1234', 'SPR5678'] }
+      miModels: { E: ['SPR1234', 'SPR5678'] },
+      fetchingDevices: false
     }
   }
 
