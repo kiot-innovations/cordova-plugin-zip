@@ -1,44 +1,16 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import clsx from 'clsx'
 import useModal from 'hooks/useModal'
 import { length, pathOr } from 'ramda'
-import { useDispatch, useSelector } from 'react-redux'
-import { useHistory } from 'react-router-dom'
 import { either, miTypes } from 'shared/utils'
 import { useI18n } from 'shared/i18n'
-import {
-  CLAIM_DEVICES_INIT,
-  FETCH_CANDIDATES_COMPLETE,
-  FETCH_CANDIDATES_INIT,
-  RESET_DISCOVERY,
-  FETCH_DEVICES_LIST
-} from 'state/actions/devices'
-import paths from 'routes/paths'
 import Collapsible from 'components/Collapsible'
-import ProgressIndicators from './ProgressIndicators'
-import './Devices.scss'
+import ProgressIndicators from 'pages/Devices/ProgressIndicators'
+import 'pages/Devices/Devices.scss'
 
 const microInverterIcon = (
   <span className="sp-inverter mr-20 devices-icon ml-0 mt-0 mb-0" />
 )
-
-const miStates = {
-  NEW: 'LOADING',
-  PINGING: 'LOADING',
-  PING_OK: 'LOADING',
-  PING_ERROR: 'ERROR',
-  GETTING_VERSION_INFORMATION: 'LOADING',
-  VERSION_INFORMATION_OK: 'LOADING',
-  VERSION_INFORMATION_ERROR: 'ERROR',
-  INVALID_SERIAL_NUMBER: 'ERROR',
-  GETTING_PLC_STATS: 'LOADING',
-  PLC_STATS_OK: 'LOADING',
-  PLC_STATS_ERROR: 'ERROR',
-  GETTING_PV_INFO: 'LOADING',
-  PV_INFO_OK: 'LOADING',
-  PV_INFO_ERROR: 'ERROR',
-  OK: 'MI_OK'
-}
 
 const miIndicators = {
   MI_OK: <span className="is-size-4 mr-10 sp-check has-text-white" />,
@@ -51,46 +23,6 @@ const miIndicators = {
     </div>
   )
 }
-const filterFoundMI = (SNList, candidatesList) => {
-  const okMI = []
-  const nonOkMI = []
-  const pendingMI = []
-  SNList.forEach(device => {
-    try {
-      let deviceCopy = device
-      const foundCandidate = candidatesList.find(
-        item => item.SERIAL === deviceCopy.serial_number
-      )
-      if (foundCandidate) {
-        deviceCopy = { ...deviceCopy, ...foundCandidate }
-        deviceCopy.indicator = miStates[deviceCopy.STATEDESCR]
-        if (deviceCopy.indicator === 'MI_OK') {
-          okMI.push(deviceCopy)
-        } else {
-          if (deviceCopy.indicator === 'LOADING') {
-            pendingMI.push(deviceCopy)
-          } else {
-            if (deviceCopy.indicator === 'ERROR') {
-              nonOkMI.push(deviceCopy)
-            }
-          }
-        }
-      } else {
-        deviceCopy.STATEDESCR = miStates.PINGING
-        deviceCopy.indicator = 'LOADING'
-        pendingMI.push(deviceCopy)
-      }
-    } catch (e) {
-      console.error('Filtering error', e)
-    }
-  })
-
-  return {
-    okMI,
-    nonOkMI,
-    pendingMI
-  }
-}
 
 const discoveryStatus = (
   error,
@@ -102,19 +34,40 @@ const discoveryStatus = (
   claimDevices,
   t,
   discoveryComplete,
-  retryDiscovery
+  retryDiscovery,
+  claimFoundMI
 ) => {
   if (expected === okMICount + errMICount && discoveryComplete) {
     if (errMICount > 0) {
       return (
         <>
-          <button
-            className="button is-primary is-uppercase is-paddingless ml-75 mr-75"
-            onClick={retryDiscovery}
-          >
-            {t('RETRY')}
-          </button>
-          <span className="has-text-weight-bold mt-20">{t('MI_ERRORS')}</span>
+          <div className="has-text-centered is-flex flex-column mb-10">
+            <span className="has-text-weight-bold has-text-white">
+              {errMICount > 1
+                ? t('RMA_MI_ERROR', errMICount)
+                : t('RMA_MI_ERROR_SINGLE')}
+            </span>
+            <span className="has-text-weight-bold">
+              {t('RMA_MI_ERROR_CONTINUE')}
+            </span>
+          </div>
+          <div className="inline-buttons">
+            <button
+              className="button is-primary is-uppercase is-outlined"
+              onClick={retryDiscovery}
+            >
+              {t('RETRY')}
+            </button>
+            <button
+              className={clsx('button is-primary is-uppercase', {
+                'is-loading': claimingDevices
+              })}
+              disabled={claimingDevices}
+              onClick={claimFoundMI}
+            >
+              {t('CONTINUE')}
+            </button>
+          </div>
         </>
       )
     }
@@ -139,48 +92,47 @@ const discoveryStatus = (
           <span className="has-text-weight-bold mb-20">
             {t('CLAIM_DEVICES_ERROR', claimError)}
           </span>
-          <div className="inline-buttons">
-            <button
-              className="button is-primary is-outlined is-uppercase is-paddingless ml-75 mr-75 mb-10"
-              disabled={claimingDevices}
-              onClick={retryDiscovery}
-            >
-              {t('ADD-DEVICES')}
-            </button>
-            <button
-              className={clsx('button is-primary is-uppercase ml-75 mr-75', {
-                'is-loading': claimingDevices
-              })}
-              disabled={claimingDevices}
-              onClick={claimDevices}
-            >
-              {t('CLAIM_DEVICES')}
-            </button>
-          </div>
+          <button
+            className="button is-primary is-outlined is-uppercase is-paddingless ml-75 mr-75 mb-10"
+            disabled={claimingDevices}
+            onClick={retryDiscovery}
+          >
+            {t('ADD-DEVICES')}
+          </button>
+          <button
+            className={clsx('button is-primary is-uppercase ml-75 mr-75', {
+              'is-loading': claimingDevices
+            })}
+            disabled={claimingDevices}
+            onClick={claimDevices}
+          >
+            {t('CLAIM_DEVICES')}
+          </button>
         </>
       )
     }
 
     return (
-      <div className="inline-buttons">
-        <button
-          className="button is-primary is-outlined is-uppercase is-paddingless ml-75 mr-75 mb-10"
-          disabled={claimingDevices}
-          onClick={retryDiscovery}
-        >
-          {t('ADD-DEVICES')}
-        </button>
-        <button
-          className={clsx(
-            'button is-primary is-uppercase is-paddingless ml-75 mr-75',
-            { 'is-loading': claimingDevices }
-          )}
-          disabled={claimingDevices}
-          onClick={claimDevices}
-        >
-          {t('CLAIM_DEVICES')}
-        </button>
-      </div>
+      <>
+        <div className="inline-buttons">
+          <button
+            className="button is-primary is-outlined is-uppercase"
+            disabled={claimingDevices}
+            onClick={retryDiscovery}
+          >
+            {t('ADD-DEVICES')}
+          </button>
+          <button
+            className={clsx('button is-primary is-uppercase', {
+              'is-loading': claimingDevices
+            })}
+            disabled={claimingDevices}
+            onClick={claimDevices}
+          >
+            {t('CLAIM_DEVICES')}
+          </button>
+        </div>
+      </>
     )
   } else {
     return error ? (
@@ -207,29 +159,21 @@ const miActions = (num = 0, max = 0, icon = '') => (
   </div>
 )
 
-function Devices() {
-  const dispatch = useDispatch()
-  const history = useHistory()
+function RMAMiDiscoveryUI({
+  claimingDevices,
+  claimError,
+  error,
+  progress,
+  discoveryComplete,
+  retryDiscovery,
+  claimDevices,
+  inverter,
+  okMICount,
+  errMICount,
+  expected,
+  claimFoundMI
+}) {
   const t = useI18n()
-
-  const { serialNumbers } = useSelector(state => state.pvs)
-
-  const {
-    candidates,
-    claimingDevices,
-    claimedDevices,
-    claimError,
-    error,
-    progress,
-    discoveryComplete
-  } = useSelector(state => state.devices)
-
-  const { okMI, nonOkMI, pendingMI } = filterFoundMI(serialNumbers, candidates)
-
-  const inverter = [...okMI, ...nonOkMI, ...pendingMI]
-  const expected = length(serialNumbers)
-  const okMICount = length(okMI)
-  const errMICount = length(nonOkMI)
 
   const [modalSN, setModalSN] = useState('')
   const [modalErrorMsg, setModalErrorMsg] = useState('PING_ERROR')
@@ -250,36 +194,6 @@ function Devices() {
     setModalSN(serialNumber)
     setModalErrorMsg(errorMsg)
     toggleModal()
-  }
-
-  useEffect(() => {
-    dispatch(FETCH_CANDIDATES_INIT())
-  }, [dispatch])
-
-  useEffect(() => {
-    if (expected === okMICount + errMICount) {
-      dispatch(FETCH_CANDIDATES_COMPLETE())
-    }
-  }, [errMICount, expected, okMICount, dispatch])
-
-  useEffect(() => {
-    if (claimedDevices) {
-      dispatch(FETCH_DEVICES_LIST())
-      history.push(paths.PROTECTED.MODEL_EDIT.path)
-    }
-  }, [claimedDevices, dispatch, history])
-
-  const retryDiscovery = () => {
-    dispatch(RESET_DISCOVERY())
-    history.push(paths.PROTECTED.SN_LIST.path)
-  }
-
-  const claimDevices = () => {
-    const claimObject = inverter.map(mi => {
-      mi.OPERATION = 'add'
-      return mi
-    })
-    dispatch(CLAIM_DEVICES_INIT(claimObject))
   }
 
   return (
@@ -322,7 +236,7 @@ function Devices() {
                     )}
                   </div>
                   <div
-                    className="is-flex mi-indicator"
+                    className="mi-indicator is-flex"
                     onClick={() =>
                       showMIStatusModal(elem.serial_number, elem.STATEDESCR)
                     }
@@ -346,10 +260,11 @@ function Devices() {
         claimDevices,
         t,
         discoveryComplete,
-        retryDiscovery
+        retryDiscovery,
+        claimFoundMI
       )}
     </div>
   )
 }
 
-export default Devices
+export default RMAMiDiscoveryUI
