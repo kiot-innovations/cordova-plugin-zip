@@ -43,8 +43,8 @@ const ManualEntryForm = ({ serialNumber, callback }) => {
         form.reset()
       }}
     >
-      <div className="field is-grouped is-grouped-centered">
-        <div className="control control-barcode">
+      <div className="is-flex file tile buttons-container">
+        <div className="ifield mr-10">
           <TextField
             input={fieldBarcode.input}
             meta={fieldBarcode.meta}
@@ -54,14 +54,13 @@ const ManualEntryForm = ({ serialNumber, callback }) => {
             placeholder={t('ENTER_SERIAL_MANUALLY')}
           />
         </div>
-        <div className="control control-add">
-          <button
-            className="has-text-primary has-text-weight-bold is-uppercase"
-            type="submit"
-          >
-            {isEmpty(serialNumber) ? t('ADD') : t('SAVE')}
-          </button>
-        </div>
+
+        <button
+          className="button is-paddingless has-text-primary has-text-weight-bold is-uppercase is-outlined button-transparent"
+          type="submit"
+        >
+          {isEmpty(serialNumber) ? t('ADD') : t('SAVE')}
+        </button>
       </div>
     </form>
   )

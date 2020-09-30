@@ -205,7 +205,7 @@
   "RETRY_CLICK": "Click to Retry",
   "MI_SN_LABEL": "MI Serial Number",
   "EDITING_MI_SN_LABEL": "Editing MI Serial Number",
-  "SN_FIELD_ERROR_REGEX": "It should contain only numbers and at least 12 digits ",
+  "SN_FIELD_ERROR_REGEX": "Enter a valid 12 number serial",
   "BACK_TO_SCAN": "Back to scan",
   "LEGACY_DISCOVERY": "Legacy discovery",
   "LEGACY_DISCOVERY_WARNING": "A legacy discovery takes longer to complete and can't be canceled. Do you want to continue?",
