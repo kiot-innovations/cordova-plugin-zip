@@ -1,14 +1,23 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
 import { useI18n } from 'shared/i18n'
 import appVersion from '../../macros/appVersion.macro'
 import Logo from '@sunpower/sunpowerimage'
+import { MENU_HIDE } from 'state/actions/ui'
 import paths from 'routes/paths'
 import './VersionInformation.scss'
 
 function VersionInformation() {
   const t = useI18n()
+  const history = useHistory()
+  const dispatch = useDispatch()
   const isTest = process.env.REACT_APP_IS_TEST || process.env.REACT_APP_IS_DEV
+
+  const goToDebug = () => {
+    dispatch(MENU_HIDE())
+    history.push(paths.PROTECTED.DEBUG_PAGE.path)
+  }
 
   return (
     <section className="version-info is-flex tile is-vertical has-text-weight-bold pt-0 pr-10 pl-10 full-height">
@@ -29,12 +38,12 @@ function VersionInformation() {
           <span className="is-size-4">{appVersion()}</span>
 
           {isTest && (
-            <Link
-              to={paths.PROTECTED.DEBUG_PAGE.path}
+            <button
+              onClick={goToDebug}
               className="button is-primary is-outlined mt-15"
             >
               {t('DEBUG_ROUTES')}
-            </Link>
+            </button>
           )}
         </div>
       </div>
