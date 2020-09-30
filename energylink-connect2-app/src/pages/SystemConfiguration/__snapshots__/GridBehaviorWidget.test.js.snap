@@ -3678,7 +3678,6 @@ exports[`GridBehaviorWidget renders correctly with grid voltage measured equals 
                         className="control"
                       >
                         <SelectField
-                          defaultValue={null}
                           isSearchable={false}
                           onSelect={[Function]}
                           options={
@@ -8628,12 +8627,6 @@ exports[`GridBehaviorWidget renders correctly with grid voltage measured equals 
                         className="control"
                       >
                         <SelectField
-                          defaultValue={
-                            Object {
-                              "label": "208",
-                              "value": 208,
-                            }
-                          }
                           isSearchable={false}
                           onSelect={[Function]}
                           options={
@@ -8668,12 +8661,7 @@ exports[`GridBehaviorWidget renders correctly with grid voltage measured equals 
                             }
                             defaultInputValue=""
                             defaultMenuIsOpen={false}
-                            defaultValue={
-                              Object {
-                                "label": "208",
-                                "value": 208,
-                              }
-                            }
+                            defaultValue={null}
                             hideSelectedOptions={true}
                             isSearchable={false}
                             noOptionsMessage={[Function]}
@@ -13600,12 +13588,6 @@ exports[`GridBehaviorWidget renders correctly with grid voltage measured equals 
                         className="control"
                       >
                         <SelectField
-                          defaultValue={
-                            Object {
-                              "label": "240",
-                              "value": 240,
-                            }
-                          }
                           isSearchable={false}
                           onSelect={[Function]}
                           options={
@@ -13640,12 +13622,7 @@ exports[`GridBehaviorWidget renders correctly with grid voltage measured equals 
                             }
                             defaultInputValue=""
                             defaultMenuIsOpen={false}
-                            defaultValue={
-                              Object {
-                                "label": "240",
-                                "value": 240,
-                              }
-                            }
+                            defaultValue={null}
                             hideSelectedOptions={true}
                             isSearchable={false}
                             noOptionsMessage={[Function]}
