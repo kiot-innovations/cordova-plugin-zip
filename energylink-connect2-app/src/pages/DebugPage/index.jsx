@@ -63,6 +63,11 @@ const DebugPage = () => {
           'RMA - New and existing Microinverters',
           paths.PROTECTED.RMA_SN_LIST.path
         )}
+        {renderDebugLink(
+          history,
+          'Standard Serial Number List',
+          paths.PROTECTED.SN_LIST.path
+        )}
       </div>
     </div>
   )
