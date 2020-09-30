@@ -2,7 +2,7 @@ import * as Sentry from '@sentry/browser'
 import { ofType } from 'redux-observable'
 import { from, of } from 'rxjs'
 import { exhaustMap, map, catchError } from 'rxjs/operators'
-import { path, pathOr } from 'ramda'
+import { find, path, pathOr, propEq } from 'ramda'
 import { getApiPVS, storageSwaggerTag } from 'shared/api'
 import { START_DISCOVERY_ERROR, START_DISCOVERY_INIT } from 'state/actions/pvs'
 import { DISCOVER_ERROR, DISCOVER_COMPLETE } from 'state/actions/devices'
@@ -13,6 +13,7 @@ import {
   RUN_EQS_SYSTEMCHECK_SUCCESS
 } from 'state/actions/storage'
 import { RUN_EQS_SYSTEMCHECK } from 'state/actions/storage'
+import { EMPTY_ACTION } from 'state/actions/share'
 import { discoveryTypes } from 'state/reducers/devices'
 
 export const startHealthCheckEpic = (action$, state$) => {
@@ -34,11 +35,13 @@ export const startHealthCheckEpic = (action$, state$) => {
   )
 }
 
-export const waitHealthCheckEpic = action$ => {
+export const waitHealthCheckEpic = (action$, state$) => {
   return action$.pipe(
     ofType(DISCOVER_COMPLETE.getType()),
-    exhaustMap(() => {
-      return of(RUN_EQS_SYSTEMCHECK())
+    map(() => {
+      const bom = pathOr({}, ['value', 'inventory', 'bom'], state$)
+      const storageValue = find(propEq('item', 'ESS'), bom)
+      return storageValue.value !== '0' ? RUN_EQS_SYSTEMCHECK() : EMPTY_ACTION()
     })
   )
 }

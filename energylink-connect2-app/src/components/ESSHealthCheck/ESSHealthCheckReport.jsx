@@ -1,54 +1,83 @@
 import React from 'react'
 import clsx from 'clsx'
 import moment from 'moment'
-import { map, keys, propOr, pathOr, is } from 'ramda'
+import { map, keys, propOr, pathOr, is, isEmpty } from 'ramda'
 import { useI18n } from 'shared/i18n'
+import { either } from 'shared/utils'
 
 function ESSHealthCheckReport({ report }) {
   const t = useI18n()
 
   return (
     <>
-      <section>
-        <h6 className="has-text-white has-text-weight-bold mb-10">
-          {t('SUNVAULT_STATE')}
-        </h6>
-        {map(renderItem, report.ess_state)}
-      </section>
+      {either(
+        !isEmpty(report.ess_state),
+        <section>
+          <h6 className="has-text-white has-text-weight-bold mb-10">
+            {t('SUNVAULT_STATE')}
+          </h6>
+          {map(renderItem, report.ess_state)}
+        </section>,
+        missingReport(t, 'SUNVAULT_STATE')
+      )}
 
-      <section>
-        <h6 className="has-text-white has-text-weight-bold mb-10 mt-10">
-          {t('BATTERIES')}
-        </h6>
-        {map(renderItem, report.battery_status)}
-      </section>
+      {either(
+        !isEmpty(report.battery_status),
+        <section>
+          <h6 className="has-text-white has-text-weight-bold mb-10 mt-10">
+            {t('BATTERIES')}
+          </h6>
+          {map(renderItem, report.battery_status)}
+        </section>,
+        missingReport(t, 'BATTERIES')
+      )}
 
-      <section>
-        <h6 className="has-text-white has-text-weight-bold mb-10">
-          {t('INVERTERS')}
-        </h6>
-        {map(renderItem, report.inverter_status)}
-      </section>
+      {either(
+        !isEmpty(report.inverter_status),
+        <section>
+          <h6 className="has-text-white has-text-weight-bold mb-10">
+            {t('INVERTERS')}
+          </h6>
+          {map(renderItem, report.inverter_status)}
+        </section>,
+        missingReport(t, 'INVERTERS')
+      )}
 
-      <section>
-        <h6 className="has-text-white has-text-weight-bold mb-10">
-          {t('HUB_PLUS')}
-        </h6>
-        {renderItem(report.hub_plus_status)}
-      </section>
+      {either(
+        !isEmpty(report.hub_plus_status),
+        <section>
+          <h6 className="has-text-white has-text-weight-bold mb-10">
+            {t('HUB_PLUS')}
+          </h6>
+          {renderItem(report.hub_plus_status)}
+        </section>,
+        missingReport(t, 'HUB_PLUS')
+      )}
 
-      <section>
-        <h6 className="has-text-white has-text-weight-bold mb-10">
-          {t('ALL_IN_ONE')}
-        </h6>
-        {map(renderItem, report.ess_status)}
-      </section>
+      {either(
+        !isEmpty(report.ess_status),
+        <section>
+          <h6 className="has-text-white has-text-weight-bold mb-10">
+            {t('ALL_IN_ONE')}
+          </h6>
+          {map(renderItem, report.ess_status)}
+        </section>,
+        missingReport(t, 'ALL_IN_ONE')
+      )}
     </>
   )
 }
 
 const renderItem = item => (
   <ESSHealthCheckReportItem key={item.serial_number || 'NO_SN'} {...item} />
+)
+
+const missingReport = (t, deviceName) => (
+  <div className="hc-missing-report has-text-centered is-flex mb-10 mt-10 pt-10 pb-10">
+    <span className="has-text-weight-bold has-text-white">
+      {t('MISSING_HC_REPORT', t(deviceName))}
+    </span>
+  </div>
 )
 
 function ESSHealthCheckReportItem({
@@ -99,15 +128,19 @@ const renderEssMeterReading = meterData => {
 
 const renderRestValues = (t, rest) => key => {
   if (key === 'ess_meter_reading') {
-    return renderEssMeterReading(rest[key])
+    return rest[key]
+      ? renderEssMeterReading(rest[key])
+      : missingReport(t, 'METER_READINGS')
   } else {
     const keyValue = propOr(rest[key], 'value', rest[key])
 
     return (
       <p key={key}>
         <span className="mr-5 has-text-weight-bold">{t(key)}:</span>
-        <span className="mr-5">
-          {is(Number, keyValue) ? parseFloat(keyValue).toFixed(2) : keyValue}
+        <span className="mr-5 is-capitalized">
+          {is(Number, keyValue)
+            ? parseFloat(keyValue).toFixed(2)
+            : keyValue.toString()}
         </span>
         {propOr('', 'unit', rest[key])}
       </p>
