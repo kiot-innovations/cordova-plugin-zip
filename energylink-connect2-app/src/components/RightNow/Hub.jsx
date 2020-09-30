@@ -1,5 +1,5 @@
 import React from 'react'
-import { useI18n } from '../../shared/i18n'
+import { useI18n } from 'shared/i18n'
 
 const hubProducing = '#56a662'
 const hubConsuming = '#ca0e0e'
@@ -8,7 +8,7 @@ const hubStates = {
   PRODUCING: 'producing'
 }
 
-function Hub(status) {
+function Hub({ status }) {
   const t = useI18n()
   const color = status === hubStates.PRODUCING ? hubProducing : hubConsuming
   const hubText = {

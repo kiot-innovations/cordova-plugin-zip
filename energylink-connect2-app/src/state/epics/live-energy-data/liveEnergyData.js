@@ -14,7 +14,7 @@ import * as energyDataActions from '../../actions/energy-data'
 import * as networkActions from '../../actions/network'
 
 import { roundDecimals } from 'shared/rounding'
-import { always, compose, equals, ifElse, pathOr } from 'ramda'
+import { always, compose, equals, ifElse, is, pathOr } from 'ramda'
 
 const createWebsocketObservable = () =>
   new Observable(subscriber => {
@@ -152,6 +152,7 @@ export const liveEnergyData = (action$, state$) =>
 
               return energyDataActions.LIVE_ENERGY_DATA_NOTIFICATION({
                 [new Date(data.time * 1000).toISOString()]: {
+                  isSolarAvailable: is(Number, data.pv_p),
                   p: roundDecimals(energyProduction),
                   s: roundDecimals(essEnergy),
                   c: roundDecimals(consumption),

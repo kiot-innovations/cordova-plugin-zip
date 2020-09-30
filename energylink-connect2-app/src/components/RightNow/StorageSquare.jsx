@@ -1,6 +1,6 @@
 import React from 'react'
 
-function StorageSquare(batteryLevel, hasStorage) {
+function StorageSquare({ batteryLevel, hasStorage }) {
   const batteryIndicatorOn = '#f7921e'
   const batteryIndicatorOff = hasStorage ? '#cdd1d410' : '#828282'
 
