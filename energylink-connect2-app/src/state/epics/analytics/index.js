@@ -1,3 +1,3 @@
-import { loginSuccessEpic } from './loginEpics'
+import { loginSuccessEpic, loginErrorEpic } from './loginEpics'
 
-export default [loginSuccessEpic]
+export default [loginSuccessEpic, loginErrorEpic]

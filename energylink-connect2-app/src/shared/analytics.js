@@ -24,3 +24,9 @@ export const loggedIn = user => {
 
   return MIXPANEL_EVENT_QUEUED()
 }
+
+export const loginFailed = () => {
+  mixpanel.track('Login', { Success: false })
+
+  return MIXPANEL_EVENT_QUEUED()
+}
