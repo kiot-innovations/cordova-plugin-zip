@@ -14,6 +14,8 @@ import {
   flip,
   head,
   indexBy,
+  is,
+  isEmpty,
   isNil,
   join,
   keys,
@@ -253,7 +255,11 @@ export const addHasErrorProp = results => {
   keys(copy.ess_report).forEach(key => {
     const keyValue = copy.ess_report[key]
     if (isNil(head(keyValue))) {
-      copy.ess_report[key] = []
+      if (is(Array, keyValue)) {
+        copy.ess_report[key] = []
+      } else {
+        copy.ess_report[key] = isEmpty(keyValue) ? [] : keyValue
+      }
     } else {
       copy.ess_report[key] = Array.isArray(keyValue)
         ? map(
