@@ -21,7 +21,7 @@
 on:
   push:
     tags:
-      - '*.0'
+      - '*.[1-9]'
 
 jobs:
   build:
@@ -29,7 +29,7 @@ jobs:
     timeout-minutes: 45
     strategy:
       matrix:
-        app_env: [test, training, prod]
+        app_env: [test]
     env:
       APP_ENV: ${{ matrix.app_env }}
     steps:
@@ -130,7 +130,7 @@ jobs:
         if: startsWith(github.ref, 'refs/tags/')
 
       #
-      # Slack Notification (run once, only for prod environment)
+      # Slack Notification (run once, only for test environment)
       #
       - name: Calculate GIT branch name
         run: |
@@ -140,14 +140,14 @@ jobs:
           echo "::set-env name=TAG::$TAG"
       - name: Send slack notification
         uses: hbfernandes/slack-action@1.0
-        if: env.APP_ENV == 'prod'
+        if: env.APP_ENV == 'test'
         env:
           SLACK_TOKEN: ${{ secrets.SLACK_TOKEN }}
         with:
           args: |
             {
               "channel": "cm2-builds",
-              "text": "New release is available",
+              "text": "New TEST release is available",
               "as_user": true,
               "attachments": [{
                 "color": "good",
