@@ -1,3 +1,4 @@
+import appVersion from '../macros/appVersion.macro'
 import { capitalizeWord, getUserProfile } from 'shared/analyticsUtils'
 import { MIXPANEL_EVENT_QUEUED } from 'state/actions/analytics'
 
@@ -13,6 +14,7 @@ export const loggedIn = user => {
   ] = getUserProfile(user)
 
   mixpanel.identify(userId)
+  mixpanel.register({ 'App Build': appVersion() })
   mixpanel.people.set({
     $first_name: firstName,
     $last_name: lastName,
@@ -29,6 +31,7 @@ export const loggedIn = user => {
 export const loginFailed = () => {
   const { mixpanel } = window
 
+  mixpanel.register({ 'App Build': appVersion() })
   mixpanel.track('Login', { Success: false })
 
   return MIXPANEL_EVENT_QUEUED()
