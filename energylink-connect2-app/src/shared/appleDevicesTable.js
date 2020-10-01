@@ -1,5 +1,7 @@
 import { propOr } from 'ramda'
 
+// Taken from https://gist.github.com/adamawolf/3048717
+
 const appleDeviceIdToDeviceFamily = {
   i386: 'iPhone Simulator',
   x86_64: 'iPhone Simulator',
