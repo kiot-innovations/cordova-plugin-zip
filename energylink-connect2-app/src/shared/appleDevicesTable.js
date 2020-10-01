@@ -1,6 +1,6 @@
 import { propOr } from 'ramda'
 
-const iosDeviceIDToDeviceFaimily = {
+const appleDeviceIdToDeviceFamily = {
   i386: 'iPhone Simulator',
   x86_64: 'iPhone Simulator',
   'iPhone1,1': 'iPhone',
@@ -108,5 +108,5 @@ const iosDeviceIDToDeviceFaimily = {
   'iPad11,4': 'iPad Air 3rd Gen'
 }
 
-export const getIosDeviceFamily = deviceId =>
-  propOr(deviceId, deviceId, iosDeviceIDToDeviceFaimily)
+export const getAppleDeviceFamily = deviceId =>
+  propOr(deviceId, deviceId, appleDeviceIdToDeviceFamily)

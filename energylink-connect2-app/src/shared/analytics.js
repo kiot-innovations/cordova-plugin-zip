@@ -1,16 +1,17 @@
 import appVersion from '../macros/appVersion.macro'
 import { capitalizeWord, getUserProfile } from 'shared/analyticsUtils'
 import { MIXPANEL_EVENT_QUEUED } from 'state/actions/analytics'
-import { getIosDeviceFamily } from 'shared/iosDeviceTable'
+import { getAppleDeviceFamily } from 'shared/appleDevicesTable'
 
-const registerSuperProperties = () => {
+const registerLoginSuperProperties = () => {
   const { mixpanel, device } = window
   const { model, version, platform, manufacturer } = device
+
   mixpanel.register({ 'App Build': appVersion(), 'OS Version': version })
 
   if (platform === 'iOS') {
     mixpanel.register({
-      $device: getIosDeviceFamily(model),
+      $device: getAppleDeviceFamily(model),
       $browser_version: version
     })
   } else {
@@ -31,8 +32,8 @@ export const loggedIn = user => {
     dealerType
   ] = getUserProfile(user)
 
+  registerLoginSuperProperties()
   mixpanel.identify(userId)
-  registerSuperProperties()
   mixpanel.people.set({
     $first_name: firstName,
     $last_name: lastName,
@@ -49,7 +50,7 @@ export const loggedIn = user => {
 export const loginFailed = () => {
   const { mixpanel } = window
 
-  registerSuperProperties()
+  registerLoginSuperProperties()
   mixpanel.track('Login', { Success: false })
 
   return MIXPANEL_EVENT_QUEUED('Login - Failed')
