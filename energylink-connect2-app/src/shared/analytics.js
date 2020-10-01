@@ -1,24 +1,25 @@
+import { capitalizeWord, getUserProfile } from 'shared/analyticsUtils'
 import { MIXPANEL_EVENT_QUEUED } from 'state/actions/analytics'
-const { mixpanel } = window
 
 export const loggedIn = user => {
-  const {
-    uniqueId,
+  const { mixpanel } = window
+  const [
+    userId,
     firstName,
     lastName,
     email,
     dealerName,
-    recordType: dealerType
-  } = user
+    dealerType
+  ] = getUserProfile(user)
 
-  mixpanel.identify(uniqueId)
+  mixpanel.identify(userId)
   mixpanel.people.set({
     $first_name: firstName,
     $last_name: lastName,
     $email: email,
     'User Name': email,
     'Dealer Name': dealerName,
-    'Dealer Type': dealerType
+    'Dealer Type': capitalizeWord(dealerType)
   })
   mixpanel.track('Login', { Success: true })
 
@@ -26,6 +27,8 @@ export const loggedIn = user => {
 }
 
 export const loginFailed = () => {
+  const { mixpanel } = window
+
   mixpanel.track('Login', { Success: false })
 
   return MIXPANEL_EVENT_QUEUED()
