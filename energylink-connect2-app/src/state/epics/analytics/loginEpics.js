@@ -4,7 +4,7 @@ import { catchError, map, mergeMap } from 'rxjs/operators'
 import { path } from 'ramda'
 import { loggedIn, loginFailed } from 'shared/analytics'
 import { getApiParty } from 'shared/api'
-import { LOGIN_SUCCESS, LOGIN_ERROR } from 'state/actions/auth'
+import { LOGIN_ERROR, LOGIN_SUCCESS } from 'state/actions/auth'
 import { MIXPANEL_EVENT_ERROR } from 'state/actions/analytics'
 
 const getPartyPromise = (accessToken, partyId) =>
@@ -37,7 +37,4 @@ export const loginSuccessEpic = action$ =>
   )
 
 export const loginErrorEpic = action$ =>
-  action$.pipe(
-    ofType(LOGIN_ERROR.getType()),
-    map(() => loginFailed())
-  )
+  action$.pipe(ofType(LOGIN_ERROR.getType()), map(loginFailed))

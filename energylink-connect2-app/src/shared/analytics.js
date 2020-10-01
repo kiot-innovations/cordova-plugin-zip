@@ -1,6 +1,24 @@
 import appVersion from '../macros/appVersion.macro'
 import { capitalizeWord, getUserProfile } from 'shared/analyticsUtils'
 import { MIXPANEL_EVENT_QUEUED } from 'state/actions/analytics'
+import { getIosDeviceFamily } from 'shared/iosDeviceTable'
+
+const registerSuperProperties = () => {
+  const { mixpanel, device } = window
+  const { model, version, platform, manufacturer } = device
+  mixpanel.register({ 'App Build': appVersion(), 'OS Version': version })
+
+  if (platform === 'iOS') {
+    mixpanel.register({
+      $device: getIosDeviceFamily(model),
+      $browser_version: version
+    })
+  } else {
+    mixpanel.register({
+      $device: `${manufacturer}, ${model}`
+    })
+  }
+}
 
 export const loggedIn = user => {
   const { mixpanel } = window
@@ -14,7 +32,7 @@ export const loggedIn = user => {
   ] = getUserProfile(user)
 
   mixpanel.identify(userId)
-  mixpanel.register({ 'App Build': appVersion() })
+  registerSuperProperties()
   mixpanel.people.set({
     $first_name: firstName,
     $last_name: lastName,
@@ -25,14 +43,14 @@ export const loggedIn = user => {
   })
   mixpanel.track('Login', { Success: true })
 
-  return MIXPANEL_EVENT_QUEUED()
+  return MIXPANEL_EVENT_QUEUED('Login - Success')
 }
 
 export const loginFailed = () => {
   const { mixpanel } = window
 
-  mixpanel.register({ 'App Build': appVersion() })
+  registerSuperProperties()
   mixpanel.track('Login', { Success: false })
 
-  return MIXPANEL_EVENT_QUEUED()
+  return MIXPANEL_EVENT_QUEUED('Login - Failed')
 }
