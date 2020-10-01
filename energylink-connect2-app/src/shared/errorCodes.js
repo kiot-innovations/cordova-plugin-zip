@@ -182,6 +182,8 @@ const errorCodes = [
       'This message is for informational purposes only. No action is required.'
   },
   {
+    event_code: '10009',
+    event_name: 'component_check_odd_battery_count_warning',
     code: '10009',
     in_use: true,
     error_description: 'Could not detect one or more batteries',
@@ -194,6 +196,7 @@ const errorCodes = [
   {
     event_code: '11010',
     event_name: 'hubplus_under_temperature_warning',
+    code: '11010',
     in_use: true,
     error_description: 'Hub+ temperature too low',
     display: true,
