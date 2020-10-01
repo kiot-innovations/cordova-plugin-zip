@@ -4,6 +4,7 @@ import { getSHA256FromFile } from 'shared/cordovaMapping'
 
 export const ERROR_CODES = {
   NO_FILESYSTEM_FILE: 'no filesystem file',
+  MD5_NOT_MATCHING: 'MD5_NOT_MATCHING',
   getVersionInfo: 'getVersionInfo',
   getLuaFile: 'getLuaFile',
   noLuaFile: 'noLuaFile',
@@ -155,7 +156,6 @@ export function listDir(path) {
       .catch(reject)
   })
 }
-
 const getDirPath = compose(join('/'), slice(0, -1), split('/'))
 
 export const fileExists = async (path = '') => {

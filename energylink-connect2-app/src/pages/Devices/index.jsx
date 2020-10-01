@@ -109,7 +109,7 @@ const discoveryStatus = (
       return (
         <>
           <button
-            className="button is-primary is-uppercase is-paddingless ml-75 mr-75"
+            className="button is-primary is-uppercase is-paddingless"
             onClick={retryDiscovery}
           >
             {t('RETRY')}
@@ -123,7 +123,7 @@ const discoveryStatus = (
       return (
         <>
           <button
-            className="button is-primary is-uppercase is-paddingless ml-75 mr-75"
+            className="button is-primary is-uppercase is-paddingless"
             onClick={retryDiscovery}
           >
             {t('RETRY')}
@@ -141,14 +141,14 @@ const discoveryStatus = (
           </span>
           <div className="inline-buttons">
             <button
-              className="button is-primary is-outlined is-uppercase is-paddingless ml-75 mr-75 mb-10"
+              className="button is-primary is-outlined is-uppercase is-paddingless mb-10"
               disabled={claimingDevices}
               onClick={retryDiscovery}
             >
               {t('ADD-DEVICES')}
             </button>
             <button
-              className={clsx('button is-primary is-uppercase ml-75 mr-75', {
+              className={clsx('button is-primary is-uppercase', {
                 'is-loading': claimingDevices
               })}
               disabled={claimingDevices}
@@ -164,17 +164,16 @@ const discoveryStatus = (
     return (
       <div className="inline-buttons">
         <button
-          className="button is-primary is-outlined is-uppercase is-paddingless ml-75 mr-75 mb-10"
+          className="button is-primary is-outlined is-uppercase is-paddingless mb-10"
           disabled={claimingDevices}
           onClick={retryDiscovery}
         >
           {t('ADD-DEVICES')}
         </button>
         <button
-          className={clsx(
-            'button is-primary is-uppercase is-paddingless ml-75 mr-75',
-            { 'is-loading': claimingDevices }
-          )}
+          className={clsx('button is-primary is-uppercase is-paddingless', {
+            'is-loading': claimingDevices
+          })}
           disabled={claimingDevices}
           onClick={claimDevices}
         >

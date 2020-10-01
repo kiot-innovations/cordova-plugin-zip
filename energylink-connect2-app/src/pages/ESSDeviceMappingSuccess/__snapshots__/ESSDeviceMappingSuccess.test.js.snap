@@ -102,7 +102,7 @@ Object {
                 >
                   <div
                     className="mt-5 mb-5 is-flex child-device"
-                    key="00002"
+                    key="00002MIDC"
                   >
                     <span
                       className="has-text-white has-text-weight-bold"
@@ -117,7 +117,7 @@ Object {
                   </div>
                   <div
                     className="mt-5 mb-5 is-flex child-device"
-                    key="00001"
+                    key="00001MIDC"
                   >
                     <span
                       className="has-text-white has-text-weight-bold"
@@ -132,6 +132,7 @@ Object {
                   </div>
                   <div
                     className="mt-5 mb-5 is-flex child-device"
+                    key="MIDC"
                   >
                     <span
                       className="has-text-white has-text-weight-bold"
@@ -140,6 +141,7 @@ Object {
                     </span>
                     <span
                       className="has-text-weight-bold"
+                      key="000030"
                     >
                       00003
                     </span>

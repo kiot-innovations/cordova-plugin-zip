@@ -82,14 +82,13 @@ function Firmwares() {
       <Separator />
       <Collapsible
         title={t('GRID_PROFILES_PACKAGE')}
-        actions={
-          isDownloadingGridProfile ? null : (
-            <span
-              className="is-size-4 sp-download"
-              onClick={downloadGridProfiles}
-            />
-          )
-        }
+        actions={either(
+          !isDownloadingGridProfile || gpError,
+          <span
+            className="is-size-4 sp-download"
+            onClick={downloadGridProfiles}
+          />
+        )}
         expanded
       >
         {either(
