@@ -13,7 +13,9 @@ import {
   RUN_EQS_SYSTEMCHECK_SUCCESS
 } from 'state/actions/storage'
 import { RUN_EQS_SYSTEMCHECK } from 'state/actions/storage'
+import { EMPTY_ACTION } from 'state/actions/share'
 import { discoveryTypes } from 'state/reducers/devices'
+import { eqsSteps } from 'state/reducers/storage'
 
 export const startHealthCheckEpic = (action$, state$) => {
   return action$.pipe(
@@ -34,11 +36,18 @@ export const startHealthCheckEpic = (action$, state$) => {
   )
 }
 
-export const waitHealthCheckEpic = action$ => {
+export const waitHealthCheckEpic = (action$, state$) => {
   return action$.pipe(
     ofType(DISCOVER_COMPLETE.getType()),
-    exhaustMap(() => {
-      return of(RUN_EQS_SYSTEMCHECK())
+    map(() => {
+      const currentStep = pathOr(
+        '',
+        ['value', 'storage', 'currentStep'],
+        state$
+      )
+      return currentStep === eqsSteps.HEALTH_CHECK
+        ? RUN_EQS_SYSTEMCHECK()
+        : EMPTY_ACTION()
     })
   )
 }
