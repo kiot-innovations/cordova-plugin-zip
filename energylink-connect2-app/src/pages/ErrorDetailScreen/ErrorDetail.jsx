@@ -121,7 +121,7 @@ const ErrorDetailScreen = () => {
   if (hasEventCode(code) || !shouldShowError(code))
     return (
       <main className="error-detail-screen">
-        <BackButton />
+        <BackButton currentStep={currentStep} />
         <div className="mt-10 mb-10 ml-10 mr-10">
           <h1 className="has-text-white is-size-5 has-text-weight-bold mb-10">
             {t('API_RESPONSE')}
@@ -136,7 +136,7 @@ const ErrorDetailScreen = () => {
     )
   return (
     <main className="error-detail-screen">
-      <BackButton />
+      <BackButton currentStep={currentStep} />
       <div className="mt-10 mb-10 ml-10 mr-10">
         <h1 className="has-text-white is-size-5 has-text-weight-bold mb-10">
           {t('UNKNOWN_ERROR')}
