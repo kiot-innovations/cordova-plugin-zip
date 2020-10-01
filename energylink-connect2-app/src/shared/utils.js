@@ -5,7 +5,6 @@ import {
   clone,
   compose,
   concat,
-  includes,
   curry,
   defaultTo,
   dissoc,
@@ -13,9 +12,8 @@ import {
   find,
   flip,
   head,
+  includes,
   indexBy,
-  is,
-  isEmpty,
   isNil,
   join,
   keys,
@@ -254,26 +252,17 @@ export const addHasErrorProp = results => {
 
   keys(copy.ess_report).forEach(key => {
     const keyValue = copy.ess_report[key]
-    if (isNil(head(keyValue))) {
-      if (is(Array, keyValue)) {
-        copy.ess_report[key] = []
-      } else {
-        copy.ess_report[key] = isEmpty(keyValue) ? [] : keyValue
-      }
-    } else {
-      copy.ess_report[key] = Array.isArray(keyValue)
-        ? map(
-            value =>
-              assoc('hasError', includes(value.serial_number, snErrors), value),
-            keyValue
-          )
-        : assoc(
-            'hasError',
-            includes(keyValue.serial_number, snErrors),
-            keyValue
-          )
-    }
+    const newValueForKey = Array.isArray(keyValue)
+      ? map(
+          value =>
+            assoc('hasError', includes(value.serial_number, snErrors), value),
+          removeUndefined(keyValue)
+        )
+      : assoc('hasError', includes(keyValue.serial_number, snErrors), keyValue)
+
+    copy.ess_report[key] = newValueForKey
   })
+
   return copy
 }
 

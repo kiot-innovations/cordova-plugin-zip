@@ -18,7 +18,7 @@ function ESSHealthCheckReport({ report }) {
           </h6>
           {map(renderItem, report.ess_state)}
         </section>,
-        missingReport(t, 'SUNVAULT_STATE')
+        renderMissingReport(t, 'SUNVAULT_STATE')
       )}
 
       {either(
@@ -29,7 +29,7 @@ function ESSHealthCheckReport({ report }) {
           </h6>
           {map(renderItem, report.battery_status)}
         </section>,
-        missingReport(t, 'BATTERIES')
+        renderMissingReport(t, 'BATTERIES')
       )}
 
       {either(
@@ -40,7 +40,7 @@ function ESSHealthCheckReport({ report }) {
           </h6>
           {map(renderItem, report.inverter_status)}
         </section>,
-        missingReport(t, 'INVERTERS')
+        renderMissingReport(t, 'INVERTERS')
       )}
 
       {either(
@@ -51,7 +51,7 @@ function ESSHealthCheckReport({ report }) {
           </h6>
           {renderItem(report.hub_plus_status)}
         </section>,
-        missingReport(t, 'HUB_PLUS')
+        renderMissingReport(t, 'HUB_PLUS')
       )}
 
       {either(
@@ -62,7 +62,7 @@ function ESSHealthCheckReport({ report }) {
           </h6>
           {map(renderItem, report.ess_status)}
         </section>,
-        missingReport(t, 'ALL_IN_ONE')
+        renderMissingReport(t, 'ALL_IN_ONE')
       )}
     </>
   )
@@ -72,7 +72,7 @@ const renderItem = item => (
   <ESSHealthCheckReportItem key={item.serial_number || 'NO_SN'} {...item} />
 )
 
-const missingReport = (t, deviceName) => (
+const renderMissingReport = (t, deviceName) => (
   <div className="hc-missing-report has-text-centered is-flex mb-10 mt-10 pt-10 pb-10">
     <span className="has-text-weight-bold has-text-white">
       {t('MISSING_HC_REPORT', t(deviceName))}
@@ -130,7 +130,7 @@ const renderRestValues = (t, rest) => key => {
   if (key === 'ess_meter_reading') {
     return rest[key]
       ? renderEssMeterReading(rest[key])
-      : missingReport(t, 'METER_READINGS')
+      : renderMissingReport(t, 'METER_READINGS')
   } else {
     const keyValue = propOr(rest[key], 'value', rest[key])
 
