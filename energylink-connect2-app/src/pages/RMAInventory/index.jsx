@@ -1,5 +1,5 @@
 import React from 'react'
-import { path, prop } from 'ramda'
+import { find, path, prop, propEq } from 'ramda'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 
@@ -23,6 +23,11 @@ const RMAInventory = () => {
     { value: '', label: t('NONE') },
     { value: '13kWh', label: t('13KWH_1INV') }
   ]
+
+  const miOptions = [...Array(99).keys()].map(number => ({
+    label: number,
+    value: number
+  }))
 
   const handleCheckbox = e => {
     dispatch(
@@ -68,16 +73,11 @@ const RMAInventory = () => {
   }
 
   const handleCancel = () => {
-    /**
-     * @todo
-     * Current Device List Page is not ready yet (CM2-757),
-     * so we redirect to homepage for now
-     */
-    history.push(paths.PROTECTED.BILL_OF_MATERIALS.path)
+    history.push(paths.PROTECTED.RMA_DEVICES.path)
   }
 
   return (
-    <div className="rma-add-devices full-height pr-20 pl-20">
+    <div className="rma-add-devices pr-20 pl-20">
       <div className="rma-form">
         <p className="is-uppercase has-text-centered has-text-weight-bold">
           {t('RMA_ADD_DEVICES_TITLE')}
@@ -96,11 +96,11 @@ const RMAInventory = () => {
             <SelectField
               isSearchable={false}
               onSelect={handleChange('mi_count')}
-              defaultValue={prop('mi_count', rma)}
-              options={[...Array(99).keys()].map(number => ({
-                label: number,
-                value: number
-              }))}
+              defaultValue={find(
+                propEq('value', prop('mi_count', rma)),
+                miOptions
+              )}
+              options={miOptions}
             />
           </div>
         </div>
@@ -117,9 +117,9 @@ const RMAInventory = () => {
             <SelectField
               isSearchable={false}
               onSelect={handleChange('ess')}
-              defaultValue={prop('ess', rma)}
+              value={find(propEq('value', prop('ess', rma)), essOptions)}
               options={essOptions}
-            ></SelectField>
+            />
           </div>
         </div>
 
@@ -131,7 +131,7 @@ const RMAInventory = () => {
                 id="other"
                 name="other"
                 onChange={handleCheckbox}
-                className="mr-10 checkbox"
+                className="mr-10 checkbox-dark"
                 defaultChecked={prop('other', rma)}
               />
               <label className="has-text-weight-bold" htmlFor="other">

@@ -167,11 +167,13 @@ export const AddingPanels = () => {
 export default () => {
   const t = useI18n()
   const dispatch = useDispatch()
-  const { loading } = useSelector(prop('pltWizard'))
+  const { loading, changed } = useSelector(prop('pltWizard'))
 
   useEffect(() => {
-    dispatch(PLT_LOAD())
-  }, [dispatch])
+    if (!changed) {
+      dispatch(PLT_LOAD())
+    }
+  }, [changed, dispatch])
 
   return either(
     loading,

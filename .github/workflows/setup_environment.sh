@@ -39,9 +39,16 @@ case "${APP_ENV}" in
         readonly RELEASE_TRACK="alpha"
         ;;
 
+    testprod)
+        readonly APP_ID="com.sunpower.energylink.commissioning2.prod"
+        readonly APP_NAME="SunPowerProConnect-testprod"
+        readonly BUILD_TYPE="${BUILD_TYPE:-release}"
+        readonly RELEASE_TRACK="alpha"
+        ;;
+
     *)
         echo "Unsupported application environment ${APP_ENV}"
-        echo "Allowed values: dev, prod, test, training"
+        echo "Allowed values: dev, prod, test, training, testprod"
         exit 1
         ;;
 esac

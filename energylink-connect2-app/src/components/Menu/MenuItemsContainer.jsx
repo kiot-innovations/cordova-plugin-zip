@@ -1,29 +1,40 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
+import { useHistory } from 'react-router-dom'
 import Tile from '@sunpower/tile'
 import paths from 'routes/paths'
-import menuItems from 'components/Header/menuItems'
 import { useI18n } from 'shared/i18n'
 import { LOGOUT } from 'state/actions/auth'
+import { MENU_DISPLAY_ITEM, MENU_HIDE } from 'state/actions/ui'
 
-function Menu(props) {
+function MenuItemsContainer({ items }) {
   const t = useI18n()
   const dispatch = useDispatch()
+  const history = useHistory()
 
   const logout = () => {
-    props.history.push(paths.PROTECTED.ROOT.path)
+    history.push(paths.PROTECTED.ROOT.path)
     dispatch(LOGOUT())
+  }
+
+  const onClickItem = item => () => {
+    if (item.component) {
+      dispatch(MENU_DISPLAY_ITEM(item.text))
+    } else {
+      dispatch(MENU_HIDE())
+      history.push(item.to)
+    }
   }
 
   return (
     <section className="is-flex tile is-vertical level full-height">
       <article className="is-flex space-around flow-wrap mt-15">
-        {menuItems.map(menuItem => (
+        {items.map(menuItem => (
           <div className="mb-30" key={menuItem.text}>
             <Tile
               icon={menuItem.icon}
               text={t(menuItem.text)}
-              onClick={open(menuItem.to, props.history)}
+              onClick={onClickItem(menuItem)}
             />
           </div>
         ))}
@@ -38,6 +49,4 @@ function Menu(props) {
   )
 }
 
-export default Menu
-
-const open = (to, history) => () => history.push(to)
+export default MenuItemsContainer

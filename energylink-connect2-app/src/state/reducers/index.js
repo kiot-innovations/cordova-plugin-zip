@@ -53,7 +53,14 @@ export default combineReducers({
   pvs: pvsReducer,
   rma: RMAReducer,
   site: siteReducer,
-  devices: devicesReducer,
+  devices: persistReducer(
+    {
+      key: 'devices',
+      storage,
+      whitelist: ['miModels']
+    },
+    devicesReducer
+  ),
   share: shareReducer,
   systemConfiguration: systemConfigurationReducer,
   storage: storageReducer,

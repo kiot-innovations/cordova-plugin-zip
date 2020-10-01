@@ -1,3 +1,4 @@
+import { propOr } from 'ramda'
 import { ofType } from 'redux-observable'
 import * as Sentry from '@sentry/browser'
 import { from, of } from 'rxjs'
@@ -11,6 +12,7 @@ import {
   PVS_FIRMWARE_DOWNLOAD_INIT,
   PVS_FIRMWARE_DOWNLOAD_PROGRESS,
   PVS_FIRMWARE_DOWNLOAD_SUCCESS,
+  PVS_FIRMWARE_MODAL_IS_CONNECTED,
   PVS_FIRMWARE_REPORT_SUCCESS,
   PVS_FIRMWARE_UPDATE_URL,
   PVS_SET_FILE_INFO
@@ -23,13 +25,14 @@ import {
   getFirmwareVersionData,
   getFS,
   getLatestPVSFirmwareUrl,
-  getLuaFileSize
+  verifySHA256
 } from 'shared/fileSystem'
 import { getFileSystemFromLuaFile } from 'shared/PVSUtils'
 import { getFirmwareUrlFromState } from 'state/epics/fimwareUpdate/checkVersionPVS'
 import { hasInternetConnection } from 'shared/utils'
 import { SHOW_MODAL } from 'state/actions/modal'
 import { translate } from 'shared/i18n'
+import { wifiCheckOperator } from './downloadOperators'
 
 export const modalNoInternet = () => {
   const t = translate()
@@ -39,19 +42,30 @@ export const modalNoInternet = () => {
     dismissable: true
   })
 }
+
 export const updatePVSFirmwareUrl = (action$, state$) => {
   return action$.pipe(
     ofType(PVS_FIRMWARE_DOWNLOAD_INIT.getType()),
-    exhaustMap(({ payload = false }) =>
-      from(getLatestPVSFirmwareUrl()).pipe(
-        map(url => PVS_FIRMWARE_UPDATE_URL({ url, shouldRetry: payload })),
-        catchError(err => {
-          Sentry.captureException(err)
-          return of(
-            PVS_FIRMWARE_UPDATE_URL({ url: getFirmwareUrlFromState(state$) })
+    wifiCheckOperator(state$),
+    exhaustMap(({ action, canDownload }) =>
+      canDownload
+        ? from(getLatestPVSFirmwareUrl()).pipe(
+            map(url =>
+              PVS_FIRMWARE_UPDATE_URL({
+                url,
+                shouldRetry: propOr(false, 'payload', action)
+              })
+            ),
+            catchError(err => {
+              Sentry.captureException(err)
+              return of(
+                PVS_FIRMWARE_UPDATE_URL({
+                  url: getFirmwareUrlFromState(state$)
+                })
+              )
+            })
           )
-        })
-      )
+        : of(PVS_FIRMWARE_MODAL_IS_CONNECTED(action))
     )
   )
 }
@@ -99,7 +113,7 @@ export const reportPVSDownloadSuccessEpic = action$ => {
   return action$.pipe(
     ofType(PVS_FIRMWARE_REPORT_SUCCESS.getType()),
     exhaustMap(({ payload }) =>
-      from(getLuaFileSize(payload)).pipe(
+      from(verifySHA256(payload)).pipe(
         map(({ lastModified, size }) =>
           PVS_FIRMWARE_DOWNLOAD_SUCCESS({
             lastModified,
@@ -132,7 +146,7 @@ export const setPVSFirmwareInfoData = action$ =>
     })
   )
 
-export const epicDownloadLuaFilesInit = action$ =>
+export const downloadLuaFilesInitEpic = action$ =>
   action$.pipe(
     ofType(PVS_FIRMWARE_UPDATE_URL.getType()),
     exhaustMap(({ payload }) => {
@@ -154,7 +168,7 @@ export const epicDownloadLuaFilesInit = action$ =>
                     )
                   : PVS_DECOMPRESS_LUA_FILES_INIT()
               )
-            : of(PVS_FIRMWARE_DOWNLOAD_ERROR("The lua zip file doesn't exist"))
+            : of(PVS_FIRMWARE_DOWNLOAD_ERROR('LUA_ZIP_FILE_NOT_EXIST'))
         })
       )
     })
@@ -180,7 +194,7 @@ export default [
   deleteFirmwareOnError,
   downloadPVSFirmware,
   updatePVSFirmwareUrl,
-  epicDownloadLuaFilesInit,
+  downloadLuaFilesInitEpic,
   reportPVSDownloadSuccessEpic,
   setPVSFirmwareInfoData
 ]

@@ -7,7 +7,8 @@ import {
   FETCH_DEVICE_TREE_SUCCESS,
   FETCH_DEVICE_TREE_ERROR,
   UPDATE_DEVICE_TREE,
-  RMA_SELECT_PVS
+  RMA_SELECT_PVS,
+  RESET_RMA_PVS
 } from 'state/actions/rma'
 
 export const rmaModes = {
@@ -48,6 +49,7 @@ const RMAReducer = createReducer(
       ...state,
       cloudDeviceTree: {
         ...state.cloudDeviceTree,
+        error: initialState.cloudDeviceTree.error,
         fetching: true
       }
     }),
@@ -73,7 +75,8 @@ const RMAReducer = createReducer(
         ...state.cloudDeviceTree,
         devices: payload
       }
-    })
+    }),
+    [RESET_RMA_PVS]: () => ({ ...initialState })
   },
   initialState
 )

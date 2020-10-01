@@ -71,10 +71,6 @@ const paths = {
       path: '/create-site',
       header: true
     },
-    MENU: {
-      path: '/menu',
-      header: true
-    },
     MANAGE_FIRMWARES: {
       path: '/manage-firmwares',
       header: true
@@ -229,6 +225,18 @@ const paths = {
     },
     RMA_SN_LIST: {
       path: '/rma-sn-list',
+      header: true,
+      footer: true,
+      tab: TABS.INSTALL
+    },
+    RMA_MI_DISCOVERY: {
+      path: '/rma-mi-discovery',
+      header: true,
+      footer: true,
+      tab: TABS.INSTALL
+    },
+    RMA_DEVICES: {
+      path: '/rma-devices',
       header: true,
       footer: true,
       tab: TABS.INSTALL

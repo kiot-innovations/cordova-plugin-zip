@@ -18,6 +18,9 @@ const reqc = require.context('../src/components', true, /\.stories\.js$/)
 const reqp = require.context('../src/pages', true, /\.stories\.js$/)
 
 function loadStories() {
+  const modalRoot = document.createElement('div')
+  modalRoot.setAttribute('id', 'modal-root')
+  document.body.append(modalRoot)
   req.keys().forEach(filename => req(filename))
   reqc.keys().forEach(filename => reqc(filename))
   reqp.keys().forEach(filename => reqp(filename))

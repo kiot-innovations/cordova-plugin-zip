@@ -150,7 +150,10 @@ export const cleanString = (str = '') => {
 }
 
 export const buildSN = barcode => ({
-  serial_number: barcode.startsWith('1') ? `E00${barcode}` : barcode,
+  serial_number:
+    barcode.startsWith('12') && length(barcode) === 12
+      ? `E00${barcode}`
+      : barcode,
   type: 'SOLARBRIDGE'
 })
 export const trace = t => x => {
@@ -302,6 +305,23 @@ export const hasInternetConnection = () =>
       .catch(() => reject())
   )
 
+export const removeUndefined = reject(isNil)
+
+export const generateSSID = serialNumber => {
+  const lastIndex = serialNumber.length
+  const ssidPt1 = serialNumber.substring(4, 6)
+  const ssidPt2 = serialNumber.substring(lastIndex - 3, lastIndex)
+
+  return `SunPower${ssidPt1}${ssidPt2}`
+}
+
+export const generatePassword = serialNumber => {
+  let lastIndex = serialNumber.length
+  let password =
+    serialNumber.substring(2, 6) +
+    serialNumber.substring(lastIndex - 4, lastIndex)
+  return password
+}
 export const parseMD5FromResponse = compose(head, split(' '))
 export const renameExtension = replace(/\.tar\.gz$/, '.md5')
 
@@ -318,5 +338,3 @@ export const getExpectedMD5 = async url => {
 
   throw new Error(`getExpectedMD5: Failed fetching md5 for: ${url}`)
 }
-
-export const removeUndefined = reject(isNil)

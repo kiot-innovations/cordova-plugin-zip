@@ -8,7 +8,8 @@ import {
   CONNECT_NETWORK_AP_INIT,
   CONNECT_NETWORK_AP_ERROR,
   GET_INTERFACES_SUCCESS,
-  SET_SELECTED_AP
+  SET_SELECTED_AP,
+  RESET_SYSTEM_CONFIGURATION
 } from 'state/actions/systemConfiguration'
 
 import { getConnectedAP } from 'shared/utils'
@@ -91,7 +92,8 @@ export const networkReducer = createReducer(
     [SET_SELECTED_AP]: (state, selectedAP) => ({
       ...state,
       selectedAP
-    })
+    }),
+    [RESET_SYSTEM_CONFIGURATION]: () => initialState
   },
   initialState
 )

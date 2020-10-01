@@ -13,7 +13,7 @@ describe('Header Component', () => {
 
   test('Renders text instead of logo', () => {
     const { component } = mountWithProvider(<Header text="ADDRESS" />)({})
-    expect(component.find('.text').text()).toBe('ADDRESS')
+    expect(component.find('span.text').text()).toBe('ADDRESS')
     expect(component).toMatchSnapshot()
   })
 })

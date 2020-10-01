@@ -47,7 +47,7 @@ exports[`Header Component Renders correctly 1`] = `
               className="header is-flex level is-clipper"
             >
               <span
-                className="sp sp-menu"
+                className="sp sp-chevron-left has-text-primary"
                 onClick={[Function]}
                 role="button"
               />
@@ -79,6 +79,149 @@ exports[`Header Component Renders correctly 1`] = `
                 </o>
               </Component>
             </section>
+            <Menu>
+              <div
+                className="menu-floating"
+              >
+                <MenuItemsContainer
+                  items={
+                    Array [
+                      Object {
+                        "icon": "sp-map",
+                        "text": "CHANGE_ADDRESS",
+                        "to": "/",
+                      },
+                      Object {
+                        "component": [Function],
+                        "icon": "sp-update",
+                        "text": "MANAGE_FIRMWARES",
+                      },
+                      Object {
+                        "component": [Function],
+                        "icon": "sp-info",
+                        "text": "VERSION_INFORMATION",
+                      },
+                      Object {
+                        "component": [Function],
+                        "icon": "sp-feedback",
+                        "text": "GIVE_FEEDBACK",
+                      },
+                    ]
+                  }
+                >
+                  <section
+                    className="is-flex tile is-vertical level full-height"
+                  >
+                    <article
+                      className="is-flex space-around flow-wrap mt-15"
+                    >
+                      <div
+                        className="mb-30"
+                        key="CHANGE_ADDRESS"
+                      >
+                        <Component
+                          icon="sp-map"
+                          onClick={[Function]}
+                          text="Change Address"
+                        >
+                          <button
+                            className="tilex tile has-text-white is-flex is-vertical space-around"
+                            onClick={[Function]}
+                          >
+                            <div
+                              className="sp is-size-1 sp-map"
+                            />
+                            <div
+                              className="text is-size-5 pt-10 pl-10 pr-10 pb-10"
+                            >
+                              Change Address
+                            </div>
+                          </button>
+                        </Component>
+                      </div>
+                      <div
+                        className="mb-30"
+                        key="MANAGE_FIRMWARES"
+                      >
+                        <Component
+                          icon="sp-update"
+                          onClick={[Function]}
+                          text="Manage Firmware"
+                        >
+                          <button
+                            className="tilex tile has-text-white is-flex is-vertical space-around"
+                            onClick={[Function]}
+                          >
+                            <div
+                              className="sp is-size-1 sp-update"
+                            />
+                            <div
+                              className="text is-size-5 pt-10 pl-10 pr-10 pb-10"
+                            >
+                              Manage Firmware
+                            </div>
+                          </button>
+                        </Component>
+                      </div>
+                      <div
+                        className="mb-30"
+                        key="VERSION_INFORMATION"
+                      >
+                        <Component
+                          icon="sp-info"
+                          onClick={[Function]}
+                          text="Version Information"
+                        >
+                          <button
+                            className="tilex tile has-text-white is-flex is-vertical space-around"
+                            onClick={[Function]}
+                          >
+                            <div
+                              className="sp is-size-1 sp-info"
+                            />
+                            <div
+                              className="text is-size-5 pt-10 pl-10 pr-10 pb-10"
+                            >
+                              Version Information
+                            </div>
+                          </button>
+                        </Component>
+                      </div>
+                      <div
+                        className="mb-30"
+                        key="GIVE_FEEDBACK"
+                      >
+                        <Component
+                          icon="sp-feedback"
+                          onClick={[Function]}
+                          text="Give us Feedback"
+                        >
+                          <button
+                            className="tilex tile has-text-white is-flex is-vertical space-around"
+                            onClick={[Function]}
+                          >
+                            <div
+                              className="sp is-size-1 sp-feedback"
+                            />
+                            <div
+                              className="text is-size-5 pt-10 pl-10 pr-10 pb-10"
+                            >
+                              Give us Feedback
+                            </div>
+                          </button>
+                        </Component>
+                      </div>
+                    </article>
+                    <button
+                      className="button has-text-centered is-uppercase mb-10 has-text-primary is-text"
+                      onClick={[Function]}
+                    >
+                      Log out
+                    </button>
+                  </section>
+                </MenuItemsContainer>
+              </div>
+            </Menu>
           </Header>
         </header>
       </HOC>
@@ -138,7 +281,7 @@ exports[`Header Component Renders text instead of logo 1`] = `
               className="header is-flex level is-clipper"
             >
               <span
-                className="sp sp-menu"
+                className="sp sp-chevron-left has-text-primary"
                 onClick={[Function]}
                 role="button"
               />
@@ -149,6 +292,149 @@ exports[`Header Component Renders text instead of logo 1`] = `
                 ADDRESS
               </span>
             </section>
+            <Menu>
+              <div
+                className="menu-floating"
+              >
+                <MenuItemsContainer
+                  items={
+                    Array [
+                      Object {
+                        "icon": "sp-map",
+                        "text": "CHANGE_ADDRESS",
+                        "to": "/",
+                      },
+                      Object {
+                        "component": [Function],
+                        "icon": "sp-update",
+                        "text": "MANAGE_FIRMWARES",
+                      },
+                      Object {
+                        "component": [Function],
+                        "icon": "sp-info",
+                        "text": "VERSION_INFORMATION",
+                      },
+                      Object {
+                        "component": [Function],
+                        "icon": "sp-feedback",
+                        "text": "GIVE_FEEDBACK",
+                      },
+                    ]
+                  }
+                >
+                  <section
+                    className="is-flex tile is-vertical level full-height"
+                  >
+                    <article
+                      className="is-flex space-around flow-wrap mt-15"
+                    >
+                      <div
+                        className="mb-30"
+                        key="CHANGE_ADDRESS"
+                      >
+                        <Component
+                          icon="sp-map"
+                          onClick={[Function]}
+                          text="Change Address"
+                        >
+                          <button
+                            className="tilex tile has-text-white is-flex is-vertical space-around"
+                            onClick={[Function]}
+                          >
+                            <div
+                              className="sp is-size-1 sp-map"
+                            />
+                            <div
+                              className="text is-size-5 pt-10 pl-10 pr-10 pb-10"
+                            >
+                              Change Address
+                            </div>
+                          </button>
+                        </Component>
+                      </div>
+                      <div
+                        className="mb-30"
+                        key="MANAGE_FIRMWARES"
+                      >
+                        <Component
+                          icon="sp-update"
+                          onClick={[Function]}
+                          text="Manage Firmware"
+                        >
+                          <button
+                            className="tilex tile has-text-white is-flex is-vertical space-around"
+                            onClick={[Function]}
+                          >
+                            <div
+                              className="sp is-size-1 sp-update"
+                            />
+                            <div
+                              className="text is-size-5 pt-10 pl-10 pr-10 pb-10"
+                            >
+                              Manage Firmware
+                            </div>
+                          </button>
+                        </Component>
+                      </div>
+                      <div
+                        className="mb-30"
+                        key="VERSION_INFORMATION"
+                      >
+                        <Component
+                          icon="sp-info"
+                          onClick={[Function]}
+                          text="Version Information"
+                        >
+                          <button
+                            className="tilex tile has-text-white is-flex is-vertical space-around"
+                            onClick={[Function]}
+                          >
+                            <div
+                              className="sp is-size-1 sp-info"
+                            />
+                            <div
+                              className="text is-size-5 pt-10 pl-10 pr-10 pb-10"
+                            >
+                              Version Information
+                            </div>
+                          </button>
+                        </Component>
+                      </div>
+                      <div
+                        className="mb-30"
+                        key="GIVE_FEEDBACK"
+                      >
+                        <Component
+                          icon="sp-feedback"
+                          onClick={[Function]}
+                          text="Give us Feedback"
+                        >
+                          <button
+                            className="tilex tile has-text-white is-flex is-vertical space-around"
+                            onClick={[Function]}
+                          >
+                            <div
+                              className="sp is-size-1 sp-feedback"
+                            />
+                            <div
+                              className="text is-size-5 pt-10 pl-10 pr-10 pb-10"
+                            >
+                              Give us Feedback
+                            </div>
+                          </button>
+                        </Component>
+                      </div>
+                    </article>
+                    <button
+                      className="button has-text-centered is-uppercase mb-10 has-text-primary is-text"
+                      onClick={[Function]}
+                    >
+                      Log out
+                    </button>
+                  </section>
+                </MenuItemsContainer>
+              </div>
+            </Menu>
           </Header>
         </header>
       </HOC>

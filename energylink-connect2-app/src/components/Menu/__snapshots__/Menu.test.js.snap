@@ -1,0 +1,34 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Menu Page render correctly 1`] = `
+<div
+  className="menu-floating"
+>
+  <MenuItemsContainer
+    items={
+      Array [
+        Object {
+          "icon": "sp-map",
+          "text": "CHANGE_ADDRESS",
+          "to": "/",
+        },
+        Object {
+          "component": [Function],
+          "icon": "sp-update",
+          "text": "MANAGE_FIRMWARES",
+        },
+        Object {
+          "component": [Function],
+          "icon": "sp-info",
+          "text": "VERSION_INFORMATION",
+        },
+        Object {
+          "component": [Function],
+          "icon": "sp-feedback",
+          "text": "GIVE_FEEDBACK",
+        },
+      ]
+    }
+  />
+</div>
+`;

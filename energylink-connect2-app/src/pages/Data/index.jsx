@@ -6,9 +6,9 @@ import {
   equals,
   filter,
   head,
+  isEmpty,
   length,
   pathOr,
-  isEmpty,
   T
 } from 'ramda'
 import { useI18n } from 'shared/i18n'
@@ -33,7 +33,6 @@ export default () => {
   const dispatch = useDispatch()
   const { liveData = {} } = useSelector(state => state.energyLiveData)
   const { miData } = useSelector(state => state.pvs)
-
   const inventory = useSelector(pathOr({}, ['inventory', 'bom']))
   const storageInventory = inventoryItem => inventoryItem.item === 'ESS'
   const storage = filter(storageInventory, inventory)
@@ -80,6 +79,7 @@ export default () => {
   if (entries.length) {
     const [latestDate, latest] = entries[entries.length - 1]
     data = {
+      isSolarAvailable: latest.isSolarAvailable,
       date: latestDate,
       stateOfCharge: latest.soc,
       solar: latest.p,
@@ -116,7 +116,7 @@ export default () => {
             />
           </Collapsible>
         )}
-        {either(miData, <MiDataLive data={miData} />)}
+        {either(length(miData) > 0, <MiDataLive data={miData} />)}
       </section>
       <section>
         <h6 className="is-uppercase mt-20 mb-20">{t('RIGHT_NOW')}</h6>
@@ -127,6 +127,7 @@ export default () => {
           storageValue={data.powerStorage}
           homeValue={data.powerHomeUsage}
           batteryLevel={data.stateOfCharge}
+          solarAvailable={data.isSolarAvailable}
         />
       </section>
       <div className="separator" />

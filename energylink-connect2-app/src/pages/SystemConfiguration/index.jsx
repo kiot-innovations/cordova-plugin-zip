@@ -1,12 +1,15 @@
 import React from 'react'
-import { compose, endsWith, isEmpty, not, path } from 'ramda'
+import { compose, endsWith, isEmpty, not, path, equals } from 'ramda'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 
 import paths from 'routes/paths'
 import { useI18n } from 'shared/i18n'
 import { UPDATE_DEVICES_LIST } from 'state/actions/devices'
-import { SUBMIT_CONFIG } from 'state/actions/systemConfiguration'
+import {
+  REPLACE_RMA_PVS,
+  SUBMIT_CONFIG
+} from 'state/actions/systemConfiguration'
 import { useShowModal } from 'hooks/useGlobalModal'
 
 import GridBehaviorWidget from './GridBehaviorWidget'
@@ -61,6 +64,8 @@ function SystemConfiguration() {
   const { found } = useSelector(state => state.devices)
 
   const siteKey = useSelector(path(['site', 'site', 'siteKey']))
+  const rmaMode = useSelector(path(['rma', 'rmaMode']))
+  const replacingPvs = equals('REPLACE_PVS', rmaMode)
   const hasStorage = useSelector(
     compose(not, isEmpty, path(['systemConfiguration', 'storage', 'data']))
   )
@@ -94,7 +99,9 @@ function SystemConfiguration() {
         showNoGridModal()
       } else {
         if (validateConfig(configObject)) {
-          dispatch(SUBMIT_CONFIG(configObject))
+          replacingPvs
+            ? dispatch(REPLACE_RMA_PVS(configObject))
+            : dispatch(SUBMIT_CONFIG(configObject))
           history.push(paths.PROTECTED.SAVING_CONFIGURATION.path)
         } else {
           showErrorConfigurationModal()
@@ -107,7 +114,9 @@ function SystemConfiguration() {
 
   const forceSubmit = () => {
     const configObject = generateConfigObject()
-    dispatch(SUBMIT_CONFIG(configObject))
+    replacingPvs
+      ? dispatch(REPLACE_RMA_PVS(configObject))
+      : dispatch(SUBMIT_CONFIG(configObject))
     history.push(paths.PROTECTED.SAVING_CONFIGURATION.path)
   }
   const showErrorConfigurationModal = useShowModal({

@@ -1,16 +1,25 @@
 import React, { useEffect, useRef } from 'react'
-import { compose, map } from 'ramda'
+import { compose, identity, ifElse, map, prop, startsWith } from 'ramda'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import { useI18n } from 'shared/i18n'
 import { scanM } from 'shared/scandit'
 import { buildSN } from 'shared/utils'
 import { ADD_PVS_SN } from 'state/actions/pvs'
+import { rmaModes } from 'state/reducers/rma'
 import paths from 'routes/paths'
 
 import './ScanLabels.scss'
 
-const addSN = dispatch => compose(dispatch, ADD_PVS_SN, buildSN)
+const addSN = dispatch =>
+  compose(
+    ifElse(
+      compose(startsWith('E'), prop('serial_number')),
+      compose(dispatch, ADD_PVS_SN),
+      identity
+    ),
+    buildSN
+  )
 const addCodes = compose(map, addSN)
 const scanMatrix = compose(scanM, addCodes)
 const startScanning = dispatch => {
@@ -22,23 +31,37 @@ function ScanDeviceLabels() {
   const dispatch = useDispatch()
   const history = useHistory()
   const { serialNumbers } = useSelector(state => state.pvs)
+  const { rmaMode } = useSelector(state => state.rma)
 
   const onDone = useRef(null)
 
-  const finishedScanning = () => {
+  const turnOffScandit = () => {
     if (typeof onDone.current === 'function') {
       onDone.current()
-      history.push(paths.PROTECTED.SN_LIST.path)
     }
   }
 
+  const finishedScanning = () => {
+    turnOffScandit()
+    const redirectTo =
+      rmaMode !== rmaModes.NONE
+        ? paths.PROTECTED.RMA_SN_LIST.path
+        : paths.PROTECTED.SN_LIST.path
+    history.push(redirectTo)
+  }
+
   const triggerManualEntry = () => {
-    history.push({
-      pathname: paths.PROTECTED.SN_LIST.path,
-      state: {
-        isManualModeDefault: true
-      }
-    })
+    turnOffScandit()
+    const redirectTo =
+      rmaMode !== rmaModes.NONE
+        ? paths.PROTECTED.RMA_SN_LIST.path
+        : {
+            pathname: paths.PROTECTED.SN_LIST.path,
+            state: {
+              isManualModeDefault: true
+            }
+          }
+    history.push(redirectTo)
   }
 
   useEffect(() => {

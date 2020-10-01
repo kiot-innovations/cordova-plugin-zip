@@ -18,7 +18,7 @@ const arrowDirections = {
   RIGHT: 'right'
 }
 
-function ArrowH(color, direction, value, enabled = true) {
+function ArrowH({ color, direction, value, enabled = true }) {
   if (!enabled) {
     return (
       <svg
@@ -163,7 +163,7 @@ function ArrowH(color, direction, value, enabled = true) {
   )
 }
 
-function ArrowV(color, direction, value) {
+function ArrowV({ color, direction, value }) {
   if (value < 0.01) {
     return (
       <svg
@@ -275,6 +275,7 @@ function ArrowV(color, direction, value) {
 }
 
 function RightNow({
+  solarAvailable,
   solarValue = 0,
   homeValue = 0,
   hasStorage = false,
@@ -296,24 +297,37 @@ function RightNow({
   batteryLevel = batteryLevel ? batteryLevel.toFixed(0) : batteryLevel
 
   const classes = windowWidth > 320 ? 'power-cycle' : 'power-cycle scale85'
-
   return (
     <div className="right-now mt-20 mb-20">
       <div className={classes}>
         <div className="left-column">
-          {SolarSquare()}
-          {ArrowH('#ffe600', arrowDirections.RIGHT, solarValue)}
+          <SolarSquare />
+          <ArrowH
+            color="#ffe600"
+            direction={arrowDirections.RIGHT}
+            value={solarValue}
+            enabled={!!solarAvailable}
+          />
         </div>
         <div className="central-column">
-          {HomeSquare()}
-          {ArrowV('#838b98', arrowDirections.UP, homeValue)}
-          {Hub(hubState)}
-          {ArrowV('#2b93cc', gridDirection, gridValue)}
-          {GridSquare()}
+          <HomeSquare />
+          <ArrowV
+            color="#838b98"
+            direction={arrowDirections.UP}
+            value={homeValue}
+          />
+          <Hub status={hubState} />
+          <ArrowV value={gridValue} direction={gridDirection} color="#2b93cc" />
+          <GridSquare />
         </div>
         <div className="right-column">
-          {ArrowH('#f7921e', storageDirection, storageValue, hasStorage)}
-          {StorageSquare(batteryLevel, hasStorage)}
+          <ArrowH
+            color="#f7921e"
+            direction={storageDirection}
+            value={storageValue}
+            enabled={hasStorage}
+          />
+          <StorageSquare batteryLevel={batteryLevel} hasStorage={hasStorage} />
         </div>
       </div>
     </div>

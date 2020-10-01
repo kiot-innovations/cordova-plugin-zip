@@ -43,28 +43,24 @@ const ManualEntryForm = ({ serialNumber, callback }) => {
         form.reset()
       }}
     >
-      <label htmlFor="barcode" className="has-text-white is-flex">
-        {isEmpty(serialNumber) ? t('MI_SN_LABEL') : t('EDITING_MI_SN_LABEL')}
-      </label>
-
-      <div className="field is-grouped is-grouped-centered">
-        <div className="control control-barcode">
+      <div className="is-flex file tile buttons-container">
+        <div className="ifield mr-10">
           <TextField
             input={fieldBarcode.input}
             meta={fieldBarcode.meta}
             type="text"
             autoComplete="barcode"
             className="field-barcode"
+            placeholder={t('ENTER_SERIAL_MANUALLY')}
           />
         </div>
-        <div className="control control-add">
-          <button
-            className="button is-primary is-uppercase pl-10 pr-10 pb-30 pt-10"
-            type="submit"
-          >
-            {isEmpty(serialNumber) ? t('ADD') : t('SAVE')}
-          </button>
-        </div>
+
+        <button
+          className="button is-paddingless has-text-primary has-text-weight-bold is-uppercase is-outlined button-transparent"
+          type="submit"
+        >
+          {isEmpty(serialNumber) ? t('ADD') : t('SAVE')}
+        </button>
       </div>
     </form>
   )

@@ -13,6 +13,7 @@ import {
 } from 'state/actions/fileDownloader'
 
 import * as fileSystem from 'shared/fileSystem'
+import * as PVSUtils from 'shared/PVSUtils'
 import * as fileTransferObservable from 'state/epics/observables/downloader'
 import * as unzipObservable from 'state/epics/observables/unzip'
 import { EMPTY_ACTION } from 'state/actions/share'
@@ -26,6 +27,7 @@ describe('Epic firmware', () => {
       epicTest = epicTester(require('./firmware').updatePVSFirmwareUrl)
 
       fileSystem.getLatestPVSFirmwareUrl = jest.fn(() => of(url))
+      PVSUtils.isConnectedToPVS = jest.fn(() => of(false))
       const inputValues = {
         a: PVS_FIRMWARE_DOWNLOAD_INIT(),
         b: PVS_FIRMWARE_DOWNLOAD_INIT(true)
@@ -42,7 +44,13 @@ describe('Epic firmware', () => {
       }
       const inputMarble = 'a-b'
       const expectedMarble = 'a-b'
-      epicTest(inputMarble, expectedMarble, inputValues, expectedValues)
+      epicTest(inputMarble, expectedMarble, inputValues, expectedValues, {
+        fileDownloader: {
+          settings: {
+            allowDownloadWithPVS: true
+          }
+        }
+      })
     })
   })
   describe('downloadPVSFirmware', function() {
@@ -81,7 +89,7 @@ describe('Epic firmware', () => {
     })
     it('should go from reportSuccess to actual sucess', function() {
       epicTest = epicTester(require('./firmware').reportPVSDownloadSuccessEpic)
-      fileSystem.getLuaFileSize = jest.fn(() =>
+      fileSystem.verifySHA256 = jest.fn(() =>
         of({
           lastModified: 1597608047172,
           size: 1000000
@@ -156,7 +164,7 @@ describe('Epic firmware', () => {
   })
   describe('epicDownloadLuaFilesInit', function() {
     it('should download LUA files ith a new UpdateUrl', function() {
-      epicTest = epicTester(require('./firmware').epicDownloadLuaFilesInit)
+      epicTest = epicTester(require('./firmware').downloadLuaFilesInitEpic)
       fileTransferObservable.default = jest.fn(() =>
         of(
           { progress: 10 },

@@ -1,6 +1,6 @@
 import * as Sentry from '@sentry/browser'
 import { ofType } from 'redux-observable'
-import { from } from 'rxjs'
+import { from, of } from 'rxjs'
 import { catchError, exhaustMap, map } from 'rxjs/operators'
 import { path } from 'ramda'
 import {
@@ -33,6 +33,7 @@ export const fetchDeviceTreeEpic = (action$, state$) => {
         ),
         catchError(err => {
           Sentry.captureException(err)
+          return of(FETCH_DEVICE_TREE_ERROR('FETCH_DEVICE_TREE_ERROR'))
         })
       )
     })

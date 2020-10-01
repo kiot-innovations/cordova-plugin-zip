@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`The variables that shouldn't change should not change the MI Types 1`] = `
+Object {
+  "AC_Module_Type_C": "Type C",
+  "AC_Module_Type_D": "Type D",
+  "AC_Module_Type_E": "Type E",
+  "AC_Module_Type_G": "Type G",
+}
+`;
+
+exports[`The variables that shouldn't change should not change, PERSIST DATA PATH 1`] = `"cdvfile://localhost/persistent/"`;

@@ -1,5 +1,6 @@
 import { compose, defaultTo, head, join, last, slice, split } from 'ramda'
 import { flipConcat, PERSIST_DATA_PATH } from 'shared/utils'
+import { getSHA256FromFile } from 'shared/cordovaMapping'
 
 export const ERROR_CODES = {
   NO_FILESYSTEM_FILE: 'no filesystem file',
@@ -197,22 +198,23 @@ export const readFile = path =>
     }, reject)
   })
 
-export const getDownloadSizeFromLuaFile = compose(
-  parseInt,
+export const getSHA256FromLuaFile = compose(
   head,
-  split(','),
+  split("'"),
   last,
-  split('dlsize = ')
+  split("hash = '")
 )
-
-export const getLuaFileSize = async rootFSPath => {
-  const dlSize = getDownloadSizeFromLuaFile(
+export const verifySHA256 = async luaPath => {
+  const expectedSHA = getSHA256FromLuaFile(
     (await readFile('luaFiles/fwup002.lua')) || ''
   )
+  const receivedSHA = await getSHA256FromFile(luaPath)
 
-  const { lastModified, size } = await getFileInfo(rootFSPath)
-  if (size === dlSize) return { lastModified, size }
-  throw new Error('The download is not the same size as expected')
+  if (receivedSHA === expectedSHA) {
+    const { lastModified, size } = await getFileInfo(luaPath)
+    return { lastModified, size }
+  }
+  throw new Error('The SHA256 is not the same size as expected')
 }
 
 export const createSingleDirectory = (fs, newFolder = '') =>

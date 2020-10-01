@@ -1,11 +1,12 @@
-import React, { useCallback, useState } from 'react'
+import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useHistory, useLocation } from 'react-router-dom'
-import { length, pathOr } from 'ramda'
+import { useHistory } from 'react-router-dom'
+import { length } from 'ramda'
 import BlockUI from 'react-block-ui'
 import 'react-block-ui/style.css'
 import useModal from 'hooks/useModal'
 import { useI18n } from 'shared/i18n'
+import { either } from 'shared/utils'
 import { PUSH_CANDIDATES_INIT } from 'state/actions/devices'
 import { UPDATE_MI_COUNT } from 'state/actions/inventory'
 import { REMOVE_SN, START_DISCOVERY_INIT } from 'state/actions/pvs'
@@ -21,23 +22,21 @@ function RMASnList() {
   const t = useI18n()
   const dispatch = useDispatch()
   const history = useHistory()
-  const location = useLocation()
-  const { isManualModeDefault = false } = pathOr({}, ['state'], location)
   const { canAccessScandit } = useSelector(state => state.global)
 
-  const [isManualMode, setManualMode] = useState(isManualModeDefault)
-  const { serialNumbers: serialNumbersNew, fetchingSN } = useSelector(
+  const { serialNumbers, fetchingSN, serialNumbersError } = useSelector(
     state => state.pvs
   )
   const { found: serialNumbersExisting } = useSelector(state => state.devices)
+  const serialNumbersNew = serialNumbers.filter(
+    device =>
+      !serialNumbersExisting.find(
+        existing => existing.SERIAL === device.serial_number
+      )
+  )
   const [editingSn, setEditingSn] = useState('')
   const { bom } = useSelector(state => state.inventory)
   const total = length(serialNumbersExisting) + length(serialNumbersNew)
-
-  const toggleManualMode = useCallback(() => {
-    setManualMode(!isManualMode)
-    setEditingSn('')
-  }, [isManualMode])
 
   const modulesOnInventory = bom.filter(item => {
     return item.item === 'AC_MODULES'
@@ -51,7 +50,6 @@ function RMASnList() {
 
   const handleEditSN = serialNumber => {
     setEditingSn(serialNumber)
-    setManualMode(true)
   }
 
   const handleRemoveSN = serialNumber => {
@@ -60,7 +58,6 @@ function RMASnList() {
 
   const afterEditCallback = () => {
     setEditingSn('')
-    setManualMode(false)
     dispatch(REMOVE_SN(editingSn))
   }
 
@@ -86,13 +83,15 @@ function RMASnList() {
   }
 
   const submitSN = () => {
-    const snList = serialNumbersNew.map(device => {
-      return { DEVICE_TYPE: 'Inverter', SERIAL: device.serial_number }
-    })
+    const snList = serialNumbersNew.map(device => ({
+      DEVICE_TYPE: 'Inverter',
+      SERIAL: device.serial_number
+    }))
+    serialNumbersError.forEach(snList.push)
     toggleSerialNumbersModal()
     dispatch(UPDATE_MI_COUNT(serialNumbersNew.length))
     dispatch(PUSH_CANDIDATES_INIT(snList))
-    history.push(paths.PROTECTED.DEVICES.path)
+    history.push(paths.PROTECTED.RMA_MI_DISCOVERY.path)
   }
 
   const serialNumbersModalTemplate = text => {
@@ -192,7 +191,7 @@ function RMASnList() {
       toggleSerialNumbersModal()
     } else {
       submitSN()
-      history.push(paths.PROTECTED.DEVICES.path)
+      history.push(paths.PROTECTED.RMA_MI_DISCOVERY.path)
     }
   }
 
@@ -206,6 +205,7 @@ function RMASnList() {
 
   const serialNumbersExistingList = serialNumbersExisting
     ? serialNumbersExisting
+        .filter(({ DEVICE_TYPE }) => DEVICE_TYPE === 'Inverter')
         .sort(function(a, b) {
           return a.SERIAL > b.SERIAL
         })
@@ -227,7 +227,7 @@ function RMASnList() {
             {t('SCAN_MI_LABELS')}
           </span>
           <span className="has-text-white">
-            {total > 0 ? t('FOUND_SN', total) : ''}
+            {either(total > 0, t('FOUND_SN', total))}
           </span>
         </div>
         <div className="flex-inverter-list">
@@ -239,18 +239,24 @@ function RMASnList() {
               </span>
             }
           >
-            <div className="sn-container">
-              {length(serialNumbersNewList) > 0 ? (
-                <>
-                  <span className="has-text-weight-bold">
-                    {t('TAP_SN_TO_EDIT')}
-                  </span>
-                  {serialNumbersNewList}
-                </>
-              ) : (
-                <span>{t('SCAN_HINT')}</span>
-              )}
-              {fetchingSN ? <Loader /> : ''}
+            <div className="rma-sn">
+              <div className="rma-sn-list mb-10">
+                {either(
+                  length(serialNumbersNewList) > 0,
+                  <>
+                    <span className="has-text-weight-bold">
+                      {t('TAP_SN_TO_EDIT')}
+                    </span>
+                    {serialNumbersNewList}
+                  </>,
+                  <span>{t('SCAN_HINT')}</span>
+                )}
+                {fetchingSN && <Loader />}
+              </div>
+              <SNManualEntry
+                serialNumber={editingSn}
+                callback={afterEditCallback}
+              />
             </div>
           </Collapsible>
           <div className="mt-20" />
@@ -262,53 +268,32 @@ function RMASnList() {
               </span>
             }
           >
-            <div className="sn-container">
-              {length(serialNumbersExistingList) > 0 ? (
-                <>{serialNumbersExistingList}</>
-              ) : (
-                <span>{t('SCAN_HINT')}</span>
-              )}
-              {fetchingSN ? <Loader /> : ''}
+            <div className="rma-sn">
+              <div className="rma-sn-list">
+                {either(
+                  length(serialNumbersExistingList) > 0,
+                  serialNumbersExistingList,
+                  <span>{t('SCAN_HINT')}</span>
+                )}
+                {fetchingSN ? <Loader /> : ''}
+              </div>
             </div>
           </Collapsible>
         </div>
 
         <div className="sn-buttons">
-          {isManualMode ? (
-            <>
-              <SNManualEntry
-                serialNumber={editingSn}
-                callback={afterEditCallback}
-              />
-              <button
-                onClick={toggleManualMode}
-                className="button has-text-centered is-uppercase is-secondary has-no-border mr-40 pl-0 pr-0"
-              >
-                {t('BACK_TO_SCAN')}
-              </button>
-              <button
-                onClick={toggleLegacyDiscoveryModal}
-                className="button has-text-centered is-uppercase is-secondary has-no-border pl-0 pr-0"
-              >
-                {t('LEGACY_DISCOVERY')}
-              </button>
-            </>
-          ) : (
-            <>
-              <SNScanButtons
-                fetchingSN={fetchingSN}
-                onScanMore={onScanMore}
-                countSN={countSN}
-                canScanMore={canAccessScandit}
-              />
-              <button
-                onClick={toggleManualMode}
-                className="button has-text-centered is-uppercase is-secondary has-no-border is-paddingless"
-              >
-                {t('SN_MANUAL_ENTRY')}
-              </button>
-            </>
-          )}
+          <SNScanButtons
+            fetchingSN={fetchingSN}
+            onScanMore={onScanMore}
+            countSN={countSN}
+            canScanMore={canAccessScandit}
+          />
+          <button
+            onClick={toggleLegacyDiscoveryModal}
+            className="button has-text-centered is-uppercase is-secondary has-no-border pl-0 pr-0"
+          >
+            {t('LEGACY_DISCOVERY')}
+          </button>
         </div>
       </div>
     </BlockUI>
