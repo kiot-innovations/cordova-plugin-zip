@@ -26,11 +26,24 @@ export const loginSuccessEpic = action$ =>
 
         return from(getPartyPromise(accessToken, partyId)).pipe(
           map(({ status, body: { parentDisplayName: dealerName } }) =>
-            status === 200
-              ? loggedIn({ ...user, ...{ dealerName } })
-              : MIXPANEL_EVENT_ERROR()
+            status === 200 ? loggedIn({ ...user, dealerName }) : loggedIn(user)
           ),
-          catchError(error => of(MIXPANEL_EVENT_ERROR(error)))
+          catchError(error =>
+            of(
+              loggedIn(user),
+              MIXPANEL_EVENT_ERROR({
+                error,
+                breadcrumbs: [
+                  {
+                    type: 'http',
+                    message: 'Failed to get dealer name from EDP Party API.',
+                    category: 'fetch',
+                    data: { method: 'GET', operation: 'Get_Party' }
+                  }
+                ]
+              })
+            )
+          )
         )
       }
     )
