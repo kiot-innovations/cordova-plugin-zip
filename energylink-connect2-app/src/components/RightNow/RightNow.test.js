@@ -1,5 +1,5 @@
 import React from 'react'
-import { shallow } from 'enzyme'
+import { mount, shallow } from 'enzyme'
 import RightNow from '.'
 import * as i18n from '../../shared/i18n'
 
@@ -11,12 +11,13 @@ describe('Right Now component', () => {
   beforeEach(() => {
     jest
       .spyOn(i18n, 'useI18n')
-      .mockImplementation(path => key => key.toUpperCase())
+      .mockImplementation(() => key => key.toUpperCase())
   })
 
   it('renders without crashing', () => {
     const component = shallow(
       <RightNow
+        solarAvailable
         solarValue={2.5}
         gridValue={2.5}
         storageValue={2.5}
@@ -30,8 +31,9 @@ describe('Right Now component', () => {
   })
 
   it('renders with disabled storage square', () => {
-    const component = shallow(
+    const component = mount(
       <RightNow
+        solarAvailable
         solarValue={2.5}
         gridValue={2.5}
         storageValue={0}
@@ -41,6 +43,22 @@ describe('Right Now component', () => {
         location={previousLocation}
       />
     )
+
     expect(component.find('.disabled-filter').length).toBe(1)
+    component.unmount()
+  })
+  it('renders without solar', () => {
+    const component = shallow(
+      <RightNow
+        solarAvailable={false}
+        gridValue={2.5}
+        storageValue={2.5}
+        homeValue={2.5}
+        batteryLevel={63}
+        hasStorage={true}
+        location={previousLocation}
+      />
+    )
+    expect(component).toMatchSnapshot()
   })
 })

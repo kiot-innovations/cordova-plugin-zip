@@ -14,7 +14,7 @@ import * as energyDataActions from '../../actions/energy-data'
 import * as networkActions from '../../actions/network'
 
 import { roundDecimals } from 'shared/rounding'
-import { always, compose, equals, ifElse, pathOr } from 'ramda'
+import { always, compose, equals, ifElse, is, pathOr } from 'ramda'
 
 const createWebsocketObservable = () =>
   new Observable(subscriber => {
@@ -118,16 +118,22 @@ export const liveEnergyData = (action$, state$) =>
                 pv_p = 0,
                 ess_p = 0,
                 net_p = 0, // net_p :: grid power (kW)
+                site_load_p = 0,
                 pv_en = 0,
                 net_en = 0, // net_en :: grid energy (kWh)
+                site_load_en = 0,
                 ess_en = 0
               } = data
               // powerProduction/pv_p :: power production (kW)
+
+              const netPower = site_load_p !== 0 ? site_load_p : net_p
+              const netEnergy = site_load_en !== 0 ? site_load_en : net_en
+
               const powerProduction = pv_p < 0.01 ? 0 : pv_p
               // energyStoragePower/ess_p :: energy storage power (kW)
               const energyStoragePower = Math.abs(ess_p) < 0.01 ? 0 : ess_p
 
-              const gridPower = Math.abs(net_p) < 0.01 ? 0 : net_p
+              const gridPower = Math.abs(netPower) < 0.01 ? 0 : netPower
               const loadSidePower = getLoadSideProduction(
                 state$,
                 powerProduction
@@ -148,10 +154,11 @@ export const liveEnergyData = (action$, state$) =>
               )
 
               // c :: consumption
-              const consumption = essEnergy + net_en + loadSideEnergy
+              const consumption = essEnergy + netEnergy + loadSideEnergy
 
               return energyDataActions.LIVE_ENERGY_DATA_NOTIFICATION({
                 [new Date(data.time * 1000).toISOString()]: {
+                  isSolarAvailable: is(Number, data.pv_p),
                   p: roundDecimals(energyProduction),
                   s: roundDecimals(essEnergy),
                   c: roundDecimals(consumption),
