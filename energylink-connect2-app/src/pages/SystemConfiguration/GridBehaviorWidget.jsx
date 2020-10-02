@@ -9,7 +9,20 @@ import {
   SET_EXPORT_LIMIT,
   SET_GRID_VOLTAGE
 } from 'state/actions/systemConfiguration'
-import { always, cond, head, length, pathOr, pipe, T } from 'ramda'
+import {
+  always,
+  compose,
+  cond,
+  flip,
+  head,
+  includes,
+  length,
+  pathOr,
+  pipe,
+  prop,
+  T,
+  when
+} from 'ramda'
 import Collapsible from 'components/Collapsible'
 import SelectField from 'components/SelectField'
 import './SystemConfiguration.scss'
@@ -23,6 +36,9 @@ const voltageWarning = (t, measuredVoltage) => (
     </div>
   </div>
 )
+
+const setDefaultGridVoltage = (dispatch, value) =>
+  when(flip(includes)([208, 240]), compose(dispatch, SET_GRID_VOLTAGE))(value)
 
 function GridBehaviorWidget() {
   const t = useI18n()
@@ -59,6 +75,12 @@ function GridBehaviorWidget() {
     dispatch(FETCH_GRID_BEHAVIOR())
   }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
+  useEffect(() => {
+    if (!prop('gridVoltage', selectedOptions)) {
+      setDefaultGridVoltage(dispatch, prop('measured', gridVoltage))
+    }
+  }, [dispatch, gridVoltage, selectedOptions])
+
   const findProfileById = pipe(
     findByPathValue(profiles, ['id']),
     cond([
@@ -69,11 +91,16 @@ function GridBehaviorWidget() {
 
   const filterProfiles =
     profiles && site
-      ? profiles.filter(
-          profile =>
-            site.postalCode >= pathOr(0, ['zipcodes', 0, 'min'], profile) &&
-            site.postalCode <= pathOr(0, ['zipcodes', 0, 'max'], profile)
-        )
+      ? profiles.filter(profile => {
+          if (profile.zipcodes.includes(site.postalCode)) {
+            return true
+          } else {
+            return (
+              site.postalCode >= pathOr(0, ['zipcodes', 0, 'min'], profile) &&
+              site.postalCode <= pathOr(0, ['zipcodes', 0, 'max'], profile)
+            )
+          }
+        })
       : []
 
   let defaultGridProfile = null
@@ -127,8 +154,6 @@ function GridBehaviorWidget() {
   ])
   const findExportLimitValue = findByPathValue(selfSupplyOptions, ['value'])
 
-  const showPreselectedVoltage =
-    gridVoltage.measured === 208 || gridVoltage.measured === 240
   const showVoltageWarning = gridVoltage.selected !== gridVoltage.measured
 
   return (
@@ -228,14 +253,6 @@ function GridBehaviorWidget() {
                   isSearchable={false}
                   useDefaultDropDown
                   options={gridVoltageOptions}
-                  defaultValue={
-                    showPreselectedVoltage
-                      ? {
-                          label: `${gridVoltage.measured}`,
-                          value: gridVoltage.measured
-                        }
-                      : null
-                  }
                   value={findVoltageByValue(selectedOptions.gridVoltage)}
                   onSelect={setGridVoltage}
                 />

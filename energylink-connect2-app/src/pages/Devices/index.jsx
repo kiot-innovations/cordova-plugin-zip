@@ -109,7 +109,7 @@ const discoveryStatus = (
       return (
         <>
           <button
-            className="button is-primary is-uppercase is-paddingless ml-75 mr-75"
+            className="button is-primary is-uppercase is-paddingless"
             onClick={retryDiscovery}
           >
             {t('RETRY')}
@@ -123,7 +123,7 @@ const discoveryStatus = (
       return (
         <>
           <button
-            className="button is-primary is-uppercase is-paddingless ml-75 mr-75"
+            className="button is-primary is-uppercase is-paddingless"
             onClick={retryDiscovery}
           >
             {t('RETRY')}
@@ -139,46 +139,47 @@ const discoveryStatus = (
           <span className="has-text-weight-bold mb-20">
             {t('CLAIM_DEVICES_ERROR', claimError)}
           </span>
-          <button
-            className="button is-primary is-outlined is-uppercase is-paddingless ml-75 mr-75 mb-10"
-            disabled={claimingDevices}
-            onClick={retryDiscovery}
-          >
-            {t('ADD-DEVICES')}
-          </button>
-          <button
-            className={clsx('button is-primary is-uppercase ml-75 mr-75', {
-              'is-loading': claimingDevices
-            })}
-            disabled={claimingDevices}
-            onClick={claimDevices}
-          >
-            {t('CLAIM_DEVICES')}
-          </button>
+          <div className="inline-buttons">
+            <button
+              className="button is-primary is-outlined is-uppercase is-paddingless mb-10"
+              disabled={claimingDevices}
+              onClick={retryDiscovery}
+            >
+              {t('ADD-DEVICES')}
+            </button>
+            <button
+              className={clsx('button is-primary is-uppercase', {
+                'is-loading': claimingDevices
+              })}
+              disabled={claimingDevices}
+              onClick={claimDevices}
+            >
+              {t('CLAIM_DEVICES')}
+            </button>
+          </div>
         </>
       )
     }
 
     return (
-      <>
+      <div className="inline-buttons">
         <button
-          className="button is-primary is-outlined is-uppercase is-paddingless ml-75 mr-75 mb-10"
+          className="button is-primary is-outlined is-uppercase is-paddingless mb-10"
           disabled={claimingDevices}
           onClick={retryDiscovery}
         >
           {t('ADD-DEVICES')}
         </button>
         <button
-          className={clsx(
-            'button is-primary is-uppercase is-paddingless ml-75 mr-75',
-            { 'is-loading': claimingDevices }
-          )}
+          className={clsx('button is-primary is-uppercase is-paddingless', {
+            'is-loading': claimingDevices
+          })}
           disabled={claimingDevices}
           onClick={claimDevices}
         >
           {t('CLAIM_DEVICES')}
         </button>
-      </>
+      </div>
     )
   } else {
     return error ? (
@@ -320,6 +321,7 @@ function Devices() {
                     )}
                   </div>
                   <div
+                    className="is-flex mi-indicator"
                     onClick={() =>
                       showMIStatusModal(elem.serial_number, elem.STATEDESCR)
                     }

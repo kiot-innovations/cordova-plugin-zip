@@ -5,13 +5,13 @@ import {
   clone,
   compose,
   concat,
-  contains,
   curry,
   defaultTo,
   dissoc,
   filter,
   find,
   flip,
+  head,
   includes,
   indexBy,
   isNil,
@@ -258,10 +258,10 @@ export const addHasErrorProp = results => {
     const newValueForKey = Array.isArray(keyValue)
       ? map(
           value =>
-            assoc('hasError', contains(value.serial_number, snErrors), value),
-          keyValue
+            assoc('hasError', includes(value.serial_number, snErrors), value),
+          removeUndefined(keyValue)
         )
-      : assoc('hasError', contains(keyValue.serial_number, snErrors), keyValue)
+      : assoc('hasError', includes(keyValue.serial_number, snErrors), keyValue)
 
     copy.ess_report[key] = newValueForKey
   })
@@ -300,7 +300,7 @@ export const calculateTimeout = lastUpdated => {
 
 export const hasInternetConnection = () =>
   new Promise((resolve, reject) =>
-    fetch(process.env.REACT_APP_SWAGGER_FIRMWARE)
+    fetch(process.env.REACT_APP_LATEST_FIRMWARE_URL)
       .then(() => resolve())
       .catch(() => reject())
   )
@@ -321,4 +321,20 @@ export const generatePassword = serialNumber => {
     serialNumber.substring(2, 6) +
     serialNumber.substring(lastIndex - 4, lastIndex)
   return password
+}
+export const parseMD5FromResponse = compose(head, split(' '))
+export const renameExtension = replace(/\.tar\.gz$/, '.md5')
+
+export const getExpectedMD5 = async url => {
+  const requestOptions = {
+    method: 'GET',
+    headers: new Headers()
+  }
+
+  const res = await fetch(renameExtension(url), requestOptions)
+  if (res.ok) {
+    return parseMD5FromResponse(await res.text())
+  }
+
+  throw new Error(`getExpectedMD5: Failed fetching md5 for: ${url}`)
 }

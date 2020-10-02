@@ -7,13 +7,7 @@
 # 2. Android application (BUILD_TYPE=debug, APP_ENV=test)
 #    - build with code signing
 #    - store APK file as a build artifact
-on:
-  pull_request:
-  push:
-    branches:
-      - develop
-      - claire
-      - staging-dr-wong
+on: pull_request
 
 jobs:
   build:

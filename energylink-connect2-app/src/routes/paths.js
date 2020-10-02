@@ -228,6 +228,18 @@ const paths = {
       header: true,
       footer: true,
       tab: TABS.INSTALL
+    },
+    RMA_MI_DISCOVERY: {
+      path: '/rma-mi-discovery',
+      header: true,
+      footer: true,
+      tab: TABS.INSTALL
+    },
+    RMA_DEVICES: {
+      path: '/rma-devices',
+      header: true,
+      footer: true,
+      tab: TABS.INSTALL
     }
   },
   UNPROTECTED: {

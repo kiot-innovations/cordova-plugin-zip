@@ -1,16 +1,14 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { pathOr, isEmpty, isNil } from 'ramda'
 import { useSelector, useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
-import SwipeableBottomSheet from 'react-swipeable-bottom-sheet'
-import { either, isAndroid10 } from 'shared/utils'
+import { either } from 'shared/utils'
 import { useI18n } from 'shared/i18n'
 import { RESET_DISCOVERY } from 'state/actions/devices'
 import { RESET_PVS_INFO_STATE } from 'state/actions/pvs'
 import {
   RESET_PVS_CONNECTION,
   PVS_CONNECTION_INIT,
-  STOP_NETWORK_POLLING,
   clearPVSErr
 } from 'state/actions/network'
 import { RESET_INVENTORY } from 'state/actions/inventory'
@@ -20,11 +18,10 @@ import paths from 'routes/paths'
 import 'pages/ConnectToPVS/ConnectToPVS.scss'
 import './ConnectionLost.scss'
 
-const ConnectionLost = ({ animationState }) => {
+const ConnectionLost = () => {
   const t = useI18n()
   const dispatch = useDispatch()
   const history = useHistory()
-  const [manualInstructions, showManualInstructions] = useState(false)
 
   const { SSID, password, connected, connecting, err } = useSelector(
     pathOr({}, ['network'])
@@ -47,34 +44,14 @@ const ConnectionLost = ({ animationState }) => {
     dispatch(PVS_CONNECTION_INIT({ ssid: SSID, password }))
   }
 
-  const copyPasswordToClipboard = () => {
-    window.cordova.plugins.clipboard.copy(password)
-    window.cordova.plugins.diagnostic.switchToWifiSettings()
-  }
-
-  const abortConnection = () => {
-    dispatch(STOP_NETWORK_POLLING())
-    dispatch(RESET_PVS_CONNECTION())
-    showManualInstructions(false)
-  }
-
-  const checkAndroidVersion = () => {
-    if (isAndroid10) {
-      showManualInstructions(true)
-    }
-  }
-
   useEffect(() => {
-    if (connecting) {
-      checkAndroidVersion()
-    }
-    if (!connecting && connected && animationState !== 'leave') {
+    if (!connecting && connected) {
       history.push(paths.PROTECTED.SN_LIST.path)
     }
     if (!connecting && err) {
       dispatch(clearPVSErr())
     }
-  }, [animationState, connected, connecting, err, dispatch, history, t])
+  }, [connected, connecting, err, dispatch, history, t])
 
   return (
     <div className="pvs-connection-lost-screen pr-20 pl-20">
@@ -84,10 +61,15 @@ const ConnectionLost = ({ animationState }) => {
       <span className="sp-no-connection has-text-white" />
 
       <div className="mr-5 ml-5 is-size-6 has-text-centered">
-        <p>{t('RECONNECT1')}</p>
-        <span className="has-text-weight-bold mr-5">{t('RECONNECT')}</span>
-        {t('RECONNECT2')}
-        <br />
+        <p className="has-text-white mb-15">{t('RECONNECT0')}</p>
+        <p>
+          {t('RECONNECT1')}
+          <span className="has-text-weight-bold ml-5 mr-5">
+            {t('RECONNECT')}
+          </span>
+          {t('RECONNECT2')}
+          <br />
+        </p>
         <p className="has-text-centered mt-20 has-text-weight-bold">
           {serialNumber}
         </p>
@@ -116,45 +98,6 @@ const ConnectionLost = ({ animationState }) => {
           </button>
         )}
       </div>
-
-      <SwipeableBottomSheet
-        shadowTip={false}
-        open={manualInstructions}
-        onChange={() => showManualInstructions(!manualInstructions)}
-      >
-        <div className="manual-instructions is-flex">
-          <span className="has-text-weight-bold has-text-white mb-10">
-            {t('MANUAL_CONNECT_INSTRUCTIONS_1')}
-          </span>
-          <span className="mb-10">{t('MANUAL_CONNECT_INSTRUCTIONS_2')}</span>
-          <div className="mb-15 is-flex network-details">
-            <span className="has-text-white">
-              <b>{t('SSID')}</b>
-              {SSID}
-            </span>
-            <span className="has-text-white">
-              <b>{t('PASSWORD')}</b>
-              {password}
-            </span>
-          </div>
-          <div className="mt-10 mb-20">
-            <button
-              className="button is-primary"
-              onClick={copyPasswordToClipboard}
-            >
-              {t('COPY_PWD_TO_CLIPBOARD')}
-            </button>
-          </div>
-          <div className="mt-10 mb-20">
-            <button
-              className="button is-primary is-outlined"
-              onClick={abortConnection}
-            >
-              {t('ABORT_CONNECTION')}
-            </button>
-          </div>
-        </div>
-      </SwipeableBottomSheet>
     </div>
   )
 }

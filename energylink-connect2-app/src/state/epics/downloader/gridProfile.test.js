@@ -1,5 +1,6 @@
 import { of } from 'rxjs'
 import {
+  GRID_PROFILE_DOWNLOAD_ERROR,
   GRID_PROFILE_DOWNLOAD_INIT,
   GRID_PROFILE_DOWNLOAD_PROGRESS,
   GRID_PROFILE_DOWNLOAD_SUCCESS,
@@ -7,6 +8,8 @@ import {
 } from 'state/actions/gridProfileDownloader'
 import * as fileTransferObservable from 'state/epics/observables/downloader'
 import * as fileSystem from 'shared/fileSystem'
+import * as utils from 'shared/utils'
+import * as cordovaMapping from 'shared/cordovaMapping'
 
 describe('Epic gridProfile', () => {
   it('should show the progress of the download, if complete set the file info', () => {
@@ -50,6 +53,10 @@ describe('Epic gridProfile', () => {
         size: 1000000
       })
     )
+
+    utils.getExpectedMD5 = jest.fn(() => of('fdfasdasfww'))
+    cordovaMapping.getMd5FromFile = jest.fn(() => of('fdfasdasfww'))
+
     const epicTest = epicTester(
       require('./gridProfile').gridProfileReportSuccessEpic
     )
@@ -60,6 +67,32 @@ describe('Epic gridProfile', () => {
       a: GRID_PROFILE_DOWNLOAD_SUCCESS({
         lastModified: 1597608047172,
         size: 1000000
+      })
+    }
+    epicTest('a', 'a', inputValues, expectedValues)
+  })
+
+  it('should dispatch GRID_PROFILE_DOWNLOAD_SUCCESS md5 wont match if it could run all of it correctly', function() {
+    fileSystem.getFileInfo = jest.fn(() =>
+      of({
+        lastModified: 1597608047172,
+        size: 1000000
+      })
+    )
+
+    utils.getExpectedMD5 = jest.fn(() => of('fdfasdasfww'))
+    cordovaMapping.getMd5FromFile = jest.fn(() => of('xxdfsaf'))
+
+    const epicTest = epicTester(
+      require('./gridProfile').gridProfileReportSuccessEpic
+    )
+    const inputValues = {
+      a: GRID_PROFILE_REPORT_SUCCESS('firmware/gridProfile.tar.gz')
+    }
+    const expectedValues = {
+      a: GRID_PROFILE_DOWNLOAD_ERROR({
+        error: 'MD5_NOT_MATCHING',
+        retry: false
       })
     }
     epicTest('a', 'a', inputValues, expectedValues)

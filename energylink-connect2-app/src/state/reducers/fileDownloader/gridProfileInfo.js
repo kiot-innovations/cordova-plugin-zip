@@ -27,9 +27,10 @@ export default createReducer(
       ...state,
       size,
       lastModified,
+      error: '',
       progress: 100
     }),
-    [GRID_PROFILE_DOWNLOAD_ERROR]: (state, error) => ({
+    [GRID_PROFILE_DOWNLOAD_ERROR]: (state, { error }) => ({
       ...state,
       error,
       lastModified: 0,

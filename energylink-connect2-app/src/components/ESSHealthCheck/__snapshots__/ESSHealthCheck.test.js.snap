@@ -47,7 +47,7 @@ Object {
           }
         >
           <div
-            className="ess-hc page-height has-text-centered pt-10"
+            className="ess-hc has-text-centered pt-10 pl-10 pr-10"
           >
             <span
               className="is-uppercase has-text-weight-bold"

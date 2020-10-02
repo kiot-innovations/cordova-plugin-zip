@@ -4,13 +4,15 @@
   max-width: 85vw;
   display: flex;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: space-between;
   flex-direction: column;
   margin: auto;
   text-align: center;
+
   .sp-pvs {
     font-size: 7rem;
   }
+
   .configure-button {
     letter-spacing: 0.25rem;
     border: none;

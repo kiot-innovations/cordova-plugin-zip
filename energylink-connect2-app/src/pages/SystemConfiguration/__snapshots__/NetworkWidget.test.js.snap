@@ -1829,7 +1829,7 @@ exports[`Network Widget after selecting network network is selected 1`] = `
                     >
                       <input
                         checked={false}
-                        className="checkbox is-small ml-5 mr-5"
+                        className="checkbox-dark is-small ml-5 mr-5"
                         id="showPassword"
                         onChange={[Function]}
                         type="checkbox"
@@ -3604,7 +3604,7 @@ exports[`Network Widget on initial state renders correctly 1`] = `
                     >
                       <input
                         checked={false}
-                        className="checkbox is-small ml-5 mr-5"
+                        className="checkbox-dark is-small ml-5 mr-5"
                         id="showPassword"
                         onChange={[Function]}
                         type="checkbox"

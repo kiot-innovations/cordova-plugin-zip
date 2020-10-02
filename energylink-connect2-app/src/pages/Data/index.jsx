@@ -6,9 +6,9 @@ import {
   equals,
   filter,
   head,
+  isEmpty,
   length,
   pathOr,
-  isEmpty,
   T
 } from 'ramda'
 import { useI18n } from 'shared/i18n'
@@ -79,6 +79,7 @@ export default () => {
   if (entries.length) {
     const [latestDate, latest] = entries[entries.length - 1]
     data = {
+      isSolarAvailable: latest.isSolarAvailable,
       date: latestDate,
       stateOfCharge: latest.soc,
       solar: latest.p,
@@ -126,6 +127,7 @@ export default () => {
           storageValue={data.powerStorage}
           homeValue={data.powerHomeUsage}
           batteryLevel={data.stateOfCharge}
+          solarAvailable={data.isSolarAvailable}
         />
       </section>
       <div className="separator" />
