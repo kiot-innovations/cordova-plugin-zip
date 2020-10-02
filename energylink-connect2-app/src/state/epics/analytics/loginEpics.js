@@ -1,16 +1,10 @@
 import { ofType } from 'redux-observable'
 import { from, of } from 'rxjs'
 import { catchError, map, mergeMap } from 'rxjs/operators'
-import { path } from 'ramda'
 import { loggedIn, loginFailed } from 'shared/analytics'
-import { getApiParty } from 'shared/api'
 import { LOGIN_ERROR, LOGIN_SUCCESS } from 'state/actions/auth'
 import { MIXPANEL_EVENT_ERROR } from 'state/actions/analytics'
-
-const getPartyPromise = (accessToken, partyId) =>
-  getApiParty(accessToken)
-    .then(path(['apis', 'default']))
-    .then(api => api.Get_Party({ partyId }))
+import { getPartyPromise } from 'state/epics/analytics/epicUtils'
 
 export const loginSuccessEpic = action$ =>
   action$.pipe(
