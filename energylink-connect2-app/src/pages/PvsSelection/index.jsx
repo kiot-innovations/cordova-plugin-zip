@@ -99,11 +99,7 @@ function PvsSelection() {
           @todo: This section is hidden until we finish the RMA flow
           [CM2-1048]. Enable the buttons once we finish that.
       */}
-      <section
-        className={clsx('pvs-buttons mb-20', {
-          'is-hidden': !process.env.REACT_APP_IS_DEV
-        })}
-      >
+      <section className="pvs-buttons mb-20">
         <button
           className="button has-text-centered is-uppercase is-secondary is-fullwidth mr-5"
           onClick={replacePVS}
