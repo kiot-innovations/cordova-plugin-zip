@@ -34,8 +34,8 @@ describe('The loginSuccessEpic', function() {
     const expectedValue = {
       m: MIXPANEL_EVENT_QUEUED('Login - Success')
     }
-    const inputMarble = '(l)'
-    const expectedMarble = '(m)'
+    const inputMarble = 'l'
+    const expectedMarble = 'm'
 
     epicTest(inputMarble, expectedMarble, inputValues, expectedValue)
     expect(loggedIn).toBeCalledTimes(1)
@@ -47,10 +47,12 @@ describe('The loginSuccessEpic', function() {
     expect(getParty).toBeCalledWith(123456, '123')
     expect(getParty).toBeCalledTimes(1)
   })
+
   it('should dispatch MIXPANEL_EVENT_QUEUED if we could NOT get the party ID', function() {
     const getParty = jest.fn(() =>
       of({
-        status: 203
+        status: 203,
+        body: {}
       })
     )
     utils.getPartyPromise = getParty
@@ -77,7 +79,6 @@ describe('The loginSuccessEpic', function() {
     epicTest(inputMarble, expectedMarble, inputValues, expectedValue)
     expect(loggedIn).toBeCalledTimes(1)
     expect(loggedIn).toBeCalledWith({
-      dealerName: 'My awesome Dealer',
       name: 'john Doe',
       partyId: '123'
     })
