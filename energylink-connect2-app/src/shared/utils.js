@@ -235,7 +235,7 @@ export const miTypes = {
   AC_Module_Type_D: 'Type D'
 }
 
-export const renameKeys = (keysMap, obj) =>
+export const renameKeys = curry((keysMap, obj) =>
   Object.keys(obj).reduce(
     (acc, key) => ({
       ...acc,
@@ -243,6 +243,7 @@ export const renameKeys = (keysMap, obj) =>
     }),
     {}
   )
+)
 
 export const arrayToObject = (key, array) => indexBy(prop(key), array)
 const flatErrors = map(prop('device_sn'))

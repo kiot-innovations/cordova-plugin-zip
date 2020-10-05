@@ -10,7 +10,12 @@ import { FETCH_MODELS_INIT, RESET_DISCOVERY } from 'state/actions/devices'
 import { RESET_INVENTORY } from 'state/actions/inventory'
 import { RESET_PVS_CONNECTION } from 'state/actions/network'
 import { RESET_PVS_INFO_STATE } from 'state/actions/pvs'
-import { RESET_SITE, SET_SITE } from 'state/actions/site'
+import {
+  HOME_SCREEN_CREATE_SITE,
+  NO_SITE_FOUND,
+  RESET_SITE,
+  SET_SITE
+} from 'state/actions/site'
 import {
   CHECK_APP_UPDATE_INIT,
   RESET_LAST_VISITED_PAGE
@@ -97,6 +102,10 @@ function Home() {
       )
       .then(pathOr([], ['body', 'items', 'hits']))
       .then(map(accessValue))
+      .then(sites => {
+        if (sites.length === 0) dispatch(NO_SITE_FOUND(searchStr))
+        return sites
+      })
       .then(cb)
       .catch(error => {
         Sentry.captureMessage(error)
@@ -120,6 +129,7 @@ function Home() {
         <p>{t('CS_NOT_FOUND')}</p>
         <Link
           to={paths.PROTECTED.CREATE_SITE.path}
+          onClick={() => dispatch(HOME_SCREEN_CREATE_SITE())}
           className="has-text-weight-bold is-uppercase is-size-6"
         >
           <small>{t('CREATE_SITE')}</small>
