@@ -9,7 +9,7 @@ export const ERROR_CODES = {
   getLuaFile: 'getLuaFile',
   noLuaFile: 'noLuaFile',
   parseLuaFile: 'parseLuaFile',
-  noWifi: 'No wifi'
+  noWifi: 'No WiFi'
 }
 
 export const getFileNameFromURL = compose(last, split('/'))
