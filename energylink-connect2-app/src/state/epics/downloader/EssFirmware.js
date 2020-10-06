@@ -10,7 +10,7 @@ import {
   propOr
 } from 'ramda'
 import { ofType } from 'redux-observable'
-import { from, of } from 'rxjs'
+import { forkJoin, from, of } from 'rxjs'
 import { catchError, exhaustMap, map } from 'rxjs/operators'
 import { getEnvironment } from 'shared/utils'
 import {
@@ -28,6 +28,7 @@ import fileTransferObservable from 'state/epics/observables/downloader'
 import { checkMD5 } from 'shared/cordovaMapping'
 import { PVS_FIRMWARE_MODAL_IS_CONNECTED } from 'state/actions/fileDownloader'
 import { wifiCheckOperator } from './downloadOperators'
+import { getFileInfo } from 'shared/fileSystem'
 
 const downloadOSZipEpic = (action$, state$) => {
   const shouldRetry = ifElse(is(Boolean), identity, always(false))
@@ -114,8 +115,13 @@ const checkIntegrityESSDownload = (action$, state$) =>
       const { filePath, entry } = payload
       const md5 = getMd5(state$, payload)
 
-      return from(checkMD5(filePath, md5)).pipe(
-        map(() => DOWNLOAD_OS_SUCCESS(entry)),
+      return forkJoin({
+        md5: from(checkMD5(filePath, md5)),
+        fileInfo: from(getFileInfo(filePath))
+      }).pipe(
+        map(({ fileInfo }) =>
+          DOWNLOAD_OS_SUCCESS({ entryFile: entry, total: fileInfo.size })
+        ),
         catchError(err => {
           Sentry.addBreadcrumb({ message: `filePath ${filePath}` })
           Sentry.addBreadcrumb({ message: `expected md5 ${md5}` })
