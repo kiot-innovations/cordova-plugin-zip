@@ -48,11 +48,12 @@ export default createReducer(
       ...state,
       error
     }),
-    [DOWNLOAD_OS_SUCCESS]: (state, entryFile) => ({
+    [DOWNLOAD_OS_SUCCESS]: (state, { entryFile, total }) => ({
       ...state,
       file: entryFile,
       error: null,
       isDownloading: false,
+      total: total ? (total / 1000000).toFixed(2) : state.total,
       step: ''
     }),
     [DOWNLOAD_META_INIT]: state => ({
