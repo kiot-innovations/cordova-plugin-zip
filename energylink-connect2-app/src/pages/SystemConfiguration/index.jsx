@@ -1,5 +1,5 @@
-import React from 'react'
-import { compose, endsWith, isEmpty, not, path, equals } from 'ramda'
+import React, { useEffect } from 'react'
+import { compose, endsWith, equals, isEmpty, not, path } from 'ramda'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 
@@ -20,6 +20,7 @@ import RSEWidget from './RSEWidget'
 import StorageWidget from './StorageWidget'
 
 import './SystemConfiguration.scss'
+import { CONFIG_START } from 'state/actions/analytics'
 
 const createMeterConfig = (devicesList, meterConfig, dispatch, site) => {
   const updatedDevices = devicesList.map(device => {
@@ -130,6 +131,9 @@ function SystemConfiguration() {
     componentPath: './NoGridModal.jsx',
     dismissable: true
   })
+  useEffect(() => {
+    dispatch(CONFIG_START())
+  }, [dispatch])
   return (
     <div className="fill-parent is-flex tile is-vertical has-text-centered system-config pl-10 pr-10">
       <span className="is-uppercase has-text-weight-bold mb-20">
