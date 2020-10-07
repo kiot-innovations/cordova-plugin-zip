@@ -92,7 +92,7 @@
   "INITIALIZING": "Preparing download",
   "NOT_DOWNLOADED": "not downloaded",
   "DOWNLOADING_FIRMWARE": "Downloading FW image",
-  "SCAN_EQUIPMENT": "Scan your Microinverters (MIs)",
+  "SCAN_EQUIPMENT": "Scan your Microinverters",
   "BULK_SCAN_HINT": "Use bulk scan to get all the MIs in one shot.",
   "BULK_SCAN": "Bulk Scan",
   "OPENING_CAMERA": "Opening camera...",
