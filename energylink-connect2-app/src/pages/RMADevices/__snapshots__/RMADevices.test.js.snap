@@ -93,6 +93,32 @@ exports[`RMA devices component render correctly 1`] = `
               <div
                 className="collapsible-content expanded"
               >
+                <label
+                  className="has-text-weight-bold has-text-white pb-10 pt-10 "
+                  key="E00121939001311"
+                >
+                  <input
+                    checked={false}
+                    className="mr-10 checkbox-dark"
+                    onChange={[Function]}
+                    type="checkbox"
+                    value="E00121939001311"
+                  />
+                  E00121939001311
+                </label>
+                <label
+                  className="has-text-weight-bold has-text-white pb-10 pt-10 "
+                  key="E00121939002888"
+                >
+                  <input
+                    checked={false}
+                    className="mr-10 checkbox-dark"
+                    onChange={[Function]}
+                    type="checkbox"
+                    value="E00121939002888"
+                  />
+                  E00121939002888
+                </label>
                 <div
                   className="buttons-container"
                 >
@@ -105,6 +131,7 @@ exports[`RMA devices component render correctly 1`] = `
                   <button
                     className="button is-paddingless has-text-primary button-transparent"
                     disabled={true}
+                    onClick={[Function]}
                   >
                     REMOVE
                   </button>
@@ -317,34 +344,6 @@ exports[`RMA devices component render correctly 1`] = `
                       className="ml-10"
                     >
                       PVS6M19150355c
-                    </span>
-                  </div>
-                  <div
-                    key="E00121939001311"
-                  >
-                    <span
-                      className="has-text-weight-bold has-text-white"
-                    >
-                      AC_Module_Type_E
-                    </span>
-                    <span
-                      className="ml-10"
-                    >
-                      E00121939001311
-                    </span>
-                  </div>
-                  <div
-                    key="E00121939002888"
-                  >
-                    <span
-                      className="has-text-weight-bold has-text-white"
-                    >
-                      AC_Module_Type_E
-                    </span>
-                    <span
-                      className="ml-10"
-                    >
-                      E00121939002888
                     </span>
                   </div>
                 </div>
