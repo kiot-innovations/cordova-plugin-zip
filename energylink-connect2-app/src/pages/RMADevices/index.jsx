@@ -6,6 +6,7 @@ import {
   filter,
   has,
   ifElse,
+  keys,
   map,
   pathOr,
   prop,
@@ -18,6 +19,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import Collapsible from 'components/Collapsible'
 import { FETCH_DEVICES_LIST } from 'state/actions/devices'
 import { GET_ESS_STATUS_INIT, GET_PREDISCOVERY } from 'state/actions/storage'
+import { RMA_REMOVE_DEVICES } from 'state/actions/rma'
+import { SHOW_MODAL } from 'state/actions/modal'
 import { useI18n } from 'shared/i18n'
 
 import './RMADevices.scss'
@@ -35,7 +38,7 @@ const renderMicroinverter = (toggleCheckbox, selectedMIs) => inverter => {
         value={serial}
         checked={isChecked}
         onChange={() => toggleCheckbox(serial)}
-        className="mr-10"
+        className="mr-10 checkbox-dark"
       />
       {serial}
     </label>
@@ -72,8 +75,9 @@ function RMADevices() {
   const essDevices = useSelector(
     pathOr([], ['storage', 'prediscovery', 'pre_discovery_report', 'devices'])
   )
-  const microInverters = filter(propEq('Inverter', 'DEVICE_TYPE'), devicesData)
-  const otherDevices = reject(propEq('Inverter', 'DEVICE_TYPE'), devicesData)
+
+  const microInverters = filter(propEq('DEVICE_TYPE', 'Inverter'), devicesData)
+  const otherDevices = reject(propEq('DEVICE_TYPE', 'Inverter'), devicesData)
 
   const toggleCheckbox = id =>
     compose(setSelectedMIs, ifElse(has(id), dissoc(id), assoc(id)))(selectedMIs)
@@ -86,6 +90,15 @@ function RMADevices() {
       newMiSelected = assoc(serial, serial, newMiSelected)
     })
     setSelectedMIs(newMiSelected)
+  }
+
+  const removeSelectedMIs = () => {
+    dispatch(RMA_REMOVE_DEVICES(keys(selectedMIs)))
+    dispatch(
+      SHOW_MODAL({
+        componentPath: './DeleteDevicesModal.jsx'
+      })
+    )
   }
 
   useEffect(() => {
@@ -112,6 +125,7 @@ function RMADevices() {
             {t('SELECT_ALL')}
           </button>
           <button
+            onClick={removeSelectedMIs}
             disabled={Object.values(selectedMIs).length === 0}
             className="button is-paddingless has-text-primary button-transparent"
           >
