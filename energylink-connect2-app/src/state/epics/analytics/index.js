@@ -1,4 +1,5 @@
-import { loginSuccessEpic, loginErrorEpic } from './loginEpics'
+import { loginErrorEpic, loginSuccessEpic } from './loginEpics'
 import { errorEpic } from './errorEpic'
+import siteEpics from './findSiteEpics'
 
-export default [loginSuccessEpic, loginErrorEpic, errorEpic]
+export default [loginSuccessEpic, loginErrorEpic, errorEpic, ...siteEpics]

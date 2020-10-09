@@ -55,3 +55,18 @@ export const loginFailed = () => {
 
   return MIXPANEL_EVENT_QUEUED('Login - Failed')
 }
+
+export const siteNotFound = (searchField = '') => {
+  const { mixpanel } = window
+  mixpanel.track('Find site', { Found: false, 'Search query': searchField })
+  return MIXPANEL_EVENT_QUEUED('Find site - site not found')
+}
+
+export const siteFound = siteData => {
+  const { mixpanel } = window
+  mixpanel.track('Find site', {
+    Found: true,
+    ...siteData
+  })
+  return MIXPANEL_EVENT_QUEUED('Find site - site found')
+}
