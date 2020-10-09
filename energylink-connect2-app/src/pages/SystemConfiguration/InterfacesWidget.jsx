@@ -57,7 +57,7 @@ function InterfacesWidget(props) {
 }
 
 const interfaceName = cond([
-  [equals('sta0'), always('Wi-Fi')],
+  [equals('sta0'), always('WiFi')],
   [equals('cell'), always('Cellular')],
   [equals('wan'), always('Ethernet')],
   [T, always('')]
@@ -140,7 +140,7 @@ const getInterfaceName = t =>
 
 // String -> Object -> String
 const withDefault = (prop, t) => obj => {
-  const iface = obj['interface'] === 'sta0' ? 'wifi' : obj['interface']
+  const iface = obj['interface'] === 'sta0' ? 'WiFi' : obj['interface']
   return hasEmptyValue(obj[prop])
     ? `${t('NO_CONNECTION')} (${iface})`
     : `${obj[prop]} (${iface})`
