@@ -1,9 +1,8 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
-import { linkTo } from '@storybook/addon-links'
+import { action } from '@storybook/addon-actions/dist'
 
 import ESSHealthCheck from '.'
-import { action } from '@storybook/addon-actions/dist'
 
 const results = {
   errors: [
@@ -215,9 +214,7 @@ const results = {
 }
 
 const actions = {
-  onRetry: linkTo('ESSHealthCheck Page', 'Generating report'),
-  pathToContinue: action('Continue action triggered'),
-  pathToErrors: linkTo('ESSHealthCheck Error List')
+  onRetry: action('Retry action triggered')
 }
 
 storiesOf('ESSHealthCheck Page', module)
@@ -226,22 +223,17 @@ storiesOf('ESSHealthCheck Page', module)
       <ESSHealthCheck {...actions} />
     </div>
   ))
-  .add('Error fetching information', () => (
-    <div className="full-min-height pl-10 pr-10">
-      <ESSHealthCheck error="UNABLE_TO_FETCH" {...actions} />
-    </div>
-  ))
-  .add('When errors and results found', () => (
-    <div className="full-min-height pl-10 pr-10">
-      <ESSHealthCheck results={results} {...actions} />
-    </div>
-  ))
   .add('When results and no errors found', () => (
     <div className="full-min-height pl-10 pr-10">
       <ESSHealthCheck
         results={{ ess_report: results.ess_report }}
         {...actions}
       />
+    </div>
+  ))
+  .add('When errors found', () => (
+    <div className="full-min-height pl-10 pr-10">
+      <ESSHealthCheck results={results} {...actions} />
     </div>
   ))
   .add('When errors on status request', () => (
