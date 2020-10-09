@@ -7,11 +7,9 @@ import {
   SAVE_INVENTORY_INIT,
   SAVE_INVENTORY_SUCCESS,
   SAVE_INVENTORY_ERROR,
-  UPDATE_MI_COUNT,
-  UPDATE_STORAGE_INVENTORY,
   UPDATE_OTHER_INVENTORY,
   RESET_INVENTORY,
-  SAVE_INVENTORY_RMA
+  UPDATE_INVENTORY
 } from 'state/actions/inventory'
 
 const initialState = {
@@ -23,8 +21,6 @@ const initialState = {
     { item: 'ESS', value: '0', disabled: false }
   ],
   rma: {
-    ess: '',
-    mi_count: 0,
     other: false
   },
   fetchingInventory: false,
@@ -62,42 +58,16 @@ export const inventoryReducer = createReducer(
       savingInventory: false,
       err: payload
     }),
-    [UPDATE_MI_COUNT]: (state, payload) => ({
-      ...state,
-      rma: {
-        ...state.rma,
-        mi_count: payload
-      },
-      bom: [
-        ...state.bom.map(item => {
-          if (item.item === 'AC_MODULES') {
-            item.value = payload
-          }
-          return item
-        })
-      ]
-    }),
     [RESET_INVENTORY]: () => ({
       ...initialState,
       bom: clone(initialState.bom)
     }),
-    [SAVE_INVENTORY_RMA]: (state, payload) => ({
+    [UPDATE_INVENTORY]: (state, payload) => ({
       ...state,
-      rma: {
-        ...state.rma,
-        [payload.name]: payload.value
-      }
-    }),
-    [UPDATE_STORAGE_INVENTORY]: (state, payload) => ({
-      ...state,
-      rma: {
-        ...state.rma,
-        ess: payload
-      },
       bom: [
         ...state.bom.map(item => {
-          if (item.item === 'ESS') {
-            item.value = payload
+          if (item.item === payload.name) {
+            item.value = payload.value
           }
           return item
         })
