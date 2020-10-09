@@ -56,6 +56,12 @@ export const loginFailed = () => {
   return MIXPANEL_EVENT_QUEUED('Login - Failed')
 }
 
+export const scanPVS = (scanData, event) => {
+  const { mixpanel } = window
+  mixpanel.track('Scan PVS Tag', scanData)
+  return MIXPANEL_EVENT_QUEUED(event)
+}
+
 export const siteNotFound = (searchField = '') => {
   const { mixpanel } = window
   mixpanel.track('Find site', { Found: false, 'Search query': searchField })
