@@ -19,9 +19,10 @@ function ESSHealthCheck(props) {
   const classes = clsx('ess-hc has-text-centered pt-10 pl-10 pr-10', {
     gridit: loading || props.error
   })
-  const hasErrors = !isEmpty(errors) || props.error
+  const hasErrors = !isEmpty(errors) || props.error ? true : false
 
-  const statusErrorMessage = path(
+  const statusErrorMessage = pathOr(
+    props.error,
     ['error', 'response', 'body', 'result'],
     props
   )
