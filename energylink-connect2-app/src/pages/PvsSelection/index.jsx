@@ -107,6 +107,7 @@ function PvsSelection() {
           {t('REPLACE_PVS')}
         </button>
         <button
+          disabled={true}
           className="button has-text-centered is-uppercase is-secondary is-fullwidth ml-5"
           onClick={() =>
             shouldMoveNewRoute(paths.PROTECTED.INVENTORY_COUNT.path)
