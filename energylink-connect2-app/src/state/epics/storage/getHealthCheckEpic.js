@@ -2,7 +2,10 @@ import * as Sentry from '@sentry/browser'
 import { ofType } from 'redux-observable'
 import { from, of } from 'rxjs'
 import { exhaustMap, map, catchError } from 'rxjs/operators'
-import { compose, lensPath, multiply, over, path, pathOr } from 'ramda'
+import {
+  path,
+  pathOr
+} from 'ramda'
 import { getApiPVS, storageSwaggerTag } from 'shared/api'
 import { START_DISCOVERY_ERROR, START_DISCOVERY_INIT } from 'state/actions/pvs'
 import { DISCOVER_COMPLETE, DISCOVER_ERROR } from 'state/actions/devices'
@@ -16,7 +19,6 @@ import {
 import { EMPTY_ACTION } from 'state/actions/share'
 import { discoveryTypes } from 'state/reducers/devices'
 import { eqsSteps } from 'state/reducers/storage'
-import { roundDecimals } from 'shared/rounding'
 
 export const startHealthCheckEpic = (action$, state$) => {
   return action$.pipe(
@@ -53,6 +55,12 @@ export const waitHealthCheckEpic = (action$, state$) => {
   )
 }
 
+const errorObj = {
+  response: {
+    body: { result: 'ESS_STATUS_ERROR' }
+  }
+}
+
 export const runSystemCheckEpic = action$ => {
   return action$.pipe(
     ofType(RUN_EQS_SYSTEMCHECK.getType()),
@@ -65,29 +73,19 @@ export const runSystemCheckEpic = action$ => {
         map(response =>
           response.status === 200
             ? RUN_EQS_SYSTEMCHECK_SUCCESS()
-            : GET_ESS_STATUS_ERROR('ESS_STATUS_ERROR')
+            : GET_ESS_STATUS_ERROR(errorObj)
         ),
         catchError(error => {
           Sentry.captureException(error)
-          return of(GET_ESS_STATUS_ERROR(error))
+          return of(GET_ESS_STATUS_ERROR(errorObj))
         })
       )
     })
   )
 }
 
-const updateSoc = over(
-  lensPath(['ess_report', 'battery_status']),
-  map(
-    over(
-      lensPath(['state_of_charge', 'value']),
-      compose(roundDecimals, multiply(100))
-    )
-  )
-)
-
-export const getHealthCheckEpic = action$ => {
-  return action$.pipe(
+export const getHealthCheckEpic = action$ =>
+  action$.pipe(
     ofType(RUN_EQS_SYSTEMCHECK_SUCCESS.getType()),
     exhaustMap(() => {
       const promise = getApiPVS()
@@ -97,8 +95,8 @@ export const getHealthCheckEpic = action$ => {
       return from(promise).pipe(
         map(response =>
           response.status === 200
-            ? GET_ESS_STATUS_SUCCESS(updateSoc(response.body))
-            : GET_ESS_STATUS_ERROR('ESS_STATUS_ERROR')
+            ? GET_ESS_STATUS_SUCCESS(response.body)
+            : GET_ESS_STATUS_ERROR(errorObj)
         ),
         catchError(error => {
           Sentry.captureException(error)
@@ -107,13 +105,12 @@ export const getHealthCheckEpic = action$ => {
       )
     })
   )
-}
 
 export const errorHealthCheckEpic = action$ => {
   return action$.pipe(
     ofType(START_DISCOVERY_ERROR.getType(), DISCOVER_ERROR.getType()),
     exhaustMap(() => {
-      return of(GET_ESS_STATUS_ERROR('ESS_STATUS_ERROR'))
+      return of(GET_ESS_STATUS_ERROR(errorObj))
     })
   )
 }

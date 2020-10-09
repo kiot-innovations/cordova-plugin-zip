@@ -7,8 +7,10 @@
   "homepage": "./",
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build && cp -a ./build/. ../www/ && find ../www -name 'precache*' -delete && find ../www/static/js -name '*.js.map' -delete",
+    "build": "npm run cleanwww && react-scripts build && cp -a ./build/. ../www/",
+    "buildsm": "GENERATE_SOURCEMAP=true npm run cleanwww && react-scripts build && cp -a ./build/. ../www/",
     "build.ci": "eslint src && cross-env CI=true react-scripts test && cross-env NODE_ENV=production react-scripts build",
+    "cleanwww": "find ../www -name 'precache*' -delete && rm -rf ../www/static",
     "test": "cross-env SKIP_PREFLIGHT_CHECK=true react-scripts test",
     "lint": "eslint --fix src",
     "validate-env-files": "node ./gitHooks/envFiles/validate",
