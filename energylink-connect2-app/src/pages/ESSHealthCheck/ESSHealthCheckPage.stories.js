@@ -3,7 +3,7 @@ import { storiesOf } from '@storybook/react'
 import { configureStore } from 'state/store'
 import { Provider } from 'react-redux'
 
-import ESSHealthCheck from './index'
+import ESSHealthCheck from '.'
 
 const faultyReport = {
   storage: {
@@ -99,6 +99,7 @@ const faultyReport = {
     pvs: true
   }
 }
+
 const successfulReport = {
   storage: {
     status: {

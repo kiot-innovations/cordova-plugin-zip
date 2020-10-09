@@ -67,7 +67,7 @@ export const storageReducer = createReducer(
     }),
     [GET_ESS_STATUS_ERROR]: (state, error) => ({
       ...state,
-      status: { error, waiting: false }
+      status: { ...state.status, error, waiting: false }
     }),
     [GET_PREDISCOVERY]: state => ({
       ...state,
