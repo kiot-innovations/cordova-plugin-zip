@@ -71,12 +71,6 @@ exports[`RMAInventory renders correctly 1`] = `
                 className="field  mb-20 mt-20"
               >
                 <mockConstructor
-                  defaultValue={
-                    Object {
-                      "label": 0,
-                      "value": 0,
-                    }
-                  }
                   isSearchable={false}
                   onSelect={[Function]}
                   options={
@@ -511,7 +505,7 @@ exports[`RMAInventory renders correctly 1`] = `
                     Array [
                       Object {
                         "label": "NONE",
-                        "value": "",
+                        "value": "0",
                       },
                       Object {
                         "label": "13KWH_1INV",
@@ -522,7 +516,7 @@ exports[`RMAInventory renders correctly 1`] = `
                   value={
                     Object {
                       "label": "NONE",
-                      "value": "",
+                      "value": "0",
                     }
                   }
                 >
@@ -541,7 +535,7 @@ exports[`RMAInventory renders correctly 1`] = `
                 >
                   <input
                     className="mr-10 checkbox-dark"
-                    defaultChecked={false}
+                    defaultChecked={true}
                     id="other"
                     name="other"
                     onChange={[Function]}

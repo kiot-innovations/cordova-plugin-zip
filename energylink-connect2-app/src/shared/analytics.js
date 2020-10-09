@@ -55,3 +55,30 @@ export const loginFailed = () => {
 
   return MIXPANEL_EVENT_QUEUED('Login - Failed')
 }
+
+export const scanPVS = (scanData, event) => {
+  const { mixpanel } = window
+  mixpanel.track('Scan PVS Tag', scanData)
+  return MIXPANEL_EVENT_QUEUED(event)
+}
+
+export const siteNotFound = (searchField = '') => {
+  const { mixpanel } = window
+  mixpanel.track('Find site', { Found: false, 'Search query': searchField })
+  return MIXPANEL_EVENT_QUEUED('Find site - site not found')
+}
+
+export const siteFound = siteData => {
+  const { mixpanel } = window
+  mixpanel.track('Find site', {
+    Found: true,
+    ...siteData
+  })
+  return MIXPANEL_EVENT_QUEUED('Find site - site found')
+}
+
+export const saveConfiguration = config => {
+  const { mixpanel } = window
+  mixpanel.track('Configure', config)
+  return MIXPANEL_EVENT_QUEUED('Configure - submit site config')
+}

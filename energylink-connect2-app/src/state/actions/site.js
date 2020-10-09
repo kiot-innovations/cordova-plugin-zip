@@ -14,3 +14,7 @@ export const CREATE_SITE_RESET = createAction('CREATE_SITE_RESET')
 export const GET_SITE_INIT = createAction('GET_SITE_INIT')
 export const GET_SITE_SUCCESS = createAction('GET_SITE_SUCCESS')
 export const GET_SITE_ERROR = createAction('GET_SITE_ERROR')
+
+//ANALYTICS
+export const NO_SITE_FOUND = createAction('NO_SITE_FOUND')
+export const HOME_SCREEN_CREATE_SITE = createAction('CREATE_SITE')
