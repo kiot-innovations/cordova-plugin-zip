@@ -70,3 +70,9 @@ export const siteFound = siteData => {
   })
   return MIXPANEL_EVENT_QUEUED('Find site - site found')
 }
+
+export const saveConfiguration = config => {
+  const { mixpanel } = window
+  mixpanel.track('Configure', config)
+  return MIXPANEL_EVENT_QUEUED('Configure - submit site config')
+}
