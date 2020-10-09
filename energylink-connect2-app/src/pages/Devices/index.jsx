@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import clsx from 'clsx'
 import useModal from 'hooks/useModal'
 import { length, pathOr } from 'ramda'
 import { useDispatch, useSelector } from 'react-redux'
@@ -100,6 +99,7 @@ const discoveryStatus = (
   claimError,
   claimingDevices,
   claimDevices,
+  claimProgress,
   t,
   discoveryComplete,
   retryDiscovery
@@ -148,13 +148,11 @@ const discoveryStatus = (
               {t('ADD-DEVICES')}
             </button>
             <button
-              className={clsx('button is-primary is-uppercase', {
-                'is-loading': claimingDevices
-              })}
+              className={'button is-primary is-uppercase'}
               disabled={claimingDevices}
               onClick={claimDevices}
             >
-              {t('CLAIM_DEVICES')}
+              {either(claimingDevices, `${claimProgress}%`, t('CLAIM_DEVICES'))}
             </button>
           </div>
         </>
@@ -171,13 +169,11 @@ const discoveryStatus = (
           {t('ADD-DEVICES')}
         </button>
         <button
-          className={clsx('button is-primary is-uppercase is-paddingless', {
-            'is-loading': claimingDevices
-          })}
+          className={'button is-primary is-uppercase'}
           disabled={claimingDevices}
           onClick={claimDevices}
         >
-          {t('CLAIM_DEVICES')}
+          {either(claimingDevices, `${claimProgress}%`, t('CLAIM_DEVICES'))}
         </button>
       </div>
     )
@@ -194,13 +190,13 @@ const discoveryStatus = (
       </>
     ) : (
       <span className="has-text-weight-bold mb-20">
-        {claimingDevices ? t('CLAIMING_DEVICES') : t('DISCOVERY_IN_PROGRESS')}
+        {either(claimingDevices, t('CLAIMING_DEVICES'), t('DISCOVERY_IN_PROGRESS'))}
       </span>
     )
   }
 }
 
-const miActions = (num = 0, max = 0, icon = '') => (
+const miActions = (num = 0, max = 0) => (
   <div>
     <span className="devices-counter mr-10 ml-0 mt-0 mb-0">{`${num}/${max}`}</span>
   </div>
@@ -218,6 +214,7 @@ function Devices() {
     claimingDevices,
     claimedDevices,
     claimError,
+    claimProgress,
     error,
     progress,
     discoveryComplete
@@ -343,6 +340,7 @@ function Devices() {
         claimError,
         claimingDevices,
         claimDevices,
+        claimProgress,
         t,
         discoveryComplete,
         retryDiscovery
