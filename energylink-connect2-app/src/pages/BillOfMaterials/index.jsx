@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import ProgressiveImage from 'components/ProgressiveImage'
 import HomeownerAccountCreation from 'components/HomeownerAccountCreation'
-import { pathOr, prop, map, pick, compose, isEmpty, head } from 'ramda'
+import { compose, head, isEmpty, map, pathOr, pick, prop } from 'ramda'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { either } from 'shared/utils'
@@ -11,6 +11,7 @@ import { useI18n } from 'shared/i18n'
 import './BillOfMaterials.scss'
 import { GET_SITE_INIT } from 'state/actions/site'
 import { GET_SCANDIT_USERS } from 'state/actions/scandit'
+import { COMMISSIONING_START } from 'state/actions/analytics'
 
 const useMap = (latitude, longitude) => {
   const [url, setUrl] = useState('')
@@ -45,6 +46,7 @@ function BillOfMaterials() {
 
   useEffect(() => {
     dispatch(GET_SCANDIT_USERS())
+    dispatch(COMMISSIONING_START())
   }, [dispatch])
 
   useEffect(() => {

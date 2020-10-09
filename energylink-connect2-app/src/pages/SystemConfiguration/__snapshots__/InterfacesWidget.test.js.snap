@@ -81,7 +81,7 @@ exports[`Interfaces Widget renders correctly 1`] = `
             <Interface
               icon="sp-wifi"
               key="sta0"
-              name="NO_CONNECTION (wifi)"
+              name="NO_CONNECTION (WiFi)"
             >
               <p
                 className="if mt-5 ml-20"
@@ -95,7 +95,7 @@ exports[`Interfaces Widget renders correctly 1`] = `
                 <span
                   className=""
                 >
-                  NO_CONNECTION (wifi)
+                  NO_CONNECTION (WiFi)
                 </span>
               </p>
             </Interface>

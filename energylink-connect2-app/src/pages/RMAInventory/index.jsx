@@ -106,7 +106,7 @@ const RMAInventory = () => {
           <div className="collapsible-header">
             <div className="collapsible-title">
               <label className="has-text-weight-bold" htmlFor="other">
-                {t('EQUINOX_STORAGE_SYSTEM')}
+                {t('SUNVAULT_STORAGE_SYSTEM')}
               </label>
             </div>
           </div>

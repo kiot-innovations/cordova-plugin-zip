@@ -277,7 +277,8 @@ const devTestDifferentValueVars = [
   'REACT_APP_SCANDIT',
   'REACT_APP_GRID_PROFILE_URL',
   'REACT_APP_APPLE_ID',
-  'REACT_APP_ANDROID_ID'
+  'REACT_APP_ANDROID_ID',
+  'REACT_APP_MIXPANEL_TOKEN'
 ]
 const devTestSameValueVars = compose(
   without(devTestDifferentValueVars),
@@ -300,7 +301,8 @@ const trainingProdDifferentValueVars = [
   'REACT_APP_SCANDIT_ANDROID',
   'REACT_APP_SCANDIT_IOS',
   'REACT_APP_APPLE_ID',
-  'REACT_APP_ANDROID_ID'
+  'REACT_APP_ANDROID_ID',
+  'REACT_APP_MIXPANEL_TOKEN'
 ]
 const trainingProdSameValueVars = compose(
   without(trainingProdDifferentValueVars),
