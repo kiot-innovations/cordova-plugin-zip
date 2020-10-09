@@ -126,8 +126,10 @@ export const liveEnergyData = (action$, state$) =>
               } = data
               // powerProduction/pv_p :: power production (kW)
 
-              const netPower = site_load_p !== 0 ? site_load_p : net_p
-              const netEnergy = site_load_en !== 0 ? site_load_en : net_en
+              const netPower =
+                site_load_p !== 0 ? site_load_p : net_p + pv_p + ess_p
+              const netEnergy =
+                site_load_en !== 0 ? site_load_en : net_en + pv_en + ess_en
 
               const powerProduction = pv_p < 0.01 ? 0 : pv_p
               // energyStoragePower/ess_p :: energy storage power (kW)
