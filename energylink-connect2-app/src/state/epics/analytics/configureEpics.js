@@ -8,11 +8,33 @@ import {
   SUBMIT_CONFIG,
   SUBMIT_CONFIG_SUCCESS
 } from 'state/actions/systemConfiguration'
-import { always, cond, path, propEq, T } from 'ramda'
+import { always, cond, path, pathOr, propEq, T } from 'ramda'
 import { EMPTY_ACTION } from 'state/actions/share'
 import { saveConfiguration } from 'shared/analytics'
 
 const getRse = path(['systemConfiguration', 'rse', 'selectedPowerProduction'])
+
+const getESSOperationalMode = path([
+  'storage',
+  'status',
+  'results',
+  'ess_report',
+  'ess_state',
+  0,
+  'operational_mode'
+])
+
+const getESSReserveAmount = state => {
+  const liveData = Object.entries(
+    pathOr({}, ['energyLiveData', 'liveData'], state)
+  )
+  if (liveData.length) {
+    const [, latest] = liveData[liveData.length - 1]
+    return latest.soc
+  }
+  return undefined
+}
+
 const getGridProfile = path([
   'systemConfiguration',
   'gridBehavior',
@@ -105,62 +127,62 @@ export const siteConfigurationEpic = action$ => {
   )
 }
 
+const getData = (data, success, errorMessage) => {
+  const [
+    timeElapsedConfiguring,
+    timeEDPEndpoint,
+    state,
+    timePassedCommissioning
+  ] = data
+  const networkInterfaces = getConnectionInterfaces(state)
+  const configEvent = {
+    ...networkInterfaces,
+    'Grid profile': getGridProfile(state),
+    'Consumption meter type': getConsumptionMeterType(state),
+    'Remote system energize': getRse(state),
+    'Time elapsed choosing': timeElapsedConfiguring,
+    'Time elapsed submitting': timeEDPEndpoint,
+    Success: success,
+    'Error message': errorMessage,
+    'Time to complete commissioning': timePassedCommissioning,
+    'Commissioning success': success,
+    'Storage operation mode': getESSOperationalMode(state),
+    'Storage reserve amount': getESSReserveAmount(state)
+  }
+  return saveConfiguration(configEvent)
+}
+
 export const getTimeElapsedSubmittingEDP = (action$, state$) => {
   return action$.pipe(
     ofType(SUBMIT_CONFIG.getType()),
     exhaustMap(() =>
       race(
-        submitConfig(
-          action$,
-          state$,
-          SUBMIT_COMMISSION_SUCCESS.getType(),
-          true
+        action$.pipe(
+          ofType(SUBMIT_COMMISSION_SUCCESS.getType()),
+          switchMap(({ payload }) =>
+            combineLatest([
+              timePassedConfiguring$,
+              timePassedCommissionEndpoint$,
+              state$,
+              timePassedCommission$
+            ]).pipe(map(data => getData(data, true)))
+          )
         ),
-        submitConfig(action$, state$, SUBMIT_COMMISSION_ERROR.getType(), false)
+        action$.pipe(
+          ofType(SUBMIT_COMMISSION_ERROR.getType()),
+          switchMap(({ payload }) =>
+            combineLatest([
+              timePassedConfiguring$,
+              timePassedCommissionEndpoint$,
+              state$,
+              timePassedCommission$
+            ]).pipe(map(a => getData(a, false, payload)))
+          )
+        )
       )
     )
   )
 }
-
-const submitConfig = (action$, state$, submitAction, isSuccess) =>
-  action$.pipe(
-    ofType(submitAction),
-    switchMap(({ payload }) =>
-      combineLatest([
-        timePassedConfiguring$,
-        timePassedCommissionEndpoint$,
-        state$,
-        timePassedCommission$
-      ]).pipe(
-        map(data => {
-          const [
-            timeElapsedConfiguring,
-            timeEDPEndpoint,
-            state,
-            timePassedCommissioning
-          ] = data
-          const rse = getRse(state)
-          const gridProfile = getGridProfile(state)
-          const meterType = getConsumptionMeterType(state)
-          const networkInterfaces = getConnectionInterfaces(state)
-
-          const configEvent = {
-            ...networkInterfaces,
-            'Grid profile': gridProfile,
-            'Consumption meter type': meterType,
-            'Remote system energize': rse,
-            'Time elapsed choosing': timeElapsedConfiguring,
-            'Time elapsed submitting': timeEDPEndpoint,
-            Success: isSuccess,
-            'Error message': payload,
-            'Time to complete commissioning': timePassedCommissioning,
-            'Commissioning success': isSuccess
-          }
-          return saveConfiguration(configEvent)
-        })
-      )
-    )
-  )
 
 export default [
   getTimeElapsedSubmittingEDP,
