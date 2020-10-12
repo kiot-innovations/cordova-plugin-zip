@@ -45,9 +45,13 @@ function PvsSelection() {
 
   const PVSSelected = useSelector(path(['rma', 'pvs']))
 
-  const shouldMoveNewRoute = route => {
-    if (PVSSelected) history.push(route)
-    else showNoPVSSelected({ body: t('SELECT_PVS_MODAL') })
+  const editDevices = () => {
+    if (PVSSelected) {
+      dispatch(SET_RMA_MODE(rmaModes.EDIT_DEVICES))
+      history.push(paths.PROTECTED.CONNECT_TO_PVS.path)
+    } else {
+      showNoPVSSelected({ body: t('SELECT_PVS_MODAL') })
+    }
   }
 
   const replacePVS = () => {
@@ -95,10 +99,6 @@ function PvsSelection() {
           <span>{t('ADD_NEW_PVS')}</span>
         </div>
       </section>
-      {/*
-          @todo: This section is hidden until we finish the RMA flow
-          [CM2-1048]. Enable the buttons once we finish that.
-      */}
       <section className="pvs-buttons mb-20">
         <button
           className="button has-text-centered is-uppercase is-secondary is-fullwidth mr-5"
@@ -107,11 +107,8 @@ function PvsSelection() {
           {t('REPLACE_PVS')}
         </button>
         <button
-          disabled={true}
           className="button has-text-centered is-uppercase is-secondary is-fullwidth ml-5"
-          onClick={() =>
-            shouldMoveNewRoute(paths.PROTECTED.INVENTORY_COUNT.path)
-          }
+          onClick={editDevices}
         >
           {t('EDIT_DEVICES')}
         </button>
