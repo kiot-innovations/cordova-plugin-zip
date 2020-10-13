@@ -28,7 +28,7 @@ const DeleteDevicesModal = () => {
             {t('RMA_MESSAGE_REMOVING_DEVICES')}
           </span>
           <Loader />
-          <span className="has-text-weight-bold mb-10">
+          <span className="has-text-weight-bold mt-10 mb-10">
             {t('DONT_CLOSE_APP')}
           </span>
         </>

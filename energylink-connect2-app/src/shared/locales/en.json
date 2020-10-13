@@ -516,5 +516,7 @@
   "MD5_INTEGRITY_ERROR": "Failed integrity check for grid profile",
   "FETCHING_MODELS": "We're fetching the available models",
   "NO_MI_FOUND": "No microinverters found",
-  "MISSING_HC_REPORT": "Missing {0} Report"
+  "MISSING_HC_REPORT": "Missing {0} Report",
+  "REFRESH_DEVICE_LIST": "Refresh device list",
+  "NO_OTHER_DEVICES": "No other devices on site"
 }

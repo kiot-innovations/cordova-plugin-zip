@@ -1,7 +1,7 @@
 import * as Sentry from '@sentry/browser'
 import { ofType } from 'redux-observable'
 import { from, of } from 'rxjs'
-import { catchError, exhaustMap, map } from 'rxjs/operators'
+import { catchError, delay, exhaustMap, map } from 'rxjs/operators'
 import {
   converge,
   curry,
@@ -21,7 +21,10 @@ import {
   RMA_REMOVE_DEVICES,
   RMA_REMOVE_DEVICES_SUCCESS
 } from 'state/actions/rma'
-import { FETCH_DEVICES_LIST } from 'state/actions/devices'
+import {
+  FETCH_DEVICES_LIST,
+  WAIT_FOR_DL_PROCESSING
+} from 'state/actions/devices'
 import { getApiDevice, getApiPVS } from 'shared/api'
 import { filterInverters } from 'shared/utils'
 
@@ -75,7 +78,7 @@ const postDeleteDevices = curry(
       const pvsRequestBody = rmap(
         compose(
           when(
-            ({ SERIAL }) => includes(SERIAL, rejected),
+            ({ SERIAL }) => includes(SERIAL, success),
             set(lensProp('OPERATION'), 'delete')
           ),
           set(lensProp('OPERATION'), 'noop'),
@@ -86,8 +89,7 @@ const postDeleteDevices = curry(
       if (length(success)) {
         await startClaim({ id: 1 }, { requestBody: pvsRequestBody })
       }
-
-      return { status: !!length(rejected), rejected }
+      return { status: !(length(rejected) > 0), rejected }
     } catch (error) {
       Sentry.captureException(error)
       return { status: false, rejected }
@@ -106,11 +108,11 @@ export const removeDevicesEpic = (action$, state$) => {
     ofType(RMA_REMOVE_DEVICES.getType()),
     exhaustMap(({ payload }) =>
       from(deleteDevices(state$.value)(payload)).pipe(
-        map(({ status, rejected }) =>
-          status
+        map(({ status, rejected }) => {
+          return status
             ? RMA_REMOVE_DEVICES_SUCCESS()
             : RMA_REMOVE_DEVICES_ERROR(rejected)
-        ),
+        }),
         catchError(err => {
           Sentry.captureException(err)
           return of(RMA_REMOVE_DEVICES_ERROR([]))
@@ -126,6 +128,11 @@ export const retriggerDevicesListEpic = action$ => {
       RMA_REMOVE_DEVICES_SUCCESS.getType(),
       RMA_REMOVE_DEVICES_ERROR.getType()
     ),
-    map(FETCH_DEVICES_LIST)
+    map(WAIT_FOR_DL_PROCESSING),
+    delay(3000),
+    map(FETCH_DEVICES_LIST),
+    catchError(err => {
+      Sentry.captureException(err)
+    })
   )
 }
