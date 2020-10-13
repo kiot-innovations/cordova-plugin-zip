@@ -42,10 +42,19 @@ jobs:
           node-version: ${{ env.NODE_VERSION }}
           registry-url: 'https://registry.npmjs.org'
 
+      - name: Caches node_modules folder
+        id: nm
+        uses: actions/cache@v2
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/energylink-connect2-app/package-lock.json') }}
+
       #
       # Native Application
       #
-      - run: npm install
+      - name: Install Dependencies
+        if: steps.nm.outputs.cache-hit != true
+        run: npm install
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
         working-directory: energylink-connect2-app
