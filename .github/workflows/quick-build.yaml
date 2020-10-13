@@ -43,12 +43,12 @@ jobs:
           path: ~/.gradle
           key: ${{ runner.os }}-android-gradle
 
-      - name: Caches NDK folder
-        id: ndk
-        uses: actions/cache@v2
-        with:
-          path: ${ANDROID_HOME}/ndk
-          key: ${{ runner.os }}-tools-ndk
+      # - name: Caches NDK folder
+      #   id: ndk
+      #   uses: actions/cache@v2
+      #   with:
+      #     path: ${ANDROID_HOME}/ndk
+      #     key: ${{ runner.os }}-tools-ndk
 
       - name: Install Dependencies
         if: steps.nm.outputs.cache-hit != true
@@ -84,6 +84,9 @@ jobs:
       #
       - name: Set the application environment to ${{ env.APP_ENV }}
         run: |
+          ls $ANDROID_HOME
+          echo '---------'
+          ls -a ~
           sed -i"" -E "s/com.sunpower.energylink.commissioning2.dev/${APP_ID}/" config.xml
           sed -i"" -E "s/SunPowerProConnect-dev/${APP_NAME}/" config.xml
 
@@ -110,9 +113,11 @@ jobs:
           echo "${{ secrets.GOOGLE_PLAY_UPLOAD_KEYSTORE }}" | base64 -d > upload-keystore.jks
           echo "${{ secrets.GOOGLE_PLAY_API_KEY }}" | base64 -d > google-api.json
 
-      - name: Install NDK 21.0.6113669
-        if: steps.ndk.outputs.cache-hit != true
-        run: echo "y" | sudo ${ANDROID_HOME}/tools/bin/sdkmanager --install "ndk;21.0.6113669"
+      # - name: Install NDK 21.0.6113669
+      #   if: steps.ndk.outputs.cache-hit != true
+      #   run: |
+      #     ls -a ~
+      #     echo "y" | sudo ${ANDROID_HOME}/tools/bin/sdkmanager --install "ndk;21.0.6113669"
 
       - name: Build Android Application
         run: bundle exec fastlane android build
