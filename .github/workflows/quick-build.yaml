@@ -50,7 +50,7 @@ jobs:
           path: |
             /usr/local/lib/android/sdk/ndk
             /usr/local/lib/android/sdk/ndk-bundle
-          key: ${{ runner.os }}-dep-ndk-install
+          key: ${{ runner.os }}-dep-ndk
 
       - name: Install Dependencies
         if: steps.nm.outputs.cache-hit != true
@@ -116,9 +116,10 @@ jobs:
       - name: Install NDK 21.0.6113669
         if: steps.ndk.outputs.cache-hit != true
         run: |
-          mkdir ${ANDROID_HOME}/ndk
-          mkdir ${ANDROID_HOME}/ndk-bundle
           ls ${ANDROID_HOME}
+          mkdir -p ${ANDROID_HOME}/ndk
+          mkdir -p ${ANDROID_HOME}/ndk-bundle
+          ls /usr/local/lib/android/sdk
           echo "y" | ${ANDROID_HOME}/tools/bin/sdkmanager --install "ndk;21.0.6113669"
 
       - name: Build Android Application
