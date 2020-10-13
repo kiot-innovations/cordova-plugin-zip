@@ -43,12 +43,6 @@ jobs:
           path: ~/.gradle
           key: ${{ runner.os }}-android-gradle
 
-      - name: Add write permissions
-        run: |
-          mkdir ${ANDROID_HOME}/myfolder
-          ls ${ANDROID_HOME}
-          chmod -R 777 ${ANDROID_HOME}
-
       - name: Restore cached NDK folder
         id: ndk
         uses: actions/cache@v2
@@ -121,7 +115,11 @@ jobs:
 
       - name: Install NDK 21.0.6113669
         if: steps.ndk.outputs.cache-hit != true
-        run: echo "y" | ${ANDROID_HOME}/tools/bin/sdkmanager --install "ndk;21.0.6113669"
+        run: |
+          mkdir ${ANDROID_HOME}/ndk
+          mkdir ${ANDROID_HOME}/ndk-bundle
+          ls ${ANDROID_HOME}
+          echo "y" | ${ANDROID_HOME}/tools/bin/sdkmanager --install "ndk;21.0.6113669"
 
       - name: Build Android Application
         run: bundle exec fastlane android build
