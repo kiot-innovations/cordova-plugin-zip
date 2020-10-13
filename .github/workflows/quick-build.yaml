@@ -19,6 +19,7 @@ jobs:
     env:
       APP_ENV: test
       BUILD_TYPE: debug
+
     steps:
       - uses: actions/checkout@v2
         with:
