@@ -43,6 +43,13 @@ jobs:
           path: ~/.gradle
           key: ${{ runner.os }}-android-gradle
 
+      - name: Restore cached platforms/android folder
+        id: cap
+        uses: actions/cache@v2
+        with:
+          path: platforms/android
+          key: ${{ runner.os }}-cap-${{ hashFiles('package.json') }}
+
       - name: Install Dependencies
         if: steps.nm.outputs.cache-hit != true
         run: npm install
@@ -102,9 +109,13 @@ jobs:
           echo "${{ secrets.GOOGLE_PLAY_UPLOAD_KEYSTORE }}" | base64 -d > upload-keystore.jks
           echo "${{ secrets.GOOGLE_PLAY_API_KEY }}" | base64 -d > google-api.json
 
-      - name: Build Android Application
+      - name: Add android platform
+        if: steps.cap.outputs.cache-hit != true
         run: |
           npx --no-install cordova platform add android
+
+      - name: Build Android Application
+        run: |
           sed -i"" -E 's/android \{/android \{\n ndkVersion "21.3.6528147"/' platforms/android/app/build.gradle
           bundle exec fastlane android build
         env:
