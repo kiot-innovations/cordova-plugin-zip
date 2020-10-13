@@ -47,8 +47,8 @@ jobs:
         id: ndk
         uses: actions/cache@v2
         with:
-          path: $ANDROID_HOME/ndk
-          key: ${{ runner.os }}-android-ndk
+          path: ${ANDROID_HOME}/ndk
+          key: ${{ runner.os }}-tools-ndk
 
       #
       # Native Application
