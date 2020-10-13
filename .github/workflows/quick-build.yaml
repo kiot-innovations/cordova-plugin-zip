@@ -113,7 +113,7 @@ jobs:
 
       - name: Build Android Application
         run: |
-          ls platforms/android
+          npx --no-install cordova platform add android
           sed -i"" -E 's/android \{/android \{\n ndkVersion "21.3.6528147"/' platforms/android/app/build.gradle
           bundle exec fastlane android build
         env:
