@@ -43,15 +43,6 @@ jobs:
           path: ~/.gradle
           key: ${{ runner.os }}-android-gradle
 
-      # - name: Restore cached NDK folder
-      #   id: ndk
-      #   uses: actions/cache@v2
-      #   with:
-      #     path: |
-      #       /usr/local/lib/android/sdk/ndk
-      #       /usr/local/lib/android/sdk/ndk-bundle
-      #     key: ${{ runner.os }}-dep-ndk
-
       - name: Install Dependencies
         if: steps.nm.outputs.cache-hit != true
         run: npm install
@@ -121,7 +112,12 @@ jobs:
       #     echo "y" | ${ANDROID_HOME}/tools/bin/sdkmanager --install "ndk;21.0.6113669"
 
       - name: Build Android Application
-        run: bundle exec fastlane android build
+        run: |
+          ls ${ANDROID_HOME} | grep ndk
+          sudo rm -R ${ANDROID_HOME}/ndk/
+          sudo rm -R ${ANDROID_HOME}/ndk-bundle/
+
+          bundle exec fastlane android build
         env:
           KEYSTORE_PASSWORD: ${{ secrets.GOOGLE_PLAY_UPLOAD_KEYSTORE_PASSWORD }}
       - uses: actions/upload-artifact@v1
