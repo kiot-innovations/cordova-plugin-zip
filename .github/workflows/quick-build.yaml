@@ -47,7 +47,9 @@ jobs:
         id: cap
         uses: actions/cache@v2
         with:
-          path: platforms/android
+          path: |
+            plugins
+            platforms/android
           key: ${{ runner.os }}-cap-${{ hashFiles('package.json') }}
 
       - name: Install Dependencies
