@@ -103,9 +103,6 @@ jobs:
           git config --global url."https://${{ secrets.ACCESS_TOKEN }}@github.com/".insteadOf ssh://git@github.com/
           npm install
 
-      #
-      # Android Application
-      #
       - name: Set credentials to Google Play store
         run: |
           echo "${{ secrets.GOOGLE_PLAY_UPLOAD_KEYSTORE }}" | base64 -d > upload-keystore.jks
