@@ -64,6 +64,8 @@ const PVSProvideInternet = () => {
           history.push(paths.PROTECTED.RMA_MI_DISCOVERY.path)
         }
       }
+    } else if (rmaMode === rmaModes.EDIT_DEVICES) {
+      history.push(paths.PROTECTED.RMA_DEVICES.path)
     } else {
       if (miValue.value > 0) {
         history.push(
