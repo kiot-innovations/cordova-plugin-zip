@@ -102,15 +102,6 @@ jobs:
           echo "${{ secrets.GOOGLE_PLAY_UPLOAD_KEYSTORE }}" | base64 -d > upload-keystore.jks
           echo "${{ secrets.GOOGLE_PLAY_API_KEY }}" | base64 -d > google-api.json
 
-      # - name: Install NDK 21.0.6113669
-      #   if: steps.ndk.outputs.cache-hit != true
-      #   run: |
-      #     ls ${ANDROID_HOME}
-      #     mkdir -p ${ANDROID_HOME}/ndk
-      #     mkdir -p ${ANDROID_HOME}/ndk-bundle
-      #     ls /usr/local/lib/android/sdk
-      #     echo "y" | ${ANDROID_HOME}/tools/bin/sdkmanager --install "ndk;21.0.6113669"
-
       - name: Build Android Application
         run: |
           npx --no-install cordova platform add android
