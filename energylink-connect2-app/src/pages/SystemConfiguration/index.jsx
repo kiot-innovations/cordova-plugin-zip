@@ -135,7 +135,7 @@ function SystemConfiguration() {
     dispatch(CONFIG_START())
   }, [dispatch])
   return (
-    <div className="fill-parent is-flex tile is-vertical has-text-centered system-config pl-10 pr-10">
+    <div className="fill-parent is-flex tile is-vertical has-text-centered system-config pl-10 pr-10 mb-40">
       <span className="is-uppercase has-text-weight-bold mb-20">
         {t('SYSTEM_CONFIGURATION')}
       </span>
