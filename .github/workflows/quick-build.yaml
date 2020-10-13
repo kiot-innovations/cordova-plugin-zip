@@ -48,8 +48,8 @@ jobs:
         uses: actions/cache@v2
         with:
           path: |
-            ${ANDROID_HOME}/ndk
-            ${ANDROID_HOME}/ndk-bundle
+            /usr/local/lib/android/sdk/ndk
+            /usr/local/lib/android/sdk/ndk-bundle
           key: ${{ runner.os }}-dep-ndk-install
 
       - name: Install Dependencies
