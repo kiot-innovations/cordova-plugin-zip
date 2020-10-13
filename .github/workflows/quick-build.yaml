@@ -47,15 +47,10 @@ jobs:
         id: ndk
         uses: actions/cache@v2
         with:
-          path: ${ANDROID_HOME}/ndk
-          key: ${{ runner.os }}-dep-ndk
-
-      - name: Caches NDK Bundle folder
-        id: ndk
-        uses: actions/cache@v2
-        with:
-          path: ${ANDROID_HOME}/ndk-bundle
-          key: ${{ runner.os }}-dep-ndk-bundle
+          path: |
+            ${ANDROID_HOME}/ndk
+            ${ANDROID_HOME}/ndk-bundle
+          key: ${{ runner.os }}-dep-ndk-install
 
       - name: Install Dependencies
         if: steps.nm.outputs.cache-hit != true
