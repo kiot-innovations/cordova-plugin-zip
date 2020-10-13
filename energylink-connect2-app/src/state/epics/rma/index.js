@@ -1,5 +1,8 @@
 import { fetchDeviceTreeEpic } from './fetchDeviceTree'
-import { removeDevicesEpic, retriggerDevicesListEpic } from './removeDevices'
+import {
+  removeDevicesEpic,
+  retriggerDevicesListEpic
+} from './removeDevicesEpic'
 
 export default [
   fetchDeviceTreeEpic,

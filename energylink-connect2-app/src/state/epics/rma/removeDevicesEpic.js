@@ -27,6 +27,7 @@ import {
 } from 'state/actions/devices'
 import { getApiDevice, getApiPVS } from 'shared/api'
 import { filterInverters } from 'shared/utils'
+import { UPDATE_DEVICES_LIST_ERROR } from '../../actions/devices'
 
 const getAccessToken = path(['user', 'auth', 'access_token'])
 const getSelectedPVS = path(['rma', 'pvs'])
@@ -89,7 +90,7 @@ const postDeleteDevices = curry(
       if (length(success)) {
         await startClaim({ id: 1 }, { requestBody: pvsRequestBody })
       }
-      return { status: !(length(rejected) > 0), rejected }
+      return { status: length(rejected) < 1, rejected }
     } catch (error) {
       Sentry.captureException(error)
       return { status: false, rejected }
@@ -133,6 +134,7 @@ export const retriggerDevicesListEpic = action$ => {
     map(FETCH_DEVICES_LIST),
     catchError(err => {
       Sentry.captureException(err)
+      return of(UPDATE_DEVICES_LIST_ERROR())
     })
   )
 }

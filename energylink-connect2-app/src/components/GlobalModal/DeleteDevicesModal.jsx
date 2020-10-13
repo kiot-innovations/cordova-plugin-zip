@@ -1,7 +1,6 @@
-import { path } from 'ramda'
 import React from 'react'
 import { useSelector } from 'react-redux'
-
+import { path } from 'ramda'
 import { useGlobalHideModal } from 'hooks/useGlobalModal'
 import { useI18n } from 'shared/i18n'
 import { either } from 'shared/utils'

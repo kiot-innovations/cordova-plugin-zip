@@ -58,18 +58,6 @@ const renderStorage = storageDevice => {
   )
 }
 
-// TODO: Uncomment this when we support other devices again
-// const renderOtherDevice = OtherDevice => {
-//   const model = prop('MODEL', OtherDevice)
-//   const serial = prop('SERIAL', OtherDevice)
-//   return (
-//     <div key={serial}>
-//       <span className="has-text-weight-bold has-text-white">{model}</span>
-//       <span className="ml-10">{serial}</span>
-//     </div>
-//   )
-// }
-
 function RMADevices() {
   const t = useI18n()
   const dispatch = useDispatch()
@@ -82,7 +70,6 @@ function RMADevices() {
   )
 
   const microInverters = filter(propEq('DEVICE_TYPE', 'Inverter'), devicesData)
-  //const otherDevices = reject(propEq('DEVICE_TYPE', 'Inverter'), devicesData)
 
   const toggleCheckbox = id =>
     compose(setSelectedMIs, ifElse(has(id), dissoc(id), assoc(id)))(selectedMIs)
@@ -104,6 +91,7 @@ function RMADevices() {
         componentPath: './DeleteDevicesModal.jsx'
       })
     )
+    setSelectedMIs({})
   }
 
   const backToPvsSelection = () => {
@@ -167,16 +155,6 @@ function RMADevices() {
           </button>
         </div>
       </Collapsible>
-      {/* We won't initially support other devices - it interferes with the removal/addition of MIs */}
-      {/*<Collapsible title={t('OTHER_DEVICES')} expanded>*/}
-      {/*  <div className="other-components">*/}
-      {/*    {either(*/}
-      {/*      length(microInverters) > 0,*/}
-      {/*      map(renderOtherDevice, otherDevices),*/}
-      {/*      t('NO_OTHER_DEVICES')*/}
-      {/*    )}*/}
-      {/*  </div>*/}
-      {/*</Collapsible>*/}
       <div className="mt-10 has-text-centered button-container">
         <button
           onClick={fetchDevices}
