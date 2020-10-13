@@ -29,15 +29,25 @@ jobs:
           node-version: ${{ env.NODE_VERSION }}
           registry-url: 'https://registry.npmjs.org'
 
+      - name: Caches node_modules folder
+        id: nm
+        uses: actions/cache@v2
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/energylink-connect2-app/package-lock.json') }}
+
       #
       # Native Application
       #
       - name: Install Dependencies
-        run: |
-          npm install
-          sed -i"" -E "s/'source-map'/'inline-source-map'/" node_modules/react-scripts/config/webpack.config.js
+        if: steps.nm.outputs.cache-hit != true
+        run: npm install
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
+        working-directory: energylink-connect2-app
+
+      - name: Enable source maps for debugging
+        run: sed -i"" -E "s/'source-map'/'inline-source-map'/" node_modules/react-scripts/config/webpack.config.js
         working-directory: energylink-connect2-app
 
       - run: npm run validate-env-files
