@@ -74,9 +74,7 @@ jobs:
         working-directory: energylink-connect2-app
 
       - name: Decrypt and create .env file
-        run: |
-          openssl enc -aes256 -d -base64 -md md5 -pass pass:'${{ secrets.ENVFILE_PASSWORD }}' -in .env.enc.${APP_ENV} -out .env
-          (cd ${ANDROID_HOME} && pwd)
+        run: openssl enc -aes256 -d -base64 -md md5 -pass pass:'${{ secrets.ENVFILE_PASSWORD }}' -in .env.enc.${APP_ENV} -out .env
         working-directory: energylink-connect2-app
 
       - run: npm run buildsm
