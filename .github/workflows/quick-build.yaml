@@ -50,6 +50,13 @@ jobs:
           path: ${ANDROID_HOME}/ndk
           key: ${{ runner.os }}-dep-ndk
 
+      - name: Caches NDK Bundle folder
+        id: ndk
+        uses: actions/cache@v2
+        with:
+          path: ${ANDROID_HOME}/ndk-bundle
+          key: ${{ runner.os }}-dep-ndk-bundle
+
       - name: Install Dependencies
         if: steps.nm.outputs.cache-hit != true
         run: npm install
@@ -74,6 +81,7 @@ jobs:
       - name: Decrypt and create .env file
         run: |
           openssl enc -aes256 -d -base64 -md md5 -pass pass:'${{ secrets.ENVFILE_PASSWORD }}' -in .env.enc.${APP_ENV} -out .env
+          (cd ${ANDROID_HOME} && pwd)
         working-directory: energylink-connect2-app
 
       - run: npm run buildsm
@@ -112,10 +120,7 @@ jobs:
 
       - name: Install NDK 21.0.6113669
         if: steps.ndk.outputs.cache-hit != true
-        run: |
-          ls -a ~
-          echo "y" | sudo ${ANDROID_HOME}/tools/bin/sdkmanager --install "ndk;21.0.6113669"
-          ls ${ANDROID_HOME}
+        run: echo "y" | sudo ${ANDROID_HOME}/tools/bin/sdkmanager --install "ndk;21.0.6113669"
 
       - name: Build Android Application
         run: bundle exec fastlane android build
