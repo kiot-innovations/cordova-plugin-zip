@@ -36,6 +36,20 @@ jobs:
           path: node_modules
           key: ${{ runner.os }}-node-${{ hashFiles('**/energylink-connect2-app/package-lock.json') }}
 
+      - name: Caches Gradle folder
+        id: gradle
+        uses: actions/cache@v2
+        with:
+          path: ~/.gradle
+          key: ${{ runner.os }}-android-gradle
+
+      - name: Caches NDK folder
+        id: ndk
+        uses: actions/cache@v2
+        with:
+          path: $ANDROID_HOME/ndk
+          key: ${{ runner.os }}-android-ndk
+
       #
       # Native Application
       #
@@ -98,8 +112,11 @@ jobs:
         run: |
           echo "${{ secrets.GOOGLE_PLAY_UPLOAD_KEYSTORE }}" | base64 -d > upload-keystore.jks
           echo "${{ secrets.GOOGLE_PLAY_API_KEY }}" | base64 -d > google-api.json
+
       - name: Install NDK 21.0.6113669
+        if: steps.ndk.outputs.cache-hit != true
         run: echo "y" | sudo ${ANDROID_HOME}/tools/bin/sdkmanager --install "ndk;21.0.6113669"
+
       - name: Build Android Application
         run: bundle exec fastlane android build
         env:
