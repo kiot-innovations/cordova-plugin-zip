@@ -33,8 +33,8 @@ jobs:
         id: nm
         uses: actions/cache@v2
         with:
-          path: node_modules
-          key: ${{ runner.os }}-node-${{ hashFiles('**/energylink-connect2-app/package-lock.json') }}
+          path: energylink-connect2-app/node_modules
+          key: ${{ runner.os }}-modules-${{ hashFiles('**/energylink-connect2-app/package-lock.json') }}
 
       - name: Caches Gradle folder
         id: gradle
