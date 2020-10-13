@@ -23,11 +23,11 @@ import {
 } from 'state/actions/rma'
 import {
   FETCH_DEVICES_LIST,
+  UPDATE_DEVICES_LIST_ERROR,
   WAIT_FOR_DL_PROCESSING
 } from 'state/actions/devices'
 import { getApiDevice, getApiPVS } from 'shared/api'
 import { filterInverters } from 'shared/utils'
-import { UPDATE_DEVICES_LIST_ERROR } from '../../actions/devices'
 
 const getAccessToken = path(['user', 'auth', 'access_token'])
 const getSelectedPVS = path(['rma', 'pvs'])
