@@ -111,7 +111,7 @@ jobs:
       - name: Add android platform
         if: steps.cap.outputs.cache-hit != true
         run: |
-          npx --no-install cordova platform add android
+          [ -d "platforms/android/" ] && npx --no-install cordova platform add android
 
       - name: Build Android Application
         run: |
