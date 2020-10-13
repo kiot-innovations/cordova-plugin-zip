@@ -43,14 +43,14 @@ jobs:
           path: ~/.gradle
           key: ${{ runner.os }}-android-gradle
 
-      - name: Restore cached NDK folder
-        id: ndk
-        uses: actions/cache@v2
-        with:
-          path: |
-            /usr/local/lib/android/sdk/ndk
-            /usr/local/lib/android/sdk/ndk-bundle
-          key: ${{ runner.os }}-dep-ndk
+      # - name: Restore cached NDK folder
+      #   id: ndk
+      #   uses: actions/cache@v2
+      #   with:
+      #     path: |
+      #       /usr/local/lib/android/sdk/ndk
+      #       /usr/local/lib/android/sdk/ndk-bundle
+      #     key: ${{ runner.os }}-dep-ndk
 
       - name: Install Dependencies
         if: steps.nm.outputs.cache-hit != true
@@ -111,14 +111,14 @@ jobs:
           echo "${{ secrets.GOOGLE_PLAY_UPLOAD_KEYSTORE }}" | base64 -d > upload-keystore.jks
           echo "${{ secrets.GOOGLE_PLAY_API_KEY }}" | base64 -d > google-api.json
 
-      - name: Install NDK 21.0.6113669
-        if: steps.ndk.outputs.cache-hit != true
-        run: |
-          ls ${ANDROID_HOME}
-          mkdir -p ${ANDROID_HOME}/ndk
-          mkdir -p ${ANDROID_HOME}/ndk-bundle
-          ls /usr/local/lib/android/sdk
-          echo "y" | ${ANDROID_HOME}/tools/bin/sdkmanager --install "ndk;21.0.6113669"
+      # - name: Install NDK 21.0.6113669
+      #   if: steps.ndk.outputs.cache-hit != true
+      #   run: |
+      #     ls ${ANDROID_HOME}
+      #     mkdir -p ${ANDROID_HOME}/ndk
+      #     mkdir -p ${ANDROID_HOME}/ndk-bundle
+      #     ls /usr/local/lib/android/sdk
+      #     echo "y" | ${ANDROID_HOME}/tools/bin/sdkmanager --install "ndk;21.0.6113669"
 
       - name: Build Android Application
         run: bundle exec fastlane android build
