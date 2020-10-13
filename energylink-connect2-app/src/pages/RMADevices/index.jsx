@@ -109,6 +109,15 @@ function RMADevices() {
     dispatch(GET_PREDISCOVERY())
   }, [dispatch])
 
+  const addMI = (
+    <span
+      onClick={() => history.push(paths.PROTECTED.SCAN_LABELS.path)}
+      className="is-paddingless has-text-primary button-transparent"
+    >
+      {t('ADD')}
+    </span>
+  )
+
   return (
     <main className="full-height pl-10 pr-10 rma-devices">
       <div className="header mb-20">
@@ -120,7 +129,7 @@ function RMADevices() {
           {t('RMA_DEVICES')}
         </span>
       </div>
-      <Collapsible title={t('MICROINVERTERS')} expanded>
+      <Collapsible title={t('MICROINVERTERS')} actions={addMI} expanded>
         {either(
           length(microInverters) > 0,
           map(renderMicroinverter(toggleCheckbox, selectedMIs), microInverters),

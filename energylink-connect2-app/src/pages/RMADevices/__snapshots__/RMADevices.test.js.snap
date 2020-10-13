@@ -56,6 +56,14 @@ exports[`RMA devices component render correctly 1`] = `
             </span>
           </div>
           <Collapsible
+            actions={
+              <span
+                className="is-paddingless has-text-primary button-transparent"
+                onClick={[Function]}
+              >
+                ADD
+              </span>
+            }
             expanded={true}
             title="MICROINVERTERS"
           >
@@ -77,7 +85,14 @@ exports[`RMA devices component render correctly 1`] = `
                 </div>
                 <div
                   className="collapsible-actions"
-                />
+                >
+                  <span
+                    className="is-paddingless has-text-primary button-transparent"
+                    onClick={[Function]}
+                  >
+                    ADD
+                  </span>
+                </div>
                 <div
                   className="collapsible-trigger"
                 >

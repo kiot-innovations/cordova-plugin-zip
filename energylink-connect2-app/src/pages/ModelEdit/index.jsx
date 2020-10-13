@@ -18,6 +18,11 @@ import SwipeableBottomSheet from 'react-swipeable-bottom-sheet'
 import { useI18n } from 'shared/i18n'
 import { SET_METADATA_INIT } from 'state/actions/pvs'
 import { CLAIM_DEVICES_RESET, FETCH_MODELS_INIT } from 'state/actions/devices'
+import {
+  SUBMIT_CLEAR,
+  SUBMIT_CONFIG_SUCCESS
+} from 'state/actions/systemConfiguration'
+import { rmaModes } from 'state/reducers/rma'
 import { filterInverters, miTypes, either } from 'shared/utils'
 import paths from 'routes/paths'
 import { Loader } from 'components/Loader'
@@ -39,8 +44,12 @@ const ModelEdit = () => {
   const t = useI18n()
   const history = useHistory()
   const dispatch = useDispatch()
+  const { rmaMode } = useSelector(state => state.rma)
   const { settingMetadata, setMetadataStatus } = useSelector(state => state.pvs)
   const { fetchingDevices, found } = useSelector(state => state.devices)
+  const { submitting, commissioned, error } = useSelector(
+    state => state.systemConfiguration.submit
+  )
   const rmaPvs = useSelector(path(['rma', 'pvs']))
   const { bom } = useSelector(state => state.inventory)
   const siteKey = useSelector(path(['site', 'site', 'siteKey']))
@@ -73,13 +82,21 @@ const ModelEdit = () => {
     }
   }
 
+  const syncWithCloud = () => {
+    dispatch(SUBMIT_CLEAR())
+    dispatch(SUBMIT_CONFIG_SUCCESS())
+  }
+
   useEffect(() => {
     dispatch(FETCH_MODELS_INIT())
   }, [dispatch])
 
   useEffect(() => {
     if (setMetadataStatus === 'success') {
-      if (essValue.value !== '0') {
+      if (rmaMode === rmaModes.EDIT_DEVICES) {
+        dispatch(SUBMIT_CLEAR())
+        dispatch(SUBMIT_CONFIG_SUCCESS())
+      } else if (essValue.value !== '0') {
         history.push(paths.PROTECTED.STORAGE_PREDISCOVERY.path)
       } else {
         history.push(
@@ -89,7 +106,11 @@ const ModelEdit = () => {
         )
       }
     }
-  }, [history, essValue.value, rmaPvs, setMetadataStatus])
+  }, [history, essValue.value, rmaPvs, setMetadataStatus, rmaMode, dispatch])
+
+  useEffect(() => {
+    if (commissioned) history.push(paths.PROTECTED.RMA_DEVICES.path)
+  }, [commissioned, history])
 
   return (
     <div className="model-edit is-vertical has-text-centered pr-10 pl-10">
@@ -153,6 +174,32 @@ const ModelEdit = () => {
               {t('CLOSE')}
             </button>
           </div>
+        </div>
+      </SwipeableBottomSheet>
+
+      <SwipeableBottomSheet shadowTip={false} open={submitting || error}>
+        <div className="missing-models-warning is-flex pb-20">
+          <span className="has-text-weight-bold">{t('HOLD_ON')}</span>
+          <span className="mt-10 mb-10">{t('SYNCING_WITH_EDP')}</span>
+          {error ? (
+            <>
+              <div className="mt-10 mb-10">
+                <span className="is-size-4 sp-hey has-text-white" />
+              </div>
+              <div className="mt-10">
+                <span>{t('SYNC_WITH_EDP_ERROR')}</span>
+              </div>
+              <div className="mt-10 has-text-centered">
+                <span>
+                  <button className="button is-primary" onClick={syncWithCloud}>
+                    {t('RETRY')}
+                  </button>
+                </span>
+              </div>
+            </>
+          ) : (
+            <Loader />
+          )}
         </div>
       </SwipeableBottomSheet>
     </div>

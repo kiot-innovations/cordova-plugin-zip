@@ -21,7 +21,7 @@ const initialState = {
 
 export const submitConfigReducer = createReducer(
   {
-    [REPLACE_RMA_PVS]: (state, payload) => ({
+    [REPLACE_RMA_PVS]: state => ({
       ...state,
       submitting: true
     }),
@@ -32,7 +32,9 @@ export const submitConfigReducer = createReducer(
     }),
     [SUBMIT_CONFIG_SUCCESS]: state => ({
       ...state,
-      submitted: true
+      submitting: true,
+      submitted: true,
+      error: initialState.error
     }),
     [SUBMIT_CONFIG_ERROR]: (state, payload) => ({
       ...state,
