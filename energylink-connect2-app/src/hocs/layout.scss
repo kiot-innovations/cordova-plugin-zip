@@ -8,6 +8,7 @@
     height: 100%;
     overflow-x: hidden;
   }
+  padding-bottom: var(--safe-area-inset-bottom);
 }
 .with-footer {
   --safe-area-inset-bottom: env(safe-area-inset-bottom);
