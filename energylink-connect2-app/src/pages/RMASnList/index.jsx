@@ -43,7 +43,6 @@ function RMASnList() {
 
   const [editingSn, setEditingSn] = useState('')
   const { bom } = useSelector(state => state.inventory)
-  const total = length(serialNumbersExisting) + length(serialNumbersNew)
 
   const modulesOnInventory = bom.filter(item => {
     return item.item === 'AC_MODULES'
@@ -207,6 +206,8 @@ function RMASnList() {
     serialNumbersExisting,
     createSnItem
   )
+
+  const total = length(serialNumbersExistingList) + length(serialNumbersNewList)
 
   return (
     <BlockUI

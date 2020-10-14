@@ -163,6 +163,9 @@
   "OFF": "Disabled",
   "APPLY": "Apply",
   "RMA_DEVICES": "Devices on this PVS",
+  "RMA_MESSAGE_REMOVING_DEVICES": "We're trying to remove the devices",
+  "RMA_ERROR_REMOVING_DEVICES": "Devices couldn't be removed.",
+  "RMA_SUCCESS_REMOVING_DEVICES": "Devices were removed successfully",
   "REMOVE": "Remove",
   "ADD_REPLACE_EQUIPMENT": "Add or replace equipment",
   "DEVICES_NOT_FOUND": "There were some devices that were not found. Please check those devices before continuing.",
@@ -513,5 +516,7 @@
   "MD5_INTEGRITY_ERROR": "Failed integrity check for grid profile",
   "FETCHING_MODELS": "We're fetching the available models",
   "NO_MI_FOUND": "No microinverters found",
-  "MISSING_HC_REPORT": "Missing {0} Report"
+  "MISSING_HC_REPORT": "Missing {0} Report",
+  "REFRESH_DEVICE_LIST": "Refresh device list",
+  "NO_OTHER_DEVICES": "No other devices on site"
 }
