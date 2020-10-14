@@ -52,7 +52,7 @@ jobs:
           path: |
             plugins
             platforms/android
-          key: ${{ runner.os }}-cordova_android-${{ hashFiles('package.json') }}
+          key: ${{ runner.os }}-cordova_android-${{ hashFiles('package-lock.json') }}
 
       - name: Install Dependencies
         if: steps.native_app_node_modules.outputs.cache-hit != true
