@@ -23,7 +23,9 @@ jobs:
       - uses: actions/checkout@v2
         with:
           token: ${{ secrets.ACCESS_TOKEN }}
+
       - run: .github/workflows/setup_environment.sh
+
       - uses: actions/setup-node@v1
         with:
           node-version: ${{ env.NODE_VERSION }}
@@ -80,9 +82,6 @@ jobs:
       - run: npm run buildsm
         working-directory: energylink-connect2-app
 
-      #
-      # Configure environment for iOS and Android build
-      #
       - name: Set the application environment to ${{ env.APP_ENV }}
         run: |
           sed -i"" -E "s/com.sunpower.energylink.commissioning2.dev/${APP_ID}/" config.xml
