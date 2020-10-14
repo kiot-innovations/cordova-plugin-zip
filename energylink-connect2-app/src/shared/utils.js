@@ -171,7 +171,7 @@ export const updateBodyHeight = () => {
 }
 
 export const findByPathValue = curry((arr, path, value) =>
-  find(pathEq(path, value))(arr)
+  defaultTo(null, find(pathEq(path, value))(arr))
 )
 
 const flattenObject = ob => {
