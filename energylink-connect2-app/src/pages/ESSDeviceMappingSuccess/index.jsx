@@ -55,7 +55,7 @@ function DeviceMappingSuccess() {
   const allInOneDevicesList = [gateway, mio_board, inverter, batteries]
 
   return (
-    <section className="is-flex tile is-vertical has-text-weight-bold pt-0 full-height">
+    <section className="is-flex tile is-vertical has-text-weight-bold pt-0 pr-10 pl-10 full-height">
       <h1 className="has-text-centered is-uppercase pb-20">
         {t('DEVICE_MAP')}
       </h1>
