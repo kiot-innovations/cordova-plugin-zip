@@ -1,5 +1,5 @@
 import { ofType } from 'redux-observable'
-import { exhaustMap, map, switchMap, takeUntil } from 'rxjs/operators'
+import { exhaustMap, map, switchMap, take, takeUntil } from 'rxjs/operators'
 import { combineLatest, interval, race, ReplaySubject } from 'rxjs'
 import { COMMISSIONING_START, CONFIG_START } from 'state/actions/analytics'
 import {
@@ -166,7 +166,8 @@ export const getTimeElapsedSubmittingEDP = (action$, state$) => {
               state$,
               timePassedCommission$
             ]).pipe(map(data => getData(data, true)))
-          )
+          ),
+          take(1)
         ),
         action$.pipe(
           ofType(SUBMIT_COMMISSION_ERROR.getType()),
@@ -177,7 +178,8 @@ export const getTimeElapsedSubmittingEDP = (action$, state$) => {
               state$,
               timePassedCommission$
             ]).pipe(map(a => getData(a, false, payload)))
-          )
+          ),
+          take(1)
         )
       )
     )
