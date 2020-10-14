@@ -32,7 +32,7 @@ jobs:
           registry-url: 'https://registry.npmjs.org'
 
       - name: Restore cached node_modules folder
-        id: nm
+        id: native_app_node_modules
         uses: actions/cache@v2
         with:
           path: energylink-connect2-app/node_modules
@@ -46,16 +46,16 @@ jobs:
           key: ${{ runner.os }}-android-gradle
 
       - name: Restore cached platforms/android folder
-        id: cap
+        id: cordova_android
         uses: actions/cache@v2
         with:
           path: |
             plugins
             platforms/android
-          key: ${{ runner.os }}-cap-${{ hashFiles('package.json') }}
+          key: ${{ runner.os }}-cordova_android-${{ hashFiles('package.json') }}
 
       - name: Install Dependencies
-        if: steps.nm.outputs.cache-hit != true
+        if: steps.native_app_node_modules.outputs.cache-hit != true
         run: npm install
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
@@ -108,7 +108,7 @@ jobs:
           echo "${{ secrets.GOOGLE_PLAY_API_KEY }}" | base64 -d > google-api.json
 
       - name: Add android platform
-        if: steps.cap.outputs.cache-hit != true
+        if: steps.cordova_android.outputs.cache-hit != true
         run: |
           [ ! -d "platforms/android/" ] && npx --no-install cordova platform add android
           echo "done with platforms"
