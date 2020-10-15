@@ -58,7 +58,7 @@ exports[`RMA devices component render correctly 1`] = `
           <Collapsible
             actions={
               <span
-                className="is-paddingless has-text-primary button-transparent"
+                className="is-paddingless has-text-primary has-text-weight-bold is-size-7 button-transparent"
                 onClick={[Function]}
               >
                 ADD
@@ -87,7 +87,7 @@ exports[`RMA devices component render correctly 1`] = `
                   className="collapsible-actions"
                 >
                   <span
-                    className="is-paddingless has-text-primary button-transparent"
+                    className="is-paddingless has-text-primary has-text-weight-bold is-size-7 button-transparent"
                     onClick={[Function]}
                   >
                     ADD
@@ -139,13 +139,13 @@ exports[`RMA devices component render correctly 1`] = `
                   className="buttons-container"
                 >
                   <button
-                    className="button is-paddingless has-text-primary button-transparent"
+                    className="button is-paddingless has-text-primary has-text-weight-bold is-size-7 button-transparent"
                     onClick={[Function]}
                   >
                     SELECT_ALL
                   </button>
                   <button
-                    className="button is-paddingless has-text-primary button-transparent"
+                    className="button is-paddingless has-text-primary has-text-weight-bold is-size-7 button-transparent"
                     disabled={true}
                     onClick={[Function]}
                   >
@@ -271,7 +271,7 @@ exports[`RMA devices component render correctly 1`] = `
                   className="buttons-container"
                 >
                   <button
-                    className="button is-paddingless has-text-primary button-transparent"
+                    className="button is-paddingless has-text-primary has-text-weight-bold is-size-7 button-transparent"
                   >
                     ADD_REPLACE_EQUIPMENT
                   </button>
@@ -283,7 +283,7 @@ exports[`RMA devices component render correctly 1`] = `
             className="mt-10 has-text-centered button-container"
           >
             <button
-              className="button is-paddingless has-text-primary button-transparent"
+              className="button is-paddingless has-text-primary has-text-weight-bold is-size-7 button-transparent"
               onClick={[Function]}
             >
               REFRESH_DEVICE_LIST

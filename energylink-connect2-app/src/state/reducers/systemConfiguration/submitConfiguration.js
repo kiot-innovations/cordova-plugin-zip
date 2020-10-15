@@ -13,7 +13,6 @@ import {
 
 const initialState = {
   submitting: false,
-  submitted: false,
   config: {},
   error: '',
   commissioned: false
@@ -33,7 +32,6 @@ export const submitConfigReducer = createReducer(
     [SUBMIT_CONFIG_SUCCESS]: state => ({
       ...state,
       submitting: true,
-      submitted: true,
       error: initialState.error
     }),
     [SUBMIT_CONFIG_ERROR]: (state, payload) => ({

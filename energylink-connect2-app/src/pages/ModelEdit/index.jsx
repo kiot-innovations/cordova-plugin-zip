@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import clsx from 'clsx'
 import { useHistory } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
@@ -47,8 +47,8 @@ const ModelEdit = () => {
   const { rmaMode } = useSelector(state => state.rma)
   const { settingMetadata, setMetadataStatus } = useSelector(state => state.pvs)
   const { fetchingDevices, found } = useSelector(state => state.devices)
-  const { submitting, commissioned, error } = useSelector(
-    state => state.systemConfiguration.submit
+  const { submitting, commissioned, error } = useSelector(state =>
+    path(['systemConfiguration', 'submit'], state)
   )
   const rmaPvs = useSelector(path(['rma', 'pvs']))
   const { bom } = useSelector(state => state.inventory)
@@ -82,10 +82,10 @@ const ModelEdit = () => {
     }
   }
 
-  const syncWithCloud = () => {
+  const syncWithCloud = useCallback(() => {
     dispatch(SUBMIT_CLEAR())
     dispatch(SUBMIT_CONFIG_SUCCESS())
-  }
+  }, [dispatch])
 
   useEffect(() => {
     dispatch(FETCH_MODELS_INIT())
@@ -94,8 +94,7 @@ const ModelEdit = () => {
   useEffect(() => {
     if (setMetadataStatus === 'success') {
       if (rmaMode === rmaModes.EDIT_DEVICES) {
-        dispatch(SUBMIT_CLEAR())
-        dispatch(SUBMIT_CONFIG_SUCCESS())
+        syncWithCloud()
       } else if (essValue.value !== '0') {
         history.push(paths.PROTECTED.STORAGE_PREDISCOVERY.path)
       } else {
@@ -106,7 +105,15 @@ const ModelEdit = () => {
         )
       }
     }
-  }, [history, essValue.value, rmaPvs, setMetadataStatus, rmaMode, dispatch])
+  }, [
+    history,
+    essValue.value,
+    rmaPvs,
+    setMetadataStatus,
+    rmaMode,
+    dispatch,
+    syncWithCloud
+  ])
 
   useEffect(() => {
     if (commissioned) history.push(paths.PROTECTED.RMA_DEVICES.path)
@@ -181,7 +188,8 @@ const ModelEdit = () => {
         <div className="missing-models-warning is-flex pb-20">
           <span className="has-text-weight-bold">{t('HOLD_ON')}</span>
           <span className="mt-10 mb-10">{t('SYNCING_WITH_EDP')}</span>
-          {error ? (
+          {either(
+            error,
             <>
               <div className="mt-10 mb-10">
                 <span className="is-size-4 sp-hey has-text-white" />
@@ -196,8 +204,7 @@ const ModelEdit = () => {
                   </button>
                 </span>
               </div>
-            </>
-          ) : (
+            </>,
             <Loader />
           )}
         </div>
