@@ -74,16 +74,16 @@ Object {
                   HEALTH_CHECK_SUCCESSFUL
                 </span>
                 <Link
-                  className="button is-primary is-uppercase pl-20 pr-20 mt-20"
+                  className="button is-primary is-uppercase mt-20"
                   to=""
                 >
                   <LinkAnchor
-                    className="button is-primary is-uppercase pl-20 pr-20 mt-20"
+                    className="button is-primary is-uppercase mt-20"
                     href="/"
                     navigate={[Function]}
                   >
                     <a
-                      className="button is-primary is-uppercase pl-20 pr-20 mt-20"
+                      className="button is-primary is-uppercase mt-20"
                       href="/"
                       onClick={[Function]}
                     >
