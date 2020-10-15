@@ -23,6 +23,16 @@ describe('MI Model Editing page', () => {
   })
 
   const mockedStore = {
+    systemConfiguration: {
+      submit: {
+        commissioned: false,
+        submitting: true,
+        error: false
+      }
+    },
+    rma: {
+      rmaMode: 'EDIT_DEVICES'
+    },
     inventory: {
       bom: [
         { item: 'AC_MODULES', value: '0' },

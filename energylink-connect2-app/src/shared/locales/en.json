@@ -519,6 +519,8 @@
   "MISSING_HC_REPORT": "Missing {0} Report",
   "REFRESH_DEVICE_LIST": "Refresh device list",
   "NO_OTHER_DEVICES": "No other devices on site",
+  "SYNCING_WITH_EDP": "We're syncing device changes with the cloud",
+  "SYNC_WITH_EDP_ERROR": "Unable to sync changes to the cloud. Please try again",
+  "NO_OTHER_DEVICES": "No other devices on site",
   "SUNVAULT_ALL_ONE": "SunVault All-in one"
-
 }

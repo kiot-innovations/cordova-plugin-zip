@@ -84,7 +84,7 @@ exports[`Serial Number List Page renders correctly 1`] = `
                     key="E00121852014339"
                   >
                     <p
-                      className="is-uppercase has-text-weight-bold has-text-white is-size-5"
+                      className="is-uppercase has-text-weight-bold has-text-white"
                       onClick={[Function]}
                     >
                       E00121852014339
@@ -103,7 +103,7 @@ exports[`Serial Number List Page renders correctly 1`] = `
                     key="E00121852014348"
                   >
                     <p
-                      className="is-uppercase has-text-weight-bold has-text-white is-size-5"
+                      className="is-uppercase has-text-weight-bold has-text-white"
                       onClick={[Function]}
                     >
                       E00121852014348
@@ -122,7 +122,7 @@ exports[`Serial Number List Page renders correctly 1`] = `
                     key="E00121929013075"
                   >
                     <p
-                      className="is-uppercase has-text-weight-bold has-text-white is-size-5"
+                      className="is-uppercase has-text-weight-bold has-text-white"
                       onClick={[Function]}
                     >
                       E00121929013075

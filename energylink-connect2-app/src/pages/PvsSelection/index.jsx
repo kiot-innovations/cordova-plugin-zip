@@ -15,6 +15,7 @@ import {
   SET_RMA_MODE,
   FETCH_DEVICE_TREE
 } from 'state/actions/rma'
+import { RESET_SYSTEM_CONFIGURATION } from 'state/actions/systemConfiguration'
 import { Loader } from 'components/Loader'
 import './PVSelection.scss'
 
@@ -31,6 +32,10 @@ function PvsSelection() {
   const history = useHistory()
   const dispatch = useDispatch()
   const t = useI18n()
+
+  useEffect(() => {
+    dispatch(RESET_SYSTEM_CONFIGURATION())
+  }, [dispatch])
 
   useEffect(() => {
     if (rmaMode === rmaModes.REPLACE_PVS && !isEmpty(cloudDeviceTree.devices)) {
