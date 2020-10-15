@@ -11,10 +11,7 @@ const ContinueFooter = ({ url = '', text = '' }) => {
         {t('NO_ERRORS_DETECTED')}
       </span>
       {text && <span className="is-size-6">{t(text)}</span>}
-      <Link
-        className="button is-primary is-uppercase pl-20 pr-20 mt-20"
-        to={url}
-      >
+      <Link className="button is-primary is-uppercase mt-20" to={url}>
         {t('CONTINUE')}
       </Link>
     </div>
