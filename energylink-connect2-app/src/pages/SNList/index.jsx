@@ -57,7 +57,7 @@ function SNList() {
     return (
       <div key={serialNumber} className="sn-item mt-10 mb-10 pb-5">
         <p
-          className="is-uppercase has-text-weight-bold has-text-white is-size-5"
+          className="is-uppercase has-text-weight-bold has-text-white"
           onClick={() => handleEditSN(serialNumber)}
         >
           {serialNumber}
