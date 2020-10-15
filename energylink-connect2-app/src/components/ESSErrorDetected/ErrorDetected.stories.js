@@ -32,13 +32,13 @@ const justWarnings = [
 
 const both = [
   {
-    error_code: '12058'
+    error_code: '01007'
   },
   {
-    error_code: '31018'
+    error_code: '01018'
   },
   {
-    error_code: '11003'
+    error_code: '01003'
   }
 ]
 
