@@ -279,11 +279,13 @@ export const isError = (status = '', percent) =>
   status.toLowerCase() === 'error'
 
 const _strStartsWith = what => (str = '') => str.startsWith(what)
+const _strSatisfiesAWarning = str =>
+  _strStartsWith('1')(str) || _strStartsWith('0')(str)
 
 /* [a] -> Number */
 export const warningsLength = compose(
   length,
-  filter(propSatisfies(_strStartsWith('1'), 'error_code')),
+  filter(propSatisfies(_strSatisfiesAWarning, 'error_code')),
   defaultTo([])
 )
 
