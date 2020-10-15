@@ -1,6 +1,6 @@
 import { propOr } from 'ramda'
 import { forkJoin, from, of } from 'rxjs'
-import { catchError, exhaustMap, map } from 'rxjs/operators'
+import { catchError, exhaustMap, map, withLatestFrom } from 'rxjs/operators'
 import { ofType } from 'redux-observable'
 import * as Sentry from '@sentry/browser'
 
@@ -12,27 +12,25 @@ import {
   GRID_PROFILE_REPORT_SUCCESS
 } from 'state/actions/gridProfileDownloader'
 import { PVS_FIRMWARE_MODAL_IS_CONNECTED } from 'state/actions/fileDownloader'
-import {
-  ERROR_CODES,
-  getFileInfo,
-  getGridProfileFileName
-} from 'shared/fileSystem'
+import { ERROR_CODES, getFileInfo, getFileNameFromURL } from 'shared/fileSystem'
 import fileTransferObservable from 'state/epics/observables/downloader'
 import { getExpectedMD5, hasInternetConnection } from 'shared/utils'
 import { modalNoInternet } from 'state/epics/downloader/firmware'
 import { wifiCheckOperator } from './downloadOperators'
 import { getMd5FromFile } from 'shared/cordovaMapping'
 import { EMPTY_ACTION } from 'state/actions/share'
+import { gridProfileUpdateUrl$ } from 'state/epics/downloader/latestUrls'
 
 export const initDownloadGridProfileEpic = (action$, state$) =>
   action$.pipe(
     ofType(GRID_PROFILE_DOWNLOAD_INIT.getType()),
     wifiCheckOperator(state$),
-    exhaustMap(({ action, canDownload }) =>
+    withLatestFrom(gridProfileUpdateUrl$),
+    exhaustMap(([{ action, canDownload }, gridProfileUrl]) =>
       canDownload
         ? fileTransferObservable(
-            `firmware/${getGridProfileFileName()}`,
-            process.env.REACT_APP_GRID_PROFILE_URL,
+            `firmware/${getFileNameFromURL(gridProfileUrl)}`,
+            gridProfileUrl,
             propOr(false, 'payload', action)
           ).pipe(
             map(({ entry, progress }) =>
@@ -53,11 +51,12 @@ export const initDownloadGridProfileEpic = (action$, state$) =>
 export const gridProfileReportSuccessEpic = action$ =>
   action$.pipe(
     ofType(GRID_PROFILE_REPORT_SUCCESS.getType()),
-    exhaustMap(({ payload }) =>
+    withLatestFrom(gridProfileUpdateUrl$),
+    exhaustMap(([{ payload }, gridProfileURl]) =>
       forkJoin([
         from(getFileInfo(payload)),
         from(getMd5FromFile(payload)),
-        from(getExpectedMD5(process.env.REACT_APP_GRID_PROFILE_URL))
+        from(getExpectedMD5(gridProfileURl))
       ]).pipe(
         map(([{ size, lastModified }, fileMd5, expectedMd5]) =>
           fileMd5 === expectedMd5

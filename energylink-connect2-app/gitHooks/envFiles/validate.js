@@ -247,10 +247,8 @@ const envVarsWithValueInconsistency = compose(
 // Env vars values inconsistencies across all envs
 const allEnvsSameValueVars = [
   'REACT_APP_DEFAULT_DEBOUNCE',
-  'REACT_APP_FIRMWARE_URL',
   'REACT_APP_GRID_PROFILE_UPLOAD_ENDPOINT',
   'REACT_APP_IS_MOBILE',
-  'REACT_APP_LATEST_FIRMWARE_URL',
   'REACT_APP_MAPS_API_KEY',
   'REACT_APP_PING_AC_CLIENT',
   'REACT_APP_PING_ENVIRONMENT',
@@ -274,8 +272,8 @@ if (!isEmpty(sameValueAllEnvsInconsistencies)) {
 const devTestDifferentValueVars = [
   'REACT_APP_IS_DEV',
   'REACT_APP_IS_TEST',
+  'REACT_APP_HARDWARE_URLS',
   'REACT_APP_SCANDIT',
-  'REACT_APP_GRID_PROFILE_URL',
   'REACT_APP_APPLE_ID',
   'REACT_APP_ANDROID_ID',
   'REACT_APP_MIXPANEL_TOKEN'
@@ -302,6 +300,7 @@ const trainingProdDifferentValueVars = [
   'REACT_APP_SCANDIT_IOS',
   'REACT_APP_APPLE_ID',
   'REACT_APP_ANDROID_ID',
+  'REACT_APP_HARDWARE_URLS',
   'REACT_APP_MIXPANEL_TOKEN'
 ]
 const trainingProdSameValueVars = compose(

@@ -17,16 +17,19 @@ import * as PVSUtils from 'shared/PVSUtils'
 import * as fileTransferObservable from 'state/epics/observables/downloader'
 import * as unzipObservable from 'state/epics/observables/unzip'
 import { EMPTY_ACTION } from 'state/actions/share'
+import { pvsUpdateUrl$ } from 'state/epics/downloader/latestUrls'
 
 describe('Epic firmware', () => {
   let epicTest
   const url =
     'https://fw-assets-pvs6-dev.dev-edp.sunpower.com/staging-prod-cylon/8110/fwup/fwup.lua'
   describe('updatePVSFirmwareEpic', () => {
+    beforeAll(() => {
+      pvsUpdateUrl$.next(url)
+    })
     it('should dispatch PVS_FIRMWARE_UPDATE_URL with no retry when there is no payload', function() {
       epicTest = epicTester(require('./firmware').updatePVSFirmwareUrl)
 
-      fileSystem.getLatestPVSFirmwareUrl = jest.fn(() => of(url))
       PVSUtils.isConnectedToPVS = jest.fn(() => of(false))
       const inputValues = {
         a: PVS_FIRMWARE_DOWNLOAD_INIT(),
