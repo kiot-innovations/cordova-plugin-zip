@@ -14,4 +14,3 @@ To decrypt either of the files, we need to run the command
 
 Both will set whenever we want to build our app into our phones and when we
 want to develop in the browser and don't have any of our precious keys in our testing environments.
-

@@ -13,7 +13,6 @@ import { ofType } from 'redux-observable'
 import { forkJoin, from, of } from 'rxjs'
 import { catchError, exhaustMap, map, withLatestFrom } from 'rxjs/operators'
 
-import { getEnvironment } from 'shared/utils'
 import fileTransferObservable from 'state/epics/observables/downloader'
 import { checkMD5 } from 'shared/cordovaMapping'
 import { PVS_FIRMWARE_MODAL_IS_CONNECTED } from 'state/actions/fileDownloader'
@@ -58,7 +57,7 @@ const downloadOSZipEpic = (action$, state$) => {
                 data: {
                   ...payload,
                   baseUrl: process.env.REACT_APP_ARTIFACTORY_BASE,
-                  environment: getEnvironment()
+                  environment: process.env.REACT_APP_FLAVOR
                 },
                 category: 'ESS-Firmware-download',
                 message: 'Failed to download ESS firmware',

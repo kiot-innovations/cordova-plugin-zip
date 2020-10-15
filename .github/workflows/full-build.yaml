@@ -29,7 +29,7 @@ jobs:
     timeout-minutes: 45
     strategy:
       matrix:
-        app_env: [test, training, prod]
+        app_env: [uat, test, training, prod]
     env:
       APP_ENV: ${{ matrix.app_env }}
     steps:

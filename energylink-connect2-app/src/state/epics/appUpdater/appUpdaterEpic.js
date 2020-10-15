@@ -9,7 +9,7 @@ import {
   CHECK_APP_UPDATE_ERROR
 } from 'state/actions/global'
 import { plainHttpGet } from 'shared/fetch'
-import { getEnvironment, isIos } from 'shared/utils'
+import { isIos } from 'shared/utils'
 import appVersion from '../../../macros/appVersion.macro'
 
 //This version file looks like this from the S3 bucket defined
@@ -41,7 +41,7 @@ export const appUpdaterEpic = action$ =>
           Sentry.addBreadcrumb({
             data: {
               path: window.location.hash,
-              environment: getEnvironment()
+              environment: process.env.REACT_APP_FLAVOR
             },
             message: error.message,
             level: Sentry.Severity.Warning

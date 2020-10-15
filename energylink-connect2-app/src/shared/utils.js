@@ -271,8 +271,8 @@ export const addHasErrorProp = results => {
 }
 
 export function getEnvironment() {
-  if (process.env.REACT_APP_IS_TEST) return 'test'
-  if (process.env.REACT_APP_IS_DEV) return 'dev'
+  if (process.env.REACT_APP_FLAVOR === 'cm2-test') return 'test'
+  if (process.env.REACT_APP_FLAVOR === 'cm2-uat') return 'beta'
   return 'prod'
 }
 
@@ -341,3 +341,13 @@ export const getExpectedMD5 = async url => {
 
   throw new Error(`getExpectedMD5: Failed fetching md5 for: ${url}`)
 }
+
+export const isDebug = includes(process.env.REACT_APP_FLAVOR, [
+  'cm2-uat',
+  'cm2-test'
+])
+
+export const isProd = includes(process.env.REACT_APP_FLAVOR, [
+  'cm2-prod',
+  'cm2-training'
+])
