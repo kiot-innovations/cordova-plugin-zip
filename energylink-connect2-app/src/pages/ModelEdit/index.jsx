@@ -47,8 +47,8 @@ const ModelEdit = () => {
   const { rmaMode } = useSelector(state => state.rma)
   const { settingMetadata, setMetadataStatus } = useSelector(state => state.pvs)
   const { fetchingDevices, found } = useSelector(state => state.devices)
-  const { submitting, commissioned, error } = useSelector(state =>
-    path(['systemConfiguration', 'submit'], state)
+  const { submitting, commissioned, error } = useSelector(
+    path(['systemConfiguration', 'submit'])
   )
   const rmaPvs = useSelector(path(['rma', 'pvs']))
   const { bom } = useSelector(state => state.inventory)
