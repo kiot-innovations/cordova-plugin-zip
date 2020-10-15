@@ -1,11 +1,13 @@
 import React from 'react'
-import { find, path, prop, propEq } from 'ramda'
+import { find, prop, propEq } from 'ramda'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
-
 import paths from 'routes/paths'
 import { useI18n } from 'shared/i18n'
-import { SAVE_INVENTORY_RMA } from 'state/actions/inventory'
+import {
+  UPDATE_INVENTORY,
+  UPDATE_OTHER_INVENTORY
+} from 'state/actions/inventory'
 import { START_DISCOVERY_INIT } from 'state/actions/pvs'
 import { discoveryTypes } from 'state/reducers/devices'
 import { SHOW_MODAL } from 'state/actions/modal'
@@ -16,11 +18,13 @@ import './RMAInventory.scss'
 const RMAInventory = () => {
   const t = useI18n()
   const dispatch = useDispatch()
-  const rma = useSelector(path(['inventory', 'rma']))
+  const { bom, rma } = useSelector(state => state.inventory)
+  const miValue = find(propEq('item', 'AC_MODULES'), bom)
+  const storageValue = find(propEq('item', 'ESS'), bom)
   const history = useHistory()
 
   const essOptions = [
-    { value: '', label: t('NONE') },
+    { value: '0', label: t('NONE') },
     { value: '13kWh', label: t('13KWH_1INV') }
   ]
 
@@ -30,17 +34,13 @@ const RMAInventory = () => {
   }))
 
   const handleCheckbox = e => {
-    dispatch(
-      SAVE_INVENTORY_RMA({
-        name: e.target.name,
-        value: e.target.checked
-      })
-    )
+    e.preventDefault()
+    dispatch(UPDATE_OTHER_INVENTORY(e.target.checked))
   }
 
   const handleChange = name => option => {
     dispatch(
-      SAVE_INVENTORY_RMA({
+      UPDATE_INVENTORY({
         name: name,
         value: option.value
       })
@@ -56,9 +56,9 @@ const RMAInventory = () => {
         })
       )
       history.push(paths.PROTECTED.LEGACY_DISCOVERY.path)
-    } else if (prop('mi_count', rma)) {
+    } else if (miValue.value > 0) {
       history.push(paths.PROTECTED.SCAN_LABELS.path)
-    } else if (prop('ess', rma)) {
+    } else if (storageValue.value !== 0) {
       history.push(paths.PROTECTED.STORAGE_PREDISCOVERY.path)
     } else {
       dispatch(
@@ -96,10 +96,7 @@ const RMAInventory = () => {
             <SelectField
               isSearchable={false}
               onSelect={handleChange('mi_count')}
-              defaultValue={find(
-                propEq('value', prop('mi_count', rma)),
-                miOptions
-              )}
+              defaultValue={find(propEq('value', miValue.value), miOptions)}
               options={miOptions}
             />
           </div>
@@ -109,15 +106,15 @@ const RMAInventory = () => {
           <div className="collapsible-header">
             <div className="collapsible-title">
               <label className="has-text-weight-bold" htmlFor="other">
-                {t('EQUINOX_STORAGE_SYSTEM')}
+                {t('SUNVAULT_STORAGE_SYSTEM')}
               </label>
             </div>
           </div>
           <div className="field  mb-20 mt-20">
             <SelectField
               isSearchable={false}
-              onSelect={handleChange('ess')}
-              value={find(propEq('value', prop('ess', rma)), essOptions)}
+              onSelect={handleChange('ESS')}
+              value={find(propEq('value', storageValue.value), essOptions)}
               options={essOptions}
             />
           </div>

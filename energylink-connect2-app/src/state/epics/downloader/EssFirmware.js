@@ -10,9 +10,16 @@ import {
   propOr
 } from 'ramda'
 import { ofType } from 'redux-observable'
-import { from, of } from 'rxjs'
-import { catchError, exhaustMap, map } from 'rxjs/operators'
+import { forkJoin, from, of } from 'rxjs'
+import { catchError, exhaustMap, map, withLatestFrom } from 'rxjs/operators'
+
 import { getEnvironment } from 'shared/utils'
+import fileTransferObservable from 'state/epics/observables/downloader'
+import { checkMD5 } from 'shared/cordovaMapping'
+import { PVS_FIRMWARE_MODAL_IS_CONNECTED } from 'state/actions/fileDownloader'
+import { wifiCheckOperator } from './downloadOperators'
+import { getFileInfo } from 'shared/fileSystem'
+import { essUpdateUrl$ } from 'state/epics/downloader/latestUrls'
 import {
   DOWNLOAD_META_ERROR,
   DOWNLOAD_META_INIT,
@@ -24,23 +31,19 @@ import {
   DOWNLOAD_OS_SUCCESS
 } from 'state/actions/ess'
 
-import fileTransferObservable from 'state/epics/observables/downloader'
-import { checkMD5 } from 'shared/cordovaMapping'
-import { PVS_FIRMWARE_MODAL_IS_CONNECTED } from 'state/actions/fileDownloader'
-import { wifiCheckOperator } from './downloadOperators'
-
 const downloadOSZipEpic = (action$, state$) => {
   const shouldRetry = ifElse(is(Boolean), identity, always(false))
   return action$.pipe(
     ofType(DOWNLOAD_OS_INIT.getType()),
     wifiCheckOperator(state$),
-    exhaustMap(({ action, canDownload }) => {
+    withLatestFrom(essUpdateUrl$),
+    exhaustMap(([{ action, canDownload }, updateUrl]) => {
       const filePath = 'ESS/EQS-FW-Package.zip'
       const payload = propOr(false, 'payload', action)
       return canDownload
         ? fileTransferObservable(
             filePath,
-            `${process.env.REACT_APP_ARTIFACTORY_BASE}/pvs-connected-devices-firmware/chief_hopper/ChiefHopper.zip`,
+            updateUrl,
             shouldRetry(payload),
             pathOr('', ['value', 'user', 'auth', 'access_token'], state$),
             ['x-checksum-md5']
@@ -114,8 +117,13 @@ const checkIntegrityESSDownload = (action$, state$) =>
       const { filePath, entry } = payload
       const md5 = getMd5(state$, payload)
 
-      return from(checkMD5(filePath, md5)).pipe(
-        map(() => DOWNLOAD_OS_SUCCESS(entry)),
+      return forkJoin({
+        md5: from(checkMD5(filePath, md5)),
+        fileInfo: from(getFileInfo(filePath))
+      }).pipe(
+        map(({ fileInfo }) =>
+          DOWNLOAD_OS_SUCCESS({ entryFile: entry, total: fileInfo.size })
+        ),
         catchError(err => {
           Sentry.addBreadcrumb({ message: `filePath ${filePath}` })
           Sentry.addBreadcrumb({ message: `expected md5 ${md5}` })

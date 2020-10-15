@@ -40,13 +40,14 @@ exports[`RMA devices component render correctly 1`] = `
     >
       <RMADevices>
         <main
-          className="full-height pl-10 pr-10 rma-devices-screen"
+          className="full-height pl-10 pr-10 rma-devices"
         >
           <div
             className="header mb-20"
           >
             <span
               className="sp-chevron-left has-text-primary is-size-4 go-back"
+              onClick={[Function]}
             />
             <span
               className="is-uppercase has-text-weight-bold  page-title"
@@ -55,6 +56,14 @@ exports[`RMA devices component render correctly 1`] = `
             </span>
           </div>
           <Collapsible
+            actions={
+              <span
+                className="is-paddingless has-text-primary has-text-weight-bold is-size-7 button-transparent"
+                onClick={[Function]}
+              >
+                ADD
+              </span>
+            }
             expanded={true}
             title="MICROINVERTERS"
           >
@@ -76,7 +85,14 @@ exports[`RMA devices component render correctly 1`] = `
                 </div>
                 <div
                   className="collapsible-actions"
-                />
+                >
+                  <span
+                    className="is-paddingless has-text-primary has-text-weight-bold is-size-7 button-transparent"
+                    onClick={[Function]}
+                  >
+                    ADD
+                  </span>
+                </div>
                 <div
                   className="collapsible-trigger"
                 >
@@ -93,18 +109,45 @@ exports[`RMA devices component render correctly 1`] = `
               <div
                 className="collapsible-content expanded"
               >
+                <label
+                  className="has-text-weight-bold has-text-white pb-10 pt-10 is-flex"
+                  key="E00121939001311"
+                >
+                  <input
+                    checked={false}
+                    className="mr-10 checkbox-dark"
+                    onChange={[Function]}
+                    type="checkbox"
+                    value="E00121939001311"
+                  />
+                  E00121939001311
+                </label>
+                <label
+                  className="has-text-weight-bold has-text-white pb-10 pt-10 is-flex"
+                  key="E00121939002888"
+                >
+                  <input
+                    checked={false}
+                    className="mr-10 checkbox-dark"
+                    onChange={[Function]}
+                    type="checkbox"
+                    value="E00121939002888"
+                  />
+                  E00121939002888
+                </label>
                 <div
                   className="buttons-container"
                 >
                   <button
-                    className="button is-paddingless has-text-primary button-transparent"
+                    className="button is-paddingless has-text-primary has-text-weight-bold is-size-7 button-transparent"
                     onClick={[Function]}
                   >
                     SELECT_ALL
                   </button>
                   <button
-                    className="button is-paddingless has-text-primary button-transparent"
+                    className="button is-paddingless has-text-primary has-text-weight-bold is-size-7 button-transparent"
                     disabled={true}
+                    onClick={[Function]}
                   >
                     REMOVE
                   </button>
@@ -224,133 +267,28 @@ exports[`RMA devices component render correctly 1`] = `
                     Serial-MIO-Saturn
                   </span>
                 </div>
-                <button
-                  className="button is-paddingless has-text-primary button-transparent"
+                <div
+                  className="buttons-container"
                 >
-                  ADD_REPLACE_EQUIPMENT
-                </button>
+                  <button
+                    className="button is-paddingless has-text-primary has-text-weight-bold is-size-7 button-transparent"
+                  >
+                    ADD_REPLACE_EQUIPMENT
+                  </button>
+                </div>
               </div>
             </div>
           </Collapsible>
           <div
-            className="mt-10"
-          />
-          <Collapsible
-            expanded={true}
-            title="OTHER_DEVICES"
+            className="mt-10 has-text-centered button-container"
           >
-            <div
-              className="collapsible"
+            <button
+              className="button is-paddingless has-text-primary has-text-weight-bold is-size-7 button-transparent"
+              onClick={[Function]}
             >
-              <div
-                className="collapsible-header"
-              >
-                <div
-                  className="collapsible-title"
-                >
-                  <span />
-                  <span
-                    className="has-text-weight-bold"
-                  >
-                    OTHER_DEVICES
-                  </span>
-                </div>
-                <div
-                  className="collapsible-actions"
-                />
-                <div
-                  className="collapsible-trigger"
-                >
-                  <div
-                    className="chevron down"
-                    onClick={[Function]}
-                  >
-                    <span
-                      className="sp-chevron-up"
-                    />
-                  </div>
-                </div>
-              </div>
-              <div
-                className="collapsible-content expanded"
-              >
-                <div
-                  className="other-components"
-                >
-                  <div
-                    key="ZT191585000549A0355"
-                  >
-                    <span
-                      className="has-text-weight-bold has-text-white"
-                    >
-                      PV Supervisor PVS6
-                    </span>
-                    <span
-                      className="ml-10"
-                    >
-                      ZT191585000549A0355
-                    </span>
-                  </div>
-                  <div
-                    key="PVS6M19150355p"
-                  >
-                    <span
-                      className="has-text-weight-bold has-text-white"
-                    >
-                      PVS6M0400p
-                    </span>
-                    <span
-                      className="ml-10"
-                    >
-                      PVS6M19150355p
-                    </span>
-                  </div>
-                  <div
-                    key="PVS6M19150355c"
-                  >
-                    <span
-                      className="has-text-weight-bold has-text-white"
-                    >
-                      PVS6M0400c
-                    </span>
-                    <span
-                      className="ml-10"
-                    >
-                      PVS6M19150355c
-                    </span>
-                  </div>
-                  <div
-                    key="E00121939001311"
-                  >
-                    <span
-                      className="has-text-weight-bold has-text-white"
-                    >
-                      AC_Module_Type_E
-                    </span>
-                    <span
-                      className="ml-10"
-                    >
-                      E00121939001311
-                    </span>
-                  </div>
-                  <div
-                    key="E00121939002888"
-                  >
-                    <span
-                      className="has-text-weight-bold has-text-white"
-                    >
-                      AC_Module_Type_E
-                    </span>
-                    <span
-                      className="ml-10"
-                    >
-                      E00121939002888
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </Collapsible>
+              REFRESH_DEVICE_LIST
+            </button>
+          </div>
         </main>
       </RMADevices>
     </Provider>

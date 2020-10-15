@@ -1,7 +1,7 @@
 import React from 'react'
 import { anyPass, length, map, endsWith, propOr } from 'ramda'
 import { useI18n } from 'shared/i18n'
-import { either } from 'shared/utils'
+import { either, removeUndefined } from 'shared/utils'
 import Collapsible from 'components/Collapsible'
 import './ExistingDevices.scss'
 
@@ -30,14 +30,14 @@ const deviceRow = deviceItem => {
 const MetersGroup = ({ data }) => {
   const t = useI18n()
 
-  const deviceList = map(deviceRow, data)
+  const deviceList = removeUndefined(map(deviceRow, data))
 
   return (
     <div className="mt-10 mb-10">
       <Collapsible
         className="is-flex flex-column"
         title={t('METERS')}
-        actions={length(data)}
+        actions={length(deviceList)}
       >
         {either(
           length(data) > 0,

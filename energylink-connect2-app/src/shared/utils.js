@@ -171,7 +171,7 @@ export const updateBodyHeight = () => {
 }
 
 export const findByPathValue = curry((arr, path, value) =>
-  find(pathEq(path, value))(arr)
+  defaultTo(null, find(pathEq(path, value))(arr))
 )
 
 const flattenObject = ob => {
@@ -235,7 +235,7 @@ export const miTypes = {
   AC_Module_Type_D: 'Type D'
 }
 
-export const renameKeys = (keysMap, obj) =>
+export const renameKeys = curry((keysMap, obj) =>
   Object.keys(obj).reduce(
     (acc, key) => ({
       ...acc,
@@ -243,6 +243,7 @@ export const renameKeys = (keysMap, obj) =>
     }),
     {}
   )
+)
 
 export const arrayToObject = (key, array) => indexBy(prop(key), array)
 const flatErrors = map(prop('device_sn'))
@@ -302,7 +303,7 @@ export const calculateTimeout = lastUpdated => {
 
 export const hasInternetConnection = () =>
   new Promise((resolve, reject) =>
-    fetch(process.env.REACT_APP_LATEST_FIRMWARE_URL)
+    fetch('https://google.com')
       .then(() => resolve())
       .catch(() => reject())
   )

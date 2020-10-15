@@ -15,7 +15,7 @@ const initialState = {
   size: 0,
   error: '',
   exists: false,
-  updateURL: process.env.REACT_APP_FIRMWARE_URL,
+  updateURL: '',
   step: ''
 }
 

@@ -2,7 +2,7 @@ import { propOr } from 'ramda'
 import { ofType } from 'redux-observable'
 import * as Sentry from '@sentry/browser'
 import { from, of } from 'rxjs'
-import { catchError, exhaustMap, map } from 'rxjs/operators'
+import { catchError, exhaustMap, map, withLatestFrom } from 'rxjs/operators'
 
 import {
   PVS_DECOMPRESS_LUA_FILES_ERROR,
@@ -24,15 +24,14 @@ import {
   fileExists,
   getFirmwareVersionData,
   getFS,
-  getLatestPVSFirmwareUrl,
   verifySHA256
 } from 'shared/fileSystem'
 import { getFileSystemFromLuaFile } from 'shared/PVSUtils'
-import { getFirmwareUrlFromState } from 'state/epics/fimwareUpdate/checkVersionPVS'
 import { hasInternetConnection } from 'shared/utils'
 import { SHOW_MODAL } from 'state/actions/modal'
 import { translate } from 'shared/i18n'
 import { wifiCheckOperator } from './downloadOperators'
+import { pvsUpdateUrl$ } from 'state/epics/downloader/latestUrls'
 
 export const modalNoInternet = () => {
   const t = translate()
@@ -47,25 +46,14 @@ export const updatePVSFirmwareUrl = (action$, state$) => {
   return action$.pipe(
     ofType(PVS_FIRMWARE_DOWNLOAD_INIT.getType()),
     wifiCheckOperator(state$),
-    exhaustMap(({ action, canDownload }) =>
+    withLatestFrom(pvsUpdateUrl$),
+    map(([{ action, canDownload }, url]) =>
       canDownload
-        ? from(getLatestPVSFirmwareUrl()).pipe(
-            map(url =>
-              PVS_FIRMWARE_UPDATE_URL({
-                url,
-                shouldRetry: propOr(false, 'payload', action)
-              })
-            ),
-            catchError(err => {
-              Sentry.captureException(err)
-              return of(
-                PVS_FIRMWARE_UPDATE_URL({
-                  url: getFirmwareUrlFromState(state$)
-                })
-              )
-            })
-          )
-        : of(PVS_FIRMWARE_MODAL_IS_CONNECTED(action))
+        ? PVS_FIRMWARE_UPDATE_URL({
+            url,
+            shouldRetry: propOr(false, 'payload', action)
+          })
+        : PVS_FIRMWARE_MODAL_IS_CONNECTED(action)
     )
   )
 }

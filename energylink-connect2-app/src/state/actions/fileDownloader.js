@@ -31,3 +31,5 @@ export const PVS_FIRMWARE_MODAL_IS_CONNECTED = createAction(
 )
 
 export const DOWNLOAD_ALLOW_WITH_PVS = createAction('DOWNLOAD_ALLOW_WITH_PVS')
+
+export const DOWNLOAD_URLS_UPDATED = createAction('DOWNLOAD_URLS_UPDATED')

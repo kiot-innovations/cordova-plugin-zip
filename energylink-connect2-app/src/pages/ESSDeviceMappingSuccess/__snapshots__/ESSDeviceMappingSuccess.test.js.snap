@@ -79,6 +79,7 @@ Object {
                   ],
                 ]
               }
+              title="SUNVAULT_ALL_ONE"
             >
               <div
                 className="device-map mb-10 mt-10"
@@ -86,20 +87,30 @@ Object {
                 <div
                   className="head-device is-flex"
                 >
-                  <span
-                    className="has-text-white has-text-weight-bold is-size-5"
+                  <h1
+                    className="has-text-white has-text-weight-bold is-size-5 mb-10"
                   >
-                    MIDC
-                  </span>
-                  <span
-                    className="has-text-weight-bold is-size-5"
-                  >
-                    00005
-                  </span>
+                    SUNVAULT_ALL_ONE
+                  </h1>
                 </div>
                 <div
                   className="rest-of-devices"
                 >
+                  <div
+                    className="mt-5 mb-5 is-flex child-device"
+                    key="00005MIDC"
+                  >
+                    <span
+                      className="has-text-white has-text-weight-bold"
+                    >
+                      MIDC
+                    </span>
+                    <span
+                      className="has-text-weight-bold"
+                    >
+                      00005
+                    </span>
+                  </div>
                   <div
                     className="mt-5 mb-5 is-flex child-device"
                     key="00002MIDC"
@@ -160,6 +171,7 @@ Object {
                   },
                 ]
               }
+              title="HUB_PLUS"
             >
               <div
                 className="device-map mb-10 mt-10"
@@ -167,20 +179,31 @@ Object {
                 <div
                   className="head-device is-flex"
                 >
-                  <span
-                    className="has-text-white has-text-weight-bold is-size-5"
+                  <h1
+                    className="has-text-white has-text-weight-bold is-size-5 mb-10"
                   >
-                    MIDC
-                  </span>
-                  <span
-                    className="has-text-weight-bold is-size-5"
-                  >
-                    00004
-                  </span>
+                    HUB_PLUS
+                  </h1>
                 </div>
                 <div
                   className="rest-of-devices"
-                />
+                >
+                  <div
+                    className="mt-5 mb-5 is-flex child-device"
+                    key="00004MIDC"
+                  >
+                    <span
+                      className="has-text-white has-text-weight-bold"
+                    >
+                      MIDC
+                    </span>
+                    <span
+                      className="has-text-weight-bold"
+                    >
+                      00004
+                    </span>
+                  </div>
+                </div>
               </div>
             </DeviceMap>
             <ErrorDetected

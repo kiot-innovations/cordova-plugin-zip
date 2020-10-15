@@ -32,7 +32,7 @@ export const submitConfigObjectEpic = (action$, state$) => {
             SUBMIT_COMMISSION_ERROR(
               pathOr(
                 t('UNKNOWN_ERROR'),
-                ['response', 'body', 'result', 'message'],
+                ['response', 'body', 'result', 'code'],
                 response
               )
             )

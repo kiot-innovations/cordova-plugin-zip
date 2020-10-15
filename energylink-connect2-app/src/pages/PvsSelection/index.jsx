@@ -15,6 +15,7 @@ import {
   SET_RMA_MODE,
   FETCH_DEVICE_TREE
 } from 'state/actions/rma'
+import { RESET_SYSTEM_CONFIGURATION } from 'state/actions/systemConfiguration'
 import { Loader } from 'components/Loader'
 import './PVSelection.scss'
 
@@ -33,6 +34,10 @@ function PvsSelection() {
   const t = useI18n()
 
   useEffect(() => {
+    dispatch(RESET_SYSTEM_CONFIGURATION())
+  }, [dispatch])
+
+  useEffect(() => {
     if (rmaMode === rmaModes.REPLACE_PVS && !isEmpty(cloudDeviceTree.devices)) {
       history.push(paths.PROTECTED.RMA_EXISTING_DEVICES.path)
     }
@@ -45,9 +50,13 @@ function PvsSelection() {
 
   const PVSSelected = useSelector(path(['rma', 'pvs']))
 
-  const shouldMoveNewRoute = route => {
-    if (PVSSelected) history.push(route)
-    else showNoPVSSelected({ body: t('SELECT_PVS_MODAL') })
+  const editDevices = () => {
+    if (PVSSelected) {
+      dispatch(SET_RMA_MODE(rmaModes.EDIT_DEVICES))
+      history.push(paths.PROTECTED.CONNECT_TO_PVS.path)
+    } else {
+      showNoPVSSelected({ body: t('SELECT_PVS_MODAL') })
+    }
   }
 
   const replacePVS = () => {
@@ -95,15 +104,7 @@ function PvsSelection() {
           <span>{t('ADD_NEW_PVS')}</span>
         </div>
       </section>
-      {/*
-          @todo: This section is hidden until we finish the RMA flow
-          [CM2-1048]. Enable the buttons once we finish that.
-      */}
-      <section
-        className={clsx('pvs-buttons mb-20', {
-          'is-hidden': !process.env.REACT_APP_IS_DEV
-        })}
-      >
+      <section className="pvs-buttons mb-20">
         <button
           className="button has-text-centered is-uppercase is-secondary is-fullwidth mr-5"
           onClick={replacePVS}
@@ -112,9 +113,7 @@ function PvsSelection() {
         </button>
         <button
           className="button has-text-centered is-uppercase is-secondary is-fullwidth ml-5"
-          onClick={() =>
-            shouldMoveNewRoute(paths.PROTECTED.INVENTORY_COUNT.path)
-          }
+          onClick={editDevices}
         >
           {t('EDIT_DEVICES')}
         </button>

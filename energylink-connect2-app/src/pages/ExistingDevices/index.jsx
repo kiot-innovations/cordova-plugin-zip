@@ -18,9 +18,8 @@ import { either, removeUndefined } from 'shared/utils'
 import { CLEAR_RMA, SET_NEW_EQUIPMENT } from 'state/actions/rma'
 import { UPDATE_SN } from 'state/actions/pvs'
 import {
-  UPDATE_MI_COUNT,
   UPDATE_OTHER_INVENTORY,
-  UPDATE_STORAGE_INVENTORY
+  UPDATE_INVENTORY
 } from 'state/actions/inventory'
 import MicroinvertersGroup from './MicroinvertersGroup'
 import MetersGroup from './MetersGroup'
@@ -87,16 +86,26 @@ const ExistingDevices = () => {
     const serialNumbers = pluck('ConnDvcSn', microinverters)
     if (!isEmpty(serialNumbers)) {
       const snList = serialNumbers.map(sn => {
-        return { serial_number: sn, type: 'SOLARBRIDGE' }
+        return { serial_number: sn, type: 'SOLARBRIDGE', existing: true }
       })
       dispatch(UPDATE_SN(snList))
-      dispatch(UPDATE_MI_COUNT(snList.length))
+      dispatch(
+        UPDATE_INVENTORY({
+          name: 'AC_MODULES',
+          value: snList.length
+        })
+      )
     }
   }
 
   const updateStorageInventory = () => {
     if (!isEmpty(storageDevices)) {
-      dispatch(UPDATE_STORAGE_INVENTORY('16kWh'))
+      dispatch(
+        UPDATE_INVENTORY({
+          name: 'ESS',
+          value: '13kWh'
+        })
+      )
     }
   }
 

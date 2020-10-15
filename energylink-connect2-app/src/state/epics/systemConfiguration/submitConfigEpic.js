@@ -1,18 +1,52 @@
 import * as Sentry from '@sentry/browser'
 import { ofType } from 'redux-observable'
-import { from, of } from 'rxjs'
+import { concat, from, of } from 'rxjs'
 import { catchError, exhaustMap, map } from 'rxjs/operators'
 import { getApiPVS } from 'shared/api'
 import { translate } from 'shared/i18n'
-import { path } from 'ramda'
+import { compose, filter, map as rmap, path, pathOr, prop, propEq } from 'ramda'
+
 import {
+  SAVE_CT_RATED_CURRENT_ERROR,
+  SAVE_CT_RATED_CURRENT_SUCCESS,
   SUBMIT_CONFIG,
-  SUBMIT_CONFIG_SUCCESS,
   SUBMIT_CONFIG_ERROR,
+  SUBMIT_CONFIG_SUCCESS,
   SUBMIT_EXPORTLIMIT,
   SUBMIT_GRIDPROFILE,
   SUBMIT_METERCONFIG
 } from 'state/actions/systemConfiguration'
+
+const setCtRatedCurrent = ({ ratedCurrent, devices }) =>
+  devices.reduce(async (prevPromise, nextDevice) => {
+    await prevPromise
+    return getApiPVS()
+      .then(path(['apis', 'meter']))
+      .then(api =>
+        api.setMeterParameters(
+          { id: 1 },
+          {
+            requestBody: {
+              Device: nextDevice,
+              ctRatedCurrent: ratedCurrent
+            }
+          }
+        )
+      )
+  }, Promise.resolve())
+
+const getRatedCurrent = path([
+  'value',
+  'systemConfiguration',
+  'meter',
+  'ratedCurrent'
+])
+const getCTDevices = compose(
+  filter(Boolean),
+  rmap(prop('SERIAL')),
+  filter(propEq('DEVICE_TYPE', 'Power Meter')),
+  pathOr([], ['value', 'devices', 'found'])
+)
 
 export const submitGridVoltageEpic = (action$, state$) => {
   const t = translate(state$.value.language)
@@ -32,17 +66,31 @@ export const submitGridVoltageEpic = (action$, state$) => {
           )
         )
 
-      return from(promise).pipe(
-        map(response =>
-          response.status === 200
-            ? SUBMIT_GRIDPROFILE(payload)
-            : SUBMIT_CONFIG_ERROR(t('SUBMIT_GRID_VOLTAGE_ERROR'))
+      return concat(
+        from(
+          setCtRatedCurrent({
+            devices: getCTDevices(state$),
+            ratedCurrent: getRatedCurrent(state$)
+          })
+        ).pipe(
+          map(SAVE_CT_RATED_CURRENT_SUCCESS),
+          catchError(err => {
+            Sentry.captureException(err)
+            return of(SAVE_CT_RATED_CURRENT_ERROR(err))
+          })
         ),
-        catchError(err => {
-          Sentry.addBreadcrumb({ message: t('SUBMIT_GRID_VOLTAGE_ERROR') })
-          Sentry.captureException(err)
-          return of(SUBMIT_CONFIG_ERROR(t('SUBMIT_GRID_VOLTAGE_ERROR')))
-        })
+        from(promise).pipe(
+          map(response =>
+            response.status === 200
+              ? SUBMIT_GRIDPROFILE(payload)
+              : SUBMIT_CONFIG_ERROR(t('SUBMIT_GRID_VOLTAGE_ERROR'))
+          ),
+          catchError(err => {
+            Sentry.addBreadcrumb({ message: t('SUBMIT_GRID_VOLTAGE_ERROR') })
+            Sentry.captureException(err)
+            return of(SUBMIT_CONFIG_ERROR(t('SUBMIT_GRID_VOLTAGE_ERROR')))
+          })
+        )
       )
     })
   )

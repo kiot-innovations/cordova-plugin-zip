@@ -1,22 +1,27 @@
-import React, { useState, useEffect } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
+import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
-import { length, compose, isEmpty, isNil, path, equals } from 'ramda'
+import { compose, equals, isEmpty, isNil, length, path } from 'ramda'
 import SwipeableBottomSheet from 'react-swipeable-bottom-sheet'
 import { useI18n } from 'shared/i18n'
 import { decodeQRData, scanBarcodes } from 'shared/scanning'
-import { generateSSID, generatePassword } from 'shared/utils'
+import { generatePassword, generateSSID } from 'shared/utils'
 import { rmaModes } from 'state/reducers/rma'
 import {
+  HIDE_MANUAL_INSTRUCTIONS,
   PVS_CONNECTION_INIT,
-  STOP_NETWORK_POLLING,
   PVS_TIMEOUT_FOR_CONNECTION,
-  HIDE_MANUAL_INSTRUCTIONS
+  STOP_NETWORK_POLLING
 } from 'state/actions/network'
 import { SAVE_PVS_SN } from 'state/actions/pvs'
 import { Loader } from 'components/Loader'
 import paths from 'routes/paths'
 import './ConnectToPVS.scss'
+import {
+  CONNECT_PVS_CAMERA,
+  CONNECT_PVS_MANUALLY,
+  START_SCANNING
+} from 'state/actions/analytics'
 
 const onSuccess = (generatePassword, dispatch, t, setStarted) => data => {
   try {
@@ -33,6 +38,7 @@ const onSuccess = (generatePassword, dispatch, t, setStarted) => data => {
       const [serialNumber, ssid] = qrData
       const password = generatePassword(serialNumber)
       dispatch(SAVE_PVS_SN(serialNumber))
+      dispatch(CONNECT_PVS_CAMERA(serialNumber))
       dispatch(PVS_CONNECTION_INIT({ ssid, password }))
     } else {
       alert(t('INVALID_QRCODE'))
@@ -88,6 +94,7 @@ function ConnectToPVS() {
     const ssid = generateSSID(serialNumber)
     const password = generatePassword(serialNumber)
     dispatch(SAVE_PVS_SN(serialNumber))
+    dispatch(CONNECT_PVS_MANUALLY(serialNumber))
     dispatch(PVS_CONNECTION_INIT({ ssid, password }))
   }
 
@@ -103,6 +110,7 @@ function ConnectToPVS() {
 
   const getBarcode = () => {
     setStarted(true)
+    dispatch(START_SCANNING())
     scanBarcodes(onSuccess(generatePassword, dispatch, t, setStarted), onFail)
   }
 

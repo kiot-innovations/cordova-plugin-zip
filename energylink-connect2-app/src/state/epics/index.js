@@ -14,6 +14,7 @@ import storageEpics from './storage'
 import scanditEpics from './scandit'
 import rmaEpics from './rma'
 import appUpdaterEpics from './appUpdater'
+import analyticsEpics from './analytics'
 
 export default combineEpics(
   ...downloader,
@@ -30,5 +31,6 @@ export default combineEpics(
   ...storageEpics,
   ...scanditEpics,
   ...rmaEpics,
-  ...appUpdaterEpics
+  ...appUpdaterEpics,
+  ...analyticsEpics
 )

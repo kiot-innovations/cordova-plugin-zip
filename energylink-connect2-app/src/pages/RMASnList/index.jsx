@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
-import { length } from 'ramda'
+import { filter, length, propEq, reject } from 'ramda'
 import BlockUI from 'react-block-ui'
 import 'react-block-ui/style.css'
 import useModal from 'hooks/useModal'
@@ -18,6 +18,15 @@ import Collapsible from 'components/Collapsible'
 import paths from 'routes/paths'
 import './RMASnList.scss'
 
+const sortSNList = (list, createSnItem) =>
+  list
+    ? list
+        .sort(function(a, b) {
+          return a.serial_number > b.serial_number
+        })
+        .map(device => createSnItem(device.serial_number))
+    : []
+
 function RMASnList() {
   const t = useI18n()
   const dispatch = useDispatch()
@@ -27,16 +36,13 @@ function RMASnList() {
   const { serialNumbers, fetchingSN, serialNumbersError } = useSelector(
     state => state.pvs
   )
-  const { found: serialNumbersExisting } = useSelector(state => state.devices)
-  const serialNumbersNew = serialNumbers.filter(
-    device =>
-      !serialNumbersExisting.find(
-        existing => existing.SERIAL === device.serial_number
-      )
-  )
+
+  const isExistingSN = propEq('existing', true)
+  const serialNumbersExisting = filter(isExistingSN, serialNumbers)
+  const serialNumbersNew = reject(isExistingSN, serialNumbers)
+
   const [editingSn, setEditingSn] = useState('')
   const { bom } = useSelector(state => state.inventory)
-  const total = length(serialNumbersExisting) + length(serialNumbersNew)
 
   const modulesOnInventory = bom.filter(item => {
     return item.item === 'AC_MODULES'
@@ -83,13 +89,13 @@ function RMASnList() {
   }
 
   const submitSN = () => {
-    const snList = serialNumbersNew.map(device => ({
+    const snList = serialNumbers.map(device => ({
       DEVICE_TYPE: 'Inverter',
       SERIAL: device.serial_number
     }))
     serialNumbersError.forEach(snList.push)
     toggleSerialNumbersModal()
-    dispatch(UPDATE_MI_COUNT(serialNumbersNew.length))
+    dispatch(UPDATE_MI_COUNT(serialNumbers.length))
     dispatch(PUSH_CANDIDATES_INIT(snList))
     history.push(paths.PROTECTED.RMA_MI_DISCOVERY.path)
   }
@@ -195,22 +201,13 @@ function RMASnList() {
     }
   }
 
-  const serialNumbersNewList = serialNumbersNew
-    ? serialNumbersNew
-        .sort(function(a, b) {
-          return a.serial_number > b.serial_number
-        })
-        .map(device => createSnItem(device.serial_number))
-    : []
+  const serialNumbersNewList = sortSNList(serialNumbersNew, createSnItem)
+  const serialNumbersExistingList = sortSNList(
+    serialNumbersExisting,
+    createSnItem
+  )
 
-  const serialNumbersExistingList = serialNumbersExisting
-    ? serialNumbersExisting
-        .filter(({ DEVICE_TYPE }) => DEVICE_TYPE === 'Inverter')
-        .sort(function(a, b) {
-          return a.SERIAL > b.SERIAL
-        })
-        .map(device => createSnItem(device.SERIAL, false, false))
-    : []
+  const total = length(serialNumbersExistingList) + length(serialNumbersNewList)
 
   return (
     <BlockUI
