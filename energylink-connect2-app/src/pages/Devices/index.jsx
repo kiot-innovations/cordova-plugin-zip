@@ -10,7 +10,8 @@ import {
   FETCH_CANDIDATES_COMPLETE,
   FETCH_CANDIDATES_INIT,
   RESET_DISCOVERY,
-  FETCH_DEVICES_LIST
+  FETCH_DEVICES_LIST,
+  DISCOVER_COMPLETE
 } from 'state/actions/devices'
 import paths from 'routes/paths'
 import Collapsible from 'components/Collapsible'
@@ -190,7 +191,11 @@ const discoveryStatus = (
       </>
     ) : (
       <span className="has-text-weight-bold mb-20">
-        {either(claimingDevices, t('CLAIMING_DEVICES'), t('DISCOVERY_IN_PROGRESS'))}
+        {either(
+          claimingDevices,
+          t('CLAIMING_DEVICES'),
+          t('DISCOVERY_IN_PROGRESS')
+        )}
       </span>
     )
   }
@@ -271,6 +276,7 @@ function Devices() {
   }
 
   const claimDevices = () => {
+    dispatch(DISCOVER_COMPLETE())
     const claimObject = inverter.map(mi => {
       mi.OPERATION = 'add'
       return mi
