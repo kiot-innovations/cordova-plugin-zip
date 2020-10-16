@@ -12,7 +12,8 @@ import {
   submitMeterDataEpic,
   submitGridProfileEpic,
   submitExportLimitEpic,
-  submitGridVoltageEpic
+  submitGridVoltageEpic,
+  submitCTRatedCurrentEpic
 } from './submitConfigEpic'
 
 export default [
@@ -25,6 +26,7 @@ export default [
   submitGridProfileEpic,
   submitExportLimitEpic,
   submitGridVoltageEpic,
+  submitCTRatedCurrentEpic,
   fetchBatteriesEpic,
   fetchInterfacesEpic,
   fetchRSEEpic,
