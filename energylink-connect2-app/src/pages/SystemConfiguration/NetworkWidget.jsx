@@ -102,14 +102,6 @@ function NetworkWidget({ hideWPSButton, expanded }) {
           </div>
 
           <div className="field is-flex mb-15 level-right">
-            <div>
-              <label
-                htmlFor="showPassword"
-                className="label has-text-white is-small"
-              >
-                {t('SHOW_PASSWORD')}
-              </label>
-            </div>
             <div className="control">
               <input
                 type="checkbox"
@@ -118,6 +110,14 @@ function NetworkWidget({ hideWPSButton, expanded }) {
                 className="checkbox-dark is-small ml-5 mr-5"
                 checked={showPassword}
               />
+            </div>
+            <div>
+              <label
+                htmlFor="showPassword"
+                className="label has-text-white is-small"
+              >
+                {t('SHOW_PASSWORD')}
+              </label>
             </div>
           </div>
 

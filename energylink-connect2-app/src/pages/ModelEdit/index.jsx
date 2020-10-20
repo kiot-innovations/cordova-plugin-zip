@@ -16,7 +16,7 @@ import {
 } from 'ramda'
 import SwipeableBottomSheet from 'react-swipeable-bottom-sheet'
 import { useI18n } from 'shared/i18n'
-import { SET_METADATA_INIT } from 'state/actions/pvs'
+import { RESET_METADATA_STATUS, SET_METADATA_INIT } from 'state/actions/pvs'
 import { CLAIM_DEVICES_RESET, FETCH_MODELS_INIT } from 'state/actions/devices'
 import {
   SUBMIT_CLEAR,
@@ -87,6 +87,11 @@ const ModelEdit = () => {
     dispatch(SUBMIT_CONFIG_SUCCESS())
   }, [dispatch])
 
+  const clearAndContinue = () => {
+    dispatch(SUBMIT_CLEAR())
+    history.push(paths.PROTECTED.RMA_DEVICES.path)
+  }
+
   useEffect(() => {
     dispatch(FETCH_MODELS_INIT())
   }, [dispatch])
@@ -94,6 +99,7 @@ const ModelEdit = () => {
   useEffect(() => {
     if (setMetadataStatus === 'success') {
       if (rmaMode === rmaModes.EDIT_DEVICES) {
+        dispatch(RESET_METADATA_STATUS())
         syncWithCloud()
       } else if (essValue.value !== '0') {
         history.push(paths.PROTECTED.STORAGE_PREDISCOVERY.path)
@@ -114,10 +120,6 @@ const ModelEdit = () => {
     dispatch,
     syncWithCloud
   ])
-
-  useEffect(() => {
-    if (commissioned) history.push(paths.PROTECTED.RMA_DEVICES.path)
-  }, [commissioned, history])
 
   return (
     <div className="model-edit is-vertical has-text-centered pr-10 pl-10">
@@ -184,18 +186,35 @@ const ModelEdit = () => {
         </div>
       </SwipeableBottomSheet>
 
-      <SwipeableBottomSheet shadowTip={false} open={submitting || error}>
+      <SwipeableBottomSheet
+        shadowTip={false}
+        open={commissioned || submitting || error}
+      >
         <div className="missing-models-warning is-flex pb-20">
-          <span className="has-text-weight-bold">{t('HOLD_ON')}</span>
-          <span className="mt-10 mb-10">{t('SYNCING_WITH_EDP')}</span>
+          {either(
+            submitting,
+            <>
+              <span className="has-text-weight-bold has-text-white">
+                {t('HOLD_ON')}
+              </span>
+              <span className="has-text-white mt-10 mb-10">
+                {t('ADDING_DEVICES')}
+              </span>
+              <Loader />
+              <span className="has-text-weight-bold mt-10">
+                {t('DONT_CLOSE_APP')}
+              </span>
+            </>
+          )}
           {either(
             error,
             <>
+              <span className="has-text-weight-bold">{t('ERROR')}</span>
               <div className="mt-10 mb-10">
                 <span className="is-size-4 sp-hey has-text-white" />
               </div>
               <div className="mt-10">
-                <span>{t('SYNC_WITH_EDP_ERROR')}</span>
+                <span>{t('ADDING_DEVICES_ERROR')}</span>
               </div>
               <div className="mt-10 has-text-centered">
                 <span>
@@ -204,8 +223,27 @@ const ModelEdit = () => {
                   </button>
                 </span>
               </div>
-            </>,
-            <Loader />
+            </>
+          )}
+          {either(
+            commissioned,
+            <>
+              <span className="has-text-weight-bold">{t('SUCCESS')}</span>
+              <span className="mt-10 mb-10">{t('ADDING_DEVICES_SUCCESS')}</span>
+              <div className="mt-10 mb-10">
+                <span className="is-size-4 sp-check has-text-white" />
+              </div>
+              <div className="mt-10 has-text-centered">
+                <span>
+                  <button
+                    className="button is-primary"
+                    onClick={clearAndContinue}
+                  >
+                    {t('CONTINUE')}
+                  </button>
+                </span>
+              </div>
+            </>
           )}
         </div>
       </SwipeableBottomSheet>

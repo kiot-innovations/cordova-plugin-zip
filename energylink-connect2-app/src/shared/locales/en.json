@@ -498,8 +498,7 @@
   "RMA_ADD_DEVICES_TIP": "If you're not installing new equipment, feel free to continue",
   "RMA_MI_NUMBER": "Number to add",
   "RMA_SELECT_DEVICE_ERROR": "Please select at least one piece of equipment before continuing",
-  "EQUINOX_STORAGE_SYSTEM": "Equinox Storage System",
-  "SUNVAULT_STORAGE_SYSTEM": "Sunvault Storage System",
+  "SUNVAULT_STORAGE": "SunVault Storage",
   "ENTER_SERIAL_MANUALLY": "Enter serial manually...",
   "UPDATE_HEADER": "There is a new version of the app available. Please update to get the latest features and improvements",
   "UPDATE_TITLE": "Update Notice - v{0}",
@@ -520,8 +519,10 @@
   "MISSING_HC_REPORT": "Missing {0} Report",
   "REFRESH_DEVICE_LIST": "Refresh device list",
   "NO_OTHER_DEVICES": "No other devices on site",
-  "SYNCING_WITH_EDP": "We're syncing device changes with the cloud",
-  "SYNC_WITH_EDP_ERROR": "Unable to sync changes to the cloud. Please try again",
+  "ADDING_DEVICES": "We're adding the new devices",
+  "ADDING_DEVICES_ERROR": "We couldn't add the devices. Please try again",
+  "ADDING_DEVICES_SUCCESS": "Devices successfully added",
   "NO_OTHER_DEVICES": "No other devices on site",
-  "SUNVAULT_ALL_ONE": "SunVault All-in one"
+  "SUNVAULT_ALL_ONE": "SunVault All-in one",
+  "SUCCESS": "Success"
 }
