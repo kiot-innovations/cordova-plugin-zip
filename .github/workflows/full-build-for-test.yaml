@@ -148,7 +148,7 @@ jobs:
           args: |
             {
               "channel": "cm2-builds",
-              "text": "New TEST release is available",
+              "text": "New TEST and UAT releases are available",
               "as_user": true,
               "attachments": [{
                 "color": "good",

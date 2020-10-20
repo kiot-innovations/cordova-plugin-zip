@@ -38,6 +38,21 @@ const discoveryStatus = (
   claimFoundMI
 ) => {
   if (expected === okMICount + errMICount && discoveryComplete) {
+    if (errMICount === expected) {
+      return (
+        <>
+          <span className="has-text-weight-bold mt-10 mb-20">
+            {t('MI_ERRORS_ALL')}
+          </span>
+          <button
+            className="button is-primary is-uppercase is-paddingless ml-75 mr-75"
+            onClick={retryDiscovery}
+          >
+            {t('RETRY')}
+          </button>
+        </>
+      )
+    }
     if (errMICount > 0) {
       return (
         <>
@@ -75,13 +90,13 @@ const discoveryStatus = (
     if (error) {
       return (
         <>
+          <span className="has-text-weight-bold mt-10 mb-20">{t(error)}</span>
           <button
             className="button is-primary is-uppercase is-paddingless ml-75 mr-75"
             onClick={retryDiscovery}
           >
             {t('RETRY')}
           </button>
-          <span className="has-text-weight-bold mt-20">{t(error)}</span>
         </>
       )
     }
@@ -137,13 +152,13 @@ const discoveryStatus = (
   } else {
     return error ? (
       <>
+        <span className="has-text-weight-bold mt-20">{t(error)}</span>
         <button
           className="button is-primary is-uppercase is-paddingless ml-75 mr-75"
           onClick={retryDiscovery}
         >
           {t('RETRY')}
         </button>
-        <span className="has-text-weight-bold mt-20">{t(error)}</span>
       </>
     ) : (
       <span className="has-text-weight-bold mb-20">

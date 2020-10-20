@@ -29,6 +29,12 @@ export const REPLACE_RMA_PVS = createAction('REPLACE_RMA_PVS')
 export const SUBMIT_CONFIG = createAction('SUBMIT_CONFIG')
 export const SUBMIT_CONFIG_SUCCESS = createAction('SUBMIT_CONFIG_SUCCESS')
 export const SUBMIT_CONFIG_ERROR = createAction('SUBMIT_CONFIG_ERROR')
+export const SAVE_CT_RATED_CURRENT_INIT = createAction(
+  'SAVE_CT_RATED_CURRENT_INIT'
+)
+export const SAVE_CT_RATED_CURRENT_ERROR = createAction(
+  'SAVE_CT_RATED_CURRENT_ERROR'
+)
 export const SUBMIT_GRIDPROFILE = createAction('SUBMIT_GRIDPROFILE')
 export const SUBMIT_EXPORTLIMIT = createAction('SUBMIT_EXPORTLIMIT')
 export const SUBMIT_GRIDVOLTAGE = createAction('SUBMIT_GRIDVOLTAGE')

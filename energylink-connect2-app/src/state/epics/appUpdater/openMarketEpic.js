@@ -7,7 +7,7 @@ import {
   APP_UPDATE_OPEN_MARKET_SUCCESS,
   APP_UPDATE_OPEN_MARKET_ERROR
 } from 'state/actions/global'
-import { getEnvironment, isIos } from 'shared/utils'
+import { isIos } from 'shared/utils'
 import { createExternalLinkHandler } from 'shared/routing'
 
 const APPLE_ID = process.env.REACT_APP_APPLE_ID
@@ -41,7 +41,7 @@ export const openMarketEpic = action$ =>
               Sentry.addBreadcrumb({
                 data: {
                   path: window.location.hash,
-                  environment: getEnvironment()
+                  environment: process.env.REACT_APP_FLAVOR
                 },
                 message: error.message,
                 level: Sentry.Severity.Warning

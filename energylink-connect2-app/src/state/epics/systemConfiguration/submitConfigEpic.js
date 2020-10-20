@@ -4,15 +4,60 @@ import { from, of } from 'rxjs'
 import { catchError, exhaustMap, map } from 'rxjs/operators'
 import { getApiPVS } from 'shared/api'
 import { translate } from 'shared/i18n'
-import { path } from 'ramda'
 import {
+  compose,
+  filter,
+  map as rmap,
+  path,
+  pathOr,
+  prop,
+  propEq,
+  propSatisfies,
+  test
+} from 'ramda'
+
+import {
+  SAVE_CT_RATED_CURRENT_ERROR,
+  SAVE_CT_RATED_CURRENT_INIT,
   SUBMIT_CONFIG,
-  SUBMIT_CONFIG_SUCCESS,
   SUBMIT_CONFIG_ERROR,
+  SUBMIT_CONFIG_SUCCESS,
   SUBMIT_EXPORTLIMIT,
   SUBMIT_GRIDPROFILE,
   SUBMIT_METERCONFIG
 } from 'state/actions/systemConfiguration'
+
+const setCtRatedCurrent = ({ ratedCurrent, devices }) =>
+  devices.reduce(async (prevPromise, nextDevice) => {
+    await prevPromise
+    return getApiPVS()
+      .then(path(['apis', 'meter']))
+      .then(api =>
+        api.setMeterParameters(
+          { id: 1 },
+          {
+            requestBody: {
+              Device: nextDevice,
+              ctRatedCurrent: ratedCurrent
+            }
+          }
+        )
+      )
+  }, Promise.resolve())
+
+const getRatedCurrent = path([
+  'value',
+  'systemConfiguration',
+  'meter',
+  'ratedCurrent'
+])
+const getCTDevices = compose(
+  filter(Boolean),
+  rmap(prop('SERIAL')),
+  filter(propSatisfies(test(/-METER-C$/), 'TYPE')),
+  filter(propEq('DEVICE_TYPE', 'Power Meter')),
+  pathOr([], ['value', 'devices', 'found'])
+)
 
 export const submitGridVoltageEpic = (action$, state$) => {
   const t = translate(state$.value.language)
@@ -20,7 +65,7 @@ export const submitGridVoltageEpic = (action$, state$) => {
     ofType(SUBMIT_CONFIG.getType()),
     exhaustMap(({ payload }) => {
       if (!payload.gridVoltage) {
-        return of(SUBMIT_GRIDPROFILE(payload))
+        return of(SAVE_CT_RATED_CURRENT_INIT(payload))
       }
 
       const promise = getApiPVS()
@@ -35,7 +80,7 @@ export const submitGridVoltageEpic = (action$, state$) => {
       return from(promise).pipe(
         map(response =>
           response.status === 200
-            ? SUBMIT_GRIDPROFILE(payload)
+            ? SAVE_CT_RATED_CURRENT_INIT(payload)
             : SUBMIT_CONFIG_ERROR(t('SUBMIT_GRID_VOLTAGE_ERROR'))
         ),
         catchError(err => {
@@ -47,6 +92,25 @@ export const submitGridVoltageEpic = (action$, state$) => {
     })
   )
 }
+
+export const submitCTRatedCurrentEpic = (action$, state$) =>
+  action$.pipe(
+    ofType(SAVE_CT_RATED_CURRENT_INIT.getType()),
+    exhaustMap(({ payload }) =>
+      from(
+        setCtRatedCurrent({
+          devices: getCTDevices(state$),
+          ratedCurrent: getRatedCurrent(state$)
+        })
+      ).pipe(
+        map(() => SUBMIT_GRIDPROFILE(payload)),
+        catchError(err => {
+          Sentry.captureException(err)
+          return of(SAVE_CT_RATED_CURRENT_ERROR(err))
+        })
+      )
+    )
+  )
 
 export const submitGridProfileEpic = (action$, state$) => {
   const t = translate(state$.value.language)

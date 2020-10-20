@@ -61,9 +61,14 @@ function DeviceMappingSuccess() {
       </h1>
 
       {!isEmpty(allInOneDevicesList) && (
-        <DeviceMap deviceList={allInOneDevicesList} />
+        <DeviceMap
+          deviceList={allInOneDevicesList}
+          title={t('SUNVAULT_ALL_ONE')}
+        />
       )}
-      {!isEmpty(hubPlus) && <DeviceMap deviceList={[hubPlus]} />}
+      {!isEmpty(hubPlus) && (
+        <DeviceMap deviceList={[hubPlus]} title={t('HUB_PLUS')} />
+      )}
 
       {either(
         isEmpty(mappingErrors),

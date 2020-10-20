@@ -9,9 +9,9 @@ export function scanM(onRecognize, nodeID = 'scandit') {
     : process.env.REACT_APP_SCANDIT_ANDROID
 
   const keyBasedOnEnv =
-    process.env.REACT_APP_IS_TEST || process.env.REACT_APP_IS_DEV
-      ? process.env.REACT_APP_SCANDIT
-      : KEY
+    process.env.REACT_APP_FLAVOR === 'cm2-prod'
+      ? KEY
+      : process.env.REACT_APP_SCANDIT
 
   const context = Scandit.DataCaptureContext.forLicenseKey(keyBasedOnEnv)
 

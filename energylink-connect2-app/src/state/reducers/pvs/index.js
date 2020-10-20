@@ -17,6 +17,7 @@ import {
   SET_METADATA_INIT,
   SET_METADATA_SUCCESS,
   SET_METADATA_ERROR,
+  RESET_METADATA_STATUS,
   RESET_PVS_INFO_STATE,
   MI_DATA_SUCCESS,
   MI_DATA_ERROR
@@ -113,6 +114,11 @@ export const pvsReducer = createReducer(
       ...state,
       settingMetadata: false,
       setMetadataStatus: payload
+    }),
+    [RESET_METADATA_STATUS]: state => ({
+      ...state,
+      settingMetadata: initialState.settingMetadata,
+      setMetadataStatus: initialState.setMetadataStatus
     }),
     [RESET_PVS_INFO_STATE]: () => initialState,
     [MI_DATA_SUCCESS]: (state, miData) => ({

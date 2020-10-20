@@ -24,7 +24,7 @@ storiesOf('RMA - Inventory', module).add('Simple', () => {
   const { store } = configureStore(inventoryStore)
 
   return (
-    <div className="full-min-height pl-10 pr-10">
+    <div className="full-min-height">
       <Provider store={store}>
         <RMAInventory />
       </Provider>

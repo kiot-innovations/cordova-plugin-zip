@@ -148,18 +148,18 @@ function InventoryCount() {
       <h1 className="has-text-centered is-uppercase has-text-weight-bold">
         {t('INVENTORY_COUNT')}
       </h1>
-      <form className="mt-20 mb-30 vertical-scroll">
+      <form className="mt-20 mb-20 vertical-scroll">
         <div className="form-container level">{fields}</div>
       </form>
       <div className="is-flex inline-buttons has-text-centered">
         <button
-          className="button is-primary is-outlined mr-10"
+          className="button is-primary is-outlined is-fullwidth mr-5"
           onClick={goToSelectPVS}
         >
           {t('BACK')}
         </button>
         <button
-          className="button is-primary mb-15 ml-10"
+          className="button is-primary is-fullwidth ml-5"
           type="submit"
           onClick={e => validateInventory(e, inventory, dispatch, setToBom)}
         >
