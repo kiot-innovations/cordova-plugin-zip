@@ -89,11 +89,15 @@
       "cordova-plugin-file-transfer": {},
       "cordova-plugin-market": {},
       "cordova-plugin-file-md5": {},
-      "cordova-plugin-file-hash": {}
+      "cordova-plugin-file-hash": {},
+      "cordova-plugin-sunpowerble": {}
     },
     "platforms": [
       "ios",
       "android"
     ]
+  },
+  "devDependencies": {
+    "cordova-plugin-sunpowerble": "git+ssh://git@github.com/SunPower/cordova-plugin-sunpowerble.git"
   }
 }
