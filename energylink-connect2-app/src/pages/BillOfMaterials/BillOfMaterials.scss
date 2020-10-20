@@ -1,12 +1,18 @@
 @import '~@sunpower/theme-dark/styles/variables';
-.home {
+.homeb {
+  height: 100%;
+  display: grid;
+  grid-template-rows: 1fr 15px 1fr 1fr;
+
   .button-container {
     align-items: center;
   }
+
   > div > img {
     border: 3px solid $white;
     border-radius: 5px;
   }
+
   .bill-of-materials {
     width: 90%;
     border-collapse: collapse;
@@ -22,9 +28,8 @@
       }
     }
   }
-  button.homeowner-account-creation {
-    padding: unset;
-    border: none;
-    margin-bottom: 20px;
-  }
+}
+
+button.is-borderless {
+  border: none;
 }

@@ -1,6 +1,5 @@
 import React from 'react'
-import { useI18n } from 'shared/i18n'
-import { is, pluck, head, tail, map, pathOr } from 'ramda'
+import { is, pluck, head, map, pathOr } from 'ramda'
 import './DeviceMap.scss'
 
 const renderDeviceItem = device => {
@@ -46,24 +45,15 @@ const defaultDL = [
   }
 ]
 
-function DeviceMap({ deviceList = defaultDL }) {
-  const t = useI18n()
-  const headDevice = head(deviceList)
-  const restOfDevices = tail(deviceList)
-
+function DeviceMap({ deviceList = defaultDL, title = '' }) {
   return (
     <div className="device-map mb-10 mt-10">
       <div className="head-device is-flex">
-        <span className="has-text-white has-text-weight-bold is-size-5">
-          {t(headDevice.device_type)}
-        </span>
-        <span className="has-text-weight-bold is-size-5">
-          {t(headDevice.serial_number)}
-        </span>
+        <h1 className="has-text-white has-text-weight-bold is-size-5 mb-10">
+          {title}
+        </h1>
       </div>
-      <div className="rest-of-devices">
-        {map(renderDeviceItem, restOfDevices)}
-      </div>
+      <div className="rest-of-devices">{map(renderDeviceItem, deviceList)}</div>
     </div>
   )
 }

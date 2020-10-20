@@ -109,6 +109,15 @@ function RMADevices() {
     dispatch(GET_PREDISCOVERY())
   }, [dispatch])
 
+  const addMI = (
+    <span
+      onClick={() => history.push(paths.PROTECTED.SCAN_LABELS.path)}
+      className="is-paddingless has-text-primary has-text-weight-bold is-size-7 button-transparent"
+    >
+      {t('ADD')}
+    </span>
+  )
+
   return (
     <main className="full-height pl-10 pr-10 rma-devices">
       <div className="header mb-20">
@@ -120,7 +129,7 @@ function RMADevices() {
           {t('RMA_DEVICES')}
         </span>
       </div>
-      <Collapsible title={t('MICROINVERTERS')} expanded>
+      <Collapsible title={t('MICROINVERTERS')} actions={addMI} expanded>
         {either(
           length(microInverters) > 0,
           map(renderMicroinverter(toggleCheckbox, selectedMIs), microInverters),
@@ -129,14 +138,14 @@ function RMADevices() {
         <div className="buttons-container">
           <button
             onClick={selectAllMi}
-            className="button is-paddingless has-text-primary button-transparent"
+            className="button is-paddingless has-text-primary has-text-weight-bold is-size-7 button-transparent"
           >
             {t('SELECT_ALL')}
           </button>
           <button
             onClick={removeSelectedMIs}
             disabled={Object.values(selectedMIs).length === 0}
-            className="button is-paddingless has-text-primary button-transparent"
+            className="button is-paddingless has-text-primary has-text-weight-bold is-size-7 button-transparent"
           >
             {t('REMOVE')}
           </button>
@@ -150,7 +159,7 @@ function RMADevices() {
           t('NO_STORAGE_RMA')
         )}
         <div className="buttons-container">
-          <button className="button is-paddingless has-text-primary button-transparent">
+          <button className="button is-paddingless has-text-primary has-text-weight-bold is-size-7 button-transparent">
             {t('ADD_REPLACE_EQUIPMENT')}
           </button>
         </div>
@@ -158,7 +167,7 @@ function RMADevices() {
       <div className="mt-10 has-text-centered button-container">
         <button
           onClick={fetchDevices}
-          className="button is-paddingless has-text-primary button-transparent"
+          className="button is-paddingless has-text-primary has-text-weight-bold is-size-7 button-transparent"
         >
           {t('REFRESH_DEVICE_LIST')}
         </button>

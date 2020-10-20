@@ -25,7 +25,9 @@ const RMAInventory = () => {
 
   const essOptions = [
     { value: '0', label: t('NONE') },
-    { value: '13kWh', label: t('13KWH_1INV') }
+    { value: '13kWh', label: t('13KWH_1INV') },
+    { value: '26kWh (1 inverter)', label: t('26KWH_1INV') },
+    { value: '26kWh (2 inverters)', label: t('26KWH_2INV') }
   ]
 
   const miOptions = [...Array(99).keys()].map(number => ({
@@ -77,7 +79,7 @@ const RMAInventory = () => {
   }
 
   return (
-    <div className="rma-add-devices pr-20 pl-20">
+    <div className="rma-add-devices pr-10 pl-10">
       <div className="rma-form">
         <p className="is-uppercase has-text-centered has-text-weight-bold">
           {t('RMA_ADD_DEVICES_TITLE')}
@@ -92,7 +94,7 @@ const RMAInventory = () => {
             </div>
           </div>
 
-          <div className="field  mb-20 mt-20">
+          <div className="field mt-10">
             <SelectField
               isSearchable={false}
               onSelect={handleChange('mi_count')}
@@ -106,11 +108,11 @@ const RMAInventory = () => {
           <div className="collapsible-header">
             <div className="collapsible-title">
               <label className="has-text-weight-bold" htmlFor="other">
-                {t('SUNVAULT_STORAGE_SYSTEM')}
+                {t('SUNVAULT_STORAGE')}
               </label>
             </div>
           </div>
-          <div className="field  mb-20 mt-20">
+          <div className="field mt-10">
             <SelectField
               isSearchable={false}
               onSelect={handleChange('ESS')}

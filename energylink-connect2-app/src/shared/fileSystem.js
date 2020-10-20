@@ -14,12 +14,6 @@ export const ERROR_CODES = {
 
 export const getFileNameFromURL = compose(last, split('/'))
 
-export const getGridProfileFileName = () =>
-  getFileNameFromURL(process.env.REACT_APP_GRID_PROFILE_URL || '')
-
-export const getGridProfileFilePath = () =>
-  `firmware/${getGridProfileFileName()}`
-
 export const getLuaName = compose(
   join(' '),
   split('-'),
@@ -179,11 +173,6 @@ export const deleteFile = (path = '') =>
       })
       .catch(reject)
   })
-
-export async function getLatestPVSFirmwareUrl() {
-  const res = await fetch(process.env.REACT_APP_LATEST_FIRMWARE_URL)
-  return await res.text()
-}
 
 export const readFile = path =>
   new Promise(async (resolve, reject) => {

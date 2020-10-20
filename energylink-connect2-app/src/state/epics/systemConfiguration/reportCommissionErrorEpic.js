@@ -15,7 +15,7 @@ export const reportCommissionErrorEpic = (action$, state$) => {
     map(({ payload }) => {
       Sentry.addBreadcrumb({
         category: 'commissionError',
-        message: 'Environment: Test',
+        message: `Environment: ${process.env.REACT_APP_FLAVOR}`,
         level: Sentry.Severity.Info
       })
       Sentry.addBreadcrumb({

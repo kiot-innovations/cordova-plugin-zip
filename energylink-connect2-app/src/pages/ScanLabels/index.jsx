@@ -44,23 +44,9 @@ function ScanDeviceLabels() {
   const finishedScanning = () => {
     turnOffScandit()
     const redirectTo =
-      rmaMode !== rmaModes.NONE
-        ? paths.PROTECTED.RMA_SN_LIST.path
-        : paths.PROTECTED.SN_LIST.path
-    history.push(redirectTo)
-  }
-
-  const triggerManualEntry = () => {
-    turnOffScandit()
-    const redirectTo =
-      rmaMode !== rmaModes.NONE
-        ? paths.PROTECTED.RMA_SN_LIST.path
-        : {
-            pathname: paths.PROTECTED.SN_LIST.path,
-            state: {
-              isManualModeDefault: true
-            }
-          }
+      rmaMode !== rmaModes.REPLACE_PVS
+        ? paths.PROTECTED.SN_LIST.path
+        : paths.PROTECTED.RMA_SN_LIST.path
     history.push(redirectTo)
   }
 
@@ -91,7 +77,7 @@ function ScanDeviceLabels() {
 
       <button
         className="button has-text-centered is-uppercase is-secondary has-no-border"
-        onClick={triggerManualEntry}
+        onClick={finishedScanning}
       >
         {t('SN_MANUAL_ENTRY')}
       </button>

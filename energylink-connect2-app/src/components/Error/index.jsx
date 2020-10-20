@@ -1,6 +1,6 @@
 import React from 'react'
 import * as Sentry from '@sentry/browser'
-import { either, getEnvironment } from 'shared/utils'
+import { either } from 'shared/utils'
 import { translate } from 'shared/i18n'
 import FallBackUI from './FallbackUI'
 
@@ -19,7 +19,7 @@ class ErrorBoundary extends React.Component {
     Sentry.addBreadcrumb({
       data: {
         path: window.location.hash,
-        environment: getEnvironment()
+        environment: process.env.REACT_APP_FLAVOR
       },
       category: t('UPS_SENTRY'),
       message: error.message,

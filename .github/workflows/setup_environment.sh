@@ -11,13 +11,6 @@ set -o pipefail
 ROOT_DIR="${0%/*}/../.."
 
 case "${APP_ENV}" in
-    dev)
-        readonly APP_ID="com.sunpower.energylink.commissioning2.dev"
-        readonly APP_NAME="SunPowerProConnect-dev"
-        readonly BUILD_TYPE="${BUILD_TYPE:-release}"
-        readonly RELEASE_TRACK="beta"
-        ;;
-
     prod)
         readonly APP_ID="com.sunpower.energylink.commissioning2"
         readonly APP_NAME="SunPowerProConnect"
@@ -39,16 +32,16 @@ case "${APP_ENV}" in
         readonly RELEASE_TRACK="alpha"
         ;;
 
-    testprod)
+    uat)
         readonly APP_ID="com.sunpower.energylink.commissioning2.prod"
-        readonly APP_NAME="SunPowerProConnect-testprod"
+        readonly APP_NAME="SunPowerProConnect-beta"
         readonly BUILD_TYPE="${BUILD_TYPE:-release}"
         readonly RELEASE_TRACK="alpha"
         ;;
 
     *)
         echo "Unsupported application environment ${APP_ENV}"
-        echo "Allowed values: dev, prod, test, training, testprod"
+        echo "Allowed values: uat, prod, test, training"
         exit 1
         ;;
 esac
