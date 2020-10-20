@@ -45,7 +45,8 @@ jobs:
       #
       # Native Application
       #
-      - run: npm install
+      - name: Install Dependencies
+        run: npm install
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
         working-directory: energylink-connect2-app
