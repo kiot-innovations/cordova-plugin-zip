@@ -9,6 +9,7 @@ import {
   VALIDATE_SESSION_SUCCESS,
   VALIDATE_SESSION_ERROR
 } from 'state/actions/auth'
+import { SET_DEALER_NAME } from 'state/actions/user'
 
 import { GET_USER_INIT, GET_USER_SUCCESS } from 'state/actions/user'
 
@@ -45,6 +46,10 @@ export const userReducer = createReducer(
     [REFRESH_TOKEN_SUCCESS]: (state, payload) => ({
       ...state,
       auth: payload // payload comes with all
+    }),
+    [SET_DEALER_NAME]: (state, dealerName) => ({
+      ...state,
+      data: { ...state.data, dealerName }
     }),
     [VALIDATE_SESSION_INIT]: state => ({
       ...state,

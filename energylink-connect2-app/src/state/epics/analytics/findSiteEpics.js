@@ -18,7 +18,7 @@ import { compose, pick } from 'ramda'
  * @param action$
  * @return {*}
  */
-export const siteNotFoundEpic = action$ =>
+export const siteNotFoundEpic = (action$, state$) =>
   action$.pipe(
     ofType(NO_SITE_FOUND.getType()),
     switchMap(({ payload }) =>
@@ -30,7 +30,7 @@ export const siteNotFoundEpic = action$ =>
         ),
         action$.pipe(
           ofType(HOME_SCREEN_CREATE_SITE.getType()),
-          map(() => siteNotFound(payload)),
+          map(() => siteNotFound(state$.value.user.data, payload)),
           take(1)
         )
       )
@@ -41,31 +41,31 @@ const siteKeysMap = {
   address1: 'Address',
   city: 'City',
   st_id: 'State',
-  postalCode: 'Zip code',
+  postalCode: 'Zip Code',
   siteKey: 'Site ID',
-  siteName: 'Site name'
+  siteName: 'Site Name'
 }
 const getSiteKey = compose(
   pick([
     'Address',
     'City',
     'State',
-    'Zip code',
+    'Zip Code',
     'Site ID',
-    'Site name',
+    'Site Name',
     'Commissioned'
   ]),
   renameKeys(siteKeysMap)
 )
 
-export const siteFoundEpic = action$ =>
+export const siteFoundEpic = (action$, state$) =>
   action$.pipe(
     ofType(SET_SITE.getType()),
     switchMap(({ payload: siteData }) =>
       action$.pipe(
         ofType(GET_SITE_SUCCESS.getType()),
         map(({ payload: sitesPVS }) =>
-          siteFound({
+          siteFound(state$.value.user.data, {
             ...getSiteKey(siteData),
             Commissioned: sitesPVS.length !== 0
           })

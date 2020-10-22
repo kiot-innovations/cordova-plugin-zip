@@ -1,8 +1,9 @@
 import { ofType } from 'redux-observable'
 import { from, of } from 'rxjs'
-import { catchError, map, mergeMap } from 'rxjs/operators'
+import { catchError, map, switchMap, mergeMap } from 'rxjs/operators'
 import { loggedIn, loginFailed } from 'shared/analytics'
 import { LOGIN_ERROR, LOGIN_SUCCESS } from 'state/actions/auth'
+import { SET_DEALER_NAME } from 'state/actions/user'
 import { MIXPANEL_EVENT_ERROR } from 'state/actions/analytics'
 import { getPartyPromise } from 'state/epics/analytics/epicUtils'
 
@@ -19,8 +20,13 @@ export const loginSuccessEpic = action$ =>
         const { partyId } = user
 
         return from(getPartyPromise(accessToken, partyId)).pipe(
-          map(({ status, body: { parentDisplayName: dealerName } }) =>
-            status === 200 ? loggedIn({ ...user, dealerName }) : loggedIn(user)
+          switchMap(({ status, body: { parentDisplayName: dealerName } }) =>
+            status === 200
+              ? of(
+                  loggedIn({ ...user, dealerName }),
+                  SET_DEALER_NAME(dealerName)
+                )
+              : of(loggedIn(user))
           ),
           catchError(error =>
             of(

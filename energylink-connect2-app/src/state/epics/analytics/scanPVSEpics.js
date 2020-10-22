@@ -36,13 +36,9 @@ const enterSNManuallyEpic = action$ => {
     ofType(CONNECT_PVS_MANUALLY.getType()),
     withLatestFrom(timeConnectingToPVS$),
     map(([{ payload }, timePassed]) => {
-      const data = {
-        Manual: true,
-        Success: false,
-        'Time elapsed': timePassed,
-        'PVS SN': payload
-      }
-      return scanPVS(data, 'User scans PVS | Manually')
+      const data = [payload, 'Manual', timePassed]
+
+      return scanPVS(data, 'User entered PVS SN manually')
     })
   )
 }
@@ -52,13 +48,9 @@ const scanPVSCameraEpic = action$ =>
     ofType(CONNECT_PVS_CAMERA.getType()),
     withLatestFrom(timeConnectingToPVS$),
     map(([{ payload }, timePassed]) => {
-      const data = {
-        Manual: false,
-        Success: true,
-        'Time elapsed': timePassed,
-        'PVS SN': payload
-      }
-      return scanPVS(data, 'User scans PVS | Camara')
+      const data = [payload, 'QR Code', timePassed]
+
+      return scanPVS(data, 'User entered PVS SN scanning a QR code')
     })
   )
 

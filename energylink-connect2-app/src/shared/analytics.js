@@ -3,21 +3,26 @@ import { capitalizeWord, getUserProfile } from 'shared/analyticsUtils'
 import { MIXPANEL_EVENT_QUEUED } from 'state/actions/analytics'
 import { getAppleDeviceFamily } from 'shared/appleDevicesTable'
 
-const registerLoginSuperProperties = () => {
-  const { mixpanel, device } = window
+const getAppAndDeviceProperties = () => {
+  const { device } = window
   const { model, version, platform, manufacturer } = device
 
-  mixpanel.register({ 'App Build': appVersion(), 'OS Version': version })
+  let deviceModel
+  let deviceBrowserVersion
 
   if (platform === 'iOS') {
-    mixpanel.register({
-      $device: getAppleDeviceFamily(model),
-      $browser_version: version
-    })
+    deviceModel = getAppleDeviceFamily(model)
+    deviceBrowserVersion = version
   } else {
-    mixpanel.register({
-      $device: `${manufacturer}, ${model}`
-    })
+    deviceModel = `${manufacturer}, ${model}`
+  }
+
+  return {
+    'App Build': appVersion(),
+    'App Flavor': process.env.REACT_APP_FLAVOR,
+    'OS Version': version,
+    ...(deviceBrowserVersion ? { $browser_version: deviceBrowserVersion } : {}),
+    $device: deviceModel
   }
 }
 
@@ -31,9 +36,11 @@ export const loggedIn = user => {
     dealerName,
     dealerType
   ] = getUserProfile(user)
+  const appAndDeviceProperties = getAppAndDeviceProperties()
 
-  registerLoginSuperProperties()
+  mixpanel.register(appAndDeviceProperties)
   mixpanel.identify(userId)
+  mixpanel.people.set(appAndDeviceProperties)
   mixpanel.people.set({
     $first_name: firstName,
     $last_name: lastName,
@@ -49,8 +56,9 @@ export const loggedIn = user => {
 
 export const loginFailed = () => {
   const { mixpanel } = window
+  const appAndDeviceProperties = getAppAndDeviceProperties()
 
-  registerLoginSuperProperties()
+  mixpanel.register(appAndDeviceProperties)
   mixpanel.track('Login', { Success: false })
 
   return MIXPANEL_EVENT_QUEUED('Login - Failed')
@@ -58,23 +66,78 @@ export const loginFailed = () => {
 
 export const scanPVS = (scanData, event) => {
   const { mixpanel } = window
-  mixpanel.track('Scan PVS Tag', scanData)
+  const [pvsSN, entryMethod, timeElapsed] = scanData
+
+  mixpanel.register({ 'PVS SN': pvsSN })
+  mixpanel.track('Scan PVS Tag', {
+    'Entry Method': entryMethod,
+    'Time Elapsed': timeElapsed
+  })
+
   return MIXPANEL_EVENT_QUEUED(event)
 }
 
-export const siteNotFound = (searchField = '') => {
+export const siteNotFound = (
+  {
+    uniqueId: userId,
+    firstName,
+    lastName,
+    email,
+    dealerName,
+    recordType: dealerType
+  },
+  searchField = ''
+) => {
   const { mixpanel } = window
-  mixpanel.track('Find site', { Found: false, 'Search query': searchField })
-  return MIXPANEL_EVENT_QUEUED('Find site - site not found')
+  const appAndDeviceProperties = getAppAndDeviceProperties()
+
+  mixpanel.register(appAndDeviceProperties)
+  mixpanel.identify(userId)
+  mixpanel.people.set(appAndDeviceProperties)
+  mixpanel.people.set({
+    $first_name: firstName,
+    $last_name: lastName,
+    $email: email,
+    'User Name': email,
+    'Dealer Name': dealerName,
+    'Dealer Type': capitalizeWord(dealerType)
+  })
+  mixpanel.track('Find Site', { Found: false, 'Search Query': searchField })
+
+  return MIXPANEL_EVENT_QUEUED('Find Site - site not found')
 }
 
-export const siteFound = siteData => {
+export const siteFound = (
+  {
+    uniqueId: userId,
+    firstName,
+    lastName,
+    email,
+    dealerName,
+    recordType: dealerType
+  },
+  siteData
+) => {
   const { mixpanel } = window
-  mixpanel.track('Find site', {
+  const appAndDeviceProperties = getAppAndDeviceProperties()
+
+  mixpanel.register(appAndDeviceProperties)
+  mixpanel.identify(userId)
+  mixpanel.people.set(appAndDeviceProperties)
+  mixpanel.people.set({
+    $first_name: firstName,
+    $last_name: lastName,
+    $email: email,
+    'User Name': email,
+    'Dealer Name': dealerName,
+    'Dealer Type': capitalizeWord(dealerType)
+  })
+  mixpanel.track('Find Site', {
     Found: true,
     ...siteData
   })
-  return MIXPANEL_EVENT_QUEUED('Find site - site found')
+
+  return MIXPANEL_EVENT_QUEUED('Find Site - site found')
 }
 
 export const saveConfiguration = config => {
