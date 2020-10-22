@@ -2,17 +2,17 @@ import React, { useState } from 'react'
 import moment from 'moment'
 import clsx from 'clsx'
 import {
-  ResponsiveContainer,
-  XAxis,
-  YAxis,
-  Legend,
-  ComposedChart,
   Area,
   Bar,
-  Tooltip,
-  ReferenceLine,
+  ComposedChart,
+  Label,
+  Legend,
   ReferenceArea,
-  Label
+  ReferenceLine,
+  ResponsiveContainer,
+  Tooltip,
+  XAxis,
+  YAxis
 } from 'recharts'
 import { useI18n } from '../../shared/i18n'
 import { roundDecimals } from '../../shared/rounding'
@@ -210,14 +210,28 @@ export const formatData = (view, data = {}, weather) => {
         }
 
         data.push({
-          seconds: moment(newDate).format('hh:mm:ss'),
-          minute: moment(newDate).format('hh:mm'),
-          hour: moment(newDate).format('hA'),
-          dayName: moment(newDate).format('ddd'),
-          dayNumber: moment(newDate).format('M/D'),
-          monthName: moment(newDate).format('MMM'),
-          year: moment(newDate).format('YYYY'),
-          date: newDate.format('YYYY-MM-DDTHH:mm:ss'),
+          seconds: moment(newDate)
+            .local()
+            .format('hh:mm:ss'),
+          minute: moment(newDate)
+            .local()
+            .format('hh:mm'),
+          hour: moment(newDate)
+            .local()
+            .format('hA'),
+          dayName: moment(newDate)
+            .local()
+            .format('ddd'),
+          dayNumber: moment(newDate)
+            .local()
+            .format('M/D'),
+          monthName: moment(newDate)
+            .local()
+            .format('MMM'),
+          year: moment(newDate)
+            .local()
+            .format('YYYY'),
+          date: newDate.local().format('YYYY-MM-DDTHH:mm:ss'),
           pp: 0,
           pc: 0,
           ps: 0,
