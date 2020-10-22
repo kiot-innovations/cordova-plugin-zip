@@ -208,29 +208,15 @@ export const formatData = (view, data = {}, weather) => {
         } else if (view === VIEWS.LIVE) {
           newDate = newDate.add(1, 'second')
         }
-
+        const localizedDate = moment(newDate).local()
         data.push({
-          seconds: moment(newDate)
-            .local()
-            .format('hh:mm:ss'),
-          minute: moment(newDate)
-            .local()
-            .format('hh:mm'),
-          hour: moment(newDate)
-            .local()
-            .format('hA'),
-          dayName: moment(newDate)
-            .local()
-            .format('ddd'),
-          dayNumber: moment(newDate)
-            .local()
-            .format('M/D'),
-          monthName: moment(newDate)
-            .local()
-            .format('MMM'),
-          year: moment(newDate)
-            .local()
-            .format('YYYY'),
+          seconds: localizedDate.format('hh:mm:ss'),
+          minute: localizedDate.format('hh:mm'),
+          hour: localizedDate.format('hA'),
+          dayName: localizedDate.format('ddd'),
+          dayNumber: localizedDate.format('M/D'),
+          monthName: localizedDate.format('MMM'),
+          year: localizedDate.format('YYYY'),
           date: newDate.local().format('YYYY-MM-DDTHH:mm:ss'),
           pp: 0,
           pc: 0,
