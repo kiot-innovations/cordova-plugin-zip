@@ -40,22 +40,31 @@ exports[`Connect to PVS page render correctly 1`] = `
     >
       <ConnectToPVS>
         <div
-          className="qr-layout has-text-centered"
+          className="qr-layout has-text-centered pl-15 pr-15"
         >
           <span
-            className="is-uppercase has-text-weight-bold mt-30"
+            className="is-uppercase has-text-weight-bold"
           >
             LOOK_FOR_QR
           </span>
           <div
-            className="qr-icon mt-20 mb-20"
+            className="qr-icon mb-20"
           >
             <i
               className="sp-qr has-text-white"
             />
           </div>
           <div
-            className="mt-20 mb-20 pr-20 pl-20"
+            className="is-flex file is-centered tile is-vertical pr-5 pl-5 mb-20"
+          >
+            <p
+              className="has-text-primary"
+            >
+              TURNING_PHONE_BL_ON
+            </p>
+          </div>
+          <div
+            className="mt-10 mb-10 pr-5 pl-5"
           >
             <span
               className="is-size-6 has-text-centered"
@@ -66,8 +75,8 @@ exports[`Connect to PVS page render correctly 1`] = `
               className="mt-20"
             >
               <button
-                className="button is-primary"
-                disabled={false}
+                className="button is-primary is-fullwidth"
+                disabled={true}
                 onClick={[Function]}
               >
                 START_SCAN
@@ -82,7 +91,8 @@ exports[`Connect to PVS page render correctly 1`] = `
             </span>
             <div>
               <button
-                className="mt-20 button is-primary is-outlined"
+                className="mt-20 button is-primary is-outlined is-fullwidth"
+                disabled={true}
                 onClick={[Function]}
               >
                 MANUAL_ENTRY
@@ -233,7 +243,7 @@ exports[`Connect to PVS page render correctly 1`] = `
                           className="manual-instructions is-flex"
                         >
                           <span
-                            className="has-text-weight-bold has-text-white mb-10"
+                            className="has-text-white mb-10"
                           >
                             MANUAL_CONNECT_INSTRUCTIONS_1
                           </span>
@@ -243,38 +253,22 @@ exports[`Connect to PVS page render correctly 1`] = `
                             MANUAL_CONNECT_INSTRUCTIONS_2
                           </span>
                           <div
-                            className="mb-15 is-flex network-details"
+                            className="is-flex network-details"
                           >
-                            <span
-                              className="has-text-white"
+                            <p
+                              className="mb-0 has-text-white"
                             >
-                              <b>
-                                SSID
-                              </b>
-                            </span>
-                            <span
-                              className="has-text-white"
-                            >
-                              <b>
-                                WIFI_PASSWORD
-                              </b>
-                            </span>
+                              Zt00123455381
+                            </p>
                           </div>
                           <div
-                            className="mt-10 mb-20"
+                            className="is-flex file is-centered tile is-vertical pr-5 pl-5 mb-20"
                           >
-                            <button
-                              className="button is-primary is-fullwidth mb-20"
-                              onClick={[Function]}
+                            <p
+                              className="has-text-danger"
                             >
-                              COPY_PWD_TO_CLIPBOARD
-                            </button>
-                            <button
-                              className="button is-primary is-outlined is-fullwidth"
-                              onClick={[Function]}
-                            >
-                              ABORT_CONNECTION
-                            </button>
+                              PHONE_BL_ON
+                            </p>
                           </div>
                         </div>
                       </div>

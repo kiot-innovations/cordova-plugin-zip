@@ -15,6 +15,7 @@ import scanditEpics from './scandit'
 import rmaEpics from './rma'
 import appUpdaterEpics from './appUpdater'
 import analyticsEpics from './analytics'
+import bluetoothEpics from './bluetooth'
 
 export default combineEpics(
   ...downloader,
@@ -32,5 +33,6 @@ export default combineEpics(
   ...scanditEpics,
   ...rmaEpics,
   ...appUpdaterEpics,
-  ...analyticsEpics
+  ...analyticsEpics,
+  ...bluetoothEpics
 )

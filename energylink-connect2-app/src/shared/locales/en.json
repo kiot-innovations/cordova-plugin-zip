@@ -475,8 +475,8 @@
   "UNKNOWN_MI_TYPE": "Unknown Type",
   "STORAGE_FW_FILE": "SunVault Firmware",
   "SSID": "SSID: ",
-  "MANUAL_CONNECT_INSTRUCTIONS_1": "Looks like we can't connect to the PVS WIFI automatically.",
-  "MANUAL_CONNECT_INSTRUCTIONS_2": "Please go to your phone’s WiFi settings and connect to the following network. If you cannot see it on the list, please reboot your PVS",
+  "MANUAL_CONNECT_INSTRUCTIONS_1": "Looks like the PVS WIFI is Off",
+  "MANUAL_CONNECT_INSTRUCTIONS_2": "We're turning it On via Bluetooth",
   "COPY_PWD_TO_CLIPBOARD": "Copy password to clipboard",
   "ABORT_CONNECTION": "Abort Connection",
   "FIX_ERROR_TO_PROCEED": "Please fix this error to proceed",
@@ -524,5 +524,12 @@
   "ADDING_DEVICES_SUCCESS": "Devices successfully added",
   "NO_OTHER_DEVICES": "No other devices on site",
   "SUNVAULT_ALL_ONE": "SunVault All-in one",
-  "SUCCESS": "Success"
+  "SUCCESS": "Success",
+  "PHONE_BL_ON": "Please turn On your Phone's Bluetooth",
+  "TURNING_PHONE_BL_ON": "Turning Bluetooth On...",
+  "DISCOVERING_PVS_BLE": "Scanning for PVS Bluetooth...",
+  "CONNECTING_PVS_VIA_BLE": "Connecting to PVS via Bluetooth...",
+  "ENABLING_ACCESS_POINT_ON_PVS": "Enabling WIFI on PVS...",
+  "ENABLED_ACCESS_POINT_ON_PVS": "Enabled WIFI on PVS, please retry the connection using the Retry button",
+  "FAILED_ACCESS_POINT_ON_PVS": "Failed to enable WIFI, please power cycle the PVS and try again"
 }

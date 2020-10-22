@@ -15,7 +15,7 @@ describe('Network Reducer', () => {
         connected: false,
         connecting: false,
         err: '',
-        showManualInstructions: false
+        showEnablingAccessPoint: false
       },
       networkActions.PVS_CONNECTION_SUCCESS(),
       {
@@ -23,7 +23,7 @@ describe('Network Reducer', () => {
         connecting: false,
         err: '',
         connectionCanceled: false,
-        showManualInstructions: false
+        showEnablingAccessPoint: false
       }
     )
   })

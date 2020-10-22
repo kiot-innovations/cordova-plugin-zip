@@ -23,6 +23,10 @@ import {
   MI_DATA_ERROR
 } from 'state/actions/pvs'
 import { PUSH_CANDIDATES_ERROR } from 'state/actions/devices'
+import {
+  CONNECT_PVS_VIA_BLE,
+  EXECUTE_ENABLE_ACCESS_POINT
+} from 'state/actions/network'
 
 const initialState = {
   serialNumber: '',
@@ -36,7 +40,9 @@ const initialState = {
   setMetadataStatus: null,
   miData: null,
   miDataError: null,
-  lastDiscoveryType: ''
+  lastDiscoveryType: '',
+  bleDevice: null,
+  bleConnectionInfo: null
 }
 
 export const pvsReducer = createReducer(
@@ -130,6 +136,14 @@ export const pvsReducer = createReducer(
       ...state,
       miDataError,
       miData: null
+    }),
+    [CONNECT_PVS_VIA_BLE]: (state, bleDevice) => ({
+      ...state,
+      bleDevice
+    }),
+    [EXECUTE_ENABLE_ACCESS_POINT]: (state, bleConnectionInfo) => ({
+      ...state,
+      bleConnectionInfo
     })
   },
   initialState

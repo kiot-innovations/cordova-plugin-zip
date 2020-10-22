@@ -8,7 +8,8 @@ import {
   pathOr,
   propEq,
   test,
-  always
+  always,
+  path
 } from 'ramda'
 import { ofType } from 'redux-observable'
 import { EMPTY, from, of, timer } from 'rxjs'
@@ -31,8 +32,9 @@ import {
   STOP_NETWORK_POLLING,
   WAIT_FOR_SWAGGER,
   PVS_TIMEOUT_FOR_CONNECTION,
-  SHOW_MANUAL_INSTRUCTIONS
+  ENABLE_ACCESS_POINT
 } from 'state/actions/network'
+import { EMPTY_ACTION } from 'state/actions/share'
 
 const WPA = 'WPA'
 const hasCode7 = test(/Code=7/)
@@ -140,15 +142,19 @@ export const waitForSwaggerEpic = (action$, state$) => {
   )
 }
 
-export const pvsTimeoutForConnectionEpic = action$ =>
+export const pvsTimeoutForConnectionEpic = (action$, state$) =>
   action$.pipe(
     ofType(PVS_TIMEOUT_FOR_CONNECTION.getType()),
-    map(always(90 * 1000)),
+    map(always(15 * 1000)),
     delayWhen(timer),
-    map(SHOW_MANUAL_INSTRUCTIONS),
+    map(() =>
+      path(['value', 'network', 'connected'], state$)
+        ? EMPTY_ACTION()
+        : ENABLE_ACCESS_POINT()
+    ),
     catchError(error => {
       Sentry.captureException(error)
-      return of(SHOW_MANUAL_INSTRUCTIONS())
+      return of(EMPTY_ACTION())
     })
   )
 

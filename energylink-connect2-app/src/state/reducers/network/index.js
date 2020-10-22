@@ -7,18 +7,42 @@ import {
   PVS_CLEAR_ERROR,
   RESET_PVS_CONNECTION,
   STOP_NETWORK_POLLING,
-  SHOW_MANUAL_INSTRUCTIONS,
-  HIDE_MANUAL_INSTRUCTIONS
+  ENABLE_ACCESS_POINT,
+  HIDE_ENABLING_ACCESS_POINT,
+  ENABLE_BLUETOOTH_SUCCESS,
+  CHECK_BLUETOOTH_STATUS_SUCCESS,
+  CHECK_WIFI_STATUS_INIT,
+  CHECK_WIFI_STATUS_SUCCESS,
+  CHECK_BLUETOOTH_STATUS_INIT,
+  RESET_WIFI_STATUS,
+  RESET_BLUETOOTH_STATUS,
+  CONNECT_PVS_VIA_BLE,
+  EXECUTE_ENABLE_ACCESS_POINT,
+  FAILURE_BLUETOOTH_ACTION,
+  EXECUTE_ENABLE_ACCESS_POINT_SUCCESS
 } from '../../actions/network'
 
 const initialState = {
   connected: false,
   connecting: false,
   connectionCanceled: false,
-  showManualInstructions: false,
+  showEnablingAccessPoint: false,
   err: '',
   SSID: '',
-  password: ''
+  password: '',
+  bluetoothEnabled: false,
+  bluetoothEnabledStarted: false,
+  bluetoothStatus: '',
+  wifiEnabled: false,
+  wifiEnabledStarted: false
+}
+
+export const BLESTATUS = {
+  DISCOVERING_PVS_BLE: 'DISCOVERING_PVS_BLE',
+  CONNECTING_PVS_VIA_BLE: 'CONNECTING_PVS_VIA_BLE',
+  ENABLING_ACCESS_POINT_ON_PVS: 'ENABLING_ACCESS_POINT_ON_PVS',
+  ENABLED_ACCESS_POINT_ON_PVS: 'ENABLED_ACCESS_POINT_ON_PVS',
+  FAILED_ACCESS_POINT_ON_PVS: 'FAILED_ACCESS_POINT_ON_PVS'
 }
 
 export const networkReducer = createReducer(
@@ -30,7 +54,7 @@ export const networkReducer = createReducer(
         password: password,
         connecting: true,
         connected: false,
-        showManualInstructions: false,
+        showEnablingAccessPoint: false,
         err: ''
       }
 
@@ -49,7 +73,7 @@ export const networkReducer = createReducer(
       connected: true,
       connecting: false,
       connectionCanceled: false,
-      showManualInstructions: false,
+      showEnablingAccessPoint: false,
       err: ''
     }),
     [PVS_CONNECTION_ERROR]: (state, payload) => ({
@@ -71,13 +95,66 @@ export const networkReducer = createReducer(
       connectionCanceled: propOr(false, 'canceled', payload)
     }),
     [RESET_PVS_CONNECTION]: () => initialState,
-    [SHOW_MANUAL_INSTRUCTIONS]: state => ({
+    [CONNECT_PVS_VIA_BLE]: state => ({
       ...state,
-      showManualInstructions: true
+      bluetoothStatus: BLESTATUS.CONNECTING_PVS_VIA_BLE
     }),
-    [HIDE_MANUAL_INSTRUCTIONS]: state => ({
+    [EXECUTE_ENABLE_ACCESS_POINT]: state => ({
       ...state,
-      showManualInstructions: false
+      bluetoothStatus: BLESTATUS.ENABLING_ACCESS_POINT_ON_PVS
+    }),
+    [EXECUTE_ENABLE_ACCESS_POINT_SUCCESS]: state => ({
+      ...state,
+      bluetoothStatus: BLESTATUS.ENABLED_ACCESS_POINT_ON_PVS
+    }),
+    [ENABLE_ACCESS_POINT]: state => ({
+      ...state,
+      showEnablingAccessPoint: true,
+      bluetoothStatus: BLESTATUS.DISCOVERING_PVS_BLE
+    }),
+    [HIDE_ENABLING_ACCESS_POINT]: state => ({
+      ...state,
+      showEnablingAccessPoint: false
+    }),
+    [ENABLE_BLUETOOTH_SUCCESS]: state => ({
+      ...state,
+      bluetoothEnabled: true,
+      bluetoothEnabledStarted: false
+    }),
+    [CHECK_BLUETOOTH_STATUS_INIT]: state => ({
+      ...state,
+      bluetoothEnabled: false,
+      bluetoothEnabledStarted: true
+    }),
+    [CHECK_BLUETOOTH_STATUS_SUCCESS]: state => ({
+      ...state,
+      bluetoothEnabled: true,
+      bluetoothEnabledStarted: false
+    }),
+    [CHECK_WIFI_STATUS_INIT]: state => ({
+      ...state,
+      wifiEnabled: false,
+      wifiEnabledStarted: true
+    }),
+    [CHECK_WIFI_STATUS_SUCCESS]: state => ({
+      ...state,
+      wifiEnabled: true,
+      wifiEnabledStarted: false
+    }),
+    [RESET_WIFI_STATUS]: state => ({
+      ...state,
+      wifiEnabled: false,
+      wifiEnabledStarted: false
+    }),
+    [RESET_BLUETOOTH_STATUS]: state => ({
+      ...state,
+      wifiEnabled: false,
+      wifiEnabledStarted: false
+    }),
+    [FAILURE_BLUETOOTH_ACTION]: state => ({
+      ...state,
+      bluetoothStatus: BLESTATUS.FAILED_ACCESS_POINT_ON_PVS,
+      showEnablingAccessPoint: false
     })
   },
   initialState

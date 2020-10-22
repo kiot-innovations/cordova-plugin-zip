@@ -5,13 +5,13 @@ import { compose, equals, isEmpty, isNil, length, path } from 'ramda'
 import SwipeableBottomSheet from 'react-swipeable-bottom-sheet'
 import { useI18n } from 'shared/i18n'
 import { decodeQRData, scanBarcodes } from 'shared/scanning'
-import { generatePassword, generateSSID } from 'shared/utils'
+import { generatePassword, generateSSID, isIos, either } from 'shared/utils'
 import { rmaModes } from 'state/reducers/rma'
 import {
-  HIDE_MANUAL_INSTRUCTIONS,
+  HIDE_ENABLING_ACCESS_POINT,
   PVS_CONNECTION_INIT,
   PVS_TIMEOUT_FOR_CONNECTION,
-  STOP_NETWORK_POLLING
+  CHECK_BLUETOOTH_STATUS_INIT
 } from 'state/actions/network'
 import { SAVE_PVS_SN } from 'state/actions/pvs'
 import { Loader } from 'components/Loader'
@@ -22,6 +22,7 @@ import {
   CONNECT_PVS_MANUALLY,
   START_SCANNING
 } from 'state/actions/analytics'
+import { BLESTATUS } from 'state/reducers/network'
 
 const onSuccess = (generatePassword, dispatch, t, setStarted) => data => {
   try {
@@ -55,6 +56,7 @@ function ConnectToPVS() {
   const dispatch = useDispatch()
   const history = useHistory()
   const connectionState = useSelector(state => state.network)
+  const { serialNumber: pvsSN } = useSelector(state => state.pvs)
   const rmaPVSSelectedSN = useSelector(path(['rma', 'pvs']))
   const rmaMode = useSelector(path(['rma', 'rmaMode']))
   const [manualEntry, showManualEntry] = useState(false)
@@ -67,8 +69,30 @@ function ConnectToPVS() {
   }
 
   useEffect(() => {
-    if (connectionState.connecting) dispatch(PVS_TIMEOUT_FOR_CONNECTION())
-  }, [connectionState.connecting, dispatch])
+    if (
+      !connectionState.bluetoothEnabled &&
+      !connectionState.bluetoothEnabledStarted
+    )
+      dispatch(CHECK_BLUETOOTH_STATUS_INIT())
+  }, [
+    connectionState.bluetoothEnabled,
+    connectionState.bluetoothEnabledStarted,
+    dispatch
+  ])
+
+  useEffect(() => {
+    if (
+      connectionState.connecting &&
+      !connectionState.showEnablingAccessPoint &&
+      !connectionState.bluetoothStatus !== BLESTATUS.FAILED_ACCESS_POINT_ON_PVS
+    )
+      dispatch(PVS_TIMEOUT_FOR_CONNECTION())
+  }, [
+    connectionState.bluetoothStatus,
+    connectionState.connecting,
+    connectionState.showEnablingAccessPoint,
+    dispatch
+  ])
 
   useEffect(() => {
     if (
@@ -84,10 +108,10 @@ function ConnectToPVS() {
   }, [dispatch, rmaMode, rmaPVSSelectedSN])
 
   useEffect(() => {
-    if (!connectionState.connecting && connectionState.connected) {
+    if (connectionState.connected) {
       history.push(paths.PROTECTED.PVS_CONNECTION_SUCCESS.path)
     }
-  }, [connectionState.connected, connectionState.connecting, dispatch, history])
+  }, [connectionState.connected, dispatch, history])
 
   const manualConnect = () => {
     showManualEntry(false)
@@ -98,42 +122,53 @@ function ConnectToPVS() {
     dispatch(PVS_CONNECTION_INIT({ ssid, password }))
   }
 
-  const copyPasswordToClipboard = () => {
-    window.cordova.plugins.clipboard.copy(connectionState.password)
-    window.cordova.plugins.diagnostic.switchToWifiSettings()
-  }
-
-  const abortConnection = () => {
-    dispatch(STOP_NETWORK_POLLING())
-    dispatch(HIDE_MANUAL_INSTRUCTIONS())
-  }
-
   const getBarcode = () => {
     setStarted(true)
     dispatch(START_SCANNING())
     scanBarcodes(onSuccess(generatePassword, dispatch, t, setStarted), onFail)
   }
 
+  const disableScanBtn = !connectionState.bluetoothEnabled
+  const bleClasses = {
+    ENABLED_ACCESS_POINT_ON_PVS: 'has-text-success',
+    FAILED_ACCESS_POINT_ON_PVS: 'has-text-danger'
+  }
+
   return (
-    <div className="qr-layout has-text-centered">
-      <span className="is-uppercase has-text-weight-bold mt-30">
+    <div className="qr-layout has-text-centered pl-15 pr-15">
+      <span className="is-uppercase has-text-weight-bold">
         {t('LOOK_FOR_QR')}
       </span>
       {connectionState.connecting ? (
         <Loader />
       ) : (
-        <div className="qr-icon mt-20 mb-20">
+        <div className="qr-icon mb-20">
           <i className="sp-qr has-text-white" />
         </div>
       )}
-      <div className="mt-20 mb-20 pr-20 pl-20">
+
+      <div className="is-flex file is-centered tile is-vertical pr-5 pl-5 mb-20">
+        {either(
+          connectionState.bluetoothEnabled,
+          <p className={bleClasses[connectionState.bluetoothStatus]}>
+            {t(connectionState.bluetoothStatus)}
+          </p>,
+          either(
+            isIos(),
+            <p className="has-text-danger">{t('PHONE_BL_ON')}</p>,
+            <p className="has-text-primary">{t('TURNING_PHONE_BL_ON')}</p>
+          )
+        )}
+      </div>
+
+      <div className="mt-10 mb-10 pr-5 pl-5">
         <span className="is-size-6 has-text-centered">
           {connectionState.connecting ? t('CONNECTING_PVS') : t('QRCODE_HINT')}
         </span>
         <div className="mt-20">
           <button
-            disabled={connectionState.connecting || started}
-            className="button is-primary"
+            disabled={connectionState.connecting || started || disableScanBtn}
+            className="button is-primary is-fullwidth"
             onClick={getBarcode}
           >
             {t('START_SCAN')}
@@ -145,8 +180,8 @@ function ConnectToPVS() {
         <span>{t('MANUAL_ENTRY_HINT')}</span>
         <div>
           <button
-            disabled={connectionState.connecting}
-            className="mt-20 button is-primary is-outlined"
+            disabled={connectionState.connecting || disableScanBtn}
+            className="mt-20 button is-primary is-outlined is-fullwidth"
             onClick={() => showManualEntry(true)}
           >
             {t('MANUAL_ENTRY')}
@@ -156,37 +191,25 @@ function ConnectToPVS() {
 
       <SwipeableBottomSheet
         shadowTip={false}
-        open={connectionState.showManualInstructions}
-        onChange={compose(dispatch, HIDE_MANUAL_INSTRUCTIONS)}
+        open={connectionState.showEnablingAccessPoint && isIos()}
+        onChange={compose(dispatch, HIDE_ENABLING_ACCESS_POINT)}
       >
         <div className="manual-instructions is-flex">
-          <span className="has-text-weight-bold has-text-white mb-10">
+          <span className="has-text-white mb-10">
             {t('MANUAL_CONNECT_INSTRUCTIONS_1')}
           </span>
           <span className="mb-10">{t('MANUAL_CONNECT_INSTRUCTIONS_2')}</span>
-          <div className="mb-15 is-flex network-details">
-            <span className="has-text-white">
-              <b>{t('SSID')}</b>
-              {connectionState.SSID}
-            </span>
-            <span className="has-text-white">
-              <b>{t('WIFI_PASSWORD')}</b>
-              {connectionState.password}
-            </span>
+          <div className="is-flex network-details">
+            <p className="mb-0 has-text-white">{pvsSN}</p>
           </div>
-          <div className="mt-10 mb-20">
-            <button
-              className="button is-primary is-fullwidth mb-20"
-              onClick={copyPasswordToClipboard}
-            >
-              {t('COPY_PWD_TO_CLIPBOARD')}
-            </button>
-            <button
-              className="button is-primary is-outlined is-fullwidth"
-              onClick={abortConnection}
-            >
-              {t('ABORT_CONNECTION')}
-            </button>
+          <div className="is-flex file is-centered tile is-vertical pr-5 pl-5 mb-20">
+            {either(
+              connectionState.bluetoothEnabled,
+              <p className={bleClasses[connectionState.bluetoothStatus]}>
+                {t(connectionState.bluetoothStatus)}
+              </p>,
+              <p className="has-text-danger">{t('PHONE_BL_ON')}</p>
+            )}
           </div>
         </div>
       </SwipeableBottomSheet>
