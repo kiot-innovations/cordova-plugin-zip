@@ -6,6 +6,7 @@ import {
   equals,
   has,
   isEmpty,
+  length,
   pathOr,
   prop,
   propOr,
