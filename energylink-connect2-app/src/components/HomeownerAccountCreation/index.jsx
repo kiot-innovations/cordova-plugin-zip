@@ -1,16 +1,25 @@
 import React from 'react'
 import { useField, useForm } from 'react-final-form-hooks'
 import SwipeableBottomSheet from 'react-swipeable-bottom-sheet'
-import { isEmpty } from 'ramda'
+import { evolve, isEmpty } from 'ramda'
 import TextField from '@sunpower/textfield'
+
 import { useI18n } from 'shared/i18n'
 import { createExternalLinkHandler } from 'shared/routing'
+import { cleanString } from 'shared/utils'
+
 import './HomeownerAccountCreation.scss'
 
+const sanitizeInputs = evolve({
+  firstName: cleanString,
+  lastName: cleanString,
+  email: cleanString
+})
 const HomeownerAccountCreation = ({ open, onChange, pvs }) => {
   const t = useI18n()
-  const onSubmit = ({ firstName, lastName, email }) =>
-    createExternalLinkHandler(
+  const onSubmit = homeOwnerData => {
+    const { firstName, lastName, email } = sanitizeInputs(homeOwnerData)
+    return createExternalLinkHandler(
       `mailto:${email.trim()}?subject=${t(
         'HOMEOWNER_ACCOUNT_EMAIL_SUBJECT'
       )}&body=${encodeURIComponent(
@@ -22,6 +31,7 @@ const HomeownerAccountCreation = ({ open, onChange, pvs }) => {
         )
       )}`
     )()
+  }
   const { form, handleSubmit } = useForm({
     onSubmit,
     initialValues: {

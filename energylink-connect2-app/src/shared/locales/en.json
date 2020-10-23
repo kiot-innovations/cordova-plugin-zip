@@ -286,6 +286,7 @@
   "REMOVE_UNWANTED_MIS": "Please make sure to remove any MIs not belonging to the site before continuing.",
   "FEEDBACK_ERROR": "An error happened. Are you online?",
   "GO_TO_CONFIGURE": "Go to configure",
+  "GO_TO_DOWNLOADS": "Go to downloads page",
   "ADD_PANEL_TO_LAYOUT": "Add panel to layout",
   "ORIENTATION": "Orientation",
   "ALL_PANELS_SET": "All panels set",
@@ -503,6 +504,8 @@
   "UPDATE_HEADER": "There is a new version of the app available. Please update to get the latest features and improvements",
   "UPDATE_TITLE": "Update Notice - v{0}",
   "DOWNLOAD_CONNECTED_TO_PVS": "A new version of the firmware exists. Please disconnect your phone from the PVS to download the latest version. If you choose to continue without disconnecting, the download may take several minutes.",
+  "DOWNLOADING_LATEST_FIRMWARE": "Downloading the latest firmware",
+  "DOWNLOADING_FIRMWARE_FAILED": "Firmware download failed. Please try again",
   "INVENTORY_STORAGE_ONLY": "No microinverters on inventory, do you want to proceed to storage configuration?",
   "INVENTORY_CONFIG_ONLY": "No inventory selected, do you want to proceed to system configuration?",
   "RMA_MI_ERROR": "{0} Microinverters not found",
@@ -518,7 +521,6 @@
   "NO_MI_FOUND": "No microinverters found",
   "MISSING_HC_REPORT": "Missing {0} Report",
   "REFRESH_DEVICE_LIST": "Refresh device list",
-  "NO_OTHER_DEVICES": "No other devices on site",
   "ADDING_DEVICES": "We're adding the new devices",
   "ADDING_DEVICES_ERROR": "We couldn't add the devices. Please try again",
   "ADDING_DEVICES_SUCCESS": "Devices successfully added",
@@ -532,4 +534,5 @@
   "ENABLING_ACCESS_POINT_ON_PVS": "Enabling WIFI on PVS...",
   "ENABLED_ACCESS_POINT_ON_PVS": "Enabled WIFI on PVS, please retry the connection using the Retry button",
   "FAILED_ACCESS_POINT_ON_PVS": "Failed to enable WIFI, please power cycle the PVS and try again"
+  "PVS_FIRMWARE_VERSION": "PVS Firmware Version: {0}"
 }

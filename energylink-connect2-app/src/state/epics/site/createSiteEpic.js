@@ -1,12 +1,13 @@
 import * as Sentry from '@sentry/browser'
 import { ofType } from 'redux-observable'
-import { of, from } from 'rxjs'
+import { from, of } from 'rxjs'
 import { catchError, exhaustMap, map } from 'rxjs/operators'
 import {
   always,
   converge,
   curry,
   equals,
+  evolve,
   identity,
   ifElse,
   last,
@@ -17,6 +18,7 @@ import {
 } from 'ramda'
 import * as siteActions from 'state/actions/site'
 import { getApiSite } from 'shared/api'
+import { cleanString } from 'shared/utils'
 
 const getAccessToken = path(['user', 'auth', 'access_token'])
 const getOwner = pipe(path(['user', 'data']), pick(['partyId', 'partyType']))
@@ -61,12 +63,21 @@ const createSite = converge(postCreateSite, [
   getServicer
 ])
 
-export const createSiteEpic = (action$, state$) => {
-  return action$.pipe(
+const transformations = {
+  siteName: cleanString,
+  city: cleanString,
+  postalCode: cleanString,
+  state: cleanString,
+  address: cleanString
+}
+const sanitizePayload = evolve(transformations)
+
+export const createSiteEpic = (action$, state$) =>
+  action$.pipe(
     ofType(siteActions.CREATE_SITE_INIT.getType()),
     exhaustMap(({ payload }) =>
-      from(createSite(state$.value)(payload)).pipe(
-        map(response => siteActions.CREATE_SITE_SUCCESS()),
+      from(createSite(state$.value)(sanitizePayload(payload))).pipe(
+        map(siteActions.CREATE_SITE_SUCCESS),
         catchError(error => {
           Sentry.captureException(error)
           return of(siteActions.CREATE_SITE_ERROR.asError(error))
@@ -74,4 +85,3 @@ export const createSiteEpic = (action$, state$) => {
       )
     )
   )
-}

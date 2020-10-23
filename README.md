@@ -85,3 +85,28 @@ git push origin X.Y.Z
 
 # Example of how to decrypt the env files
 openssl aes-256-cbc -d -a -salt -in .env.enc.dev -out dr-wong-develop
+
+# How to add a new development certificate
+You'd want to do this if you're adding a new flavor of the application
+
+## Set up the Apple & Google stores
+Apple:
+1. https://developer.apple.com/account/resources/identifiers/list (create a new identifier)
+2. https://appstoreconnect.apple.com/ (create a new app with the identifier from the previous step, this is the "Bundle ID")
+Google:
+1. https://play.google.com/apps/publish (create a new app with the same "Bundle ID" from the Apple steps above)
+2. Build the app with the same bundle id from the apple app
+3. https://play.google.com/apps/publish (push your app through to a closed beta state)
+
+## Run this
+```
+brew install fastlane;
+fastlane match appstore;
+```
+## It'll ask you for the following information:
+*github url to the fast lane certificates:* git@github.com:SunPower/firmware-mobile-certificates.git
+*username:* developer_support@sunpowercorp.com
+*password:* ask Alvin, Chris, or Kamil for this password
+*Bundle IDs:* com.sunpower.energylink.commissioning2.test,com.sunpower.energylink.commissioning2.prod,com.sunpower.energylink.commissioning2.training,com.sunpower.energylink.commissioning2
+
+Modify the bundle IDs to be whatever you need them to be, then update this readme with the latest app ids

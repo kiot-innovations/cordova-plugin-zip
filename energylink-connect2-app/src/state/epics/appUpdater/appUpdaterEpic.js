@@ -9,7 +9,7 @@ import {
   CHECK_APP_UPDATE_ERROR
 } from 'state/actions/global'
 import { plainHttpGet } from 'shared/fetch'
-import { isIos } from 'shared/utils'
+import { isIos, getAppFlavor, getEnvironment } from 'shared/utils'
 import appVersion from '../../../macros/appVersion.macro'
 
 //This version file looks like this from the S3 bucket defined
@@ -21,8 +21,8 @@ import appVersion from '../../../macros/appVersion.macro'
 //     "build_number": "4.0.0"
 //   }
 //}
-const VERSION_URL =
-  'https://sunpower-dev-cm2-config.s3-us-west-2.amazonaws.com/buildNumber.json'
+const appFlavor = getAppFlavor()
+const VERSION_URL = `https://sunpower-dev-cm2-config.s3-us-west-2.amazonaws.com/${appFlavor}/buildNumber.json`
 
 export const appUpdaterEpic = action$ =>
   action$.pipe(
@@ -41,7 +41,7 @@ export const appUpdaterEpic = action$ =>
           Sentry.addBreadcrumb({
             data: {
               path: window.location.hash,
-              environment: process.env.REACT_APP_FLAVOR
+              environment: getEnvironment()
             },
             message: error.message,
             level: Sentry.Severity.Warning
