@@ -28,24 +28,13 @@ const getAppAndDeviceProperties = () => {
 
 export const loggedIn = user => {
   const { mixpanel } = window
-  const [
-    userId,
-    firstName,
-    lastName,
-    email,
-    dealerName,
-    dealerType
-  ] = getUserProfile(user)
+  const [userId, dealerName, dealerType] = getUserProfile(user)
   const appAndDeviceProperties = getAppAndDeviceProperties()
 
   mixpanel.register(appAndDeviceProperties)
   mixpanel.identify(userId)
   mixpanel.people.set(appAndDeviceProperties)
   mixpanel.people.set({
-    $first_name: firstName,
-    $last_name: lastName,
-    $email: email,
-    'User Name': email,
     'Dealer Name': dealerName,
     'Dealer Type': capitalizeWord(dealerType)
   })
@@ -77,17 +66,11 @@ export const scanPVS = (scanData, event) => {
   return MIXPANEL_EVENT_QUEUED(event)
 }
 
-export const siteNotFound = (
-  {
-    uniqueId: userId,
-    firstName,
-    lastName,
-    email,
-    dealerName,
-    recordType: dealerType
-  },
-  searchField = ''
-) => {
+export const siteNotFound = ({
+  uniqueId: userId,
+  dealerName,
+  recordType: dealerType
+}) => {
   const { mixpanel } = window
   const appAndDeviceProperties = getAppAndDeviceProperties()
 
@@ -95,28 +78,17 @@ export const siteNotFound = (
   mixpanel.identify(userId)
   mixpanel.people.set(appAndDeviceProperties)
   mixpanel.people.set({
-    $first_name: firstName,
-    $last_name: lastName,
-    $email: email,
-    'User Name': email,
     'Dealer Name': dealerName,
     'Dealer Type': capitalizeWord(dealerType)
   })
-  mixpanel.track('Find Site', { Found: false, 'Search Query': searchField })
+  mixpanel.track('Find Site', { Found: false })
 
   return MIXPANEL_EVENT_QUEUED('Find Site - site not found')
 }
 
 export const siteFound = (
-  {
-    uniqueId: userId,
-    firstName,
-    lastName,
-    email,
-    dealerName,
-    recordType: dealerType
-  },
-  siteData
+  { uniqueId: userId, dealerName, recordType: dealerType },
+  { city, st_id, postalCode, siteKey, commissioned }
 ) => {
   const { mixpanel } = window
   const appAndDeviceProperties = getAppAndDeviceProperties()
@@ -125,16 +97,18 @@ export const siteFound = (
   mixpanel.identify(userId)
   mixpanel.people.set(appAndDeviceProperties)
   mixpanel.people.set({
-    $first_name: firstName,
-    $last_name: lastName,
-    $email: email,
-    'User Name': email,
     'Dealer Name': dealerName,
     'Dealer Type': capitalizeWord(dealerType)
   })
   mixpanel.track('Find Site', {
     Found: true,
-    ...siteData
+    ...{
+      $city: city,
+      State: st_id,
+      'Zip Code': postalCode,
+      'Site ID': siteKey,
+      Commissioned: commissioned
+    }
   })
 
   return MIXPANEL_EVENT_QUEUED('Find Site - site found')
