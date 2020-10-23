@@ -1,25 +1,55 @@
-import React, { useState, useEffect } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import clsx from 'clsx'
 import { useHistory } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { groupBy, path, prop, propEq, find, length } from 'ramda'
+import {
+  compose,
+  find,
+  groupBy,
+  last,
+  path,
+  prop,
+  propEq,
+  split,
+  map,
+  length
+} from 'ramda'
 import SwipeableBottomSheet from 'react-swipeable-bottom-sheet'
 import { useI18n } from 'shared/i18n'
-import { SET_METADATA_INIT } from 'state/actions/pvs'
-import { CLAIM_DEVICES_RESET } from 'state/actions/devices'
-import { filterInverters, miTypes } from 'shared/utils'
+import { RESET_METADATA_STATUS, SET_METADATA_INIT } from 'state/actions/pvs'
+import { CLAIM_DEVICES_RESET, FETCH_MODELS_INIT } from 'state/actions/devices'
+import {
+  SUBMIT_CLEAR,
+  SUBMIT_CONFIG_SUCCESS
+} from 'state/actions/systemConfiguration'
+import { rmaModes } from 'state/reducers/rma'
+import { filterInverters, miTypes, either } from 'shared/utils'
 import paths from 'routes/paths'
 import { Loader } from 'components/Loader'
 import MiGroup from './MiGroup'
 import './ModelEdit.scss'
-import { either } from '../../shared/utils'
+
+const getDeviceType = compose(last, split('_'))
+
+const renderMIGroup = (groupedSerialNumbers, miTypes) => key => (
+  <MiGroup
+    key={key}
+    title={miTypes[key]}
+    data={groupedSerialNumbers[key]}
+    type={getDeviceType(key)}
+  />
+)
 
 const ModelEdit = () => {
   const t = useI18n()
   const history = useHistory()
   const dispatch = useDispatch()
+  const { rmaMode } = useSelector(state => state.rma)
   const { settingMetadata, setMetadataStatus } = useSelector(state => state.pvs)
   const { fetchingDevices, found } = useSelector(state => state.devices)
+  const { submitting, commissioned, error } = useSelector(
+    path(['systemConfiguration', 'submit'])
+  )
   const rmaPvs = useSelector(path(['rma', 'pvs']))
   const { bom } = useSelector(state => state.inventory)
   const siteKey = useSelector(path(['site', 'site', 'siteKey']))
@@ -52,19 +82,26 @@ const ModelEdit = () => {
     }
   }
 
-  const collapsibleElements = () => {
-    return Object.keys(groupedSerialNumbers).map((key, i) => (
-      <MiGroup
-        key={key}
-        title={miTypes[key]}
-        data={groupedSerialNumbers[key]}
-      />
-    ))
+  const syncWithCloud = useCallback(() => {
+    dispatch(SUBMIT_CLEAR())
+    dispatch(SUBMIT_CONFIG_SUCCESS())
+  }, [dispatch])
+
+  const clearAndContinue = () => {
+    dispatch(SUBMIT_CLEAR())
+    history.push(paths.PROTECTED.RMA_DEVICES.path)
   }
 
   useEffect(() => {
+    dispatch(FETCH_MODELS_INIT())
+  }, [dispatch])
+
+  useEffect(() => {
     if (setMetadataStatus === 'success') {
-      if (essValue.value !== '0') {
+      if (rmaMode === rmaModes.EDIT_DEVICES) {
+        dispatch(RESET_METADATA_STATUS())
+        syncWithCloud()
+      } else if (essValue.value !== '0') {
         history.push(paths.PROTECTED.STORAGE_PREDISCOVERY.path)
       } else {
         history.push(
@@ -74,7 +111,15 @@ const ModelEdit = () => {
         )
       }
     }
-  })
+  }, [
+    history,
+    essValue.value,
+    rmaPvs,
+    setMetadataStatus,
+    rmaMode,
+    dispatch,
+    syncWithCloud
+  ])
 
   return (
     <div className="model-edit is-vertical has-text-centered pr-10 pl-10">
@@ -89,13 +134,18 @@ const ModelEdit = () => {
             <Loader />
             <span className="mt-10 mb-10">{t('FETCHING_MODELS')}</span>
           </>,
+
           length(miSource) > 0 ? (
-            collapsibleElements()
+            map(
+              renderMIGroup(groupedSerialNumbers, miTypes),
+              Object.keys(groupedSerialNumbers)
+            )
           ) : (
             <span className="mt-20 mb-20 is-size-4">{t('NO_MI_FOUND')}</span>
           )
         )}
       </div>
+
       {either(
         !fetchingDevices,
         <div>
@@ -133,6 +183,68 @@ const ModelEdit = () => {
               {t('CLOSE')}
             </button>
           </div>
+        </div>
+      </SwipeableBottomSheet>
+
+      <SwipeableBottomSheet
+        shadowTip={false}
+        open={commissioned || submitting || error}
+      >
+        <div className="missing-models-warning is-flex pb-20">
+          {either(
+            submitting,
+            <>
+              <span className="has-text-weight-bold has-text-white">
+                {t('HOLD_ON')}
+              </span>
+              <span className="has-text-white mt-10 mb-10">
+                {t('ADDING_DEVICES')}
+              </span>
+              <Loader />
+              <span className="has-text-weight-bold mt-10">
+                {t('DONT_CLOSE_APP')}
+              </span>
+            </>
+          )}
+          {either(
+            error,
+            <>
+              <span className="has-text-weight-bold">{t('ERROR')}</span>
+              <div className="mt-10 mb-10">
+                <span className="is-size-4 sp-hey has-text-white" />
+              </div>
+              <div className="mt-10">
+                <span>{t('ADDING_DEVICES_ERROR')}</span>
+              </div>
+              <div className="mt-10 has-text-centered">
+                <span>
+                  <button className="button is-primary" onClick={syncWithCloud}>
+                    {t('RETRY')}
+                  </button>
+                </span>
+              </div>
+            </>
+          )}
+          {either(
+            commissioned,
+            <>
+              <span className="has-text-weight-bold">{t('SUCCESS')}</span>
+              <span className="mt-10 mb-10">{t('ADDING_DEVICES_SUCCESS')}</span>
+              <div className="mt-10 mb-10">
+                <span className="is-size-4 sp-check has-text-white" />
+              </div>
+              <div className="mt-10 has-text-centered">
+                <span>
+                  <button
+                    className="button is-primary"
+                    onClick={clearAndContinue}
+                  >
+                    {t('CONTINUE')}
+                  </button>
+                </span>
+              </div>
+            </>
+          )}
         </div>
       </SwipeableBottomSheet>
     </div>

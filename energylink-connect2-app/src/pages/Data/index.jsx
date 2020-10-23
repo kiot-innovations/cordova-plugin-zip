@@ -77,6 +77,7 @@ export default () => {
   if (entries.length) {
     const [latestDate, latest] = entries[entries.length - 1]
     data = {
+      isSolarAvailable: latest.isSolarAvailable,
       date: latestDate,
       stateOfCharge: latest.soc,
       grid: roundDecimals(latest.c - latest.p - latest.s),
@@ -120,7 +121,7 @@ export default () => {
             />
           </Collapsible>
         )}
-        {either(miData, <MiDataLive data={miData} />)}
+        {either(length(miData) > 0, <MiDataLive data={miData} />)}
       </section>
       <section>
         <h6 className="is-uppercase mt-20 mb-20">{t('RIGHT_NOW')}</h6>
@@ -131,6 +132,7 @@ export default () => {
           storageValue={powerValues.storage}
           homeValue={powerValues.home}
           batteryLevel={powerValues.soc}
+          solarAvailable={data.isSolarAvailable}
         />
       </section>
       <div className="separator" />

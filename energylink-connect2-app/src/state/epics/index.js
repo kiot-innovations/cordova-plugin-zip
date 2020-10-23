@@ -1,20 +1,25 @@
 import { combineEpics } from 'redux-observable'
-import networkPollingEpics from './network'
-import feedbackEpic from './feedback'
-import siteEpics from './site'
-import pvsEpics from './pvs'
-import deviceEpics from './devices'
-import systemConfigurationEpics from './systemConfiguration'
-import liveEnergyData from './live-energy-data'
+
+import analyticsEpics from './analytics'
+import appUpdaterEpics from './appUpdater'
 import authEpics from './auth'
-import firmwareUpdateEpics from './fimwareUpdate'
+import deviceEpics from './devices'
 import downloader from './downloader'
+import feedbackEpic from './feedback'
+import firmwareUpdateEpics from './fimwareUpdate'
+import liveEnergyData from './live-energy-data'
+import modalEpics from './modals/showModal'
+import networkPollingEpics from './network'
 import panelLayoutToolEpics from './panel-layout-tool'
-import storageEpics from './storage'
-import scanditEpics from './scandit'
+import pvsEpics from './pvs'
 import rmaEpics from './rma'
+import scanditEpics from './scandit'
+import siteEpics from './site'
+import storageEpics from './storage'
+import systemConfigurationEpics from './systemConfiguration'
 
 export default combineEpics(
+  ...modalEpics,
   ...downloader,
   ...firmwareUpdateEpics,
   ...networkPollingEpics,
@@ -28,5 +33,7 @@ export default combineEpics(
   ...panelLayoutToolEpics,
   ...storageEpics,
   ...scanditEpics,
-  ...rmaEpics
+  ...rmaEpics,
+  ...appUpdaterEpics,
+  ...analyticsEpics
 )

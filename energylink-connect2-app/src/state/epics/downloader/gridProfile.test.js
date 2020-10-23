@@ -10,11 +10,17 @@ import * as fileTransferObservable from 'state/epics/observables/downloader'
 import * as fileSystem from 'shared/fileSystem'
 import * as utils from 'shared/utils'
 import * as cordovaMapping from 'shared/cordovaMapping'
+import { gridProfileUpdateUrl$ } from 'state/epics/downloader/latestUrls'
 
 describe('Epic gridProfile', () => {
+  beforeAll(() => {
+    gridProfileUpdateUrl$.next(
+      'https://s3-us-west-2.amazonaws.com/2oduso0/gridprofiles/v2/gridprofiles.tar.gz'
+    )
+  })
   it('should show the progress of the download, if complete set the file info', () => {
     const epicTest = epicTester(
-      require('./gridProfile').epicInitDownloadGridProfile
+      require('./gridProfile').initDownloadGridProfileEpic
     )
 
     fileTransferObservable.default = jest.fn(() =>
@@ -38,7 +44,13 @@ describe('Epic gridProfile', () => {
     const inputMarble = 'a'
     const expectedMarble = '(abcd)'
 
-    epicTest(inputMarble, expectedMarble, inputValues, expectedValues)
+    epicTest(inputMarble, expectedMarble, inputValues, expectedValues, {
+      fileDownloader: {
+        settings: {
+          allowDownloadWithPVS: true
+        }
+      }
+    })
   })
   it('should dispatch GRID_PROFILE_DOWNLOAD_SUCCESS if it could run all of it correctly', function() {
     fileSystem.getFileInfo = jest.fn(() =>
@@ -52,7 +64,7 @@ describe('Epic gridProfile', () => {
     cordovaMapping.getMd5FromFile = jest.fn(() => of('fdfasdasfww'))
 
     const epicTest = epicTester(
-      require('./gridProfile').epicGridProfileReportSuccess
+      require('./gridProfile').gridProfileReportSuccessEpic
     )
     const inputValues = {
       a: GRID_PROFILE_REPORT_SUCCESS('firmware/gridProfile.tar.gz')
@@ -65,7 +77,6 @@ describe('Epic gridProfile', () => {
     }
     epicTest('a', 'a', inputValues, expectedValues)
   })
-
   it('should dispatch GRID_PROFILE_DOWNLOAD_SUCCESS md5 wont match if it could run all of it correctly', function() {
     fileSystem.getFileInfo = jest.fn(() =>
       of({
@@ -78,7 +89,7 @@ describe('Epic gridProfile', () => {
     cordovaMapping.getMd5FromFile = jest.fn(() => of('xxdfsaf'))
 
     const epicTest = epicTester(
-      require('./gridProfile').epicGridProfileReportSuccess
+      require('./gridProfile').gridProfileReportSuccessEpic
     )
     const inputValues = {
       a: GRID_PROFILE_REPORT_SUCCESS('firmware/gridProfile.tar.gz')

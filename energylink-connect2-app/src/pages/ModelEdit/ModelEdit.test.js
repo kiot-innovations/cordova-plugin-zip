@@ -23,6 +23,16 @@ describe('MI Model Editing page', () => {
   })
 
   const mockedStore = {
+    systemConfiguration: {
+      submit: {
+        commissioned: false,
+        submitting: true,
+        error: false
+      }
+    },
+    rma: {
+      rmaMode: 'EDIT_DEVICES'
+    },
     inventory: {
       bom: [
         { item: 'AC_MODULES', value: '0' },
@@ -75,7 +85,7 @@ describe('MI Model Editing page', () => {
           CURTIME: '2020,04,20,22,17,23'
         }
       ],
-      miModels: [{ models: ['SPR1234'], type: 'E' }],
+      miModels: { E: ['SPR1234', 'SPR5678'] },
       fetchingDevices: false
     }
   }

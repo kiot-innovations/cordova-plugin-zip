@@ -40,7 +40,7 @@ exports[`RMAInventory renders correctly 1`] = `
     >
       <RMAInventory>
         <div
-          className="rma-add-devices full-height pr-20 pl-20"
+          className="rma-add-devices pr-10 pl-10"
         >
           <div
             className="rma-form"
@@ -68,10 +68,9 @@ exports[`RMAInventory renders correctly 1`] = `
                 </div>
               </div>
               <div
-                className="field  mb-20 mt-20"
+                className="field mt-10"
               >
                 <mockConstructor
-                  defaultValue={0}
                   isSearchable={false}
                   onSelect={[Function]}
                   options={
@@ -492,28 +491,41 @@ exports[`RMAInventory renders correctly 1`] = `
                     className="has-text-weight-bold"
                     htmlFor="other"
                   >
-                    EQUINOX_STORAGE_SYSTEM
+                    SUNVAULT_STORAGE
                   </label>
                 </div>
               </div>
               <div
-                className="field  mb-20 mt-20"
+                className="field mt-10"
               >
                 <mockConstructor
-                  defaultValue=""
                   isSearchable={false}
                   onSelect={[Function]}
                   options={
                     Array [
                       Object {
                         "label": "NONE",
-                        "value": "",
+                        "value": "0",
                       },
                       Object {
                         "label": "13KWH_1INV",
                         "value": "13kWh",
                       },
+                      Object {
+                        "label": "26KWH_1INV",
+                        "value": "26kWh (1 inverter)",
+                      },
+                      Object {
+                        "label": "26KWH_2INV",
+                        "value": "26kWh (2 inverters)",
+                      },
                     ]
+                  }
+                  value={
+                    Object {
+                      "label": "NONE",
+                      "value": "0",
+                    }
                   }
                 >
                   <div />
@@ -530,8 +542,8 @@ exports[`RMAInventory renders correctly 1`] = `
                   className="collapsible-title"
                 >
                   <input
-                    className="mr-10 checkbox"
-                    defaultChecked={false}
+                    className="mr-10 checkbox-dark"
+                    defaultChecked={true}
                     id="other"
                     name="other"
                     onChange={[Function]}

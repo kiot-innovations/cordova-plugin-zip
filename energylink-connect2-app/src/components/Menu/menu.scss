@@ -1,0 +1,14 @@
+@import '~@sunpower/theme-dark/styles/variables';
+
+$headerHeight: 60px;
+
+.menu-floating {
+  position: absolute;
+  top: $headerHeight;
+  z-index: 1000;
+  height: calc(100% - #{$headerHeight});
+  background-color: $black;
+  width: 100%;
+  margin-top: env(safe-area-inset-top);
+  padding-bottom: calc(4 * env(safe-area-inset-bottom));
+}

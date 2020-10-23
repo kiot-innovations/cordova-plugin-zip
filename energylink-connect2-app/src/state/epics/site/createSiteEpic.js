@@ -2,13 +2,30 @@ import * as Sentry from '@sentry/browser'
 import { ofType } from 'redux-observable'
 import { of, from } from 'rxjs'
 import { catchError, exhaustMap, map } from 'rxjs/operators'
-import { curry, path, converge, split, last, pipe, pick } from 'ramda'
+import {
+  always,
+  converge,
+  curry,
+  equals,
+  identity,
+  ifElse,
+  last,
+  path,
+  pick,
+  pipe,
+  split
+} from 'ramda'
 import * as siteActions from 'state/actions/site'
 import { getApiSite } from 'shared/api'
 
 const getAccessToken = path(['user', 'auth', 'access_token'])
 const getOwner = pipe(path(['user', 'data']), pick(['partyId', 'partyType']))
 const getServicer = pipe(path(['user', 'data']), pick(['parentPartyId']))
+const getOrDefaultParentPartnerId = ifElse(
+  equals('SUNPOWER_GLOBAL'),
+  always(process.env.REACT_APP_DEFAULT_PARTNER_ID),
+  identity
+)
 
 const postCreateSite = curry(
   (access_token, owner, { parentPartyId }, payload) =>
@@ -26,9 +43,11 @@ const postCreateSite = curry(
               city: payload.city,
               owner,
               servicer: {
-                partyId: parentPartyId,
+                partyId: getOrDefaultParentPartnerId(parentPartyId),
                 partyType: 'ORGANIZATION',
-                smsPartyId: last(split('_')(parentPartyId))
+                smsPartyId: last(
+                  split('_')(getOrDefaultParentPartnerId(parentPartyId))
+                )
               }
             }
           }

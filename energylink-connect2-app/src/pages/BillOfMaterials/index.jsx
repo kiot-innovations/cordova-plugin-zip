@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import ProgressiveImage from 'components/ProgressiveImage'
 import HomeownerAccountCreation from 'components/HomeownerAccountCreation'
-import { pathOr, prop, map, pick, compose, isEmpty, head } from 'ramda'
+import { compose, head, isEmpty, map, pathOr, pick, prop } from 'ramda'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { either } from 'shared/utils'
@@ -11,6 +11,7 @@ import { useI18n } from 'shared/i18n'
 import './BillOfMaterials.scss'
 import { GET_SITE_INIT } from 'state/actions/site'
 import { GET_SCANDIT_USERS } from 'state/actions/scandit'
+import { COMMISSIONING_START } from 'state/actions/analytics'
 
 const useMap = (latitude, longitude) => {
   const [url, setUrl] = useState('')
@@ -45,6 +46,7 @@ function BillOfMaterials() {
 
   useEffect(() => {
     dispatch(GET_SCANDIT_USERS())
+    dispatch(COMMISSIONING_START())
   }, [dispatch])
 
   useEffect(() => {
@@ -55,7 +57,7 @@ function BillOfMaterials() {
   const imageURL = `https://maps.googleapis.com/maps/api/staticmap?center=${latitude},${longitude}&zoom=19&size=320x320&key=${process.env.REACT_APP_MAPS_API_KEY}&maptype=hybrid&markers=scale:1|blue|${latitude},${longitude}&scale=1`
 
   return (
-    <main className="full-height pl-10 pr-10 home">
+    <main className="full-height pl-10 pr-10 homeb">
       <div
         className="pl-10 pr-10 mb-20"
         onClick={createExternalLinkHandler(googleMapsUrl)}
@@ -65,7 +67,7 @@ function BillOfMaterials() {
       <span className="is-uppercase is-block is-full-width has-text-centered is-bold mb-30 ">
         {t('CUSTOMER_INFORMATION')}
       </span>
-      <section className="mb-20">
+      <section>
         <div className="is-flex is-vertical">
           <div className="is-flex is-vertical tile pl-15">
             <div className="tile is-flex is-vertical">
@@ -108,16 +110,16 @@ function BillOfMaterials() {
           <div className="tile pt-15 is-flex is-vertical">
             <button
               onClick={() => setShowHomeownerCreation(true)}
-              className="button is-secondary is-uppercase homeowner-account-creation"
+              className="button is-secondary is-uppercase is-paddingless is-borderless"
             >
               {t('CREATE_HOMEOWNER_ACCOUNT')}
             </button>
           </div>
         )}
       </section>
-      <section className="tile is-flex is-vertical button-container mb-10">
+      <section className="tile is-flex is-vertical button-container mb-20">
         <Link
-          className="button pt-0 pb-0 pl-20 pr-20 is-primary"
+          className="button pt-0 pb-0 is-primary"
           to={paths.PROTECTED.PVS_SELECTION_SCREEN.path}
         >
           {t('START_INSTALL')}

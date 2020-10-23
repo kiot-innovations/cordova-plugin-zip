@@ -1,4 +1,5 @@
 /* eslint-disable no-undef */
+import * as Sentry from '@sentry/browser'
 import { path, map } from 'ramda'
 import { isIos } from './utils'
 
@@ -8,9 +9,9 @@ export function scanM(onRecognize, nodeID = 'scandit') {
     : process.env.REACT_APP_SCANDIT_ANDROID
 
   const keyBasedOnEnv =
-    process.env.REACT_APP_IS_TEST || process.env.REACT_APP_IS_DEV
-      ? process.env.REACT_APP_SCANDIT
-      : KEY
+    process.env.REACT_APP_FLAVOR === 'cm2-prod'
+      ? KEY
+      : process.env.REACT_APP_SCANDIT
 
   const context = Scandit.DataCaptureContext.forLicenseKey(keyBasedOnEnv)
 
@@ -70,12 +71,14 @@ export function scanM(onRecognize, nodeID = 'scandit') {
 
   // Switch camera on to start streaming frames and enable the barcode tracking mode.
   // The camera is started asynchronously and will take some time to completely turn on.
-  camera.switchToDesiredState(Scandit.FrameSourceState.On)
+  const toOn = camera.switchToDesiredState(Scandit.FrameSourceState.On)
+  toOn.catch(Sentry.captureException)
   barcodeTracking.isEnabled = true
 
   return () => {
+    const toOff = camera.switchToDesiredState(Scandit.FrameSourceState.Off)
+    toOff.catch(Sentry.captureException)
     barcodeTracking.isEnabled = false
-    camera.switchToDesiredState(Scandit.FrameSourceState.Off)
   }
 }
 

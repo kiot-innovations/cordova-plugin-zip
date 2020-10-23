@@ -12,3 +12,10 @@ export const FETCH_DEVICE_TREE_SUCCESS = createAction(
 export const FETCH_DEVICE_TREE_ERROR = createAction('FETCH_DEVICE_TREE_ERROR')
 
 export const UPDATE_DEVICE_TREE = createAction('UPDATE_DEVICE_TREE')
+export const RESET_RMA_PVS = createAction('RESET_RMA_PVS')
+
+export const RMA_REMOVE_DEVICES = createAction('RMA_REMOVE_DEVICES')
+export const RMA_REMOVE_DEVICES_SUCCESS = createAction(
+  'RMA_REMOVE_DEVICES_SUCCESS'
+)
+export const RMA_REMOVE_DEVICES_ERROR = createAction('RMA_REMOVE_DEVICES_ERROR')

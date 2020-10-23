@@ -50,9 +50,9 @@ function DeviceMappingSuccess() {
     ['batteries'],
     head(allInOneDevices)
   )
-  const allInOneDevicesList = [mio_board, inverter, mio_board, batteries]
   const hubPlus = pathOr({}, ['hub_plus'], devices)
   const gateway = pathOr({}, ['gateway'], devices)
+  const allInOneDevicesList = [gateway, mio_board, inverter, batteries]
 
   return (
     <section className="is-flex tile is-vertical has-text-weight-bold pt-0 pr-10 pl-10 full-height">
@@ -61,10 +61,14 @@ function DeviceMappingSuccess() {
       </h1>
 
       {!isEmpty(allInOneDevicesList) && (
-        <DeviceMap deviceList={allInOneDevicesList} />
+        <DeviceMap
+          deviceList={allInOneDevicesList}
+          title={t('SUNVAULT_ALL_ONE')}
+        />
       )}
-      {!isEmpty(hubPlus) && <DeviceMap deviceList={[hubPlus]} />}
-      {!isEmpty(gateway) && <DeviceMap deviceList={[gateway]} />}
+      {!isEmpty(hubPlus) && (
+        <DeviceMap deviceList={[hubPlus]} title={t('HUB_PLUS')} />
+      )}
 
       {either(
         isEmpty(mappingErrors),

@@ -5,6 +5,7 @@ import storage from 'redux-persist/lib/storage'
 import fileInfo from './info'
 import progress from './progress'
 import gridProfileInfo from './gridProfileInfo'
+import settings from './downloadSettings'
 
 export default combineReducers({
   progress,
@@ -16,5 +17,6 @@ export default combineReducers({
     },
     fileInfo
   ),
-  gridProfileInfo
+  gridProfileInfo,
+  settings
 })

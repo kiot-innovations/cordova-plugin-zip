@@ -2,16 +2,17 @@ import { createReducer } from 'redux-act'
 
 import {
   SUBMIT_CLEAR,
+  REPLACE_RMA_PVS,
   SUBMIT_CONFIG,
   SUBMIT_CONFIG_SUCCESS,
   SUBMIT_CONFIG_ERROR,
   SUBMIT_COMMISSION_SUCCESS,
-  SUBMIT_COMMISSION_ERROR
+  SUBMIT_COMMISSION_ERROR,
+  RESET_SYSTEM_CONFIGURATION
 } from 'state/actions/systemConfiguration'
 
 const initialState = {
   submitting: false,
-  submitted: false,
   config: {},
   error: '',
   commissioned: false
@@ -19,6 +20,10 @@ const initialState = {
 
 export const submitConfigReducer = createReducer(
   {
+    [REPLACE_RMA_PVS]: state => ({
+      ...state,
+      submitting: true
+    }),
     [SUBMIT_CONFIG]: (state, payload) => ({
       ...state,
       submitting: true,
@@ -26,7 +31,8 @@ export const submitConfigReducer = createReducer(
     }),
     [SUBMIT_CONFIG_SUCCESS]: state => ({
       ...state,
-      submitted: true
+      submitting: true,
+      error: initialState.error
     }),
     [SUBMIT_CONFIG_ERROR]: (state, payload) => ({
       ...state,
@@ -43,7 +49,8 @@ export const submitConfigReducer = createReducer(
       submitting: false,
       error: payload
     }),
-    [SUBMIT_CLEAR]: () => initialState
+    [SUBMIT_CLEAR]: () => initialState,
+    [RESET_SYSTEM_CONFIGURATION]: () => initialState
   },
   initialState
 )

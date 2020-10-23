@@ -1,0 +1,297 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RMA devices component render correctly 1`] = `
+<BrowserRouter
+  keyLength={0}
+>
+  <Router
+    history={
+      Object {
+        "action": "POP",
+        "block": [Function],
+        "createHref": [Function],
+        "go": [Function],
+        "goBack": [Function],
+        "goForward": [Function],
+        "length": 1,
+        "listen": [Function],
+        "location": Object {
+          "hash": "",
+          "pathname": "/",
+          "search": "",
+          "state": undefined,
+        },
+        "push": [Function],
+        "replace": [Function],
+      }
+    }
+  >
+    <Provider
+      store={
+        Object {
+          "clearActions": [Function],
+          "dispatch": [Function],
+          "getActions": [Function],
+          "getState": [Function],
+          "replaceReducer": [Function],
+          "subscribe": [Function],
+        }
+      }
+    >
+      <RMADevices>
+        <main
+          className="full-height pl-10 pr-10 rma-devices"
+        >
+          <div
+            className="header mb-20"
+          >
+            <span
+              className="sp-chevron-left has-text-primary is-size-4 go-back"
+              onClick={[Function]}
+            />
+            <span
+              className="is-uppercase has-text-weight-bold  page-title"
+            >
+              RMA_DEVICES
+            </span>
+          </div>
+          <Collapsible
+            actions={
+              <span
+                className="is-paddingless has-text-primary has-text-weight-bold is-size-7 button-transparent"
+                onClick={[Function]}
+              >
+                ADD
+              </span>
+            }
+            expanded={true}
+            title="MICROINVERTERS"
+          >
+            <div
+              className="collapsible"
+            >
+              <div
+                className="collapsible-header"
+              >
+                <div
+                  className="collapsible-title"
+                >
+                  <span />
+                  <span
+                    className="has-text-weight-bold"
+                  >
+                    MICROINVERTERS
+                  </span>
+                </div>
+                <div
+                  className="collapsible-actions"
+                >
+                  <span
+                    className="is-paddingless has-text-primary has-text-weight-bold is-size-7 button-transparent"
+                    onClick={[Function]}
+                  >
+                    ADD
+                  </span>
+                </div>
+                <div
+                  className="collapsible-trigger"
+                >
+                  <div
+                    className="chevron down"
+                    onClick={[Function]}
+                  >
+                    <span
+                      className="sp-chevron-up"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div
+                className="collapsible-content expanded"
+              >
+                <label
+                  className="has-text-weight-bold has-text-white pb-10 pt-10 is-flex"
+                  key="E00121939001311"
+                >
+                  <input
+                    checked={false}
+                    className="mr-10 checkbox-dark"
+                    onChange={[Function]}
+                    type="checkbox"
+                    value="E00121939001311"
+                  />
+                  E00121939001311
+                </label>
+                <label
+                  className="has-text-weight-bold has-text-white pb-10 pt-10 is-flex"
+                  key="E00121939002888"
+                >
+                  <input
+                    checked={false}
+                    className="mr-10 checkbox-dark"
+                    onChange={[Function]}
+                    type="checkbox"
+                    value="E00121939002888"
+                  />
+                  E00121939002888
+                </label>
+                <div
+                  className="buttons-container"
+                >
+                  <button
+                    className="button is-paddingless has-text-primary has-text-weight-bold is-size-7 button-transparent"
+                    onClick={[Function]}
+                  >
+                    SELECT_ALL
+                  </button>
+                  <button
+                    className="button is-paddingless has-text-primary has-text-weight-bold is-size-7 button-transparent"
+                    disabled={true}
+                    onClick={[Function]}
+                  >
+                    REMOVE
+                  </button>
+                </div>
+              </div>
+            </div>
+          </Collapsible>
+          <div
+            className="mt-10"
+          />
+          <Collapsible
+            expanded={true}
+            title="Storage Equipment"
+          >
+            <div
+              className="collapsible"
+            >
+              <div
+                className="collapsible-header"
+              >
+                <div
+                  className="collapsible-title"
+                >
+                  <span />
+                  <span
+                    className="has-text-weight-bold"
+                  >
+                    STORAGE EQUIPMENT
+                  </span>
+                </div>
+                <div
+                  className="collapsible-actions"
+                />
+                <div
+                  className="collapsible-trigger"
+                >
+                  <div
+                    className="chevron down"
+                    onClick={[Function]}
+                  >
+                    <span
+                      className="sp-chevron-up"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div
+                className="collapsible-content expanded"
+              >
+                <div
+                  key="00001B3DDACD"
+                >
+                  <span
+                    className="has-text-weight-bold has-text-white"
+                  >
+                    STORAGE_INVERTER
+                  </span>
+                  <span
+                    className="ml-10"
+                  >
+                    00001B3DDACD
+                  </span>
+                </div>
+                <div
+                  key="F2191700087033685504"
+                >
+                  <span
+                    className="has-text-weight-bold has-text-white"
+                  >
+                    BATTERY
+                  </span>
+                  <span
+                    className="ml-10"
+                  >
+                    F2191700087033685504
+                  </span>
+                </div>
+                <div
+                  key="F21917000870"
+                >
+                  <span
+                    className="has-text-weight-bold has-text-white"
+                  >
+                    GATEWAY
+                  </span>
+                  <span
+                    className="ml-10"
+                  >
+                    F21917000870
+                  </span>
+                </div>
+                <div
+                  key="Serial-MIDC-Saturn"
+                >
+                  <span
+                    className="has-text-weight-bold has-text-white"
+                  >
+                    MIDC
+                  </span>
+                  <span
+                    className="ml-10"
+                  >
+                    Serial-MIDC-Saturn
+                  </span>
+                </div>
+                <div
+                  key="Serial-MIO-Saturn"
+                >
+                  <span
+                    className="has-text-weight-bold has-text-white"
+                  >
+                    MIO
+                  </span>
+                  <span
+                    className="ml-10"
+                  >
+                    Serial-MIO-Saturn
+                  </span>
+                </div>
+                <div
+                  className="buttons-container"
+                >
+                  <button
+                    className="button is-paddingless has-text-primary has-text-weight-bold is-size-7 button-transparent"
+                  >
+                    ADD_REPLACE_EQUIPMENT
+                  </button>
+                </div>
+              </div>
+            </div>
+          </Collapsible>
+          <div
+            className="mt-10 has-text-centered button-container"
+          >
+            <button
+              className="button is-paddingless has-text-primary has-text-weight-bold is-size-7 button-transparent"
+              onClick={[Function]}
+            >
+              REFRESH_DEVICE_LIST
+            </button>
+          </div>
+        </main>
+      </RMADevices>
+    </Provider>
+  </Router>
+</BrowserRouter>
+`;

@@ -45,17 +45,11 @@ exports[`SNManualEntry renders correctly 1`] = `
           className="sn-manual-entry"
           onSubmit={[Function]}
         >
-          <label
-            className="has-text-white is-flex"
-            htmlFor="barcode"
-          >
-            MI_SN_LABEL
-          </label>
           <div
-            className="field is-grouped is-grouped-centered"
+            className="is-flex file tile buttons-container"
           >
             <div
-              className="control control-barcode"
+              className="ifield mr-10"
             >
               <Component
                 autoComplete="barcode"
@@ -91,6 +85,7 @@ exports[`SNManualEntry renders correctly 1`] = `
                     "visited": false,
                   }
                 }
+                placeholder="ENTER_SERIAL_MANUALLY"
                 type="text"
               >
                 <div
@@ -108,6 +103,7 @@ exports[`SNManualEntry renders correctly 1`] = `
                       onBlur={[Function]}
                       onChange={[Function]}
                       onFocus={[Function]}
+                      placeholder="ENTER_SERIAL_MANUALLY"
                       type="text"
                       value=""
                     />
@@ -115,16 +111,12 @@ exports[`SNManualEntry renders correctly 1`] = `
                 </div>
               </Component>
             </div>
-            <div
-              className="control control-add"
+            <button
+              className="button is-paddingless has-text-primary has-text-weight-bold is-uppercase is-outlined button-transparent"
+              type="submit"
             >
-              <button
-                className="button is-primary is-uppercase pl-10 pr-10 pb-30 pt-10"
-                type="submit"
-              >
-                ADD
-              </button>
-            </div>
+              ADD
+            </button>
           </div>
         </form>
       </ManualEntryForm>
@@ -178,17 +170,11 @@ exports[`SNManualEntry renders correctly when editing a serial number 1`] = `
           className="sn-manual-entry"
           onSubmit={[Function]}
         >
-          <label
-            className="has-text-white is-flex"
-            htmlFor="barcode"
-          >
-            EDITING_MI_SN_LABEL
-          </label>
           <div
-            className="field is-grouped is-grouped-centered"
+            className="is-flex file tile buttons-container"
           >
             <div
-              className="control control-barcode"
+              className="ifield mr-10"
             >
               <Component
                 autoComplete="barcode"
@@ -224,6 +210,7 @@ exports[`SNManualEntry renders correctly when editing a serial number 1`] = `
                     "visited": false,
                   }
                 }
+                placeholder="ENTER_SERIAL_MANUALLY"
                 type="text"
               >
                 <div
@@ -241,6 +228,7 @@ exports[`SNManualEntry renders correctly when editing a serial number 1`] = `
                       onBlur={[Function]}
                       onChange={[Function]}
                       onFocus={[Function]}
+                      placeholder="ENTER_SERIAL_MANUALLY"
                       type="text"
                       value="123456789123"
                     />
@@ -248,16 +236,12 @@ exports[`SNManualEntry renders correctly when editing a serial number 1`] = `
                 </div>
               </Component>
             </div>
-            <div
-              className="control control-add"
+            <button
+              className="button is-paddingless has-text-primary has-text-weight-bold is-uppercase is-outlined button-transparent"
+              type="submit"
             >
-              <button
-                className="button is-primary is-uppercase pl-10 pr-10 pb-30 pt-10"
-                type="submit"
-              >
-                SAVE
-              </button>
-            </div>
+              SAVE
+            </button>
           </div>
         </form>
       </ManualEntryForm>

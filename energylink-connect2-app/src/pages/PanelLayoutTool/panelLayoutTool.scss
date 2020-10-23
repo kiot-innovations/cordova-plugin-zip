@@ -28,6 +28,13 @@
   align-items: center;
   min-height: 100%;
   justify-content: space-around;
+
+  .plt-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
   .canvas {
     .controlsContainer {
       .section {

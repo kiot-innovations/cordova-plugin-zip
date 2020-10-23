@@ -15,7 +15,7 @@ const initialState = {
   size: 0,
   error: '',
   exists: false,
-  updateURL: process.env.REACT_APP_FIRMWARE_URL,
+  updateURL: '',
   step: ''
 }
 
@@ -45,7 +45,7 @@ export default createReducer(
     }),
     [PVS_FIRMWARE_DOWNLOAD_PROGRESS]: (state, { size, step }) => ({
       ...state,
-      size: isNaN(size) ? state.size : size,
+      size,
       error: '',
       step
     }),

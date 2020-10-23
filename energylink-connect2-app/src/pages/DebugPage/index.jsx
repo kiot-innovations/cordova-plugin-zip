@@ -58,6 +58,16 @@ const DebugPage = () => {
           'RMA - New Inventory Count',
           paths.PROTECTED.RMA_INVENTORY.path
         )}
+        {renderDebugLink(
+          history,
+          'RMA - New and existing Microinverters',
+          paths.PROTECTED.RMA_SN_LIST.path
+        )}
+        {renderDebugLink(
+          history,
+          'Standard Serial Number List',
+          paths.PROTECTED.SN_LIST.path
+        )}
       </div>
     </div>
   )

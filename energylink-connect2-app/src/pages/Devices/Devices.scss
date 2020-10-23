@@ -1,5 +1,19 @@
 @import '~@sunpower/theme-dark/styles/variables';
 
+.inline-buttons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-column-gap: 1rem;
+
+  button {
+    padding:0 30px!important
+  }
+}
+
+.flex-column {
+  flex-direction: column;
+}
+
 .sunpower-devices {
   font-family: $font;
 
@@ -7,6 +21,10 @@
     max-height: 250px;
     .equipment-piece {
       justify-content: space-between;
+
+      .mi-indicator {
+        align-items: center;
+      }
     }
     .equipment-piece:after {
       content: '';

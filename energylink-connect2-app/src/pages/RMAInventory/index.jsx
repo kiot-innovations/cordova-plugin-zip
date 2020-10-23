@@ -1,11 +1,13 @@
 import React from 'react'
-import { path, prop } from 'ramda'
+import { find, prop, propEq } from 'ramda'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
-
 import paths from 'routes/paths'
 import { useI18n } from 'shared/i18n'
-import { SAVE_INVENTORY_RMA } from 'state/actions/inventory'
+import {
+  UPDATE_INVENTORY,
+  UPDATE_OTHER_INVENTORY
+} from 'state/actions/inventory'
 import { START_DISCOVERY_INIT } from 'state/actions/pvs'
 import { discoveryTypes } from 'state/reducers/devices'
 import { SHOW_MODAL } from 'state/actions/modal'
@@ -16,26 +18,31 @@ import './RMAInventory.scss'
 const RMAInventory = () => {
   const t = useI18n()
   const dispatch = useDispatch()
-  const rma = useSelector(path(['inventory', 'rma']))
+  const { bom, rma } = useSelector(state => state.inventory)
+  const miValue = find(propEq('item', 'AC_MODULES'), bom)
+  const storageValue = find(propEq('item', 'ESS'), bom)
   const history = useHistory()
 
   const essOptions = [
-    { value: '', label: t('NONE') },
-    { value: '13kWh', label: t('13KWH_1INV') }
+    { value: '0', label: t('NONE') },
+    { value: '13kWh', label: t('13KWH_1INV') },
+    { value: '26kWh (1 inverter)', label: t('26KWH_1INV') },
+    { value: '26kWh (2 inverters)', label: t('26KWH_2INV') }
   ]
 
+  const miOptions = [...Array(99).keys()].map(number => ({
+    label: number,
+    value: number
+  }))
+
   const handleCheckbox = e => {
-    dispatch(
-      SAVE_INVENTORY_RMA({
-        name: e.target.name,
-        value: e.target.checked
-      })
-    )
+    e.preventDefault()
+    dispatch(UPDATE_OTHER_INVENTORY(e.target.checked))
   }
 
   const handleChange = name => option => {
     dispatch(
-      SAVE_INVENTORY_RMA({
+      UPDATE_INVENTORY({
         name: name,
         value: option.value
       })
@@ -51,9 +58,9 @@ const RMAInventory = () => {
         })
       )
       history.push(paths.PROTECTED.LEGACY_DISCOVERY.path)
-    } else if (prop('mi_count', rma)) {
+    } else if (miValue.value > 0) {
       history.push(paths.PROTECTED.SCAN_LABELS.path)
-    } else if (prop('ess', rma)) {
+    } else if (storageValue.value !== 0) {
       history.push(paths.PROTECTED.STORAGE_PREDISCOVERY.path)
     } else {
       dispatch(
@@ -68,16 +75,11 @@ const RMAInventory = () => {
   }
 
   const handleCancel = () => {
-    /**
-     * @todo
-     * Current Device List Page is not ready yet (CM2-757),
-     * so we redirect to homepage for now
-     */
-    history.push(paths.PROTECTED.BILL_OF_MATERIALS.path)
+    history.push(paths.PROTECTED.RMA_DEVICES.path)
   }
 
   return (
-    <div className="rma-add-devices full-height pr-20 pl-20">
+    <div className="rma-add-devices pr-10 pl-10">
       <div className="rma-form">
         <p className="is-uppercase has-text-centered has-text-weight-bold">
           {t('RMA_ADD_DEVICES_TITLE')}
@@ -92,15 +94,12 @@ const RMAInventory = () => {
             </div>
           </div>
 
-          <div className="field  mb-20 mt-20">
+          <div className="field mt-10">
             <SelectField
               isSearchable={false}
               onSelect={handleChange('mi_count')}
-              defaultValue={prop('mi_count', rma)}
-              options={[...Array(99).keys()].map(number => ({
-                label: number,
-                value: number
-              }))}
+              defaultValue={find(propEq('value', miValue.value), miOptions)}
+              options={miOptions}
             />
           </div>
         </div>
@@ -109,17 +108,17 @@ const RMAInventory = () => {
           <div className="collapsible-header">
             <div className="collapsible-title">
               <label className="has-text-weight-bold" htmlFor="other">
-                {t('EQUINOX_STORAGE_SYSTEM')}
+                {t('SUNVAULT_STORAGE')}
               </label>
             </div>
           </div>
-          <div className="field  mb-20 mt-20">
+          <div className="field mt-10">
             <SelectField
               isSearchable={false}
-              onSelect={handleChange('ess')}
-              defaultValue={prop('ess', rma)}
+              onSelect={handleChange('ESS')}
+              value={find(propEq('value', storageValue.value), essOptions)}
               options={essOptions}
-            ></SelectField>
+            />
           </div>
         </div>
 
@@ -131,7 +130,7 @@ const RMAInventory = () => {
                 id="other"
                 name="other"
                 onChange={handleCheckbox}
-                className="mr-10 checkbox"
+                className="mr-10 checkbox-dark"
                 defaultChecked={prop('other', rma)}
               />
               <label className="has-text-weight-bold" htmlFor="other">

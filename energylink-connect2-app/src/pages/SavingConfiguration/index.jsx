@@ -94,7 +94,7 @@ const SavingConfiguration = () => {
           title: t('CONFIG_ERROR'),
           indicator: (
             <div className="pt-20 pb-20">
-              <i className="sp-close has-text-white is-size-1" />
+              <i className="sp-hey has-text-white is-size-1" />
             </div>
           ),
           controls: (

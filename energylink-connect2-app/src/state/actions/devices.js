@@ -35,3 +35,5 @@ export const UPDATE_DEVICES_LIST_ERROR = createAction(
   'UPDATE_DEVICES_LIST_ERROR'
 )
 export const UPDATE_MI_MODELS = createAction('UPDATE_MI_MODELS')
+
+export const WAIT_FOR_DL_PROCESSING = createAction('WAIT_FOR_DL_PROCESSING')

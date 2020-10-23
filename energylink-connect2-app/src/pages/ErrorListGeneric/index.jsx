@@ -1,5 +1,5 @@
 import React from 'react'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { omit, not, map, compose } from 'ramda'
 import { Link, useHistory } from 'react-router-dom'
 import paths, { setParams } from 'routes/paths'
@@ -8,6 +8,7 @@ import { getError } from 'shared/errorCodes'
 import { either } from 'shared/utils'
 import { eqsSteps } from 'state/reducers/storage'
 import './ErrorListGeneric.scss'
+import { PVS_CONNECTION_CLOSE } from 'state/actions/network'
 
 const ErrorComponent = ({ title, code = '', errorInfo, t }) => {
   const toParams = {
@@ -73,8 +74,14 @@ const storageRoutesMap = {
  */
 const ErrorListScreen = ({ errors = [] }) => {
   const t = useI18n()
+  const dispatch = useDispatch()
   const history = useHistory()
   const { currentStep } = useSelector(state => state.storage)
+
+  const cancelCommissioning = () => {
+    dispatch(PVS_CONNECTION_CLOSE())
+    history.push(paths.PROTECTED.BILL_OF_MATERIALS.path)
+  }
 
   return (
     <div className="error-list pr-10 pl-10">
@@ -95,7 +102,11 @@ const ErrorListScreen = ({ errors = [] }) => {
           <span>{t('GO_BACK_AND_FIX')}</span>
         </div>
         <div className="has-text-centered mt-10">
-          <span className="has-text-primary has-text-weight-bold">
+          <span
+            onClick={cancelCommissioning}
+            role="button"
+            className="has-text-primary has-text-weight-bold"
+          >
             {t('CANCEL_COMMISSION')}
           </span>
         </div>

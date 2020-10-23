@@ -20,17 +20,16 @@
 # If you upload debug build to the Play or TestFlight it will fail.
 on:
   push:
-    branches:
-      - master
     tags:
-      - '*'
+      - '*.0'
 
 jobs:
   build:
     runs-on: macos-10.15
+    timeout-minutes: 45
     strategy:
       matrix:
-        app_env: [test, training, prod]
+        app_env: [uat, test, training, prod]
     env:
       APP_ENV: ${{ matrix.app_env }}
     steps:
@@ -136,8 +135,9 @@ jobs:
       - name: Calculate GIT branch name
         run: |
           export BRANCH_NAME=${GITHUB_REF#refs/heads/}
-          export BRANCH_NAME=${BRANCH_NAME#refs/tags/}
+          export TAG=${BRANCH_NAME#refs/tags/}
           echo "::set-env name=BRANCH_NAME::$BRANCH_NAME"
+          echo "::set-env name=TAG::$TAG"
       - name: Send slack notification
         uses: hbfernandes/slack-action@1.0
         if: env.APP_ENV == 'prod'
@@ -153,12 +153,17 @@ jobs:
                 "color": "good",
                 "fields": [{
                     "title": "Revision",
-                    "value": "<https://sunpowercorp.atlassian.net/issues/?jql=labels%20%3D%20%22${{ env.BRANCH_NAME }}%22|${{ env.BRANCH_NAME }}>",
+                    "value": "<https://sunpowercorp.atlassian.net/issues/?jql=labels%20%3D%20%22${{ env.TAG }}%22|${{ env.TAG }}>",
                     "short": true
                   },
                   {
                     "title": "Build Artifacts",
                     "value": "<https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}|Open>",
+                    "short": true
+                  },
+                  {
+                    "title": "Branch",
+                    "value": "<https://github.com/SunPower/energylink-connect2/tree/${{ env.BRANCH_NAME }}|${{ env.BRANCH_NAME }}>",
                     "short": true
                   }
                 ]

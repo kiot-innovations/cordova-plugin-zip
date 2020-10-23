@@ -1,21 +1,29 @@
-import React, { useState, useEffect } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
+import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
-import { length, compose, not } from 'ramda'
+import { compose, equals, isEmpty, isNil, length, path } from 'ramda'
 import SwipeableBottomSheet from 'react-swipeable-bottom-sheet'
 import { useI18n } from 'shared/i18n'
 import { decodeQRData, scanBarcodes } from 'shared/scanning'
-import { isAndroid10 } from 'shared/utils'
+import { generatePassword, generateSSID } from 'shared/utils'
+import { rmaModes } from 'state/reducers/rma'
 import {
+  HIDE_MANUAL_INSTRUCTIONS,
   PVS_CONNECTION_INIT,
+  PVS_TIMEOUT_FOR_CONNECTION,
   STOP_NETWORK_POLLING
 } from 'state/actions/network'
-import { saveSerialNumber } from 'state/actions/pvs'
+import { SAVE_PVS_SN } from 'state/actions/pvs'
 import { Loader } from 'components/Loader'
 import paths from 'routes/paths'
 import './ConnectToPVS.scss'
+import {
+  CONNECT_PVS_CAMERA,
+  CONNECT_PVS_MANUALLY,
+  START_SCANNING
+} from 'state/actions/analytics'
 
-const onSuccess = (generatePassword, dispatch, t) => data => {
+const onSuccess = (generatePassword, dispatch, t, setStarted) => data => {
   try {
     let wifiData
 
@@ -29,7 +37,8 @@ const onSuccess = (generatePassword, dispatch, t) => data => {
       const qrData = wifiData.split('|')
       const [serialNumber, ssid] = qrData
       const password = generatePassword(serialNumber)
-      dispatch(saveSerialNumber(serialNumber))
+      dispatch(SAVE_PVS_SN(serialNumber))
+      dispatch(CONNECT_PVS_CAMERA(serialNumber))
       dispatch(PVS_CONNECTION_INIT({ ssid, password }))
     } else {
       alert(t('INVALID_QRCODE'))
@@ -37,6 +46,8 @@ const onSuccess = (generatePassword, dispatch, t) => data => {
   } catch (error) {
     console.warn(error)
   }
+
+  setStarted(false)
 }
 
 function ConnectToPVS() {
@@ -44,13 +55,33 @@ function ConnectToPVS() {
   const dispatch = useDispatch()
   const history = useHistory()
   const connectionState = useSelector(state => state.network)
+  const rmaPVSSelectedSN = useSelector(path(['rma', 'pvs']))
+  const rmaMode = useSelector(path(['rma', 'rmaMode']))
   const [manualEntry, showManualEntry] = useState(false)
-  const [manualInstructions, showManualInstructions] = useState(false)
   const [serialNumber, setSerialNumber] = useState('')
+  const [started, setStarted] = useState(false)
 
   const onFail = err => {
     alert(err)
+    setStarted(false)
   }
+
+  useEffect(() => {
+    if (connectionState.connecting) dispatch(PVS_TIMEOUT_FOR_CONNECTION())
+  }, [connectionState.connecting, dispatch])
+
+  useEffect(() => {
+    if (
+      !isEmpty(rmaPVSSelectedSN) &&
+      !isNil(rmaPVSSelectedSN) &&
+      equals(rmaMode, rmaModes.EDIT_DEVICES)
+    ) {
+      const ssid = generateSSID(rmaPVSSelectedSN)
+      const password = generatePassword(rmaPVSSelectedSN)
+      dispatch(SAVE_PVS_SN(rmaPVSSelectedSN))
+      dispatch(PVS_CONNECTION_INIT({ ssid, password }))
+    }
+  }, [dispatch, rmaMode, rmaPVSSelectedSN])
 
   useEffect(() => {
     if (!connectionState.connecting && connectionState.connected) {
@@ -58,35 +89,13 @@ function ConnectToPVS() {
     }
   }, [connectionState.connected, connectionState.connecting, dispatch, history])
 
-  const checkAndroidVersion = () => {
-    if (isAndroid10()) {
-      showManualInstructions(true)
-    }
-  }
-
   const manualConnect = () => {
     showManualEntry(false)
     const ssid = generateSSID(serialNumber)
     const password = generatePassword(serialNumber)
-    dispatch(saveSerialNumber(serialNumber))
+    dispatch(SAVE_PVS_SN(serialNumber))
+    dispatch(CONNECT_PVS_MANUALLY(serialNumber))
     dispatch(PVS_CONNECTION_INIT({ ssid, password }))
-    checkAndroidVersion()
-  }
-
-  const generateSSID = serialNumber => {
-    const lastIndex = serialNumber.length
-    const ssidPt1 = serialNumber.substring(4, 6)
-    const ssidPt2 = serialNumber.substring(lastIndex - 3, lastIndex)
-
-    return `SunPower${ssidPt1}${ssidPt2}`
-  }
-
-  const generatePassword = serialNumber => {
-    let lastIndex = serialNumber.length
-    let password =
-      serialNumber.substring(2, 6) +
-      serialNumber.substring(lastIndex - 4, lastIndex)
-    return password
   }
 
   const copyPasswordToClipboard = () => {
@@ -96,7 +105,13 @@ function ConnectToPVS() {
 
   const abortConnection = () => {
     dispatch(STOP_NETWORK_POLLING())
-    showManualInstructions(false)
+    dispatch(HIDE_MANUAL_INSTRUCTIONS())
+  }
+
+  const getBarcode = () => {
+    setStarted(true)
+    dispatch(START_SCANNING())
+    scanBarcodes(onSuccess(generatePassword, dispatch, t, setStarted), onFail)
   }
 
   return (
@@ -117,11 +132,9 @@ function ConnectToPVS() {
         </span>
         <div className="mt-20">
           <button
-            disabled={connectionState.connecting}
+            disabled={connectionState.connecting || started}
             className="button is-primary"
-            onClick={() =>
-              scanBarcodes(onSuccess(generatePassword, dispatch, t), onFail)
-            }
+            onClick={getBarcode}
           >
             {t('START_SCAN')}
           </button>
@@ -143,8 +156,8 @@ function ConnectToPVS() {
 
       <SwipeableBottomSheet
         shadowTip={false}
-        open={manualInstructions}
-        onChange={compose(showManualInstructions, not)}
+        open={connectionState.showManualInstructions}
+        onChange={compose(dispatch, HIDE_MANUAL_INSTRUCTIONS)}
       >
         <div className="manual-instructions is-flex">
           <span className="has-text-weight-bold has-text-white mb-10">

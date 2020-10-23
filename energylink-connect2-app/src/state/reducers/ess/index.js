@@ -34,7 +34,7 @@ export default createReducer(
     [DOWNLOAD_OS_PROGRESS]: (state, { progress, total, step }) => ({
       ...state,
       progress,
-      total,
+      total: total ? (total / 1000000).toFixed(2) : state.total,
       error: null,
       step,
       isDownloading: true
@@ -48,11 +48,12 @@ export default createReducer(
       ...state,
       error
     }),
-    [DOWNLOAD_OS_SUCCESS]: (state, entryFile) => ({
+    [DOWNLOAD_OS_SUCCESS]: (state, { entryFile, total }) => ({
       ...state,
       file: entryFile,
       error: null,
       isDownloading: false,
+      total: total ? (total / 1000000).toFixed(2) : state.total,
       step: ''
     }),
     [DOWNLOAD_META_INIT]: state => ({

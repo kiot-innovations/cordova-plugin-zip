@@ -3,11 +3,10 @@
 .inventory-count {
   height: 100%;
   display: grid;
+  grid-template-rows: minmax(15px, 40px) 1fr 80px;
+
   .inline-buttons {
     justify-content: center;
-    button {
-      padding: 0 30px;
-    }
   }
 
   .inventory-warning {

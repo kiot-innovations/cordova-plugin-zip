@@ -1,21 +1,17 @@
 import * as Sentry from '@sentry/browser'
 import { ofType } from 'redux-observable'
 import { from, of } from 'rxjs'
-import { catchError, mergeMap, map } from 'rxjs/operators'
+import { catchError, map, mergeMap } from 'rxjs/operators'
 import {
-  FETCH_MODELS_INIT,
-  FETCH_MODELS_SUCCESS,
   FETCH_MODELS_ERROR,
-  FETCH_MODELS_LOAD_DEFAULT
+  FETCH_MODELS_INIT,
+  FETCH_MODELS_LOAD_DEFAULT,
+  FETCH_MODELS_SUCCESS
 } from 'state/actions/devices'
-import { pathOr, path, pluck, isEmpty } from 'ramda'
+import { assoc, isEmpty, path, pathOr, propOr, reduce } from 'ramda'
 import { getApiDevice } from 'shared/api'
 
 const getAccessToken = path(['user', 'auth', 'access_token'])
-const getModelName = pluck('modelName')
-const buildModelFilter = (type, models) => {
-  return { type: type, models }
-}
 
 const defaultMIModelsByType = {
   C: [
@@ -59,6 +55,11 @@ const defaultMIModelsByType = {
     'SPR-A420-G-AC'
   ]
 }
+const getAllMiModelsFromResponse = reduce((acc, elem) => {
+  const { modelName, miType } = elem
+  if (miType === null) return acc
+  return assoc(miType, [...propOr([], miType, acc), modelName], acc)
+}, {})
 
 export const fetchModelsEpic = (action$, state$) => {
   return action$.pipe(
@@ -66,22 +67,14 @@ export const fetchModelsEpic = (action$, state$) => {
     mergeMap(({ payload: MIType }) => {
       const promise = getApiDevice(getAccessToken(state$.value))
         .then(path(['apis', 'device']))
-        .then(api =>
-          api.deviceGetModuleModels({
-            'mi-type': MIType
-          })
-        )
+        .then(api => api.deviceGetModuleModels())
 
       return from(promise).pipe(
         map(moduleModels => {
           const models = pathOr([], ['body'], moduleModels)
-          const nextAction = isEmpty(models)
+          return isEmpty(models)
             ? FETCH_MODELS_ERROR(MIType)
-            : FETCH_MODELS_SUCCESS(
-                buildModelFilter(MIType, getModelName(models))
-              )
-
-          return nextAction
+            : FETCH_MODELS_SUCCESS(getAllMiModelsFromResponse(models))
         }),
         catchError(error => {
           Sentry.captureException(error)
@@ -95,10 +88,6 @@ export const fetchModelsEpic = (action$, state$) => {
 export const loadBackupModelsEpic = action$ => {
   return action$.pipe(
     ofType(FETCH_MODELS_ERROR.getType()),
-    map(({ payload: MIType }) =>
-      FETCH_MODELS_LOAD_DEFAULT(
-        buildModelFilter(MIType, defaultMIModelsByType[MIType])
-      )
-    )
+    map(() => FETCH_MODELS_LOAD_DEFAULT(defaultMIModelsByType))
   )
 }

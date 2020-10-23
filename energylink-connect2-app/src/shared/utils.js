@@ -150,7 +150,10 @@ export const cleanString = (str = '') => {
 }
 
 export const buildSN = barcode => ({
-  serial_number: barcode.startsWith('1') ? `E00${barcode}` : barcode,
+  serial_number:
+    barcode.startsWith('12') && length(barcode) === 12
+      ? `E00${barcode}`
+      : barcode,
   type: 'SOLARBRIDGE'
 })
 export const trace = t => x => {
@@ -168,7 +171,7 @@ export const updateBodyHeight = () => {
 }
 
 export const findByPathValue = curry((arr, path, value) =>
-  find(pathEq(path, value))(arr)
+  defaultTo(null, find(pathEq(path, value))(arr))
 )
 
 const flattenObject = ob => {
@@ -232,7 +235,7 @@ export const miTypes = {
   AC_Module_Type_D: 'Type D'
 }
 
-export const renameKeys = (keysMap, obj) =>
+export const renameKeys = curry((keysMap, obj) =>
   Object.keys(obj).reduce(
     (acc, key) => ({
       ...acc,
@@ -240,6 +243,7 @@ export const renameKeys = (keysMap, obj) =>
     }),
     {}
   )
+)
 
 export const arrayToObject = (key, array) => indexBy(prop(key), array)
 const flatErrors = map(prop('device_sn'))
@@ -267,8 +271,8 @@ export const addHasErrorProp = results => {
 }
 
 export function getEnvironment() {
-  if (process.env.REACT_APP_IS_TEST) return 'test'
-  if (process.env.REACT_APP_IS_DEV) return 'dev'
+  if (process.env.REACT_APP_FLAVOR === 'cm2-test') return 'test'
+  if (process.env.REACT_APP_FLAVOR === 'cm2-uat') return 'beta'
   return 'prod'
 }
 
@@ -299,11 +303,28 @@ export const calculateTimeout = lastUpdated => {
 
 export const hasInternetConnection = () =>
   new Promise((resolve, reject) =>
-    fetch(process.env.REACT_APP_LATEST_FIRMWARE_URL)
+    fetch('https://google.com')
       .then(() => resolve())
       .catch(() => reject())
   )
 
+export const removeUndefined = reject(isNil)
+
+export const generateSSID = serialNumber => {
+  const lastIndex = serialNumber.length
+  const ssidPt1 = serialNumber.substring(4, 6)
+  const ssidPt2 = serialNumber.substring(lastIndex - 3, lastIndex)
+
+  return `SunPower${ssidPt1}${ssidPt2}`
+}
+
+export const generatePassword = serialNumber => {
+  let lastIndex = serialNumber.length
+  let password =
+    serialNumber.substring(2, 6) +
+    serialNumber.substring(lastIndex - 4, lastIndex)
+  return password
+}
 export const parseMD5FromResponse = compose(head, split(' '))
 export const renameExtension = replace(/\.tar\.gz$/, '.md5')
 
@@ -321,4 +342,12 @@ export const getExpectedMD5 = async url => {
   throw new Error(`getExpectedMD5: Failed fetching md5 for: ${url}`)
 }
 
-export const removeUndefined = reject(isNil)
+export const isDebug = includes(process.env.REACT_APP_FLAVOR, [
+  'cm2-uat',
+  'cm2-test'
+])
+
+export const isProd = includes(process.env.REACT_APP_FLAVOR, [
+  'cm2-prod',
+  'cm2-training'
+])

@@ -1781,7 +1781,7 @@ exports[`Network Widget after selecting network network is selected 1`] = `
                     </div>
                   </div>
                   <div
-                    className="field is-horizontal mb-15"
+                    className="field is-horizontal"
                   >
                     <div
                       className="field-label"
@@ -1811,6 +1811,29 @@ exports[`Network Widget after selecting network network is selected 1`] = `
                           />
                         </div>
                       </div>
+                    </div>
+                  </div>
+                  <div
+                    className="field is-flex mb-15 level-right"
+                  >
+                    <div
+                      className="control"
+                    >
+                      <input
+                        checked={false}
+                        className="checkbox-dark is-small ml-5 mr-5"
+                        id="showPassword"
+                        onChange={[Function]}
+                        type="checkbox"
+                      />
+                    </div>
+                    <div>
+                      <label
+                        className="label has-text-white is-small"
+                        htmlFor="showPassword"
+                      >
+                        SHOW_PASSWORD
+                      </label>
                     </div>
                   </div>
                   <div
@@ -3533,7 +3556,7 @@ exports[`Network Widget on initial state renders correctly 1`] = `
                     </div>
                   </div>
                   <div
-                    className="field is-horizontal mb-15"
+                    className="field is-horizontal"
                   >
                     <div
                       className="field-label"
@@ -3563,6 +3586,29 @@ exports[`Network Widget on initial state renders correctly 1`] = `
                           />
                         </div>
                       </div>
+                    </div>
+                  </div>
+                  <div
+                    className="field is-flex mb-15 level-right"
+                  >
+                    <div
+                      className="control"
+                    >
+                      <input
+                        checked={false}
+                        className="checkbox-dark is-small ml-5 mr-5"
+                        id="showPassword"
+                        onChange={[Function]}
+                        type="checkbox"
+                      />
+                    </div>
+                    <div>
+                      <label
+                        className="label has-text-white is-small"
+                        htmlFor="showPassword"
+                      >
+                        SHOW_PASSWORD
+                      </label>
                     </div>
                   </div>
                   <div

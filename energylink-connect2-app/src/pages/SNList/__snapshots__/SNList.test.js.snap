@@ -71,68 +71,155 @@ exports[`Serial Number List Page renders correctly 1`] = `
               <div
                 className="sn-container"
               >
-                <span
-                  className="has-text-weight-bold"
-                >
-                  TAP_SN_TO_EDIT
-                </span>
                 <div
-                  className="sn-item mt-10 mb-10 pb-5"
-                  key="E00121852014339"
+                  className="sn-list mb-10"
                 >
-                  <span
-                    className="is-uppercase has-text-weight-bold has-text-white"
-                    onClick={[Function]}
+                  <p
+                    className="has-text-weight-bold mb-20"
                   >
-                    E00121852014339
-                  </span>
-                  <button
-                    className="has-text-white is-size-6"
-                    onClick={[Function]}
+                    TAP_SN_TO_EDIT
+                  </p>
+                  <div
+                    className="sn-item mt-10 mb-10 pb-5"
+                    key="E00121852014339"
                   >
-                    <i
-                      className="sp-close"
-                    />
-                  </button>
+                    <p
+                      className="is-uppercase has-text-weight-bold has-text-white"
+                      onClick={[Function]}
+                    >
+                      E00121852014339
+                    </p>
+                    <button
+                      className="has-text-white is-paddingless"
+                      onClick={[Function]}
+                    >
+                      <i
+                        className="sp-close is-size-4"
+                      />
+                    </button>
+                  </div>
+                  <div
+                    className="sn-item mt-10 mb-10 pb-5"
+                    key="E00121852014348"
+                  >
+                    <p
+                      className="is-uppercase has-text-weight-bold has-text-white"
+                      onClick={[Function]}
+                    >
+                      E00121852014348
+                    </p>
+                    <button
+                      className="has-text-white is-paddingless"
+                      onClick={[Function]}
+                    >
+                      <i
+                        className="sp-close is-size-4"
+                      />
+                    </button>
+                  </div>
+                  <div
+                    className="sn-item mt-10 mb-10 pb-5"
+                    key="E00121929013075"
+                  >
+                    <p
+                      className="is-uppercase has-text-weight-bold has-text-white"
+                      onClick={[Function]}
+                    >
+                      E00121929013075
+                    </p>
+                    <button
+                      className="has-text-white is-paddingless"
+                      onClick={[Function]}
+                    >
+                      <i
+                        className="sp-close is-size-4"
+                      />
+                    </button>
+                  </div>
                 </div>
-                <div
-                  className="sn-item mt-10 mb-10 pb-5"
-                  key="E00121852014348"
+                <ManualEntryForm
+                  callback={[Function]}
+                  serialNumber=""
                 >
-                  <span
-                    className="is-uppercase has-text-weight-bold has-text-white"
-                    onClick={[Function]}
+                  <form
+                    className="sn-manual-entry"
+                    onSubmit={[Function]}
                   >
-                    E00121852014348
-                  </span>
-                  <button
-                    className="has-text-white is-size-6"
-                    onClick={[Function]}
-                  >
-                    <i
-                      className="sp-close"
-                    />
-                  </button>
-                </div>
-                <div
-                  className="sn-item mt-10 mb-10 pb-5"
-                  key="E00121929013075"
-                >
-                  <span
-                    className="is-uppercase has-text-weight-bold has-text-white"
-                    onClick={[Function]}
-                  >
-                    E00121929013075
-                  </span>
-                  <button
-                    className="has-text-white is-size-6"
-                    onClick={[Function]}
-                  >
-                    <i
-                      className="sp-close"
-                    />
-                  </button>
-                </div>
+                    <div
+                      className="is-flex file tile buttons-container"
+                    >
+                      <div
+                        className="ifield mr-10"
+                      >
+                        <Component
+                          autoComplete="barcode"
+                          className="field-barcode"
+                          input={
+                            Object {
+                              "name": "barcode",
+                              "onBlur": [Function],
+                              "onChange": [Function],
+                              "onFocus": [Function],
+                              "value": "",
+                            }
+                          }
+                          meta={
+                            Object {
+                              "active": false,
+                              "data": Object {},
+                              "dirty": false,
+                              "dirtySinceLastSubmit": false,
+                              "error": "SN_FIELD_ERROR_REGEX",
+                              "initial": "",
+                              "invalid": true,
+                              "length": undefined,
+                              "modified": false,
+                              "pristine": true,
+                              "submitError": undefined,
+                              "submitFailed": false,
+                              "submitSucceeded": false,
+                              "submitting": false,
+                              "touched": false,
+                              "valid": false,
+                              "validating": false,
+                              "visited": false,
+                            }
+                          }
+                          placeholder="ENTER_SERIAL_MANUALLY"
+                          type="text"
+                        >
+                          <div
+                            className="field"
+                          >
+                            <p
+                              className="control"
+                            >
+                              <input
+                                autoComplete="barcode"
+                                className="input field-barcode"
+                                disabled={false}
+                                id="barcode"
+                                name="barcode"
+                                onBlur={[Function]}
+                                onChange={[Function]}
+                                onFocus={[Function]}
+                                placeholder="ENTER_SERIAL_MANUALLY"
+                                type="text"
+                                value=""
+                              />
+                            </p>
+                          </div>
+                        </Component>
+                      </div>
+                      <button
+                        className="button is-paddingless has-text-primary has-text-weight-bold is-uppercase is-outlined button-transparent"
+                        type="submit"
+                      >
+                        ADD
+                      </button>
+                    </div>
+                  </form>
+                </ManualEntryForm>
               </div>
               <div
                 className="sn-buttons"
@@ -160,10 +247,10 @@ exports[`Serial Number List Page renders correctly 1`] = `
                   </div>
                 </ScanButtons>
                 <button
-                  className="button has-text-centered is-uppercase is-secondary has-no-border is-paddingless"
+                  className="button has-text-centered is-uppercase is-secondary has-no-border pl-0 pr-0"
                   onClick={[Function]}
                 >
-                  SN_MANUAL_ENTRY
+                  LEGACY_DISCOVERY
                 </button>
               </div>
             </div>

@@ -51,7 +51,7 @@ exports[`SavingConfiguration component renders correctly 1`] = `
             className="pt-20 pb-20"
           >
             <i
-              className="sp-close has-text-white is-size-1"
+              className="sp-hey has-text-white is-size-1"
             />
           </div>
           <div

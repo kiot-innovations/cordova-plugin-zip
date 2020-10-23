@@ -1,20 +1,16 @@
 .sn-manual-entry {
-  .control-barcode {
-    height: 6rem;
+  .ifield {
     flex-grow: 1;
-
-    .field-barcode {
-      width: 100%;
-    }
-
-    span.error {
-      width: 235px;
-      display: block;
-      text-align: left;
-    }
-  }
-  .control-add {
-    flex-grow: 0;
   }
 
+  button[type='submit'] {
+    flex-grow: inherit;
+    height: 3rem;
+    min-width: 64px;
+  }
+
+  span.error {
+    display: block;
+    text-align: left;
+  }
 }

@@ -1,0 +1,57 @@
+@import '~@sunpower/theme-dark/styles/variables';
+
+.rma-devices {
+  .header {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .page-title {
+      font: $font;
+    }
+
+    .go-back {
+      position: absolute;
+      left: 0;
+    }
+  }
+
+  .collapsible-content {
+    display: flex;
+    flex-direction: column;
+
+    & label {
+      align-items: center;
+      border-bottom: 1px solid white;
+    }
+  }
+
+  .buttons-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+
+    button {
+      margin-right: 1rem;
+
+    }
+  }
+
+  .button-transparent {
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    background: transparent;
+    border: none;
+    color: $sun;
+  }
+
+  .storage-button {
+    display: flex;
+  }
+
+  .other-components {
+    display: flex;
+    flex-direction: column;
+  }
+}

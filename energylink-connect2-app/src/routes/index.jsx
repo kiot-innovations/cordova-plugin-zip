@@ -5,6 +5,7 @@ import { Route, Switch } from 'react-router-dom'
 import { withTracker } from 'shared/ga'
 import { routeAuthorization, setLayout } from 'hocs'
 import useUpgrade from 'hooks/useUpgrade'
+import useAppUpdate from 'hooks/useAppUpdate'
 import useCanceledPVSConnection from 'hooks/useCanceledPVSConnection'
 
 import BillOfMaterials from 'pages/BillOfMaterials'
@@ -13,14 +14,11 @@ import ConnectToPVS from 'pages/ConnectToPVS'
 import CreateSite from 'pages/CreateSite'
 import Data from 'pages/Data'
 import Devices from 'pages/Devices'
-import Firmwares from 'pages/Firmwares'
-import GiveFeedback from 'pages/GiveFeedback'
 import Home from 'pages/Home'
 import InstallSuccessful from 'pages/InstallSuccess'
 import InventoryCount from 'pages/InventoryCount'
 import LegacyDiscovery from 'pages/LegacyDiscovery'
 import Login from 'pages/Login'
-import Menu from 'pages/Menu'
 import ModelEdit from 'pages/ModelEdit'
 import NotFound from 'pages/NotFound'
 import PanelLayoutTool from 'pages/PanelLayoutTool/AddingPanels'
@@ -42,12 +40,13 @@ import EQSPrediscoveryErrors from 'pages/EQSPrediscoveryErrors'
 import ESSHealthCheck from 'pages/ESSHealthCheck'
 import ESSHealthCheckErrors from 'pages/ESSHealthCheckErrors'
 import StoragePrediscovery from 'pages/StoragePrediscovery'
-import VersionInformation from 'pages/VersionInformation'
 import DebugPage from 'pages/DebugPage'
 import PvsSelection from 'pages/PvsSelection'
 import ExistingDevices from 'pages/ExistingDevices'
 import RMAInventory from 'pages/RMAInventory'
 import RMASnList from 'pages/RMASnList'
+import RMAMiDiscovery from 'pages/RMAMiDiscovery'
+import RMADevices from 'pages/RMADevices'
 
 import { validateSession } from 'state/actions/auth'
 import { updateBodyHeight } from 'shared/utils'
@@ -64,17 +63,13 @@ const mapComponents = {
   [paths.PROTECTED.PVS_SELECTION_SCREEN.path]: PvsSelection,
   [paths.PROTECTED.BILL_OF_MATERIALS.path]: BillOfMaterials,
   [paths.PROTECTED.CREATE_SITE.path]: CreateSite,
-  [paths.PROTECTED.GIVE_FEEDBACK.path]: GiveFeedback,
   [paths.PROTECTED.DATA.path]: Data,
-  [paths.PROTECTED.MANAGE_FIRMWARES.path]: Firmwares,
-  [paths.PROTECTED.MENU.path]: Menu,
   [paths.PROTECTED.PANEL_LAYOUT_TOOL.path]: PanelLayoutTool,
   [paths.PROTECTED.PANEL_LAYOUT_TOOL_GROUPS.path]: PanelLayoutToolGroupPanels,
   [paths.PROTECTED.PVS_CONNECTION_SUCCESS.path]: PvsConnectionSuccessful,
   [paths.PROTECTED.PVS_PROVIDE_INTERNET.path]: PVSProvideInternet,
   [paths.PROTECTED.INSTALL_SUCCESS.path]: InstallSuccessful,
   [paths.PROTECTED.ROOT.path]: Home,
-  [paths.PROTECTED.VERSION_INFORMATION.path]: VersionInformation,
   [paths.PROTECTED.INVENTORY_COUNT.path]: InventoryCount,
   [paths.PROTECTED.CONNECT_TO_PVS.path]: ConnectToPVS,
   [paths.PROTECTED.SCAN_LABELS.path]: ScanLabels,
@@ -96,8 +91,10 @@ const mapComponents = {
   [paths.PROTECTED.ESS_HEALTH_CHECK.path]: ESSHealthCheck,
   [paths.PROTECTED.ESS_HEALTH_CHECK_ERRORS.path]: ESSHealthCheckErrors,
   [paths.PROTECTED.RMA_EXISTING_DEVICES.path]: ExistingDevices,
+  [paths.PROTECTED.RMA_MI_DISCOVERY.path]: RMAMiDiscovery,
   [paths.UNPROTECTED.FORGOT_PASSWORD.path]: NotFound,
   [paths.UNPROTECTED.GET_ASSISTANCE.path]: NotFound,
+  [paths.PROTECTED.RMA_DEVICES.path]: RMADevices,
   [paths.UNPROTECTED.LOGIN.path]: Login
 }
 
@@ -116,6 +113,7 @@ function AppRoutes() {
     window.scrollTo(0, 0)
   })
 
+  useAppUpdate()
   useUpgrade()
   useCanceledPVSConnection()
 
@@ -128,8 +126,7 @@ function AppRoutes() {
     return () => {
       document.removeEventListener('keyboardDidHide', updateBodyHeight)
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, [dispatch])
 
   const isLoggedIn = useSelector(({ user }) => user.auth.access_token)
   return (

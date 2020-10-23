@@ -55,6 +55,12 @@ Object {
                     "device_fw_ver": "1.2.3",
                     "device_type": "MIDC",
                     "last_mapped": "2020-02-15 01:23:45",
+                    "serial_number": "00005",
+                  },
+                  Object {
+                    "device_fw_ver": "1.2.3",
+                    "device_type": "MIDC",
+                    "last_mapped": "2020-02-15 01:23:45",
                     "serial_number": "00002",
                   },
                   Object {
@@ -62,12 +68,6 @@ Object {
                     "device_type": "MIDC",
                     "last_mapped": "2020-02-15 01:23:45",
                     "serial_number": "00001",
-                  },
-                  Object {
-                    "device_fw_ver": "1.2.3",
-                    "device_type": "MIDC",
-                    "last_mapped": "2020-02-15 01:23:45",
-                    "serial_number": "00002",
                   },
                   Array [
                     Object {
@@ -79,6 +79,7 @@ Object {
                   ],
                 ]
               }
+              title="SUNVAULT_ALL_ONE"
             >
               <div
                 className="device-map mb-10 mt-10"
@@ -86,23 +87,18 @@ Object {
                 <div
                   className="head-device is-flex"
                 >
-                  <span
-                    className="has-text-white has-text-weight-bold is-size-5"
+                  <h1
+                    className="has-text-white has-text-weight-bold is-size-5 mb-10"
                   >
-                    MIDC
-                  </span>
-                  <span
-                    className="has-text-weight-bold is-size-5"
-                  >
-                    00002
-                  </span>
+                    SUNVAULT_ALL_ONE
+                  </h1>
                 </div>
                 <div
                   className="rest-of-devices"
                 >
                   <div
                     className="mt-5 mb-5 is-flex child-device"
-                    key="00001"
+                    key="00005MIDC"
                   >
                     <span
                       className="has-text-white has-text-weight-bold"
@@ -112,12 +108,12 @@ Object {
                     <span
                       className="has-text-weight-bold"
                     >
-                      00001
+                      00005
                     </span>
                   </div>
                   <div
                     className="mt-5 mb-5 is-flex child-device"
-                    key="00002"
+                    key="00002MIDC"
                   >
                     <span
                       className="has-text-white has-text-weight-bold"
@@ -132,6 +128,7 @@ Object {
                   </div>
                   <div
                     className="mt-5 mb-5 is-flex child-device"
+                    key="00001MIDC"
                   >
                     <span
                       className="has-text-white has-text-weight-bold"
@@ -140,6 +137,22 @@ Object {
                     </span>
                     <span
                       className="has-text-weight-bold"
+                    >
+                      00001
+                    </span>
+                  </div>
+                  <div
+                    className="mt-5 mb-5 is-flex child-device"
+                    key="MIDC"
+                  >
+                    <span
+                      className="has-text-white has-text-weight-bold"
+                    >
+                      MIDC
+                    </span>
+                    <span
+                      className="has-text-weight-bold"
+                      key="000030"
                     >
                       00003
                     </span>
@@ -158,6 +171,7 @@ Object {
                   },
                 ]
               }
+              title="HUB_PLUS"
             >
               <div
                 className="device-map mb-10 mt-10"
@@ -165,54 +179,31 @@ Object {
                 <div
                   className="head-device is-flex"
                 >
-                  <span
-                    className="has-text-white has-text-weight-bold is-size-5"
+                  <h1
+                    className="has-text-white has-text-weight-bold is-size-5 mb-10"
                   >
-                    MIDC
-                  </span>
-                  <span
-                    className="has-text-weight-bold is-size-5"
-                  >
-                    00004
-                  </span>
+                    HUB_PLUS
+                  </h1>
                 </div>
                 <div
                   className="rest-of-devices"
-                />
-              </div>
-            </DeviceMap>
-            <DeviceMap
-              deviceList={
-                Array [
-                  Object {
-                    "device_fw_ver": "1.2.3",
-                    "device_type": "MIDC",
-                    "last_mapped": "2020-02-15 01:23:45",
-                    "serial_number": "00005",
-                  },
-                ]
-              }
-            >
-              <div
-                className="device-map mb-10 mt-10"
-              >
-                <div
-                  className="head-device is-flex"
                 >
-                  <span
-                    className="has-text-white has-text-weight-bold is-size-5"
+                  <div
+                    className="mt-5 mb-5 is-flex child-device"
+                    key="00004MIDC"
                   >
-                    MIDC
-                  </span>
-                  <span
-                    className="has-text-weight-bold is-size-5"
-                  >
-                    00005
-                  </span>
+                    <span
+                      className="has-text-white has-text-weight-bold"
+                    >
+                      MIDC
+                    </span>
+                    <span
+                      className="has-text-weight-bold"
+                    >
+                      00004
+                    </span>
+                  </div>
                 </div>
-                <div
-                  className="rest-of-devices"
-                />
               </div>
             </DeviceMap>
             <ErrorDetected

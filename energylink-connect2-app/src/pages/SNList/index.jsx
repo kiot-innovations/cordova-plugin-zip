@@ -1,13 +1,12 @@
-import React, { useCallback, useState } from 'react'
+import React, { useState } from 'react'
 import { Loader } from 'components/Loader'
 import useModal from 'hooks/useModal'
-import { pathOr } from 'ramda'
 
 import BlockUI from 'react-block-ui'
 
 import 'react-block-ui/style.css'
 import { useDispatch, useSelector } from 'react-redux'
-import { useHistory, useLocation } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 import paths from 'routes/paths'
 import { useI18n } from 'shared/i18n'
 import { PUSH_CANDIDATES_INIT } from 'state/actions/devices'
@@ -23,21 +22,13 @@ function SNList() {
   const t = useI18n()
   const dispatch = useDispatch()
   const history = useHistory()
-  const location = useLocation()
-  const { isManualModeDefault = false } = pathOr({}, ['state'], location)
 
-  const [isManualMode, setManualMode] = useState(isManualModeDefault)
   const { serialNumbers, fetchingSN, serialNumbersError } = useSelector(
     state => state.pvs
   )
   const [editingSn, setEditingSn] = useState('')
   const { bom } = useSelector(state => state.inventory)
   const { canAccessScandit } = useSelector(state => state.global)
-
-  const toggleManualMode = useCallback(() => {
-    setManualMode(!isManualMode)
-    setEditingSn('')
-  }, [isManualMode])
 
   const modulesOnInventory = bom.filter(item => {
     return item.item === 'AC_MODULES'
@@ -51,7 +42,6 @@ function SNList() {
 
   const handleEditSN = serialNumber => {
     setEditingSn(serialNumber)
-    setManualMode(true)
   }
 
   const handleRemoveSN = serialNumber => {
@@ -60,24 +50,23 @@ function SNList() {
 
   const afterEditCallback = () => {
     setEditingSn('')
-    setManualMode(false)
     dispatch(REMOVE_SN(editingSn))
   }
 
   const createSnItem = serialNumber => {
     return (
       <div key={serialNumber} className="sn-item mt-10 mb-10 pb-5">
-        <span
+        <p
           className="is-uppercase has-text-weight-bold has-text-white"
           onClick={() => handleEditSN(serialNumber)}
         >
           {serialNumber}
-        </span>
+        </p>
         <button
           onClick={() => handleRemoveSN(serialNumber)}
-          className="has-text-white is-size-6"
+          className="has-text-white is-paddingless"
         >
-          <i className="sp-close" />
+          <i className="sp-close is-size-4" />
         </button>
       </div>
     )
@@ -225,55 +214,38 @@ function SNList() {
           </span>
         </div>
         <div className="sn-container">
-          {serialNumbersList.length > 0 ? (
-            <>
-              <span className="has-text-weight-bold">
-                {t('TAP_SN_TO_EDIT')}
-              </span>
-              {serialNumbersList}
-            </>
-          ) : (
-            <span>{t('SCAN_HINT')}</span>
-          )}
+          <div className="sn-list mb-10">
+            {serialNumbersList.length > 0 ? (
+              <>
+                <p className="has-text-weight-bold mb-20">
+                  {t('TAP_SN_TO_EDIT')}
+                </p>
+                {serialNumbersList}
+              </>
+            ) : (
+              <span className="mb-20">{t('SCAN_HINT')}</span>
+            )}
+          </div>
+          <SNManualEntry
+            serialNumber={editingSn}
+            callback={afterEditCallback}
+          />
           {fetchingSN ? <Loader /> : ''}
         </div>
 
         <div className="sn-buttons">
-          {isManualMode ? (
-            <>
-              <SNManualEntry
-                serialNumber={editingSn}
-                callback={afterEditCallback}
-              />
-              <button
-                onClick={toggleManualMode}
-                className="button has-text-centered is-uppercase is-secondary has-no-border mr-40 pl-0 pr-0"
-              >
-                {t('BACK_TO_SCAN')}
-              </button>
-              <button
-                onClick={toggleLegacyDiscoveryModal}
-                className="button has-text-centered is-uppercase is-secondary has-no-border pl-0 pr-0"
-              >
-                {t('LEGACY_DISCOVERY')}
-              </button>
-            </>
-          ) : (
-            <>
-              <SNScanButtons
-                fetchingSN={fetchingSN}
-                onScanMore={onScanMore}
-                countSN={countSN}
-                canScanMore={canAccessScandit}
-              />
-              <button
-                onClick={toggleManualMode}
-                className="button has-text-centered is-uppercase is-secondary has-no-border is-paddingless"
-              >
-                {t('SN_MANUAL_ENTRY')}
-              </button>
-            </>
-          )}
+          <SNScanButtons
+            fetchingSN={fetchingSN}
+            onScanMore={onScanMore}
+            countSN={countSN}
+            canScanMore={canAccessScandit}
+          />
+          <button
+            onClick={toggleLegacyDiscoveryModal}
+            className="button has-text-centered is-uppercase is-secondary has-no-border pl-0 pr-0"
+          >
+            {t('LEGACY_DISCOVERY')}
+          </button>
         </div>
       </div>
     </BlockUI>

@@ -1,5 +1,6 @@
 import { compose, defaultTo, head, join, last, slice, split } from 'ramda'
 import { flipConcat, PERSIST_DATA_PATH } from 'shared/utils'
+import { getSHA256FromFile } from 'shared/cordovaMapping'
 
 export const ERROR_CODES = {
   NO_FILESYSTEM_FILE: 'no filesystem file',
@@ -8,16 +9,10 @@ export const ERROR_CODES = {
   getLuaFile: 'getLuaFile',
   noLuaFile: 'noLuaFile',
   parseLuaFile: 'parseLuaFile',
-  noWifi: 'No wifi'
+  noWifi: 'No WiFi'
 }
 
 export const getFileNameFromURL = compose(last, split('/'))
-
-export const getGridProfileFileName = () =>
-  getFileNameFromURL(process.env.REACT_APP_GRID_PROFILE_URL || '')
-
-export const getGridProfileFilePath = () =>
-  `firmware/${getGridProfileFileName()}`
 
 export const getLuaName = compose(
   join(' '),
@@ -179,11 +174,6 @@ export const deleteFile = (path = '') =>
       .catch(reject)
   })
 
-export async function getLatestPVSFirmwareUrl() {
-  const res = await fetch(process.env.REACT_APP_LATEST_FIRMWARE_URL)
-  return await res.text()
-}
-
 export const readFile = path =>
   new Promise(async (resolve, reject) => {
     const fileEntry = await fileExists(path)
@@ -197,22 +187,23 @@ export const readFile = path =>
     }, reject)
   })
 
-export const getDownloadSizeFromLuaFile = compose(
-  parseInt,
+export const getSHA256FromLuaFile = compose(
   head,
-  split(','),
+  split("'"),
   last,
-  split('dlsize = ')
+  split("hash = '")
 )
-
-export const getLuaFileSize = async rootFSPath => {
-  const dlSize = getDownloadSizeFromLuaFile(
+export const verifySHA256 = async luaPath => {
+  const expectedSHA = getSHA256FromLuaFile(
     (await readFile('luaFiles/fwup002.lua')) || ''
   )
+  const receivedSHA = await getSHA256FromFile(luaPath)
 
-  const { lastModified, size } = await getFileInfo(rootFSPath)
-  if (size === dlSize) return { lastModified, size }
-  throw new Error('The download is not the same size as expected')
+  if (receivedSHA === expectedSHA) {
+    const { lastModified, size } = await getFileInfo(luaPath)
+    return { lastModified, size }
+  }
+  throw new Error('The SHA256 is not the same size as expected')
 }
 
 export const createSingleDirectory = (fs, newFolder = '') =>

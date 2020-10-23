@@ -1,12 +1,15 @@
-import React from 'react'
-import { compose, endsWith, isEmpty, not, path } from 'ramda'
+import React, { useEffect } from 'react'
+import { compose, endsWith, equals, isEmpty, not, path } from 'ramda'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 
 import paths from 'routes/paths'
 import { useI18n } from 'shared/i18n'
 import { UPDATE_DEVICES_LIST } from 'state/actions/devices'
-import { SUBMIT_CONFIG } from 'state/actions/systemConfiguration'
+import {
+  REPLACE_RMA_PVS,
+  SUBMIT_CONFIG
+} from 'state/actions/systemConfiguration'
 import { useShowModal } from 'hooks/useGlobalModal'
 
 import GridBehaviorWidget from './GridBehaviorWidget'
@@ -17,6 +20,7 @@ import RSEWidget from './RSEWidget'
 import StorageWidget from './StorageWidget'
 
 import './SystemConfiguration.scss'
+import { CONFIG_START } from 'state/actions/analytics'
 
 const createMeterConfig = (devicesList, meterConfig, dispatch, site) => {
   const updatedDevices = devicesList.map(device => {
@@ -61,6 +65,8 @@ function SystemConfiguration() {
   const { found } = useSelector(state => state.devices)
 
   const siteKey = useSelector(path(['site', 'site', 'siteKey']))
+  const rmaMode = useSelector(path(['rma', 'rmaMode']))
+  const replacingPvs = equals('REPLACE_PVS', rmaMode)
   const hasStorage = useSelector(
     compose(not, isEmpty, path(['systemConfiguration', 'storage', 'data']))
   )
@@ -94,7 +100,9 @@ function SystemConfiguration() {
         showNoGridModal()
       } else {
         if (validateConfig(configObject)) {
-          dispatch(SUBMIT_CONFIG(configObject))
+          replacingPvs
+            ? dispatch(REPLACE_RMA_PVS(configObject))
+            : dispatch(SUBMIT_CONFIG(configObject))
           history.push(paths.PROTECTED.SAVING_CONFIGURATION.path)
         } else {
           showErrorConfigurationModal()
@@ -107,7 +115,9 @@ function SystemConfiguration() {
 
   const forceSubmit = () => {
     const configObject = generateConfigObject()
-    dispatch(SUBMIT_CONFIG(configObject))
+    replacingPvs
+      ? dispatch(REPLACE_RMA_PVS(configObject))
+      : dispatch(SUBMIT_CONFIG(configObject))
     history.push(paths.PROTECTED.SAVING_CONFIGURATION.path)
   }
   const showErrorConfigurationModal = useShowModal({
@@ -121,8 +131,11 @@ function SystemConfiguration() {
     componentPath: './NoGridModal.jsx',
     dismissable: true
   })
+  useEffect(() => {
+    dispatch(CONFIG_START())
+  }, [dispatch])
   return (
-    <div className="fill-parent is-flex tile is-vertical has-text-centered system-config pl-10 pr-10">
+    <div className="fill-parent is-flex tile is-vertical has-text-centered system-config pl-10 pr-10 mb-40">
       <span className="is-uppercase has-text-weight-bold mb-20">
         {t('SYSTEM_CONFIGURATION')}
       </span>

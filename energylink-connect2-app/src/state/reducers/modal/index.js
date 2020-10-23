@@ -1,5 +1,5 @@
 import { createReducer } from 'redux-act'
-import { HIDE_MODAL, SHOW_MODAL } from 'state/actions/modal'
+import { HIDE_MODAL, SET_CURRENT_MODAL } from 'state/actions/modal'
 
 const initialState = {}
 
@@ -10,7 +10,7 @@ const parseModalParametes = modal => ({
 
 const modalReducer = createReducer(
   {
-    [SHOW_MODAL]: (state, payload) => ({
+    [SET_CURRENT_MODAL]: (state, payload) => ({
       show: true,
       ...parseModalParametes(payload)
     }),

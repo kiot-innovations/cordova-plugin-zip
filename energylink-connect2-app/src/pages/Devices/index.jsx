@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import clsx from 'clsx'
 import useModal from 'hooks/useModal'
 import { length, pathOr } from 'ramda'
 import { useDispatch, useSelector } from 'react-redux'
@@ -11,7 +10,8 @@ import {
   FETCH_CANDIDATES_COMPLETE,
   FETCH_CANDIDATES_INIT,
   RESET_DISCOVERY,
-  FETCH_DEVICES_LIST
+  FETCH_DEVICES_LIST,
+  DISCOVER_COMPLETE
 } from 'state/actions/devices'
 import paths from 'routes/paths'
 import Collapsible from 'components/Collapsible'
@@ -100,6 +100,7 @@ const discoveryStatus = (
   claimError,
   claimingDevices,
   claimDevices,
+  claimProgress,
   t,
   discoveryComplete,
   retryDiscovery
@@ -109,7 +110,7 @@ const discoveryStatus = (
       return (
         <>
           <button
-            className="button is-primary is-uppercase is-paddingless ml-75 mr-75"
+            className="button is-primary is-uppercase is-paddingless"
             onClick={retryDiscovery}
           >
             {t('RETRY')}
@@ -123,7 +124,7 @@ const discoveryStatus = (
       return (
         <>
           <button
-            className="button is-primary is-uppercase is-paddingless ml-75 mr-75"
+            className="button is-primary is-uppercase is-paddingless"
             onClick={retryDiscovery}
           >
             {t('RETRY')}
@@ -139,46 +140,43 @@ const discoveryStatus = (
           <span className="has-text-weight-bold mb-20">
             {t('CLAIM_DEVICES_ERROR', claimError)}
           </span>
-          <button
-            className="button is-primary is-outlined is-uppercase is-paddingless ml-75 mr-75 mb-10"
-            disabled={claimingDevices}
-            onClick={retryDiscovery}
-          >
-            {t('ADD-DEVICES')}
-          </button>
-          <button
-            className={clsx('button is-primary is-uppercase ml-75 mr-75', {
-              'is-loading': claimingDevices
-            })}
-            disabled={claimingDevices}
-            onClick={claimDevices}
-          >
-            {t('CLAIM_DEVICES')}
-          </button>
+          <div className="inline-buttons">
+            <button
+              className="button is-primary is-outlined is-uppercase is-paddingless mb-10"
+              disabled={claimingDevices}
+              onClick={retryDiscovery}
+            >
+              {t('ADD-DEVICES')}
+            </button>
+            <button
+              className={'button is-primary is-uppercase'}
+              disabled={claimingDevices}
+              onClick={claimDevices}
+            >
+              {either(claimingDevices, `${claimProgress}%`, t('CLAIM_DEVICES'))}
+            </button>
+          </div>
         </>
       )
     }
 
     return (
-      <>
+      <div className="inline-buttons">
         <button
-          className="button is-primary is-outlined is-uppercase is-paddingless ml-75 mr-75 mb-10"
+          className="button is-primary is-outlined is-uppercase is-paddingless mb-10"
           disabled={claimingDevices}
           onClick={retryDiscovery}
         >
           {t('ADD-DEVICES')}
         </button>
         <button
-          className={clsx(
-            'button is-primary is-uppercase is-paddingless ml-75 mr-75',
-            { 'is-loading': claimingDevices }
-          )}
+          className={'button is-primary is-uppercase'}
           disabled={claimingDevices}
           onClick={claimDevices}
         >
-          {t('CLAIM_DEVICES')}
+          {either(claimingDevices, `${claimProgress}%`, t('CLAIM_DEVICES'))}
         </button>
-      </>
+      </div>
     )
   } else {
     return error ? (
@@ -193,13 +191,17 @@ const discoveryStatus = (
       </>
     ) : (
       <span className="has-text-weight-bold mb-20">
-        {claimingDevices ? t('CLAIMING_DEVICES') : t('DISCOVERY_IN_PROGRESS')}
+        {either(
+          claimingDevices,
+          t('CLAIMING_DEVICES'),
+          t('DISCOVERY_IN_PROGRESS')
+        )}
       </span>
     )
   }
 }
 
-const miActions = (num = 0, max = 0, icon = '') => (
+const miActions = (num = 0, max = 0) => (
   <div>
     <span className="devices-counter mr-10 ml-0 mt-0 mb-0">{`${num}/${max}`}</span>
   </div>
@@ -217,6 +219,7 @@ function Devices() {
     claimingDevices,
     claimedDevices,
     claimError,
+    claimProgress,
     error,
     progress,
     discoveryComplete
@@ -273,6 +276,7 @@ function Devices() {
   }
 
   const claimDevices = () => {
+    dispatch(DISCOVER_COMPLETE())
     const claimObject = inverter.map(mi => {
       mi.OPERATION = 'add'
       return mi
@@ -320,6 +324,7 @@ function Devices() {
                     )}
                   </div>
                   <div
+                    className="is-flex mi-indicator"
                     onClick={() =>
                       showMIStatusModal(elem.serial_number, elem.STATEDESCR)
                     }
@@ -341,6 +346,7 @@ function Devices() {
         claimError,
         claimingDevices,
         claimDevices,
+        claimProgress,
         t,
         discoveryComplete,
         retryDiscovery
