@@ -78,6 +78,11 @@ const ErrorListScreen = ({ errors = [] }) => {
   const history = useHistory()
   const { currentStep } = useSelector(state => state.storage)
 
+  const cancelCommissioning = () => {
+    dispatch(PVS_CONNECTION_CLOSE())
+    history.push(paths.PROTECTED.BILL_OF_MATERIALS.path)
+  }
+
   return (
     <div className="error-list pr-10 pl-10">
       <div className="error-list-header has-text-centered">
@@ -98,7 +103,7 @@ const ErrorListScreen = ({ errors = [] }) => {
         </div>
         <div className="has-text-centered mt-10">
           <span
-            onClick={compose(dispatch, PVS_CONNECTION_CLOSE)}
+            onClick={cancelCommissioning}
             role="button"
             className="has-text-primary has-text-weight-bold"
           >

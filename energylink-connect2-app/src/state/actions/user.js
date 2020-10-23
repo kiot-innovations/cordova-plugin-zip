@@ -4,6 +4,7 @@ import { httpGet } from '../../shared/fetch'
 export const GET_USER_INIT = createAction('GET_USER_INIT')
 export const GET_USER_SUCCESS = createAction('GET_USER_SUCCESS')
 export const GET_USER_ERROR = createAction('GET_USER_ERROR')
+export const SET_DEALER_NAME = createAction('SET_DEALER_NAME')
 
 /* DEPRECATED */
 export const getUser = () => {

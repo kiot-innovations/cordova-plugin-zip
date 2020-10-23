@@ -1,8 +1,10 @@
-import clsx from 'clsx'
-import useGlobalModal, { useGlobalHideModal } from 'hooks/useGlobalModal'
 import React, { lazy, Suspense } from 'react'
+import clsx from 'clsx'
+
+import useGlobalModal, { useGlobalHideModal } from 'hooks/useGlobalModal'
 import { useI18n } from 'shared/i18n'
 import { either } from 'shared/utils'
+
 import './ModalWrapper.scss'
 
 const ModalWrapper = () => {
