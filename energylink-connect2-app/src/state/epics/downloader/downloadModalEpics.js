@@ -1,13 +1,22 @@
-import { path } from 'ramda'
+import { any, equals, path, not } from 'ramda'
 import { ofType } from 'redux-observable'
-import { of } from 'rxjs'
-import { concatMap, exhaustMap, take, map } from 'rxjs/operators'
+import { concat, from, of } from 'rxjs'
+import { concatMap, exhaustMap, take, map, catchError } from 'rxjs/operators'
+
+import { translate } from 'shared/i18n'
+import { hasInternetConnection } from 'shared/utils'
+import { SHOW_MODAL } from 'state/actions/modal'
+import { DOWNLOAD_META_ERROR, DOWNLOAD_OS_ERROR } from 'state/actions/ess'
 import {
   PVS_FIRMWARE_MODAL_IS_CONNECTED,
-  DOWNLOAD_ALLOW_WITH_PVS
+  DOWNLOAD_ALLOW_WITH_PVS,
+  PVS_DECOMPRESS_LUA_FILES_ERROR,
+  PVS_FIRMWARE_DOWNLOAD_ERROR,
+  DOWNLOAD_VERIFY
 } from 'state/actions/fileDownloader'
-import { translate } from 'shared/i18n'
-import { SHOW_MODAL } from 'state/actions/modal'
+import { GRID_PROFILE_DOWNLOAD_ERROR } from 'state/actions/gridProfileDownloader'
+import { EMPTY_ACTION } from 'state/actions/share'
+import { MENU_DISPLAY_ITEM } from 'state/actions/ui'
 
 export const modalPVSConnected = () => {
   const t = translate()
@@ -54,4 +63,75 @@ export const resumeActionWhenUserContinuesEpic = (action$, state$) =>
     })
   )
 
-export default [PVSIsConnectedEpic, resumeActionWhenUserContinuesEpic]
+/**
+ * Alerts that we are still downloading firmware files
+ */
+export const downloadingLatestFirmwareEpic = (action$, state$) =>
+  action$.pipe(
+    ofType(DOWNLOAD_VERIFY.getType()),
+    exhaustMap(() => {
+      const t = translate()
+      const isDownloading = any(equals(true), [
+        path(['value', 'ess', 'isDownloading'], state$),
+        path(['value', 'fileDownloader', 'progress', 'downloading'], state$),
+        not(
+          equals(
+            100,
+            path(
+              ['value', 'fileDownloader', 'gridProfileInfo', 'progress'],
+              state$
+            )
+          )
+        )
+      ])
+
+      return isDownloading && !path(['value', 'ui', 'menu', 'show'], state$)
+        ? concat(
+            of(
+              SHOW_MODAL({
+                title: t('ATTENTION'),
+                componentPath: './Downloads/DownloadInProgressModal.jsx'
+              })
+            ),
+            action$.pipe(
+              ofType(MENU_DISPLAY_ITEM.getType()),
+              map(EMPTY_ACTION),
+              take(1)
+            )
+          )
+        : of(EMPTY_ACTION('Downloads are completed'))
+    })
+  )
+
+/**
+ * Shows error downloading firmware files
+ */
+export const firmwareDownloadFailedEpic = action$ =>
+  action$.pipe(
+    ofType(
+      DOWNLOAD_OS_ERROR.getType(),
+      DOWNLOAD_META_ERROR.getType(),
+      GRID_PROFILE_DOWNLOAD_ERROR.getType(),
+      PVS_FIRMWARE_DOWNLOAD_ERROR.getType(),
+      PVS_DECOMPRESS_LUA_FILES_ERROR.getType()
+    ),
+    exhaustMap(() =>
+      from(hasInternetConnection()).pipe(
+        map(() => {
+          const t = translate()
+          return SHOW_MODAL({
+            title: t('ATTENTION'),
+            componentPath: './Downloads/DownloadFailedModal.jsx'
+          })
+        }),
+        catchError(() => of(EMPTY_ACTION('No internet connection')))
+      )
+    )
+  )
+
+export default [
+  PVSIsConnectedEpic,
+  firmwareDownloadFailedEpic,
+  downloadingLatestFirmwareEpic,
+  resumeActionWhenUserContinuesEpic
+]
