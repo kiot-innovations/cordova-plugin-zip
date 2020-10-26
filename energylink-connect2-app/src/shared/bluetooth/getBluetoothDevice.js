@@ -2,9 +2,9 @@ import { equals, pathOr } from 'ramda'
 
 export const getBLEDevice = pvsSerialNumber =>
   new Promise((resolve, reject) => {
-    let found = false
-    window.ble.startScan(
+    window.ble.scan(
       [],
+      20,
       device => {
         const sniOS = pathOr(
           'NOT_FOUND',
@@ -20,18 +20,9 @@ export const getBLEDevice = pvsSerialNumber =>
           equals(sniOS, pvsSerialNumber) ||
           equals(snAndroid, pvsSerialNumber)
         ) {
-          found = true
           resolve(device)
         }
       },
       reject
-    )
-
-    setTimeout(
-      () =>
-        window.ble.stopScan(() => {
-          if (!found) reject('NOT_FOUND')
-        }, reject),
-      30000
     )
   })

@@ -145,7 +145,7 @@ export const waitForSwaggerEpic = (action$, state$) => {
 export const pvsTimeoutForConnectionEpic = (action$, state$) =>
   action$.pipe(
     ofType(PVS_TIMEOUT_FOR_CONNECTION.getType()),
-    map(always(15 * 1000)),
+    map(always(20 * 1000)),
     delayWhen(timer),
     map(() =>
       path(['value', 'network', 'connected'], state$)
