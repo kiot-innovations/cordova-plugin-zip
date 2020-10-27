@@ -12,7 +12,6 @@ import {
   PVS_FIRMWARE_DOWNLOAD_INIT,
   PVS_FIRMWARE_DOWNLOAD_PROGRESS,
   PVS_FIRMWARE_DOWNLOAD_SUCCESS,
-  PVS_FIRMWARE_MODAL_IS_CONNECTED,
   PVS_FIRMWARE_REPORT_SUCCESS,
   PVS_FIRMWARE_UPDATE_URL,
   PVS_SET_FILE_INFO
@@ -30,7 +29,6 @@ import { getFileSystemFromLuaFile } from 'shared/PVSUtils'
 import { hasInternetConnection } from 'shared/utils'
 import { SHOW_MODAL } from 'state/actions/modal'
 import { translate } from 'shared/i18n'
-import { wifiCheckOperator } from './downloadOperators'
 import { pvsUpdateUrl$ } from 'state/epics/downloader/latestUrls'
 
 export const modalNoInternet = () => {
@@ -42,18 +40,15 @@ export const modalNoInternet = () => {
   })
 }
 
-export const updatePVSFirmwareUrl = (action$, state$) => {
+export const updatePVSFirmwareUrl = action$ => {
   return action$.pipe(
     ofType(PVS_FIRMWARE_DOWNLOAD_INIT.getType()),
-    wifiCheckOperator(state$),
     withLatestFrom(pvsUpdateUrl$),
-    map(([{ action, canDownload }, url]) =>
-      canDownload
-        ? PVS_FIRMWARE_UPDATE_URL({
-            url,
-            shouldRetry: propOr(false, 'payload', action)
-          })
-        : PVS_FIRMWARE_MODAL_IS_CONNECTED(action)
+    map(([action, url]) =>
+      PVS_FIRMWARE_UPDATE_URL({
+        url,
+        shouldRetry: propOr(false, 'payload', action)
+      })
     )
   )
 }

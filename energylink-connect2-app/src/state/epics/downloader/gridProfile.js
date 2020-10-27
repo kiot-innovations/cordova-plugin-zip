@@ -11,40 +11,37 @@ import {
   GRID_PROFILE_DOWNLOAD_SUCCESS,
   GRID_PROFILE_REPORT_SUCCESS
 } from 'state/actions/gridProfileDownloader'
-import { PVS_FIRMWARE_MODAL_IS_CONNECTED } from 'state/actions/fileDownloader'
 import { ERROR_CODES, getFileInfo, getFileNameFromURL } from 'shared/fileSystem'
 import fileTransferObservable from 'state/epics/observables/downloader'
 import { getExpectedMD5, hasInternetConnection } from 'shared/utils'
 import { modalNoInternet } from 'state/epics/downloader/firmware'
-import { wifiCheckOperator } from './downloadOperators'
 import { getMd5FromFile } from 'shared/cordovaMapping'
 import { EMPTY_ACTION } from 'state/actions/share'
 import { gridProfileUpdateUrl$ } from 'state/epics/downloader/latestUrls'
 
-export const initDownloadGridProfileEpic = (action$, state$) =>
+export const initDownloadGridProfileEpic = action$ =>
   action$.pipe(
     ofType(GRID_PROFILE_DOWNLOAD_INIT.getType()),
-    wifiCheckOperator(state$),
     withLatestFrom(gridProfileUpdateUrl$),
-    exhaustMap(([{ action, canDownload }, gridProfileUrl]) =>
-      canDownload
-        ? fileTransferObservable(
-            `firmware/${getFileNameFromURL(gridProfileUrl)}`,
-            gridProfileUrl,
-            propOr(false, 'payload', action)
-          ).pipe(
-            map(({ entry, progress }) =>
-              progress
-                ? GRID_PROFILE_DOWNLOAD_PROGRESS(progress)
-                : GRID_PROFILE_REPORT_SUCCESS(`firmware/${entry.name}`)
-            ),
-            catchError(err => {
-              Sentry.addBreadcrumb({ message: 'Downloading grid profile' })
-              Sentry.captureException(err)
-              return of(GRID_PROFILE_DOWNLOAD_ERROR(err))
-            })
-          )
-        : of(PVS_FIRMWARE_MODAL_IS_CONNECTED(action))
+    exhaustMap(([action, gridProfileUrl]) =>
+      fileTransferObservable(
+        `firmware/${getFileNameFromURL(gridProfileUrl)}`,
+        gridProfileUrl,
+        propOr(false, 'payload', action)
+      ).pipe(
+        map(({ entry, progress }) =>
+          progress
+            ? GRID_PROFILE_DOWNLOAD_PROGRESS(progress)
+            : GRID_PROFILE_REPORT_SUCCESS(`firmware/${entry.name}`)
+        ),
+        catchError(err => {
+          Sentry.addBreadcrumb({
+            message: 'Downloading grid profile'
+          })
+          Sentry.captureException(err)
+          return of(GRID_PROFILE_DOWNLOAD_ERROR(err))
+        })
+      )
     )
   )
 
