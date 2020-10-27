@@ -3,10 +3,12 @@ import clsx from 'clsx'
 import { isEmpty, length, pathOr, isNil, path } from 'ramda'
 import { useI18n } from 'shared/i18n'
 import { either, addHasErrorProp, warningsLength } from 'shared/utils'
+import { rmaModes } from 'state/reducers/rma'
 
 import ESSHealthCheckReport from './ESSHealthCheckReport'
 import ErrorDetected from 'components/ESSErrorDetected'
 import ContinueFooter from 'components/ESSContinueFooter'
+import StorageSyncFooter from 'components/ESSContinueFooter/StorageSyncFooter'
 
 import './ESSHealthCheck.scss'
 
@@ -27,7 +29,19 @@ function ESSHealthCheck(props) {
     props
   )
 
-  const { waiting, progress, onRetry, pathToContinue, pathToErrors } = props
+  const {
+    waiting,
+    progress,
+    onRetry,
+    pathToContinue,
+    pathToErrors,
+    rmaMode = rmaModes.NONE,
+    sync,
+    clear,
+    submitting,
+    commissioned,
+    syncError
+  } = props
 
   return (
     <div className={classes}>
@@ -52,10 +66,20 @@ function ESSHealthCheck(props) {
 
       {either(
         !hasErrors && !loading,
-        <ContinueFooter
-          url={pathToContinue}
-          text={t('HEALTH_CHECK_SUCCESSFUL')}
-        />
+        rmaMode === rmaModes.EDIT_DEVICES ? (
+          <StorageSyncFooter
+            submitting={submitting}
+            commissioned={commissioned}
+            error={syncError}
+            sync={sync}
+            clear={clear}
+          />
+        ) : (
+          <ContinueFooter
+            url={pathToContinue}
+            text={t('HEALTH_CHECK_SUCCESSFUL')}
+          />
+        )
       )}
 
       {either(

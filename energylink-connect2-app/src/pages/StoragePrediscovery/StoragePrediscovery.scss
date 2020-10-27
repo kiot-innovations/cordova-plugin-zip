@@ -5,6 +5,8 @@
   letter-spacing: 0;
 
   .prediscovery-title {
+    display: grid;
+    grid-template-columns: 15% 1fr 15%;
     letter-spacing: 1px;
   }
 
