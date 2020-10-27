@@ -7,11 +7,11 @@ import { either, miTypes } from 'shared/utils'
 import { useI18n } from 'shared/i18n'
 import {
   CLAIM_DEVICES_INIT,
+  DISCOVER_COMPLETE,
   FETCH_CANDIDATES_COMPLETE,
   FETCH_CANDIDATES_INIT,
-  RESET_DISCOVERY,
   FETCH_DEVICES_LIST,
-  DISCOVER_COMPLETE
+  RESET_DISCOVERY
 } from 'state/actions/devices'
 import paths from 'routes/paths'
 import Collapsible from 'components/Collapsible'
@@ -92,7 +92,7 @@ const filterFoundMI = (SNList, candidatesList) => {
   }
 }
 
-const discoveryStatus = (
+const DiscoveryStatus = ({
   error,
   expected,
   okMICount,
@@ -101,10 +101,10 @@ const discoveryStatus = (
   claimingDevices,
   claimDevices,
   claimProgress,
-  t,
   discoveryComplete,
   retryDiscovery
-) => {
+}) => {
+  const t = useI18n()
   if (expected === okMICount + errMICount && discoveryComplete) {
     if (errMICount > 0) {
       return (
@@ -271,7 +271,7 @@ function Devices() {
   }, [claimedDevices, dispatch, history])
 
   const retryDiscovery = () => {
-    dispatch(RESET_DISCOVERY())
+    dispatch(RESET_DISCOVERY(okMI))
     history.push(paths.PROTECTED.SN_LIST.path)
   }
 
@@ -338,19 +338,18 @@ function Devices() {
         </Collapsible>
         <ProgressIndicators progressList={pathOr([], ['progress'], progress)} />
       </div>
-      {discoveryStatus(
-        error,
-        expected,
-        okMICount,
-        errMICount,
-        claimError,
-        claimingDevices,
-        claimDevices,
-        claimProgress,
-        t,
-        discoveryComplete,
-        retryDiscovery
-      )}
+      <DiscoveryStatus
+        error={error}
+        expected={expected}
+        okMICount={okMICount}
+        errMICount={errMICount}
+        claimError={claimError}
+        claimingDevices={claimingDevices}
+        claimDevices={claimDevices}
+        claimProgress={claimProgress}
+        discoveryComplete={discoveryComplete}
+        retryDiscovery={retryDiscovery}
+      />
     </div>
   )
 }
