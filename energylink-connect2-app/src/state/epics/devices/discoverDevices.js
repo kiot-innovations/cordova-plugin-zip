@@ -37,7 +37,6 @@ const fetchDiscovery = async () => {
 
 export const scanDevicesEpic = action$ => {
   const stopPolling$ = action$.pipe(ofType(DISCOVER_COMPLETE.getType()))
-
   return action$.pipe(
     ofType(
       FETCH_CANDIDATES_COMPLETE.getType(),
