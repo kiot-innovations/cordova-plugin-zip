@@ -3,12 +3,16 @@ import { useDispatch, useSelector } from 'react-redux'
 import {
   always,
   cond,
+  endsWith,
   equals,
+  filter,
+  find,
   has,
   isEmpty,
   length,
   pathOr,
   prop,
+  propEq,
   propOr,
   T
 } from 'ramda'
@@ -30,14 +34,25 @@ import { ButtonLink } from 'components/ButtonLink'
 import paths from 'routes/paths'
 import './Data.scss'
 
+const isMeter = propEq('DEVICE_TYPE', 'Power Meter')
+const isProductionMeter = device => endsWith('p', device.SERIAL)
+
 export default () => {
   const t = useI18n()
   const dispatch = useDispatch()
+  const { found } = useSelector(state => state.devices)
   const { liveData = {} } = useSelector(state => state.energyLiveData)
   const { miData } = useSelector(state => state.pvs)
   const storageStatus = useSelector(pathOr({}, ['storage', 'status']))
   const essState = pathOr({}, ['results', 'ess_report', 'ess_state', 0])(
     storageStatus
+  )
+
+  const meters = filter(isMeter, found)
+  const prodMeterConfig = propOr(
+    'NOT_USED',
+    'SUBTYPE',
+    find(isProductionMeter, meters)
   )
 
   const essDisplayStatus = cond([
@@ -125,16 +140,25 @@ export default () => {
         {either(length(miData) > 0, <MiDataLive data={miData} />)}
       </section>
       <section>
-        <h6 className="is-uppercase mt-20 mb-20">{t('RIGHT_NOW')}</h6>
-        <RightNow
-          solarValue={powerValues.solar}
-          gridValue={powerValues.grid}
-          hasStorage={hasStorage}
-          storageValue={powerValues.storage}
-          homeValue={powerValues.home}
-          batteryLevel={powerValues.soc}
-          solarAvailable={data.isSolarAvailable}
-        />
+        <h6 className="is-uppercase mt-20 mb-20">{t('LIVE_DATA')}</h6>
+        {either(
+          prodMeterConfig === 'NOT_USED',
+          <div className="no-meters-warning has-text-weight-bold has-text-centered is-flex pt-20 pb-20">
+            <span className="has-text-white is-size-5">
+              {t('LIVE_DATA_UNAVAILABLE')}
+            </span>
+            <span>{t('NO_METER_CONFIG')}</span>
+          </div>,
+          <RightNow
+            solarValue={powerValues.solar}
+            gridValue={powerValues.grid}
+            hasStorage={hasStorage}
+            storageValue={powerValues.storage}
+            homeValue={powerValues.home}
+            batteryLevel={powerValues.soc}
+            solarAvailable={data.isSolarAvailable}
+          />
+        )}
       </section>
       <div className="separator" />
       <EnergyGraphSection />
