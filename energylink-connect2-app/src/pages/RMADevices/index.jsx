@@ -159,7 +159,12 @@ function RMADevices() {
           t('NO_STORAGE_RMA')
         )}
         <div className="buttons-container">
-          <button className="button is-paddingless has-text-primary has-text-weight-bold is-size-7 button-transparent">
+          <button
+            onClick={() =>
+              history.push(paths.PROTECTED.STORAGE_PREDISCOVERY.path)
+            }
+            className="button is-paddingless has-text-primary has-text-weight-bold is-size-7 button-transparent"
+          >
             {t('ADD_REPLACE_EQUIPMENT')}
           </button>
         </div>

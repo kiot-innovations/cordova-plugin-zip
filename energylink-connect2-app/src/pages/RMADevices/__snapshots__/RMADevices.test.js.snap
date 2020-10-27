@@ -272,6 +272,7 @@ exports[`RMA devices component render correctly 1`] = `
                 >
                   <button
                     className="button is-paddingless has-text-primary has-text-weight-bold is-size-7 button-transparent"
+                    onClick={[Function]}
                   >
                     ADD_REPLACE_EQUIPMENT
                   </button>
