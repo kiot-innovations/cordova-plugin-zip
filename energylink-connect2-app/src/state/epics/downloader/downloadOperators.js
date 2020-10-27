@@ -9,7 +9,6 @@ export const wifiCheckOperator = state$ =>
       ['value', 'fileDownloader', 'settings', 'allowDownloadWithPVS'],
       state$
     )
-
     return allowWifiDownloadSetting
       ? of({ action, canDownload: true })
       : from(isConnectedToPVS()).pipe(
