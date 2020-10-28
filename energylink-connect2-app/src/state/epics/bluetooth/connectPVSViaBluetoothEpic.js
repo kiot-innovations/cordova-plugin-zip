@@ -28,8 +28,10 @@ export const connectPVSViaBluetoothEpic = (action$, state$) => {
           errors.pipe(
             mergeMap((error, i) => {
               const retryAttempts = i + 1
+              console.warn('Got Error', { i, retryAttempts })
+              console.error({ error })
               if (retryAttempts > 2) throwError(error)
-              return timer(retryAttempts)
+              return timer(retryAttempts * 1000)
             })
           )
         ),

@@ -18,7 +18,8 @@ import {
   exhaustMap,
   map,
   takeUntil,
-  delayWhen
+  delayWhen,
+  mergeMap
 } from 'rxjs/operators'
 
 import { getApiPVS } from 'shared/api'
@@ -52,7 +53,7 @@ const connectToPVS = async (ssid, password) => {
     } else {
       //looks like wifiwizard works like this in andrdoid
       // I don't know why (ET)
-      await window.WifiWizard2.connect(ssid, true, password, WPA, false)
+      await window.WifiWizard2.connect(ssid, false, password, WPA, false)
     }
   } catch (err) {
     const normalizedError = err || 'UNKNOWN_ERROR'
@@ -63,7 +64,7 @@ const connectToPVS = async (ssid, password) => {
 const connectToEpic = (action$, state$) =>
   action$.pipe(
     ofType(PVS_CONNECTION_INIT.getType()),
-    exhaustMap(action => {
+    mergeMap(action => {
       const ssid = pathOr('', ['payload', 'ssid'], action)
       const password = pathOr('', ['payload', 'password'], action)
 
