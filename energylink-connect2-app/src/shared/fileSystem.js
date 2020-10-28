@@ -244,3 +244,5 @@ export const createFile = path =>
       reject(e)
     }
   })
+
+export const essFilePath = 'ESS/EQS-FW-Package.zip'

@@ -2,10 +2,9 @@ import { of } from 'rxjs'
 
 import * as utils from 'shared/utils'
 import { translate } from 'shared/i18n'
-import { EMPTY_ACTION } from 'state/actions/share'
 import { SHOW_MODAL } from 'state/actions/modal'
 import { DOWNLOAD_OS_ERROR } from 'state/actions/ess'
-import { DOWNLOAD_VERIFY } from 'state/actions/fileDownloader'
+import { DOWNLOAD_VERIFY, FILES_VERIFY } from 'state/actions/fileDownloader'
 
 describe('downloadModalEpics', () => {
   describe('downloadingLatestFirmwareEpic', () => {
@@ -18,7 +17,7 @@ describe('downloadModalEpics', () => {
         a: DOWNLOAD_VERIFY()
       }
       const expectedValues = {
-        b: EMPTY_ACTION('Downloads are completed')
+        b: FILES_VERIFY()
       }
 
       const inputMarble = 'a'

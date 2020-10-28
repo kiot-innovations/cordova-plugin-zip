@@ -5,9 +5,8 @@ import { Link, useHistory } from 'react-router-dom'
 import paths, { setParams } from 'routes/paths'
 import { useI18n } from 'shared/i18n'
 import { getError } from 'shared/errorCodes'
-import { either } from 'shared/utils'
+import { either, strSatisfiesAWarning } from 'shared/utils'
 import { eqsSteps } from 'state/reducers/storage'
-import { rmaModes } from 'state/reducers/rma'
 import './ErrorListGeneric.scss'
 import { PVS_CONNECTION_CLOSE } from 'state/actions/network'
 
@@ -25,7 +24,7 @@ const ErrorComponent = ({ title, code = '', errorInfo, t }) => {
         </span>
         <span className="error-code"> {t('ERROR_CODE', code)}</span>
         {either(
-          not(`${code}`.startsWith('1')),
+          not(strSatisfiesAWarning(code)),
           <span className="has-text-primary has-text-weight-bold">
             {t('FIX_ERROR_TO_PROCEED')}
           </span>
@@ -78,15 +77,10 @@ const ErrorListScreen = ({ errors = [] }) => {
   const dispatch = useDispatch()
   const history = useHistory()
   const { currentStep } = useSelector(state => state.storage)
-  const { rmaMode } = useSelector(state => state.rma)
 
   const cancelCommissioning = () => {
-    if (rmaMode === rmaModes.EDIT_DEVICES) {
-      history.push(paths.PROTECTED.RMA_DEVICES.path)
-    } else {
-      dispatch(PVS_CONNECTION_CLOSE())
-      history.push(paths.PROTECTED.BILL_OF_MATERIALS.path)
-    }
+    dispatch(PVS_CONNECTION_CLOSE())
+    history.push(paths.PROTECTED.ROOT.path)
   }
 
   return (

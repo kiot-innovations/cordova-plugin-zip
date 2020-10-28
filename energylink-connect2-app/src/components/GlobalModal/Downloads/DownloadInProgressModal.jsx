@@ -5,6 +5,7 @@ import { useLocation } from 'react-router-dom'
 import { useI18n } from 'shared/i18n'
 import { useGlobalHideModal } from 'hooks/useGlobalModal'
 import { MENU_DISPLAY_ITEM, SET_PREVIOUS_URL } from 'state/actions/ui'
+import { either } from 'shared/utils'
 
 function DownloadInProgressModal() {
   const dispatch = useDispatch()
@@ -24,7 +25,11 @@ function DownloadInProgressModal() {
       </span>
 
       <span className="has-text-white">
-        {t('PVS_FIRMWARE_VERSION', fwNameDisplay)}
+        {either(
+          fwNameDisplay,
+          t('PVS_FIRMWARE_VERSION', fwNameDisplay),
+          t('PVS_FIRMWARE')
+        )}
       </span>
       <span className="has-text-white mb-20">{t('STORAGE_FW_FILE')}</span>
 

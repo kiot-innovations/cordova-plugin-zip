@@ -536,5 +536,6 @@
   "ENABLING_ACCESS_POINT_ON_PVS": "Enabling WIFI on PVS...",
   "ENABLED_ACCESS_POINT_ON_PVS": "Enabled WIFI on PVS, please retry the connection using the Retry button",
   "FAILED_ACCESS_POINT_ON_PVS": "Failed to enable WIFI, please power cycle the PVS and try again",
-  "PVS_FIRMWARE_VERSION": "PVS Firmware Version: {0}"
+  "PVS_FIRMWARE_VERSION": "PVS Firmware Version: {0}",
+  "PVS_FIRMWARE": "PVS Firmware"
 }
