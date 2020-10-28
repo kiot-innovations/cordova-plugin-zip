@@ -529,5 +529,6 @@
   "NO_OTHER_DEVICES": "No other devices on site",
   "SUNVAULT_ALL_ONE": "SunVault All-in one",
   "SUCCESS": "Success",
-  "PVS_FIRMWARE_VERSION": "PVS Firmware Version: {0}"
+  "PVS_FIRMWARE_VERSION": "PVS Firmware Version: {0}",
+  "PVS_FIRMWARE": "PVS Firmware"
 }

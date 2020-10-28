@@ -6,6 +6,7 @@ import fileInfo from './info'
 import progress from './progress'
 import gridProfileInfo from './gridProfileInfo'
 import settings from './downloadSettings'
+import verification from './verification'
 
 export default combineReducers({
   progress,
@@ -18,5 +19,6 @@ export default combineReducers({
     fileInfo
   ),
   gridProfileInfo,
-  settings
+  settings,
+  verification
 })

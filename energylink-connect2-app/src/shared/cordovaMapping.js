@@ -3,7 +3,7 @@ import { fileExists } from 'shared/fileSystem'
 export const getMd5FromFile = (filePath = '') =>
   new Promise((resolve, reject) => {
     fileExists(filePath).then(fileEntry => {
-      if (!fileEntry) throw Error("The file doesn't exist")
+      if (!fileEntry) return reject("The file doesn't exist")
       window.md5chksum.file(fileEntry, resolve, reject)
     })
   })

@@ -12,11 +12,13 @@ import {
   DOWNLOAD_ALLOW_WITH_PVS,
   PVS_DECOMPRESS_LUA_FILES_ERROR,
   PVS_FIRMWARE_DOWNLOAD_ERROR,
-  DOWNLOAD_VERIFY
+  DOWNLOAD_VERIFY,
+  FILES_VERIFY
 } from 'state/actions/fileDownloader'
 import { GRID_PROFILE_DOWNLOAD_ERROR } from 'state/actions/gridProfileDownloader'
 import { EMPTY_ACTION } from 'state/actions/share'
 import { MENU_DISPLAY_ITEM } from 'state/actions/ui'
+import { FILES_VERIFY_FAILED } from 'state/actions/fileDownloader'
 
 export const modalPVSConnected = () => {
   const t = translate()
@@ -85,7 +87,11 @@ export const downloadingLatestFirmwareEpic = (action$, state$) =>
         )
       ])
 
-      return isDownloading && !path(['value', 'ui', 'menu', 'show'], state$)
+      if (path(['value', 'ui', 'menu', 'show'], state$)) {
+        return of(EMPTY_ACTION('Already in download page'))
+      }
+
+      return isDownloading
         ? concat(
             of(
               SHOW_MODAL({
@@ -99,7 +105,7 @@ export const downloadingLatestFirmwareEpic = (action$, state$) =>
               take(1)
             )
           )
-        : of(EMPTY_ACTION('Downloads are completed'))
+        : of(FILES_VERIFY())
     })
   )
 
@@ -113,7 +119,8 @@ export const firmwareDownloadFailedEpic = action$ =>
       DOWNLOAD_META_ERROR.getType(),
       GRID_PROFILE_DOWNLOAD_ERROR.getType(),
       PVS_FIRMWARE_DOWNLOAD_ERROR.getType(),
-      PVS_DECOMPRESS_LUA_FILES_ERROR.getType()
+      PVS_DECOMPRESS_LUA_FILES_ERROR.getType(),
+      FILES_VERIFY_FAILED.getType()
     ),
     exhaustMap(() =>
       from(hasInternetConnection()).pipe(
