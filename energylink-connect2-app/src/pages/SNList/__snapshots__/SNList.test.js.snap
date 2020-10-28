@@ -174,7 +174,6 @@ exports[`Serial Number List Page renders correctly 1`] = `
                               "invalid": true,
                               "length": undefined,
                               "modified": false,
-                              "modifiedSinceLastSubmit": false,
                               "pristine": true,
                               "submitError": undefined,
                               "submitFailed": false,
