@@ -6,6 +6,9 @@ import * as reactRedux from 'react-redux'
 describe('Connect to PVS page', () => {
   let dispatchMock
   let storeMock = {
+    pvs: {
+      serialNumber: 'Zt00123455381'
+    },
     network: {
       connectionState: {
         connected: false,
@@ -32,7 +35,7 @@ describe('Connect to PVS page', () => {
     jest
       .spyOn(i18n, 'useI18n')
       .mockImplementation(path => (key, ...params) =>
-        `${key.toUpperCase()} ${params.join('_')}`.trim()
+        `${key} ${params.join('_')}`.trim()
       )
   })
 
