@@ -8,7 +8,7 @@ import {
   mergeMap,
   delayWhen
 } from 'rxjs/operators'
-import { from, of, timer } from 'rxjs'
+import { from, of, throwError, timer } from 'rxjs'
 import {
   CONNECT_PVS_VIA_BLE,
   EXECUTE_ENABLE_ACCESS_POINT,
@@ -29,7 +29,8 @@ export const connectPVSViaBluetoothEpic = (action$, state$) => {
           errors.pipe(
             mergeMap((error, i) => {
               console.warn('Got Error', { i })
-              console.error({ error })
+              console.error({ error, i })
+              if (i > 2) throwError(error)
               return delayWhen(e => timer(7 * 1000))
             })
           )

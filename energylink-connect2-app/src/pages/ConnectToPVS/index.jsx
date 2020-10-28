@@ -122,6 +122,12 @@ function ConnectToPVS() {
     dispatch(PVS_CONNECTION_INIT({ ssid, password }))
   }
 
+  const retryConnect = () => {
+    const ssid = connectionState.SSID
+    const password = connectionState.password
+    dispatch(PVS_CONNECTION_INIT({ ssid, password }))
+  }
+
   const getBarcode = () => {
     setStarted(true)
     dispatch(START_SCANNING())
@@ -166,13 +172,28 @@ function ConnectToPVS() {
           {connectionState.connecting ? t('CONNECTING_PVS') : t('QRCODE_HINT')}
         </span>
         <div className="mt-20">
-          <button
-            disabled={connectionState.connecting || started || disableScanBtn}
-            className="button is-primary is-fullwidth"
-            onClick={getBarcode}
-          >
-            {t('START_SCAN')}
-          </button>
+          {either(
+            equals(
+              connectionState.bluetoothStatus,
+              BLESTATUS.FAILED_ACCESS_POINT_ON_PVS
+            ),
+
+            <button
+              disabled={connectionState.connecting || disableScanBtn}
+              className="button is-primary is-fullwidth"
+              onClick={retryConnect}
+            >
+              {t('RETRY_CONNECT')}
+            </button>,
+
+            <button
+              disabled={connectionState.connecting || started || disableScanBtn}
+              className="button is-primary is-fullwidth"
+              onClick={getBarcode}
+            >
+              {t('START_SCAN')}
+            </button>
+          )}
         </div>
       </div>
 

@@ -535,7 +535,8 @@
   "CONNECTING_PVS_VIA_BLE": "Connecting to PVS via Bluetooth...",
   "ENABLING_ACCESS_POINT_ON_PVS": "Enabling WIFI on PVS...",
   "ENABLED_ACCESS_POINT_ON_PVS": "PVS WiFi enabled. Connecting to PVS...",
-  "FAILED_ACCESS_POINT_ON_PVS": "Failed to enable WIFI, please power cycle the PVS and try again",
+  "FAILED_ACCESS_POINT_ON_PVS": "Failed to enable WIFI, please power cycle the PVS and try to connect",
+  "RETRY_CONNECT": "Connect now",
   "PVS_FIRMWARE_VERSION": "PVS Firmware Version: {0}",
   "PVS_FIRMWARE": "PVS Firmware"
 }

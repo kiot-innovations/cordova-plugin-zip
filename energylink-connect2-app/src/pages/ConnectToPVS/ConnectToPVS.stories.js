@@ -42,11 +42,15 @@ const step4 = assocPath(
   'ENABLED_ACCESS_POINT_ON_PVS',
   csc
 )
-const step5 = assocPath(
-  ['network', 'bluetoothStatus'],
-  'FAILED_ACCESS_POINT_ON_PVS',
-  csc
-)
+const step5 = {
+  ...assocPath(
+    ['network', 'bluetoothStatus'],
+    'FAILED_ACCESS_POINT_ON_PVS',
+    csc
+  )
+}
+
+step5.network.connecting = false
 
 storiesOf('Connect to PVS', module)
   .add('Simple', () => (

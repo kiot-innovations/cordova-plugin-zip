@@ -154,7 +154,9 @@ export const networkReducer = createReducer(
     [FAILURE_BLUETOOTH_ACTION]: state => ({
       ...state,
       bluetoothStatus: BLESTATUS.FAILED_ACCESS_POINT_ON_PVS,
-      showEnablingAccessPoint: false
+      showEnablingAccessPoint: false,
+      connecting: false,
+      connected: false
     })
   },
   initialState

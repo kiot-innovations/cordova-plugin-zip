@@ -272,9 +272,8 @@ export const addHasErrorProp = results => {
   return copy
 }
 
-export function getAppFlavor() {
-  return process.env.REACT_APP_FLAVOR.split('-')[1]
-}
+export const getAppFlavor = () =>
+  pathOr('cm2-test', ['env', 'REACT_APP_FLAVOR'], process).split('-')[1]
 
 export function getEnvironment() {
   if (process.env.REACT_APP_FLAVOR === 'cm2-training') return 'training'
