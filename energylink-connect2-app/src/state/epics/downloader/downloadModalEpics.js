@@ -1,4 +1,4 @@
-import { any, equals, path, not } from 'ramda'
+import { any, equals, path, not, includes } from 'ramda'
 import { ofType } from 'redux-observable'
 import { concat, from, of } from 'rxjs'
 import { concatMap, exhaustMap, take, map, catchError } from 'rxjs/operators'
@@ -73,16 +73,17 @@ export const downloadingLatestFirmwareEpic = (action$, state$) =>
     ofType(DOWNLOAD_VERIFY.getType()),
     exhaustMap(() => {
       const t = translate()
+
       const isDownloading = any(equals(true), [
         path(['value', 'ess', 'isDownloading'], state$),
         path(['value', 'fileDownloader', 'progress', 'downloading'], state$),
         not(
-          equals(
-            100,
+          includes(
             path(
               ['value', 'fileDownloader', 'gridProfileInfo', 'progress'],
               state$
-            )
+            ),
+            [0, 100]
           )
         )
       ])
