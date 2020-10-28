@@ -36,7 +36,8 @@ import {
   toPairs,
   toUpper,
   values,
-  when
+  when,
+  pathOr
 } from 'ramda'
 
 export const either = (condition, whenTrue, whenFalse = null) =>
@@ -110,7 +111,8 @@ export const capitalize = when(
   compose(join(''), over(lensIndex(0), toUpper))
 )
 
-export const isIos = () => window.device.platform === 'iOS'
+export const isIos = () =>
+  pathOr('none', ['device', 'platform'], window) === 'iOS'
 
 export const isAndroid10 = () =>
   window.device.platform === 'Android' &&
@@ -270,9 +272,8 @@ export const addHasErrorProp = results => {
   return copy
 }
 
-export function getAppFlavor() {
-  return process.env.REACT_APP_FLAVOR.split('-')[1]
-}
+export const getAppFlavor = () =>
+  pathOr('cm2-test', ['env', 'REACT_APP_FLAVOR'], process).split('-')[1]
 
 export function getEnvironment() {
   if (process.env.REACT_APP_FLAVOR === 'cm2-training') return 'training'

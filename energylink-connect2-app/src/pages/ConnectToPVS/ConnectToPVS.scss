@@ -3,7 +3,7 @@
 .qr-layout, .pvs-connection-lost-screen{
   height: 100%;
   display: grid;
-  grid-template-rows: 10% 1fr 25% 25%;
+  grid-template-rows: 50px minmax(100px, 170px) 60px 100px 150px;
 
   #scandit {
     // height: 330px;

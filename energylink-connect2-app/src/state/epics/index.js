@@ -13,6 +13,7 @@ import networkPollingEpics from './network'
 import panelLayoutToolEpics from './panel-layout-tool'
 import pvsEpics from './pvs'
 import rmaEpics from './rma'
+import bluetoothEpics from './bluetooth'
 import scanditEpics from './scandit'
 import siteEpics from './site'
 import storageEpics from './storage'
@@ -35,5 +36,6 @@ export default combineEpics(
   ...scanditEpics,
   ...rmaEpics,
   ...appUpdaterEpics,
-  ...analyticsEpics
+  ...analyticsEpics,
+  ...bluetoothEpics
 )
