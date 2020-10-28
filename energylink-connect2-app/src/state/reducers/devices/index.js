@@ -49,7 +49,14 @@ const initialState = {
 
 export default createReducer(
   {
-    [DISCOVER_INIT]: state => ({ ...state, isFetching: true }),
+    [DISCOVER_INIT]: state => ({
+      ...state,
+      isFetching: true,
+      found: [],
+      progress: {},
+      discoveryComplete: false,
+      error: ''
+    }),
     [DISCOVER_UPDATE]: (state, payload) => ({
       ...state,
       found: pathOr(state.found, ['devices', 'devices'], payload),
@@ -60,7 +67,8 @@ export default createReducer(
       isFetching: false,
       found: pathOr(state.found, ['devices', 'devices'], payload),
       progress: propOr(state.progress, 'progress', payload),
-      discoveryComplete: true
+      discoveryComplete: true,
+      error: ''
     }),
     [DISCOVER_ERROR]: (state, payload) => ({
       ...state,
@@ -98,7 +106,10 @@ export default createReducer(
     }),
     [CLAIM_DEVICES_INIT]: state => ({
       ...state,
-      claimingDevices: true
+      claimingDevices: true,
+      claimedDevices: false,
+      claimProgress: 0,
+      claimError: ''
     }),
     [CLAIM_DEVICES_UPDATE]: (state, payload) => ({
       ...state,
