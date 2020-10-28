@@ -5,9 +5,10 @@ import {
   map,
   exhaustMap,
   retryWhen,
-  mergeMap
+  mergeMap,
+  delayWhen
 } from 'rxjs/operators'
-import { from, of, throwError, timer } from 'rxjs'
+import { from, of, timer } from 'rxjs'
 import {
   CONNECT_PVS_VIA_BLE,
   EXECUTE_ENABLE_ACCESS_POINT,
@@ -27,11 +28,9 @@ export const connectPVSViaBluetoothEpic = (action$, state$) => {
         retryWhen(errors =>
           errors.pipe(
             mergeMap((error, i) => {
-              const retryAttempts = i + 1
-              console.warn('Got Error', { i, retryAttempts })
+              console.warn('Got Error', { i })
               console.error({ error })
-              if (retryAttempts > 2) throwError(error)
-              return timer(retryAttempts * 1000)
+              return delayWhen(e => timer(7 * 1000))
             })
           )
         ),
