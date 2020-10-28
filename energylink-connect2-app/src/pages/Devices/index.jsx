@@ -110,104 +110,98 @@ const DiscoveryStatus = ({
     discoveryComplete &&
     !claimingDevices
   ) {
-    if (expected === okMICount + errMICount && discoveryComplete) {
-      if (errMICount > 0) {
-        return (
-          <>
-            <button
-              className="button is-primary is-uppercase is-paddingless"
-              onClick={retryDiscovery}
-            >
-              {t('RETRY')}
-            </button>
-            <span className="has-text-weight-bold mt-20">{t('MI_ERRORS')}</span>
-          </>
-        )
-      }
-
-      if (error) {
-        return (
-          <>
-            <button
-              className="button is-primary is-uppercase is-paddingless"
-              onClick={retryDiscovery}
-            >
-              {t('RETRY')}
-            </button>
-            <span className="has-text-weight-bold mt-20">{t(error)}</span>
-          </>
-        )
-      }
-
-      if (claimError) {
-        return (
-          <>
-            <span className="has-text-weight-bold mb-20">
-              {t('CLAIM_DEVICES_ERROR', claimError)}
-            </span>
-            <div className="inline-buttons">
-              <button
-                className="button is-primary is-outlined is-uppercase is-paddingless mb-10"
-                disabled={claimingDevices}
-                onClick={retryDiscovery}
-              >
-                {t('ADD-DEVICES')}
-              </button>
-              <button
-                className={'button is-primary is-uppercase'}
-                disabled={claimingDevices}
-                onClick={claimDevices}
-              >
-                {either(
-                  claimingDevices,
-                  `${claimProgress}%`,
-                  t('CLAIM_DEVICES')
-                )}
-              </button>
-            </div>
-          </>
-        )
-      }
-
+    if (errMICount > 0) {
       return (
-        <div className="inline-buttons">
-          <button
-            className="button is-primary is-outlined is-uppercase is-paddingless mb-10"
-            disabled={claimingDevices}
-            onClick={retryDiscovery}
-          >
-            {t('ADD-DEVICES')}
-          </button>
-          <button
-            className={'button is-primary is-uppercase'}
-            disabled={claimingDevices}
-            onClick={claimDevices}
-          >
-            {either(claimingDevices, `${claimProgress}%`, t('CLAIM_DEVICES'))}
-          </button>
-        </div>
-      )
-    } else {
-      return error ? (
         <>
           <button
-            className="button is-primary is-uppercase is-paddingless ml-75 mr-75"
+            className="button is-primary is-uppercase is-paddingless"
+            onClick={retryDiscovery}
+          >
+            {t('RETRY')}
+          </button>
+          <span className="has-text-weight-bold mt-20">{t('MI_ERRORS')}</span>
+        </>
+      )
+    }
+
+    if (error) {
+      return (
+        <>
+          <button
+            className="button is-primary is-uppercase is-paddingless"
             onClick={retryDiscovery}
           >
             {t('RETRY')}
           </button>
           <span className="has-text-weight-bold mt-20">{t(error)}</span>
         </>
-      ) : (
-        <span className="has-text-weight-bold mb-20">
-          {either(
-            claimingDevices,
-            t('CLAIMING_DEVICES'),
-            t('DISCOVERY_IN_PROGRESS')
-          )}
-        </span>
       )
     }
+
+    if (claimError) {
+      return (
+        <>
+          <span className="has-text-weight-bold mb-20">
+            {t('CLAIM_DEVICES_ERROR', claimError)}
+          </span>
+          <div className="inline-buttons">
+            <button
+              className="button is-primary is-outlined is-uppercase is-paddingless mb-10"
+              disabled={claimingDevices}
+              onClick={retryDiscovery}
+            >
+              {t('ADD-DEVICES')}
+            </button>
+            <button
+              className={'button is-primary is-uppercase'}
+              disabled={claimingDevices}
+              onClick={claimDevices}
+            >
+              {either(claimingDevices, `${claimProgress}%`, t('CLAIM_DEVICES'))}
+            </button>
+          </div>
+        </>
+      )
+    }
+
+    return (
+      <div className="inline-buttons">
+        <button
+          className="button is-primary is-outlined is-uppercase is-paddingless mb-10"
+          disabled={claimingDevices}
+          onClick={retryDiscovery}
+        >
+          {t('ADD-DEVICES')}
+        </button>
+        <button
+          className={'button is-primary is-uppercase'}
+          disabled={claimingDevices}
+          onClick={claimDevices}
+        >
+          {either(claimingDevices, `${claimProgress}%`, t('CLAIM_DEVICES'))}
+        </button>
+      </div>
+    )
+  } else {
+    return error ? (
+      <>
+        <button
+          className="button is-primary is-uppercase is-paddingless ml-75 mr-75"
+          onClick={retryDiscovery}
+        >
+          {t('RETRY')}
+        </button>
+        <span className="has-text-weight-bold mt-20">{t(error)}</span>
+      </>
+    ) : (
+      <span className="has-text-weight-bold mb-20">
+        {either(
+          claimingDevices,
+          t('CLAIMING_DEVICES'),
+          t('DISCOVERY_IN_PROGRESS')
+        )}
+      </span>
+    )
   }
 }
 

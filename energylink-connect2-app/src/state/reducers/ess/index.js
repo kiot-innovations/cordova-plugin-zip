@@ -28,7 +28,6 @@ export default createReducer(
       ...initialState,
       meta: state.meta,
       md5: state.md5,
-      isDownloading: true,
       step: 'INITIALIZING'
     }),
     [DOWNLOAD_OS_PROGRESS]: (state, { progress, total, step }) => ({
