@@ -21,7 +21,7 @@
     "cordova-plugin-add-swift-support": "^2.0.2",
     "cordova-plugin-androidx": "^2.0.0",
     "cordova-plugin-androidx-adapter": "^1.1.1",
-    "cordova-plugin-ble-central": "^1.2.5",
+    "cordova-plugin-ble-central": "git+https://github.com/rajeshpandalss/cordova-plugin-ble-central.git",
     "cordova-plugin-bluetooth-status": "^1.0.4",
     "cordova-plugin-camera": "^4.1.0",
     "cordova-plugin-customurlscheme": "^5.0.0",
@@ -97,10 +97,10 @@
       "cordova-plugin-file-hash": {},
       "wifiwizard2": {},
       "cordova-plugin-bluetooth-status": {},
+      "cordova-plugin-sunpowerble": {},
       "cordova-plugin-ble-central": {
         "BLUETOOTH_USAGE_DESCRIPTION": "Send commands to PVS over BLE"
-      },
-      "cordova-plugin-sunpowerble": {}
+      }
     },
     "platforms": [
       "ios",
