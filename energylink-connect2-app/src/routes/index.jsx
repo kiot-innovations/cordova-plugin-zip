@@ -4,9 +4,6 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Route, Switch } from 'react-router-dom'
 import { withTracker } from 'shared/ga'
 import { routeAuthorization, setLayout } from 'hocs'
-import useUpgrade from 'hooks/useUpgrade'
-import useAppUpdate from 'hooks/useAppUpdate'
-import useCanceledPVSConnection from 'hooks/useCanceledPVSConnection'
 
 import BillOfMaterials from 'pages/BillOfMaterials'
 import ConnectionLost from 'pages/ConnectionLost'
@@ -51,6 +48,7 @@ import RMADevices from 'pages/RMADevices'
 import { validateSession } from 'state/actions/auth'
 import { updateBodyHeight } from 'shared/utils'
 import { deviceResumeListener } from 'state/actions/mobile'
+import Initializer from './Initializer'
 
 import paths from './paths'
 
@@ -113,10 +111,6 @@ function AppRoutes() {
     window.scrollTo(0, 0)
   })
 
-  useAppUpdate()
-  useUpgrade()
-  useCanceledPVSConnection()
-
   useEffect(() => {
     dispatch(deviceResumeListener())
     dispatch(validateSession())
@@ -131,6 +125,7 @@ function AppRoutes() {
   const isLoggedIn = useSelector(({ user }) => user.auth.access_token)
   return (
     <div>
+      <Initializer />
       <Switch>
         {Object.values(paths.UNPROTECTED).map(
           ({ path, header = false, footer = false }) => (
