@@ -21,6 +21,10 @@ import { getApiSite } from 'shared/api'
 import { cleanString } from 'shared/utils'
 
 const getAccessToken = path(['user', 'auth', 'access_token'])
+// TODO: THIS IS THE WRONG OWNER BUT EDP REQUIRES AN OWNER AT THIS TIME WE
+// SHOULD NOT USE THE LOGGED IN USERS' INFORMATION AS THE OWNER FOR THE SITE.
+// THE SITE OWNER SHOULD BE THE HOMEOWNER OR COMMERCIAL BUSINESS OWNER
+const getOwner = pipe(path(['user', 'data']), pick(['partyId', 'partyType']))
 const getServicer = pipe(path(['user', 'data']), pick(['parentPartyId']))
 const getOrDefaultParentPartnerId = ifElse(
   equals('SUNPOWER_GLOBAL'),
@@ -28,33 +32,39 @@ const getOrDefaultParentPartnerId = ifElse(
   identity
 )
 
-const postCreateSite = curry((access_token, { parentPartyId }, payload) =>
-  getApiSite(access_token)
-    .then(path(['apis', 'default']))
-    .then(api =>
-      api.post_v1_site(
-        {},
-        {
-          requestBody: {
-            ...payload,
-            siteType: 'RESIDENTIAL',
-            siteTypeId: 1,
-            address1: payload.address,
-            city: payload.city,
-            servicer: {
-              partyId: getOrDefaultParentPartnerId(parentPartyId),
-              partyType: 'ORGANIZATION',
-              smsPartyId: last(
-                split('_')(getOrDefaultParentPartnerId(parentPartyId))
-              )
+const postCreateSite = curry(
+  (access_token, owner, { parentPartyId }, payload) =>
+    getApiSite(access_token)
+      .then(path(['apis', 'default']))
+      .then(api =>
+        api.post_v1_site(
+          {},
+          {
+            requestBody: {
+              ...payload,
+              siteType: 'RESIDENTIAL',
+              siteTypeId: 1,
+              address1: payload.address,
+              city: payload.city,
+              owner,
+              servicer: {
+                partyId: getOrDefaultParentPartnerId(parentPartyId),
+                partyType: 'ORGANIZATION',
+                smsPartyId: last(
+                  split('_')(getOrDefaultParentPartnerId(parentPartyId))
+                )
+              }
             }
           }
-        }
+        )
       )
-    )
 )
 
-const createSite = converge(postCreateSite, [getAccessToken, getServicer])
+const createSite = converge(postCreateSite, [
+  getAccessToken,
+  getOwner,
+  getServicer
+])
 
 const transformations = {
   siteName: cleanString,
