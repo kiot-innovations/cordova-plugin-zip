@@ -538,5 +538,6 @@
   "FAILED_ACCESS_POINT_ON_PVS": "Failed to enable WIFI, please power cycle the PVS and try to connect",
   "RETRY_CONNECT": "Connect now",
   "PVS_FIRMWARE_VERSION": "PVS Firmware Version: {0}",
-  "PVS_FIRMWARE": "PVS Firmware"
+  "PVS_FIRMWARE": "PVS Firmware",
+  "DEVICE_UNKNOWN_ERROR": "An error happened, please retry"
 }

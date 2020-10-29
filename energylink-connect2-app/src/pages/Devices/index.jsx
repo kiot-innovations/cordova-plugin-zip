@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import useModal from 'hooks/useModal'
-import { length, pathOr } from 'ramda'
+import { length, pathOr, is } from 'ramda'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import { either, miTypes } from 'shared/utils'
@@ -133,7 +133,9 @@ const DiscoveryStatus = ({
           >
             {t('RETRY')}
           </button>
-          <span className="has-text-weight-bold mt-20">{t(error)}</span>
+          <span className="has-text-weight-bold mt-20">
+            {t(is(String, error) ? error : 'DEVICE_UNKNOWN_ERROR')}
+          </span>
         </>
       )
     }
@@ -191,7 +193,9 @@ const DiscoveryStatus = ({
         >
           {t('RETRY')}
         </button>
-        <span className="has-text-weight-bold mt-20">{t(error)}</span>
+        <span className="has-text-weight-bold mt-20">
+          {t(is(String, error) ? error : 'DEVICE_UNKNOWN_ERROR')}
+        </span>
       </>
     ) : (
       <span className="has-text-weight-bold mb-20">
