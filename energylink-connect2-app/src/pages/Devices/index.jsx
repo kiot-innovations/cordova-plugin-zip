@@ -201,7 +201,22 @@ const DiscoveryStatus = ({
       <span className="has-text-weight-bold mb-20">
         {either(
           claimingDevices,
-          t('CLAIMING_DEVICES'),
+          <div className="inline-buttons">
+            <button
+              className="button is-primary is-outlined is-uppercase is-paddingless mb-10"
+              disabled={claimingDevices}
+              onClick={retryDiscovery}
+            >
+              {t('ADD-DEVICES')}
+            </button>
+            <button
+              className={'button is-primary is-uppercase'}
+              disabled={claimingDevices}
+              onClick={claimDevices}
+            >
+              {either(claimingDevices, `${claimProgress}%`, t('CLAIM_DEVICES'))}
+            </button>
+          </div>,
           t('DISCOVERY_IN_PROGRESS')
         )}
       </span>
