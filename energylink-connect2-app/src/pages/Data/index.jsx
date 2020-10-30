@@ -50,7 +50,7 @@ export default () => {
 
   const meters = filter(isMeter, found)
   const prodMeterConfig = propOr(
-    'NOT_USED',
+    'GROSS_PRODUCTION_SITE',
     'SUBTYPE',
     find(isProductionMeter, meters)
   )
