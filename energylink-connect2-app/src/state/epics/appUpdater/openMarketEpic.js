@@ -7,15 +7,12 @@ import {
   APP_UPDATE_OPEN_MARKET_SUCCESS,
   APP_UPDATE_OPEN_MARKET_ERROR
 } from 'state/actions/global'
-import { isIos } from 'shared/utils'
+import { isDebug, isIos } from 'shared/utils'
 import { createExternalLinkHandler } from 'shared/routing'
 
 const APPLE_ID = process.env.REACT_APP_APPLE_ID
 const ANDROID_ID = process.env.REACT_APP_ANDROID_ID
-const TYPE =
-  process.env.REACT_APP_IS_DEV || process.env.REACT_APP_IS_TEST
-    ? 'beta'
-    : 'apps'
+const TYPE = isDebug ? 'beta' : 'apps'
 
 const APPLE_URL = `itms-${TYPE}://itunes.apple.com/app/`
 

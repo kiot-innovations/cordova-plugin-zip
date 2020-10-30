@@ -49,7 +49,7 @@ import RMAMiDiscovery from 'pages/RMAMiDiscovery'
 import RMADevices from 'pages/RMADevices'
 
 import { validateSession } from 'state/actions/auth'
-import { updateBodyHeight } from 'shared/utils'
+import { isDebug, updateBodyHeight } from 'shared/utils'
 import { deviceResumeListener } from 'state/actions/mobile'
 
 import paths from './paths'
@@ -98,8 +98,7 @@ const mapComponents = {
   [paths.UNPROTECTED.LOGIN.path]: Login
 }
 
-if (process.env.REACT_APP_IS_TEST || process.env.REACT_APP_IS_DEV)
-  mapComponents[paths.PROTECTED.DEBUG_PAGE.path] = DebugPage
+if (isDebug) mapComponents[paths.PROTECTED.DEBUG_PAGE.path] = DebugPage
 
 /**
  * The router of this app
