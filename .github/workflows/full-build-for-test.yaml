@@ -26,10 +26,11 @@ on:
 jobs:
   build:
     runs-on: macos-10.15
-    timeout-minutes: 45
+    timeout-minutes: 90
     strategy:
       matrix:
         app_env: [test, uat]
+      max-parallel: 1
     env:
       APP_ENV: ${{ matrix.app_env }}
     steps:
