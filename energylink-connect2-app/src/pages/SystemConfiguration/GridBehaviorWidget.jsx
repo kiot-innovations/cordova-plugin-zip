@@ -89,25 +89,27 @@ function GridBehaviorWidget() {
     ])
   )
 
-  const filterProfiles =
-    profiles && site
-      ? profiles.filter(profile => {
-          if (profile.zipcodes.includes(site.postalCode)) {
-            return true
-          } else {
-            return (
-              site.postalCode >= pathOr(0, ['zipcodes', 0, 'min'], profile) &&
-              site.postalCode <= pathOr(0, ['zipcodes', 0, 'max'], profile)
-            )
-          }
-        })
-      : []
+  const filterProfiles = () => {
+    if (profiles && site) {
+      return profiles.filter(profile => {
+        const postalCode = parseInt(site.postalCode)
+        const hasIndividualPostalCode = profile.zipcodes.includes(postalCode)
+        const postalCodeIsInRange =
+          postalCode >= pathOr(0, ['zipcodes', 0, 'min'], profile) &&
+          postalCode <= pathOr(0, ['zipcodes', 0, 'max'], profile)
+        return hasIndividualPostalCode || postalCodeIsInRange
+      })
+    } else {
+      return []
+    }
+  }
 
   let defaultGridProfile = null
   const isIEEE = /^IEEE/
+  const filteredProfiles = filterProfiles()
 
-  const gridProfileOptions = filterProfiles.map(profile => {
-    if (length(filterProfiles) === 2 && !isIEEE.test(profile.name)) {
+  const gridProfileOptions = (filteredProfiles || []).map(profile => {
+    if (length(filteredProfiles) === 2 && !isIEEE.test(profile.name)) {
       defaultGridProfile = { label: profile.name, value: profile }
     }
     return { label: profile.name, value: profile }
