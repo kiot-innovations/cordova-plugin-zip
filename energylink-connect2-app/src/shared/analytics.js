@@ -82,3 +82,24 @@ export const saveConfiguration = config => {
   mixpanel.track('Configure', config)
   return MIXPANEL_EVENT_QUEUED('Configure - submit site config')
 }
+
+export const deviceResume = pageResume => {
+  const { mixpanel } = window
+  mixpanel.register({
+    Page: pageResume
+  })
+  return MIXPANEL_EVENT_QUEUED('User opens app - Register page resume')
+}
+
+/**
+ *
+ * @param {string}[interfaceType] - The type of connection the user has. either can be  PVS, Cell, or Customer WiFi
+ * @return {Action<null, null>}
+ */
+export const internetConnection = (interfaceType = '') => {
+  const { mixpanel } = window
+  mixpanel.register({
+    'Internet Connection': interfaceType
+  })
+  return MIXPANEL_EVENT_QUEUED('User opens app - Register page resume')
+}
