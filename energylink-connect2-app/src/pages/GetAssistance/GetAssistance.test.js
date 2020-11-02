@@ -1,8 +1,8 @@
 import React from 'react'
-import GiveAssistance from '.'
+import GetAssistance from '.'
 import * as i18n from 'shared/i18n'
 
-describe('GiveAssistance component', () => {
+describe('GetAssistance component', () => {
   beforeEach(() => {
     jest.mock('react-router-dom', () => ({
       useHistory: () => ({
@@ -20,7 +20,7 @@ describe('GiveAssistance component', () => {
   })
 
   test('render correctly', () => {
-    const component = mountWithProvider(<GiveAssistance />)({})
+    const component = mountWithProvider(<GetAssistance />)({})
     expect(component).toMatchSnapshot()
   })
 })

@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`GiveAssistance component render correctly 1`] = `
+exports[`GetAssistance component render correctly 1`] = `
 Object {
   "component": <BrowserRouter
     keyLength={0}
@@ -39,17 +39,17 @@ Object {
           }
         }
       >
-        <GiveAssistance>
+        <GetAssistance>
           <section
-            className="is-flex tile is-vertical section pt-0 fill-parent"
+            className="is-flex tile level is-vertical section pt-15 fill-parent"
           >
             <h1
-              className="has-text-centered is-uppercase has-text-weight-bold  pb-20"
+              className="has-text-centered has-text-primary is-uppercase has-text-weight-bold  mb-20"
             >
               SUNPOWER APP_NAME
             </h1>
             <article
-              className="has-text-justified"
+              className="assistance is-size-5"
             >
               <p
                 className="mb-15"
@@ -59,36 +59,38 @@ Object {
               <p
                 className="mb-15"
               >
-                ASISTANCE_2
+                ASSISTANCE_2
                 <a
                   className="ml-5 mr-5"
                   href="mailto:partnerportal@sunpower.com"
+                  onClick={[Function]}
                 >
-                  ASISTANCE_EMAIL
+                  ASSISTANCE_EMAIL
                 </a>
-                ASISTANCE_2.2
+                ASSISTANCE_2.2
               </p>
               <p
                 className="mb-15"
               >
-                ASISTANCE_3
+                ASSISTANCE_3
                 <a
                   className="ml-5 mr-5"
                   href="mailto:partnerportal@sunpower.com"
+                  onClick={[Function]}
                 >
-                  ASISTANCE_EMAIL
+                  ASSISTANCE_EMAIL
                 </a>
-                ASISTANCE_3.1
+                ASSISTANCE_3.1
               </p>
-              <button
-                className="button is-fullwidth is-outlined"
-                onClick={[Function]}
-              >
-                GO_BACK
-              </button>
             </article>
+            <button
+              className="button button-transparent is-fullwidth is-outlined is-uppercase has-text-primary"
+              onClick={[Function]}
+            >
+              GO_BACK
+            </button>
           </section>
-        </GiveAssistance>
+        </GetAssistance>
       </Provider>
     </Router>
   </BrowserRouter>,
