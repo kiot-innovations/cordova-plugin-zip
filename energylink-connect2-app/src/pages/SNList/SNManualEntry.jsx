@@ -7,10 +7,12 @@ import { buildSN, isValidSN } from 'shared/utils'
 import { useField, useForm } from 'react-final-form-hooks'
 import { ADD_PVS_SN } from 'state/actions/pvs'
 import './SNManualEntry.scss'
+import useIsIos from 'hooks/useDeviceInfo'
 
 const ManualEntryForm = ({ serialNumber, callback }) => {
   const t = useI18n()
   const dispatch = useDispatch()
+  const isIos = useIsIos()
   const addSN = compose(dispatch, ADD_PVS_SN, buildSN)
 
   const { form, handleSubmit } = useForm({
@@ -46,9 +48,9 @@ const ManualEntryForm = ({ serialNumber, callback }) => {
       <div className="is-flex file tile buttons-container">
         <div className="ifield mr-10">
           <TextField
-            input={fieldBarcode.input}
+            input={{ ...fieldBarcode.input, pattern: '\\d*' }}
             meta={fieldBarcode.meta}
-            type="text"
+            type={isIos ? 'text' : 'number'}
             autoComplete="barcode"
             className="field-barcode"
             placeholder={t('ENTER_SERIAL_MANUALLY')}

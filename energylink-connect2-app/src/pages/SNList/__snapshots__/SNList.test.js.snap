@@ -160,6 +160,7 @@ exports[`Serial Number List Page renders correctly 1`] = `
                               "onBlur": [Function],
                               "onChange": [Function],
                               "onFocus": [Function],
+                              "pattern": "\\\\d*",
                               "value": "",
                             }
                           }
@@ -186,7 +187,7 @@ exports[`Serial Number List Page renders correctly 1`] = `
                             }
                           }
                           placeholder="ENTER_SERIAL_MANUALLY"
-                          type="text"
+                          type="number"
                         >
                           <div
                             className="field"
@@ -203,8 +204,9 @@ exports[`Serial Number List Page renders correctly 1`] = `
                                 onBlur={[Function]}
                                 onChange={[Function]}
                                 onFocus={[Function]}
+                                pattern="\\\\d*"
                                 placeholder="ENTER_SERIAL_MANUALLY"
-                                type="text"
+                                type="number"
                                 value=""
                               />
                             </p>

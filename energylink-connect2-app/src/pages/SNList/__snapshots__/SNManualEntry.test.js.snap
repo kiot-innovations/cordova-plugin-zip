@@ -60,6 +60,7 @@ exports[`SNManualEntry renders correctly 1`] = `
                     "onBlur": [Function],
                     "onChange": [Function],
                     "onFocus": [Function],
+                    "pattern": "\\\\d*",
                     "value": "",
                   }
                 }
@@ -86,7 +87,7 @@ exports[`SNManualEntry renders correctly 1`] = `
                   }
                 }
                 placeholder="ENTER_SERIAL_MANUALLY"
-                type="text"
+                type="number"
               >
                 <div
                   className="field"
@@ -103,8 +104,9 @@ exports[`SNManualEntry renders correctly 1`] = `
                       onBlur={[Function]}
                       onChange={[Function]}
                       onFocus={[Function]}
+                      pattern="\\\\d*"
                       placeholder="ENTER_SERIAL_MANUALLY"
-                      type="text"
+                      type="number"
                       value=""
                     />
                   </p>
@@ -185,6 +187,7 @@ exports[`SNManualEntry renders correctly when editing a serial number 1`] = `
                     "onBlur": [Function],
                     "onChange": [Function],
                     "onFocus": [Function],
+                    "pattern": "\\\\d*",
                     "value": "123456789123",
                   }
                 }
@@ -211,7 +214,7 @@ exports[`SNManualEntry renders correctly when editing a serial number 1`] = `
                   }
                 }
                 placeholder="ENTER_SERIAL_MANUALLY"
-                type="text"
+                type="number"
               >
                 <div
                   className="field"
@@ -228,8 +231,9 @@ exports[`SNManualEntry renders correctly when editing a serial number 1`] = `
                       onBlur={[Function]}
                       onChange={[Function]}
                       onFocus={[Function]}
+                      pattern="\\\\d*"
                       placeholder="ENTER_SERIAL_MANUALLY"
-                      type="text"
+                      type="number"
                       value="123456789123"
                     />
                   </p>
