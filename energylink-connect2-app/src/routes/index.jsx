@@ -47,6 +47,7 @@ import RMAInventory from 'pages/RMAInventory'
 import RMASnList from 'pages/RMASnList'
 import RMAMiDiscovery from 'pages/RMAMiDiscovery'
 import RMADevices from 'pages/RMADevices'
+import GetAssistance from 'pages/GetAssistance'
 
 import { validateSession } from 'state/actions/auth'
 import { isDebug, updateBodyHeight } from 'shared/utils'
@@ -95,7 +96,8 @@ const mapComponents = {
   [paths.UNPROTECTED.FORGOT_PASSWORD.path]: NotFound,
   [paths.UNPROTECTED.GET_ASSISTANCE.path]: NotFound,
   [paths.PROTECTED.RMA_DEVICES.path]: RMADevices,
-  [paths.UNPROTECTED.LOGIN.path]: Login
+  [paths.UNPROTECTED.LOGIN.path]: Login,
+  [paths.UNPROTECTED.GET_ASSISTANCE.path]: GetAssistance
 }
 
 if (isDebug) mapComponents[paths.PROTECTED.DEBUG_PAGE.path] = DebugPage

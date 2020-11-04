@@ -1,0 +1,106 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`GetAssistance component render correctly 1`] = `
+Object {
+  "component": <BrowserRouter
+    keyLength={0}
+  >
+    <Router
+      history={
+        Object {
+          "action": "POP",
+          "block": [Function],
+          "createHref": [Function],
+          "go": [Function],
+          "goBack": [Function],
+          "goForward": [Function],
+          "length": 1,
+          "listen": [Function],
+          "location": Object {
+            "hash": "",
+            "pathname": "/",
+            "search": "",
+            "state": undefined,
+          },
+          "push": [Function],
+          "replace": [Function],
+        }
+      }
+    >
+      <Provider
+        store={
+          Object {
+            "clearActions": [Function],
+            "dispatch": [Function],
+            "getActions": [Function],
+            "getState": [Function],
+            "replaceReducer": [Function],
+            "subscribe": [Function],
+          }
+        }
+      >
+        <GetAssistance>
+          <section
+            className="is-flex tile level is-vertical section pt-15 fill-parent"
+          >
+            <h1
+              className="has-text-centered has-text-primary is-uppercase has-text-weight-bold  mb-20"
+            >
+              SUNPOWER APP_NAME
+            </h1>
+            <article
+              className="assistance is-size-5"
+            >
+              <p
+                className="mb-15"
+              >
+                ASSISTANCE_1
+              </p>
+              <p
+                className="mb-15"
+              >
+                ASSISTANCE_2
+                <a
+                  className="ml-5 mr-5"
+                  href="mailto:partnerportal@sunpower.com"
+                  onClick={[Function]}
+                >
+                  ASSISTANCE_EMAIL
+                </a>
+                ASSISTANCE_2.2
+              </p>
+              <p
+                className="mb-15"
+              >
+                ASSISTANCE_3
+                <a
+                  className="ml-5 mr-5"
+                  href="mailto:partnerportal@sunpower.com"
+                  onClick={[Function]}
+                >
+                  ASSISTANCE_EMAIL
+                </a>
+                ASSISTANCE_3.1
+              </p>
+            </article>
+            <button
+              className="button button-transparent is-fullwidth is-outlined is-uppercase has-text-primary"
+              onClick={[Function]}
+            >
+              GO_BACK
+            </button>
+          </section>
+        </GetAssistance>
+      </Provider>
+    </Router>
+  </BrowserRouter>,
+  "store": Object {
+    "clearActions": [Function],
+    "dispatch": [Function],
+    "getActions": [Function],
+    "getState": [Function],
+    "replaceReducer": [Function],
+    "subscribe": [Function],
+  },
+}
+`;
