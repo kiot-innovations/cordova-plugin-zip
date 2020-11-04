@@ -520,6 +520,8 @@
   "FETCHING_MODELS": "We're fetching the available models",
   "NO_MI_FOUND": "No microinverters found",
   "MISSING_HC_REPORT": "Missing {0} Report",
+  "APPLYING_SETTINGS": "Inverter Settings",
+  "WAIT_FOR_UPDATE": "Please wait for the update to finish",
   "LIVE_DATA_UNAVAILABLE": "Live data unavailable",
   "NO_METER_CONFIG": "Verify production CT install and configuration",
   "REFRESH_DEVICE_LIST": "Refresh device list",
