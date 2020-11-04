@@ -2,6 +2,7 @@ import appVersion from '../macros/appVersion.macro'
 import { capitalizeWord, getUserProfile } from 'shared/analyticsUtils'
 import { MIXPANEL_EVENT_QUEUED } from 'state/actions/analytics'
 import { getAppleDeviceFamily } from 'shared/appleDevicesTable'
+import { prop } from 'ramda'
 
 const registerLoginSuperProperties = () => {
   const { mixpanel, device } = window
@@ -81,6 +82,16 @@ export const saveConfiguration = config => {
   const { mixpanel } = window
   mixpanel.track('Configure', config)
   return MIXPANEL_EVENT_QUEUED('Configure - submit site config')
+}
+
+export const saveInventory = (inventory, hasEss) => {
+  const { mixpanel } = window
+  mixpanel.track('Inventory', {
+    'AC Module Count': prop('AC_MODULES', inventory),
+    'ESS System Size': hasEss ? prop('ESS', inventory) : 'None',
+    'Equinox Storage Site': hasEss
+  })
+  return MIXPANEL_EVENT_QUEUED('Inventory')
 }
 
 export const deviceResume = pageResume => {

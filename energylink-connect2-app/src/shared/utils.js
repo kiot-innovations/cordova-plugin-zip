@@ -245,7 +245,7 @@ export const renameKeys = curry((keysMap, obj) =>
   )
 )
 
-export const arrayToObject = (key, array) => indexBy(prop(key), array)
+export const arrayToObject = curry((key, array) => indexBy(prop(key), array))
 const flatErrors = map(prop('device_sn'))
 
 export const addHasErrorProp = results => {

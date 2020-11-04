@@ -12,25 +12,6 @@ export const UPDATE_STORAGE_INVENTORY = createAction('UPDATE_STORAGE_INVENTORY')
 export const UPDATE_OTHER_INVENTORY = createAction('UPDATE_OTHER_INVENTORY')
 export const RESET_INVENTORY = createAction('RESET_INVENTORY')
 
-const mockedInventory = [
-  { item: 'AC_MODULES', value: '0' },
-  { item: 'DC_MODULES', value: '0' },
-  { item: 'STRING_INVERTERS', value: '0' },
-  { item: 'EXTERNAL_METERS', value: '0' },
-  { item: 'ESS', value: '0' }
-]
-
-export const fetchInventory = () => {
-  return async dispatch => {
-    try {
-      dispatch(FETCH_INVENTORY_INIT())
-      dispatch(FETCH_INVENTORY_SUCCESS(mockedInventory))
-    } catch (err) {
-      dispatch(FETCH_INVENTORY_ERROR(err))
-    }
-  }
-}
-
 export const saveInventory = inventory => {
   return async dispatch => {
     try {
