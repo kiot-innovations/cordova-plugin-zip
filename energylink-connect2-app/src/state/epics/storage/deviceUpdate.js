@@ -17,7 +17,7 @@ import {
   UPLOAD_EQS_FIRMWARE,
   UPLOAD_EQS_FIRMWARE_ERROR,
   UPLOAD_EQS_FIRMWARE_PROGRESS,
-  UPLOAD_EQS_FIRMWARE_SUCCESS
+  TRIGGER_EQS_FIRMWARE_UPDATE_INIT
 } from 'state/actions/storage'
 import uploaderObservable from 'state/epics/observables/uploader'
 
@@ -86,7 +86,7 @@ export const uploadEqsFwEpic = action$ => {
       }).pipe(
         map(response =>
           response.message === 'UPLOAD_COMPLETE'
-            ? UPLOAD_EQS_FIRMWARE_SUCCESS()
+            ? TRIGGER_EQS_FIRMWARE_UPDATE_INIT()
             : UPLOAD_EQS_FIRMWARE_PROGRESS(response)
         ),
         catchError(err => {
@@ -102,7 +102,7 @@ export const uploadEqsFwEpic = action$ => {
 
 export const triggerFwUpdateEpic = action$ => {
   return action$.pipe(
-    ofType(UPLOAD_EQS_FIRMWARE_SUCCESS.getType()),
+    ofType(TRIGGER_EQS_FIRMWARE_UPDATE_INIT.getType()),
     exhaustMap(() => {
       const promise = getApiPVS()
         .then(path(['apis', storageSwaggerTag]))
