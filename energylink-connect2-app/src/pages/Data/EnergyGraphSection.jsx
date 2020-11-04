@@ -1,11 +1,12 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import moment from 'moment'
 import { filter, head, length, pathOr } from 'ramda'
-import { useI18n } from '../../shared/i18n'
-import { GRAPHS, SELECT_ENERGY_GRAPH, DATA_SOURCES } from 'state/actions/user'
+
+import { useI18n } from 'shared/i18n'
+import { DATA_SOURCES, GRAPHS, SELECT_ENERGY_GRAPH } from 'state/actions/user'
 import EnergyGraph, { VIEWS } from 'components/EnergyGraph'
 import EnergySwitch from 'components/EnergySwitch'
+
 import './EnergyGraphSection.scss'
 
 const SelectedGraph = ({ selectedId, data, dataSource }) => {
@@ -72,14 +73,6 @@ const SelectedGraph = ({ selectedId, data, dataSource }) => {
   )
 }
 
-const getStartTime = data => {
-  const dates = Object.keys(data)
-  const firstEntryDate = dates.length > 0 ? dates.pop() : moment()
-  return moment(firstEntryDate)
-    .startOf('hour')
-    .format('hh:mmA')
-}
-
 const shareId = 'energy-graph'
 
 export default function EnergyGraphSection() {
@@ -105,13 +98,6 @@ export default function EnergyGraphSection() {
       id={shareId}
       className="energy-graph-container columns is-mobile is-multiline is-variable is-1"
     >
-      <div className="column is-8">
-        <h6 className="title is-uppercase is-6">{t('ENERGY_POWER_GRAPH')}</h6>
-        <h6 className="subtitle is-uppercase is-6">
-          {t('AS_OF_TIME_TODAY', getStartTime(data))}
-        </h6>
-      </div>
-      <div className="column is-4 is-flex icons ignore-in-share" />
       <div className="column is-full ignore-in-share pb-0">
         <EnergySwitch
           entries={graphSelect}

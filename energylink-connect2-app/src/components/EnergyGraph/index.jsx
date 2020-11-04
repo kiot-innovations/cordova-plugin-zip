@@ -2,17 +2,17 @@ import React, { useState } from 'react'
 import moment from 'moment'
 import clsx from 'clsx'
 import {
-  ResponsiveContainer,
-  XAxis,
-  YAxis,
-  Legend,
-  ComposedChart,
   Area,
   Bar,
-  Tooltip,
-  ReferenceLine,
+  ComposedChart,
+  Label,
+  Legend,
   ReferenceArea,
-  Label
+  ReferenceLine,
+  ResponsiveContainer,
+  Tooltip,
+  XAxis,
+  YAxis
 } from 'recharts'
 import { useI18n } from '../../shared/i18n'
 import { roundDecimals } from '../../shared/rounding'
@@ -208,16 +208,16 @@ export const formatData = (view, data = {}, weather) => {
         } else if (view === VIEWS.LIVE) {
           newDate = newDate.add(1, 'second')
         }
-
+        const localizedDate = moment(newDate).local()
         data.push({
-          seconds: moment(newDate).format('hh:mm:ss'),
-          minute: moment(newDate).format('hh:mm'),
-          hour: moment(newDate).format('hA'),
-          dayName: moment(newDate).format('ddd'),
-          dayNumber: moment(newDate).format('M/D'),
-          monthName: moment(newDate).format('MMM'),
-          year: moment(newDate).format('YYYY'),
-          date: newDate.format('YYYY-MM-DDTHH:mm:ss'),
+          seconds: localizedDate.format('hh:mm:ss'),
+          minute: localizedDate.format('hh:mm'),
+          hour: localizedDate.format('hA'),
+          dayName: localizedDate.format('ddd'),
+          dayNumber: localizedDate.format('M/D'),
+          monthName: localizedDate.format('MMM'),
+          year: localizedDate.format('YYYY'),
+          date: newDate.local().format('YYYY-MM-DDTHH:mm:ss'),
           pp: 0,
           pc: 0,
           ps: 0,
