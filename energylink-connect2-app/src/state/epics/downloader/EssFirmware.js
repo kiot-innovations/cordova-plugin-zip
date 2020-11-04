@@ -11,12 +11,15 @@ import {
 } from 'ramda'
 import { ofType } from 'redux-observable'
 import { forkJoin, from, of } from 'rxjs'
-import { catchError, exhaustMap, map, withLatestFrom } from 'rxjs/operators'
+import { catchError, exhaustMap, map } from 'rxjs/operators'
 
 import fileTransferObservable from 'state/epics/observables/downloader'
 import { checkMD5 } from 'shared/cordovaMapping'
 import { getFileInfo } from 'shared/fileSystem'
-import { essUpdateUrl$ } from 'state/epics/downloader/latestUrls'
+import {
+  essUpdateUrl$,
+  waitForObservable
+} from 'state/epics/downloader/latestUrls'
 import {
   DOWNLOAD_META_ERROR,
   DOWNLOAD_META_INIT,
@@ -32,7 +35,7 @@ const downloadOSZipEpic = (action$, state$) => {
   const shouldRetry = ifElse(is(Boolean), identity, always(false))
   return action$.pipe(
     ofType(DOWNLOAD_OS_INIT.getType()),
-    withLatestFrom(essUpdateUrl$),
+    waitForObservable(essUpdateUrl$),
     exhaustMap(([action, updateUrl]) => {
       const filePath = 'ESS/EQS-FW-Package.zip'
       const payload = propOr(false, 'payload', action)

@@ -28,7 +28,7 @@ import paths from 'routes/paths'
 import SearchField from 'components/SearchField'
 import './Home.scss'
 import { PVS_FIRMWARE_DOWNLOAD_INIT } from 'state/actions/fileDownloader'
-import { DOWNLOAD_OS_INIT } from 'state/actions/ess'
+import { DOWNLOAD_META_INIT, DOWNLOAD_OS_INIT } from 'state/actions/ess'
 import { GRID_PROFILE_DOWNLOAD_INIT } from 'state/actions/gridProfileDownloader'
 import { RESET_RMA_PVS } from 'state/actions/rma'
 
@@ -83,6 +83,7 @@ function Home() {
   useEffect(() => {
     dispatch(PVS_FIRMWARE_DOWNLOAD_INIT())
     dispatch(DOWNLOAD_OS_INIT())
+    dispatch(DOWNLOAD_META_INIT())
     dispatch(GRID_PROFILE_DOWNLOAD_INIT())
     dispatch(CHECK_APP_UPDATE_INIT())
     dispatch(FETCH_MODELS_INIT())

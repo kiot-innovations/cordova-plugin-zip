@@ -1,6 +1,6 @@
-import { from, of, ReplaySubject } from 'rxjs'
+import { combineLatest, from, of, ReplaySubject } from 'rxjs'
 import { ofType } from 'redux-observable'
-import { catchError, exhaustMap, map } from 'rxjs/operators'
+import { catchError, exhaustMap, map, mergeMap } from 'rxjs/operators'
 import * as Sentry from '@sentry/browser'
 
 import { DOWNLOAD_OS_INIT } from 'state/actions/ess'
@@ -13,6 +13,9 @@ import { GRID_PROFILE_DOWNLOAD_INIT } from 'state/actions/gridProfileDownloader'
 export const pvsUpdateUrl$ = new ReplaySubject(1)
 export const gridProfileUpdateUrl$ = new ReplaySubject(1)
 export const essUpdateUrl$ = new ReplaySubject(1)
+
+export const waitForObservable = observable$ =>
+  mergeMap(action => combineLatest([from([action]), observable$]))
 
 /**
  * The decision in why this rxjs way of the architecture instead of the redux way is

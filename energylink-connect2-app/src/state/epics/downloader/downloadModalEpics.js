@@ -1,4 +1,4 @@
-import { any, equals, path, not, includes } from 'ramda'
+import { any, equals, path } from 'ramda'
 import { ofType } from 'redux-observable'
 import { concat, from, of } from 'rxjs'
 import { concatMap, exhaustMap, take, map, catchError } from 'rxjs/operators'
@@ -13,12 +13,12 @@ import {
   PVS_DECOMPRESS_LUA_FILES_ERROR,
   PVS_FIRMWARE_DOWNLOAD_ERROR,
   DOWNLOAD_VERIFY,
-  FILES_VERIFY
+  FILES_VERIFY,
+  FILES_VERIFY_FAILED
 } from 'state/actions/fileDownloader'
 import { GRID_PROFILE_DOWNLOAD_ERROR } from 'state/actions/gridProfileDownloader'
 import { EMPTY_ACTION } from 'state/actions/share'
 import { MENU_DISPLAY_ITEM } from 'state/actions/ui'
-import { FILES_VERIFY_FAILED } from 'state/actions/fileDownloader'
 
 export const modalPVSConnected = () => {
   const t = translate()
@@ -75,16 +75,17 @@ export const downloadingLatestFirmwareEpic = (action$, state$) =>
       const t = translate()
 
       const isDownloading = any(equals(true), [
-        path(['value', 'ess', 'isDownloading'], state$),
-        path(['value', 'fileDownloader', 'progress', 'downloading'], state$),
-        not(
-          includes(
-            path(
-              ['value', 'fileDownloader', 'gridProfileInfo', 'progress'],
-              state$
-            ),
-            [0, 100]
-          )
+        path(
+          ['value', 'fileDownloader', 'verification', 'gpDownloading'],
+          state$
+        ),
+        path(
+          ['value', 'fileDownloader', 'verification', 'essDownloading'],
+          state$
+        ),
+        path(
+          ['value', 'fileDownloader', 'verification', 'pvsDownloading'],
+          state$
         )
       ])
 
