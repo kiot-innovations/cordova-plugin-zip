@@ -36,6 +36,8 @@ import {
   ENABLE_ACCESS_POINT
 } from 'state/actions/network'
 import { EMPTY_ACTION } from 'state/actions/share'
+import { BLESTATUS } from 'state/reducers/network'
+import paths from 'routes/paths'
 
 const WPA = 'WPA'
 const hasCode7 = test(/Code=7/)
@@ -80,13 +82,20 @@ const connectToEpic = (action$, state$) =>
             isTimeout(err) &&
             state$.value.firmwareUpdate.status !== 'UPGRADE_COMPLETE'
 
+          const wasUsingBLE =
+            isNetworkUnavailable(err) &&
+            state$.value.network.bluetoothStatus ===
+              BLESTATUS.ENABLED_ACCESS_POINT_ON_PVS &&
+            window.location.hash.split('#')[1] ===
+              paths.PROTECTED.CONNECT_TO_PVS.path
+
           if (
             hasCode7(err) ||
             isInvalidNetworkID(err) ||
-            isNetworkUnavailable(err) ||
             isInterrupted(err) ||
             isWIFIDisabled(err) ||
-            isTimeoutAndNotUpgrading
+            isTimeoutAndNotUpgrading ||
+            !wasUsingBLE
           ) {
             return of(STOP_NETWORK_POLLING({ canceled: true }))
           } else {
