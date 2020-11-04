@@ -1,8 +1,9 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { useI18n } from 'shared/i18n'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import { includes, isEmpty, length, map, pathOr, pluck, prop } from 'ramda'
+import SwipeableBottomSheet from 'react-swipeable-bottom-sheet'
 import {
   CHECK_EQS_FIRMWARE,
   UPLOAD_EQS_FIRMWARE_SUCCESS
@@ -18,6 +19,7 @@ import ConnectedDeviceUpdate from 'components/ConnectedDeviceUpdate'
 import ContinueFooter from 'components/ESSContinueFooter'
 import ErrorDetected from 'components/ESSErrorDetected'
 import paths from 'routes/paths'
+import './EQSUpdate.scss'
 
 const renderUpdateComponent = device => (
   <ConnectedDeviceUpdate device={device} />
@@ -38,12 +40,20 @@ const checkForErrors = (errorList, devices) => {
   return updatedDevices
 }
 
-const EQSUpdate = () => {
+const EQSUpdate = ({ history }) => {
   const t = useI18n()
   const dispatch = useDispatch()
-  const history = useHistory()
+  const historyRouter = useHistory()
+  const unblockHandle = useRef()
+  const [modal, showModal] = useState(false)
 
   const { currentStep, error } = useSelector(prop('storage'))
+
+  const isUpdating = includes(currentStep, [
+    eqsSteps.FW_UPLOAD,
+    eqsSteps.FW_UPDATE,
+    eqsSteps.FW_POLL
+  ])
 
   useEffect(() => {
     if (
@@ -58,6 +68,18 @@ const EQSUpdate = () => {
       dispatch(CHECK_EQS_FIRMWARE())
     }
   }, [currentStep, dispatch])
+
+  useEffect(() => {
+    unblockHandle.current = history.block(() => {
+      if (isUpdating) {
+        showModal(true)
+        return false
+      }
+    })
+    return function() {
+      unblockHandle.current && unblockHandle.current()
+    }
+  })
 
   const updateProgress = useSelector(
     pathOr([], ['storage', 'deviceUpdate', 'status_report'])
@@ -105,7 +127,7 @@ const EQSUpdate = () => {
               <button
                 className="button is-primary is-outlined"
                 onClick={() =>
-                  history.push(paths.PROTECTED.MANAGE_FIRMWARES.path)
+                  historyRouter.push(paths.PROTECTED.MANAGE_FIRMWARES.path)
                 }
               >
                 {t('MANAGE_FIRMWARES')}
@@ -187,6 +209,25 @@ const EQSUpdate = () => {
           next={paths.PROTECTED.ESS_DEVICE_MAPPING.path}
         />
       )}
+
+      <SwipeableBottomSheet
+        shadowTip={false}
+        open={modal}
+        onChange={() => showModal(!modal)}
+      >
+        <div className="update-in-progress is-flex">
+          <span className="has-text-weight-bold">{t('HOLD_ON')}</span>
+          <span className="mt-10 mb-10">{t('WAIT_FOR_UPDATE')}</span>
+          <div className="mt-10 mb-20">
+            <button
+              className="button is-primary"
+              onClick={() => showModal(false)}
+            >
+              {t('CLOSE')}
+            </button>
+          </div>
+        </div>
+      </SwipeableBottomSheet>
     </div>
   )
 }
