@@ -20,7 +20,8 @@ import {
   EXECUTE_ENABLE_ACCESS_POINT,
   FAILURE_BLUETOOTH_ACTION,
   EXECUTE_ENABLE_ACCESS_POINT_SUCCESS
-} from '../../actions/network'
+} from 'state/actions/network'
+import { RESET_COMMISSIONING } from 'state/actions/global'
 
 const initialState = {
   connected: false,
@@ -95,6 +96,7 @@ export const networkReducer = createReducer(
       connectionCanceled: propOr(false, 'canceled', payload)
     }),
     [RESET_PVS_CONNECTION]: () => initialState,
+    [RESET_COMMISSIONING]: () => initialState,
     [CONNECT_PVS_VIA_BLE]: state => ({
       ...state,
       bluetoothStatus: BLESTATUS.CONNECTING_PVS_VIA_BLE

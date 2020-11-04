@@ -11,6 +11,7 @@ import {
   SET_SELECTED_AP,
   RESET_SYSTEM_CONFIGURATION
 } from 'state/actions/systemConfiguration'
+import { RESET_COMMISSIONING } from 'state/actions/global'
 
 import { getConnectedAP } from 'shared/utils'
 
@@ -93,7 +94,8 @@ export const networkReducer = createReducer(
       ...state,
       selectedAP
     }),
-    [RESET_SYSTEM_CONFIGURATION]: () => initialState
+    [RESET_SYSTEM_CONFIGURATION]: () => initialState,
+    [RESET_COMMISSIONING]: () => initialState
   },
   initialState
 )

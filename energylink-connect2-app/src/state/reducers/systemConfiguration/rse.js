@@ -11,6 +11,7 @@ import {
   SET_SELECTED_POWER_PRODUCTION,
   RESET_SYSTEM_CONFIGURATION
 } from 'state/actions/systemConfiguration'
+import { RESET_COMMISSIONING } from 'state/actions/global'
 
 const initialState = {
   isSetting: false,
@@ -68,7 +69,8 @@ const rseReducer = createReducer(
       ...state,
       selectedPowerProduction
     }),
-    [RESET_SYSTEM_CONFIGURATION]: () => initialState
+    [RESET_SYSTEM_CONFIGURATION]: () => initialState,
+    [RESET_COMMISSIONING]: () => initialState
   },
   initialState
 )

@@ -27,6 +27,7 @@ import {
   TRIGGER_EQS_FIRMWARE_UPDATE_INIT
 } from 'state/actions/storage'
 import { eqsUpdateStates } from 'state/epics/storage/deviceUpdate'
+import { RESET_COMMISSIONING } from 'state/actions/global'
 
 const initialState = {
   currentStep: '',
@@ -172,7 +173,8 @@ export const storageReducer = createReducer(
       ...state,
       error: '',
       componentMapping: {}
-    })
+    }),
+    [RESET_COMMISSIONING]: () => initialState
   },
   initialState
 )

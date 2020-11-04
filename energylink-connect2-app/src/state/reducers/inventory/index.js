@@ -11,6 +11,7 @@ import {
   RESET_INVENTORY,
   UPDATE_INVENTORY
 } from 'state/actions/inventory'
+import { RESET_COMMISSIONING } from 'state/actions/global'
 
 const initialState = {
   bom: [
@@ -62,6 +63,7 @@ export const inventoryReducer = createReducer(
       ...initialState,
       bom: clone(initialState.bom)
     }),
+    [RESET_COMMISSIONING]: () => initialState,
     [UPDATE_INVENTORY]: (state, payload) => ({
       ...state,
       bom: [

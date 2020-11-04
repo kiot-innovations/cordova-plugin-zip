@@ -20,6 +20,7 @@ import {
 } from 'state/actions/global'
 import paths from 'routes/paths'
 import { SET_SCANDIT_ACCESS } from 'state/actions/scandit'
+import { RESET_COMMISSIONING } from 'state/actions/global'
 
 const initialState = {
   isAccountCreated: false,
@@ -76,6 +77,7 @@ export const globalReducer = createReducer(
       ...state,
       lastVisitedPage: initialState.lastVisitedPage
     }),
+    [RESET_COMMISSIONING]: () => initialState,
     [SET_SCANDIT_ACCESS]: (state, canAccessScandit) => ({
       ...state,
       canAccessScandit
