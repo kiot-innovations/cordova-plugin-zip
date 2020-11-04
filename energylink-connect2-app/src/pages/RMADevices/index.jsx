@@ -7,6 +7,7 @@ import {
   filter,
   has,
   ifElse,
+  isEmpty,
   keys,
   length,
   map,
@@ -19,7 +20,6 @@ import { useDispatch, useSelector } from 'react-redux'
 import paths from 'routes/paths'
 import Collapsible from 'components/Collapsible'
 import { FETCH_DEVICES_LIST } from 'state/actions/devices'
-import { GET_PREDISCOVERY } from 'state/actions/storage'
 import { RMA_REMOVE_DEVICES, CLEAR_RMA } from 'state/actions/rma'
 import { SHOW_MODAL } from 'state/actions/modal'
 import { either } from 'shared/utils'
@@ -47,17 +47,6 @@ const renderMicroinverter = (toggleCheckbox, selectedMIs) => inverter => {
   )
 }
 
-const renderStorage = storageDevice => {
-  const type = prop('device_type', storageDevice)
-  const serialNumber = prop('serial_number', storageDevice)
-  return (
-    <div key={serialNumber}>
-      <span className="has-text-weight-bold has-text-white">{type}</span>
-      <span className="ml-10">{serialNumber}</span>
-    </div>
-  )
-}
-
 function RMADevices() {
   const t = useI18n()
   const dispatch = useDispatch()
@@ -65,9 +54,8 @@ function RMADevices() {
 
   const [selectedMIs, setSelectedMIs] = useState({})
   const devicesData = useSelector(pathOr([], ['devices', 'found']))
-  const storageDevices = useSelector(
-    pathOr([], ['storage', 'prediscovery', 'pre_discovery_report', 'devices'])
-  )
+  const storageDevices = filter(propEq('TYPE', 'EQUINOX-ESS'), devicesData)
+  const hasStorage = !isEmpty(storageDevices)
 
   const microInverters = filter(propEq('DEVICE_TYPE', 'Inverter'), devicesData)
 
@@ -101,12 +89,10 @@ function RMADevices() {
 
   const fetchDevices = () => {
     dispatch(FETCH_DEVICES_LIST())
-    dispatch(GET_PREDISCOVERY())
   }
 
   useEffect(() => {
     dispatch(FETCH_DEVICES_LIST())
-    dispatch(GET_PREDISCOVERY())
   }, [dispatch])
 
   const addMI = (
@@ -153,11 +139,16 @@ function RMADevices() {
       </Collapsible>
       <div className="mt-10" />
       <Collapsible title="Storage Equipment" expanded>
-        {either(
-          length(storageDevices) > 0,
-          map(renderStorage, storageDevices),
-          t('NO_STORAGE_RMA')
-        )}
+        <span className="has-text-white has-text-weight-bold">
+          {either(hasStorage, t('HAS_STORAGE_RMA'), t('NO_STORAGE_RMA'))}
+        </span>
+        <span className="mt-5">
+          {either(
+            hasStorage,
+            t('HAS_STORAGE_RMA_HINT'),
+            t('NO_STORAGE_RMA_HINT')
+          )}
+        </span>
         <div className="buttons-container">
           <button
             onClick={() =>
@@ -165,7 +156,7 @@ function RMADevices() {
             }
             className="button is-paddingless has-text-primary has-text-weight-bold is-size-7 button-transparent"
           >
-            {t('ADD_REPLACE_EQUIPMENT')}
+            {hasStorage ? t('RECOMM_STORAGE') : t('COMM_STORAGE')}
           </button>
         </div>
       </Collapsible>
