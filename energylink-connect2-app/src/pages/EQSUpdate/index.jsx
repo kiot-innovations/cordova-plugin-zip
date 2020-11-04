@@ -6,7 +6,7 @@ import { includes, isEmpty, length, map, pathOr, pluck, prop } from 'ramda'
 import SwipeableBottomSheet from 'react-swipeable-bottom-sheet'
 import {
   CHECK_EQS_FIRMWARE,
-  UPLOAD_EQS_FIRMWARE_SUCCESS
+  TRIGGER_EQS_FIRMWARE_UPDATE_INIT
 } from 'state/actions/storage'
 import { Loader } from 'components/Loader'
 import { either, warningsLength } from 'shared/utils'
@@ -27,7 +27,7 @@ const renderUpdateComponent = device => (
 
 const checkForErrors = (errorList, devices) => {
   const affectedDevices = pluck('device_sn', errorList)
-  const updatedDevices = devices.map(device => {
+  return devices.map(device => {
     if (
       device.progress < 0 ||
       includes(device.serial_number, affectedDevices)
@@ -37,7 +37,6 @@ const checkForErrors = (errorList, devices) => {
     }
     return device
   })
-  return updatedDevices
 }
 
 const EQSUpdate = ({ history }) => {
@@ -143,32 +142,30 @@ const EQSUpdate = ({ history }) => {
               </button>
             </div>
           </div>
-        </div>
+        </div>,
+        either(
+          includes(updateStatus, [
+            eqsUpdateStates.FAILED,
+            eqsUpdateStates.NOT_RUNNING
+          ]) && isEmpty(updateErrors),
+          <div className="has-text-centered mb-15">
+            <div className="pt-20 pb-20">
+              <i className="sp-close has-text-white is-size-1" />
+            </div>
+            <div className="mt-20">
+              <span>{t('EQS_UPDATE_ERROR')}</span>
+            </div>
+            <div className="mt-20 has-text-centered">
+              <button
+                onClick={() => dispatch(TRIGGER_EQS_FIRMWARE_UPDATE_INIT())}
+                className="button is-primary"
+              >
+                {t('RETRY')}
+              </button>
+            </div>
+          </div>
+        )
       )}
-
-      {either(
-        includes(updateStatus, [
-          eqsUpdateStates.FAILED,
-          eqsUpdateStates.NOT_RUNNING
-        ]) && isEmpty(updateErrors),
-        <div className="has-text-centered mb-15">
-          <div className="pt-20 pb-20">
-            <i className="sp-close has-text-white is-size-1" />
-          </div>
-          <div className="mt-20">
-            <span>{t('EQS_UPDATE_ERROR')}</span>
-          </div>
-          <div className="mt-20 has-text-centered">
-            <button
-              onClick={() => dispatch(UPLOAD_EQS_FIRMWARE_SUCCESS())}
-              className="button is-primary"
-            >
-              {t('RETRY')}
-            </button>
-          </div>
-        </div>
-      )}
-
       {either(
         !isEmpty(updatingDevices),
         <div>{map(renderUpdateComponent, updatingDevices)}</div>
@@ -186,7 +183,7 @@ const EQSUpdate = ({ history }) => {
           </div>
           <div className="mt-20">
             <button
-              onClick={() => dispatch(UPLOAD_EQS_FIRMWARE_SUCCESS())}
+              onClick={() => dispatch(TRIGGER_EQS_FIRMWARE_UPDATE_INIT())}
               className="button is-primary"
             >
               {t('RETRY')}
