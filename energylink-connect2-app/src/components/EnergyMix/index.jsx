@@ -1,32 +1,18 @@
 import React from 'react'
-import moment from 'moment'
 import EnergyMixChart from './EnergyMixChart'
-import { Battery, SolarPanel, Grid } from '../Icons'
-import { useI18n } from '../../shared/i18n'
+import { Battery, Grid, SolarPanel } from '../Icons'
+import { useI18n } from 'shared/i18n'
 import './EnergyMix.scss'
 
 export default function EnergyMix(props) {
-  const {
-    solar = 0,
-    storage = 0,
-    grid = 0,
-    date = moment().startOf('hour'),
-    homeUsage = 0
-  } = props
+  const { solar = 0, storage = 0, grid = 0, homeUsage = 0 } = props
   const t = useI18n()
-  const time = moment(date).format('hh:mmA')
   const solarPercentage =
     solar !== 0
       ? (Math.min(solar, homeUsage) * 100) / Math.max(solar, homeUsage)
       : 0
   return (
     <div className="energy-mix-container columns  is-mobile is-multiline is-variable is-1">
-      <div className="column is-8">
-        <h6 className="subtitle is-uppercase is-6">
-          {t('AS_OF_TIME_TODAY', time)}
-        </h6>
-      </div>
-
       <div className="column is-full">
         <h6 className="percentage is-uppercase is-6 mb-10">
           {t('SOLAR')} <b>{solarPercentage.toFixed(2)}%</b>

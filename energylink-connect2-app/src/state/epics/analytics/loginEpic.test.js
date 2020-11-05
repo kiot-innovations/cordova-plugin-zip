@@ -1,4 +1,5 @@
 import { LOGIN_SUCCESS } from 'state/actions/auth'
+import { SET_DEALER_NAME } from 'state/actions/user'
 import * as analytics from 'shared/analytics'
 import { MIXPANEL_EVENT_QUEUED } from 'state/actions/analytics'
 import * as utils from './epicUtils'
@@ -32,10 +33,11 @@ describe('The loginSuccessEpic', function() {
       })
     }
     const expectedValue = {
-      m: MIXPANEL_EVENT_QUEUED('Login - Success')
+      m: MIXPANEL_EVENT_QUEUED('Login - Success'),
+      u: SET_DEALER_NAME('My awesome Dealer')
     }
     const inputMarble = 'l'
-    const expectedMarble = 'm'
+    const expectedMarble = '(mu)'
 
     epicTest(inputMarble, expectedMarble, inputValues, expectedValue)
     expect(loggedIn).toBeCalledTimes(1)

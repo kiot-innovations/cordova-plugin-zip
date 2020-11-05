@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Ribbon should be displayed in Test and UAT flavors 1`] = `""`;
+
+exports[`Ribbon should be displayed in Test and UAT flavors 2`] = `""`;
+
+exports[`Ribbon should be hidden in Prod and Training flavors 1`] = `""`;
+
+exports[`Ribbon should be hidden in Prod and Training flavors 2`] = `""`;

@@ -10,19 +10,20 @@ import {
   DISCOVER_ERROR,
   DISCOVER_INIT,
   DISCOVER_UPDATE,
-  PUSH_CANDIDATES_INIT,
-  PUSH_CANDIDATES_ERROR,
-  FETCH_CANDIDATES_INIT,
-  FETCH_CANDIDATES_UPDATE,
   FETCH_CANDIDATES_COMPLETE,
   FETCH_CANDIDATES_ERROR,
+  FETCH_CANDIDATES_INIT,
+  FETCH_CANDIDATES_UPDATE,
+  FETCH_DEVICES_LIST,
   FETCH_MODELS_LOAD_DEFAULT,
   FETCH_MODELS_SUCCESS,
+  PUSH_CANDIDATES_ERROR,
+  PUSH_CANDIDATES_INIT,
   RESET_DISCOVERY,
   UPDATE_DEVICES_LIST,
-  FETCH_DEVICES_LIST,
   UPDATE_DEVICES_LIST_ERROR
 } from 'state/actions/devices'
+import { RESET_COMMISSIONING } from 'state/actions/global'
 
 export const discoveryTypes = {
   LEGACY: 'LEGACY',
@@ -49,7 +50,14 @@ const initialState = {
 
 export default createReducer(
   {
-    [DISCOVER_INIT]: state => ({ ...state, isFetching: true }),
+    [DISCOVER_INIT]: state => ({
+      ...state,
+      isFetching: true,
+      found: [],
+      progress: {},
+      discoveryComplete: false,
+      error: ''
+    }),
     [DISCOVER_UPDATE]: (state, payload) => ({
       ...state,
       found: pathOr(state.found, ['devices', 'devices'], payload),
@@ -60,7 +68,8 @@ export default createReducer(
       isFetching: false,
       found: pathOr(state.found, ['devices', 'devices'], payload),
       progress: propOr(state.progress, 'progress', payload),
-      discoveryComplete: true
+      discoveryComplete: true,
+      error: ''
     }),
     [DISCOVER_ERROR]: (state, payload) => ({
       ...state,
@@ -98,7 +107,10 @@ export default createReducer(
     }),
     [CLAIM_DEVICES_INIT]: state => ({
       ...state,
-      claimingDevices: true
+      claimingDevices: true,
+      claimedDevices: false,
+      claimProgress: 0,
+      claimError: ''
     }),
     [CLAIM_DEVICES_UPDATE]: (state, payload) => ({
       ...state,
@@ -122,10 +134,12 @@ export default createReducer(
       claimedDevices: initialState.claimedDevices,
       claimError: initialState.claimError
     }),
-    [RESET_DISCOVERY]: state => ({
+    [RESET_DISCOVERY]: (state, miFound) => ({
       ...initialState,
+      miFound,
       miModels: state.miModels
     }),
+    [RESET_COMMISSIONING]: () => initialState,
     [FETCH_MODELS_SUCCESS]: (state, miModels) => ({
       ...state,
       miModels

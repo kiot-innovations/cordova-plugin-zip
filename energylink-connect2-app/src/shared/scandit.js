@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 import * as Sentry from '@sentry/browser'
 import { path, map } from 'ramda'
-import { isIos } from './utils'
+import { isDebug, isIos } from './utils'
 
 export function scanM(onRecognize, nodeID = 'scandit') {
   const KEY = isIos()
@@ -87,10 +87,7 @@ export function scanSimple(onRecognize, nodeID = 'scandit') {
     ? process.env.REACT_APP_SCANDIT_IOS
     : process.env.REACT_APP_SCANDIT_ANDROID
 
-  const keyBasedOnEnv =
-    process.env.REACT_APP_IS_TEST || process.env.REACT_APP_IS_DEV
-      ? process.env.REACT_APP_SCANDIT
-      : KEY
+  const keyBasedOnEnv = isDebug ? process.env.REACT_APP_SCANDIT : KEY
 
   const context = Scandit.DataCaptureContext.forLicenseKey(keyBasedOnEnv)
 

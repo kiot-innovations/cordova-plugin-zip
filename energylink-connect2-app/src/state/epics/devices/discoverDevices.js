@@ -31,18 +31,16 @@ const fetchDiscovery = async () => {
       progress: data[1]
     }
   } catch (e) {
-    throw new Error('DISCOVERY_ERROR')
+    throw e
   }
 }
 
 export const scanDevicesEpic = action$ => {
   const stopPolling$ = action$.pipe(ofType(DISCOVER_COMPLETE.getType()))
-
   return action$.pipe(
     ofType(
       FETCH_CANDIDATES_COMPLETE.getType(),
-      START_DISCOVERY_SUCCESS.getType(),
-      DISCOVER_ERROR.getType()
+      START_DISCOVERY_SUCCESS.getType()
     ),
     switchMap(() =>
       timer(0, 2500).pipe(
@@ -56,7 +54,7 @@ export const scanDevicesEpic = action$ => {
             ),
             catchError(error => {
               Sentry.captureException(error)
-              return of(DISCOVER_ERROR.asError(error.message))
+              return of(DISCOVER_ERROR('DISCOVERY_ERROR'))
             })
           )
         )

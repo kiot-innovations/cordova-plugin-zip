@@ -124,6 +124,7 @@ export const liveEnergyData = (action$, state$) =>
                 site_load_en = 0,
                 ess_en = 0
               } = data
+
               // powerProduction/pv_p :: power production (kW)
 
               const netPower =
@@ -168,7 +169,8 @@ export const liveEnergyData = (action$, state$) =>
                   pc: roundDecimals(powerConsumption),
                   ps: roundDecimals(energyStoragePower),
                   // soc:: stage of charge
-                  soc: roundDecimals(data.soc * 100)
+                  soc: roundDecimals(data.soc * 100),
+                  rawData: data
                 }
               })
             }

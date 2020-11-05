@@ -36,7 +36,8 @@ import {
   toPairs,
   toUpper,
   values,
-  when
+  when,
+  pathOr
 } from 'ramda'
 
 export const either = (condition, whenTrue, whenFalse = null) =>
@@ -110,7 +111,8 @@ export const capitalize = when(
   compose(join(''), over(lensIndex(0), toUpper))
 )
 
-export const isIos = () => window.device.platform === 'iOS'
+export const isIos = () =>
+  pathOr('none', ['device', 'platform'], window) === 'iOS'
 
 export const isAndroid10 = () =>
   window.device.platform === 'Android' &&
@@ -270,7 +272,11 @@ export const addHasErrorProp = results => {
   return copy
 }
 
+export const getAppFlavor = () =>
+  pathOr('cm2-test', ['env', 'REACT_APP_FLAVOR'], process).split('-')[1]
+
 export function getEnvironment() {
+  if (process.env.REACT_APP_FLAVOR === 'cm2-training') return 'training'
   if (process.env.REACT_APP_FLAVOR === 'cm2-test') return 'test'
   if (process.env.REACT_APP_FLAVOR === 'cm2-uat') return 'beta'
   return 'prod'
@@ -280,13 +286,14 @@ export const isError = (status = '', percent) =>
   status.toLowerCase() === 'error'
 
 const _strStartsWith = what => (str = '') => str.startsWith(what)
-const _strSatisfiesAWarning = str =>
+
+export const strSatisfiesAWarning = str =>
   _strStartsWith('1')(str) || _strStartsWith('0')(str)
 
 /* [a] -> Number */
 export const warningsLength = compose(
   length,
-  filter(propSatisfies(_strSatisfiesAWarning, 'error_code')),
+  filter(propSatisfies(strSatisfiesAWarning, 'error_code')),
   defaultTo([])
 )
 

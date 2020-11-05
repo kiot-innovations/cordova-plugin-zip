@@ -5,7 +5,7 @@ import { Link, useHistory } from 'react-router-dom'
 import paths, { setParams } from 'routes/paths'
 import { useI18n } from 'shared/i18n'
 import { getError } from 'shared/errorCodes'
-import { either } from 'shared/utils'
+import { either, strSatisfiesAWarning } from 'shared/utils'
 import { eqsSteps } from 'state/reducers/storage'
 import './ErrorListGeneric.scss'
 import { PVS_CONNECTION_CLOSE } from 'state/actions/network'
@@ -24,7 +24,7 @@ const ErrorComponent = ({ title, code = '', errorInfo, t }) => {
         </span>
         <span className="error-code"> {t('ERROR_CODE', code)}</span>
         {either(
-          not(`${code}`.startsWith('1')),
+          not(strSatisfiesAWarning(code)),
           <span className="has-text-primary has-text-weight-bold">
             {t('FIX_ERROR_TO_PROCEED')}
           </span>
@@ -78,6 +78,11 @@ const ErrorListScreen = ({ errors = [] }) => {
   const history = useHistory()
   const { currentStep } = useSelector(state => state.storage)
 
+  const cancelCommissioning = () => {
+    dispatch(PVS_CONNECTION_CLOSE())
+    history.push(paths.PROTECTED.ROOT.path)
+  }
+
   return (
     <div className="error-list pr-10 pl-10">
       <div className="error-list-header has-text-centered">
@@ -98,7 +103,7 @@ const ErrorListScreen = ({ errors = [] }) => {
         </div>
         <div className="has-text-centered mt-10">
           <span
-            onClick={compose(dispatch, PVS_CONNECTION_CLOSE)}
+            onClick={cancelCommissioning}
             role="button"
             className="has-text-primary has-text-weight-bold"
           >

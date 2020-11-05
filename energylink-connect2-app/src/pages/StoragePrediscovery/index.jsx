@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
+import { useHistory } from 'react-router-dom'
 import { pathOr, propOr, isEmpty, length } from 'ramda'
 import moment from 'moment'
 import { useI18n } from 'shared/i18n'
@@ -10,6 +11,7 @@ import {
   GET_PREDISCOVERY_RESET,
   GET_DELAYED_PREDISCOVERY
 } from 'state/actions/storage'
+import { rmaModes } from 'state/reducers/rma'
 import ContinueFooter from 'components/ESSContinueFooter'
 import ErrorDetected from 'components/ESSErrorDetected'
 import StorageDevices from 'components/PrediscoveryDevices/StorageDevices'
@@ -19,10 +21,12 @@ import './StoragePrediscovery.scss'
 function StoragePrediscovery() {
   const t = useI18n()
   const dispatch = useDispatch()
+  const history = useHistory()
 
   const { prediscovery, loadingPrediscovery } = useSelector(
     state => state.storage
   )
+  const { rmaMode } = useSelector(state => state.rma)
   const { error } = useSelector(state => state.storage)
   const storageDeviceList = pathOr(
     [],
@@ -48,6 +52,14 @@ function StoragePrediscovery() {
   return (
     <div className="storage-prediscovery">
       <div className="prediscovery-title has-text-centered mt-10 mb-20">
+        {either(
+          rmaMode === rmaModes.EDIT_DEVICES,
+          <span
+            className="sp-chevron-left has-text-primary is-size-4 go-back"
+            onClick={() => history.push(paths.PROTECTED.RMA_DEVICES.path)}
+          />,
+          <div />
+        )}
         <span className="is-uppercase has-text-weight-bold">
           {t('STORAGE_DEVICES')}
         </span>

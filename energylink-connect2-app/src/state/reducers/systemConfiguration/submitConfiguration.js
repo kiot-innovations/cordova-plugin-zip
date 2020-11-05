@@ -10,6 +10,7 @@ import {
   SUBMIT_COMMISSION_ERROR,
   RESET_SYSTEM_CONFIGURATION
 } from 'state/actions/systemConfiguration'
+import { RESET_COMMISSIONING } from 'state/actions/global'
 
 const initialState = {
   submitting: false,
@@ -50,7 +51,8 @@ export const submitConfigReducer = createReducer(
       error: payload
     }),
     [SUBMIT_CLEAR]: () => initialState,
-    [RESET_SYSTEM_CONFIGURATION]: () => initialState
+    [RESET_SYSTEM_CONFIGURATION]: () => initialState,
+    [RESET_COMMISSIONING]: () => initialState
   },
   initialState
 )

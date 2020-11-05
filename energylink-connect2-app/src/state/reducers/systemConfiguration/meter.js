@@ -6,6 +6,7 @@ import {
   SET_RATED_CURRENT,
   RESET_SYSTEM_CONFIGURATION
 } from 'state/actions/systemConfiguration'
+import { RESET_COMMISSIONING } from 'state/actions/global'
 
 const initialState = {
   consumptionCT: null,
@@ -27,7 +28,8 @@ export const meterReducer = createReducer(
       ...state,
       ratedCurrent: payload
     }),
-    [RESET_SYSTEM_CONFIGURATION]: () => initialState
+    [RESET_SYSTEM_CONFIGURATION]: () => initialState,
+    [RESET_COMMISSIONING]: () => initialState
   },
   initialState
 )

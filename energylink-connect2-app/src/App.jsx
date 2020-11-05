@@ -21,7 +21,7 @@ const App = props => (
   <Provider store={store}>
     <PersistGate persistor={persistor}>
       <Router>
-        <Banner />
+        <Banner flavor={process.env.REACT_APP_FLAVOR} />
         <Header />
         <Routes />
         <Footer />

@@ -57,6 +57,28 @@ const errorScanditLicensesMustBeDifferent = () =>
     chalk`{red Error: Scandit licenses must be different between environments.}`
   )
 
+const errorScanditLicensesMustBeSet = () =>
+  log(chalk`{red Error: Scandit licenses must be set for all environments.}`)
+
+const errorMixpanelTokenMustBeSet = () =>
+  log(chalk`{red Error: Mixpanel token must be set for all environments.}`)
+
+const errorMixpanelTokenMustBeDifferent = () =>
+  log(
+    chalk`{red Error: Mixpanel token for 'test' must be different than in 'uat', 'training' and 'prod'.}`
+  )
+
+const errorMixpanelTokenMustBeTheSame = () =>
+  log(
+    chalk`{red Error: Mixpanel token must be the same for 'uat', 'training' and 'prod'.}`
+  )
+
+const errorFlavorMustBeSet = () =>
+  log(chalk`{red Error: App flavor must be set for all environments.}`)
+
+const errorFlavorMustDifferent = () =>
+  log(chalk`{red Error: App flavor must be different for all environments.}`)
+
 const errorEnvVarsValuesInconsistencies = (envs, envVars) => {
   const envFile = env => `.env.enc.${env}`
   const envFiles = map(envFile, envs)
@@ -78,4 +100,10 @@ exports.errorScanditLicenseMustBeDifferent = errorScanditLicenseMustBeDifferent
 exports.errorPlatformsScanditLicenseMustBeEqual = errorPlatformsScanditLicenseMustBeEqual
 exports.errorPlatformsScanditLicenseMustBeDifferent = errorPlatformsScanditLicenseMustBeDifferent
 exports.errorScanditLicensesMustBeDifferent = errorScanditLicensesMustBeDifferent
+exports.errorScanditLicensesMustBeSet = errorScanditLicensesMustBeSet
+exports.errorMixpanelTokenMustBeSet = errorMixpanelTokenMustBeSet
+exports.errorMixpanelTokenMustBeDifferent = errorMixpanelTokenMustBeDifferent
+exports.errorMixpanelTokenMustBeTheSame = errorMixpanelTokenMustBeTheSame
+exports.errorFlavorMustBeSet = errorFlavorMustBeSet
+exports.errorFlavorMustDifferent = errorFlavorMustDifferent
 exports.errorEnvVarsValuesInconsistencies = errorEnvVarsValuesInconsistencies

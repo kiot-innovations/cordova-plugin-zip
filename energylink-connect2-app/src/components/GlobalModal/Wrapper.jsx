@@ -1,8 +1,10 @@
-import clsx from 'clsx'
-import useGlobalModal, { useGlobalHideModal } from 'hooks/useGlobalModal'
 import React, { lazy, Suspense } from 'react'
+import clsx from 'clsx'
+
+import useGlobalModal, { useGlobalHideModal } from 'hooks/useGlobalModal'
 import { useI18n } from 'shared/i18n'
 import { either } from 'shared/utils'
+
 import './ModalWrapper.scss'
 
 const ModalWrapper = () => {
@@ -65,7 +67,18 @@ const ModalWrapper = () => {
             >
               {t('ACCEPT')}
             </button>
-          </div>
+          </div>,
+          either(
+            dismissable,
+            <div className="buttons-container mt-10">
+              <button
+                className="button button-transparent has-text-primary is-uppercase has-text-weight-bold"
+                onClick={closeModal}
+              >
+                {t('CLOSE')}
+              </button>
+            </div>
+          )
         )}
       </div>
     </div>

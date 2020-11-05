@@ -197,83 +197,24 @@ exports[`RMA devices component render correctly 1`] = `
               <div
                 className="collapsible-content expanded"
               >
-                <div
-                  key="00001B3DDACD"
+                <span
+                  className="has-text-white has-text-weight-bold"
                 >
-                  <span
-                    className="has-text-weight-bold has-text-white"
-                  >
-                    STORAGE_INVERTER
-                  </span>
-                  <span
-                    className="ml-10"
-                  >
-                    00001B3DDACD
-                  </span>
-                </div>
-                <div
-                  key="F2191700087033685504"
+                  NO_STORAGE_RMA
+                </span>
+                <span
+                  className="mt-5"
                 >
-                  <span
-                    className="has-text-weight-bold has-text-white"
-                  >
-                    BATTERY
-                  </span>
-                  <span
-                    className="ml-10"
-                  >
-                    F2191700087033685504
-                  </span>
-                </div>
-                <div
-                  key="F21917000870"
-                >
-                  <span
-                    className="has-text-weight-bold has-text-white"
-                  >
-                    GATEWAY
-                  </span>
-                  <span
-                    className="ml-10"
-                  >
-                    F21917000870
-                  </span>
-                </div>
-                <div
-                  key="Serial-MIDC-Saturn"
-                >
-                  <span
-                    className="has-text-weight-bold has-text-white"
-                  >
-                    MIDC
-                  </span>
-                  <span
-                    className="ml-10"
-                  >
-                    Serial-MIDC-Saturn
-                  </span>
-                </div>
-                <div
-                  key="Serial-MIO-Saturn"
-                >
-                  <span
-                    className="has-text-weight-bold has-text-white"
-                  >
-                    MIO
-                  </span>
-                  <span
-                    className="ml-10"
-                  >
-                    Serial-MIO-Saturn
-                  </span>
-                </div>
+                  NO_STORAGE_RMA_HINT
+                </span>
                 <div
                   className="buttons-container"
                 >
                   <button
                     className="button is-paddingless has-text-primary has-text-weight-bold is-size-7 button-transparent"
+                    onClick={[Function]}
                   >
-                    ADD_REPLACE_EQUIPMENT
+                    COMM_STORAGE
                   </button>
                 </div>
               </div>

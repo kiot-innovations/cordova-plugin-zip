@@ -55,8 +55,8 @@ const getConnectionInterfaces = state => {
   )
   const getInterface = cond([
     [propEq('interface', 'sta0'), always('Has Wi-Fi')],
-    [propEq('interface', 'cell'), always('Has cellular')],
-    [propEq('interface', 'wan'), always('Has ethernet')],
+    [propEq('interface', 'cell'), always('Has Cellular')],
+    [propEq('interface', 'wan'), always('Has Ethernet')],
     [T, always(null)]
   ])
   return networkInterfaces.reduce((acc, curr) => {
@@ -137,17 +137,17 @@ const getData = (data, success, errorMessage) => {
   const networkInterfaces = getConnectionInterfaces(state)
   const configEvent = {
     ...networkInterfaces,
-    'Grid profile': getGridProfile(state),
-    'Consumption meter type': getConsumptionMeterType(state),
-    'Remote system energize': getRse(state),
-    'Time elapsed choosing': timeElapsedConfiguring,
-    'Time elapsed submitting': timeEDPEndpoint,
+    'Grid Profile': getGridProfile(state),
+    'Consumption Meter Type': getConsumptionMeterType(state),
+    'Remote System Energize': getRse(state),
+    'Time Elapsed Choosing': timeElapsedConfiguring,
+    'Time Elapsed Submitting': timeEDPEndpoint,
     Success: success,
-    'Error message': errorMessage,
-    'Time to complete commissioning': timePassedCommissioning,
-    'Commissioning success': success,
-    'Storage operation mode': getESSOperationalMode(state),
-    'Storage reserve amount': getESSReserveAmount(state)
+    'Error Message': errorMessage,
+    'Time To Complete Commissioning': timePassedCommissioning,
+    'Commissioning Success': success,
+    'Storage Operation Mode': getESSOperationalMode(state),
+    'Storage Reserve Amount': getESSReserveAmount(state)
   }
   return saveConfiguration(configEvent)
 }

@@ -29,7 +29,7 @@ jobs:
     timeout-minutes: 45
     strategy:
       matrix:
-        app_env: [test]
+        app_env: [test, uat]
     env:
       APP_ENV: ${{ matrix.app_env }}
     steps:
@@ -74,7 +74,7 @@ jobs:
       #
       - name: Set the application environment to ${{ env.APP_ENV }}
         run: |
-          sed -i"" -E "s/com.sunpower.energylink.commissioning2.dev/${APP_ID}/" config.xml
+          sed -i"" -E "s/com.sunpower.energylink.commissioning2.test/${APP_ID}/" config.xml
           sed -i"" -E "s/SunPowerProConnect-dev/${APP_NAME}/" config.xml
 
       - uses: actions/setup-java@v1

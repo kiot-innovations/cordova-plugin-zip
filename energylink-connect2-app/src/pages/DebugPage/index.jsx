@@ -68,6 +68,11 @@ const DebugPage = () => {
           'Standard Serial Number List',
           paths.PROTECTED.SN_LIST.path
         )}
+        {renderDebugLink(
+          history,
+          'Connect PVS to Internet',
+          paths.PROTECTED.PVS_PROVIDE_INTERNET.path
+        )}
       </div>
     </div>
   )

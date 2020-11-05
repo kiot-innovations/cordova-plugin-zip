@@ -1,21 +1,23 @@
-import clsx from 'clsx'
-import Rating from 'components/Rating'
-import TextArea from 'components/TextArea'
 import React from 'react'
+import clsx from 'clsx'
 import { useField, useForm } from 'react-final-form-hooks'
 import { useDispatch, useSelector } from 'react-redux'
 import { Redirect } from 'react-router-dom'
+
+import Rating from 'components/Rating'
+import TextArea from 'components/TextArea'
 import paths from 'routes/paths'
 import { useI18n } from 'shared/i18n'
 import { SEND_FEEDBACK_INIT } from 'state/actions/feedback'
+import { cleanString } from 'shared/utils'
+import { MENU_HIDE } from 'state/actions/ui'
 
-const onSubmit = dispatch => {
-  return values => dispatch(SEND_FEEDBACK_INIT(values))
+const onSubmit = dispatch => values => {
+  const sanitizedValues = { ...values, comment: cleanString(values.comment) }
+  return dispatch(SEND_FEEDBACK_INIT(sanitizedValues))
 }
 
-const changeRate = form => {
-  return value => form.change('rating', value)
-}
+const changeRate = form => value => form.change('rating', value)
 
 function GiveFeedback() {
   const t = useI18n()
@@ -37,7 +39,10 @@ function GiveFeedback() {
   const comment = useField('comment', form)
   const rating = useField('rating', form)
 
-  if (isFeedbackSuccessful) return <Redirect to={paths.PROTECTED.ROOT.path} />
+  if (isFeedbackSuccessful) {
+    dispatch(MENU_HIDE())
+    return <Redirect to={paths.PROTECTED.ROOT.path} />
+  }
 
   const submitClassnames = clsx('button', 'is-uppercase', 'is-primary', {
     'is-loading': isSendingFeedback

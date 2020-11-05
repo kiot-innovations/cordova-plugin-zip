@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from 'react'
 import useModal from 'hooks/useModal'
-import { length, pathOr } from 'ramda'
+import { length, pathOr, is } from 'ramda'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import { either, miTypes } from 'shared/utils'
 import { useI18n } from 'shared/i18n'
 import {
   CLAIM_DEVICES_INIT,
+  DISCOVER_COMPLETE,
   FETCH_CANDIDATES_COMPLETE,
   FETCH_CANDIDATES_INIT,
-  RESET_DISCOVERY,
   FETCH_DEVICES_LIST,
-  DISCOVER_COMPLETE
+  RESET_DISCOVERY
 } from 'state/actions/devices'
 import paths from 'routes/paths'
 import Collapsible from 'components/Collapsible'
@@ -92,7 +92,7 @@ const filterFoundMI = (SNList, candidatesList) => {
   }
 }
 
-const discoveryStatus = (
+const DiscoveryStatus = ({
   error,
   expected,
   okMICount,
@@ -101,11 +101,15 @@ const discoveryStatus = (
   claimingDevices,
   claimDevices,
   claimProgress,
-  t,
   discoveryComplete,
   retryDiscovery
-) => {
-  if (expected === okMICount + errMICount && discoveryComplete) {
+}) => {
+  const t = useI18n()
+  if (
+    expected === okMICount + errMICount &&
+    discoveryComplete &&
+    !claimingDevices
+  ) {
     if (errMICount > 0) {
       return (
         <>
@@ -129,7 +133,9 @@ const discoveryStatus = (
           >
             {t('RETRY')}
           </button>
-          <span className="has-text-weight-bold mt-20">{t(error)}</span>
+          <span className="has-text-weight-bold mt-20">
+            {t(is(String, error) ? error : 'DEVICE_UNKNOWN_ERROR')}
+          </span>
         </>
       )
     }
@@ -187,13 +193,30 @@ const discoveryStatus = (
         >
           {t('RETRY')}
         </button>
-        <span className="has-text-weight-bold mt-20">{t(error)}</span>
+        <span className="has-text-weight-bold mt-20">
+          {t(is(String, error) ? error : 'DEVICE_UNKNOWN_ERROR')}
+        </span>
       </>
     ) : (
       <span className="has-text-weight-bold mb-20">
         {either(
           claimingDevices,
-          t('CLAIMING_DEVICES'),
+          <div className="inline-buttons">
+            <button
+              className="button is-primary is-outlined is-uppercase is-paddingless mb-10"
+              disabled={claimingDevices}
+              onClick={retryDiscovery}
+            >
+              {t('ADD-DEVICES')}
+            </button>
+            <button
+              className={'button is-primary is-uppercase'}
+              disabled={claimingDevices}
+              onClick={claimDevices}
+            >
+              {either(claimingDevices, `${claimProgress}%`, t('CLAIM_DEVICES'))}
+            </button>
+          </div>,
           t('DISCOVERY_IN_PROGRESS')
         )}
       </span>
@@ -272,6 +295,7 @@ function Devices() {
 
   const retryDiscovery = () => {
     dispatch(RESET_DISCOVERY())
+    dispatch(DISCOVER_COMPLETE())
     history.push(paths.PROTECTED.SN_LIST.path)
   }
 
@@ -338,19 +362,18 @@ function Devices() {
         </Collapsible>
         <ProgressIndicators progressList={pathOr([], ['progress'], progress)} />
       </div>
-      {discoveryStatus(
-        error,
-        expected,
-        okMICount,
-        errMICount,
-        claimError,
-        claimingDevices,
-        claimDevices,
-        claimProgress,
-        t,
-        discoveryComplete,
-        retryDiscovery
-      )}
+      <DiscoveryStatus
+        error={error}
+        expected={expected}
+        okMICount={okMICount}
+        errMICount={errMICount}
+        claimError={claimError}
+        claimingDevices={claimingDevices}
+        claimDevices={claimDevices}
+        claimProgress={claimProgress}
+        discoveryComplete={discoveryComplete}
+        retryDiscovery={retryDiscovery}
+      />
     </div>
   )
 }

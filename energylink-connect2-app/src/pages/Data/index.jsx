@@ -3,12 +3,17 @@ import { useDispatch, useSelector } from 'react-redux'
 import {
   always,
   cond,
+  endsWith,
   equals,
   filter,
-  head,
+  find,
+  has,
   isEmpty,
   length,
   pathOr,
+  prop,
+  propEq,
+  propOr,
   T
 } from 'ramda'
 import { useI18n } from 'shared/i18n'
@@ -19,6 +24,7 @@ import {
 } from 'state/actions/energy-data'
 import { RUN_EQS_SYSTEMCHECK_SUCCESS } from 'state/actions/storage'
 import { MI_DATA_START_POLLING, MI_DATA_STOP_POLLING } from 'state/actions/pvs'
+import { FETCH_DEVICES_LIST } from 'state/actions/devices'
 import { either } from 'shared/utils'
 import EnergyGraphSection from './EnergyGraphSection'
 import RightNow from 'components/RightNow'
@@ -28,18 +34,25 @@ import { ButtonLink } from 'components/ButtonLink'
 import paths from 'routes/paths'
 import './Data.scss'
 
+const isMeter = propEq('DEVICE_TYPE', 'Power Meter')
+const isProductionMeter = device => endsWith('p', device.SERIAL)
+
 export default () => {
   const t = useI18n()
   const dispatch = useDispatch()
+  const { found } = useSelector(state => state.devices)
   const { liveData = {} } = useSelector(state => state.energyLiveData)
   const { miData } = useSelector(state => state.pvs)
-  const inventory = useSelector(pathOr({}, ['inventory', 'bom']))
-  const storageInventory = inventoryItem => inventoryItem.item === 'ESS'
-  const storage = filter(storageInventory, inventory)
-  const hasStorage = length(storage) ? head(storage).value !== '0' : false
   const storageStatus = useSelector(pathOr({}, ['storage', 'status']))
   const essState = pathOr({}, ['results', 'ess_report', 'ess_state', 0])(
     storageStatus
+  )
+
+  const meters = filter(isMeter, found)
+  const prodMeterConfig = propOr(
+    'GROSS_PRODUCTION_SITE',
+    'SUBTYPE',
+    find(isProductionMeter, meters)
   )
 
   const essDisplayStatus = cond([
@@ -56,6 +69,7 @@ export default () => {
   ])
 
   useEffect(() => {
+    dispatch(FETCH_DEVICES_LIST())
     dispatch(ENERGY_DATA_START_POLLING())
     dispatch(MI_DATA_START_POLLING())
     dispatch(RUN_EQS_SYSTEMCHECK_SUCCESS())
@@ -71,26 +85,33 @@ export default () => {
     storage: 0,
     grid: 0,
     date: new Date(),
-    homeUsage: 0
+    homeUsage: 0,
+    rawData: {}
   }
 
   const entries = Object.entries(liveData)
-
   if (entries.length) {
     const [latestDate, latest] = entries[entries.length - 1]
     data = {
       isSolarAvailable: latest.isSolarAvailable,
       date: latestDate,
       stateOfCharge: latest.soc,
-      solar: latest.p,
-      storage: latest.s,
-      homeUsage: latest.c,
       grid: roundDecimals(latest.c - latest.p - latest.s),
-      powerSolar: latest.pp,
-      powerStorage: latest.ps,
-      powerHomeUsage: latest.pc,
-      powerGrid: roundDecimals(latest.pc - latest.pp - latest.ps)
+      rawData: latest.rawData
     }
+  }
+
+  const hasStorage = has('soc', data.rawData)
+  const consumptionValue = has('site_load_p', data.rawData)
+    ? prop('site_load_p', data.rawData)
+    : propOr(0, 'powerHomeUsage', data)
+
+  const powerValues = {
+    home: roundDecimals(consumptionValue),
+    solar: roundDecimals(propOr(0, 'pv_p', data.rawData)),
+    grid: roundDecimals(propOr(0, 'net_p', data.rawData)),
+    storage: roundDecimals(propOr(0, 'ess_p', data.rawData)),
+    soc: propOr(0, 'soc', data.rawData) * 100
   }
 
   return (
@@ -119,16 +140,25 @@ export default () => {
         {either(length(miData) > 0, <MiDataLive data={miData} />)}
       </section>
       <section>
-        <h6 className="is-uppercase mt-20 mb-20">{t('RIGHT_NOW')}</h6>
-        <RightNow
-          solarValue={data.powerSolar}
-          gridValue={data.powerGrid}
-          hasStorage={hasStorage}
-          storageValue={data.powerStorage}
-          homeValue={data.powerHomeUsage}
-          batteryLevel={data.stateOfCharge}
-          solarAvailable={data.isSolarAvailable}
-        />
+        <h6 className="is-uppercase mt-20 mb-20">{t('LIVE_DATA')}</h6>
+        {either(
+          prodMeterConfig === 'NOT_USED',
+          <div className="no-meters-warning has-text-weight-bold has-text-centered is-flex pt-20 pb-20">
+            <span className="has-text-white is-size-5">
+              {t('LIVE_DATA_UNAVAILABLE')}
+            </span>
+            <span>{t('NO_METER_CONFIG')}</span>
+          </div>,
+          <RightNow
+            solarValue={powerValues.solar}
+            gridValue={powerValues.grid}
+            hasStorage={hasStorage}
+            storageValue={powerValues.storage}
+            homeValue={powerValues.home}
+            batteryLevel={powerValues.soc}
+            solarAvailable={data.isSolarAvailable}
+          />
+        )}
       </section>
       <div className="separator" />
       <EnergyGraphSection />

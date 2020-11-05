@@ -47,9 +47,10 @@ import RMAInventory from 'pages/RMAInventory'
 import RMASnList from 'pages/RMASnList'
 import RMAMiDiscovery from 'pages/RMAMiDiscovery'
 import RMADevices from 'pages/RMADevices'
+import GetAssistance from 'pages/GetAssistance'
 
 import { validateSession } from 'state/actions/auth'
-import { updateBodyHeight } from 'shared/utils'
+import { isDebug, updateBodyHeight } from 'shared/utils'
 import { deviceResumeListener } from 'state/actions/mobile'
 
 import paths from './paths'
@@ -95,11 +96,11 @@ const mapComponents = {
   [paths.UNPROTECTED.FORGOT_PASSWORD.path]: NotFound,
   [paths.UNPROTECTED.GET_ASSISTANCE.path]: NotFound,
   [paths.PROTECTED.RMA_DEVICES.path]: RMADevices,
-  [paths.UNPROTECTED.LOGIN.path]: Login
+  [paths.UNPROTECTED.LOGIN.path]: Login,
+  [paths.UNPROTECTED.GET_ASSISTANCE.path]: GetAssistance
 }
 
-if (process.env.REACT_APP_IS_TEST || process.env.REACT_APP_IS_DEV)
-  mapComponents[paths.PROTECTED.DEBUG_PAGE.path] = DebugPage
+if (isDebug) mapComponents[paths.PROTECTED.DEBUG_PAGE.path] = DebugPage
 
 /**
  * The router of this app

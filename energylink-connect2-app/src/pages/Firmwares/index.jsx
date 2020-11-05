@@ -1,11 +1,11 @@
-import React, { useCallback, useEffect } from 'react'
+import React, { useCallback, useEffect, useRef } from 'react'
 import moment from 'moment'
 import { always, compose, pathOr, prop } from 'ramda'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { useI18n } from 'shared/i18n'
 import { either } from 'shared/utils'
-import { DOWNLOAD_META_INIT, DOWNLOAD_OS_INIT } from 'state/actions/ess'
+import { DOWNLOAD_OS_INIT } from 'state/actions/ess'
 
 import { PVS_FIRMWARE_DOWNLOAD_INIT } from 'state/actions/fileDownloader'
 import { GRID_PROFILE_DOWNLOAD_INIT } from 'state/actions/gridProfileDownloader'
@@ -43,13 +43,17 @@ function Firmwares() {
   const essState = useSelector(prop('ess'))
   const forceDownloadESS = compose(dispatch, DOWNLOAD_OS_INIT, always(true))
 
-  const { gpError, gpLastModified, isDownloadingGridProfile } = useSelector(
-    ({ fileDownloader }) => ({
-      gpError: fileDownloader.gridProfileInfo.error,
-      isDownloadingGridProfile: fileDownloader.gridProfileInfo.progress !== 100,
-      gpLastModified: fileDownloader.gridProfileInfo.lastModified
-    })
-  )
+  const {
+    gpError,
+    gpLastModified,
+    isDownloadingGridProfile,
+    verification
+  } = useSelector(({ fileDownloader }) => ({
+    verification: fileDownloader.verification,
+    gpError: fileDownloader.gridProfileInfo.error,
+    isDownloadingGridProfile: fileDownloader.gridProfileInfo.progress !== 100,
+    gpLastModified: fileDownloader.gridProfileInfo.lastModified
+  }))
 
   const downloadFile = useCallback(
     () => dispatch(PVS_FIRMWARE_DOWNLOAD_INIT(true)),
@@ -58,12 +62,21 @@ function Firmwares() {
 
   const downloadGridProfiles = () => dispatch(GRID_PROFILE_DOWNLOAD_INIT(true))
 
+  const isFirstRender = useRef(true)
   useEffect(() => {
-    dispatch(PVS_FIRMWARE_DOWNLOAD_INIT())
-    dispatch(GRID_PROFILE_DOWNLOAD_INIT())
-    dispatch(DOWNLOAD_OS_INIT())
-    dispatch(DOWNLOAD_META_INIT())
-  }, [dispatch])
+    if (isFirstRender.current) {
+      if (!prop('pvsDownloading', verification)) {
+        dispatch(PVS_FIRMWARE_DOWNLOAD_INIT())
+      }
+      if (!prop('gpDownloading', verification)) {
+        dispatch(GRID_PROFILE_DOWNLOAD_INIT())
+      }
+      if (!prop('essDownloading', verification)) {
+        dispatch(DOWNLOAD_OS_INIT())
+      }
+      isFirstRender.current = false
+    }
+  }, [dispatch, verification])
 
   return (
     <section className="is-flex tile is-vertical pt-0 pr-10 pl-10 full-height">

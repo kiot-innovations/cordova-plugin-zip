@@ -19,4 +19,10 @@
     display: flex;
     flex-direction: column;
   }
+
+  .no-meters-warning {
+    background-color: $space-dark;
+    border-radius: 10px;
+    flex-direction: column;
+  }
 }

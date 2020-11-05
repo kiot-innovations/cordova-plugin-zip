@@ -23,7 +23,7 @@ const ProgressIndicators = ({ progressList }) => {
 
     if (type !== 'MicroInverters') {
       return (
-        <div className="device-prog mb-10 mt-10">
+        <div key={type} className="device-prog mb-10 mt-10">
           <div className="device-prog-header">
             <div className="device-prog-title">
               <span className="has-text-centered">
