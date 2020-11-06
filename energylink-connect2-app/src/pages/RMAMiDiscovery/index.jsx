@@ -112,7 +112,7 @@ function RMAMiDiscovery() {
   }, [claimedDevices, dispatch, history])
 
   const retryDiscovery = () => {
-    dispatch(RESET_DISCOVERY())
+    dispatch(RESET_DISCOVERY(okMI))
     history.push(paths.PROTECTED.SN_LIST.path)
   }
 

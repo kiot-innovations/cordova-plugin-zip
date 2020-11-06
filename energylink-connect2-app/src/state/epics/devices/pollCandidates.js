@@ -5,9 +5,9 @@ import { from, of, timer } from 'rxjs'
 import {
   catchError,
   exhaustMap,
+  map,
   switchMap,
-  takeUntil,
-  map
+  takeUntil
 } from 'rxjs/operators'
 import { getApiPVS } from 'shared/api'
 import {

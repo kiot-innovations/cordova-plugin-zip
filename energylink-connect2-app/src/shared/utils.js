@@ -361,3 +361,5 @@ export const isProd = includes(process.env.REACT_APP_FLAVOR, [
   'cm2-prod',
   'cm2-training'
 ])
+
+export const isSerialEqual = (x, y) => x.SERIAL === y.SERIAL

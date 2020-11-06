@@ -294,7 +294,7 @@ function Devices() {
   }, [claimedDevices, dispatch, history])
 
   const retryDiscovery = () => {
-    dispatch(RESET_DISCOVERY())
+    dispatch(RESET_DISCOVERY(okMI))
     dispatch(DISCOVER_COMPLETE())
     history.push(paths.PROTECTED.SN_LIST.path)
   }
