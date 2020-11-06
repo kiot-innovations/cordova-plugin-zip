@@ -17,7 +17,10 @@ describe('Home component', () => {
         sites: [],
         isFetching: false
       },
-      user: { auth: { access_token: '123' } }
+      user: { auth: { access_token: '123' } },
+      global: {},
+      firmwareUpdate: {},
+      network: {}
     })
     expect(component).toMatchSnapshot()
   })
@@ -32,7 +35,10 @@ describe('Home component', () => {
           longitude: -103.4218501
         },
         isFetching: false
-      }
+      },
+      global: {},
+      firmwareUpdate: {},
+      network: {}
     })
     expect(component).toMatchSnapshot()
   })
