@@ -73,3 +73,5 @@ export const COMMISSION_ERROR_REPORTED = createAction(
 export const RESET_SYSTEM_CONFIGURATION = createAction(
   'RESET_SYSTEM_CONFIGURATION'
 )
+
+export const ALLOW_COMMISSIONING = createAction('ALLOW_COMMISSIONING')

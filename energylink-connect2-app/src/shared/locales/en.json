@@ -551,5 +551,6 @@
   "ASSISTANCE_2.2": "and request an account for access.",
   "ASSISTANCE_EMAIL": "partnerportal@sunpower.com",
   "ASSISTANCE_3": "If you already have an account and are unable to log in, please contact",
-  "ASSISTANCE_3.1": "for account assistance."
+  "ASSISTANCE_3.1": "for account assistance.",
+  "COMMISSION_BLOCKED": "Please complete all steps in the Install tab before submitting your configuration"
 }

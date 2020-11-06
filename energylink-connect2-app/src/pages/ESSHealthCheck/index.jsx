@@ -1,12 +1,24 @@
 import React, { useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
-import { add, length, path, pathOr, pluck, propOr, reduce } from 'ramda'
+import {
+  add,
+  isEmpty,
+  isNil,
+  length,
+  path,
+  pathOr,
+  pluck,
+  propOr,
+  reduce
+} from 'ramda'
+import { addHasErrorProp } from 'shared/utils'
 import { GET_ESS_STATUS_INIT } from 'state/actions/storage'
 import { RESET_DISCOVERY } from 'state/actions/devices'
 import {
   SUBMIT_CLEAR,
-  SUBMIT_CONFIG_SUCCESS
+  SUBMIT_CONFIG_SUCCESS,
+  ALLOW_COMMISSIONING
 } from 'state/actions/systemConfiguration'
 import paths from 'routes/paths'
 import ESSHealthCheckComponent from 'components/ESSHealthCheck'
@@ -30,6 +42,15 @@ function ESSHealthCheck() {
   const { submitting, commissioned, error: syncError } = useSelector(
     pathOr({}, ['systemConfiguration', 'submit'])
   )
+
+  const report = addHasErrorProp(results)
+  const errors = pathOr([], ['errors'], report)
+  const loading = isNil(report) && error
+  const hasErrors = !isEmpty(errors) || error
+
+  useEffect(() => {
+    if (!loading && !hasErrors) dispatch(ALLOW_COMMISSIONING())
+  }, [dispatch, hasErrors, loading])
 
   useEffect(() => {
     dispatch(RESET_DISCOVERY())

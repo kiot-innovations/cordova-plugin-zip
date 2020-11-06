@@ -67,18 +67,7 @@ const ModalWrapper = () => {
             >
               {t('ACCEPT')}
             </button>
-          </div>,
-          either(
-            dismissable,
-            <div className="buttons-container mt-10">
-              <button
-                className="button button-transparent has-text-primary is-uppercase has-text-weight-bold"
-                onClick={closeModal}
-              >
-                {t('CLOSE')}
-              </button>
-            </div>
-          )
+          </div>
         )}
       </div>
     </div>
