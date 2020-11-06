@@ -12,3 +12,4 @@ export const APP_UPDATE_OPEN_MARKET_SUCCESS = createAction(
 export const APP_UPDATE_OPEN_MARKET_ERROR = createAction(
   'APP_UPDATE_OPEN_MARKET_ERROR'
 )
+export const RESET_COMMISSIONING = createAction('RESET_COMMISSIONING')

@@ -30,7 +30,7 @@ function SNList() {
   )
   const [editingSn, setEditingSn] = useState('')
   const { bom } = useSelector(state => state.inventory)
-  const miFound = useSelector(pathOr([], ['devices', 'miFound']))
+  const devicesFound = useSelector(pathOr([], ['devices', 'found']))
   const { canAccessScandit } = useSelector(state => state.global)
 
   const modulesOnInventory = bom.filter(item => {
@@ -78,7 +78,7 @@ function SNList() {
     }))
     serialNumbersError.forEach(snList.push)
     toggleSerialNumbersModal()
-    const MisNotClaimedYet = differenceWith(areEqual, snList, miFound)
+    const MisNotClaimedYet = differenceWith(areEqual, snList, devicesFound)
     dispatch(UPDATE_MI_COUNT(serialNumbers.length))
     dispatch(PUSH_CANDIDATES_INIT(MisNotClaimedYet))
     history.push(paths.PROTECTED.DEVICES.path)

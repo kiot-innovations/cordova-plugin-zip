@@ -22,6 +22,7 @@ import {
   MI_DATA_SUCCESS,
   MI_DATA_ERROR
 } from 'state/actions/pvs'
+import { RESET_COMMISSIONING } from 'state/actions/global'
 import { PUSH_CANDIDATES_ERROR } from 'state/actions/devices'
 import {
   CONNECT_PVS_VIA_BLE,
@@ -127,6 +128,7 @@ export const pvsReducer = createReducer(
       setMetadataStatus: initialState.setMetadataStatus
     }),
     [RESET_PVS_INFO_STATE]: () => initialState,
+    [RESET_COMMISSIONING]: () => initialState,
     [MI_DATA_SUCCESS]: (state, miData) => ({
       ...state,
       miData,

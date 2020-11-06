@@ -93,9 +93,7 @@
       "cordova-plugin-zip": {},
       "cordova-plugin-file-transfer": {},
       "cordova-plugin-market": {},
-      "cordova-plugin-file-md5": {},
       "cordova-plugin-file-hash": {},
-      "wifiwizard2": {},
       "cordova-plugin-bluetooth-status": {},
       "cordova-plugin-sunpowerble": {},
       "cordova-plugin-ble-central": {

@@ -250,7 +250,8 @@ const paths = {
       path: '/forgot'
     },
     GET_ASSISTANCE: {
-      path: '/assistance'
+      path: '/assistance',
+      headers: true
     }
   }
 }

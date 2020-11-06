@@ -14,6 +14,7 @@ import {
   SET_MAP_VIEW_SRC,
   SET_SITE
 } from 'state/actions/site'
+import { RESET_COMMISSIONING } from 'state/actions/global'
 
 const initialState = {
   isFetching: false,
@@ -86,6 +87,7 @@ export const siteReducer = createReducer(
       site: null,
       sitePVS: null
     }),
+    [RESET_COMMISSIONING]: () => initialState,
     [GET_SITE_SUCCESS]: (state, payload) => ({
       ...state,
       sitePVS: payload

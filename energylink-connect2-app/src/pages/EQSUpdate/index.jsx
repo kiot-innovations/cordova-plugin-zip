@@ -1,11 +1,12 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { useI18n } from 'shared/i18n'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import { includes, isEmpty, length, map, pathOr, pluck, prop } from 'ramda'
+import SwipeableBottomSheet from 'react-swipeable-bottom-sheet'
 import {
   CHECK_EQS_FIRMWARE,
-  UPLOAD_EQS_FIRMWARE_SUCCESS
+  TRIGGER_EQS_FIRMWARE_UPDATE_INIT
 } from 'state/actions/storage'
 import { Loader } from 'components/Loader'
 import { either, warningsLength } from 'shared/utils'
@@ -18,6 +19,7 @@ import ConnectedDeviceUpdate from 'components/ConnectedDeviceUpdate'
 import ContinueFooter from 'components/ESSContinueFooter'
 import ErrorDetected from 'components/ESSErrorDetected'
 import paths from 'routes/paths'
+import './EQSUpdate.scss'
 
 const renderUpdateComponent = device => (
   <ConnectedDeviceUpdate device={device} />
@@ -25,7 +27,7 @@ const renderUpdateComponent = device => (
 
 const checkForErrors = (errorList, devices) => {
   const affectedDevices = pluck('device_sn', errorList)
-  const updatedDevices = devices.map(device => {
+  return devices.map(device => {
     if (
       device.progress < 0 ||
       includes(device.serial_number, affectedDevices)
@@ -35,15 +37,22 @@ const checkForErrors = (errorList, devices) => {
     }
     return device
   })
-  return updatedDevices
 }
 
-const EQSUpdate = () => {
+const EQSUpdate = ({ history }) => {
   const t = useI18n()
   const dispatch = useDispatch()
-  const history = useHistory()
+  const historyRouter = useHistory()
+  const unblockHandle = useRef()
+  const [modal, showModal] = useState(false)
 
   const { currentStep, error } = useSelector(prop('storage'))
+
+  const isUpdating = includes(currentStep, [
+    eqsSteps.FW_UPLOAD,
+    eqsSteps.FW_UPDATE,
+    eqsSteps.FW_POLL
+  ])
 
   useEffect(() => {
     if (
@@ -58,6 +67,18 @@ const EQSUpdate = () => {
       dispatch(CHECK_EQS_FIRMWARE())
     }
   }, [currentStep, dispatch])
+
+  useEffect(() => {
+    unblockHandle.current = history.block(() => {
+      if (isUpdating) {
+        showModal(true)
+        return false
+      }
+    })
+    return function() {
+      unblockHandle.current && unblockHandle.current()
+    }
+  })
 
   const updateProgress = useSelector(
     pathOr([], ['storage', 'deviceUpdate', 'status_report'])
@@ -105,7 +126,7 @@ const EQSUpdate = () => {
               <button
                 className="button is-primary is-outlined"
                 onClick={() =>
-                  history.push(paths.PROTECTED.MANAGE_FIRMWARES.path)
+                  historyRouter.push(paths.PROTECTED.MANAGE_FIRMWARES.path)
                 }
               >
                 {t('MANAGE_FIRMWARES')}
@@ -121,32 +142,30 @@ const EQSUpdate = () => {
               </button>
             </div>
           </div>
-        </div>
+        </div>,
+        either(
+          includes(updateStatus, [
+            eqsUpdateStates.FAILED,
+            eqsUpdateStates.NOT_RUNNING
+          ]) && isEmpty(updateErrors),
+          <div className="has-text-centered mb-15">
+            <div className="pt-20 pb-20">
+              <i className="sp-close has-text-white is-size-1" />
+            </div>
+            <div className="mt-20">
+              <span>{t('EQS_UPDATE_ERROR')}</span>
+            </div>
+            <div className="mt-20 has-text-centered">
+              <button
+                onClick={() => dispatch(TRIGGER_EQS_FIRMWARE_UPDATE_INIT())}
+                className="button is-primary"
+              >
+                {t('RETRY')}
+              </button>
+            </div>
+          </div>
+        )
       )}
-
-      {either(
-        includes(updateStatus, [
-          eqsUpdateStates.FAILED,
-          eqsUpdateStates.NOT_RUNNING
-        ]) && isEmpty(updateErrors),
-        <div className="has-text-centered mb-15">
-          <div className="pt-20 pb-20">
-            <i className="sp-close has-text-white is-size-1" />
-          </div>
-          <div className="mt-20">
-            <span>{t('EQS_UPDATE_ERROR')}</span>
-          </div>
-          <div className="mt-20 has-text-centered">
-            <button
-              onClick={() => dispatch(UPLOAD_EQS_FIRMWARE_SUCCESS())}
-              className="button is-primary"
-            >
-              {t('RETRY')}
-            </button>
-          </div>
-        </div>
-      )}
-
       {either(
         !isEmpty(updatingDevices),
         <div>{map(renderUpdateComponent, updatingDevices)}</div>
@@ -164,7 +183,7 @@ const EQSUpdate = () => {
           </div>
           <div className="mt-20">
             <button
-              onClick={() => dispatch(UPLOAD_EQS_FIRMWARE_SUCCESS())}
+              onClick={() => dispatch(TRIGGER_EQS_FIRMWARE_UPDATE_INIT())}
               className="button is-primary"
             >
               {t('RETRY')}
@@ -187,6 +206,25 @@ const EQSUpdate = () => {
           next={paths.PROTECTED.ESS_DEVICE_MAPPING.path}
         />
       )}
+
+      <SwipeableBottomSheet
+        shadowTip={false}
+        open={modal}
+        onChange={() => showModal(!modal)}
+      >
+        <div className="update-in-progress is-flex">
+          <span className="has-text-weight-bold">{t('HOLD_ON')}</span>
+          <span className="mt-10 mb-10">{t('WAIT_FOR_UPDATE')}</span>
+          <div className="mt-10 mb-20">
+            <button
+              className="button is-primary"
+              onClick={() => showModal(false)}
+            >
+              {t('CLOSE')}
+            </button>
+          </div>
+        </div>
+      </SwipeableBottomSheet>
     </div>
   )
 }

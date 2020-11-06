@@ -1,5 +1,6 @@
 import React from 'react'
 import { Redirect } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 
 function querystring(name, url = window.location.href) {
   name = name.replace(/[[]]/g, '\\$&')
@@ -17,8 +18,10 @@ function querystring(name, url = window.location.href) {
   return decodeURIComponent(results[2].replace(/\+/g, ' '))
 }
 
-export default (isProtected, isLoggedIn) => ChildrenComponent => {
+export default isProtected => ChildrenComponent => {
   const HocComponent = ({ ...props }) => {
+    const isLoggedIn = useSelector(({ user }) => user.auth.access_token)
+
     if (isProtected && !isLoggedIn)
       return (
         <Redirect

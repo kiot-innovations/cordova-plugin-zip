@@ -24,15 +24,11 @@ describe('downloadModalEpics', () => {
       const expectedMarble = 'b'
 
       epicTest(inputMarble, expectedMarble, inputValues, expectedValues, {
-        ess: {
-          isDownloading: false
-        },
         fileDownloader: {
-          progress: {
-            downloading: false
-          },
-          gridProfileInfo: {
-            progress: 100
+          verification: {
+            pvsDownloading: false,
+            gpDownloading: false,
+            essDownloading: false
           }
         }
       })
@@ -59,15 +55,11 @@ describe('downloadModalEpics', () => {
       const expectedMarble = 'b'
 
       epicTest(inputMarble, expectedMarble, inputValues, expectedValues, {
-        ess: {
-          isDownloading: true
-        },
         fileDownloader: {
-          progress: {
-            downloading: false
-          },
-          gridProfileInfo: {
-            progress: 100
+          verification: {
+            pvsDownloading: false,
+            gpDownloading: false,
+            essDownloading: true
           }
         }
       })
@@ -94,15 +86,11 @@ describe('downloadModalEpics', () => {
       const expectedMarble = 'b'
 
       epicTest(inputMarble, expectedMarble, inputValues, expectedValues, {
-        ess: {
-          isDownloading: false
-        },
         fileDownloader: {
-          progress: {
-            downloading: true
-          },
-          gridProfileInfo: {
-            progress: 100
+          verification: {
+            pvsDownloading: true,
+            gpDownloading: false,
+            essDownloading: false
           }
         }
       })
@@ -129,15 +117,11 @@ describe('downloadModalEpics', () => {
       const expectedMarble = 'b'
 
       epicTest(inputMarble, expectedMarble, inputValues, expectedValues, {
-        ess: {
-          isDownloading: false
-        },
         fileDownloader: {
-          progress: {
-            downloading: false
-          },
-          gridProfileInfo: {
-            progress: 99
+          verification: {
+            pvsDownloading: false,
+            gpDownloading: true,
+            essDownloading: false
           }
         }
       })

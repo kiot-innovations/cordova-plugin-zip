@@ -1,12 +1,9 @@
 import ErrorDetailScreen from 'pages/ErrorDetailScreen/ErrorDetail'
-import React, { useEffect, useLayoutEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import React, { useLayoutEffect } from 'react'
 import { Route, Switch } from 'react-router-dom'
+import { map } from 'ramda'
 import { withTracker } from 'shared/ga'
 import { routeAuthorization, setLayout } from 'hocs'
-import useUpgrade from 'hooks/useUpgrade'
-import useAppUpdate from 'hooks/useAppUpdate'
-import useCanceledPVSConnection from 'hooks/useCanceledPVSConnection'
 
 import BillOfMaterials from 'pages/BillOfMaterials'
 import ConnectionLost from 'pages/ConnectionLost'
@@ -47,10 +44,9 @@ import RMAInventory from 'pages/RMAInventory'
 import RMASnList from 'pages/RMASnList'
 import RMAMiDiscovery from 'pages/RMAMiDiscovery'
 import RMADevices from 'pages/RMADevices'
+import GetAssistance from 'pages/GetAssistance'
 
-import { validateSession } from 'state/actions/auth'
-import { isDebug, updateBodyHeight } from 'shared/utils'
-import { deviceResumeListener } from 'state/actions/mobile'
+import { isDebug } from 'shared/utils'
 
 import paths from './paths'
 
@@ -95,68 +91,43 @@ const mapComponents = {
   [paths.UNPROTECTED.FORGOT_PASSWORD.path]: NotFound,
   [paths.UNPROTECTED.GET_ASSISTANCE.path]: NotFound,
   [paths.PROTECTED.RMA_DEVICES.path]: RMADevices,
-  [paths.UNPROTECTED.LOGIN.path]: Login
+  [paths.UNPROTECTED.LOGIN.path]: Login,
+  [paths.UNPROTECTED.GET_ASSISTANCE.path]: GetAssistance
 }
 
 if (isDebug) mapComponents[paths.PROTECTED.DEBUG_PAGE.path] = DebugPage
 
-/**
- * The router of this app
- * @returns {*}
- * @constructor
- */
-function AppRoutes() {
-  const dispatch = useDispatch()
+const renderRoute = isProtected => ({
+  path,
+  header = false,
+  footer = false
+}) => (
+  <Route
+    key={path}
+    path={path}
+    exact
+    component={routeAuthorization(isProtected)(
+      setLayout(header, footer)(withTracker(mapComponents[path]))
+    )}
+  />
+)
 
+const unprotectedRoutesValues = Object.values(paths.UNPROTECTED)
+const protectedRoutesValues = Object.values(paths.PROTECTED)
+
+const renderedProtected = map(renderRoute(true), protectedRoutesValues)
+const renderedUnprotected = map(renderRoute(false), unprotectedRoutesValues)
+
+function AppRoutes() {
   useLayoutEffect(() => {
     window.scrollTo(0, 0)
   })
 
-  useAppUpdate()
-  useUpgrade()
-  useCanceledPVSConnection()
-
-  useEffect(() => {
-    dispatch(deviceResumeListener())
-    dispatch(validateSession())
-
-    window.addEventListener('keyboardDidHide', updateBodyHeight)
-
-    return () => {
-      document.removeEventListener('keyboardDidHide', updateBodyHeight)
-    }
-  }, [dispatch])
-
-  const isLoggedIn = useSelector(({ user }) => user.auth.access_token)
   return (
     <div>
       <Switch>
-        {Object.values(paths.UNPROTECTED).map(
-          ({ path, header = false, footer = false }) => (
-            <Route
-              key={path}
-              path={path}
-              exact
-              component={routeAuthorization(
-                false,
-                isLoggedIn
-              )(setLayout(header, footer)(withTracker(mapComponents[path])))}
-            />
-          )
-        )}
-        {Object.values(paths.PROTECTED).map(
-          ({ path, header = false, footer = false }) => (
-            <Route
-              key={path}
-              path={path}
-              exact
-              component={routeAuthorization(
-                true,
-                isLoggedIn
-              )(setLayout(header, footer)(withTracker(mapComponents[path])))}
-            />
-          )
-        )}
+        {renderedUnprotected}
+        {renderedProtected}
         <Route component={NotFound} />
       </Switch>
     </div>

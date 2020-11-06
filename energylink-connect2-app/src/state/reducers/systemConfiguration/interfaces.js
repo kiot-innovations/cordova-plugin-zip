@@ -5,6 +5,7 @@ import {
   GET_INTERFACES_ERROR,
   RESET_SYSTEM_CONFIGURATION
 } from 'state/actions/systemConfiguration'
+import { RESET_COMMISSIONING } from 'state/actions/global'
 
 const initialState = {
   isFetching: false,
@@ -28,7 +29,8 @@ const interfacesReducer = createReducer(
       isFetching: false,
       error: payload
     }),
-    [RESET_SYSTEM_CONFIGURATION]: () => initialState
+    [RESET_SYSTEM_CONFIGURATION]: () => initialState,
+    [RESET_COMMISSIONING]: () => initialState
   },
   initialState
 )

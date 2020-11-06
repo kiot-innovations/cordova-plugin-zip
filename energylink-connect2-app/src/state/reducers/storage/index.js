@@ -24,9 +24,10 @@ import {
   UPLOAD_EQS_FIRMWARE,
   UPLOAD_EQS_FIRMWARE_ERROR,
   UPLOAD_EQS_FIRMWARE_PROGRESS,
-  UPLOAD_EQS_FIRMWARE_SUCCESS
+  TRIGGER_EQS_FIRMWARE_UPDATE_INIT
 } from 'state/actions/storage'
 import { eqsUpdateStates } from 'state/epics/storage/deviceUpdate'
+import { RESET_COMMISSIONING } from 'state/actions/global'
 
 const initialState = {
   currentStep: '',
@@ -114,7 +115,7 @@ export const storageReducer = createReducer(
       currentStep: eqsSteps.FW_UPLOAD,
       updateProgress: 0
     }),
-    [UPLOAD_EQS_FIRMWARE_SUCCESS]: state => ({
+    [TRIGGER_EQS_FIRMWARE_UPDATE_INIT]: state => ({
       ...state,
       error: initialState.error,
       deviceUpdate: initialState.deviceUpdate,
@@ -172,7 +173,8 @@ export const storageReducer = createReducer(
       ...state,
       error: '',
       componentMapping: {}
-    })
+    }),
+    [RESET_COMMISSIONING]: () => initialState
   },
   initialState
 )

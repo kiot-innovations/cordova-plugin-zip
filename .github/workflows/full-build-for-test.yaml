@@ -74,7 +74,7 @@ jobs:
       #
       - name: Set the application environment to ${{ env.APP_ENV }}
         run: |
-          sed -i"" -E "s/com.sunpower.energylink.commissioning2.dev/${APP_ID}/" config.xml
+          sed -i"" -E "s/com.sunpower.energylink.commissioning2.test/${APP_ID}/g" config.xml
           sed -i"" -E "s/SunPowerProConnect-dev/${APP_NAME}/" config.xml
 
       - uses: actions/setup-java@v1

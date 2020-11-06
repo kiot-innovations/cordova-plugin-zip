@@ -18,11 +18,12 @@ import { modalNoInternet } from 'state/epics/downloader/firmware'
 import { getMd5FromFile } from 'shared/cordovaMapping'
 import { EMPTY_ACTION } from 'state/actions/share'
 import { gridProfileUpdateUrl$ } from 'state/epics/downloader/latestUrls'
+import { waitForObservable } from './latestUrls'
 
 export const initDownloadGridProfileEpic = action$ =>
   action$.pipe(
     ofType(GRID_PROFILE_DOWNLOAD_INIT.getType()),
-    withLatestFrom(gridProfileUpdateUrl$),
+    waitForObservable(gridProfileUpdateUrl$),
     exhaustMap(([action, gridProfileUrl]) =>
       fileTransferObservable(
         `firmware/${getFileNameFromURL(gridProfileUrl)}`,

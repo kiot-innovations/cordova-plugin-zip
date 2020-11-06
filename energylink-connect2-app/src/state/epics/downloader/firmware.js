@@ -2,7 +2,7 @@ import { propOr } from 'ramda'
 import { ofType } from 'redux-observable'
 import * as Sentry from '@sentry/browser'
 import { from, of } from 'rxjs'
-import { catchError, exhaustMap, map, withLatestFrom } from 'rxjs/operators'
+import { catchError, exhaustMap, map } from 'rxjs/operators'
 
 import {
   PVS_DECOMPRESS_LUA_FILES_ERROR,
@@ -29,7 +29,10 @@ import { getFileSystemFromLuaFile } from 'shared/PVSUtils'
 import { hasInternetConnection } from 'shared/utils'
 import { SHOW_MODAL } from 'state/actions/modal'
 import { translate } from 'shared/i18n'
-import { pvsUpdateUrl$ } from 'state/epics/downloader/latestUrls'
+import {
+  pvsUpdateUrl$,
+  waitForObservable
+} from 'state/epics/downloader/latestUrls'
 
 export const modalNoInternet = () => {
   const t = translate()
@@ -43,7 +46,7 @@ export const modalNoInternet = () => {
 export const updatePVSFirmwareUrl = action$ => {
   return action$.pipe(
     ofType(PVS_FIRMWARE_DOWNLOAD_INIT.getType()),
-    withLatestFrom(pvsUpdateUrl$),
+    waitForObservable(pvsUpdateUrl$),
     map(([action, url]) =>
       PVS_FIRMWARE_UPDATE_URL({
         url,

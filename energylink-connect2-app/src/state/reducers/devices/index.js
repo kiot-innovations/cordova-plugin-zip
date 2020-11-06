@@ -23,6 +23,7 @@ import {
   UPDATE_DEVICES_LIST,
   UPDATE_DEVICES_LIST_ERROR
 } from 'state/actions/devices'
+import { RESET_COMMISSIONING } from 'state/actions/global'
 
 export const discoveryTypes = {
   LEGACY: 'LEGACY',
@@ -138,6 +139,7 @@ export default createReducer(
       miFound,
       miModels: state.miModels
     }),
+    [RESET_COMMISSIONING]: () => initialState,
     [FETCH_MODELS_SUCCESS]: (state, miModels) => ({
       ...state,
       miModels

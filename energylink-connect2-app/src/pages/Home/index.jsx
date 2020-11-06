@@ -6,21 +6,13 @@ import { useDispatch, useSelector } from 'react-redux'
 
 import { useI18n } from 'shared/i18n'
 import { cleanString, renameKeys } from 'shared/utils'
-import { FETCH_MODELS_INIT, RESET_DISCOVERY } from 'state/actions/devices'
-import { RESET_INVENTORY } from 'state/actions/inventory'
-import { RESET_PVS_CONNECTION } from 'state/actions/network'
-import { RESET_PVS_INFO_STATE } from 'state/actions/pvs'
+import { FETCH_MODELS_INIT } from 'state/actions/devices'
 import {
   HOME_SCREEN_CREATE_SITE,
   NO_SITE_FOUND,
-  RESET_SITE,
   SET_SITE
 } from 'state/actions/site'
-import {
-  CHECK_APP_UPDATE_INIT,
-  RESET_LAST_VISITED_PAGE
-} from 'state/actions/global'
-import { RESET_SYSTEM_CONFIGURATION } from 'state/actions/systemConfiguration'
+import { CHECK_APP_UPDATE_INIT } from 'state/actions/global'
 import { getApiSearch } from 'shared/api'
 
 import paths from 'routes/paths'
@@ -28,9 +20,10 @@ import paths from 'routes/paths'
 import SearchField from 'components/SearchField'
 import './Home.scss'
 import { PVS_FIRMWARE_DOWNLOAD_INIT } from 'state/actions/fileDownloader'
-import { DOWNLOAD_OS_INIT } from 'state/actions/ess'
+import { DOWNLOAD_META_INIT, DOWNLOAD_OS_INIT } from 'state/actions/ess'
 import { GRID_PROFILE_DOWNLOAD_INIT } from 'state/actions/gridProfileDownloader'
-import { RESET_RMA_PVS } from 'state/actions/rma'
+import { RESET_COMMISSIONING } from '../../state/actions/global'
+import HooksInitializer from '../HooksInitializer'
 
 const formatAddress = compose(
   join(', '),
@@ -57,21 +50,10 @@ const siteKeysMap = {
 }
 
 const setSite = (history, dispatch) => site => {
-  resetCommissioning(dispatch)
+  dispatch(RESET_COMMISSIONING())
   const siteKeysRenamed = renameKeys(siteKeysMap, site)
   dispatch(SET_SITE(siteKeysRenamed))
   history.push(paths.PROTECTED.BILL_OF_MATERIALS.path)
-}
-
-const resetCommissioning = dispatch => {
-  dispatch(RESET_SITE())
-  dispatch(RESET_PVS_INFO_STATE())
-  dispatch(RESET_PVS_CONNECTION())
-  dispatch(RESET_DISCOVERY())
-  dispatch(RESET_INVENTORY())
-  dispatch(RESET_LAST_VISITED_PAGE())
-  dispatch(RESET_SYSTEM_CONFIGURATION())
-  dispatch(RESET_RMA_PVS())
 }
 
 function Home() {
@@ -83,6 +65,7 @@ function Home() {
   useEffect(() => {
     dispatch(PVS_FIRMWARE_DOWNLOAD_INIT())
     dispatch(DOWNLOAD_OS_INIT())
+    dispatch(DOWNLOAD_META_INIT())
     dispatch(GRID_PROFILE_DOWNLOAD_INIT())
     dispatch(CHECK_APP_UPDATE_INIT())
     dispatch(FETCH_MODELS_INIT())
@@ -135,6 +118,7 @@ function Home() {
           <small>{t('CREATE_SITE')}</small>
         </Link>
       </article>
+      <HooksInitializer />
     </section>
   )
 }

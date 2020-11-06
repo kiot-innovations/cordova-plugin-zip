@@ -13,6 +13,7 @@ import {
   RMA_REMOVE_DEVICES_SUCCESS,
   RMA_REMOVE_DEVICES_ERROR
 } from 'state/actions/rma'
+import { RESET_COMMISSIONING } from 'state/actions/global'
 
 export const rmaModes = {
   NONE: 'NONE',
@@ -96,7 +97,8 @@ const RMAReducer = createReducer(
       ...state,
       deletingMIs: false,
       deletingMIsError: true
-    })
+    }),
+    [RESET_COMMISSIONING]: () => initialState
   },
   initialState
 )
