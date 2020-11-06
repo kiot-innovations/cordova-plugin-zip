@@ -92,7 +92,7 @@ function GridBehaviorWidget() {
   const filterProfiles = () => {
     if (profiles && site) {
       return profiles.filter(profile => {
-        const postalCode = parseInt(site.postalCode)
+        const postalCode = parseInt(site.postalCode, 10)
         const hasIndividualPostalCode = profile.zipcodes.includes(postalCode)
         const postalCodeIsInRange =
           postalCode >= pathOr(0, ['zipcodes', 0, 'min'], profile) &&
