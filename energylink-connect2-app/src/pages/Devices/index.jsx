@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import useModal from 'hooks/useModal'
-import { length, pathOr, is } from 'ramda'
+import { is, length, pathOr } from 'ramda'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import { either, miTypes } from 'shared/utils'
@@ -11,7 +11,8 @@ import {
   FETCH_CANDIDATES_COMPLETE,
   FETCH_CANDIDATES_INIT,
   FETCH_DEVICES_LIST,
-  RESET_DISCOVERY
+  RESET_DISCOVERY,
+  SAVE_OK_MI
 } from 'state/actions/devices'
 import paths from 'routes/paths'
 import Collapsible from 'components/Collapsible'
@@ -294,7 +295,8 @@ function Devices() {
   }, [claimedDevices, dispatch, history])
 
   const retryDiscovery = () => {
-    dispatch(RESET_DISCOVERY(okMI))
+    dispatch(RESET_DISCOVERY())
+    dispatch(SAVE_OK_MI(okMI))
     dispatch(DISCOVER_COMPLETE())
     history.push(paths.PROTECTED.SN_LIST.path)
   }

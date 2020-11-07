@@ -22,6 +22,7 @@ export const CLAIM_DEVICES_RESET = createAction('CLAIM_DEVICES_RESET')
 
 export const RESET_DISCOVERY = createAction('RESET_DISCOVERY')
 
+export const SAVE_OK_MI = createAction('SAVE_OK_MI')
 export const FETCH_MODELS_INIT = createAction('FETCH_MODELS_INIT')
 export const FETCH_MODELS_SUCCESS = createAction('FETCH_MODELS_SUCCESS')
 export const FETCH_MODELS_ERROR = createAction('FETCH_MODELS_ERROR')

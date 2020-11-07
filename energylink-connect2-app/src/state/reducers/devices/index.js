@@ -20,6 +20,7 @@ import {
   PUSH_CANDIDATES_ERROR,
   PUSH_CANDIDATES_INIT,
   RESET_DISCOVERY,
+  SAVE_OK_MI,
   UPDATE_DEVICES_LIST,
   UPDATE_DEVICES_LIST_ERROR
 } from 'state/actions/devices'
@@ -134,9 +135,8 @@ export default createReducer(
       claimedDevices: initialState.claimedDevices,
       claimError: initialState.claimError
     }),
-    [RESET_DISCOVERY]: (state, miFound) => ({
+    [RESET_DISCOVERY]: state => ({
       ...initialState,
-      miFound,
       miModels: state.miModels
     }),
     [RESET_COMMISSIONING]: () => initialState,
@@ -160,6 +160,10 @@ export default createReducer(
     [UPDATE_DEVICES_LIST_ERROR]: state => ({
       ...state,
       fetchingDevices: false
+    }),
+    [SAVE_OK_MI]: (state, miFound) => ({
+      ...state,
+      miFound
     })
   },
   initialState
