@@ -1382,7 +1382,6 @@ Object {
                 </LinkAnchor>
               </Link>
             </article>
-            <HooksInitializer />
           </section>
         </Home>
       </Provider>
@@ -2781,7 +2780,6 @@ Object {
                 </LinkAnchor>
               </Link>
             </article>
-            <HooksInitializer />
           </section>
         </Home>
       </Provider>

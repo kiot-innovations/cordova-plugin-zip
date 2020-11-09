@@ -4,9 +4,11 @@ import { useDispatch } from 'react-redux'
 import { setHeader, setFooter } from 'state/actions/ui'
 import './layout.scss'
 import ErrorBoundary from 'components/Error'
+import HooksInitializer from 'pages/HooksInitializer'
 
 const setLayout = (header, footer) => ChildComponent => props => {
   const dispatch = useDispatch()
+
   useEffect(() => {
     dispatch(setHeader(header))
     dispatch(setFooter(footer))
@@ -23,6 +25,7 @@ const setLayout = (header, footer) => ChildComponent => props => {
     >
       <ErrorBoundary>
         <ChildComponent {...props} />
+        <HooksInitializer />
       </ErrorBoundary>
     </div>
   )

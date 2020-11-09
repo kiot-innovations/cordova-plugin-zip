@@ -23,7 +23,6 @@ import { PVS_FIRMWARE_DOWNLOAD_INIT } from 'state/actions/fileDownloader'
 import { DOWNLOAD_META_INIT, DOWNLOAD_OS_INIT } from 'state/actions/ess'
 import { GRID_PROFILE_DOWNLOAD_INIT } from 'state/actions/gridProfileDownloader'
 import { RESET_COMMISSIONING } from '../../state/actions/global'
-import HooksInitializer from '../HooksInitializer'
 
 const formatAddress = compose(
   join(', '),
@@ -118,7 +117,6 @@ function Home() {
           <small>{t('CREATE_SITE')}</small>
         </Link>
       </article>
-      <HooksInitializer />
     </section>
   )
 }
