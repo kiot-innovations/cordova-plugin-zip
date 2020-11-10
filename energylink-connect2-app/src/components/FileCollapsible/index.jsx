@@ -38,7 +38,9 @@ const FileCollapsible = ({
           {either(
             version,
             <section className="mb-5">
-              <span className="has-text-white">Version: {version}</span>
+              <span className="has-text-white">
+                {t('VERSION')}: {version}
+              </span>
             </section>
           )}
           <section className="mt-20 mb-10">
