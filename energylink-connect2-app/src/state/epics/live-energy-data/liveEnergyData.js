@@ -136,15 +136,8 @@ export const liveEnergyData = (action$, state$) =>
               // energyStoragePower/ess_p :: energy storage power (kW)
               const energyStoragePower = Math.abs(ess_p) < 0.01 ? 0 : ess_p
 
-              const gridPower = Math.abs(netPower) < 0.01 ? 0 : netPower
-              const loadSidePower = getLoadSideProduction(
-                state$,
-                powerProduction
-              )
-
               // powerConsumption :: power consumption (kW)
-              const powerConsumption =
-                loadSidePower + energyStoragePower + gridPower
+              const powerConsumption = netPower
               // p/pv_en :: energy production (kWh)
               const energyProduction = pv_en
 
