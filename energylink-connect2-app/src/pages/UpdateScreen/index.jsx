@@ -74,7 +74,7 @@ const UpdateScreen = () => {
                 status !== 'WAITING_FOR_NETWORK') ||
                 (isDownloadingFirmware && !errorUpdating),
 
-              <span className="has-text-white is-size-1">
+              <span className="update-percentage has-text-white is-size-1">
                 {(isDownloadingFirmware
                   ? firmwareDownload.progress
                   : percent) || 0}

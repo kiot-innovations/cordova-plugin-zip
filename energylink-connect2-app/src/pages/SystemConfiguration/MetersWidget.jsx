@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { path, compose, prop, find, propEq, propOr } from 'ramda'
+import { path, compose, prop, find, propEq } from 'ramda'
 import { useI18n } from 'shared/i18n'
 
 import Collapsible from 'components/Collapsible'
@@ -12,13 +12,11 @@ import {
   SET_CONSUMPTION_CT
 } from 'state/actions/systemConfiguration'
 
-const MCI = <span className="sp-meter file level mr-15 is-size-4" />
+const meterIcon = <span className="sp-meter file level mr-15 is-size-4" />
 
-function MetersWidget() {
+function MetersWidget({ hasStorage = false }) {
   const t = useI18n()
   const dispatch = useDispatch()
-  const bom = useSelector(path(['inventory', 'bom']))
-  const essValue = propOr('0', 'value', find(propEq('item', 'ESS'), bom))
 
   const { consumptionCT, productionCT, ratedCurrent } = useSelector(
     path(['systemConfiguration', 'meter'])
@@ -45,15 +43,15 @@ function MetersWidget() {
   ]
 
   useEffect(() => {
-    if (essValue !== '0') {
+    if (hasStorage) {
       dispatch(SET_CONSUMPTION_CT('NET_CONSUMPTION_LOADSIDE'))
       dispatch(SET_PRODUCTION_CT('GROSS_PRODUCTION_SITE'))
     }
-  }, [dispatch, essValue])
+  }, [dispatch, hasStorage])
 
   return (
     <div className="pb-15">
-      <Collapsible title={t('METER_CT')} icon={MCI}>
+      <Collapsible title={t('METER_CT')} icon={meterIcon}>
         <div className="field is-horizontal mb-15">
           <div className="field-label">
             <label htmlFor="siteName" className="label has-text-white">
@@ -66,13 +64,13 @@ function MetersWidget() {
                 <SelectField
                   isSearchable={false}
                   useDefaultDropDown
-                  disabled={essValue !== '0'}
+                  disabled={hasStorage}
                   onSelect={compose(dispatch, SET_PRODUCTION_CT, prop('value'))}
                   options={PRODUCTION_METER_TYPES}
                   defaultValue={find(
                     propEq(
                       'value',
-                      essValue === '0' ? productionCT : 'GROSS_PRODUCTION_SITE'
+                      hasStorage ? 'GROSS_PRODUCTION_SITE' : productionCT
                     ),
                     PRODUCTION_METER_TYPES
                   )}
@@ -93,7 +91,7 @@ function MetersWidget() {
               <div className="control">
                 <SelectField
                   isSearchable={false}
-                  disabled={essValue !== '0'}
+                  disabled={hasStorage}
                   useDefaultDropDown
                   onSelect={compose(
                     dispatch,
@@ -104,9 +102,7 @@ function MetersWidget() {
                   defaultValue={find(
                     propEq(
                       'value',
-                      essValue === '0'
-                        ? consumptionCT
-                        : 'NET_CONSUMPTION_LOADSIDE'
+                      hasStorage ? 'NET_CONSUMPTION_LOADSIDE' : consumptionCT
                     ),
                     CONSUMPTION_METER_TYPES
                   )}
