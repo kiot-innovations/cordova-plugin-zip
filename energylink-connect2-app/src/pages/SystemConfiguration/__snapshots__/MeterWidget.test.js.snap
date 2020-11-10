@@ -112,6 +112,12 @@ exports[`Meter Widget renders correctly 1`] = `
                         className="control"
                       >
                         <SelectField
+                          defaultValue={
+                            Object {
+                              "label": "GROSS_PRODUCTION_SITE",
+                              "value": "GROSS_PRODUCTION_SITE",
+                            }
+                          }
                           disabled={false}
                           isSearchable={false}
                           onSelect={[Function]}
@@ -141,7 +147,12 @@ exports[`Meter Widget renders correctly 1`] = `
                             }
                             defaultInputValue=""
                             defaultMenuIsOpen={false}
-                            defaultValue={null}
+                            defaultValue={
+                              Object {
+                                "label": "GROSS_PRODUCTION_SITE",
+                                "value": "GROSS_PRODUCTION_SITE",
+                              }
+                            }
                             hideSelectedOptions={true}
                             isDisabled={false}
                             isSearchable={false}
@@ -224,7 +235,12 @@ exports[`Meter Widget renders correctly 1`] = `
                               tabIndex="0"
                               tabSelectsValue={true}
                               theme={[Function]}
-                              value={null}
+                              value={
+                                Object {
+                                  "label": "GROSS_PRODUCTION_SITE",
+                                  "value": "GROSS_PRODUCTION_SITE",
+                                }
+                              }
                             >
                               <SelectContainer
                                 className="field"
@@ -232,7 +248,7 @@ exports[`Meter Widget renders correctly 1`] = `
                                 cx={[Function]}
                                 getStyles={[Function]}
                                 getValue={[Function]}
-                                hasValue={false}
+                                hasValue={true}
                                 innerProps={
                                   Object {
                                     "id": undefined,
@@ -317,7 +333,10 @@ exports[`Meter Widget renders correctly 1`] = `
                                     "tabIndex": "0",
                                     "tabSelectsValue": true,
                                     "theme": [Function],
-                                    "value": null,
+                                    "value": Object {
+                                      "label": "GROSS_PRODUCTION_SITE",
+                                      "value": "GROSS_PRODUCTION_SITE",
+                                    },
                                   }
                                 }
                                 setValue={[Function]}
@@ -375,7 +394,7 @@ exports[`Meter Widget renders correctly 1`] = `
                                       cx={[Function]}
                                       getStyles={[Function]}
                                       getValue={[Function]}
-                                      hasValue={false}
+                                      hasValue={true}
                                       innerProps={
                                         Object {
                                           "onMouseDown": [Function],
@@ -462,7 +481,10 @@ exports[`Meter Widget renders correctly 1`] = `
                                           "tabIndex": "0",
                                           "tabSelectsValue": true,
                                           "theme": [Function],
-                                          "value": null,
+                                          "value": Object {
+                                            "label": "GROSS_PRODUCTION_SITE",
+                                            "value": "GROSS_PRODUCTION_SITE",
+                                          },
                                         }
                                       }
                                       setValue={[Function]}
@@ -537,7 +559,7 @@ exports[`Meter Widget renders correctly 1`] = `
                                             cx={[Function]}
                                             getStyles={[Function]}
                                             getValue={[Function]}
-                                            hasValue={false}
+                                            hasValue={true}
                                             isDisabled={false}
                                             isMulti={false}
                                             isRtl={false}
@@ -615,7 +637,10 @@ exports[`Meter Widget renders correctly 1`] = `
                                                 "tabIndex": "0",
                                                 "tabSelectsValue": true,
                                                 "theme": [Function],
-                                                "value": null,
+                                                "value": Object {
+                                                  "label": "GROSS_PRODUCTION_SITE",
+                                                  "value": "GROSS_PRODUCTION_SITE",
+                                                },
                                               }
                                             }
                                             setValue={[Function]}
@@ -652,7 +677,7 @@ exports[`Meter Widget renders correctly 1`] = `
                                             <EmotionCssPropInternal
                                               __EMOTION_LABEL_PLEASE_DO_NOT_USE__="ValueContainer"
                                               __EMOTION_TYPE_PLEASE_DO_NOT_USE__="div"
-                                              className="search__value-container"
+                                              className="search__value-container search__value-container--has-value"
                                               css={
                                                 Object {
                                                   "WebkitOverflowScrolling": "touch",
@@ -668,19 +693,23 @@ exports[`Meter Widget renders correctly 1`] = `
                                               }
                                             >
                                               <div
-                                                className="search__value-container css-g1d714-ValueContainer"
+                                                className="search__value-container search__value-container--has-value css-g1d714-ValueContainer"
                                               >
-                                                <Placeholder
+                                                <SingleValue
                                                   clearValue={[Function]}
                                                   cx={[Function]}
+                                                  data={
+                                                    Object {
+                                                      "label": "GROSS_PRODUCTION_SITE",
+                                                      "value": "GROSS_PRODUCTION_SITE",
+                                                    }
+                                                  }
                                                   getStyles={[Function]}
                                                   getValue={[Function]}
-                                                  hasValue={false}
+                                                  hasValue={true}
                                                   isDisabled={false}
-                                                  isFocused={false}
                                                   isMulti={false}
                                                   isRtl={false}
-                                                  key="placeholder"
                                                   options={
                                                     Array [
                                                       Object {
@@ -755,7 +784,10 @@ exports[`Meter Widget renders correctly 1`] = `
                                                       "tabIndex": "0",
                                                       "tabSelectsValue": true,
                                                       "theme": [Function],
-                                                      "value": null,
+                                                      "value": Object {
+                                                        "label": "GROSS_PRODUCTION_SITE",
+                                                        "value": "GROSS_PRODUCTION_SITE",
+                                                      },
                                                     }
                                                   }
                                                   setValue={[Function]}
@@ -790,29 +822,33 @@ exports[`Meter Widget renders correctly 1`] = `
                                                   }
                                                 >
                                                   <EmotionCssPropInternal
-                                                    __EMOTION_LABEL_PLEASE_DO_NOT_USE__="Placeholder"
+                                                    __EMOTION_LABEL_PLEASE_DO_NOT_USE__="SingleValue"
                                                     __EMOTION_TYPE_PLEASE_DO_NOT_USE__="div"
-                                                    className="search__placeholder"
+                                                    className="search__single-value"
                                                     css={
                                                       Object {
                                                         "boxSizing": "border-box",
-                                                        "color": "hsl(0, 0%, 50%)",
-                                                        "label": "placeholder",
+                                                        "color": "white",
+                                                        "label": "singleValue",
                                                         "marginLeft": 2,
                                                         "marginRight": 2,
+                                                        "maxWidth": "calc(100% - 8px)",
+                                                        "overflow": "hidden",
                                                         "position": "absolute",
+                                                        "textOverflow": "ellipsis",
                                                         "top": "50%",
                                                         "transform": "translateY(-50%)",
+                                                        "whiteSpace": "nowrap",
                                                       }
                                                     }
                                                   >
                                                     <div
-                                                      className="search__placeholder css-1wa3eu0-placeholder"
+                                                      className="search__single-value css-5sz5u5-singleValue"
                                                     >
-                                                      Select...
+                                                      GROSS_PRODUCTION_SITE
                                                     </div>
                                                   </EmotionCssPropInternal>
-                                                </Placeholder>
+                                                </SingleValue>
                                                 <DummyInput
                                                   aria-autocomplete="list"
                                                   disabled={false}
@@ -869,7 +905,7 @@ exports[`Meter Widget renders correctly 1`] = `
                                             cx={[Function]}
                                             getStyles={[Function]}
                                             getValue={[Function]}
-                                            hasValue={false}
+                                            hasValue={true}
                                             isDisabled={false}
                                             isMulti={false}
                                             isRtl={false}
@@ -947,7 +983,10 @@ exports[`Meter Widget renders correctly 1`] = `
                                                 "tabIndex": "0",
                                                 "tabSelectsValue": true,
                                                 "theme": [Function],
-                                                "value": null,
+                                                "value": Object {
+                                                  "label": "GROSS_PRODUCTION_SITE",
+                                                  "value": "GROSS_PRODUCTION_SITE",
+                                                },
                                               }
                                             }
                                             setValue={[Function]}
@@ -1003,7 +1042,7 @@ exports[`Meter Widget renders correctly 1`] = `
                                                   cx={[Function]}
                                                   getStyles={[Function]}
                                                   getValue={[Function]}
-                                                  hasValue={false}
+                                                  hasValue={true}
                                                   isDisabled={false}
                                                   isFocused={false}
                                                   isMulti={false}
@@ -1082,7 +1121,10 @@ exports[`Meter Widget renders correctly 1`] = `
                                                       "tabIndex": "0",
                                                       "tabSelectsValue": true,
                                                       "theme": [Function],
-                                                      "value": null,
+                                                      "value": Object {
+                                                        "label": "GROSS_PRODUCTION_SITE",
+                                                        "value": "GROSS_PRODUCTION_SITE",
+                                                      },
                                                     }
                                                   }
                                                   setValue={[Function]}
@@ -1123,7 +1165,7 @@ exports[`Meter Widget renders correctly 1`] = `
                                                   cx={[Function]}
                                                   getStyles={[Function]}
                                                   getValue={[Function]}
-                                                  hasValue={false}
+                                                  hasValue={true}
                                                   innerProps={
                                                     Object {
                                                       "aria-hidden": "true",
@@ -1209,7 +1251,10 @@ exports[`Meter Widget renders correctly 1`] = `
                                                       "tabIndex": "0",
                                                       "tabSelectsValue": true,
                                                       "theme": [Function],
-                                                      "value": null,
+                                                      "value": Object {
+                                                        "label": "GROSS_PRODUCTION_SITE",
+                                                        "value": "GROSS_PRODUCTION_SITE",
+                                                      },
                                                     }
                                                   }
                                                   setValue={[Function]}
@@ -1347,6 +1392,12 @@ exports[`Meter Widget renders correctly 1`] = `
                         className="control"
                       >
                         <SelectField
+                          defaultValue={
+                            Object {
+                              "label": "NET_CONSUMPTION_LOADSIDE",
+                              "value": "NET_CONSUMPTION_LOADSIDE",
+                            }
+                          }
                           disabled={false}
                           isSearchable={false}
                           onSelect={[Function]}
@@ -1380,7 +1431,12 @@ exports[`Meter Widget renders correctly 1`] = `
                             }
                             defaultInputValue=""
                             defaultMenuIsOpen={false}
-                            defaultValue={null}
+                            defaultValue={
+                              Object {
+                                "label": "NET_CONSUMPTION_LOADSIDE",
+                                "value": "NET_CONSUMPTION_LOADSIDE",
+                              }
+                            }
                             hideSelectedOptions={true}
                             isDisabled={false}
                             isSearchable={false}
@@ -1471,7 +1527,12 @@ exports[`Meter Widget renders correctly 1`] = `
                               tabIndex="0"
                               tabSelectsValue={true}
                               theme={[Function]}
-                              value={null}
+                              value={
+                                Object {
+                                  "label": "NET_CONSUMPTION_LOADSIDE",
+                                  "value": "NET_CONSUMPTION_LOADSIDE",
+                                }
+                              }
                             >
                               <SelectContainer
                                 className="field"
@@ -1479,7 +1540,7 @@ exports[`Meter Widget renders correctly 1`] = `
                                 cx={[Function]}
                                 getStyles={[Function]}
                                 getValue={[Function]}
-                                hasValue={false}
+                                hasValue={true}
                                 innerProps={
                                   Object {
                                     "id": undefined,
@@ -1572,7 +1633,10 @@ exports[`Meter Widget renders correctly 1`] = `
                                     "tabIndex": "0",
                                     "tabSelectsValue": true,
                                     "theme": [Function],
-                                    "value": null,
+                                    "value": Object {
+                                      "label": "NET_CONSUMPTION_LOADSIDE",
+                                      "value": "NET_CONSUMPTION_LOADSIDE",
+                                    },
                                   }
                                 }
                                 setValue={[Function]}
@@ -1630,7 +1694,7 @@ exports[`Meter Widget renders correctly 1`] = `
                                       cx={[Function]}
                                       getStyles={[Function]}
                                       getValue={[Function]}
-                                      hasValue={false}
+                                      hasValue={true}
                                       innerProps={
                                         Object {
                                           "onMouseDown": [Function],
@@ -1725,7 +1789,10 @@ exports[`Meter Widget renders correctly 1`] = `
                                           "tabIndex": "0",
                                           "tabSelectsValue": true,
                                           "theme": [Function],
-                                          "value": null,
+                                          "value": Object {
+                                            "label": "NET_CONSUMPTION_LOADSIDE",
+                                            "value": "NET_CONSUMPTION_LOADSIDE",
+                                          },
                                         }
                                       }
                                       setValue={[Function]}
@@ -1800,7 +1867,7 @@ exports[`Meter Widget renders correctly 1`] = `
                                             cx={[Function]}
                                             getStyles={[Function]}
                                             getValue={[Function]}
-                                            hasValue={false}
+                                            hasValue={true}
                                             isDisabled={false}
                                             isMulti={false}
                                             isRtl={false}
@@ -1886,7 +1953,10 @@ exports[`Meter Widget renders correctly 1`] = `
                                                 "tabIndex": "0",
                                                 "tabSelectsValue": true,
                                                 "theme": [Function],
-                                                "value": null,
+                                                "value": Object {
+                                                  "label": "NET_CONSUMPTION_LOADSIDE",
+                                                  "value": "NET_CONSUMPTION_LOADSIDE",
+                                                },
                                               }
                                             }
                                             setValue={[Function]}
@@ -1923,7 +1993,7 @@ exports[`Meter Widget renders correctly 1`] = `
                                             <EmotionCssPropInternal
                                               __EMOTION_LABEL_PLEASE_DO_NOT_USE__="ValueContainer"
                                               __EMOTION_TYPE_PLEASE_DO_NOT_USE__="div"
-                                              className="search__value-container"
+                                              className="search__value-container search__value-container--has-value"
                                               css={
                                                 Object {
                                                   "WebkitOverflowScrolling": "touch",
@@ -1939,19 +2009,23 @@ exports[`Meter Widget renders correctly 1`] = `
                                               }
                                             >
                                               <div
-                                                className="search__value-container css-g1d714-ValueContainer"
+                                                className="search__value-container search__value-container--has-value css-g1d714-ValueContainer"
                                               >
-                                                <Placeholder
+                                                <SingleValue
                                                   clearValue={[Function]}
                                                   cx={[Function]}
+                                                  data={
+                                                    Object {
+                                                      "label": "NET_CONSUMPTION_LOADSIDE",
+                                                      "value": "NET_CONSUMPTION_LOADSIDE",
+                                                    }
+                                                  }
                                                   getStyles={[Function]}
                                                   getValue={[Function]}
-                                                  hasValue={false}
+                                                  hasValue={true}
                                                   isDisabled={false}
-                                                  isFocused={false}
                                                   isMulti={false}
                                                   isRtl={false}
-                                                  key="placeholder"
                                                   options={
                                                     Array [
                                                       Object {
@@ -2034,7 +2108,10 @@ exports[`Meter Widget renders correctly 1`] = `
                                                       "tabIndex": "0",
                                                       "tabSelectsValue": true,
                                                       "theme": [Function],
-                                                      "value": null,
+                                                      "value": Object {
+                                                        "label": "NET_CONSUMPTION_LOADSIDE",
+                                                        "value": "NET_CONSUMPTION_LOADSIDE",
+                                                      },
                                                     }
                                                   }
                                                   setValue={[Function]}
@@ -2069,29 +2146,33 @@ exports[`Meter Widget renders correctly 1`] = `
                                                   }
                                                 >
                                                   <EmotionCssPropInternal
-                                                    __EMOTION_LABEL_PLEASE_DO_NOT_USE__="Placeholder"
+                                                    __EMOTION_LABEL_PLEASE_DO_NOT_USE__="SingleValue"
                                                     __EMOTION_TYPE_PLEASE_DO_NOT_USE__="div"
-                                                    className="search__placeholder"
+                                                    className="search__single-value"
                                                     css={
                                                       Object {
                                                         "boxSizing": "border-box",
-                                                        "color": "hsl(0, 0%, 50%)",
-                                                        "label": "placeholder",
+                                                        "color": "white",
+                                                        "label": "singleValue",
                                                         "marginLeft": 2,
                                                         "marginRight": 2,
+                                                        "maxWidth": "calc(100% - 8px)",
+                                                        "overflow": "hidden",
                                                         "position": "absolute",
+                                                        "textOverflow": "ellipsis",
                                                         "top": "50%",
                                                         "transform": "translateY(-50%)",
+                                                        "whiteSpace": "nowrap",
                                                       }
                                                     }
                                                   >
                                                     <div
-                                                      className="search__placeholder css-1wa3eu0-placeholder"
+                                                      className="search__single-value css-5sz5u5-singleValue"
                                                     >
-                                                      Select...
+                                                      NET_CONSUMPTION_LOADSIDE
                                                     </div>
                                                   </EmotionCssPropInternal>
-                                                </Placeholder>
+                                                </SingleValue>
                                                 <DummyInput
                                                   aria-autocomplete="list"
                                                   disabled={false}
@@ -2148,7 +2229,7 @@ exports[`Meter Widget renders correctly 1`] = `
                                             cx={[Function]}
                                             getStyles={[Function]}
                                             getValue={[Function]}
-                                            hasValue={false}
+                                            hasValue={true}
                                             isDisabled={false}
                                             isMulti={false}
                                             isRtl={false}
@@ -2234,7 +2315,10 @@ exports[`Meter Widget renders correctly 1`] = `
                                                 "tabIndex": "0",
                                                 "tabSelectsValue": true,
                                                 "theme": [Function],
-                                                "value": null,
+                                                "value": Object {
+                                                  "label": "NET_CONSUMPTION_LOADSIDE",
+                                                  "value": "NET_CONSUMPTION_LOADSIDE",
+                                                },
                                               }
                                             }
                                             setValue={[Function]}
@@ -2290,7 +2374,7 @@ exports[`Meter Widget renders correctly 1`] = `
                                                   cx={[Function]}
                                                   getStyles={[Function]}
                                                   getValue={[Function]}
-                                                  hasValue={false}
+                                                  hasValue={true}
                                                   isDisabled={false}
                                                   isFocused={false}
                                                   isMulti={false}
@@ -2377,7 +2461,10 @@ exports[`Meter Widget renders correctly 1`] = `
                                                       "tabIndex": "0",
                                                       "tabSelectsValue": true,
                                                       "theme": [Function],
-                                                      "value": null,
+                                                      "value": Object {
+                                                        "label": "NET_CONSUMPTION_LOADSIDE",
+                                                        "value": "NET_CONSUMPTION_LOADSIDE",
+                                                      },
                                                     }
                                                   }
                                                   setValue={[Function]}
@@ -2418,7 +2505,7 @@ exports[`Meter Widget renders correctly 1`] = `
                                                   cx={[Function]}
                                                   getStyles={[Function]}
                                                   getValue={[Function]}
-                                                  hasValue={false}
+                                                  hasValue={true}
                                                   innerProps={
                                                     Object {
                                                       "aria-hidden": "true",
@@ -2512,7 +2599,10 @@ exports[`Meter Widget renders correctly 1`] = `
                                                       "tabIndex": "0",
                                                       "tabSelectsValue": true,
                                                       "theme": [Function],
-                                                      "value": null,
+                                                      "value": Object {
+                                                        "label": "NET_CONSUMPTION_LOADSIDE",
+                                                        "value": "NET_CONSUMPTION_LOADSIDE",
+                                                      },
                                                     }
                                                   }
                                                   setValue={[Function]}

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { compose, endsWith, equals, isEmpty, not, path, pathOr } from 'ramda'
+import { endsWith, equals, filter, isEmpty, path, pathOr, propEq } from 'ramda'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import SwipeableBottomSheet from 'react-swipeable-bottom-sheet'
@@ -19,7 +19,6 @@ import InterfacesWidget from './InterfacesWidget'
 import MetersWidget from './MetersWidget'
 import NetworkWidget from './NetworkWidget'
 import RSEWidget from './RSEWidget'
-import StorageWidget from './StorageWidget'
 
 import './SystemConfiguration.scss'
 
@@ -73,9 +72,8 @@ function SystemConfiguration() {
   const siteKey = useSelector(path(['site', 'site', 'siteKey']))
   const rmaMode = useSelector(path(['rma', 'rmaMode']))
   const replacingPvs = equals('REPLACE_PVS', rmaMode)
-  const hasStorage = useSelector(
-    compose(not, isEmpty, path(['systemConfiguration', 'storage', 'data']))
-  )
+  const storageDevices = filter(propEq('TYPE', 'EQUINOX-ESS'), found)
+  const hasStorage = !isEmpty(storageDevices)
 
   const validateConfig = configObject => {
     for (const value of Object.values(configObject)) {
@@ -154,8 +152,7 @@ function SystemConfiguration() {
       </div>
       <NetworkWidget />
       <GridBehaviorWidget />
-      <MetersWidget />
-      {hasStorage && <StorageWidget />}
+      <MetersWidget hasStorage={hasStorage} />
       <RSEWidget />
       <div className="submit-config">
         <button
