@@ -17,7 +17,7 @@ const buildSelectValue = value => ({
 const applyModel = (miList, selectedModel, selectedMi, dispatch) => {
   const updatedList = miList.map(mi => {
     if (includes(mi.SERIAL, selectedMi)) {
-      mi.modelStr = selectedModel
+      mi.PANEL = selectedModel
     }
     return mi
   })
@@ -80,7 +80,7 @@ const MiGroup = ({ title = 'UNKNOWN_MI_TYPE', data, type }) => {
         {miData.SERIAL}
       </span>
       <span className="has-text-white mi-item-modeldata">
-        {miData.modelStr ? miData.modelStr : t('NO_MODEL')}
+        {miData.PANEL || t('NO_MODEL')}
       </span>
     </div>
   )

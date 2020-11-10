@@ -552,5 +552,9 @@
   "ASSISTANCE_EMAIL": "partnerportal@sunpower.com",
   "ASSISTANCE_3": "If you already have an account and are unable to log in, please contact",
   "ASSISTANCE_3.1": "for account assistance.",
-  "COMMISSION_BLOCKED": "Please complete all steps in the Install tab before submitting your configuration"
+  "COMMISSION_BLOCKED": "Please complete all steps in the Install tab before submitting your configuration",
+  "STATUS_PENDING": "Searching...",
+  "MISTATE_LOADING": "Searching...",
+  "MISTATE_ERROR": "Error detected",
+  "MISTATE_MI_OK": "Communicating properly"
 }

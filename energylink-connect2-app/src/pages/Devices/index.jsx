@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import useModal from 'hooks/useModal'
-import { is, length, pathOr } from 'ramda'
+import { is, isEmpty, length, pathOr } from 'ramda'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import { either, miTypes } from 'shared/utils'
@@ -24,6 +24,7 @@ const microInverterIcon = (
 )
 
 const miStates = {
+  LOADING: 'LOADING',
   NEW: 'LOADING',
   PINGING: 'LOADING',
   PING_OK: 'LOADING',
@@ -325,37 +326,39 @@ function Devices() {
         >
           <ul className="equipment-list">
             {inverter.map(elem => {
+              const { serial_number, MODEL, STATEDESCR, indicator } = elem
+
               return (
                 <li
                   className="equipment-piece is-flex flow-wrap tile"
-                  key={elem.serial_number}
+                  key={serial_number}
                 >
-                  <div className="is-flex is-vertical has-text-white tile">
+                  <div className="is-flex is-vertical tile">
                     <span>
                       <span className="has-text-weight-bold has-text-white">
                         SN:
                       </span>
-                      {elem.serial_number}
+                      <span className="has-text-white">{serial_number}</span>
                       {either(
-                        elem.indicator === 'MI_OK',
-                        <span className="has-text-weight-bold ml-10">
-                          {miTypes[elem.MODEL] || ''}
+                        indicator === 'MI_OK',
+                        <span className="has-text-weight-bold has-text-white ml-10">
+                          {miTypes[MODEL] || ''}
                         </span>
                       )}
                     </span>
-                    {elem.modelStr ? (
-                      <span>{elem.modelStr}</span>
+                    {!isEmpty(STATEDESCR) ? (
+                      <span>{t(`MISTATE_${miStates[STATEDESCR]}`)}</span>
                     ) : (
-                      <span>{t('NO_MODEL')}</span>
+                      <span>{t('STATUS_PENDING')}</span>
                     )}
                   </div>
                   <div
                     className="is-flex mi-indicator"
                     onClick={() =>
-                      showMIStatusModal(elem.serial_number, elem.STATEDESCR)
+                      showMIStatusModal(serial_number, t(STATEDESCR))
                     }
                   >
-                    {miIndicators[elem.indicator]}
+                    {miIndicators[indicator]}
                   </div>
                 </li>
               )
