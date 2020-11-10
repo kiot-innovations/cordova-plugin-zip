@@ -35,6 +35,7 @@ function BillOfMaterials() {
     pathOr([], ['site', 'sitePVS'])
   )
   const PVS = useSelector(getPvsSerialNumbers)
+  const isMenuOpen = useSelector(pathOr(false, ['ui', 'menu', 'show']))
 
   const data = useSelector(({ user, inventory }) => ({
     phone: user.data.phoneNumber,
@@ -48,8 +49,13 @@ function BillOfMaterials() {
   useEffect(() => {
     dispatch(GET_SCANDIT_USERS())
     dispatch(COMMISSIONING_START())
-    dispatch(DOWNLOAD_VERIFY())
   }, [dispatch])
+
+  useEffect(() => {
+    if (!isMenuOpen) {
+      dispatch(DOWNLOAD_VERIFY())
+    }
+  }, [dispatch, isMenuOpen])
 
   useEffect(() => {
     dispatch(GET_SITE_INIT(siteKey))

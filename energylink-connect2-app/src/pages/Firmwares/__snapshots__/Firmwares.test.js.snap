@@ -50,6 +50,7 @@ exports[`Firmwares component render correctly 1`] = `
           <FileCollapsible
             downloadFile={[Function]}
             error=""
+            fileName="PVS_FIRMWARE"
             isDownloading={false}
             progress={0}
             step="INITIALIZING"
@@ -57,7 +58,7 @@ exports[`Firmwares component render correctly 1`] = `
             <Collapsible
               actions={null}
               expanded={true}
-              title=""
+              title="PVS_FIRMWARE"
             >
               <div
                 className="collapsible"
@@ -71,7 +72,9 @@ exports[`Firmwares component render correctly 1`] = `
                     <span />
                     <span
                       className="has-text-weight-bold"
-                    />
+                    >
+                      PVS_FIRMWARE
+                    </span>
                   </div>
                   <div
                     className="collapsible-actions"
@@ -202,7 +205,12 @@ exports[`Firmwares component render correctly 1`] = `
             step="INITIALIZING"
           >
             <Collapsible
-              actions={null}
+              actions={
+                <span
+                  className="is-size-4 sp-update"
+                  onClick={[Function]}
+                />
+              }
               expanded={true}
               title="STORAGE_FW_FILE"
             >
@@ -224,7 +232,12 @@ exports[`Firmwares component render correctly 1`] = `
                   </div>
                   <div
                     className="collapsible-actions"
-                  />
+                  >
+                    <span
+                      className="is-size-4 sp-update"
+                      onClick={[Function]}
+                    />
+                  </div>
                   <div
                     className="collapsible-trigger"
                   >

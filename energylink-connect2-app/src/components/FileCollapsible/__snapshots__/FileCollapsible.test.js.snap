@@ -2,7 +2,11 @@
 
 exports[`File Collapsible component renders correctly complete 1`] = `
 <Collapsible
-  actions={null}
+  actions={
+    <span
+      className="is-size-4 sp-update"
+    />
+  }
   expanded={true}
   title="test fileName"
 >
