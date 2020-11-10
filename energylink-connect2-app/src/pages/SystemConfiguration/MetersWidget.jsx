@@ -70,7 +70,7 @@ function MetersWidget({ hasStorage = false }) {
                   defaultValue={find(
                     propEq(
                       'value',
-                      hasStorage ? productionCT : 'GROSS_PRODUCTION_SITE'
+                      hasStorage ? 'GROSS_PRODUCTION_SITE' : productionCT
                     ),
                     PRODUCTION_METER_TYPES
                   )}
@@ -102,7 +102,7 @@ function MetersWidget({ hasStorage = false }) {
                   defaultValue={find(
                     propEq(
                       'value',
-                      hasStorage ? consumptionCT : 'NET_CONSUMPTION_LOADSIDE'
+                      hasStorage ? 'NET_CONSUMPTION_LOADSIDE' : consumptionCT
                     ),
                     CONSUMPTION_METER_TYPES
                   )}
