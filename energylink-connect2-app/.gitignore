@@ -28,3 +28,7 @@ yarn-error.log*
 .vscode
 .env*
 
+# live-reload
+public/cordova.js
+public/plugins
+public/cordova_plugins.js

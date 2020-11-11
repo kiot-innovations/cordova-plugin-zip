@@ -7,6 +7,7 @@
   "homepage": "./",
   "scripts": {
     "start": "react-scripts start",
+    "dev": "concurrently --kill-others 'npm run live-reload-proxy' 'BROWSER=none npm run start'",
     "build": "npm run cleanwww && react-scripts build && cp -a ./build/. ../www/",
     "buildsm": "GENERATE_SOURCEMAP=true npm run cleanwww && react-scripts build && cp -a ./build/. ../www/",
     "build.ci": "eslint src && cross-env CI=true react-scripts test && cross-env NODE_ENV=production react-scripts build",
@@ -15,7 +16,9 @@
     "lint": "eslint --fix src",
     "validate-env-files": "node ./gitHooks/envFiles/validate",
     "storybook": "start-storybook -p 9009 -s public",
-    "build-storybook": "build-storybook -s public"
+    "build-storybook": "build-storybook -s public",
+    "live-reload-proxy": "node ./live-reload/proxy.js",
+    "live-reload-precommit": "node ./gitHooks/liveReloadValidate"
   },
   "dependencies": {
     "@sentry/browser": "^5.12.1",
@@ -74,6 +77,8 @@
     "@storybook/react": "^5.2.6",
     "chalk": "^4.1.0",
     "cheerio": "^1.0.0-rc.3",
+    "concurrently": "^5.3.0",
+    "cors-anywhere": "^0.4.3",
     "cross-env": "^5.2.0",
     "deep-freeze": "0.0.1",
     "enzyme": "^3.10.0",
@@ -81,11 +86,13 @@
     "enzyme-to-json": "^3.3.5",
     "eslint-config-prettier": "^6.0.0",
     "eslint-plugin-prettier": "^3.1.0",
+    "execa": "^4.1.0",
     "husky": "^4.2.5",
     "lint-staged": "^8.2.1",
     "node-sass": "^4.12.0",
     "prettier": "^1.18.2",
     "react-scripts": "3.0.1",
+    "replace-in-file": "^6.1.0",
     "storybook-react-router": "^1.0.8"
   },
   "eslintConfig": {
@@ -104,7 +111,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run validate-env-files && cross-env CI=true npm test && lint-staged"
+      "pre-commit": "npm run validate-env-files && cross-env CI=true npm test && lint-staged && npm run live-reload-precommit"
     }
   },
   "lint-staged": {
