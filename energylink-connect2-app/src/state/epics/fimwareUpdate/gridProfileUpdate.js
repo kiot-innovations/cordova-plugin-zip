@@ -13,6 +13,10 @@ import { ERROR_CODES, getFileBlob, getFileNameFromURL } from 'shared/fileSystem'
 import { translate } from 'shared/i18n'
 import { SHOW_MODAL } from 'state/actions/modal'
 import { EMPTY_ACTION } from 'state/actions/share'
+import {
+  gridProfileUpdateUrl$,
+  waitForObservable
+} from 'state/epics/downloader/latestUrls'
 
 /**
  * Will upload the Grid Profile file to the PVS
@@ -42,10 +46,12 @@ const uploadGridProfile = async (error, gridProfileURL) => {
 export const epicUploadGridProfile = (action$, state$) =>
   action$.pipe(
     ofType(FIRMWARE_GET_VERSION_COMPLETE.getType()),
-    switchMap(() =>
+    waitForObservable(gridProfileUpdateUrl$),
+    switchMap(([, gridProfileUrl]) =>
       from(
         uploadGridProfile(
-          path(['value', 'fileDownloader', 'gridProfileInfo', 'error'], state$)
+          path(['value', 'fileDownloader', 'gridProfileInfo', 'error'], state$),
+          gridProfileUrl
         )
       ).pipe(
         map(() => GRID_PROFILE_UPLOAD_COMPLETE()),
