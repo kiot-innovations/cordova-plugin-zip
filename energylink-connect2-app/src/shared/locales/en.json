@@ -556,5 +556,6 @@
   "STATUS_PENDING": "Searching...",
   "MISTATE_LOADING": "Searching...",
   "MISTATE_ERROR": "Error detected",
-  "MISTATE_MI_OK": "Communicating properly"
+  "MISTATE_MI_OK": "Communicating properly",
+  "NO_GRID_PROFILE": "No grid profile"
 }

@@ -108,12 +108,15 @@ function GridBehaviorWidget() {
   const isIEEE = /^IEEE/
   const filteredProfiles = filterProfiles()
 
-  const gridProfileOptions = filteredProfiles.map(profile => {
-    if (length(filteredProfiles) === 2 && !isIEEE.test(profile.name)) {
-      defaultGridProfile = { label: profile.name, value: profile }
-    }
-    return { label: profile.name, value: profile }
-  })
+  const gridProfileOptions = [
+    { label: t('NO_GRID_PROFILE'), value: '' },
+    ...filteredProfiles.map(profile => {
+      if (length(filteredProfiles) === 2 && !isIEEE.test(profile.name)) {
+        defaultGridProfile = { label: profile.name, value: profile }
+      }
+      return { label: profile.name, value: profile }
+    })
+  ]
 
   const setGridProfile = value => {
     dispatch(SET_GRID_PROFILE(value.value))

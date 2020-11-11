@@ -116,7 +116,14 @@ exports[`GridBehaviorWidget renders correctly with grid voltage measured equals 
                           isSearchable={false}
                           notFoundText="GRID_PROFILES_NOT_FOUND"
                           onSelect={[Function]}
-                          options={Array []}
+                          options={
+                            Array [
+                              Object {
+                                "label": "NO_GRID_PROFILE",
+                                "value": "",
+                              },
+                            ]
+                          }
                           useDefaultDropDown={true}
                           value={null}
                         >
@@ -137,7 +144,14 @@ exports[`GridBehaviorWidget renders correctly with grid voltage measured equals 
                             isSearchable={false}
                             noOptionsMessage={[Function]}
                             onChange={[Function]}
-                            options={Array []}
+                            options={
+                              Array [
+                                Object {
+                                  "label": "NO_GRID_PROFILE",
+                                  "value": "",
+                                },
+                              ]
+                            }
                             theme={[Function]}
                             value={null}
                           >
@@ -185,7 +199,14 @@ exports[`GridBehaviorWidget renders correctly with grid voltage measured equals 
                               onMenuOpen={[Function]}
                               openMenuOnClick={true}
                               openMenuOnFocus={false}
-                              options={Array []}
+                              options={
+                                Array [
+                                  Object {
+                                    "label": "NO_GRID_PROFILE",
+                                    "value": "",
+                                  },
+                                ]
+                              }
                               pageSize={5}
                               placeholder="Select..."
                               screenReaderStatus={[Function]}
@@ -212,7 +233,14 @@ exports[`GridBehaviorWidget renders correctly with grid voltage measured equals 
                                 isFocused={false}
                                 isMulti={false}
                                 isRtl={false}
-                                options={Array []}
+                                options={
+                                  Array [
+                                    Object {
+                                      "label": "NO_GRID_PROFILE",
+                                      "value": "",
+                                    },
+                                  ]
+                                }
                                 selectOption={[Function]}
                                 selectProps={
                                   Object {
@@ -258,7 +286,12 @@ exports[`GridBehaviorWidget renders correctly with grid voltage measured equals 
                                     "onMenuOpen": [Function],
                                     "openMenuOnClick": true,
                                     "openMenuOnFocus": false,
-                                    "options": Array [],
+                                    "options": Array [
+                                      Object {
+                                        "label": "NO_GRID_PROFILE",
+                                        "value": "",
+                                      },
+                                    ],
                                     "pageSize": 5,
                                     "placeholder": "Select...",
                                     "screenReaderStatus": [Function],
@@ -337,7 +370,14 @@ exports[`GridBehaviorWidget renders correctly with grid voltage measured equals 
                                       isMulti={false}
                                       isRtl={false}
                                       menuIsOpen={false}
-                                      options={Array []}
+                                      options={
+                                        Array [
+                                          Object {
+                                            "label": "NO_GRID_PROFILE",
+                                            "value": "",
+                                          },
+                                        ]
+                                      }
                                       selectOption={[Function]}
                                       selectProps={
                                         Object {
@@ -383,7 +423,12 @@ exports[`GridBehaviorWidget renders correctly with grid voltage measured equals 
                                           "onMenuOpen": [Function],
                                           "openMenuOnClick": true,
                                           "openMenuOnFocus": false,
-                                          "options": Array [],
+                                          "options": Array [
+                                            Object {
+                                              "label": "NO_GRID_PROFILE",
+                                              "value": "",
+                                            },
+                                          ],
                                           "pageSize": 5,
                                           "placeholder": "Select...",
                                           "screenReaderStatus": [Function],
@@ -470,7 +515,14 @@ exports[`GridBehaviorWidget renders correctly with grid voltage measured equals 
                                             isDisabled={false}
                                             isMulti={false}
                                             isRtl={false}
-                                            options={Array []}
+                                            options={
+                                              Array [
+                                                Object {
+                                                  "label": "NO_GRID_PROFILE",
+                                                  "value": "",
+                                                },
+                                              ]
+                                            }
                                             selectOption={[Function]}
                                             selectProps={
                                               Object {
@@ -516,7 +568,12 @@ exports[`GridBehaviorWidget renders correctly with grid voltage measured equals 
                                                 "onMenuOpen": [Function],
                                                 "openMenuOnClick": true,
                                                 "openMenuOnFocus": false,
-                                                "options": Array [],
+                                                "options": Array [
+                                                  Object {
+                                                    "label": "NO_GRID_PROFILE",
+                                                    "value": "",
+                                                  },
+                                                ],
                                                 "pageSize": 5,
                                                 "placeholder": "Select...",
                                                 "screenReaderStatus": [Function],
@@ -590,7 +647,14 @@ exports[`GridBehaviorWidget renders correctly with grid voltage measured equals 
                                                   isMulti={false}
                                                   isRtl={false}
                                                   key="placeholder"
-                                                  options={Array []}
+                                                  options={
+                                                    Array [
+                                                      Object {
+                                                        "label": "NO_GRID_PROFILE",
+                                                        "value": "",
+                                                      },
+                                                    ]
+                                                  }
                                                   selectOption={[Function]}
                                                   selectProps={
                                                     Object {
@@ -636,7 +700,12 @@ exports[`GridBehaviorWidget renders correctly with grid voltage measured equals 
                                                       "onMenuOpen": [Function],
                                                       "openMenuOnClick": true,
                                                       "openMenuOnFocus": false,
-                                                      "options": Array [],
+                                                      "options": Array [
+                                                        Object {
+                                                          "label": "NO_GRID_PROFILE",
+                                                          "value": "",
+                                                        },
+                                                      ],
                                                       "pageSize": 5,
                                                       "placeholder": "Select...",
                                                       "screenReaderStatus": [Function],
@@ -762,7 +831,14 @@ exports[`GridBehaviorWidget renders correctly with grid voltage measured equals 
                                             isDisabled={false}
                                             isMulti={false}
                                             isRtl={false}
-                                            options={Array []}
+                                            options={
+                                              Array [
+                                                Object {
+                                                  "label": "NO_GRID_PROFILE",
+                                                  "value": "",
+                                                },
+                                              ]
+                                            }
                                             selectOption={[Function]}
                                             selectProps={
                                               Object {
@@ -808,7 +884,12 @@ exports[`GridBehaviorWidget renders correctly with grid voltage measured equals 
                                                 "onMenuOpen": [Function],
                                                 "openMenuOnClick": true,
                                                 "openMenuOnFocus": false,
-                                                "options": Array [],
+                                                "options": Array [
+                                                  Object {
+                                                    "label": "NO_GRID_PROFILE",
+                                                    "value": "",
+                                                  },
+                                                ],
                                                 "pageSize": 5,
                                                 "placeholder": "Select...",
                                                 "screenReaderStatus": [Function],
@@ -877,7 +958,14 @@ exports[`GridBehaviorWidget renders correctly with grid voltage measured equals 
                                                   isFocused={false}
                                                   isMulti={false}
                                                   isRtl={false}
-                                                  options={Array []}
+                                                  options={
+                                                    Array [
+                                                      Object {
+                                                        "label": "NO_GRID_PROFILE",
+                                                        "value": "",
+                                                      },
+                                                    ]
+                                                  }
                                                   selectOption={[Function]}
                                                   selectProps={
                                                     Object {
@@ -923,7 +1011,12 @@ exports[`GridBehaviorWidget renders correctly with grid voltage measured equals 
                                                       "onMenuOpen": [Function],
                                                       "openMenuOnClick": true,
                                                       "openMenuOnFocus": false,
-                                                      "options": Array [],
+                                                      "options": Array [
+                                                        Object {
+                                                          "label": "NO_GRID_PROFILE",
+                                                          "value": "",
+                                                        },
+                                                      ],
                                                       "pageSize": 5,
                                                       "placeholder": "Select...",
                                                       "screenReaderStatus": [Function],
@@ -984,7 +1077,14 @@ exports[`GridBehaviorWidget renders correctly with grid voltage measured equals 
                                                   isFocused={false}
                                                   isMulti={false}
                                                   isRtl={false}
-                                                  options={Array []}
+                                                  options={
+                                                    Array [
+                                                      Object {
+                                                        "label": "NO_GRID_PROFILE",
+                                                        "value": "",
+                                                      },
+                                                    ]
+                                                  }
                                                   selectOption={[Function]}
                                                   selectProps={
                                                     Object {
@@ -1030,7 +1130,12 @@ exports[`GridBehaviorWidget renders correctly with grid voltage measured equals 
                                                       "onMenuOpen": [Function],
                                                       "openMenuOnClick": true,
                                                       "openMenuOnFocus": false,
-                                                      "options": Array [],
+                                                      "options": Array [
+                                                        Object {
+                                                          "label": "NO_GRID_PROFILE",
+                                                          "value": "",
+                                                        },
+                                                      ],
                                                       "pageSize": 5,
                                                       "placeholder": "Select...",
                                                       "screenReaderStatus": [Function],
@@ -5065,7 +5170,14 @@ exports[`GridBehaviorWidget renders correctly with grid voltage measured equals 
                           isSearchable={false}
                           notFoundText="GRID_PROFILES_NOT_FOUND"
                           onSelect={[Function]}
-                          options={Array []}
+                          options={
+                            Array [
+                              Object {
+                                "label": "NO_GRID_PROFILE",
+                                "value": "",
+                              },
+                            ]
+                          }
                           useDefaultDropDown={true}
                           value={null}
                         >
@@ -5086,7 +5198,14 @@ exports[`GridBehaviorWidget renders correctly with grid voltage measured equals 
                             isSearchable={false}
                             noOptionsMessage={[Function]}
                             onChange={[Function]}
-                            options={Array []}
+                            options={
+                              Array [
+                                Object {
+                                  "label": "NO_GRID_PROFILE",
+                                  "value": "",
+                                },
+                              ]
+                            }
                             theme={[Function]}
                             value={null}
                           >
@@ -5134,7 +5253,14 @@ exports[`GridBehaviorWidget renders correctly with grid voltage measured equals 
                               onMenuOpen={[Function]}
                               openMenuOnClick={true}
                               openMenuOnFocus={false}
-                              options={Array []}
+                              options={
+                                Array [
+                                  Object {
+                                    "label": "NO_GRID_PROFILE",
+                                    "value": "",
+                                  },
+                                ]
+                              }
                               pageSize={5}
                               placeholder="Select..."
                               screenReaderStatus={[Function]}
@@ -5161,7 +5287,14 @@ exports[`GridBehaviorWidget renders correctly with grid voltage measured equals 
                                 isFocused={false}
                                 isMulti={false}
                                 isRtl={false}
-                                options={Array []}
+                                options={
+                                  Array [
+                                    Object {
+                                      "label": "NO_GRID_PROFILE",
+                                      "value": "",
+                                    },
+                                  ]
+                                }
                                 selectOption={[Function]}
                                 selectProps={
                                   Object {
@@ -5207,7 +5340,12 @@ exports[`GridBehaviorWidget renders correctly with grid voltage measured equals 
                                     "onMenuOpen": [Function],
                                     "openMenuOnClick": true,
                                     "openMenuOnFocus": false,
-                                    "options": Array [],
+                                    "options": Array [
+                                      Object {
+                                        "label": "NO_GRID_PROFILE",
+                                        "value": "",
+                                      },
+                                    ],
                                     "pageSize": 5,
                                     "placeholder": "Select...",
                                     "screenReaderStatus": [Function],
@@ -5286,7 +5424,14 @@ exports[`GridBehaviorWidget renders correctly with grid voltage measured equals 
                                       isMulti={false}
                                       isRtl={false}
                                       menuIsOpen={false}
-                                      options={Array []}
+                                      options={
+                                        Array [
+                                          Object {
+                                            "label": "NO_GRID_PROFILE",
+                                            "value": "",
+                                          },
+                                        ]
+                                      }
                                       selectOption={[Function]}
                                       selectProps={
                                         Object {
@@ -5332,7 +5477,12 @@ exports[`GridBehaviorWidget renders correctly with grid voltage measured equals 
                                           "onMenuOpen": [Function],
                                           "openMenuOnClick": true,
                                           "openMenuOnFocus": false,
-                                          "options": Array [],
+                                          "options": Array [
+                                            Object {
+                                              "label": "NO_GRID_PROFILE",
+                                              "value": "",
+                                            },
+                                          ],
                                           "pageSize": 5,
                                           "placeholder": "Select...",
                                           "screenReaderStatus": [Function],
@@ -5419,7 +5569,14 @@ exports[`GridBehaviorWidget renders correctly with grid voltage measured equals 
                                             isDisabled={false}
                                             isMulti={false}
                                             isRtl={false}
-                                            options={Array []}
+                                            options={
+                                              Array [
+                                                Object {
+                                                  "label": "NO_GRID_PROFILE",
+                                                  "value": "",
+                                                },
+                                              ]
+                                            }
                                             selectOption={[Function]}
                                             selectProps={
                                               Object {
@@ -5465,7 +5622,12 @@ exports[`GridBehaviorWidget renders correctly with grid voltage measured equals 
                                                 "onMenuOpen": [Function],
                                                 "openMenuOnClick": true,
                                                 "openMenuOnFocus": false,
-                                                "options": Array [],
+                                                "options": Array [
+                                                  Object {
+                                                    "label": "NO_GRID_PROFILE",
+                                                    "value": "",
+                                                  },
+                                                ],
                                                 "pageSize": 5,
                                                 "placeholder": "Select...",
                                                 "screenReaderStatus": [Function],
@@ -5539,7 +5701,14 @@ exports[`GridBehaviorWidget renders correctly with grid voltage measured equals 
                                                   isMulti={false}
                                                   isRtl={false}
                                                   key="placeholder"
-                                                  options={Array []}
+                                                  options={
+                                                    Array [
+                                                      Object {
+                                                        "label": "NO_GRID_PROFILE",
+                                                        "value": "",
+                                                      },
+                                                    ]
+                                                  }
                                                   selectOption={[Function]}
                                                   selectProps={
                                                     Object {
@@ -5585,7 +5754,12 @@ exports[`GridBehaviorWidget renders correctly with grid voltage measured equals 
                                                       "onMenuOpen": [Function],
                                                       "openMenuOnClick": true,
                                                       "openMenuOnFocus": false,
-                                                      "options": Array [],
+                                                      "options": Array [
+                                                        Object {
+                                                          "label": "NO_GRID_PROFILE",
+                                                          "value": "",
+                                                        },
+                                                      ],
                                                       "pageSize": 5,
                                                       "placeholder": "Select...",
                                                       "screenReaderStatus": [Function],
@@ -5711,7 +5885,14 @@ exports[`GridBehaviorWidget renders correctly with grid voltage measured equals 
                                             isDisabled={false}
                                             isMulti={false}
                                             isRtl={false}
-                                            options={Array []}
+                                            options={
+                                              Array [
+                                                Object {
+                                                  "label": "NO_GRID_PROFILE",
+                                                  "value": "",
+                                                },
+                                              ]
+                                            }
                                             selectOption={[Function]}
                                             selectProps={
                                               Object {
@@ -5757,7 +5938,12 @@ exports[`GridBehaviorWidget renders correctly with grid voltage measured equals 
                                                 "onMenuOpen": [Function],
                                                 "openMenuOnClick": true,
                                                 "openMenuOnFocus": false,
-                                                "options": Array [],
+                                                "options": Array [
+                                                  Object {
+                                                    "label": "NO_GRID_PROFILE",
+                                                    "value": "",
+                                                  },
+                                                ],
                                                 "pageSize": 5,
                                                 "placeholder": "Select...",
                                                 "screenReaderStatus": [Function],
@@ -5826,7 +6012,14 @@ exports[`GridBehaviorWidget renders correctly with grid voltage measured equals 
                                                   isFocused={false}
                                                   isMulti={false}
                                                   isRtl={false}
-                                                  options={Array []}
+                                                  options={
+                                                    Array [
+                                                      Object {
+                                                        "label": "NO_GRID_PROFILE",
+                                                        "value": "",
+                                                      },
+                                                    ]
+                                                  }
                                                   selectOption={[Function]}
                                                   selectProps={
                                                     Object {
@@ -5872,7 +6065,12 @@ exports[`GridBehaviorWidget renders correctly with grid voltage measured equals 
                                                       "onMenuOpen": [Function],
                                                       "openMenuOnClick": true,
                                                       "openMenuOnFocus": false,
-                                                      "options": Array [],
+                                                      "options": Array [
+                                                        Object {
+                                                          "label": "NO_GRID_PROFILE",
+                                                          "value": "",
+                                                        },
+                                                      ],
                                                       "pageSize": 5,
                                                       "placeholder": "Select...",
                                                       "screenReaderStatus": [Function],
@@ -5933,7 +6131,14 @@ exports[`GridBehaviorWidget renders correctly with grid voltage measured equals 
                                                   isFocused={false}
                                                   isMulti={false}
                                                   isRtl={false}
-                                                  options={Array []}
+                                                  options={
+                                                    Array [
+                                                      Object {
+                                                        "label": "NO_GRID_PROFILE",
+                                                        "value": "",
+                                                      },
+                                                    ]
+                                                  }
                                                   selectOption={[Function]}
                                                   selectProps={
                                                     Object {
@@ -5979,7 +6184,12 @@ exports[`GridBehaviorWidget renders correctly with grid voltage measured equals 
                                                       "onMenuOpen": [Function],
                                                       "openMenuOnClick": true,
                                                       "openMenuOnFocus": false,
-                                                      "options": Array [],
+                                                      "options": Array [
+                                                        Object {
+                                                          "label": "NO_GRID_PROFILE",
+                                                          "value": "",
+                                                        },
+                                                      ],
                                                       "pageSize": 5,
                                                       "placeholder": "Select...",
                                                       "screenReaderStatus": [Function],
@@ -10026,7 +10236,14 @@ exports[`GridBehaviorWidget renders correctly with grid voltage measured equals 
                           isSearchable={false}
                           notFoundText="GRID_PROFILES_NOT_FOUND"
                           onSelect={[Function]}
-                          options={Array []}
+                          options={
+                            Array [
+                              Object {
+                                "label": "NO_GRID_PROFILE",
+                                "value": "",
+                              },
+                            ]
+                          }
                           useDefaultDropDown={true}
                           value={null}
                         >
@@ -10047,7 +10264,14 @@ exports[`GridBehaviorWidget renders correctly with grid voltage measured equals 
                             isSearchable={false}
                             noOptionsMessage={[Function]}
                             onChange={[Function]}
-                            options={Array []}
+                            options={
+                              Array [
+                                Object {
+                                  "label": "NO_GRID_PROFILE",
+                                  "value": "",
+                                },
+                              ]
+                            }
                             theme={[Function]}
                             value={null}
                           >
@@ -10095,7 +10319,14 @@ exports[`GridBehaviorWidget renders correctly with grid voltage measured equals 
                               onMenuOpen={[Function]}
                               openMenuOnClick={true}
                               openMenuOnFocus={false}
-                              options={Array []}
+                              options={
+                                Array [
+                                  Object {
+                                    "label": "NO_GRID_PROFILE",
+                                    "value": "",
+                                  },
+                                ]
+                              }
                               pageSize={5}
                               placeholder="Select..."
                               screenReaderStatus={[Function]}
@@ -10122,7 +10353,14 @@ exports[`GridBehaviorWidget renders correctly with grid voltage measured equals 
                                 isFocused={false}
                                 isMulti={false}
                                 isRtl={false}
-                                options={Array []}
+                                options={
+                                  Array [
+                                    Object {
+                                      "label": "NO_GRID_PROFILE",
+                                      "value": "",
+                                    },
+                                  ]
+                                }
                                 selectOption={[Function]}
                                 selectProps={
                                   Object {
@@ -10168,7 +10406,12 @@ exports[`GridBehaviorWidget renders correctly with grid voltage measured equals 
                                     "onMenuOpen": [Function],
                                     "openMenuOnClick": true,
                                     "openMenuOnFocus": false,
-                                    "options": Array [],
+                                    "options": Array [
+                                      Object {
+                                        "label": "NO_GRID_PROFILE",
+                                        "value": "",
+                                      },
+                                    ],
                                     "pageSize": 5,
                                     "placeholder": "Select...",
                                     "screenReaderStatus": [Function],
@@ -10247,7 +10490,14 @@ exports[`GridBehaviorWidget renders correctly with grid voltage measured equals 
                                       isMulti={false}
                                       isRtl={false}
                                       menuIsOpen={false}
-                                      options={Array []}
+                                      options={
+                                        Array [
+                                          Object {
+                                            "label": "NO_GRID_PROFILE",
+                                            "value": "",
+                                          },
+                                        ]
+                                      }
                                       selectOption={[Function]}
                                       selectProps={
                                         Object {
@@ -10293,7 +10543,12 @@ exports[`GridBehaviorWidget renders correctly with grid voltage measured equals 
                                           "onMenuOpen": [Function],
                                           "openMenuOnClick": true,
                                           "openMenuOnFocus": false,
-                                          "options": Array [],
+                                          "options": Array [
+                                            Object {
+                                              "label": "NO_GRID_PROFILE",
+                                              "value": "",
+                                            },
+                                          ],
                                           "pageSize": 5,
                                           "placeholder": "Select...",
                                           "screenReaderStatus": [Function],
@@ -10380,7 +10635,14 @@ exports[`GridBehaviorWidget renders correctly with grid voltage measured equals 
                                             isDisabled={false}
                                             isMulti={false}
                                             isRtl={false}
-                                            options={Array []}
+                                            options={
+                                              Array [
+                                                Object {
+                                                  "label": "NO_GRID_PROFILE",
+                                                  "value": "",
+                                                },
+                                              ]
+                                            }
                                             selectOption={[Function]}
                                             selectProps={
                                               Object {
@@ -10426,7 +10688,12 @@ exports[`GridBehaviorWidget renders correctly with grid voltage measured equals 
                                                 "onMenuOpen": [Function],
                                                 "openMenuOnClick": true,
                                                 "openMenuOnFocus": false,
-                                                "options": Array [],
+                                                "options": Array [
+                                                  Object {
+                                                    "label": "NO_GRID_PROFILE",
+                                                    "value": "",
+                                                  },
+                                                ],
                                                 "pageSize": 5,
                                                 "placeholder": "Select...",
                                                 "screenReaderStatus": [Function],
@@ -10500,7 +10767,14 @@ exports[`GridBehaviorWidget renders correctly with grid voltage measured equals 
                                                   isMulti={false}
                                                   isRtl={false}
                                                   key="placeholder"
-                                                  options={Array []}
+                                                  options={
+                                                    Array [
+                                                      Object {
+                                                        "label": "NO_GRID_PROFILE",
+                                                        "value": "",
+                                                      },
+                                                    ]
+                                                  }
                                                   selectOption={[Function]}
                                                   selectProps={
                                                     Object {
@@ -10546,7 +10820,12 @@ exports[`GridBehaviorWidget renders correctly with grid voltage measured equals 
                                                       "onMenuOpen": [Function],
                                                       "openMenuOnClick": true,
                                                       "openMenuOnFocus": false,
-                                                      "options": Array [],
+                                                      "options": Array [
+                                                        Object {
+                                                          "label": "NO_GRID_PROFILE",
+                                                          "value": "",
+                                                        },
+                                                      ],
                                                       "pageSize": 5,
                                                       "placeholder": "Select...",
                                                       "screenReaderStatus": [Function],
@@ -10672,7 +10951,14 @@ exports[`GridBehaviorWidget renders correctly with grid voltage measured equals 
                                             isDisabled={false}
                                             isMulti={false}
                                             isRtl={false}
-                                            options={Array []}
+                                            options={
+                                              Array [
+                                                Object {
+                                                  "label": "NO_GRID_PROFILE",
+                                                  "value": "",
+                                                },
+                                              ]
+                                            }
                                             selectOption={[Function]}
                                             selectProps={
                                               Object {
@@ -10718,7 +11004,12 @@ exports[`GridBehaviorWidget renders correctly with grid voltage measured equals 
                                                 "onMenuOpen": [Function],
                                                 "openMenuOnClick": true,
                                                 "openMenuOnFocus": false,
-                                                "options": Array [],
+                                                "options": Array [
+                                                  Object {
+                                                    "label": "NO_GRID_PROFILE",
+                                                    "value": "",
+                                                  },
+                                                ],
                                                 "pageSize": 5,
                                                 "placeholder": "Select...",
                                                 "screenReaderStatus": [Function],
@@ -10787,7 +11078,14 @@ exports[`GridBehaviorWidget renders correctly with grid voltage measured equals 
                                                   isFocused={false}
                                                   isMulti={false}
                                                   isRtl={false}
-                                                  options={Array []}
+                                                  options={
+                                                    Array [
+                                                      Object {
+                                                        "label": "NO_GRID_PROFILE",
+                                                        "value": "",
+                                                      },
+                                                    ]
+                                                  }
                                                   selectOption={[Function]}
                                                   selectProps={
                                                     Object {
@@ -10833,7 +11131,12 @@ exports[`GridBehaviorWidget renders correctly with grid voltage measured equals 
                                                       "onMenuOpen": [Function],
                                                       "openMenuOnClick": true,
                                                       "openMenuOnFocus": false,
-                                                      "options": Array [],
+                                                      "options": Array [
+                                                        Object {
+                                                          "label": "NO_GRID_PROFILE",
+                                                          "value": "",
+                                                        },
+                                                      ],
                                                       "pageSize": 5,
                                                       "placeholder": "Select...",
                                                       "screenReaderStatus": [Function],
@@ -10894,7 +11197,14 @@ exports[`GridBehaviorWidget renders correctly with grid voltage measured equals 
                                                   isFocused={false}
                                                   isMulti={false}
                                                   isRtl={false}
-                                                  options={Array []}
+                                                  options={
+                                                    Array [
+                                                      Object {
+                                                        "label": "NO_GRID_PROFILE",
+                                                        "value": "",
+                                                      },
+                                                    ]
+                                                  }
                                                   selectOption={[Function]}
                                                   selectProps={
                                                     Object {
@@ -10940,7 +11250,12 @@ exports[`GridBehaviorWidget renders correctly with grid voltage measured equals 
                                                       "onMenuOpen": [Function],
                                                       "openMenuOnClick": true,
                                                       "openMenuOnFocus": false,
-                                                      "options": Array [],
+                                                      "options": Array [
+                                                        Object {
+                                                          "label": "NO_GRID_PROFILE",
+                                                          "value": "",
+                                                        },
+                                                      ],
                                                       "pageSize": 5,
                                                       "placeholder": "Select...",
                                                       "screenReaderStatus": [Function],
