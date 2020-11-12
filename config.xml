@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.sunpower.energylink.commissioning2.test" version="5.3.0" xmlns="http://www.w3.org/ns/widgets" xmlns:android="http://schemas.android.com/apk/res/android" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="com.sunpower.energylink.commissioning2.test" version="5.5.0" xmlns="http://www.w3.org/ns/widgets" xmlns:android="http://schemas.android.com/apk/res/android" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>SunPowerProConnect-dev</name>
     <description>
         PVS Commissioning by SunPower
@@ -111,6 +111,6 @@
     <plugin name="cordova-plugin-wifiwizard2" spec="git+ssh://git@github.com/SunPower/WifiWizard2-private.git" />
     <plugin name="cordova-plugin-sunpowerble" spec="git+ssh://git@github.com/SunPower/cordova-plugin-sunpowerble.git" />
     <plugin name="cordova-plugin-ble-central">
-        <variable name="BLUETOOTH_USAGE_DESCRIPTION" value="Send commands to PVS over BLE" />
+        <variable name="BLUETOOTH_USAGE_DESCRIPTION" value="The app uses bluetooth to connect to PVS WiFi. Pro Connect needs to connect to your PVS to commission the devices." />
     </plugin>
 </widget>

@@ -18,6 +18,7 @@ import scanditEpics from './scandit'
 import siteEpics from './site'
 import storageEpics from './storage'
 import systemConfigurationEpics from './systemConfiguration'
+import permissionsEpics from './permissions'
 
 export default combineEpics(
   ...modalEpics,
@@ -37,5 +38,6 @@ export default combineEpics(
   ...rmaEpics,
   ...appUpdaterEpics,
   ...analyticsEpics,
-  ...bluetoothEpics
+  ...bluetoothEpics,
+  ...permissionsEpics
 )

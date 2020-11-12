@@ -557,5 +557,16 @@
   "MISTATE_LOADING": "Searching...",
   "MISTATE_ERROR": "Error detected",
   "MISTATE_MI_OK": "Communicating properly",
+  "PERM_HEADING": "We need some permissions",
+  "PERM_TITLE": "Pro Connect requires Bluetooth permission for connecting to the PVS.",
+  "PERM_SUBTITLE": "Please enable it following these instructions",
+  "PERM_1": "Tap the 'Go to Settings' button",
+  "PERM_2": "Tap on Bluetooth",
+  "PERM_3": "Comeback to this app and tap the button below",
+  "PERM_SETTINGS": "Go to Settings",
+  "PERM_CHECK": "Check permissions",
+  "PERM_CHECKING": "Checking...",
+  "PERM_CHECK_ERROR": "Bluetooth access is still unauthorized. Please try again.",
+  "PERM_CHECK_SUCCESS": "Bluetooth is authorized to be used with SunPower Pro Connect.",
   "NO_GRID_PROFILE": "No grid profile"
 }

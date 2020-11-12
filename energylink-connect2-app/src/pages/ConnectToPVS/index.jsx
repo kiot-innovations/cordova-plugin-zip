@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
-import { compose, equals, isEmpty, isNil, length, path } from 'ramda'
+import { compose, equals, isEmpty, isNil, length, path, pathOr } from 'ramda'
 import SwipeableBottomSheet from 'react-swipeable-bottom-sheet'
 import { useI18n } from 'shared/i18n'
 import { decodeQRData, scanBarcodes } from 'shared/scanning'
@@ -59,6 +59,7 @@ function ConnectToPVS() {
   const { serialNumber: pvsSN } = useSelector(state => state.pvs)
   const rmaPVSSelectedSN = useSelector(path(['rma', 'pvs']))
   const rmaMode = useSelector(path(['rma', 'rmaMode']))
+  const { bluetoothAuthorized } = useSelector(pathOr({}, ['network']))
   const [manualEntry, showManualEntry] = useState(false)
   const [serialNumber, setSerialNumber] = useState('')
   const [started, setStarted] = useState(false)
@@ -67,6 +68,10 @@ function ConnectToPVS() {
     alert(err)
     setStarted(false)
   }
+
+  useEffect(() => {
+    if (!bluetoothAuthorized) history.push(paths.PROTECTED.PERMISSIONS.path)
+  }, [bluetoothAuthorized, history])
 
   useEffect(() => {
     if (
@@ -202,7 +207,7 @@ function ConnectToPVS() {
         <div>
           <button
             disabled={connectionState.connecting || disableScanBtn}
-            className="mt-20 button is-primary is-outlined is-fullwidth"
+            className="button button-transparent is-outlined is-fullwidth has-text-primary mt-20"
             onClick={() => showManualEntry(true)}
           >
             {t('MANUAL_ENTRY')}

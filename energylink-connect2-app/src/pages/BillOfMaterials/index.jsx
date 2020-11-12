@@ -13,6 +13,7 @@ import { GET_SITE_INIT } from 'state/actions/site'
 import { GET_SCANDIT_USERS } from 'state/actions/scandit'
 import { COMMISSIONING_START } from 'state/actions/analytics'
 import { DOWNLOAD_VERIFY } from '../../state/actions/fileDownloader'
+import { CHECK_PERMISSIONS_INIT } from 'state/actions/network'
 
 const useMap = (latitude, longitude) => {
   const [url, setUrl] = useState('')
@@ -49,6 +50,7 @@ function BillOfMaterials() {
   useEffect(() => {
     dispatch(GET_SCANDIT_USERS())
     dispatch(COMMISSIONING_START())
+    dispatch(CHECK_PERMISSIONS_INIT())
   }, [dispatch])
 
   useEffect(() => {

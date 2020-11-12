@@ -7,17 +7,17 @@ exports[`Connect to PVS page render correctly 1`] = `
   <Router
     history={
       Object {
-        "action": "POP",
+        "action": "PUSH",
         "block": [Function],
         "createHref": [Function],
         "go": [Function],
         "goBack": [Function],
         "goForward": [Function],
-        "length": 1,
+        "length": 2,
         "listen": [Function],
         "location": Object {
           "hash": "",
-          "pathname": "/",
+          "pathname": "/permissions",
           "search": "",
           "state": undefined,
         },
@@ -91,7 +91,7 @@ exports[`Connect to PVS page render correctly 1`] = `
             </span>
             <div>
               <button
-                className="mt-20 button is-primary is-outlined is-fullwidth"
+                className="button button-transparent is-outlined is-fullwidth has-text-primary mt-20"
                 disabled={true}
                 onClick={[Function]}
               >

@@ -55,3 +55,10 @@ export const CHECK_WIFI_STATUS_SUCCESS = createAction(
 export const CHECK_WIFI_STATUS_ERROR = createAction('CHECK_WIFI_STATUS_ERROR')
 export const RESET_BLUETOOTH_STATUS = createAction('RESET_BLUETOOTH_STATUS')
 export const RESET_WIFI_STATUS = createAction('RESET_WIFI_STATUS')
+
+export const OPEN_SETTINGS = createAction('OPEN_SETTINGS')
+export const CHECK_PERMISSIONS_INIT = createAction('CHECK_PERMISSIONS_INIT')
+export const CHECK_PERMISSIONS_SUCCESS = createAction(
+  'CHECK_PERMISSIONS_SUCCESS'
+)
+export const CHECK_PERMISSIONS_ERROR = createAction('CHECK_PERMISSIONS_ERROR')

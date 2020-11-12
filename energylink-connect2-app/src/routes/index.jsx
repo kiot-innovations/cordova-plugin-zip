@@ -45,6 +45,7 @@ import RMASnList from 'pages/RMASnList'
 import RMAMiDiscovery from 'pages/RMAMiDiscovery'
 import RMADevices from 'pages/RMADevices'
 import GetAssistance from 'pages/GetAssistance'
+import Permissions from 'pages/Permissions'
 
 import { isDebug } from 'shared/utils'
 
@@ -92,7 +93,8 @@ const mapComponents = {
   [paths.UNPROTECTED.GET_ASSISTANCE.path]: NotFound,
   [paths.PROTECTED.RMA_DEVICES.path]: RMADevices,
   [paths.UNPROTECTED.LOGIN.path]: Login,
-  [paths.UNPROTECTED.GET_ASSISTANCE.path]: GetAssistance
+  [paths.UNPROTECTED.GET_ASSISTANCE.path]: GetAssistance,
+  [paths.PROTECTED.PERMISSIONS.path]: Permissions
 }
 
 if (isDebug) mapComponents[paths.PROTECTED.DEBUG_PAGE.path] = DebugPage

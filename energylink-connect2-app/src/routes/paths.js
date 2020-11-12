@@ -240,6 +240,12 @@ const paths = {
       header: true,
       footer: true,
       tab: TABS.INSTALL
+    },
+    PERMISSIONS: {
+      path: '/permissions',
+      header: true,
+      footer: true,
+      tab: TABS.INSTALL
     }
   },
   UNPROTECTED: {

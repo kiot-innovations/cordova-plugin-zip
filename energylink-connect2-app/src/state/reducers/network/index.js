@@ -19,7 +19,10 @@ import {
   CONNECT_PVS_VIA_BLE,
   EXECUTE_ENABLE_ACCESS_POINT,
   FAILURE_BLUETOOTH_ACTION,
-  EXECUTE_ENABLE_ACCESS_POINT_SUCCESS
+  EXECUTE_ENABLE_ACCESS_POINT_SUCCESS,
+  CHECK_PERMISSIONS_INIT,
+  CHECK_PERMISSIONS_SUCCESS,
+  CHECK_PERMISSIONS_ERROR
 } from 'state/actions/network'
 import { RESET_COMMISSIONING } from 'state/actions/global'
 
@@ -35,7 +38,10 @@ const initialState = {
   bluetoothEnabledStarted: false,
   bluetoothStatus: '',
   wifiEnabled: false,
-  wifiEnabledStarted: false
+  wifiEnabledStarted: false,
+  bluetoothAuthorized: false,
+  checkingPermission: false,
+  checkingPermissionError: null
 }
 
 export const BLESTATUS = {
@@ -159,6 +165,23 @@ export const networkReducer = createReducer(
       showEnablingAccessPoint: false,
       connecting: false,
       connected: false
+    }),
+    [CHECK_PERMISSIONS_INIT]: state => ({
+      ...state,
+      checkingPermission: true,
+      checkingPermissionError: null
+    }),
+
+    [CHECK_PERMISSIONS_SUCCESS]: (state, bluetoothAuthorized) => ({
+      ...state,
+      checkingPermission: false,
+      checkingPermissionError: null,
+      bluetoothAuthorized
+    }),
+    [CHECK_PERMISSIONS_ERROR]: (state, checkingPermissionError) => ({
+      ...state,
+      checkingPermission: false,
+      checkingPermissionError
     })
   },
   initialState
