@@ -199,7 +199,7 @@ const paths = {
       path: '/ess-health-check',
       header: true,
       footer: true,
-      tab: TABS.CONFIGURE
+      tab: TABS.INSTALL
     },
     DEBUG_PAGE: {
       path: '/debug',

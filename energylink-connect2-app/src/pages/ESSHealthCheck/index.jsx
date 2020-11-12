@@ -4,7 +4,6 @@ import { useSelector, useDispatch } from 'react-redux'
 import {
   add,
   isEmpty,
-  isNil,
   length,
   path,
   pathOr,
@@ -45,12 +44,11 @@ function ESSHealthCheck() {
 
   const report = addHasErrorProp(results)
   const errors = pathOr([], ['errors'], report)
-  const loading = isNil(report) && error
   const hasErrors = !isEmpty(errors) || error
 
   useEffect(() => {
-    if (!loading && !hasErrors) dispatch(ALLOW_COMMISSIONING())
-  }, [dispatch, hasErrors, loading])
+    if (results && !hasErrors) dispatch(ALLOW_COMMISSIONING())
+  }, [dispatch, hasErrors, results])
 
   useEffect(() => {
     dispatch(RESET_DISCOVERY())
