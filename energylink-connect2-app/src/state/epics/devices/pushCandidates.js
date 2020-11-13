@@ -1,23 +1,36 @@
 import * as Sentry from '@sentry/browser'
+import { differenceWith, path, pathOr } from 'ramda'
 import { ofType } from 'redux-observable'
-import { catchError, map, mergeMap } from 'rxjs/operators'
-import { path } from 'ramda'
 import { from, of } from 'rxjs'
+import { catchError, map, mergeMap, withLatestFrom } from 'rxjs/operators'
 import { getApiPVS } from 'shared/api'
 import {
+  PUSH_CANDIDATES_ERROR,
   PUSH_CANDIDATES_INIT,
-  PUSH_CANDIDATES_SUCCESS,
-  PUSH_CANDIDATES_ERROR
+  PUSH_CANDIDATES_SUCCESS
 } from 'state/actions/devices'
+import { isSerialEqual } from 'shared/utils'
 
-export const pushCandidatesEpic = action$ => {
-  return action$.pipe(
+export const pushCandidatesEpic = (action$, state$) =>
+  action$.pipe(
     ofType(PUSH_CANDIDATES_INIT.getType()),
-    mergeMap(({ payload }) => {
+    withLatestFrom(state$),
+    mergeMap(([{ payload }, state]) => {
       if (!payload) alert('No Payload')
       const promise = getApiPVS()
         .then(path(['apis', 'candidates']))
-        .then(api => api.setCandidates({ id: 1 }, { requestBody: payload }))
+        .then(api =>
+          api.setCandidates(
+            { id: 1 },
+            {
+              requestBody: differenceWith(
+                isSerialEqual,
+                payload,
+                pathOr([], ['devices', 'miFound'], state)
+              )
+            }
+          )
+        )
 
       return from(promise).pipe(
         map(response =>
@@ -35,4 +48,3 @@ export const pushCandidatesEpic = action$ => {
       )
     })
   )
-}

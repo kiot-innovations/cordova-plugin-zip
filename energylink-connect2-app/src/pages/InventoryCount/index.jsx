@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useI18n } from 'shared/i18n'
 import { compose, find, propEq, propOr } from 'ramda'
 import { saveInventory } from 'state/actions/inventory'
+import { ALLOW_COMMISSIONING } from 'state/actions/systemConfiguration'
 import clsx from 'clsx'
 import paths from 'routes/paths'
 import './InventoryCounts.scss'
@@ -214,7 +215,10 @@ function InventoryCount() {
               </button>
               <button
                 className="button is-primary"
-                onClick={() => submitInventory(inventory, dispatch, setToBom)}
+                onClick={() => {
+                  dispatch(ALLOW_COMMISSIONING())
+                  submitInventory(inventory, dispatch, setToBom)
+                }}
               >
                 {t('CONTINUE')}
               </button>

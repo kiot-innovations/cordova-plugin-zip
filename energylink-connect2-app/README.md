@@ -15,6 +15,21 @@ if you need to update the encrypted file, you will need to encrypt the file agai
 `openssl enc -aes256 -base64 -md md5 -d -pass -in .env.dev -out .env.enc.dev`,
 and to manage all the conflicts pf the file decrypt toe `.env.enc` to another location,
 compare the differences and update the encrypted data with both files.
+
+## For live-reload
+
+As for now, it's only implemented for android. In order to make it work follow these steps:
+
+1) Run `cordova prepare android` (you need to do this only once)
+2) `npm run dev` <sup>1</sup>
+3) `cordova run android`. You can also use android studio and hit `run` and run the app on either a device or an emulator.
+
+**Note:**
+ <sup>1</sup> During `step 2` the script will update `energylink-connect2/platforms/android/app/src/main/res/xml/config.xml`.
+ That's why it's important to first run `cordova prepare android`, since this command will create `config.xml` file,
+ and `cordova run android` will run this configuration in your phone.
+
+
 ## Available Scripts
 
 In the project directory, you can run:

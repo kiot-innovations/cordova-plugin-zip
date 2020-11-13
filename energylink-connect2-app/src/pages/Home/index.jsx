@@ -12,10 +12,7 @@ import {
   NO_SITE_FOUND,
   SET_SITE
 } from 'state/actions/site'
-import {
-  CHECK_APP_UPDATE_INIT,
-  RESET_COMMISSIONING
-} from 'state/actions/global'
+import { CHECK_APP_UPDATE_INIT } from 'state/actions/global'
 import { getApiSearch } from 'shared/api'
 
 import paths from 'routes/paths'
@@ -25,6 +22,7 @@ import './Home.scss'
 import { PVS_FIRMWARE_DOWNLOAD_INIT } from 'state/actions/fileDownloader'
 import { DOWNLOAD_META_INIT, DOWNLOAD_OS_INIT } from 'state/actions/ess'
 import { GRID_PROFILE_DOWNLOAD_INIT } from 'state/actions/gridProfileDownloader'
+import { RESET_COMMISSIONING } from '../../state/actions/global'
 
 const formatAddress = compose(
   join(', '),

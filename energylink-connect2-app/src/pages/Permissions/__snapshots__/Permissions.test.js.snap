@@ -1,0 +1,101 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Permissions page render correctly 1`] = `
+<BrowserRouter
+  keyLength={0}
+>
+  <Router
+    history={
+      Object {
+        "action": "POP",
+        "block": [Function],
+        "createHref": [Function],
+        "go": [Function],
+        "goBack": [Function],
+        "goForward": [Function],
+        "length": 1,
+        "listen": [Function],
+        "location": Object {
+          "hash": "",
+          "pathname": "/",
+          "search": "",
+          "state": undefined,
+        },
+        "push": [Function],
+        "replace": [Function],
+      }
+    }
+  >
+    <Provider
+      store={
+        Object {
+          "clearActions": [Function],
+          "dispatch": [Function],
+          "getActions": [Function],
+          "getState": [Function],
+          "replaceReducer": [Function],
+          "subscribe": [Function],
+        }
+      }
+    >
+      <Permissions>
+        <section
+          className="perms pr-10 pl-10"
+        >
+          <h1
+            className="has-text-centered is-size-6 is-uppercase"
+          >
+            PERM_HEADING
+          </h1>
+          <article
+            className="icons has-text-centered"
+          >
+            <i
+              className="sp sp-bth has-text-white is-size-1"
+            />
+          </article>
+          <article
+            className="content has-text-centered"
+          >
+            <p>
+              PERM_TITLE
+            </p>
+            <p>
+              PERM_SUBTITLE
+            </p>
+            <ol
+              className="has-text-left"
+            >
+              <li>
+                PERM_1
+              </li>
+              <li>
+                PERM_2
+              </li>
+              <li>
+                PERM_3
+              </li>
+            </ol>
+          </article>
+          <article
+            className="actions is-flex"
+          >
+            <button
+              className="button is-primary is-fullwidth is-uppercase mr-5"
+              onClick={[Function]}
+            >
+              PERM_SETTINGS
+            </button>
+            <button
+              className="button is-primary is-fullwidth is-uppercase ml-5"
+              onClick={[Function]}
+            >
+              PERM_CHECK
+            </button>
+          </article>
+        </section>
+      </Permissions>
+    </Provider>
+  </Router>
+</BrowserRouter>
+`;

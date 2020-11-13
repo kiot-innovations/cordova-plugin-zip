@@ -37,7 +37,8 @@ import {
   toUpper,
   values,
   when,
-  pathOr
+  pathOr,
+  isEmpty
 } from 'ramda'
 
 export const either = (condition, whenTrue, whenFalse = null) =>
@@ -168,8 +169,10 @@ export const renameKey = curry((oldKey, newKey, obj) =>
 )
 
 export const updateBodyHeight = () => {
-  const current = document.body.style.height
-  document.body.style.height = `${current === '100vh' ? 101 : 100}vh`
+  const crh = document.body.style.height.split('vh')[0]
+  const ch = isEmpty(crh) ? 100 : parseFloat(crh)
+  const newheight = ch + 0.2
+  document.body.style.height = `${newheight > 102 ? 100 : newheight}vh`
 }
 
 export const findByPathValue = curry((arr, path, value) =>
@@ -358,3 +361,5 @@ export const isProd = includes(process.env.REACT_APP_FLAVOR, [
   'cm2-prod',
   'cm2-training'
 ])
+
+export const isSerialEqual = (x, y) => x.SERIAL === y.SERIAL

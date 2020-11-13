@@ -13,6 +13,7 @@ import { GET_SITE_INIT } from 'state/actions/site'
 import { GET_SCANDIT_USERS } from 'state/actions/scandit'
 import { COMMISSIONING_START } from 'state/actions/analytics'
 import { DOWNLOAD_VERIFY } from '../../state/actions/fileDownloader'
+import { CHECK_PERMISSIONS_INIT } from 'state/actions/network'
 
 const useMap = (latitude, longitude) => {
   const [url, setUrl] = useState('')
@@ -35,6 +36,7 @@ function BillOfMaterials() {
     pathOr([], ['site', 'sitePVS'])
   )
   const PVS = useSelector(getPvsSerialNumbers)
+  const isMenuOpen = useSelector(pathOr(false, ['ui', 'menu', 'show']))
 
   const data = useSelector(({ user, inventory }) => ({
     phone: user.data.phoneNumber,
@@ -48,8 +50,14 @@ function BillOfMaterials() {
   useEffect(() => {
     dispatch(GET_SCANDIT_USERS())
     dispatch(COMMISSIONING_START())
-    dispatch(DOWNLOAD_VERIFY())
+    dispatch(CHECK_PERMISSIONS_INIT())
   }, [dispatch])
+
+  useEffect(() => {
+    if (!isMenuOpen) {
+      dispatch(DOWNLOAD_VERIFY())
+    }
+  }, [dispatch, isMenuOpen])
 
   useEffect(() => {
     dispatch(GET_SITE_INIT(siteKey))

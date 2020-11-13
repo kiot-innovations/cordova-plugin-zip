@@ -1,6 +1,17 @@
 import React, { useCallback, useEffect, useRef } from 'react'
 import moment from 'moment'
-import { always, compose, pathOr, prop } from 'ramda'
+import {
+  always,
+  complement,
+  compose,
+  head,
+  identity,
+  ifElse,
+  isNil,
+  match,
+  pathOr,
+  prop
+} from 'ramda'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { useI18n } from 'shared/i18n'
@@ -12,7 +23,10 @@ import { GRID_PROFILE_DOWNLOAD_INIT } from 'state/actions/gridProfileDownloader'
 import Collapsible from 'components/Collapsible'
 import FileCollapsible from 'components/FileCollapsible'
 
-export const getFileName = prop('displayName')
+export const getFileName = compose(
+  ifElse(complement(isNil), compose(head, match(/([0-9]+)$/)), identity),
+  prop('displayName')
+)
 export const getFileSize = prop('size')
 
 const Separator = () => <div className="mt-20" />
@@ -41,6 +55,7 @@ function Firmwares() {
   const fwFileInfo = useSelector(pathOr('', ['fileDownloader', 'fileInfo']))
 
   const essState = useSelector(prop('ess'))
+
   const forceDownloadESS = compose(dispatch, DOWNLOAD_OS_INIT, always(true))
 
   const {
@@ -52,7 +67,8 @@ function Firmwares() {
     verification: fileDownloader.verification,
     gpError: fileDownloader.gridProfileInfo.error,
     isDownloadingGridProfile: fileDownloader.gridProfileInfo.progress !== 100,
-    gpLastModified: fileDownloader.gridProfileInfo.lastModified
+    gpLastModified: fileDownloader.gridProfileInfo.lastModified,
+    gpSize: fileDownloader.gridProfileInfo.size / 1024 / 1024
   }))
 
   const downloadFile = useCallback(
@@ -82,7 +98,8 @@ function Firmwares() {
     <section className="is-flex tile is-vertical pt-0 pr-10 pl-10 full-height">
       <h1 className="has-text-centered is-uppercase pb-20">{t('FIRMWARE')}</h1>
       <FileCollapsible
-        fileName={getFileName(fwFileInfo)}
+        fileName={t('PVS_FIRMWARE')}
+        version={getFileName(fwFileInfo)}
         error={fwFileInfo.error}
         downloadFile={downloadFile}
         isDownloaded={fwFileInfo.exists}
@@ -124,9 +141,10 @@ function Firmwares() {
           </section>
         )}
       </Collapsible>
+
       <Separator />
       <FileCollapsible
-        fileName="STORAGE_FW_FILE"
+        fileName={t('STORAGE_FW_FILE')}
         downloadFile={forceDownloadESS}
         error={essState.error}
         isDownloading={essState.isDownloading}

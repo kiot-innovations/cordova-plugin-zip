@@ -6,8 +6,9 @@ import {
   CLAIM_DEVICES_INIT,
   FETCH_CANDIDATES_COMPLETE,
   FETCH_CANDIDATES_INIT,
+  FETCH_DEVICES_LIST,
   RESET_DISCOVERY,
-  FETCH_DEVICES_LIST
+  SAVE_OK_MI
 } from 'state/actions/devices'
 import paths from 'routes/paths'
 import RMAMiDiscoveryUI from './RMAMiDiscoveryUI'
@@ -113,6 +114,7 @@ function RMAMiDiscovery() {
 
   const retryDiscovery = () => {
     dispatch(RESET_DISCOVERY())
+    dispatch(SAVE_OK_MI(okMI))
     history.push(paths.PROTECTED.SN_LIST.path)
   }
 

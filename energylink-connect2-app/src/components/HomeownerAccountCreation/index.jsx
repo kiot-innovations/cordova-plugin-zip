@@ -12,8 +12,7 @@ import './HomeownerAccountCreation.scss'
 
 const sanitizeInputs = evolve({
   firstName: cleanString,
-  lastName: cleanString,
-  email: cleanString
+  lastName: cleanString
 })
 const HomeownerAccountCreation = ({ open, onChange, pvs }) => {
   const t = useI18n()

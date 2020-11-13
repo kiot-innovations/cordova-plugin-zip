@@ -40,6 +40,13 @@ const renderMIGroup = (groupedSerialNumbers, miTypes) => key => (
   />
 )
 
+const copyModel = device => {
+  if (device.PANEL) {
+    device.modelStr = device.PANEL
+  }
+  return device
+}
+
 const ModelEdit = () => {
   const t = useI18n()
   const history = useHistory()
@@ -65,9 +72,11 @@ const ModelEdit = () => {
 
   const [warning, toggleWarning] = useState(false)
 
+  const devicesWithModels = map(copyModel, found)
+
   const validateModels = () => {
     const filterModels = found.filter(
-      mi => mi.DEVICE_TYPE === 'Inverter' && !mi.modelStr
+      mi => mi.DEVICE_TYPE === 'Inverter' && !mi.PANEL
     )
     if (filterModels.length > 0) {
       toggleWarning(true)
@@ -75,7 +84,7 @@ const ModelEdit = () => {
       const metadataObject = {
         metaData: {
           site_key: siteKey,
-          devices: [...found]
+          devices: devicesWithModels
         }
       }
       dispatch(SET_METADATA_INIT(metadataObject))

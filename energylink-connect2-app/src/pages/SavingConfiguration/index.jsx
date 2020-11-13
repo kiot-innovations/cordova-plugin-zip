@@ -6,7 +6,10 @@ import { Loader } from 'components/Loader'
 import HomeownerAccountCreation from 'components/HomeownerAccountCreation'
 import { isEmpty, test, pathOr } from 'ramda'
 import { either } from 'shared/utils'
-import { SUBMIT_CLEAR } from 'state/actions/systemConfiguration'
+import {
+  ALLOW_COMMISSIONING,
+  SUBMIT_CLEAR
+} from 'state/actions/systemConfiguration'
 import { STOP_NETWORK_POLLING } from 'state/actions/network'
 import paths from 'routes/paths'
 import './SavingConfiguration.scss'
@@ -34,6 +37,7 @@ const SavingConfiguration = () => {
 
   const goToConfig = () => {
     dispatch(SUBMIT_CLEAR())
+    dispatch(ALLOW_COMMISSIONING())
     history.push(paths.PROTECTED.SYSTEM_CONFIGURATION.path)
   }
 

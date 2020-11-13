@@ -9,7 +9,7 @@ const NoGridSelectedModal = () => {
   return (
     <div className="has-text-centered is-flex flex-column">
       <span className="has-text-white mb-10">{t('SET_GRID_VOLTAGE')}</span>
-      <div className="inline-buttons">
+      <div className="has-text-centered">
         <button
           className="button half-button-padding is-primary is-outlined is-uppercase mr-10"
           onClick={closeModal}

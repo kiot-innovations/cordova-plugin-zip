@@ -1,7 +1,8 @@
-import React, { useEffect } from 'react'
-import { compose, endsWith, equals, isEmpty, not, path } from 'ramda'
+import React, { useEffect, useState } from 'react'
+import { endsWith, equals, filter, isEmpty, path, pathOr, propEq } from 'ramda'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
+import SwipeableBottomSheet from 'react-swipeable-bottom-sheet'
 
 import paths from 'routes/paths'
 import { useI18n } from 'shared/i18n'
@@ -10,6 +11,7 @@ import {
   REPLACE_RMA_PVS,
   SUBMIT_CONFIG
 } from 'state/actions/systemConfiguration'
+import { CONFIG_START } from 'state/actions/analytics'
 import { useShowModal } from 'hooks/useGlobalModal'
 
 import GridBehaviorWidget from './GridBehaviorWidget'
@@ -17,10 +19,8 @@ import InterfacesWidget from './InterfacesWidget'
 import MetersWidget from './MetersWidget'
 import NetworkWidget from './NetworkWidget'
 import RSEWidget from './RSEWidget'
-import StorageWidget from './StorageWidget'
 
 import './SystemConfiguration.scss'
-import { CONFIG_START } from 'state/actions/analytics'
 
 const createMeterConfig = (devicesList, meterConfig, dispatch, site) => {
   const updatedDevices = devicesList.map(device => {
@@ -57,8 +57,13 @@ function SystemConfiguration() {
   const t = useI18n()
   const dispatch = useDispatch()
   const history = useHistory()
+  const [commissionBlockModal, showCommissionBlockModal] = useState(false)
+
   const { selectedOptions } = useSelector(
     state => state.systemConfiguration.gridBehavior
+  )
+  const { canCommission } = useSelector(
+    pathOr({}, ['systemConfiguration', 'submit'])
   )
 
   const { meter } = useSelector(state => state.systemConfiguration)
@@ -67,9 +72,8 @@ function SystemConfiguration() {
   const siteKey = useSelector(path(['site', 'site', 'siteKey']))
   const rmaMode = useSelector(path(['rma', 'rmaMode']))
   const replacingPvs = equals('REPLACE_PVS', rmaMode)
-  const hasStorage = useSelector(
-    compose(not, isEmpty, path(['systemConfiguration', 'storage', 'data']))
-  )
+  const storageDevices = filter(propEq('TYPE', 'EQUINOX-ESS'), found)
+  const hasStorage = !isEmpty(storageDevices)
 
   const validateConfig = configObject => {
     for (const value of Object.values(configObject)) {
@@ -82,34 +86,38 @@ function SystemConfiguration() {
 
   const generateConfigObject = () => {
     const metaData = createMeterConfig(found, meter, dispatch, siteKey)
-    const configObject = {
+    return {
       metaData,
       gridProfile: selectedOptions.profile.id,
       lazyGridProfile: selectedOptions.lazyGridProfile,
       exportLimit: selectedOptions.exportLimit,
       gridVoltage: selectedOptions.gridVoltage
     }
-
-    return configObject
   }
 
   const submitConfig = () => {
-    try {
-      const configObject = generateConfigObject()
-      if (!configObject.gridVoltage) {
-        showNoGridModal()
-      } else {
-        if (validateConfig(configObject)) {
-          replacingPvs
-            ? dispatch(REPLACE_RMA_PVS(configObject))
-            : dispatch(SUBMIT_CONFIG(configObject))
-          history.push(paths.PROTECTED.SAVING_CONFIGURATION.path)
+    if (!canCommission) {
+      showCommissionBlockModal(true)
+    } else {
+      try {
+        const configObject = generateConfigObject()
+        if (!configObject.gridVoltage) {
+          showNoGridModal()
         } else {
-          showErrorConfigurationModal()
+          if (validateConfig(configObject)) {
+            dispatch(
+              replacingPvs
+                ? REPLACE_RMA_PVS(configObject)
+                : SUBMIT_CONFIG(configObject)
+            )
+            history.push(paths.PROTECTED.SAVING_CONFIGURATION.path)
+          } else {
+            showErrorConfigurationModal()
+          }
         }
+      } catch (err) {
+        console.error(err)
       }
-    } catch (err) {
-      console.error(err)
     }
   }
 
@@ -144,8 +152,7 @@ function SystemConfiguration() {
       </div>
       <NetworkWidget />
       <GridBehaviorWidget />
-      <MetersWidget />
-      {hasStorage && <StorageWidget />}
+      <MetersWidget hasStorage={hasStorage} />
       <RSEWidget />
       <div className="submit-config">
         <button
@@ -162,6 +169,25 @@ function SystemConfiguration() {
           {t('SUBMIT_CONFIG')}
         </button>
       </div>
+
+      <SwipeableBottomSheet
+        shadowTip={false}
+        open={commissionBlockModal}
+        onChange={() => showCommissionBlockModal(!commissionBlockModal)}
+      >
+        <div className="tile is-vertical has-text-centered is-flex">
+          <span className="has-text-weight-bold">{t('HOLD_ON')}</span>
+          <span className="mt-10 mb-10">{t('COMMISSION_BLOCKED')}</span>
+          <div className="mt-10 mb-20">
+            <button
+              className="button is-primary"
+              onClick={() => showCommissionBlockModal(false)}
+            >
+              {t('CLOSE')}
+            </button>
+          </div>
+        </div>
+      </SwipeableBottomSheet>
     </div>
   )
 }

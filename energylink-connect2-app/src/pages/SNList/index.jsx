@@ -3,22 +3,19 @@ import BlockUI from 'react-block-ui'
 import 'react-block-ui/style.css'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
-import { differenceWith, pathOr } from 'ramda'
 
-import { Loader } from 'components/Loader'
-import useModal from 'hooks/useModal'
 import paths from 'routes/paths'
-import { useI18n } from 'shared/i18n'
-import { PUSH_CANDIDATES_INIT } from 'state/actions/devices'
-import { UPDATE_MI_COUNT } from 'state/actions/inventory'
+import useModal from 'hooks/useModal'
 import { discoveryTypes } from 'state/reducers/devices'
+import { Loader } from 'components/Loader'
+import { PUSH_CANDIDATES_INIT } from 'state/actions/devices'
 import { REMOVE_SN, START_DISCOVERY_INIT } from 'state/actions/pvs'
+import { UPDATE_MI_COUNT } from 'state/actions/inventory'
+import { useI18n } from 'shared/i18n'
 
 import SNManualEntry from './SNManualEntry'
 import SNScanButtons from './SNScanButtons'
 import './SNList.scss'
-
-const areEqual = (x, y) => x.SERIAL === y.SERIAL
 
 function SNList() {
   const t = useI18n()
@@ -30,7 +27,6 @@ function SNList() {
   )
   const [editingSn, setEditingSn] = useState('')
   const { bom } = useSelector(state => state.inventory)
-  const devicesFound = useSelector(pathOr([], ['devices', 'found']))
   const { canAccessScandit } = useSelector(state => state.global)
 
   const modulesOnInventory = bom.filter(item => {
@@ -78,9 +74,8 @@ function SNList() {
     }))
     serialNumbersError.forEach(snList.push)
     toggleSerialNumbersModal()
-    const MisNotClaimedYet = differenceWith(areEqual, snList, devicesFound)
-    dispatch(UPDATE_MI_COUNT(serialNumbers.length))
-    dispatch(PUSH_CANDIDATES_INIT(MisNotClaimedYet))
+    dispatch(UPDATE_MI_COUNT(snList.length))
+    dispatch(PUSH_CANDIDATES_INIT(snList))
     history.push(paths.PROTECTED.DEVICES.path)
   }
 

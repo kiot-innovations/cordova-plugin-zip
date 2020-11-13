@@ -36,7 +36,12 @@ describe('Firmwares component', () => {
           lastProgress: 0,
           lastModified: null
         },
-        fileInfo: { name: 'test-file.zip', error: '', step: 'INITIALIZING' }
+        fileInfo: {
+          name: 'test-file.zip',
+          error: '',
+          step: 'INITIALIZING',
+          displayName: 'test-file'
+        }
       },
       ess: {
         error: null,
@@ -48,9 +53,9 @@ describe('Firmwares component', () => {
     expect(component).toMatchSnapshot()
   })
   it('should type-safe the file name', () => {
-    const displayName = 'file name'
+    const displayName = 'file name - 9810'
     let fileInfoObj = { displayName }
-    expect(getFileName(fileInfoObj)).toBe(displayName)
+    expect(getFileName(fileInfoObj)).toBe('9810')
     fileInfoObj = {}
     expect(getFileName(fileInfoObj)).toBe(undefined)
   })
