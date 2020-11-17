@@ -60,15 +60,15 @@ readonly RUBY_VERSION="$(cat "${ROOT_DIR}/.ruby-version")"
 
 #
 # Set variables in GitHub Action Job
-# https://docs.github.com/en/actions/reference/workflow-commands-for-github-actions
+# https://docs.github.com/en/free-pro-team@latest/actions/reference/workflow-commands-for-github-actions#setting-an-environment-variable
 #
-echo "::set-env name=APP_ID::${APP_ID}"
-echo "::set-env name=APP_NAME::${APP_NAME}"
-echo "::set-env name=BUILD_TYPE::${BUILD_TYPE}"
-echo "::set-env name=CORDOVA_ANDROID_RELEASE_BUILD_PATH::${CORDOVA_ANDROID_RELEASE_BUILD_PATH}"
-echo "::set-env name=CORDOVA_IOS_RELEASE_BUILD_PATH::${CORDOVA_IOS_RELEASE_BUILD_PATH}"
-echo "::set-env name=CORDOVA_RELEASE::${CORDOVA_RELEASE}"
-echo "::set-env name=JAVA_VERSION::${JAVA_VERSION}"
-echo "::set-env name=NODE_VERSION::${NODE_VERSION}"
-echo "::set-env name=RUBY_VERSION::${RUBY_VERSION}"
-echo "::set-env name=RELEASE_TRACK::${RELEASE_TRACK}"
+echo "APP_ID=${APP_ID}" >> $GITHUB_ENV
+echo "APP_NAME=${APP_NAME}" >> $GITHUB_ENV
+echo "BUILD_TYPE=${BUILD_TYPE}" >> $GITHUB_ENV
+echo "CORDOVA_ANDROID_RELEASE_BUILD_PATH=${CORDOVA_ANDROID_RELEASE_BUILD_PATH}" >> $GITHUB_ENV
+echo "CORDOVA_IOS_RELEASE_BUILD_PATH=${CORDOVA_IOS_RELEASE_BUILD_PATH}" >> $GITHUB_ENV
+echo "CORDOVA_RELEASE=${CORDOVA_RELEASE}" >> $GITHUB_ENV
+echo "JAVA_VERSION=${JAVA_VERSION}" >> $GITHUB_ENV
+echo "NODE_VERSION=${NODE_VERSION}" >> $GITHUB_ENV
+echo "RUBY_VERSION=${RUBY_VERSION}" >> $GITHUB_ENV
+echo "RELEASE_TRACK=${RELEASE_TRACK}" >> $GITHUB_ENV
