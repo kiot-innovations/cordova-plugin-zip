@@ -26,7 +26,7 @@ const PVSProvideInternet = () => {
   const dispatch = useDispatch()
 
   const { rmaMode, newEquipment, rma } = useSelector(state => state.rma)
-  const { serialNumbers } = useSelector(state => state.pvs)
+  const { serialNumbers, wpsSupport } = useSelector(state => state.pvs)
   const { bom } = useSelector(state => state.inventory)
   const miValue = find(propEq('item', 'AC_MODULES'), bom)
   const storageValue = find(propEq('item', 'ESS'), bom)
@@ -105,7 +105,7 @@ const PVSProvideInternet = () => {
       <div className="mb-10">
         <InterfacesWidget />
       </div>
-      <NetworkWidget expanded hideWPSButton />
+      <NetworkWidget expanded hideWPSButton={!wpsSupport} />
 
       {either(
         isConnected,

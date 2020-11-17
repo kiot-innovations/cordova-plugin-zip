@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react'
+import clsx from 'clsx'
 import { useDispatch, useSelector } from 'react-redux'
 import { compose, path, prop, isEmpty } from 'ramda'
 import { useI18n } from 'shared/i18n'
 import { buildAPsItems, either, buildAPItem } from 'shared/utils'
+import WpsConnectToWifi from 'components/WpsConnectToWifi'
 import {
   CONNECT_NETWORK_AP_INIT,
   GET_NETWORK_APS_INIT,
@@ -28,6 +30,20 @@ function NetworkWidget({ hideWPSButton, expanded }) {
     errorFetching,
     errorConnecting
   } = useSelector(path(['systemConfiguration', 'network']))
+  const { wpsSupport } = useSelector(path(['pvs']))
+
+  const wpsButtonClasses = clsx(
+    'button',
+    'is-primary',
+    'is-uppercase',
+    'is-outlined',
+    {
+      'wps-support': wpsSupport
+    }
+  )
+  const pskButtonClasses = clsx('button', 'is-primary', 'is-uppercase', {
+    'wps-support': wpsSupport
+  })
 
   const [password, setPassword] = useState('')
 
@@ -36,8 +52,11 @@ function NetworkWidget({ hideWPSButton, expanded }) {
   }, [dispatch])
 
   const [showPassword, setShowPassword] = useState(false)
+  const [showWpsConnectToWifi, setShowWpsConnectToWifi] = useState(false)
 
-  const disallowConnecting =
+  const disallowConnectingWps = isConnecting
+
+  const disallowConnectingPsk =
     isFetching ||
     isConnecting ||
     !selectedAP.ssid ||
@@ -151,7 +170,10 @@ function NetworkWidget({ hideWPSButton, expanded }) {
                 {t('AP_FETCHING_ERROR')}
                 <button
                   className="button has-text-primary is-uppercase is-text pl-0"
-                  onClick={() => dispatch(GET_NETWORK_APS_INIT())}
+                  onClick={event => {
+                    event.preventDefault()
+                    dispatch(GET_NETWORK_APS_INIT())
+                  }}
                 >
                   {t('RETRY_CLICK')}
                 </button>
@@ -172,17 +194,12 @@ function NetworkWidget({ hideWPSButton, expanded }) {
               null,
               <p className="control">
                 <button
-                  className="button is-primary is-uppercase is-outlined"
-                  disabled={disallowConnecting}
-                  onClick={() =>
-                    dispatch(
-                      CONNECT_NETWORK_AP_INIT({
-                        ssid: selectedAP.ssid,
-                        password,
-                        mode: 'wps'
-                      })
-                    )
-                  }
+                  className={wpsButtonClasses}
+                  disabled={disallowConnectingWps}
+                  onClick={event => {
+                    event.preventDefault()
+                    setShowWpsConnectToWifi(!showWpsConnectToWifi)
+                  }}
                 >
                   {t('USE_WPS')}
                 </button>
@@ -190,9 +207,10 @@ function NetworkWidget({ hideWPSButton, expanded }) {
             )}
             <p className="control">
               <button
-                className="button is-primary is-uppercase"
-                disabled={disallowConnecting}
-                onClick={() =>
+                className={pskButtonClasses}
+                disabled={disallowConnectingPsk}
+                onClick={event => {
+                  event.preventDefault()
                   dispatch(
                     CONNECT_NETWORK_AP_INIT({
                       ssid: selectedAP.ssid,
@@ -200,7 +218,7 @@ function NetworkWidget({ hideWPSButton, expanded }) {
                       mode: 'psk'
                     })
                   )
-                }
+                }}
               >
                 {isFetching ? t('LOADING') : t('CONNECT')}
               </button>
@@ -208,6 +226,10 @@ function NetworkWidget({ hideWPSButton, expanded }) {
           </div>
         </form>
       </Collapsible>
+      <WpsConnectToWifi
+        open={showWpsConnectToWifi}
+        onChange={() => setShowWpsConnectToWifi(!showWpsConnectToWifi)}
+      />
     </div>
   )
 }

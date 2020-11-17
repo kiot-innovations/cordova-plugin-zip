@@ -59,6 +59,7 @@ function SystemConfiguration() {
   const history = useHistory()
   const [commissionBlockModal, showCommissionBlockModal] = useState(false)
 
+  const { wpsSupport } = useSelector(state => state.pvs)
   const { selectedOptions } = useSelector(
     state => state.systemConfiguration.gridBehavior
   )
@@ -150,7 +151,7 @@ function SystemConfiguration() {
       <div className="mb-15">
         <InterfacesWidget />
       </div>
-      <NetworkWidget />
+      <NetworkWidget hideWPSButton={!wpsSupport} />
       <GridBehaviorWidget />
       <MetersWidget hasStorage={hasStorage} />
       <RSEWidget />

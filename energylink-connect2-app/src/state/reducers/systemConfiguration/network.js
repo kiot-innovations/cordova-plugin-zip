@@ -9,7 +9,8 @@ import {
   CONNECT_NETWORK_AP_ERROR,
   GET_INTERFACES_SUCCESS,
   SET_SELECTED_AP,
-  RESET_SYSTEM_CONFIGURATION
+  RESET_SYSTEM_CONFIGURATION,
+  SET_WPS_CONNECTION_STATUS
 } from 'state/actions/systemConfiguration'
 import { RESET_COMMISSIONING } from 'state/actions/global'
 
@@ -23,7 +24,8 @@ const initialState = {
   isConnecting: false,
   isConnected: false,
   errorFetching: null,
-  errorConnecting: null
+  errorConnecting: null,
+  wpsConnectionStatus: 'idle' // 'idle' || 'connecting' || 'success' || 'error'
 }
 
 export const networkReducer = createReducer(
@@ -54,13 +56,15 @@ export const networkReducer = createReducer(
       isConnected: false
     }),
 
-    [CONNECT_NETWORK_AP_INIT]: state => ({
+    [CONNECT_NETWORK_AP_INIT]: (state, { mode }) => ({
       ...state,
       isFetching: false,
       isConnected: false,
       isConnecting: true,
       errorFetching: null,
-      errorConnecting: null
+      errorConnecting: null,
+      wpsConnectionStatus:
+        mode === 'wps-pbc' ? 'connecting' : state.wpsConnectionStatus
     }),
     [GET_INTERFACES_SUCCESS]: (state, interfaces) => {
       const connectedToAP = getConnectedAP(interfaces, state.aps)
@@ -88,6 +92,11 @@ export const networkReducer = createReducer(
       isConnected: false,
       errorConnecting: error,
       errorFetching: null
+    }),
+
+    [SET_WPS_CONNECTION_STATUS]: (state, payload) => ({
+      ...state,
+      wpsConnectionStatus: payload
     }),
 
     [SET_SELECTED_AP]: (state, selectedAP) => ({

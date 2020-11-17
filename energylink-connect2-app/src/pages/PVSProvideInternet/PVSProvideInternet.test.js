@@ -24,7 +24,8 @@ describe('PVS Provide Internet page', () => {
         isFetching: false,
         connectedToAP: { label: '', value: '', ap: null },
         selectedAP: { ssid: '' },
-        aps: []
+        aps: [],
+        wpsConnectionStatus: 'idle'
       },
       interfaces: {
         data: [

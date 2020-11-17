@@ -13,9 +13,11 @@ describe('Network Widget', () => {
           aps: [{ ssid: '1' }, { ssid: '2' }],
           selectedAP: { label: '' },
           connectedToAP: { label: '', value: '', ap: { ssid: '' } },
-          error: null
+          error: null,
+          wpsConnectionStatus: 'idle'
         }
-      }
+      },
+      pvs: { wpsSupport: false }
     }
 
     beforeEach(() => {
@@ -53,9 +55,11 @@ describe('Network Widget', () => {
             channel: '7'
           },
           connectedToAP: { label: '', value: '', ap: { ssid: '' } },
-          error: null
+          error: null,
+          wpsConnectionStatus: 'idle'
         }
-      }
+      },
+      pvs: { wpsSupport: false }
     }
 
     beforeEach(() => {

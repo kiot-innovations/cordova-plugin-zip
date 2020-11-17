@@ -1844,7 +1844,6 @@ exports[`Network Widget after selecting network network is selected 1`] = `
                     >
                       <button
                         className="button is-primary is-uppercase is-outlined"
-                        disabled={true}
                         onClick={[Function]}
                       >
                         USE_WPS
@@ -1866,6 +1865,218 @@ exports[`Network Widget after selecting network network is selected 1`] = `
               </div>
             </div>
           </Collapsible>
+          <WpsConnectToWifi
+            onChange={[Function]}
+            open={false}
+          >
+            <SwipeableBottomSheet
+              defaultOpen={false}
+              fullScreen={false}
+              marginTop={0}
+              onChange={[Function]}
+              open={false}
+              overflowHeight={0}
+              overlay={true}
+              scrollTopAtClose={true}
+              shadowTip={true}
+              style={
+                Object {
+                  "zIndex": "9999",
+                }
+              }
+              swipeableViewsProps={Object {}}
+              topShadow={true}
+            >
+              <div
+                style={
+                  Object {
+                    "bottom": 0,
+                    "height": 0,
+                    "left": 0,
+                    "position": "fixed",
+                    "right": 0,
+                    "zIndex": "9999",
+                  }
+                }
+              >
+                <HeightUpdater
+                  height={768}
+                  onHeightChange={[Function]}
+                />
+                <div
+                  onClick={[Function]}
+                  style={
+                    Object {
+                      "backgroundColor": "black",
+                      "height": 768,
+                      "left": 0,
+                      "opacity": 0,
+                      "pointerEvents": "none",
+                      "position": "fixed",
+                      "right": 0,
+                      "top": 0,
+                      "transition": "opacity 450ms",
+                    }
+                  }
+                />
+                <ReactSwipableView
+                  animateHeight={false}
+                  animateTransitions={true}
+                  axis="y"
+                  containerStyle={
+                    Object {
+                      "boxSizing": "border-box",
+                    }
+                  }
+                  disableLazyLoading={false}
+                  disabled={false}
+                  enableMouseEvents={true}
+                  hysteresis={0.6}
+                  ignoreNativeScroll={false}
+                  index={0}
+                  onChangeIndex={[Function]}
+                  onTransitionEnd={[Function]}
+                  resistance={false}
+                  slideStyle={
+                    Object {
+                      "boxSizing": "border-box",
+                      "marginBottom": -0,
+                      "overflow": "visible",
+                    }
+                  }
+                  springConfig={
+                    Object {
+                      "delay": "0s",
+                      "duration": "0.35s",
+                      "easeFunction": "cubic-bezier(0.15, 0.3, 0.25, 1)",
+                    }
+                  }
+                  style={
+                    Object {
+                      "boxSizing": "border-box",
+                      "overflowY": "initial",
+                    }
+                  }
+                  threshold={5}
+                >
+                  <div
+                    onMouseDown={[Function]}
+                    onMouseLeave={[Function]}
+                    onMouseMove={[Function]}
+                    onMouseUp={[Function]}
+                    onScroll={[Function]}
+                    onTouchEnd={[Function]}
+                    onTouchStart={[Function]}
+                    style={
+                      Object {
+                        "boxSizing": "border-box",
+                        "overflowY": "initial",
+                      }
+                    }
+                  >
+                    <div
+                      className="react-swipeable-view-container"
+                      style={
+                        Object {
+                          "WebkitFlexDirection": "column",
+                          "WebkitTransition": "all 0s ease 0s",
+                          "boxSizing": "border-box",
+                          "direction": "ltr",
+                          "display": "flex",
+                          "flexDirection": "column",
+                          "height": null,
+                          "transition": "all 0s ease 0s",
+                          "willChange": "transform",
+                        }
+                      }
+                    >
+                      <div
+                        aria-hidden={false}
+                        data-swipeable="true"
+                        key=".0"
+                        style={
+                          Object {
+                            "WebkitFlexShrink": 0,
+                            "boxSizing": "border-box",
+                            "flexShrink": 0,
+                            "marginBottom": -0,
+                            "overflow": "visible",
+                            "width": "100%",
+                          }
+                        }
+                      >
+                        <div
+                          className="ReactSwipeableBottomSheet--closed"
+                          style={
+                            Object {
+                              "backgroundColor": "white",
+                              "height": "initial",
+                              "maxHeight": 768,
+                              "overflow": "hidden",
+                            }
+                          }
+                        >
+                          <div
+                            className="wps-connect-to-wifi has-text-centered"
+                          >
+                            <span
+                              className="has-text-weight-bold is-size-6"
+                            >
+                              PRESS_WPS_BUTTON
+                            </span>
+                            <div
+                              className="mt-20 has-text-centered"
+                            >
+                              <WpsLogo>
+                                <svg
+                                  height={44}
+                                  width={46}
+                                  xmlns="http://www.w3.org/2000/svg"
+                                >
+                                  <path
+                                    d="M22.364.803C8.234 3.296 2.689 13.109 5.729 30.241L.364 31.987l13.318 8.816 5.751-14.619-5.093 1.174C10.598 16.004 13.272 7.152 22.364.803zm1 43c14.13-2.493 19.674-12.306 16.634-29.438l5.366-1.746-13.32-8.816-5.75 14.619 5.093-1.174c3.743 11.354 1.068 20.206-8.023 26.555z"
+                                    fill="#FFF"
+                                    fillRule="evenodd"
+                                  />
+                                </svg>
+                              </WpsLogo>
+                            </div>
+                            <div
+                              className="mt-10 mb-20"
+                            >
+                              <span>
+                                WPS_DIRECTIONS
+                              </span>
+                            </div>
+                            <div
+                              className="mt-20 mb-20"
+                            >
+                              <div
+                                className="inline-buttons"
+                              >
+                                <button
+                                  className="button is-primary is-uppercase is-outlined"
+                                  onClick={[Function]}
+                                >
+                                  CANCEL
+                                </button>
+                                <button
+                                  className="button is-primary is-uppercase"
+                                  onClick={[Function]}
+                                >
+                                  START
+                                </button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </ReactSwipableView>
+              </div>
+            </SwipeableBottomSheet>
+          </WpsConnectToWifi>
         </div>
       </NetworkWidget>
     </Provider>
@@ -3619,7 +3830,6 @@ exports[`Network Widget on initial state renders correctly 1`] = `
                     >
                       <button
                         className="button is-primary is-uppercase is-outlined"
-                        disabled={true}
                         onClick={[Function]}
                       >
                         USE_WPS
@@ -3641,6 +3851,218 @@ exports[`Network Widget on initial state renders correctly 1`] = `
               </div>
             </div>
           </Collapsible>
+          <WpsConnectToWifi
+            onChange={[Function]}
+            open={false}
+          >
+            <SwipeableBottomSheet
+              defaultOpen={false}
+              fullScreen={false}
+              marginTop={0}
+              onChange={[Function]}
+              open={false}
+              overflowHeight={0}
+              overlay={true}
+              scrollTopAtClose={true}
+              shadowTip={true}
+              style={
+                Object {
+                  "zIndex": "9999",
+                }
+              }
+              swipeableViewsProps={Object {}}
+              topShadow={true}
+            >
+              <div
+                style={
+                  Object {
+                    "bottom": 0,
+                    "height": 0,
+                    "left": 0,
+                    "position": "fixed",
+                    "right": 0,
+                    "zIndex": "9999",
+                  }
+                }
+              >
+                <HeightUpdater
+                  height={768}
+                  onHeightChange={[Function]}
+                />
+                <div
+                  onClick={[Function]}
+                  style={
+                    Object {
+                      "backgroundColor": "black",
+                      "height": 768,
+                      "left": 0,
+                      "opacity": 0,
+                      "pointerEvents": "none",
+                      "position": "fixed",
+                      "right": 0,
+                      "top": 0,
+                      "transition": "opacity 450ms",
+                    }
+                  }
+                />
+                <ReactSwipableView
+                  animateHeight={false}
+                  animateTransitions={true}
+                  axis="y"
+                  containerStyle={
+                    Object {
+                      "boxSizing": "border-box",
+                    }
+                  }
+                  disableLazyLoading={false}
+                  disabled={false}
+                  enableMouseEvents={true}
+                  hysteresis={0.6}
+                  ignoreNativeScroll={false}
+                  index={0}
+                  onChangeIndex={[Function]}
+                  onTransitionEnd={[Function]}
+                  resistance={false}
+                  slideStyle={
+                    Object {
+                      "boxSizing": "border-box",
+                      "marginBottom": -0,
+                      "overflow": "visible",
+                    }
+                  }
+                  springConfig={
+                    Object {
+                      "delay": "0s",
+                      "duration": "0.35s",
+                      "easeFunction": "cubic-bezier(0.15, 0.3, 0.25, 1)",
+                    }
+                  }
+                  style={
+                    Object {
+                      "boxSizing": "border-box",
+                      "overflowY": "initial",
+                    }
+                  }
+                  threshold={5}
+                >
+                  <div
+                    onMouseDown={[Function]}
+                    onMouseLeave={[Function]}
+                    onMouseMove={[Function]}
+                    onMouseUp={[Function]}
+                    onScroll={[Function]}
+                    onTouchEnd={[Function]}
+                    onTouchStart={[Function]}
+                    style={
+                      Object {
+                        "boxSizing": "border-box",
+                        "overflowY": "initial",
+                      }
+                    }
+                  >
+                    <div
+                      className="react-swipeable-view-container"
+                      style={
+                        Object {
+                          "WebkitFlexDirection": "column",
+                          "WebkitTransition": "all 0s ease 0s",
+                          "boxSizing": "border-box",
+                          "direction": "ltr",
+                          "display": "flex",
+                          "flexDirection": "column",
+                          "height": null,
+                          "transition": "all 0s ease 0s",
+                          "willChange": "transform",
+                        }
+                      }
+                    >
+                      <div
+                        aria-hidden={false}
+                        data-swipeable="true"
+                        key=".0"
+                        style={
+                          Object {
+                            "WebkitFlexShrink": 0,
+                            "boxSizing": "border-box",
+                            "flexShrink": 0,
+                            "marginBottom": -0,
+                            "overflow": "visible",
+                            "width": "100%",
+                          }
+                        }
+                      >
+                        <div
+                          className="ReactSwipeableBottomSheet--closed"
+                          style={
+                            Object {
+                              "backgroundColor": "white",
+                              "height": "initial",
+                              "maxHeight": 768,
+                              "overflow": "hidden",
+                            }
+                          }
+                        >
+                          <div
+                            className="wps-connect-to-wifi has-text-centered"
+                          >
+                            <span
+                              className="has-text-weight-bold is-size-6"
+                            >
+                              PRESS_WPS_BUTTON
+                            </span>
+                            <div
+                              className="mt-20 has-text-centered"
+                            >
+                              <WpsLogo>
+                                <svg
+                                  height={44}
+                                  width={46}
+                                  xmlns="http://www.w3.org/2000/svg"
+                                >
+                                  <path
+                                    d="M22.364.803C8.234 3.296 2.689 13.109 5.729 30.241L.364 31.987l13.318 8.816 5.751-14.619-5.093 1.174C10.598 16.004 13.272 7.152 22.364.803zm1 43c14.13-2.493 19.674-12.306 16.634-29.438l5.366-1.746-13.32-8.816-5.75 14.619 5.093-1.174c3.743 11.354 1.068 20.206-8.023 26.555z"
+                                    fill="#FFF"
+                                    fillRule="evenodd"
+                                  />
+                                </svg>
+                              </WpsLogo>
+                            </div>
+                            <div
+                              className="mt-10 mb-20"
+                            >
+                              <span>
+                                WPS_DIRECTIONS
+                              </span>
+                            </div>
+                            <div
+                              className="mt-20 mb-20"
+                            >
+                              <div
+                                className="inline-buttons"
+                              >
+                                <button
+                                  className="button is-primary is-uppercase is-outlined"
+                                  onClick={[Function]}
+                                >
+                                  CANCEL
+                                </button>
+                                <button
+                                  className="button is-primary is-uppercase"
+                                  onClick={[Function]}
+                                >
+                                  START
+                                </button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </ReactSwipableView>
+              </div>
+            </SwipeableBottomSheet>
+          </WpsConnectToWifi>
         </div>
       </NetworkWidget>
     </Provider>

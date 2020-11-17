@@ -20,7 +20,8 @@ import {
   RESET_METADATA_STATUS,
   RESET_PVS_INFO_STATE,
   MI_DATA_SUCCESS,
-  MI_DATA_ERROR
+  MI_DATA_ERROR,
+  SET_WPS_SUPPORT
 } from 'state/actions/pvs'
 import { RESET_COMMISSIONING } from 'state/actions/global'
 import { PUSH_CANDIDATES_ERROR } from 'state/actions/devices'
@@ -43,7 +44,8 @@ const initialState = {
   miDataError: null,
   lastDiscoveryType: '',
   bleDevice: null,
-  bleConnectionInfo: null
+  bleConnectionInfo: null,
+  wpsSupport: false
 }
 
 export const pvsReducer = createReducer(
@@ -67,6 +69,10 @@ export const pvsReducer = createReducer(
     [SAVE_PVS_SN]: (state, payload) => ({
       ...state,
       serialNumber: payload
+    }),
+    [SET_WPS_SUPPORT]: (state, payload) => ({
+      ...state,
+      wpsSupport: payload
     }),
     [UPDATE_SN]: (state, payload) => ({
       ...state,

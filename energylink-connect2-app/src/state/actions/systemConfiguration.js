@@ -60,6 +60,10 @@ export const SET_SELECTED_POWER_PRODUCTION = createAction(
   'SET_SELECTED_POWER_PRODUCTION'
 )
 
+export const SET_WPS_CONNECTION_STATUS = createAction(
+  'SET_WPS_CONNECTION_STATUS'
+)
+
 export const SET_SELECTED_AP = createAction('SET_SELECTED_AP')
 
 export const SUBMIT_COMMISSION_SUCCESS = createAction(
