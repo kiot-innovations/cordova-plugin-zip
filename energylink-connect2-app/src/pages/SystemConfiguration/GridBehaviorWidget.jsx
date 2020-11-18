@@ -28,7 +28,7 @@ import SelectField from 'components/SelectField'
 import './SystemConfiguration.scss'
 
 const GBI = <span className="sp-grid file level mr-15 is-size-4" />
-const voltageWarning = (t, measuredVoltage) => (
+const voltageWarning = (t, measuredVoltage = 0) => (
   <div className="voltage-warning">
     <div className="is-size-6 ml-10 mr-10 sp-hey has-text-primary" />
     <div className="is-size-6 mr-10 has-text-primary">
