@@ -3,9 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import {
   always,
   cond,
-  endsWith,
   equals,
-  filter,
   find,
   has,
   isEmpty,
@@ -34,13 +32,11 @@ import { ButtonLink } from 'components/ButtonLink'
 import paths from 'routes/paths'
 import './Data.scss'
 
-const isMeter = propEq('DEVICE_TYPE', 'Power Meter')
-const isProductionMeter = device => endsWith('p', device.SERIAL)
+const isMeter = propEq('isSolarAvailable', true)
 
 export default () => {
   const t = useI18n()
   const dispatch = useDispatch()
-  const { found } = useSelector(state => state.devices)
   const { liveData = {} } = useSelector(state => state.energyLiveData)
   const { miData } = useSelector(state => state.pvs)
   const storageStatus = useSelector(pathOr({}, ['storage', 'status']))
@@ -48,12 +44,9 @@ export default () => {
     storageStatus
   )
 
-  const meters = filter(isMeter, found)
-  const prodMeterConfig = propOr(
-    'GROSS_PRODUCTION_SITE',
-    'SUBTYPE',
-    find(isProductionMeter, meters)
-  )
+  const prodMeterConfig = find(isMeter, Object.values(liveData))
+    ? 'GROSS_PRODUCTION_SITE'
+    : 'NOT_USED'
 
   const essDisplayStatus = cond([
     [s => s.permission_to_operate, always('CONTROLLER RUNNING NORMALLY')],
