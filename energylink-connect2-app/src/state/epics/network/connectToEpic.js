@@ -18,8 +18,7 @@ import {
   exhaustMap,
   map,
   takeUntil,
-  delayWhen,
-  mergeMap
+  delayWhen
 } from 'rxjs/operators'
 
 import { getApiPVS } from 'shared/api'
@@ -66,7 +65,7 @@ const connectToPVS = async (ssid, password) => {
 const connectToEpic = (action$, state$) =>
   action$.pipe(
     ofType(PVS_CONNECTION_INIT.getType()),
-    mergeMap(action => {
+    exhaustMap(action => {
       const ssid = pathOr('', ['payload', 'ssid'], action)
       const password = pathOr('', ['payload', 'password'], action)
 

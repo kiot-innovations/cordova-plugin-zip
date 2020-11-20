@@ -15,11 +15,13 @@ const fs = require('fs')
 const path = require('path')
 const replace = require('replace-in-file')
 const execa = require('execa')
+const selected_platform = process.env.DEV_PLATFORM || 'android'
+const host = process.env.DEV_HOST || ip.address()
 
 const connect2Path = path.resolve('..')
 const liveReloadPort = 3000
 
-const ipAddressString = `http://${ip.address()}:${liveReloadPort}`
+const ipAddressString = `http://${host}:${liveReloadPort}`
 const pathIndexFile = connect2Path + '/energylink-connect2-app/src/index.jsx'
 const beginning = '\n// Begin: This should never get committed'
 const ending = '// Ending: above should never get committed\n'
@@ -29,32 +31,43 @@ const possiblePlatforms = [
     platform: 'android',
     indexFilePath:
       connect2Path + '/platforms/android/app/src/main/res/xml/config.xml'
+  },
+  {
+    platform: 'ios',
+    indexFilePath:
+      connect2Path + '/platforms/ios/SunPowerProConnect-dev/config.xml'
   }
 ]
 
-let platforms = []
-possiblePlatforms.forEach(function(platform, index) {
-  const indexFilePath = platform.indexFilePath
-  try {
-    if (fs.existsSync(indexFilePath)) {
-      platforms.push(platform)
-      //file exists
-    }
-  } catch (err) {
-    console.error(err)
+let platform = possiblePlatforms.find(
+  ({ platform }) => platform === selected_platform
+)
+const indexFilePath = platform.indexFilePath
+try {
+  if (!fs.existsSync(indexFilePath)) {
+    console.error(
+      `File didn't exist, make sure you run "cordova prepare ${selected_platform}". File: ${indexFilePath}`
+    )
   }
-})
+} catch (err) {
+  console.error(err)
+}
 
 const symlinks = []
 function createSymlink(target, file) {
   symlinks.push(file)
   if (!fs.existsSync(target)) {
     console.error(
-      `File didn't exist, make sure you run "cordova prepare". File: ${target}`
+      `File didn't exist, make sure you run "cordova prepare ${selected_platform}". File: ${target}`
     )
   }
 
-  if (!fs.existsSync(file)) {
+  try {
+    fs.lstatSync(file)
+    fs.unlinkSync(file)
+  } catch (e) {
+    log(file + ' didnt exist')
+  } finally {
     fs.symlinkSync(target, file)
   }
 }
@@ -80,15 +93,13 @@ function onExit() {
   log('\nClean up!')
   removeSymlinks()
   undoIndexFile()
-  platforms.forEach(function(platform) {
-    makeReplacements([
-      {
-        files: platform.indexFilePath,
-        from: /<content src="[^"]*"\s+\/>/,
-        to: `<content src="index.html" />`
-      }
-    ])
-  })
+  makeReplacements([
+    {
+      files: platform.indexFilePath,
+      from: /<content src="[^"]*"\s+\/>/,
+      to: `<content src="index.html" />`
+    }
+  ])
   process.exit()
 }
 
@@ -143,28 +154,42 @@ async function canCommit(cb) {
 
 function onStart(proxyPort) {
   log('Replacing platform files to load at address: ' + ipAddressString)
-  replaceIndexFile(`http://${ip.address()}:${proxyPort}`)
-  platforms.forEach(function(platform) {
-    makeReplacements([
-      {
-        files: platform.indexFilePath,
-        from: /<content src="[^"]*"\s+\/>/,
-        to: `<content src="${ipAddressString}" />`
-      }
-    ])
-  })
-  createSymlink(
-    connect2Path + '/platforms/android/platform_www/cordova.js',
-    connect2Path + '/energylink-connect2-app/public/cordova.js'
-  )
-  createSymlink(
-    connect2Path + '/platforms/android/platform_www/cordova_plugins.js',
-    connect2Path + '/energylink-connect2-app/public/cordova_plugins.js'
-  )
-  createSymlink(
-    connect2Path + '/platforms/android/platform_www/plugins',
-    connect2Path + '/energylink-connect2-app/public/plugins'
-  )
+  replaceIndexFile(`http://${host}:${proxyPort}`)
+  makeReplacements([
+    {
+      files: platform.indexFilePath,
+      from: /<content src="[^"]*"\s+\/>/,
+      to: `<content src="${ipAddressString}" />`
+    }
+  ])
+
+  if (selected_platform === 'android') {
+    createSymlink(
+      connect2Path + '/platforms/android/platform_www/cordova.js',
+      connect2Path + '/energylink-connect2-app/public/cordova.js'
+    )
+    createSymlink(
+      connect2Path + '/platforms/android/platform_www/cordova_plugins.js',
+      connect2Path + '/energylink-connect2-app/public/cordova_plugins.js'
+    )
+    createSymlink(
+      connect2Path + '/platforms/android/platform_www/plugins',
+      connect2Path + '/energylink-connect2-app/public/plugins'
+    )
+  } else {
+    createSymlink(
+      connect2Path + '/platforms/ios/platform_www/cordova.js',
+      connect2Path + '/energylink-connect2-app/public/cordova.js'
+    )
+    createSymlink(
+      connect2Path + '/platforms/ios/platform_www/cordova_plugins.js',
+      connect2Path + '/energylink-connect2-app/public/cordova_plugins.js'
+    )
+    createSymlink(
+      connect2Path + '/platforms/ios/platform_www/plugins',
+      connect2Path + '/energylink-connect2-app/public/plugins'
+    )
+  }
 }
 
 module.exports = {

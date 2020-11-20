@@ -137,8 +137,8 @@ jobs:
         run: |
           export BRANCH_NAME=${GITHUB_REF#refs/heads/}
           export TAG=${BRANCH_NAME#refs/tags/}
-          echo "::set-env name=BRANCH_NAME::$BRANCH_NAME"
-          echo "::set-env name=TAG::$TAG"
+          echo "BRANCH_NAME=${BRANCH_NAME}" >> $GITHUB_ENV
+          echo "TAG=${TAG}" >> $GITHUB_ENV
       - name: Send slack notification
         uses: hbfernandes/slack-action@1.0
         if: env.APP_ENV == 'test'

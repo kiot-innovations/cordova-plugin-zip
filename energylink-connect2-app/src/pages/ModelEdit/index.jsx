@@ -19,6 +19,7 @@ import { useI18n } from 'shared/i18n'
 import { RESET_METADATA_STATUS, SET_METADATA_INIT } from 'state/actions/pvs'
 import { CLAIM_DEVICES_RESET, FETCH_MODELS_INIT } from 'state/actions/devices'
 import {
+  ALLOW_COMMISSIONING,
   SUBMIT_CLEAR,
   SUBMIT_CONFIG_SUCCESS
 } from 'state/actions/systemConfiguration'
@@ -107,6 +108,9 @@ const ModelEdit = () => {
 
   useEffect(() => {
     if (setMetadataStatus === 'success') {
+      if (rmaMode === rmaModes.REPLACE_PVS) {
+        dispatch(ALLOW_COMMISSIONING())
+      }
       if (rmaMode === rmaModes.EDIT_DEVICES) {
         dispatch(RESET_METADATA_STATUS())
         syncWithCloud()

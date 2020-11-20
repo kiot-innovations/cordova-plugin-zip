@@ -18,17 +18,32 @@ compare the differences and update the encrypted data with both files.
 
 ## For live-reload
 
-As for now, it's only implemented for android. In order to make it work follow these steps:
+In order to make it work follow these steps:
 
+##### For android:
 1) Run `cordova prepare android` (you need to do this only once)
-2) `npm run dev` <sup>1</sup>
-3) `cordova run android`. You can also use android studio and hit `run` and run the app on either a device or an emulator.
+2) `npm run dev:android` <sup>1</sup>
+3) `cordova run android --noprepare`. You can also use android studio and hit `run` and run the app on either a device or an emulator.
 
-**Note:**
+Note:
  <sup>1</sup> During `step 2` the script will update `energylink-connect2/platforms/android/app/src/main/res/xml/config.xml`.
  That's why it's important to first run `cordova prepare android`, since this command will create `config.xml` file,
  and `cordova run android` will run this configuration in your phone.
 
+##### For ios:
+1) Run `cordova prepare ios` (you need to do this only once)
+2) `npm run dev:ios` <sup>1</sup>
+3) `cordova run ios --noprepare`. You can also use xcode and hit `run` and run the app on either a device or an emulator.
+
+Note:
+ <sup>1</sup> During `step 2` the script will update `energylink-connect2/platforms/ios/SunPowerProConnect-dev/config.xml`.
+ That's why it's important to first run `cordova prepare ios`, since this command will create `config.xml` file,
+ and `cordova run ios --noprepare` will run this configuration in your phone.
+
+
+ <sup>2</sup> During `step 2` the script will update `energylink-connect2/platforms/android/app/src/main/res/xml/config.xml`.
+ That's why it's important to first run `cordova prepare android`, since this command will create `config.xml` file,
+ and `cordova run android` will run this configuration in your phone.
 
 ## Available Scripts
 

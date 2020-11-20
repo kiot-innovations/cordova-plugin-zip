@@ -6,7 +6,7 @@ import SwipeableBottomSheet from 'react-swipeable-bottom-sheet'
 
 import paths from 'routes/paths'
 import { useI18n } from 'shared/i18n'
-import { UPDATE_DEVICES_LIST } from 'state/actions/devices'
+import { FETCH_DEVICES_LIST, UPDATE_DEVICES_LIST } from 'state/actions/devices'
 import {
   REPLACE_RMA_PVS,
   SUBMIT_CONFIG
@@ -141,8 +141,10 @@ function SystemConfiguration() {
     dismissable: true
   })
   useEffect(() => {
+    dispatch(FETCH_DEVICES_LIST())
     dispatch(CONFIG_START())
   }, [dispatch])
+
   return (
     <div className="fill-parent is-flex tile is-vertical has-text-centered system-config pl-10 pr-10 mb-40">
       <span className="is-uppercase has-text-weight-bold mb-20">
@@ -166,6 +168,7 @@ function SystemConfiguration() {
         <button
           onClick={submitConfig}
           className="button is-primary is-uppercase"
+          disabled={isEmpty(found)}
         >
           {t('SUBMIT_CONFIG')}
         </button>

@@ -7,7 +7,8 @@
   "homepage": "./",
   "scripts": {
     "start": "react-scripts start",
-    "dev": "concurrently --kill-others 'npm run live-reload-proxy' 'BROWSER=none npm run start'",
+    "dev:ios": "concurrently --kill-others 'DEV_PLATFORM=ios npm run live-reload-proxy' 'BROWSER=none npm run start'",
+    "dev:android": "concurrently --kill-others 'DEV_PLATFORM=android npm run live-reload-proxy' 'BROWSER=none npm run start'",
     "build": "npm run cleanwww && react-scripts build && cp -a ./build/. ../www/",
     "buildsm": "GENERATE_SOURCEMAP=true npm run cleanwww && react-scripts build && cp -a ./build/. ../www/",
     "build.ci": "eslint src && cross-env CI=true react-scripts test && cross-env NODE_ENV=production react-scripts build",

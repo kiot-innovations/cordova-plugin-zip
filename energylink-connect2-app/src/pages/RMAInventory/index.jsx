@@ -58,9 +58,9 @@ const RMAInventory = () => {
         })
       )
       history.push(paths.PROTECTED.LEGACY_DISCOVERY.path)
-    } else if (miValue.value > 0) {
+    } else if (parseInt(miValue.value) > 0) {
       history.push(paths.PROTECTED.SCAN_LABELS.path)
-    } else if (storageValue.value !== 0) {
+    } else if (parseInt(storageValue.value) !== 0) {
       history.push(paths.PROTECTED.STORAGE_PREDISCOVERY.path)
     } else {
       dispatch(
@@ -97,7 +97,7 @@ const RMAInventory = () => {
           <div className="field mt-10">
             <SelectField
               isSearchable={false}
-              onSelect={handleChange('mi_count')}
+              onSelect={handleChange('AC_MODULES')}
               defaultValue={find(propEq('value', miValue.value), miOptions)}
               options={miOptions}
             />

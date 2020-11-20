@@ -22,6 +22,7 @@ import Collapsible from 'components/Collapsible'
 import { FETCH_DEVICES_LIST } from 'state/actions/devices'
 import { RMA_REMOVE_DEVICES, CLEAR_RMA } from 'state/actions/rma'
 import { SHOW_MODAL } from 'state/actions/modal'
+import { ALLOW_COMMISSIONING } from 'state/actions/systemConfiguration'
 import { either } from 'shared/utils'
 import { useI18n } from 'shared/i18n'
 
@@ -92,6 +93,7 @@ function RMADevices() {
   }
 
   useEffect(() => {
+    dispatch(ALLOW_COMMISSIONING())
     dispatch(FETCH_DEVICES_LIST())
   }, [dispatch])
 
