@@ -1,10 +1,9 @@
 import * as Sentry from '@sentry/browser'
 import { ofType } from 'redux-observable'
 import { catchError, map, mergeMap } from 'rxjs/operators'
-import { path, pathOr } from 'ramda'
+import { path, pathOr, propOr } from 'ramda'
 import { from, of } from 'rxjs'
 import { getApiPVS } from 'shared/api'
-import { translate } from 'shared/i18n'
 import {
   SUBMIT_CONFIG_SUCCESS,
   SUBMIT_COMMISSION_SUCCESS,
@@ -12,7 +11,6 @@ import {
 } from 'state/actions/systemConfiguration'
 
 export const submitConfigObjectEpic = (action$, state$) => {
-  const t = translate(state$.value.language)
   return action$.pipe(
     ofType(SUBMIT_CONFIG_SUCCESS.getType()),
     mergeMap(() => {
@@ -24,19 +22,26 @@ export const submitConfigObjectEpic = (action$, state$) => {
         map(response =>
           response.status === 200
             ? SUBMIT_COMMISSION_SUCCESS(response)
-            : SUBMIT_COMMISSION_ERROR(response.result)
+            : SUBMIT_COMMISSION_ERROR('')
         ),
-        catchError(response => {
-          Sentry.captureException(response)
-          return of(
-            SUBMIT_COMMISSION_ERROR(
-              pathOr(
-                t('UNKNOWN_ERROR'),
-                ['response', 'body', 'result', 'code'],
-                response
-              )
-            )
-          )
+        catchError(error => {
+          const pvsSn = state$.value.pvs.serialNumber
+          const data = pathOr({}, ['response', 'body', 'result'], error)
+
+          Sentry.addBreadcrumb({
+            data: {
+              pvsSerialNumber: pvsSn,
+              code: propOr('', 'code', data),
+              message: propOr('Unknown error.', 'message', data),
+              exception: propOr('', 'exception', data)
+            },
+            message: 'Commissioning error.',
+            type: 'error',
+            category: 'error',
+            level: 'error'
+          })
+          Sentry.captureException(error)
+          return of(SUBMIT_COMMISSION_ERROR(''))
         })
       )
     })

@@ -104,9 +104,12 @@ const SavingConfiguration = () => {
           controls: (
             <div className="status-message">
               <span>{t('CONFIG_ERROR_2')}</span>
-              <div className="error-message mt-5 mb-5">
-                <span>{errorMap(error)}</span>
-              </div>
+              {either(
+                !isEmpty(error),
+                <div className="error-message mt-5 mb-5">
+                  <span>{errorMap(error)}</span>
+                </div>
+              )}
               <div className="has-text-centered">
                 <button
                   onClick={goToConfig}

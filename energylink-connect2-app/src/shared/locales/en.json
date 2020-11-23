@@ -197,7 +197,7 @@
   "HOLD_ON": "Hold on",
   "CONFIG_DONE": "Configuration complete",
   "CONFIG_ERROR": "Error saving configurations",
-  "CONFIG_ERROR_2": "We couldn’t save the configuration on the PVS. Please go back and try again",
+  "CONFIG_ERROR_2": "We're sorry. An error ocurred. Please, try again.",
   "DONT_CLOSE_APP": "Please don't close the application.",
   "ONE_LAST_STEP": "One last step",
   "UPDATE_LAYOUT_ELA": "Don't forget to update the panel layout in EnergyLink Admin",
