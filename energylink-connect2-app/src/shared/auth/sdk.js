@@ -1,8 +1,8 @@
-import { split, map, fromPairs, toPairs, join, pipe, tail, head } from 'ramda'
+import { fromPairs, head, join, map, pipe, split, tail, toPairs } from 'ramda'
 import jwtDecode from 'jwt-decode'
 import moment from 'moment'
 import config from './config'
-import { createExternalLinkHandler } from 'shared/routing'
+import { openUrl } from 'shared/browserUtils'
 
 /******************************************************************************
  *         OAuth 2/OpenID Connect Protocol API
@@ -11,16 +11,14 @@ import { createExternalLinkHandler } from 'shared/routing'
 /**
  *  Authorize the client
  *
- * @param state a string that specifies an optional parameter that is used to maintain state between the logout request and the callback to the endpoint specified by the post_logout_redirect_uri query parameter.
- * @param nonce a string that is used to associate a client session with an ID token, and to mitigate replay attacks. The value is passed through unmodified from the authentication request to the ID token.
  */
-const authorizeOAuth = state => {
+const authorizeOAuth = () => {
   let authUrl =
     `${getBaseApiUrlOAuth(true)}?` +
     `client_id=${config.client_id}&` +
     `redirect_uri=${config.redirectUri}&` +
     `response_type=${config.response_type}`
-  createExternalLinkHandler(authUrl)()
+  openUrl(authUrl)
 }
 
 const getUserInfoOAuth = access_token =>

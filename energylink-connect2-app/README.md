@@ -26,6 +26,7 @@ In order to make it work follow these steps:
 3) `cordova run android --noprepare`. You can also use android studio and hit `run` and run the app on either a device or an emulator.
 
 Note:
+
  <sup>1</sup> During `step 2` the script will update `energylink-connect2/platforms/android/app/src/main/res/xml/config.xml`.
  That's why it's important to first run `cordova prepare android`, since this command will create `config.xml` file,
  and `cordova run android` will run this configuration in your phone.

@@ -9,6 +9,9 @@ describe('The loginSuccessEpic', function() {
   let epicTest
   beforeEach(function() {
     epicTest = undefined
+    window.SafariViewController = {
+      hide: jest.fn(() => {})
+    }
   })
   it('should dispatch MIXPANEL_EVENT_QUEUED if we could get the party ID', () => {
     const getParty = jest.fn(() =>
@@ -18,6 +21,7 @@ describe('The loginSuccessEpic', function() {
       })
     )
     utils.getPartyPromise = getParty
+
     const loggedIn = jest.fn(() => MIXPANEL_EVENT_QUEUED('Login - Success'))
     analytics.loggedIn = loggedIn
 

@@ -14,6 +14,7 @@ function MenuItemsContainer({ items }) {
 
   const logout = () => {
     history.push(paths.PROTECTED.ROOT.path)
+    dispatch(MENU_HIDE())
     dispatch(LOGOUT())
   }
 
