@@ -1,10 +1,11 @@
 import React from 'react'
-import { path } from 'ramda'
+import { path, pipe } from 'ramda'
 import clsx from 'clsx'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch, useSelector, connect } from 'react-redux'
 import isNil from 'ramda/src/isNil'
 import Logo from '@sunpower/sunpowerimage'
 import withHeaderAnimation from 'hocs/headerAnimation'
+import { compose } from 'redux'
 import { trimString } from 'shared/trim'
 import { either, isError } from 'shared/utils'
 import { useHistory, useLocation } from 'react-router-dom'
@@ -71,5 +72,7 @@ export const Header = ({
     </>
   )
 }
-
-export default withHeaderAnimation(Header)
+export default compose(
+  connect(pipe(path(['site', 'site', 'address1']), text => ({ text }))),
+  withHeaderAnimation
+)(Header)

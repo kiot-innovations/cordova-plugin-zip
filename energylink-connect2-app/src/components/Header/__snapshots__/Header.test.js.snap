@@ -38,193 +38,187 @@ exports[`Header Component Renders correctly 1`] = `
         }
       }
     >
-      <HOC>
-        <header
-          className="header-transition show-footer"
+      <Header>
+        <section
+          className="header is-flex level is-clipper"
         >
-          <Header>
-            <section
-              className="header is-flex level is-clipper"
-            >
-              <span
-                className="sp sp-chevron-left has-text-primary"
-                onClick={[Function]}
-                role="button"
-              />
-              <Component>
-                <o>
-                  <svg
-                    fill="none"
-                    height="23"
-                    width="174"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M9.988 5.24C9.203 3.876 8.265 3.1 6.595 3.1c-1.746 0-3.262 1.254-3.262 3.055 0 1.692 1.747 2.477 3.078 3.077l1.307.577c2.555 1.116 4.717 2.393 4.717 5.524 0 3.447-2.762 6.078-6.186 6.078-3.154 0-5.5-2.039-6.132-5.085l2.139-.6c.285 2.008 1.823 3.646 3.94 3.646 2.115 0 4.046-1.615 4.046-3.831 0-2.3-1.8-3.078-3.624-3.916l-1.2-.523C3.125 10.055 1.14 8.886 1.14 6.07c0-3.054 2.585-5.008 5.501-5.008 2.193 0 4.04 1.123 5.086 3.054L9.988 5.239zM21.96 13.118c0 1.461-.055 3.131.861 4.385.862 1.2 2.531 1.877 3.962 1.877 1.408 0 2.947-.654 3.862-1.746 1.047-1.254.962-2.97.962-4.509V1.4H33.8v12.31c0 2.139-.154 3.832-1.724 5.455-1.354 1.462-3.316 2.247-5.293 2.247-1.854 0-3.754-.708-5.085-2.009-1.724-1.646-1.931-3.446-1.931-5.685V1.408h2.192v11.71zM41.47.57L56.813 16.64V1.401h2.192v20.557L43.656 5.916v15.157h-2.193V.569h.008zM69.46 3.44h.807c2.555 0 5.14.238 5.14 3.446 0 2.816-2.062 3.547-4.486 3.547H69.46V3.439zm0 9.024h1.592c1.646 0 3.339-.208 4.67-1.3 1.223-1.016 1.877-2.632 1.877-4.224 0-1.747-.754-3.47-2.216-4.485-1.43-.993-3.185-1.047-4.877-1.047h-3.232v19.673h2.193v-8.617h-.008zM112.936 16.141L119.307.385l6.362 15.756 5.17-14.74h2.37l-7.54 20.687-6.362-15.833-6.363 15.833-7.54-20.688h2.378l5.154 14.741zM138.109 1.4h10.194v2.032h-8.001V9.27h7.771v2.039h-7.771v7.724h8.009v2.039h-10.194V1.4h-.008zM157.882 3.44h.654c2.631 0 5.009.315 5.009 3.546 0 3.054-2.501 3.524-4.986 3.524h-.677V3.44zm0 9h.546l5.947 8.633h2.685l-6.262-8.817c3.031-.261 4.931-2.4 4.931-5.424 0-4.431-3.469-5.424-7.201-5.424h-2.846v19.673h2.192v-8.64h.008z"
-                      fill="#fff"
-                    />
-                    <path
-                      d="M9.988 5.24C9.203 3.876 8.265 3.1 6.595 3.1c-1.746 0-3.262 1.254-3.262 3.055 0 1.692 1.747 2.477 3.078 3.077l1.307.577c2.555 1.116 4.717 2.393 4.717 5.524 0 3.447-2.762 6.078-6.186 6.078-3.154 0-5.5-2.039-6.132-5.085l2.139-.6c.285 2.008 1.823 3.646 3.94 3.646 2.115 0 4.046-1.615 4.046-3.831 0-2.3-1.8-3.078-3.624-3.916l-1.2-.523C3.125 10.055 1.14 8.886 1.14 6.07c0-3.054 2.585-5.008 5.501-5.008 2.193 0 4.04 1.123 5.086 3.054L9.988 5.239zM21.96 13.118c0 1.461-.055 3.131.861 4.385.862 1.2 2.531 1.877 3.962 1.877 1.408 0 2.947-.654 3.862-1.746 1.047-1.254.962-2.97.962-4.509V1.4H33.8v12.31c0 2.139-.154 3.832-1.724 5.455-1.354 1.462-3.316 2.247-5.293 2.247-1.854 0-3.754-.708-5.085-2.009-1.724-1.646-1.931-3.446-1.931-5.685V1.408h2.192v11.71zM41.47.57L56.813 16.64V1.401h2.192v20.557L43.656 5.916v15.157h-2.193V.569h.008zM69.46 3.44h.807c2.555 0 5.14.238 5.14 3.446 0 2.816-2.062 3.547-4.486 3.547H69.46V3.439zm0 9.024h1.592c1.646 0 3.339-.208 4.67-1.3 1.223-1.016 1.877-2.632 1.877-4.224 0-1.747-.754-3.47-2.216-4.485-1.43-.993-3.185-1.047-4.877-1.047h-3.232v19.673h2.193v-8.617h-.008zM112.936 16.141L119.307.385l6.362 15.756 5.17-14.74h2.37l-7.54 20.687-6.362-15.833-6.363 15.833-7.54-20.688h2.378l5.154 14.741zM138.109 1.4h10.194v2.032h-8.001V9.27h7.771v2.039h-7.771v7.724h8.009v2.039h-10.194V1.4h-.008zM157.882 3.44h.654c2.631 0 5.009.315 5.009 3.546 0 3.054-2.501 3.524-4.986 3.524h-.677V3.44zm0 9h.546l5.947 8.633h2.685l-6.262-8.817c3.031-.261 4.931-2.4 4.931-5.424 0-4.431-3.469-5.424-7.201-5.424h-2.846v19.673h2.192v-8.64h.008z"
-                      fill="#fff"
-                    />
-                    <path
-                      d="M102.388 11.264c0 5.74-4.547 10.094-10.317 10.094-5.647 0-10.186-4.562-10.186-10.048 0-5.57 4.5-10.132 10.186-10.132 5.77 0 10.317 4.354 10.317 10.086zm-18.203.046c0 4.185 3.355 7.886 7.755 7.886 4.563 0 8.117-3.424 8.117-7.886 0-4.539-3.516-7.963-8.117-7.963-4.439 0-7.755 3.701-7.755 7.963z"
-                      fill="#F18A00"
-                    />
-                    <path
-                      d="M167.977 4.408c0-.53.13-1.03.4-1.5.269-.47.631-.838 1.1-1.108.469-.269.969-.407 1.508-.407.531 0 1.031.13 1.5.4.469.269.839.63 1.108 1.1.269.47.408.97.408 1.508a2.997 2.997 0 01-3.001 3 2.951 2.951 0 01-1.531-.415 2.956 2.956 0 01-1.092-1.108c-.27-.446-.4-.939-.4-1.47zm.377 0c0 .477.115.916.353 1.316.239.4.554.723.962.962.408.238.846.354 1.323.354a2.52 2.52 0 001.316-.354c.408-.239.723-.554.962-.962a2.57 2.57 0 00.354-1.323c0-.462-.116-.9-.339-1.3a2.678 2.678 0 00-.954-.97 2.543 2.543 0 00-1.339-.37c-.469 0-.907.116-1.315.355a2.666 2.666 0 00-.97.97 2.651 2.651 0 00-.353 1.322zm3.708-.746c0 .208-.054.4-.154.562-.1.161-.254.284-.439.377l.947 1.57h-.485l-.839-1.44h-.669v1.44h-.408V2.653h.847c.384 0 .677.085.884.247.208.161.316.415.316.761zm-1.647.746h.447c.246 0 .431-.061.569-.184.138-.123.208-.308.208-.539 0-.461-.262-.684-.785-.684h-.439v1.407z"
-                      fill="#fff"
-                    />
-                  </svg>
-                </o>
-              </Component>
-            </section>
-            <Menu>
-              <div
-                className="menu-floating"
+          <span
+            className="sp sp-chevron-left has-text-primary"
+            onClick={[Function]}
+            role="button"
+          />
+          <Component>
+            <o>
+              <svg
+                fill="none"
+                height="23"
+                width="174"
+                xmlns="http://www.w3.org/2000/svg"
               >
-                <MenuItemsContainer
-                  items={
-                    Array [
-                      Object {
-                        "icon": "sp-map",
-                        "text": "CHANGE_ADDRESS",
-                        "to": "/",
-                      },
-                      Object {
-                        "component": [Function],
-                        "icon": "sp-update",
-                        "text": "MANAGE_FIRMWARES",
-                      },
-                      Object {
-                        "component": [Function],
-                        "icon": "sp-info",
-                        "text": "VERSION_INFORMATION",
-                      },
-                      Object {
-                        "component": [Function],
-                        "icon": "sp-feedback",
-                        "text": "GIVE_FEEDBACK",
-                      },
-                    ]
-                  }
+                <path
+                  d="M9.988 5.24C9.203 3.876 8.265 3.1 6.595 3.1c-1.746 0-3.262 1.254-3.262 3.055 0 1.692 1.747 2.477 3.078 3.077l1.307.577c2.555 1.116 4.717 2.393 4.717 5.524 0 3.447-2.762 6.078-6.186 6.078-3.154 0-5.5-2.039-6.132-5.085l2.139-.6c.285 2.008 1.823 3.646 3.94 3.646 2.115 0 4.046-1.615 4.046-3.831 0-2.3-1.8-3.078-3.624-3.916l-1.2-.523C3.125 10.055 1.14 8.886 1.14 6.07c0-3.054 2.585-5.008 5.501-5.008 2.193 0 4.04 1.123 5.086 3.054L9.988 5.239zM21.96 13.118c0 1.461-.055 3.131.861 4.385.862 1.2 2.531 1.877 3.962 1.877 1.408 0 2.947-.654 3.862-1.746 1.047-1.254.962-2.97.962-4.509V1.4H33.8v12.31c0 2.139-.154 3.832-1.724 5.455-1.354 1.462-3.316 2.247-5.293 2.247-1.854 0-3.754-.708-5.085-2.009-1.724-1.646-1.931-3.446-1.931-5.685V1.408h2.192v11.71zM41.47.57L56.813 16.64V1.401h2.192v20.557L43.656 5.916v15.157h-2.193V.569h.008zM69.46 3.44h.807c2.555 0 5.14.238 5.14 3.446 0 2.816-2.062 3.547-4.486 3.547H69.46V3.439zm0 9.024h1.592c1.646 0 3.339-.208 4.67-1.3 1.223-1.016 1.877-2.632 1.877-4.224 0-1.747-.754-3.47-2.216-4.485-1.43-.993-3.185-1.047-4.877-1.047h-3.232v19.673h2.193v-8.617h-.008zM112.936 16.141L119.307.385l6.362 15.756 5.17-14.74h2.37l-7.54 20.687-6.362-15.833-6.363 15.833-7.54-20.688h2.378l5.154 14.741zM138.109 1.4h10.194v2.032h-8.001V9.27h7.771v2.039h-7.771v7.724h8.009v2.039h-10.194V1.4h-.008zM157.882 3.44h.654c2.631 0 5.009.315 5.009 3.546 0 3.054-2.501 3.524-4.986 3.524h-.677V3.44zm0 9h.546l5.947 8.633h2.685l-6.262-8.817c3.031-.261 4.931-2.4 4.931-5.424 0-4.431-3.469-5.424-7.201-5.424h-2.846v19.673h2.192v-8.64h.008z"
+                  fill="#fff"
+                />
+                <path
+                  d="M9.988 5.24C9.203 3.876 8.265 3.1 6.595 3.1c-1.746 0-3.262 1.254-3.262 3.055 0 1.692 1.747 2.477 3.078 3.077l1.307.577c2.555 1.116 4.717 2.393 4.717 5.524 0 3.447-2.762 6.078-6.186 6.078-3.154 0-5.5-2.039-6.132-5.085l2.139-.6c.285 2.008 1.823 3.646 3.94 3.646 2.115 0 4.046-1.615 4.046-3.831 0-2.3-1.8-3.078-3.624-3.916l-1.2-.523C3.125 10.055 1.14 8.886 1.14 6.07c0-3.054 2.585-5.008 5.501-5.008 2.193 0 4.04 1.123 5.086 3.054L9.988 5.239zM21.96 13.118c0 1.461-.055 3.131.861 4.385.862 1.2 2.531 1.877 3.962 1.877 1.408 0 2.947-.654 3.862-1.746 1.047-1.254.962-2.97.962-4.509V1.4H33.8v12.31c0 2.139-.154 3.832-1.724 5.455-1.354 1.462-3.316 2.247-5.293 2.247-1.854 0-3.754-.708-5.085-2.009-1.724-1.646-1.931-3.446-1.931-5.685V1.408h2.192v11.71zM41.47.57L56.813 16.64V1.401h2.192v20.557L43.656 5.916v15.157h-2.193V.569h.008zM69.46 3.44h.807c2.555 0 5.14.238 5.14 3.446 0 2.816-2.062 3.547-4.486 3.547H69.46V3.439zm0 9.024h1.592c1.646 0 3.339-.208 4.67-1.3 1.223-1.016 1.877-2.632 1.877-4.224 0-1.747-.754-3.47-2.216-4.485-1.43-.993-3.185-1.047-4.877-1.047h-3.232v19.673h2.193v-8.617h-.008zM112.936 16.141L119.307.385l6.362 15.756 5.17-14.74h2.37l-7.54 20.687-6.362-15.833-6.363 15.833-7.54-20.688h2.378l5.154 14.741zM138.109 1.4h10.194v2.032h-8.001V9.27h7.771v2.039h-7.771v7.724h8.009v2.039h-10.194V1.4h-.008zM157.882 3.44h.654c2.631 0 5.009.315 5.009 3.546 0 3.054-2.501 3.524-4.986 3.524h-.677V3.44zm0 9h.546l5.947 8.633h2.685l-6.262-8.817c3.031-.261 4.931-2.4 4.931-5.424 0-4.431-3.469-5.424-7.201-5.424h-2.846v19.673h2.192v-8.64h.008z"
+                  fill="#fff"
+                />
+                <path
+                  d="M102.388 11.264c0 5.74-4.547 10.094-10.317 10.094-5.647 0-10.186-4.562-10.186-10.048 0-5.57 4.5-10.132 10.186-10.132 5.77 0 10.317 4.354 10.317 10.086zm-18.203.046c0 4.185 3.355 7.886 7.755 7.886 4.563 0 8.117-3.424 8.117-7.886 0-4.539-3.516-7.963-8.117-7.963-4.439 0-7.755 3.701-7.755 7.963z"
+                  fill="#F18A00"
+                />
+                <path
+                  d="M167.977 4.408c0-.53.13-1.03.4-1.5.269-.47.631-.838 1.1-1.108.469-.269.969-.407 1.508-.407.531 0 1.031.13 1.5.4.469.269.839.63 1.108 1.1.269.47.408.97.408 1.508a2.997 2.997 0 01-3.001 3 2.951 2.951 0 01-1.531-.415 2.956 2.956 0 01-1.092-1.108c-.27-.446-.4-.939-.4-1.47zm.377 0c0 .477.115.916.353 1.316.239.4.554.723.962.962.408.238.846.354 1.323.354a2.52 2.52 0 001.316-.354c.408-.239.723-.554.962-.962a2.57 2.57 0 00.354-1.323c0-.462-.116-.9-.339-1.3a2.678 2.678 0 00-.954-.97 2.543 2.543 0 00-1.339-.37c-.469 0-.907.116-1.315.355a2.666 2.666 0 00-.97.97 2.651 2.651 0 00-.353 1.322zm3.708-.746c0 .208-.054.4-.154.562-.1.161-.254.284-.439.377l.947 1.57h-.485l-.839-1.44h-.669v1.44h-.408V2.653h.847c.384 0 .677.085.884.247.208.161.316.415.316.761zm-1.647.746h.447c.246 0 .431-.061.569-.184.138-.123.208-.308.208-.539 0-.461-.262-.684-.785-.684h-.439v1.407z"
+                  fill="#fff"
+                />
+              </svg>
+            </o>
+          </Component>
+        </section>
+        <Menu>
+          <div
+            className="menu-floating"
+          >
+            <MenuItemsContainer
+              items={
+                Array [
+                  Object {
+                    "icon": "sp-map",
+                    "text": "CHANGE_ADDRESS",
+                    "to": "/",
+                  },
+                  Object {
+                    "component": [Function],
+                    "icon": "sp-update",
+                    "text": "MANAGE_FIRMWARES",
+                  },
+                  Object {
+                    "component": [Function],
+                    "icon": "sp-info",
+                    "text": "VERSION_INFORMATION",
+                  },
+                  Object {
+                    "component": [Function],
+                    "icon": "sp-feedback",
+                    "text": "GIVE_FEEDBACK",
+                  },
+                ]
+              }
+            >
+              <section
+                className="is-flex tile is-vertical level full-height"
+              >
+                <article
+                  className="is-flex space-around flow-wrap mt-15"
                 >
-                  <section
-                    className="is-flex tile is-vertical level full-height"
+                  <div
+                    className="mb-30"
+                    key="CHANGE_ADDRESS"
                   >
-                    <article
-                      className="is-flex space-around flow-wrap mt-15"
-                    >
-                      <div
-                        className="mb-30"
-                        key="CHANGE_ADDRESS"
-                      >
-                        <Component
-                          icon="sp-map"
-                          onClick={[Function]}
-                          text="Change Address"
-                        >
-                          <button
-                            className="tilex tile has-text-white is-flex is-vertical space-around"
-                            onClick={[Function]}
-                          >
-                            <div
-                              className="sp is-size-1 sp-map"
-                            />
-                            <div
-                              className="text is-size-5 pt-10 pl-10 pr-10 pb-10"
-                            >
-                              Change Address
-                            </div>
-                          </button>
-                        </Component>
-                      </div>
-                      <div
-                        className="mb-30"
-                        key="MANAGE_FIRMWARES"
-                      >
-                        <Component
-                          icon="sp-update"
-                          onClick={[Function]}
-                          text="Manage Firmware"
-                        >
-                          <button
-                            className="tilex tile has-text-white is-flex is-vertical space-around"
-                            onClick={[Function]}
-                          >
-                            <div
-                              className="sp is-size-1 sp-update"
-                            />
-                            <div
-                              className="text is-size-5 pt-10 pl-10 pr-10 pb-10"
-                            >
-                              Manage Firmware
-                            </div>
-                          </button>
-                        </Component>
-                      </div>
-                      <div
-                        className="mb-30"
-                        key="VERSION_INFORMATION"
-                      >
-                        <Component
-                          icon="sp-info"
-                          onClick={[Function]}
-                          text="Version Information"
-                        >
-                          <button
-                            className="tilex tile has-text-white is-flex is-vertical space-around"
-                            onClick={[Function]}
-                          >
-                            <div
-                              className="sp is-size-1 sp-info"
-                            />
-                            <div
-                              className="text is-size-5 pt-10 pl-10 pr-10 pb-10"
-                            >
-                              Version Information
-                            </div>
-                          </button>
-                        </Component>
-                      </div>
-                      <div
-                        className="mb-30"
-                        key="GIVE_FEEDBACK"
-                      >
-                        <Component
-                          icon="sp-feedback"
-                          onClick={[Function]}
-                          text="Give us Feedback"
-                        >
-                          <button
-                            className="tilex tile has-text-white is-flex is-vertical space-around"
-                            onClick={[Function]}
-                          >
-                            <div
-                              className="sp is-size-1 sp-feedback"
-                            />
-                            <div
-                              className="text is-size-5 pt-10 pl-10 pr-10 pb-10"
-                            >
-                              Give us Feedback
-                            </div>
-                          </button>
-                        </Component>
-                      </div>
-                    </article>
-                    <button
-                      className="button has-text-centered is-uppercase mb-10 has-text-primary is-text"
+                    <Component
+                      icon="sp-map"
                       onClick={[Function]}
+                      text="Change Address"
                     >
-                      Log out
-                    </button>
-                  </section>
-                </MenuItemsContainer>
-              </div>
-            </Menu>
-          </Header>
-        </header>
-      </HOC>
+                      <button
+                        className="tilex tile has-text-white is-flex is-vertical space-around"
+                        onClick={[Function]}
+                      >
+                        <div
+                          className="sp is-size-1 sp-map"
+                        />
+                        <div
+                          className="text is-size-5 pt-10 pl-10 pr-10 pb-10"
+                        >
+                          Change Address
+                        </div>
+                      </button>
+                    </Component>
+                  </div>
+                  <div
+                    className="mb-30"
+                    key="MANAGE_FIRMWARES"
+                  >
+                    <Component
+                      icon="sp-update"
+                      onClick={[Function]}
+                      text="Manage Firmware"
+                    >
+                      <button
+                        className="tilex tile has-text-white is-flex is-vertical space-around"
+                        onClick={[Function]}
+                      >
+                        <div
+                          className="sp is-size-1 sp-update"
+                        />
+                        <div
+                          className="text is-size-5 pt-10 pl-10 pr-10 pb-10"
+                        >
+                          Manage Firmware
+                        </div>
+                      </button>
+                    </Component>
+                  </div>
+                  <div
+                    className="mb-30"
+                    key="VERSION_INFORMATION"
+                  >
+                    <Component
+                      icon="sp-info"
+                      onClick={[Function]}
+                      text="Version Information"
+                    >
+                      <button
+                        className="tilex tile has-text-white is-flex is-vertical space-around"
+                        onClick={[Function]}
+                      >
+                        <div
+                          className="sp is-size-1 sp-info"
+                        />
+                        <div
+                          className="text is-size-5 pt-10 pl-10 pr-10 pb-10"
+                        >
+                          Version Information
+                        </div>
+                      </button>
+                    </Component>
+                  </div>
+                  <div
+                    className="mb-30"
+                    key="GIVE_FEEDBACK"
+                  >
+                    <Component
+                      icon="sp-feedback"
+                      onClick={[Function]}
+                      text="Give us Feedback"
+                    >
+                      <button
+                        className="tilex tile has-text-white is-flex is-vertical space-around"
+                        onClick={[Function]}
+                      >
+                        <div
+                          className="sp is-size-1 sp-feedback"
+                        />
+                        <div
+                          className="text is-size-5 pt-10 pl-10 pr-10 pb-10"
+                        >
+                          Give us Feedback
+                        </div>
+                      </button>
+                    </Component>
+                  </div>
+                </article>
+                <button
+                  className="button has-text-centered is-uppercase mb-10 has-text-primary is-text"
+                  onClick={[Function]}
+                >
+                  Log out
+                </button>
+              </section>
+            </MenuItemsContainer>
+          </div>
+        </Menu>
+      </Header>
     </Provider>
   </Router>
 </BrowserRouter>
@@ -268,176 +262,168 @@ exports[`Header Component Renders text instead of logo 1`] = `
         }
       }
     >
-      <HOC
+      <Header
         text="ADDRESS"
       >
-        <header
-          className="header-transition show-footer"
+        <section
+          className="header is-flex level is-clipper"
         >
-          <Header
-            text="ADDRESS"
+          <span
+            className="sp sp-chevron-left has-text-primary"
+            onClick={[Function]}
+            role="button"
+          />
+          <span
+            className="text has-text-white"
+            title="ADDRESS"
           >
-            <section
-              className="header is-flex level is-clipper"
+            ADDRESS
+          </span>
+        </section>
+        <Menu>
+          <div
+            className="menu-floating"
+          >
+            <MenuItemsContainer
+              items={
+                Array [
+                  Object {
+                    "icon": "sp-map",
+                    "text": "CHANGE_ADDRESS",
+                    "to": "/",
+                  },
+                  Object {
+                    "component": [Function],
+                    "icon": "sp-update",
+                    "text": "MANAGE_FIRMWARES",
+                  },
+                  Object {
+                    "component": [Function],
+                    "icon": "sp-info",
+                    "text": "VERSION_INFORMATION",
+                  },
+                  Object {
+                    "component": [Function],
+                    "icon": "sp-feedback",
+                    "text": "GIVE_FEEDBACK",
+                  },
+                ]
+              }
             >
-              <span
-                className="sp sp-chevron-left has-text-primary"
-                onClick={[Function]}
-                role="button"
-              />
-              <span
-                className="text has-text-white"
-                title="ADDRESS"
+              <section
+                className="is-flex tile is-vertical level full-height"
               >
-                ADDRESS
-              </span>
-            </section>
-            <Menu>
-              <div
-                className="menu-floating"
-              >
-                <MenuItemsContainer
-                  items={
-                    Array [
-                      Object {
-                        "icon": "sp-map",
-                        "text": "CHANGE_ADDRESS",
-                        "to": "/",
-                      },
-                      Object {
-                        "component": [Function],
-                        "icon": "sp-update",
-                        "text": "MANAGE_FIRMWARES",
-                      },
-                      Object {
-                        "component": [Function],
-                        "icon": "sp-info",
-                        "text": "VERSION_INFORMATION",
-                      },
-                      Object {
-                        "component": [Function],
-                        "icon": "sp-feedback",
-                        "text": "GIVE_FEEDBACK",
-                      },
-                    ]
-                  }
+                <article
+                  className="is-flex space-around flow-wrap mt-15"
                 >
-                  <section
-                    className="is-flex tile is-vertical level full-height"
+                  <div
+                    className="mb-30"
+                    key="CHANGE_ADDRESS"
                   >
-                    <article
-                      className="is-flex space-around flow-wrap mt-15"
-                    >
-                      <div
-                        className="mb-30"
-                        key="CHANGE_ADDRESS"
-                      >
-                        <Component
-                          icon="sp-map"
-                          onClick={[Function]}
-                          text="Change Address"
-                        >
-                          <button
-                            className="tilex tile has-text-white is-flex is-vertical space-around"
-                            onClick={[Function]}
-                          >
-                            <div
-                              className="sp is-size-1 sp-map"
-                            />
-                            <div
-                              className="text is-size-5 pt-10 pl-10 pr-10 pb-10"
-                            >
-                              Change Address
-                            </div>
-                          </button>
-                        </Component>
-                      </div>
-                      <div
-                        className="mb-30"
-                        key="MANAGE_FIRMWARES"
-                      >
-                        <Component
-                          icon="sp-update"
-                          onClick={[Function]}
-                          text="Manage Firmware"
-                        >
-                          <button
-                            className="tilex tile has-text-white is-flex is-vertical space-around"
-                            onClick={[Function]}
-                          >
-                            <div
-                              className="sp is-size-1 sp-update"
-                            />
-                            <div
-                              className="text is-size-5 pt-10 pl-10 pr-10 pb-10"
-                            >
-                              Manage Firmware
-                            </div>
-                          </button>
-                        </Component>
-                      </div>
-                      <div
-                        className="mb-30"
-                        key="VERSION_INFORMATION"
-                      >
-                        <Component
-                          icon="sp-info"
-                          onClick={[Function]}
-                          text="Version Information"
-                        >
-                          <button
-                            className="tilex tile has-text-white is-flex is-vertical space-around"
-                            onClick={[Function]}
-                          >
-                            <div
-                              className="sp is-size-1 sp-info"
-                            />
-                            <div
-                              className="text is-size-5 pt-10 pl-10 pr-10 pb-10"
-                            >
-                              Version Information
-                            </div>
-                          </button>
-                        </Component>
-                      </div>
-                      <div
-                        className="mb-30"
-                        key="GIVE_FEEDBACK"
-                      >
-                        <Component
-                          icon="sp-feedback"
-                          onClick={[Function]}
-                          text="Give us Feedback"
-                        >
-                          <button
-                            className="tilex tile has-text-white is-flex is-vertical space-around"
-                            onClick={[Function]}
-                          >
-                            <div
-                              className="sp is-size-1 sp-feedback"
-                            />
-                            <div
-                              className="text is-size-5 pt-10 pl-10 pr-10 pb-10"
-                            >
-                              Give us Feedback
-                            </div>
-                          </button>
-                        </Component>
-                      </div>
-                    </article>
-                    <button
-                      className="button has-text-centered is-uppercase mb-10 has-text-primary is-text"
+                    <Component
+                      icon="sp-map"
                       onClick={[Function]}
+                      text="Change Address"
                     >
-                      Log out
-                    </button>
-                  </section>
-                </MenuItemsContainer>
-              </div>
-            </Menu>
-          </Header>
-        </header>
-      </HOC>
+                      <button
+                        className="tilex tile has-text-white is-flex is-vertical space-around"
+                        onClick={[Function]}
+                      >
+                        <div
+                          className="sp is-size-1 sp-map"
+                        />
+                        <div
+                          className="text is-size-5 pt-10 pl-10 pr-10 pb-10"
+                        >
+                          Change Address
+                        </div>
+                      </button>
+                    </Component>
+                  </div>
+                  <div
+                    className="mb-30"
+                    key="MANAGE_FIRMWARES"
+                  >
+                    <Component
+                      icon="sp-update"
+                      onClick={[Function]}
+                      text="Manage Firmware"
+                    >
+                      <button
+                        className="tilex tile has-text-white is-flex is-vertical space-around"
+                        onClick={[Function]}
+                      >
+                        <div
+                          className="sp is-size-1 sp-update"
+                        />
+                        <div
+                          className="text is-size-5 pt-10 pl-10 pr-10 pb-10"
+                        >
+                          Manage Firmware
+                        </div>
+                      </button>
+                    </Component>
+                  </div>
+                  <div
+                    className="mb-30"
+                    key="VERSION_INFORMATION"
+                  >
+                    <Component
+                      icon="sp-info"
+                      onClick={[Function]}
+                      text="Version Information"
+                    >
+                      <button
+                        className="tilex tile has-text-white is-flex is-vertical space-around"
+                        onClick={[Function]}
+                      >
+                        <div
+                          className="sp is-size-1 sp-info"
+                        />
+                        <div
+                          className="text is-size-5 pt-10 pl-10 pr-10 pb-10"
+                        >
+                          Version Information
+                        </div>
+                      </button>
+                    </Component>
+                  </div>
+                  <div
+                    className="mb-30"
+                    key="GIVE_FEEDBACK"
+                  >
+                    <Component
+                      icon="sp-feedback"
+                      onClick={[Function]}
+                      text="Give us Feedback"
+                    >
+                      <button
+                        className="tilex tile has-text-white is-flex is-vertical space-around"
+                        onClick={[Function]}
+                      >
+                        <div
+                          className="sp is-size-1 sp-feedback"
+                        />
+                        <div
+                          className="text is-size-5 pt-10 pl-10 pr-10 pb-10"
+                        >
+                          Give us Feedback
+                        </div>
+                      </button>
+                    </Component>
+                  </div>
+                </article>
+                <button
+                  className="button has-text-centered is-uppercase mb-10 has-text-primary is-text"
+                  onClick={[Function]}
+                >
+                  Log out
+                </button>
+              </section>
+            </MenuItemsContainer>
+          </div>
+        </Menu>
+      </Header>
     </Provider>
   </Router>
 </BrowserRouter>

@@ -1,5 +1,5 @@
 import React from 'react'
-import Header from '.'
+import { Header } from '.'
 import * as reactRedux from 'react-redux'
 
 describe('Header Component', () => {
