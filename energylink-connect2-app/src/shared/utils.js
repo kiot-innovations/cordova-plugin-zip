@@ -158,7 +158,10 @@ export const cleanString = (str = '') => {
 }
 
 export const buildSN = barcode => ({
-  serial_number: barcode.startsWith('1') ? `E00${barcode}` : barcode,
+  serial_number:
+    barcode.startsWith('12') && length(barcode) === 12
+      ? `E00${barcode}`
+      : barcode,
   type: 'SOLARBRIDGE'
 })
 export const trace = t => x => {
