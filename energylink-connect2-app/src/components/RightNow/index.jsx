@@ -290,7 +290,7 @@ function RightNow({
   const hubState = gridValue > 0 ? hubStates.CONSUMING : hubStates.PRODUCING
   const windowWidth = window.innerWidth
 
-  homeValue = Math.abs(homeValue).toFixed(2)
+  homeValue = homeValue.toFixed(2)
   solarValue = Math.abs(solarValue).toFixed(2)
   gridValue = Math.abs(gridValue).toFixed(2)
   storageValue = Math.abs(storageValue).toFixed(2)
