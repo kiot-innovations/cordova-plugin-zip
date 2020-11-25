@@ -51,6 +51,7 @@ exports[`Firmwares component render correctly 1`] = `
             downloadFile={[Function]}
             error=""
             fileName="PVS_FIRMWARE"
+            goToReleaseNotes={[Function]}
             isDownloading={false}
             progress={0}
             step="INITIALIZING"

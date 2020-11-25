@@ -17,6 +17,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useI18n } from 'shared/i18n'
 import { either } from 'shared/utils'
 import { DOWNLOAD_OS_INIT } from 'state/actions/ess'
+import { MENU_DISPLAY_ITEM } from 'state/actions/ui'
 
 import { PVS_FIRMWARE_DOWNLOAD_INIT } from 'state/actions/fileDownloader'
 import { GRID_PROFILE_DOWNLOAD_INIT } from 'state/actions/gridProfileDownloader'
@@ -107,6 +108,9 @@ function Firmwares() {
         step={fwFileInfo.step}
         size={getFileSize(fwFileInfo)}
         progress={progress}
+        goToReleaseNotes={() =>
+          dispatch(MENU_DISPLAY_ITEM('FIRMWARE_RELEASE_NOTES'))
+        }
       />
 
       <Separator />

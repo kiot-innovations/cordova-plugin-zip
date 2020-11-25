@@ -87,24 +87,33 @@ exports[`Header Component Renders correctly 1`] = `
                   items={
                     Array [
                       Object {
+                        "display": true,
                         "icon": "sp-map",
                         "text": "CHANGE_ADDRESS",
                         "to": "/",
                       },
                       Object {
                         "component": [Function],
+                        "display": true,
                         "icon": "sp-update",
                         "text": "MANAGE_FIRMWARES",
                       },
                       Object {
                         "component": [Function],
+                        "display": true,
                         "icon": "sp-info",
                         "text": "VERSION_INFORMATION",
                       },
                       Object {
                         "component": [Function],
+                        "display": true,
                         "icon": "sp-feedback",
                         "text": "GIVE_FEEDBACK",
+                      },
+                      Object {
+                        "component": [Function],
+                        "display": false,
+                        "text": "FIRMWARE_RELEASE_NOTES",
                       },
                     ]
                   }
@@ -300,24 +309,33 @@ exports[`Header Component Renders text instead of logo 1`] = `
                   items={
                     Array [
                       Object {
+                        "display": true,
                         "icon": "sp-map",
                         "text": "CHANGE_ADDRESS",
                         "to": "/",
                       },
                       Object {
                         "component": [Function],
+                        "display": true,
                         "icon": "sp-update",
                         "text": "MANAGE_FIRMWARES",
                       },
                       Object {
                         "component": [Function],
+                        "display": true,
                         "icon": "sp-info",
                         "text": "VERSION_INFORMATION",
                       },
                       Object {
                         "component": [Function],
+                        "display": true,
                         "icon": "sp-feedback",
                         "text": "GIVE_FEEDBACK",
+                      },
+                      Object {
+                        "component": [Function],
+                        "display": false,
+                        "text": "FIRMWARE_RELEASE_NOTES",
                       },
                     ]
                   }

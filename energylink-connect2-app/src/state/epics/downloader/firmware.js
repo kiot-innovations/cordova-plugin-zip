@@ -16,6 +16,12 @@ import {
   PVS_FIRMWARE_UPDATE_URL,
   PVS_SET_FILE_INFO
 } from 'state/actions/fileDownloader'
+
+import {
+  SET_FIRMWARE_RELEASE_NOTES,
+  GET_RELEASE_NOTES_ERROR
+} from 'state/actions/firmwareUpdate'
+
 import { EMPTY_ACTION } from 'state/actions/share'
 import unzipObservable from 'state/epics/observables/unzip'
 import fileTransferObservable from 'state/epics/observables/downloader'
@@ -23,6 +29,7 @@ import {
   fileExists,
   getFirmwareVersionData,
   getFS,
+  readFile,
   verifySHA256
 } from 'shared/fileSystem'
 import { getFileSystemFromLuaFile } from 'shared/PVSUtils'
@@ -55,6 +62,40 @@ export const updatePVSFirmwareUrl = action$ => {
     )
   )
 }
+
+export const downloadPVSFirmwareReleaseNotes = action$ =>
+  action$.pipe(
+    ofType(PVS_FIRMWARE_REPORT_SUCCESS.getType()),
+    exhaustMap(({ payload }) => {
+      //get the url, download the file, parse the firmware release notes out of it
+      return from(
+        readFile('luaFiles/fwup002.lua')
+          .then(luaFileText => {
+            const changes_urlRegex = /changes_url\s=\s\S*/gm
+
+            function getChangesURL(regex, luaFile) {
+              return regex
+                .exec(luaFile)[0]
+                .split(' = ')
+                .pop()
+                .split(',')
+                .shift()
+                .replaceAll("'", '')
+            }
+
+            return getChangesURL(changes_urlRegex, luaFileText)
+          })
+          .then(fetch)
+          .then(res => res.json())
+      ).pipe(
+        map(SET_FIRMWARE_RELEASE_NOTES),
+        catchError(err => {
+          Sentry.captureException(err)
+          return of(GET_RELEASE_NOTES_ERROR({ err: err.message }))
+        })
+      )
+    })
+  )
 
 export const downloadPVSFirmware = action$ =>
   action$.pipe(
@@ -179,6 +220,7 @@ export default [
   decompressLuaFiles,
   deleteFirmwareOnError,
   downloadPVSFirmware,
+  downloadPVSFirmwareReleaseNotes,
   updatePVSFirmwareUrl,
   downloadLuaFilesInitEpic,
   reportPVSDownloadSuccessEpic,

@@ -3,6 +3,7 @@ import React from 'react'
 import { useI18n } from 'shared/i18n'
 import Collapsible from 'components/Collapsible'
 import { either } from 'shared/utils'
+import { Link } from 'react-router-dom'
 
 const FileCollapsible = ({
   progress = 0,
@@ -13,9 +14,12 @@ const FileCollapsible = ({
   version = '',
   downloadFile,
   step = '',
-  size = 10
+  size = 10,
+  goToReleaseNotes = null
 }) => {
   const t = useI18n()
+  const showReleaseNotes = isDownloaded && goToReleaseNotes
+
   return (
     <Collapsible
       title={fileName}
@@ -69,6 +73,14 @@ const FileCollapsible = ({
               />
             )}
           </section>
+          {either(
+            showReleaseNotes,
+            <section className="mb-5">
+              <Link className="has-text-weight-bold" onClick={goToReleaseNotes}>
+                {t('RELEASE_NOTES')}
+              </Link>
+            </section>
+          )}
         </>
       )}
     </Collapsible>
