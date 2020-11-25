@@ -8,7 +8,8 @@ import {
   FIRMWARE_UPDATE_POLLING,
   FIRMWARE_UPDATE_WAITING_FOR_NETWORK,
   GRID_PROFILE_UPLOAD_ERROR,
-  RESET_FIRMWARE_UPDATE
+  RESET_FIRMWARE_UPDATE,
+  SET_FIRMWARE_RELEASE_NOTES
 } from 'state/actions/firmwareUpdate'
 
 const initialState = {
@@ -65,6 +66,10 @@ export default createReducer(
       ...initialState,
       canContinue: true,
       versionBeforeUpgrade
+    }),
+    [SET_FIRMWARE_RELEASE_NOTES]: (state, releaseNotes) => ({
+      ...state,
+      releaseNotes
     })
   },
   initialState

@@ -1,4 +1,5 @@
 import moment from 'moment'
+import marked from 'marked'
 
 import {
   assoc,
@@ -43,6 +44,10 @@ import {
 
 export const either = (condition, whenTrue, whenFalse = null) =>
   condition ? whenTrue : whenFalse
+
+export function createMarkup(recommendedAction) {
+  return { __html: marked(recommendedAction) }
+}
 
 /**
  * Will return the data of the placed found with google maps
@@ -153,7 +158,10 @@ export const cleanString = (str = '') => {
 }
 
 export const buildSN = barcode => ({
-  serial_number: barcode.startsWith('1') ? `E00${barcode}` : barcode,
+  serial_number:
+    barcode.startsWith('12') && length(barcode) === 12
+      ? `E00${barcode}`
+      : barcode,
   type: 'SOLARBRIDGE'
 })
 export const trace = t => x => {

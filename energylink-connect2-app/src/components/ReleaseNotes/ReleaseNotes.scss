@@ -1,0 +1,50 @@
+@import '~@sunpower/theme-dark/styles/variables';
+
+.release-notes {
+  align-items: center;
+
+  .currentVersion {
+    margin: 10px 0;
+    font-weight: normal;
+  }
+
+  .body {
+    .previous-release-notes {
+      margin: 10px auto;
+      text-align: center;
+    }
+
+    .version {
+      .versionNumber {
+        color: $white;
+        font-weight: normal;
+
+        &.first {
+          font-size: 140%;
+          font-weight: bold;
+        }
+      }
+
+      .releaseDate {
+        color: $dark-gray;
+        margin: 10px 0;
+        font-weight: normal;
+      }
+
+      .content {
+        h1 {
+          font-size: 110%;
+          font-weight: bold;
+          color: $white;
+          margin-bottom: 0px;
+        }
+
+        p {
+          font-size: 100%;
+          font-weight: normal;
+          margin-bottom: 20px;
+        }
+      }
+    }
+  }
+}

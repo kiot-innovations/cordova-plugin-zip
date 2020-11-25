@@ -20,13 +20,7 @@ describe('VersionInformation component', () => {
 
   test('renders correctly', () => {
     const { component } = mountWithProvider(<VersionInformation />)({})
-    expect(component.find('.version-info').exists()).toBe(true)
-    expect(
-      component
-        .find('.data')
-        .children()
-        .at(1)
-        .text()
-    ).toMatch(/[0-9]+\.[0-9]+\.[0-9]+/) // E.g. 0.78.0 (numbers dot numbers dot numbers)
+    expect(component.find('.release-notes').exists()).toBe(true)
+    expect(component).toMatchSnapshot()
   })
 })

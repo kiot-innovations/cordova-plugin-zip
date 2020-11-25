@@ -1,11 +1,10 @@
 import React from 'react'
-import marked from 'marked'
 import { useSelector } from 'react-redux'
 import { compose, equals, filter, length, propOr, props } from 'ramda'
 import { useHistory, useLocation, useParams } from 'react-router-dom'
 import { getError } from 'shared/errorCodes'
 import { useI18n } from 'shared/i18n'
-import { either } from 'shared/utils'
+import { createMarkup, either } from 'shared/utils'
 import { eqsSteps } from 'state/reducers/storage'
 import paths from 'routes/paths'
 import './ErrorDetail.scss'
@@ -43,10 +42,6 @@ const BackButton = ({ currentStep }) => {
       {t('GO_BACK')}
     </button>
   )
-}
-
-function createMarkup(recommendedAction) {
-  return { __html: marked(recommendedAction) }
 }
 
 const shouldShowError = compose(

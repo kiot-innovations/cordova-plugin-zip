@@ -8,7 +8,6 @@ export const ERROR_CODES = {
   getVersionInfo: 'getVersionInfo',
   getLuaFile: 'getLuaFile',
   noLuaFile: 'noLuaFile',
-  parseLuaFile: 'parseLuaFile',
   noWifi: 'No WiFi'
 }
 
@@ -34,47 +33,6 @@ const getBuildNumber = compose(
   split('/'),
   defaultTo('')
 )
-
-export const parseLuaFile = fileName =>
-  new Promise((resolve, reject) => {
-    const type = window.PERSISTENT
-    const size = 5 * 1024 * 1024
-
-    function successCallback(fs) {
-      fs.root.getFile(
-        `firmware/${fileName}`,
-        {},
-        function(fileEntry) {
-          fileEntry.file(function(file) {
-            const reader = new FileReader()
-            reader.onloadend = function() {
-              const sizeRegex = /dlsize\s=\s\S*/gm
-
-              function getIntegerData(regex, luaFile) {
-                return parseFloat(
-                  regex
-                    .exec(luaFile)[0]
-                    .split(' = ')
-                    .pop()
-                    .split(',')
-                    .shift()
-                )
-              }
-
-              const size = (
-                getIntegerData(sizeRegex, this.result) / 1000000
-              ).toFixed(2)
-              resolve(size)
-            }
-            reader.readAsText(file)
-          }, reject)
-        },
-        reject
-      )
-    }
-
-    window.requestFileSystem(type, size, successCallback, reject)
-  })
 
 export const getFileBlob = (fileName = '') =>
   new Promise(async (resolve, reject) => {
