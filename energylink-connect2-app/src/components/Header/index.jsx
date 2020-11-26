@@ -20,11 +20,7 @@ const isMenuPath = history =>
   history.location.pathname === paths.PROTECTED.VERSION_INFORMATION.path ||
   history.location.pathname === paths.PROTECTED.GIVE_FEEDBACK.path
 
-export const Header = ({
-  text,
-  icon = 'sp-menu',
-  iconOpen = 'sp-chevron-left'
-}) => {
+export const Header = ({ icon = 'sp-menu', iconOpen = 'sp-chevron-left' }) => {
   const history = useHistory()
   const location = useLocation()
   const dispatch = useDispatch()
@@ -34,6 +30,7 @@ export const Header = ({
   )
   const showMenu = useSelector(path(['ui', 'menu', 'show']))
   const previousURL = useSelector(path(['ui', 'menu', 'previousURL']))
+  const siteAddress = useSelector(path(['site', 'site', 'address1']))
   const shouldDisableMenu = upgrading && !isError(status, percent)
 
   const menuOpen = isMenuPath(history) || showMenu
@@ -60,10 +57,10 @@ export const Header = ({
       <section className="header is-flex level is-clipper">
         <span className={classIcon} onClick={menuAction} role="button" />
         {either(
-          isNil(text),
+          isNil(siteAddress),
           <Logo />,
-          <span className="text has-text-white" title={text}>
-            {trimString(text, getCount(window))}
+          <span className="text has-text-white" title={siteAddress}>
+            {trimString(siteAddress, getCount(window))}
           </span>
         )}
       </section>
