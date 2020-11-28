@@ -12,7 +12,7 @@ import {
   NO_SITE_FOUND,
   SET_SITE
 } from 'state/actions/site'
-import { CHECK_APP_UPDATE_INIT } from 'state/actions/global'
+import { CHECK_APP_UPDATE_INIT, CHECK_SSL_CERTS } from 'state/actions/global'
 import { getApiSearch } from 'shared/api'
 
 import paths from 'routes/paths'
@@ -94,6 +94,10 @@ function Home() {
         cb([])
       })
   }
+
+  useEffect(() => {
+    dispatch(CHECK_SSL_CERTS())
+  }, [dispatch])
 
   return (
     <section className="home has-text-centered full-height pl-15 pr-15">

@@ -19,6 +19,7 @@ import siteEpics from './site'
 import storageEpics from './storage'
 import systemConfigurationEpics from './systemConfiguration'
 import permissionsEpics from './permissions'
+import checkSSLCertsEpics from './sslCerts'
 
 export default combineEpics(
   ...modalEpics,
@@ -39,5 +40,6 @@ export default combineEpics(
   ...appUpdaterEpics,
   ...analyticsEpics,
   ...bluetoothEpics,
-  ...permissionsEpics
+  ...permissionsEpics,
+  ...checkSSLCertsEpics
 )

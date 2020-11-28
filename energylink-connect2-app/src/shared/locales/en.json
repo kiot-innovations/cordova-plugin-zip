@@ -582,5 +582,7 @@
   "PERM_CHECK_ERROR": "Bluetooth access is still unauthorized. Please try again.",
   "WPS_CONNECTION_RETRY": "Please press the WPS button on the router and try again",
   "PERM_CHECK_SUCCESS": "Bluetooth is authorized to be used with SunPower Pro Connect.",
-  "NO_GRID_PROFILE": "No grid profile"
+  "NO_GRID_PROFILE": "No grid profile",
+  "SSL_CERT_CHECK_CONNECTION_NOT_SECURE_TITLE": "SSL Security Error",
+  "SSL_CERT_CHECK_CONNECTION_NOT_SECURE_BODY": "Certificate authority not trusted, please change your connection and retry."
 }

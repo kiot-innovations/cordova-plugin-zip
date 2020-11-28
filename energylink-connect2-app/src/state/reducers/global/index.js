@@ -20,7 +20,12 @@ import {
 } from 'state/actions/global'
 import paths from 'routes/paths'
 import { SET_SCANDIT_ACCESS } from 'state/actions/scandit'
-import { RESET_COMMISSIONING } from 'state/actions/global'
+import {
+  RESET_COMMISSIONING,
+  CHECK_SSL_CERTS,
+  CHECK_SSL_CERTS_SUCCESS,
+  CHECK_SSL_CERTS_ERROR,
+} from 'state/actions/global'
 
 const initialState = {
   isAccountCreated: false,
@@ -33,7 +38,9 @@ const initialState = {
   lastVisitedPage: paths.PROTECTED.PVS_SELECTION_SCREEN.path,
   canAccessScandit: true,
   updateAvailable: false,
-  updateVersion: 0
+  updateVersion: 0,
+  checkingSSLCerts: false,
+  hasValidSSLCerts: null,
 }
 
 export const globalReducer = createReducer(
@@ -91,7 +98,21 @@ export const globalReducer = createReducer(
       ...state,
       updateAvailable: false,
       updateVersion: 0
-    })
+    }),
+    [CHECK_SSL_CERTS]: (state) => ({
+      ...state,
+      checkingSSLCerts: true,
+    }),
+    [CHECK_SSL_CERTS_SUCCESS]: (state) => ({
+      ...state,
+      checkingSSLCerts: false,
+      hasValidSSLCerts: true,
+    }),
+    [CHECK_SSL_CERTS_ERROR]: (state) => ({
+      ...state,
+      checkingSSLCerts: false,
+      hasValidSSLCerts: false,
+    }),
   },
   initialState
 )

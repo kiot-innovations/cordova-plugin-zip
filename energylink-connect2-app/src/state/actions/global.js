@@ -13,3 +13,6 @@ export const APP_UPDATE_OPEN_MARKET_ERROR = createAction(
   'APP_UPDATE_OPEN_MARKET_ERROR'
 )
 export const RESET_COMMISSIONING = createAction('RESET_COMMISSIONING')
+export const CHECK_SSL_CERTS = createAction('CHECK_SSL_CERTS')
+export const CHECK_SSL_CERTS_SUCCESS = createAction('CHECK_SSL_CERTS_SUCCESS')
+export const CHECK_SSL_CERTS_ERROR = createAction('CHECK_SSL_CERTS_ERROR')

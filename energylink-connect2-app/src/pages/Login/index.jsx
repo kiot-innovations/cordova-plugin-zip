@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom'
 import Logo from '@sunpower/sunpowerimage'
 
 import { requestLogin, handleLoginFromPing } from 'state/actions/auth'
+import { CHECK_SSL_CERTS } from 'state/actions/global'
 import { useI18n } from 'shared/i18n'
 import paths from 'routes/paths'
 
@@ -16,12 +17,16 @@ function Login() {
   const t = useI18n()
   const dispatch = useDispatch()
 
-  const isAuthenticating = useSelector(state => state.user.isAuthenticating)
-  const error = useSelector(state => state.user.err)
+  const isAuthenticating = useSelector((state) => state.user.isAuthenticating)
+  const error = useSelector((state) => state.user.err)
 
   const loginClassName = clsx('button', 'is-primary', 'is-uppercase', {
     'is-loading': isAuthenticating
   })
+
+  useEffect(() => {
+    dispatch(CHECK_SSL_CERTS())
+  }, [dispatch])
 
   useEffect(() => {
     window.handleOpenURL = handleOpenURL(dispatch)
