@@ -151,3 +151,21 @@ export const internetConnection = (interfaceType = '') => {
   })
   return MIXPANEL_EVENT_QUEUED('User opens app - Register page resume')
 }
+
+export const firmwareUpdateEvent = data => {
+  const { mixpanel } = window
+  mixpanel.track('Firmware Update', {
+    'Current FW Version': prop('fromFWVersion', data),
+    'Current BN Version': prop('fromBuildNumber', data),
+    'New FW Version': prop('toFWVersion', data),
+    'New BN Version': prop('toBuildNumber', data),
+    Success: prop('success', data)
+  })
+  return MIXPANEL_EVENT_QUEUED('Firmware update - Update successful')
+}
+
+export const timeMixPanelEvent = name => {
+  if (!name) throw new Error('The name parameter is required')
+  const { mixpanel } = window
+  mixpanel.time_event(name)
+}

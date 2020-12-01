@@ -5,6 +5,7 @@ import siteEpics from './findSiteEpics'
 import configureEpics from './configureEpics'
 import inventoryEpics from './InventoryEpics'
 import deviceResumeEpic from './deviceResumeEpic'
+import firmwareUpdate from './firmwareUpdate'
 
 export default [
   loginSuccessEpic,
@@ -14,5 +15,6 @@ export default [
   ...siteEpics,
   ...inventoryEpics,
   ...configureEpics,
+  ...firmwareUpdate,
   ...scanPVS
 ]
