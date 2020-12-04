@@ -12,3 +12,6 @@ export const PLT_SAVE_ERROR = createAction(
 
 export const PLT_SAVE_FINISHED = createAction('Panel layout tool: saved')
 export const PLT_MARK_AS_CHANGED = createAction('Panel layout tool: changed')
+export const PLT_LAST_MODIFIED_DATE = createAction(
+  'Panel Layout tool: set last Modified date'
+)

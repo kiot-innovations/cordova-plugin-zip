@@ -35,7 +35,7 @@ describe('epic panel-layout-tool', () => {
         }
         const expectedValues = {
           b: actions.init([]),
-          c: PLT_LOAD_FINISHED()
+          c: PLT_LOAD_FINISHED([])
         }
 
         const inputMarble = 'a'

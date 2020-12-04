@@ -21,6 +21,7 @@ import NetworkWidget from './NetworkWidget'
 import RSEWidget from './RSEWidget'
 
 import './SystemConfiguration.scss'
+import PanelLayoutWidget from 'pages/SystemConfiguration/panelLayoutWidget'
 
 const createMeterConfig = (devicesList, meterConfig, dispatch, site) => {
   const updatedDevices = devicesList.map(device => {
@@ -157,14 +158,8 @@ function SystemConfiguration() {
       <GridBehaviorWidget />
       <MetersWidget hasStorage={hasStorage} />
       <RSEWidget />
-      <div className="submit-config">
-        <button
-          onClick={() => history.push(paths.PROTECTED.PANEL_LAYOUT_TOOL.path)}
-          className="button is-secondary mb-10"
-        >
-          {t('PLT_LINK')}
-        </button>
-
+      <PanelLayoutWidget />
+      <div className="submit-config pt-15">
         <button
           onClick={submitConfig}
           className="button is-primary is-uppercase"

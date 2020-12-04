@@ -1,5 +1,6 @@
 import { createReducer } from 'redux-act'
 import {
+  PLT_LAST_MODIFIED_DATE,
   PLT_LOAD,
   PLT_LOAD_ERROR,
   PLT_LOAD_FINISHED,
@@ -14,7 +15,9 @@ const initialState = {
   saved: false,
   error: '',
   loading: false,
-  changed: false
+  changed: false,
+  panels: [],
+  lastModifiedDate: undefined //'2020-11-10T23:05:59.908Z' // TODO fetch the actual date from EDP
 }
 
 export const pltWizard = createReducer(
@@ -23,10 +26,15 @@ export const pltWizard = createReducer(
       ...state,
       loading: true
     }),
-    [PLT_LOAD_FINISHED]: state => ({
+    [PLT_LOAD_FINISHED]: (state, panels) => ({
       ...state,
       loading: false,
-      changed: false
+      changed: false,
+      panels
+    }),
+    [PLT_LAST_MODIFIED_DATE]: (state, lastModifiedDate) => ({
+      ...state,
+      lastModifiedDate
     }),
     [PLT_LOAD_ERROR]: state => ({
       ...state,

@@ -1,0 +1,14 @@
+.panel-layout-widget {
+  display: flex;
+  flex-direction: column;
+  height: 200px;
+  align-items: flex-start;
+  justify-content: space-between;
+
+  .go-to-layout {
+    align-self: center;
+  }
+  .center-button{
+    align-self: center;
+  }
+}

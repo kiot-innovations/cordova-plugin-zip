@@ -1,8 +1,8 @@
 import * as Sentry from '@sentry/browser'
-import { actions, mapToPVS, mapFromPVS } from '@sunpower/panel-layout-tool'
-import { pathOr, filter, propIs, compose, length } from 'ramda'
+import { actions, mapFromPVS, mapToPVS } from '@sunpower/panel-layout-tool'
+import { compose, filter, length, pathOr, propIs } from 'ramda'
 import { ofType } from 'redux-observable'
-import { map, catchError, switchMap, exhaustMap } from 'rxjs/operators'
+import { catchError, exhaustMap, map, switchMap } from 'rxjs/operators'
 import { EMPTY, from, of } from 'rxjs'
 
 import { getApiPVS } from 'shared/api'
@@ -47,7 +47,9 @@ export const getPanelLayoutEpic = action$ =>
     ofType(PLT_LOAD.getType()),
     exhaustMap(() =>
       from(getPanelLayout()).pipe(
-        switchMap(panels => of(actions.init(panels), PLT_LOAD_FINISHED())),
+        switchMap(panels =>
+          of(actions.init(panels), PLT_LOAD_FINISHED(panels))
+        ),
         catchError(() => of(PLT_LOAD_ERROR.asError()))
       )
     )

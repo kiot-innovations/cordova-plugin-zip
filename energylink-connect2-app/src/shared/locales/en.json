@@ -583,6 +583,12 @@
   "WPS_CONNECTION_RETRY": "Please press the WPS button on the router and try again",
   "PERM_CHECK_SUCCESS": "Bluetooth is authorized to be used with SunPower Pro Connect.",
   "NO_GRID_PROFILE": "No grid profile",
+  "PANEL_LAYOUT": "Panel Layout",
+  "UNABLE_RETRIEVE_LAST_DATE": "Unable to retrieve the last time the layout was saved",
+  "NO_PANEL_DATA": "No panel layout data for this site, you can also create it in SPFM",
+  "PANEL_DATA_EXISTS": "There is some panel data here please have fun with it",
+  "MODULES_PRESENT": "Modules",
+  "MODULES_NO_PRESENT": "Modules not placed",
   "SSL_CERT_CHECK_CONNECTION_NOT_SECURE_TITLE": "SSL Security Error",
   "SSL_CERT_CHECK_CONNECTION_NOT_SECURE_BODY": "Certificate authority not trusted, please change your connection and retry."
 }
