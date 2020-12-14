@@ -4,8 +4,8 @@ import { useI18n } from 'shared/i18n'
 import { useHistory } from 'react-router-dom'
 import { Loader } from 'components/Loader'
 import HomeownerAccountCreation from 'components/HomeownerAccountCreation'
-import { isEmpty, test, pathOr } from 'ramda'
-import { either } from 'shared/utils'
+import { isEmpty, test, pathOr, propOr } from 'ramda'
+import { either, buildFullAddress } from 'shared/utils'
 import {
   ALLOW_COMMISSIONING,
   SUBMIT_CLEAR
@@ -24,6 +24,14 @@ const SavingConfiguration = () => {
   const { submitting, commissioned, error } = useSelector(
     state => state.systemConfiguration.submit
   )
+
+  const site = useSelector(pathOr(false, ['site', 'site']))
+  const address = propOr('', 'address1', site).trim()
+  const address2 = propOr('', 'address2', site).trim()
+  const city = propOr('', 'city', site).trim()
+  const st_id = propOr('', 'st_id', site).trim()
+
+  const fullAddress = buildFullAddress(address, address2, st_id, city)
 
   const commissioningPvs = useSelector(pathOr('', ['pvs', 'serialNumber']))
 
@@ -48,24 +56,21 @@ const SavingConfiguration = () => {
   const configContent =
     commissioned && isEmpty(error)
       ? {
-          title: t('CONFIG_DONE'),
+          title: t('SUCCESS'),
           indicator: (
-            <div className="pt-20 pb-20">
-              <i className="sp-check has-text-white is-size-1" />
+            <div className="pt-20 pb-20 success">
+              <i className="sp-pvs has-text-white success_icon" />
             </div>
           ),
           controls: (
             <div className="success status-message">
-              <span className="has-text-white has-text-weight-bold">
-                {t('SAVED_CONFIGURATION')}
-              </span>
+              <div className="status-message is-flex tile is-vertical">
+                <span className="has-text-white has-text-weight-bold">
+                  {t('COMMISSIONING_SUCCESS')}
+                </span>
+                <span className="has-text-white">{fullAddress}</span>
+              </div>
               <PanelLayoutToolSavingStatus />
-              <button
-                onClick={goToChangeAddress}
-                className="button is-secondary is-uppercase"
-              >
-                {t('CONFIG_NEW_SITE')}
-              </button>
               {either(
                 !isEmpty(commissioningPvs),
                 <button
@@ -75,12 +80,20 @@ const SavingConfiguration = () => {
                   {t('CREATE_HOMEOWNER_ACCOUNT')}
                 </button>
               )}
-              <button
-                onClick={goToData}
-                className="button is-primary is-uppercase"
-              >
-                {t('DONE')}
-              </button>
+              <div className="inline-buttons">
+                <button
+                  onClick={goToChangeAddress}
+                  className="button is-secondary is-uppercase"
+                >
+                  {t('EXIT_SITE')}
+                </button>
+                <button
+                  onClick={goToData}
+                  className="button is-primary is-uppercase"
+                >
+                  {t('LIVE_DATA')}
+                </button>
+              </div>
               {either(
                 !isEmpty(commissioningPvs),
                 <HomeownerAccountCreation

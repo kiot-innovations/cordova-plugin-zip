@@ -367,6 +367,11 @@ export const isProd = includes(process.env.REACT_APP_FLAVOR, [
 
 export const isSerialEqual = (x, y) => x.SERIAL === y.SERIAL
 
+export const buildFullAddress = (address1, address2, streetId, city) =>
+  `${address1}${address2 ? ', ' + address2 : ''} ${city ? ', ' + city : ''}${
+    streetId ? ', ' + streetId : ''
+  }`
+
 export const getBLEPath =
   pathOr('none', ['device', 'platform'], window) === 'iOS'
     ? ['advertising', 'kCBAdvDataLocalName']

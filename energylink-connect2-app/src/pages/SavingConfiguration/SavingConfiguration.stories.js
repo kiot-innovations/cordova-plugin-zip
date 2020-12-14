@@ -8,6 +8,13 @@ import SavingConfiguration from './index'
 storiesOf('Saving Configuration Page', module)
   .add('Successful Configuration', () => {
     const { store } = configureStore({
+      site: {
+        site: {
+          address1: '33 Lucile Street',
+          city: 'Arcadia',
+          st_id: 'CA'
+        }
+      },
       systemConfiguration: {
         submit: {
           commissioned: true,
