@@ -190,12 +190,20 @@ function PvsSelection() {
         {t('ERROR_WHILE_CONNECTING')}
       </p>
       <div className="mt-10 mb-10">
-        <span className="sp-hey is-size-1 has-text-white" />
+        <span className="sp-hey is-size-2 has-text-white" />
       </div>
-      <p className="has-text-white mt-10 mb-10">
-        {t('ERROR_WHILE_CONNECTING_HINT')}
-      </p>
-      <button className="button is-primary" onClick={resetErrors}>
+      <p className="has-text-white mt-10 mb-10">{t('REBOOT_PVS_0')}</p>
+      <p className="mb-15 has-text-weight-bold">{t('REBOOT_PVS_HUB')}</p>
+      <ol className="pl-30 mb-10 has-text-left">
+        <li>{t('REBOOT_PVS_1')}</li>
+        <li>{t('REBOOT_PVS_2')}</li>
+        <li>{t('REBOOT_PVS_3')}</li>
+        <li>{t('REBOOT_PVS_4')}</li>
+        <li>{t('REBOOT_PVS_5')}</li>
+      </ol>
+      <p className="mb-15 has-text-weight-bold">{t('REBOOT_PVS')}</p>
+      <p className="mb-10">{t('REBOOT_PVS_6')}</p>
+      <button className="button is-primary is-fullwidth" onClick={resetErrors}>
         {t('CLOSE')}
       </button>
     </div>
@@ -491,7 +499,7 @@ function PvsSelection() {
 
       <SwipeableBottomSheet
         onChange={dismissModal}
-        open={err || connecting || connected}
+        open={Boolean(err) || connecting || connected}
       >
         <div className="tile is-vertical">
           {either(connecting, connectingModalContent)}
