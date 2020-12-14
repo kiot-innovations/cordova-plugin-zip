@@ -1,16 +1,16 @@
 import React, { useEffect } from 'react'
-import * as Sentry from '@sentry/browser'
 import { Link, useHistory } from 'react-router-dom'
-import { compose, join, map, path, pathOr, pick, prop, values } from 'ramda'
-import { useDispatch, useSelector } from 'react-redux'
+import { compose, prop } from 'ramda'
+import { useDispatch } from 'react-redux'
 
 import { useI18n } from 'shared/i18n'
-import { cleanString, renameKeys } from 'shared/utils'
+import { renameKeys } from 'shared/utils'
+
 import { FETCH_MODELS_INIT } from 'state/actions/devices'
 import {
   HOME_SCREEN_CREATE_SITE,
-  NO_SITE_FOUND,
-  SET_SITE
+  SET_SITE,
+  GET_SITES_INIT
 } from 'state/actions/site'
 import { CHECK_APP_UPDATE_INIT, CHECK_SSL_CERTS } from 'state/actions/global'
 import { PVS_FIRMWARE_DOWNLOAD_INIT } from 'state/actions/fileDownloader'
@@ -18,26 +18,12 @@ import { DOWNLOAD_OS_INIT } from 'state/actions/ess'
 import { GRID_PROFILE_DOWNLOAD_INIT } from 'state/actions/gridProfileDownloader'
 import { RESET_COMMISSIONING } from 'state/actions/global'
 import { CHECK_BLUETOOTH_STATUS_INIT } from 'state/actions/network'
-import { getApiSearch } from 'shared/api'
 
 import paths from 'routes/paths'
 
 import SearchField from 'components/SearchField'
+
 import './Home.scss'
-
-const formatAddress = compose(
-  join(', '),
-  values,
-  pick(['st_addr_lbl', 'city_id'])
-)
-
-const buildSelectValue = value => ({
-  label: formatAddress(value),
-  value: value.site_key,
-  site: value
-})
-
-const accessValue = compose(buildSelectValue, prop('_source'))
 
 const siteKeysMap = {
   st_addr_lbl: 'address1',
@@ -61,7 +47,6 @@ function Home() {
   const dispatch = useDispatch()
   const history = useHistory()
 
-  const { access_token } = useSelector(state => state.user.auth)
   useEffect(() => {
     dispatch(CHECK_BLUETOOTH_STATUS_INIT())
     dispatch(PVS_FIRMWARE_DOWNLOAD_INIT())
@@ -72,28 +57,8 @@ function Home() {
   }, [dispatch])
   const notFoundText = t('NOT_FOUND')
 
-  const filterSites = (inputValue, cb) => {
-    const searchStr = cleanString(inputValue)
-    getApiSearch(access_token)
-      .then(path(['apis', 'default']))
-      .then(api =>
-        api.get_v1_search_index__indexId_({
-          indexId: 'site',
-          q: searchStr,
-          pg: 1
-        })
-      )
-      .then(pathOr([], ['body', 'items', 'hits']))
-      .then(map(accessValue))
-      .then(sites => {
-        if (sites.length === 0) dispatch(NO_SITE_FOUND(searchStr))
-        return sites
-      })
-      .then(cb)
-      .catch(error => {
-        Sentry.captureMessage(error)
-        cb([])
-      })
+  const filterSites = (value, onResults) => {
+    dispatch(GET_SITES_INIT({ value, onResults }))
   }
 
   useEffect(() => {

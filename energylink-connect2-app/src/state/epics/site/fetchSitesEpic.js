@@ -5,66 +5,87 @@ import {
   catchError,
   exhaustMap,
   map,
-  mergeMap,
-  switchMap
+  switchMap,
+  tap,
+  filter as filterX,
+  debounceTime,
+  distinctUntilChanged
 } from 'rxjs/operators'
 import {
   compose,
-  converge,
   equals,
   filter,
   map as mapR,
   path,
   pathOr,
-  prop
+  prop,
+  join,
+  values,
+  pick
 } from 'ramda'
 import * as siteActions from 'state/actions/site'
 import * as devicesActions from 'state/actions/devices'
-import * as authActions from 'state/actions/auth'
-import { getApiParty, getApiSite } from 'shared/api'
+import { getApiSite, getApiSearch } from 'shared/api'
+import { EMPTY_ACTION } from 'state/actions/share'
+import { cleanString } from 'shared/utils'
 
 const getAccessToken = path(['user', 'auth', 'access_token'])
-const getPartyId = path(['user', 'data', 'partyId'])
-const getAPIMethods = path(['apis', 'default'])
 
-const getSitesPromises = (access_token, sites) =>
-  sites.map(({ siteKey }) =>
-    getApiSite(access_token)
-      .then(path(['apis', 'default']))
-      .then(api => api.get_v1_site__siteKey_({ siteKey }))
-  )
+const formatAddress = compose(
+  join(', '),
+  values,
+  pick(['st_addr_lbl', 'city_id'])
+)
 
-const getPartiesPromise = (access_token, partyId) =>
-  getApiParty(access_token)
-    .then(getAPIMethods)
-    .then(apiParty => apiParty.get_v2_party__partyId__site({ partyId }))
-    .then(pathOr([], ['body', 'relations']))
-    .then(sites => Promise.all(getSitesPromises(access_token, sites)))
+const buildSelectValue = value => ({
+  label: formatAddress(value),
+  value: value.site_key,
+  site: value
+})
 
-const getParties = converge(getPartiesPromise, [getAccessToken, getPartyId])
+const accessValue = compose(buildSelectValue, prop('_source'))
+
+const getSitesByText = (text, access_token) =>
+  getApiSearch(access_token)
+    .then(path(['apis', 'default']))
+    .then(api =>
+      api.get_v1_search_index__indexId_({
+        indexId: 'site',
+        q: text,
+        pg: 1
+      })
+    )
+    .then(pathOr([], ['body', 'items', 'hits']))
+    .then(mapR(accessValue))
 
 export const fetchSitesEpic = (action$, state$) => {
+  let setResults
   return action$.pipe(
-    ofType(
-      siteActions.GET_SITES_INIT.getType(),
-      authActions.REFRESH_TOKEN_SUCCESS.getType()
-    ),
-    mergeMap(() =>
-      from(getParties(state$.value)).pipe(
-        map(response => {
-          const sites = filter(Boolean, mapR(prop('body'), response)) || []
-          return sites.length > 0
-            ? siteActions.GET_SITES_SUCCESS(sites)
-            : siteActions.GET_SITES_ERROR({ message: 'NO_SITES' })
+    ofType(siteActions.GET_SITES_INIT.getType()),
+    tap(({ payload: { onResults } }) => (setResults = onResults)),
+    map(path(['payload', 'value'])),
+    map(cleanString),
+    filterX(text => text.trim().length > 1),
+    debounceTime(1000),
+    distinctUntilChanged(),
+    exhaustMap(text =>
+      from(getSitesByText(text, getAccessToken(state$.value))).pipe(
+        map(sites => {
+          setResults(sites)
+          return sites.length === 0
+            ? siteActions.NO_SITE_FOUND(text)
+            : EMPTY_ACTION()
         }),
         catchError(error => {
+          setResults([])
           Sentry.captureException(error)
-          return of(siteActions.GET_SITES_ERROR(error))
+          return of(siteActions.NO_SITE_FOUND(text))
         })
       )
     )
   )
 }
+
 export const fetchSiteData = (action$, state$) => {
   const filterPVS = filter(compose(equals('DATALOGGER'), prop('deviceType')))
 
