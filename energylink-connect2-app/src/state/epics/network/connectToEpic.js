@@ -31,12 +31,9 @@ import {
   PVS_CONNECTION_SUCCESS,
   STOP_NETWORK_POLLING,
   WAIT_FOR_SWAGGER,
-  PVS_TIMEOUT_FOR_CONNECTION,
-  ENABLE_ACCESS_POINT
+  PVS_TIMEOUT_FOR_CONNECTION
 } from 'state/actions/network'
 import { EMPTY_ACTION } from 'state/actions/share'
-import { BLESTATUS } from 'state/reducers/network'
-import paths from 'routes/paths'
 
 const WPA = 'WPA'
 const hasCode7 = test(/Code=7/)
@@ -77,26 +74,23 @@ const connectToEpic = (action$, state$) =>
       return from(connectToPVS(ssid, password)).pipe(
         map(() => WAIT_FOR_SWAGGER()),
         catchError(err => {
+          const { message } = err
           const isTimeoutAndNotUpgrading =
-            isTimeout(err) &&
+            isTimeout(message) &&
             state$.value.firmwareUpdate.status !== 'UPGRADE_COMPLETE'
 
-          const wasUsingBLE =
-            isNetworkUnavailable(err) &&
-            state$.value.network.bluetoothStatus ===
-              BLESTATUS.ENABLED_ACCESS_POINT_ON_PVS &&
-            window.location.hash.split('#')[1] ===
-              paths.PROTECTED.CONNECT_TO_PVS.path
-
           if (
-            hasCode7(err) ||
-            isInvalidNetworkID(err) ||
-            isInterrupted(err) ||
-            isWIFIDisabled(err) ||
-            isTimeoutAndNotUpgrading ||
-            !wasUsingBLE
+            hasCode7(message) ||
+            isInvalidNetworkID(message) ||
+            isInterrupted(message) ||
+            isWIFIDisabled(message) ||
+            isNetworkUnavailable(message) ||
+            isTimeoutAndNotUpgrading
           ) {
-            return of(STOP_NETWORK_POLLING({ canceled: true }))
+            return of(
+              STOP_NETWORK_POLLING({ canceled: true }),
+              PVS_CONNECTION_ERROR('PVS_CONNECTION_CANCELED')
+            )
           } else {
             return of(WAIT_FOR_SWAGGER())
           }
@@ -159,7 +153,7 @@ export const pvsTimeoutForConnectionEpic = (action$, state$) =>
     map(() =>
       path(['value', 'network', 'connected'], state$)
         ? EMPTY_ACTION()
-        : ENABLE_ACCESS_POINT()
+        : PVS_CONNECTION_ERROR('PVS_CONNECTION_TIMEOUT')
     ),
     catchError(error => {
       Sentry.captureException(error)

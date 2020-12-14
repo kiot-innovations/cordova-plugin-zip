@@ -170,9 +170,9 @@ exports[`Serial Number List Page renders correctly 1`] = `
                               "data": Object {},
                               "dirty": false,
                               "dirtySinceLastSubmit": false,
-                              "error": "SN_FIELD_ERROR_REGEX",
+                              "error": undefined,
                               "initial": "",
-                              "invalid": true,
+                              "invalid": false,
                               "length": undefined,
                               "modified": false,
                               "pristine": true,
@@ -181,7 +181,7 @@ exports[`Serial Number List Page renders correctly 1`] = `
                               "submitSucceeded": false,
                               "submitting": false,
                               "touched": false,
-                              "valid": false,
+                              "valid": true,
                               "validating": false,
                               "visited": false,
                             }
@@ -215,6 +215,7 @@ exports[`Serial Number List Page renders correctly 1`] = `
                       </div>
                       <button
                         className="button is-paddingless has-text-primary has-text-weight-bold is-uppercase is-outlined button-transparent"
+                        disabled={true}
                         type="submit"
                       >
                         ADD

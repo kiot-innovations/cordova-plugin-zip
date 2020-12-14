@@ -67,7 +67,7 @@ function MetersWidget({ hasStorage = false }) {
                   disabled={hasStorage}
                   onSelect={compose(dispatch, SET_PRODUCTION_CT, prop('value'))}
                   options={PRODUCTION_METER_TYPES}
-                  defaultValue={find(
+                  value={find(
                     propEq(
                       'value',
                       hasStorage ? 'GROSS_PRODUCTION_SITE' : productionCT
@@ -99,7 +99,7 @@ function MetersWidget({ hasStorage = false }) {
                     prop('value')
                   )}
                   options={CONSUMPTION_METER_TYPES}
-                  defaultValue={find(
+                  value={find(
                     propEq(
                       'value',
                       hasStorage ? 'NET_CONSUMPTION_LOADSIDE' : consumptionCT

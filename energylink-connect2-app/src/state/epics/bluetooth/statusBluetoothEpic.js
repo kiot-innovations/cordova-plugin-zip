@@ -3,7 +3,6 @@ import { catchError, map, exhaustMap, delayWhen } from 'rxjs/operators'
 import { from, of, timer } from 'rxjs'
 import { always } from 'ramda'
 import {
-  ENABLE_BLUETOOTH_INIT,
   CHECK_BLUETOOTH_STATUS_INIT,
   CHECK_BLUETOOTH_STATUS_SUCCESS,
   ENABLE_BLUETOOTH_ERROR
@@ -18,7 +17,7 @@ export const statusBluetoothEpic = action$ => {
         map(CHECK_BLUETOOTH_STATUS_SUCCESS),
         catchError(error => {
           console.warn('STATUS CATCHERROR', error)
-          return of(ENABLE_BLUETOOTH_INIT())
+          return of(ENABLE_BLUETOOTH_ERROR(error))
         })
       )
     )

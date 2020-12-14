@@ -1,15 +1,13 @@
 import { createReducer } from 'redux-act'
 import {
-  DOWNLOAD_META_ERROR,
-  DOWNLOAD_META_INIT,
-  DOWNLOAD_META_SUCCESS,
   DOWNLOAD_OS_ERROR,
   DOWNLOAD_OS_INIT,
   DOWNLOAD_OS_PROGRESS,
   DOWNLOAD_OS_REPORT_SUCCESS,
-  DOWNLOAD_OS_SUCCESS
+  DOWNLOAD_OS_SUCCESS,
+  DOWNLOAD_OS_UPDATE_VERSION
 } from 'state/actions/ess'
-import { assoc, path } from 'ramda'
+import { assoc } from 'ramda'
 
 const initialState = {
   progress: 0,
@@ -19,7 +17,9 @@ const initialState = {
   total: 0,
   isDownloading: false,
   md5: '',
-  step: ''
+  step: '',
+  version: undefined,
+  lastModified: 0
 }
 
 export default createReducer(
@@ -43,31 +43,27 @@ export default createReducer(
       error,
       isDownloading: false
     }),
-    [DOWNLOAD_META_ERROR]: (state, error) => ({
+    [DOWNLOAD_OS_SUCCESS]: (state, { entryFile, total, lastModified }) => ({
       ...state,
-      error
-    }),
-    [DOWNLOAD_OS_SUCCESS]: (state, { entryFile, total }) => ({
-      ...state,
+      lastModified,
       file: entryFile,
       error: null,
       isDownloading: false,
       total: total ? (total / 1000000).toFixed(2) : state.total,
       step: ''
     }),
-    [DOWNLOAD_META_INIT]: state => ({
-      ...initialState,
-      ...state
-    }),
-    [DOWNLOAD_META_SUCCESS]: (state, meta) => ({
-      ...state,
-      meta
-    }),
-    [DOWNLOAD_OS_REPORT_SUCCESS]: (state, payload) => {
-      const md5 = path(['serverHeaders', 'x-checksum-md5'], payload)
-      if (md5) return assoc('md5', md5, state)
+    [DOWNLOAD_OS_REPORT_SUCCESS]: (state, { serverHeaders = {} }) => {
+      if (serverHeaders['x-amz-meta-md5-hash']) {
+        return assoc('md5', serverHeaders['x-amz-meta-md5-hash'], state)
+      } else if (serverHeaders['x-checksum-md5']) {
+        return assoc('md5', serverHeaders['x-checksum-md5'], state)
+      }
       return state
-    }
+    },
+    [DOWNLOAD_OS_UPDATE_VERSION]: (state, version) => ({
+      ...state,
+      version
+    })
   },
   initialState
 )

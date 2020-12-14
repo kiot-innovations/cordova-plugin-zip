@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Redirect, useHistory } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { useI18n } from 'shared/i18n'
 import { compose, find, propEq, propOr } from 'ramda'
@@ -10,9 +10,13 @@ import paths from 'routes/paths'
 import './InventoryCounts.scss'
 import SwipeableBottomSheet from 'react-swipeable-bottom-sheet'
 
-function submitInventory(inventory, dispatch, redirect) {
+function submitInventory(inventory, dispatch, history, connected) {
   dispatch(saveInventory(inventory))
-  redirect(true)
+  if (connected) {
+    history.push(paths.PROTECTED.PVS_PROVIDE_INTERNET.path)
+  } else {
+    history.push(paths.PROTECTED.CONNECT_TO_PVS.path)
+  }
 }
 
 function createSelectField(
@@ -80,9 +84,9 @@ function InventoryCount() {
   const history = useHistory()
 
   const storedInventory = useSelector(({ inventory }) => inventory.bom)
+  const { connected } = useSelector(state => state.network)
 
   const [inventory, setInventory] = useState(storedInventory)
-  const [toBom, setToBom] = useState(false)
   const [configWarning, setConfigWarning] = useState(false)
   const [storageWarning, setStorageWarning] = useState(false)
 
@@ -97,7 +101,7 @@ function InventoryCount() {
         setStorageWarning(true)
       }
     } else {
-      submitInventory(inventory, dispatch, redirect)
+      submitInventory(inventory, dispatch, redirect, connected)
     }
   }
 
@@ -145,7 +149,6 @@ function InventoryCount() {
 
   return (
     <section className="inventory-count pl-15 pr-15">
-      {toBom ? <Redirect to={paths.PROTECTED.CONNECT_TO_PVS.path} /> : null}
       <h1 className="has-text-centered is-uppercase has-text-weight-bold">
         {t('INVENTORY_COUNT')}
       </h1>
@@ -162,7 +165,7 @@ function InventoryCount() {
         <button
           className="button is-primary is-fullwidth ml-5"
           type="submit"
-          onClick={e => validateInventory(e, inventory, dispatch, setToBom)}
+          onClick={e => validateInventory(e, inventory, dispatch, history)}
         >
           {t('DONE')}
         </button>
@@ -187,7 +190,7 @@ function InventoryCount() {
               </button>
               <button
                 className="button is-primary"
-                onClick={() => submitInventory(inventory, dispatch, setToBom)}
+                onClick={() => submitInventory(inventory, dispatch, history)}
               >
                 {t('CONTINUE')}
               </button>
@@ -217,7 +220,7 @@ function InventoryCount() {
                 className="button is-primary"
                 onClick={() => {
                   dispatch(ALLOW_COMMISSIONING())
-                  submitInventory(inventory, dispatch, setToBom)
+                  submitInventory(inventory, dispatch, history)
                 }}
               >
                 {t('CONTINUE')}

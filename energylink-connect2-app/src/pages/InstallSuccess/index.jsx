@@ -6,6 +6,7 @@ import { STOP_NETWORK_POLLING } from 'state/actions/network'
 import useModal from 'hooks/useModal'
 import paths from 'routes/paths'
 import { useI18n } from 'shared/i18n'
+
 import './InstallSuccess.scss'
 
 const InstallSuccessful = () => {

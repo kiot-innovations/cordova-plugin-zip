@@ -38,8 +38,8 @@ html {
   background-color: $dark-blue;
 }
 
-.header-transition{
-  transition: max-height 250ms ease-out,opacity 250ms ease-out;
+.header-transition {
+  transition: max-height 250ms ease-out, opacity 250ms ease-out;
 }
 
 .show-footer {
@@ -54,4 +54,9 @@ html {
 
 .button {
   min-height: 40px !important;
+}
+
+.button-transparent[disabled] {
+  background-color: inherit !important;
+  border-color: inherit !important;
 }

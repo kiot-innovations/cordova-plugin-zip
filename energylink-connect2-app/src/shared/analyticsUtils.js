@@ -29,9 +29,6 @@ const getStringProps = curry(compose(map(stringValueOrEmptyString), props))
 
 export const getUserProfile = getStringProps([
   'uniqueId',
-  'firstName',
-  'lastName',
-  'email',
   'dealerName',
   'recordType'
 ])

@@ -13,16 +13,17 @@ import {
   SET_SITE
 } from 'state/actions/site'
 import { CHECK_APP_UPDATE_INIT, CHECK_SSL_CERTS } from 'state/actions/global'
+import { PVS_FIRMWARE_DOWNLOAD_INIT } from 'state/actions/fileDownloader'
+import { DOWNLOAD_OS_INIT } from 'state/actions/ess'
+import { GRID_PROFILE_DOWNLOAD_INIT } from 'state/actions/gridProfileDownloader'
+import { RESET_COMMISSIONING } from 'state/actions/global'
+import { CHECK_BLUETOOTH_STATUS_INIT } from 'state/actions/network'
 import { getApiSearch } from 'shared/api'
 
 import paths from 'routes/paths'
 
 import SearchField from 'components/SearchField'
 import './Home.scss'
-import { PVS_FIRMWARE_DOWNLOAD_INIT } from 'state/actions/fileDownloader'
-import { DOWNLOAD_META_INIT, DOWNLOAD_OS_INIT } from 'state/actions/ess'
-import { GRID_PROFILE_DOWNLOAD_INIT } from 'state/actions/gridProfileDownloader'
-import { RESET_COMMISSIONING } from '../../state/actions/global'
 
 const formatAddress = compose(
   join(', '),
@@ -62,9 +63,9 @@ function Home() {
 
   const { access_token } = useSelector(state => state.user.auth)
   useEffect(() => {
+    dispatch(CHECK_BLUETOOTH_STATUS_INIT())
     dispatch(PVS_FIRMWARE_DOWNLOAD_INIT())
     dispatch(DOWNLOAD_OS_INIT())
-    dispatch(DOWNLOAD_META_INIT())
     dispatch(GRID_PROFILE_DOWNLOAD_INIT())
     dispatch(CHECK_APP_UPDATE_INIT())
     dispatch(FETCH_MODELS_INIT())

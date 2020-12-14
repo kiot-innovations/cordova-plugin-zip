@@ -362,7 +362,7 @@ exports[`HomeownerAccountCreation Component Renders correctly 1`] = `
                             </div>
                           </Component>
                           <div
-                            className="mt-20 mb-20"
+                            className="mt-20"
                           >
                             <button
                               className="button is-primary is-uppercase"

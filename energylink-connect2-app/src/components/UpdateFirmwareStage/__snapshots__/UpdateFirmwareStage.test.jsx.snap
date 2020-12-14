@@ -1,0 +1,49 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`UpdateFirmwareStage stage finished renders percentage 1`] = `
+<div
+  className="update-firmware-step has-text-white"
+>
+  <span
+    className="mr-10 is-capitalized has-text-weight-bold"
+  >
+    Downloading firmware
+  </span>
+  <span
+    className="is-pulled-right  is-size-4 mr-10 sp-check has-text-white"
+  />
+</div>
+`;
+
+exports[`UpdateFirmwareStage stage in progress renders percentage 1`] = `
+<div
+  className="update-firmware-step"
+>
+  <span
+    className="mr-10 is-capitalized has-text-weight-bold"
+  >
+    Downloading firmware
+  </span>
+  <span
+    className="is-pulled-right has-text-white has-text-weight-bold"
+  >
+    10
+     %
+  </span>
+</div>
+`;
+
+exports[`UpdateFirmwareStage stage not started renders percentage 1`] = `
+<div
+  className="update-firmware-step"
+>
+  <span
+    className="mr-10 is-capitalized has-text-weight-bold"
+  >
+    Downloading firmware
+  </span>
+  <span
+    className="is-pulled-right  is-size-4 mr-10"
+  />
+</div>
+`;

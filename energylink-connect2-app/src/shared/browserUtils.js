@@ -11,7 +11,7 @@ export function openUrl(url) {
         enterReaderModeIfAvailable: false, // default false
         tintColor: '#ffffff', // default is ios blue
         barColor: '#15202e', // on iOS 10+ you can change the background color as well
-        controlTintColor: '#15202e' // on iOS 10+ you can override the default tintColor
+        controlTintColor: '#ffffff' // on iOS 10+ you can override the default tintColor
       })
     } else {
       // potentially powered by InAppBrowser because that (currently) clobbers window.open

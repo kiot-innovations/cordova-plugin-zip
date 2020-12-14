@@ -147,7 +147,8 @@ export const pvsReducer = createReducer(
     }),
     [CONNECT_PVS_VIA_BLE]: (state, bleDevice) => ({
       ...state,
-      bleDevice
+      bleDevice,
+      serialNumber: prop('name', bleDevice)
     }),
     [EXECUTE_ENABLE_ACCESS_POINT]: (state, bleConnectionInfo) => ({
       ...state,

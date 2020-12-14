@@ -1,7 +1,7 @@
 import * as Sentry from '@sentry/browser'
 import { ofType } from 'redux-observable'
 import { catchError, map, exhaustMap } from 'rxjs/operators'
-import { from, of } from 'rxjs'
+import { from, of, EMPTY } from 'rxjs'
 import { pathOr } from 'ramda'
 import {
   EXECUTE_ENABLE_ACCESS_POINT,
@@ -32,7 +32,10 @@ export const enableAccessPointViaBluetoothEpic = action$ => {
 
 export const reConnectToPVSWiFiEpic = (action$, state$) => {
   return action$.pipe(
-    ofType(EXECUTE_ENABLE_ACCESS_POINT_SUCCESS.getType()),
+    ofType(
+      EXECUTE_ENABLE_ACCESS_POINT_SUCCESS.getType(),
+      FAILURE_BLUETOOTH_ACTION.getType()
+    ),
     map(() => {
       console.warn('EXECUTE_ENABLE_ACCESS_POINT_SUCCESS:')
       const ssid = pathOr('', ['value', 'network', 'SSID'], state$)
@@ -44,7 +47,7 @@ export const reConnectToPVSWiFiEpic = (action$, state$) => {
     catchError(err => {
       Sentry.addBreadcrumb({ message: 'EXECUTE_ENABLE_ACCESS_POINT' })
       Sentry.captureException(err)
-      return of(FAILURE_BLUETOOTH_ACTION())
+      return EMPTY
     })
   )
 }

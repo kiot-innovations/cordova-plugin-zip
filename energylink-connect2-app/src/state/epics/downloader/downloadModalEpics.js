@@ -6,7 +6,7 @@ import { concatMap, exhaustMap, take, map, catchError } from 'rxjs/operators'
 import { translate } from 'shared/i18n'
 import { hasInternetConnection } from 'shared/utils'
 import { SHOW_MODAL } from 'state/actions/modal'
-import { DOWNLOAD_META_ERROR, DOWNLOAD_OS_ERROR } from 'state/actions/ess'
+import { DOWNLOAD_OS_ERROR } from 'state/actions/ess'
 import {
   PVS_FIRMWARE_MODAL_IS_CONNECTED,
   DOWNLOAD_ALLOW_WITH_PVS,
@@ -118,7 +118,6 @@ export const firmwareDownloadFailedEpic = action$ =>
   action$.pipe(
     ofType(
       DOWNLOAD_OS_ERROR.getType(),
-      DOWNLOAD_META_ERROR.getType(),
       GRID_PROFILE_DOWNLOAD_ERROR.getType(),
       PVS_FIRMWARE_DOWNLOAD_ERROR.getType(),
       PVS_DECOMPRESS_LUA_FILES_ERROR.getType(),

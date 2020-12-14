@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { endsWith, equals, filter, isEmpty, path, pathOr, propEq } from 'ramda'
+import { endsWith, equals, isEmpty, path, pathOr, pluck } from 'ramda'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import SwipeableBottomSheet from 'react-swipeable-bottom-sheet'
@@ -11,7 +11,6 @@ import {
   REPLACE_RMA_PVS,
   SUBMIT_CONFIG
 } from 'state/actions/systemConfiguration'
-import { CONFIG_START } from 'state/actions/analytics'
 import { useShowModal } from 'hooks/useGlobalModal'
 
 import GridBehaviorWidget from './GridBehaviorWidget'
@@ -74,8 +73,19 @@ function SystemConfiguration() {
   const siteKey = useSelector(path(['site', 'site', 'siteKey']))
   const rmaMode = useSelector(path(['rma', 'rmaMode']))
   const replacingPvs = equals('REPLACE_PVS', rmaMode)
-  const storageDevices = filter(propEq('TYPE', 'EQUINOX-ESS'), found)
-  const hasStorage = !isEmpty(storageDevices)
+
+  const foundDeviceTypes = pluck('TYPE', found)
+  const storageDeviceTypes = [
+    'EQUINOX-MIO',
+    'GATEWAY',
+    'SCHNEIDER-XWPRO',
+    'EQUINOX-BMS',
+    'BATTERY',
+    'EQUINOX-ESS'
+  ]
+  const areInStorageDeviceList = deviceType =>
+    storageDeviceTypes.includes(deviceType)
+  const hasStorage = foundDeviceTypes.some(areInStorageDeviceList)
 
   const validateConfig = configObject => {
     for (const value of Object.values(configObject)) {
@@ -143,7 +153,6 @@ function SystemConfiguration() {
   })
   useEffect(() => {
     dispatch(FETCH_DEVICES_LIST())
-    dispatch(CONFIG_START())
   }, [dispatch])
 
   return (

@@ -28,7 +28,7 @@ const ManualEntryForm = ({ serialNumber, callback }) => {
     validate: values => {
       const errors = {}
 
-      if (!isValidSN(values.barcode)) {
+      if (values.barcode && !isValidSN(values.barcode)) {
         errors.barcode = t('SN_FIELD_ERROR_REGEX')
       }
       return errors
@@ -59,6 +59,7 @@ const ManualEntryForm = ({ serialNumber, callback }) => {
 
         <button
           className="button is-paddingless has-text-primary has-text-weight-bold is-uppercase is-outlined button-transparent"
+          disabled={isEmpty(fieldBarcode.input.value)}
           type="submit"
         >
           {isEmpty(serialNumber) ? t('ADD') : t('SAVE')}

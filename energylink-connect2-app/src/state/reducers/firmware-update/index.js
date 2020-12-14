@@ -7,6 +7,7 @@ import {
   FIRMWARE_UPDATE_INIT,
   FIRMWARE_UPDATE_POLLING,
   FIRMWARE_UPDATE_WAITING_FOR_NETWORK,
+  FIRMWARE_SET_LAST_SUCCESSFUL_STAGE,
   GRID_PROFILE_UPLOAD_ERROR,
   RESET_FIRMWARE_UPDATE,
   SET_FIRMWARE_RELEASE_NOTES
@@ -16,7 +17,8 @@ const initialState = {
   percent: 0,
   status: '',
   upgrading: false,
-  versionBeforeUpgrade: 0
+  versionBeforeUpgrade: 0,
+  lastSuccessfulStage: -1
 }
 
 const getState = prop('STATE')
@@ -31,17 +33,19 @@ export default createReducer(
       versionBeforeUpgrade: PVSFromVersion
     }),
     [FIRMWARE_UPDATE_POLLING]: (state, payload) => ({
-      ...initialState,
       ...state,
       status: getState(payload),
       percent: getPercent(payload)
     }),
     [FIRMWARE_UPDATE_WAITING_FOR_NETWORK]: state => ({
-      ...initialState,
       ...state,
       status: 'WAITING_FOR_NETWORK',
       percent: 100,
       canContinue: true
+    }),
+    [FIRMWARE_SET_LAST_SUCCESSFUL_STAGE]: (state, lastSuccessfulStage) => ({
+      ...state,
+      lastSuccessfulStage
     }),
     [FIRMWARE_UPDATE_COMPLETE]: () => ({
       ...initialState,

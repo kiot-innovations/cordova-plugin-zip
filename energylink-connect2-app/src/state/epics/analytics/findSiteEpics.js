@@ -1,19 +1,20 @@
 import { ofType } from 'redux-observable'
 import {
+  GET_SITE_ERROR,
   GET_SITE_SUCCESS,
   HOME_SCREEN_CREATE_SITE,
   NO_SITE_FOUND,
   SET_SITE
 } from 'state/actions/site'
 import { map, switchMap, take } from 'rxjs/operators'
-import { race } from 'rxjs'
-import { EMPTY_ACTION } from 'state/actions/share'
+import { EMPTY, race } from 'rxjs'
 import { siteFound, siteNotFound } from 'shared/analytics'
 
 /**
  * We need to race the actions so that we don't waste CPU by cancelling
  * the action in case the user selects a site or goes to create site
  * @param action$
+ * @param state$ The actual redux state
  * @return {*}
  */
 export const siteNotFoundEpic = (action$, state$) =>
@@ -23,7 +24,7 @@ export const siteNotFoundEpic = (action$, state$) =>
       race(
         action$.pipe(
           ofType(SET_SITE.getType()),
-          map(() => EMPTY_ACTION('SITE FOUND')),
+          switchMap(() => EMPTY),
           take(1)
         ),
         action$.pipe(
@@ -39,15 +40,22 @@ export const siteFoundEpic = (action$, state$) =>
   action$.pipe(
     ofType(SET_SITE.getType()),
     switchMap(({ payload: siteData }) =>
-      action$.pipe(
-        ofType(GET_SITE_SUCCESS.getType()),
-        map(({ payload: sitesPVS }) =>
-          siteFound(state$.value.user.data, {
-            ...siteData,
-            commissioned: sitesPVS.length !== 0
-          })
+      race(
+        action$.pipe(
+          ofType(GET_SITE_SUCCESS.getType()),
+          map(({ payload: sitesPVS }) =>
+            siteFound(state$.value.user.data, {
+              ...siteData,
+              commissioned: sitesPVS.length !== 0
+            })
+          ),
+          take(1)
         ),
-        take(1)
+        action$.pipe(
+          ofType(GET_SITE_ERROR.getType()),
+          map(() => siteFound(state$.value.user.data, siteData)),
+          take(1)
+        )
       )
     )
   )

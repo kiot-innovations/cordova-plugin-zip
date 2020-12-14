@@ -57,7 +57,12 @@ exports[`Firmwares component render correctly 1`] = `
             step="INITIALIZING"
           >
             <Collapsible
-              actions={null}
+              actions={
+                <span
+                  className="is-size-4 sp-color-sun sp-download"
+                  onClick={[Function]}
+                />
+              }
               expanded={true}
               title="PVS_FIRMWARE"
             >
@@ -79,7 +84,12 @@ exports[`Firmwares component render correctly 1`] = `
                   </div>
                   <div
                     className="collapsible-actions"
-                  />
+                  >
+                    <span
+                      className="is-size-4 sp-color-sun sp-download"
+                      onClick={[Function]}
+                    />
+                  </div>
                   <div
                     className="collapsible-trigger"
                   >
@@ -97,97 +107,22 @@ exports[`Firmwares component render correctly 1`] = `
                   className="collapsible-content expanded"
                 >
                   <section
-                    className="mt-20 mb-10"
+                    className="mb-5"
                   >
-                    <p
-                      className="mb-5"
+                    <span
+                      className="has-text-white"
                     >
                       <span
-                        className="mr-10 has-text-white has-text-weight-bold"
+                        className="has-text-white has-text-weight-bold"
                       >
-                        100
-                        %
+                        CHECKING_LATEST_FIRMWARE_VERSION
                       </span>
-                      NOT_DOWNLOADED
-                      <span
-                        className="is-pulled-right has-text-white has-text-weight-bold"
-                      >
-                        10
-                         MB
-                      </span>
-                    </p>
+                    </span>
                   </section>
                 </div>
               </div>
             </Collapsible>
           </FileCollapsible>
-          <Separator>
-            <div
-              className="mt-20"
-            />
-          </Separator>
-          <Collapsible
-            actions={null}
-            expanded={true}
-            title="GRID_PROFILES_PACKAGE"
-          >
-            <div
-              className="collapsible"
-            >
-              <div
-                className="collapsible-header"
-              >
-                <div
-                  className="collapsible-title"
-                >
-                  <span />
-                  <span
-                    className="has-text-weight-bold"
-                  >
-                    GRID_PROFILES_PACKAGE
-                  </span>
-                </div>
-                <div
-                  className="collapsible-actions"
-                />
-                <div
-                  className="collapsible-trigger"
-                >
-                  <div
-                    className="chevron down"
-                    onClick={[Function]}
-                  >
-                    <span
-                      className="sp-chevron-up"
-                    />
-                  </div>
-                </div>
-              </div>
-              <div
-                className="collapsible-content expanded"
-              >
-                <section
-                  className="mt-20 mb-10"
-                >
-                  <p
-                    className="mb-5"
-                  >
-                    <GridProfileFileStatus
-                      downloading={true}
-                      gpLastModified={null}
-                    >
-                      DOWNLOADING
-                    </GridProfileFileStatus>
-                  </p>
-                  <progress
-                    className="progress is-tiny is-white"
-                    max="100"
-                    value={0}
-                  />
-                </section>
-              </div>
-            </div>
-          </Collapsible>
           <Separator>
             <div
               className="mt-20"
@@ -208,7 +143,7 @@ exports[`Firmwares component render correctly 1`] = `
             <Collapsible
               actions={
                 <span
-                  className="is-size-4 sp-update"
+                  className="is-size-4 sp-color-sun sp-update"
                   onClick={[Function]}
                 />
               }
@@ -235,7 +170,7 @@ exports[`Firmwares component render correctly 1`] = `
                     className="collapsible-actions"
                   >
                     <span
-                      className="is-size-4 sp-update"
+                      className="is-size-4 sp-color-sun sp-update"
                       onClick={[Function]}
                     />
                   </div>
@@ -256,6 +191,81 @@ exports[`Firmwares component render correctly 1`] = `
                   className="collapsible-content expanded"
                 >
                   <section
+                    className="mb-5"
+                  >
+                    <span
+                      className="has-text-white"
+                    >
+                      YOU_HAVE_THE_LATEST_FIRMWARE STORAGE_FW_FILE
+                    </span>
+                  </section>
+                </div>
+              </div>
+            </Collapsible>
+          </FileCollapsible>
+          <Separator>
+            <div
+              className="mt-20"
+            />
+          </Separator>
+          <FileCollapsible
+            downloadFile={[Function]}
+            fileName="GRID_PROFILES_PACKAGE"
+            isDownloaded={true}
+            isDownloading={true}
+            lastTimeDownloaded={null}
+            size="NaN"
+          >
+            <Collapsible
+              actions={null}
+              expanded={true}
+              title="GRID_PROFILES_PACKAGE"
+            >
+              <div
+                className="collapsible"
+              >
+                <div
+                  className="collapsible-header"
+                >
+                  <div
+                    className="collapsible-title"
+                  >
+                    <span />
+                    <span
+                      className="has-text-weight-bold"
+                    >
+                      GRID_PROFILES_PACKAGE
+                    </span>
+                  </div>
+                  <div
+                    className="collapsible-actions"
+                  />
+                  <div
+                    className="collapsible-trigger"
+                  >
+                    <div
+                      className="chevron down"
+                      onClick={[Function]}
+                    >
+                      <span
+                        className="sp-chevron-up"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div
+                  className="collapsible-content expanded"
+                >
+                  <section
+                    className="mb-5"
+                  >
+                    <span
+                      className="has-text-white"
+                    >
+                      YOU_HAVE_THE_LATEST_FIRMWARE GRID_PROFILES_PACKAGE
+                    </span>
+                  </section>
+                  <section
                     className="mt-20 mb-10"
                   >
                     <p
@@ -264,17 +274,21 @@ exports[`Firmwares component render correctly 1`] = `
                       <span
                         className="mr-10 has-text-white has-text-weight-bold"
                       >
-                        100
+                        0
                         %
                       </span>
-                      DOWNLOADED
                       <span
                         className="is-pulled-right has-text-white has-text-weight-bold"
                       >
-                        10
+                        NaN
                          MB
                       </span>
                     </p>
+                    <progress
+                      className="progress is-tiny is-white"
+                      max="100"
+                      value={0}
+                    />
                   </section>
                 </div>
               </div>

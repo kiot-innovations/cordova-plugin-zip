@@ -62,3 +62,11 @@ export const CHECK_PERMISSIONS_SUCCESS = createAction(
   'CHECK_PERMISSIONS_SUCCESS'
 )
 export const CHECK_PERMISSIONS_ERROR = createAction('CHECK_PERMISSIONS_ERROR')
+
+export const BLE_POLL_INIT = createAction('BLE_POLL_INIT')
+export const BLE_GET_DEVICES = createAction('BLE_GET_DEVICES')
+export const BLE_UPDATE_DEVICES = createAction('BLE_UPDATE_DEVICES')
+export const BLE_GET_DEVICES_ERROR = createAction('BLE_GET_DEVICES_ERROR')
+
+export const SET_SSID = createAction('SET_SSID')
+export const SET_AP_PWD = createAction('SET_AP_PWD')

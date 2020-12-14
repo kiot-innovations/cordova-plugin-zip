@@ -5,10 +5,54 @@
   flex-direction: column;
   justify-content: space-between;
 
+  .list-separator {
+    width: 100%;
+    text-align: center;
+    border-bottom: 2px solid $dark;
+    line-height: 0.1em;
+    margin: 10px 0 20px;
+    &_text {
+      background: $black;
+      padding:0 20px;
+    }
+  }
+
   .select-pvs-title {
     font-family: $font;
   }
 
+  .no-devices {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+  }
+
+  .ble-device {
+    display: flex;
+    align-items: center;
+    height: 64px;
+
+    &_details{
+      flex-direction: column;
+    }
+  }
+  .ble-device,
+  .no-devices,
+  .label {
+    transition: border-width 250ms, background-color 100ms;
+    padding: 15px;
+    border-radius: 10px;
+    width: 100%;
+    color: white;
+    background-color: rgba(196, 196, 196, 0.1);
+    border-width: 0;
+    border-color: rgba(0, 0, 0, 0);
+    font-family: $font;
+    letter-spacing: 0;
+    p {
+      color: #a0a0a0;
+    }
+  }
 
   .new-pvs {
     display: flex;
@@ -43,10 +87,14 @@
     position: relative;
   }
   .pvs-buttons {
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
+    button {
+      transition: 0.3s all ease-in-out;
+    }
+    .hidden {
+      opacity: 0;
+    }
   }
+
   .new-pvs:active,
   .label:active {
     background-color: rgba(196, 196, 196, 0.2);
@@ -55,5 +103,27 @@
   .fetch-devices-status {
     flex-direction: column;
     text-align: center;
+  }
+
+  .manual-instructions {
+    flex-direction: column;
+
+    .network-details {
+      flex-direction: column;
+    }
+  }
+  .manual-entry{
+    input {
+      background: $dark;
+      color: $loblolly;
+      padding: 10px;
+      border: none;
+      border-radius: 10px;
+      width: 90%;
+    }
+  }
+
+  &.custom-loader {
+    height: 50px;
   }
 }

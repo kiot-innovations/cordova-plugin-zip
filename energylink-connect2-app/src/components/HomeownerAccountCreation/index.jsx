@@ -90,7 +90,7 @@ const HomeownerAccountCreation = ({ open, onChange, pvs }) => {
             type="email"
             placeholder={t('HOMEOWNER_EMAIL')}
           />
-          <div className="mt-20 mb-20">
+          <div className="mt-20">
             <button
               disabled={submitDisabled}
               className="button is-primary is-uppercase"

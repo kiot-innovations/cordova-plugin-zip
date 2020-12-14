@@ -4,32 +4,20 @@ exports[`File Collapsible component renders correctly complete 1`] = `
 <Collapsible
   actions={
     <span
-      className="is-size-4 sp-update"
+      className="is-size-4 sp-color-sun sp-update"
     />
   }
   expanded={true}
   title="test fileName"
 >
   <section
-    className="mt-20 mb-10"
+    className="mb-5"
   >
-    <p
-      className="mb-5"
+    <span
+      className="has-text-white"
     >
-      <span
-        className="mr-10 has-text-white has-text-weight-bold"
-      >
-        100
-        %
-      </span>
-      DOWNLOADED
-      <span
-        className="is-pulled-right has-text-white has-text-weight-bold"
-      >
-        40
-         MB
-      </span>
-    </p>
+      YOU_HAVE_THE_LATEST_FIRMWARE test fileName
+    </span>
   </section>
 </Collapsible>
 `;
@@ -40,6 +28,13 @@ exports[`File Collapsible component renders correctly while downloading 1`] = `
   expanded={true}
   title="test fileName"
 >
+  <section
+    className="mb-5"
+  >
+    <span
+      className="has-text-white"
+    />
+  </section>
   <section
     className="mt-20 mb-10"
   >
@@ -71,30 +66,26 @@ exports[`File Collapsible component renders correctly while downloading 1`] = `
 
 exports[`File Collapsible component renders correctly with no props 1`] = `
 <Collapsible
-  actions={null}
+  actions={
+    <span
+      className="is-size-4 sp-color-sun sp-download"
+    />
+  }
   expanded={true}
   title=""
 >
   <section
-    className="mt-20 mb-10"
+    className="mb-5"
   >
-    <p
-      className="mb-5"
+    <span
+      className="has-text-white"
     >
       <span
-        className="mr-10 has-text-white has-text-weight-bold"
+        className="has-text-white has-text-weight-bold"
       >
-        100
-        %
+        CHECKING_LATEST_FIRMWARE_VERSION
       </span>
-      NOT_DOWNLOADED
-      <span
-        className="is-pulled-right has-text-white has-text-weight-bold"
-      >
-        10
-         MB
-      </span>
-    </p>
+    </span>
   </section>
 </Collapsible>
 `;

@@ -1,5 +1,4 @@
 import React, { useCallback, useEffect, useRef } from 'react'
-import moment from 'moment'
 import {
   always,
   complement,
@@ -15,13 +14,11 @@ import {
 import { useDispatch, useSelector } from 'react-redux'
 
 import { useI18n } from 'shared/i18n'
-import { either } from 'shared/utils'
 import { DOWNLOAD_OS_INIT } from 'state/actions/ess'
 import { MENU_DISPLAY_ITEM } from 'state/actions/ui'
 
 import { PVS_FIRMWARE_DOWNLOAD_INIT } from 'state/actions/fileDownloader'
 import { GRID_PROFILE_DOWNLOAD_INIT } from 'state/actions/gridProfileDownloader'
-import Collapsible from 'components/Collapsible'
 import FileCollapsible from 'components/FileCollapsible'
 
 export const getFileName = compose(
@@ -31,19 +28,6 @@ export const getFileName = compose(
 export const getFileSize = prop('size')
 
 const Separator = () => <div className="mt-20" />
-
-const GridProfileFileStatus = ({ downloading, gpLastModified }) => {
-  const t = useI18n()
-  if (downloading) {
-    return t('DOWNLOADING')
-  }
-  return either(
-    gpLastModified,
-    `${t('LAST_TIME_UPDATED')}:
-      ${moment.unix(gpLastModified / 1000).format('MM/DD/YYYY')}`,
-    t('FILE_NOT_PRESENT')
-  )
-}
 
 function Firmwares() {
   const t = useI18n()
@@ -62,6 +46,7 @@ function Firmwares() {
   const {
     gpError,
     gpLastModified,
+    gpSize,
     isDownloadingGridProfile,
     verification
   } = useSelector(({ fileDownloader }) => ({
@@ -100,7 +85,7 @@ function Firmwares() {
       <h1 className="has-text-centered is-uppercase pb-20">{t('FIRMWARE')}</h1>
       <FileCollapsible
         fileName={t('PVS_FIRMWARE')}
-        version={getFileName(fwFileInfo)}
+        version={prop('version', fwFileInfo)}
         error={fwFileInfo.error}
         downloadFile={downloadFile}
         isDownloaded={fwFileInfo.exists}
@@ -111,44 +96,13 @@ function Firmwares() {
         goToReleaseNotes={() =>
           dispatch(MENU_DISPLAY_ITEM('FIRMWARE_RELEASE_NOTES'))
         }
+        lastTimeDownloaded={fwFileInfo.lastModified}
       />
-
-      <Separator />
-      <Collapsible
-        title={t('GRID_PROFILES_PACKAGE')}
-        actions={either(
-          !isDownloadingGridProfile || gpError,
-          <span
-            className="is-size-4 sp-download"
-            onClick={downloadGridProfiles}
-          />
-        )}
-        expanded
-      >
-        {either(
-          gpError,
-          <span>{t('GRID_PROFILE_ERROR_FOUND')}</span>,
-          <section className="mt-20 mb-10">
-            <p className="mb-5">
-              <GridProfileFileStatus
-                gpLastModified={gpLastModified}
-                downloading={isDownloadingGridProfile}
-              />
-            </p>
-            {isDownloadingGridProfile && (
-              <progress
-                className="progress is-tiny is-white"
-                value={progress}
-                max="100"
-              />
-            )}
-          </section>
-        )}
-      </Collapsible>
 
       <Separator />
       <FileCollapsible
         fileName={t('STORAGE_FW_FILE')}
+        version={prop('version', essState)}
         downloadFile={forceDownloadESS}
         error={essState.error}
         isDownloading={essState.isDownloading}
@@ -156,6 +110,18 @@ function Firmwares() {
         step={essState.step}
         isDownloaded={essState.file}
         size={essState.total}
+        lastTimeDownloaded={essState.lastModified}
+      />
+
+      <Separator />
+      <FileCollapsible
+        fileName={t('GRID_PROFILES_PACKAGE')}
+        downloadFile={downloadGridProfiles}
+        error={gpError}
+        lastTimeDownloaded={gpLastModified}
+        isDownloading={isDownloadingGridProfile}
+        isDownloaded={!isDownloadingGridProfile || gpSize !== 0}
+        size={gpSize.toFixed(2)}
       />
     </section>
   )

@@ -8,6 +8,7 @@ import {
   PVS_SET_FILE_INFO
 } from 'state/actions/fileDownloader'
 import { createReducer } from 'redux-act'
+import { getVersionFromUrl } from 'shared/download'
 
 const initialState = {
   name: '',
@@ -16,6 +17,8 @@ const initialState = {
   error: '',
   exists: false,
   updateURL: '',
+  version: undefined,
+  lastModified: 0,
   step: ''
 }
 
@@ -24,6 +27,7 @@ export default createReducer(
     [PVS_FIRMWARE_UPDATE_URL]: (state, { url }) => ({
       ...state,
       updateURL: url,
+      version: getVersionFromUrl(url),
       step: 'UPDATING_URL'
     }),
     [PVS_FIRMWARE_DOWNLOAD_ERROR]: state => ({

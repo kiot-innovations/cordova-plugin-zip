@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useCallback } from 'react'
 import { pathOr } from 'ramda'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
@@ -24,11 +24,15 @@ const Permissions = () => {
     dispatch(OPEN_SETTINGS())
   }
 
-  const checkPermissions = () => {
+  const checkPermissions = useCallback(() => {
     if (bluetoothAuthorized)
       return history.push(paths.PROTECTED.CONNECT_TO_PVS.path)
     dispatch(CHECK_PERMISSIONS_INIT())
-  }
+  }, [bluetoothAuthorized, dispatch, history])
+
+  useEffect(() => {
+    checkPermissions()
+  }, [checkPermissions])
 
   return (
     <section className="perms pr-10 pl-10">
@@ -69,19 +73,6 @@ const Permissions = () => {
           disabled={checkingPermission || bluetoothAuthorized}
         >
           {t('PERM_SETTINGS')}
-        </button>
-        <button
-          className="button is-primary is-fullwidth is-uppercase ml-5"
-          onClick={checkPermissions}
-          disabled={checkingPermission}
-        >
-          {t(
-            bluetoothAuthorized
-              ? 'CONTINUE'
-              : checkingPermission
-              ? 'PERM_CHECKING'
-              : 'PERM_CHECK'
-          )}
         </button>
       </article>
     </section>

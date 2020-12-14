@@ -24,10 +24,18 @@ import systemConfigurationReducer from './systemConfiguration'
 import firmwareUpdate from './firmware-update'
 import essReducer from './ess'
 import RMAReducer from 'state/reducers/rma'
+import analyticsReducer from './analytics'
 
 export default combineReducers({
   ...getPLTReducer(),
   ui,
+  analytics: persistReducer(
+    {
+      key: 'analytics',
+      storage
+    },
+    analyticsReducer
+  ),
   user: persistReducer(
     {
       key: 'user',
@@ -52,7 +60,14 @@ export default combineReducers({
   network: networkReducer,
   pvs: pvsReducer,
   rma: RMAReducer,
-  site: siteReducer,
+  site: persistReducer(
+    {
+      key: 'site',
+      storage
+    },
+    siteReducer
+  ),
+
   devices: persistReducer(
     {
       key: 'devices',

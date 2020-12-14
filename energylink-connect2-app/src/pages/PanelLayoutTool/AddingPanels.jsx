@@ -15,7 +15,8 @@ import {
   prop,
   propEq,
   filter,
-  without
+  without,
+  reject
 } from 'ramda'
 import React, { useCallback, useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
@@ -38,6 +39,7 @@ const getEPanel = compose(
 const EPanel = getEPanel(Panel)
 
 const getSerialNumbers = compose(
+  reject(propEq('STATE', 'discovered')),
   filter(propEq('DEVICE_TYPE', 'Inverter')),
   pathOr([], ['devices', 'found'])
 )

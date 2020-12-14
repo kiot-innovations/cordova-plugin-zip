@@ -15,7 +15,7 @@ const initialState = {
 
 export default createReducer(
   {
-    [MENU_SHOW]: state => ({ ...state, show: true }),
+    [MENU_SHOW]: state => ({ ...state, show: true, itemToDisplay: '' }),
     [MENU_HIDE]: state => ({ ...state, show: false, itemToDisplay: '' }),
     [MENU_DISPLAY_ITEM]: (state, itemToDisplay) => ({
       ...state,

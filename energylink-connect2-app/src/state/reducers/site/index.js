@@ -1,4 +1,4 @@
-import { pathOr } from 'ramda'
+import { path, pathOr } from 'ramda'
 import { createReducer } from 'redux-act'
 
 import {
@@ -14,7 +14,6 @@ import {
   SET_MAP_VIEW_SRC,
   SET_SITE
 } from 'state/actions/site'
-import { RESET_COMMISSIONING } from 'state/actions/global'
 
 const initialState = {
   isFetching: false,
@@ -25,7 +24,8 @@ const initialState = {
   saveError: '',
   saveModal: false,
   mapViewSrc: false,
-  sitePVS: null
+  sitePVS: null,
+  siteChanged: true
 }
 
 export const siteReducer = createReducer(
@@ -54,7 +54,7 @@ export const siteReducer = createReducer(
         error
       )
     }),
-    [GET_SITES_INIT]: (state, payload) => ({
+    [GET_SITES_INIT]: state => ({
       ...state,
       isFetching: true,
       error: null
@@ -70,11 +70,16 @@ export const siteReducer = createReducer(
       error: payload
     }),
 
-    [SET_SITE]: (state, payload) => ({
-      ...state,
-      site: payload,
-      sitePVS: null
-    }),
+    [SET_SITE]: (state, site) => {
+      const lastSiteKey = path(['site', 'siteKey'], state)
+      const siteChanged = site.siteKey !== lastSiteKey
+      return {
+        ...state,
+        site,
+        sitePVS: null,
+        siteChanged
+      }
+    },
 
     [SET_MAP_VIEW_SRC]: (state, mapViewSrc) => ({
       ...state,
@@ -87,7 +92,6 @@ export const siteReducer = createReducer(
       site: null,
       sitePVS: null
     }),
-    [RESET_COMMISSIONING]: () => initialState,
     [GET_SITE_SUCCESS]: (state, payload) => ({
       ...state,
       sitePVS: payload

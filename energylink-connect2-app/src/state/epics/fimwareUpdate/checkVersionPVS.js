@@ -11,6 +11,7 @@ import {
 } from 'state/actions/firmwareUpdate'
 import { PVS_CONNECTION_SUCCESS } from 'state/actions/network'
 import { path, pathOr } from 'ramda'
+import { EMPTY_ACTION } from 'state/actions/share'
 
 export const getFirmwareUrlFromState = path([
   'value',
@@ -41,7 +42,9 @@ const checkVersionPVS = (action$, state$) =>
         checkIfNeedToUpdatePVSToLatestVersion(getFirmwareUrlFromState(state$))
       ).pipe(
         map(({ shouldUpdate, PVSFromVersion, PVSToVersion }) =>
-          shouldUpdate
+          state$.value.firmwareUpdate.upgrading
+            ? EMPTY_ACTION()
+            : shouldUpdate
             ? FIRMWARE_SHOW_MODAL({ PVSFromVersion, PVSToVersion })
             : FIRMWARE_GET_VERSION_COMPLETE()
         ),

@@ -1,4 +1,5 @@
 import { createReducer } from 'redux-act'
+import { path } from 'ramda'
 import {
   FETCH_GRID_BEHAVIOR,
   FETCH_GRID_BEHAVIOR_ERR,
@@ -31,18 +32,31 @@ export const gridBehaviorReducer = createReducer(
       ...state,
       fetchingGridBehavior: true
     }),
-    [FETCH_GRID_BEHAVIOR_SUCCESS]: (state, payload) => ({
-      ...state,
-      profiles: payload.gridProfiles.profiles,
-      exportLimit: payload.exportLimit,
-      gridVoltage: payload.gridVoltage.body,
-      fetchingGridBehavior: false,
-      selectedOptions: {
-        ...state.selectedOptions,
-        exportLimit: payload.exportLimit.limit,
-        gridVoltage: payload.gridVoltage.body.selected
+    [FETCH_GRID_BEHAVIOR_SUCCESS]: (state, payload) => {
+      const hasGridVoltageSelected = path(
+        ['selectedOptions', 'gridVoltage'],
+        state
+      )
+      return {
+        ...state,
+        profiles: payload.gridProfiles.profiles,
+        exportLimit: payload.exportLimit,
+        gridVoltage: hasGridVoltageSelected
+          ? {
+              ...payload.gridVoltage.body,
+              selected: hasGridVoltageSelected
+            }
+          : payload.gridVoltage.body,
+        fetchingGridBehavior: false,
+        selectedOptions: {
+          ...state.selectedOptions,
+          exportLimit: payload.exportLimit.limit,
+          gridVoltage: hasGridVoltageSelected
+            ? hasGridVoltageSelected
+            : payload.gridVoltage.body.selected
+        }
       }
-    }),
+    },
     [FETCH_GRID_BEHAVIOR_ERR]: (state, payload) => ({
       ...state,
       fetchingGridBehavior: false,

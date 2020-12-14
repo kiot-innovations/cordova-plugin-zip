@@ -73,6 +73,11 @@ const DebugPage = () => {
           'Connect PVS to Internet',
           paths.PROTECTED.PVS_PROVIDE_INTERNET.path
         )}
+        {renderDebugLink(
+          history,
+          'POC for BLE Connection',
+          paths.PROTECTED.NEARBY_PVS.path
+        )}
       </div>
     </div>
   )

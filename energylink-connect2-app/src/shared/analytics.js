@@ -54,14 +54,12 @@ export const loginFailed = () => {
   return MIXPANEL_EVENT_QUEUED('Login - Failed')
 }
 
-export const scanPVS = (scanData, event) => {
+export const scanPVS = ({ pvsSN, entryMethod }, event) => {
   const { mixpanel } = window
-  const [pvsSN, entryMethod, timeElapsed] = scanData
 
   mixpanel.register({ 'PVS SN': pvsSN })
   mixpanel.track('Scan PVS Tag', {
-    'Entry Method': entryMethod,
-    'Time Elapsed': timeElapsed
+    'Entry Method': entryMethod
   })
 
   return MIXPANEL_EVENT_QUEUED(event)
@@ -168,4 +166,12 @@ export const timeMixPanelEvent = name => {
   if (!name) throw new Error('The name parameter is required')
   const { mixpanel } = window
   mixpanel.time_event(name)
+}
+
+export const commissionSite = ({ duration }) => {
+  const { mixpanel } = window
+  mixpanel.track('Commission Site', { $duration: duration })
+  return MIXPANEL_EVENT_QUEUED(
+    'Commission Site - first successful site configuration'
+  )
 }

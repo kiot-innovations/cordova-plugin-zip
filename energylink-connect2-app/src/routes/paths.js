@@ -246,6 +246,12 @@ const paths = {
       header: true,
       footer: true,
       tab: TABS.INSTALL
+    },
+    NEARBY_PVS: {
+      path: '/nearbyPVS',
+      header: true,
+      footer: true,
+      tab: TABS.INSTALL
     }
   },
   UNPROTECTED: {

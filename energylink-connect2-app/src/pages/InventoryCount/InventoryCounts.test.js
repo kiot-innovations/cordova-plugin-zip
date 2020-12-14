@@ -7,6 +7,9 @@ describe('Inventory Count page', () => {
   let dispatchMock
 
   const initialState = {
+    network: {
+      connected: false
+    },
     inventory: {
       bom: [
         { item: 'AC_MODULES', value: '0' },

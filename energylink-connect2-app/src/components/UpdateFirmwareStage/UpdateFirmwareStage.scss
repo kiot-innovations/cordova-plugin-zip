@@ -1,0 +1,11 @@
+@import '~@sunpower/theme-dark/styles/variables';
+
+.update-firmware-step {
+  background-color: $silver-sand4;
+  width: 100%;
+  text-align: left;
+  padding: $font-size-big $font-size-big $font-size;
+  font-family: $font;
+  letter-spacing: 0;
+  border-radius: 5px;
+}

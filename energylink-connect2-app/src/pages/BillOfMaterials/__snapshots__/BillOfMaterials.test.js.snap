@@ -206,12 +206,14 @@ exports[`BillOfMaterials component render correctly 1`] = `
           >
             <Link
               className="button pt-0 pb-0 is-primary"
+              onClick={[Function]}
               to="/pvs-selection"
             >
               <LinkAnchor
                 className="button pt-0 pb-0 is-primary"
                 href="/pvs-selection"
                 navigate={[Function]}
+                onClick={[Function]}
               >
                 <a
                   className="button pt-0 pb-0 is-primary"
@@ -553,7 +555,7 @@ exports[`BillOfMaterials component render correctly 1`] = `
                                 </div>
                               </Component>
                               <div
-                                className="mt-20 mb-20"
+                                className="mt-20"
                               >
                                 <button
                                   className="button is-primary is-uppercase"

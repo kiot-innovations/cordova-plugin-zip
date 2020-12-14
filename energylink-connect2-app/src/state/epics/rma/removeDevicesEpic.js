@@ -45,7 +45,7 @@ const postDeleteDevices = curry(
       rejected = []
     try {
       const edpDelete = path(
-        ['apis', 'device', 'deviceRemoveDeviceByDeviceId'],
+        ['apis', 'device', 'deviceRemoveDeviceByDeviceIdV2'],
         await getApiDevice(accessToken)
       )
       const startClaim = path(
@@ -63,12 +63,11 @@ const postDeleteDevices = curry(
           start + bulkSize,
           invertersToDelete
         )
+
         const result = await Promise.allSettled(
-          rmap(
-            deviceid => edpDelete({ deviceid, dataloggerid }),
-            invertersToSend
-          )
+          invertersToSend.map(deviceid => edpDelete({ deviceid, dataloggerid }))
         )
+
         result.forEach(({ status }, pos) =>
           status === 'rejected'
             ? rejected.push(invertersToSend[pos])

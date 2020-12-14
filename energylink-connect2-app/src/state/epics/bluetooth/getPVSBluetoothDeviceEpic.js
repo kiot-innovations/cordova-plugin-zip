@@ -13,9 +13,9 @@ import { getBLEDevice } from 'shared/bluetooth/getBluetoothDevice'
 export const getPVSBluetoothDeviceEpic = (action$, state$) => {
   return action$.pipe(
     ofType(ENABLE_ACCESS_POINT.getType()),
-    exhaustMap(() => {
+    exhaustMap(({ payload: deviceSN }) => {
       const { serialNumber } = path(['value', 'pvs'], state$)
-      return from(getBLEDevice(serialNumber)).pipe(
+      return from(getBLEDevice(deviceSN || serialNumber)).pipe(
         map(CONNECT_PVS_VIA_BLE),
         catchError(err => {
           Sentry.addBreadcrumb({ message: 'BLE_DEVICE_SCAN_ERROR' })

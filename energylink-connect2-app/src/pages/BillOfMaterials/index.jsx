@@ -1,19 +1,21 @@
 import React, { useEffect, useState } from 'react'
-import ProgressiveImage from 'components/ProgressiveImage'
-import HomeownerAccountCreation from 'components/HomeownerAccountCreation'
 import { compose, head, isEmpty, map, pathOr, pick, prop } from 'ramda'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
+
+import ProgressiveImage from 'components/ProgressiveImage'
+import HomeownerAccountCreation from 'components/HomeownerAccountCreation'
 import { either } from 'shared/utils'
-import { createExternalLinkHandler } from 'shared/routing'
 import paths from 'routes/paths'
+import { createExternalLinkHandler } from 'shared/routing'
 import { useI18n } from 'shared/i18n'
-import './BillOfMaterials.scss'
 import { GET_SITE_INIT } from 'state/actions/site'
 import { GET_SCANDIT_USERS } from 'state/actions/scandit'
-import { COMMISSIONING_START } from 'state/actions/analytics'
-import { DOWNLOAD_VERIFY } from '../../state/actions/fileDownloader'
+import { DOWNLOAD_VERIFY } from 'state/actions/fileDownloader'
 import { CHECK_PERMISSIONS_INIT } from 'state/actions/network'
+import { BEGIN_INSTALL } from 'state/actions/analytics'
+
+import './BillOfMaterials.scss'
 
 const useMap = (latitude, longitude) => {
   const [url, setUrl] = useState('')
@@ -43,13 +45,13 @@ function BillOfMaterials() {
     bom: inventory.bom
   }))
 
+  const siteChanged = useSelector(pathOr(false, ['site', 'siteChanged']))
   const { address1, latitude, longitude, siteName, siteKey } = useSelector(
     pathOr({}, ['site', 'site'])
   )
 
   useEffect(() => {
     dispatch(GET_SCANDIT_USERS())
-    dispatch(COMMISSIONING_START())
     dispatch(CHECK_PERMISSIONS_INIT())
   }, [dispatch])
 
@@ -131,6 +133,7 @@ function BillOfMaterials() {
         <Link
           className="button pt-0 pb-0 is-primary"
           to={paths.PROTECTED.PVS_SELECTION_SCREEN.path}
+          onClick={() => dispatch(BEGIN_INSTALL({ siteChanged }))}
         >
           {t('START_INSTALL')}
         </Link>

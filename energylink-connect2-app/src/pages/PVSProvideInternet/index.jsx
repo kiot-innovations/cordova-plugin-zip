@@ -86,15 +86,19 @@ const PVSProvideInternet = () => {
   useEffect(() => {
     if (versionChecked) {
       dispatch(START_COMMISSIONING_INIT())
-      dispatch(
-        START_DISCOVERY_INIT({
-          Device: 'allnomi',
-          Interfaces: ['mime'],
-          type: discoveryTypes.ALLNOMI
-        })
-      )
+
+      //the user can always trigger RMA by clicking rediscover later
+      if (rmaMode === rmaModes.NONE) {
+        dispatch(
+          START_DISCOVERY_INIT({
+            Device: 'allnomi',
+            Interfaces: ['mime'],
+            type: discoveryTypes.ALLNOMI
+          })
+        )
+      }
     }
-  }, [dispatch, versionChecked])
+  }, [dispatch, versionChecked, rmaMode])
 
   return (
     <div className="pvs-provide-internet full-height pr-20 pl-20">

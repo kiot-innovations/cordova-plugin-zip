@@ -1,5 +1,5 @@
 import { createReducer } from 'redux-act'
-import { propOr } from 'ramda'
+import { propOr, uniqWith } from 'ramda'
 import {
   PVS_CONNECTION_INIT,
   PVS_CONNECTION_SUCCESS,
@@ -22,9 +22,15 @@ import {
   EXECUTE_ENABLE_ACCESS_POINT_SUCCESS,
   CHECK_PERMISSIONS_INIT,
   CHECK_PERMISSIONS_SUCCESS,
-  CHECK_PERMISSIONS_ERROR
+  CHECK_PERMISSIONS_ERROR,
+  BLE_UPDATE_DEVICES,
+  BLE_GET_DEVICES,
+  BLE_GET_DEVICES_ERROR,
+  SET_AP_PWD,
+  SET_SSID
 } from 'state/actions/network'
 import { RESET_COMMISSIONING } from 'state/actions/global'
+import { eqByProp } from 'shared/utils'
 
 const initialState = {
   connected: false,
@@ -41,7 +47,10 @@ const initialState = {
   wifiEnabledStarted: false,
   bluetoothAuthorized: false,
   checkingPermission: false,
-  checkingPermissionError: null
+  checkingPermissionError: null,
+  bleSearching: false,
+  bleError: '',
+  nearbyDevices: []
 }
 
 export const BLESTATUS = {
@@ -49,7 +58,9 @@ export const BLESTATUS = {
   CONNECTING_PVS_VIA_BLE: 'CONNECTING_PVS_VIA_BLE',
   ENABLING_ACCESS_POINT_ON_PVS: 'ENABLING_ACCESS_POINT_ON_PVS',
   ENABLED_ACCESS_POINT_ON_PVS: 'ENABLED_ACCESS_POINT_ON_PVS',
-  FAILED_ACCESS_POINT_ON_PVS: 'FAILED_ACCESS_POINT_ON_PVS'
+  FAILED_ACCESS_POINT_ON_PVS: 'FAILED_ACCESS_POINT_ON_PVS',
+  DISCOVERY_FAILURE: 'DISCOVERY_FAILURE',
+  DISCOVERY_SUCCESS: 'DISCOVERY_SUCCESS'
 }
 
 export const networkReducer = createReducer(
@@ -182,6 +193,40 @@ export const networkReducer = createReducer(
       ...state,
       checkingPermission: false,
       checkingPermissionError
+    }),
+    [BLE_GET_DEVICES]: state => ({
+      ...state,
+      bleSearching: true
+    }),
+    [BLE_UPDATE_DEVICES]: (state, device) => ({
+      ...state,
+      bleSearching: false,
+      bluetoothStatus: BLESTATUS.DISCOVERY_SUCCESS,
+      nearbyDevices: uniqWith(eqByProp('name'), [
+        ...state.nearbyDevices,
+        device
+      ])
+    }),
+    [BLE_GET_DEVICES_ERROR]: state => {
+      const nextstate = {
+        ...state,
+        bleSearching: false
+      }
+
+      if (state.bluetoothStatus !== BLESTATUS.DISCOVERY_SUCCESS) {
+        nextstate.bluetoothStatus = BLESTATUS.DISCOVERY_FAILURE
+        return nextstate
+      }
+
+      return { ...state, bleSearching: false }
+    },
+    [SET_SSID]: (state, payload) => ({
+      ...state,
+      SSID: payload
+    }),
+    [SET_AP_PWD]: (state, payload) => ({
+      ...state,
+      password: payload
     })
   },
   initialState

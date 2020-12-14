@@ -21,15 +21,14 @@ import {
   waitForObservable
 } from 'state/epics/downloader/latestUrls'
 import {
-  DOWNLOAD_META_ERROR,
-  DOWNLOAD_META_INIT,
-  DOWNLOAD_META_SUCCESS,
   DOWNLOAD_OS_ERROR,
   DOWNLOAD_OS_INIT,
   DOWNLOAD_OS_PROGRESS,
   DOWNLOAD_OS_REPORT_SUCCESS,
   DOWNLOAD_OS_SUCCESS
 } from 'state/actions/ess'
+import { getVersionFromUrl } from 'shared/download'
+import { DOWNLOAD_OS_UPDATE_VERSION } from 'state/actions/ess'
 
 const downloadOSZipEpic = (action$, state$) => {
   const shouldRetry = ifElse(is(Boolean), identity, always(false))
@@ -44,7 +43,7 @@ const downloadOSZipEpic = (action$, state$) => {
         updateUrl,
         shouldRetry(payload),
         pathOr('', ['value', 'user', 'auth', 'access_token'], state$),
-        ['x-checksum-md5']
+        ['x-amz-meta-md5-hash', 'x-checksum-md5']
       ).pipe(
         map(({ entry, progress, total, serverHeaders, step }) =>
           progress
@@ -70,43 +69,21 @@ const downloadOSZipEpic = (action$, state$) => {
   )
 }
 
-async function getExternalFirmwareMeta(accessToken) {
-  const myHeaders = new Headers()
-  myHeaders.append('Authorization', `Bearer ${accessToken}`)
-
-  const requestOptions = {
-    method: 'GET',
-    headers: myHeaders
-  }
-
-  const res = await fetch(
-    `${process.env.REACT_APP_ARTIFACTORY_BASE}/pvs-connected-devices-firmware/dists/byers-2.1.0/external-firmware-meta.json`,
-    requestOptions
-  )
-  return await res.json()
-}
-
-const downloadMetaInformationEpic = (action$, state$) =>
+const updateVersionEpic = action$ =>
   action$.pipe(
-    ofType(DOWNLOAD_META_INIT.getType()),
-    exhaustMap(() =>
-      from(
-        getExternalFirmwareMeta(
-          pathOr('', ['value', 'user', 'auth', 'access_token'], state$)
-        )
-      ).pipe(
-        map(DOWNLOAD_META_SUCCESS),
-        catchError(err => of(DOWNLOAD_META_ERROR(err)))
-      )
-    )
+    ofType(DOWNLOAD_OS_INIT.getType()),
+    waitForObservable(essUpdateUrl$),
+    map(([, url]) => DOWNLOAD_OS_UPDATE_VERSION(getVersionFromUrl(url)))
   )
-const getMd5 = curry((state, payload) =>
-  ifElse(
-    path(['serverHeaders', 'x-checksum-md5']),
-    path(['serverHeaders', 'x-checksum-md5']),
-    () => path(['value', 'ess', 'md5'], state)
-  )(payload)
-)
+
+const getMd5 = curry((state, { serverHeaders = {} }) => {
+  if (serverHeaders['x-amz-meta-md5-hash']) {
+    return serverHeaders['x-amz-meta-md5-hash']
+  } else if (serverHeaders['x-checksum-md5']) {
+    return serverHeaders['x-checksum-md5']
+  }
+  return path(['value', 'ess', 'md5'], state)
+})
 const checkIntegrityESSDownload = (action$, state$) =>
   action$.pipe(
     ofType(DOWNLOAD_OS_REPORT_SUCCESS.getType()),
@@ -119,7 +96,11 @@ const checkIntegrityESSDownload = (action$, state$) =>
         fileInfo: from(getFileInfo(filePath))
       }).pipe(
         map(({ fileInfo }) =>
-          DOWNLOAD_OS_SUCCESS({ entryFile: entry, total: fileInfo.size })
+          DOWNLOAD_OS_SUCCESS({
+            entryFile: entry,
+            total: fileInfo.size,
+            lastModified: fileInfo.lastModified
+          })
         ),
         catchError(err => {
           Sentry.addBreadcrumb({ message: `filePath ${filePath}` })
@@ -131,8 +112,4 @@ const checkIntegrityESSDownload = (action$, state$) =>
     })
   )
 
-export default [
-  downloadMetaInformationEpic,
-  downloadOSZipEpic,
-  checkIntegrityESSDownload
-]
+export default [downloadOSZipEpic, checkIntegrityESSDownload, updateVersionEpic]

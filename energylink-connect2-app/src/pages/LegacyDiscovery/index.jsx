@@ -4,7 +4,8 @@ import { useI18n } from 'shared/i18n'
 import { useHistory } from 'react-router-dom'
 import {
   CLAIM_DEVICES_INIT,
-  FETCH_CANDIDATES_COMPLETE
+  FETCH_CANDIDATES_COMPLETE,
+  RESET_DISCOVERY
 } from 'state/actions/devices'
 import { START_DISCOVERY_INIT } from 'state/actions/pvs'
 import { discoveryTypes } from 'state/reducers/devices'
@@ -50,6 +51,7 @@ const LegacyDiscovery = () => {
   }, [claimedDevices, discoveryComplete, dispatch, history])
 
   const restartDiscovery = () => {
+    dispatch(RESET_DISCOVERY())
     dispatch(
       START_DISCOVERY_INIT({
         Device: 'allplusmime',

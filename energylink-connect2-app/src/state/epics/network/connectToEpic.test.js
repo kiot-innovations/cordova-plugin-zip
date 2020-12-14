@@ -43,7 +43,9 @@ describe('Connect to epic', () => {
     global.device = {
       platform: 'android'
     }
-    const failFn = jest.fn().mockRejectedValueOnce('user failed to connect')
+    const failFn = jest
+      .fn()
+      .mockRejectedValueOnce('ERROR_REQUESTED_NETWORK_UNAVAILABLE')
     global.WifiWizard2 = {
       connect: failFn
     }

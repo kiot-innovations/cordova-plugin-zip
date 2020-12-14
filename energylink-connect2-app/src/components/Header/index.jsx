@@ -29,6 +29,7 @@ export const Header = ({ icon = 'sp-menu', iconOpen = 'sp-chevron-left' }) => {
     state => state.firmwareUpdate
   )
   const showMenu = useSelector(path(['ui', 'menu', 'show']))
+  const itemToDisplay = useSelector(path(['ui', 'menu', 'itemToDisplay']))
   const previousURL = useSelector(path(['ui', 'menu', 'previousURL']))
   const siteAddress = useSelector(path(['site', 'site', 'address1']))
   const shouldDisableMenu = upgrading && !isError(status, percent)
@@ -44,7 +45,8 @@ export const Header = ({ icon = 'sp-menu', iconOpen = 'sp-chevron-left' }) => {
     ? void 0
     : () => {
         if (menuOpen) {
-          dispatch(MENU_HIDE())
+          const action = itemToDisplay ? MENU_SHOW() : MENU_HIDE()
+          dispatch(action)
           history.push(previousURL)
         } else {
           dispatch(SET_PREVIOUS_URL(location.pathname))

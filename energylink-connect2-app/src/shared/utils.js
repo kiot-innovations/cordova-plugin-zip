@@ -39,7 +39,8 @@ import {
   values,
   when,
   pathOr,
-  isEmpty
+  isEmpty,
+  startsWith
 } from 'ramda'
 
 export const either = (condition, whenTrue, whenFalse = null) =>
@@ -107,7 +108,7 @@ export const b64toBlob = (b64Data, contentType = '', sliceSize = 512) => {
   return blob
 }
 
-export const isValidSN = sn => /^\d{12,}$/.test(sn)
+export const isValidSN = sn => /^(?:\d{12}|\d{15})$/.test(sn)
 
 export const waitFor = (ms = 0) =>
   new Promise(resolve => setTimeout(resolve, ms))
@@ -158,10 +159,7 @@ export const cleanString = (str = '') => {
 }
 
 export const buildSN = barcode => ({
-  serial_number:
-    barcode.startsWith('12') && length(barcode) === 12
-      ? `E00${barcode}`
-      : barcode,
+  serial_number: barcode.startsWith('1') ? `E00${barcode}` : barcode,
   type: 'SOLARBRIDGE'
 })
 export const trace = t => x => {
@@ -281,7 +279,7 @@ export const addHasErrorProp = results => {
 }
 
 export const getAppFlavor = () =>
-  pathOr('cm2-test', ['env', 'REACT_APP_FLAVOR'], process).split('-')[1]
+  pathOr('cm2-test', ['REACT_APP_FLAVOR'], process.env).split('-')[1]
 
 export function getEnvironment() {
   if (process.env.REACT_APP_FLAVOR === 'cm2-training') return 'training'
@@ -368,3 +366,17 @@ export const isProd = includes(process.env.REACT_APP_FLAVOR, [
 ])
 
 export const isSerialEqual = (x, y) => x.SERIAL === y.SERIAL
+
+export const getBLEPath =
+  pathOr('none', ['device', 'platform'], window) === 'iOS'
+    ? ['advertising', 'kCBAdvDataLocalName']
+    : ['name']
+
+// { name: string, id: string} -> Boolean
+export const isPVSDevice = compose(
+  startsWith('ZT'),
+  defaultTo(''),
+  prop('name')
+)
+
+export const eqByProp = curry((prop, obj1, obj2) => obj1[prop] === obj2[prop])
