@@ -25,6 +25,7 @@ import { useI18n } from 'shared/i18n'
 import { GET_INTERFACES_INIT } from 'state/actions/systemConfiguration'
 
 import './InterfacesWidget.scss'
+import { SET_ONLINE } from 'state/actions/network'
 
 function InterfacesWidget(props) {
   const dispatch = useDispatch()
@@ -35,10 +36,13 @@ function InterfacesWidget(props) {
   )
   const { serialNumber } = useSelector(path(['pvs']))
   const upInterface = internetUpInterface(data)
-
   useEffect(() => {
     dispatch(GET_INTERFACES_INIT())
   }, [dispatch])
+
+  useEffect(() => {
+    dispatch(SET_ONLINE(upInterface))
+  }, [dispatch, upInterface])
 
   return (
     <section className="iw is-flex collapsible pl-0">

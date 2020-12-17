@@ -2,10 +2,7 @@ import * as Sentry from '@sentry/browser'
 import { ofType } from 'redux-observable'
 import { from, of } from 'rxjs'
 import { exhaustMap, map, catchError } from 'rxjs/operators'
-import {
-  path,
-  pathOr
-} from 'ramda'
+import { path, pathOr } from 'ramda'
 import { getApiPVS, storageSwaggerTag } from 'shared/api'
 import { START_DISCOVERY_ERROR, START_DISCOVERY_INIT } from 'state/actions/pvs'
 import { DISCOVER_COMPLETE, DISCOVER_ERROR } from 'state/actions/devices'

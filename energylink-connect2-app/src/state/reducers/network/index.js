@@ -20,6 +20,7 @@ import {
   EXECUTE_ENABLE_ACCESS_POINT,
   FAILURE_BLUETOOTH_ACTION,
   EXECUTE_ENABLE_ACCESS_POINT_SUCCESS,
+  SET_ONLINE,
   CHECK_PERMISSIONS_INIT,
   CHECK_PERMISSIONS_SUCCESS,
   CHECK_PERMISSIONS_ERROR,
@@ -29,6 +30,7 @@ import {
   SET_AP_PWD,
   SET_SSID
 } from 'state/actions/network'
+
 import { RESET_COMMISSIONING } from 'state/actions/global'
 import { eqByProp } from 'shared/utils'
 
@@ -37,6 +39,8 @@ const initialState = {
   connecting: false,
   connectionCanceled: false,
   showEnablingAccessPoint: false,
+  showManualInstructions: false,
+  isOnline: false,
   err: '',
   SSID: '',
   password: '',
@@ -175,6 +179,12 @@ export const networkReducer = createReducer(
       bluetoothStatus: BLESTATUS.FAILED_ACCESS_POINT_ON_PVS,
       showEnablingAccessPoint: false,
       connecting: false,
+      connected: false,
+      showManualInstructions: false
+    }),
+    [SET_ONLINE]: (state, isOnline) => ({
+      ...state,
+      isOnline,
       connected: false
     }),
     [CHECK_PERMISSIONS_INIT]: state => ({
@@ -182,7 +192,6 @@ export const networkReducer = createReducer(
       checkingPermission: true,
       checkingPermissionError: null
     }),
-
     [CHECK_PERMISSIONS_SUCCESS]: (state, bluetoothAuthorized) => ({
       ...state,
       checkingPermission: false,

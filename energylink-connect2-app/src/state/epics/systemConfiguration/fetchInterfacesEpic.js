@@ -1,7 +1,7 @@
 import * as Sentry from '@sentry/browser'
 import { ofType } from 'redux-observable'
 import { from, of } from 'rxjs'
-import { catchError, concatMap, map } from 'rxjs/operators'
+import { catchError, map, exhaustMap } from 'rxjs/operators'
 import { path, pathOr } from 'ramda'
 import { getApiPVS } from 'shared/api'
 import {
@@ -19,7 +19,7 @@ export const fetchInterfacesEpic = action$ =>
       CONNECT_NETWORK_AP_SUCCESS.getType(),
       GET_NETWORK_APS_SUCCESS.getType()
     ),
-    concatMap(() => {
+    exhaustMap(() => {
       const promise = getApiPVS()
         .then(path(['apis', 'network']))
         .then(api => api.getInterfaces())

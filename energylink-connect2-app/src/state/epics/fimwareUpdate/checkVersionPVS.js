@@ -1,7 +1,7 @@
 import * as Sentry from '@sentry/browser'
 import { ofType } from 'redux-observable'
 import { from, of } from 'rxjs'
-import { catchError, map, mergeMap } from 'rxjs/operators'
+import { catchError, map, exhaustMap } from 'rxjs/operators'
 import { getFirmwareVersionData } from 'shared/fileSystem'
 import { sendCommandToPVS } from 'shared/PVSUtils'
 import { getPVSVersionNumber } from 'shared/utils'
@@ -37,7 +37,7 @@ const checkIfNeedToUpdatePVSToLatestVersion = async url => {
 const checkVersionPVS = (action$, state$) =>
   action$.pipe(
     ofType(PVS_CONNECTION_SUCCESS.getType()),
-    mergeMap(() =>
+    exhaustMap(() =>
       from(
         checkIfNeedToUpdatePVSToLatestVersion(getFirmwareUrlFromState(state$))
       ).pipe(

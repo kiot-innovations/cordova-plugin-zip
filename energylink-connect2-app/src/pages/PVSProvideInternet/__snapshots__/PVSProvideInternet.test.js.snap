@@ -1784,7 +1784,7 @@ exports[`PVS Provide Internet page renders correctly 1`] = `
             </div>
           </NetworkWidget>
           <div
-            className="has-text-white is-size-6 is-bold is-text has-text-centered"
+            className="has-text-white is-size-6 is-bold is-text has-text-centered mb-10"
           >
             PVS_PROVIDE_INTERNET
           </div>
@@ -1792,10 +1792,11 @@ exports[`PVS Provide Internet page renders correctly 1`] = `
             className="container is-flex"
           >
             <button
-              className="button is-uppercase is-center auto continue-button is-secondary"
+              className="button is-uppercase is-center auto continue-button is-primary"
+              disabled={true}
               onClick={[Function]}
             >
-              NOT_NOW
+              CONTINUE
             </button>
           </div>
         </div>

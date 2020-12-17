@@ -3,15 +3,14 @@ import {
   catchError,
   delay,
   map,
-  mergeMap,
   retryWhen,
-  tap
+  tap,
+  exhaustMap
 } from 'rxjs/operators'
 import { ofType } from 'redux-observable'
 import { Client as WebSocket } from 'rpc-websockets'
 
 import * as energyDataActions from '../../actions/energy-data'
-import * as networkActions from '../../actions/network'
 
 import { roundDecimals } from 'shared/rounding'
 import { always, compose, equals, ifElse, is, pathOr } from 'ramda'
@@ -75,13 +74,13 @@ const getLoadSideProduction = (state, energyProduction) =>
 
 export const liveEnergyData = (action$, state$) =>
   action$.pipe(
-    ofType(networkActions.PVS_CONNECTION_SUCCESS.getType()),
-    mergeMap(({ payload }) =>
+    ofType(energyDataActions.ENERGY_DATA_POLLING.getType()),
+    exhaustMap(({ payload }) =>
       createWebsocketObservable().pipe(
         retryWhen(errors =>
           errors.pipe(
             tap(err => console.error('Websocket connection', err)),
-            delay(1000)
+            delay(2000)
           )
         ),
         map(({ evt, data }) => {

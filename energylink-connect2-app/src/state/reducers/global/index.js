@@ -24,7 +24,7 @@ import {
   RESET_COMMISSIONING,
   CHECK_SSL_CERTS,
   CHECK_SSL_CERTS_SUCCESS,
-  CHECK_SSL_CERTS_ERROR,
+  CHECK_SSL_CERTS_ERROR
 } from 'state/actions/global'
 
 const initialState = {
@@ -40,7 +40,7 @@ const initialState = {
   updateAvailable: false,
   updateVersion: 0,
   checkingSSLCerts: false,
-  hasValidSSLCerts: null,
+  hasValidSSLCerts: null
 }
 
 export const globalReducer = createReducer(
@@ -99,20 +99,20 @@ export const globalReducer = createReducer(
       updateAvailable: false,
       updateVersion: 0
     }),
-    [CHECK_SSL_CERTS]: (state) => ({
+    [CHECK_SSL_CERTS]: state => ({
       ...state,
-      checkingSSLCerts: true,
+      checkingSSLCerts: true
     }),
-    [CHECK_SSL_CERTS_SUCCESS]: (state) => ({
-      ...state,
-      checkingSSLCerts: false,
-      hasValidSSLCerts: true,
-    }),
-    [CHECK_SSL_CERTS_ERROR]: (state) => ({
+    [CHECK_SSL_CERTS_SUCCESS]: state => ({
       ...state,
       checkingSSLCerts: false,
-      hasValidSSLCerts: false,
+      hasValidSSLCerts: true
     }),
+    [CHECK_SSL_CERTS_ERROR]: state => ({
+      ...state,
+      checkingSSLCerts: false,
+      hasValidSSLCerts: false
+    })
   },
   initialState
 )

@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react'
-import { find, pathOr, propEq } from 'ramda'
-import clsx from 'clsx'
+import { find, pathOr, propEq, isEmpty, isNil, path } from 'ramda'
 import { useI18n } from 'shared/i18n'
 import { useSelector, useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
@@ -27,6 +26,8 @@ const PVSProvideInternet = () => {
 
   const { rmaMode, newEquipment, rma } = useSelector(state => state.rma)
   const { serialNumbers, wpsSupport } = useSelector(state => state.pvs)
+  const { isConnecting } = useSelector(path(['systemConfiguration', 'network']))
+
   const { bom } = useSelector(state => state.inventory)
   const miValue = find(propEq('item', 'AC_MODULES'), bom)
   const storageValue = find(propEq('item', 'ESS'), bom)
@@ -35,11 +36,19 @@ const PVSProvideInternet = () => {
     pathOr(false, ['firmwareUpdate', 'canContinue'])
   )
 
-  const { isConnected } = useSelector(
-    pathOr(false, ['systemConfiguration', 'network'])
+  const { isOnline } = useSelector(pathOr(false, ['network']))
+  const { isFetching } = useSelector(
+    pathOr(false, ['systemConfiguration', 'interfaces'])
   )
 
   const { canAccessScandit } = useSelector(state => state.global)
+
+  const warmUp = ({ Device, type, Interfaces }) => {
+    const options = { Device, type }
+    if (Interfaces) options.Interfaces = Interfaces
+    dispatch(START_COMMISSIONING_INIT())
+    dispatch(START_DISCOVERY_INIT(options))
+  }
 
   const goToScanLabels = () => {
     // If we're going through a PVS replacement
@@ -51,12 +60,7 @@ const PVSProvideInternet = () => {
         // If there's no new equipment
         if (pathOr(false, ['other'], rma)) {
           // Do a legacy discovery if site contains legacy devices.
-          dispatch(
-            START_DISCOVERY_INIT({
-              Device: 'allplusmime',
-              type: discoveryTypes.LEGACY
-            })
-          )
+          warmUp({ Device: 'allplusmime', type: discoveryTypes.LEGACY })
           history.push(paths.PROTECTED.LEGACY_DISCOVERY.path)
         } else {
           // Do a standard MI discovery if site doesn't contain legacy devices.
@@ -64,24 +68,36 @@ const PVSProvideInternet = () => {
           history.push(paths.PROTECTED.RMA_MI_DISCOVERY.path)
         }
       }
-    } else if (rmaMode === rmaModes.EDIT_DEVICES) {
-      history.push(paths.PROTECTED.RMA_DEVICES.path)
     } else {
-      if (miValue.value > 0) {
-        history.push(
-          canAccessScandit
-            ? paths.PROTECTED.SCAN_LABELS.path
-            : paths.PROTECTED.SN_LIST.path
-        )
+      if (versionChecked)
+        warmUp({
+          Device: 'allnomi',
+          Interfaces: ['mime'],
+          type: discoveryTypes.ALLNOMI
+        })
+
+      if (rmaMode === rmaModes.EDIT_DEVICES) {
+        history.push(paths.PROTECTED.RMA_DEVICES.path)
       } else {
-        if (storageValue.value !== '0') {
-          history.push(paths.PROTECTED.STORAGE_PREDISCOVERY.path)
+        if (miValue.value > 0) {
+          history.push(
+            canAccessScandit
+              ? paths.PROTECTED.SCAN_LABELS.path
+              : paths.PROTECTED.SN_LIST.path
+          )
         } else {
-          history.push(paths.PROTECTED.SYSTEM_CONFIGURATION.path)
+          if (storageValue.value !== '0') {
+            history.push(paths.PROTECTED.STORAGE_PREDISCOVERY.path)
+          } else {
+            history.push(paths.PROTECTED.SYSTEM_CONFIGURATION.path)
+          }
         }
       }
     }
   }
+
+  const shouldConnect =
+    !isOnline || isEmpty(isOnline) || isNil(isOnline) || isConnecting
 
   useEffect(() => {
     if (versionChecked) {
@@ -109,25 +125,25 @@ const PVSProvideInternet = () => {
       <div className="mb-10">
         <InterfacesWidget />
       </div>
-      <NetworkWidget expanded hideWPSButton={!wpsSupport} />
+      <NetworkWidget
+        expanded={shouldConnect && !isFetching}
+        hideWPSButton={!wpsSupport}
+      />
 
       {either(
-        isConnected,
-        null,
-        <div className="has-text-white is-size-6 is-bold is-text has-text-centered">
-          {t('PVS_PROVIDE_INTERNET')}
+        shouldConnect,
+        <div className="has-text-white is-size-6 is-bold is-text has-text-centered mb-10">
+          {t(isFetching ? 'PVS_CHECKING_INTERNET' : 'PVS_PROVIDE_INTERNET')}
         </div>
       )}
 
       <div className="container is-flex">
         <button
-          className={clsx(
-            'button is-uppercase is-center auto continue-button',
-            isConnected ? 'is-primary' : 'is-secondary'
-          )}
+          className="button is-uppercase is-center auto continue-button is-primary"
+          disabled={shouldConnect}
           onClick={goToScanLabels}
         >
-          {t(isConnected ? 'CONTINUE' : 'NOT_NOW')}
+          {t('CONTINUE')}
         </button>
       </div>
     </div>

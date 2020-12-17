@@ -10,7 +10,7 @@ const SSLCertCheckConnectionInsecure = () => {
   const t = useI18n()
   const dispatch = useDispatch()
 
-  const checkingSSLCerts = useSelector((state) =>
+  const checkingSSLCerts = useSelector(state =>
     path(['global', 'checkingSSLCerts'], state)
   )
 
@@ -19,7 +19,7 @@ const SSLCertCheckConnectionInsecure = () => {
   }
 
   const retryButonClassName = clsx('button', 'is-primary', 'is-uppercase', {
-    'is-loading': checkingSSLCerts,
+    'is-loading': checkingSSLCerts
   })
 
   return (

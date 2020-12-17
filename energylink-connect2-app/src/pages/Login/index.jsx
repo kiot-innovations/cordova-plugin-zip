@@ -17,8 +17,8 @@ function Login() {
   const t = useI18n()
   const dispatch = useDispatch()
 
-  const isAuthenticating = useSelector((state) => state.user.isAuthenticating)
-  const error = useSelector((state) => state.user.err)
+  const isAuthenticating = useSelector(state => state.user.isAuthenticating)
+  const error = useSelector(state => state.user.err)
 
   const loginClassName = clsx('button', 'is-primary', 'is-uppercase', {
     'is-loading': isAuthenticating

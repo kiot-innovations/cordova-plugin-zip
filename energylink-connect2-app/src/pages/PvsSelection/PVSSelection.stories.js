@@ -4,8 +4,8 @@ import { configureStore } from 'state/store'
 import { Provider } from 'react-redux'
 
 import PVSSelection from '.'
-import { rmaModes } from 'state/reducers/rma';
-import { BLESTATUS } from 'state/reducers/network';
+import { rmaModes } from 'state/reducers/rma'
+import { BLESTATUS } from 'state/reducers/network'
 
 let initialState = {
   site: {
