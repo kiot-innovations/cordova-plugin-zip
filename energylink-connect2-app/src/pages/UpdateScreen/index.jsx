@@ -88,12 +88,12 @@ const UpdateScreen = () => {
       {either(!errorUpdating, <span>{t('DONT_CLOSE_APP_UPGRADING')}</span>)}
       <div className="percent-loader">
         {either(
-          status === 'UPGRADE_COMPLETE',
-          null,
+          status !== 'UPGRADE_COMPLETE',
           <>
             {either(
               errorUpdating,
               <>
+                <span className="sp-pvs" />
                 <span className="mt-20"> {t('FWUP_ERROR')} </span>
                 <div className="mt-20 is-flex actions">
                   <button
