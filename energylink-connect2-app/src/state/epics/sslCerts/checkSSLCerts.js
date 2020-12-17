@@ -6,18 +6,18 @@ import { checkAllSSLCerts } from 'shared/sslCertCheck'
 import {
   CHECK_SSL_CERTS,
   CHECK_SSL_CERTS_SUCCESS,
-  CHECK_SSL_CERTS_ERROR,
+  CHECK_SSL_CERTS_ERROR
 } from 'state/actions/global'
 
-import { HIDE_MODAL } from 'state/actions/modal'
+import { SHOW_MODAL, HIDE_MODAL } from 'state/actions/modal'
 
-export const checkSSLCertsEpic = (action$) => {
+export const checkSSLCertsEpic = action$ => {
   return action$.pipe(
     ofType(CHECK_SSL_CERTS.getType()),
     exhaustMap(() => {
       return from(checkAllSSLCerts()).pipe(
         map(CHECK_SSL_CERTS_SUCCESS),
-        catchError((err) => {
+        catchError(err => {
           Sentry.addBreadcrumb({ message: 'SSL Cert Failure' })
           Sentry.captureException(err)
           return of(CHECK_SSL_CERTS_ERROR(err))
@@ -28,20 +28,21 @@ export const checkSSLCertsEpic = (action$) => {
 }
 //
 
-export const checkSSLCertsErrorEpic = (action$) => {
+export const checkSSLCertsErrorEpic = action$ => {
   return action$.pipe(
     ofType(CHECK_SSL_CERTS_ERROR.getType()),
-    map((err) => {
-      Sentry.withScope(function (scope) {
-        Sentry.setTag('security', 'Failed SSL Certificate Check')
-        scope.setLevel(Sentry.Severity.Warning)
-        Sentry.captureMessage(JSON.stringify(err.payload), {})
+    map(({ payload }) =>
+      SHOW_MODAL({
+        title: 'SSL_CERT_CHECK_CONNECTION_NOT_SECURE_TITLE',
+        componentPath: './SSLCertCheckConnectionNotSecure.jsx',
+        componentProps: payload,
+        dismissable: false
       })
-    })
+    )
   )
 }
 
-export const checkSSLCertsSuccessEpic = (action$) => {
+export const checkSSLCertsSuccessEpic = action$ => {
   return action$.pipe(
     ofType(CHECK_SSL_CERTS_SUCCESS.getType()),
     map(() => HIDE_MODAL())
