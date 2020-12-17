@@ -112,5 +112,6 @@
     <plugin name="cordova-plugin-sunpowerble" spec="git+ssh://git@github.com/SunPower/cordova-plugin-sunpowerble.git" />
     <plugin name="cordova-plugin-ble-central">
         <variable name="BLUETOOTH_USAGE_DESCRIPTION" value="The app uses bluetooth to connect to PVS WiFi. Pro Connect needs to connect to your PVS to commission the devices." />
+        <variable name="IOS_INIT_ON_LOAD" value="true" />
     </plugin>
 </widget>

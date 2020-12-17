@@ -7,7 +7,6 @@ import {
   CHECK_PERMISSIONS_SUCCESS,
   CHECK_PERMISSIONS_ERROR
 } from 'state/actions/network'
-import { trace } from 'shared/utils'
 
 const checkBLEPermissions = () =>
   new Promise((res, rej) =>
@@ -19,7 +18,6 @@ export const checkBLEPermissionsEpic = action$ => {
     ofType(CHECK_PERMISSIONS_INIT.getType()),
     exhaustMap(() =>
       from(checkBLEPermissions()).pipe(
-        map(trace('CHECPERM')),
         map(bleState =>
           bleState !==
             window.cordova.plugins.diagnostic.bluetoothState.POWERED_ON &&

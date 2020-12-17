@@ -4,19 +4,17 @@ export const enableAccessPointOnPVS = bleConnectionInfo =>
   new Promise(resolve => {
     const spwr = new window.sunpowerble.SunpowerBle()
     spwr.setupPin('1234')
-
-    console.info(
-      'isEncryptionRequired',
-      spwr.isEncryptionRequired(bleConnectionInfo)
-    )
-
     new window.sunpowerble.Endpoints.Communication.APEnable.Post()
       .send(bleConnectionInfo.id)
       .then(() => {
+        window.ble.disconnect(
+          bleConnectionInfo.id,
+          trace('DISCONNECT_SUCCESS'),
+          trace('DISCONNECT_ERROR')
+        )
         resolve('ENABLE_AP_CMD_SENT')
       })
-      .catch(error => {
-        console.error({ error })
+      .catch(() => {
         /*
           resolves because even tho it succeeded
           the PVS response cannot be read :
@@ -24,10 +22,9 @@ export const enableAccessPointOnPVS = bleConnectionInfo =>
         */
         window.ble.disconnect(
           bleConnectionInfo.id,
-          trace('succesfully disconnected'),
-          trace('error disconnecting')
+          trace('DISCONNECT_SUCCESS'),
+          trace('DISCONNECT_ERROR')
         )
-
         resolve('ENABLE_AP_CMD_SENT')
       })
   })

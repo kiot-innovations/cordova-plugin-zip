@@ -12,11 +12,8 @@ import { connectBLE } from 'shared/bluetooth/connectViaBluetooth'
 export const connectPVSViaBluetoothEpic = action$ => {
   return action$.pipe(
     ofType(CONNECT_PVS_VIA_BLE.getType()),
-    exhaustMap(({ payload: bleDevice }) => {
-      console.warn('WILL ENABLE BLE WITH:')
-      console.warn({ bleDevice })
-
-      return from(connectBLE(bleDevice)).pipe(
+    exhaustMap(({ payload: bleDevice }) =>
+      from(connectBLE(bleDevice)).pipe(
         map(EXECUTE_ENABLE_ACCESS_POINT),
         catchError(err => {
           Sentry.addBreadcrumb({ message: 'CONNECT_TO_PVS_VIA_BLE' })
@@ -24,6 +21,6 @@ export const connectPVSViaBluetoothEpic = action$ => {
           return of(FAILURE_BLUETOOTH_ACTION()) // TODO: Use an actionable ACTION
         })
       )
-    })
+    )
   )
 }

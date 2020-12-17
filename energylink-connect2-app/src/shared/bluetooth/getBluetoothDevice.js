@@ -14,8 +14,6 @@ export const getBLEDevice = pvsSerialNumber =>
 
         const snAndroid = pathOr('NOT_FOUND', ['name'], device)
 
-        console.info({ sniOS, snAndroid })
-
         if (
           equals(sniOS, pvsSerialNumber) ||
           equals(snAndroid, pvsSerialNumber)
