@@ -16,6 +16,7 @@ import { CHECK_PERMISSIONS_INIT } from 'state/actions/network'
 import { BEGIN_INSTALL } from 'state/actions/analytics'
 
 import './BillOfMaterials.scss'
+import useSiteChanged from 'hooks/useHasSiteChanged'
 
 const useMap = (latitude, longitude) => {
   const [url, setUrl] = useState('')
@@ -45,7 +46,7 @@ function BillOfMaterials() {
     bom: inventory.bom
   }))
 
-  const siteChanged = useSelector(pathOr(false, ['site', 'siteChanged']))
+  const siteChanged = useSiteChanged()
   const { address1, latitude, longitude, siteName, siteKey } = useSelector(
     pathOr({}, ['site', 'site'])
   )

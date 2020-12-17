@@ -112,8 +112,12 @@ const submitCommissionSuccess = (action$, state$) =>
         (now - state.analytics.commissioningTimer) /
         1000
       ).toFixed(3)
+      const timeConfiguring = (now - state.analytics.configureTimer) / 1000
 
-      return of(commissionSite({ duration }), COMMISSION_SUCCESS())
+      return of(
+        commissionSite({ duration, timeConfiguring }),
+        COMMISSION_SUCCESS()
+      )
     })
   )
 

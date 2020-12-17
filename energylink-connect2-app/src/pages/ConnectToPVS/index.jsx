@@ -14,7 +14,8 @@ import {
 } from 'state/actions/network'
 import {
   CONNECT_PVS_CAMERA,
-  CONNECT_PVS_MANUALLY
+  CONNECT_PVS_MANUALLY,
+  SCANNING_START
 } from 'state/actions/analytics'
 import { SAVE_PVS_SN } from 'state/actions/pvs'
 import { Loader } from 'components/Loader'
@@ -91,6 +92,7 @@ function ConnectToPVS() {
 
   const getBarcode = () => {
     setStarted(true)
+    dispatch(SCANNING_START())
     scanBarcodes(onSuccess(generatePassword, dispatch, t, setStarted), onFail)
   }
 

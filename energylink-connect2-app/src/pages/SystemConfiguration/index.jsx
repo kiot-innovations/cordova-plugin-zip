@@ -7,6 +7,9 @@ import SwipeableBottomSheet from 'react-swipeable-bottom-sheet'
 import paths from 'routes/paths'
 import { useI18n } from 'shared/i18n'
 import { FETCH_DEVICES_LIST, UPDATE_DEVICES_LIST } from 'state/actions/devices'
+import PanelLayoutWidget from 'pages/SystemConfiguration/panelLayoutWidget'
+import useSiteChanged from 'hooks/useHasSiteChanged'
+import { CONFIG_START } from 'state/actions/analytics'
 import {
   REPLACE_RMA_PVS,
   SUBMIT_CONFIG
@@ -20,7 +23,6 @@ import NetworkWidget from './NetworkWidget'
 import RSEWidget from './RSEWidget'
 
 import './SystemConfiguration.scss'
-import PanelLayoutWidget from 'pages/SystemConfiguration/panelLayoutWidget'
 
 const createMeterConfig = (devicesList, meterConfig, dispatch, site) => {
   const updatedDevices = devicesList.map(device => {
@@ -57,6 +59,7 @@ function SystemConfiguration() {
   const t = useI18n()
   const dispatch = useDispatch()
   const history = useHistory()
+  const siteChanged = useSiteChanged()
   const [commissionBlockModal, showCommissionBlockModal] = useState(false)
 
   const { wpsSupport } = useSelector(state => state.pvs)
@@ -122,6 +125,7 @@ function SystemConfiguration() {
                 ? REPLACE_RMA_PVS(configObject)
                 : SUBMIT_CONFIG(configObject)
             )
+            dispatch(CONFIG_START(siteChanged))
             history.push(paths.PROTECTED.SAVING_CONFIGURATION.path)
           } else {
             showErrorConfigurationModal()

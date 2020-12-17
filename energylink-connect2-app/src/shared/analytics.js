@@ -168,9 +168,12 @@ export const timeMixPanelEvent = name => {
   mixpanel.time_event(name)
 }
 
-export const commissionSite = ({ duration }) => {
+export const commissionSite = ({ duration, timeConfiguring }) => {
   const { mixpanel } = window
-  mixpanel.track('Commission Site', { $duration: duration })
+  mixpanel.track('Commission Site', {
+    $duration: duration,
+    'Time Configuring': timeConfiguring
+  })
   return MIXPANEL_EVENT_QUEUED(
     'Commission Site - first successful site configuration'
   )

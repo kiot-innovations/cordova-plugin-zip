@@ -15,6 +15,7 @@ import {
   head,
   includes,
   indexBy,
+  isEmpty,
   isNil,
   join,
   keys,
@@ -26,6 +27,7 @@ import {
   over,
   path,
   pathEq,
+  pathOr,
   pickBy,
   prop,
   propEq,
@@ -34,13 +36,11 @@ import {
   reject,
   replace,
   split,
+  startsWith,
   toPairs,
   toUpper,
   values,
-  when,
-  pathOr,
-  isEmpty,
-  startsWith
+  when
 } from 'ramda'
 
 export const either = (condition, whenTrue, whenFalse = null) =>

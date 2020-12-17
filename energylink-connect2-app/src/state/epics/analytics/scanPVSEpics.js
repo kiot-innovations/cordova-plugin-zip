@@ -1,10 +1,12 @@
 import { ofType } from 'redux-observable'
-import { map } from 'rxjs/operators'
+import { map, switchMap } from 'rxjs/operators'
 import {
   CONNECT_PVS_CAMERA,
-  CONNECT_PVS_MANUALLY
+  CONNECT_PVS_MANUALLY,
+  SCANNING_START
 } from 'state/actions/analytics'
 import { scanPVS } from 'shared/analytics'
+import { EMPTY } from 'rxjs'
 
 const enterSNManuallyEpic = action$ => {
   return action$.pipe(
@@ -32,4 +34,15 @@ const scanPVSCameraEpic = action$ =>
     )
   )
 
-export default [enterSNManuallyEpic, scanPVSCameraEpic]
+const trackTimeScanning = (action$, state$) =>
+  action$.pipe(
+    ofType(SCANNING_START.getType()),
+    switchMap(() => {
+      if (state$.value.site.siteChanged) {
+        window.mixpanel.time_event('Scan PVS Tag')
+      }
+      return EMPTY
+    })
+  )
+
+export default [enterSNManuallyEpic, scanPVSCameraEpic, trackTimeScanning]
