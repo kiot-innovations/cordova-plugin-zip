@@ -61,11 +61,11 @@ const PanelLayoutTool = ({
             left={
               <Control
                 icon="sp-center"
-                onClick={() => dispatch(actions.setCanvasOffset([0, 0]))}
+                onClick={() => dispatch(actions.setCanvasOffsetCenter())}
               />
             }
             center={controls}
-            right={<ZoomControl step={0.5} min={1} max={3} />}
+            right={<ZoomControl step={0.2} min={0.6} max={1.4} />}
           />
         </PanelLayoutContainer>
       </div>

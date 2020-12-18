@@ -35,7 +35,7 @@ export default () => {
   //Had to disable the eslint rule of exhaustive because
   //panels change when the component is mounting and creates an error
   useEffect(() => {
-    dispatch(actions.init(utils.createGroups(panels)))
+    dispatch(actions.init({ panels: utils.createGroups(panels) }))
     //eslint-disable-next-line
   }, [])
 

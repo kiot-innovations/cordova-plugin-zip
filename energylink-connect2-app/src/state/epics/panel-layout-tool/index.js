@@ -48,7 +48,10 @@ export const getPanelLayoutEpic = action$ =>
     exhaustMap(() =>
       from(getPanelLayout()).pipe(
         switchMap(panels =>
-          of(actions.init(panels), PLT_LOAD_FINISHED(panels))
+          of(
+            actions.init({ panels, zoom: panels.length ? 0.6 : 1 }),
+            PLT_LOAD_FINISHED(panels)
+          )
         ),
         catchError(() => of(PLT_LOAD_ERROR.asError()))
       )

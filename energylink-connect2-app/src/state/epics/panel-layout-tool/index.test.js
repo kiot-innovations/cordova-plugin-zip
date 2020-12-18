@@ -34,7 +34,7 @@ describe('epic panel-layout-tool', () => {
           a: PLT_LOAD()
         }
         const expectedValues = {
-          b: actions.init([]),
+          b: actions.init({ panels: [], zoom: 1 }),
           c: PLT_LOAD_FINISHED([])
         }
 
@@ -43,7 +43,7 @@ describe('epic panel-layout-tool', () => {
 
         epicTest(inputMarble, expectedMarble, inputValues, expectedValues, {
           network: { SSID: 'SunPower85888', password: '18858888' },
-          panel_layout_tool: { panels: [{}] }
+          panel_layout_tool: { panels: [{}], zoom: 1 }
         })
       })
     })
