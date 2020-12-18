@@ -22,10 +22,11 @@ let checks = [
     ]
   },
   {
+    //retrieve the fingerprint from here https://www.google-analytics.com/analytics.js
     description: 'Google Analytics',
     server: 'https://www.google-analytics.com/',
     fingerprints: [
-      'D0 3E 43 61 C1 4B 24 CA BE DC 8C 4B 1D 87 51 F4 D6 31 50 DB E9 D1 54 90 45 BE 47 16 1E C4 2E 7C'
+      '1C 55 65 93 E8 99 C4 6C 4E 04 07 AB 0B 4A 9B 1D DC 9F 13 F2 83 B5 9B 63 1F 0A B1 E8 75 9E FF 5B'
     ]
   },
   {
@@ -39,7 +40,7 @@ let checks = [
     description: 'Google Maps API',
     server: 'https://maps.googleapis.com/',
     fingerprints: [
-      '10 F5 18 67 BB 28 10 94 5F 08 49 5B B1 0B D0 8B E5 42 0B 71 30 C5 6D B4 48 A7 D4 84 48 49 04 B7'
+      '05 50 68 55 E0 E4 74 C8 2C 1C 6B 82 DA E2 32 79 BF 72 7D 58 40 A4 C5 A8 C4 9E 84 74 59 F8 B9 F0'
     ]
   },
   {
@@ -54,6 +55,13 @@ let checks = [
     server: 'https://federation.us.sunpower.com/',
     fingerprints: [
       '18 00 D4 2A 0B 60 36 63 8C 1A 66 62 D8 53 05 FA BB 9B 9C E0 95 24 77 8B DF AC 6A 2C D0 0B 90 84'
+    ]
+  },
+  {
+    description: 'Artifactory',
+    server: 'https://prod-jfrog-artifactory-proxy-oauth2.p2e.io/',
+    fingerprints: [
+      '0E 7E 17 47 68 A4 3F B9 C2 A5 C7 94 AD 21 3E A5 B9 3D D5 45 C6 61 98 11 C7 78 C5 32 26 E8 79 14'
     ]
   }
 ]
@@ -83,7 +91,6 @@ const runCertCheck = (check, counter = 0) => {
         fingerprints
       )
     })
-
   return sslCertificateCheckerCheckPromise(check.server, check.fingerprints)
 }
 
@@ -92,8 +99,8 @@ export const checkAllSSLCerts = () => {
     let passed
     try {
       const checkResults = await Promise.all(checks.map(runCertCheck))
-      const isSecure = element => element !== 'CONNECTION_SECURE'
-      passed = checkResults.find(isSecure) === undefined
+      const isNotSecure = element => element !== 'CONNECTION_SECURE'
+      passed = checkResults.find(isNotSecure) === undefined
       resolve(passed)
     } catch (e) {
       console.error(e)

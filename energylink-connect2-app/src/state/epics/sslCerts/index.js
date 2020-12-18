@@ -1,11 +1,9 @@
 import {
   checkSSLCertsEpic,
-  checkSSLCertsErrorEpic,
-  checkSSLCertsSuccessEpic
+  checkSSLCertsErrorEpic
 } from './checkSSLCerts'
 
 export default [
   checkSSLCertsEpic,
-  checkSSLCertsErrorEpic,
-  checkSSLCertsSuccessEpic
+  checkSSLCertsErrorEpic
 ]
