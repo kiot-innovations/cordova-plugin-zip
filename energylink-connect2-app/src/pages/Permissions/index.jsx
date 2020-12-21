@@ -48,7 +48,7 @@ const Permissions = () => {
         bluetoothAuthorized,
 
         <article>
-          <p class="message success">{t('PERM_CHECK_SUCCESS')}</p>
+          <p className="message success">{t('PERM_CHECK_SUCCESS')}</p>
         </article>,
 
         <article className="content has-text-centered">

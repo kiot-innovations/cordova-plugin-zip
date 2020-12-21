@@ -1,0 +1,590 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Precommissioning Checklist renders correctly 1`] = `
+<BrowserRouter
+  keyLength={0}
+>
+  <Router
+    history={
+      Object {
+        "action": "POP",
+        "block": [Function],
+        "createHref": [Function],
+        "go": [Function],
+        "goBack": [Function],
+        "goForward": [Function],
+        "length": 1,
+        "listen": [Function],
+        "location": Object {
+          "hash": "",
+          "pathname": "/",
+          "search": "",
+          "state": undefined,
+        },
+        "push": [Function],
+        "replace": [Function],
+      }
+    }
+  >
+    <Provider
+      store={
+        Object {
+          "clearActions": [Function],
+          "dispatch": [Function],
+          "getActions": [Function],
+          "getState": [Function],
+          "replaceReducer": [Function],
+          "subscribe": [Function],
+        }
+      }
+    >
+      <PreCommissioning>
+        <div
+          className="precomm pl-15 pr-15"
+        >
+          <div
+            className="is-flex tile is-vertical has-text-centered"
+          >
+            <span
+              className="is-uppercase has-text-weight-bold"
+            >
+              PRECOMM_TITLE
+            </span>
+            <span
+              className="mt-10"
+            >
+              PRECOMM_SUBTITLE
+            </span>
+          </div>
+          <div
+            className="precomm_checklist"
+          >
+            <ChecklistRow
+              check={[Function]}
+              key="PRECOMM_HO_DETAILS"
+              row={
+                Object {
+                  "checked": false,
+                  "text": "PRECOMM_HO_DETAILS",
+                }
+              }
+              t={[Function]}
+            >
+              <div
+                className="precomm_checklist_row mt-10"
+                key="PRECOMM_HO_DETAILS"
+              >
+                <div
+                  className="precomm_checklist_row_text"
+                >
+                  <label
+                    className="has-text-white"
+                    htmlFor="PRECOMM_HO_DETAILS"
+                  >
+                    PRECOMM_HO_DETAILS
+                  </label>
+                </div>
+                <div
+                  className="precomm_checklist_row_checkbox is-flex has-text-centered"
+                >
+                  <input
+                    checked={false}
+                    className="checkbox-dark"
+                    id="PRECOMM_HO_DETAILS"
+                    name="PRECOMM_HO_DETAILS"
+                    onChange={[Function]}
+                    type="checkbox"
+                  />
+                </div>
+              </div>
+            </ChecklistRow>
+            <ChecklistRow
+              check={[Function]}
+              key="PRECOMM_WIFI_CREDENTIALS"
+              row={
+                Object {
+                  "checked": false,
+                  "text": "PRECOMM_WIFI_CREDENTIALS",
+                }
+              }
+              t={[Function]}
+            >
+              <div
+                className="precomm_checklist_row mt-10"
+                key="PRECOMM_WIFI_CREDENTIALS"
+              >
+                <div
+                  className="precomm_checklist_row_text"
+                >
+                  <label
+                    className="has-text-white"
+                    htmlFor="PRECOMM_WIFI_CREDENTIALS"
+                  >
+                    PRECOMM_WIFI_CREDENTIALS
+                  </label>
+                </div>
+                <div
+                  className="precomm_checklist_row_checkbox is-flex has-text-centered"
+                >
+                  <input
+                    checked={false}
+                    className="checkbox-dark"
+                    id="PRECOMM_WIFI_CREDENTIALS"
+                    name="PRECOMM_WIFI_CREDENTIALS"
+                    onChange={[Function]}
+                    type="checkbox"
+                  />
+                </div>
+              </div>
+            </ChecklistRow>
+            <ChecklistRow
+              check={[Function]}
+              key="PRECOMM_FULL_CHARGE"
+              row={
+                Object {
+                  "checked": false,
+                  "text": "PRECOMM_FULL_CHARGE",
+                }
+              }
+              t={[Function]}
+            >
+              <div
+                className="precomm_checklist_row mt-10"
+                key="PRECOMM_FULL_CHARGE"
+              >
+                <div
+                  className="precomm_checklist_row_text"
+                >
+                  <label
+                    className="has-text-white"
+                    htmlFor="PRECOMM_FULL_CHARGE"
+                  >
+                    PRECOMM_FULL_CHARGE
+                  </label>
+                </div>
+                <div
+                  className="precomm_checklist_row_checkbox is-flex has-text-centered"
+                >
+                  <input
+                    checked={false}
+                    className="checkbox-dark"
+                    id="PRECOMM_FULL_CHARGE"
+                    name="PRECOMM_FULL_CHARGE"
+                    onChange={[Function]}
+                    type="checkbox"
+                  />
+                </div>
+              </div>
+            </ChecklistRow>
+            <ChecklistRow
+              check={[Function]}
+              key="PRECOMM_DND_MODE"
+              row={
+                Object {
+                  "checked": false,
+                  "text": "PRECOMM_DND_MODE",
+                }
+              }
+              t={[Function]}
+            >
+              <div
+                className="precomm_checklist_row mt-10"
+                key="PRECOMM_DND_MODE"
+              >
+                <div
+                  className="precomm_checklist_row_text"
+                >
+                  <label
+                    className="has-text-white"
+                    htmlFor="PRECOMM_DND_MODE"
+                  >
+                    PRECOMM_DND_MODE
+                  </label>
+                </div>
+                <div
+                  className="precomm_checklist_row_checkbox is-flex has-text-centered"
+                >
+                  <input
+                    checked={false}
+                    className="checkbox-dark"
+                    id="PRECOMM_DND_MODE"
+                    name="PRECOMM_DND_MODE"
+                    onChange={[Function]}
+                    type="checkbox"
+                  />
+                </div>
+              </div>
+            </ChecklistRow>
+            <ChecklistRow
+              check={[Function]}
+              key="PRECOMM_MI_STICKERS"
+              row={
+                Object {
+                  "checked": false,
+                  "text": "PRECOMM_MI_STICKERS",
+                }
+              }
+              t={[Function]}
+            >
+              <div
+                className="precomm_checklist_row mt-10"
+                key="PRECOMM_MI_STICKERS"
+              >
+                <div
+                  className="precomm_checklist_row_text"
+                >
+                  <label
+                    className="has-text-white"
+                    htmlFor="PRECOMM_MI_STICKERS"
+                  >
+                    PRECOMM_MI_STICKERS
+                  </label>
+                </div>
+                <div
+                  className="precomm_checklist_row_checkbox is-flex has-text-centered"
+                >
+                  <input
+                    checked={false}
+                    className="checkbox-dark"
+                    id="PRECOMM_MI_STICKERS"
+                    name="PRECOMM_MI_STICKERS"
+                    onChange={[Function]}
+                    type="checkbox"
+                  />
+                </div>
+              </div>
+            </ChecklistRow>
+            <ChecklistRow
+              check={[Function]}
+              key="PRECOMM_PV_MODELS"
+              row={
+                Object {
+                  "checked": false,
+                  "text": "PRECOMM_PV_MODELS",
+                }
+              }
+              t={[Function]}
+            >
+              <div
+                className="precomm_checklist_row mt-10"
+                key="PRECOMM_PV_MODELS"
+              >
+                <div
+                  className="precomm_checklist_row_text"
+                >
+                  <label
+                    className="has-text-white"
+                    htmlFor="PRECOMM_PV_MODELS"
+                  >
+                    PRECOMM_PV_MODELS
+                  </label>
+                </div>
+                <div
+                  className="precomm_checklist_row_checkbox is-flex has-text-centered"
+                >
+                  <input
+                    checked={false}
+                    className="checkbox-dark"
+                    id="PRECOMM_PV_MODELS"
+                    name="PRECOMM_PV_MODELS"
+                    onChange={[Function]}
+                    type="checkbox"
+                  />
+                </div>
+              </div>
+            </ChecklistRow>
+            <ChecklistRow
+              check={[Function]}
+              key="PRECOMM_CT_ORIENTATION"
+              row={
+                Object {
+                  "checked": false,
+                  "text": "PRECOMM_CT_ORIENTATION",
+                }
+              }
+              t={[Function]}
+            >
+              <div
+                className="precomm_checklist_row mt-10"
+                key="PRECOMM_CT_ORIENTATION"
+              >
+                <div
+                  className="precomm_checklist_row_text"
+                >
+                  <label
+                    className="has-text-white"
+                    htmlFor="PRECOMM_CT_ORIENTATION"
+                  >
+                    PRECOMM_CT_ORIENTATION
+                  </label>
+                </div>
+                <div
+                  className="precomm_checklist_row_checkbox is-flex has-text-centered"
+                >
+                  <input
+                    checked={false}
+                    className="checkbox-dark"
+                    id="PRECOMM_CT_ORIENTATION"
+                    name="PRECOMM_CT_ORIENTATION"
+                    onChange={[Function]}
+                    type="checkbox"
+                  />
+                </div>
+              </div>
+            </ChecklistRow>
+            <ChecklistRow
+              check={[Function]}
+              key="PRECOMM_PV_BREAKERS"
+              row={
+                Object {
+                  "checked": false,
+                  "text": "PRECOMM_PV_BREAKERS",
+                }
+              }
+              t={[Function]}
+            >
+              <div
+                className="precomm_checklist_row mt-10"
+                key="PRECOMM_PV_BREAKERS"
+              >
+                <div
+                  className="precomm_checklist_row_text"
+                >
+                  <label
+                    className="has-text-white"
+                    htmlFor="PRECOMM_PV_BREAKERS"
+                  >
+                    PRECOMM_PV_BREAKERS
+                  </label>
+                </div>
+                <div
+                  className="precomm_checklist_row_checkbox is-flex has-text-centered"
+                >
+                  <input
+                    checked={false}
+                    className="checkbox-dark"
+                    id="PRECOMM_PV_BREAKERS"
+                    name="PRECOMM_PV_BREAKERS"
+                    onChange={[Function]}
+                    type="checkbox"
+                  />
+                </div>
+              </div>
+            </ChecklistRow>
+            <div
+              className="precomm_checklist_dont-remind mt-10"
+            >
+              <div
+                className="is-flex file is-centered has-text-centered"
+              >
+                <input
+                  checked={false}
+                  className="checkbox-dark"
+                  id="PRECOMM_DONT_REMIND_ME"
+                  name="PRECOMM_DONT_REMIND_ME"
+                  onChange={[Function]}
+                  type="checkbox"
+                />
+              </div>
+              <div
+                className="precomm_checklist_row_text"
+              >
+                <label
+                  className="has-text-primary"
+                  htmlFor="PRECOMM_DONT_REMIND_ME"
+                >
+                  PRECOMM_DONT_REMIND_ME
+                </label>
+              </div>
+            </div>
+          </div>
+          <div
+            className="precomm_footer pt-20 pb-20 has-text-centered"
+          >
+            <button
+              className="button is-primary"
+              onClick={[Function]}
+            >
+              CONTINUE
+            </button>
+          </div>
+          <SwipeableBottomSheet
+            defaultOpen={false}
+            fullScreen={false}
+            marginTop={0}
+            onChange={[Function]}
+            open={false}
+            overflowHeight={0}
+            overlay={true}
+            scrollTopAtClose={true}
+            shadowTip={false}
+            swipeableViewsProps={Object {}}
+            topShadow={true}
+          >
+            <div
+              style={
+                Object {
+                  "bottom": 0,
+                  "height": 0,
+                  "left": 0,
+                  "position": "fixed",
+                  "right": 0,
+                }
+              }
+            >
+              <HeightUpdater
+                height={768}
+                onHeightChange={[Function]}
+              />
+              <div
+                onClick={[Function]}
+                style={
+                  Object {
+                    "backgroundColor": "black",
+                    "height": 768,
+                    "left": 0,
+                    "opacity": 0,
+                    "pointerEvents": "none",
+                    "position": "fixed",
+                    "right": 0,
+                    "top": 0,
+                    "transition": "opacity 450ms",
+                  }
+                }
+              />
+              <ReactSwipableView
+                animateHeight={false}
+                animateTransitions={true}
+                axis="y"
+                containerStyle={
+                  Object {
+                    "boxSizing": "border-box",
+                  }
+                }
+                disableLazyLoading={false}
+                disabled={false}
+                enableMouseEvents={true}
+                hysteresis={0.6}
+                ignoreNativeScroll={false}
+                index={0}
+                onChangeIndex={[Function]}
+                onTransitionEnd={[Function]}
+                resistance={false}
+                slideStyle={
+                  Object {
+                    "boxSizing": "border-box",
+                    "marginBottom": -0,
+                    "overflow": "visible",
+                  }
+                }
+                springConfig={
+                  Object {
+                    "delay": "0s",
+                    "duration": "0.35s",
+                    "easeFunction": "cubic-bezier(0.15, 0.3, 0.25, 1)",
+                  }
+                }
+                style={
+                  Object {
+                    "boxSizing": "border-box",
+                    "overflowY": "initial",
+                  }
+                }
+                threshold={5}
+              >
+                <div
+                  onMouseDown={[Function]}
+                  onMouseLeave={[Function]}
+                  onMouseMove={[Function]}
+                  onMouseUp={[Function]}
+                  onScroll={[Function]}
+                  onTouchEnd={[Function]}
+                  onTouchStart={[Function]}
+                  style={
+                    Object {
+                      "boxSizing": "border-box",
+                      "overflowY": "initial",
+                    }
+                  }
+                >
+                  <div
+                    className="react-swipeable-view-container"
+                    style={
+                      Object {
+                        "WebkitFlexDirection": "column",
+                        "WebkitTransition": "all 0s ease 0s",
+                        "boxSizing": "border-box",
+                        "direction": "ltr",
+                        "display": "flex",
+                        "flexDirection": "column",
+                        "height": null,
+                        "transition": "all 0s ease 0s",
+                        "willChange": "transform",
+                      }
+                    }
+                  >
+                    <div
+                      aria-hidden={false}
+                      data-swipeable="true"
+                      key=".0"
+                      style={
+                        Object {
+                          "WebkitFlexShrink": 0,
+                          "boxSizing": "border-box",
+                          "flexShrink": 0,
+                          "marginBottom": -0,
+                          "overflow": "visible",
+                          "width": "100%",
+                        }
+                      }
+                    >
+                      <div
+                        className="ReactSwipeableBottomSheet--closed"
+                        style={
+                          Object {
+                            "backgroundColor": "white",
+                            "height": "initial",
+                            "maxHeight": 768,
+                            "overflow": "hidden",
+                          }
+                        }
+                      >
+                        <div
+                          className="precomm_modal has-text-white has-text-centered"
+                        >
+                          <div
+                            className="mb-20"
+                          >
+                            <span
+                              className="sp-hey is-size-1"
+                            />
+                          </div>
+                          <div>
+                            <span>
+                              PRECOMM_CHECK_ALL
+                            </span>
+                          </div>
+                          <div
+                            className="mt-10"
+                          >
+                            <button
+                              className="button is-primary"
+                              onClick={[Function]}
+                            >
+                              OK
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </ReactSwipableView>
+            </div>
+          </SwipeableBottomSheet>
+        </div>
+      </PreCommissioning>
+    </Provider>
+  </Router>
+</BrowserRouter>
+`;

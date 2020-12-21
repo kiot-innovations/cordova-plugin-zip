@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
-import { compose, head, isEmpty, map, pathOr, pick, prop } from 'ramda'
+import { compose, head, isEmpty, isNil, map, pathOr, pick, prop } from 'ramda'
 import { useDispatch, useSelector } from 'react-redux'
-import { Link } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 
 import ProgressiveImage from 'components/ProgressiveImage'
 import HomeownerAccountCreation from 'components/HomeownerAccountCreation'
@@ -31,6 +31,7 @@ const useMap = (latitude, longitude) => {
 function BillOfMaterials() {
   const t = useI18n()
   const dispatch = useDispatch()
+  const history = useHistory()
 
   const [showHomeownerCreation, setShowHomeownerCreation] = useState(false)
 
@@ -40,6 +41,9 @@ function BillOfMaterials() {
   )
   const PVS = useSelector(getPvsSerialNumbers)
   const isMenuOpen = useSelector(pathOr(false, ['ui', 'menu', 'show']))
+  const { lastVisitedPage, showPrecommissioningChecklist } = useSelector(
+    state => state.global
+  )
 
   const data = useSelector(({ user, inventory }) => ({
     phone: user.data.phoneNumber,
@@ -50,6 +54,17 @@ function BillOfMaterials() {
   const { address1, latitude, longitude, siteName, siteKey } = useSelector(
     pathOr({}, ['site', 'site'])
   )
+
+  const redirectInstall = () => {
+    dispatch(BEGIN_INSTALL({ siteChanged }))
+    if (isNil(lastVisitedPage)) {
+      showPrecommissioningChecklist
+        ? history.push(paths.PROTECTED.PRECOMM_CHECKLIST.path)
+        : history.push(paths.PROTECTED.PVS_SELECTION_SCREEN.path)
+    } else {
+      history.push(lastVisitedPage)
+    }
+  }
 
   useEffect(() => {
     dispatch(GET_SCANDIT_USERS())
@@ -131,13 +146,12 @@ function BillOfMaterials() {
         )}
       </section>
       <section className="tile is-flex is-vertical button-container mb-20">
-        <Link
+        <button
           className="button pt-0 pb-0 is-primary"
-          to={paths.PROTECTED.PVS_SELECTION_SCREEN.path}
-          onClick={() => dispatch(BEGIN_INSTALL({ siteChanged }))}
+          onClick={redirectInstall}
         >
-          {t('START_INSTALL')}
-        </Link>
+          {t(lastVisitedPage ? 'CONTINUE_INSTALL' : 'BEGIN_INSTALL')}
+        </button>
       </section>
       {either(
         !isEmpty(PVS),

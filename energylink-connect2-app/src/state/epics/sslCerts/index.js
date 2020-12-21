@@ -1,9 +1,3 @@
-import {
-  checkSSLCertsEpic,
-  checkSSLCertsErrorEpic
-} from './checkSSLCerts'
+import { checkSSLCertsEpic } from './checkSSLCerts'
 
-export default [
-  checkSSLCertsEpic,
-  checkSSLCertsErrorEpic
-]
+export default [checkSSLCertsEpic]

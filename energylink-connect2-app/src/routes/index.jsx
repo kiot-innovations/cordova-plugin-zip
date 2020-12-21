@@ -46,6 +46,7 @@ import RMAMiDiscovery from 'pages/RMAMiDiscovery'
 import RMADevices from 'pages/RMADevices'
 import GetAssistance from 'pages/GetAssistance'
 import Permissions from 'pages/Permissions'
+import PreCommissioning from 'pages/PreCommissioning'
 import NearbyPVS from 'pages/NearbyPVS'
 
 import { isDebug } from 'shared/utils'
@@ -90,6 +91,7 @@ const mapComponents = {
   [paths.PROTECTED.ESS_HEALTH_CHECK_ERRORS.path]: ESSHealthCheckErrors,
   [paths.PROTECTED.RMA_EXISTING_DEVICES.path]: ExistingDevices,
   [paths.PROTECTED.RMA_MI_DISCOVERY.path]: RMAMiDiscovery,
+  [paths.PROTECTED.PRECOMM_CHECKLIST.path]: PreCommissioning,
   [paths.UNPROTECTED.FORGOT_PASSWORD.path]: NotFound,
   [paths.UNPROTECTED.GET_ASSISTANCE.path]: NotFound,
   [paths.PROTECTED.RMA_DEVICES.path]: RMADevices,

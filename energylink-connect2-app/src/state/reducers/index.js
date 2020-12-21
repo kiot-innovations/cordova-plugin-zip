@@ -55,7 +55,15 @@ export default combineReducers({
   ),
   fileDownloader,
   firmwareUpdate,
-  global: globalReducer,
+  global: persistReducer(
+    {
+      key: 'global',
+      storage,
+      version: storesVersions.globalReducer,
+      whitelist: ['showPrecommissioningChecklist']
+    },
+    globalReducer
+  ),
   inventory: inventoryReducer,
   network: networkReducer,
   pvs: pvsReducer,

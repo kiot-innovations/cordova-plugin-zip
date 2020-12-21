@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory, useLocation } from 'react-router-dom'
+import { isNil } from 'ramda'
 import Nav from '@sunpower/nav'
 import clsx from 'clsx'
 import paths, { protectedRoutes, TABS } from 'routes/paths'
@@ -22,7 +23,9 @@ const Footer = () => {
 
   const showFooter = useSelector(({ ui }) => !!ui.footer)
   const connected = useSelector(({ network }) => network.connected)
-  const lastVisitedPage = useSelector(({ global }) => global.lastVisitedPage)
+  const { lastVisitedPage, showPrecommissioningChecklist } = useSelector(
+    state => state.global
+  )
 
   const location = useLocation()
   const active = useMemo(
@@ -34,6 +37,7 @@ const Footer = () => {
     }),
     [location]
   )
+
   useEffect(() => {
     if (active.install) {
       const destination = connected
@@ -45,6 +49,15 @@ const Footer = () => {
 
   function redirect(path) {
     if (path !== location.pathname) history.push(path)
+  }
+
+  const installRedirect = lastVisitedPage => {
+    if (isNil(lastVisitedPage)) {
+      return showPrecommissioningChecklist
+        ? paths.PROTECTED.PRECOMM_CHECKLIST.path
+        : paths.PROTECTED.PVS_SELECTION_SCREEN.path
+    }
+    return lastVisitedPage
   }
 
   const configureClickHandler = connected
@@ -64,7 +77,7 @@ const Footer = () => {
     {
       icon: 'sp-list',
       text: 'Install',
-      onClick: () => redirect(lastVisitedPage),
+      onClick: () => redirect(installRedirect(lastVisitedPage)),
       active: active.install
     },
     {

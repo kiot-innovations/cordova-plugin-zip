@@ -75,6 +75,11 @@ const DebugPage = () => {
         )}
         {renderDebugLink(
           history,
+          'Precommissioning Checklist',
+          paths.PROTECTED.PRECOMM_CHECKLIST.path
+        )}
+        {renderDebugLink(
+          history,
           'POC for BLE Connection',
           paths.PROTECTED.NEARBY_PVS.path
         )}

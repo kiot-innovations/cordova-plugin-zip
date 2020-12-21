@@ -204,26 +204,12 @@ exports[`BillOfMaterials component render correctly 1`] = `
           <section
             className="tile is-flex is-vertical button-container mb-20"
           >
-            <Link
+            <button
               className="button pt-0 pb-0 is-primary"
               onClick={[Function]}
-              to="/pvs-selection"
             >
-              <LinkAnchor
-                className="button pt-0 pb-0 is-primary"
-                href="/pvs-selection"
-                navigate={[Function]}
-                onClick={[Function]}
-              >
-                <a
-                  className="button pt-0 pb-0 is-primary"
-                  href="/pvs-selection"
-                  onClick={[Function]}
-                >
-                  START_INSTALL
-                </a>
-              </LinkAnchor>
-            </Link>
+              BEGIN_INSTALL
+            </button>
           </section>
           <HomeownerAccountCreation
             onChange={[Function]}

@@ -247,6 +247,12 @@ const paths = {
       footer: true,
       tab: TABS.INSTALL
     },
+    PRECOMM_CHECKLIST: {
+      path: '/precommissioning-checklist',
+      header: true,
+      footer: true,
+      tab: TABS.INSTALL
+    },
     NEARBY_PVS: {
       path: '/nearbyPVS',
       header: true,

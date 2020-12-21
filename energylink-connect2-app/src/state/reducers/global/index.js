@@ -4,21 +4,21 @@ import {
   SEND_FEEDBACK_ERROR,
   SEND_FEEDBACK_INIT,
   SEND_FEEDBACK_SUCCESS
-} from '../../actions/feedback'
-import { DEVICE_RESUME } from '../../actions/mobile'
+} from 'state/actions/feedback'
+import { DEVICE_RESUME } from 'state/actions/mobile'
 import {
   DATA_SOURCES,
   GRAPHS,
   SELECT_DATA_SOURCE,
   SELECT_ENERGY_GRAPH
-} from '../../actions/user'
+} from 'state/actions/user'
 import {
   SET_LAST_VISITED_PAGE,
   RESET_LAST_VISITED_PAGE,
   CHECK_APP_UPDATE_SUCCESS,
-  CHECK_APP_UPDATE_ERROR
+  CHECK_APP_UPDATE_ERROR,
+  SHOW_PRECOMMISSIONING_CHECKLIST
 } from 'state/actions/global'
-import paths from 'routes/paths'
 import { SET_SCANDIT_ACCESS } from 'state/actions/scandit'
 import {
   RESET_COMMISSIONING,
@@ -35,10 +35,11 @@ const initialState = {
   isFeedbackSuccessful: false,
   selectedDataSource: DATA_SOURCES.LIVE,
   feedbackError: null,
-  lastVisitedPage: paths.PROTECTED.PVS_SELECTION_SCREEN.path,
+  lastVisitedPage: null,
   canAccessScandit: true,
   updateAvailable: false,
   updateVersion: 0,
+  showPrecommissioningChecklist: true,
   checkingSSLCerts: false,
   hasValidSSLCerts: null
 }
@@ -84,7 +85,22 @@ export const globalReducer = createReducer(
       ...state,
       lastVisitedPage: initialState.lastVisitedPage
     }),
-    [RESET_COMMISSIONING]: () => initialState,
+    [RESET_COMMISSIONING]: state => ({
+      ...state,
+      canAccessScandit: initialState.canAccessScandit,
+      checkingSSLCerts: initialState.checkingSSLCerts,
+      feedbackError: initialState.feedbackError,
+      hasValidSSLCerts: initialState.hasValidSSLCerts,
+      isAccountCreated: initialState.isAccountCreated,
+      isDeviceResumeListened: initialState.isDeviceResumeListened,
+      isFeedbackSuccessful: initialState.isFeedbackSuccessful,
+      isSendingFeedback: initialState.isSendingFeedback,
+      lastVisitedPage: initialState.lastVisitedPage,
+      selectedEnergyGraph: initialState.selectedEnergyGraph,
+      selectedDataSource: initialState.selectedDataSource,
+      updateAvailable: initialState.updateAvailable,
+      updateVersion: initialState.updateVersion
+    }),
     [SET_SCANDIT_ACCESS]: (state, canAccessScandit) => ({
       ...state,
       canAccessScandit
@@ -98,6 +114,10 @@ export const globalReducer = createReducer(
       ...state,
       updateAvailable: false,
       updateVersion: 0
+    }),
+    [SHOW_PRECOMMISSIONING_CHECKLIST]: (state, payload) => ({
+      ...state,
+      showPrecommissioningChecklist: payload
     }),
     [CHECK_SSL_CERTS]: state => ({
       ...state,

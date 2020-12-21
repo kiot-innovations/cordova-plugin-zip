@@ -3,8 +3,8 @@ import appVersion from '../../macros/appVersion.macro'
 import ReleaseNotes from 'components/ReleaseNotes'
 import * as releaseNotes from './releaseNotes.json'
 
-function VersionInformation() {
-  const currentVersion = appVersion()
+function VersionInformation(props) {
+  const currentVersion = props.appVersion || appVersion()
 
   return (
     <ReleaseNotes
