@@ -7,16 +7,22 @@ import paths from 'routes/paths'
 import { either } from 'shared/utils'
 
 import './PvsConnectionSuccessful.scss'
+import { rmaModes } from 'state/reducers/rma'
 
 const getPVSVersionChecked = pathOr(false, ['firmwareUpdate', 'canContinue'])
 
 const PvsConnectionSuccessful = () => {
   const t = useI18n()
   const serialNumber = useSelector(state => state.pvs.serialNumber)
+  const { rmaMode } = useSelector(state => state.rma)
+
   const versionChecked = useSelector(getPVSVersionChecked)
   const history = useHistory()
 
   const goNext = () => {
+    if (rmaMode === rmaModes.NONE) {
+      return history.push(paths.PROTECTED.INVENTORY_COUNT.path)
+    }
     history.push(paths.PROTECTED.PVS_PROVIDE_INTERNET.path)
   }
 
