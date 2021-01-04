@@ -1,6 +1,7 @@
 import React from 'react'
 import PvsConnectionSuccessful from '.'
 import * as i18n from 'shared/i18n'
+import { rmaModes } from 'state/reducers/rma'
 
 describe('PVS connection successful component', () => {
   beforeEach(() => {
@@ -15,6 +16,9 @@ describe('PVS connection successful component', () => {
     const { component } = mountWithProvider(<PvsConnectionSuccessful />)({
       pvs: {
         serialNumber: 'ZT123123123009'
+      },
+      rma: {
+        rmaMode: rmaModes.NONE
       }
     })
     expect(component).toMatchSnapshot()

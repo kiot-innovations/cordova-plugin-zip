@@ -97,7 +97,8 @@ function ConnectToPVS() {
   }
 
   const enableBluetooth = () => {
-    isIos() ? dispatch(OPEN_SETTINGS()) : dispatch(ENABLE_BLUETOOTH_INIT())
+    if (isIos()) dispatch(OPEN_SETTINGS())
+    else dispatch(ENABLE_BLUETOOTH_INIT())
   }
 
   const goToNearbyDevices = () => {

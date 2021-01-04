@@ -39,10 +39,10 @@ exports[`VersionInformation component renders correctly 1`] = `
       }
     >
       <VersionInformation
-        appVersion="6.5.1"
+        appVersion="6.6.1"
       >
         <ReleaseNotes
-          currentVersion="6.5.1"
+          currentVersion="6.6.1"
           releaseNotes={
             Object {
               "meta": Object {
@@ -152,7 +152,7 @@ You will now see a message that \\"Commissioning was successfully completed\\" a
             >
               CURRENT_VERSION
                
-              6.5.1
+              6.6.1
             </div>
           </section>
         </ReleaseNotes>

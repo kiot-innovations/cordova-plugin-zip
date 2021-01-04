@@ -14,6 +14,7 @@ import * as energyDataActions from '../../actions/energy-data'
 
 import { roundDecimals } from 'shared/rounding'
 import { always, compose, equals, ifElse, is, pathOr } from 'ramda'
+import { PVS_CONNECTION_SUCCESS } from 'state/actions/network'
 
 const createWebsocketObservable = () =>
   new Observable(subscriber => {
@@ -74,7 +75,7 @@ const getLoadSideProduction = (state, energyProduction) =>
 
 export const liveEnergyData = (action$, state$) =>
   action$.pipe(
-    ofType(energyDataActions.ENERGY_DATA_POLLING.getType()),
+    ofType(PVS_CONNECTION_SUCCESS.getType()),
     exhaustMap(({ payload }) =>
       createWebsocketObservable().pipe(
         retryWhen(errors =>
