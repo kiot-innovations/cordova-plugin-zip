@@ -19,11 +19,9 @@ describe('VersionInformation component', () => {
       )
   })
 
-  const version = appVersion()
-
   test('renders correctly', () => {
     const { component } = mountWithProvider(
-      <VersionInformation appVersion={version} />
+      <VersionInformation appVersion={appVersion()} />
     )({})
 
     expect(component.find('.release-notes').exists()).toBe(true)

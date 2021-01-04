@@ -125,7 +125,7 @@ You will now see a message that \\"Commissioning was successfully completed\\" a
                         className="releaseDate"
                       >
                         RELEASE_DATE
-
+                         
                         12/31/2019
                       </div>
                       <div
@@ -151,7 +151,7 @@ You will now see a message that \\"Commissioning was successfully completed\\" a
               className="currentVersion"
             >
               CURRENT_VERSION
-
+               
               6.6.1
             </div>
           </section>
