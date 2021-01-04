@@ -1,0 +1,5 @@
+# We use codeowners to make it so only the QA team can accept
+# Pull Requests ("PRs") into our `stable` branch
+# This entry makes it so QA must code review if any files are
+# changed. `*` means "if any files are changed".
+*       @lstepanov-spwr @felixsanchez-wizeline @pghanta
