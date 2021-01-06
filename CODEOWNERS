@@ -2,4 +2,4 @@
 # Pull Requests ("PRs") into our `stable` branch
 # This entry makes it so QA must code review if any files are
 # changed. `*` means "if any files are changed".
-*       @lstepanov-spwr @felixsanchez-wizeline @pghanta
+*       @lstepanov-spwr @felixsanchez-wizeline @pghanta @cousunpower
