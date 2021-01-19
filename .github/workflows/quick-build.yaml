@@ -105,8 +105,7 @@ jobs:
           path: |
             plugins
             platforms/android
-          key: ${{ runner.os }}-cordova_android-${{ hashFiles('package-lock.json') }}
-
+          key: ${{ runner.os }}-cordova_android-${{ hashFiles('package-lock.json', 'quick-build.yaml') }}
 
       - name: Add android platform
         if: steps.cordova_android.outputs.cache-hit != true
@@ -117,7 +116,7 @@ jobs:
 
       - name: Build Android Application
         run: |
-          sed -i"" -E 's/android \{/android \{\n ndkVersion "21.3.6528147"/' platforms/android/app/build.gradle
+          sed -i"" -E 's/android \{/android \{\n ndkVersion "22.0.7026061"/' platforms/android/app/build.gradle
           bundle exec fastlane android build
         env:
           KEYSTORE_PASSWORD: ${{ secrets.GOOGLE_PLAY_UPLOAD_KEYSTORE_PASSWORD }}
