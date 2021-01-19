@@ -2,14 +2,14 @@ import {
   __,
   compose,
   curry,
+  evolve,
   gt,
   isEmpty,
   join,
   lensIndex,
-  map,
   not,
   over,
-  props,
+  pickAll,
   propSatisfies,
   toLower,
   toUpper,
@@ -25,10 +25,24 @@ export const capitalizeWord = when(
 
 const stringValueOrEmptyString = stringValue => stringValue || ''
 
-const getStringProps = curry(compose(map(stringValueOrEmptyString), props))
+const sanitizeUserProfile = {
+  uniqueId: stringValueOrEmptyString,
+  firstName: stringValueOrEmptyString,
+  lastName: stringValueOrEmptyString,
+  email: stringValueOrEmptyString,
+  dealerName: stringValueOrEmptyString,
+  recordType: stringValueOrEmptyString
+}
 
-export const getUserProfile = getStringProps([
+const userProfile = [
   'uniqueId',
+  'firstName',
+  'lastName',
+  'email',
   'dealerName',
   'recordType'
-])
+]
+
+export const getUserProfile = curry(
+  compose(evolve(sanitizeUserProfile), pickAll(userProfile))
+)
