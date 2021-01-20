@@ -178,3 +178,17 @@ export const commissionSite = ({ duration, timeConfiguring }) => {
     'Commission Site - first successful site configuration'
   )
 }
+
+export const setACModuleType = ({ timeElapsed, errorCodes, moduleTypes }) => {
+  const { mixpanel } = window
+  if (Array.isArray(errorCodes) && errorCodes.length !== 0) {
+    mixpanel.track('Set AC Module type', { success: false, errorCodes })
+    return MIXPANEL_EVENT_QUEUED('Set AC Module type - No success')
+  }
+  mixpanel.track('Set AC Module type', {
+    success: true,
+    $duration: timeElapsed,
+    moduleTypes
+  })
+  return MIXPANEL_EVENT_QUEUED('Set AC Module type - success')
+}

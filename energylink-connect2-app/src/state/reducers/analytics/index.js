@@ -2,13 +2,15 @@ import { createReducer } from 'redux-act'
 import {
   BEGIN_INSTALL,
   COMMISSION_SUCCESS,
-  CONFIG_START
+  CONFIG_START,
+  SET_AC_DEVICES
 } from 'state/actions/analytics'
 
 const initialState = {
   commissioningTimer: 0,
   configureTimer: 0,
-  commissioningSuccess: false
+  commissioningSuccess: false,
+  selectingACModelTimer: new Date().getTime()
 }
 
 export default createReducer(
@@ -23,6 +25,10 @@ export default createReducer(
         ? new Date().getTime()
         : state.commissioningTimer,
       commissioningSuccess: siteChanged ? false : state.commissioningSuccess
+    }),
+    [SET_AC_DEVICES]: state => ({
+      ...state,
+      selectingACModelTimer: new Date().getTime()
     }),
     [COMMISSION_SUCCESS]: state => ({
       ...state,
