@@ -8,7 +8,9 @@ const ErrorSystemConfigurationModal = ({ forceSubmit }) => {
 
   return (
     <div className="has-text-centered is-flex flex-column">
-      <span className="has-text-white mb-10">{t('ERROR_CONFIGURATION')}</span>
+      <span className="has-text-white mb-10">{t('ERROR_CONFIGURATION_1')}</span>
+      <span className="has-text-white mb-10">{t('ERROR_CONFIGURATION_2')}</span>
+
       <div className="inline-buttons">
         <button
           className="button half-button-padding is-primary is-outlined is-uppercase mr-10"
