@@ -4,7 +4,8 @@ export default function addProxyDecorator(proxyAddress) {
     /google-analytics/,
     /mixpanel\.com/,
     /:4000/,
-    /:3000/
+    /:3000/,
+    /hot-update/
   ]
   const origFetch = fetch
   const origOpen = XMLHttpRequest.prototype.open
