@@ -76,6 +76,7 @@
     "@storybook/addon-viewport": "^5.2.6",
     "@storybook/addons": "^5.2.6",
     "@storybook/react": "^5.2.6",
+    "@svgr/webpack": "^5.5.0",
     "chalk": "^4.1.0",
     "cheerio": "^1.0.0-rc.3",
     "concurrently": "^5.3.0",
@@ -92,7 +93,7 @@
     "lint-staged": "^8.2.1",
     "node-sass": "^4.12.0",
     "prettier": "^1.18.2",
-    "react-scripts": "3.0.1",
+    "react-scripts": "4.0.1",
     "replace-in-file": "^6.1.0",
     "storybook-react-router": "^1.0.8"
   },
@@ -112,7 +113,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run validate-env-files && cross-env CI=true npm test && lint-staged && npm run live-reload-precommit"
+      "pre-commit": "npm run validate-env-files && cross-env CI=true npm test -- --coverage -o && lint-staged && npm run live-reload-precommit"
     }
   },
   "lint-staged": {
@@ -122,6 +123,26 @@
     ]
   },
   "jest": {
+    "coverageReporters": [
+      "text"
+    ],
+    "watchPathIgnorePatterns": [
+      "/node_modules/",
+      "package.json"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "branches": 0,
+        "functions": 0,
+        "lines": 0,
+        "statements": 0
+      }
+    },
+    "collectCoverageFrom": [
+      "src/**/*.{js,jsx,ts,tsx}",
+      "!src/**/*.d.ts",
+      "!src/**/*.stories.js"
+    ],
     "snapshotSerializers": [
       "enzyme-to-json/serializer"
     ],

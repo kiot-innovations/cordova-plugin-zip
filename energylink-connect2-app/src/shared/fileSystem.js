@@ -35,6 +35,7 @@ const getBuildNumber = compose(
 )
 
 export const getFileBlob = (fileName = '') =>
+  // eslint-disable-next-line no-async-promise-executor
   new Promise(async (resolve, reject) => {
     try {
       const file = await fileExists(fileName)
@@ -50,7 +51,9 @@ export const getFileBlob = (fileName = '') =>
       reject(new Error(ERROR_CODES.NO_FILESYSTEM_FILE))
     }
   })
+
 export const getFileInfo = (fileName = '') =>
+  // eslint-disable-next-line no-async-promise-executor
   new Promise(async (resolve, reject) => {
     try {
       const file = await fileExists(fileName)
@@ -123,6 +126,7 @@ export const fileExists = async (path = '') => {
 }
 
 export const deleteFile = (path = '') =>
+  // eslint-disable-next-line no-async-promise-executor
   new Promise((resolve, reject) => {
     fileExists(path)
       .then(file => {
@@ -133,6 +137,7 @@ export const deleteFile = (path = '') =>
   })
 
 export const readFile = path =>
+  // eslint-disable-next-line no-async-promise-executor
   new Promise(async (resolve, reject) => {
     const fileEntry = await fileExists(path)
     if (!fileEntry) reject("The file doesn't exist")
@@ -172,6 +177,7 @@ export const createSingleDirectory = (fs, newFolder = '') =>
 const getFoldersToCreate = split('/')
 
 export const createDirectoryStructure = (path = '') =>
+  // eslint-disable-next-line no-async-promise-executor
   new Promise(async (resolve, reject) => {
     try {
       const fs = await getDir(path)
@@ -189,7 +195,9 @@ export const createDirectoryStructure = (path = '') =>
       reject(e)
     }
   })
+
 export const createFile = path =>
+  // eslint-disable-next-line no-async-promise-executor
   new Promise(async (resolve, reject) => {
     const getFileName = compose(last, split('/'))
     try {

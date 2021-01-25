@@ -105,8 +105,7 @@ jobs:
           path: |
             plugins
             platforms/android
-          key: ${{ runner.os }}-cordova_android-${{ hashFiles('package-lock.json') }}
-
+          key: ${{ runner.os }}-cordova_android-${{ hashFiles('package-lock.json', 'quick-build.yaml') }}
 
       - name: Add android platform
         if: steps.cordova_android.outputs.cache-hit != true
