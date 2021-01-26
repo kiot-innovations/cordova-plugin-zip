@@ -3,6 +3,7 @@ export default function addProxyDecorator(proxyAddress) {
     /sentry\.io/,
     /google-analytics/,
     /mixpanel\.com/,
+    /sunpowerconsole\.com/,
     /:4000/,
     /:3000/,
     /hot-update/
