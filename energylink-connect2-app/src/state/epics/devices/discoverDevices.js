@@ -19,6 +19,7 @@ import {
 import { START_DISCOVERY_SUCCESS } from 'state/actions/pvs'
 
 const fetchDiscovery = async () => {
+  // eslint-disable-next-line no-useless-catch
   try {
     const swagger = await getApiPVS()
     const res = await Promise.all([

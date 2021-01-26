@@ -81,7 +81,7 @@ global.nextTick = fn =>
     })
   })
 
-const moment = require.requireActual('moment-timezone')
+const moment = jest.requireActual('moment-timezone')
 jest.doMock('moment', () => {
   moment.tz.setDefault('America/Los_Angeles')
   return moment

@@ -3,8 +3,10 @@ export default function addProxyDecorator(proxyAddress) {
     /sentry\.io/,
     /google-analytics/,
     /mixpanel\.com/,
+    /sunpowerconsole\.com/,
     /:4000/,
-    /:3000/
+    /:3000/,
+    /hot-update/
   ]
   const origFetch = fetch
   const origOpen = XMLHttpRequest.prototype.open

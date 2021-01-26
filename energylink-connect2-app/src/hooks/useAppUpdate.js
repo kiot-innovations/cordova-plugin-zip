@@ -1,6 +1,5 @@
 import { useEffect, useCallback } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { compose } from 'ramda'
 import { useI18n } from 'shared/i18n'
 import { SHOW_MODAL } from 'state/actions/modal'
 import { APP_UPDATE_OPEN_MARKET } from 'state/actions/global'
@@ -9,9 +8,10 @@ function useAppUpdate() {
   const t = useI18n()
   const { updateAvailable, updateVersion } = useSelector(state => state.global)
   const dispatch = useDispatch()
-  const onUpdate = useCallback(compose(dispatch, APP_UPDATE_OPEN_MARKET), [
-    dispatch
-  ])
+
+  const onUpdate = useCallback(() => {
+    dispatch(APP_UPDATE_OPEN_MARKET())
+  }, [dispatch])
 
   useEffect(() => {
     if (updateAvailable) {

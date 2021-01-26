@@ -67,6 +67,7 @@ const discardUserPropsFromAPIResponse = pipe(
   omit(['userId', 'displayName', 'email'])
 )
 
+//eslint-disable-next-line react-hooks/rules-of-hooks
 const merge_EDP_PING_Response = useWith(merge, [
   discardUserPropsFromAPIResponse,
   identity
