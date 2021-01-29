@@ -21,6 +21,7 @@ ReactGA.set({ checkProtocolTask: null })
 Sentry.init({
   dsn: process.env.REACT_APP_SENTRY_DSN,
   release: appVersion(),
+  environment: process.env.REACT_APP_FLAVOR,
   ignoreErrors: [
     /Non-Error promise rejection captured with keys: code, message/g
   ]
