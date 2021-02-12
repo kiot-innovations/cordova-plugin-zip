@@ -62,18 +62,12 @@ function GridBehaviorWidget() {
     fetchingGridBehavior
   } = useSelector(state => state.systemConfiguration.gridBehavior)
   const { site } = useSelector(state => state.site)
-  const [selfSupplyOptions, setSelfSupplyOptions] = useState(
-    getExportLimitOptions(
-      pathOr(false, ['profile', 'selfsupply'], selectedOptions),
-      pathOr(false, ['exportLimit'], selectedOptions)
-    )
-  )
 
   const [hasDefaultGridProfile, setHasDefaultGridProfile] = useState(false)
 
   useEffect(() => {
     dispatch(FETCH_GRID_BEHAVIOR())
-  }, []) // eslint-disable-line react-hooks/exhaustive-deps
+  }, [dispatch])
 
   useEffect(() => {
     if (!prop('gridVoltage', selectedOptions)) {
@@ -122,17 +116,12 @@ function GridBehaviorWidget() {
     dispatch(SET_GRID_PROFILE(value.value))
     const selfSupplyAvailability = pathOr(false, ['value', 'selfsupply'], value)
     const options = getExportLimitOptions(selfSupplyAvailability)
-    setSelfSupplyOptions(options)
     dispatch(SET_EXPORT_LIMIT(head(options).value))
   }
 
   if (!hasDefaultGridProfile && defaultGridProfile) {
     setGridProfile(defaultGridProfile)
     setHasDefaultGridProfile(true)
-  }
-
-  const setExportLimit = value => {
-    dispatch(SET_EXPORT_LIMIT(value.value))
   }
 
   const setGridVoltage = value => {
@@ -157,7 +146,6 @@ function GridBehaviorWidget() {
   const findLazyGridProfileValue = findByPathValue(lazyGridProfileOptions, [
     'value'
   ])
-  const findExportLimitValue = findByPathValue(selfSupplyOptions, ['value'])
 
   const showVoltageWarning = gridVoltage.selected !== gridVoltage.measured
 
@@ -210,34 +198,6 @@ function GridBehaviorWidget() {
                   defaultValue={head(lazyGridProfileOptions)}
                   value={findLazyGridProfileValue(
                     pathOr(null, ['lazyGridProfile'], selectedOptions)
-                  )}
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div className="field is-horizontal mb-20">
-          <div className="field-label">
-            <label htmlFor="siteName" className="label has-text-white">
-              {t('CUSTOMER_SELF_SUPPLY')}
-            </label>
-          </div>
-          <div className="field-body">
-            <div className="field">
-              <div className="control">
-                <SelectField
-                  isSearchable={false}
-                  useDefaultDropDown
-                  options={selfSupplyOptions}
-                  notFoundText={
-                    length(selfSupplyOptions) === 0
-                      ? t('SELECT_A_GRID_PROFILE')
-                      : null
-                  }
-                  onSelect={setExportLimit}
-                  value={findExportLimitValue(
-                    pathOr(null, ['exportLimit'], selectedOptions)
                   )}
                 />
               </div>
