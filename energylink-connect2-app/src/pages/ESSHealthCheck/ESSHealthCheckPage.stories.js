@@ -11,7 +11,30 @@ const faultyReport = {
       error: '',
       waiting: false,
       results: {
-        errors: [],
+        errors: [
+          {
+            error_name: 'UNDER_VOLT_ALARM',
+            last_occurrence: '2020-02-15 01:23:45',
+            error_code: '10031',
+            device_sn: '048572340857NND',
+            error_message: 'Critical: low battery SOH.',
+            value: {
+              value: 0,
+              unit: 'string'
+            }
+          },
+          {
+            error_name: 'UNDER_VOLT_ALARM',
+            last_occurrence: '2020-02-15 01:23:45',
+            error_code: '20031',
+            device_sn: '048572340857NND',
+            error_message: 'Critical: low battery SOH.',
+            value: {
+              value: 0,
+              unit: 'string'
+            }
+          }
+        ],
         ess_report: {
           battery_status: [null],
           ess_state: [

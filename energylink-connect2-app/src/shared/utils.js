@@ -35,6 +35,7 @@ import {
   propSatisfies,
   reject,
   replace,
+  slice,
   split,
   startsWith,
   toPairs,
@@ -158,10 +159,26 @@ export const cleanString = (str = '') => {
   return str.replace(regex, ' ')
 }
 
+export const barcodeValidator = barcode => {
+  const currentYearCode = new Date().getFullYear() % 100
+  const yearcode = parseInt(slice(2, 4, barcode))
+  const weekcode = parseInt(slice(4, 6, barcode))
+  if (length(barcode) === 12) {
+    if (yearcode >= 18 && yearcode <= currentYearCode) {
+      if (weekcode >= 1 && weekcode <= 53) {
+        return true
+      }
+    }
+  }
+
+  return false
+}
+
 export const buildSN = barcode => ({
-  serial_number: barcode.startsWith('1') ? `E00${barcode}` : barcode,
+  serial_number: barcodeValidator(barcode) ? `E00${barcode}` : barcode,
   type: 'SOLARBRIDGE'
 })
+
 export const trace = t => x => {
   console.info(t)
   console.info(x)
@@ -386,3 +403,13 @@ export const isPVSDevice = compose(
 )
 
 export const eqByProp = curry((prop, obj1, obj2) => obj1[prop] === obj2[prop])
+
+export const getAccessToken = path(['user', 'auth', 'access_token'])
+
+export const headersToObj = headers => {
+  const parsedHeaders = {}
+  for (const [key, value] of headers) {
+    parsedHeaders[key] = value
+  }
+  return parsedHeaders
+}

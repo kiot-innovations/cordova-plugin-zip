@@ -17,6 +17,8 @@ myProj.parse(function(err) {
     return
   }
 
+  myProj.addToBuildSettings('VALIDATE_WORKSPACE', 'YES')
+  
   myProj.addBuildPhase(
     [],
     'PBXShellScriptBuildPhase',

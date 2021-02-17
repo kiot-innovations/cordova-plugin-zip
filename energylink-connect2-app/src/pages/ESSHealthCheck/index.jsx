@@ -1,9 +1,10 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import {
   add,
   isEmpty,
+  isNil,
   length,
   path,
   pathOr,
@@ -11,8 +12,8 @@ import {
   propOr,
   reduce
 } from 'ramda'
-import { addHasErrorProp } from 'shared/utils'
-import { GET_ESS_STATUS_INIT } from 'state/actions/storage'
+import { addHasErrorProp, warningsLength } from 'shared/utils'
+import { GET_ESS_STATUS_INIT, RUN_EQS_SYSTEMCHECK } from 'state/actions/storage'
 import { RESET_DISCOVERY } from 'state/actions/devices'
 import {
   SUBMIT_CLEAR,
@@ -25,10 +26,13 @@ import ESSHealthCheckComponent from 'components/ESSHealthCheck'
 function ESSHealthCheck() {
   const dispatch = useDispatch()
   const history = useHistory()
+  const unblockHandle = useRef()
 
+  const [waitModal, showWaitModal] = useState(false)
   const { rmaMode } = useSelector(state => state.rma)
   const { waiting, results, error } = useSelector(state => state.storage.status)
   const { progress } = useSelector(state => state.devices)
+  const { canCommission } = useSelector(path(['systemConfiguration', 'submit']))
   const rmaPvs = useSelector(path(['rma', 'pvs']))
 
   const discoveryProgress = propOr([], 'progress', progress)
@@ -47,15 +51,37 @@ function ESSHealthCheck() {
   const hasErrors = !isEmpty(errors) || error
 
   useEffect(() => {
-    if (results && !hasErrors) dispatch(ALLOW_COMMISSIONING())
-  }, [dispatch, hasErrors, results])
+    unblockHandle.current = history.block(() => {
+      if (waiting) {
+        showWaitModal(true)
+        return false
+      }
+    })
+    return function() {
+      unblockHandle.current && unblockHandle.current()
+    }
+  }, [unblockHandle, history, showWaitModal, waiting])
 
   useEffect(() => {
-    dispatch(RESET_DISCOVERY())
-    dispatch(GET_ESS_STATUS_INIT())
-  }, [dispatch])
+    if (
+      results &&
+      warningsLength(errors) === length(errors) &&
+      canCommission === false
+    )
+      dispatch(ALLOW_COMMISSIONING())
+  }, [canCommission, dispatch, errors, hasErrors, results])
 
-  const onRetry = () => dispatch(GET_ESS_STATUS_INIT())
+  useEffect(() => {
+    if (isEmpty(results) || isNil(results)) {
+      dispatch(RESET_DISCOVERY())
+      dispatch(GET_ESS_STATUS_INIT())
+    }
+  }, [dispatch, report, results])
+
+  const onRetry = () =>
+    discoveryProgress === 100
+      ? dispatch(RUN_EQS_SYSTEMCHECK())
+      : dispatch(GET_ESS_STATUS_INIT())
 
   const pathToContinue = rmaPvs
     ? paths.PROTECTED.SYSTEM_CONFIGURATION.path
@@ -88,6 +114,8 @@ function ESSHealthCheck() {
       submitting={submitting}
       commissioned={commissioned}
       syncError={syncError}
+      waitModal={waitModal}
+      showWaitModal={showWaitModal}
     />
   )
 }

@@ -1,12 +1,12 @@
+import Tile from '@sunpower/tile'
 import React from 'react'
 import { useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
-import Tile from '@sunpower/tile'
 import paths from 'routes/paths'
 import { useI18n } from 'shared/i18n'
+import { either, isDebug } from 'shared/utils'
 import { LOGOUT } from 'state/actions/auth'
 import { MENU_DISPLAY_ITEM, MENU_HIDE } from 'state/actions/ui'
-import { isDebug, either } from 'shared/utils'
 
 function MenuItemsContainer({ items }) {
   const t = useI18n()
@@ -53,7 +53,7 @@ function MenuItemsContainer({ items }) {
       {isDebug && (
         <button
           onClick={goToDebug}
-          className="button is-primary is-outlined mt-10 mb-10"
+          className="button ml-15 mr-15 is-primary is-outlined mt-10 mb-10"
         >
           {t('DEBUG_ROUTES')}
         </button>

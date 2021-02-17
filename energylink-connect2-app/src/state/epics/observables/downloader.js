@@ -1,12 +1,26 @@
 import { Observable } from 'rxjs'
 import { createFile, deleteFile, fileExists } from 'shared/fileSystem'
+import { prop, filter, identity } from 'ramda'
+
+const createHeadersObj = headers => {
+  const parsedHeaders = {}
+  const arr = headers.trim().split(/[\r\n]+/)
+  arr.forEach(line => {
+    const parts = line.split(': ')
+    const header = parts.shift()
+    const value = parts.join(': ')
+    parsedHeaders[header] = value
+  })
+  return parsedHeaders
+}
 
 const parseHeaders = (headers, xhr) => {
   const result = {}
+  const responseHeaders = createHeadersObj(xhr.getAllResponseHeaders())
   headers.forEach(elem => {
-    result[elem] = xhr.getResponseHeader(elem)
+    result[elem] = prop(elem, responseHeaders)
   })
-  return result
+  return filter(identity)(result)
 }
 
 const fileTransferObservable = (
@@ -22,24 +36,29 @@ const fileTransferObservable = (
       subscriber.next({ entry, total: fileSize })
       subscriber.complete()
     }
-    const errorCallback = error =>
+    const errorCallback = (error, requestHeaders, responseHeaders) =>
       deleteFile(path).then(() => {
-        subscriber.error({ ...error, url })
+        subscriber.error({ ...error, url, requestHeaders, responseHeaders })
         subscriber.complete()
       })
+
     fileExists(path).then(async entry => {
       if (retry) await deleteFile(path)
       if (!entry || retry) {
         const xhr = new XMLHttpRequest()
         xhr.open('GET', url, true)
         xhr.responseType = 'blob'
-        xhr.setRequestHeader(
-          'Cache-Control',
-          'no-cache, must-revalidate, post-check=0, pre-check=0'
-        )
-        xhr.setRequestHeader('Cache-Control', 'max-age=0')
-        xhr.setRequestHeader('expires', '0')
-        xhr.setRequestHeader('pragma', 'no-cache')
+        const requestHeaders = {
+          'Cache-Control':
+            'no-cache, must-revalidate, post-check=0, pre-check=0, max-age=0',
+          expires: '0',
+          pragma: 'no-cache',
+          'debug-header': new Date().getTime()
+        }
+        for (const [key, value] of Object.entries(requestHeaders)) {
+          if (value === undefined) continue
+          xhr.setRequestHeader(key, value)
+        }
         if (accessToken)
           xhr.setRequestHeader('Authorization', `Bearer ${accessToken}`)
         let lastProgress = 0
@@ -53,10 +72,14 @@ const fileTransferObservable = (
         }
         xhr.onload = function() {
           if (xhr.status !== 200)
-            errorCallback({
-              status: xhr.status,
-              text: xhr.statusText
-            })
+            errorCallback(
+              {
+                status: xhr.status,
+                text: xhr.statusText
+              },
+              requestHeaders,
+              createHeadersObj(xhr.getAllResponseHeaders())
+            )
           const blob = this.response
 
           createFile(path).then(fileEntry => {
@@ -90,7 +113,13 @@ const fileTransferObservable = (
             })
           })
         }
-        xhr.onerror = errorCallback
+        xhr.onerror = function(err) {
+          return errorCallback(
+            err,
+            requestHeaders,
+            createHeadersObj(xhr.getAllResponseHeaders())
+          )
+        }
         xhr.send()
       } else successCallback(entry)
     })

@@ -116,7 +116,7 @@ jobs:
 
       - name: Build Android Application
         run: |
-          sed -i"" -E 's/android \{/android \{\n ndkVersion "21.4.7075529"/' platforms/android/app/build.gradle
+          sed -i"" -E 's/android \{/android \{\n ndkVersion "21.3.6528147"/' platforms/android/app/build.gradle
           bundle exec fastlane android build
         env:
           KEYSTORE_PASSWORD: ${{ secrets.GOOGLE_PLAY_UPLOAD_KEYSTORE_PASSWORD }}

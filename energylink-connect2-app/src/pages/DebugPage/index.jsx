@@ -25,6 +25,11 @@ const DebugPage = () => {
       <div>
         {renderDebugLink(
           history,
+          'Scan Labels (Scandit)',
+          paths.PROTECTED.SCAN_LABELS.path
+        )}
+        {renderDebugLink(
+          history,
           'SunVault PreDiscovery',
           paths.PROTECTED.STORAGE_PREDISCOVERY.path
         )}

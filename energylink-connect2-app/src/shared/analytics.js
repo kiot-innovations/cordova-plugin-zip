@@ -147,6 +147,11 @@ export const saveConfiguration = config => {
 
 export const saveInventory = (inventory, hasEss) => {
   const { mixpanel } = window
+
+  mixpanel.register({
+    'Equinox Storage Site': hasEss
+  })
+
   mixpanel.track('Inventory', {
     'AC Module Count': prop('AC_MODULES', inventory),
     'ESS System Size': hasEss ? prop('ESS', inventory) : 'None',

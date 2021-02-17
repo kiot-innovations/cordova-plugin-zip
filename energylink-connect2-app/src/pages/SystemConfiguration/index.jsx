@@ -11,9 +11,11 @@ import PanelLayoutWidget from 'pages/SystemConfiguration/panelLayoutWidget'
 import useSiteChanged from 'hooks/useHasSiteChanged'
 import { CONFIG_START } from 'state/actions/analytics'
 import {
+  ALLOW_COMMISSIONING,
   REPLACE_RMA_PVS,
   SUBMIT_CONFIG
 } from 'state/actions/systemConfiguration'
+import { rmaModes } from 'state/reducers/rma'
 import { useShowModal } from 'hooks/useGlobalModal'
 
 import GridBehaviorWidget from './GridBehaviorWidget'
@@ -155,9 +157,14 @@ function SystemConfiguration() {
     componentPath: './NoGridModal.jsx',
     dismissable: true
   })
+
   useEffect(() => {
     dispatch(FETCH_DEVICES_LIST())
   }, [dispatch])
+
+  useEffect(() => {
+    if (rmaMode === rmaModes.EDIT_DEVICES) dispatch(ALLOW_COMMISSIONING())
+  }, [rmaMode, dispatch])
 
   return (
     <div className="fill-parent is-flex tile is-vertical has-text-centered system-config pl-10 pr-10 mb-40">

@@ -22,6 +22,7 @@ export function configureStore(initialState) {
   ) {
     const { createLogger } = require('redux-logger')
     const logger = createLogger({
+      predicate: (getState, action) => action.type !== 'DEVICE_IS_CONNECTED',
       collapsed: (getState, action, logEntry) => !logEntry.error
     })
     middlewares.push(logger)
@@ -32,6 +33,7 @@ export function configureStore(initialState) {
     initialState,
     composeEnhancers(applyMiddleware(...middlewares))
   )
+  window.store = store
 
   epicMiddleware.run(rootEpic)
 

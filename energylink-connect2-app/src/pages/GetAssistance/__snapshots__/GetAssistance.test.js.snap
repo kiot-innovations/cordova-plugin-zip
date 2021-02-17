@@ -62,7 +62,7 @@ Object {
                 ASSISTANCE_2
                 <a
                   className="ml-5 mr-5"
-                  href="mailto:partnerportal@sunpower.com"
+                  href="mailto:partnerportal@sunpower.com?subject=GET_ASSISTANCE_EMAIL_SUBJECT&body=GET_ASSISTANCE_EMAIL_BODY"
                   onClick={[Function]}
                 >
                   ASSISTANCE_EMAIL
@@ -75,7 +75,7 @@ Object {
                 ASSISTANCE_3
                 <a
                   className="ml-5 mr-5"
-                  href="mailto:partnerportal@sunpower.com"
+                  href="mailto:partnerportal@sunpower.com?subject=GET_ASSISTANCE_EMAIL_SUBJECT&body=GET_ASSISTANCE_EMAIL_BODY"
                   onClick={[Function]}
                 >
                   ASSISTANCE_EMAIL

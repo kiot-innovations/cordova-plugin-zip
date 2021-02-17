@@ -9,7 +9,10 @@ function GetAssistance() {
   const t = useI18n()
   const history = useHistory()
   const goBack = () => history.push(paths.PROTECTED.ROOT.path)
-  const mailto = 'mailto:partnerportal@sunpower.com'
+
+  const emailSubject = encodeURI(t('GET_ASSISTANCE_EMAIL_SUBJECT'))
+  const emailBody = encodeURI(t('GET_ASSISTANCE_EMAIL_BODY'))
+  const mailto = `mailto:partnerportal@sunpower.com?subject=${emailSubject}&body=${emailBody}`
 
   return (
     <section className="is-flex tile level is-vertical section pt-15 fill-parent">

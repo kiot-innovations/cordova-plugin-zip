@@ -184,8 +184,7 @@ export const networkReducer = createReducer(
     }),
     [SET_ONLINE]: (state, isOnline) => ({
       ...state,
-      isOnline,
-      connected: false
+      isOnline
     }),
     [CHECK_PERMISSIONS_INIT]: state => ({
       ...state,
