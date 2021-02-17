@@ -10,6 +10,10 @@ import { commissionSite, saveConfiguration } from 'shared/analytics'
 import { COMMISSION_SUCCESS } from 'state/actions/analytics'
 
 const getRse = path(['systemConfiguration', 'rse', 'selectedPowerProduction'])
+const getTimePassed = (timeStamp = 0) => {
+  const now = new Date().getTime()
+  return ((now - timeStamp) / 1000).toFixed(2)
+}
 
 const getESSOperationalMode = path([
   'storage',
@@ -69,6 +73,10 @@ const getConnectionInterfaces = state => {
 const getConfiguration = (state, success, errorMessage) => {
   const networkInterfaces = getConnectionInterfaces(state)
 
+  const timePassedChoosing = getTimePassed(state.analytics.configureTimer)
+  const duration = getTimePassed(state.analytics.commissioningTimer)
+  const EDPEndpointDuration = getTimePassed(state.analytics.submitTimer)
+
   const configEvent = {
     ...networkInterfaces,
     'Grid Profile': getGridProfile(state),
@@ -78,7 +86,10 @@ const getConfiguration = (state, success, errorMessage) => {
     'Error Message': errorMessage,
     'Commissioning Success': success,
     'Storage Operation Mode': getESSOperationalMode(state),
-    'Storage Reserve Amount': getESSReserveAmount(state)
+    'Storage Reserve Amount': getESSReserveAmount(state),
+    'Time Elapsed Choosing': timePassedChoosing,
+    'Time Elapsed Submitting': EDPEndpointDuration,
+    'Time To Complete Commissioning ': duration
   }
 
   return saveConfiguration(configEvent)
@@ -107,12 +118,8 @@ const submitCommissionSuccess = (action$, state$) =>
     switchMap(([, state]) => {
       if (state.analytics.commissioningSuccess) return EMPTY
 
-      const now = new Date().getTime()
-      const duration = (
-        (now - state.analytics.commissioningTimer) /
-        1000
-      ).toFixed(3)
-      const timeConfiguring = (now - state.analytics.configureTimer) / 1000
+      const duration = getTimePassed(state.analytics.commissioningTimer)
+      const timeConfiguring = getTimePassed(state.analytics.configureTimer)
 
       return of(
         commissionSite({ duration, timeConfiguring }),

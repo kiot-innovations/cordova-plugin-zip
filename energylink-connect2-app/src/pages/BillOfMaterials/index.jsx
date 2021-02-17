@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { compose, head, isEmpty, isNil, map, pathOr, pick, prop } from 'ramda'
+import { compose, isEmpty, isNil, map, pathOr, pick, prop } from 'ramda'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 
@@ -9,14 +9,17 @@ import { either } from 'shared/utils'
 import paths from 'routes/paths'
 import { createExternalLinkHandler } from 'shared/routing'
 import { useI18n } from 'shared/i18n'
-import { GET_SITE_INIT } from 'state/actions/site'
+import {
+  GET_SITE_INIT,
+  CREATE_HOMEOWNER_ACCOUNT_RESET
+} from 'state/actions/site'
 import { GET_SCANDIT_USERS } from 'state/actions/scandit'
 import { DOWNLOAD_VERIFY } from 'state/actions/fileDownloader'
 import { CHECK_PERMISSIONS_INIT } from 'state/actions/network'
 import { BEGIN_INSTALL } from 'state/actions/analytics'
+import useSiteChanged from 'hooks/useHasSiteChanged'
 
 import './BillOfMaterials.scss'
-import useSiteChanged from 'hooks/useHasSiteChanged'
 
 const useMap = (latitude, longitude) => {
   const [url, setUrl] = useState('')
@@ -69,6 +72,7 @@ function BillOfMaterials() {
   useEffect(() => {
     dispatch(GET_SCANDIT_USERS())
     dispatch(CHECK_PERMISSIONS_INIT())
+    dispatch(CREATE_HOMEOWNER_ACCOUNT_RESET())
   }, [dispatch])
 
   useEffect(() => {
@@ -158,7 +162,6 @@ function BillOfMaterials() {
         <HomeownerAccountCreation
           open={showHomeownerCreation}
           onChange={() => setShowHomeownerCreation(!showHomeownerCreation)}
-          pvs={pathOr('ZTXXXXXXXXXXXXXXXXX', ['deviceSerialNumber'], head(PVS))}
         />
       )}
     </main>

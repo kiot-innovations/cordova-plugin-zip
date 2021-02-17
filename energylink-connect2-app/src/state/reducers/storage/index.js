@@ -2,6 +2,7 @@ import { createReducer } from 'redux-act'
 import { isEmpty } from 'ramda'
 import {
   CHECK_EQS_FIRMWARE,
+  CLEAR_HEALTH_CHECK,
   GET_COMPONENT_MAPPING_COMPLETED,
   GET_COMPONENT_MAPPING_ERROR,
   GET_COMPONENT_MAPPING_PROGRESS,
@@ -69,6 +70,10 @@ export const storageReducer = createReducer(
     [GET_ESS_STATUS_ERROR]: (state, error) => ({
       ...state,
       status: { ...state.status, error, waiting: false }
+    }),
+    [CLEAR_HEALTH_CHECK]: state => ({
+      ...state,
+      status: initialState.status
     }),
     [GET_PREDISCOVERY]: state => ({
       ...state,

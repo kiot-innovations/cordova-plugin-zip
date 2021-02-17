@@ -95,6 +95,7 @@ const runCertCheck = (check, counter = 0) => {
 }
 
 export const checkAllSSLCerts = () => {
+  // eslint-disable-next-line no-async-promise-executor
   return new Promise(async function(resolve, reject) {
     let passed
     try {

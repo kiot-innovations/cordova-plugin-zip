@@ -11,7 +11,6 @@ function DeviceMapping() {
   const t = useI18n()
   const history = useHistory()
   const dispatch = useDispatch()
-  const progressStatus = ['RUNNING', 'NOT_RUNNING']
   const { componentMapping, error } = useSelector(pathOr({}, ['storage']))
   const status = useSelector(
     pathOr('', ['storage', 'componentMapping', 'component_mapping_status'])
@@ -32,7 +31,7 @@ function DeviceMapping() {
     if (status === 'SUCCEEDED') {
       history.push(paths.PROTECTED.ESS_DEVICE_MAPPING_SUCCESS.path)
     }
-  }, [componentMapping, history, progressStatus, status])
+  }, [componentMapping, history, status])
 
   return (
     <section className="ess-device-mapping is-flex tile is-vertical has-text-weight-bold pt-0 pr-10 pl-10 full-height">

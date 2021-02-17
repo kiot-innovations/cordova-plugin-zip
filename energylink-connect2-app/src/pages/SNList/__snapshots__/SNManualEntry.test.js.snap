@@ -46,7 +46,7 @@ exports[`SNManualEntry renders correctly 1`] = `
           onSubmit={[Function]}
         >
           <div
-            className="is-flex file tile buttons-container"
+            className="is-flex file buttons-container"
           >
             <div
               className="ifield mr-10"
@@ -114,7 +114,7 @@ exports[`SNManualEntry renders correctly 1`] = `
               </Component>
             </div>
             <button
-              className="button is-paddingless has-text-primary has-text-weight-bold is-uppercase is-outlined button-transparent"
+              className="button is-paddingless is-primary has-text-weight-bold is-uppercase is-outlined"
               disabled={true}
               type="submit"
             >
@@ -174,7 +174,7 @@ exports[`SNManualEntry renders correctly when editing a serial number 1`] = `
           onSubmit={[Function]}
         >
           <div
-            className="is-flex file tile buttons-container"
+            className="is-flex file buttons-container"
           >
             <div
               className="ifield mr-10"
@@ -242,7 +242,7 @@ exports[`SNManualEntry renders correctly when editing a serial number 1`] = `
               </Component>
             </div>
             <button
-              className="button is-paddingless has-text-primary has-text-weight-bold is-uppercase is-outlined button-transparent"
+              className="button is-paddingless is-primary has-text-weight-bold is-uppercase is-outlined"
               disabled={false}
               type="submit"
             >

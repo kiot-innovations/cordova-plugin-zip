@@ -29,15 +29,18 @@ const ReleaseNotes = ({ title, releaseNotes, currentVersion = null }) => {
                   {t('PREVIOUS_RELEASE_NOTES')}
                 </div>
               )}
-              <Collapsible title={title} expanded={isFirstVersionInList}>
-                <div className="releaseDate">
-                  {t('RELEASE_DATE')} {moment(releaseDate).format('MM/DD/YYYY')}
-                </div>
-                <div
-                  className="content"
-                  dangerouslySetInnerHTML={createMarkup(bodyMarkdown)}
-                />
-              </Collapsible>
+              <div className="mb-10">
+                <Collapsible title={title} expanded={isFirstVersionInList}>
+                  <div className="releaseDate">
+                    {t('RELEASE_DATE')}{' '}
+                    {moment(releaseDate).format('MM/DD/YYYY')}
+                  </div>
+                  <div
+                    className="content"
+                    dangerouslySetInnerHTML={createMarkup(bodyMarkdown)}
+                  />
+                </Collapsible>
+              </div>
             </div>
           )
         })}

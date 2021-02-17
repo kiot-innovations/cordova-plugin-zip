@@ -310,9 +310,9 @@ function RightNow({
           />
         </div>
         <div className="central-column">
-          <HomeSquare />
+          <HomeSquare hasError={homeValue < 0} />
           <ArrowV
-            color="#838b98"
+            color={homeValue < 0 ? '#f00101' : '#838b98'}
             direction={arrowDirections.UP}
             value={homeValue}
           />

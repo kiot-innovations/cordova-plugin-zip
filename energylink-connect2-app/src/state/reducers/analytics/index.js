@@ -5,12 +5,14 @@ import {
   CONFIG_START,
   SET_AC_DEVICES
 } from 'state/actions/analytics'
+import { SUBMIT_CONFIG } from 'state/actions/systemConfiguration'
 
 const initialState = {
   commissioningTimer: 0,
   configureTimer: 0,
   commissioningSuccess: false,
-  selectingACModelTimer: new Date().getTime()
+  selectingACModelTimer: new Date().getTime(),
+  submitTimer: new Date().getTime()
 }
 
 export default createReducer(
@@ -18,6 +20,10 @@ export default createReducer(
     [CONFIG_START]: (state, { siteChanged }) => ({
       ...state,
       configureTimer: siteChanged ? new Date().getTime() : state.configureTimer
+    }),
+    [SUBMIT_CONFIG]: state => ({
+      ...state,
+      submitTimer: new Date().getTime()
     }),
     [BEGIN_INSTALL]: (state, { siteChanged }) => ({
       ...state,

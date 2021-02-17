@@ -39,227 +39,212 @@ exports[`Serial Number List Page renders correctly 1`] = `
       }
     >
       <SNList>
-        <BlockUi
-          blocking={false}
-          className="snlist-blockui"
-          loader={[Function]}
-          message="OPENING_CAMERA"
-          renderChildren={true}
-          tag="div"
+        <div
+          className="snlist is-vertical has-text-centered pl-10 pr-10"
         >
           <div
-            aria-busy={false}
-            className="snlist-blockui"
+            className="top-text"
+          >
+            <span
+              className="is-uppercase has-text-weight-bold"
+            >
+              SCAN_MI_LABELS
+            </span>
+            <span
+              className="has-text-white"
+            >
+              FOUND_SN 3
+            </span>
+          </div>
+          <div
+            className="sn-container"
           >
             <div
-              className="snlist is-vertical has-text-centered pl-10 pr-10"
+              className="sn-list mb-10"
             >
-              <div
-                className="top-text"
+              <p
+                className="has-text-weight-bold mb-20"
               >
-                <span
-                  className="is-uppercase has-text-weight-bold"
-                >
-                  SCAN_MI_LABELS
-                </span>
-                <span
-                  className="has-text-white"
-                >
-                  FOUND_SN 3
-                </span>
-              </div>
+                TAP_SN_TO_EDIT
+              </p>
               <div
-                className="sn-container"
+                className="sn-item mt-10 mb-10 pb-5"
+                key="E00121852014339"
               >
-                <div
-                  className="sn-list mb-10"
-                >
-                  <p
-                    className="has-text-weight-bold mb-20"
-                  >
-                    TAP_SN_TO_EDIT
-                  </p>
-                  <div
-                    className="sn-item mt-10 mb-10 pb-5"
-                    key="E00121852014339"
-                  >
-                    <p
-                      className="is-uppercase has-text-weight-bold has-text-white"
-                      onClick={[Function]}
-                    >
-                      E00121852014339
-                    </p>
-                    <button
-                      className="has-text-white is-paddingless"
-                      onClick={[Function]}
-                    >
-                      <i
-                        className="sp-close is-size-4"
-                      />
-                    </button>
-                  </div>
-                  <div
-                    className="sn-item mt-10 mb-10 pb-5"
-                    key="E00121852014348"
-                  >
-                    <p
-                      className="is-uppercase has-text-weight-bold has-text-white"
-                      onClick={[Function]}
-                    >
-                      E00121852014348
-                    </p>
-                    <button
-                      className="has-text-white is-paddingless"
-                      onClick={[Function]}
-                    >
-                      <i
-                        className="sp-close is-size-4"
-                      />
-                    </button>
-                  </div>
-                  <div
-                    className="sn-item mt-10 mb-10 pb-5"
-                    key="E00121929013075"
-                  >
-                    <p
-                      className="is-uppercase has-text-weight-bold has-text-white"
-                      onClick={[Function]}
-                    >
-                      E00121929013075
-                    </p>
-                    <button
-                      className="has-text-white is-paddingless"
-                      onClick={[Function]}
-                    >
-                      <i
-                        className="sp-close is-size-4"
-                      />
-                    </button>
-                  </div>
-                </div>
-                <ManualEntryForm
-                  callback={[Function]}
-                  serialNumber=""
-                >
-                  <form
-                    className="sn-manual-entry"
-                    onSubmit={[Function]}
-                  >
-                    <div
-                      className="is-flex file tile buttons-container"
-                    >
-                      <div
-                        className="ifield mr-10"
-                      >
-                        <Component
-                          autoComplete="barcode"
-                          className="field-barcode"
-                          input={
-                            Object {
-                              "name": "barcode",
-                              "onBlur": [Function],
-                              "onChange": [Function],
-                              "onFocus": [Function],
-                              "pattern": "\\\\d*",
-                              "value": "",
-                            }
-                          }
-                          meta={
-                            Object {
-                              "active": false,
-                              "data": Object {},
-                              "dirty": false,
-                              "dirtySinceLastSubmit": false,
-                              "error": undefined,
-                              "initial": "",
-                              "invalid": false,
-                              "length": undefined,
-                              "modified": false,
-                              "pristine": true,
-                              "submitError": undefined,
-                              "submitFailed": false,
-                              "submitSucceeded": false,
-                              "submitting": false,
-                              "touched": false,
-                              "valid": true,
-                              "validating": false,
-                              "visited": false,
-                            }
-                          }
-                          placeholder="ENTER_SERIAL_MANUALLY"
-                          type="number"
-                        >
-                          <div
-                            className="field"
-                          >
-                            <p
-                              className="control"
-                            >
-                              <input
-                                autoComplete="barcode"
-                                className="input field-barcode"
-                                disabled={false}
-                                id="barcode"
-                                name="barcode"
-                                onBlur={[Function]}
-                                onChange={[Function]}
-                                onFocus={[Function]}
-                                pattern="\\\\d*"
-                                placeholder="ENTER_SERIAL_MANUALLY"
-                                type="number"
-                                value=""
-                              />
-                            </p>
-                          </div>
-                        </Component>
-                      </div>
-                      <button
-                        className="button is-paddingless has-text-primary has-text-weight-bold is-uppercase is-outlined button-transparent"
-                        disabled={true}
-                        type="submit"
-                      >
-                        ADD
-                      </button>
-                    </div>
-                  </form>
-                </ManualEntryForm>
-              </div>
-              <div
-                className="sn-buttons"
-              >
-                <ScanButtons
-                  canScanMore={true}
-                  countSN={[Function]}
-                  onScanMore={[Function]}
-                >
-                  <div
-                    className="sn-buttons"
-                  >
-                    <button
-                      className="button half-button-padding is-secondary is-uppercase trigger-scan mr-10"
-                      onClick={[Function]}
-                    >
-                      SCAN_MORE
-                    </button>
-                    <button
-                      className="button half-button-padding is-primary is-uppercase trigger-scan"
-                      onClick={[Function]}
-                    >
-                      CONTINUE
-                    </button>
-                  </div>
-                </ScanButtons>
-                <button
-                  className="button has-text-centered is-uppercase is-secondary has-no-border pl-0 pr-0"
+                <p
+                  className="is-uppercase has-text-weight-bold has-text-white"
                   onClick={[Function]}
                 >
-                  LEGACY_DISCOVERY
+                  E00121852014339
+                </p>
+                <button
+                  className="has-text-white is-paddingless"
+                  onClick={[Function]}
+                >
+                  <i
+                    className="sp-close is-size-4"
+                  />
+                </button>
+              </div>
+              <div
+                className="sn-item mt-10 mb-10 pb-5"
+                key="E00121852014348"
+              >
+                <p
+                  className="is-uppercase has-text-weight-bold has-text-white"
+                  onClick={[Function]}
+                >
+                  E00121852014348
+                </p>
+                <button
+                  className="has-text-white is-paddingless"
+                  onClick={[Function]}
+                >
+                  <i
+                    className="sp-close is-size-4"
+                  />
+                </button>
+              </div>
+              <div
+                className="sn-item mt-10 mb-10 pb-5"
+                key="E00121929013075"
+              >
+                <p
+                  className="is-uppercase has-text-weight-bold has-text-white"
+                  onClick={[Function]}
+                >
+                  E00121929013075
+                </p>
+                <button
+                  className="has-text-white is-paddingless"
+                  onClick={[Function]}
+                >
+                  <i
+                    className="sp-close is-size-4"
+                  />
                 </button>
               </div>
             </div>
-            <span />
+            <ManualEntryForm
+              callback={[Function]}
+              serialNumber=""
+            >
+              <form
+                className="sn-manual-entry"
+                onSubmit={[Function]}
+              >
+                <div
+                  className="is-flex file buttons-container"
+                >
+                  <div
+                    className="ifield mr-10"
+                  >
+                    <Component
+                      autoComplete="barcode"
+                      className="field-barcode"
+                      input={
+                        Object {
+                          "name": "barcode",
+                          "onBlur": [Function],
+                          "onChange": [Function],
+                          "onFocus": [Function],
+                          "pattern": "\\\\d*",
+                          "value": "",
+                        }
+                      }
+                      meta={
+                        Object {
+                          "active": false,
+                          "data": Object {},
+                          "dirty": false,
+                          "dirtySinceLastSubmit": false,
+                          "error": undefined,
+                          "initial": "",
+                          "invalid": false,
+                          "length": undefined,
+                          "modified": false,
+                          "pristine": true,
+                          "submitError": undefined,
+                          "submitFailed": false,
+                          "submitSucceeded": false,
+                          "submitting": false,
+                          "touched": false,
+                          "valid": true,
+                          "validating": false,
+                          "visited": false,
+                        }
+                      }
+                      placeholder="ENTER_SERIAL_MANUALLY"
+                      type="number"
+                    >
+                      <div
+                        className="field"
+                      >
+                        <p
+                          className="control"
+                        >
+                          <input
+                            autoComplete="barcode"
+                            className="input field-barcode"
+                            disabled={false}
+                            id="barcode"
+                            name="barcode"
+                            onBlur={[Function]}
+                            onChange={[Function]}
+                            onFocus={[Function]}
+                            pattern="\\\\d*"
+                            placeholder="ENTER_SERIAL_MANUALLY"
+                            type="number"
+                            value=""
+                          />
+                        </p>
+                      </div>
+                    </Component>
+                  </div>
+                  <button
+                    className="button is-paddingless is-primary has-text-weight-bold is-uppercase is-outlined"
+                    disabled={true}
+                    type="submit"
+                  >
+                    ADD
+                  </button>
+                </div>
+              </form>
+            </ManualEntryForm>
           </div>
-        </BlockUi>
+          <div
+            className="sn-buttons"
+          >
+            <ScanButtons
+              canScanMore={true}
+              countSN={[Function]}
+              onScanMore={[Function]}
+            >
+              <div
+                className="sn-buttons"
+              >
+                <button
+                  className="button half-button-padding is-secondary is-uppercase trigger-scan mr-10"
+                  onClick={[Function]}
+                >
+                  SCAN_MORE
+                </button>
+                <button
+                  className="button half-button-padding is-primary is-uppercase trigger-scan"
+                  onClick={[Function]}
+                >
+                  CONTINUE
+                </button>
+              </div>
+            </ScanButtons>
+            <button
+              className="button has-text-centered is-uppercase is-secondary has-no-border pl-0 pr-0"
+              onClick={[Function]}
+            >
+              LEGACY_DISCOVERY
+            </button>
+          </div>
+        </div>
       </SNList>
     </Provider>
   </Router>

@@ -190,7 +190,9 @@ function InventoryCount() {
               </button>
               <button
                 className="button is-primary"
-                onClick={() => submitInventory(inventory, dispatch, history)}
+                onClick={() =>
+                  submitInventory(inventory, dispatch, history, connected)
+                }
               >
                 {t('CONTINUE')}
               </button>
@@ -220,7 +222,7 @@ function InventoryCount() {
                 className="button is-primary"
                 onClick={() => {
                   dispatch(ALLOW_COMMISSIONING())
-                  submitInventory(inventory, dispatch, history)
+                  submitInventory(inventory, dispatch, history, connected)
                 }}
               >
                 {t('CONTINUE')}

@@ -120,6 +120,26 @@
     "recommended_actions": "Make sure production and consumption CTs are connected to the PVS."
   },
   {
+    "event_code": "01063",
+    "event_name": "hubplus_pvd1_close_info",
+    "code": "01063",
+    "in_use": true,
+    "error_description": "PV Disconnect Relay 1 Closed",
+    "display": true,
+    "possible_causes": "PV disconnect relay 1 is closed",
+    "recommended_actions": "No action is needed at this time. This is an informational message."
+  },
+  {
+    "event_code": "01066",
+    "event_name": "hubplus_pvd2_none_info",
+    "code": "01066",
+    "in_use": true,
+    "error_description": "Only one PV Disconnect detected",
+    "display": true,
+    "possible_causes": "1. Only one PV Disconnect was installed.\n2. Secondary PV Disconnect cannot be found.",
+    "recommended_actions": "Some sites may require more than 1 PV disconnect board. If only one is required, you can safely proceed with commmissioning."
+  },
+  {
     "event_code": "02050",
     "event_name": "f65_ac_overload_2s_info",
     "code": "02050",
@@ -710,6 +730,16 @@
     "recommended_actions": "Check with utlity."
   },
   {
+    "event_code": "20013",
+    "event_name": "component_check_pvd_not_powered_alarm",
+    "code": "20013",
+    "in_use": true,
+    "error_description": "PV Disconnect Relay Board Not Powered",
+    "display": true,
+    "possible_causes": "1. The MID may be open and inverter is not forming a microgrid.\n2. PV Disconnect Relay Board not properly install.",
+    "recommended_actions": "1. Close the MID contactor.\n2. Verify PV Disconnect Relay Board is correctly installed."
+  },
+  {
     "event_code": "21055",
     "event_name": "hubplus_event_rpo_activated_alarm",
     "code": "21055",
@@ -727,57 +757,57 @@
     "error_description": "Battery internal fault",
     "display": true,
     "possible_causes": "A battery internal fault occurred",
-    "recommended_actions": "Reboot both batteries to clear this fault. If the problem persists, please contact SunPower"
+    "recommended_actions": "Try clearing the error by rebooting the batteries. The following steps will reboot the batteries:\n\t1. Hold the power button on the right-hand-side of the front battery to power down all batteries.\n\t2. Wait 15 seconds.\n\t3. Press the power button again to turn all batteries on.\n\n Tap Retry in SunPower ProConnect. If the problem persists, please contact SunPower"
   },
   {
     "event_code": "23004",
     "event_name": "battery_over_voltage_alarm",
     "code": "23004",
     "in_use": true,
-    "error_description": "Battery internal fault",
+    "error_description": "Battery internal fault due to high voltage",
     "display": true,
-    "possible_causes": "A battery internal fault occurred",
-    "recommended_actions": "Reboot both batteries to clear this fault. If the problem persists, please contact SunPower"
+    "possible_causes": "High voltage accross the battery DC terminals",
+    "recommended_actions": "Try clearing the error by rebooting the batteries. The following steps will reboot the batteries:\n\t1. Hold the power button on the right-hand-side of the front battery to power down all batteries.\n\t2. Wait 15 seconds.\n\t3. Press the power button again to turn all batteries on.\n\n Tap Retry in SunPower ProConnect. If the problem persists, please contact SunPower"
   },
   {
     "event_code": "23005",
     "event_name": "battery_over_current_during_charge_alarm",
     "code": "23005",
     "in_use": true,
-    "error_description": "Battery internal fault",
+    "error_description": "Battery internal fault due to high current during charging",
     "display": true,
-    "possible_causes": "A battery internal fault occurred",
-    "recommended_actions": "Reboot both batteries to clear this fault. If the problem persists, please contact SunPower"
+    "possible_causes": "Battery was being charged at a high current",
+    "recommended_actions": "Try clearing the error by rebooting the batteries. The following steps will reboot the batteries:\n\t1. Hold the power button on the right-hand-side of the front battery to power down all batteries.\n\t2. Wait 15 seconds.\n\t3. Press the power button again to turn all batteries on.\n\n Tap Retry in SunPower ProConnect. If the problem persists, please contact SunPower"
   },
   {
     "event_code": "23006",
     "event_name": "battery_over_power_during_charge_alarm",
     "code": "23006",
     "in_use": true,
-    "error_description": "Battery internal fault",
+    "error_description": "Battery internal fault due to charing at too high power",
     "display": true,
-    "possible_causes": "A battery internal fault occurred",
-    "recommended_actions": "Reboot both batteries to clear this fault. If the problem persists, please contact SunPower"
+    "possible_causes": "Battery was being charged at an overly high power.",
+    "recommended_actions": "Try clearing the error by rebooting the batteries. The following steps will reboot the batteries:\n\t1. Hold the power button on the right-hand-side of the front battery to power down all batteries.\n\t2. Wait 15 seconds.\n\t3. Press the power button again to turn all batteries on.\n\n Tap Retry in SunPower ProConnect. If the problem persists, please contact SunPower"
   },
   {
     "event_code": "23007",
     "event_name": "battery_over_current_during_discharge_alarm",
     "code": "23007",
     "in_use": true,
-    "error_description": "Battery internal fault",
+    "error_description": "Battery internal fault due to discharging at too high a current",
     "display": true,
-    "possible_causes": "A battery internal fault occurred",
-    "recommended_actions": "Reboot both batteries to clear this fault. If the problem persists, please contact SunPower"
+    "possible_causes": "Battery was being discharged at a high current",
+    "recommended_actions": "Try clearing the error by rebooting the batteries. The following steps will reboot the batteries:\n\t1. Hold the power button on the right-hand-side of the front battery to power down all batteries.\n\t2. Wait 15 seconds.\n\t3. Press the power button again to turn all batteries on.\n\n Tap Retry in SunPower ProConnect. If the problem persists, please contact SunPower"
   },
   {
     "event_code": "23008",
     "event_name": "battery_over_power_during_discharge_alarm",
     "code": "23008",
     "in_use": true,
-    "error_description": "Battery internal fault",
+    "error_description": "Battery internal fault due to high discharge power",
     "display": true,
-    "possible_causes": "A battery internal fault occurred",
-    "recommended_actions": "Reboot both batteries to clear this fault. If the problem persists, please contact SunPower"
+    "possible_causes": "Battery was being discharged at too high a power",
+    "recommended_actions": "Try clearing the error by rebooting the batteries. The following steps will reboot the batteries:\n\t1. Hold the power button on the right-hand-side of the front battery to power down all batteries.\n\t2. Wait 15 seconds.\n\t3. Press the power button again to turn all batteries on.\n\n Tap Retry in SunPower ProConnect. If the problem persists, please contact SunPower"
   },
   {
     "event_code": "23009",
@@ -787,7 +817,7 @@
     "error_description": "Battery internal fault",
     "display": true,
     "possible_causes": "A battery internal fault occurred",
-    "recommended_actions": "Reboot both batteries to clear this fault. If the problem persists, please contact SunPower"
+    "recommended_actions": "Try clearing the error by rebooting the batteries. The following steps will reboot the batteries:\n\t1. Hold the power button on the right-hand-side of the front battery to power down all batteries.\n\t2. Wait 15 seconds.\n\t3. Press the power button again to turn all batteries on.\n\n Tap Retry in SunPower ProConnect. If the problem persists, please contact SunPower"
   },
   {
     "event_code": "23010",
@@ -797,7 +827,7 @@
     "error_description": "Battery internal fault",
     "display": true,
     "possible_causes": "A battery internal fault occurred",
-    "recommended_actions": "Reboot both batteries to clear this fault. If the problem persists, please contact SunPower"
+    "recommended_actions": "Try clearing the error by rebooting the batteries. The following steps will reboot the batteries:\n\t1. Hold the power button on the right-hand-side of the front battery to power down all batteries.\n\t2. Wait 15 seconds.\n\t3. Press the power button again to turn all batteries on.\n\n Tap Retry in SunPower ProConnect. If the problem persists, please contact SunPower"
   },
   {
     "event_code": "23011",
@@ -807,7 +837,7 @@
     "error_description": "Battery internal fault",
     "display": true,
     "possible_causes": "A battery internal fault occurred",
-    "recommended_actions": "Reboot both batteries to clear this fault. If the problem persists, please contact SunPower"
+    "recommended_actions": "Try clearing the error by rebooting the batteries. The following steps will reboot the batteries:\n\t1. Hold the power button on the right-hand-side of the front battery to power down all batteries.\n\t2. Wait 15 seconds.\n\t3. Press the power button again to turn all batteries on.\n\n Tap Retry in SunPower ProConnect. If the problem persists, please contact SunPower"
   },
   {
     "event_code": "23012",
@@ -817,7 +847,7 @@
     "error_description": "Battery internal fault",
     "display": true,
     "possible_causes": "A battery internal fault occurred",
-    "recommended_actions": "Reboot both batteries to clear this fault. If the problem persists, please contact SunPower"
+    "recommended_actions": "Try clearing the error by rebooting the batteries. The following steps will reboot the batteries:\n\t1. Hold the power button on the right-hand-side of the front battery to power down all batteries.\n\t2. Wait 15 seconds.\n\t3. Press the power button again to turn all batteries on.\n\n Tap Retry in SunPower ProConnect. If the problem persists, please contact SunPower"
   },
   {
     "event_code": "23013",
@@ -827,7 +857,7 @@
     "error_description": "Battery internal fault",
     "display": true,
     "possible_causes": "A battery internal fault occurred",
-    "recommended_actions": "Reboot both batteries to clear this fault. If the problem persists, please contact SunPower"
+    "recommended_actions": "Try clearing the error by rebooting the batteries. The following steps will reboot the batteries:\n\t1. Hold the power button on the right-hand-side of the front battery to power down all batteries.\n\t2. Wait 15 seconds.\n\t3. Press the power button again to turn all batteries on.\n\n Tap Retry in SunPower ProConnect. If the problem persists, please contact SunPower"
   },
   {
     "event_code": "23014",
@@ -837,7 +867,7 @@
     "error_description": "Battery internal fault",
     "display": true,
     "possible_causes": "A battery internal fault occurred",
-    "recommended_actions": "Reboot both batteries to clear this fault. If the problem persists, please contact SunPower"
+    "recommended_actions": "Try clearing the error by rebooting the batteries. The following steps will reboot the batteries:\n\t1. Hold the power button on the right-hand-side of the front battery to power down all batteries.\n\t2. Wait 15 seconds.\n\t3. Press the power button again to turn all batteries on.\n\n Tap Retry in SunPower ProConnect. If the problem persists, please contact SunPower"
   },
   {
     "event_code": "23015",
@@ -847,7 +877,7 @@
     "error_description": "Battery internal fault",
     "display": true,
     "possible_causes": "A battery internal fault occurred",
-    "recommended_actions": "Reboot both batteries to clear this fault. If the problem persists, please contact SunPower"
+    "recommended_actions": "Try clearing the error by rebooting the batteries. The following steps will reboot the batteries:\n\t1. Hold the power button on the right-hand-side of the front battery to power down all batteries.\n\t2. Wait 15 seconds.\n\t3. Press the power button again to turn all batteries on.\n\n Tap Retry in SunPower ProConnect. If the problem persists, please contact SunPower"
   },
   {
     "event_code": "23016",
@@ -857,7 +887,7 @@
     "error_description": "Battery internal fault",
     "display": true,
     "possible_causes": "A battery internal fault occurred",
-    "recommended_actions": "Reboot both batteries to clear this fault. If the problem persists, please contact SunPower"
+    "recommended_actions": "Try clearing the error by rebooting the batteries. The following steps will reboot the batteries:\n\t1. Hold the power button on the right-hand-side of the front battery to power down all batteries.\n\t2. Wait 15 seconds.\n\t3. Press the power button again to turn all batteries on.\n\n Tap Retry in SunPower ProConnect. If the problem persists, please contact SunPower"
   },
   {
     "event_code": "30000",
@@ -887,7 +917,7 @@
     "error_description": "PVS could not connect to ESS Gateway",
     "display": true,
     "possible_causes": "The Schneider Gateway connects the inverter with PVS and batteries. If you’re seeing this error it is likely you’re also seeing other errors such as batteries  or inverter(s) missing.\n\nThis problem may be due to the following causes:\n1. Gateway lost power.\n2. The ethernet connector between the gateway and PVS is not connected or terminated correctly.\n3. Gateway may need to be rebooted.",
-    "recommended_actions": "1. Check that the gateway has power: the LEDs should be blinking.\n2. Check that the green cable and its orange, orange/white, green, blue and blue/white conductors in the metal ferules on the gateway side are properly connected to the J4 port on the MIO board.\n3. Check the black ethernet cable is connected to the black ethernet port on the PVS. Check also that the cable is correctly terminated.\n4. Check that the cable mentioned in 3 is connected to the port labeled as ‘ethernet’ on the Schneider gateway.\n5. Reboot the gateway. In order to do so:\n     a. Disconnect the yellow ethernet cable from its port on the left side of the gateway.\n     b. Disconnect the black ethernet cable from its port on the left side of the gateway.\n     c. Disconnect the green ethernet cable from the J4 port on the right side of the Multi I/O (MIO) board.\n     d. Wait for about 30 seconds.\n     e. Reconnect all the cables mentioned in sections 5a through 5c.\n     f. Wait for the LEDs show gateway is in normal operation (see manual).\n6. Press 'retry' on the commissioning app.\n\nIf the problem persists, this may be a sign that the Schneider Gateway is damaged. Please contact SunPower."
+    "recommended_actions": "1. Check that the gateway has power: the LEDs should be blinking.\n2. Check that the green cable and its orange, orange/white, green, blue and blue/white conductors in the metal ferules on the gateway side are properly connected to the J4 port on the MIO board.\n3. Check the black ethernet cable is connected to the black ethernet port on the PVS. Check also that the cable is correctly terminated.\n4. Check that the cable mentioned in 3 is connected to the port labeled as ‘ethernet’ on the Schneider gateway.\n5. Reboot the gateway. In order to do so:\n     a. Disconnect the yellow ethernet cable from its port on the left side of the gateway.\n     b. Disconnect the black ethernet cable from its port on the left side of the gateway.\n     c. Disconnect the green ethernet cable from the J4 port on the right side of the Multi I/O (MIO) board.\n     d. Wait for about 15 seconds.\n     e. Reconnect all the cables mentioned in sections 5a through 5c.\n     f. Wait for the LEDs show gateway is in normal operation (see manual).\n6. Press 'retry' on the commissioning app.\n\nIf the problem persists, this may be a sign that the Schneider Gateway is damaged. Please contact SunPower."
   },
   {
     "event_code": "30003",
@@ -897,7 +927,7 @@
     "error_description": "PVS could not connect to inverter",
     "display": true,
     "possible_causes": "The PVS cannot connect to the Schneider inverter.\n1.  If you’re also seeing an error that indicates that the gateway is missing, this error may be due to the fact that the gateway is not properly connected. Please address the problem with the gateway first if you're seeing a gateway error.\n2. The inverter may need to be rebooted.\n3. A data connection between the inverter.MIO and PVS is not properly made.\n",
-    "recommended_actions": "Please try the following steps:\n1. If you're also seeing a 'missing gateway' error, please try to fix that problem first following the instructions in the 'missing gateway' error message.\n2. Reboot the inverter by pressing the 'on/off' button on the XWPro inverter for a few seconds until you see 'OFF' appear on the inverter display, then press the 'on/off' button again\n3. Press the retry button on the app.\nIf the problem persists:\n1. Check that the yellow XANBUS connector between the Schneider gateway and the inverter is correctly terminated and connected to the port labeled as XANBUS in he inverter (underneath the inverter, to the right of the SYNC port left of BTS port and AUX ports).\n2. Check that the RPO cable in the inverter (port labeled as BTS) is connected to the J5 (red) termination in the MIO board.\n3. Check that any of LEDs on inverter are On.\n4. Check that the DC conductors have at least 48V between terminations.\n5. Ensure that the DC terminations are done correctly\n6. Ensure that the DC breakers are closed.\n7. Ensure that the batteries are on. If not, press the ON button on the batteries.\n8. Check that the gray AUX connector from the inverter is connected to the J16 termination on the MIDC board.\n9. Press retry on the commissioning app.\n\nIf the problem persists, this may be a sign that the inverter is damaged. Please contact SunPower."
+    "recommended_actions": "Please try the following steps:\n1. If you're also seeing a 'missing gateway' error, please try to fix that problem first following the instructions in the 'missing gateway' error message.\n2. Reboot the inverter by pressing the 'on/off' button on the XWPro inverter for a few seconds until you see 'OFF' appear on the inverter display, then press the 'on/off' button again\n3. Press the retry button on the app.\nIf the problem persists:\n1. Check that the yellow XANBUS connector between the Schneider gateway and the inverter is correctly terminated and connected to the port labeled as XANBUS in he inverter (underneath the inverter, to the right of the SYNC port left of BTS port and AUX ports).\n2. Check that the RPO cable in the inverter (port labeled as BTS) is connected to the J5 (red) termination in the MIO board.\n3. Check that any of LEDs on inverter are On.\n4. Check that the DC conductors have at least 48V between terminations.\n5. Ensure that the DC terminations are done correctly\n6. Ensure that the DC breakers are closed.\n7. Ensure that the batteries are on. If not, press the ON button on the batteries.\n8. Check that the gray AUX connector from the inverter is connected to the J16 termination on the MIDC board.\n9. Tap retry on the commissioning app.\n\nIf the problem persists, this may be a sign that the inverter is damaged. Please contact SunPower."
   },
   {
     "event_code": "30004",
@@ -906,8 +936,8 @@
     "in_use": true,
     "error_description": "PVS could not connect to batteries",
     "display": true,
-    "possible_causes": "The PVS cannot connect with the batteries. This could be due because there are other connections missing. If you’re also seeing a missing gateway error, missing MIDC or missing MIO board, this ’No BMS’ error is likely due to any of these errors and you should try to fix them before you attempt to fix this.\nThis problem may be due to the following causes:\n1. Connection between the batteries (orange) and the MIO board is not properly made. If this is the case, you may also see an error indicating the gateway cannot reach the batteries.\n2. Batteries are not powered on.\n3. The MIO/MIDC cable is not connected and/or its terminations are not properly made.\n4. The PVS-MIDC CANBus cable is not connected properly.\n5. The batteries are damaged.",
-    "recommended_actions": "Please try the following steps:\n1. If you’re also seeing a ‘missing gateway’ error, please try to fix that problem first following the instructions in the error message.\n2. Check that the connection between the batteries (orange cable) and the MIO board is properly made, seated and terminated.\n3. If the batteries are powered off, please turn them on.\n4. Check that the cable connecting the MIO with the MIDC is properly made and and the connectors are properly seated and terminated.\n5. Check that the cable connecting the PVS to the J11 connector on the PVS board is connected, and the connectors are properly seated and terminated.\nIf the problem still persists, this may be a sign that one or more batteries are damaged. Please contact SunPower."
+    "possible_causes": "The PVS cannot connect with the batteries. This could be due because there are other connections missing. If you’re also seeing a missing gateway error, missing MIDC or missing MIO board, this ’No BMS’ error is likely due to any of these errors and you should try to fix them before you attempt to fix this.\n\nThis problem may be due to the following causes:\n1. Gateway is not connected. If this is the case, you’ll also be seeing a ‘No gateway’ error and you should attempt fixing the problem first.\n2. CAN bus connection (green) between the MIO board (J4) and Schneider gateway is not properly made.\n3. The CAN bus connection on the Gateway side is not properly made or terminated (white-orange, orange, white-green, white-blue, and blue conductors).\n4. The CAN cable between J4 port on MIO and gateway is cut off.\n5. Connection between the batteries (orange) and the MIO board is not properly made\n6. Batteries are not powered on.",
+    "recommended_actions": "Please try the following steps\n1. If you’re also seeing a ‘missing gateway’ error, please try to fix that problem first following the instructions in the error message.\n3. Check that the CAN bus connection on the Gateway side is not properly made or terminated (white-orange, orange, white-green, white-blue, and blue conductors).\n3. Check that the orange cable between the master battery and the MIO board is properly connected and terminated.\n4. Check that the batteries are powered on (check status of LEDs around the power button on the side of the batteries).\n5. Check that the DC breakers are on the closed position.\n6. Press 'retry' on the pre-discovery screen in the commissionning app.\n7. If the problem persists, attempt rebooting the batteries by pressing the 'off' button on the side of each battery and turn them back on.\n\nIf the problem still persists, this may be a sign that one or more batteries are damaged. Please contact SunPower."
   },
   {
     "event_code": "30005",
@@ -927,7 +957,7 @@
     "error_description": "MIO could not connect to inverter",
     "display": true,
     "possible_causes": "The PVS cannot connect to the Schneider inverter.\n1.  If you’re also seeing an error that indicates that the gateway is missing, this error may be due to the fact that the gateway is not properly connected. Please address the problem with the gateway first if you're seeing a gateway error.\n2. The inverter may need to be rebooted.\n3. A data connection between the inverter.MIO and PVS is not properly made.\n",
-    "recommended_actions": "Please try the following steps:\n1. If you’re also seeing a ‘missing gateway’ error, please try to fix that problem first following the instructions in the 'missing gateway' error message.\n2. Reboot the inverter by pressing the 'on/off' button on the XWPro inverter for a few seconds until you see 'OFF' appear on the inverter display, then press the 'on/off' button again\n3. Press the retry button on the app.\nIf the problem persists:\n1. Check that the yellow XANBUS connector between the Schneider gateway and the inverter is correctly terminated and connected to the port labeled as XANBUS in he inverter (underneath the inverter, to the right of the SYNC port left of BTS port and AUX ports).\n2. Check that the RPO cable in the inverter (port labeled as BTS) is connected to the J5 (red) termination in the MIO board.\n3. Check that any of LEDs on inverter are On.\n4. Check that the DC conductors have at least 48V between terminations.\n5. Ensure that the DC terminations are done correctly\n6. Ensure that the DC breakers are closed.\n7. Ensure that the batteries are on. If not, press the ON button on the batteries.\n8. Check that the gray AUX connector from the inverter is connected to the J16 termination on the MIDC board.\n9. Press retry on the commissioning app.\n\nIf the problem persists, this may be a sign that the inverter is damaged. Please contact SunPower."
+    "recommended_actions": "Please try the following steps:\n1. If you’re also seeing a ‘missing gateway’ error, please try to fix that problem first following the instructions in the 'missing gateway' error message.\n2. Reboot the inverter by pressing the 'on/off' button on the XWPro inverter for a few seconds until you see 'OFF' appear on the inverter display, then press the 'on/off' button again\n3. Press the retry button on the app.\nIf the problem persists:\n1. Check that the yellow XANBUS connector between the Schneider gateway and the inverter is correctly terminated and connected to the port labeled as XANBUS in he inverter (underneath the inverter, to the right of the SYNC port left of BTS port and AUX ports).\n2. Check that the RPO cable in the inverter (port labeled as BTS) is connected to the J5 (red) termination in the MIO board.\n3. Check that any of LEDs on inverter are On.\n4. Check that the DC conductors have at least 48V between terminations.\n5. Ensure that the DC terminations are done correctly\n6. Ensure that the DC breakers are closed.\n7. Ensure that the batteries are on. If not, press the ON button on the batteries.\n8. Check that the gray AUX connector from the inverter is connected to the J16 termination on the MIDC board.\n9. Tap retry on the commissioning app.\n\nIf the problem persists, this may be a sign that the inverter is damaged. Please contact SunPower."
   },
   {
     "event_code": "30007",
@@ -936,8 +966,8 @@
     "in_use": true,
     "error_description": "PVS could not connect to batteries",
     "display": true,
-    "possible_causes": "The PVS cannot connect with the batteries. This could be due because there are other connections missing. If you’re also seeing a missing gateway error, missing MIDC or missing MIO board, this ’No BMS’ error is likely due to any of these errors and you should try to fix them before you attempt to fix this.\nThis problem may be due to the following causes:\n1. Connection between the batteries (orange) and the MIO board is not properly made. If this is the case, you may also see an error indicating the gateway cannot reach the batteries.\n2. Batteries are not powered on.\n3. The MIO/MIDC cable is not connected and/or its terminations are not properly made.\n4. The PVS-MIDC CANBus cable is not connected properly.\n5. The batteries are damaged.",
-    "recommended_actions": "Please try the following steps:\n1. If you’re also seeing a ‘missing gateway’ error, please try to fix that problem first following the instructions in the error message.\n2. Check that the connection between the batteries (orange cable) and the MIO board is properly made, seated and terminated.\n3. If the batteries are powered off, please turn them on.\n4. Check that the cable connecting the MIO with the MIDC is properly made and and the connectors are properly seated and terminated.\n5. Check that the cable connecting the PVS to the J11 connector on the PVS board is connected, and the connectors are properly seated and terminated.\nIf the problem still persists, this may be a sign that one or more batteries are damaged. Please contact SunPower."
+    "possible_causes": "The PVS cannot connect with the batteries. This could be due because there are other connections missing. If you’re also seeing a missing gateway error, missing MIDC or missing MIO board, this ’No BMS’ error is likely due to any of these errors and you should try to fix them before you attempt to fix this.\n\nThis problem may be due to the following causes:\n1. Gateway is not connected. If this is the case, you’ll also be seeing a ‘No gateway’ error and you should attempt fixing the problem first.\n2. CAN bus connection (green) between the MIO board (J4) and Schneider gateway is not properly made.\n3. The CAN bus connection on the Gateway side is not properly made or terminated (white-orange, orange, white-green, white-blue, and blue conductors).\n4. The CAN cable between J4 port on MIO and gateway is cut off.\n5. Connection between the batteries (orange) and the MIO board is not properly made\n6. Batteries are not powered on.",
+    "recommended_actions": "Please try the following steps\n1. If you’re also seeing a ‘missing gateway’ error, please try to fix that problem first following the instructions in the error message.\n3. Check that the CAN bus connection on the Gateway side is not properly made or terminated (white-orange, orange, white-green, white-blue, and blue conductors).\n3. Check that the orange cable between the master battery and the MIO board is properly connected and terminated.\n4. Check that the batteries are powered on (check status of LEDs around the power button on the side of the batteries).\n5. Check that the DC breakers are on the closed position.\n6. Press 'retry' on the pre-discovery screen in the commissionning app.\n7. If the problem persists, attempt rebooting the batteries by pressing the 'off' button on the side of each battery and turn them back on.\n\nIf the problem still persists, this may be a sign that one or more batteries are damaged. Please contact SunPower."
   },
   {
     "event_code": "30008",
@@ -947,7 +977,17 @@
     "error_description": "PVS could not connect to one or more inverters",
     "display": true,
     "possible_causes": "The PVS cannot connect to the Schneider inverter.\n1.  If you’re also seeing an error that indicates that the gateway is missing, this error may be due to the fact that the gateway is not properly connected. Please address the problem with the gateway first if you're seeing a gateway error.\n2. The inverter may need to be rebooted.\n3. A data connection between the inverter.MIO and PVS is not properly made.\n",
-    "recommended_actions": "Please try the following steps:\n1. If you’re also seeing a ‘missing gateway’ error, please try to fix that problem first following the instructions in the 'missing gateway' error message.\n2. Reboot the inverter by pressing the 'on/off' button on the XWPro inverter for a few seconds until you see 'OFF' appear on the inverter display, then press the 'on/off' button again\n3. Press the retry button on the app.\nIf the problem persists:\n1. Check that the yellow XANBUS connector between the Schneider gateway and the inverter is correctly terminated and connected to the port labeled as XANBUS in he inverter (underneath the inverter, to the right of the SYNC port left of BTS port and AUX ports).\n2. Check that the RPO cable in the inverter (port labeled as BTS) is connected to the J5 (red) termination in the MIO board.\n3. Check that any of LEDs on inverter are On.\n4. Check that the DC conductors have at least 48V between terminations.\n5. Ensure that the DC terminations are done correctly\n6. Ensure that the DC breakers are closed.\n7. Ensure that the batteries are on. If not, press the ON button on the batteries.\n8. Check that the gray AUX connector from the inverter is connected to the J16 termination on the MIDC board.\n9. Press retry on the commissioning app.\n\nIf the problem persists, this may be a sign that the inverter is damaged. Please contact SunPower."
+    "recommended_actions": "Please try the following steps:\n1. If you’re also seeing a ‘missing gateway’ error, please try to fix that problem first following the instructions in the 'missing gateway' error message.\n2. Reboot the inverter by pressing the 'on/off' button on the XWPro inverter for a few seconds until you see 'OFF' appear on the inverter display, then press the 'on/off' button again\n3. Press the retry button on the app.\nIf the problem persists:\n1. Check that the yellow XANBUS connector between the Schneider gateway and the inverter is correctly terminated and connected to the port labeled as XANBUS in he inverter (underneath the inverter, to the right of the SYNC port left of BTS port and AUX ports).\n2. Check that the RPO cable in the inverter (port labeled as BTS) is connected to the J5 (red) termination in the MIO board.\n3. Check that any of LEDs on inverter are On.\n4. Check that the DC conductors have at least 48V between terminations.\n5. Ensure that the DC terminations are done correctly\n6. Ensure that the DC breakers are closed.\n7. Ensure that the batteries are on. If not, press the ON button on the batteries.\n8. Check that the gray AUX connector from the inverter is connected to the J16 termination on the MIDC board.\n9. Tap retry on the commissioning app.\n\nIf the problem persists, this may be a sign that the inverter is damaged. Please contact SunPower."
+  },
+  {
+    "event_code": "30013",
+    "event_name": "component_check_pvd_not_powered_critical",
+    "code": "30013",
+    "in_use": true,
+    "error_description": "PV Disconnect Relay Board Not Powered",
+    "display": true,
+    "possible_causes": "1. The MID may be open and inverter is not forming a microgrid.\n2. PV Disconnect Relay Board not properly install.",
+    "recommended_actions": "1. Close the MID contactor.\n2. Verify PV Disconnect Relay Board is correctly installed."
   },
   {
     "event_code": "30015",
@@ -956,8 +996,8 @@
     "in_use": true,
     "error_description": "PVS could not connect to batteries",
     "display": true,
-    "possible_causes": "The PVS cannot connect with the batteries. This could be due because there are other connections missing. If you’re also seeing a missing gateway error, missing MIDC or missing MIO board, this ’No BMS’ error is likely due to any of these errors and you should try to fix them before you attempt to fix this.\nThis problem may be due to the following causes:\n1. Connection between the batteries (orange) and the MIO board is not properly made. If this is the case, you may also see an error indicating the gateway cannot reach the batteries.\n2. Batteries are not powered on.\n3. The MIO/MIDC cable is not connected and/or its terminations are not properly made.\n4. The PVS-MIDC CANBus cable is not connected properly.\n5. The batteries are damaged.",
-    "recommended_actions": "Please try the following steps:\n1. If you’re also seeing a ‘missing gateway’ error, please try to fix that problem first following the instructions in the error message.\n2. Check that the connection between the batteries (orange cable) and the MIO board is properly made, seated and terminated.\n3. If the batteries are powered off, please turn them on.\n4. Check that the cable connecting the MIO with the MIDC is properly made and and the connectors are properly seated and terminated.\n5. Check that the cable connecting the PVS to the J11 connector on the PVS board is connected, and the connectors are properly seated and terminated.\nIf the problem still persists, this may be a sign that one or more batteries are damaged. Please contact SunPower."
+    "possible_causes": "The PVS cannot connect with the batteries. This could be due because there are other connections missing. If you’re also seeing a missing gateway error, missing MIDC or missing MIO board, this ’No BMS’ error is likely due to any of these errors and you should try to fix them before you attempt to fix this.\n\nThis problem may be due to the following causes:\n1. Gateway is not connected. If this is the case, you’ll also be seeing a ‘No gateway’ error and you should attempt fixing the problem first.\n2. CAN bus connection (green) between the MIO board (J4) and Schneider gateway is not properly made.\n3. The CAN bus connection on the Gateway side is not properly made or terminated (white-orange, orange, white-green, white-blue, and blue conductors).\n4. The CAN cable between J4 port on MIO and gateway is cut off.\n5. Connection between the batteries (orange) and the MIO board is not properly made\n6. Batteries are not powered on.",
+    "recommended_actions": "Please try the following steps\n1. If you’re also seeing a ‘missing gateway’ error, please try to fix that problem first following the instructions in the error message.\n3. Check that the CAN bus connection on the Gateway side is not properly made or terminated (white-orange, orange, white-green, white-blue, and blue conductors).\n3. Check that the orange cable between the master battery and the MIO board is properly connected and terminated.\n4. Check that the batteries are powered on (check status of LEDs around the power button on the side of the batteries).\n5. Check that the DC breakers are on the closed position.\n6. Press 'retry' on the pre-discovery screen in the commissionning app.\n7. If the problem persists, attempt rebooting the batteries by pressing the 'off' button on the side of each battery and turn them back on.\n\nIf the problem still persists, this may be a sign that one or more batteries are damaged. Please contact SunPower."
   },
   {
     "event_code": "30018",
@@ -967,7 +1007,7 @@
     "error_description": "PVS could not connect to one or more inverters",
     "display": true,
     "possible_causes": "The PVS cannot connect to the Schneider inverter.\n1.  If you’re also seeing an error that indicates that the gateway is missing, this error may be due to the fact that the gateway is not properly connected. Please address the problem with the gateway first if you're seeing a gateway error.\n2. The inverter may need to be rebooted.\n3. A data connection between the inverter.MIO and PVS is not properly made.\n",
-    "recommended_actions": "Please try the following steps:\n1. If you’re also seeing a ‘missing gateway’ error, please try to fix that problem first following the instructions in the 'missing gateway' error message.\n2. Reboot the inverter by pressing the 'on/off' button on the XWPro inverter for a few seconds until you see 'OFF' appear on the inverter display, then press the 'on/off' button again\n3. Press the retry button on the app.\nIf the problem persists:\n1. Check that the yellow XANBUS connector between the Schneider gateway and the inverter is correctly terminated and connected to the port labeled as XANBUS in he inverter (underneath the inverter, to the right of the SYNC port left of BTS port and AUX ports).\n2. Check that the RPO cable in the inverter (port labeled as BTS) is connected to the J5 (red) termination in the MIO board.\n3. Check that any of LEDs on inverter are On.\n4. Check that the DC conductors have at least 48V between terminations.\n5. Ensure that the DC terminations are done correctly\n6. Ensure that the DC breakers are closed.\n7. Ensure that the batteries are on. If not, press the ON button on the batteries.\n8. Check that the gray AUX connector from the inverter is connected to the J16 termination on the MIDC board.\n9. Press retry on the commissioning app.\n\nIf the problem persists, this may be a sign that the inverter is damaged. Please contact SunPower."
+    "recommended_actions": "Please try the following steps:\n1. If you’re also seeing a ‘missing gateway’ error, please try to fix that problem first following the instructions in the 'missing gateway' error message.\n2. Reboot the inverter by pressing the 'on/off' button on the XWPro inverter for a few seconds until you see 'OFF' appear on the inverter display, then press the 'on/off' button again\n3. Press the retry button on the app.\nIf the problem persists:\n1. Check that the yellow XANBUS connector between the Schneider gateway and the inverter is correctly terminated and connected to the port labeled as XANBUS in he inverter (underneath the inverter, to the right of the SYNC port left of BTS port and AUX ports).\n2. Check that the RPO cable in the inverter (port labeled as BTS) is connected to the J5 (red) termination in the MIO board.\n3. Check that any of LEDs on inverter are On.\n4. Check that the DC conductors have at least 48V between terminations.\n5. Ensure that the DC terminations are done correctly\n6. Ensure that the DC breakers are closed.\n7. Ensure that the batteries are on. If not, press the ON button on the batteries.\n8. Check that the gray AUX connector from the inverter is connected to the J16 termination on the MIDC board.\n9. Tap retry on the commissioning app.\n\nIf the problem persists, this may be a sign that the inverter is damaged. Please contact SunPower."
   },
   {
     "event_code": "30021",
@@ -996,8 +1036,8 @@
     "in_use": true,
     "error_description": "PVS could not connect to batteries",
     "display": true,
-    "possible_causes": "The PVS cannot connect with the batteries. This could be due because there are other connections missing. If you’re also seeing a missing gateway error, missing MIDC or missing MIO board, this ’No BMS’ error is likely due to any of these errors and you should try to fix them before you attempt to fix this.\nThis problem may be due to the following causes:\n1. Connection between the batteries (orange) and the MIO board is not properly made. If this is the case, you may also see an error indicating the gateway cannot reach the batteries.\n2. Batteries are not powered on.\n3. The MIO/MIDC cable is not connected and/or its terminations are not properly made.\n4. The PVS-MIDC CANBus cable is not connected properly.\n5. The batteries are damaged.",
-    "recommended_actions": "Please try the following steps:\n1. If you’re also seeing a ‘missing gateway’ error, please try to fix that problem first following the instructions in the error message.\n2. Check that the connection between the batteries (orange cable) and the MIO board is properly made, seated and terminated.\n3. If the batteries are powered off, please turn them on.\n4. Check that the cable connecting the MIO with the MIDC is properly made and and the connectors are properly seated and terminated.\n5. Check that the cable connecting the PVS to the J11 connector on the PVS board is connected, and the connectors are properly seated and terminated.\nIf the problem still persists, this may be a sign that one or more batteries are damaged. Please contact SunPower."
+    "possible_causes": "The PVS cannot connect with the batteries. This could be due because there are other connections missing. If you’re also seeing a missing gateway error, missing MIDC or missing MIO board, this ’No BMS’ error is likely due to any of these errors and you should try to fix them before you attempt to fix this.\n\nThis problem may be due to the following causes:\n1. Gateway is not connected. If this is the case, you’ll also be seeing a ‘No gateway’ error and you should attempt fixing the problem first.\n2. CAN bus connection (green) between the MIO board (J4) and Schneider gateway is not properly made.\n3. The CAN bus connection on the Gateway side is not properly made or terminated (white-orange, orange, white-green, white-blue, and blue conductors).\n4. The CAN cable between J4 port on MIO and gateway is cut off.\n5. Connection between the batteries (orange) and the MIO board is not properly made\n6. Batteries are not powered on.",
+    "recommended_actions": "Please try the following steps\n1. If you’re also seeing a ‘missing gateway’ error, please try to fix that problem first following the instructions in the error message.\n3. Check that the CAN bus connection on the Gateway side is not properly made or terminated (white-orange, orange, white-green, white-blue, and blue conductors).\n3. Check that the orange cable between the master battery and the MIO board is properly connected and terminated.\n4. Check that the batteries are powered on (check status of LEDs around the power button on the side of the batteries).\n5. Check that the DC breakers are on the closed position.\n6. Press 'retry' on the pre-discovery screen in the commissionning app.\n7. If the problem persists, attempt rebooting the batteries by pressing the 'off' button on the side of each battery and turn them back on.\n\nIf the problem still persists, this may be a sign that one or more batteries are damaged. Please contact SunPower."
   },
   {
     "event_code": "30026",
@@ -1007,7 +1047,7 @@
     "error_description": "PVS could not connect to one or more inverters",
     "display": true,
     "possible_causes": "The PVS cannot connect to the Schneider inverter.\n1.  If you’re also seeing an error that indicates that the gateway is missing, this error may be due to the fact that the gateway is not properly connected. Please address the problem with the gateway first if you're seeing a gateway error.\n2. The inverter may need to be rebooted.\n3. A data connection between the inverter.MIO and PVS is not properly made.\n",
-    "recommended_actions": "Please try the following steps:\n1. If you’re also seeing a ‘missing gateway’ error, please try to fix that problem first following the instructions in the 'missing gateway' error message.\n2. Reboot the inverter by pressing the 'on/off' button on the XWPro inverter for a few seconds until you see 'OFF' appear on the inverter display, then press the 'on/off' button again\n3. Press the retry button on the app.\nIf the problem persists:\n1. Check that the yellow XANBUS connector between the Schneider gateway and the inverter is correctly terminated and connected to the port labeled as XANBUS in he inverter (underneath the inverter, to the right of the SYNC port left of BTS port and AUX ports).\n2. Check that the RPO cable in the inverter (port labeled as BTS) is connected to the J5 (red) termination in the MIO board.\n3. Check that any of LEDs on inverter are On.\n4. Check that the DC conductors have at least 48V between terminations.\n5. Ensure that the DC terminations are done correctly\n6. Ensure that the DC breakers are closed.\n7. Ensure that the batteries are on. If not, press the ON button on the batteries.\n8. Check that the gray AUX connector from the inverter is connected to the J16 termination on the MIDC board.\n9. Press retry on the commissioning app.\n\nIf the problem persists, this may be a sign that the inverter is damaged. Please contact SunPower."
+    "recommended_actions": "Please try the following steps:\n1. If you’re also seeing a ‘missing gateway’ error, please try to fix that problem first following the instructions in the 'missing gateway' error message.\n2. Reboot the inverter by pressing the 'on/off' button on the XWPro inverter for a few seconds until you see 'OFF' appear on the inverter display, then press the 'on/off' button again\n3. Press the retry button on the app.\nIf the problem persists:\n1. Check that the yellow XANBUS connector between the Schneider gateway and the inverter is correctly terminated and connected to the port labeled as XANBUS in he inverter (underneath the inverter, to the right of the SYNC port left of BTS port and AUX ports).\n2. Check that the RPO cable in the inverter (port labeled as BTS) is connected to the J5 (red) termination in the MIO board.\n3. Check that any of LEDs on inverter are On.\n4. Check that the DC conductors have at least 48V between terminations.\n5. Ensure that the DC terminations are done correctly\n6. Ensure that the DC breakers are closed.\n7. Ensure that the batteries are on. If not, press the ON button on the batteries.\n8. Check that the gray AUX connector from the inverter is connected to the J16 termination on the MIDC board.\n9. Tap retry on the commissioning app.\n\nIf the problem persists, this may be a sign that the inverter is damaged. Please contact SunPower."
   },
   {
     "event_code": "30028",
@@ -1017,7 +1057,7 @@
     "error_description": "PVS could not connet to one or more inverters",
     "display": true,
     "possible_causes": "The PVS cannot connect to the Schneider inverter.\n1.  If you’re also seeing an error that indicates that the gateway is missing, this error may be due to the fact that the gateway is not properly connected. Please address the problem with the gateway first if you're seeing a gateway error.\n2. The inverter may need to be rebooted.\n3. A data connection between the inverter.MIO and PVS is not properly made.\n",
-    "recommended_actions": "Please try the following steps:\n1. If you’re also seeing a ‘missing gateway’ error, please try to fix that problem first following the instructions in the 'missing gateway' error message.\n2. Reboot the inverter by pressing the 'on/off' button on the XWPro inverter for a few seconds until you see 'OFF' appear on the inverter display, then press the 'on/off' button again\n3. Press the retry button on the app.\nIf the problem persists:\n1. Check that the yellow XANBUS connector between the Schneider gateway and the inverter is correctly terminated and connected to the port labeled as XANBUS in he inverter (underneath the inverter, to the right of the SYNC port left of BTS port and AUX ports).\n2. Check that the RPO cable in the inverter (port labeled as BTS) is connected to the J5 (red) termination in the MIO board.\n3. Check that any of LEDs on inverter are On.\n4. Check that the DC conductors have at least 48V between terminations.\n5. Ensure that the DC terminations are done correctly\n6. Ensure that the DC breakers are closed.\n7. Ensure that the batteries are on. If not, press the ON button on the batteries.\n8. Check that the gray AUX connector from the inverter is connected to the J16 termination on the MIDC board.\n9. Press retry on the commissioning app.\n\nIf the problem persists, this may be a sign that the inverter is damaged. Please contact SunPower."
+    "recommended_actions": "Please try the following steps:\n1. If you’re also seeing a ‘missing gateway’ error, please try to fix that problem first following the instructions in the 'missing gateway' error message.\n2. Reboot the inverter by pressing the 'on/off' button on the XWPro inverter for a few seconds until you see 'OFF' appear on the inverter display, then press the 'on/off' button again\n3. Press the retry button on the app.\nIf the problem persists:\n1. Check that the yellow XANBUS connector between the Schneider gateway and the inverter is correctly terminated and connected to the port labeled as XANBUS in he inverter (underneath the inverter, to the right of the SYNC port left of BTS port and AUX ports).\n2. Check that the RPO cable in the inverter (port labeled as BTS) is connected to the J5 (red) termination in the MIO board.\n3. Check that any of LEDs on inverter are On.\n4. Check that the DC conductors have at least 48V between terminations.\n5. Ensure that the DC terminations are done correctly\n6. Ensure that the DC breakers are closed.\n7. Ensure that the batteries are on. If not, press the ON button on the batteries.\n8. Check that the gray AUX connector from the inverter is connected to the J16 termination on the MIDC board.\n9. Tap retry on the commissioning app.\n\nIf the problem persists, this may be a sign that the inverter is damaged. Please contact SunPower."
   },
   {
     "event_code": "30029",
@@ -1047,7 +1087,7 @@
     "error_description": "Gateway could not connect to inverter or more than one gateway was installed",
     "display": true,
     "possible_causes": "The ESS gateway could not connect to inverter . Or more than one gateway was installed. ",
-    "recommended_actions": "1. Check that you have installed only one gateway.\n2. Reboot the inverter by pressing the 'on/off' button on the XWPro inverter for a few seconds until you see 'OFF' appear on the inverter display, then press the 'on/off' button again\n3. Press the retry button on the app.\nIf the problem persists:\n1. Check that the yellow XANBUS connector between the Schneider gateway and the inverter is correctly terminated and connected to the port labeled as XANBUS in he inverter (underneath the inverter, to the right of the SYNC port left of BTS port and AUX ports).\n2. Check that the RPO cable in the inverter (port labeled as BTS) is connected to the J5 (red) termination in the MIO board.\n3. Check that any of LEDs on inverter are On.\n4. Check that the DC conductors have at least 48V between terminations.\n5. Ensure that the DC terminations are done correctly\n6. Ensure that the DC breakers are closed.\n7. Ensure that the batteries are on. If not, press the ON button on the batteries.\n8. Check that the gray AUX connector from the inverter is connected to the J16 termination on the MIDC board.\n9. Press retry on the commissioning app.\n\nIf the problem persists, this may be a sign that the inverter is damaged. Please contact SunPower.\nIf the problem persists, this may be a sign that the Schneider Gateway is damaged. Please contact SunPower.\""
+    "recommended_actions": "1. Check that you have installed only one gateway.\n2. Reboot the inverter by pressing the 'on/off' button on the XWPro inverter for a few seconds until you see 'OFF' appear on the inverter display, then press the 'on/off' button again\n3. Press the retry button on the app.\nIf the problem persists:\n1. Check that the yellow XANBUS connector between the Schneider gateway and the inverter is correctly terminated and connected to the port labeled as XANBUS in he inverter (underneath the inverter, to the right of the SYNC port left of BTS port and AUX ports).\n2. Check that the RPO cable in the inverter (port labeled as BTS) is connected to the J5 (red) termination in the MIO board.\n3. Check that any of LEDs on inverter are On.\n4. Check that the DC conductors have at least 48V between terminations.\n5. Ensure that the DC terminations are done correctly\n6. Ensure that the DC breakers are closed.\n7. Ensure that the batteries are on. If not, press the ON button on the batteries.\n8. Check that the gray AUX connector from the inverter is connected to the J16 termination on the MIDC board.\n9. Tap retry on the commissioning app.\n\nIf the problem persists, this may be a sign that the inverter is damaged. Please contact SunPower.\nIf the problem persists, this may be a sign that the Schneider Gateway is damaged. Please contact SunPower.\""
   },
   {
     "event_code": "30032",
@@ -1067,7 +1107,7 @@
     "error_description": "Microgrid interconect contactor position unknown",
     "display": true,
     "possible_causes": "The connection between PVS and MIDC board has been lost.\nMIDC board can no longer control the transfer switch.",
-    "recommended_actions": "Check MIDC LEDs\nCheck MID cables for damage\nCheck for damage between PVS and MIDC communications cables.\nCheck the Aux cable is correctly connected an terminated.\nIf problem persists, you may need to replace the MID and/or MIDC.\n"
+    "recommended_actions": "Check MIDC LEDs\nCheck MID cables for damage\nCheck for damage between PVS and MIDC communications cables.\nCheck the Aux cable is correctly connected an terminated.\nIf problem persists, please contact SunPower.\n"
   },
   {
     "event_code": "31003",
@@ -1077,7 +1117,7 @@
     "error_description": "Transfer switch contactor stuck open ",
     "display": true,
     "possible_causes": "A fault with the MIDC board or with the transfer switch has occurred.",
-    "recommended_actions": "Check MIDC LEDs\nCheck MID cables for damage\nCheck for damage between PVS and MIDC communications cables.\nCheck the Aux cable is correctly connected an terminated.\nIf problem persists, you may need to replace the MID and/or MIDC.\n"
+    "recommended_actions": "Check MIDC LEDs\nCheck MID cables for damage\nCheck for damage between PVS and MIDC communications cables.\nCheck the Aux cable is correctly connected an terminated.\nIf problem persists, please contact SunPower.\n"
   },
   {
     "event_code": "31004",
@@ -1087,7 +1127,7 @@
     "error_description": "Transfer switch contactor stuck closed",
     "display": true,
     "possible_causes": "A fault with the MIDC board or with the transfer switch has occurred.",
-    "recommended_actions": "Check MIDC LEDs\nCheck MID cables for damage\nCheck for damage between PVS and MIDC communications cables.\nCheck the Aux cable is correctly connected an terminated.\nIf problem persists, you may need to replace the MID and/or MIDC.\n"
+    "recommended_actions": "Check MIDC LEDs\nCheck MID cables for damage\nCheck for damage between PVS and MIDC communications cables.\nCheck the Aux cable is correctly connected an terminated.\nIf problem persists, please contact SunPower.\n"
   },
   {
     "event_code": "31005",
@@ -1097,7 +1137,7 @@
     "error_description": "Contactor mismatched open",
     "display": true,
     "possible_causes": "Aux feedback and voltage sense does not match. A fault with the MIDC board or with the transfer switch has occurred.",
-    "recommended_actions": "Check MIDC LEDs\nCheck MID cables for damage\nCheck for damage between PVS and MIDC communications cables.\nCheck the Aux cable is correctly connected an terminated.\nIf problem persists, you may need to replace the MID and/or MIDC.\n"
+    "recommended_actions": "Check MIDC LEDs\nCheck MID cables for damage\nCheck for damage between PVS and MIDC communications cables.\nCheck the Aux cable is correctly connected an terminated.\nIf problem persists, please contact SunPower.\n"
   },
   {
     "event_code": "31006",
@@ -1107,7 +1147,7 @@
     "error_description": "Contactor mismatched closed",
     "display": true,
     "possible_causes": "Aux feedback and voltage sense does not match. A fault with the MIDC board or with the transfer switch has occurred.",
-    "recommended_actions": "Check MIDC LEDs\nCheck MID cables for damage\nCheck for damage between PVS and MIDC communications cables.\nCheck the Aux cable is correctly connected an terminated.\nIf problem persists, you may need to replace the MID and/or MIDC.\n"
+    "recommended_actions": "Check MIDC LEDs\nCheck MID cables for damage\nCheck for damage between PVS and MIDC communications cables.\nCheck the Aux cable is correctly connected an terminated.\nIf problem persists, please contact SunPower.\n"
   },
   {
     "event_code": "31007",
@@ -1117,7 +1157,7 @@
     "error_description": "Contactor mismatched and stuck open",
     "display": true,
     "possible_causes": "Aux feedback and voltage sense does not match. A fault with the MIDC board or with the transfer switch has occurred.",
-    "recommended_actions": "Check MIDC LEDs\nCheck MID cables for damage\nCheck for damage between PVS and MIDC communications cables.\nCheck the Aux cable is correctly connected an terminated.\nIf problem persists, you may need to replace the MID and/or MIDC.\n"
+    "recommended_actions": "Check MIDC LEDs\nCheck MID cables for damage\nCheck for damage between PVS and MIDC communications cables.\nCheck the Aux cable is correctly connected an terminated.\nIf problem persists, please contact SunPower.\n"
   },
   {
     "event_code": "31008",
@@ -1127,7 +1167,7 @@
     "error_description": "Contactor mismatched and stuck closed",
     "display": true,
     "possible_causes": "Aux feedback and voltage sense does not match. A fault with the MIDC board or with the transfer switch has occurred.",
-    "recommended_actions": "Check MIDC LEDs\nCheck MID cables for damage\nCheck for damage between PVS and MIDC communications cables.\nCheck the Aux cable is correctly connected an terminated.\nIf problem persists, you may need to replace the MID and/or MIDC.\n"
+    "recommended_actions": "Check MIDC LEDs\nCheck MID cables for damage\nCheck for damage between PVS and MIDC communications cables.\nCheck the Aux cable is correctly connected an terminated.\nIf problem persists, please contact SunPower.\n"
   },
   {
     "event_code": "31009",
@@ -1137,7 +1177,7 @@
     "error_description": "Contactor error unknown",
     "display": true,
     "possible_causes": "Problem unknown",
-    "recommended_actions": "Check MIDC LEDs\nCheck MID cables for damage\nCheck for damage between PVS and MIDC communications cables.\nCheck the Aux cable is correctly connected an terminated.\nIf problem persists, you may need to replace the MID and/or MIDC.\n"
+    "recommended_actions": "Check MIDC LEDs\nCheck MID cables for damage\nCheck for damage between PVS and MIDC communications cables.\nCheck the Aux cable is correctly connected an terminated.\nIf problem persists, please contact SunPower.\n"
   },
   {
     "event_code": "31011",
@@ -1167,7 +1207,7 @@
     "error_description": "MIDC firmware update failure",
     "display": true,
     "possible_causes": "We could not update the firmware in the MIDC",
-    "recommended_actions": "Please try again, if the problem persists, contact SunPower."
+    "recommended_actions": "Tap retry in SunPower ProConnect. If the problem persists, press the blue button on the MIDC board. Take adequate precautions as there may be live conductors near the board. If the problem still persists, please contact SunPower."
   },
   {
     "event_code": "31029",
@@ -1177,7 +1217,7 @@
     "error_description": "MIDC firmware error",
     "display": true,
     "possible_causes": "There is a problem with the firmware in the MIDC board.",
-    "recommended_actions": "If the problem persists, please contact SunPower."
+    "recommended_actions": "Tap retry in SunPower ProConnect. If the problem persists, press the blue button on the MIDC board. Take adequate precautions as there may be live conductors near the board. If the problem still persists, please contact SunPower."
   },
   {
     "event_code": "31030",
@@ -1187,7 +1227,7 @@
     "error_description": "MIDC firmware error",
     "display": true,
     "possible_causes": "There is a problem with the firmware in the MIDC board.",
-    "recommended_actions": "If the problem persists, please contact SunPower."
+    "recommended_actions": "Tap retry in SunPower ProConnect. If the problem persists, press the blue button on the MIDC board. Take adequate precautions as there may be live conductors near the board. If the problem still persists, please contact SunPower."
   },
   {
     "event_code": "31031",
@@ -1197,7 +1237,7 @@
     "error_description": "MIDC firmware error",
     "display": true,
     "possible_causes": "There is a problem with the firmware in the MIDC board.",
-    "recommended_actions": "If the problem persists, please contact SunPower."
+    "recommended_actions": "Tap retry in SunPower ProConnect. If the problem persists, press the blue button on the MIDC board. Take adequate precautions as there may be live conductors near the board. If the problem still persists, please contact SunPower."
   },
   {
     "event_code": "31032",
@@ -1207,7 +1247,7 @@
     "error_description": "MIDC firmware error",
     "display": true,
     "possible_causes": "There is a problem with the firmware in the MIDC board.",
-    "recommended_actions": "If the problem persists, please contact SunPower."
+    "recommended_actions": "Tap retry in SunPower ProConnect. If the problem persists, press the blue button on the MIDC board. Take adequate precautions as there may be live conductors near the board. If the problem still persists, please contact SunPower."
   },
   {
     "event_code": "31033",
@@ -1217,7 +1257,7 @@
     "error_description": "MIDC firmware error",
     "display": true,
     "possible_causes": "There is a problem with the firmware in the MIDC board.",
-    "recommended_actions": "If the problem persists, please contact SunPower."
+    "recommended_actions": "Tap retry in SunPower ProConnect. If the problem persists, press the blue button on the MIDC board. Take adequate precautions as there may be live conductors near the board. If the problem still persists, please contact SunPower."
   },
   {
     "event_code": "31034",
@@ -1227,7 +1267,7 @@
     "error_description": "MIDC firmware error",
     "display": true,
     "possible_causes": "There is a problem with the firmware in the MIDC board.",
-    "recommended_actions": "If the problem persists, please contact SunPower."
+    "recommended_actions": "Tap retry in SunPower ProConnect. If the problem persists, press the blue button on the MIDC board. Take adequate precautions as there may be live conductors near the board. If the problem still persists, please contact SunPower."
   },
   {
     "event_code": "31035",
@@ -1237,7 +1277,7 @@
     "error_description": "MIDC firmware error",
     "display": true,
     "possible_causes": "There is a problem with the firmware in the MIDC board.",
-    "recommended_actions": "If the problem persists, please contact SunPower."
+    "recommended_actions": "Tap retry in SunPower ProConnect. If the problem persists, press the blue button on the MIDC board. Take adequate precautions as there may be live conductors near the board. If the problem still persists, please contact SunPower."
   },
   {
     "event_code": "31036",
@@ -1247,7 +1287,7 @@
     "error_description": "MIDC firmware error",
     "display": true,
     "possible_causes": "There is a problem with the firmware in the MIDC board.",
-    "recommended_actions": "If the problem persists, please contact SunPower."
+    "recommended_actions": "Tap retry in SunPower ProConnect. If the problem persists, press the blue button on the MIDC board. Take adequate precautions as there may be live conductors near the board. If the problem still persists, please contact SunPower."
   },
   {
     "event_code": "31037",
@@ -1257,7 +1297,7 @@
     "error_description": "MIDC firmware error",
     "display": true,
     "possible_causes": "There is a problem with the firmware in the MIDC board.",
-    "recommended_actions": "If the problem persists, please contact SunPower."
+    "recommended_actions": "Tap retry in SunPower ProConnect. If the problem persists, press the blue button on the MIDC board. Take adequate precautions as there may be live conductors near the board. If the problem still persists, please contact SunPower."
   },
   {
     "event_code": "31038",
@@ -1267,7 +1307,7 @@
     "error_description": "MIDC firmware error",
     "display": true,
     "possible_causes": "There is a problem with the firmware in the MIDC board.",
-    "recommended_actions": "If the problem persists, please contact SunPower."
+    "recommended_actions": "Tap retry in SunPower ProConnect. If the problem persists, press the blue button on the MIDC board. Take adequate precautions as there may be live conductors near the board. If the problem still persists, please contact SunPower."
   },
   {
     "event_code": "31039",
@@ -1277,7 +1317,7 @@
     "error_description": "MIDC firmware error",
     "display": true,
     "possible_causes": "There is a problem with the firmware in the MIDC board.",
-    "recommended_actions": "If the problem persists, please contact SunPower."
+    "recommended_actions": "Tap retry in SunPower ProConnect. If the problem persists, press the blue button on the MIDC board. Take adequate precautions as there may be live conductors near the board. If the problem still persists, please contact SunPower."
   },
   {
     "event_code": "31040",
@@ -1287,7 +1327,7 @@
     "error_description": "MIDC firmware error",
     "display": true,
     "possible_causes": "There is a problem with the firmware in the MIDC board.",
-    "recommended_actions": "If the problem persists, please contact SunPower."
+    "recommended_actions": "Tap retry in SunPower ProConnect. If the problem persists, press the blue button on the MIDC board. Take adequate precautions as there may be live conductors near the board. If the problem still persists, please contact SunPower."
   },
   {
     "event_code": "31041",
@@ -1297,7 +1337,7 @@
     "error_description": "MIDC firmware error",
     "display": true,
     "possible_causes": "There is a problem with the firmware in the MIDC board.",
-    "recommended_actions": "If the problem persists, please contact SunPower."
+    "recommended_actions": "Tap retry in SunPower ProConnect. If the problem persists, press the blue button on the MIDC board. Take adequate precautions as there may be live conductors near the board. If the problem still persists, please contact SunPower."
   },
   {
     "event_code": "31042",
@@ -1307,7 +1347,7 @@
     "error_description": "MIDC firmware error",
     "display": true,
     "possible_causes": "There is a problem with the firmware in the MIDC board.",
-    "recommended_actions": "If the problem persists, please contact SunPower."
+    "recommended_actions": "Tap retry in SunPower ProConnect. If the problem persists, press the blue button on the MIDC board. Take adequate precautions as there may be live conductors near the board. If the problem still persists, please contact SunPower."
   },
   {
     "event_code": "31043",
@@ -1317,7 +1357,7 @@
     "error_description": "MIDC firmware error",
     "display": true,
     "possible_causes": "There is a problem with the firmware in the MIDC board.",
-    "recommended_actions": "If the problem persists, please contact SunPower."
+    "recommended_actions": "Tap retry in SunPower ProConnect. If the problem persists, press the blue button on the MIDC board. Take adequate precautions as there may be live conductors near the board. If the problem still persists, please contact SunPower."
   },
   {
     "event_code": "31044",
@@ -1327,7 +1367,7 @@
     "error_description": "MIDC firmware error",
     "display": true,
     "possible_causes": "There is a problem with the firmware in the MIDC board.",
-    "recommended_actions": "If the problem persists, please contact SunPower."
+    "recommended_actions": "Tap retry in SunPower ProConnect. If the problem persists, press the blue button on the MIDC board. Take adequate precautions as there may be live conductors near the board. If the problem still persists, please contact SunPower."
   },
   {
     "event_code": "31045",
@@ -1337,7 +1377,7 @@
     "error_description": "MIDC firmware error",
     "display": true,
     "possible_causes": "There is a problem with the firmware in the MIDC board.",
-    "recommended_actions": "If the problem persists, please contact SunPower."
+    "recommended_actions": "Tap retry in SunPower ProConnect. If the problem persists, press the blue button on the MIDC board. Take adequate precautions as there may be live conductors near the board. If the problem still persists, please contact SunPower."
   },
   {
     "event_code": "31046",
@@ -1347,7 +1387,7 @@
     "error_description": "MIDC firmware error",
     "display": true,
     "possible_causes": "There is a problem with the firmware in the MIDC board.",
-    "recommended_actions": "If the problem persists, please contact SunPower."
+    "recommended_actions": "Tap retry in SunPower ProConnect. If the problem persists, press the blue button on the MIDC board. Take adequate precautions as there may be live conductors near the board. If the problem still persists, please contact SunPower."
   },
   {
     "event_code": "31047",
@@ -1357,7 +1397,7 @@
     "error_description": "MIDC firmware error",
     "display": true,
     "possible_causes": "There is a problem with the firmware in the MIDC board.",
-    "recommended_actions": "If the problem persists, please contact SunPower."
+    "recommended_actions": "Tap retry in SunPower ProConnect. If the problem persists, press the blue button on the MIDC board. Take adequate precautions as there may be live conductors near the board. If the problem still persists, please contact SunPower."
   },
   {
     "event_code": "31053",
@@ -1957,7 +1997,7 @@
     "error_description": "MID contactor malfunction",
     "display": true,
     "possible_causes": "Could be one of the following:\n- Aux Cable severed\n- Aux Cable terminations are incorrect\n- Bad inverter comm card",
-    "recommended_actions": "Try the following:\n- Check for continuity on Aux cable terminations.\n- Check that the conductors are terminated correctly and in the right order on both ends of the cable.\n- Measure voltage on the Aux terminals of the inverter. If you can't read any voltage, the inverter COMM card may be defective and the unit may need to be serviced."
+    "recommended_actions": "Try the following:\n- Check for continuity on Aux cable terminations.\n- Check that the conductors are terminated correctly and in the right order on both ends of the cable.\n- Measure the voltage on the Aux terminals (Red to Black) of the inverter. It should read 12V. If you can’t read any voltage, the inverter COMM card may be defective and the unit may need to be serviced."
   },
   {
     "event_code": "32059",
@@ -1976,8 +2016,8 @@
     "in_use": true,
     "error_description": "Battery under voltage",
     "display": true,
-    "possible_causes": "Batteries have been discharged.",
-    "recommended_actions": "Clear the fault and attempt restart. If the problem persists, try charging the batteries. If the problem still persists, the batteries need to be serviced."
+    "possible_causes": "1. Batteries may have turned off after failing to receive a heartbeat from Hub+.\n2. Battery state of charge is too low.",
+    "recommended_actions": "1. Turn off the XW Pro Inverter by holding the power button until the display goes dark.\n2. Reboot the batteries by holding the on/off push button on the right-hand-side of the forward battery for a second or two. \n3.Wait 15 seconds, then momentarily depress the power button on the forward battery.\n4. Press the retry button in ProConnect.\nIf the problem persists, try charging the batteries. If the problem still persists, the batteries may need to be serviced"
   },
   {
     "event_code": "32061",
@@ -1987,7 +2027,7 @@
     "error_description": "Battery over voltage",
     "display": true,
     "possible_causes": "Batteries are charged above capacity.",
-    "recommended_actions": "Clear the fault and attempt restart. If the problem persists, try discharging the batteries. If the problem still persists, the batteries need to be serviced."
+    "recommended_actions": "Try clearing the error by rebooting the batteries. The following steps will reboot the batteries:\n\t1. Hold the power button on the right-hand-side of the front battery to power down all batteries.\n\t2. Wait 15 seconds.\n\t3. Press the power button again to turn all batteries on.\n\nIf the problem persists, please contact SunPower"
   },
   {
     "event_code": "32062",
@@ -2017,7 +2057,7 @@
     "error_description": "Inverter cannot communicate with the PVS",
     "display": true,
     "possible_causes": "Schneider Connext XW Pro inverter cannot connect to PVS.\n1.  If you’re also seeing an error that indicates that the gateway is missing, this error may be due to the fact that the gateway is not properly connected. Please address the problem with the gateway first if you're seeing a gateway error.\n2. The inverter may need to be rebooted.\n3. A data connection between the inverter.MIO and PVS is not properly made.\n",
-    "recommended_actions": "Please try the following steps:\n1. If you’re also seeing a ‘missing gateway’ error, please try to fix that problem first following the instructions in the 'missing gateway' error message.\n2. Reboot the inverter by pressing the 'on/off' button on the XWPro inverter for a few seconds until you see 'OFF' appear on the inverter display, then press the 'on/off' button again\n3. Press the retry button on the app.\nIf the problem persists:\n1. Check that the yellow XANBUS connector between the Schneider gateway and the inverter is correctly terminated and connected to the port labeled as XANBUS in he inverter (underneath the inverter, to the right of the SYNC port left of BTS port and AUX ports).\n2. Check that the RPO cable in the inverter (port labeled as BTS) is connected to the J5 (red) termination in the MIO board.\n3. Check that any of LEDs on inverter are On.\n4. Check that the DC conductors have at least 48V between terminations.\n5. Ensure that the DC terminations are done correctly\n6. Ensure that the DC breakers are closed.\n7. Ensure that the batteries are on. If not, press the ON button on the batteries.\n8. Check that the gray AUX connector from the inverter is connected to the J16 termination on the MIDC board.\n9. Press retry on the commissioning app.\n\nIf the problem persists, this may be a sign that the inverter is damaged. Please contact SunPower."
+    "recommended_actions": "Please try the following steps:\n1. If you’re also seeing a ‘missing gateway’ error, please try to fix that problem first following the instructions in the 'missing gateway' error message.\n2. Reboot the inverter by pressing the 'on/off' button on the XWPro inverter for a few seconds until you see 'OFF' appear on the inverter display, then press the 'on/off' button again\n3. Press the retry button on the app.\nIf the problem persists:\n1. Check that the yellow XANBUS connector between the Schneider gateway and the inverter is correctly terminated and connected to the port labeled as XANBUS in he inverter (underneath the inverter, to the right of the SYNC port left of BTS port and AUX ports).\n2. Check that the RPO cable in the inverter (port labeled as BTS) is connected to the J5 (red) termination in the MIO board.\n3. Check that any of LEDs on inverter are On.\n4. Check that the DC conductors have at least 48V between terminations.\n5. Ensure that the DC terminations are done correctly\n6. Ensure that the DC breakers are closed.\n7. Ensure that the batteries are on. If not, press the ON button on the batteries.\n8. Check that the gray AUX connector from the inverter is connected to the J16 termination on the MIDC board.\n9. Tap retry on the commissioning app.\n\nIf the problem persists, this may be a sign that the inverter is damaged. Please contact SunPower."
   },
   {
     "event_code": "32065",
@@ -2037,7 +2077,7 @@
     "error_description": "Inverter cannot communicate with the PVS",
     "display": true,
     "possible_causes": "Schneider Connext XW Pro inverter cannot connect to PVS.\n1.  If you’re also seeing an error that indicates that the gateway is missing, this error may be due to the fact that the gateway is not properly connected. Please address the problem with the gateway first if you're seeing a gateway error.\n2. The inverter may need to be rebooted.\n3. A data connection between the inverter.MIO and PVS is not properly made.\n",
-    "recommended_actions": "Please try the following steps:\n1. If you’re also seeing a ‘missing gateway’ error, please try to fix that problem first following the instructions in the 'missing gateway' error message.\n2. Reboot the inverter by pressing the 'on/off' button on the XWPro inverter for a few seconds until you see 'OFF' appear on the inverter display, then press the 'on/off' button again\n3. Press the retry button on the app.\nIf the problem persists:\n1. Check that the yellow XANBUS connector between the Schneider gateway and the inverter is correctly terminated and connected to the port labeled as XANBUS in he inverter (underneath the inverter, to the right of the SYNC port left of BTS port and AUX ports).\n2. Check that the RPO cable in the inverter (port labeled as BTS) is connected to the J5 (red) termination in the MIO board.\n3. Check that any of LEDs on inverter are On.\n4. Check that the DC conductors have at least 48V between terminations.\n5. Ensure that the DC terminations are done correctly\n6. Ensure that the DC breakers are closed.\n7. Ensure that the batteries are on. If not, press the ON button on the batteries.\n8. Check that the gray AUX connector from the inverter is connected to the J16 termination on the MIDC board.\n9. Press retry on the commissioning app.\n\nIf the problem persists, this may be a sign that the inverter is damaged. Please contact SunPower."
+    "recommended_actions": "Please try the following steps:\n1. If you’re also seeing a ‘missing gateway’ error, please try to fix that problem first following the instructions in the 'missing gateway' error message.\n2. Reboot the inverter by pressing the 'on/off' button on the XWPro inverter for a few seconds until you see 'OFF' appear on the inverter display, then press the 'on/off' button again\n3. Press the retry button on the app.\nIf the problem persists:\n1. Check that the yellow XANBUS connector between the Schneider gateway and the inverter is correctly terminated and connected to the port labeled as XANBUS in he inverter (underneath the inverter, to the right of the SYNC port left of BTS port and AUX ports).\n2. Check that the RPO cable in the inverter (port labeled as BTS) is connected to the J5 (red) termination in the MIO board.\n3. Check that any of LEDs on inverter are On.\n4. Check that the DC conductors have at least 48V between terminations.\n5. Ensure that the DC terminations are done correctly\n6. Ensure that the DC breakers are closed.\n7. Ensure that the batteries are on. If not, press the ON button on the batteries.\n8. Check that the gray AUX connector from the inverter is connected to the J16 termination on the MIDC board.\n9. Tap retry on the commissioning app.\n\nIf the problem persists, this may be a sign that the inverter is damaged. Please contact SunPower."
   },
   {
     "event_code": "33000",
@@ -2047,7 +2087,7 @@
     "error_description": "Batteries have a low state of charge.",
     "display": true,
     "possible_causes": "Batteries have been discharged.",
-    "recommended_actions": "Clear the fault and attempt restart. If the problem persists, try charging the batteries. If the problem still persists, the batteries need to be serviced."
+    "recommended_actions": "1. Turn off the XW Pro Inverter by holding the power button until the display goes dark.\n2. Reboot the batteries by holding the on/off push button on the right-hand-side of the forward battery for a second or two. \n3.Wait 15 seconds, then momentarily depress the power button on the forward battery.\n4. Press the retry button in ProConnect.\nIf the problem persists, try charging the batteries. If the problem still persists, the batteries may need to be serviced."
   },
   {
     "event_code": "33001",
@@ -2077,7 +2117,7 @@
     "error_description": "Battery under voltage",
     "display": true,
     "possible_causes": "Batteries have been discharged.",
-    "recommended_actions": "Clear the fault and attempt restart. If the problem persists, try charging the batteries. If the problem still persists, the batteries need to be serviced."
+    "recommended_actions": "1. Turn off the XW Pro Inverter by holding the power button until the display goes dark.\n2. Reboot the batteries by holding the on/off push button on the right-hand-side of the forward battery for a second or two. \n3.Wait 15 seconds, then momentarily depress the power button on the forward battery.\n4. Press the retry button in ProConnect.\nIf the problem persists, try charging the batteries. If the problem still persists, the batteries may need to be serviced"
   },
   {
     "event_code": "33004",
@@ -2087,7 +2127,7 @@
     "error_description": "Battery over voltage",
     "display": true,
     "possible_causes": "Batteries are charged above capacity.",
-    "recommended_actions": "Clear the fault and attempt restart. If the problem persists, try discharging the batteries. If the problem still persists, the batteries need to be serviced."
+    "recommended_actions": "Try clearing the error by rebooting the batteries. The following steps will reboot the batteries:\n\t1. Hold the power button on the right-hand-side of the front battery to power down all batteries.\n\t2. Wait 15 seconds.\n\t3. Press the power button again to turn all batteries on.\n\nIf the problem persists, please contact SunPower"
   },
   {
     "event_code": "33005",
@@ -2446,8 +2486,8 @@
     "in_use": true,
     "error_description": "MIO firmware error",
     "display": true,
-    "possible_causes": "There is a problem with the firmware in the MIDC board.",
-    "recommended_actions": "If the problem persists, please contact SunPower."
+    "possible_causes": "There is a problem with the firmware in the MIO board.",
+    "recommended_actions": "Tap retry in SunPower ProConnect. If the problem persists, press the blue button on the MIO board. Take adequate precautions as there may be live conductors near the board. If the problem still persists, please contact SunPower."
   },
   {
     "event_code": "34012",
@@ -2456,8 +2496,8 @@
     "in_use": true,
     "error_description": "MIO firmware error",
     "display": true,
-    "possible_causes": "There is a problem with the firmware in the MIDC board.",
-    "recommended_actions": "If the problem persists, please contact SunPower."
+    "possible_causes": "There is a problem with the firmware in the MIO board.",
+    "recommended_actions": "Tap retry in SunPower ProConnect. If the problem persists, press the blue button on the MIO board. Take adequate precautions as there may be live conductors near the board. If the problem still persists, please contact SunPower."
   },
   {
     "event_code": "34013",
@@ -2466,8 +2506,8 @@
     "in_use": true,
     "error_description": "MIO firmware error",
     "display": true,
-    "possible_causes": "There is a problem with the firmware in the MIDC board.",
-    "recommended_actions": "If the problem persists, please contact SunPower."
+    "possible_causes": "There is a problem with the firmware in the MIO board.",
+    "recommended_actions": "Tap retry in SunPower ProConnect. If the problem persists, press the blue button on the MIO board. Take adequate precautions as there may be live conductors near the board. If the problem still persists, please contact SunPower."
   },
   {
     "event_code": "34014",
@@ -2476,8 +2516,8 @@
     "in_use": true,
     "error_description": "MIO firmware error",
     "display": true,
-    "possible_causes": "There is a problem with the firmware in the MIDC board.",
-    "recommended_actions": "If the problem persists, please contact SunPower."
+    "possible_causes": "There is a problem with the firmware in the MIO board.",
+    "recommended_actions": "Tap retry in SunPower ProConnect. If the problem persists, press the blue button on the MIO board. Take adequate precautions as there may be live conductors near the board. If the problem still persists, please contact SunPower."
   },
   {
     "event_code": "34015",
@@ -2486,8 +2526,8 @@
     "in_use": true,
     "error_description": "MIO firmware error",
     "display": true,
-    "possible_causes": "There is a problem with the firmware in the MIDC board.",
-    "recommended_actions": "If the problem persists, please contact SunPower."
+    "possible_causes": "There is a problem with the firmware in the MIO board.",
+    "recommended_actions": "Tap retry in SunPower ProConnect. If the problem persists, press the blue button on the MIO board. Take adequate precautions as there may be live conductors near the board. If the problem still persists, please contact SunPower."
   },
   {
     "event_code": "34016",
@@ -2496,8 +2536,8 @@
     "in_use": true,
     "error_description": "MIO firmware error",
     "display": true,
-    "possible_causes": "There is a problem with the firmware in the MIDC board.",
-    "recommended_actions": "If the problem persists, please contact SunPower."
+    "possible_causes": "There is a problem with the firmware in the MIO board.",
+    "recommended_actions": "Tap retry in SunPower ProConnect. If the problem persists, press the blue button on the MIO board. Take adequate precautions as there may be live conductors near the board. If the problem still persists, please contact SunPower."
   },
   {
     "event_code": "34017",
@@ -2506,8 +2546,8 @@
     "in_use": true,
     "error_description": "MIO firmware error",
     "display": true,
-    "possible_causes": "There is a problem with the firmware in the MIDC board.",
-    "recommended_actions": "If the problem persists, please contact SunPower."
+    "possible_causes": "There is a problem with the firmware in the MIO board.",
+    "recommended_actions": "Tap retry in SunPower ProConnect. If the problem persists, press the blue button on the MIO board. Take adequate precautions as there may be live conductors near the board. If the problem still persists, please contact SunPower."
   },
   {
     "event_code": "34018",
@@ -2516,8 +2556,8 @@
     "in_use": true,
     "error_description": "MIO firmware error",
     "display": true,
-    "possible_causes": "There is a problem with the firmware in the MIDC board.",
-    "recommended_actions": "If the problem persists, please contact SunPower."
+    "possible_causes": "There is a problem with the firmware in the MIO board.",
+    "recommended_actions": "Tap retry in SunPower ProConnect. If the problem persists, press the blue button on the MIO board. Take adequate precautions as there may be live conductors near the board. If the problem still persists, please contact SunPower."
   },
   {
     "event_code": "34019",
@@ -2526,8 +2566,8 @@
     "in_use": true,
     "error_description": "MIO firmware error",
     "display": true,
-    "possible_causes": "There is a problem with the firmware in the MIDC board.",
-    "recommended_actions": "If the problem persists, please contact SunPower."
+    "possible_causes": "There is a problem with the firmware in the MIO board.",
+    "recommended_actions": "Tap retry in SunPower ProConnect. If the problem persists, press the blue button on the MIO board. Take adequate precautions as there may be live conductors near the board. If the problem still persists, please contact SunPower."
   },
   {
     "event_code": "34020",
@@ -2536,8 +2576,8 @@
     "in_use": true,
     "error_description": "MIO firmware error",
     "display": true,
-    "possible_causes": "There is a problem with the firmware in the MIDC board.",
-    "recommended_actions": "If the problem persists, please contact SunPower."
+    "possible_causes": "There is a problem with the firmware in the MIO board.",
+    "recommended_actions": "Tap retry in SunPower ProConnect. If the problem persists, press the blue button on the MIO board. Take adequate precautions as there may be live conductors near the board. If the problem still persists, please contact SunPower."
   },
   {
     "event_code": "34021",
@@ -2546,8 +2586,8 @@
     "in_use": true,
     "error_description": "MIO firmware error",
     "display": true,
-    "possible_causes": "There is a problem with the firmware in the MIDC board.",
-    "recommended_actions": "If the problem persists, please contact SunPower."
+    "possible_causes": "There is a problem with the firmware in the MIO board.",
+    "recommended_actions": "Tap retry in SunPower ProConnect. If the problem persists, press the blue button on the MIO board. Take adequate precautions as there may be live conductors near the board. If the problem still persists, please contact SunPower."
   },
   {
     "event_code": "34022",
@@ -2556,8 +2596,8 @@
     "in_use": true,
     "error_description": "MIO firmware error",
     "display": true,
-    "possible_causes": "There is a problem with the firmware in the MIDC board.",
-    "recommended_actions": "If the problem persists, please contact SunPower."
+    "possible_causes": "There is a problem with the firmware in the MIO board.",
+    "recommended_actions": "Tap retry in SunPower ProConnect. If the problem persists, press the blue button on the MIO board. Take adequate precautions as there may be live conductors near the board. If the problem still persists, please contact SunPower."
   },
   {
     "event_code": "34023",
@@ -2566,8 +2606,8 @@
     "in_use": true,
     "error_description": "MIO firmware error",
     "display": true,
-    "possible_causes": "There is a problem with the firmware in the MIDC board.",
-    "recommended_actions": "If the problem persists, please contact SunPower."
+    "possible_causes": "There is a problem with the firmware in the MIO board.",
+    "recommended_actions": "Tap retry in SunPower ProConnect. If the problem persists, press the blue button on the MIO board. Take adequate precautions as there may be live conductors near the board. If the problem still persists, please contact SunPower."
   },
   {
     "event_code": "34024",
@@ -2576,8 +2616,8 @@
     "in_use": true,
     "error_description": "MIO firmware error",
     "display": true,
-    "possible_causes": "There is a problem with the firmware in the MIDC board.",
-    "recommended_actions": "If the problem persists, please contact SunPower."
+    "possible_causes": "There is a problem with the firmware in the MIO board.",
+    "recommended_actions": "Tap retry in SunPower ProConnect. If the problem persists, press the blue button on the MIO board. Take adequate precautions as there may be live conductors near the board. If the problem still persists, please contact SunPower."
   },
   {
     "event_code": "34025",
@@ -2586,8 +2626,8 @@
     "in_use": true,
     "error_description": "MIO firmware error",
     "display": true,
-    "possible_causes": "There is a problem with the firmware in the MIDC board.",
-    "recommended_actions": "If the problem persists, please contact SunPower."
+    "possible_causes": "There is a problem with the firmware in the MIO board.",
+    "recommended_actions": "Tap retry in SunPower ProConnect. If the problem persists, press the blue button on the MIO board. Take adequate precautions as there may be live conductors near the board. If the problem still persists, please contact SunPower."
   },
   {
     "event_code": "34026",
@@ -2596,8 +2636,8 @@
     "in_use": true,
     "error_description": "MIO firmware error",
     "display": true,
-    "possible_causes": "There is a problem with the firmware in the MIDC board.",
-    "recommended_actions": "If the problem persists, please contact SunPower."
+    "possible_causes": "There is a problem with the firmware in the MIO board.",
+    "recommended_actions": "Tap retry in SunPower ProConnect. If the problem persists, press the blue button on the MIO board. Take adequate precautions as there may be live conductors near the board. If the problem still persists, please contact SunPower."
   },
   {
     "event_code": "34027",
@@ -2606,8 +2646,8 @@
     "in_use": true,
     "error_description": "MIO firmware error",
     "display": true,
-    "possible_causes": "There is a problem with the firmware in the MIDC board.",
-    "recommended_actions": "If the problem persists, please contact SunPower."
+    "possible_causes": "There is a problem with the firmware in the MIO board.",
+    "recommended_actions": "Tap retry in SunPower ProConnect. If the problem persists, press the blue button on the MIO board. Take adequate precautions as there may be live conductors near the board. If the problem still persists, please contact SunPower."
   },
   {
     "event_code": "34028",
@@ -2616,8 +2656,8 @@
     "in_use": true,
     "error_description": "MIO firmware error",
     "display": true,
-    "possible_causes": "There is a problem with the firmware in the MIDC board.",
-    "recommended_actions": "If the problem persists, please contact SunPower."
+    "possible_causes": "There is a problem with the firmware in the MIO board.",
+    "recommended_actions": "Tap retry in SunPower ProConnect. If the problem persists, press the blue button on the MIO board. Take adequate precautions as there may be live conductors near the board. If the problem still persists, please contact SunPower."
   },
   {
     "event_code": "34029",
@@ -2626,8 +2666,8 @@
     "in_use": true,
     "error_description": "MIO firmware error",
     "display": true,
-    "possible_causes": "There is a problem with the firmware in the MIDC board.",
-    "recommended_actions": "If the problem persists, please contact SunPower."
+    "possible_causes": "There is a problem with the firmware in the MIO board.",
+    "recommended_actions": "Tap retry in SunPower ProConnect. If the problem persists, press the blue button on the MIO board. Take adequate precautions as there may be live conductors near the board. If the problem still persists, please contact SunPower."
   },
   {
     "event_code": "34030",
@@ -2636,8 +2676,8 @@
     "in_use": true,
     "error_description": "MIO firmware update error",
     "display": true,
-    "possible_causes": "There is a problem with updating firmware in the MIDC board.",
-    "recommended_actions": "Please try updating the firmware again. If the problem persists, please contact SunPower."
+    "possible_causes": "There is a problem with updating firmware in the MIO board.",
+    "recommended_actions": "Tap retry in SunPower ProConnect. If the problem persists, press the blue button on the MIO board. Take adequate precautions as there may be live conductors near the board. If the problem still persists, please contact SunPower."
   },
   {
     "event_code": "35000",
@@ -2667,7 +2707,7 @@
     "error_description": "Inverter bulk settings update error",
     "display": true,
     "possible_causes": "Could not update settings in the inverter.",
-    "recommended_actions": "1. Reboot the gateway. In order to do so:\n     a. Disconnect the yellow ethernet cable from its port on the left side of the gateway.\n     b. Disconnect the black ethernet cable from its port on the left side of the gateway.\n     c. Disconnect the green ethernet cable from the J4 port on the right side of the Multi I/O (MIO) board.\n     d. Wait for about 30 seconds.\n     e. Reconnect all the cables mentioned in sections 5a through 5c.\n     f. Wait for the LEDs show gateway is in normal operation (see manual).\n2. Try applying bulk settings again by tapping 'retry' or running the firmware update step again.\nIf the problem persists, please contact SunPower."
+    "recommended_actions": "1. Reboot the gateway. In order to do so:\na. Disconnect the yellow ethernet cable from its port on the left side of the gateway.\nb. Disconnect the black ethernet cable from its port on the left side of the gateway.\nc. Disconnect the green ethernet cable from the J4 port on the right side of the Multi I/O (MIO) board.\nd. Wait for about 15 seconds.\ne. Reconnect all the cables mentioned in sections 1a through 1c.\nf. Wait for the LEDs show gateway is in normal operation (see manual).\n2. Try applying bulk settings again by tapping 'retry' or running the firmware update step again.\nIf the problem persists, please contact SunPower."
   },
   {
     "event_code": "43040",
@@ -2777,7 +2817,7 @@
     "error_description": "Could not find a PV disconnect relay",
     "display": true,
     "possible_causes": "Could not find a PV disconnect relay",
-    "recommended_actions": "Check that the serial cable terminated in the J14 connection on both MIDC and PV disconnect ends is properly made seated and terminated.\nCheck that the control cable between the MIDC and PV disconnect relay (terminated in the J6 connection on the MIDC) is properly made, seated and terminated."
+    "recommended_actions": "Check that the serial cable terminated in the J14 connection on both MIDC and PV disconnect ends is properly made, seated, and terminated.\nCheck that the control cable between the MIDC and PV disconnect relay (terminated in the J6 connection on the MIDC) is properly made, seated, and terminated.\nCheck that the PV disconnect relay has power."
   },
   {
     "event_code": "10011",
@@ -2824,10 +2864,10 @@
     "event_name": "pvd_fw_error_inval_critical",
     "code": "37002",
     "in_use": true,
-    "error_description": "PV disconnect relay board firmware error",
+    "error_description": "PV Disconnect Relay board firmware error",
     "display": true,
     "possible_causes": "PV disconnect relay board firmware may be corrupted",
-    "recommended_actions": "Try again. If the problem persists you may need to replace the PV disconnect relay board and contact SunPower."
+    "recommended_actions": "Tap retry in SunPower ProConnect. If the problem persists, press the blue button on the PV Disconnect Relay board. Take adequate precautions as there may be live conductors near the board. If the problem still persists, please contact SunPower."
   },
   {
     "event_code": "37003",
@@ -2837,7 +2877,7 @@
     "error_description": "PV disconnect relay board firmware error",
     "display": true,
     "possible_causes": "PV disconnect relay board firmware may be corrupted",
-    "recommended_actions": "Try again. If the problem persists you may need to replace the PV disconnect relay board and contact SunPower."
+    "recommended_actions": "Tap retry in SunPower ProConnect. If the problem persists, press the blue button on the PV Disconnect Relay board. Take adequate precautions as there may be live conductors near the board. If the problem still persists, please contact SunPower."
   },
   {
     "event_code": "37004",
@@ -2847,7 +2887,7 @@
     "error_description": "PV disconnect relay board firmware error",
     "display": true,
     "possible_causes": "PV disconnect relay board firmware may be corrupted",
-    "recommended_actions": "Try again. If the problem persists you may need to replace the PV disconnect relay board and contact SunPower."
+    "recommended_actions": "Tap retry in SunPower ProConnect. If the problem persists, press the blue button on the PV Disconnect Relay board. Take adequate precautions as there may be live conductors near the board. If the problem still persists, please contact SunPower."
   },
   {
     "event_code": "37005",
@@ -2857,7 +2897,7 @@
     "error_description": "PV disconnect relay board firmware error",
     "display": true,
     "possible_causes": "PV disconnect relay board firmware may be corrupted",
-    "recommended_actions": "Try again. If the problem persists you may need to replace the PV disconnect relay board and contact SunPower."
+    "recommended_actions": "Tap retry in SunPower ProConnect. If the problem persists, press the blue button on the PV Disconnect Relay board. Take adequate precautions as there may be live conductors near the board. If the problem still persists, please contact SunPower."
   },
   {
     "event_code": "37006",
@@ -2867,7 +2907,7 @@
     "error_description": "PV disconnect relay board firmware error",
     "display": true,
     "possible_causes": "PV disconnect relay board firmware may be corrupted",
-    "recommended_actions": "Try again. If the problem persists you may need to replace the PV disconnect relay board and contact SunPower."
+    "recommended_actions": "Tap retry in SunPower ProConnect. If the problem persists, press the blue button on the PV Disconnect Relay board. Take adequate precautions as there may be live conductors near the board. If the problem still persists, please contact SunPower."
   },
   {
     "event_code": "37007",
@@ -2877,7 +2917,7 @@
     "error_description": "PV disconnect relay board firmware error",
     "display": true,
     "possible_causes": "PV disconnect relay board firmware may be corrupted",
-    "recommended_actions": "Try again. If the problem persists you may need to replace the PV disconnect relay board and contact SunPower."
+    "recommended_actions": "Tap retry in SunPower ProConnect. If the problem persists, press the blue button on the PV Disconnect Relay board. Take adequate precautions as there may be live conductors near the board. If the problem still persists, please contact SunPower."
   },
   {
     "event_code": "37008",
@@ -2887,7 +2927,7 @@
     "error_description": "PV disconnect relay board firmware error",
     "display": true,
     "possible_causes": "PV disconnect relay board firmware may be corrupted",
-    "recommended_actions": "Try again. If the problem persists you may need to replace the PV disconnect relay board and contact SunPower."
+    "recommended_actions": "Tap retry in SunPower ProConnect. If the problem persists, press the blue button on the PV Disconnect Relay board. Take adequate precautions as there may be live conductors near the board. If the problem still persists, please contact SunPower."
   },
   {
     "event_code": "37009",
@@ -2897,7 +2937,7 @@
     "error_description": "PV disconnect relay board firmware error",
     "display": true,
     "possible_causes": "PV disconnect relay board firmware may be corrupted",
-    "recommended_actions": "Try again. If the problem persists you may need to replace the PV disconnect relay board and contact SunPower."
+    "recommended_actions": "Tap retry in SunPower ProConnect. If the problem persists, press the blue button on the PV Disconnect Relay board. Take adequate precautions as there may be live conductors near the board. If the problem still persists, please contact SunPower."
   },
   {
     "event_code": "37010",
@@ -2907,7 +2947,7 @@
     "error_description": "PV disconnect relay board firmware error",
     "display": true,
     "possible_causes": "PV disconnect relay board firmware may be corrupted",
-    "recommended_actions": "Try again. If the problem persists you may need to replace the PV disconnect relay board and contact SunPower."
+    "recommended_actions": "Tap retry in SunPower ProConnect. If the problem persists, press the blue button on the PV Disconnect Relay board. Take adequate precautions as there may be live conductors near the board. If the problem still persists, please contact SunPower."
   },
   {
     "event_code": "37011",
@@ -2917,7 +2957,7 @@
     "error_description": "PV disconnect relay board firmware error",
     "display": true,
     "possible_causes": "PV disconnect relay board firmware may be corrupted",
-    "recommended_actions": "Try again. If the problem persists you may need to replace the PV disconnect relay board and contact SunPower."
+    "recommended_actions": "Tap retry in SunPower ProConnect. If the problem persists, press the blue button on the PV Disconnect Relay board. Take adequate precautions as there may be live conductors near the board. If the problem still persists, please contact SunPower."
   },
   {
     "event_code": "37012",
@@ -2927,7 +2967,7 @@
     "error_description": "PV disconnect relay board firmware error",
     "display": true,
     "possible_causes": "PV disconnect relay board firmware may be corrupted",
-    "recommended_actions": "Try again. If the problem persists you may need to replace the PV disconnect relay board and contact SunPower."
+    "recommended_actions": "Tap retry in SunPower ProConnect. If the problem persists, press the blue button on the PV Disconnect Relay board. Take adequate precautions as there may be live conductors near the board. If the problem still persists, please contact SunPower."
   },
   {
     "event_code": "37013",
@@ -2937,7 +2977,7 @@
     "error_description": "PV disconnect relay board firmware error",
     "display": true,
     "possible_causes": "PV disconnect relay board firmware may be corrupted",
-    "recommended_actions": "Try again. If the problem persists you may need to replace the PV disconnect relay board and contact SunPower."
+    "recommended_actions": "Tap retry in SunPower ProConnect. If the problem persists, press the blue button on the PV Disconnect Relay board. Take adequate precautions as there may be live conductors near the board. If the problem still persists, please contact SunPower."
   },
   {
     "event_code": "37014",
@@ -2947,7 +2987,7 @@
     "error_description": "PV disconnect relay board firmware error",
     "display": true,
     "possible_causes": "PV disconnect relay board firmware may be corrupted",
-    "recommended_actions": "Try again. If the problem persists you may need to replace the PV disconnect relay board and contact SunPower."
+    "recommended_actions": "Tap retry in SunPower ProConnect. If the problem persists, press the blue button on the PV Disconnect Relay board. Take adequate precautions as there may be live conductors near the board. If the problem still persists, please contact SunPower."
   },
   {
     "event_code": "37015",
@@ -2957,7 +2997,7 @@
     "error_description": "PV disconnect relay board firmware error",
     "display": true,
     "possible_causes": "PV disconnect relay board firmware may be corrupted",
-    "recommended_actions": "Try again. If the problem persists you may need to replace the PV disconnect relay board and contact SunPower."
+    "recommended_actions": "Tap retry in SunPower ProConnect. If the problem persists, press the blue button on the PV Disconnect Relay board. Take adequate precautions as there may be live conductors near the board. If the problem still persists, please contact SunPower."
   },
   {
     "event_code": "37016",
@@ -2967,7 +3007,7 @@
     "error_description": "PV disconnect relay board firmware error",
     "display": true,
     "possible_causes": "PV disconnect relay board firmware may be corrupted",
-    "recommended_actions": "Try again. If the problem persists you may need to replace the PV disconnect relay board and contact SunPower."
+    "recommended_actions": "Tap retry in SunPower ProConnect. If the problem persists, press the blue button on the PV Disconnect Relay board. Take adequate precautions as there may be live conductors near the board. If the problem still persists, please contact SunPower."
   },
   {
     "event_code": "37017",
@@ -2977,7 +3017,7 @@
     "error_description": "PV disconnect relay board firmware error",
     "display": true,
     "possible_causes": "PV disconnect relay board firmware may be corrupted",
-    "recommended_actions": "Try again. If the problem persists you may need to replace the PV disconnect relay board and contact SunPower."
+    "recommended_actions": "Tap retry in SunPower ProConnect. If the problem persists, press the blue button on the PV Disconnect Relay board. Take adequate precautions as there may be live conductors near the board. If the problem still persists, please contact SunPower."
   },
   {
     "event_code": "37018",
@@ -2987,7 +3027,7 @@
     "error_description": "PV disconnect relay board firmware error",
     "display": true,
     "possible_causes": "PV disconnect relay board firmware may be corrupted",
-    "recommended_actions": "Try again. If the problem persists you may need to replace the PV disconnect relay board and contact SunPower."
+    "recommended_actions": "Tap retry in SunPower ProConnect. If the problem persists, press the blue button on the PV Disconnect Relay board. Take adequate precautions as there may be live conductors near the board. If the problem still persists, please contact SunPower."
   },
   {
     "event_code": "37019",
@@ -2997,7 +3037,7 @@
     "error_description": "PV disconnect relay board firmware error",
     "display": true,
     "possible_causes": "PV disconnect relay board firmware may be corrupted",
-    "recommended_actions": "Try again. If the problem persists you may need to replace the PV disconnect relay board and contact SunPower."
+    "recommended_actions": "Tap retry in SunPower ProConnect. If the problem persists, press the blue button on the PV Disconnect Relay board. Take adequate precautions as there may be live conductors near the board. If the problem still persists, please contact SunPower."
   },
   {
     "event_code": "37020",
@@ -3007,7 +3047,7 @@
     "error_description": "PV disconnect relay board firmware error",
     "display": true,
     "possible_causes": "PV disconnect relay board firmware may be corrupted",
-    "recommended_actions": "Try again. If the problem persists you may need to replace the PV disconnect relay board and contact SunPower."
+    "recommended_actions": "Tap retry in SunPower ProConnect. If the problem persists, press the blue button on the PV Disconnect Relay board. Take adequate precautions as there may be live conductors near the board. If the problem still persists, please contact SunPower."
   },
   {
     "event_code": "37027",
@@ -3017,7 +3057,7 @@
     "error_description": "PV disconnect relay board firmware error",
     "display": true,
     "possible_causes": "PV disconnect relay board firmware may be corrupted",
-    "recommended_actions": "Try again. If the problem persists you may need to replace the PV disconnect relay board and contact SunPower."
+    "recommended_actions": "Tap retry in SunPower ProConnect. If the problem still persists, please contact SunPower."
   },
   {
     "event_code": "37028",
@@ -3027,7 +3067,7 @@
     "error_description": "PV disconnect relay board firmware error",
     "display": true,
     "possible_causes": "PV disconnect relay board firmware may be corrupted",
-    "recommended_actions": "Try again. If the problem persists you may need to replace the PV disconnect relay board and contact SunPower."
+    "recommended_actions": "Tap retry in SunPower ProConnect.  If the problem still persists, please contact SunPower."
   },
   {
     "event_code": "37029",
@@ -3037,7 +3077,7 @@
     "error_description": "PV disconnect relay board firmware error",
     "display": true,
     "possible_causes": "PV disconnect relay board firmware may be corrupted",
-    "recommended_actions": "Try again. If the problem persists you may need to replace the PV disconnect relay board and contact SunPower."
+    "recommended_actions": "Tap retry in SunPower ProConnect. If the problem still persists, please contact SunPower."
   },
   {
     "event_code": "37030",
@@ -3047,7 +3087,7 @@
     "error_description": "PV disconnect relay board firmware error",
     "display": true,
     "possible_causes": "PV disconnect relay board firmware may be corrupted",
-    "recommended_actions": "Try again. If the problem persists you may need to replace the PV disconnect relay board and contact SunPower."
+    "recommended_actions": "Tap retry in SunPower ProConnect. If the problem still persists, please contact SunPower."
   },
   {
     "event_code": "37031",
@@ -3057,6 +3097,6 @@
     "error_description": "PV disconnect relay board firmware error",
     "display": true,
     "possible_causes": "PV disconnect relay board firmware may be corrupted",
-    "recommended_actions": "Try again. If the problem persists you may need to replace the PV disconnect relay board and contact SunPower."
+    "recommended_actions": "Tap retry in SunPower ProConnect. If the problem persists, press the blue button on the PV Disconnect Relay board. Take adequate precautions as there may be live conductors near the board. If the problem still persists, please contact SunPower."
   }
 ]

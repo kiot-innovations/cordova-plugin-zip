@@ -81,68 +81,72 @@ Robust microinverter firmware upgrade",
                 className="version"
                 key="0"
               >
-                <Collapsible
-                  expanded={true}
-                  title="VERSION Release 8616"
+                <div
+                  className="mb-10"
                 >
-                  <div
-                    className="collapsible"
+                  <Collapsible
+                    expanded={true}
+                    title="VERSION Release 8616"
                   >
                     <div
-                      className="collapsible-header"
+                      className="collapsible"
                     >
                       <div
-                        className="collapsible-title"
-                      >
-                        <span />
-                        <span
-                          className="has-text-weight-bold"
-                        >
-                          VERSION RELEASE 8616
-                        </span>
-                      </div>
-                      <div
-                        className="collapsible-actions"
-                      />
-                      <div
-                        className="collapsible-trigger"
+                        className="collapsible-header"
                       >
                         <div
-                          className="chevron down"
-                          onClick={[Function]}
+                          className="collapsible-title"
                         >
+                          <span />
                           <span
-                            className="sp-chevron-up"
-                          />
+                            className="has-text-weight-bold"
+                          >
+                            VERSION RELEASE 8616
+                          </span>
+                        </div>
+                        <div
+                          className="collapsible-actions"
+                        />
+                        <div
+                          className="collapsible-trigger"
+                        >
+                          <div
+                            className="chevron down"
+                            onClick={[Function]}
+                          >
+                            <span
+                              className="sp-chevron-up"
+                            />
+                          </div>
                         </div>
                       </div>
-                    </div>
-                    <div
-                      className="collapsible-content expanded"
-                    >
                       <div
-                        className="releaseDate"
+                        className="collapsible-content expanded"
                       >
-                        RELEASE_DATE
-                         
-                        11/05/2020
-                      </div>
-                      <div
-                        className="content"
-                        dangerouslySetInnerHTML={
-                          Object {
-                            "__html": "<h1 id=\\"features\\">Features</h1>
+                        <div
+                          className="releaseDate"
+                        >
+                          RELEASE_DATE
+                           
+                          11/05/2020
+                        </div>
+                        <div
+                          className="content"
+                          dangerouslySetInnerHTML={
+                            Object {
+                              "__html": "<h1 id=\\"features\\">Features</h1>
 <ul>
 <li>SunVault ready</li>
 <li>Full support for Pro Connect app</li>
 </ul>
 ",
+                            }
                           }
-                        }
-                      />
+                        />
+                      </div>
                     </div>
-                  </div>
-                </Collapsible>
+                  </Collapsible>
+                </div>
               </div>
               <div
                 className="version"
@@ -153,68 +157,72 @@ Robust microinverter firmware upgrade",
                 >
                   PREVIOUS_RELEASE_NOTES
                 </div>
-                <Collapsible
-                  expanded={false}
-                  title="VERSION Release 6415"
+                <div
+                  className="mb-10"
                 >
-                  <div
-                    className="collapsible"
+                  <Collapsible
+                    expanded={false}
+                    title="VERSION Release 6415"
                   >
                     <div
-                      className="collapsible-header"
+                      className="collapsible"
                     >
                       <div
-                        className="collapsible-title"
-                      >
-                        <span />
-                        <span
-                          className="has-text-weight-bold"
-                        >
-                          VERSION RELEASE 6415
-                        </span>
-                      </div>
-                      <div
-                        className="collapsible-actions"
-                      />
-                      <div
-                        className="collapsible-trigger"
+                        className="collapsible-header"
                       >
                         <div
-                          className="chevron"
-                          onClick={[Function]}
+                          className="collapsible-title"
                         >
+                          <span />
                           <span
-                            className="sp-chevron-up"
-                          />
+                            className="has-text-weight-bold"
+                          >
+                            VERSION RELEASE 6415
+                          </span>
+                        </div>
+                        <div
+                          className="collapsible-actions"
+                        />
+                        <div
+                          className="collapsible-trigger"
+                        >
+                          <div
+                            className="chevron"
+                            onClick={[Function]}
+                          >
+                            <span
+                              className="sp-chevron-up"
+                            />
+                          </div>
                         </div>
                       </div>
-                    </div>
-                    <div
-                      className="collapsible-content collapsed"
-                    >
                       <div
-                        className="releaseDate"
+                        className="collapsible-content collapsed"
                       >
-                        RELEASE_DATE
-                         
-                        10/01/2020
-                      </div>
-                      <div
-                        className="content"
-                        dangerouslySetInnerHTML={
-                          Object {
-                            "__html": "<h1 id=\\"improvements\\">Improvements</h1>
+                        <div
+                          className="releaseDate"
+                        >
+                          RELEASE_DATE
+                           
+                          10/01/2020
+                        </div>
+                        <div
+                          className="content"
+                          dangerouslySetInnerHTML={
+                            Object {
+                              "__html": "<h1 id=\\"improvements\\">Improvements</h1>
 <ul>
 <li>Bulletproof protection against interference from nearby Envoys
 Robust microinverter firmware upgrade</li>
 </ul>
 ",
+                            }
                           }
-                        }
-                      />
+                        />
+                      </div>
                     </div>
-                  </div>
-                </Collapsible>
+                  </Collapsible>
+                </div>
               </div>
             </div>
           </section>

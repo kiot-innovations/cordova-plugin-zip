@@ -1,4 +1,4 @@
-import { path, pathOr } from 'ramda'
+import { path, pathOr, propOr } from 'ramda'
 import { createReducer } from 'redux-act'
 
 import {
@@ -12,7 +12,11 @@ import {
   GET_SITES_SUCCESS,
   RESET_SITE,
   SET_MAP_VIEW_SRC,
-  SET_SITE
+  SET_SITE,
+  CREATE_HOMEOWNER_ACCOUNT_ERROR,
+  CREATE_HOMEOWNER_ACCOUNT,
+  CREATE_HOMEOWNER_ACCOUNT_COMPLETE,
+  CREATE_HOMEOWNER_ACCOUNT_RESET
 } from 'state/actions/site'
 
 const initialState = {
@@ -25,11 +29,39 @@ const initialState = {
   saveModal: false,
   mapViewSrc: false,
   sitePVS: null,
-  siteChanged: true
+  siteChanged: true,
+  homeownerCreation: {
+    complete: false,
+    creating: false,
+    error: undefined
+  }
 }
 
 export const siteReducer = createReducer(
   {
+    [CREATE_HOMEOWNER_ACCOUNT_RESET]: state => ({
+      ...state,
+      homeownerCreation: initialState.homeownerCreation
+    }),
+    [CREATE_HOMEOWNER_ACCOUNT]: state => ({
+      ...state,
+      homeownerCreation: { creating: true, error: undefined, complete: false }
+    }),
+    [CREATE_HOMEOWNER_ACCOUNT_COMPLETE]: state => ({
+      ...state,
+      homeownerCreation: { creating: false, complete: true, error: undefined }
+    }),
+    [CREATE_HOMEOWNER_ACCOUNT_ERROR]: (state, error) => ({
+      ...state,
+      homeownerCreation: {
+        creating: false,
+        complete: false,
+        error:
+          typeof error === typeof ''
+            ? error
+            : propOr('Something went wrong', 'message', error)
+      }
+    }),
     [CREATE_SITE_RESET]: state => ({
       ...state,
       saveModal: false

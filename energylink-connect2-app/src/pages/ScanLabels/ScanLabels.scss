@@ -1,9 +1,8 @@
 .scan-labels {
   display: grid;
-  grid-template-rows: minmax(20px, 30px) 1fr minmax(30px, 60px) minmax(
-      10px,
-      20px
-    ) minmax(30px, 60px) minmax(20px, 40px);
+  grid-template-rows:
+    minmax(20px, 30px) 1fr minmax(30px, 60px) minmax(10px, 20px)
+    minmax(30px, 60px) minmax(20px, 40px);
   height: 100%;
   align-items: center;
   justify-content: center;

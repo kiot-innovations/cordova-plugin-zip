@@ -4,7 +4,7 @@ import { Provider } from 'react-redux'
 import Adapter from 'enzyme-adapter-react-16'
 import deepFreeze from 'deep-freeze'
 import configureStore from 'redux-mock-store'
-import { BrowserRouter as Router } from 'react-router-dom'
+import { BrowserRouter, Router } from 'react-router-dom'
 import thunk from 'redux-thunk'
 import { TestScheduler } from 'rxjs/testing'
 import { ActionsObservable } from 'redux-observable'
@@ -57,13 +57,19 @@ global.addTimeFrames = (milliseconds, value = '') =>
   `${'-'.repeat(milliseconds / 10)}${value}`
 
 // Use this to test mounted components w/ store connection
-global.mountWithProvider = children => initialState => {
+global.mountWithProvider = children => (initialState, history) => {
   const store = mockedStore(initialState)
   return {
     component: mount(
-      <Router keyLength={0}>
-        <Provider store={store}>{children}</Provider>
-      </Router>
+      history ? (
+        <Router history={history} keyLength={0}>
+          <Provider store={store}>{children}</Provider>
+        </Router>
+      ) : (
+        <BrowserRouter keyLength={0}>
+          <Provider store={store}>{children}</Provider>
+        </BrowserRouter>
+      )
     ),
     store
   }
@@ -81,7 +87,7 @@ global.nextTick = fn =>
     })
   })
 
-const moment = require.requireActual('moment-timezone')
+const moment = jest.requireActual('moment-timezone')
 jest.doMock('moment', () => {
   moment.tz.setDefault('America/Los_Angeles')
   return moment

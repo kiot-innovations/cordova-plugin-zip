@@ -25,4 +25,19 @@
     border-radius: 10px;
     flex-direction: column;
   }
+
+  .live-power-title {
+    display: grid;
+    grid-template-columns: 32px 1fr 32px;
+
+    .info {
+      padding: 5px 5px 1px 6px;
+      background-color: $silver-sand4;
+      border-radius: 3px;
+    }
+  }
+
+  .live-power-info {
+    flex-direction: column;
+  }
 }

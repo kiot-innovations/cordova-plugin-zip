@@ -1,6 +1,7 @@
 @import '~@sunpower/theme-dark/styles/variables';
 
-.qr-layout, .pvs-connection-lost-screen{
+.qr-layout,
+.pvs-connection-lost-screen {
   height: 100%;
   display: grid;
   grid-template-rows: 50px minmax(100px, 170px) 100px 150px;
@@ -18,7 +19,7 @@
       flex-direction: column;
     }
   }
-  .manual-entry{
+  .manual-entry {
     input {
       background: $dark;
       color: $loblolly;
@@ -30,12 +31,12 @@
   }
 }
 
-.qr-icon{
+.qr-icon {
   display: flex;
   align-content: center;
   justify-content: center;
   flex-direction: column;
-  i{
+  i {
     font-size: 8em;
   }
 }
@@ -44,7 +45,8 @@
   display: none;
 }
 
-.ReactSwipeableBottomSheet--open, .ReactSwipeableBottomSheet--closed {
+.ReactSwipeableBottomSheet--open,
+.ReactSwipeableBottomSheet--closed {
   padding: 1rem 1rem 2rem 1rem;
   background-color: $light-black !important;
   border-radius: 20px;

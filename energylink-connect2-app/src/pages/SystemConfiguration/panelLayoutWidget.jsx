@@ -48,10 +48,7 @@ const PanelLayoutWidget = () => {
                   <span className="has-text-weight-bold">
                     ({moment(lastModifiedDate).fromNow()})
                   </span>
-                </>,
-                <span className="is-block has-text-weight-bold has-text-white">
-                  {t('PANEL_DATA_EXISTS')}
-                </span>
+                </>
               )}
             </div>,
             <>
@@ -62,15 +59,17 @@ const PanelLayoutWidget = () => {
           )}
           <div>
             <span className="is-size-3 has-text-weight-bold">
-              {invertersMissing}
-            </span>{' '}
-            <span>
-              {either(
-                hasPanelLayoutData,
-                t('MODULES_PRESENT'),
-                t('MODULES_NO_PRESENT')
-              )}
+              {`${invertersMissing} `}
             </span>
+            {either(
+              hasPanelLayoutData,
+              <span>
+                {t('MODULES_PRESENT', panels.length !== 1 ? 's' : '')}
+              </span>,
+              <span>
+                {t('MODULES_NO_PRESENT', invertersMissing !== 1 ? 's' : '')}
+              </span>
+            )}
           </div>
           <button
             onClick={() => history.push(paths.PROTECTED.PANEL_LAYOUT_TOOL.path)}

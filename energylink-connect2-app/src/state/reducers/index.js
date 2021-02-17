@@ -25,6 +25,8 @@ import firmwareUpdate from './firmware-update'
 import essReducer from './ess'
 import RMAReducer from 'state/reducers/rma'
 import analyticsReducer from './analytics'
+import sentryReducer from './sentry'
+import permissionsReducer from './permissions'
 
 export default combineReducers({
   ...getPLTReducer(),
@@ -71,11 +73,11 @@ export default combineReducers({
   site: persistReducer(
     {
       key: 'site',
+      blacklist: ['homeownerCreation'],
       storage
     },
     siteReducer
   ),
-
   devices: persistReducer(
     {
       key: 'devices',
@@ -90,6 +92,13 @@ export default combineReducers({
   energyLiveData,
   modal,
   pltWizard,
+  sentry: persistReducer(
+    {
+      key: 'sentry',
+      storage
+    },
+    sentryReducer
+  ),
   energyData: persistReducer(
     {
       key: 'energyData',
@@ -113,6 +122,7 @@ export default combineReducers({
       storage
     },
     essReducer
-  )
+  ),
+  permissions: permissionsReducer
   // Add reducers here
 })

@@ -11,6 +11,7 @@ import ContinueFooter from 'components/ESSContinueFooter'
 import StorageSyncFooter from 'components/ESSContinueFooter/StorageSyncFooter'
 
 import './ESSHealthCheck.scss'
+import SwipeableBottomSheet from 'react-swipeable-bottom-sheet'
 
 function ESSHealthCheck(props) {
   const t = useI18n()
@@ -40,7 +41,9 @@ function ESSHealthCheck(props) {
     clear,
     submitting,
     commissioned,
-    syncError
+    syncError,
+    waitModal,
+    showWaitModal
   } = props
 
   return (
@@ -63,6 +66,25 @@ function ESSHealthCheck(props) {
           <ESSHealthCheckReport report={report} />
         )}
       </div>
+
+      <SwipeableBottomSheet
+        shadowTip={false}
+        open={waitModal}
+        onChange={() => showWaitModal(!waitModal)}
+      >
+        <div className="check-in-progress is-flex">
+          <span className="has-text-weight-bold">{t('HOLD_ON')}</span>
+          <span className="mt-10 mb-10">{t('WAIT_FOR_CHECK')}</span>
+          <div className="mt-10 mb-20">
+            <button
+              className="button is-primary"
+              onClick={() => showWaitModal(false)}
+            >
+              {t('CLOSE')}
+            </button>
+          </div>
+        </div>
+      </SwipeableBottomSheet>
 
       {either(
         !hasErrors && !loading,

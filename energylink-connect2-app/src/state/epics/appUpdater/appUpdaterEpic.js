@@ -3,6 +3,7 @@ import { pathOr } from 'ramda'
 import { ofType } from 'redux-observable'
 import { from, of } from 'rxjs'
 import { map, exhaustMap, catchError } from 'rxjs/operators'
+import gt from 'semver/functions/gt'
 import {
   CHECK_APP_UPDATE_INIT,
   CHECK_APP_UPDATE_SUCCESS,
@@ -29,15 +30,15 @@ export const appUpdaterEpic = action$ =>
     ofType(CHECK_APP_UPDATE_INIT.getType()),
     exhaustMap(() =>
       from(plainHttpGet(VERSION_URL)).pipe(
-        map(pathOr(-1, ['data', isIos() ? 'ios' : 'android', 'build_number'])),
+        map(
+          pathOr('0.0.0', ['data', isIos() ? 'ios' : 'android', 'build_number'])
+        ),
         map(availableVersion =>
-          availableVersion > appVersion()
+          gt(availableVersion, appVersion())
             ? CHECK_APP_UPDATE_SUCCESS(availableVersion)
             : CHECK_APP_UPDATE_ERROR()
         ),
         catchError(error => {
-          console.error(error)
-
           Sentry.addBreadcrumb({
             data: {
               path: window.location.hash,
