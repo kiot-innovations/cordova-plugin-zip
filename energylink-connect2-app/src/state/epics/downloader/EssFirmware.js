@@ -1,20 +1,22 @@
 import * as Sentry from '@sentry/browser'
 import {
   always,
-  curry,
+  compose,
+  filter,
+  head,
   identity,
   ifElse,
   is,
-  path,
   pathOr,
-  propOr
+  propOr,
+  props
 } from 'ramda'
 import { ofType } from 'redux-observable'
 import { forkJoin, from, of } from 'rxjs'
 import { catchError, exhaustMap, map } from 'rxjs/operators'
 
 import fileTransferObservable from 'state/epics/observables/downloader'
-import { checkMD5 } from 'shared/cordovaMapping'
+import { getMd5FromFile } from 'shared/cordovaMapping'
 import { getFileInfo } from 'shared/fileSystem'
 import {
   essUpdateUrl$,
@@ -29,6 +31,7 @@ import {
 } from 'state/actions/ess'
 import { getVersionFromUrl } from 'shared/download'
 import { DOWNLOAD_OS_UPDATE_VERSION } from 'state/actions/ess'
+import { headersToObj } from 'shared/utils'
 
 const downloadOSZipEpic = (action$, state$) => {
   const shouldRetry = ifElse(is(Boolean), identity, always(false))
@@ -48,7 +51,12 @@ const downloadOSZipEpic = (action$, state$) => {
         map(({ entry, progress, total, serverHeaders, step }) =>
           progress
             ? DOWNLOAD_OS_PROGRESS({ progress, total, step })
-            : DOWNLOAD_OS_REPORT_SUCCESS({ serverHeaders, entry, filePath })
+            : DOWNLOAD_OS_REPORT_SUCCESS({
+                serverHeaders,
+                entry,
+                filePath,
+                updateUrl
+              })
         ),
         catchError(err => {
           Sentry.addBreadcrumb({
@@ -76,36 +84,82 @@ const updateVersionEpic = action$ =>
     map(([, url]) => DOWNLOAD_OS_UPDATE_VERSION(getVersionFromUrl(url)))
   )
 
-const getMd5 = curry((state, { serverHeaders = {} }) => {
-  if (serverHeaders['x-amz-meta-md5-hash']) {
-    return serverHeaders['x-amz-meta-md5-hash']
-  } else if (serverHeaders['x-checksum-md5']) {
-    return serverHeaders['x-checksum-md5']
-  }
-  return path(['value', 'ess', 'md5'], state)
-})
+const checkMD5WithHead = (updateUrl, filePath, accessToken) =>
+  new Promise((resolve, reject) =>
+    Promise.all([
+      getMd5FromFile(filePath),
+      fetch(updateUrl, {
+        headers: { Authorization: `Bearer ${accessToken}` },
+        method: 'HEAD'
+      })
+    ])
+      .then(([fileMd5, fetchResponse]) => {
+        const getExpectedMD5 = compose(
+          head,
+          filter(Boolean),
+          props(['x-checksum-md5', 'x-amz-meta-md5-hash']),
+          headersToObj
+        )
+
+        const expectedMd5 = getExpectedMD5(fetchResponse.headers)
+
+        if (expectedMd5 === fileMd5) resolve(expectedMd5)
+        reject({
+          message: 'MD5 not the same',
+          serverMd5: expectedMd5,
+          fileMd5,
+          responseHeaders: headersToObj(fetchResponse.headers)
+        })
+      })
+      .catch(reject)
+  )
+
 const checkIntegrityESSDownload = (action$, state$) =>
   action$.pipe(
     ofType(DOWNLOAD_OS_REPORT_SUCCESS.getType()),
     exhaustMap(({ payload }) => {
-      const { filePath, entry } = payload
-      const md5 = getMd5(state$, payload)
+      const { serverHeaders, entry, filePath, updateUrl } = payload
 
       return forkJoin({
-        md5: from(checkMD5(filePath, md5)),
+        md5: checkMD5WithHead(
+          updateUrl,
+          filePath,
+          pathOr('', ['value', 'user', 'auth', 'access_token'], state$)
+        ),
         fileInfo: from(getFileInfo(filePath))
       }).pipe(
-        map(({ fileInfo }) =>
+        map(({ fileInfo, md5 }) =>
           DOWNLOAD_OS_SUCCESS({
             entryFile: entry,
+            md5,
             total: fileInfo.size,
             lastModified: fileInfo.lastModified
           })
         ),
         catchError(err => {
-          Sentry.addBreadcrumb({ message: `filePath ${filePath}` })
-          Sentry.addBreadcrumb({ message: `expected md5 ${md5}` })
-          Sentry.captureException(err)
+          if (err instanceof Error) {
+            Sentry.captureException(err)
+          } else {
+            Sentry.addBreadcrumb({
+              message: 'Dealer info',
+              data: {
+                name: pathOr(
+                  'N/A',
+                  ['value', 'user', 'data', 'dealerName'],
+                  state$
+                )
+              }
+            })
+            Sentry.addBreadcrumb({
+              message: 'Additional info',
+              data: { ...err, serverHeaders, filePath }
+            })
+            Sentry.addBreadcrumb({
+              message: 'Server Headers',
+              data: { ...err.responseHeaders }
+            })
+            Sentry.captureException(new Error('ESS file download error'))
+          }
           return of(DOWNLOAD_OS_ERROR.asError(err))
         })
       )

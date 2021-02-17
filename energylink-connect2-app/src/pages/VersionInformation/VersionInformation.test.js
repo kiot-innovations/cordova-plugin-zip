@@ -1,7 +1,6 @@
 import React from 'react'
 import VersionInformation from './index'
 import * as i18n from 'shared/i18n'
-import appVersion from '../../macros/appVersion.macro'
 
 describe('VersionInformation component', () => {
   beforeEach(() => {
@@ -19,9 +18,11 @@ describe('VersionInformation component', () => {
       )
   })
 
+  const version = '4.0.1'
+
   test('renders correctly', () => {
     const { component } = mountWithProvider(
-      <VersionInformation appVersion={appVersion()} />
+      <VersionInformation appVersion={version} />
     )({})
 
     expect(component.find('.release-notes').exists()).toBe(true)

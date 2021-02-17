@@ -45,7 +45,7 @@ const ManualEntryForm = ({ serialNumber, callback }) => {
         form.reset()
       }}
     >
-      <div className="is-flex file tile buttons-container">
+      <div className="is-flex file buttons-container">
         <div className="ifield mr-10">
           <TextField
             input={{ ...fieldBarcode.input, pattern: '\\d*' }}
@@ -58,7 +58,7 @@ const ManualEntryForm = ({ serialNumber, callback }) => {
         </div>
 
         <button
-          className="button is-paddingless has-text-primary has-text-weight-bold is-uppercase is-outlined button-transparent"
+          className="button is-paddingless is-primary has-text-weight-bold is-uppercase is-outlined"
           disabled={isEmpty(fieldBarcode.input.value)}
           type="submit"
         >

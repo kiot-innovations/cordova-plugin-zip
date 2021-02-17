@@ -6,6 +6,7 @@ export const GET_ESS_STATUS = createAction('GET_ESS_STATUS')
 export const GET_ESS_STATUS_SUCCESS = createAction('GET_ESS_STATUS_SUCCESS')
 export const GET_ESS_STATUS_ERROR = createAction('GET_ESS_STATUS_ERROR')
 export const GET_ESS_STATUS_COMPLETE = createAction('GET_ESS_STATUS_COMPLETE')
+export const CLEAR_HEALTH_CHECK = createAction('CLEAR_HEALTH_CHECK')
 
 export const RUN_EQS_SYSTEMCHECK = createAction('RUN_EQS_SYSTEMCHECK')
 export const RUN_EQS_SYSTEMCHECK_SUCCESS = createAction(

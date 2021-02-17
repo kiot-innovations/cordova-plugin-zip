@@ -1,4 +1,5 @@
 import { createAction } from 'redux-act'
+import { namedAction } from 'shared/redux-utils'
 
 export const GET_SITES_INIT = createAction('GET_SITES_INIT')
 export const GET_SITES_SUCCESS = createAction('GET_SITES_SUCCESS')
@@ -16,5 +17,13 @@ export const GET_SITE_SUCCESS = createAction('GET_SITE_SUCCESS')
 export const GET_SITE_ERROR = createAction('GET_SITE_ERROR')
 
 //ANALYTICS
-export const NO_SITE_FOUND = createAction('NO_SITE_FOUND')
-export const HOME_SCREEN_CREATE_SITE = createAction('CREATE_SITE')
+const siteAnalyticsActions = namedAction('SITE ANALYTICS')
+export const NO_SITE_FOUND = siteAnalyticsActions('NO_SITE_FOUND')
+export const HOME_SCREEN_CREATE_SITE = siteAnalyticsActions('CREATE_SITE')
+
+const homeOwner = namedAction('HOME OWNER CREATE ACCOUNT')
+export const CREATE_HOMEOWNER_ACCOUNT = homeOwner('Initialize')
+export const CREATE_HOMEOWNER_ACCOUNT_RESET = homeOwner('Reset')
+export const ACTIVATE_HOMEOWNER_ACCOUNT = homeOwner('Activate')
+export const CREATE_HOMEOWNER_ACCOUNT_COMPLETE = homeOwner('Completed')
+export const CREATE_HOMEOWNER_ACCOUNT_ERROR = homeOwner('Error')

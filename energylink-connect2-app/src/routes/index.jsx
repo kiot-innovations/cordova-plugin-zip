@@ -93,7 +93,6 @@ const mapComponents = {
   [paths.PROTECTED.RMA_MI_DISCOVERY.path]: RMAMiDiscovery,
   [paths.PROTECTED.PRECOMM_CHECKLIST.path]: PreCommissioning,
   [paths.UNPROTECTED.FORGOT_PASSWORD.path]: NotFound,
-  [paths.UNPROTECTED.GET_ASSISTANCE.path]: NotFound,
   [paths.PROTECTED.RMA_DEVICES.path]: RMADevices,
   [paths.UNPROTECTED.LOGIN.path]: Login,
   [paths.UNPROTECTED.GET_ASSISTANCE.path]: GetAssistance,

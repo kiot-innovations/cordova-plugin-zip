@@ -39,10 +39,10 @@ exports[`VersionInformation component renders correctly 1`] = `
       }
     >
       <VersionInformation
-        appVersion="6.6.1"
+        appVersion="4.0.1"
       >
         <ReleaseNotes
-          currentVersion="6.6.1"
+          currentVersion="4.0.1"
           releaseNotes={
             Object {
               "meta": Object {
@@ -59,8 +59,8 @@ With this feature, you will now be reminded of a list of required & suggested it
 
 # Changes to commissioning successful screen
 You will now see a message that \\"Commissioning was successfully completed\\" after submitting your configuration successfully. This will indicate to a user that commissioning was completed properly. Previously the screen displayed a message that stated that \\"Configuration was saved successfully\\".",
-                  "releaseDate": "2020-1-1",
-                  "versionNumber": "6.6.0",
+                  "releaseDate": "2021-02-17",
+                  "versionNumber": "6.23.0",
                 },
               ],
             }
@@ -82,69 +82,73 @@ You will now see a message that \\"Commissioning was successfully completed\\" a
                 className="version"
                 key="0"
               >
-                <Collapsible
-                  expanded={true}
-                  title="VERSION 6.6.0"
+                <div
+                  className="mb-10"
                 >
-                  <div
-                    className="collapsible"
+                  <Collapsible
+                    expanded={true}
+                    title="VERSION 6.23.0"
                   >
                     <div
-                      className="collapsible-header"
+                      className="collapsible"
                     >
                       <div
-                        className="collapsible-title"
-                      >
-                        <span />
-                        <span
-                          className="has-text-weight-bold"
-                        >
-                          VERSION 6.6.0
-                        </span>
-                      </div>
-                      <div
-                        className="collapsible-actions"
-                      />
-                      <div
-                        className="collapsible-trigger"
+                        className="collapsible-header"
                       >
                         <div
-                          className="chevron down"
-                          onClick={[Function]}
+                          className="collapsible-title"
                         >
+                          <span />
                           <span
-                            className="sp-chevron-up"
-                          />
+                            className="has-text-weight-bold"
+                          >
+                            VERSION 6.23.0
+                          </span>
+                        </div>
+                        <div
+                          className="collapsible-actions"
+                        />
+                        <div
+                          className="collapsible-trigger"
+                        >
+                          <div
+                            className="chevron down"
+                            onClick={[Function]}
+                          >
+                            <span
+                              className="sp-chevron-up"
+                            />
+                          </div>
                         </div>
                       </div>
-                    </div>
-                    <div
-                      className="collapsible-content expanded"
-                    >
                       <div
-                        className="releaseDate"
+                        className="collapsible-content expanded"
                       >
-                        RELEASE_DATE
-                         
-                        12/31/2019
-                      </div>
-                      <div
-                        className="content"
-                        dangerouslySetInnerHTML={
-                          Object {
-                            "__html": "<h1 id=\\"site-address-display\\">Site address display</h1>
+                        <div
+                          className="releaseDate"
+                        >
+                          RELEASE_DATE
+                           
+                          02/17/2021
+                        </div>
+                        <div
+                          className="content"
+                          dangerouslySetInnerHTML={
+                            Object {
+                              "__html": "<h1 id=\\"site-address-display\\">Site address display</h1>
 <p>SunPower Pro Connect will now display the site address in all views in the App after a site is selected. It will be located at the top of each screen.</p>
 <h1 id=\\"pre-commissioning-checklist\\">Pre-commissioning checklist</h1>
 <p>With this feature, you will now be reminded of a list of required &amp; suggested items for commissioning. It ensures that you don&#39;t forget any important items before you begin commissioning.</p>
 <h1 id=\\"changes-to-commissioning-successful-screen\\">Changes to commissioning successful screen</h1>
 <p>You will now see a message that &quot;Commissioning was successfully completed&quot; after submitting your configuration successfully. This will indicate to a user that commissioning was completed properly. Previously the screen displayed a message that stated that &quot;Configuration was saved successfully&quot;.</p>
 ",
+                            }
                           }
-                        }
-                      />
+                        />
+                      </div>
                     </div>
-                  </div>
-                </Collapsible>
+                  </Collapsible>
+                </div>
               </div>
             </div>
             <div
@@ -152,7 +156,7 @@ You will now see a message that \\"Commissioning was successfully completed\\" a
             >
               CURRENT_VERSION
                
-              6.6.1
+              4.0.1
             </div>
           </section>
         </ReleaseNotes>

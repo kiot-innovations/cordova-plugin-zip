@@ -85,64 +85,71 @@ exports[`Header Component Renders correctly 1`] = `
 `;
 
 exports[`Header Component Renders text instead of logo 1`] = `
-<BrowserRouter
+<Router
+  history={
+    Object {
+      "action": "POP",
+      "block": [Function],
+      "canGo": [Function],
+      "createHref": [Function],
+      "entries": Array [
+        Object {
+          "hash": "",
+          "key": "testKey",
+          "pathname": "/show-address",
+          "search": "",
+        },
+      ],
+      "go": [Function],
+      "goBack": [Function],
+      "goForward": [Function],
+      "index": 0,
+      "length": 1,
+      "listen": [Function],
+      "location": Object {
+        "hash": "",
+        "key": "testKey",
+        "pathname": "/show-address",
+        "search": "",
+      },
+      "push": [Function],
+      "replace": [Function],
+    }
+  }
   keyLength={0}
 >
-  <Router
-    history={
+  <Provider
+    store={
       Object {
-        "action": "POP",
-        "block": [Function],
-        "createHref": [Function],
-        "go": [Function],
-        "goBack": [Function],
-        "goForward": [Function],
-        "length": 1,
-        "listen": [Function],
-        "location": Object {
-          "hash": "",
-          "pathname": "/",
-          "search": "",
-          "state": undefined,
-        },
-        "push": [Function],
-        "replace": [Function],
+        "clearActions": [Function],
+        "dispatch": [Function],
+        "getActions": [Function],
+        "getState": [Function],
+        "replaceReducer": [Function],
+        "subscribe": [Function],
       }
     }
   >
-    <Provider
-      store={
-        Object {
-          "clearActions": [Function],
-          "dispatch": [Function],
-          "getActions": [Function],
-          "getState": [Function],
-          "replaceReducer": [Function],
-          "subscribe": [Function],
-        }
-      }
-    >
-      <Header>
-        <section
-          className="header is-flex level is-clipper"
+    <Header>
+      <section
+        className="header is-flex level is-clipper"
+      >
+        <span
+          className="sp sp-menu"
+          onClick={[Function]}
+          role="button"
+        />
+        <span
+          className="text has-text-white"
+          title="ADDRESS"
         >
-          <span
-            className="sp sp-menu"
-            onClick={[Function]}
-            role="button"
-          />
-          <span
-            className="text has-text-white"
-            title="ADDRESS"
-          >
-            ADDRESS
-          </span>
-        </section>
-        <Component>
-          <div />
-        </Component>
-      </Header>
-    </Provider>
-  </Router>
-</BrowserRouter>
+          ADDRESS
+        </span>
+      </section>
+      <Component>
+        <div />
+      </Component>
+    </Header>
+  </Provider>
+</Router>
 `;

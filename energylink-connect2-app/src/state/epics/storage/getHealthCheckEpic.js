@@ -17,22 +17,15 @@ import { EMPTY_ACTION } from 'state/actions/share'
 import { discoveryTypes } from 'state/reducers/devices'
 import { eqsSteps } from 'state/reducers/storage'
 
-export const startHealthCheckEpic = (action$, state$) => {
+export const startHealthCheckEpic = action$ => {
   return action$.pipe(
     ofType(GET_ESS_STATUS_INIT.getType()),
-    map(() => {
-      const lastDiscovery = pathOr(
-        '',
-        ['value', 'pvs', 'lastDiscoveryType'],
-        state$
-      )
-      return lastDiscovery === discoveryTypes.LEGACY
-        ? RUN_EQS_SYSTEMCHECK()
-        : START_DISCOVERY_INIT({
-            Device: 'allnomi',
-            type: discoveryTypes.LEGACY
-          })
-    })
+    map(() =>
+      START_DISCOVERY_INIT({
+        Device: 'allnomi',
+        type: discoveryTypes.LEGACY
+      })
+    )
   )
 }
 

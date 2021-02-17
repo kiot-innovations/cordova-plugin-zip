@@ -1,6 +1,4 @@
 import React, { useState } from 'react'
-import BlockUI from 'react-block-ui'
-import 'react-block-ui/style.css'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 
@@ -190,61 +188,49 @@ function SNList() {
     : []
 
   return (
-    <BlockUI
-      tag="div"
-      className="snlist-blockui"
-      blocking={false}
-      message={t('OPENING_CAMERA')}
-    >
+    <div className="snlist is-vertical has-text-centered pl-10 pr-10">
       {serialNumbersModal}
       {legacyDiscoveryModal}
-      <div className="snlist is-vertical has-text-centered pl-10 pr-10">
-        <div className="top-text">
-          <span className="is-uppercase has-text-weight-bold">
-            {t('SCAN_MI_LABELS')}
-          </span>
-          <span className="has-text-white">
-            {serialNumbers.length > 0
-              ? t('FOUND_SN', serialNumbers.length)
-              : ''}
-          </span>
-        </div>
-        <div className="sn-container">
-          <div className="sn-list mb-10">
-            {serialNumbersList.length > 0 ? (
-              <>
-                <p className="has-text-weight-bold mb-20">
-                  {t('TAP_SN_TO_EDIT')}
-                </p>
-                {serialNumbersList}
-              </>
-            ) : (
-              <span className="mb-20">{t('SCAN_HINT')}</span>
-            )}
-          </div>
-          <SNManualEntry
-            serialNumber={editingSn}
-            callback={afterEditCallback}
-          />
-          {fetchingSN ? <Loader /> : ''}
-        </div>
-
-        <div className="sn-buttons">
-          <SNScanButtons
-            fetchingSN={fetchingSN}
-            onScanMore={onScanMore}
-            countSN={countSN}
-            canScanMore={canAccessScandit}
-          />
-          <button
-            onClick={toggleLegacyDiscoveryModal}
-            className="button has-text-centered is-uppercase is-secondary has-no-border pl-0 pr-0"
-          >
-            {t('LEGACY_DISCOVERY')}
-          </button>
-        </div>
+      <div className="top-text">
+        <span className="is-uppercase has-text-weight-bold">
+          {t('SCAN_MI_LABELS')}
+        </span>
+        <span className="has-text-white">
+          {serialNumbers.length > 0 ? t('FOUND_SN', serialNumbers.length) : ''}
+        </span>
       </div>
-    </BlockUI>
+      <div className="sn-container">
+        <div className="sn-list mb-10">
+          {serialNumbersList.length > 0 ? (
+            <>
+              <p className="has-text-weight-bold mb-20">
+                {t('TAP_SN_TO_EDIT')}
+              </p>
+              {serialNumbersList}
+            </>
+          ) : (
+            <span className="mb-20">{t('SCAN_HINT')}</span>
+          )}
+        </div>
+        <SNManualEntry serialNumber={editingSn} callback={afterEditCallback} />
+        {fetchingSN ? <Loader /> : ''}
+      </div>
+
+      <div className="sn-buttons">
+        <SNScanButtons
+          fetchingSN={fetchingSN}
+          onScanMore={onScanMore}
+          countSN={countSN}
+          canScanMore={canAccessScandit}
+        />
+        <button
+          onClick={toggleLegacyDiscoveryModal}
+          className="button has-text-centered is-uppercase is-secondary has-no-border pl-0 pr-0"
+        >
+          {t('LEGACY_DISCOVERY')}
+        </button>
+      </div>
+    </div>
   )
 }
 

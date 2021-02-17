@@ -1,64 +1,60 @@
 @import '~@sunpower/theme-dark/styles/variables';
 
-.sn-modal{
+.sn-modal {
   padding: 1rem;
   text-align: center;
   display: grid;
 }
 
-.snlist-blockui {
+.snlist {
+  height: 100%;
   display: flex;
-  height:100%;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
 
-  .snlist {
+  .has-no-border {
+    border: 0;
+  }
+
+  .top-text {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    width: 100%;
+  }
 
-    .has-no-border {
-      border: 0;
-    }
+  .sn-container {
+    background-color: $silver-sand4;
+    padding: $font-size-big;
+    margin: $font-size-medium 0;
+    flex: 1 1 30rem;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    font-family: $font;
+    letter-spacing: 0;
+    border-radius: 5px;
+    display: grid;
+    grid-template-rows: 1fr 60px;
+    align-content: space-between;
 
-    .top-text {
-      display: flex;
-      flex-direction: column;
-    }
+    .line-scale-pulse-out-rapid {
+      display: block;
 
-    .sn-container {
-      background-color: $silver-sand4;
-      padding: $font-size-big;
-      margin: $font-size-medium 0;
-      flex: 1 1 30rem;
-      overflow-y: scroll;
-      overflow-x: hidden;
-      font-family: $font;
-      letter-spacing: 0;
-      border-radius: 5px;
-      display: grid;
-      grid-template-rows: 1fr 60px;
-
-      .line-scale-pulse-out-rapid {
-        display: block;
-
-        div {
-          background-color: $sun;
-        }
+      div {
+        background-color: $sun;
       }
+    }
 
-      .sn-item {
-        display: grid;
-        grid-template-columns: 90% 1fr;
-        text-align: left;
-        padding-bottom: 5px;
-        border-bottom: 2px solid;
+    .sn-item {
+      display: grid;
+      grid-template-columns: 90% 1fr;
+      text-align: left;
+      padding-bottom: 5px;
+      border-bottom: 2px solid;
 
-        button {
-          background: transparent;
-          border: none;
-        }
+      button {
+        background: transparent;
+        border: none;
       }
     }
   }
 }
-

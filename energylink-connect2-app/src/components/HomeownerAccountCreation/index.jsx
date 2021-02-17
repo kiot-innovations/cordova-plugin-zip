@@ -1,12 +1,14 @@
 import React from 'react'
 import { useField, useForm } from 'react-final-form-hooks'
 import SwipeableBottomSheet from 'react-swipeable-bottom-sheet'
-import { evolve, isEmpty } from 'ramda'
+import { evolve, isEmpty, pathOr } from 'ramda'
+import { CREATE_HOMEOWNER_ACCOUNT } from 'state/actions/site'
+import { useDispatch, useSelector } from 'react-redux'
 import TextField from '@sunpower/textfield'
 
+import { Loader } from 'components/Loader'
 import { useI18n } from 'shared/i18n'
-import { createExternalLinkHandler } from 'shared/routing'
-import { cleanString } from 'shared/utils'
+import { cleanString, either } from 'shared/utils'
 
 import './HomeownerAccountCreation.scss'
 
@@ -14,23 +16,15 @@ const sanitizeInputs = evolve({
   firstName: cleanString,
   lastName: cleanString
 })
-const HomeownerAccountCreation = ({ open, onChange, pvs }) => {
+
+const HomeownerAccountCreation = ({ open, onChange }) => {
   const t = useI18n()
-  const onSubmit = homeOwnerData => {
-    const { firstName, lastName, email } = sanitizeInputs(homeOwnerData)
-    return createExternalLinkHandler(
-      `mailto:${email.trim()}?subject=${t(
-        'HOMEOWNER_ACCOUNT_EMAIL_SUBJECT'
-      )}&body=${encodeURIComponent(
-        t(
-          'HOMEOWNER_ACCOUNT_EMAIL_BODY_TEMPLATE',
-          firstName.trim(),
-          lastName.trim(),
-          pvs
-        )
-      )}`
-    )()
+  const dispatch = useDispatch()
+  const onSubmit = homeownerData => {
+    const homeownerSanitizedData = sanitizeInputs(homeownerData)
+    return dispatch(CREATE_HOMEOWNER_ACCOUNT(homeownerSanitizedData))
   }
+
   const { form, handleSubmit } = useForm({
     onSubmit,
     initialValues: {
@@ -56,6 +50,9 @@ const HomeownerAccountCreation = ({ open, onChange, pvs }) => {
       return errors
     }
   })
+  const { complete, creating, error } = useSelector(
+    pathOr({}, ['site', 'homeownerCreation'])
+  )
   const firstName = useField('firstName', form)
   const lastName = useField('lastName', form)
   const email = useField('email', form)
@@ -70,36 +67,67 @@ const HomeownerAccountCreation = ({ open, onChange, pvs }) => {
         <span className="has-text-weight-bold">
           {t('CREATE_HOMEOWNER_ACCOUNT')}
         </span>
-        <form onSubmit={handleSubmit}>
-          <TextField
-            className="mt-20"
-            input={firstName.input}
-            meta={firstName.meta}
-            type="text"
-            placeholder={t('FIRST_NAME')}
-          />
-          <TextField
-            input={lastName.input}
-            meta={lastName.meta}
-            type="text"
-            placeholder={t('LAST_NAME')}
-          />
-          <TextField
-            input={email.input}
-            meta={email.meta}
-            type="email"
-            placeholder={t('HOMEOWNER_EMAIL')}
-          />
-          <div className="mt-20">
+        {either(
+          creating,
+          <>
+            <Loader />
+            <span>{t('CREATE_HOMEOWNER_ACCOUNT_CREATING')}</span>
+          </>
+        )}
+        {either(
+          complete,
+          <div>
+            <span className="sp-check is-block is-size-4 has-text-white mb-10 mt-10" />
+            <span className="is-block mb-10">
+              {t('CREATE_HOMEOWNER_ACCOUNT_COMPLETE')}
+            </span>
             <button
-              disabled={submitDisabled}
               className="button is-primary is-uppercase"
-              type="submit"
+              onClick={onChange}
             >
-              {t('SEND_EMAIL')}
+              {t('OK')}
             </button>
           </div>
-        </form>
+        )}
+        {either(
+          error,
+          <span className="has-text-white is-block">
+            {t('CREATE_HOMEOWNER_ACCOUNT_ERROR')}
+          </span>
+        )}
+        {either(
+          !creating && !complete,
+          <form onSubmit={handleSubmit}>
+            <TextField
+              className="mt-20"
+              input={firstName.input}
+              meta={firstName.meta}
+              type="text"
+              placeholder={t('FIRST_NAME')}
+            />
+            <TextField
+              input={lastName.input}
+              meta={lastName.meta}
+              type="text"
+              placeholder={t('LAST_NAME')}
+            />
+            <TextField
+              input={email.input}
+              meta={email.meta}
+              type="email"
+              placeholder={t('HOMEOWNER_EMAIL')}
+            />
+            <div className="mt-20">
+              <button
+                disabled={submitDisabled}
+                className="button is-primary is-uppercase"
+                type="submit"
+              >
+                {t('SEND_EMAIL')}
+              </button>
+            </div>
+          </form>
+        )}
       </div>
     </SwipeableBottomSheet>
   )

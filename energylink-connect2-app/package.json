@@ -19,7 +19,8 @@
     "storybook": "start-storybook -p 9009 -s public",
     "build-storybook": "build-storybook -s public",
     "live-reload-proxy": "node ./live-reload/proxy.js",
-    "live-reload-precommit": "node ./gitHooks/liveReloadValidate"
+    "live-reload-precommit": "node ./gitHooks/liveReloadValidate",
+    "prettify": "prettier --write 'src/**/**/*.{js,jsx,scss}'"
   },
   "dependencies": {
     "@sentry/browser": "^5.12.1",
@@ -66,6 +67,7 @@
     "rpc-websockets": "^5.0.14",
     "rxjs": "^6.5.3",
     "scandit-sdk": "^4.6.3",
+    "semver": "^7.3.4",
     "superagent": "^5.1.2",
     "swagger-client": "^3.9.6",
     "unfetch": "^4.1.0"
@@ -113,7 +115,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run validate-env-files && cross-env CI=true npm test -- --coverage -o && lint-staged && npm run live-reload-precommit"
+      "pre-commit": "npm run validate-env-files && cross-env CI=true npm test && lint-staged && npm run live-reload-precommit && prettier --check 'src/**/**/*.{js,jsx,scss}'"
     }
   },
   "lint-staged": {

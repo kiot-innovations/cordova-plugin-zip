@@ -6,7 +6,7 @@
   grid-column-gap: 1rem;
 
   button {
-    padding:0 30px!important
+    padding: 0 30px !important;
   }
 }
 
@@ -41,7 +41,7 @@
   }
 }
 
-.inline-loader{
+.inline-loader {
   flex: 0 1 auto;
   flex-direction: column;
   flex-shrink: 0;
@@ -53,7 +53,6 @@
   display: -ms-flexbox;
   display: flex;
 }
-
 
 .device-prog {
   background-color: $silver-sand4;
@@ -85,6 +84,6 @@
   }
 }
 
-.eqs-device{
+.eqs-device {
   border-bottom: 1px solid $silver-sand4;
 }

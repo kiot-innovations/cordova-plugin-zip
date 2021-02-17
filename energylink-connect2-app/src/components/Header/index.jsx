@@ -19,6 +19,10 @@ const isMenuPath = history =>
   history.location.pathname === paths.PROTECTED.MANAGE_FIRMWARES.path ||
   history.location.pathname === paths.PROTECTED.VERSION_INFORMATION.path ||
   history.location.pathname === paths.PROTECTED.GIVE_FEEDBACK.path
+const showSiteAddress = history =>
+  history.location.pathname !== paths.PROTECTED.ROOT.path &&
+  history.location.pathname !== paths.PROTECTED.CREATE_SITE.path &&
+  history.location.pathname !== paths.PROTECTED.BILL_OF_MATERIALS.path
 
 export const Header = ({ icon = 'sp-menu', iconOpen = 'sp-chevron-left' }) => {
   const history = useHistory()
@@ -59,11 +63,11 @@ export const Header = ({ icon = 'sp-menu', iconOpen = 'sp-chevron-left' }) => {
       <section className="header is-flex level is-clipper">
         <span className={classIcon} onClick={menuAction} role="button" />
         {either(
-          isNil(siteAddress),
-          <Logo />,
+          showSiteAddress(history) && !isNil(siteAddress),
           <span className="text has-text-white" title={siteAddress}>
             {trimString(siteAddress, getCount(window))}
-          </span>
+          </span>,
+          <Logo />
         )}
       </section>
       <Menu />

@@ -61,4 +61,33 @@ describe('Right Now component', () => {
     )
     expect(component).toMatchSnapshot()
   })
+
+  it('renders with inverted CT', () => {
+    const component = shallow(
+      <RightNow
+        solarAvailable={false}
+        gridValue={2.5}
+        storageValue={2.5}
+        homeValue={-2.5}
+        batteryLevel={63}
+        hasStorage={true}
+        location={previousLocation}
+      />
+    )
+    expect(component).toMatchSnapshot()
+  })
+  it('renders with regular CT', () => {
+    const component = shallow(
+      <RightNow
+        solarAvailable={false}
+        gridValue={2.5}
+        storageValue={2.5}
+        homeValue={2.5}
+        batteryLevel={63}
+        hasStorage={true}
+        location={previousLocation}
+      />
+    )
+    expect(component).toMatchSnapshot()
+  })
 })

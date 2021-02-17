@@ -101,7 +101,6 @@ const SavingConfiguration = () => {
                   onChange={() =>
                     setShowHomeownerCreation(!showHomeownerCreation)
                   }
-                  pvs={commissioningPvs}
                 />
               )}
             </div>

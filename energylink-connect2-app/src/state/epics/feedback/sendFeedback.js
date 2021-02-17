@@ -6,8 +6,8 @@ import { path } from 'ramda'
 import moment from 'moment'
 import { translate } from 'shared/i18n'
 import { getApiParty } from 'shared/api'
+import { getAccessToken } from 'shared/utils'
 
-const getAccessToken = path(['user', 'auth', 'access_token'])
 const getAPIMethods = path(['apis', 'default'])
 
 const sendFeedbackPromise = (access_token, values) =>

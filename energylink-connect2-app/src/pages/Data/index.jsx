@@ -1,5 +1,6 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { useHistory } from 'react-router-dom'
 import {
   always,
   cond,
@@ -20,7 +21,10 @@ import {
   ENERGY_DATA_START_POLLING,
   ENERGY_DATA_STOP_POLLING
 } from 'state/actions/energy-data'
-import { RUN_EQS_SYSTEMCHECK_SUCCESS } from 'state/actions/storage'
+import {
+  CLEAR_HEALTH_CHECK,
+  RUN_EQS_SYSTEMCHECK_SUCCESS
+} from 'state/actions/storage'
 import { MI_DATA_START_POLLING, MI_DATA_STOP_POLLING } from 'state/actions/pvs'
 import { FETCH_DEVICES_LIST } from 'state/actions/devices'
 import { either } from 'shared/utils'
@@ -31,12 +35,15 @@ import Collapsible from 'components/Collapsible'
 import { ButtonLink } from 'components/ButtonLink'
 import paths from 'routes/paths'
 import './Data.scss'
+import SwipeableBottomSheet from 'react-swipeable-bottom-sheet'
 
 const isMeter = propEq('isSolarAvailable', true)
 
 export default () => {
   const t = useI18n()
   const dispatch = useDispatch()
+  const history = useHistory()
+  const [livePowerInfo, showLivePowerInfo] = useState(false)
   const { liveData = {} } = useSelector(state => state.energyLiveData)
   const { miData } = useSelector(state => state.pvs)
   const storageStatus = useSelector(pathOr({}, ['storage', 'status']))
@@ -107,6 +114,11 @@ export default () => {
     soc: propOr(0, 'soc', data.rawData) * 100
   }
 
+  const executeHealthCheck = () => {
+    dispatch(CLEAR_HEALTH_CHECK())
+    history.push(paths.PROTECTED.ESS_HEALTH_CHECK.path)
+  }
+
   return (
     <section className="data is-flex has-text-centered full-height pl-10 pr-10">
       <section>
@@ -126,14 +138,20 @@ export default () => {
             </span>
             <ButtonLink
               title={t('HEALTH_CHECK')}
-              path={paths.PROTECTED.ESS_HEALTH_CHECK.path}
+              onClick={executeHealthCheck}
             />
           </Collapsible>
         )}
         {either(length(miData) > 0, <MiDataLive data={miData} />)}
       </section>
       <section>
-        <h6 className="is-uppercase mt-20 mb-20">{t('LIVE_DATA')}</h6>
+        <div className="live-power-title pt-20 pb-20">
+          <div />
+          <h6 className="title-text is-uppercase">{t('LIVE_DATA')}</h6>
+          <div className="info" onClick={() => showLivePowerInfo(true)}>
+            <span className="sp-info has-text-primary" />
+          </div>
+        </div>
         {either(
           prodMeterConfig === 'NOT_USED',
           <div className="no-meters-warning has-text-weight-bold has-text-centered is-flex pt-20 pb-20">
@@ -155,6 +173,27 @@ export default () => {
       </section>
       <div className="separator" />
       <EnergyGraphSection />
+
+      <SwipeableBottomSheet
+        shadowTip={false}
+        open={livePowerInfo}
+        onChange={() => showLivePowerInfo(!livePowerInfo)}
+      >
+        <div className="live-power-info is-flex has-text-white">
+          <span className="sp-info is-size-1" />
+          <span className="mt-10 mb-10 has-text-justified">
+            {t('LIVE_POWER_INFO')}
+          </span>
+          <div className="mt-10 mb-20">
+            <button
+              className="button is-primary"
+              onClick={() => showLivePowerInfo(false)}
+            >
+              {t('CLOSE')}
+            </button>
+          </div>
+        </div>
+      </SwipeableBottomSheet>
     </section>
   )
 }

@@ -1,6 +1,6 @@
 import React from 'react'
 
-function HomeSquare() {
+function HomeSquare({ hasError = false }) {
   return (
     <svg
       width="70"
@@ -38,7 +38,7 @@ function HomeSquare() {
         width="51.7241"
         height="3.44828"
         rx="1.72414"
-        fill="#737F86"
+        fill={hasError ? '#f00101' : '#737F86'}
       />
     </svg>
   )

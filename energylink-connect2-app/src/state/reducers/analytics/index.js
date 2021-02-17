@@ -4,10 +4,12 @@ import {
   COMMISSION_SUCCESS,
   CONFIG_START
 } from 'state/actions/analytics'
+import { SUBMIT_CONFIG } from 'state/actions/systemConfiguration'
 
 const initialState = {
-  commissioningTimer: 0,
-  configureTimer: 0,
+  commissioningTimer: new Date().getTime(),
+  configureTimer: new Date().getTime(),
+  submitTimer: new Date().getTime(),
   commissioningSuccess: false
 }
 
@@ -16,6 +18,10 @@ export default createReducer(
     [CONFIG_START]: (state, { siteChanged }) => ({
       ...state,
       configureTimer: siteChanged ? new Date().getTime() : state.configureTimer
+    }),
+    [SUBMIT_CONFIG]: state => ({
+      ...state,
+      submitTimer: new Date().getTime()
     }),
     [BEGIN_INSTALL]: (state, { siteChanged }) => ({
       ...state,

@@ -1,12 +1,9 @@
 import React from 'react'
-import { useHistory } from 'react-router-dom'
 import './ButtonLink.scss'
 
-export const ButtonLink = ({ title = 'Link Title', path }) => {
-  const history = useHistory()
-
+export const ButtonLink = ({ title = 'Link Title', onClick }) => {
   return (
-    <div className="button-link mt-10 mb-10" onClick={() => history.push(path)}>
+    <div className="button-link mt-10 mb-10" onClick={onClick}>
       <div className="route-name">
         <span>{title}</span>
       </div>

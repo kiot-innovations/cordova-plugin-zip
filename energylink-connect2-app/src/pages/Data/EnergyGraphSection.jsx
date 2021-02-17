@@ -10,6 +10,7 @@ import EnergySwitch from 'components/EnergySwitch'
 import './EnergyGraphSection.scss'
 
 const SelectedGraph = ({ selectedId, data, dataSource }) => {
+  const t = useI18n()
   const inventory = useSelector(pathOr({}, ['inventory', 'bom']))
   const storageInventory = inventoryItem => inventoryItem.item === 'ESS'
   const storage = filter(storageInventory, inventory)
@@ -45,14 +46,14 @@ const SelectedGraph = ({ selectedId, data, dataSource }) => {
               {lastDataPoint.pp}
               <span className="unit"> kW</span>
             </div>
-            <div>produced</div>
+            <div>{t('PRODUCED')}</div>
           </div>
           <div className="cons mr-10">
             <div>
               {lastDataPoint.pc}
               <span className="unit"> kW</span>
             </div>
-            <div>consumed</div>
+            <div>{t('CONSUMED')}</div>
           </div>
         </div>
       ) : (

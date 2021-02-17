@@ -1,5 +1,119 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Right Now component renders with inverted CT 1`] = `
+<div
+  className="right-now mt-20 mb-20"
+>
+  <div
+    className="power-cycle"
+  >
+    <div
+      className="left-column"
+    >
+      <SolarSquare />
+      <ArrowH
+        color="#ffe600"
+        direction="right"
+        enabled={false}
+        value="0.00"
+      />
+    </div>
+    <div
+      className="central-column"
+    >
+      <HomeSquare
+        hasError={true}
+      />
+      <ArrowV
+        color="#f00101"
+        direction="up"
+        value="-2.50"
+      />
+      <Hub
+        status="consuming"
+      />
+      <ArrowV
+        color="#2b93cc"
+        direction="up"
+        value="2.50"
+      />
+      <GridSquare />
+    </div>
+    <div
+      className="right-column"
+    >
+      <ArrowH
+        color="#f7921e"
+        direction="left"
+        enabled={true}
+        value="2.50"
+      />
+      <StorageSquare
+        batteryLevel="63"
+        hasStorage={true}
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Right Now component renders with regular CT 1`] = `
+<div
+  className="right-now mt-20 mb-20"
+>
+  <div
+    className="power-cycle"
+  >
+    <div
+      className="left-column"
+    >
+      <SolarSquare />
+      <ArrowH
+        color="#ffe600"
+        direction="right"
+        enabled={false}
+        value="0.00"
+      />
+    </div>
+    <div
+      className="central-column"
+    >
+      <HomeSquare
+        hasError={false}
+      />
+      <ArrowV
+        color="#838b98"
+        direction="up"
+        value="2.50"
+      />
+      <Hub
+        status="consuming"
+      />
+      <ArrowV
+        color="#2b93cc"
+        direction="up"
+        value="2.50"
+      />
+      <GridSquare />
+    </div>
+    <div
+      className="right-column"
+    >
+      <ArrowH
+        color="#f7921e"
+        direction="left"
+        enabled={true}
+        value="2.50"
+      />
+      <StorageSquare
+        batteryLevel="63"
+        hasStorage={true}
+      />
+    </div>
+  </div>
+</div>
+`;
+
 exports[`Right Now component renders without crashing 1`] = `
 <div
   className="right-now mt-20 mb-20"
@@ -21,7 +135,9 @@ exports[`Right Now component renders without crashing 1`] = `
     <div
       className="central-column"
     >
-      <HomeSquare />
+      <HomeSquare
+        hasError={false}
+      />
       <ArrowV
         color="#838b98"
         direction="up"
@@ -76,7 +192,9 @@ exports[`Right Now component renders without solar 1`] = `
     <div
       className="central-column"
     >
-      <HomeSquare />
+      <HomeSquare
+        hasError={false}
+      />
       <ArrowV
         color="#838b98"
         direction="up"

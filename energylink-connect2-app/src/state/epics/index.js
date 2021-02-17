@@ -3,6 +3,8 @@ import { combineEpics } from 'redux-observable'
 import analyticsEpics from './analytics'
 import appUpdaterEpics from './appUpdater'
 import authEpics from './auth'
+import bluetoothEpics from './bluetooth'
+import checkSSLCertsEpics from './sslCerts'
 import deviceEpics from './devices'
 import downloader from './downloader'
 import feedbackEpic from './feedback'
@@ -11,35 +13,35 @@ import liveEnergyData from './live-energy-data'
 import modalEpics from './modals/showModal'
 import networkPollingEpics from './network'
 import panelLayoutToolEpics from './panel-layout-tool'
+import permissionsEpics from './permissions'
 import pvsEpics from './pvs'
 import rmaEpics from './rma'
-import bluetoothEpics from './bluetooth'
 import scanditEpics from './scandit'
+import sentryEpics from './sentry'
 import siteEpics from './site'
 import storageEpics from './storage'
 import systemConfigurationEpics from './systemConfiguration'
-import permissionsEpics from './permissions'
-import checkSSLCertsEpics from './sslCerts'
 
 export default combineEpics(
-  ...modalEpics,
-  ...downloader,
-  ...firmwareUpdateEpics,
-  ...networkPollingEpics,
-  ...feedbackEpic,
-  ...siteEpics,
-  ...pvsEpics,
-  ...deviceEpics,
-  ...systemConfigurationEpics,
-  liveEnergyData,
-  ...authEpics,
-  ...panelLayoutToolEpics,
-  ...storageEpics,
-  ...scanditEpics,
-  ...rmaEpics,
-  ...appUpdaterEpics,
   ...analyticsEpics,
+  ...appUpdaterEpics,
+  ...authEpics,
   ...bluetoothEpics,
+  ...checkSSLCertsEpics,
+  ...deviceEpics,
+  ...downloader,
+  ...feedbackEpic,
+  ...firmwareUpdateEpics,
+  liveEnergyData,
+  ...modalEpics,
+  ...networkPollingEpics,
+  ...panelLayoutToolEpics,
   ...permissionsEpics,
-  ...checkSSLCertsEpics
+  ...pvsEpics,
+  ...rmaEpics,
+  ...scanditEpics,
+  ...sentryEpics,
+  ...siteEpics,
+  ...storageEpics,
+  ...systemConfigurationEpics
 )
