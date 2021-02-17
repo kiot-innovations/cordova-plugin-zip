@@ -51,6 +51,13 @@ exports[`VersionInformation component renders correctly 1`] = `
               },
               "versions": Array [
                 Object {
+                  "bodyMarkdown": "# Tab text change
+
+\\"Live Status\\" tab name is now changed to \\"Status\\"",
+                  "releaseDate": "2021-02-18",
+                  "versionNumber": "6.24.0",
+                },
+                Object {
                   "bodyMarkdown": "# Site address display
 SunPower Pro Connect will now display the site address in all views in the App after a site is selected. It will be located at the top of each screen.
 
@@ -87,6 +94,79 @@ You will now see a message that \\"Commissioning was successfully completed\\" a
                 >
                   <Collapsible
                     expanded={true}
+                    title="VERSION 6.24.0"
+                  >
+                    <div
+                      className="collapsible"
+                    >
+                      <div
+                        className="collapsible-header"
+                      >
+                        <div
+                          className="collapsible-title"
+                        >
+                          <span />
+                          <span
+                            className="has-text-weight-bold"
+                          >
+                            VERSION 6.24.0
+                          </span>
+                        </div>
+                        <div
+                          className="collapsible-actions"
+                        />
+                        <div
+                          className="collapsible-trigger"
+                        >
+                          <div
+                            className="chevron down"
+                            onClick={[Function]}
+                          >
+                            <span
+                              className="sp-chevron-up"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                      <div
+                        className="collapsible-content expanded"
+                      >
+                        <div
+                          className="releaseDate"
+                        >
+                          RELEASE_DATE
+                           
+                          02/18/2021
+                        </div>
+                        <div
+                          className="content"
+                          dangerouslySetInnerHTML={
+                            Object {
+                              "__html": "<h1 id=\\"tab-text-change\\">Tab text change</h1>
+<p>&quot;Live Status&quot; tab name is now changed to &quot;Status&quot;</p>
+",
+                            }
+                          }
+                        />
+                      </div>
+                    </div>
+                  </Collapsible>
+                </div>
+              </div>
+              <div
+                className="version"
+                key="1"
+              >
+                <div
+                  className="previous-release-notes"
+                >
+                  PREVIOUS_RELEASE_NOTES
+                </div>
+                <div
+                  className="mb-10"
+                >
+                  <Collapsible
+                    expanded={false}
                     title="VERSION 6.23.0"
                   >
                     <div
@@ -112,7 +192,7 @@ You will now see a message that \\"Commissioning was successfully completed\\" a
                           className="collapsible-trigger"
                         >
                           <div
-                            className="chevron down"
+                            className="chevron"
                             onClick={[Function]}
                           >
                             <span
@@ -122,7 +202,7 @@ You will now see a message that \\"Commissioning was successfully completed\\" a
                         </div>
                       </div>
                       <div
-                        className="collapsible-content expanded"
+                        className="collapsible-content collapsed"
                       >
                         <div
                           className="releaseDate"
