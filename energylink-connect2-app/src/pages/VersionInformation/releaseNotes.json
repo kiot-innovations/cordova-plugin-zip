@@ -5,6 +5,11 @@
   },
   "versions": [
     {
+      "versionNumber": "6.24.0",
+      "releaseDate": "2021-02-18",
+      "bodyMarkdown": "# Tab text change\n\n\"Live Status\" tab name is now changed to \"Status\""
+    },
+    {
       "versionNumber": "6.23.0",
       "releaseDate": "2021-02-17",
       "bodyMarkdown": "# Site address display\nSunPower Pro Connect will now display the site address in all views in the App after a site is selected. It will be located at the top of each screen.\n\n# Pre-commissioning checklist\nWith this feature, you will now be reminded of a list of required & suggested items for commissioning. It ensures that you don't forget any important items before you begin commissioning.\n\n# Changes to commissioning successful screen\nYou will now see a message that \"Commissioning was successfully completed\" after submitting your configuration successfully. This will indicate to a user that commissioning was completed properly. Previously the screen displayed a message that stated that \"Configuration was saved successfully\"."
