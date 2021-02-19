@@ -404,7 +404,6 @@ export const isPVSDevice = compose(
 
 export const eqByProp = curry((prop, obj1, obj2) => obj1[prop] === obj2[prop])
 
-
 export const getTimePassed = startPoint => {
   const now = new Date().getTime()
   return (now - startPoint) / 1000
