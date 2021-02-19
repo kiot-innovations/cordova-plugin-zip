@@ -6,15 +6,17 @@ import configureEpics from './configureEpics'
 import inventoryEpics from './InventoryEpics'
 import deviceResumeEpic from './deviceResumeEpic'
 import firmwareUpdate from './firmwareUpdate'
+import acModelsEpic from './acModelsMetadata'
 
 export default [
-  loginSuccessEpic,
-  loginErrorEpic,
-  errorEpic,
-  ...deviceResumeEpic,
-  ...siteEpics,
-  ...inventoryEpics,
   ...configureEpics,
+  ...deviceResumeEpic,
+  ...acModelsEpic,
   ...firmwareUpdate,
-  ...scanPVS
+  ...inventoryEpics,
+  ...scanPVS,
+  ...siteEpics,
+  errorEpic,
+  loginErrorEpic,
+  loginSuccessEpic
 ]

@@ -29,6 +29,7 @@ import paths from 'routes/paths'
 import { Loader } from 'components/Loader'
 import MiGroup from './MiGroup'
 import './ModelEdit.scss'
+import { SET_AC_DEVICES } from 'state/actions/analytics'
 
 const getDeviceType = compose(last, split('_'))
 
@@ -104,6 +105,7 @@ const ModelEdit = () => {
 
   useEffect(() => {
     dispatch(FETCH_MODELS_INIT())
+    dispatch(SET_AC_DEVICES())
   }, [dispatch])
 
   useEffect(() => {
