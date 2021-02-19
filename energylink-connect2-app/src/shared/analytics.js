@@ -29,13 +29,23 @@ const getAppAndDeviceProperties = () => {
 
 export const loggedIn = user => {
   const { mixpanel } = window
-  const [userId, dealerName, dealerType] = getUserProfile(user)
+  const {
+    uniqueId: userId,
+    firstName,
+    lastName,
+    email,
+    dealerName,
+    recordType: dealerType
+  } = getUserProfile(user)
   const appAndDeviceProperties = getAppAndDeviceProperties()
 
   mixpanel.register(appAndDeviceProperties)
   mixpanel.identify(userId)
   mixpanel.people.set(appAndDeviceProperties)
   mixpanel.people.set({
+    $first_name: firstName,
+    $last_name: lastName,
+    $email: email,
     'Dealer Name': dealerName,
     'Dealer Type': capitalizeWord(dealerType)
   })
@@ -67,6 +77,9 @@ export const scanPVS = ({ pvsSN, entryMethod }, event) => {
 
 export const siteNotFound = ({
   uniqueId: userId,
+  firstName,
+  lastName,
+  email,
   dealerName,
   recordType: dealerType
 }) => {
@@ -77,6 +90,9 @@ export const siteNotFound = ({
   mixpanel.identify(userId)
   mixpanel.people.set(appAndDeviceProperties)
   mixpanel.people.set({
+    $first_name: firstName,
+    $last_name: lastName,
+    $email: email,
     'Dealer Name': dealerName,
     'Dealer Type': capitalizeWord(dealerType)
   })
@@ -86,7 +102,14 @@ export const siteNotFound = ({
 }
 
 export const siteFound = (
-  { uniqueId: userId, dealerName, recordType: dealerType },
+  {
+    uniqueId: userId,
+    firstName,
+    lastName,
+    email,
+    dealerName,
+    recordType: dealerType
+  },
   { city, st_id, postalCode, siteKey, commissioned }
 ) => {
   const { mixpanel } = window
@@ -96,6 +119,9 @@ export const siteFound = (
   mixpanel.identify(userId)
   mixpanel.people.set(appAndDeviceProperties)
   mixpanel.people.set({
+    $first_name: firstName,
+    $last_name: lastName,
+    $email: email,
     'Dealer Name': dealerName,
     'Dealer Type': capitalizeWord(dealerType)
   })
