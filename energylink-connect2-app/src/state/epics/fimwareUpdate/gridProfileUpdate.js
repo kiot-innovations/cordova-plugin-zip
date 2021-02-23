@@ -12,6 +12,7 @@ import {
 import { ERROR_CODES, getFileBlob, getFileNameFromURL } from 'shared/fileSystem'
 import { translate } from 'shared/i18n'
 import { SHOW_MODAL } from 'state/actions/modal'
+import { FIRMWARE_UPDATE_COMPLETE } from 'state/actions/firmwareUpdate'
 import { EMPTY_ACTION } from 'state/actions/share'
 import {
   gridProfileUpdateUrl$,
@@ -45,7 +46,10 @@ const uploadGridProfile = async (error, gridProfileURL) => {
 
 export const epicUploadGridProfile = (action$, state$) =>
   action$.pipe(
-    ofType(FIRMWARE_GET_VERSION_COMPLETE.getType()),
+    ofType(
+      FIRMWARE_GET_VERSION_COMPLETE.getType(),
+      FIRMWARE_UPDATE_COMPLETE.getType()
+    ),
     waitForObservable(gridProfileUpdateUrl$),
     switchMap(([, gridProfileUrl]) =>
       from(
