@@ -34,14 +34,7 @@ const sanitizeUserProfile = {
   recordType: stringValueOrEmptyString
 }
 
-const userProfile = [
-  'uniqueId',
-  'firstName',
-  'lastName',
-  'email',
-  'dealerName',
-  'recordType'
-]
+const userProfile = ['uniqueId', 'dealerName', 'recordType']
 
 export const getUserProfile = curry(
   compose(evolve(sanitizeUserProfile), pickAll(userProfile))

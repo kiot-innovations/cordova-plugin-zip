@@ -3,8 +3,9 @@
 .error-list {
   display: grid;
   grid-template-rows: 10% 1fr 15%;
-  align-items: flex-start;
+  align-items: start;
   height: 100%;
+
   & > h1 {
     letter-spacing: 1.1px;
   }
@@ -33,6 +34,11 @@
     justify-content: flex-end;
   }
 }
+
+.warning-list {
+  grid-template-rows: 10% 1fr 0.85fr;
+}
+
 .error-component {
   padding: 10px;
   background-color: rgba(196, 196, 196, 0.1);

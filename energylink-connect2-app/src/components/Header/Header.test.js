@@ -5,6 +5,7 @@ import { Header } from '.'
 
 describe('Header Component', () => {
   beforeEach(() => {
+    // eslint-disable-next-line no-import-assign
     Menu.default = () => <div />
   })
 

@@ -1,11 +1,12 @@
 import React from 'react'
+import clsx from 'clsx'
 import { useSelector, useDispatch } from 'react-redux'
-import { omit, not, map, compose } from 'ramda'
+import { omit, length, not, map, compose } from 'ramda'
 import { Link, useHistory } from 'react-router-dom'
 import paths, { setParams } from 'routes/paths'
 import { useI18n } from 'shared/i18n'
 import { getError } from 'shared/errorCodes'
-import { either, strSatisfiesAWarning } from 'shared/utils'
+import { either, strSatisfiesAWarning, warningsLength } from 'shared/utils'
 import { eqsSteps } from 'state/reducers/storage'
 import './ErrorListGeneric.scss'
 import { PVS_CONNECTION_CLOSE } from 'state/actions/network'
@@ -77,6 +78,7 @@ const ErrorListScreen = ({ errors = [] }) => {
   const dispatch = useDispatch()
   const history = useHistory()
   const { currentStep } = useSelector(state => state.storage)
+  const onlyWarnings = length(errors) - warningsLength(errors) === 0
 
   const cancelCommissioning = () => {
     dispatch(PVS_CONNECTION_CLOSE())
@@ -84,7 +86,11 @@ const ErrorListScreen = ({ errors = [] }) => {
   }
 
   return (
-    <div className="error-list pr-10 pl-10">
+    <div
+      className={clsx('error-list', 'pr-10', 'pl-10', {
+        'warning-list': onlyWarnings
+      })}
+    >
       <div className="error-list-header has-text-centered">
         <span
           className="has-text-primary sp-chevron-left is-size-4"
@@ -96,21 +102,24 @@ const ErrorListScreen = ({ errors = [] }) => {
       <div className="error-list-container">
         {map(compose(renderError(t), getError), errors)}
       </div>
-      <div>
-        <div className="has-text-centered error-list-hint">
-          <span>{t('PLEASE_FIX_ERRORS')}</span>
-          <span>{t('GO_BACK_AND_FIX')}</span>
+      {either(
+        !onlyWarnings,
+        <div>
+          <div className="has-text-centered error-list-hint">
+            <span>{t('PLEASE_FIX_ERRORS')}</span>
+            <span>{t('GO_BACK_AND_FIX')}</span>
+          </div>
+          <div className="has-text-centered mt-10">
+            <span
+              onClick={cancelCommissioning}
+              role="button"
+              className="has-text-primary has-text-weight-bold"
+            >
+              {t('CANCEL_COMMISSION')}
+            </span>
+          </div>
         </div>
-        <div className="has-text-centered mt-10">
-          <span
-            onClick={cancelCommissioning}
-            role="button"
-            className="has-text-primary has-text-weight-bold"
-          >
-            {t('CANCEL_COMMISSION')}
-          </span>
-        </div>
-      </div>
+      )}
     </div>
   )
 }
