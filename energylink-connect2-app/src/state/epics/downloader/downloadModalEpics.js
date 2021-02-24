@@ -2,6 +2,7 @@ import { any, equals, path } from 'ramda'
 import { ofType } from 'redux-observable'
 import { concat, from, of } from 'rxjs'
 import { concatMap, exhaustMap, take, map, catchError } from 'rxjs/operators'
+import * as Sentry from '@sentry/browser'
 
 import { translate } from 'shared/i18n'
 import { hasInternetConnection } from 'shared/utils'
@@ -92,22 +93,33 @@ export const downloadingLatestFirmwareEpic = (action$, state$) =>
       if (path(['value', 'ui', 'menu', 'show'], state$)) {
         return of(EMPTY_ACTION('Already in download page'))
       }
+      if (isDownloading) {
+        // Begin tracing to know why this modal was launched
+        const tracingError = new Error('Tracing download in progress modal')
 
-      return isDownloading
-        ? concat(
-            of(
-              SHOW_MODAL({
-                title: t('ATTENTION'),
-                componentPath: './Downloads/DownloadInProgressModal.jsx'
-              })
-            ),
-            action$.pipe(
-              ofType(MENU_DISPLAY_ITEM.getType()),
-              map(EMPTY_ACTION),
-              take(1)
-            )
+        Sentry.captureException(tracingError, {
+          tags: {
+            type: 'debug',
+            owner: 'Esteban'
+          }
+        })
+
+        // Finish tracing of the error to sentry
+        return concat(
+          of(
+            SHOW_MODAL({
+              title: t('ATTENTION'),
+              componentPath: './Downloads/DownloadInProgressModal.jsx'
+            })
+          ),
+          action$.pipe(
+            ofType(MENU_DISPLAY_ITEM.getType()),
+            map(EMPTY_ACTION),
+            take(1)
           )
-        : of(FILES_VERIFY())
+        )
+      }
+      return of(FILES_VERIFY())
     })
   )
 
