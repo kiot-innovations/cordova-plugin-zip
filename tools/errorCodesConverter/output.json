@@ -736,8 +736,8 @@
 		"in_use": true,
 		"error_description": "PV Disconnect Relay Board Not Powered",
 		"display": true,
-		"possible_causes": "1. The MID may be open and inverter is not forming a microgrid.\n2. PV Disconnect Relay Board not properly install.",
-		"recommended_actions": "1. Close the MID contactor.\n2. Verify PV Disconnect Relay Board is correctly installed."
+		"possible_causes": "1. The MID may be open and inverter is not forming a microgrid.\n2. MIDC needs to be reset.\n3. The MIDC is not sensing voltage on the load side.",
+		"recommended_actions": "1. Close the MID contactor.\n2. Check voltage sense terminations and conductors between the Hub+ bus bars and MIDC J1 connector. Tap retry on SunPower Pro Connect.\n3. If the problem persists, try resetting the MIDC by pressing the blue button on the MIDC, then tap retry on SunPower Pro Connect.\nIf the problem still persists, please contact SunPower."
 	},
 	{
 		"event_code": "21055",
