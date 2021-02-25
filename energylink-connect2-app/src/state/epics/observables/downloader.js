@@ -1,5 +1,11 @@
 import { Observable } from 'rxjs'
-import { createFile, deleteFile, fileExists } from 'shared/fileSystem'
+import {
+  createFile,
+  deleteFile,
+  fileExists,
+  deleteFilesDirectory
+} from 'shared/fileSystem'
+
 import { prop, filter, identity } from 'ramda'
 
 const createHeadersObj = headers => {
@@ -23,13 +29,14 @@ const parseHeaders = (headers, xhr) => {
   return filter(identity)(result)
 }
 
-const fileTransferObservable = (
+const fileTransferObservable = ({
   path,
   url,
   retry = false,
   accessToken,
+  fileExtention,
   headers = ['']
-) =>
+}) =>
   new Observable(subscriber => {
     let fileSize = 0
     const successCallback = entry => {
@@ -44,6 +51,7 @@ const fileTransferObservable = (
 
     fileExists(path).then(async entry => {
       if (retry) await deleteFile(path)
+      if (!entry) await deleteFilesDirectory(path, fileExtention)
       if (!entry || retry) {
         const xhr = new XMLHttpRequest()
         xhr.open('GET', url, true)

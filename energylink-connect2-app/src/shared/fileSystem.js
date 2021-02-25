@@ -1,4 +1,4 @@
-import { compose, defaultTo, head, join, last, slice, split } from 'ramda'
+import { compose, tail, defaultTo, head, join, last, slice, split } from 'ramda'
 import { flipConcat, PERSIST_DATA_PATH } from 'shared/utils'
 import { getSHA256FromFile } from 'shared/cordovaMapping'
 
@@ -23,7 +23,7 @@ export const getLuaName = compose(
   defaultTo('')
 )
 
-const getBuildNumber = compose(
+export const getBuildNumber = compose(
   Number,
   join(' '),
   split('-'),
@@ -63,6 +63,7 @@ export const getFileInfo = (fileName = '') =>
       reject(e)
     }
   })
+
 export const getFileSize = async (fileName = '') => {
   const info = await getFileInfo(fileName)
   return {
@@ -211,4 +212,24 @@ export const createFile = path =>
     }
   })
 
-export const essFilePath = 'ESS/EQS-FW-Package.zip'
+export const getFileExtension = compose(last, split('.'))
+
+export const getFullPath = compose(join('/'), tail, split('/'))
+
+export async function deleteFilesDirectory(
+  directory,
+  fileExtentionDelete = ''
+) {
+  if (!directory) throw new Error('Please specify a directory')
+  try {
+    const fileEntries = await listDir(getDirPath(directory))
+    for (const file of fileEntries) {
+      if (!file.isFile) continue
+      if (getFileExtension(file.fullPath) === fileExtentionDelete) {
+        await deleteFile(getFullPath(file.fullPath))
+      }
+    }
+  } catch (e) {
+    return false
+  }
+}

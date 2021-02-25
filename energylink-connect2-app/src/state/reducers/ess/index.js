@@ -1,6 +1,7 @@
 import { createReducer } from 'redux-act'
 import {
   DOWNLOAD_OS_ERROR,
+  DOWNLOAD_OS_REPORT_SUCCESS,
   DOWNLOAD_OS_INIT,
   DOWNLOAD_OS_PROGRESS,
   DOWNLOAD_OS_SUCCESS,
@@ -11,6 +12,7 @@ const initialState = {
   progress: 0,
   error: null,
   file: null,
+  filePath: '',
   meta: null,
   total: 0,
   isDownloading: false,
@@ -35,6 +37,10 @@ export default createReducer(
       error: null,
       step,
       isDownloading: true
+    }),
+    [DOWNLOAD_OS_REPORT_SUCCESS]: (state, { filePath }) => ({
+      ...state,
+      filePath
     }),
     [DOWNLOAD_OS_ERROR]: (state, error) => ({
       ...state,

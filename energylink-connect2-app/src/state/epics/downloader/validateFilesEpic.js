@@ -17,7 +17,6 @@ import {
 } from 'state/actions/fileDownloader'
 import { getMd5FromFile } from 'shared/cordovaMapping'
 import {
-  essFilePath,
   getFileNameFromURL,
   getFirmwareVersionData,
   verifySHA256
@@ -55,7 +54,7 @@ export const essValidatedEpic = (action$, state$) =>
   action$.pipe(
     ofType(FILES_VERIFY.getType()),
     exhaustMap(() =>
-      from(getMd5FromFile(essFilePath)).pipe(
+      from(getMd5FromFile(state$.value.ess.filePath)).pipe(
         map(fileMD5 =>
           FILES_VERIFY_ESS_COMPLETED(
             path(['value', 'ess', 'md5'], state$) === fileMD5

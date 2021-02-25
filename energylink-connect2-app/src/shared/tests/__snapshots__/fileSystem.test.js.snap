@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`getFirmwareVersionData should have all the info based on the fileURL 1`] = `
+Object {
+  "fileURL": "https://fw-assets-pvs6-dev.dev-edp.sunpower.com/staging-prod-cylon/8133/fwup/fwup.lua",
+  "luaDownloadName": "staging-prod-cylon-8133.lua",
+  "luaFileName": "staging prod cylon",
+  "pvsFileSystemName": "staging-prod-cylon-8133.fs",
+  "version": 8133,
+}
+`;
+
+exports[`should not change the error codes 1`] = `
+Object {
+  "MD5_NOT_MATCHING": "MD5_NOT_MATCHING",
+  "NO_FILESYSTEM_FILE": "no filesystem file",
+  "getLuaFile": "getLuaFile",
+  "getVersionInfo": "getVersionInfo",
+  "noLuaFile": "noLuaFile",
+  "noWifi": "No WiFi",
+}
+`;

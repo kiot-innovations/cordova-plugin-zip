@@ -29,9 +29,9 @@ import {
   DOWNLOAD_OS_REPORT_SUCCESS,
   DOWNLOAD_OS_SUCCESS
 } from 'state/actions/ess'
-import { getVersionFromUrl } from 'shared/download'
+import { getVersionFromUrl, getValidFileName } from 'shared/download'
 import { DOWNLOAD_OS_UPDATE_VERSION } from 'state/actions/ess'
-import { headersToObj } from 'shared/utils'
+import { headersToObj, getAccessToken } from 'shared/utils'
 
 const downloadOSZipEpic = (action$, state$) => {
   const shouldRetry = ifElse(is(Boolean), identity, always(false))
@@ -39,15 +39,16 @@ const downloadOSZipEpic = (action$, state$) => {
     ofType(DOWNLOAD_OS_INIT.getType()),
     waitForObservable(essUpdateUrl$),
     exhaustMap(([action, updateUrl]) => {
-      const filePath = 'ESS/EQS-FW-Package.zip'
+      const filePath = `ESS/${getValidFileName(updateUrl)}.zip`
       const payload = propOr(false, 'payload', action)
-      return fileTransferObservable(
-        filePath,
-        updateUrl,
-        shouldRetry(payload),
-        pathOr('', ['value', 'user', 'auth', 'access_token'], state$),
-        ['x-amz-meta-md5-hash', 'x-checksum-md5']
-      ).pipe(
+      return fileTransferObservable({
+        path: filePath,
+        url: updateUrl,
+        retry: shouldRetry(payload),
+        accessToken: getAccessToken(state$.value),
+        headers: ['x-amz-meta-md5-hash', 'x-checksum-md5'],
+        fileExtention: 'zip'
+      }).pipe(
         map(({ entry, progress, total, serverHeaders, step }) =>
           progress
             ? DOWNLOAD_OS_PROGRESS({ progress, total, step })

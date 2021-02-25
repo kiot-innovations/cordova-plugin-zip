@@ -103,11 +103,12 @@ export const downloadPVSFirmware = action$ =>
     exhaustMap(({ payload }) => {
       const { shouldRetry, url } = payload
       const { fileURL, pvsFileSystemName } = getFirmwareVersionData(url)
-      return fileTransferObservable(
-        `firmware/${pvsFileSystemName}`,
-        getFileSystemFromLuaFile(fileURL),
-        shouldRetry
-      ).pipe(
+      return fileTransferObservable({
+        path: `firmware/${pvsFileSystemName}`,
+        url: getFileSystemFromLuaFile(fileURL),
+        retry: shouldRetry,
+        fileExtention: 'fs'
+      }).pipe(
         map(({ progress, total, step }) =>
           progress
             ? PVS_FIRMWARE_DOWNLOAD_PROGRESS({
@@ -178,7 +179,11 @@ export const downloadLuaFilesInitEpic = action$ =>
     ofType(PVS_FIRMWARE_UPDATE_URL.getType()),
     exhaustMap(({ payload }) => {
       const { url } = payload
-      return fileTransferObservable('luaFiles/all.zip', getFS(url), true).pipe(
+      return fileTransferObservable({
+        path: 'luaFiles/all.zip',
+        url: getFS(url),
+        retry: true
+      }).pipe(
         map(({ progress }) =>
           progress
             ? EMPTY_ACTION('Downloading lua files')

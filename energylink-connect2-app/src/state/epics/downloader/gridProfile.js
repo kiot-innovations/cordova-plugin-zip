@@ -25,11 +25,12 @@ export const initDownloadGridProfileEpic = action$ =>
     ofType(GRID_PROFILE_DOWNLOAD_INIT.getType()),
     waitForObservable(gridProfileUpdateUrl$),
     exhaustMap(([action, gridProfileUrl]) =>
-      fileTransferObservable(
-        `firmware/${getFileNameFromURL(gridProfileUrl)}`,
-        gridProfileUrl,
-        propOr(false, 'payload', action)
-      ).pipe(
+      fileTransferObservable({
+        path: `firmware/${getFileNameFromURL(gridProfileUrl)}`,
+        url: gridProfileUrl,
+        retry: propOr(false, 'payload', action),
+        fileExtention: 'gz'
+      }).pipe(
         map(({ entry, progress }) =>
           progress
             ? GRID_PROFILE_DOWNLOAD_PROGRESS(progress)
