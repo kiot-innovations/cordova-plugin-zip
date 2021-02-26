@@ -5,15 +5,12 @@ import {
   SUBMIT_COMMISSION_ERROR,
   SUBMIT_COMMISSION_SUCCESS
 } from 'state/actions/systemConfiguration'
-import { always, cond, path, pathOr, propEq, T } from 'ramda'
+import { compose, curry, always, cond, path, pathOr, propEq, T } from 'ramda'
 import { commissionSite, saveConfiguration } from 'shared/analytics'
 import { COMMISSION_SUCCESS } from 'state/actions/analytics'
+import { getTimePassed } from 'shared/utils'
 
 const getRse = path(['systemConfiguration', 'rse', 'selectedPowerProduction'])
-const getTimePassed = (timeStamp = 0) => {
-  const now = new Date().getTime()
-  return ((now - timeStamp) / 1000).toFixed(2)
-}
 
 const getESSOperationalMode = path([
   'storage',
@@ -111,18 +108,24 @@ const submitConfigurationError = (action$, state$) =>
     )
   )
 
-const submitCommissionSuccess = (action$, state$) =>
+const getElapsedTimeWithState = curry((timerName, state) =>
+  compose(
+    getTimePassed,
+    pathOr(new Date().getTime(), ['value', 'analytics', timerName])
+  )(state)
+)
+export const submitCommissionSuccess = (action$, state$) =>
   action$.pipe(
     ofType(SUBMIT_COMMISSION_SUCCESS.getType()),
-    withLatestFrom(state$),
-    switchMap(([, state]) => {
-      if (state.analytics.commissioningSuccess) return EMPTY
+    switchMap(() => {
+      if (state$.value.analytics.commissioningSuccess) return EMPTY
 
-      const duration = getTimePassed(state.analytics.commissioningTimer)
-      const timeConfiguring = getTimePassed(state.analytics.configureTimer)
+      const duration = getElapsedTimeWithState('commissioningTimer', state$)
+      const timeConfiguring = getElapsedTimeWithState('configureTimer', state$)
+      const timeFromMiScan = getElapsedTimeWithState('timeFromMiScan', state$)
 
       return of(
-        commissionSite({ duration, timeConfiguring }),
+        commissionSite({ duration, timeConfiguring, timeFromMiScan }),
         COMMISSION_SUCCESS()
       )
     })

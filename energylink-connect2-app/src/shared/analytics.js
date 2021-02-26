@@ -199,11 +199,16 @@ export const timeMixPanelEvent = name => {
   mixpanel.time_event(name)
 }
 
-export const commissionSite = ({ duration, timeConfiguring }) => {
+export const commissionSite = ({
+  duration,
+  timeConfiguring,
+  timeFromMiScan
+}) => {
   const { mixpanel } = window
   mixpanel.track('Commission Site', {
     $duration: duration,
-    'Time Configuring': timeConfiguring
+    'Time Configuring': timeConfiguring,
+    'Duration from MI Scan': timeFromMiScan
   })
   return MIXPANEL_EVENT_QUEUED(
     'Commission Site - first successful site configuration'
