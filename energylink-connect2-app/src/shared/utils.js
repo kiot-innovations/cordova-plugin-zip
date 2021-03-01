@@ -418,3 +418,6 @@ export const headersToObj = headers => {
   }
   return parsedHeaders
 }
+
+export const edpErrorMessage = ({ code = '', message = '' }) =>
+  code && message ? `${code}: ${message}` : message

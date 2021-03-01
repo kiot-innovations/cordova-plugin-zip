@@ -8,7 +8,6 @@ import { fetchRSEEpic } from './fetchRSEEpic'
 import { setRSEEpic, pollRSEEpic } from './setRSEEpic'
 import { replaceRmaPvsEpic } from './replaceRmaPvsEpic'
 import { submitConfigObjectEpic } from './submitConfigObjectEpic'
-import { reportCommissionErrorEpic } from './reportCommissionErrorEpic'
 import {
   submitMeterDataEpic,
   submitGridProfileEpic,
@@ -33,6 +32,5 @@ export default [
   fetchInterfacesEpic,
   fetchRSEEpic,
   setRSEEpic,
-  pollRSEEpic,
-  reportCommissionErrorEpic
+  pollRSEEpic
 ]
