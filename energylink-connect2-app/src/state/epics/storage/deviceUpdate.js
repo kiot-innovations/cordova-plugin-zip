@@ -35,13 +35,13 @@ export const eqsUpdateErrors = {
   TRIGGER_EQS_FIRMWARE_ERROR: 'TRIGGER_EQS_FIRMWARE_ERROR'
 }
 
-const fwPackagePath = 'ESS/EQS-FW-Package.zip'
+const getFwPackagePath = path(['value', 'ess', 'filePath'])
 
-export const checkEqsFwFile = action$ => {
-  return action$.pipe(
+export const checkEqsFwFile = (action$, state$) =>
+  action$.pipe(
     ofType(CHECK_EQS_FIRMWARE.getType()),
     exhaustMap(() =>
-      from(fileExists(fwPackagePath)).pipe(
+      from(fileExists(getFwPackagePath(state$))).pipe(
         map(GETFILE_EQS_FIRMWARE),
         catchError(err => {
           Sentry.captureException(err)
@@ -54,13 +54,12 @@ export const checkEqsFwFile = action$ => {
       )
     )
   )
-}
 
-export const getEqsFwFile = action$ => {
-  return action$.pipe(
+export const getEqsFwFile = (action$, state$) =>
+  action$.pipe(
     ofType(GETFILE_EQS_FIRMWARE.getType()),
     exhaustMap(() =>
-      from(getFileBlob(fwPackagePath)).pipe(
+      from(getFileBlob(getFwPackagePath(state$))).pipe(
         map(UPLOAD_EQS_FIRMWARE),
         catchError(err => {
           Sentry.captureException(err)
@@ -74,7 +73,6 @@ export const getEqsFwFile = action$ => {
       )
     )
   )
-}
 
 export const uploadEqsFwEpic = action$ => {
   return action$.pipe(
