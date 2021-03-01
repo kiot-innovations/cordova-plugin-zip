@@ -71,3 +71,5 @@ export const BLE_GET_DEVICES_ERROR = createAction('BLE_GET_DEVICES_ERROR')
 
 export const SET_SSID = createAction('SET_SSID')
 export const SET_AP_PWD = createAction('SET_AP_PWD')
+
+export const SET_CONNECTION_STATUS = createAction('SET_CONNECTION_STATUS')

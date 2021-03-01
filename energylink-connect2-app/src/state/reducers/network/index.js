@@ -28,12 +28,19 @@ import {
   BLE_GET_DEVICES,
   BLE_GET_DEVICES_ERROR,
   SET_AP_PWD,
+  SET_CONNECTION_STATUS,
   SET_SSID
 } from 'state/actions/network'
 
 import { RESET_COMMISSIONING } from 'state/actions/global'
 import { eqByProp } from 'shared/utils'
 
+export const appConnectionStatus = {
+  NOT_CONNECTED: 'Not connected',
+  NOT_USING_WIFI: 'Not using Wifi',
+  NOT_CONNECTED_PVS: 'Not connected to PVS AP',
+  CONNECTED: 'Connected'
+}
 const initialState = {
   connected: false,
   connecting: false,
@@ -54,7 +61,8 @@ const initialState = {
   checkingPermissionError: null,
   bleSearching: false,
   bleError: '',
-  nearbyDevices: []
+  nearbyDevices: [],
+  connectionStatus: appConnectionStatus.NOT_CONNECTED
 }
 
 export const BLESTATUS = {
@@ -235,6 +243,10 @@ export const networkReducer = createReducer(
     [SET_AP_PWD]: (state, payload) => ({
       ...state,
       password: payload
+    }),
+    [SET_CONNECTION_STATUS]: (state, payload) => ({
+      ...state,
+      connectionStatus: payload
     })
   },
   initialState

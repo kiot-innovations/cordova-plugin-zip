@@ -4,6 +4,10 @@
   background: $black;
   height: 60px;
   position: relative;
+  display: grid;
+  grid-template-columns: 15% 1fr 15%;
+  align-items: center;
+  justify-items: center;
   .text,
   svg {
     margin: auto;
@@ -13,7 +17,29 @@
   }
   .sp {
     font-size: 22px;
-    position: absolute;
     padding: 18px;
+  }
+  .connectionStatus {
+    #status-connected {
+      animation: pulse 1.5s ease infinite;
+      animation-direction: alternate;
+    }
+    #status-notconnected {
+      animation: pulse 0.75s ease infinite;
+      animation-direction: alternate;
+    }
+    svg {
+      transform: scale(0.9);
+      margin: unset;
+    }
+  }
+
+  @keyframes pulse {
+    0% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0.5;
+    }
   }
 }

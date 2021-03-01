@@ -1,5 +1,5 @@
 import { ofType } from 'redux-observable'
-import { pathOr } from 'ramda'
+import { includes, pathOr } from 'ramda'
 import { EMPTY, from, of, timer } from 'rxjs'
 import {
   catchError,
@@ -9,14 +9,26 @@ import {
   takeUntil
 } from 'rxjs/operators'
 import {
-  PVS_CONNECTION_INIT,
   PVS_CONNECTION_SUCCESS,
+  SET_CONNECTION_STATUS,
   STOP_NETWORK_POLLING
 } from 'state/actions/network'
+import { EMPTY_ACTION } from 'state/actions/share'
+import { appConnectionStatus } from 'state/reducers/network'
 
 const fetchSSID = async ssid => {
-  const currentSSID = await window.WifiWizard2.getConnectedSSID()
-  if (currentSSID !== ssid) throw new Error('NETWORK_NAME_DIFFERENT')
+  const connectedInterface = window.navigator.connection.type
+  if (includes(connectedInterface, ['wifi', 'none'])) {
+    try {
+      const currentSSID = await window.WifiWizard2.getConnectedSSID()
+      if (currentSSID !== ssid) return appConnectionStatus.NOT_CONNECTED_PVS
+    } catch {
+      return appConnectionStatus.NOT_CONNECTED_PVS
+    }
+  } else {
+    return appConnectionStatus.NOT_USING_WIFI
+  }
+  return appConnectionStatus.CONNECTED
 }
 
 // After a successful connection to the PVS WiFi, check every second if the app
@@ -35,7 +47,11 @@ export const networkPollingEpic = (action$, state$) => {
         takeUntil(stopPolling$),
         exhaustMap(() =>
           from(fetchSSID(state.network.SSID)).pipe(
-            map(() => ({ type: 'DEVICE_IS_CONNECTED' })),
+            map(result => {
+              return state.network.connectionStatus !== result
+                ? SET_CONNECTION_STATUS(result)
+                : EMPTY_ACTION()
+            }),
             catchError(() =>
               pathOr(
                 false,
@@ -44,10 +60,7 @@ export const networkPollingEpic = (action$, state$) => {
               )
                 ? EMPTY
                 : of(
-                    PVS_CONNECTION_INIT({
-                      ssid: state.network.SSID,
-                      password: state.network.password
-                    })
+                    SET_CONNECTION_STATUS(appConnectionStatus.NOT_CONNECTED_PVS)
                   )
             )
           )

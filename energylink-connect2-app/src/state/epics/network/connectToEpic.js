@@ -31,9 +31,11 @@ import {
   PVS_CONNECTION_SUCCESS,
   STOP_NETWORK_POLLING,
   WAIT_FOR_SWAGGER,
-  PVS_TIMEOUT_FOR_CONNECTION
+  PVS_TIMEOUT_FOR_CONNECTION,
+  SET_CONNECTION_STATUS
 } from 'state/actions/network'
 import { EMPTY_ACTION } from 'state/actions/share'
+import { appConnectionStatus } from 'state/reducers/network'
 
 const WPA = 'WPA'
 const hasCode7 = test(/Code=7/)
@@ -87,9 +89,9 @@ const connectToEpic = (action$, state$) =>
             isNetworkUnavailable(message) ||
             isTimeoutAndNotUpgrading
           ) {
+            console.error(message)
             return of(
-              STOP_NETWORK_POLLING({ canceled: true }),
-              PVS_CONNECTION_ERROR('PVS_CONNECTION_CANCELED')
+              SET_CONNECTION_STATUS(appConnectionStatus.NOT_CONNECTED_PVS)
             )
           } else {
             return of(WAIT_FOR_SWAGGER())
@@ -128,14 +130,14 @@ export const waitForSwaggerEpic = (action$, state$) => {
                 !isEmpty(err.message) &&
                 !isWaitingForConnection(err.message)
               )
-                return of(PVS_CONNECTION_ERROR(t('PVS_CONNECTION_TIMEOUT')))
+                return of(
+                  PVS_CONNECTION_ERROR(t('PVS_CONNECTION_TIMEOUT')),
+                  SET_CONNECTION_STATUS(appConnectionStatus.NOT_CONNECTED_PVS)
+                )
               return state$.value.fileDownloader.progress.downloading
                 ? EMPTY
                 : of(
-                    PVS_CONNECTION_INIT({
-                      ssid: state$.value.network.SSID,
-                      password: state$.value.network.password
-                    })
+                    SET_CONNECTION_STATUS(appConnectionStatus.NOT_CONNECTED_PVS)
                   )
             })
           )

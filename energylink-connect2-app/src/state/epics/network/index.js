@@ -5,6 +5,7 @@ import connectToEpic, {
 } from './connectToEpic'
 import disconnectFromEpic from './disconnectFromEpic'
 import { statusWifiRetryEpic, statusWifiEpic } from './statusWifiEpic'
+import { connectionStateListenerEpic } from './connectionStateListener'
 
 export default [
   networkPollingEpic,
@@ -13,5 +14,6 @@ export default [
   disconnectFromEpic,
   pvsTimeoutForConnectionEpic,
   statusWifiEpic,
-  statusWifiRetryEpic
+  statusWifiRetryEpic,
+  connectionStateListenerEpic
 ]

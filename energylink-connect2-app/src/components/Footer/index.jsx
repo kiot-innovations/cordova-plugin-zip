@@ -2,10 +2,14 @@ import React, { useEffect, useMemo } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory, useLocation } from 'react-router-dom'
 import { isNil } from 'ramda'
-import Nav from '@sunpower/nav'
 import clsx from 'clsx'
-import paths, { protectedRoutes, TABS } from 'routes/paths'
+
+import Nav from '@sunpower/nav'
+
 import { SET_LAST_VISITED_PAGE } from 'state/actions/global'
+import { appConnectionStatus } from 'state/reducers/network'
+
+import paths, { protectedRoutes, TABS } from 'routes/paths'
 
 import './footer.scss'
 
@@ -22,7 +26,7 @@ const Footer = () => {
   const dispatch = useDispatch()
 
   const showFooter = useSelector(({ ui }) => !!ui.footer)
-  const connected = useSelector(({ network }) => network.connected)
+  const { connectionStatus } = useSelector(state => state.network)
   const { lastVisitedPage, showPrecommissioningChecklist } = useSelector(
     state => state.global
   )
@@ -40,12 +44,13 @@ const Footer = () => {
 
   useEffect(() => {
     if (active.install) {
-      const destination = connected
-        ? location.pathname
-        : paths.PROTECTED.PVS_SELECTION_SCREEN.path
+      const destination =
+        connectionStatus === appConnectionStatus.CONNECTED
+          ? location.pathname
+          : paths.PROTECTED.PVS_SELECTION_SCREEN.path
       dispatch(SET_LAST_VISITED_PAGE(destination))
     }
-  }, [active, connected, dispatch, location])
+  }, [active, connectionStatus, dispatch, location])
 
   function redirect(path) {
     if (path !== location.pathname) history.push(path)
@@ -60,12 +65,14 @@ const Footer = () => {
     return lastVisitedPage
   }
 
-  const configureClickHandler = connected
-    ? () => redirect(paths.PROTECTED.SYSTEM_CONFIGURATION.path)
-    : () => {}
-  const liveDataClickHandler = connected
-    ? () => redirect(paths.PROTECTED.DATA.path)
-    : () => {}
+  const configureClickHandler =
+    connectionStatus === appConnectionStatus.CONNECTED
+      ? () => redirect(paths.PROTECTED.SYSTEM_CONFIGURATION.path)
+      : () => {}
+  const liveDataClickHandler =
+    connectionStatus === appConnectionStatus.CONNECTED
+      ? () => redirect(paths.PROTECTED.DATA.path)
+      : () => {}
 
   const navBarItems = [
     {

@@ -658,5 +658,11 @@
   "LOCATION_BODY2": "Please, enable location permissions manually to continue",
   "GRANT_PERMISSIONS": "Grant permissions",
   "WAIT_FOR_CHECK": "Please wait for health check to finish",
-  "LIVE_POWER_INFO": "Live Power is a real-time measurement from the power meters on the system.  Production and consumption CT's must be correctly installed to accurately display Live Power data.  Inverter-level power production is polled over time, and will not exactly match Live Power production."
+  "LIVE_POWER_INFO": "Live Power is a real-time measurement from the power meters on the system.  Production and consumption CT's must be correctly installed to accurately display Live Power data.  Inverter-level power production is polled over time, and will not exactly match Live Power production.",
+  "CONNECTED_TO_PVS": "Connected to PVS",
+  "NOT_USING_WIFI1": "Your phone is automatically switching to mobile data and disconnecting from the PVS",
+  "NOT_USING_WIFI2": "Please turn off mobile data to continue",
+  "RECONNECT_TO_PVS1": "Please reconnect to the PVS to continue commissioning",
+  "RECONNECT_TO_PVS2": "If still unable to reconnect, please reboot the PVS, wait for the green LED and try again",
+  "NOT_CONNECTED": "Not connected to a PVS"
 }

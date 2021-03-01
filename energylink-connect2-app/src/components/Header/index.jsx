@@ -13,6 +13,7 @@ import Menu from 'components/Menu'
 import { MENU_HIDE, MENU_SHOW, SET_PREVIOUS_URL } from 'state/actions/ui'
 
 import './Header.scss'
+import ConnectionStatus from './ConnectionStatus'
 
 const getCount = window => (window.innerWidth > 375 ? 35 : 30)
 const isMenuPath = history =>
@@ -45,6 +46,8 @@ export const Header = ({ icon = 'sp-menu', iconOpen = 'sp-chevron-left' }) => {
     disabled: shouldDisableMenu
   })
 
+  const connectionStatus = useSelector(path(['network', 'connectionStatus']))
+
   const menuAction = shouldDisableMenu
     ? void 0
     : () => {
@@ -60,7 +63,7 @@ export const Header = ({ icon = 'sp-menu', iconOpen = 'sp-chevron-left' }) => {
 
   return (
     <>
-      <section className="header is-flex level is-clipper">
+      <div className="header level is-clipper">
         <span className={classIcon} onClick={menuAction} role="button" />
         {either(
           showSiteAddress(history) && !isNil(siteAddress),
@@ -69,7 +72,8 @@ export const Header = ({ icon = 'sp-menu', iconOpen = 'sp-chevron-left' }) => {
           </span>,
           <Logo />
         )}
-      </section>
+        <ConnectionStatus status={connectionStatus} />
+      </div>
       <Menu />
     </>
   )

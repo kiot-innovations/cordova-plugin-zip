@@ -1,9 +1,10 @@
 import {
   PVS_CONNECTION_INIT,
   WAIT_FOR_SWAGGER,
-  STOP_NETWORK_POLLING
+  SET_CONNECTION_STATUS
 } from 'state/actions/network'
 import { of } from 'rxjs'
+import { appConnectionStatus } from 'state/reducers/network'
 
 describe('Connect to epic', () => {
   let connectToEpic
@@ -50,7 +51,7 @@ describe('Connect to epic', () => {
       connect: failFn
     }
     const init = PVS_CONNECTION_INIT({ ssid: 'sunpower', password: '123456' })
-    const success = STOP_NETWORK_POLLING({ canceled: true })
+    const success = SET_CONNECTION_STATUS(appConnectionStatus.NOT_CONNECTED_PVS)
     const action$ = of(init)
     const epic$ = connectToEpic(action$)
     epic$.subscribe(action => {

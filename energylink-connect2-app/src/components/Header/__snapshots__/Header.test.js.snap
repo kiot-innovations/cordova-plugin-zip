@@ -39,8 +39,8 @@ exports[`Header Component Renders correctly 1`] = `
       }
     >
       <Header>
-        <section
-          className="header is-flex level is-clipper"
+        <div
+          className="header level is-clipper"
         >
           <span
             className="sp sp-menu"
@@ -74,7 +74,15 @@ exports[`Header Component Renders correctly 1`] = `
               </svg>
             </o>
           </Component>
-        </section>
+          <ConnectionStatus>
+            <div
+              className="connectionStatus"
+              onClick={[Function]}
+            >
+              <div />
+            </div>
+          </ConnectionStatus>
+        </div>
         <Component>
           <div />
         </Component>
@@ -131,8 +139,8 @@ exports[`Header Component Renders text instead of logo 1`] = `
     }
   >
     <Header>
-      <section
-        className="header is-flex level is-clipper"
+      <div
+        className="header level is-clipper"
       >
         <span
           className="sp sp-menu"
@@ -145,7 +153,15 @@ exports[`Header Component Renders text instead of logo 1`] = `
         >
           ADDRESS
         </span>
-      </section>
+        <ConnectionStatus>
+          <div
+            className="connectionStatus"
+            onClick={[Function]}
+          >
+            <div />
+          </div>
+        </ConnectionStatus>
+      </div>
       <Component>
         <div />
       </Component>

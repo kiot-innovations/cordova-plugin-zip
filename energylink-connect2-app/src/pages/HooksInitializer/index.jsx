@@ -1,7 +1,6 @@
 import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import useAppUpdate from 'hooks/useAppUpdate'
-import useCanceledPVSConnection from 'hooks/useCanceledPVSConnection'
 import useUpgrade from 'hooks/useUpgrade'
 import { deviceResumeListener } from 'state/actions/mobile'
 import { validateSession } from 'state/actions/auth'
@@ -12,7 +11,6 @@ function HooksInitializer() {
 
   useAppUpdate()
   useUpgrade()
-  useCanceledPVSConnection()
 
   useEffect(() => {
     dispatch(deviceResumeListener())

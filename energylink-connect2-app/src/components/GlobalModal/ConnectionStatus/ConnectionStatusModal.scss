@@ -1,0 +1,16 @@
+#connecting-graphic {
+  .connecting-dots,
+  .pulse {
+    animation: pulse 0.5s ease infinite;
+    animation-direction: alternate;
+  }
+
+  @keyframes pulse {
+    0% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0.2;
+    }
+  }
+}
