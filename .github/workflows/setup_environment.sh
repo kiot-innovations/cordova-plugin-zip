@@ -10,33 +10,38 @@ set -o pipefail
 
 ROOT_DIR="${0%/*}/../.."
 
+#
+# We use fastlane to upload to the play store
+# Find other options for "RELEASE_TRACK" here: https://docs.fastlane.tools/actions/upload_to_play_store/
+#
+
 case "${APP_ENV}" in
     prod)
         readonly APP_ID="com.sunpower.energylink.commissioning2"
         readonly APP_NAME="SunPowerProConnect"
         readonly BUILD_TYPE="${BUILD_TYPE:-release}"
-        readonly RELEASE_TRACK="alpha"
+        readonly RELEASE_TRACK="internal"
         ;;
 
     test)
         readonly APP_ID="com.sunpower.energylink.commissioning2.test"
         readonly APP_NAME="SunPowerProConnect-test"
         readonly BUILD_TYPE="${BUILD_TYPE:-release}"
-        readonly RELEASE_TRACK="alpha"
+        readonly RELEASE_TRACK="internal"
         ;;
 
     training)
         readonly APP_ID="com.sunpower.energylink.commissioning2.training"
         readonly APP_NAME="SunPowerProConnect-training"
         readonly BUILD_TYPE="${BUILD_TYPE:-release}"
-        readonly RELEASE_TRACK="alpha"
+        readonly RELEASE_TRACK="internal"
         ;;
 
     uat)
         readonly APP_ID="com.sunpower.energylink.commissioning2.prod"
         readonly APP_NAME="SunPowerProConnect-beta"
         readonly BUILD_TYPE="${BUILD_TYPE:-release}"
-        readonly RELEASE_TRACK="alpha"
+        readonly RELEASE_TRACK="internal"
         ;;
 
     *)
