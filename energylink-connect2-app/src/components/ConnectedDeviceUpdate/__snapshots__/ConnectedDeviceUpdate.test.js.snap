@@ -32,3 +32,49 @@ exports[`Connected Device Update Component Renders Correctly 1`] = `
   </div>
 </div>
 `;
+
+exports[`Connected Device Update Component Renders Correctly when error 1`] = `
+<div
+  className="device-updating mb-10 mt-10"
+>
+  <div
+    className="device-info"
+  >
+    <span
+      className="has-text-white has-text-weight-bold"
+    >
+      Storage Inverter
+    </span>
+    <span
+      className="has-text-weight-bold"
+    >
+      ZT123456789
+    </span>
+    <span
+      className="has-text-weight-bold"
+    >
+      1.2.3
+    </span>
+  </div>
+  <div
+    className="device-updateprog"
+  >
+    <div
+      className="device-updatepercentage"
+    >
+      <span
+        className="has-text-weight-bold"
+      >
+        FWUP_COMPONENT_ERROR
+      </span>
+      <span
+        className="error-colored percentage has-text-weight-bold is-size-1"
+      >
+        <span
+          className="sp sp-hey"
+        />
+      </span>
+    </div>
+  </div>
+</div>
+`;

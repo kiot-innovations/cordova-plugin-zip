@@ -1,8 +1,10 @@
 import React from 'react'
 import clsx from 'clsx'
-import { useI18n } from 'shared/i18n'
-import { Loader } from '../Loader'
 import { cond, isNil, always, equals, T } from 'ramda'
+import { useI18n } from 'shared/i18n'
+import { either } from 'shared/utils'
+import { Loader } from '../Loader'
+
 import './ConnectedDeviceUpdate.scss'
 
 const status = {
@@ -54,7 +56,11 @@ function ConnectedDeviceUpdate({ device }) {
           <div className="device-updatepercentage">
             <span className={fwVersionClass}>{t(updateStatus)}</span>
             <span className={percentageClass}>
-              {Math.floor(device.progress)}%
+              {either(
+                updateStatus === status.ERROR,
+                <span className="sp sp-hey" />,
+                `${Math.floor(device.progress)}%`
+              )}
             </span>
           </div>
         )}
