@@ -28,6 +28,7 @@ yarn-error.log*
 .idea
 .vscode
 .env*
+.eslintcache
 
 # live-reload
 public/cordova.js

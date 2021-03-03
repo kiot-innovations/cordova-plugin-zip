@@ -67,9 +67,9 @@ const connectToEpic = (action$, state$) =>
     exhaustMap(action => {
       const ssid = pathOr('', ['payload', 'ssid'], action)
       const password = pathOr('', ['payload', 'password'], action)
+      const t = translate(pathOr('en', ['value', 'language'], state$))
 
       if (!ssid || isEmpty(ssid)) {
-        const t = translate(state$.value.language)
         return of(PVS_CONNECTION_ERROR(t('PVS_CONNECTION_EMPTY_SSID')))
       }
 
@@ -91,7 +91,8 @@ const connectToEpic = (action$, state$) =>
           ) {
             console.error(message)
             return of(
-              SET_CONNECTION_STATUS(appConnectionStatus.NOT_CONNECTED_PVS)
+              SET_CONNECTION_STATUS(appConnectionStatus.NOT_CONNECTED_PVS),
+              PVS_CONNECTION_ERROR(t('PVS_CONN_ERROR'))
             )
           } else {
             return of(WAIT_FOR_SWAGGER())
