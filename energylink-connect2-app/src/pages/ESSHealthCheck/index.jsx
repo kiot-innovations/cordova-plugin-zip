@@ -96,7 +96,7 @@ function ESSHealthCheck() {
 
   const clearAndContinue = () => {
     dispatch(SUBMIT_CLEAR())
-    history.push(paths.PROTECTED.RMA_DEVICES.path)
+    history.push(paths.PROTECTED.SYSTEM_CONFIGURATION.path)
   }
 
   return (
