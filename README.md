@@ -113,6 +113,15 @@ cp .env.production .env.local;
 cp .env.production .env.development;
 ```
 
+# How to update the FASTLANE_SESSION when the CI fails because Apple needs a new sesssion
+## Run this in terminal
+```fastlane spaceauth -u developer_support@sunpowercorp.com```
+Get the code from Alvin's phone, type it in the terminal input
+
+## Put the output here
+https://github.com/SunPower/energylink-connect2/settings/secrets/actions/FASTLANE_PASSWORD
+Hit save and rerun the build that just failed
+
 # How to add a new development certificate
 
 You'd want to do this if you're adding a new flavor of the application
