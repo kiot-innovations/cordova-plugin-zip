@@ -15,6 +15,7 @@ import paths from 'routes/paths'
 import useTimer from 'hooks/useTimer'
 
 import './UpdateScreen.scss'
+import usePVSInitConnection from 'hooks/usePVSInitConnection'
 
 const stagesFromThePvs = [
   'downloading images',
@@ -23,16 +24,6 @@ const stagesFromThePvs = [
   'verifying images',
   'complete'
 ]
-
-const WaitForConnection = () => {
-  const [formattedTime] = useTimer(100, true)
-  const t = useI18n()
-  return (
-    <div className="has-text-white">
-      {t('WAITING_FOR_NETWORK', formattedTime)}
-    </div>
-  )
-}
 
 const UpdateScreen = () => {
   const t = useI18n()
@@ -44,7 +35,20 @@ const UpdateScreen = () => {
   const firmwareDownload = useSelector(
     pathOr({}, ['fileDownloader', 'progress'])
   )
-
+  const retryConnection = usePVSInitConnection()
+  const [formattedTime, isTimerActive, activateTimer, , secondsLeft] = useTimer(
+    100,
+    false
+  )
+  useEffect(() => {
+    if (
+      status === 'WAITING_FOR_NETWORK' &&
+      !isTimerActive &&
+      secondsLeft !== 0
+    ) {
+      activateTimer()
+    }
+  }, [activateTimer, isTimerActive, secondsLeft, status])
   useEffect(() => {
     const stepNumber = indexOf(status, stagesFromThePvs)
     if (stepNumber !== -1) {
@@ -147,9 +151,21 @@ const UpdateScreen = () => {
                     >
                       {either(
                         status === 'WAITING_FOR_NETWORK',
-                        <WaitForConnection />
+
+                        <div className="has-text-white">
+                          {t('WAITING_FOR_NETWORK', formattedTime)}
+                        </div>
                       )}
                     </UpdateFirmwareStage>
+                    {either(
+                      secondsLeft === 0,
+                      <button
+                        className="mt-5 button is-primary is-uppercase"
+                        onClick={() => retryConnection()}
+                      >
+                        {t('RETRY_CONNECTION')}
+                      </button>
+                    )}
                   </>
                 )}
               </>
