@@ -72,7 +72,7 @@ Pro Connect now supports scanning MIs that start with serial number &quot;20&quo
 
 ",
                   "releaseDate": "2021-02-26",
-                  "versionNumber": "6.34.0",
+                  "versionNumber": "6.35.1",
                 },
                 Object {
                   "bodyMarkdown": "# Tab text change
@@ -118,7 +118,7 @@ You will now see a message that &quot;Commissioning was successfully completed&q
                 >
                   <Collapsible
                     expanded={true}
-                    title="VERSION 6.34.0"
+                    title="VERSION 6.35.1"
                   >
                     <div
                       className="collapsible"
@@ -133,7 +133,7 @@ You will now see a message that &quot;Commissioning was successfully completed&q
                           <span
                             className="has-text-weight-bold"
                           >
-                            VERSION 6.34.0
+                            VERSION 6.35.1
                           </span>
                         </div>
                         <div
