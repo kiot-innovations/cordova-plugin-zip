@@ -21,7 +21,7 @@
 on:
   push:
     tags:
-      - '*.[1-9]'
+      - '[0-9]+.[0-9]+.[0-9]+-test'
 
 jobs:
   build:
@@ -102,12 +102,14 @@ jobs:
           MATCH_GIT_BASIC_AUTHORIZATION: ${{ secrets.MATCH_GIT_BASIC_AUTHORIZATION }}
           MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
           KEYCHAIN_PASSWORD: ${{ secrets.KEYCHAIN_PASSWORD }}
-      - name: Upload build to Apple TestFlight
-        run: bundle exec fastlane ios release
-        if: startsWith(github.ref, 'refs/tags/')
-        env:
-          FASTLANE_PASSWORD: ${{ secrets.FASTLANE_PASSWORD }}
-          MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
+      # - name: Upload build to Apple TestFlight
+      #   run: bundle exec fastlane ios release
+      #   if: startsWith(github.ref, 'refs/tags/')
+      #   env:
+      #     FASTLANE_SESSION: ${{ secrets.FASTLANE_SESSION }}
+      #     FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD: ${{ secrets.FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD }}
+      #     FASTLANE_PASSWORD: ${{ secrets.FASTLANE_PASSWORD }}
+      #     MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
 
       #
       # Android Application
@@ -126,9 +128,9 @@ jobs:
         with:
           name: Android-${{ env.APP_ENV }}
           path: ${{ env.CORDOVA_ANDROID_RELEASE_BUILD_PATH }}
-      - name: Upload build to Google Play store
-        run: bundle exec fastlane android release
-        if: startsWith(github.ref, 'refs/tags/')
+      # - name: Upload build to Google Play store
+      #   run: bundle exec fastlane android release
+      #   if: startsWith(github.ref, 'refs/tags/')
 
       #
       # Slack Notification (run once, only for test environment)
