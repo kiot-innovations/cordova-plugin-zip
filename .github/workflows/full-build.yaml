@@ -105,12 +105,10 @@ jobs:
         run: bundle exec fastlane ios release
         if: startsWith(github.ref, 'refs/tags/')
         env:
+         FASTLANE_SESSION: ${{ secrets.FASTLANE_SESSION }}
          FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD: ${{ secrets.FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD }}
          FASTLANE_PASSWORD: ${{ secrets.FASTLANE_PASSWORD }}
          MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
-         IOS_KEY_ID: ${{ secrets.IOS_KEY_ID }}
-         IOS_ISSUER_ID: ${{ secrets.IOS_ISSUER_ID }}
-         IOS_KEY: ${{ secrets.IOS_KEY }}
 
       #
       # Android Application
