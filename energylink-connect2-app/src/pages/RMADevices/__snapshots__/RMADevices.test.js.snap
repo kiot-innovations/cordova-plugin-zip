@@ -224,7 +224,7 @@ exports[`RMA devices component render correctly 1`] = `
             className="mt-10 has-text-centered button-container"
           >
             <button
-              className="button is-paddingless has-text-primary has-text-weight-bold is-size-7 button-transparent"
+              className="button mb-30 is-paddingless has-text-primary has-text-weight-bold is-size-7 button-transparent"
               onClick={[Function]}
             >
               REFRESH_DEVICE_LIST

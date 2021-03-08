@@ -165,7 +165,7 @@ function RMADevices() {
       <div className="mt-10 has-text-centered button-container">
         <button
           onClick={fetchDevices}
-          className="button is-paddingless has-text-primary has-text-weight-bold is-size-7 button-transparent"
+          className="button mb-30 is-paddingless has-text-primary has-text-weight-bold is-size-7 button-transparent"
         >
           {t('REFRESH_DEVICE_LIST')}
         </button>
