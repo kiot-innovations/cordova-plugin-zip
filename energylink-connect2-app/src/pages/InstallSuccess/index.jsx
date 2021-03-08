@@ -58,7 +58,6 @@ const InstallSuccessful = () => {
           {t('INSTALL_SUCCESS')}
         </span>
         <span className="sp-pvs has-text-white " />
-        <span>{t('INSTALL_SUBTITLE')}</span>
         <button
           onClick={goToConfigure}
           className="button is-primary is-uppercase is-center"
