@@ -282,7 +282,7 @@
   "PLT_SAVED": "Panel layout was correctly saved",
   "PLT_LINK": "Go to panel layout tool",
   "PLT_LOADING": "Hold on, we're fetching the panel layout data",
-  "ADD_PANEL_PLT": "Tap the grid to place the module",
+  "ADD_PANEL_PLT": "Tap the grid to place the panel",
   "GROUP_PANEL_PLT": "Tap an array to make adjustments",
   "DISCOVERY_COMPLETE": "Discovery Complete",
   "REMOVE_UNWANTED_MIS": "Please make sure to remove any MIs not belonging to the site before continuing.",
