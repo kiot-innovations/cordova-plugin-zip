@@ -568,6 +568,7 @@
   "MISTATE_ERROR": "Error detected",
   "MISTATE_MI_OK": "Communicating properly",
   "PVS_FIRMWARE_RELEASE_NOTES": "PVS Firmware Release Notes",
+  "UNABLE_TO_RETRIEVE_RELEASE_NOTES": "Unable to retrieve release notes. Please check back later.",
   "RELEASE_NOTES": "View release notes",
   "PERM_HEADING": "We need some permissions",
   "PERM_TITLE": "Pro Connect requires Bluetooth permission for connecting to the PVS.",

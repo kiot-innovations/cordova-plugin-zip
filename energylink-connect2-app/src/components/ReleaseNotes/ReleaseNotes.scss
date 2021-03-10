@@ -3,6 +3,11 @@
 .release-notes {
   align-items: center;
 
+  h1 {
+    font-size: large;
+    font-weight: bold;
+  }
+
   .currentVersion {
     margin: 10px 0;
     font-weight: normal;

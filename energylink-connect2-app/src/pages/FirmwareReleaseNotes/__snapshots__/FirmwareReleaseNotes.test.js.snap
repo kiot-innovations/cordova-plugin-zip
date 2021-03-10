@@ -67,7 +67,7 @@ Robust microinverter firmware upgrade",
           title="PVS_FIRMWARE_RELEASE_NOTES"
         >
           <section
-            className="release-notes is-flex tile is-vertical has-text-weight-bold pt-0 pr-10 pl-10 full-height"
+            className="release-notes is-flex tile is-vertical pt-0 pr-10 pl-10 full-height"
           >
             <h1
               className="has-text-centered is-uppercase pb-20"
@@ -78,151 +78,17 @@ Robust microinverter firmware upgrade",
               className="body has-text-white"
             >
               <div
-                className="version"
-                key="0"
+                className="collapsible"
               >
-                <div
-                  className="mb-10"
+                <h1
+                  class="mb-10"
                 >
-                  <Collapsible
-                    expanded={true}
-                    title="VERSION Release 8616"
-                  >
-                    <div
-                      className="collapsible"
-                    >
-                      <div
-                        className="collapsible-header"
-                      >
-                        <div
-                          className="collapsible-title"
-                        >
-                          <span />
-                          <span
-                            className="has-text-weight-bold"
-                          >
-                            VERSION RELEASE 8616
-                          </span>
-                        </div>
-                        <div
-                          className="collapsible-actions"
-                        />
-                        <div
-                          className="collapsible-trigger"
-                        >
-                          <div
-                            className="chevron down"
-                            onClick={[Function]}
-                          >
-                            <span
-                              className="sp-chevron-up"
-                            />
-                          </div>
-                        </div>
-                      </div>
-                      <div
-                        className="collapsible-content expanded"
-                      >
-                        <div
-                          className="releaseDate"
-                        >
-                          RELEASE_DATE
-                           
-                          11/05/2020
-                        </div>
-                        <div
-                          className="content"
-                          dangerouslySetInnerHTML={
-                            Object {
-                              "__html": "<h1 id=\\"features\\">Features</h1>
-<ul>
-<li>SunVault ready</li>
-<li>Full support for Pro Connect app</li>
-</ul>
-",
-                            }
-                          }
-                        />
-                      </div>
-                    </div>
-                  </Collapsible>
-                </div>
-              </div>
-              <div
-                className="version"
-                key="1"
-              >
-                <div
-                  className="previous-release-notes"
-                >
-                  PREVIOUS_RELEASE_NOTES
-                </div>
-                <div
-                  className="mb-10"
-                >
-                  <Collapsible
-                    expanded={false}
-                    title="VERSION Release 6415"
-                  >
-                    <div
-                      className="collapsible"
-                    >
-                      <div
-                        className="collapsible-header"
-                      >
-                        <div
-                          className="collapsible-title"
-                        >
-                          <span />
-                          <span
-                            className="has-text-weight-bold"
-                          >
-                            VERSION RELEASE 6415
-                          </span>
-                        </div>
-                        <div
-                          className="collapsible-actions"
-                        />
-                        <div
-                          className="collapsible-trigger"
-                        >
-                          <div
-                            className="chevron"
-                            onClick={[Function]}
-                          >
-                            <span
-                              className="sp-chevron-up"
-                            />
-                          </div>
-                        </div>
-                      </div>
-                      <div
-                        className="collapsible-content collapsed"
-                      >
-                        <div
-                          className="releaseDate"
-                        >
-                          RELEASE_DATE
-                           
-                          10/01/2020
-                        </div>
-                        <div
-                          className="content"
-                          dangerouslySetInnerHTML={
-                            Object {
-                              "__html": "<h1 id=\\"improvements\\">Improvements</h1>
-<ul>
-<li>Bulletproof protection against interference from nearby Envoys
-Robust microinverter firmware upgrade</li>
-</ul>
-",
-                            }
-                          }
-                        />
-                      </div>
-                    </div>
-                  </Collapsible>
-                </div>
+                  CURRENT_VERSION
+                  : 
+                </h1>
+                <p>
+                  UNABLE_TO_RETRIEVE_RELEASE_NOTES
+                </p>
               </div>
             </div>
           </section>
