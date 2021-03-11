@@ -52,7 +52,7 @@
 
   .expanded {
     max-height: 700px;
-    overflow-y: scroll;
+    overflow: visible !important;
     opacity: 1;
     border-top: 1px solid #f2f2f22e;
     padding-top: 10px;
