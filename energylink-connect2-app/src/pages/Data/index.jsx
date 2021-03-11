@@ -137,7 +137,7 @@ export default () => {
               )}
             </span>
             <ButtonLink
-              title={t('HEALTH_CHECK')}
+              title={t('SYSTEM_CHECK')}
               onClick={executeHealthCheck}
             />
           </Collapsible>

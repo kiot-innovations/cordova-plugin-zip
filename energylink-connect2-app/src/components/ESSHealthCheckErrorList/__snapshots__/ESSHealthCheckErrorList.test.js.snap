@@ -52,7 +52,7 @@ Object {
             <span
               className="is-uppercase has-text-weight-bold mb-10"
             >
-              HEALTH_REPORT_ERROR_LIST
+              SYSTEM_REPORT_ERROR_LIST
             </span>
             <div
               className="mt-15"

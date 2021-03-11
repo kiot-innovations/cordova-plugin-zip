@@ -17,7 +17,7 @@ function ESSHealthCheckErrorList({ results }) {
   return (
     <div className="ess-hc page-height has-text-centered pt-10">
       <span className="is-uppercase has-text-weight-bold mb-10">
-        {t('HEALTH_REPORT_ERROR_LIST')}
+        {t('SYSTEM_REPORT_ERROR_LIST')}
       </span>
 
       <div className="mt-15">{map(renderErrors(t), errors)}</div>

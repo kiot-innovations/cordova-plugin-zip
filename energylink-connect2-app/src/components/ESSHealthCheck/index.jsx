@@ -49,7 +49,7 @@ function ESSHealthCheck(props) {
   return (
     <div className={classes}>
       <span className="is-uppercase has-text-weight-bold">
-        {t('HEALTH_CHECK')}
+        {t('SYSTEM_CHECK')}
       </span>
 
       <div className="status-message">
@@ -59,7 +59,7 @@ function ESSHealthCheck(props) {
             {progress || 0}%
           </span>
         )}
-        {either(loading, <span> {t('HEALTH_REPORT')} </span>)}
+        {either(loading, <span> {t('SYSTEM_REPORT')} </span>)}
 
         {either(
           !props.error && report,
@@ -99,7 +99,7 @@ function ESSHealthCheck(props) {
         ) : (
           <ContinueFooter
             url={pathToContinue}
-            text={t('HEALTH_CHECK_SUCCESSFUL')}
+            text={t('SYSTEM_CHECK_SUCCESSFUL')}
           />
         )
       )}

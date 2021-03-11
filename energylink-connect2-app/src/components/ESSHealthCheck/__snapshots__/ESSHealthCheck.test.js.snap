@@ -52,7 +52,7 @@ Object {
             <span
               className="is-uppercase has-text-weight-bold"
             >
-              HEALTH_CHECK
+              SYSTEM_CHECK
             </span>
             <div
               className="status-message"
@@ -229,7 +229,7 @@ Object {
               </div>
             </SwipeableBottomSheet>
             <ContinueFooter
-              text="HEALTH_CHECK_SUCCESSFUL"
+              text="SYSTEM_CHECK_SUCCESSFUL"
             >
               <div
                 className="continue-footer"
@@ -242,7 +242,7 @@ Object {
                 <span
                   className="is-size-6"
                 >
-                  HEALTH_CHECK_SUCCESSFUL
+                  SYSTEM_CHECK_SUCCESSFUL
                 </span>
                 <Link
                   className="button is-primary is-uppercase mt-20"
