@@ -111,7 +111,7 @@ function NetworkWidget({ hideWPSButton, expanded }) {
                     disabled={disableInputs}
                     className="input"
                     type={showPassword ? 'text' : 'password'}
-                    placeholder="********"
+                    placeholder={either(isConnected, '********')}
                     onChange={compose(setPassword, path(['target', 'value']))}
                     value={password}
                   />

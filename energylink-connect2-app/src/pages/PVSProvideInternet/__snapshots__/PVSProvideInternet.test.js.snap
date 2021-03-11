@@ -1519,7 +1519,7 @@ exports[`PVS Provide Internet page renders correctly 1`] = `
                               <input
                                 className="input"
                                 onChange={[Function]}
-                                placeholder="********"
+                                placeholder={null}
                                 type="password"
                                 value=""
                               />
