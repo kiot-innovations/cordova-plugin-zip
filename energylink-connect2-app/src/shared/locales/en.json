@@ -668,5 +668,14 @@
   "NOT_USING_WIFI2": "Please turn off mobile data to continue",
   "RECONNECT_TO_PVS1": "Please reconnect to the PVS to continue commissioning",
   "RECONNECT_TO_PVS2": "If still unable to reconnect, please reboot the PVS, wait for the green LED and try again",
-  "NOT_CONNECTED": "Not connected to a PVS"
+  "NOT_CONNECTED": "Not connected to a PVS",
+  "DISCOVERY_SETTINGS": "Discovery Settings",
+  "DISCOVERY_SETTINGS_DESCRIPTION": "What type of devices are you trying to discover?",
+  "DISCOVERY_SETTINGS_MILIMIT": "Discover up to",
+  "START_DISCOVERY": "Start Discovery",
+  "EQUINOX_AC_DEVICES": "Equinox AC Devices",
+  "EVERYTHING": "Everything",
+  "NUM_DEVICES": "{0} devices",
+  "SINGLE_DEVICE": "1 device",
+  "NO_LIMIT": "No limit"
 }

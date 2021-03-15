@@ -28,7 +28,8 @@ import { RESET_COMMISSIONING } from 'state/actions/global'
 
 export const discoveryTypes = {
   LEGACY: 'LEGACY',
-  ALLNOMI: 'ALLNOMI'
+  ALLNOMI: 'ALLNOMI',
+  ONLYMI: 'ONLYMI'
 }
 
 const initialState = {

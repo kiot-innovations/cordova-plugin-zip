@@ -258,6 +258,12 @@ const paths = {
       header: true,
       footer: true,
       tab: TABS.INSTALL
+    },
+    LEGACY_DISCOVERY_SELECTOR: {
+      path: '/legacy-discovery-selector',
+      header: true,
+      footer: true,
+      tab: TABS.INSTALL
     }
   },
   UNPROTECTED: {

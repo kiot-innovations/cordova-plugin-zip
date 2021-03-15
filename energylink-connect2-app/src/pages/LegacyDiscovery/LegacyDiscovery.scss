@@ -4,6 +4,13 @@
   display: grid;
   grid-template-rows: 5% 1fr 25%;
 
+  .legacy-discovery__title {
+    display: grid;
+    grid-template-columns: 15% 1fr 15%;
+    align-items: center;
+    justify-content: center;
+  }
+
   .discovery-percentage {
     line-height: 3rem;
   }

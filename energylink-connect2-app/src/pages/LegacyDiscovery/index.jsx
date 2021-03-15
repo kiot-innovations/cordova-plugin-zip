@@ -9,7 +9,7 @@ import {
 } from 'state/actions/devices'
 import { START_DISCOVERY_INIT } from 'state/actions/pvs'
 import { discoveryTypes } from 'state/reducers/devices'
-import { filterInverters } from 'shared/utils'
+import { either, filterInverters } from 'shared/utils'
 import useModal from 'hooks/useModal'
 import { groupBy, prop, propOr, length, pluck, reduce, add, path } from 'ramda'
 import clsx from 'clsx'
@@ -36,6 +36,7 @@ const LegacyDiscovery = () => {
     progress
   } = useSelector(state => state.devices)
   const rmaPvs = useSelector(path(['rma', 'pvs']))
+  const { lastDiscoveryType } = useSelector(state => state.pvs)
   const inverters = filterInverters(found)
   const dispatch = useDispatch()
 
@@ -116,9 +117,20 @@ const LegacyDiscovery = () => {
     <div className="legacy-discovery fill-parent has-text-centered pr-15 pl-15">
       {microinvertersModal}
       <div className="legacy-discovery__title">
-        <span className="is-uppercase has-text-weight-bold mb-20">
+        <div>
+          {either(
+            overallProgress === 100 &&
+              lastDiscoveryType === discoveryTypes.ONLYMI,
+            <span
+              onClick={() => history.goBack()}
+              className="sp-chevron-left is-size-4 has-text-primary"
+            />
+          )}
+        </div>
+        <div className="page-title has-text-centered has-text-weight-bold">
           {t('LEGACY_DISCOVERY')}
-        </span>
+        </div>
+        <div />
       </div>
       <div className="legacy-discovery__devices">
         {Object.keys(groupedDevices).map((key, i) => (

@@ -4,10 +4,9 @@ import { useHistory } from 'react-router-dom'
 
 import paths from 'routes/paths'
 import useModal from 'hooks/useModal'
-import { discoveryTypes } from 'state/reducers/devices'
 import { Loader } from 'components/Loader'
 import { RESET_DISCOVERY, PUSH_CANDIDATES_INIT } from 'state/actions/devices'
-import { REMOVE_SN, START_DISCOVERY_INIT } from 'state/actions/pvs'
+import { REMOVE_SN } from 'state/actions/pvs'
 import { UPDATE_MI_COUNT } from 'state/actions/inventory'
 import { useI18n } from 'shared/i18n'
 
@@ -124,13 +123,7 @@ function SNList() {
 
   const startLegacyDiscovery = () => {
     dispatch(RESET_DISCOVERY())
-    dispatch(
-      START_DISCOVERY_INIT({
-        Device: 'allplusmime',
-        type: discoveryTypes.LEGACY
-      })
-    )
-    history.push(paths.PROTECTED.LEGACY_DISCOVERY.path)
+    history.push(paths.PROTECTED.LEGACY_DISCOVERY_SELECTOR.path)
   }
 
   const legacyDiscoveryModalContent = (

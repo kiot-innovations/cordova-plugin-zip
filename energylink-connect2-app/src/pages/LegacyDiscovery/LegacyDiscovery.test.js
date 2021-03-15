@@ -1,3 +1,5 @@
+/* eslint no-import-assign: "off" */
+
 import React from 'react'
 import * as ReactDOM from 'react-dom'
 import * as reactRedux from 'react-redux'
@@ -14,6 +16,9 @@ describe('Legacy Discovery Results page', () => {
       claimedDevices: false,
       found: [],
       progress: []
+    },
+    pvs: {
+      lastDiscoveryType: ''
     }
   }
 

@@ -45,11 +45,13 @@ exports[`Legacy Discovery Results page renders correctly 1`] = `
           <div
             className="legacy-discovery__title"
           >
-            <span
-              className="is-uppercase has-text-weight-bold mb-20"
+            <div />
+            <div
+              className="page-title has-text-centered has-text-weight-bold"
             >
               LEGACY_DISCOVERY
-            </span>
+            </div>
+            <div />
           </div>
           <div
             className="legacy-discovery__devices"
