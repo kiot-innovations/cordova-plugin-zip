@@ -93,6 +93,8 @@
     "execa": "^4.1.0",
     "husky": "^4.2.5",
     "lint-staged": "^8.2.1",
+    "msw": "^0.27.0",
+    "msw-storybook-addon": "^1.1.0",
     "node-sass": "^4.12.0",
     "prettier": "^1.18.2",
     "react-scripts": "4.0.1",
@@ -149,5 +151,8 @@
       "enzyme-to-json/serializer"
     ],
     "resetMocks": true
+  },
+  "msw": {
+    "workerDirectory": "public"
   }
 }

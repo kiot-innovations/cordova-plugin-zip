@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { isEmpty } from 'ramda'
 import { useI18n } from 'shared/i18n'
 import { either } from 'shared/utils'
 import './ErrorDetected.scss'
@@ -10,7 +11,8 @@ function ErrorDetected({
   url = '',
   next = '',
   globalError = '',
-  onRetry
+  onRetry,
+  customAction = {}
 }) {
   const t = useI18n()
   if (number === 0 && warnings === 0 && !globalError) return null
@@ -60,12 +62,21 @@ function ErrorDetected({
 
       {either(
         number === 0 && !globalError,
-        <Link
-          className="button is-primary is-outlined is-uppercase mt-10 is-fullwidth"
-          to={next}
-        >
-          {t('IGNORE_WARNINGS')}
-        </Link>
+        either(
+          isEmpty(customAction),
+          <Link
+            className="button is-primary is-outlined is-uppercase mt-10 is-fullwidth"
+            to={next}
+          >
+            {t('IGNORE_WARNINGS')}
+          </Link>,
+          <button
+            className="button is-primary is-outlined is-uppercase mt-10 is-fullwidth"
+            onClick={customAction}
+          >
+            {t('IGNORE_WARNINGS')}
+          </button>
+        )
       )}
     </div>
   )

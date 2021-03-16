@@ -137,8 +137,11 @@ export default createReducer(
       claimedDevices: initialState.claimedDevices,
       claimError: initialState.claimError
     }),
-    [RESET_DISCOVERY]: state => ({
+    [RESET_DISCOVERY]: (state, payload) => ({
       ...initialState,
+      found: propOr(false, 'keepDeviceList', payload)
+        ? state.found
+        : initialState.found,
       miModels: state.miModels
     }),
     [RESET_COMMISSIONING]: () => initialState,

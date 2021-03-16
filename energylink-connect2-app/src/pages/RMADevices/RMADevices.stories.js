@@ -229,7 +229,6 @@ const hasStorage = {
         MODEL: 'AC_Module_Type_E',
         DESCR: 'Inverter E00121943009545',
         DEVICE_TYPE: 'Inverter',
-        PANEL: 'SPR-X20-327-BLK-E-AC',
         SWVER: '4.18.2',
         PORT: '',
         MOD_SN: '',

@@ -1,9 +1,12 @@
 import React from 'react'
+import { useHistory } from 'react-router-dom'
 import clsx from 'clsx'
 import { isEmpty, length, pathOr, isNil, path } from 'ramda'
+import SwipeableBottomSheet from 'react-swipeable-bottom-sheet'
 import { useI18n } from 'shared/i18n'
 import { either, addHasErrorProp, warningsLength } from 'shared/utils'
 import { rmaModes } from 'state/reducers/rma'
+import paths from 'routes/paths'
 
 import ESSHealthCheckReport from './ESSHealthCheckReport'
 import ErrorDetected from 'components/ESSErrorDetected'
@@ -11,10 +14,10 @@ import ContinueFooter from 'components/ESSContinueFooter'
 import StorageSyncFooter from 'components/ESSContinueFooter/StorageSyncFooter'
 
 import './ESSHealthCheck.scss'
-import SwipeableBottomSheet from 'react-swipeable-bottom-sheet'
 
 function ESSHealthCheck(props) {
   const t = useI18n()
+  const history = useHistory()
   const results = addHasErrorProp(props.results)
   const errors = pathOr([], ['errors'], results)
   const report = path(['ess_report'], results)
@@ -22,7 +25,7 @@ function ESSHealthCheck(props) {
   const classes = clsx('ess-hc has-text-centered pt-10 pl-10 pr-10', {
     gridit: loading || props.error
   })
-  const hasErrors = !isEmpty(errors) || props.error ? true : false
+  const hasErrors = !isEmpty(errors) || props.error
 
   const statusErrorMessage = pathOr(
     props.error,
@@ -43,7 +46,9 @@ function ESSHealthCheck(props) {
     commissioned,
     syncError,
     waitModal,
-    showWaitModal
+    showWaitModal,
+    modelsWarning,
+    toggleModelsWarning
   } = props
 
   return (
@@ -113,8 +118,30 @@ function ESSHealthCheck(props) {
           url={pathToErrors}
           globalError={statusErrorMessage}
           next={pathToContinue}
+          customAction={sync}
         />
       )}
+
+      <SwipeableBottomSheet
+        shadowTip={false}
+        open={modelsWarning}
+        onChange={() => toggleModelsWarning(!modelsWarning)}
+      >
+        <div className="is-flex flex-column has-text-white has-text-centered">
+          <span className="has-text-weight-bold mb-10">
+            {t('ALMOST_THERE')}
+          </span>
+          <span className="mb-10">{t('RMA_MISSING_MODELS')}</span>
+          <div className="mt-10">
+            <button
+              className="button is-primary"
+              onClick={() => history.push(paths.PROTECTED.MODEL_EDIT.path)}
+            >
+              {t('ASSIGN_MODELS')}
+            </button>
+          </div>
+        </div>
+      </SwipeableBottomSheet>
     </div>
   )
 }

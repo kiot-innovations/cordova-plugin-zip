@@ -9,6 +9,7 @@ import {
   curry,
   defaultTo,
   dissoc,
+  endsWith,
   filter,
   find,
   flip,
@@ -421,3 +422,32 @@ export const headersToObj = headers => {
 
 export const edpErrorMessage = ({ code = '', message = '' }) =>
   code && message ? `${code}: ${message}` : message
+
+export const createMeterConfig = (devicesList, meterConfig, site) => {
+  const updatedDevices = devicesList.map(device => {
+    if (
+      device.DEVICE_TYPE === 'Power Meter' &&
+      endsWith('p', device.SERIAL) &&
+      meterConfig.productionCT
+    ) {
+      device.SUBTYPE = meterConfig.productionCT
+    }
+
+    if (
+      device.DEVICE_TYPE === 'Power Meter' &&
+      endsWith('c', device.SERIAL) &&
+      meterConfig.consumptionCT
+    ) {
+      device.SUBTYPE = meterConfig.consumptionCT
+    }
+
+    return device
+  })
+
+  return {
+    metaData: {
+      site_key: site,
+      devices: updatedDevices
+    }
+  }
+}

@@ -53,6 +53,11 @@ function RMADevices() {
   const dispatch = useDispatch()
   const history = useHistory()
 
+  useEffect(() => {
+    dispatch(ALLOW_COMMISSIONING())
+    dispatch(FETCH_DEVICES_LIST())
+  }, [dispatch])
+
   const [selectedMIs, setSelectedMIs] = useState({})
   const devicesData = useSelector(pathOr([], ['devices', 'found']))
   const storageDevices = filter(propEq('TYPE', 'EQUINOX-ESS'), devicesData)
@@ -91,11 +96,6 @@ function RMADevices() {
   const fetchDevices = () => {
     dispatch(FETCH_DEVICES_LIST())
   }
-
-  useEffect(() => {
-    dispatch(ALLOW_COMMISSIONING())
-    dispatch(FETCH_DEVICES_LIST())
-  }, [dispatch])
 
   const addMI = (
     <span

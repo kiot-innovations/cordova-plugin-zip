@@ -12,7 +12,9 @@ import {
   propEq,
   split,
   map,
-  length
+  length,
+  isEmpty,
+  includes
 } from 'ramda'
 import SwipeableBottomSheet from 'react-swipeable-bottom-sheet'
 import { useI18n } from 'shared/i18n'
@@ -203,7 +205,7 @@ const ModelEdit = () => {
 
       <SwipeableBottomSheet
         shadowTip={false}
-        open={commissioned || submitting || error}
+        open={commissioned || submitting || !isEmpty(error)}
       >
         <div className="missing-models-warning is-flex pb-20">
           {either(
@@ -222,23 +224,53 @@ const ModelEdit = () => {
             </>
           )}
           {either(
-            error,
-            <>
-              <span className="has-text-weight-bold">{t('ERROR')}</span>
-              <div className="mt-10 mb-10">
-                <span className="is-size-4 sp-hey has-text-white" />
-              </div>
-              <div className="mt-10">
-                <span>{t('ADDING_DEVICES_ERROR')}</span>
-              </div>
-              <div className="mt-10 has-text-centered">
-                <span>
-                  <button className="button is-primary" onClick={syncWithCloud}>
-                    {t('RETRY')}
-                  </button>
-                </span>
-              </div>
-            </>
+            !isEmpty(error),
+            either(
+              includes('COMMISSIONCFG4005', error),
+              <>
+                <div className="mt-10 mb-10">
+                  <span className="is-size-1 sp-hey has-text-white" />
+                </div>
+                <div className="mb-5">
+                  <span className="has-text-weight-bold">
+                    {t('ALMOST_THERE')}
+                  </span>
+                </div>
+                <div className="mb-10">
+                  <span>{t('MISSING_METER_SUBTYPES')}</span>
+                </div>
+                <div className="has-text-centered">
+                  <span>
+                    <button
+                      className="button is-primary"
+                      onClick={() =>
+                        history.push(paths.PROTECTED.SYSTEM_CONFIGURATION.path)
+                      }
+                    >
+                      {t('CONFIGURE_METERS')}
+                    </button>
+                  </span>
+                </div>
+              </>,
+              <>
+                <div className="mt-10 mb-10">
+                  <span className="is-size-1 sp-hey has-text-white" />
+                </div>
+                <div className="mt-10 has-text-white">
+                  <span>{t('ADDING_DEVICES_ERROR')}</span>
+                </div>
+                <div className="mt-10 has-text-centered">
+                  <span>
+                    <button
+                      className="button is-primary"
+                      onClick={syncWithCloud}
+                    >
+                      {t('RETRY')}
+                    </button>
+                  </span>
+                </div>
+              </>
+            )
           )}
           {either(
             commissioned,

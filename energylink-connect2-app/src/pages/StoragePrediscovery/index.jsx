@@ -1,16 +1,19 @@
+/* disable-eslint */
+
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
-import { pathOr, propOr, isEmpty, length } from 'ramda'
+import { path, pathOr, propOr, isEmpty, length } from 'ramda'
 import moment from 'moment'
 import { useI18n } from 'shared/i18n'
-import { either, warningsLength } from 'shared/utils'
+import { createMeterConfig, either, warningsLength } from 'shared/utils'
 import { Loader } from 'components/Loader'
 import {
   GET_PREDISCOVERY,
   GET_PREDISCOVERY_RESET,
   GET_DELAYED_PREDISCOVERY
 } from 'state/actions/storage'
+import { SUBMIT_METERCONFIG } from 'state/actions/systemConfiguration'
 import { rmaModes } from 'state/reducers/rma'
 import ContinueFooter from 'components/ESSContinueFooter'
 import ErrorDetected from 'components/ESSErrorDetected'
@@ -23,6 +26,8 @@ function StoragePrediscovery() {
   const dispatch = useDispatch()
   const history = useHistory()
 
+  const { found } = useSelector(state => state.devices)
+  const siteKey = useSelector(path(['site', 'site', 'siteKey']))
   const { prediscovery, loadingPrediscovery } = useSelector(
     state => state.storage
   )
@@ -39,6 +44,21 @@ function StoragePrediscovery() {
     'last_updated',
     prediscovery
   )
+
+  useEffect(() => {
+    const storageMeterConfigs = {
+      productionCT: 'GROSS_PRODUCTION_SITE',
+      consumptionCT: 'NET_CONSUMPTION_LOADSIDE'
+    }
+
+    const metaData = createMeterConfig(found, storageMeterConfigs, siteKey)
+    dispatch(
+      SUBMIT_METERCONFIG({
+        metaData,
+        singleConfig: true
+      })
+    )
+  }, [dispatch, found, siteKey])
 
   useEffect(() => {
     dispatch(GET_PREDISCOVERY())

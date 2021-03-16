@@ -29,9 +29,10 @@ function ESSHealthCheck() {
   const unblockHandle = useRef()
 
   const [waitModal, showWaitModal] = useState(false)
+  const [modelsWarning, toggleModelsWarning] = useState(false)
   const { rmaMode } = useSelector(state => state.rma)
   const { waiting, results, error } = useSelector(state => state.storage.status)
-  const { progress } = useSelector(state => state.devices)
+  const { found, progress } = useSelector(state => state.devices)
   const { canCommission } = useSelector(path(['systemConfiguration', 'submit']))
   const rmaPvs = useSelector(path(['rma', 'pvs']))
 
@@ -67,13 +68,14 @@ function ESSHealthCheck() {
       results &&
       warningsLength(errors) === length(errors) &&
       canCommission === false
-    )
+    ) {
       dispatch(ALLOW_COMMISSIONING())
+    }
   }, [canCommission, dispatch, errors, hasErrors, results])
 
   useEffect(() => {
     if (isEmpty(results) || isNil(results)) {
-      dispatch(RESET_DISCOVERY())
+      dispatch(RESET_DISCOVERY({ keepDeviceList: true }))
       dispatch(GET_ESS_STATUS_INIT())
     }
   }, [dispatch, report, results])
@@ -89,14 +91,25 @@ function ESSHealthCheck() {
 
   const pathToErrors = paths.PROTECTED.ESS_HEALTH_CHECK_ERRORS.path
 
-  const syncWithCloud = () => {
-    dispatch(SUBMIT_CLEAR())
-    dispatch(SUBMIT_CONFIG_SUCCESS())
-  }
-
   const clearAndContinue = () => {
     dispatch(SUBMIT_CLEAR())
     history.push(paths.PROTECTED.SYSTEM_CONFIGURATION.path)
+  }
+
+  const validateModels = () => {
+    const filterModels = found.filter(
+      mi => mi.DEVICE_TYPE === 'Inverter' && !mi.PANEL
+    )
+    return filterModels.length < 1
+  }
+
+  const syncWithCloud = () => {
+    if (validateModels()) {
+      dispatch(SUBMIT_CLEAR())
+      dispatch(SUBMIT_CONFIG_SUCCESS())
+    } else {
+      toggleModelsWarning(true)
+    }
   }
 
   return (
@@ -116,6 +129,8 @@ function ESSHealthCheck() {
       syncError={syncError}
       waitModal={waitModal}
       showWaitModal={showWaitModal}
+      modelsWarning={modelsWarning}
+      toggleModelsWarning={toggleModelsWarning}
     />
   )
 }

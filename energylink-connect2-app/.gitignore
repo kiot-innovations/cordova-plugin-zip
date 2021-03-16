@@ -34,3 +34,4 @@ yarn-error.log*
 public/cordova.js
 public/plugins
 public/cordova_plugins.js
+public/mockServiceWorker.js

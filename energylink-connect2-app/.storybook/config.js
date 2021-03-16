@@ -1,6 +1,8 @@
 import { addDecorator, configure } from '@storybook/react'
 import { addParameters } from '@storybook/react'
 import { withProvider } from './decorators'
+import { initializeWorker, mswDecorator } from 'msw-storybook-addon';
+
 import suntheme from './suntheme'
 
 import '@sunpower/theme-dark'
@@ -11,6 +13,9 @@ addParameters({
   }
 })
 
+initializeWorker();
+
+addDecorator(mswDecorator);
 addDecorator(withProvider)
 
 const req = require.context('../src/stories', true, /\.stories\.js$/)

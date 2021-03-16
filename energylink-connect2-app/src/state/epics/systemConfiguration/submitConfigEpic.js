@@ -26,6 +26,7 @@ import {
   SUBMIT_GRIDPROFILE,
   SUBMIT_METERCONFIG
 } from 'state/actions/systemConfiguration'
+import { EMPTY_ACTION } from 'state/actions/share'
 
 const setCtRatedCurrent = ({ ratedCurrent, devices }) =>
   devices.reduce(async (prevPromise, nextDevice) => {
@@ -187,7 +188,11 @@ export const submitMeterDataEpic = (action$, state$) => {
     ofType(SUBMIT_METERCONFIG.getType()),
     exhaustMap(({ payload }) => {
       if (!payload.metaData) {
-        return of(SUBMIT_CONFIG_SUCCESS(payload))
+        return of(
+          payload.singleConfig
+            ? SUBMIT_CONFIG_ERROR(t('SUBMIT_METER_DATA_ERROR'))
+            : SUBMIT_CONFIG_SUCCESS(payload)
+        )
       }
 
       const promise = getApiPVS()
@@ -197,11 +202,15 @@ export const submitMeterDataEpic = (action$, state$) => {
         )
 
       return from(promise).pipe(
-        map(response =>
-          response.status === 200
-            ? SUBMIT_CONFIG_SUCCESS(response)
-            : SUBMIT_CONFIG_ERROR(t('SUBMIT_METER_DATA_ERROR'))
-        ),
+        map(response => {
+          if (response.status === 200) {
+            return payload.singleConfig
+              ? EMPTY_ACTION()
+              : SUBMIT_CONFIG_SUCCESS(response)
+          } else {
+            return SUBMIT_CONFIG_ERROR(t('SUBMIT_METER_DATA_ERROR'))
+          }
+        }),
         catchError(err => {
           Sentry.addBreadcrumb({ message: t('SUBMIT_METER_DATA_ERROR') })
           Sentry.captureException(err)

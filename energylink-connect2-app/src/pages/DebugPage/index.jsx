@@ -70,6 +70,11 @@ const DebugPage = () => {
         )}
         {renderDebugLink(
           history,
+          'RMA - Edit Devices',
+          paths.PROTECTED.RMA_DEVICES.path
+        )}
+        {renderDebugLink(
+          history,
           'Standard Serial Number List',
           paths.PROTECTED.SN_LIST.path
         )}
