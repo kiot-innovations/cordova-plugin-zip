@@ -322,6 +322,7 @@
   "STAGE_DECOMPRESSING": "Decompressing Files",
   "STAGE_FLASHING_IMAGES": "Installing Firmware",
   "STAGE_VERIFYING_IMAGES": "Verifying Installation",
+  "STAGE_FW_UPGRADE_SUCCESS": "PVS update successful",
   "STAGE_COMPLETE": "Rebooting PVS",
   "ERROR_POLLING_UPGRADE": "The request to get the PVS upgrade disconnected V:{0}",
   "NETWORK_DIFFERENT": "Network name different",

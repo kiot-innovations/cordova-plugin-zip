@@ -81,7 +81,9 @@ const UpdateScreen = () => {
 
   const getProgressForStage = stage => {
     if (indexOf(stage, stagesFromThePvs) === lastSuccessfulStage) {
-      return parseInt(percent)
+      const progress = parseInt(percent)
+
+      return isNaN(progress) ? 100 : progress
     }
     return lastSuccessfulStage < indexOf(stage, stagesFromThePvs) ? 0 : 100
   }
@@ -144,6 +146,10 @@ const UpdateScreen = () => {
                     <UpdateFirmwareStage
                       stage={t('STAGE_VERIFYING_IMAGES')}
                       percent={getProgressForStage('verifying images')}
+                    />
+                    <UpdateFirmwareStage
+                      stage={t('STAGE_FW_UPGRADE_SUCCESS')}
+                      percent={status !== 'WAITING_FOR_NETWORK' ? 0 : 100}
                     />
                     <UpdateFirmwareStage
                       stage={t('STAGE_COMPLETE')}
