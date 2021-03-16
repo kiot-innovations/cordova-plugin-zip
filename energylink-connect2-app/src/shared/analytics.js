@@ -228,3 +228,8 @@ export const setACModuleType = ({ timeElapsed, errorCodes, moduleTypes }) => {
   })
   return MIXPANEL_EVENT_QUEUED('Set AC Module type - success')
 }
+export const finishPLTWizard = () => {
+  const { mixpanel } = window
+  mixpanel.track('Panel Layout Setup')
+  return MIXPANEL_EVENT_QUEUED('Panel Layout Setup')
+}

@@ -25,10 +25,11 @@ import paths from 'routes/paths'
 import { useI18n } from 'shared/i18n'
 import { either } from 'shared/utils'
 import { PLT_LOAD } from 'state/actions/panel-layout-tool'
-import { Loader } from '../../components/Loader'
+import { Loader } from 'components/Loader'
 import { useError } from './hooks'
 import './panelLayoutTool.scss'
 import PanelLayoutTool from './Template'
+import { START_PLT_SETUP } from 'state/actions/analytics'
 
 const getEPanel = compose(
   withNotOverlappablePanel,
@@ -176,6 +177,10 @@ export default () => {
       dispatch(PLT_LOAD())
     }
   }, [changed, dispatch])
+
+  useEffect(() => {
+    dispatch(START_PLT_SETUP())
+  }, [dispatch])
 
   return either(
     loading,

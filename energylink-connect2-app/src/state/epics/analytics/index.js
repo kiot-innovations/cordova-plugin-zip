@@ -7,13 +7,15 @@ import inventoryEpics from './InventoryEpics'
 import deviceResumeEpic from './deviceResumeEpic'
 import firmwareUpdate from './firmwareUpdate'
 import acModelsEpic from './acModelsMetadata'
+import pltWizard from './panelLayoutTool'
 
 export default [
+  ...acModelsEpic,
   ...configureEpics,
   ...deviceResumeEpic,
-  ...acModelsEpic,
   ...firmwareUpdate,
   ...inventoryEpics,
+  ...pltWizard,
   ...scanPVS,
   ...siteEpics,
   errorEpic,

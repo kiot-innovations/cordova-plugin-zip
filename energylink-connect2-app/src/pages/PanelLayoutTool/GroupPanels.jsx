@@ -15,6 +15,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import paths from 'routes/paths'
 import { useI18n } from 'shared/i18n'
+import { FINISH_PLT_SETUP } from 'state/actions/analytics'
 import { useError } from './hooks'
 import './panelLayoutTool.scss'
 
@@ -42,6 +43,7 @@ export default () => {
   const history = useHistory()
 
   const onContinue = () => {
+    dispatch(FINISH_PLT_SETUP())
     history.push(paths.PROTECTED.SYSTEM_CONFIGURATION.path)
   }
 
