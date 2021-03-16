@@ -66,6 +66,9 @@ describe('checkLocationPermissionsEpic', () => {
     const state = {
       permissions: {
         location: null
+      },
+      modal: {
+        show: false
       }
     }
 
@@ -94,6 +97,10 @@ describe('checkLocationPermissionsEpic', () => {
     const state = {
       permissions: {
         location: null
+      },
+      modal: {
+        show: true,
+        title: 'We need location permissions'
       }
     }
 

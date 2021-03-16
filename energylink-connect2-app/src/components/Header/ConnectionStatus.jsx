@@ -52,6 +52,24 @@ export const ConnectionStatus = ({ status }) => {
         </svg>
       )
     ],
+    [
+      equals(appConnectionStatus.NOT_CONNECTED_PVS),
+      always(
+        <svg
+          width={33}
+          height={32}
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          id="status-notconnected"
+        >
+          <path
+            d="M30.183 32L15.82 17.648H8.256v-3.296h4.266l-3.3-3.297h-.966A4.947 4.947 0 003.306 16a4.947 4.947 0 004.95 4.945h4.949v3.296h-4.95a8.246 8.246 0 01-8.188-7.198A8.242 8.242 0 016.185 8.02L.49 2.33 2.823 0l29.694 29.67-2.332 2.328-.002.002zm-.257-9.583l-2.356-2.352a4.943 4.943 0 00-2.818-9.01h-4.949V7.76h4.95a8.248 8.248 0 017.777 5.5 8.237 8.237 0 01-2.603 9.158h-.001z"
+            fill="#EB5757"
+            className="pulse"
+          />
+        </svg>
+      )
+    ],
     [T, always(<div />)]
   ])
 

@@ -12,6 +12,7 @@ import { LOCATION_PERMISSIONS } from 'state/reducers/permissions'
 import { SHOW_MODAL, HIDE_MODAL } from 'state/actions/modal'
 import { translate } from 'shared/i18n'
 import { DEVICE_RESUME } from 'state/actions/mobile'
+import { EMPTY_ACTION } from 'state/actions/share'
 
 export const checkLocationPermissionsEpic = action$ => {
   return action$.pipe(
@@ -38,14 +39,23 @@ export const showLocationPermissionModalEpic = (action$, state$) => {
   const t = translate()
   return action$.pipe(
     ofType(CHECK_LOCATION_PERMISSION_SUCCESS.getType()),
-    map(({ payload: locationPermission }) =>
-      accessNotGranted(locationPermission) &&
-      !state$.value.permissions.modalOpened
-        ? SHOW_MODAL({
+    map(({ payload: locationPermission }) => {
+      if (accessNotGranted(locationPermission)) {
+        if (!state$.value.permissions.modalOpened) {
+          return SHOW_MODAL({
             title: t('LOCATION_TITLE'),
             componentPath: './AskForLocationPermissionModal.jsx'
           })
-        : HIDE_MODAL()
-    )
+        }
+      } else {
+        if (
+          state$.value.modal.show === true &&
+          state$.value.modal.title === t('LOCATION_TITLE')
+        ) {
+          return HIDE_MODAL()
+        }
+        return EMPTY_ACTION()
+      }
+    })
   )
 }

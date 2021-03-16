@@ -74,7 +74,7 @@ const connectToEpic = (action$, state$) =>
       }
 
       return from(connectToPVS(ssid, password)).pipe(
-        map(() => WAIT_FOR_SWAGGER()),
+        map(WAIT_FOR_SWAGGER),
         catchError(err => {
           const { message } = err
           const isTimeoutAndNotUpgrading =
@@ -112,7 +112,11 @@ const checkForConnection = async () => {
 
 export const waitForSwaggerEpic = (action$, state$) => {
   const stopPolling$ = action$.pipe(
-    ofType(PVS_CONNECTION_SUCCESS.getType(), STOP_NETWORK_POLLING.getType())
+    ofType(
+      PVS_CONNECTION_ERROR.getType(),
+      PVS_CONNECTION_SUCCESS.getType(),
+      STOP_NETWORK_POLLING.getType()
+    )
   )
 
   const t = translate(state$.value.language)
@@ -138,6 +142,7 @@ export const waitForSwaggerEpic = (action$, state$) => {
               return state$.value.fileDownloader.progress.downloading
                 ? EMPTY
                 : of(
+                    PVS_CONNECTION_ERROR(t('PVS_CONNECTION_TIMEOUT')),
                     SET_CONNECTION_STATUS(appConnectionStatus.NOT_CONNECTED_PVS)
                   )
             })
