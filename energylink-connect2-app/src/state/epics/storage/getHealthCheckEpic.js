@@ -22,8 +22,8 @@ export const startHealthCheckEpic = action$ => {
     ofType(GET_ESS_STATUS_INIT.getType()),
     map(() =>
       START_DISCOVERY_INIT({
-        Device: 'allnomi',
-        type: discoveryTypes.LEGACY
+        Device: 'storage',
+        type: discoveryTypes.STORAGE
       })
     )
   )
