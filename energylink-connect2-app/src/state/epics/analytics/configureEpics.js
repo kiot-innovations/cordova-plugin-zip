@@ -71,7 +71,6 @@ const getConfiguration = (state, success, errorMessage) => {
   const networkInterfaces = getConnectionInterfaces(state)
 
   const timePassedChoosing = getTimePassed(state.analytics.configureTimer)
-  const duration = getTimePassed(state.analytics.commissioningTimer)
   const EDPEndpointDuration = getTimePassed(state.analytics.submitTimer)
 
   const configEvent = {
@@ -85,8 +84,7 @@ const getConfiguration = (state, success, errorMessage) => {
     'Storage Operation Mode': getESSOperationalMode(state),
     'Storage Reserve Amount': getESSReserveAmount(state),
     'Time Elapsed Choosing': timePassedChoosing,
-    'Time Elapsed Submitting': EDPEndpointDuration,
-    'Time To Complete Commissioning ': duration
+    'Time Elapsed Submitting': EDPEndpointDuration
   }
 
   return saveConfiguration(configEvent)

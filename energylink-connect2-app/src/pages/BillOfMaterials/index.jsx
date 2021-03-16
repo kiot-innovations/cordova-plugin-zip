@@ -17,7 +17,6 @@ import { GET_SCANDIT_USERS } from 'state/actions/scandit'
 import { DOWNLOAD_VERIFY } from 'state/actions/fileDownloader'
 import { CHECK_PERMISSIONS_INIT } from 'state/actions/network'
 import { BEGIN_INSTALL } from 'state/actions/analytics'
-import useSiteChanged from 'hooks/useHasSiteChanged'
 
 import './BillOfMaterials.scss'
 
@@ -53,13 +52,12 @@ function BillOfMaterials() {
     bom: inventory.bom
   }))
 
-  const siteChanged = useSiteChanged()
   const { address1, latitude, longitude, siteName, siteKey } = useSelector(
     pathOr({}, ['site', 'site'])
   )
 
   const redirectInstall = () => {
-    dispatch(BEGIN_INSTALL({ siteChanged }))
+    dispatch(BEGIN_INSTALL({ siteKey }))
     if (isNil(lastVisitedPage)) {
       showPrecommissioningChecklist
         ? history.push(paths.PROTECTED.PRECOMM_CHECKLIST.path)

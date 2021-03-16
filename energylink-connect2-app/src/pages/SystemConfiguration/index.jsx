@@ -8,7 +8,7 @@ import paths from 'routes/paths'
 import { useI18n } from 'shared/i18n'
 import { FETCH_DEVICES_LIST, UPDATE_DEVICES_LIST } from 'state/actions/devices'
 import PanelLayoutWidget from 'pages/SystemConfiguration/panelLayoutWidget'
-import useSiteChanged from 'hooks/useHasSiteChanged'
+import useSiteKey from 'hooks/useSiteKey'
 import { CONFIG_START } from 'state/actions/analytics'
 import {
   ALLOW_COMMISSIONING,
@@ -61,7 +61,6 @@ function SystemConfiguration() {
   const t = useI18n()
   const dispatch = useDispatch()
   const history = useHistory()
-  const siteChanged = useSiteChanged()
   const [commissionBlockModal, showCommissionBlockModal] = useState(false)
 
   const { wpsSupport } = useSelector(state => state.pvs)
@@ -75,7 +74,7 @@ function SystemConfiguration() {
   const { meter } = useSelector(state => state.systemConfiguration)
   const { found } = useSelector(state => state.devices)
 
-  const siteKey = useSelector(path(['site', 'site', 'siteKey']))
+  const siteKey = useSiteKey()
   const rmaMode = useSelector(path(['rma', 'rmaMode']))
   const replacingPvs = equals('REPLACE_PVS', rmaMode)
 
@@ -127,7 +126,7 @@ function SystemConfiguration() {
                 ? REPLACE_RMA_PVS(configObject)
                 : SUBMIT_CONFIG(configObject)
             )
-            dispatch(CONFIG_START(siteChanged))
+
             history.push(paths.PROTECTED.SAVING_CONFIGURATION.path)
           } else {
             showErrorConfigurationModal()
@@ -159,6 +158,7 @@ function SystemConfiguration() {
   })
 
   useEffect(() => {
+    dispatch(CONFIG_START())
     dispatch(FETCH_DEVICES_LIST())
   }, [dispatch])
 

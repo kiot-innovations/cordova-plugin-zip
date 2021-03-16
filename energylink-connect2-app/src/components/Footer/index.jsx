@@ -8,7 +8,8 @@ import Nav from '@sunpower/nav'
 
 import { SET_LAST_VISITED_PAGE } from 'state/actions/global'
 import { appConnectionStatus } from 'state/reducers/network'
-
+import { BEGIN_INSTALL } from 'state/actions/analytics'
+import useSiteKey from 'hooks/useSiteKey'
 import paths, { protectedRoutes, TABS } from 'routes/paths'
 
 import './footer.scss'
@@ -32,6 +33,7 @@ const Footer = () => {
   )
 
   const location = useLocation()
+  const siteKey = useSiteKey()
   const active = useMemo(
     () => ({
       home: isActive(location.pathname, TABS.HOME),
@@ -58,6 +60,7 @@ const Footer = () => {
 
   const installRedirect = lastVisitedPage => {
     if (isNil(lastVisitedPage)) {
+      dispatch(BEGIN_INSTALL({ siteKey }))
       return showPrecommissioningChecklist
         ? paths.PROTECTED.PRECOMM_CHECKLIST.path
         : paths.PROTECTED.PVS_SELECTION_SCREEN.path
@@ -69,6 +72,7 @@ const Footer = () => {
     connectionStatus === appConnectionStatus.CONNECTED
       ? () => redirect(paths.PROTECTED.SYSTEM_CONFIGURATION.path)
       : () => {}
+
   const liveDataClickHandler =
     connectionStatus === appConnectionStatus.CONNECTED
       ? () => redirect(paths.PROTECTED.DATA.path)

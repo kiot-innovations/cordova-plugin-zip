@@ -9,19 +9,28 @@ import { PUSH_CANDIDATES_INIT } from 'state/actions/devices'
 import { SUBMIT_CONFIG } from 'state/actions/systemConfiguration'
 
 export const initialState = {
-  commissioningTimer: new Date().getTime(),
-  configureTimer: new Date().getTime(),
-  timeFromMiScan: new Date().getTime(),
-  submitTimer: new Date().getTime(),
+  commissioningTimer: 0,
+  configureTimer: 0,
+  selectingACModelTimer: 0,
+  submitTimer: 0,
+  timeFromMiScan: 0,
   commissioningSuccess: false,
-  selectingACModelTimer: new Date().getTime()
+  siteUnderCommissioning: ''
+}
+
+const siteUnderCommissioningChanged = (siteKey, siteUnderCommissioning) => {
+  if (!siteKey && !siteUnderCommissioning) {
+    return false
+  }
+
+  return siteKey !== siteUnderCommissioning
 }
 
 export default createReducer(
   {
-    [CONFIG_START]: (state, { siteChanged }) => ({
+    [CONFIG_START]: state => ({
       ...state,
-      configureTimer: siteChanged ? new Date().getTime() : state.configureTimer
+      configureTimer: new Date().getTime()
     }),
     [PUSH_CANDIDATES_INIT]: state => ({
       ...state,
@@ -31,13 +40,21 @@ export default createReducer(
       ...state,
       submitTimer: new Date().getTime()
     }),
-    [BEGIN_INSTALL]: (state, { siteChanged }) => ({
-      ...state,
-      commissioningTimer: siteChanged
-        ? new Date().getTime()
-        : state.commissioningTimer,
-      commissioningSuccess: siteChanged ? false : state.commissioningSuccess
-    }),
+    [BEGIN_INSTALL]: (state, { siteKey }) => {
+      const siteChanged = siteUnderCommissioningChanged(
+        siteKey,
+        state.siteUnderCommissioning
+      )
+
+      return {
+        ...state,
+        siteUnderCommissioning: siteKey,
+        commissioningTimer: siteChanged
+          ? new Date().getTime()
+          : state.commissioningTimer,
+        commissioningSuccess: siteChanged ? false : state.commissioningSuccess
+      }
+    },
     [SET_AC_DEVICES]: state => ({
       ...state,
       selectingACModelTimer: new Date().getTime()

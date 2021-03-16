@@ -7,7 +7,7 @@ import { PUSH_CANDIDATES_INIT } from 'state/actions/devices'
 
 import analyticsReducer, { initialState } from './index'
 
-describe('The analytics reduces', () => {
+describe('The analytics reducer', () => {
   it('should have the correct actions', () => {
     expect(analyticsReducer.has(BEGIN_INSTALL)).toBe(true)
     expect(analyticsReducer.has(COMMISSION_SUCCESS)).toBe(true)
@@ -15,20 +15,13 @@ describe('The analytics reduces', () => {
     expect(analyticsReducer.has(PUSH_CANDIDATES_INIT)).toBe(true)
   })
 
-  it('should have the sime state in case a config start with no site change', () => {
-    expect(analyticsReducer(undefined, {})).toEqual(initialState)
-    expect(
-      analyticsReducer(undefined, CONFIG_START({ siteChanged: false }))
-    ).toEqual(initialState)
-  })
-
-  it('should have the sime state in case a config start with no site change', () => {
+  it('should have the same state in case a config start with no siteKey change', () => {
     const { configureTimer: initialConfigure, ...initialRest } = initialState
 
     const {
       configureTimer: reducedConfigure,
       ...reducedRest
-    } = analyticsReducer(undefined, CONFIG_START({ siteChanged: true }))
+    } = analyticsReducer(undefined, CONFIG_START({ siteKey: 'A_123456' }))
 
     expect(initialRest).toEqual(reducedRest)
     expect(initialConfigure).not.toEqual(reducedConfigure)
