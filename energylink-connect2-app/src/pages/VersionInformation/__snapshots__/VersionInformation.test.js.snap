@@ -70,7 +70,7 @@ We have renamed the SunVault storage 'health check' to 'system check'
 
 Also, we have removed the recommendation to take a picture after device association.",
                   "releaseDate": "2021-03-23",
-                  "versionNumber": "6.49.0",
+                  "versionNumber": "6.50.0",
                 },
                 Object {
                   "bodyMarkdown": "# Bug Fix
