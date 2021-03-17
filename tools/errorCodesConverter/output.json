@@ -747,7 +747,7 @@
 		"error_description": "Remote power off button pressed",
 		"display": true,
 		"possible_causes": "The Remote power off button may have been pressed",
-		"recommended_actions": "Pull remote shutdown push-button. Rebool inverter by pressing the 'on/off' button for a few seconds until you see 'Off' in the display, then press the on/of button again."
+		"recommended_actions": "Pull remote shutdown push-button. Reboot inverter by pressing the 'on/off' button for a few seconds until you see 'Off' in the display, then press the on/off button again."
 	},
 	{
 		"event_code": "23003",
@@ -917,7 +917,7 @@
 		"error_description": "PVS could not connect to ESS Gateway",
 		"display": true,
 		"possible_causes": "The Schneider Gateway connects the inverter with PVS and batteries. If you’re seeing this error it is likely you’re also seeing other errors such as batteries  or inverter(s) missing.\n\nThis problem may be due to the following causes:\n1. Gateway lost power.\n2. The ethernet connector between the gateway and PVS is not connected or terminated correctly.\n3. Gateway may need to be rebooted.",
-		"recommended_actions": "1. Check that the gateway has power: the LEDs should be blinking.\n2. Check that the green cable and its orange, orange/white, green, blue and blue/white conductors in the metal ferules on the gateway side are properly connected to the J4 port on the MIO board.\n3. Check the black ethernet cable is connected to the black ethernet port on the PVS. Check also that the cable is correctly terminated.\n4. Check that the cable mentioned in 3 is connected to the port labeled as ‘ethernet’ on the Schneider gateway.\n5. Reboot the gateway. In order to do so:\n     a. Disconnect the yellow ethernet cable from its port on the left side of the gateway.\n     b. Disconnect the black ethernet cable from its port on the left side of the gateway.\n     c. Disconnect the green ethernet cable from the J4 port on the right side of the Multi I/O (MIO) board.\n     d. Wait for about 30 seconds.\n     e. Reconnect all the cables mentioned in sections 5a through 5c.\n     f. Wait for the LEDs show gateway is in normal operation (see manual).\n6. Press 'retry' on the commissioning app.\n\nIf the problem persists, this may be a sign that the Schneider Gateway is damaged. Please contact SunPower."
+		"recommended_actions": "1. Check that the gateway has power: the LEDs should be blinking.\n2. Check that the green cable and its orange, orange/white, green, blue and blue/white conductors in the metal ferules on the gateway side are properly connected to the J4 port on the MIO board.\n3. Check the black ethernet cable is connected to the black ethernet port on the PVS. Check also that the cable is correctly terminated.\n4. Check that the cable mentioned in 3 is connected to the port labeled as ‘ethernet’ on the Schneider gateway.\n5. Reboot the gateway. In order to do so:\n     a. Disconnect the yellow ethernet cable from its port on the left side of the gateway.\n     b. Disconnect the green ethernet cable from the J4 port on the right side of the Multi I/O (MIO) board.\n     c. Wait for about 30 seconds.\n     d. Reconnect all the cables mentioned in sections 5a and 5b.\n     e. Wait for the LEDs show gateway is in normal operation (see manual).\n6. Press 'retry' on the commissioning app.\n\nIf the problem persists, this may be a sign that the Schneider Gateway is damaged. Please contact SunPower."
 	},
 	{
 		"event_code": "30003",
@@ -986,8 +986,8 @@
 		"in_use": true,
 		"error_description": "PV Disconnect Relay Board Not Powered",
 		"display": true,
-		"possible_causes": "1. The MID may be open and inverter is not forming a microgrid.\n2. PV Disconnect Relay Board not properly install.",
-		"recommended_actions": "1. Close the MID contactor.\n2. Verify PV Disconnect Relay Board is correctly installed."
+		"possible_causes": "1. The MID may be open and inverter is not forming a microgrid.\n2. MIDC needs to be reset.\n3. The MIDC is not sensing voltage on the load side.",
+		"recommended_actions": "1. Close the MID contactor.\n2. Check voltage sense terminations and conductors between the Hub+ bus bars and MIDC J1 connector. Tap retry on SunPower Pro Connect.\n3. If the problem persists, try resetting the MIDC by pressing the blue button on the MIDC, then tap retry on SunPower Pro Connect.\nIf the problem still persists, please contact SunPower."
 	},
 	{
 		"event_code": "30015",
@@ -2707,7 +2707,7 @@
 		"error_description": "Inverter bulk settings update error",
 		"display": true,
 		"possible_causes": "Could not update settings in the inverter.",
-		"recommended_actions": "1. Reboot the gateway. In order to do so:\n     a. Disconnect the yellow ethernet cable from its port on the left side of the gateway.\n     b. Disconnect the black ethernet cable from its port on the left side of the gateway.\n     c. Disconnect the green ethernet cable from the J4 port on the right side of the Multi I/O (MIO) board.\n     d. Wait for about 30 seconds.\n     e. Reconnect all the cables mentioned in sections 5a through 5c.\n     f. Wait for the LEDs show gateway is in normal operation (see manual).\n2. Try applying bulk settings again by tapping 'retry' or running the firmware update step again.\nIf the problem persists, please contact SunPower."
+		"recommended_actions": "1. Reboot the gateway. In order to do so:\n     a. Disconnect the yellow ethernet cable from its port on the left side of the gateway.\n     b. Disconnect the green ethernet cable from the J4 port on the right side of the Multi I/O (MIO) board.\n     c. Wait for about 30 seconds.\n     d. Reconnect all the cables mentioned in sections 1a and 1b \n     e. Wait for the LEDs show gateway is in normal operation (see manual).\n2. Try applying bulk settings again by tapping 'retry' or running the firmware update step again.\nIf the problem persists, please contact SunPower."
 	},
 	{
 		"event_code": "43040",
@@ -3098,5 +3098,95 @@
 		"display": true,
 		"possible_causes": "PV disconnect relay board firmware may be corrupted",
 		"recommended_actions": "Try again. If the problem persists you may need to replace the PV disconnect relay board and contact SunPower."
+	},
+	{
+		"event_code": "05006",
+		"event_name": "gateway_grid_profile_default_configured_info",
+		"code": "05006",
+		"in_use": true,
+		"error_description": "System was configured with a default grid profile",
+		"display": true,
+		"possible_causes": "A storage inverter grid profile is not available for this geographical area.",
+		"recommended_actions": "No action is required at this time. SunPower will update the grid profile remotely once it becomes available."
+	},
+	{
+		"event_code": "15003",
+		"event_name": "gateway_grid_profile_unknown_warning",
+		"code": "15003",
+		"in_use": true,
+		"error_description": "Unknown grid profile",
+		"display": true,
+		"possible_causes": "The storage inverter grid profile for this site is unknown. A default grid profile was applied.",
+		"recommended_actions": "No action is required at this time. SunPower will update the grid profile remotely once it becomes available."
+	},
+	{
+		"event_code": "30100",
+		"event_name": "failed_to_switch_mid_operating_mode_critical",
+		"code": "30100",
+		"in_use": true,
+		"error_description": "MID failed to switch to commissioning mode.",
+		"display": true,
+		"possible_causes": "During commissioning, we force the MID to the closed position in order to keduring commissioning. A problem ocurred that prevented us from setting the MID to the force closed position. This could be due to: \n1. The gird-sense breaker was left open. \n2. The ESS inverter breaker was left open.\n",
+		"recommended_actions": "Make sure ESS and grid-sense breakers are closed, if the problem persists, please contact SunPower."
+	},
+	{
+		"event_code": "30101",
+		"event_name": "failed_to_start_fw_update_critical",
+		"code": "30101",
+		"in_use": true,
+		"error_description": "Firmware update failed to start.",
+		"display": true,
+		"possible_causes": "An internal error prevented firmware updates to start.",
+		"recommended_actions": "Please tap retry. If the problem persists, please contact SunPower."
+	},
+	{
+		"event_code": "30102",
+		"event_name": "failed_to_start_component_mapping_critical",
+		"code": "30102",
+		"in_use": true,
+		"error_description": "Component mapping failed to start.",
+		"display": true,
+		"possible_causes": "An internal error prevented component mapping to start.",
+		"recommended_actions": "Please tap retry. If the problem persists, please contact SunPower."
+	},
+	{
+		"event_code": "30103",
+		"event_name": "failed_to_start_health_checks_critical",
+		"code": "30103",
+		"in_use": true,
+		"error_description": "System checks failed to start.",
+		"display": true,
+		"possible_causes": "An internal error prevented system checks to start.",
+		"recommended_actions": "Please tap retry. If the problem persists, please contact SunPower."
+	},
+	{
+		"event_code": "35003",
+		"event_name": "gateway_grid_profile_unknown_critical",
+		"code": "35003",
+		"in_use": true,
+		"error_description": "Grid profile was not updated to XW Inverter",
+		"display": true,
+		"possible_causes": "Internal error: system attempted to apply an unknown grid profile.",
+		"recommended_actions": "Please tap retry. If the problem persists, please contact SunPower."
+	},
+	{
+		"event_code": "35004",
+		"event_name": "gateway_grid_profile_not_supported_critical",
+		"code": "35004",
+		"in_use": true,
+		"error_description": "Grid profile was not updated to XW Inverter",
+		"display": true,
+		"possible_causes": "Internal error: grid profile is not supported by XW inverter.",
+		"recommended_actions": "Please tap retry. If the problem persists, please contact SunPower."
+	},
+	{
+		"event_code": "35005",
+		"event_name": "gateway_grid_profile_not_configured_critical",
+		"code": "35005",
+		"in_use": true,
+		"error_description": "Grid profile was not updated to XW Inverter",
+		"display": true,
+		"possible_causes": "Internal error: grid profile was not configued.",
+		"recommended_actions": "Please tap retry. If the problem persists, please contact SunPower."
 	}
 ]
