@@ -30,6 +30,10 @@
         }
       }
 
+      .collapsible .collapsible-content.expanded {
+        max-height: none;
+      }
+
       .releaseDate {
         color: $dark-gray;
         margin: 10px 0;

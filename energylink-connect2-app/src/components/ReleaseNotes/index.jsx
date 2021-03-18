@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { isNil, pathOr, prop } from 'ramda'
 import moment from 'moment'
 import { useI18n } from 'shared/i18n'
@@ -10,7 +10,12 @@ import './ReleaseNotes.scss'
 
 const ReleaseNotes = ({ title, releaseNotes, currentVersion = null }) => {
   const t = useI18n()
-  const versions = pathOr([], 'versions', releaseNotes)
+  const [versions, setVersions] = useState(pathOr([], 'versions', releaseNotes))
+
+  useEffect(() => {
+    setVersions(releaseNotes.versions)
+  }, [releaseNotes])
+
   const fwFileInfo = useSelector(pathOr('', ['fileDownloader', 'fileInfo']))
   if (isNil(currentVersion)) {
     currentVersion = prop('version', fwFileInfo)
