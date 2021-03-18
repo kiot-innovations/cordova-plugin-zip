@@ -46,6 +46,8 @@ export const showLocationPermissionModalEpic = (action$, state$) => {
             title: t('LOCATION_TITLE'),
             componentPath: './AskForLocationPermissionModal.jsx'
           })
+        } else {
+          return EMPTY_ACTION()
         }
       } else {
         if (
