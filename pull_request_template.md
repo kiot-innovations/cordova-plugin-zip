@@ -13,6 +13,9 @@
 
 <!-- List the steps to reproduce, corroborate, or tests to run. Write this section clear enough so that external developers can also follow it and test the feature or fix. -->
 
+- [ ] This PR needs ACPV commissioning testing
+- [ ] This PR needs Storage commissioning testing
+
 #### Any background context you want to provide?
 
 <!-- Add any information regarding the PR that the reviewers should know, if necessary. -->
