@@ -17,7 +17,6 @@ import { GET_ESS_STATUS_INIT, RUN_EQS_SYSTEMCHECK } from 'state/actions/storage'
 import { RESET_DISCOVERY } from 'state/actions/devices'
 import {
   SUBMIT_CLEAR,
-  SUBMIT_CONFIG_SUCCESS,
   ALLOW_COMMISSIONING
 } from 'state/actions/systemConfiguration'
 import paths from 'routes/paths'
@@ -103,10 +102,9 @@ function ESSHealthCheck() {
     return filterModels.length < 1
   }
 
-  const syncWithCloud = () => {
+  const warnMissingModels = () => {
     if (validateModels()) {
-      dispatch(SUBMIT_CLEAR())
-      dispatch(SUBMIT_CONFIG_SUCCESS())
+      history.push(pathToContinue)
     } else {
       toggleModelsWarning(true)
     }
@@ -122,7 +120,6 @@ function ESSHealthCheck() {
       pathToContinue={pathToContinue}
       pathToErrors={pathToErrors}
       rmaMode={rmaMode}
-      sync={syncWithCloud}
       clear={clearAndContinue}
       submitting={submitting}
       commissioned={commissioned}
@@ -131,6 +128,7 @@ function ESSHealthCheck() {
       showWaitModal={showWaitModal}
       modelsWarning={modelsWarning}
       toggleModelsWarning={toggleModelsWarning}
+      warnMissingModels={warnMissingModels}
     />
   )
 }

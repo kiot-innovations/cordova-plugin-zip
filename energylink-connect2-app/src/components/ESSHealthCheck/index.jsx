@@ -5,13 +5,13 @@ import { isEmpty, length, pathOr, isNil, path } from 'ramda'
 import SwipeableBottomSheet from 'react-swipeable-bottom-sheet'
 import { useI18n } from 'shared/i18n'
 import { either, addHasErrorProp, warningsLength } from 'shared/utils'
-import { rmaModes } from 'state/reducers/rma'
 import paths from 'routes/paths'
+
+import { rmaModes } from 'state/reducers/rma'
 
 import ESSHealthCheckReport from './ESSHealthCheckReport'
 import ErrorDetected from 'components/ESSErrorDetected'
 import ContinueFooter from 'components/ESSContinueFooter'
-import StorageSyncFooter from 'components/ESSContinueFooter/StorageSyncFooter'
 
 import './ESSHealthCheck.scss'
 
@@ -37,18 +37,14 @@ function ESSHealthCheck(props) {
     waiting,
     progress,
     onRetry,
+    rmaMode,
     pathToContinue,
     pathToErrors,
-    rmaMode = rmaModes.NONE,
-    sync,
-    clear,
-    submitting,
-    commissioned,
-    syncError,
     waitModal,
     showWaitModal,
     modelsWarning,
-    toggleModelsWarning
+    toggleModelsWarning,
+    warnMissingModels
   } = props
 
   return (
@@ -92,24 +88,6 @@ function ESSHealthCheck(props) {
       </SwipeableBottomSheet>
 
       {either(
-        !hasErrors && !loading,
-        rmaMode === rmaModes.EDIT_DEVICES ? (
-          <StorageSyncFooter
-            submitting={submitting}
-            commissioned={commissioned}
-            error={syncError}
-            sync={sync}
-            clear={clear}
-          />
-        ) : (
-          <ContinueFooter
-            url={pathToContinue}
-            text={t('SYSTEM_CHECK_SUCCESSFUL')}
-          />
-        )
-      )}
-
-      {either(
         hasErrors && !loading,
         <ErrorDetected
           number={length(errors) - warningsLength(errors)}
@@ -118,7 +96,17 @@ function ESSHealthCheck(props) {
           url={pathToErrors}
           globalError={statusErrorMessage}
           next={pathToContinue}
-          customAction={sync}
+          customAction={
+            rmaMode === rmaModes.EDIT_DEVICES ? warnMissingModels : {}
+          }
+        />
+      )}
+
+      {either(
+        !hasErrors && !loading,
+        <ContinueFooter
+          url={pathToContinue}
+          text={t('SYSTEM_CHECK_SUCCESSFUL')}
         />
       )}
 
