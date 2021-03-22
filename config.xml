@@ -73,9 +73,6 @@
         <splash src="www/res/screen/ios/Default@2x~ipad~comany.png" />
     </platform>
     <preference name="Orientation" value="portrait" />
-    <edit-config target="NSCameraUsageDescription" file="*-Info.plist" mode="merge">
-        <string>need camera access to scan for microinverter serial numbers</string>
-    </edit-config>
     <edit-config file="*-Info.plist" mode="merge" target="NSPhotoLibraryUsageDescription">
         <string>need photo library access to get pictures from there</string>
     </edit-config>
