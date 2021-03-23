@@ -70,7 +70,7 @@ We have renamed the SunVault storage 'health check' to 'system check'
 
 Also, we have removed the recommendation to take a picture after device association.",
                   "releaseDate": "2021-03-23",
-                  "versionNumber": "6.51.1",
+                  "versionNumber": "6.51.2",
                 },
                 Object {
                   "bodyMarkdown": "# Bug Fix
@@ -144,7 +144,7 @@ You will now see a message that &quot;Commissioning was successfully completed&q
                 >
                   <Collapsible
                     expanded={true}
-                    title="VERSION 6.51.1"
+                    title="VERSION 6.51.2"
                   >
                     <div
                       className="collapsible"
@@ -159,7 +159,7 @@ You will now see a message that &quot;Commissioning was successfully completed&q
                           <span
                             className="has-text-weight-bold"
                           >
-                            VERSION 6.51.1
+                            VERSION 6.51.2
                           </span>
                         </div>
                         <div

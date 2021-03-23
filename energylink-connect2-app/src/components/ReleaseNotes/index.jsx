@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { isNil, pathOr, prop } from 'ramda'
+import { isNil, pathOr, propOr, prop } from 'ramda'
 import moment from 'moment'
 import { useI18n } from 'shared/i18n'
 import Collapsible from 'components/Collapsible'
@@ -10,10 +10,10 @@ import './ReleaseNotes.scss'
 
 const ReleaseNotes = ({ title, releaseNotes, currentVersion = null }) => {
   const t = useI18n()
-  const [versions, setVersions] = useState(pathOr([], 'versions', releaseNotes))
+  const [versions, setVersions] = useState(propOr([], 'versions', releaseNotes))
 
   useEffect(() => {
-    setVersions(releaseNotes.versions)
+    setVersions(propOr([], 'versions', releaseNotes))
   }, [releaseNotes])
 
   const fwFileInfo = useSelector(pathOr('', ['fileDownloader', 'fileInfo']))
