@@ -24,7 +24,8 @@ describe('RSE Reducer', () => {
         error: null,
         newRSEValue: null,
         isSetting: false,
-        isPolling: true
+        isPolling: true,
+        updated: false
       }
     )
   })
@@ -39,7 +40,8 @@ describe('RSE Reducer', () => {
       }),
       {
         data: { powerProduction: 'On', result: 'Pass', progress: 100 },
-        selectedPowerProduction: 'On'
+        selectedPowerProduction: 'On',
+        updated: false
       }
     )
   })

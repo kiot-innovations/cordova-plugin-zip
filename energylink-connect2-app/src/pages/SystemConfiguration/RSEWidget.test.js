@@ -8,7 +8,7 @@ describe('RSE Widget', () => {
 
   let initialState = {
     systemConfiguration: {
-      rse: {}
+      rse: { data: { powerProduction: 'Off' } }
     }
   }
 

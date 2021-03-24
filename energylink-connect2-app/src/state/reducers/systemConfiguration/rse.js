@@ -21,6 +21,7 @@ const initialState = {
     powerProduction: null,
     progress: null
   },
+  updated: false,
   error: null
 }
 
@@ -32,13 +33,17 @@ const rseReducer = createReducer(
       data: {
         ...state.data,
         progress: null
-      }
+      },
+      updated: false
     }),
     [GET_RSE_SUCCESS]: (state, payload) => ({
       ...state,
       isSetting: state.isPolling && propOr(0, 'progress', payload) < 100,
       data: payload,
-      selectedPowerProduction: payload.powerProduction
+      selectedPowerProduction: state.isSetting
+        ? state.selectedPowerProduction
+        : payload.powerProduction,
+      updated: false
     }),
     [GET_RSE_ERROR]: (state, payload) => ({
       ...state,
@@ -56,7 +61,8 @@ const rseReducer = createReducer(
       ...state,
       isSetting: false,
       isPolling: false,
-      selectedPowerProduction: state.data.powerProduction
+      selectedPowerProduction: state.data.powerProduction,
+      updated: true
     }),
     [SET_RSE_ERROR]: (state, error) => ({
       ...state,
@@ -67,7 +73,8 @@ const rseReducer = createReducer(
     }),
     [SET_SELECTED_POWER_PRODUCTION]: (state, selectedPowerProduction) => ({
       ...state,
-      selectedPowerProduction
+      selectedPowerProduction,
+      updated: false
     }),
     [RESET_SYSTEM_CONFIGURATION]: () => initialState,
     [RESET_COMMISSIONING]: () => initialState

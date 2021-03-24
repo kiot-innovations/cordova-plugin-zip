@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import { curry, compose, equals, path, prop, isNil, propEq, find } from 'ramda'
 import { useDispatch, useSelector } from 'react-redux'
+import clsx from 'clsx'
 
 import {
   GET_RSE_INIT,
@@ -29,11 +30,10 @@ function RSEWidget() {
     isSetting,
     isPolling,
     error,
-    data = {},
-    selectedPowerProduction
+    data: { powerProduction, progress },
+    selectedPowerProduction,
+    updated
   } = useSelector(path(['systemConfiguration', 'rse']))
-
-  const { powerProduction, progress = 100 } = data
 
   const dropDownValues = [
     { label: t('ON'), value: 'On' },
@@ -120,7 +120,9 @@ function RSEWidget() {
 
             <div className="is-flex mt-15">
               <button
-                className="button is-primary is-uppercase auto"
+                className={clsx('button is-primary is-uppercase auto', {
+                  'sp-check': updated
+                })}
                 disabled={isSetting || disableApplyBtn}
                 onClick={() =>
                   onApplyPowerProductionValue(
@@ -135,9 +137,9 @@ function RSEWidget() {
                   isWorking,
                   t(
                     'APPLYING',
-                    progress && progress < 100 ? `${progress}%` : '...'
+                    progress && progress < 100 ? `${progress}%` : '0%'
                   ),
-                  t('APPLY')
+                  updated ? t('APPLIED') : t('APPLY')
                 )}
               </button>
             </div>
