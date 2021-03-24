@@ -1,4 +1,4 @@
-import { miTypes, PERSIST_DATA_PATH, headersToObj } from './utils'
+import { miTypes, PERSIST_DATA_PATH, headersToObj, getUrl } from './utils'
 import { equals } from 'ramda'
 
 describe("The variables that shouldn't change", () => {
@@ -8,6 +8,12 @@ describe("The variables that shouldn't change", () => {
   it('should not change the MI Types', function() {
     expect(miTypes).toMatchSnapshot()
   })
+})
+
+it('should get the url', () => {
+  delete window.location
+  window.location = new URL('http://127.0.0.1/#/bill-of-materials')
+  expect(getUrl()).toBe('/bill-of-materials')
 })
 
 describe('The headers to obj funtion', () => {

@@ -15,6 +15,7 @@ import paths from 'routes/paths'
 import './SavingConfiguration.scss'
 import { useSelector } from 'react-redux'
 import PanelLayoutToolSavingStatus from './PanelLayoutToolSavingStatus'
+import { CREATE_HOMEOWNER_ACCOUNT_RESET } from 'state/actions/site'
 
 const SavingConfiguration = () => {
   const t = useI18n()
@@ -98,9 +99,10 @@ const SavingConfiguration = () => {
                 !isEmpty(commissioningPvs),
                 <HomeownerAccountCreation
                   open={showHomeownerCreation}
-                  onChange={() =>
+                  onChange={() => {
                     setShowHomeownerCreation(!showHomeownerCreation)
-                  }
+                    dispatch(CREATE_HOMEOWNER_ACCOUNT_RESET())
+                  }}
                 />
               )}
             </div>

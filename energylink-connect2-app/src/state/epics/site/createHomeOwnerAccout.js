@@ -15,7 +15,7 @@ import { getAccessToken } from 'shared/utils'
 
 const reportCreateHOError = catchError(err => {
   Sentry.captureException(err)
-  return of(CREATE_HOMEOWNER_ACCOUNT_ERROR.asError(err))
+  return of(CREATE_HOMEOWNER_ACCOUNT_ERROR.asError(err.message))
 })
 
 const createHomeOwnerAccount = async (payload, state) => {

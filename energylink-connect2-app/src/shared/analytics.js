@@ -215,6 +215,16 @@ export const commissionSite = ({
   )
 }
 
+export const registerHomeOwnerAccount = ({ location, errorMessage }) => {
+  const { mixpanel } = window
+  mixpanel.track('Register HomeOwner', {
+    success: !errorMessage,
+    location,
+    errorMessage
+  })
+  return MIXPANEL_EVENT_QUEUED('Register HO')
+}
+
 export const setACModuleType = ({ timeElapsed, errorCodes, moduleTypes }) => {
   const { mixpanel } = window
   if (Array.isArray(errorCodes) && errorCodes.length !== 0) {

@@ -17,9 +17,7 @@ describe('VersionInformation component', () => {
         `${key.toUpperCase()} ${params.join('_')}`.trim()
       )
   })
-
   const version = '4.0.1'
-
   test('renders correctly', () => {
     const { component } = mountWithProvider(
       <VersionInformation appVersion={version} />

@@ -159,7 +159,10 @@ function BillOfMaterials() {
         !isEmpty(PVS),
         <HomeownerAccountCreation
           open={showHomeownerCreation}
-          onChange={() => setShowHomeownerCreation(!showHomeownerCreation)}
+          onChange={() => {
+            setShowHomeownerCreation(!showHomeownerCreation)
+            dispatch(CREATE_HOMEOWNER_ACCOUNT_RESET())
+          }}
         />
       )}
     </main>

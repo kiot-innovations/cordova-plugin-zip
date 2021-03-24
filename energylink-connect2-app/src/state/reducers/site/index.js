@@ -33,7 +33,7 @@ const initialState = {
   homeownerCreation: {
     complete: false,
     creating: false,
-    error: undefined
+    error: ''
   }
 }
 

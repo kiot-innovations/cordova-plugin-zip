@@ -405,12 +405,14 @@ export const isPVSDevice = compose(
 
 export const eqByProp = curry((prop, obj1, obj2) => obj1[prop] === obj2[prop])
 
+export const getAccessToken = path(['user', 'auth', 'access_token'])
+
+export const getUrl = () => compose(last, split('#'))(window.location.href)
+
 export const getTimePassed = startPoint => {
   const now = new Date().getTime()
   return (now - startPoint) / 1000
 }
-
-export const getAccessToken = path(['user', 'auth', 'access_token'])
 
 export const headersToObj = headers => {
   const parsedHeaders = {}
