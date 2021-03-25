@@ -85,7 +85,7 @@ exports[`Legacy Discovery Settings renders correctly 1`] = `
                 <SelectField
                   defaultValue={
                     Object {
-                      "label": "EQUINOX_AC_DEVICES",
+                      "label": "SUNPOWER_AC_MODULES",
                       "value": "ONLYMI",
                     }
                   }
@@ -94,11 +94,11 @@ exports[`Legacy Discovery Settings renders correctly 1`] = `
                   options={
                     Array [
                       Object {
-                        "label": "EQUINOX_AC_DEVICES",
+                        "label": "SUNPOWER_AC_MODULES",
                         "value": "ONLYMI",
                       },
                       Object {
-                        "label": "EVERYTHING",
+                        "label": "ALL_DEVICES",
                         "value": "LEGACY",
                       },
                     ]
@@ -118,7 +118,7 @@ exports[`Legacy Discovery Settings renders correctly 1`] = `
                     defaultMenuIsOpen={false}
                     defaultValue={
                       Object {
-                        "label": "EQUINOX_AC_DEVICES",
+                        "label": "SUNPOWER_AC_MODULES",
                         "value": "ONLYMI",
                       }
                     }
@@ -129,11 +129,11 @@ exports[`Legacy Discovery Settings renders correctly 1`] = `
                     options={
                       Array [
                         Object {
-                          "label": "EQUINOX_AC_DEVICES",
+                          "label": "SUNPOWER_AC_MODULES",
                           "value": "ONLYMI",
                         },
                         Object {
-                          "label": "EVERYTHING",
+                          "label": "ALL_DEVICES",
                           "value": "LEGACY",
                         },
                       ]
@@ -187,11 +187,11 @@ exports[`Legacy Discovery Settings renders correctly 1`] = `
                       options={
                         Array [
                           Object {
-                            "label": "EQUINOX_AC_DEVICES",
+                            "label": "SUNPOWER_AC_MODULES",
                             "value": "ONLYMI",
                           },
                           Object {
-                            "label": "EVERYTHING",
+                            "label": "ALL_DEVICES",
                             "value": "LEGACY",
                           },
                         ]
@@ -205,7 +205,7 @@ exports[`Legacy Discovery Settings renders correctly 1`] = `
                       theme={[Function]}
                       value={
                         Object {
-                          "label": "EQUINOX_AC_DEVICES",
+                          "label": "SUNPOWER_AC_MODULES",
                           "value": "ONLYMI",
                         }
                       }
@@ -230,11 +230,11 @@ exports[`Legacy Discovery Settings renders correctly 1`] = `
                         options={
                           Array [
                             Object {
-                              "label": "EQUINOX_AC_DEVICES",
+                              "label": "SUNPOWER_AC_MODULES",
                               "value": "ONLYMI",
                             },
                             Object {
-                              "label": "EVERYTHING",
+                              "label": "ALL_DEVICES",
                               "value": "LEGACY",
                             },
                           ]
@@ -286,11 +286,11 @@ exports[`Legacy Discovery Settings renders correctly 1`] = `
                             "openMenuOnFocus": false,
                             "options": Array [
                               Object {
-                                "label": "EQUINOX_AC_DEVICES",
+                                "label": "SUNPOWER_AC_MODULES",
                                 "value": "ONLYMI",
                               },
                               Object {
-                                "label": "EVERYTHING",
+                                "label": "ALL_DEVICES",
                                 "value": "LEGACY",
                               },
                             ],
@@ -302,7 +302,7 @@ exports[`Legacy Discovery Settings renders correctly 1`] = `
                             "tabSelectsValue": true,
                             "theme": [Function],
                             "value": Object {
-                              "label": "EQUINOX_AC_DEVICES",
+                              "label": "SUNPOWER_AC_MODULES",
                               "value": "ONLYMI",
                             },
                           }
@@ -378,11 +378,11 @@ exports[`Legacy Discovery Settings renders correctly 1`] = `
                               options={
                                 Array [
                                   Object {
-                                    "label": "EQUINOX_AC_DEVICES",
+                                    "label": "SUNPOWER_AC_MODULES",
                                     "value": "ONLYMI",
                                   },
                                   Object {
-                                    "label": "EVERYTHING",
+                                    "label": "ALL_DEVICES",
                                     "value": "LEGACY",
                                   },
                                 ]
@@ -434,11 +434,11 @@ exports[`Legacy Discovery Settings renders correctly 1`] = `
                                   "openMenuOnFocus": false,
                                   "options": Array [
                                     Object {
-                                      "label": "EQUINOX_AC_DEVICES",
+                                      "label": "SUNPOWER_AC_MODULES",
                                       "value": "ONLYMI",
                                     },
                                     Object {
-                                      "label": "EVERYTHING",
+                                      "label": "ALL_DEVICES",
                                       "value": "LEGACY",
                                     },
                                   ],
@@ -450,7 +450,7 @@ exports[`Legacy Discovery Settings renders correctly 1`] = `
                                   "tabSelectsValue": true,
                                   "theme": [Function],
                                   "value": Object {
-                                    "label": "EQUINOX_AC_DEVICES",
+                                    "label": "SUNPOWER_AC_MODULES",
                                     "value": "ONLYMI",
                                   },
                                 }
@@ -534,11 +534,11 @@ exports[`Legacy Discovery Settings renders correctly 1`] = `
                                     options={
                                       Array [
                                         Object {
-                                          "label": "EQUINOX_AC_DEVICES",
+                                          "label": "SUNPOWER_AC_MODULES",
                                           "value": "ONLYMI",
                                         },
                                         Object {
-                                          "label": "EVERYTHING",
+                                          "label": "ALL_DEVICES",
                                           "value": "LEGACY",
                                         },
                                       ]
@@ -590,11 +590,11 @@ exports[`Legacy Discovery Settings renders correctly 1`] = `
                                         "openMenuOnFocus": false,
                                         "options": Array [
                                           Object {
-                                            "label": "EQUINOX_AC_DEVICES",
+                                            "label": "SUNPOWER_AC_MODULES",
                                             "value": "ONLYMI",
                                           },
                                           Object {
-                                            "label": "EVERYTHING",
+                                            "label": "ALL_DEVICES",
                                             "value": "LEGACY",
                                           },
                                         ],
@@ -606,7 +606,7 @@ exports[`Legacy Discovery Settings renders correctly 1`] = `
                                         "tabSelectsValue": true,
                                         "theme": [Function],
                                         "value": Object {
-                                          "label": "EQUINOX_AC_DEVICES",
+                                          "label": "SUNPOWER_AC_MODULES",
                                           "value": "ONLYMI",
                                         },
                                       }
@@ -668,7 +668,7 @@ exports[`Legacy Discovery Settings renders correctly 1`] = `
                                           cx={[Function]}
                                           data={
                                             Object {
-                                              "label": "EQUINOX_AC_DEVICES",
+                                              "label": "SUNPOWER_AC_MODULES",
                                               "value": "ONLYMI",
                                             }
                                           }
@@ -681,11 +681,11 @@ exports[`Legacy Discovery Settings renders correctly 1`] = `
                                           options={
                                             Array [
                                               Object {
-                                                "label": "EQUINOX_AC_DEVICES",
+                                                "label": "SUNPOWER_AC_MODULES",
                                                 "value": "ONLYMI",
                                               },
                                               Object {
-                                                "label": "EVERYTHING",
+                                                "label": "ALL_DEVICES",
                                                 "value": "LEGACY",
                                               },
                                             ]
@@ -737,11 +737,11 @@ exports[`Legacy Discovery Settings renders correctly 1`] = `
                                               "openMenuOnFocus": false,
                                               "options": Array [
                                                 Object {
-                                                  "label": "EQUINOX_AC_DEVICES",
+                                                  "label": "SUNPOWER_AC_MODULES",
                                                   "value": "ONLYMI",
                                                 },
                                                 Object {
-                                                  "label": "EVERYTHING",
+                                                  "label": "ALL_DEVICES",
                                                   "value": "LEGACY",
                                                 },
                                               ],
@@ -753,7 +753,7 @@ exports[`Legacy Discovery Settings renders correctly 1`] = `
                                               "tabSelectsValue": true,
                                               "theme": [Function],
                                               "value": Object {
-                                                "label": "EQUINOX_AC_DEVICES",
+                                                "label": "SUNPOWER_AC_MODULES",
                                                 "value": "ONLYMI",
                                               },
                                             }
@@ -813,7 +813,7 @@ exports[`Legacy Discovery Settings renders correctly 1`] = `
                                             <div
                                               className="search__single-value css-5sz5u5-singleValue"
                                             >
-                                              EQUINOX_AC_DEVICES
+                                              SUNPOWER_AC_MODULES
                                             </div>
                                           </EmotionCssPropInternal>
                                         </SingleValue>
@@ -880,11 +880,11 @@ exports[`Legacy Discovery Settings renders correctly 1`] = `
                                     options={
                                       Array [
                                         Object {
-                                          "label": "EQUINOX_AC_DEVICES",
+                                          "label": "SUNPOWER_AC_MODULES",
                                           "value": "ONLYMI",
                                         },
                                         Object {
-                                          "label": "EVERYTHING",
+                                          "label": "ALL_DEVICES",
                                           "value": "LEGACY",
                                         },
                                       ]
@@ -936,11 +936,11 @@ exports[`Legacy Discovery Settings renders correctly 1`] = `
                                         "openMenuOnFocus": false,
                                         "options": Array [
                                           Object {
-                                            "label": "EQUINOX_AC_DEVICES",
+                                            "label": "SUNPOWER_AC_MODULES",
                                             "value": "ONLYMI",
                                           },
                                           Object {
-                                            "label": "EVERYTHING",
+                                            "label": "ALL_DEVICES",
                                             "value": "LEGACY",
                                           },
                                         ],
@@ -952,7 +952,7 @@ exports[`Legacy Discovery Settings renders correctly 1`] = `
                                         "tabSelectsValue": true,
                                         "theme": [Function],
                                         "value": Object {
-                                          "label": "EQUINOX_AC_DEVICES",
+                                          "label": "SUNPOWER_AC_MODULES",
                                           "value": "ONLYMI",
                                         },
                                       }
@@ -1018,11 +1018,11 @@ exports[`Legacy Discovery Settings renders correctly 1`] = `
                                           options={
                                             Array [
                                               Object {
-                                                "label": "EQUINOX_AC_DEVICES",
+                                                "label": "SUNPOWER_AC_MODULES",
                                                 "value": "ONLYMI",
                                               },
                                               Object {
-                                                "label": "EVERYTHING",
+                                                "label": "ALL_DEVICES",
                                                 "value": "LEGACY",
                                               },
                                             ]
@@ -1074,11 +1074,11 @@ exports[`Legacy Discovery Settings renders correctly 1`] = `
                                               "openMenuOnFocus": false,
                                               "options": Array [
                                                 Object {
-                                                  "label": "EQUINOX_AC_DEVICES",
+                                                  "label": "SUNPOWER_AC_MODULES",
                                                   "value": "ONLYMI",
                                                 },
                                                 Object {
-                                                  "label": "EVERYTHING",
+                                                  "label": "ALL_DEVICES",
                                                   "value": "LEGACY",
                                                 },
                                               ],
@@ -1090,7 +1090,7 @@ exports[`Legacy Discovery Settings renders correctly 1`] = `
                                               "tabSelectsValue": true,
                                               "theme": [Function],
                                               "value": Object {
-                                                "label": "EQUINOX_AC_DEVICES",
+                                                "label": "SUNPOWER_AC_MODULES",
                                                 "value": "ONLYMI",
                                               },
                                             }
@@ -1148,11 +1148,11 @@ exports[`Legacy Discovery Settings renders correctly 1`] = `
                                           options={
                                             Array [
                                               Object {
-                                                "label": "EQUINOX_AC_DEVICES",
+                                                "label": "SUNPOWER_AC_MODULES",
                                                 "value": "ONLYMI",
                                               },
                                               Object {
-                                                "label": "EVERYTHING",
+                                                "label": "ALL_DEVICES",
                                                 "value": "LEGACY",
                                               },
                                             ]
@@ -1204,11 +1204,11 @@ exports[`Legacy Discovery Settings renders correctly 1`] = `
                                               "openMenuOnFocus": false,
                                               "options": Array [
                                                 Object {
-                                                  "label": "EQUINOX_AC_DEVICES",
+                                                  "label": "SUNPOWER_AC_MODULES",
                                                   "value": "ONLYMI",
                                                 },
                                                 Object {
-                                                  "label": "EVERYTHING",
+                                                  "label": "ALL_DEVICES",
                                                   "value": "LEGACY",
                                                 },
                                               ],
@@ -1220,7 +1220,7 @@ exports[`Legacy Discovery Settings renders correctly 1`] = `
                                               "tabSelectsValue": true,
                                               "theme": [Function],
                                               "value": Object {
-                                                "label": "EQUINOX_AC_DEVICES",
+                                                "label": "SUNPOWER_AC_MODULES",
                                                 "value": "ONLYMI",
                                               },
                                             }

@@ -25,8 +25,8 @@ function LegacyDiscoverySelector() {
   }
 
   const discoveryOptions = [
-    { label: t('EQUINOX_AC_DEVICES'), value: discoveryTypes.ONLYMI },
-    { label: t('EVERYTHING'), value: discoveryTypes.LEGACY }
+    { label: t('SUNPOWER_AC_MODULES'), value: discoveryTypes.ONLYMI },
+    { label: t('ALL_DEVICES'), value: discoveryTypes.LEGACY }
   ]
 
   const startDiscovery = () => {
