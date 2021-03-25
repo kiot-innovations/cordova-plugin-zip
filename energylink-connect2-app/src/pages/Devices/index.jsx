@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import useModal from 'hooks/useModal'
-import { is, isEmpty, length, pathOr } from 'ramda'
+import { isEmpty, length, pathOr } from 'ramda'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import { either, miTypes } from 'shared/utils'
@@ -17,6 +17,8 @@ import {
 import paths from 'routes/paths'
 import Collapsible from 'components/Collapsible'
 import ProgressIndicators from './ProgressIndicators'
+import DiscoveryStatus from './DiscoveryStatus'
+
 import './Devices.scss'
 
 const microInverterIcon = (
@@ -91,138 +93,6 @@ const filterFoundMI = (SNList, candidatesList) => {
     okMI,
     nonOkMI,
     pendingMI
-  }
-}
-
-const DiscoveryStatus = ({
-  error,
-  expected,
-  okMICount,
-  errMICount,
-  claimError,
-  claimingDevices,
-  claimDevices,
-  claimProgress,
-  discoveryComplete,
-  retryDiscovery
-}) => {
-  const t = useI18n()
-  if (
-    expected === okMICount + errMICount &&
-    discoveryComplete &&
-    !claimingDevices
-  ) {
-    if (errMICount > 0) {
-      return (
-        <>
-          <button
-            className="button is-primary is-uppercase is-paddingless"
-            onClick={retryDiscovery}
-          >
-            {t('RETRY')}
-          </button>
-          <span className="has-text-weight-bold mt-20">{t('MI_ERRORS')}</span>
-        </>
-      )
-    }
-
-    if (error) {
-      return (
-        <>
-          <button
-            className="button is-primary is-uppercase is-paddingless"
-            onClick={retryDiscovery}
-          >
-            {t('RETRY')}
-          </button>
-          <span className="has-text-weight-bold mt-20">
-            {t(is(String, error) ? error : 'DEVICE_UNKNOWN_ERROR')}
-          </span>
-        </>
-      )
-    }
-
-    if (claimError) {
-      return (
-        <>
-          <span className="has-text-weight-bold mb-20">
-            {t('CLAIM_DEVICES_ERROR', claimError)}
-          </span>
-          <div className="inline-buttons">
-            <button
-              className="button is-primary is-outlined is-uppercase is-paddingless mb-10"
-              disabled={claimingDevices}
-              onClick={retryDiscovery}
-            >
-              {t('ADD-DEVICES')}
-            </button>
-            <button
-              className={'button is-primary is-uppercase'}
-              disabled={claimingDevices}
-              onClick={claimDevices}
-            >
-              {either(claimingDevices, `${claimProgress}%`, t('CLAIM_DEVICES'))}
-            </button>
-          </div>
-        </>
-      )
-    }
-
-    return (
-      <div className="inline-buttons">
-        <button
-          className="button is-primary is-outlined is-uppercase is-paddingless mb-10"
-          disabled={claimingDevices}
-          onClick={retryDiscovery}
-        >
-          {t('ADD-DEVICES')}
-        </button>
-        <button
-          className={'button is-primary is-uppercase'}
-          disabled={claimingDevices}
-          onClick={claimDevices}
-        >
-          {either(claimingDevices, `${claimProgress}%`, t('CLAIM_DEVICES'))}
-        </button>
-      </div>
-    )
-  } else {
-    return error ? (
-      <>
-        <button
-          className="button is-primary is-uppercase is-paddingless ml-75 mr-75"
-          onClick={retryDiscovery}
-        >
-          {t('RETRY')}
-        </button>
-        <span className="has-text-weight-bold mt-20">
-          {t(is(String, error) ? error : 'DEVICE_UNKNOWN_ERROR')}
-        </span>
-      </>
-    ) : (
-      <span className="has-text-weight-bold mb-20">
-        {either(
-          claimingDevices,
-          <div className="inline-buttons">
-            <button
-              className="button is-primary is-outlined is-uppercase is-paddingless mb-10"
-              disabled={claimingDevices}
-              onClick={retryDiscovery}
-            >
-              {t('ADD-DEVICES')}
-            </button>
-            <button
-              className={'button is-primary is-uppercase'}
-              disabled={claimingDevices}
-              onClick={claimDevices}
-            >
-              {either(claimingDevices, `${claimProgress}%`, t('CLAIM_DEVICES'))}
-            </button>
-          </div>,
-          t('DISCOVERY_IN_PROGRESS')
-        )}
-      </span>
-    )
   }
 }
 
