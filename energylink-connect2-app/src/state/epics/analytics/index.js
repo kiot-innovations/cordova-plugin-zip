@@ -8,19 +8,21 @@ import deviceResumeEpic from './deviceResumeEpic'
 import firmwareUpdate from './firmwareUpdate'
 import homeOwnerAccountAnalytics from './homeOwnerAccountCreation'
 import acModelsEpic from './acModelsMetadata'
+import pvsInternetEpic from './pvsInternetEpic'
 import pltWizard from './panelLayoutTool'
 
 export default [
-  ...homeOwnerAccountAnalytics,
-  ...acModelsEpic,
-  ...configureEpics,
-  ...deviceResumeEpic,
-  ...firmwareUpdate,
-  ...inventoryEpics,
-  ...pltWizard,
+  loginErrorEpic,
+  loginSuccessEpic,
+  errorEpic,
   ...scanPVS,
   ...siteEpics,
-  errorEpic,
-  loginErrorEpic,
-  loginSuccessEpic
+  ...configureEpics,
+  ...inventoryEpics,
+  ...deviceResumeEpic,
+  ...firmwareUpdate,
+  ...homeOwnerAccountAnalytics,
+  ...acModelsEpic,
+  pvsInternetEpic,
+  ...pltWizard
 ]

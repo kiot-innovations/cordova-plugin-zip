@@ -7,10 +7,12 @@ import {
 } from 'state/actions/analytics'
 import { PUSH_CANDIDATES_INIT } from 'state/actions/devices'
 import { SUBMIT_CONFIG } from 'state/actions/systemConfiguration'
+import { CONNECT_NETWORK_AP_INIT } from 'state/actions/systemConfiguration'
 
 export const initialState = {
   commissioningTimer: 0,
   configureTimer: 0,
+  pvsInternetTimer: 0,
   selectingACModelTimer: 0,
   submitTimer: 0,
   timeFromMiScan: 0,
@@ -62,6 +64,10 @@ export default createReducer(
     [COMMISSION_SUCCESS]: state => ({
       ...state,
       commissioningSuccess: true
+    }),
+    [CONNECT_NETWORK_AP_INIT]: state => ({
+      ...state,
+      pvsInternetTimer: new Date().getTime()
     })
   },
   initialState

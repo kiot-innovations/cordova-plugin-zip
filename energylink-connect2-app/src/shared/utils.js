@@ -409,9 +409,9 @@ export const getAccessToken = path(['user', 'auth', 'access_token'])
 
 export const getUrl = () => compose(last, split('#'))(window.location.href)
 
-export const getTimePassed = startPoint => {
+export const getElapsedTime = startTime => {
   const now = new Date().getTime()
-  return (now - startPoint) / 1000
+  return (now - startTime) / 1000
 }
 
 export const headersToObj = headers => {

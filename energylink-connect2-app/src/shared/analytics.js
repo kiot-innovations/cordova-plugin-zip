@@ -181,6 +181,22 @@ export const internetConnection = (interfaceType = '') => {
   return MIXPANEL_EVENT_QUEUED('User opens app - Register page resume')
 }
 
+export const pvsInternet = ({ connectionMethod, success, duration }) => {
+  const { mixpanel } = window
+
+  mixpanel.track('Internet Setup', {
+    'Connection Method': connectionMethod,
+    Success: success,
+    $duration: duration
+  })
+
+  return MIXPANEL_EVENT_QUEUED(
+    `User setups PVS Internet - ${
+      success ? 'Successful' : 'Unsuccessful'
+    } ${connectionMethod} connection (${duration}s)`
+  )
+}
+
 export const firmwareUpdateEvent = data => {
   const { mixpanel } = window
   mixpanel.track('Firmware Update', {

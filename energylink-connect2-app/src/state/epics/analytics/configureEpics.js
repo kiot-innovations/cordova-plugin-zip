@@ -8,7 +8,7 @@ import {
 import { compose, curry, always, cond, path, pathOr, propEq, T } from 'ramda'
 import { commissionSite, saveConfiguration } from 'shared/analytics'
 import { COMMISSION_SUCCESS } from 'state/actions/analytics'
-import { getTimePassed } from 'shared/utils'
+import { getElapsedTime } from 'shared/utils'
 
 const getRse = path(['systemConfiguration', 'rse', 'selectedPowerProduction'])
 
@@ -70,8 +70,8 @@ const getConnectionInterfaces = state => {
 const getConfiguration = (state, success, errorMessage) => {
   const networkInterfaces = getConnectionInterfaces(state)
 
-  const timePassedChoosing = getTimePassed(state.analytics.configureTimer)
-  const EDPEndpointDuration = getTimePassed(state.analytics.submitTimer)
+  const timePassedChoosing = getElapsedTime(state.analytics.configureTimer)
+  const EDPEndpointDuration = getElapsedTime(state.analytics.submitTimer)
 
   const configEvent = {
     ...networkInterfaces,
@@ -108,7 +108,7 @@ const submitConfigurationError = (action$, state$) =>
 
 const getElapsedTimeWithState = curry((timerName, state) =>
   compose(
-    getTimePassed,
+    getElapsedTime,
     pathOr(new Date().getTime(), ['value', 'analytics', timerName])
   )(state)
 )
