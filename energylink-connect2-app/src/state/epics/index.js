@@ -21,10 +21,12 @@ import sentryEpics from './sentry'
 import siteEpics from './site'
 import storageEpics from './storage'
 import systemConfigurationEpics from './systemConfiguration'
+import apisEpic from './api'
 
 export default combineEpics(
   ...analyticsEpics,
   ...appUpdaterEpics,
+  ...apisEpic,
   ...authEpics,
   ...bluetoothEpics,
   ...checkSSLCertsEpics,
