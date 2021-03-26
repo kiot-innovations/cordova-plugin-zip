@@ -259,6 +259,12 @@ const paths = {
       footer: true,
       tab: TABS.INSTALL
     },
+    PRECOMMISSIONING_CONFIGS: {
+      path: '/precommissioning-configs',
+      header: true,
+      footer: true,
+      tab: TABS.INSTALL
+    },
     LEGACY_DISCOVERY_SELECTOR: {
       path: '/legacy-discovery-selector',
       header: true,

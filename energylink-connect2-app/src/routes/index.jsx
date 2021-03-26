@@ -48,6 +48,7 @@ import GetAssistance from 'pages/GetAssistance'
 import Permissions from 'pages/Permissions'
 import PreCommissioning from 'pages/PreCommissioning'
 import NearbyPVS from 'pages/NearbyPVS'
+import PrecommissioningConfigs from 'pages/PrecommissioningConfigs'
 import LegacyDiscoverySelector from 'pages/LegacyDiscoverySelector'
 
 import { isDebug } from 'shared/utils'
@@ -99,6 +100,7 @@ const mapComponents = {
   [paths.UNPROTECTED.GET_ASSISTANCE.path]: GetAssistance,
   [paths.PROTECTED.PERMISSIONS.path]: Permissions,
   [paths.PROTECTED.NEARBY_PVS.path]: NearbyPVS,
+  [paths.PROTECTED.PRECOMMISSIONING_CONFIGS.path]: PrecommissioningConfigs,
   [paths.PROTECTED.LEGACY_DISCOVERY_SELECTOR.path]: LegacyDiscoverySelector
 }
 

@@ -105,7 +105,6 @@ function SystemConfiguration() {
     return {
       metaData,
       gridProfile: selectedOptions.profile.id,
-      lazyGridProfile: selectedOptions.lazyGridProfile,
       exportLimit: selectedOptions.exportLimit,
       gridVoltage: selectedOptions.gridVoltage
     }

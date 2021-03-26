@@ -9,16 +9,28 @@ import {
   SUBMIT_COMMISSION_SUCCESS,
   SUBMIT_COMMISSION_ERROR,
   RESET_SYSTEM_CONFIGURATION,
-  ALLOW_COMMISSIONING
+  ALLOW_COMMISSIONING,
+  SUBMIT_PRECONFIG_GRIDPROFILE,
+  SUBMIT_PRECONFIG_ERROR,
+  SUBMIT_PRECONFIG_SUCCESS
 } from 'state/actions/systemConfiguration'
 import { RESET_COMMISSIONING } from 'state/actions/global'
 
-const initialState = {
+export const preconfigStates = {
+  NOT_STARTED: 'NOT_STARTED',
+  STARTED: 'STARTED',
+  SUCCESS: 'SUCCESS',
+  ERROR: 'ERROR'
+}
+
+export const initialState = {
   submitting: false,
   config: {},
   error: '',
   commissioned: false,
-  canCommission: false
+  canCommission: false,
+  preconfigState: preconfigStates.NOT_STARTED,
+  preconfigError: ''
 }
 
 export const submitConfigReducer = createReducer(
@@ -55,6 +67,20 @@ export const submitConfigReducer = createReducer(
     [ALLOW_COMMISSIONING]: state => ({
       ...state,
       canCommission: true
+    }),
+    [SUBMIT_PRECONFIG_GRIDPROFILE]: state => ({
+      ...state,
+      preconfigState: preconfigStates.STARTED
+    }),
+    [SUBMIT_PRECONFIG_SUCCESS]: state => ({
+      ...state,
+      preconfigState: preconfigStates.SUCCESS,
+      preconfigError: initialState.preconfigError
+    }),
+    [SUBMIT_PRECONFIG_ERROR]: (state, payload) => ({
+      ...state,
+      preconfigState: preconfigStates.ERROR,
+      preconfigError: payload
     }),
     [SUBMIT_CLEAR]: () => initialState,
     [RESET_SYSTEM_CONFIGURATION]: () => initialState,

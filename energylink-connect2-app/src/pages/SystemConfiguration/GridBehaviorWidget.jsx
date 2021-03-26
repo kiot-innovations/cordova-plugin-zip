@@ -5,7 +5,6 @@ import { useDispatch, useSelector } from 'react-redux'
 import {
   FETCH_GRID_BEHAVIOR,
   SET_GRID_PROFILE,
-  SET_LAZY_GRID_PROFILE,
   SET_EXPORT_LIMIT,
   SET_GRID_VOLTAGE
 } from 'state/actions/systemConfiguration'
@@ -128,24 +127,12 @@ function GridBehaviorWidget() {
     dispatch(SET_GRID_VOLTAGE(value.value))
   }
 
-  const setLazyGridProfile = value => {
-    dispatch(SET_LAZY_GRID_PROFILE(value.value))
-  }
-
-  const lazyGridProfileOptions = [
-    { label: 'No', value: 1 },
-    { label: 'Yes', value: 0 }
-  ]
-
   const gridVoltageOptions = [
     { label: '208', value: 208 },
     { label: '240', value: 240 }
   ]
 
   const findVoltageByValue = findByPathValue(gridVoltageOptions, ['value'])
-  const findLazyGridProfileValue = findByPathValue(lazyGridProfileOptions, [
-    'value'
-  ])
 
   const showVoltageWarning = gridVoltage.selected !== gridVoltage.measured
 
@@ -175,30 +162,6 @@ function GridBehaviorWidget() {
                       : t('GRID_PROFILES_NOT_FOUND')
                   }
                   onSelect={setGridProfile}
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div className="field is-horizontal">
-          <div className="field-label">
-            <label htmlFor="siteName" className="label has-text-white">
-              {t('LAZY_GRID_PROFILE')}
-            </label>
-          </div>
-          <div className="field-body">
-            <div className="field">
-              <div className="control">
-                <SelectField
-                  isSearchable={false}
-                  useDefaultDropDown
-                  options={lazyGridProfileOptions}
-                  onSelect={setLazyGridProfile}
-                  defaultValue={head(lazyGridProfileOptions)}
-                  value={findLazyGridProfileValue(
-                    pathOr(null, ['lazyGridProfile'], selectedOptions)
-                  )}
                 />
               </div>
             </div>

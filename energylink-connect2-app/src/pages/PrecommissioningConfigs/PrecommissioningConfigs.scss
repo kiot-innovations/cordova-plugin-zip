@@ -1,0 +1,10 @@
+@import '@sunpower/theme-dark/styles/_variables.scss';
+
+.precommissioning-configs {
+  display: grid;
+  grid-template-rows: 30px 1fr 100px;
+
+  .applying-settings {
+    flex-direction: column;
+  }
+}

@@ -15,6 +15,10 @@ import {
   submitGridVoltageEpic,
   submitCTRatedCurrentEpic
 } from './submitConfigEpic'
+import {
+  submitPreConfigGridProfileEpic,
+  submitPreConfigMeterDataEpic
+} from './submitPreconfiguration/submitPreconfigurationEpic'
 
 export default [
   fetchGridBehaviorEpic,
@@ -32,5 +36,7 @@ export default [
   fetchInterfacesEpic,
   fetchRSEEpic,
   setRSEEpic,
-  pollRSEEpic
+  pollRSEEpic,
+  submitPreConfigGridProfileEpic,
+  submitPreConfigMeterDataEpic
 ]

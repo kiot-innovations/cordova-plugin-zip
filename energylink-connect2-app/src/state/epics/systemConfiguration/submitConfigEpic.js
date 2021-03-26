@@ -130,7 +130,7 @@ export const submitGridProfileEpic = (action$, state$) => {
             {
               requestBody: {
                 ID: payload.gridProfile,
-                lazy: payload.lazyGridProfile
+                lazy: payload.gridVoltage === 240 ? 1 : 0
               }
             }
           )

@@ -25,6 +25,11 @@ const DebugPage = () => {
       <div>
         {renderDebugLink(
           history,
+          'Precommissioning Configs',
+          paths.PROTECTED.PRECOMMISSIONING_CONFIGS.path
+        )}
+        {renderDebugLink(
+          history,
           'Scan Labels (Scandit)',
           paths.PROTECTED.SCAN_LABELS.path
         )}
