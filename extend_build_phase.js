@@ -2,13 +2,9 @@ var xcode = require('xcode')
 var fs = require('fs')
 var path = require('path')
 
-const shellScript = fs.readFileSync('clean_arches.sh', 'utf-8')
-
 const xcodeProjPath = fromDir('platforms/ios', '.xcodeproj', false)
 const projectPath = xcodeProjPath + '/project.pbxproj'
 const myProj = xcode.project(projectPath)
-// Here you can add your own shellScript
-var options = { shellPath: '/bin/sh', shellScript }
 
 myProj.parse(function(err) {
   if (err) {
@@ -18,14 +14,7 @@ myProj.parse(function(err) {
   }
 
   myProj.addToBuildSettings('VALIDATE_WORKSPACE', 'YES')
-  
-  myProj.addBuildPhase(
-    [],
-    'PBXShellScriptBuildPhase',
-    'Run a script',
-    myProj.getFirstTarget().uuid,
-    options
-  )
+
   fs.writeFileSync(projectPath, myProj.writeSync())
 })
 

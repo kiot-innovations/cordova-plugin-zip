@@ -98,14 +98,14 @@ jobs:
           path: ~/.gradle
           key: ${{ runner.os }}-android-gradle
 
-      # - name: Restore cached platforms/android folder
-      #   id: cordova_android
-      #   uses: actions/cache@v2
-      #   with:
-      #     path: |
-      #       plugins
-      #       platforms/android
-      #     key: ${{ runner.os }}-cordova_android-${{ hashFiles('package-lock.json', 'quick-build.yaml') }}
+      - name: Restore cached platforms/android folder
+        id: cordova_android
+        uses: actions/cache@v2
+        with:
+          path: |
+            plugins
+            platforms/android
+          key: ${{ runner.os }}-cordova_android-${{ hashFiles('package-lock.json', 'quick-build.yaml') }}
 
       - name: Add android platform
         if: steps.cordova_android.outputs.cache-hit != true

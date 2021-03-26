@@ -34,7 +34,6 @@ function ScanDeviceLabels() {
   }
 
   const finishedScanning = () => {
-    turnOffScandit()
     const redirectTo =
       rmaMode !== rmaModes.REPLACE_PVS
         ? paths.PROTECTED.SN_LIST.path
@@ -44,6 +43,7 @@ function ScanDeviceLabels() {
 
   useEffect(() => {
     onDone.current = startScanning(dispatch)
+    return turnOffScandit
   }, [dispatch])
 
   return (
