@@ -125,15 +125,15 @@ export const siteFound = (
     'Dealer Name': dealerName,
     'Dealer Type': capitalizeWord(dealerType)
   })
+  mixpanel.register({ 'Site ID': siteKey, 'Site Commissioned': !!commissioned })
+
   mixpanel.track('Find Site', {
     Found: true,
-    ...{
-      $city: city,
-      State: st_id,
-      'Zip Code': postalCode,
-      'Site ID': siteKey,
-      Commissioned: commissioned
-    }
+    $city: city,
+    State: st_id,
+    'Zip Code': postalCode,
+    'Site ID': siteKey,
+    Commissioned: !!commissioned
   })
 
   return MIXPANEL_EVENT_QUEUED('Find Site - site found')

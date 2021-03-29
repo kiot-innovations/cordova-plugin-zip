@@ -53,7 +53,12 @@ export const siteFoundEpic = (action$, state$) =>
         ),
         action$.pipe(
           ofType(GET_SITE_ERROR.getType()),
-          map(() => siteFound(state$.value.user.data, siteData)),
+          map(() =>
+            siteFound(state$.value.user.data, {
+              ...siteData,
+              commissioned: false
+            })
+          ),
           take(1)
         )
       )
