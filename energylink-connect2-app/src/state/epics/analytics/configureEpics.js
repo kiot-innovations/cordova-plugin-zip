@@ -2,10 +2,21 @@ import { ofType } from 'redux-observable'
 import { switchMap, withLatestFrom } from 'rxjs/operators'
 import { EMPTY, of } from 'rxjs'
 import {
+  compose,
+  curry,
+  not,
+  always,
+  cond,
+  path,
+  pathOr,
+  propEq,
+  T
+} from 'ramda'
+import {
   SUBMIT_COMMISSION_ERROR,
   SUBMIT_COMMISSION_SUCCESS
 } from 'state/actions/systemConfiguration'
-import { compose, curry, always, cond, path, pathOr, propEq, T } from 'ramda'
+import { parseInventory } from 'state/epics/analytics/InventoryEpics'
 import { commissionSite, saveConfiguration } from 'shared/analytics'
 import { COMMISSION_SUCCESS } from 'state/actions/analytics'
 import { getElapsedTime } from 'shared/utils'
@@ -81,7 +92,13 @@ const getGridVoltage = pathNA([
 ])
 
 const getConfiguration = (state, success, errorMessage) => {
+  const inventory = parseInventory(path(['inventory', 'bom'], state))
+  const hasESS = not(propEq('ESS', '0', inventory))
   const networkInterfaces = getConnectionInterfaces(state)
+  const ESSRelatedProperties = {
+    'Storage Operation Mode': getESSOperationalMode(state),
+    'Storage Reserve Amount': getESSReserveAmount(state)
+  }
 
   const timePassedChoosing = getElapsedTime(state.analytics.configureTimer)
   const EDPEndpointDuration = getElapsedTime(state.analytics.submitTimer)
@@ -95,14 +112,14 @@ const getConfiguration = (state, success, errorMessage) => {
     'Remote System Energize': getRse(state),
     Success: success,
     'Error Message': errorMessage,
-    'Commissioning Success': success,
-    'Storage Operation Mode': getESSOperationalMode(state),
-    'Storage Reserve Amount': getESSReserveAmount(state),
+
     'Time Elapsed Choosing': timePassedChoosing,
     'Time Elapsed Submitting': EDPEndpointDuration
   }
 
-  return saveConfiguration(configEvent)
+  return saveConfiguration(
+    hasESS ? { ...configEvent, ...ESSRelatedProperties } : configEvent
+  )
 }
 
 const submitConfigurationSuccess = (action$, state$) =>

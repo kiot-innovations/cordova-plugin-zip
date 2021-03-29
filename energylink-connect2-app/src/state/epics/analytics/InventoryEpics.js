@@ -15,16 +15,17 @@ import {
 import { arrayToObject } from 'shared/utils'
 import { saveInventory } from 'shared/analytics'
 
-const parseToNumber = curry((key, obj) =>
+export const parsePropertyToNumber = curry((key, obj) =>
   assoc(key, Number(prop(key, obj)), obj)
 )
-const parseESSValue = obj => {
+export const parseESSValue = obj => {
   const parseString = compose(head, split(' ('))
   return assoc('ESS', parseString(prop('ESS', obj)), obj)
 }
-const parseInventory = compose(
+
+export const parseInventory = compose(
   parseESSValue,
-  parseToNumber('AC_MODULES'),
+  parsePropertyToNumber('AC_MODULES'),
   rmap(prop('value')),
   arrayToObject('item')
 )

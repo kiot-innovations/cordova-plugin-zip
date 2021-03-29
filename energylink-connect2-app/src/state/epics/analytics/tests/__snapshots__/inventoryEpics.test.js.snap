@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`The helper functions should parse the inventory correctly 1`] = `
+Object {
+  "AC_MODULES": 2,
+  "DC_MODULES": "0",
+  "ESS": "26kWh",
+  "EXTERNAL_METERS": "0",
+  "STRING_INVERTERS": "0",
+}
+`;
