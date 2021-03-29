@@ -10,9 +10,10 @@ import { commissionSite, saveConfiguration } from 'shared/analytics'
 import { COMMISSION_SUCCESS } from 'state/actions/analytics'
 import { getElapsedTime } from 'shared/utils'
 
-const getRse = path(['systemConfiguration', 'rse', 'selectedPowerProduction'])
+const pathNA = pathOr('N/A')
+const getRse = pathNA(['systemConfiguration', 'rse', 'selectedPowerProduction'])
 
-const getESSOperationalMode = path([
+const getESSOperationalMode = pathNA([
   'storage',
   'status',
   'results',
@@ -33,14 +34,14 @@ const getESSReserveAmount = state => {
   return undefined
 }
 
-const getGridProfile = path([
+const getGridProfile = pathNA([
   'systemConfiguration',
   'gridBehavior',
   'selectedOptions',
   'profile',
   'name'
 ])
-const getConsumptionMeterType = path([
+const getConsumptionMeterType = pathNA([
   'systemConfiguration',
   'meter',
   'consumptionCT'
@@ -67,6 +68,18 @@ const getConnectionInterfaces = state => {
   }, {})
 }
 
+const getProductionMeterType = pathNA([
+  'systemConfiguration',
+  'meter',
+  'productionCT'
+])
+const getGridVoltage = pathNA([
+  'systemConfiguration',
+  'gridBehavior',
+  'gridVoltage',
+  'selected'
+])
+
 const getConfiguration = (state, success, errorMessage) => {
   const networkInterfaces = getConnectionInterfaces(state)
 
@@ -76,6 +89,8 @@ const getConfiguration = (state, success, errorMessage) => {
   const configEvent = {
     ...networkInterfaces,
     'Grid Profile': getGridProfile(state),
+    'Grid Voltage': getGridVoltage(state),
+    'Production Meter Type': getProductionMeterType(state),
     'Consumption Meter Type': getConsumptionMeterType(state),
     'Remote System Energize': getRse(state),
     Success: success,

@@ -27,7 +27,6 @@ const EssHealthCeckEpic = (action$, state$) =>
       const timePassed = getElapsedTime(selectingAcModlesStartPoint)
       const metadata = pathOr([], ['metaData', 'devices'], payload)
       const moduleTypes = getModifiedDevices(metadata)
-      console.warn('HELLO WORLD')
       return of(setACModuleType({ moduleTypes, timeElapsed: timePassed }))
     })
   )
