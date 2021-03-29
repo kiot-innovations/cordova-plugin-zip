@@ -47,7 +47,7 @@ function createSelectField(
           </option>
         )
       })
-    : [...Array(99).keys()].map(number => {
+    : [...Array(201).keys()].map(number => {
         return (
           <option key={number} value={number}>
             {number}
