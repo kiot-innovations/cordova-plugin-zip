@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import React, { useEffect, useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import {
@@ -17,6 +19,12 @@ import {
   propOr
 } from 'ramda'
 import { useDispatch, useSelector } from 'react-redux'
+import {
+  Menu,
+  MenuItem,
+  MenuDivider
+} from '@szhsin/react-menu'
+import '@szhsin/react-menu/dist/index.css'
 import paths from 'routes/paths'
 import Collapsible from 'components/Collapsible'
 import { FETCH_DEVICES_LIST } from 'state/actions/devices'
@@ -106,6 +114,14 @@ function RMADevices() {
     </span>
   )
 
+  const miDropdown = (
+    <Menu className="dark-menu" menuButton={<span className="has-text-primary is-size-5 sp-contextmenu" />}>
+      <MenuItem className="dark-menu-item has-text-primary has-text-left has-text-weight-bold" onClick={() => history.push(paths.PROTECTED.SCAN_LABELS.path)}>{t('ADD_MIS')}</MenuItem>
+      <MenuDivider />
+      <MenuItem className="dark-menu-item has-text-primary has-text-left has-text-weight-bold" onClick={() => history.push(paths.PROTECTED.MODEL_EDIT.path)}>{t('EDIT_PANELS')}</MenuItem>
+    </Menu>
+  )
+
   return (
     <main className="full-height pl-10 pr-10 rma-devices">
       <div className="header mb-20">
@@ -117,7 +133,7 @@ function RMADevices() {
           {t('RMA_DEVICES')}
         </span>
       </div>
-      <Collapsible title={t('MICROINVERTERS')} actions={addMI} expanded>
+      <Collapsible title={t('MICROINVERTERS')} actions={miDropdown} expanded>
         {either(
           length(microInverters) > 0,
           map(renderMicroinverter(toggleCheckbox, selectedMIs), microInverters),

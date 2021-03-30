@@ -57,12 +57,37 @@ exports[`RMA devices component render correctly 1`] = `
           </div>
           <Collapsible
             actions={
-              <span
-                className="is-paddingless has-text-primary has-text-weight-bold is-size-7 button-transparent"
-                onClick={[Function]}
+              <Memo(Menu)
+                align="start"
+                animation={true}
+                className="dark-menu"
+                direction="bottom"
+                keepMounted={true}
+                menuButton={
+                  <span
+                    className="has-text-primary is-size-5 sp-contextmenu"
+                  />
+                }
+                offsetX={0}
+                offsetY={0}
+                overflow="visible"
+                position="auto"
+                viewScroll="initial"
               >
-                ADD
-              </span>
+                <Memo(MenuItem)
+                  className="dark-menu-item has-text-primary has-text-left has-text-weight-bold"
+                  onClick={[Function]}
+                >
+                  ADD_MIS
+                </Memo(MenuItem)>
+                <Memo(MenuDivider) />
+                <Memo(MenuItem)
+                  className="dark-menu-item has-text-primary has-text-left has-text-weight-bold"
+                  onClick={[Function]}
+                >
+                  EDIT_PANELS
+                </Memo(MenuItem)>
+              </Memo(Menu)>
             }
             expanded={true}
             title="MICROINVERTERS"
@@ -87,12 +112,79 @@ exports[`RMA devices component render correctly 1`] = `
                 <div
                   className="collapsible-actions"
                 >
-                  <span
-                    className="is-paddingless has-text-primary has-text-weight-bold is-size-7 button-transparent"
-                    onClick={[Function]}
+                  <Menu
+                    align="start"
+                    animation={true}
+                    className="dark-menu"
+                    direction="bottom"
+                    keepMounted={true}
+                    menuButton={
+                      <span
+                        className="has-text-primary is-size-5 sp-contextmenu"
+                      />
+                    }
+                    offsetX={0}
+                    offsetY={0}
+                    overflow="visible"
+                    position="auto"
+                    viewScroll="initial"
                   >
-                    ADD
-                  </span>
+                    <span
+                      className="has-text-primary is-size-5 sp-contextmenu"
+                      onClick={[Function]}
+                      onKeyDown={[Function]}
+                    />
+                    <div
+                      className="rc-menu-container"
+                      onBlur={[Function]}
+                      onKeyDown={[Function]}
+                      role="presentation"
+                    >
+                      <Memo(MenuList)
+                        align="start"
+                        anchorRef={
+                          Object {
+                            "current": <span
+                              class="has-text-primary is-size-5 sp-contextmenu"
+                            />,
+                          }
+                        }
+                        ariaLabel="Menu"
+                        className="dark-menu"
+                        containerRef={
+                          Object {
+                            "current": <div
+                              class="rc-menu-container"
+                              role="presentation"
+                            />,
+                          }
+                        }
+                        direction="bottom"
+                        isMounted={false}
+                        isOpen={false}
+                        menuItemFocus={
+                          Object {
+                            "position": "initial",
+                          }
+                        }
+                        offsetX={0}
+                        offsetY={0}
+                        onClose={[Function]}
+                        overflow="visible"
+                        position="auto"
+                      >
+                        <Memo(MenuItem)
+                          className="dark-menu-item has-text-primary has-text-left has-text-weight-bold"
+                          onClick={[Function]}
+                        />
+                        <Memo(MenuDivider) />
+                        <Memo(MenuItem)
+                          className="dark-menu-item has-text-primary has-text-left has-text-weight-bold"
+                          onClick={[Function]}
+                        />
+                      </Memo(MenuList)>
+                    </div>
+                  </Menu>
                 </div>
                 <div
                   className="collapsible-trigger"

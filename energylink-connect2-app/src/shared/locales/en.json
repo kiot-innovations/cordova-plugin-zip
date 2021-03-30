@@ -692,5 +692,7 @@
   "ALL_DEVICES": "All Devices",
   "NUM_DEVICES": "{0} devices",
   "SINGLE_DEVICE": "1 device",
-  "NO_LIMIT": "No limit"
+  "NO_LIMIT": "No limit",
+  "ADD_MIS": "Add microinverters",
+  "EDIT_PANELS": "Edit panel models"
 }

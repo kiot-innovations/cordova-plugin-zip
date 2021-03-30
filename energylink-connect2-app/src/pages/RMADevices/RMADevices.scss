@@ -1,6 +1,8 @@
 @import '~@sunpower/theme-dark/styles/variables';
 
 .rma-devices {
+  font-family: $font;
+
   .header {
     width: 100%;
     display: flex;
@@ -52,5 +54,18 @@
   .other-components {
     display: flex;
     flex-direction: column;
+  }
+}
+
+.dark-menu {
+  border: none;
+  background-color: $dark;
+
+  &-item {
+    font-size: 0.8rem;
+  }
+
+  &-item:hover {
+    background-color: $black;
   }
 }
