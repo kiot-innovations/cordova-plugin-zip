@@ -139,6 +139,19 @@ export const siteFound = (
   return MIXPANEL_EVENT_QUEUED('Find Site - site found')
 }
 
+export const createSite = ({ success, error = '' }) => {
+  const { mixpanel } = window
+
+  mixpanel.track('Create Site', {
+    Success: success,
+    ...(error && { Error: error })
+  })
+
+  return MIXPANEL_EVENT_QUEUED(
+    `Create Site - site creation ${success ? 'successful' : 'failed'}`
+  )
+}
+
 export const saveConfiguration = config => {
   const { mixpanel } = window
   mixpanel.track('Configure', config)

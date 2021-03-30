@@ -4,11 +4,14 @@ import {
   GET_SITE_SUCCESS,
   HOME_SCREEN_CREATE_SITE,
   NO_SITE_FOUND,
-  SET_SITE
+  SET_SITE,
+  CREATE_SITE_SUCCESS,
+  CREATE_SITE_ERROR
 } from 'state/actions/site'
 import { map, switchMap, take } from 'rxjs/operators'
-import { EMPTY, race } from 'rxjs'
-import { siteFound, siteNotFound } from 'shared/analytics'
+import { EMPTY, race, of } from 'rxjs'
+import { pathOr } from 'ramda'
+import { siteFound, siteNotFound, createSite } from 'shared/analytics'
 
 /**
  * We need to race the actions so that we don't waste CPU by cancelling
@@ -64,4 +67,23 @@ export const siteFoundEpic = (action$, state$) =>
       )
     )
   )
-export default [siteNotFoundEpic, siteFoundEpic]
+
+export const createSiteEpic = (action$, state$) =>
+  action$.pipe(
+    ofType(CREATE_SITE_SUCCESS.getType(), CREATE_SITE_ERROR.getType()),
+    switchMap(({ type, payload }) => {
+      if (type === CREATE_SITE_ERROR.getType()) {
+        const error = pathOr(
+          'Unknown error.',
+          ['response', 'body', 'message'],
+          payload
+        )
+
+        return of(createSite({ success: false, error }))
+      }
+
+      return of(createSite({ success: true }))
+    })
+  )
+
+export default [siteNotFoundEpic, siteFoundEpic, createSiteEpic]
