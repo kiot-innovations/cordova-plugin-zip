@@ -694,5 +694,6 @@
   "SINGLE_DEVICE": "1 device",
   "NO_LIMIT": "No limit",
   "ADD_MIS": "Add microinverters",
-  "EDIT_PANELS": "Edit panel models"
+  "EDIT_PANELS": "Edit panel models",
+  "PRODUCTION_CT_REQUIRED": "Production CTs are required for Equinox commissioning. Install production CTs before proceeding."
 }

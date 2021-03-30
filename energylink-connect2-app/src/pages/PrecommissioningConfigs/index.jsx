@@ -132,6 +132,7 @@ const PrecommissioningConfigs = () => {
   const dispatch = useDispatch()
   const [submitModal, showSubmitModal] = useState(false)
   const [canContinue, setCanContinue] = useState(false)
+  const [productionCTModal, showProductionCTModal] = useState(false)
 
   const siteKey = useSelector(path(['site', 'site', 'siteKey']))
 
@@ -153,11 +154,15 @@ const PrecommissioningConfigs = () => {
   const miValue = find(propEq('item', 'AC_MODULES'), bom) || { value: '0' }
 
   const submitConfig = () => {
-    showSubmitModal(true)
-    const { metaData } = createMeterConfig(found, meter, siteKey)
-    dispatch(UPDATE_DEVICES_LIST(metaData.devices))
-    const configObject = generateConfigObject(metaData, selectedOptions)
-    dispatch(SUBMIT_PRECONFIG_GRIDPROFILE(configObject))
+    if (propEq('productionCT', 'NOT_USED')(meter)) {
+      showProductionCTModal(true)
+    } else {
+      showSubmitModal(true)
+      const { metaData } = createMeterConfig(found, meter, siteKey)
+      dispatch(UPDATE_DEVICES_LIST(metaData.devices))
+      const configObject = generateConfigObject(metaData, selectedOptions)
+      dispatch(SUBMIT_PRECONFIG_GRIDPROFILE(configObject))
+    }
   }
 
   useEffect(() => {
@@ -241,6 +246,30 @@ const PrecommissioningConfigs = () => {
               </div>
             </>
           )}
+        </div>
+      </SwipeableBottomSheet>
+
+      <SwipeableBottomSheet
+        onChange={showProductionCTModal}
+        open={productionCTModal}
+      >
+        <div className="is-flex flex-column has-text-centered">
+          <div className="mb-10">
+            <span className="sp-hey has-text-white is-size-1" />
+          </div>
+          <div className="mb-10">
+            <span className="has-text-white">
+              {t('PRODUCTION_CT_REQUIRED')}
+            </span>
+          </div>
+          <div className="mb-10">
+            <button
+              className="button is-primary"
+              onClick={() => showProductionCTModal(false)}
+            >
+              {t('OK')}
+            </button>
+          </div>
         </div>
       </SwipeableBottomSheet>
     </div>

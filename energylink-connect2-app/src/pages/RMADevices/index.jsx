@@ -1,5 +1,3 @@
-/* eslint-disable */
-
 import React, { useEffect, useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import {
@@ -19,11 +17,7 @@ import {
   propOr
 } from 'ramda'
 import { useDispatch, useSelector } from 'react-redux'
-import {
-  Menu,
-  MenuItem,
-  MenuDivider
-} from '@szhsin/react-menu'
+import { Menu, MenuItem, MenuDivider } from '@szhsin/react-menu'
 import '@szhsin/react-menu/dist/index.css'
 import paths from 'routes/paths'
 import Collapsible from 'components/Collapsible'
@@ -105,20 +99,26 @@ function RMADevices() {
     dispatch(FETCH_DEVICES_LIST())
   }
 
-  const addMI = (
-    <span
-      onClick={() => history.push(paths.PROTECTED.SCAN_LABELS.path)}
-      className="is-paddingless has-text-primary has-text-weight-bold is-size-7 button-transparent"
-    >
-      {t('ADD')}
-    </span>
-  )
-
   const miDropdown = (
-    <Menu className="dark-menu" menuButton={<span className="has-text-primary is-size-5 sp-contextmenu" />}>
-      <MenuItem className="dark-menu-item has-text-primary has-text-left has-text-weight-bold" onClick={() => history.push(paths.PROTECTED.SCAN_LABELS.path)}>{t('ADD_MIS')}</MenuItem>
+    <Menu
+      className="dark-menu"
+      menuButton={
+        <span className="has-text-primary is-size-5 sp-contextmenu" />
+      }
+    >
+      <MenuItem
+        className="dark-menu-item has-text-primary has-text-left has-text-weight-bold"
+        onClick={() => history.push(paths.PROTECTED.SCAN_LABELS.path)}
+      >
+        {t('ADD_MIS')}
+      </MenuItem>
       <MenuDivider />
-      <MenuItem className="dark-menu-item has-text-primary has-text-left has-text-weight-bold" onClick={() => history.push(paths.PROTECTED.MODEL_EDIT.path)}>{t('EDIT_PANELS')}</MenuItem>
+      <MenuItem
+        className="dark-menu-item has-text-primary has-text-left has-text-weight-bold"
+        onClick={() => history.push(paths.PROTECTED.MODEL_EDIT.path)}
+      >
+        {t('EDIT_PANELS')}
+      </MenuItem>
     </Menu>
   )
 
