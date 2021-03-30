@@ -17,9 +17,18 @@ describe('Collapsible Component', () => {
     expect(component).toMatchSnapshot()
   })
 
+  test('Renders Correctly when expanded', () => {
+    const component = shallow(
+      <Collapsible expanded>
+        <p>CONTENT_EXPANDED</p>
+      </Collapsible>
+    )
+    expect(component).toMatchSnapshot()
+  })
+
   test('Expands Correctly', () => {
     const component = shallow(<Collapsible />)
-    component.find('.chevron').simulate('click')
+    component.find('.collapsible-header').simulate('click')
     expect(component.find('.expanded').length).toBe(1)
   })
 })

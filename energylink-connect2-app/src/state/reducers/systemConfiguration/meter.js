@@ -8,9 +8,21 @@ import {
 } from 'state/actions/systemConfiguration'
 import { RESET_COMMISSIONING } from 'state/actions/global'
 
+export const METER = {
+  NOT_USED: 'NOT_USED',
+  GROSS_PRODUCTION_SITE: 'GROSS_PRODUCTION_SITE',
+  NET_CONSUMPTION_LOADSIDE: 'NET_CONSUMPTION_LOADSIDE',
+  GROSS_CONSUMPTION_LINESIDE: 'GROSS_CONSUMPTION_LINESIDE'
+}
+
+export const METER_ERRORS = {
+  PRODUCTION_CT_NOT_SET: 'PRODUCTION_CT_NOT_SET',
+  CONSUMPTION_CT_NOT_SET: 'CONSUMPTION_CT_NOT_SET'
+}
+
 const initialState = {
-  consumptionCT: null,
-  productionCT: null,
+  consumptionCT: METER.NOT_USED,
+  productionCT: METER.GROSS_PRODUCTION_SITE,
   ratedCurrent: 100
 }
 

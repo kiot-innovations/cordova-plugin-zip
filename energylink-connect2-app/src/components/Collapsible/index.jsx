@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import clsx from 'clsx'
 import { useI18n } from 'shared/i18n'
 import './Collapsible.scss'
+import { either } from 'shared/utils'
 
 function Collapsible({
   icon,
@@ -9,7 +10,8 @@ function Collapsible({
   actions,
   children,
   expanded = false,
-  className = ''
+  className = '',
+  required = false
 }) {
   const t = useI18n()
   const [expand, setExpand] = useState(expanded)
@@ -20,17 +22,18 @@ function Collapsible({
 
   return (
     <div className="collapsible">
-      <div className="collapsible-header">
+      <div className="collapsible-header" onClick={toggle}>
         <div className="collapsible-title">
           <span>{icon}</span>
           <span className="has-text-weight-bold">{t(title)}</span>
+          {either(
+            required && !expand,
+            <span className="ml-10 has-text-danger">*</span>
+          )}
         </div>
         <div className="collapsible-actions">{actions}</div>
         <div className="collapsible-trigger">
-          <div
-            className={clsx({ chevron: true, down: expand })}
-            onClick={toggle}
-          >
+          <div className={clsx({ chevron: true, down: expand })}>
             <span className="sp-chevron-up" />
           </div>
         </div>

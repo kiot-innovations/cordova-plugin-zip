@@ -1,18 +1,22 @@
 import React from 'react'
 import clsx from 'clsx'
 import Select, { components } from 'react-select'
+import { either } from 'shared/utils'
 
 import './SelectField.scss'
 
-const IndicatorSeparator = ({ innerProps }) => <span />
+const IndicatorSeparator = ({ selectProps: { required } }) =>
+  either(required, <span className="ml-20 pt-5 has-text-danger">*</span>)
 
-const Option = props => (
-  <components.Option {...props}>
-    <div className="is-flex file level">
-      <p className="is-size-6">{props.label}</p>
-    </div>
-  </components.Option>
-)
+const Option = props => {
+  return (
+    <components.Option {...props}>
+      <div className="is-flex file level">
+        <p className="is-size-6">{props.label}</p>
+      </div>
+    </components.Option>
+  )
+}
 
 const selectComponents = { Option, IndicatorSeparator }
 
@@ -27,7 +31,8 @@ function SelectField(props) {
     placeholder,
     isSearchable,
     value,
-    disabled
+    disabled,
+    required
   } = props
 
   const classes = clsx('field', className)
@@ -60,7 +65,8 @@ function SelectField(props) {
         neutral80: 'white',
         neutral5: '#35404e'
       }
-    })
+    }),
+    required
   }
 
   return <Select {...defaults} />

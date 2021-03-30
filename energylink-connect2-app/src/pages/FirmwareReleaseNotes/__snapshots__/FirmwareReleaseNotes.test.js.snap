@@ -93,6 +93,7 @@ Robust microinverter firmware upgrade",
                     >
                       <div
                         className="collapsible-header"
+                        onClick={[Function]}
                       >
                         <div
                           className="collapsible-title"
@@ -112,7 +113,6 @@ Robust microinverter firmware upgrade",
                         >
                           <div
                             className="chevron down"
-                            onClick={[Function]}
                           >
                             <span
                               className="sp-chevron-up"
@@ -169,6 +169,7 @@ Robust microinverter firmware upgrade",
                     >
                       <div
                         className="collapsible-header"
+                        onClick={[Function]}
                       >
                         <div
                           className="collapsible-title"
@@ -188,7 +189,6 @@ Robust microinverter firmware upgrade",
                         >
                           <div
                             className="chevron"
-                            onClick={[Function]}
                           >
                             <span
                               className="sp-chevron-up"

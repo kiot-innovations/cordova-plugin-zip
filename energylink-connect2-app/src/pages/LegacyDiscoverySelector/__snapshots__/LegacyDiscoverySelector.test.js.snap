@@ -296,6 +296,7 @@ exports[`Legacy Discovery Settings renders correctly 1`] = `
                             ],
                             "pageSize": 5,
                             "placeholder": "Select...",
+                            "required": undefined,
                             "screenReaderStatus": [Function],
                             "styles": Object {},
                             "tabIndex": "0",
@@ -444,6 +445,7 @@ exports[`Legacy Discovery Settings renders correctly 1`] = `
                                   ],
                                   "pageSize": 5,
                                   "placeholder": "Select...",
+                                  "required": undefined,
                                   "screenReaderStatus": [Function],
                                   "styles": Object {},
                                   "tabIndex": "0",
@@ -600,6 +602,7 @@ exports[`Legacy Discovery Settings renders correctly 1`] = `
                                         ],
                                         "pageSize": 5,
                                         "placeholder": "Select...",
+                                        "required": undefined,
                                         "screenReaderStatus": [Function],
                                         "styles": Object {},
                                         "tabIndex": "0",
@@ -747,6 +750,7 @@ exports[`Legacy Discovery Settings renders correctly 1`] = `
                                               ],
                                               "pageSize": 5,
                                               "placeholder": "Select...",
+                                              "required": undefined,
                                               "screenReaderStatus": [Function],
                                               "styles": Object {},
                                               "tabIndex": "0",
@@ -946,6 +950,7 @@ exports[`Legacy Discovery Settings renders correctly 1`] = `
                                         ],
                                         "pageSize": 5,
                                         "placeholder": "Select...",
+                                        "required": undefined,
                                         "screenReaderStatus": [Function],
                                         "styles": Object {},
                                         "tabIndex": "0",
@@ -1084,6 +1089,7 @@ exports[`Legacy Discovery Settings renders correctly 1`] = `
                                               ],
                                               "pageSize": 5,
                                               "placeholder": "Select...",
+                                              "required": undefined,
                                               "screenReaderStatus": [Function],
                                               "styles": Object {},
                                               "tabIndex": "0",
@@ -1125,9 +1131,7 @@ exports[`Legacy Discovery Settings renders correctly 1`] = `
                                               },
                                             }
                                           }
-                                        >
-                                          <span />
-                                        </IndicatorSeparator>
+                                        />
                                         <DropdownIndicator
                                           clearValue={[Function]}
                                           cx={[Function]}
@@ -1214,6 +1218,7 @@ exports[`Legacy Discovery Settings renders correctly 1`] = `
                                               ],
                                               "pageSize": 5,
                                               "placeholder": "Select...",
+                                              "required": undefined,
                                               "screenReaderStatus": [Function],
                                               "styles": Object {},
                                               "tabIndex": "0",

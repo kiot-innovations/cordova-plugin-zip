@@ -83,9 +83,158 @@ exports[`Header Component Renders correctly 1`] = `
             </div>
           </ConnectionStatus>
         </div>
-        <Component>
-          <div />
-        </Component>
+        <Menu>
+          <div
+            className="menu-floating is-hidden"
+          >
+            <MenuItemsContainer
+              items={
+                Array [
+                  Object {
+                    "display": true,
+                    "icon": "sp-map",
+                    "text": "CHANGE_ADDRESS",
+                    "to": "/",
+                  },
+                  Object {
+                    "component": [Function],
+                    "display": true,
+                    "icon": "sp-update",
+                    "text": "MANAGE_FIRMWARES",
+                  },
+                  Object {
+                    "component": [Function],
+                    "display": true,
+                    "icon": "sp-info",
+                    "text": "VERSION_INFORMATION",
+                  },
+                  Object {
+                    "component": [Function],
+                    "display": true,
+                    "icon": "sp-feedback",
+                    "text": "GIVE_FEEDBACK",
+                  },
+                  Object {
+                    "component": [Function],
+                    "display": false,
+                    "text": "FIRMWARE_RELEASE_NOTES",
+                  },
+                ]
+              }
+            >
+              <section
+                className="is-flex tile is-vertical level full-height"
+              >
+                <article
+                  className="is-flex space-around flow-wrap mt-15"
+                >
+                  <div
+                    className="mb-30"
+                    key="CHANGE_ADDRESS"
+                  >
+                    <Component
+                      icon="sp-map"
+                      onClick={[Function]}
+                      text="CHANGE_ADDRESS"
+                    >
+                      <button
+                        className="tilex tile has-text-white is-flex is-vertical space-around"
+                        onClick={[Function]}
+                      >
+                        <div
+                          className="sp is-size-1 sp-map"
+                        />
+                        <div
+                          className="text is-size-5 pt-10 pl-10 pr-10 pb-10"
+                        >
+                          CHANGE_ADDRESS
+                        </div>
+                      </button>
+                    </Component>
+                  </div>
+                  <div
+                    className="mb-30"
+                    key="MANAGE_FIRMWARES"
+                  >
+                    <Component
+                      icon="sp-update"
+                      onClick={[Function]}
+                      text="MANAGE_FIRMWARES"
+                    >
+                      <button
+                        className="tilex tile has-text-white is-flex is-vertical space-around"
+                        onClick={[Function]}
+                      >
+                        <div
+                          className="sp is-size-1 sp-update"
+                        />
+                        <div
+                          className="text is-size-5 pt-10 pl-10 pr-10 pb-10"
+                        >
+                          MANAGE_FIRMWARES
+                        </div>
+                      </button>
+                    </Component>
+                  </div>
+                  <div
+                    className="mb-30"
+                    key="VERSION_INFORMATION"
+                  >
+                    <Component
+                      icon="sp-info"
+                      onClick={[Function]}
+                      text="VERSION_INFORMATION"
+                    >
+                      <button
+                        className="tilex tile has-text-white is-flex is-vertical space-around"
+                        onClick={[Function]}
+                      >
+                        <div
+                          className="sp is-size-1 sp-info"
+                        />
+                        <div
+                          className="text is-size-5 pt-10 pl-10 pr-10 pb-10"
+                        >
+                          VERSION_INFORMATION
+                        </div>
+                      </button>
+                    </Component>
+                  </div>
+                  <div
+                    className="mb-30"
+                    key="GIVE_FEEDBACK"
+                  >
+                    <Component
+                      icon="sp-feedback"
+                      onClick={[Function]}
+                      text="GIVE_FEEDBACK"
+                    >
+                      <button
+                        className="tilex tile has-text-white is-flex is-vertical space-around"
+                        onClick={[Function]}
+                      >
+                        <div
+                          className="sp is-size-1 sp-feedback"
+                        />
+                        <div
+                          className="text is-size-5 pt-10 pl-10 pr-10 pb-10"
+                        >
+                          GIVE_FEEDBACK
+                        </div>
+                      </button>
+                    </Component>
+                  </div>
+                </article>
+                <button
+                  className="button has-text-centered is-uppercase mb-10 has-text-primary is-text"
+                  onClick={[Function]}
+                >
+                  BTN_LOG_OUT
+                </button>
+              </section>
+            </MenuItemsContainer>
+          </div>
+        </Menu>
       </Header>
     </Provider>
   </Router>
@@ -162,9 +311,158 @@ exports[`Header Component Renders text instead of logo 1`] = `
           </div>
         </ConnectionStatus>
       </div>
-      <Component>
-        <div />
-      </Component>
+      <Menu>
+        <div
+          className="menu-floating is-hidden"
+        >
+          <MenuItemsContainer
+            items={
+              Array [
+                Object {
+                  "display": true,
+                  "icon": "sp-map",
+                  "text": "CHANGE_ADDRESS",
+                  "to": "/",
+                },
+                Object {
+                  "component": [Function],
+                  "display": true,
+                  "icon": "sp-update",
+                  "text": "MANAGE_FIRMWARES",
+                },
+                Object {
+                  "component": [Function],
+                  "display": true,
+                  "icon": "sp-info",
+                  "text": "VERSION_INFORMATION",
+                },
+                Object {
+                  "component": [Function],
+                  "display": true,
+                  "icon": "sp-feedback",
+                  "text": "GIVE_FEEDBACK",
+                },
+                Object {
+                  "component": [Function],
+                  "display": false,
+                  "text": "FIRMWARE_RELEASE_NOTES",
+                },
+              ]
+            }
+          >
+            <section
+              className="is-flex tile is-vertical level full-height"
+            >
+              <article
+                className="is-flex space-around flow-wrap mt-15"
+              >
+                <div
+                  className="mb-30"
+                  key="CHANGE_ADDRESS"
+                >
+                  <Component
+                    icon="sp-map"
+                    onClick={[Function]}
+                    text="CHANGE_ADDRESS"
+                  >
+                    <button
+                      className="tilex tile has-text-white is-flex is-vertical space-around"
+                      onClick={[Function]}
+                    >
+                      <div
+                        className="sp is-size-1 sp-map"
+                      />
+                      <div
+                        className="text is-size-5 pt-10 pl-10 pr-10 pb-10"
+                      >
+                        CHANGE_ADDRESS
+                      </div>
+                    </button>
+                  </Component>
+                </div>
+                <div
+                  className="mb-30"
+                  key="MANAGE_FIRMWARES"
+                >
+                  <Component
+                    icon="sp-update"
+                    onClick={[Function]}
+                    text="MANAGE_FIRMWARES"
+                  >
+                    <button
+                      className="tilex tile has-text-white is-flex is-vertical space-around"
+                      onClick={[Function]}
+                    >
+                      <div
+                        className="sp is-size-1 sp-update"
+                      />
+                      <div
+                        className="text is-size-5 pt-10 pl-10 pr-10 pb-10"
+                      >
+                        MANAGE_FIRMWARES
+                      </div>
+                    </button>
+                  </Component>
+                </div>
+                <div
+                  className="mb-30"
+                  key="VERSION_INFORMATION"
+                >
+                  <Component
+                    icon="sp-info"
+                    onClick={[Function]}
+                    text="VERSION_INFORMATION"
+                  >
+                    <button
+                      className="tilex tile has-text-white is-flex is-vertical space-around"
+                      onClick={[Function]}
+                    >
+                      <div
+                        className="sp is-size-1 sp-info"
+                      />
+                      <div
+                        className="text is-size-5 pt-10 pl-10 pr-10 pb-10"
+                      >
+                        VERSION_INFORMATION
+                      </div>
+                    </button>
+                  </Component>
+                </div>
+                <div
+                  className="mb-30"
+                  key="GIVE_FEEDBACK"
+                >
+                  <Component
+                    icon="sp-feedback"
+                    onClick={[Function]}
+                    text="GIVE_FEEDBACK"
+                  >
+                    <button
+                      className="tilex tile has-text-white is-flex is-vertical space-around"
+                      onClick={[Function]}
+                    >
+                      <div
+                        className="sp is-size-1 sp-feedback"
+                      />
+                      <div
+                        className="text is-size-5 pt-10 pl-10 pr-10 pb-10"
+                      >
+                        GIVE_FEEDBACK
+                      </div>
+                    </button>
+                  </Component>
+                </div>
+              </article>
+              <button
+                className="button has-text-centered is-uppercase mb-10 has-text-primary is-text"
+                onClick={[Function]}
+              >
+                BTN_LOG_OUT
+              </button>
+            </section>
+          </MenuItemsContainer>
+        </div>
+      </Menu>
     </Header>
   </Provider>
 </Router>

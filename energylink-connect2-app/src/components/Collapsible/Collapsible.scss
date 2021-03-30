@@ -17,17 +17,17 @@
   }
 
   &-trigger {
-    text-align: center;
+    text-align: right;
 
     .chevron {
       transition: 0.3s all ease-in-out;
       cursor: pointer;
-      transform: rotate(180deg);
+      transform: rotate(90deg);
       color: $sun;
     }
 
     .down {
-      transform: rotate(0deg);
+      transform: rotate(180deg);
     }
   }
 

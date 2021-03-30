@@ -1,12 +1,15 @@
 import React from 'react'
 import { createMemoryHistory } from 'history'
-import * as Menu from 'components/Menu'
+import * as i18n from 'shared/i18n'
 import { Header } from '.'
 
 describe('Header Component', () => {
   beforeEach(() => {
-    // eslint-disable-next-line no-import-assign
-    Menu.default = () => <div />
+    jest
+      .spyOn(i18n, 'useI18n')
+      .mockImplementation(path => (key, ...params) =>
+        `${key.toUpperCase()} ${params.join('_')}`.trim()
+      )
   })
 
   test('Renders correctly', () => {

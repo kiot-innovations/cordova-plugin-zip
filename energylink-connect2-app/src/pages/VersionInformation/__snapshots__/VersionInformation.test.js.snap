@@ -151,6 +151,7 @@ You will now see a message that &quot;Commissioning was successfully completed&q
                     >
                       <div
                         className="collapsible-header"
+                        onClick={[Function]}
                       >
                         <div
                           className="collapsible-title"
@@ -170,7 +171,6 @@ You will now see a message that &quot;Commissioning was successfully completed&q
                         >
                           <div
                             className="chevron down"
-                            onClick={[Function]}
                           >
                             <span
                               className="sp-chevron-up"
@@ -230,6 +230,7 @@ You will now see a message that &quot;Commissioning was successfully completed&q
                     >
                       <div
                         className="collapsible-header"
+                        onClick={[Function]}
                       >
                         <div
                           className="collapsible-title"
@@ -249,7 +250,6 @@ You will now see a message that &quot;Commissioning was successfully completed&q
                         >
                           <div
                             className="chevron"
-                            onClick={[Function]}
                           >
                             <span
                               className="sp-chevron-up"
@@ -298,6 +298,7 @@ You will now see a message that &quot;Commissioning was successfully completed&q
                     >
                       <div
                         className="collapsible-header"
+                        onClick={[Function]}
                       >
                         <div
                           className="collapsible-title"
@@ -317,7 +318,6 @@ You will now see a message that &quot;Commissioning was successfully completed&q
                         >
                           <div
                             className="chevron"
-                            onClick={[Function]}
                           >
                             <span
                               className="sp-chevron-up"
@@ -372,6 +372,7 @@ You will now see a message that &quot;Commissioning was successfully completed&q
                     >
                       <div
                         className="collapsible-header"
+                        onClick={[Function]}
                       >
                         <div
                           className="collapsible-title"
@@ -391,7 +392,6 @@ You will now see a message that &quot;Commissioning was successfully completed&q
                         >
                           <div
                             className="chevron"
-                            onClick={[Function]}
                           >
                             <span
                               className="sp-chevron-up"
@@ -440,6 +440,7 @@ You will now see a message that &quot;Commissioning was successfully completed&q
                     >
                       <div
                         className="collapsible-header"
+                        onClick={[Function]}
                       >
                         <div
                           className="collapsible-title"
@@ -459,7 +460,6 @@ You will now see a message that &quot;Commissioning was successfully completed&q
                         >
                           <div
                             className="chevron"
-                            onClick={[Function]}
                           >
                             <span
                               className="sp-chevron-up"

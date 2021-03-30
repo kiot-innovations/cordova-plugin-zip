@@ -75,6 +75,7 @@ Object {
                 >
                   <div
                     className="collapsible-header"
+                    onClick={[Function]}
                   >
                     <div
                       className="collapsible-title"
@@ -106,7 +107,6 @@ Object {
                     >
                       <div
                         className="chevron down"
-                        onClick={[Function]}
                       >
                         <span
                           className="sp-chevron-up"

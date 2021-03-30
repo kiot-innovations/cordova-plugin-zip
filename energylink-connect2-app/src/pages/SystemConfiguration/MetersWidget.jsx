@@ -11,6 +11,7 @@ import {
   SET_RATED_CURRENT,
   SET_CONSUMPTION_CT
 } from 'state/actions/systemConfiguration'
+import { METER } from 'state/reducers/systemConfiguration/meter'
 
 const meterIcon = <span className="sp-meter file level mr-15 is-size-4" />
 
@@ -24,38 +25,42 @@ function MetersWidget({ hasStorage = false }) {
 
   const CONSUMPTION_METER_TYPES = [
     {
-      label: t('NET_CONSUMPTION_LOADSIDE'),
-      value: 'NET_CONSUMPTION_LOADSIDE'
+      label: t(METER.NET_CONSUMPTION_LOADSIDE),
+      value: METER.NET_CONSUMPTION_LOADSIDE
     },
     {
-      label: t('GROSS_CONSUMPTION_LINESIDE'),
-      value: 'GROSS_CONSUMPTION_LINESIDE'
+      label: t(METER.GROSS_CONSUMPTION_LINESIDE),
+      value: METER.GROSS_CONSUMPTION_LINESIDE
     },
-    { label: t('NOT_USED'), value: 'NOT_USED' }
+    { label: t(METER.NOT_USED), value: METER.NOT_USED }
   ]
 
   const PRODUCTION_METER_TYPES = [
     {
-      label: t('NOT_USED'),
-      value: 'NOT_USED'
+      label: t(METER.NOT_USED),
+      value: METER.NOT_USED
     },
-    { label: t('GROSS_PRODUCTION_SITE'), value: 'GROSS_PRODUCTION_SITE' }
+    {
+      label: t(METER.GROSS_PRODUCTION_SITE),
+      value: METER.GROSS_PRODUCTION_SITE
+    }
   ]
 
   useEffect(() => {
     if (hasStorage) {
-      dispatch(SET_CONSUMPTION_CT('NET_CONSUMPTION_LOADSIDE'))
-      dispatch(SET_PRODUCTION_CT('GROSS_PRODUCTION_SITE'))
+      dispatch(SET_CONSUMPTION_CT(METER.NET_CONSUMPTION_LOADSIDE))
+      dispatch(SET_PRODUCTION_CT(METER.GROSS_PRODUCTION_SITE))
     }
   }, [dispatch, hasStorage])
 
   return (
     <div className="pb-15">
-      <Collapsible title={t('METER_CT')} icon={meterIcon}>
+      <Collapsible title={t('METER_CT')} icon={meterIcon} required>
         <div className="field is-horizontal mb-15">
           <div className="field-label">
             <label htmlFor="siteName" className="label has-text-white">
               {t('PRODUCTION_CT')}
+              <span className="ml-5 pt-5 has-text-danger">*</span>
             </label>
           </div>
           <div className="field-body">
@@ -70,7 +75,7 @@ function MetersWidget({ hasStorage = false }) {
                   value={find(
                     propEq(
                       'value',
-                      hasStorage ? 'GROSS_PRODUCTION_SITE' : productionCT
+                      hasStorage ? METER.GROSS_PRODUCTION_SITE : productionCT
                     ),
                     PRODUCTION_METER_TYPES
                   )}
@@ -84,6 +89,7 @@ function MetersWidget({ hasStorage = false }) {
           <div className="field-label">
             <label htmlFor="siteName" className="label has-text-white">
               {t('CONSUMPTION_CT')}
+              <span className="ml-5 pt-5 has-text-danger">*</span>
             </label>
           </div>
           <div className="field-body">
@@ -102,7 +108,9 @@ function MetersWidget({ hasStorage = false }) {
                   value={find(
                     propEq(
                       'value',
-                      hasStorage ? 'NET_CONSUMPTION_LOADSIDE' : consumptionCT
+                      hasStorage
+                        ? METER.NET_CONSUMPTION_LOADSIDE
+                        : consumptionCT
                     ),
                     CONSUMPTION_METER_TYPES
                   )}
@@ -116,6 +124,7 @@ function MetersWidget({ hasStorage = false }) {
           <div className="field-label">
             <label htmlFor="siteName" className="label has-text-white">
               {t('RATED_CURRENT')}
+              <span className="ml-10 has-text-danger">*</span>
             </label>
           </div>
           <div className="field-body">

@@ -55,6 +55,7 @@ exports[`RSE Widget renders correctly 1`] = `
             >
               <div
                 className="collapsible-header"
+                onClick={[Function]}
               >
                 <div
                   className="collapsible-title"
@@ -78,7 +79,6 @@ exports[`RSE Widget renders correctly 1`] = `
                 >
                   <div
                     className="chevron"
-                    onClick={[Function]}
                   >
                     <span
                       className="sp-chevron-up"

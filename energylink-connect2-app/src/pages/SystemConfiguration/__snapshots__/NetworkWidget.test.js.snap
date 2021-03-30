@@ -48,6 +48,7 @@ exports[`Network Widget after selecting network network is selected 1`] = `
                 className="sp-wifi file level mr-15 is-size-4"
               />
             }
+            required={true}
             title="NETWORK"
           >
             <div
@@ -55,6 +56,7 @@ exports[`Network Widget after selecting network network is selected 1`] = `
             >
               <div
                 className="collapsible-header"
+                onClick={[Function]}
               >
                 <div
                   className="collapsible-title"
@@ -69,6 +71,11 @@ exports[`Network Widget after selecting network network is selected 1`] = `
                   >
                     NETWORK
                   </span>
+                  <span
+                    className="ml-10 has-text-danger"
+                  >
+                    *
+                  </span>
                 </div>
                 <div
                   className="collapsible-actions"
@@ -78,7 +85,6 @@ exports[`Network Widget after selecting network network is selected 1`] = `
                 >
                   <div
                     className="chevron"
-                    onClick={[Function]}
                   >
                     <span
                       className="sp-chevron-up"
@@ -101,6 +107,11 @@ exports[`Network Widget after selecting network network is selected 1`] = `
                         htmlFor="siteName"
                       >
                         NETWORK
+                        <span
+                          className="ml-5 pt-5 has-text-danger"
+                        >
+                          *
+                        </span>
                       </label>
                     </div>
                     <div
@@ -393,6 +404,7 @@ exports[`Network Widget after selecting network network is selected 1`] = `
                                       ],
                                       "pageSize": 5,
                                       "placeholder": "SELECT_NETWORK",
+                                      "required": undefined,
                                       "screenReaderStatus": [Function],
                                       "styles": Object {},
                                       "tabIndex": "0",
@@ -565,6 +577,7 @@ exports[`Network Widget after selecting network network is selected 1`] = `
                                             ],
                                             "pageSize": 5,
                                             "placeholder": "SELECT_NETWORK",
+                                            "required": undefined,
                                             "screenReaderStatus": [Function],
                                             "styles": Object {},
                                             "tabIndex": "0",
@@ -745,6 +758,7 @@ exports[`Network Widget after selecting network network is selected 1`] = `
                                                   ],
                                                   "pageSize": 5,
                                                   "placeholder": "SELECT_NETWORK",
+                                                  "required": undefined,
                                                   "screenReaderStatus": [Function],
                                                   "styles": Object {},
                                                   "tabIndex": "0",
@@ -924,6 +938,7 @@ exports[`Network Widget after selecting network network is selected 1`] = `
                                                         ],
                                                         "pageSize": 5,
                                                         "placeholder": "SELECT_NETWORK",
+                                                        "required": undefined,
                                                         "screenReaderStatus": [Function],
                                                         "styles": Object {},
                                                         "tabIndex": "0",
@@ -1080,6 +1095,7 @@ exports[`Network Widget after selecting network network is selected 1`] = `
                                                         ],
                                                         "pageSize": 5,
                                                         "placeholder": "SELECT_NETWORK",
+                                                        "required": undefined,
                                                         "screenReaderStatus": [Function],
                                                         "styles": Object {},
                                                         "tabIndex": "0",
@@ -1333,6 +1349,7 @@ exports[`Network Widget after selecting network network is selected 1`] = `
                                                   ],
                                                   "pageSize": 5,
                                                   "placeholder": "SELECT_NETWORK",
+                                                  "required": undefined,
                                                   "screenReaderStatus": [Function],
                                                   "styles": Object {},
                                                   "tabIndex": "0",
@@ -1495,6 +1512,7 @@ exports[`Network Widget after selecting network network is selected 1`] = `
                                                         ],
                                                         "pageSize": 5,
                                                         "placeholder": "SELECT_NETWORK",
+                                                        "required": undefined,
                                                         "screenReaderStatus": [Function],
                                                         "styles": Object {},
                                                         "tabIndex": "0",
@@ -1544,9 +1562,7 @@ exports[`Network Widget after selecting network network is selected 1`] = `
                                                         },
                                                       }
                                                     }
-                                                  >
-                                                    <span />
-                                                  </IndicatorSeparator>
+                                                  />
                                                   <DropdownIndicator
                                                     clearValue={[Function]}
                                                     cx={[Function]}
@@ -1649,6 +1665,7 @@ exports[`Network Widget after selecting network network is selected 1`] = `
                                                         ],
                                                         "pageSize": 5,
                                                         "placeholder": "SELECT_NETWORK",
+                                                        "required": undefined,
                                                         "screenReaderStatus": [Function],
                                                         "styles": Object {},
                                                         "tabIndex": "0",
@@ -1791,6 +1808,11 @@ exports[`Network Widget after selecting network network is selected 1`] = `
                         htmlFor="siteName"
                       >
                         PASSWORD
+                        <span
+                          className="ml-5 pt-5 has-text-danger"
+                        >
+                          *
+                        </span>
                       </label>
                     </div>
                     <div
@@ -2132,6 +2154,7 @@ exports[`Network Widget on initial state renders correctly 1`] = `
                 className="sp-wifi file level mr-15 is-size-4"
               />
             }
+            required={true}
             title="NETWORK"
           >
             <div
@@ -2139,6 +2162,7 @@ exports[`Network Widget on initial state renders correctly 1`] = `
             >
               <div
                 className="collapsible-header"
+                onClick={[Function]}
               >
                 <div
                   className="collapsible-title"
@@ -2153,6 +2177,11 @@ exports[`Network Widget on initial state renders correctly 1`] = `
                   >
                     NETWORK
                   </span>
+                  <span
+                    className="ml-10 has-text-danger"
+                  >
+                    *
+                  </span>
                 </div>
                 <div
                   className="collapsible-actions"
@@ -2162,7 +2191,6 @@ exports[`Network Widget on initial state renders correctly 1`] = `
                 >
                   <div
                     className="chevron"
-                    onClick={[Function]}
                   >
                     <span
                       className="sp-chevron-up"
@@ -2185,6 +2213,11 @@ exports[`Network Widget on initial state renders correctly 1`] = `
                         htmlFor="siteName"
                       >
                         NETWORK
+                        <span
+                          className="ml-5 pt-5 has-text-danger"
+                        >
+                          *
+                        </span>
                       </label>
                     </div>
                     <div
@@ -2452,6 +2485,7 @@ exports[`Network Widget on initial state renders correctly 1`] = `
                                       ],
                                       "pageSize": 5,
                                       "placeholder": "SELECT_NETWORK",
+                                      "required": undefined,
                                       "screenReaderStatus": [Function],
                                       "styles": Object {},
                                       "tabIndex": "0",
@@ -2615,6 +2649,7 @@ exports[`Network Widget on initial state renders correctly 1`] = `
                                             ],
                                             "pageSize": 5,
                                             "placeholder": "SELECT_NETWORK",
+                                            "required": undefined,
                                             "screenReaderStatus": [Function],
                                             "styles": Object {},
                                             "tabIndex": "0",
@@ -2786,6 +2821,7 @@ exports[`Network Widget on initial state renders correctly 1`] = `
                                                   ],
                                                   "pageSize": 5,
                                                   "placeholder": "SELECT_NETWORK",
+                                                  "required": undefined,
                                                   "screenReaderStatus": [Function],
                                                   "styles": Object {},
                                                   "tabIndex": "0",
@@ -2951,6 +2987,7 @@ exports[`Network Widget on initial state renders correctly 1`] = `
                                                         ],
                                                         "pageSize": 5,
                                                         "placeholder": "SELECT_NETWORK",
+                                                        "required": undefined,
                                                         "screenReaderStatus": [Function],
                                                         "styles": Object {},
                                                         "tabIndex": "0",
@@ -3098,6 +3135,7 @@ exports[`Network Widget on initial state renders correctly 1`] = `
                                                         ],
                                                         "pageSize": 5,
                                                         "placeholder": "SELECT_NETWORK",
+                                                        "required": undefined,
                                                         "screenReaderStatus": [Function],
                                                         "styles": Object {},
                                                         "tabIndex": "0",
@@ -3342,6 +3380,7 @@ exports[`Network Widget on initial state renders correctly 1`] = `
                                                   ],
                                                   "pageSize": 5,
                                                   "placeholder": "SELECT_NETWORK",
+                                                  "required": undefined,
                                                   "screenReaderStatus": [Function],
                                                   "styles": Object {},
                                                   "tabIndex": "0",
@@ -3495,6 +3534,7 @@ exports[`Network Widget on initial state renders correctly 1`] = `
                                                         ],
                                                         "pageSize": 5,
                                                         "placeholder": "SELECT_NETWORK",
+                                                        "required": undefined,
                                                         "screenReaderStatus": [Function],
                                                         "styles": Object {},
                                                         "tabIndex": "0",
@@ -3539,9 +3579,7 @@ exports[`Network Widget on initial state renders correctly 1`] = `
                                                         },
                                                       }
                                                     }
-                                                  >
-                                                    <span />
-                                                  </IndicatorSeparator>
+                                                  />
                                                   <DropdownIndicator
                                                     clearValue={[Function]}
                                                     cx={[Function]}
@@ -3640,6 +3678,7 @@ exports[`Network Widget on initial state renders correctly 1`] = `
                                                         ],
                                                         "pageSize": 5,
                                                         "placeholder": "SELECT_NETWORK",
+                                                        "required": undefined,
                                                         "screenReaderStatus": [Function],
                                                         "styles": Object {},
                                                         "tabIndex": "0",
@@ -3777,6 +3816,11 @@ exports[`Network Widget on initial state renders correctly 1`] = `
                         htmlFor="siteName"
                       >
                         PASSWORD
+                        <span
+                          className="ml-5 pt-5 has-text-danger"
+                        >
+                          *
+                        </span>
                       </label>
                     </div>
                     <div

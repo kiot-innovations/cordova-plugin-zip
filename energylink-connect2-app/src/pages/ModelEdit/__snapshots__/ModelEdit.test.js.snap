@@ -85,6 +85,7 @@ Object {
                   >
                     <div
                       className="collapsible-header"
+                      onClick={[Function]}
                     >
                       <div
                         className="collapsible-title"
@@ -104,7 +105,6 @@ Object {
                       >
                         <div
                           className="chevron"
-                          onClick={[Function]}
                         >
                           <span
                             className="sp-chevron-up"
@@ -323,6 +323,7 @@ Object {
                                     ],
                                     "pageSize": 5,
                                     "placeholder": "Select...",
+                                    "required": undefined,
                                     "screenReaderStatus": [Function],
                                     "styles": Object {},
                                     "tabIndex": "0",
@@ -468,6 +469,7 @@ Object {
                                           ],
                                           "pageSize": 5,
                                           "placeholder": "Select...",
+                                          "required": undefined,
                                           "screenReaderStatus": [Function],
                                           "styles": Object {},
                                           "tabIndex": "0",
@@ -621,6 +623,7 @@ Object {
                                                 ],
                                                 "pageSize": 5,
                                                 "placeholder": "Select...",
+                                                "required": undefined,
                                                 "screenReaderStatus": [Function],
                                                 "styles": Object {},
                                                 "tabIndex": "0",
@@ -761,6 +764,7 @@ Object {
                                                       ],
                                                       "pageSize": 5,
                                                       "placeholder": "Select...",
+                                                      "required": undefined,
                                                       "screenReaderStatus": [Function],
                                                       "styles": Object {},
                                                       "tabIndex": "0",
@@ -894,6 +898,7 @@ Object {
                                                       ],
                                                       "pageSize": 5,
                                                       "placeholder": "Select...",
+                                                      "required": undefined,
                                                       "screenReaderStatus": [Function],
                                                       "styles": Object {},
                                                       "tabIndex": "0",
@@ -1120,6 +1125,7 @@ Object {
                                                 ],
                                                 "pageSize": 5,
                                                 "placeholder": "Select...",
+                                                "required": undefined,
                                                 "screenReaderStatus": [Function],
                                                 "styles": Object {},
                                                 "tabIndex": "0",
@@ -1255,6 +1261,7 @@ Object {
                                                       ],
                                                       "pageSize": 5,
                                                       "placeholder": "Select...",
+                                                      "required": undefined,
                                                       "screenReaderStatus": [Function],
                                                       "styles": Object {},
                                                       "tabIndex": "0",
@@ -1293,9 +1300,7 @@ Object {
                                                       },
                                                     }
                                                   }
-                                                >
-                                                  <span />
-                                                </IndicatorSeparator>
+                                                />
                                                 <DropdownIndicator
                                                   clearValue={[Function]}
                                                   cx={[Function]}
@@ -1382,6 +1387,7 @@ Object {
                                                       ],
                                                       "pageSize": 5,
                                                       "placeholder": "Select...",
+                                                      "required": undefined,
                                                       "screenReaderStatus": [Function],
                                                       "styles": Object {},
                                                       "tabIndex": "0",

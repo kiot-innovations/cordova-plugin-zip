@@ -150,6 +150,7 @@ exports[`PVS Provide Internet page renders correctly 1`] = `
                     className="sp-wifi file level mr-15 is-size-4"
                   />
                 }
+                required={true}
                 title="NETWORK"
               >
                 <div
@@ -157,6 +158,7 @@ exports[`PVS Provide Internet page renders correctly 1`] = `
                 >
                   <div
                     className="collapsible-header"
+                    onClick={[Function]}
                   >
                     <div
                       className="collapsible-title"
@@ -180,7 +182,6 @@ exports[`PVS Provide Internet page renders correctly 1`] = `
                     >
                       <div
                         className="chevron down"
-                        onClick={[Function]}
                       >
                         <span
                           className="sp-chevron-up"
@@ -203,6 +204,11 @@ exports[`PVS Provide Internet page renders correctly 1`] = `
                             htmlFor="siteName"
                           >
                             NETWORK
+                            <span
+                              className="ml-5 pt-5 has-text-danger"
+                            >
+                              *
+                            </span>
                           </label>
                         </div>
                         <div
@@ -387,6 +393,7 @@ exports[`PVS Provide Internet page renders correctly 1`] = `
                                           "options": Array [],
                                           "pageSize": 5,
                                           "placeholder": "SELECT_NETWORK",
+                                          "required": undefined,
                                           "screenReaderStatus": [Function],
                                           "styles": Object {},
                                           "tabIndex": "0",
@@ -518,6 +525,7 @@ exports[`PVS Provide Internet page renders correctly 1`] = `
                                                 "options": Array [],
                                                 "pageSize": 5,
                                                 "placeholder": "SELECT_NETWORK",
+                                                "required": undefined,
                                                 "screenReaderStatus": [Function],
                                                 "styles": Object {},
                                                 "tabIndex": "0",
@@ -657,6 +665,7 @@ exports[`PVS Provide Internet page renders correctly 1`] = `
                                                       "options": Array [],
                                                       "pageSize": 5,
                                                       "placeholder": "SELECT_NETWORK",
+                                                      "required": undefined,
                                                       "screenReaderStatus": [Function],
                                                       "styles": Object {},
                                                       "tabIndex": "0",
@@ -790,6 +799,7 @@ exports[`PVS Provide Internet page renders correctly 1`] = `
                                                             "options": Array [],
                                                             "pageSize": 5,
                                                             "placeholder": "SELECT_NETWORK",
+                                                            "required": undefined,
                                                             "screenReaderStatus": [Function],
                                                             "styles": Object {},
                                                             "tabIndex": "0",
@@ -922,6 +932,7 @@ exports[`PVS Provide Internet page renders correctly 1`] = `
                                                             "options": Array [],
                                                             "pageSize": 5,
                                                             "placeholder": "SELECT_NETWORK",
+                                                            "required": undefined,
                                                             "screenReaderStatus": [Function],
                                                             "styles": Object {},
                                                             "tabIndex": "0",
@@ -1134,6 +1145,7 @@ exports[`PVS Provide Internet page renders correctly 1`] = `
                                                       "options": Array [],
                                                       "pageSize": 5,
                                                       "placeholder": "SELECT_NETWORK",
+                                                      "required": undefined,
                                                       "screenReaderStatus": [Function],
                                                       "styles": Object {},
                                                       "tabIndex": "0",
@@ -1255,6 +1267,7 @@ exports[`PVS Provide Internet page renders correctly 1`] = `
                                                             "options": Array [],
                                                             "pageSize": 5,
                                                             "placeholder": "SELECT_NETWORK",
+                                                            "required": undefined,
                                                             "screenReaderStatus": [Function],
                                                             "styles": Object {},
                                                             "tabIndex": "0",
@@ -1299,9 +1312,7 @@ exports[`PVS Provide Internet page renders correctly 1`] = `
                                                             },
                                                           }
                                                         }
-                                                      >
-                                                        <span />
-                                                      </IndicatorSeparator>
+                                                      />
                                                       <DropdownIndicator
                                                         clearValue={[Function]}
                                                         cx={[Function]}
@@ -1368,6 +1379,7 @@ exports[`PVS Provide Internet page renders correctly 1`] = `
                                                             "options": Array [],
                                                             "pageSize": 5,
                                                             "placeholder": "SELECT_NETWORK",
+                                                            "required": undefined,
                                                             "screenReaderStatus": [Function],
                                                             "styles": Object {},
                                                             "tabIndex": "0",
@@ -1505,6 +1517,11 @@ exports[`PVS Provide Internet page renders correctly 1`] = `
                             htmlFor="siteName"
                           >
                             PASSWORD
+                            <span
+                              className="ml-5 pt-5 has-text-danger"
+                            >
+                              *
+                            </span>
                           </label>
                         </div>
                         <div

@@ -74,12 +74,13 @@ function NetworkWidget({ hideWPSButton, expanded }) {
 
   return (
     <div className="pb-15">
-      <Collapsible title={t('NETWORK')} icon={NWI} expanded={expanded}>
+      <Collapsible title={t('NETWORK')} icon={NWI} expanded={expanded} required>
         <form>
           <div className="field is-horizontal mb-15">
             <div className="field-label">
               <label htmlFor="siteName" className="label has-text-white">
                 {t('NETWORK')}
+                <span className="ml-5 pt-5 has-text-danger">*</span>
               </label>
             </div>
             <div className="field-body">
@@ -102,6 +103,7 @@ function NetworkWidget({ hideWPSButton, expanded }) {
             <div className="field-label">
               <label htmlFor="siteName" className="label has-text-white">
                 {t('PASSWORD')}
+                <span className="ml-5 pt-5 has-text-danger">*</span>
               </label>
             </div>
             <div className="field-body">

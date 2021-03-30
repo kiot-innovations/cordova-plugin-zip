@@ -1,5 +1,16 @@
 import React, { useEffect, useState } from 'react'
-import { endsWith, equals, isEmpty, path, pathOr, pluck } from 'ramda'
+import {
+  endsWith,
+  equals,
+  path,
+  pathOr,
+  pluck,
+  compose,
+  isEmpty,
+  isNil,
+  length,
+  map
+} from 'ramda'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import SwipeableBottomSheet from 'react-swipeable-bottom-sheet'
@@ -25,6 +36,8 @@ import NetworkWidget from './NetworkWidget'
 import RSEWidget from './RSEWidget'
 
 import './SystemConfiguration.scss'
+import { METER, METER_ERRORS } from 'state/reducers/systemConfiguration/meter'
+import { GRID_ERRORS } from 'state/reducers/systemConfiguration/gridBehavior'
 
 const createMeterConfig = (devicesList, meterConfig, dispatch, site) => {
   const updatedDevices = devicesList.map(device => {
@@ -57,11 +70,14 @@ const createMeterConfig = (devicesList, meterConfig, dispatch, site) => {
   }
 }
 
+const renderValidationError = ve => <ol key={ve}>{ve}</ol>
+
 function SystemConfiguration() {
   const t = useI18n()
   const dispatch = useDispatch()
   const history = useHistory()
   const [commissionBlockModal, showCommissionBlockModal] = useState(false)
+  const [validationErrors, setValidationErrors] = useState([])
 
   const { wpsSupport } = useSelector(state => state.pvs)
   const { selectedOptions } = useSelector(
@@ -110,7 +126,22 @@ function SystemConfiguration() {
     }
   }
 
-  const submitConfig = () => {
+  const validateData = () => {
+    const { productionCT } = meter
+    const errors = []
+    if (productionCT !== METER.GROSS_PRODUCTION_SITE)
+      errors.push(METER_ERRORS.PRODUCTION_CT_NOT_SET)
+    const { profile } = selectedOptions
+    if (isEmpty(profile) || isNil(profile))
+      errors.push(GRID_ERRORS.NO_PROFILE_AVAILABLE)
+    setValidationErrors(errors)
+    return length(errors) < 1
+  }
+
+  const submitConfig = isValidConfig => {
+    console.info({ isValidConfig })
+    if (!isValidConfig) return
+
     if (!canCommission) {
       showCommissionBlockModal(true)
     } else {
@@ -173,6 +204,10 @@ function SystemConfiguration() {
       <div className="mb-15">
         <InterfacesWidget />
       </div>
+      <p className="mb-10 has-text-right">
+        <span className="has-text-danger mr-5">*</span>
+        {t('MANDATORY_FIELDS')}
+      </p>
       <NetworkWidget hideWPSButton={!wpsSupport} />
       <GridBehaviorWidget />
       <MetersWidget hasStorage={hasStorage} />
@@ -180,7 +215,7 @@ function SystemConfiguration() {
       <PanelLayoutWidget />
       <div className="submit-config pt-15">
         <button
-          onClick={submitConfig}
+          onClick={compose(submitConfig, validateData)}
           className="button is-primary is-uppercase"
           disabled={isEmpty(found)}
         >
@@ -200,6 +235,29 @@ function SystemConfiguration() {
             <button
               className="button is-primary"
               onClick={() => showCommissionBlockModal(false)}
+            >
+              {t('CLOSE')}
+            </button>
+          </div>
+        </div>
+      </SwipeableBottomSheet>
+
+      <SwipeableBottomSheet
+        shadowTip={false}
+        open={length(validationErrors) > 0}
+        onChange={() => setValidationErrors([])}
+      >
+        <div className="tile is-vertical has-text-centered is-flex">
+          <span className="has-text-weight-bold">
+            {t('FIX_VALIDATION_ERRORS')}
+          </span>
+          <div className="mt-10 mb-10">
+            <ul>{map(compose(renderValidationError, t), validationErrors)}</ul>
+          </div>
+          <div className="mt-10 mb-20">
+            <button
+              className="button is-primary"
+              onClick={() => setValidationErrors([])}
             >
               {t('CLOSE')}
             </button>

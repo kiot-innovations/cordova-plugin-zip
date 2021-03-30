@@ -11,6 +11,10 @@ import {
 } from 'state/actions/systemConfiguration'
 import { RESET_COMMISSIONING } from 'state/actions/global'
 
+export const GRID_ERRORS = {
+  NO_PROFILE_AVAILABLE: 'NO_PROFILE_AVAILABLE'
+}
+
 const initialState = {
   fetchingGridBehavior: false,
   profiles: [],

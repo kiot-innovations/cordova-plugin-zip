@@ -138,11 +138,12 @@ function GridBehaviorWidget() {
 
   return (
     <div className="pb-15">
-      <Collapsible title={t('GRID_BEHAVIOR')} icon={GBI}>
+      <Collapsible title={t('GRID_BEHAVIOR')} icon={GBI} required>
         <div className="field is-horizontal">
           <div className="field-label">
             <label htmlFor="siteName" className="label has-text-white">
               {t('GRID_PROFILE')}
+              <span className="ml-5 pt-5 has-text-danger">*</span>
             </label>
           </div>
           <div className="field-body">
@@ -172,6 +173,7 @@ function GridBehaviorWidget() {
           <div className="field-label">
             <label htmlFor="siteName" className="label has-text-white">
               {t('GRID_VOLTAGE')}
+              <span className="ml-5 pt-5 has-text-danger">*</span>
             </label>
           </div>
           <div className="field-body">

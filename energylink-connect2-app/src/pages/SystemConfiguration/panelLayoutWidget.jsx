@@ -12,6 +12,8 @@ import paths from 'routes/paths'
 
 import './panelLayoutWidget.scss'
 
+const PLI = <span className="sp-center file level mr-15 is-size-4" />
+
 const getInvertersCount = compose(
   length,
   filter(propEq('DEVICE_TYPE', 'Inverter'))
@@ -28,7 +30,11 @@ const PanelLayoutWidget = () => {
   const hasPanelLayoutData = panels.length !== 0
 
   return (
-    <Collapsible title={t('PANEL_LAYOUT')} className="panel-layout-widget">
+    <Collapsible
+      title={t('PANEL_LAYOUT')}
+      className="panel-layout-widget"
+      icon={PLI}
+    >
       {either(
         loading,
         <Loader />,

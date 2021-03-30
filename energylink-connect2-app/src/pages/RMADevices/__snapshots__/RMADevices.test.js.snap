@@ -72,6 +72,7 @@ exports[`RMA devices component render correctly 1`] = `
             >
               <div
                 className="collapsible-header"
+                onClick={[Function]}
               >
                 <div
                   className="collapsible-title"
@@ -98,7 +99,6 @@ exports[`RMA devices component render correctly 1`] = `
                 >
                   <div
                     className="chevron down"
-                    onClick={[Function]}
                   >
                     <span
                       className="sp-chevron-up"
@@ -167,6 +167,7 @@ exports[`RMA devices component render correctly 1`] = `
             >
               <div
                 className="collapsible-header"
+                onClick={[Function]}
               >
                 <div
                   className="collapsible-title"
@@ -186,7 +187,6 @@ exports[`RMA devices component render correctly 1`] = `
                 >
                   <div
                     className="chevron down"
-                    onClick={[Function]}
                   >
                     <span
                       className="sp-chevron-up"
