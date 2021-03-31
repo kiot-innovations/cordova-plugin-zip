@@ -134,7 +134,7 @@ exports[`PVS Selection page renders correctly 1`] = `
               disabled={true}
               onClick={[Function]}
             >
-              EDIT_DEVICES
+              CONNECT_TO_PVS
             </button>
           </section>
           <SwipeableBottomSheet
@@ -1145,7 +1145,7 @@ exports[`PVS Selection page renders correctly when bluetooth is disabled 1`] = `
               disabled={true}
               onClick={[Function]}
             >
-              EDIT_DEVICES
+              CONNECT_TO_PVS
             </button>
           </section>
           <SwipeableBottomSheet
@@ -2153,7 +2153,7 @@ exports[`PVS Selection page renders correctly when we got an error 1`] = `
               disabled={true}
               onClick={[Function]}
             >
-              EDIT_DEVICES
+              CONNECT_TO_PVS
             </button>
           </section>
           <SwipeableBottomSheet

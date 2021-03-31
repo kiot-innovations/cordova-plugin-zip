@@ -468,7 +468,7 @@ function PvsSelection() {
           )}
           onClick={editDevices}
         >
-          {t('EDIT_DEVICES')}
+          {t('CONNECT_TO_PVS')}
         </button>
       </section>
 

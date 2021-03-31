@@ -462,7 +462,7 @@
   "ADD_VIA_QR": "Add PVS by QR Code",
   "ADD_VIA_SN": "Add PVS by Serial Number",
   "REPLACE_PVS": "Replace PVS",
-  "EDIT_DEVICES": "Edit devices",
+  "CONNECT_TO_PVS": "Connect To PVS",
   "SELECT_PVS_MODAL": "Please select a PVS to continue",
   "ADD": "Add",
   "MANUAL_ENTRY": "Enter manually",
