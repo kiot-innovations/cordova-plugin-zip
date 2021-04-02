@@ -6,6 +6,7 @@
     "no-unused-vars": 2,
     "eqeqeq": "error",
     "import/no-anonymous-default-export": "off",
+    "no-import-assign": "off",
     "no-console": [
       "error",
       {

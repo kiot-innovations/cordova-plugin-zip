@@ -33,35 +33,6 @@ const dataWithESS = [
   }
 ]
 
-const dataWithoutESS = [
-  {
-    item: 'AC_MODULES',
-
-    value: '2',
-    disabled: false
-  },
-  {
-    item: 'DC_MODULES',
-    value: '0',
-    disabled: true
-  },
-  {
-    item: 'STRING_INVERTERS',
-    value: '0',
-    disabled: true
-  },
-  {
-    item: 'EXTERNAL_METERS',
-    value: '0',
-    disabled: true
-  },
-  {
-    item: 'ESS',
-    value: '0',
-    disabled: false
-  }
-]
-
 describe('The helper functions', () => {
   it('should parse the inventory correctly', () => {
     const parsedInventory = parseInventory(dataWithESS)
