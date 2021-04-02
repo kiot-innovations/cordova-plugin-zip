@@ -20,7 +20,7 @@ export const CreateSiteSuccessModal = () => {
 
   return (
     <div className="has-text-centered">
-      <span className="has-text-primary">{t('SITE_CREATED_MODAL_BODY')}</span>
+      <span className="has-text-white">{t('SITE_CREATED_MODAL_BODY')}</span>
       <div>
         <button
           onClick={onContinue}
