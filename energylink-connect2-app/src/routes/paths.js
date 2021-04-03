@@ -282,6 +282,9 @@ const paths = {
     GET_ASSISTANCE: {
       path: '/assistance',
       headers: true
+    },
+    ANALYTICS_CONSENT: {
+      path: '/analytics-consent'
     }
   }
 }

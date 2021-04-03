@@ -695,5 +695,8 @@
   "NO_LIMIT": "No limit",
   "ADD_MIS": "Add microinverters",
   "EDIT_PANELS": "Edit panel models",
-  "PRODUCTION_CT_REQUIRED": "Production CTs are required for Equinox commissioning. Install production CTs before proceeding."
+  "PRODUCTION_CT_REQUIRED": "Production CTs are required for Equinox commissioning. Install production CTs before proceeding.",
+  "CONSENT_ANALYTICS_1": "SunPower Pro Connect would like your permission to track you across apps and websites owned by other companies.",
+  "CONSENT_ANALYTICS_2": "Tracking allows us to monitor your commissioning experience and improve the app to offer you a better experience in future versions.",
+  "CLOSE_APP": "Close App"
 }

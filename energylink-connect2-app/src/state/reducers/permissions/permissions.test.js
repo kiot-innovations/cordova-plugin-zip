@@ -13,7 +13,8 @@ describe('Permissions reducer', () => {
     reducerTest(its, permissionsActions.CHECK_LOCATION_PERMISSION_INIT(), {
       location: null,
       error: null,
-      modalOpened: false
+      modalOpened: false,
+      trackingPermission: 0
     })
   })
 

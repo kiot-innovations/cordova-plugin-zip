@@ -50,6 +50,7 @@ import PreCommissioning from 'pages/PreCommissioning'
 import NearbyPVS from 'pages/NearbyPVS'
 import PrecommissioningConfigs from 'pages/PrecommissioningConfigs'
 import LegacyDiscoverySelector from 'pages/LegacyDiscoverySelector'
+import AnalyticsConsent from 'pages/AnalyticsConsent'
 
 import { isDebug } from 'shared/utils'
 
@@ -94,14 +95,15 @@ const mapComponents = {
   [paths.PROTECTED.RMA_EXISTING_DEVICES.path]: ExistingDevices,
   [paths.PROTECTED.RMA_MI_DISCOVERY.path]: RMAMiDiscovery,
   [paths.PROTECTED.PRECOMM_CHECKLIST.path]: PreCommissioning,
-  [paths.UNPROTECTED.FORGOT_PASSWORD.path]: NotFound,
-  [paths.PROTECTED.RMA_DEVICES.path]: RMADevices,
-  [paths.UNPROTECTED.LOGIN.path]: Login,
-  [paths.UNPROTECTED.GET_ASSISTANCE.path]: GetAssistance,
   [paths.PROTECTED.PERMISSIONS.path]: Permissions,
   [paths.PROTECTED.NEARBY_PVS.path]: NearbyPVS,
   [paths.PROTECTED.PRECOMMISSIONING_CONFIGS.path]: PrecommissioningConfigs,
-  [paths.PROTECTED.LEGACY_DISCOVERY_SELECTOR.path]: LegacyDiscoverySelector
+  [paths.PROTECTED.LEGACY_DISCOVERY_SELECTOR.path]: LegacyDiscoverySelector,
+  [paths.PROTECTED.RMA_DEVICES.path]: RMADevices,
+  [paths.UNPROTECTED.FORGOT_PASSWORD.path]: NotFound,
+  [paths.UNPROTECTED.LOGIN.path]: Login,
+  [paths.UNPROTECTED.GET_ASSISTANCE.path]: GetAssistance,
+  [paths.UNPROTECTED.ANALYTICS_CONSENT.path]: AnalyticsConsent
 }
 
 if (isDebug) mapComponents[paths.PROTECTED.DEBUG_PAGE.path] = DebugPage

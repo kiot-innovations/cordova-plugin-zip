@@ -2,9 +2,17 @@ import { createReducer } from 'redux-act'
 import {
   CHECK_LOCATION_PERMISSION_INIT,
   CHECK_LOCATION_PERMISSION_SUCCESS,
-  CHECK_LOCATION_PERMISSION_ERROR
+  CHECK_LOCATION_PERMISSION_ERROR,
+  SET_TRACKING_PERMISSION
 } from 'state/actions/permissions'
 import { SHOW_MODAL, HIDE_MODAL } from 'state/actions/modal'
+
+export const trackingPermissionValues = {
+  TRACKING_PERMISSION_NOT_DETERMINED: 0,
+  TRACKING_PERMISSION_RESTRICTED: 1,
+  TRACKING_PERMISSION_DENIED: 2,
+  TRACKING_PERMISSION_AUTHORIZED: 3
+}
 
 export const LOCATION_PERMISSIONS = {
   DENIED_ONCE: 'DENIED_ONCE',
@@ -16,7 +24,9 @@ export const LOCATION_PERMISSIONS = {
 const initialState = {
   location: null,
   error: null,
-  modalOpened: false
+  modalOpened: false,
+  trackingPermission:
+    trackingPermissionValues.TRACKING_PERMISSION_NOT_DETERMINED
 }
 
 export default createReducer(
@@ -38,6 +48,10 @@ export default createReducer(
     [HIDE_MODAL]: state => ({
       ...state,
       modalOpened: false
+    }),
+    [SET_TRACKING_PERMISSION]: (state, payload) => ({
+      ...state,
+      trackingPermission: payload
     })
   },
   initialState

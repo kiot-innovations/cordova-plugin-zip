@@ -1,28 +1,48 @@
+/* eslint-disable */
+
 import React, { useEffect } from 'react'
 import clsx from 'clsx'
 import { useDispatch, useSelector } from 'react-redux'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
+import { includes } from 'ramda'
 
 import Logo from '@sunpower/sunpowerimage'
 
 import { requestLogin, handleLoginFromPing } from 'state/actions/auth'
 import { CHECK_SSL_CERTS } from 'state/actions/global'
+import { CHECK_TRACKING_PERMISSION } from 'state/actions/permissions'
+import { trackingPermissionValues } from 'state/reducers/permissions'
+
 import { useI18n } from 'shared/i18n'
 import paths from 'routes/paths'
 
 import './Login.scss'
-import { either } from 'shared/utils'
+import { either, isIos } from 'shared/utils'
 
 function Login() {
   const t = useI18n()
   const dispatch = useDispatch()
+  const history = useHistory()
 
   const isAuthenticating = useSelector(state => state.user.isAuthenticating)
   const error = useSelector(state => state.user.err)
+  const { trackingPermission } = useSelector(state => state.permissions)
 
   const loginClassName = clsx('button', 'is-primary', 'is-uppercase', {
     'is-loading': isAuthenticating
   })
+
+  useEffect(() => {
+    if (
+      isIos() &&
+      includes(trackingPermission, [
+        trackingPermissionValues.TRACKING_PERMISSION_DENIED,
+        trackingPermissionValues.TRACKING_PERMISSION_RESTRICTED
+      ])
+    ) {
+      history.push(paths.UNPROTECTED.ANALYTICS_CONSENT.path)
+    }
+  }, [trackingPermission])
 
   useEffect(() => {
     dispatch(CHECK_SSL_CERTS())
@@ -31,6 +51,17 @@ function Login() {
   useEffect(() => {
     window.handleOpenURL = handleOpenURL(dispatch)
   }, [dispatch])
+
+  useEffect(() => {
+    console.log(trackingPermission)
+    if (
+      isIos() &&
+      trackingPermission ===
+        trackingPermissionValues.TRACKING_PERMISSION_NOT_DETERMINED
+    ) {
+      dispatch(CHECK_TRACKING_PERMISSION())
+    }
+  }, [trackingPermission])
 
   return (
     <section className="login section full-height is-flex">
