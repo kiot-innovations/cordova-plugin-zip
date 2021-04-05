@@ -77,7 +77,7 @@
         <string>We need camera access to scan for microinverter serial numbers</string>
     </edit-config>
     <edit-config target="NSUserTrackingUsageDescription" file="*-Info.plist" mode="merge">
-        <string>Tracking allows us to monitor your commissioning experience and improve the App</string>
+        <string>Pro Connect does not track any data on your device outside of your usage of our app.  We track anonymous device identifiers to support integrated features in the app.  This is required to enable MI scanning and error reporting. SunPower also tracks user information and product interaction for app analytics to support improvements to the overall commissioning process.</string>
     </edit-config>
     <edit-config file="*-Info.plist" mode="merge" target="NSPhotoLibraryUsageDescription">
         <string>We need photo library access to get pictures from there</string>

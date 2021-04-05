@@ -1,5 +1,3 @@
-/* eslint-disable */
-
 import React, { useEffect } from 'react'
 import clsx from 'clsx'
 import { useDispatch, useSelector } from 'react-redux'
@@ -42,7 +40,7 @@ function Login() {
     ) {
       history.push(paths.UNPROTECTED.ANALYTICS_CONSENT.path)
     }
-  }, [trackingPermission])
+  }, [history, trackingPermission])
 
   useEffect(() => {
     dispatch(CHECK_SSL_CERTS())
@@ -53,7 +51,6 @@ function Login() {
   }, [dispatch])
 
   useEffect(() => {
-    console.log(trackingPermission)
     if (
       isIos() &&
       trackingPermission ===
@@ -61,7 +58,7 @@ function Login() {
     ) {
       dispatch(CHECK_TRACKING_PERMISSION())
     }
-  }, [trackingPermission])
+  }, [dispatch, trackingPermission])
 
   return (
     <section className="login section full-height is-flex">
