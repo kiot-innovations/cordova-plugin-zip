@@ -5,7 +5,7 @@ import {
   CONFIG_START,
   SET_AC_DEVICES
 } from 'state/actions/analytics'
-import { PUSH_CANDIDATES_INIT } from 'state/actions/devices'
+import { CLAIM_DEVICES_INIT } from 'state/actions/devices'
 import { SUBMIT_CONFIG } from 'state/actions/systemConfiguration'
 import { CONNECT_NETWORK_AP_INIT } from 'state/actions/systemConfiguration'
 
@@ -34,7 +34,7 @@ export default createReducer(
       ...state,
       configureTimer: new Date().getTime()
     }),
-    [PUSH_CANDIDATES_INIT]: state => ({
+    [CLAIM_DEVICES_INIT]: state => ({
       ...state,
       timeFromMiScan: new Date().getTime()
     }),

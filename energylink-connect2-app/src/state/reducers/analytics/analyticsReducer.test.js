@@ -3,7 +3,7 @@ import {
   COMMISSION_SUCCESS,
   CONFIG_START
 } from 'state/actions/analytics'
-import { PUSH_CANDIDATES_INIT } from 'state/actions/devices'
+import { CLAIM_DEVICES_INIT } from 'state/actions/devices'
 
 import analyticsReducer, { initialState } from './index'
 
@@ -12,7 +12,7 @@ describe('The analytics reducer', () => {
     expect(analyticsReducer.has(BEGIN_INSTALL)).toBe(true)
     expect(analyticsReducer.has(COMMISSION_SUCCESS)).toBe(true)
     expect(analyticsReducer.has(CONFIG_START)).toBe(true)
-    expect(analyticsReducer.has(PUSH_CANDIDATES_INIT)).toBe(true)
+    expect(analyticsReducer.has(CLAIM_DEVICES_INIT)).toBe(true)
   })
 
   it('should have the same state in case a config start with no siteKey change', () => {
