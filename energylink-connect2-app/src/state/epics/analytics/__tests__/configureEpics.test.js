@@ -7,12 +7,14 @@ import {
 
 describe('The configure epics file', () => {
   const mixpanelMock = {
-    track: jest.fn()
+    track: jest.fn(),
+    unregister: jest.fn()
   }
   beforeEach(() => {
     jest.resetModules()
     window.mixpanel = mixpanelMock
     mixpanelMock.track.mockReset()
+    mixpanelMock.unregister.mockReset()
   })
 
   it('should register to mixpanel the correct timestamp', () => {

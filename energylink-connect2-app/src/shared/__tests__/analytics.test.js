@@ -2,11 +2,13 @@ import { commissionSite, setACModuleType } from 'shared/analytics'
 
 describe('The analytics file to register actions to mixpanel', () => {
   const mixpanelMock = {
-    track: jest.fn()
+    track: jest.fn(),
+    unregister: jest.fn()
   }
   beforeEach(() => {
     jest.resetModules()
     mixpanelMock.track = jest.fn()
+    mixpanelMock.unregister = jest.fn()
     window.mixpanel = mixpanelMock
   })
 
@@ -17,6 +19,8 @@ describe('The analytics file to register actions to mixpanel', () => {
       $duration: 100,
       'Time Configuring': 50
     })
+    expect(mixpanelMock.unregister).toBeCalledTimes(1)
+    expect(mixpanelMock.unregister).toBeCalledWith('PVS SN')
   })
 
   describe('The set AC module type', () => {

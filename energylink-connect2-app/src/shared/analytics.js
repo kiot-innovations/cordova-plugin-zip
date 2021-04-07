@@ -86,6 +86,7 @@ export const siteNotFound = ({
   const { mixpanel } = window
   const appAndDeviceProperties = getAppAndDeviceProperties()
 
+  mixpanel.unregister('PVS SN')
   mixpanel.register(appAndDeviceProperties)
   mixpanel.identify(userId)
   mixpanel.people.set(appAndDeviceProperties)
@@ -115,6 +116,7 @@ export const siteFound = (
   const { mixpanel } = window
   const appAndDeviceProperties = getAppAndDeviceProperties()
 
+  mixpanel.unregister('PVS SN')
   mixpanel.register(appAndDeviceProperties)
   mixpanel.identify(userId)
   mixpanel.people.set(appAndDeviceProperties)
@@ -239,6 +241,7 @@ export const commissionSite = ({
     'Time Configuring': timeConfiguring,
     'Duration from MI Scan': timeFromMiScan
   })
+  mixpanel.unregister('PVS SN')
   return MIXPANEL_EVENT_QUEUED(
     'Commission Site - first successful site configuration'
   )
