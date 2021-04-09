@@ -5,7 +5,9 @@ import { either, isDebug } from 'shared/utils'
 const Banner = ({ flavor = '' }) =>
   either(
     isDebug,
-    <div className="development-banner">{flavor.split('-').pop()}</div>
+    <div className="is-capitalized development-banner">
+      {flavor.split('-').pop()}
+    </div>
   )
 
 export default Banner
