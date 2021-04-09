@@ -1,5 +1,6 @@
 import React from 'react'
-import { isEmpty, map, compose, pluck, sum, length } from 'ramda'
+import clsx from 'clsx'
+import { isEmpty, map, compose, pluck, sum, length, filter } from 'ramda'
 import { either } from 'shared/utils'
 import { useI18n } from 'shared/i18n'
 import { roundDecimals } from 'shared/rounding'
@@ -10,7 +11,8 @@ import Collapsible from '../Collapsible'
 function MiDataLive({ data }) {
   const t = useI18n()
   const inverterCount = length(data)
-  const totalProduction = sum(pluck('power', data))
+  const miIsNotErroring = mi => mi.state !== 'error'
+  const totalProduction = sum(pluck('power', filter(miIsNotErroring, data)))
   const totalWatts = (totalProduction / 1000).toFixed(2)
 
   return (
@@ -48,14 +50,26 @@ const renderTable = (t, data, inverterCount) => (
   </div>
 )
 
-const renderDataItem = t => value => (
-  <div className="power-row mt-5 mb-5" key={value.sn}>
-    <span className="has-text-white">{value.sn}</span>
-    <span className="has-text-white has-text-weight-bold has-text-right">
-      {roundDecimals(value.power)} {t('WATTS')}
-    </span>
-  </div>
-)
+const renderDataItem = t => value => {
+  const isError = value.state === 'error'
+  const powerClassName = clsx('has-text-weight-bold', 'has-text-right', {
+    error: isError,
+    'has-text-white': !isError
+  })
+
+  return (
+    <div className="power-row mt-5 mb-5" key={value.sn}>
+      <span className="has-text-white">{value.sn}</span>
+      <span className={powerClassName}>
+        {either(
+          isError,
+          t('LIVE_DATA_MI_ERROR'),
+          roundDecimals(value.power) + ' ' + t('WATTS')
+        )}
+      </span>
+    </div>
+  )
+}
 
 // t -> [a] -> [DOM Node]
 const renderData = compose(map, renderDataItem)

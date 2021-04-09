@@ -1,3 +1,5 @@
+@import '~@sunpower/theme-dark/styles/variables';
+
 .mi-data-live {
   .power-production {
     .count-value {
@@ -7,6 +9,10 @@
     .power-row {
       display: grid;
       grid-template-columns: 60% 1fr;
+    }
+
+    .error {
+      color: $error-red;
     }
   }
 }

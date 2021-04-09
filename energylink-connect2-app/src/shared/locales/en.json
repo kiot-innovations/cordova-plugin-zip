@@ -150,6 +150,7 @@
   "MI_NO_COUNT": "You have scanned no MI codes, and the inventory count expects no MI codes. if you have installed non-microinverter equipment, tap on continue. Otherwise please scan the MI codes before continuing.",
   "LEGACY_DISCOVERY_ZERO_MIS_WARNING": "Do you want to proceed without inverters?",
   "LIVE_DATA": "Live Data",
+  "LIVE_DATA_MI_ERROR": "Error",
   "ENERGY_MIX": "Today's Energy Mix",
   "FEEDBACK_SUBJECT": "Received {0} star rating from EnergyLink Connect 2 feedback form",
   "FEEDBACK_BODY": "From {0} at {1}: {2}",

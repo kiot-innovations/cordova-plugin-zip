@@ -23,6 +23,7 @@ const DebugPage = () => {
         <span className="has-text-weight-bold is-uppercase"> Debug Page </span>
       </div>
       <div>
+        {renderDebugLink(history, 'Live Data', paths.PROTECTED.DATA.path)}
         {renderDebugLink(
           history,
           'Precommissioning Configs',
