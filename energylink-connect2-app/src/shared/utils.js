@@ -256,10 +256,11 @@ export const getPVSVersionNumber = compose(
 export const flipConcat = flip(concat)
 
 export const miTypes = {
+  AC_Module_Type_C: 'Type C',
+  AC_Module_Type_D: 'Type D',
   AC_Module_Type_E: 'Type E',
   AC_Module_Type_G: 'Type G',
-  AC_Module_Type_C: 'Type C',
-  AC_Module_Type_D: 'Type D'
+  AC_Module_Type_H: 'Type H'
 }
 
 export const renameKeys = curry((keysMap, obj) =>

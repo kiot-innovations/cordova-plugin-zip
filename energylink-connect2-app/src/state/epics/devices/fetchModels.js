@@ -55,6 +55,15 @@ const defaultMIModelsByType = {
     'SPR-A420-G-AC',
     'SPR-A390-BLK-G-AC',
     'SPR-A400-BLK-G-AC'
+  ],
+  H: [
+    'SPR-A390-H-AC',
+    'SPR-A400-H-AC',
+    'SPR-A410-H-AC',
+    'SPR-A415-H-AC',
+    'SPR-A420-H-AC',
+    'SPR-A390-BLK-H-AC',
+    'SPR-A400-BLK-H-AC'
   ]
 }
 const getAllMiModelsFromResponse = reduce((acc, elem) => {
