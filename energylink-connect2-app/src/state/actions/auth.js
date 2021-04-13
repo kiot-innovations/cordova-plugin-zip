@@ -138,12 +138,10 @@ export const validateSession = () => {
   return (dispatch, getState) => {
     const { user } = getState()
     const expires = pathOr(0, ['data', 'exp'], user) * 1000
-    const now = new Date().getTime()
-
-    const isValid = moment(expires).isAfter(now)
-
+    const diff = moment(expires).diff(moment(), 'hours')
+    const isValid = diff > 1
     if (expires > 0 && !isValid) {
-      dispatch(REFRESH_TOKEN_INIT(user.auth.refresh_token))
+      dispatch(REFRESH_TOKEN_INIT())
     }
   }
 }

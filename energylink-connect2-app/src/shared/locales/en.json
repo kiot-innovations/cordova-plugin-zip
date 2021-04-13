@@ -508,6 +508,7 @@
   "UPS": "Unexpected Error",
   "UPS_TEXT": "SunPower Pro Connect encountered an unexpected error.",
   "UPS_SENTRY": "APP_CRASHED",
+  "REFRESH_TOKEN": "REFRESHING_TOKEN",
   "RMA_ADD_DEVICES_TITLE": "Select devices you're adding",
   "RMA_ADD_DEVICES_TIP": "If you're not installing new equipment, feel free to continue",
   "RMA_MI_NUMBER": "Number to add",
