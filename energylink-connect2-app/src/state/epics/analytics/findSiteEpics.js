@@ -39,6 +39,12 @@ export const siteNotFoundEpic = (action$, state$) =>
     )
   )
 
+const commissioningStatus = {
+  UNKNOWN: 'Unknown',
+  COMMISSIONED: 'Commissioned',
+  NOT_COMMISSIONED: 'Not Commissioned'
+}
+
 export const siteFoundEpic = (action$, state$) =>
   action$.pipe(
     ofType(SET_SITE.getType()),
@@ -49,7 +55,10 @@ export const siteFoundEpic = (action$, state$) =>
           map(({ payload: sitesPVS }) =>
             siteFound(state$.value.user.data, {
               ...siteData,
-              commissioned: sitesPVS.length !== 0
+              commissioningStatus:
+                sitesPVS.length !== 0
+                  ? commissioningStatus.COMMISSIONED
+                  : commissioningStatus.NOT_COMMISSIONED
             })
           ),
           take(1)
@@ -59,7 +68,7 @@ export const siteFoundEpic = (action$, state$) =>
           map(() =>
             siteFound(state$.value.user.data, {
               ...siteData,
-              commissioned: false
+              commissioningStatus: commissioningStatus.UNKNOWN
             })
           ),
           take(1)

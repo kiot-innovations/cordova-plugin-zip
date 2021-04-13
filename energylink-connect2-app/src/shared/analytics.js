@@ -111,7 +111,7 @@ export const siteFound = (
     dealerName,
     recordType: dealerType
   },
-  { city, st_id, postalCode, siteKey, commissioned }
+  { city, st_id, postalCode, siteKey, commissioningStatus }
 ) => {
   const { mixpanel } = window
   const appAndDeviceProperties = getAppAndDeviceProperties()
@@ -127,15 +127,16 @@ export const siteFound = (
     'Dealer Name': dealerName,
     'Dealer Type': capitalizeWord(dealerType)
   })
-  mixpanel.register({ 'Site ID': siteKey, 'Site Commissioned': !!commissioned })
+  mixpanel.register({
+    'Site ID': siteKey,
+    'Initial Commissioning Status': commissioningStatus
+  })
 
   mixpanel.track('Find Site', {
     Found: true,
     $city: city,
     State: st_id,
-    'Zip Code': postalCode,
-    'Site ID': siteKey,
-    Commissioned: !!commissioned
+    'Zip Code': postalCode
   })
 
   return MIXPANEL_EVENT_QUEUED('Find Site - site found')
