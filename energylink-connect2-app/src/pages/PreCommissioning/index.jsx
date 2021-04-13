@@ -26,6 +26,7 @@ function PreCommissioning() {
   const t = useI18n()
 
   const { showPrecommissioningChecklist } = useSelector(state => state.global)
+
   const [checklist, setChecklist] = useState(clone(initialChecklistState))
   const [remindMe, setRemindMe] = useState(false)
   const [modal, showModal] = useState(false)

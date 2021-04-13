@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Toggler component render correctly 1`] = `
+<label
+  className="toggler"
+>
+  <p>
+    Set autostart
+  </p>
+  <ReactSwitch
+    activeBoxShadow="0 0 2px 3px #3bf"
+    boxShadow={null}
+    checked={false}
+    checkedIcon={null}
+    disabled={false}
+    height={28}
+    offColor="#888"
+    offHandleColor="#fff"
+    onColor="#EF8B22"
+    onHandleColor="#fff"
+    uncheckedIcon={null}
+    width={56}
+  />
+</label>
+`;

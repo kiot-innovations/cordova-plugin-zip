@@ -259,6 +259,10 @@ const paths = {
       footer: true,
       tab: TABS.INSTALL
     },
+    SETTINGS: {
+      path: '/app-settings',
+      header: true
+    },
     PRECOMMISSIONING_CONFIGS: {
       path: '/precommissioning-configs',
       header: true,

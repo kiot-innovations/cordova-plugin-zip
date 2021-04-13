@@ -119,6 +119,12 @@ exports[`Header Component Renders correctly 1`] = `
                     "display": false,
                     "text": "FIRMWARE_RELEASE_NOTES",
                   },
+                  Object {
+                    "component": [Function],
+                    "display": true,
+                    "icon": "sp-gear",
+                    "text": "SETTINGS",
+                  },
                 ]
               }
             >
@@ -126,10 +132,10 @@ exports[`Header Component Renders correctly 1`] = `
                 className="is-flex tile is-vertical level full-height"
               >
                 <article
-                  className="is-flex space-around flow-wrap mt-15"
+                  className="menuitems mt-15"
                 >
                   <div
-                    className="mb-30"
+                    className="mb-30 is-flex"
                     key="CHANGE_ADDRESS"
                   >
                     <Component
@@ -153,7 +159,7 @@ exports[`Header Component Renders correctly 1`] = `
                     </Component>
                   </div>
                   <div
-                    className="mb-30"
+                    className="mb-30 is-flex"
                     key="MANAGE_FIRMWARES"
                   >
                     <Component
@@ -177,7 +183,7 @@ exports[`Header Component Renders correctly 1`] = `
                     </Component>
                   </div>
                   <div
-                    className="mb-30"
+                    className="mb-30 is-flex"
                     key="VERSION_INFORMATION"
                   >
                     <Component
@@ -201,7 +207,7 @@ exports[`Header Component Renders correctly 1`] = `
                     </Component>
                   </div>
                   <div
-                    className="mb-30"
+                    className="mb-30 is-flex"
                     key="GIVE_FEEDBACK"
                   >
                     <Component
@@ -224,13 +230,31 @@ exports[`Header Component Renders correctly 1`] = `
                       </button>
                     </Component>
                   </div>
+                  <div
+                    className="mb-30 is-flex"
+                    key="SETTINGS"
+                  >
+                    <Component
+                      icon="sp-gear"
+                      onClick={[Function]}
+                      text="SETTINGS"
+                    >
+                      <button
+                        className="tilex tile has-text-white is-flex is-vertical space-around"
+                        onClick={[Function]}
+                      >
+                        <div
+                          className="sp is-size-1 sp-gear"
+                        />
+                        <div
+                          className="text is-size-5 pt-10 pl-10 pr-10 pb-10"
+                        >
+                          SETTINGS
+                        </div>
+                      </button>
+                    </Component>
+                  </div>
                 </article>
-                <button
-                  className="button has-text-centered is-uppercase mb-10 has-text-primary is-text"
-                  onClick={[Function]}
-                >
-                  BTN_LOG_OUT
-                </button>
               </section>
             </MenuItemsContainer>
           </div>
@@ -347,6 +371,12 @@ exports[`Header Component Renders text instead of logo 1`] = `
                   "display": false,
                   "text": "FIRMWARE_RELEASE_NOTES",
                 },
+                Object {
+                  "component": [Function],
+                  "display": true,
+                  "icon": "sp-gear",
+                  "text": "SETTINGS",
+                },
               ]
             }
           >
@@ -354,10 +384,10 @@ exports[`Header Component Renders text instead of logo 1`] = `
               className="is-flex tile is-vertical level full-height"
             >
               <article
-                className="is-flex space-around flow-wrap mt-15"
+                className="menuitems mt-15"
               >
                 <div
-                  className="mb-30"
+                  className="mb-30 is-flex"
                   key="CHANGE_ADDRESS"
                 >
                   <Component
@@ -381,7 +411,7 @@ exports[`Header Component Renders text instead of logo 1`] = `
                   </Component>
                 </div>
                 <div
-                  className="mb-30"
+                  className="mb-30 is-flex"
                   key="MANAGE_FIRMWARES"
                 >
                   <Component
@@ -405,7 +435,7 @@ exports[`Header Component Renders text instead of logo 1`] = `
                   </Component>
                 </div>
                 <div
-                  className="mb-30"
+                  className="mb-30 is-flex"
                   key="VERSION_INFORMATION"
                 >
                   <Component
@@ -429,7 +459,7 @@ exports[`Header Component Renders text instead of logo 1`] = `
                   </Component>
                 </div>
                 <div
-                  className="mb-30"
+                  className="mb-30 is-flex"
                   key="GIVE_FEEDBACK"
                 >
                   <Component
@@ -452,13 +482,31 @@ exports[`Header Component Renders text instead of logo 1`] = `
                     </button>
                   </Component>
                 </div>
+                <div
+                  className="mb-30 is-flex"
+                  key="SETTINGS"
+                >
+                  <Component
+                    icon="sp-gear"
+                    onClick={[Function]}
+                    text="SETTINGS"
+                  >
+                    <button
+                      className="tilex tile has-text-white is-flex is-vertical space-around"
+                      onClick={[Function]}
+                    >
+                      <div
+                        className="sp is-size-1 sp-gear"
+                      />
+                      <div
+                        className="text is-size-5 pt-10 pl-10 pr-10 pb-10"
+                      >
+                        SETTINGS
+                      </div>
+                    </button>
+                  </Component>
+                </div>
               </article>
-              <button
-                className="button has-text-centered is-uppercase mb-10 has-text-primary is-text"
-                onClick={[Function]}
-              >
-                BTN_LOG_OUT
-              </button>
             </section>
           </MenuItemsContainer>
         </div>

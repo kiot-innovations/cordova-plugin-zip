@@ -36,6 +36,12 @@ exports[`Menu Page render correctly 1`] = `
           "display": false,
           "text": "FIRMWARE_RELEASE_NOTES",
         },
+        Object {
+          "component": [Function],
+          "display": true,
+          "icon": "sp-gear",
+          "text": "SETTINGS",
+        },
       ]
     }
   />

@@ -1,0 +1,415 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Settings component render correctly when checklist off 1`] = `
+<BrowserRouter
+  keyLength={0}
+>
+  <Router
+    history={
+      Object {
+        "action": "POP",
+        "block": [Function],
+        "createHref": [Function],
+        "go": [Function],
+        "goBack": [Function],
+        "goForward": [Function],
+        "length": 1,
+        "listen": [Function],
+        "location": Object {
+          "hash": "",
+          "pathname": "/",
+          "search": "",
+          "state": undefined,
+        },
+        "push": [Function],
+        "replace": [Function],
+      }
+    }
+  >
+    <Provider
+      store={
+        Object {
+          "clearActions": [Function],
+          "dispatch": [Function],
+          "getActions": [Function],
+          "getState": [Function],
+          "replaceReducer": [Function],
+          "subscribe": [Function],
+        }
+      }
+    >
+      <Settings>
+        <main
+          className="full-height pl-15 pr-15"
+        >
+          <h5
+            className="is-uppercase is-block is-full-width has-text-centered is-bold mb-30"
+          >
+            SETTINGS
+          </h5>
+          <section>
+            <h6
+              className="has-text-white"
+            >
+              APP_SETTINGS
+            </h6>
+            <article>
+              <div
+                className="mt-20"
+              >
+                <Toggler
+                  checked={false}
+                  onChange={[Function]}
+                  text="SETTING_CHECKLIST"
+                >
+                  <label
+                    className="toggler"
+                  >
+                    <p>
+                      SETTING_CHECKLIST
+                    </p>
+                    <ReactSwitch
+                      activeBoxShadow="0 0 2px 3px #3bf"
+                      boxShadow={null}
+                      checked={false}
+                      checkedIcon={null}
+                      disabled={false}
+                      height={28}
+                      offColor="#888"
+                      offHandleColor="#fff"
+                      onChange={[Function]}
+                      onColor="#EF8B22"
+                      onHandleColor="#fff"
+                      uncheckedIcon={null}
+                      width={56}
+                    >
+                      <div
+                        style={
+                          Object {
+                            "MozTransition": "opacity 0.25s",
+                            "MozUserSelect": "none",
+                            "WebkitTapHighlightColor": "rgba(0, 0, 0, 0)",
+                            "WebkitTransition": "opacity 0.25s",
+                            "WebkitUserSelect": "none",
+                            "borderRadius": 14,
+                            "direction": "ltr",
+                            "display": "inline-block",
+                            "msUserSelect": "none",
+                            "opacity": 1,
+                            "position": "relative",
+                            "textAlign": "left",
+                            "touchAction": "none",
+                            "transition": "opacity 0.25s",
+                            "userSelect": "none",
+                          }
+                        }
+                      >
+                        <div
+                          className="react-switch-bg"
+                          onClick={[Function]}
+                          onMouseDown={[Function]}
+                          style={
+                            Object {
+                              "MozTransition": "background 0.25s",
+                              "WebkitTransition": "background 0.25s",
+                              "background": "#888888",
+                              "borderRadius": 14,
+                              "cursor": "pointer",
+                              "height": 28,
+                              "margin": 0,
+                              "position": "relative",
+                              "transition": "background 0.25s",
+                              "width": 56,
+                            }
+                          }
+                        />
+                        <div
+                          className="react-switch-handle"
+                          onClick={[Function]}
+                          onMouseDown={[Function]}
+                          onTouchCancel={[Function]}
+                          onTouchEnd={[Function]}
+                          onTouchMove={[Function]}
+                          onTouchStart={[Function]}
+                          style={
+                            Object {
+                              "MozTransition": "background-color 0.25s, transform 0.25s, box-shadow 0.15s",
+                              "WebkitTransition": "background-color 0.25s, transform 0.25s, box-shadow 0.15s",
+                              "background": "#ffffff",
+                              "border": 0,
+                              "borderRadius": "50%",
+                              "boxShadow": null,
+                              "cursor": "pointer",
+                              "display": "inline-block",
+                              "height": 26,
+                              "outline": 0,
+                              "position": "absolute",
+                              "top": 1,
+                              "transform": "translateX(1px)",
+                              "transition": "background-color 0.25s, transform 0.25s, box-shadow 0.15s",
+                              "width": 26,
+                            }
+                          }
+                        />
+                        <input
+                          aria-checked={false}
+                          checked={false}
+                          disabled={false}
+                          onBlur={[Function]}
+                          onChange={[Function]}
+                          onFocus={[Function]}
+                          onKeyUp={[Function]}
+                          role="switch"
+                          style={
+                            Object {
+                              "border": 0,
+                              "clip": "rect(0 0 0 0)",
+                              "height": 1,
+                              "margin": -1,
+                              "overflow": "hidden",
+                              "padding": 0,
+                              "position": "absolute",
+                              "width": 1,
+                            }
+                          }
+                          type="checkbox"
+                        />
+                      </div>
+                    </ReactSwitch>
+                  </label>
+                </Toggler>
+              </div>
+            </article>
+            <article
+              onClick={[Function]}
+              role="button"
+            >
+              <hr
+                className=" mb-10"
+              />
+              <h6
+                className="has-text-white mb-10"
+              >
+                BTN_LOG_OUT
+              </h6>
+              <p>
+                LOGGED_IN
+              </p>
+              <hr
+                className="mt-10"
+              />
+            </article>
+          </section>
+        </main>
+      </Settings>
+    </Provider>
+  </Router>
+</BrowserRouter>
+`;
+
+exports[`Settings component render correctly when checklist on 1`] = `
+<BrowserRouter
+  keyLength={0}
+>
+  <Router
+    history={
+      Object {
+        "action": "POP",
+        "block": [Function],
+        "createHref": [Function],
+        "go": [Function],
+        "goBack": [Function],
+        "goForward": [Function],
+        "length": 1,
+        "listen": [Function],
+        "location": Object {
+          "hash": "",
+          "pathname": "/",
+          "search": "",
+          "state": undefined,
+        },
+        "push": [Function],
+        "replace": [Function],
+      }
+    }
+  >
+    <Provider
+      store={
+        Object {
+          "clearActions": [Function],
+          "dispatch": [Function],
+          "getActions": [Function],
+          "getState": [Function],
+          "replaceReducer": [Function],
+          "subscribe": [Function],
+        }
+      }
+    >
+      <Settings>
+        <main
+          className="full-height pl-15 pr-15"
+        >
+          <h5
+            className="is-uppercase is-block is-full-width has-text-centered is-bold mb-30"
+          >
+            SETTINGS
+          </h5>
+          <section>
+            <h6
+              className="has-text-white"
+            >
+              APP_SETTINGS
+            </h6>
+            <article>
+              <div
+                className="mt-20"
+              >
+                <Toggler
+                  checked={true}
+                  onChange={[Function]}
+                  text="SETTING_CHECKLIST"
+                >
+                  <label
+                    className="toggler"
+                  >
+                    <p>
+                      SETTING_CHECKLIST
+                    </p>
+                    <ReactSwitch
+                      activeBoxShadow="0 0 2px 3px #3bf"
+                      boxShadow={null}
+                      checked={true}
+                      checkedIcon={null}
+                      disabled={false}
+                      height={28}
+                      offColor="#888"
+                      offHandleColor="#fff"
+                      onChange={[Function]}
+                      onColor="#EF8B22"
+                      onHandleColor="#fff"
+                      uncheckedIcon={null}
+                      width={56}
+                    >
+                      <div
+                        style={
+                          Object {
+                            "MozTransition": "opacity 0.25s",
+                            "MozUserSelect": "none",
+                            "WebkitTapHighlightColor": "rgba(0, 0, 0, 0)",
+                            "WebkitTransition": "opacity 0.25s",
+                            "WebkitUserSelect": "none",
+                            "borderRadius": 14,
+                            "direction": "ltr",
+                            "display": "inline-block",
+                            "msUserSelect": "none",
+                            "opacity": 1,
+                            "position": "relative",
+                            "textAlign": "left",
+                            "touchAction": "none",
+                            "transition": "opacity 0.25s",
+                            "userSelect": "none",
+                          }
+                        }
+                      >
+                        <div
+                          className="react-switch-bg"
+                          onClick={[Function]}
+                          onMouseDown={[Function]}
+                          style={
+                            Object {
+                              "MozTransition": "background 0.25s",
+                              "WebkitTransition": "background 0.25s",
+                              "background": "#EF8B22",
+                              "borderRadius": 14,
+                              "cursor": "pointer",
+                              "height": 28,
+                              "margin": 0,
+                              "position": "relative",
+                              "transition": "background 0.25s",
+                              "width": 56,
+                            }
+                          }
+                        />
+                        <div
+                          className="react-switch-handle"
+                          onClick={[Function]}
+                          onMouseDown={[Function]}
+                          onTouchCancel={[Function]}
+                          onTouchEnd={[Function]}
+                          onTouchMove={[Function]}
+                          onTouchStart={[Function]}
+                          style={
+                            Object {
+                              "MozTransition": "background-color 0.25s, transform 0.25s, box-shadow 0.15s",
+                              "WebkitTransition": "background-color 0.25s, transform 0.25s, box-shadow 0.15s",
+                              "background": "#ffffff",
+                              "border": 0,
+                              "borderRadius": "50%",
+                              "boxShadow": null,
+                              "cursor": "pointer",
+                              "display": "inline-block",
+                              "height": 26,
+                              "outline": 0,
+                              "position": "absolute",
+                              "top": 1,
+                              "transform": "translateX(29px)",
+                              "transition": "background-color 0.25s, transform 0.25s, box-shadow 0.15s",
+                              "width": 26,
+                            }
+                          }
+                        />
+                        <input
+                          aria-checked={true}
+                          checked={true}
+                          disabled={false}
+                          onBlur={[Function]}
+                          onChange={[Function]}
+                          onFocus={[Function]}
+                          onKeyUp={[Function]}
+                          role="switch"
+                          style={
+                            Object {
+                              "border": 0,
+                              "clip": "rect(0 0 0 0)",
+                              "height": 1,
+                              "margin": -1,
+                              "overflow": "hidden",
+                              "padding": 0,
+                              "position": "absolute",
+                              "width": 1,
+                            }
+                          }
+                          type="checkbox"
+                        />
+                      </div>
+                    </ReactSwitch>
+                  </label>
+                </Toggler>
+              </div>
+            </article>
+            <article
+              onClick={[Function]}
+              role="button"
+            >
+              <hr
+                className=" mb-10"
+              />
+              <h6
+                className="has-text-white mb-10"
+              >
+                BTN_LOG_OUT
+              </h6>
+              <p>
+                LOGGED_IN
+              </p>
+              <hr
+                className="mt-10"
+              />
+            </article>
+          </section>
+        </main>
+      </Settings>
+    </Provider>
+  </Router>
+</BrowserRouter>
+`;

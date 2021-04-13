@@ -12,3 +12,11 @@ $headerHeight: 60px;
   margin-top: env(safe-area-inset-top);
   padding-bottom: calc(4 * env(safe-area-inset-bottom));
 }
+
+.menuitems {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  & > div > button {
+    margin: auto;
+  }
+}

@@ -26,6 +26,7 @@ import {
   CHECK_SSL_CERTS_SUCCESS,
   CHECK_SSL_CERTS_ERROR
 } from 'state/actions/global'
+import { SET_SHOW_CHECKLIST } from 'state/actions/settings'
 
 const initialState = {
   isAccountCreated: false,
@@ -132,6 +133,10 @@ export const globalReducer = createReducer(
       ...state,
       checkingSSLCerts: false,
       hasValidSSLCerts: false
+    }),
+    [SET_SHOW_CHECKLIST]: (state, showPrecommissioningChecklist) => ({
+      ...state,
+      showPrecommissioningChecklist
     })
   },
   initialState

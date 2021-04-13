@@ -48,6 +48,7 @@ import GetAssistance from 'pages/GetAssistance'
 import Permissions from 'pages/Permissions'
 import PreCommissioning from 'pages/PreCommissioning'
 import NearbyPVS from 'pages/NearbyPVS'
+import Settings from 'pages/Settings'
 import PrecommissioningConfigs from 'pages/PrecommissioningConfigs'
 import LegacyDiscoverySelector from 'pages/LegacyDiscoverySelector'
 import AnalyticsConsent from 'pages/AnalyticsConsent'
@@ -103,6 +104,10 @@ const mapComponents = {
   [paths.UNPROTECTED.FORGOT_PASSWORD.path]: NotFound,
   [paths.UNPROTECTED.LOGIN.path]: Login,
   [paths.UNPROTECTED.GET_ASSISTANCE.path]: GetAssistance,
+  [paths.PROTECTED.PERMISSIONS.path]: Permissions,
+  [paths.PROTECTED.NEARBY_PVS.path]: NearbyPVS,
+  [paths.PROTECTED.SETTINGS.path]: Settings,
+  [paths.PROTECTED.LEGACY_DISCOVERY_SELECTOR.path]: LegacyDiscoverySelector,
   [paths.UNPROTECTED.ANALYTICS_CONSENT.path]: AnalyticsConsent
 }
 

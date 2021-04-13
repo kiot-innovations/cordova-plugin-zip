@@ -3,6 +3,7 @@ import GiveFeedback from 'pages/GiveFeedback'
 import Firmwares from 'pages/Firmwares'
 import VersionInformation from 'pages/VersionInformation'
 import FirmwareReleaseNotes from 'pages/FirmwareReleaseNotes'
+import Settings from 'pages/Settings'
 
 export default [
   {
@@ -33,5 +34,11 @@ export default [
     text: 'FIRMWARE_RELEASE_NOTES',
     component: FirmwareReleaseNotes,
     display: false
+  },
+  {
+    icon: 'sp-gear',
+    text: 'SETTINGS',
+    component: Settings,
+    display: true
   }
 ]

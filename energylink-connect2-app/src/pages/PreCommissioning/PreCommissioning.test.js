@@ -19,6 +19,9 @@ describe('Precommissioning Checklist', () => {
     const initialState = {
       global: {
         showPrecommissioningChecklist: true
+      },
+      settings: {
+        showCheckList: false
       }
     }
 
