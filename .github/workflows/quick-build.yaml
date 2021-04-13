@@ -31,13 +31,6 @@ jobs:
           node-version: ${{ env.NODE_VERSION }}
           registry-url: 'https://registry.npmjs.org'
 
-      - name: Restore cached node_modules folder
-        id: native_app_node_modules
-        uses: actions/cache@v2
-        with:
-          path: energylink-connect2-app/node_modules
-          key: ${{ runner.os }}-modules-${{ hashFiles('**/energylink-connect2-app/package-lock.json') }}
-
       - name: Install Dependencies
         if: steps.native_app_node_modules.outputs.cache-hit != true
         run: npm install
@@ -90,13 +83,6 @@ jobs:
         run: |
           echo "${{ secrets.GOOGLE_PLAY_UPLOAD_KEYSTORE }}" | base64 -d > upload-keystore.jks
           echo "${{ secrets.GOOGLE_PLAY_API_KEY }}" | base64 -d > google-api.json
-
-      - name: Restore cached Gradle folder
-        id: gradle
-        uses: actions/cache@v2
-        with:
-          path: ~/.gradle
-          key: ${{ runner.os }}-android-gradle
 
       - name: Add android platform
         if: steps.cordova_android.outputs.cache-hit != true

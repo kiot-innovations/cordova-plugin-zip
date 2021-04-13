@@ -54,8 +54,8 @@
     "cordova.plugins.diagnostic": "^6.0.2",
     "es6-promise-plugin": "^4.1.0",
     "phonegap-plugin-barcodescanner": "^8.1.0",
-    "scandit-cordova-datacapture-barcode": "^6.6.3",
-    "scandit-cordova-datacapture-core": "^6.6.3",
+    "scandit-cordova-datacapture-barcode": "^6.7.1",
+    "scandit-cordova-datacapture-core": "^6.7.1",
     "xcode": "^2.1.0"
   },
   "cordova": {
@@ -106,12 +106,12 @@
         "BLUETOOTH_USAGE_DESCRIPTION": "The app uses bluetooth to connect to PVS WiFi. Pro Connect needs to connect to your PVS to commission the devices."
       },
       "wifiwizard2": {},
-      "scandit-cordova-datacapture-core": {},
-      "scandit-cordova-datacapture-barcode": {},
       "cordova-plugin-idfa": {
         "ANDROID_PLAY_ADID_VERSION": "17.0.+"
       },
-      "cordova-plugin-app-exit": {}
+      "cordova-plugin-app-exit": {},
+      "scandit-cordova-datacapture-core": {},
+      "scandit-cordova-datacapture-barcode": {}
     },
     "platforms": [
       "android"
