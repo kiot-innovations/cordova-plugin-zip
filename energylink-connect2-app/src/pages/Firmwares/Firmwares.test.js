@@ -1,3 +1,4 @@
+import FirmwaresMenu from 'pages/Firmwares/MenuComponent'
 import React from 'react'
 import * as ReactDOM from 'react-dom'
 import * as reactRedux from 'react-redux'
@@ -65,5 +66,55 @@ describe('Firmwares component', () => {
     expect(getFileSize(fileInfoObj)).toBe(size)
     fileInfoObj = {}
     expect(getFileSize(fileInfoObj)).toBe(undefined)
+  })
+})
+
+describe('Firmwares Menu component', () => {
+  beforeAll(() => {
+    ReactDOM.createPortal = jest.fn((element, node) => {
+      return element
+    })
+  })
+
+  afterEach(() => {
+    ReactDOM.createPortal.mockClear()
+  })
+  let dispatchMock
+  beforeEach(() => {
+    dispatchMock = jest.fn()
+    jest.spyOn(reactRedux, 'useDispatch').mockImplementation(() => dispatchMock)
+    jest.spyOn(i18n, 'useI18n').mockImplementation(() => (key, ...params) => {
+      return `${key.toUpperCase()} ${params.join('_')}`.trim()
+    })
+  })
+
+  test('render correctly', () => {
+    const { component } = mountWithProvider(<FirmwaresMenu />)({
+      fileDownloader: {
+        progress: {
+          progress: 0,
+          lastProgress: 0,
+          downloading: false
+        },
+        gridProfileInfo: {
+          progress: 0,
+          lastProgress: 0,
+          lastModified: null
+        },
+        fileInfo: {
+          name: 'test-file.zip',
+          error: '',
+          step: 'INITIALIZING',
+          displayName: 'test-file'
+        }
+      },
+      ess: {
+        error: null,
+        isDownloading: false,
+        file: { name: 'test file name' },
+        step: 'INITIALIZING'
+      }
+    })
+    expect(component).toMatchSnapshot()
   })
 })

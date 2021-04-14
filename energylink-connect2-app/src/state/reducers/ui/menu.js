@@ -1,16 +1,10 @@
-import {
-  MENU_SHOW,
-  MENU_HIDE,
-  MENU_DISPLAY_ITEM,
-  SET_PREVIOUS_URL
-} from 'state/actions/ui'
+import { MENU_DISPLAY_ITEM, MENU_HIDE, MENU_SHOW } from 'state/actions/ui'
 
 import { createReducer } from 'redux-act'
 
 const initialState = {
   show: false,
-  itemToDisplay: '',
-  previousURL: ''
+  itemToDisplay: ''
 }
 
 export default createReducer(
@@ -21,8 +15,7 @@ export default createReducer(
       ...state,
       show: true,
       itemToDisplay
-    }),
-    [SET_PREVIOUS_URL]: (state, previousURL) => ({ ...state, previousURL })
+    })
   },
   initialState
 )

@@ -1,10 +1,11 @@
+import React from 'react'
 import clsx from 'clsx'
 import moment from 'moment'
-import React from 'react'
+
 import { useI18n } from 'shared/i18n'
 import Collapsible from 'components/Collapsible'
 import { either } from 'shared/utils'
-import { Link } from 'react-router-dom'
+
 import './FileCollapsible.scss'
 
 const FileCollapsible = ({
@@ -18,7 +19,8 @@ const FileCollapsible = ({
   step = '',
   size = 10,
   goToReleaseNotes = null,
-  lastTimeDownloaded = undefined
+  expanded = true,
+  lastTimeDownloaded
 }) => {
   const t = useI18n()
   const showReleaseNotes = isDownloaded && goToReleaseNotes
@@ -33,10 +35,13 @@ const FileCollapsible = ({
             'sp-download': !isDownloaded,
             'sp-update': isDownloaded
           })}
-          onClick={downloadFile}
+          onClick={e => {
+            e.stopPropagation()
+            return downloadFile()
+          }}
         />
       )}
-      expanded
+      expanded={expanded}
     >
       {either(
         error,
@@ -106,9 +111,12 @@ const FileCollapsible = ({
           {either(
             showReleaseNotes,
             <section className="mb-5">
-              <Link className="has-text-weight-bold" onClick={goToReleaseNotes}>
+              <button
+                className="button button-transparent has-text-primary has-text-left is-paddingless has-text-weight-bold is-size-6"
+                onClick={goToReleaseNotes}
+              >
                 {t('RELEASE_NOTES')}
-              </Link>
+              </button>
             </section>
           )}
         </>

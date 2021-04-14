@@ -60,7 +60,7 @@ const ReleaseNotes = ({ title, releaseNotes, currentVersion = null }) => {
         </div>,
         <div className="body has-text-white">
           <div className="collapsible">
-            <h1 class="mb-10">
+            <h1 className="mb-10">
               {t('CURRENT_VERSION')}: {currentVersion}
             </h1>
             <p>{t('UNABLE_TO_RETRIEVE_RELEASE_NOTES')}</p>

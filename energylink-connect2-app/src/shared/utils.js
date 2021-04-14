@@ -2,6 +2,7 @@ import moment from 'moment'
 import marked from 'marked'
 
 import {
+  any,
   assoc,
   clone,
   compose,
@@ -10,6 +11,7 @@ import {
   defaultTo,
   dissoc,
   endsWith,
+  equals,
   filter,
   find,
   flip,
@@ -111,6 +113,13 @@ export const b64toBlob = (b64Data, contentType = '', sliceSize = 512) => {
 }
 
 export const isValidSN = sn => /^(?:\d{12}|\d{15})$/.test(sn)
+
+export const isDownloadingFiles = state =>
+  any(equals(true), [
+    path(['fileDownloader', 'progress', 'downloading'], state),
+    path(['ess', 'isDownloading'], state),
+    pathEq(['fileDownloader', 'gridProfileInfo', 'progress'], '100', state)
+  ])
 
 export const waitFor = (ms = 0) =>
   new Promise(resolve => setTimeout(resolve, ms))

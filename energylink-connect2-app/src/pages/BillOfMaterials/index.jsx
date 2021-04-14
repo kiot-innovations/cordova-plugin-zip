@@ -5,7 +5,7 @@ import { useHistory } from 'react-router-dom'
 
 import ProgressiveImage from 'components/ProgressiveImage'
 import HomeownerAccountCreation from 'components/HomeownerAccountCreation'
-import { either } from 'shared/utils'
+import { either, isDownloadingFiles } from 'shared/utils'
 import paths from 'routes/paths'
 import { createExternalLinkHandler } from 'shared/routing'
 import { useI18n } from 'shared/i18n'
@@ -14,8 +14,8 @@ import {
   CREATE_HOMEOWNER_ACCOUNT_RESET
 } from 'state/actions/site'
 import { GET_SCANDIT_USERS } from 'state/actions/scandit'
-import { DOWNLOAD_VERIFY } from 'state/actions/fileDownloader'
 import { CHECK_PERMISSIONS_INIT } from 'state/actions/network'
+import { DOWNLOAD_OS_INIT } from 'state/actions/ess'
 import { BEGIN_INSTALL } from 'state/actions/analytics'
 
 import './BillOfMaterials.scss'
@@ -42,7 +42,7 @@ function BillOfMaterials() {
     pathOr([], ['site', 'sitePVS'])
   )
   const PVS = useSelector(getPvsSerialNumbers)
-  const isMenuOpen = useSelector(pathOr(false, ['ui', 'menu', 'show']))
+  const isDownloading = useSelector(isDownloadingFiles)
   const { lastVisitedPage, showPrecommissioningChecklist } = useSelector(
     state => state.global
   )
@@ -55,9 +55,10 @@ function BillOfMaterials() {
   const { address1, latitude, longitude, siteName, siteKey } = useSelector(
     pathOr({}, ['site', 'site'])
   )
-
   const redirectInstall = () => {
     dispatch(BEGIN_INSTALL({ siteKey }))
+    if (isDownloading)
+      return history.push(paths.PROTECTED.FIRMWARE_DOWNLOAD.path)
     if (isNil(lastVisitedPage)) {
       showPrecommissioningChecklist
         ? history.push(paths.PROTECTED.PRECOMM_CHECKLIST.path)
@@ -71,13 +72,8 @@ function BillOfMaterials() {
     dispatch(GET_SCANDIT_USERS())
     dispatch(CHECK_PERMISSIONS_INIT())
     dispatch(CREATE_HOMEOWNER_ACCOUNT_RESET())
+    dispatch(DOWNLOAD_OS_INIT())
   }, [dispatch])
-
-  useEffect(() => {
-    if (!isMenuOpen) {
-      dispatch(DOWNLOAD_VERIFY())
-    }
-  }, [dispatch, isMenuOpen])
 
   useEffect(() => {
     dispatch(GET_SITE_INIT(siteKey))

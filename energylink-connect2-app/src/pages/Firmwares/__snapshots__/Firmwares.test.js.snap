@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Firmwares component render correctly 1`] = `
+exports[`Firmwares Menu component render correctly 1`] = `
 <BrowserRouter
   keyLength={0}
 >
@@ -38,9 +38,9 @@ exports[`Firmwares component render correctly 1`] = `
         }
       }
     >
-      <Firmwares>
+      <FirmwaresMenu>
         <section
-          className="is-flex tile is-vertical pt-0 pr-10 pl-10 full-height"
+          className="is-flex tile is-vertical pt-0 pr-10 pl-10 full-height firmware-screen"
         >
           <h1
             className="has-text-centered is-uppercase pb-20"
@@ -50,6 +50,7 @@ exports[`Firmwares component render correctly 1`] = `
           <FileCollapsible
             downloadFile={[Function]}
             error=""
+            expanded={true}
             fileName="PVS_FIRMWARE"
             goToReleaseNotes={[Function]}
             isDownloading={false}
@@ -131,6 +132,7 @@ exports[`Firmwares component render correctly 1`] = `
           <FileCollapsible
             downloadFile={[Function]}
             error={null}
+            expanded={true}
             fileName="STORAGE_FW_FILE"
             isDownloaded={
               Object {
@@ -210,6 +212,7 @@ exports[`Firmwares component render correctly 1`] = `
           </Separator>
           <FileCollapsible
             downloadFile={[Function]}
+            expanded={true}
             fileName="GRID_PROFILES_PACKAGE"
             isDownloaded={true}
             isDownloading={true}
@@ -295,6 +298,339 @@ exports[`Firmwares component render correctly 1`] = `
             </Collapsible>
           </FileCollapsible>
         </section>
+      </FirmwaresMenu>
+    </Provider>
+  </Router>
+</BrowserRouter>
+`;
+
+exports[`Firmwares component render correctly 1`] = `
+<BrowserRouter
+  keyLength={0}
+>
+  <Router
+    history={
+      Object {
+        "action": "POP",
+        "block": [Function],
+        "createHref": [Function],
+        "go": [Function],
+        "goBack": [Function],
+        "goForward": [Function],
+        "length": 1,
+        "listen": [Function],
+        "location": Object {
+          "hash": "",
+          "pathname": "/",
+          "search": "",
+          "state": undefined,
+        },
+        "push": [Function],
+        "replace": [Function],
+      }
+    }
+  >
+    <Provider
+      store={
+        Object {
+          "clearActions": [Function],
+          "dispatch": [Function],
+          "getActions": [Function],
+          "getState": [Function],
+          "replaceReducer": [Function],
+          "subscribe": [Function],
+        }
+      }
+    >
+      <Firmwares>
+        <FirmwaresMenu
+          className="vertical-scroll"
+          message="FW_DOWNLOAD_WAIT"
+          showDetails={false}
+        >
+          <section
+            className="is-flex tile is-vertical pt-0 pr-10 pl-10 full-height firmware-screen vertical-scroll"
+          >
+            <h1
+              className="has-text-centered is-uppercase pb-20"
+            >
+              FIRMWARE
+            </h1>
+            <p
+              className="pb-20"
+            >
+              FW_DOWNLOAD_WAIT
+            </p>
+            <FileCollapsible
+              downloadFile={[Function]}
+              error=""
+              expanded={false}
+              fileName="PVS_FIRMWARE"
+              goToReleaseNotes={[Function]}
+              isDownloading={false}
+              progress={0}
+              step="INITIALIZING"
+            >
+              <Collapsible
+                actions={
+                  <span
+                    className="is-size-4 sp-color-sun sp-download"
+                    onClick={[Function]}
+                  />
+                }
+                expanded={false}
+                title="PVS_FIRMWARE"
+              >
+                <div
+                  className="collapsible"
+                >
+                  <div
+                    className="collapsible-header"
+                    onClick={[Function]}
+                  >
+                    <div
+                      className="collapsible-title"
+                    >
+                      <span />
+                      <span
+                        className="has-text-weight-bold"
+                      >
+                        PVS_FIRMWARE
+                      </span>
+                    </div>
+                    <div
+                      className="collapsible-actions"
+                    >
+                      <span
+                        className="is-size-4 sp-color-sun sp-download"
+                        onClick={[Function]}
+                      />
+                    </div>
+                    <div
+                      className="collapsible-trigger"
+                    >
+                      <div
+                        className="chevron"
+                      >
+                        <span
+                          className="sp-chevron-up"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    className="collapsible-content collapsed"
+                  >
+                    <section
+                      className="mb-5"
+                    >
+                      <span
+                        className="has-text-white"
+                      >
+                        <span
+                          className="has-text-white has-text-weight-bold"
+                        >
+                          CHECKING_LATEST_FIRMWARE_VERSION
+                        </span>
+                      </span>
+                    </section>
+                  </div>
+                </div>
+              </Collapsible>
+            </FileCollapsible>
+            <Separator>
+              <div
+                className="mt-20"
+              />
+            </Separator>
+            <FileCollapsible
+              downloadFile={[Function]}
+              error={null}
+              expanded={false}
+              fileName="STORAGE_FW_FILE"
+              isDownloaded={
+                Object {
+                  "name": "test file name",
+                }
+              }
+              isDownloading={false}
+              step="INITIALIZING"
+            >
+              <Collapsible
+                actions={
+                  <span
+                    className="is-size-4 sp-color-sun sp-update"
+                    onClick={[Function]}
+                  />
+                }
+                expanded={false}
+                title="STORAGE_FW_FILE"
+              >
+                <div
+                  className="collapsible"
+                >
+                  <div
+                    className="collapsible-header"
+                    onClick={[Function]}
+                  >
+                    <div
+                      className="collapsible-title"
+                    >
+                      <span />
+                      <span
+                        className="has-text-weight-bold"
+                      >
+                        STORAGE_FW_FILE
+                      </span>
+                    </div>
+                    <div
+                      className="collapsible-actions"
+                    >
+                      <span
+                        className="is-size-4 sp-color-sun sp-update"
+                        onClick={[Function]}
+                      />
+                    </div>
+                    <div
+                      className="collapsible-trigger"
+                    >
+                      <div
+                        className="chevron"
+                      >
+                        <span
+                          className="sp-chevron-up"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    className="collapsible-content collapsed"
+                  >
+                    <section
+                      className="mb-5"
+                    >
+                      <span
+                        className="has-text-white"
+                      >
+                        YOU_HAVE_THE_LATEST_FIRMWARE STORAGE_FW_FILE
+                      </span>
+                    </section>
+                  </div>
+                </div>
+              </Collapsible>
+            </FileCollapsible>
+            <Separator>
+              <div
+                className="mt-20"
+              />
+            </Separator>
+            <FileCollapsible
+              downloadFile={[Function]}
+              expanded={false}
+              fileName="GRID_PROFILES_PACKAGE"
+              isDownloaded={true}
+              isDownloading={true}
+              lastTimeDownloaded={null}
+              size="NaN"
+            >
+              <Collapsible
+                actions={null}
+                expanded={false}
+                title="GRID_PROFILES_PACKAGE"
+              >
+                <div
+                  className="collapsible"
+                >
+                  <div
+                    className="collapsible-header"
+                    onClick={[Function]}
+                  >
+                    <div
+                      className="collapsible-title"
+                    >
+                      <span />
+                      <span
+                        className="has-text-weight-bold"
+                      >
+                        GRID_PROFILES_PACKAGE
+                      </span>
+                    </div>
+                    <div
+                      className="collapsible-actions"
+                    />
+                    <div
+                      className="collapsible-trigger"
+                    >
+                      <div
+                        className="chevron"
+                      >
+                        <span
+                          className="sp-chevron-up"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    className="collapsible-content collapsed"
+                  >
+                    <section
+                      className="mb-5"
+                    >
+                      <span
+                        className="has-text-white"
+                      >
+                        YOU_HAVE_THE_LATEST_FIRMWARE GRID_PROFILES_PACKAGE
+                      </span>
+                    </section>
+                    <section
+                      className="mt-20 mb-10"
+                    >
+                      <p
+                        className="mb-5"
+                      >
+                        <span
+                          className="mr-10 has-text-white has-text-weight-bold"
+                        >
+                          0
+                          %
+                        </span>
+                        <span
+                          className="is-pulled-right has-text-white has-text-weight-bold"
+                        >
+                          NaN
+                           MB
+                        </span>
+                      </p>
+                      <progress
+                        className="progress is-tiny is-white"
+                        max="100"
+                        value={0}
+                      />
+                    </section>
+                  </div>
+                </div>
+              </Collapsible>
+            </FileCollapsible>
+            <Separator>
+              <div
+                className="mt-20"
+              />
+            </Separator>
+            <div
+              className="has-text-centered"
+            >
+              <button
+                className="button is-primary is-uppercase"
+                disabled={false}
+                onClick={[Function]}
+              >
+                CONTINUE
+              </button>
+            </div>
+            <br />
+            <br />
+          </section>
+        </FirmwaresMenu>
       </Firmwares>
     </Provider>
   </Router>

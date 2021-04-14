@@ -1,4 +1,4 @@
-import { loginErrorEpic, loginSuccessEpic } from './loginEpics'
+import loginEpics from './loginEpics'
 import { errorEpic } from './errorEpic'
 import scanPVS from './scanPVSEpics'
 import siteEpics from './findSiteEpics'
@@ -12,17 +12,16 @@ import pvsInternetEpic from './pvsInternetEpic'
 import pltWizard from './panelLayoutTool'
 
 export default [
-  loginErrorEpic,
-  loginSuccessEpic,
-  errorEpic,
-  ...scanPVS,
-  ...siteEpics,
+  ...acModelsEpic,
   ...configureEpics,
-  ...inventoryEpics,
   ...deviceResumeEpic,
   ...firmwareUpdate,
   ...homeOwnerAccountAnalytics,
-  ...acModelsEpic,
-  pvsInternetEpic,
-  ...pltWizard
+  ...inventoryEpics,
+  ...loginEpics,
+  ...pltWizard,
+  ...scanPVS,
+  ...siteEpics,
+  errorEpic,
+  pvsInternetEpic
 ]

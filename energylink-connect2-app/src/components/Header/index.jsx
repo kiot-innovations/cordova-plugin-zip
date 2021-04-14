@@ -7,10 +7,10 @@ import Logo from '@sunpower/sunpowerimage'
 import withHeaderAnimation from 'hocs/headerAnimation'
 import { trimString } from 'shared/trim'
 import { either, isError } from 'shared/utils'
-import { useHistory, useLocation } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 import paths from 'routes/paths'
 import Menu from 'components/Menu'
-import { MENU_HIDE, MENU_SHOW, SET_PREVIOUS_URL } from 'state/actions/ui'
+import { MENU_HIDE, MENU_SHOW } from 'state/actions/ui'
 
 import './Header.scss'
 import ConnectionStatus from './ConnectionStatus'
@@ -27,7 +27,6 @@ const showSiteAddress = history =>
 
 export const Header = ({ icon = 'sp-menu', iconOpen = 'sp-chevron-left' }) => {
   const history = useHistory()
-  const location = useLocation()
   const dispatch = useDispatch()
 
   const { upgrading, status, percent } = useSelector(
@@ -35,7 +34,6 @@ export const Header = ({ icon = 'sp-menu', iconOpen = 'sp-chevron-left' }) => {
   )
   const showMenu = useSelector(path(['ui', 'menu', 'show']))
   const itemToDisplay = useSelector(path(['ui', 'menu', 'itemToDisplay']))
-  const previousURL = useSelector(path(['ui', 'menu', 'previousURL']))
   const siteAddress = useSelector(path(['site', 'site', 'address1']))
   const shouldDisableMenu = upgrading && !isError(status, percent)
 
@@ -52,11 +50,8 @@ export const Header = ({ icon = 'sp-menu', iconOpen = 'sp-chevron-left' }) => {
     ? void 0
     : () => {
         if (menuOpen) {
-          const action = itemToDisplay ? MENU_SHOW() : MENU_HIDE()
-          dispatch(action)
-          history.push(previousURL)
+          dispatch(itemToDisplay ? MENU_SHOW() : MENU_HIDE())
         } else {
-          dispatch(SET_PREVIOUS_URL(location.pathname))
           dispatch(MENU_SHOW())
         }
       }

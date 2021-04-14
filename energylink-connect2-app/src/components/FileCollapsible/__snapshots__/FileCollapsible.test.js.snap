@@ -5,6 +5,7 @@ exports[`File Collapsible component renders correctly complete 1`] = `
   actions={
     <span
       className="is-size-4 sp-color-sun sp-update"
+      onClick={[Function]}
     />
   }
   expanded={true}
@@ -69,6 +70,7 @@ exports[`File Collapsible component renders correctly with no props 1`] = `
   actions={
     <span
       className="is-size-4 sp-color-sun sp-download"
+      onClick={[Function]}
     />
   }
   expanded={true}

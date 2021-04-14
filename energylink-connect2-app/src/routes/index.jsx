@@ -51,6 +51,7 @@ import NearbyPVS from 'pages/NearbyPVS'
 import Settings from 'pages/Settings'
 import PrecommissioningConfigs from 'pages/PrecommissioningConfigs'
 import LegacyDiscoverySelector from 'pages/LegacyDiscoverySelector'
+import FirmwareDownload from 'pages/Firmwares'
 import AnalyticsConsent from 'pages/AnalyticsConsent'
 
 import { isDebug } from 'shared/utils'
@@ -59,6 +60,7 @@ import paths from './paths'
 
 const mapComponents = {
   [paths.PROTECTED.RMA_INVENTORY.path]: RMAInventory,
+  [paths.PROTECTED.FIRMWARE_DOWNLOAD.path]: FirmwareDownload,
   [paths.PROTECTED.RMA_SN_LIST.path]: RMASnList,
   [paths.PROTECTED.ERROR_DETAIL.path]: ErrorDetailScreen,
   [paths.PROTECTED.DEVICES.path]: Devices,

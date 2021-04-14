@@ -217,6 +217,12 @@ const paths = {
       footer: true,
       tab: TABS.INSTALL
     },
+    FIRMWARE_DOWNLOAD: {
+      path: '/firmware',
+      header: true,
+      footer: true,
+      tab: TABS.INSTALL
+    },
     RMA_INVENTORY: {
       path: '/rma-inventory',
       header: true,

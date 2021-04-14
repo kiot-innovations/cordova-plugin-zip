@@ -1,6 +1,6 @@
+import FirmwaresMenu from 'pages/Firmwares/MenuComponent'
 import paths from 'routes/paths'
 import GiveFeedback from 'pages/GiveFeedback'
-import Firmwares from 'pages/Firmwares'
 import VersionInformation from 'pages/VersionInformation'
 import FirmwareReleaseNotes from 'pages/FirmwareReleaseNotes'
 import Settings from 'pages/Settings'
@@ -15,7 +15,7 @@ export default [
   {
     icon: 'sp-update',
     text: 'MANAGE_FIRMWARES',
-    component: Firmwares,
+    component: FirmwaresMenu,
     display: true
   },
   {

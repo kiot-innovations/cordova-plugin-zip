@@ -558,6 +558,7 @@
   "PVS_FIRMWARE": "PVS Firmware",
   "DEVICE_UNKNOWN_ERROR": "An error happened, please retry",
   "SUNPOWER": "SunPower",
+  "FW_DOWNLOAD_WAIT": "Please wait while we download the latest firmware files.",
   "ASSISTANCE_1": "SunPower Pro Connect is a commissioning app available only to authorized SunPower installers.  A SunPower Pro account is required to log in to the application.",
   "ASSISTANCE_2": "If you are a SunPower authorized installer and need an account, please contact",
   "ASSISTANCE_2.2": "with your first name, last name and email address to request an account for access.",

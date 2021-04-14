@@ -1,25 +1,21 @@
-import { any, equals, path } from 'ramda'
+import { path } from 'ramda'
 import { ofType } from 'redux-observable'
-import { concat, from, of } from 'rxjs'
-import { concatMap, exhaustMap, take, map, catchError } from 'rxjs/operators'
-import * as Sentry from '@sentry/browser'
+import { from, of } from 'rxjs'
+import { catchError, concatMap, exhaustMap, map, take } from 'rxjs/operators'
 
 import { translate } from 'shared/i18n'
 import { hasInternetConnection } from 'shared/utils'
-import { SHOW_MODAL } from 'state/actions/modal'
 import { DOWNLOAD_OS_ERROR } from 'state/actions/ess'
 import {
-  PVS_FIRMWARE_MODAL_IS_CONNECTED,
   DOWNLOAD_ALLOW_WITH_PVS,
+  FILES_VERIFY_FAILED,
   PVS_DECOMPRESS_LUA_FILES_ERROR,
   PVS_FIRMWARE_DOWNLOAD_ERROR,
-  DOWNLOAD_VERIFY,
-  FILES_VERIFY,
-  FILES_VERIFY_FAILED
+  PVS_FIRMWARE_MODAL_IS_CONNECTED
 } from 'state/actions/fileDownloader'
 import { GRID_PROFILE_DOWNLOAD_ERROR } from 'state/actions/gridProfileDownloader'
+import { SHOW_MODAL } from 'state/actions/modal'
 import { EMPTY_ACTION } from 'state/actions/share'
-import { MENU_DISPLAY_ITEM } from 'state/actions/ui'
 
 export const modalPVSConnected = () => {
   const t = translate()
@@ -67,63 +63,6 @@ export const resumeActionWhenUserContinuesEpic = (action$, state$) =>
   )
 
 /**
- * Alerts that we are still downloading firmware files
- */
-export const downloadingLatestFirmwareEpic = (action$, state$) =>
-  action$.pipe(
-    ofType(DOWNLOAD_VERIFY.getType()),
-    exhaustMap(() => {
-      const t = translate()
-
-      const isDownloading = any(equals(true), [
-        path(
-          ['value', 'fileDownloader', 'verification', 'gpDownloading'],
-          state$
-        ),
-        path(
-          ['value', 'fileDownloader', 'verification', 'essDownloading'],
-          state$
-        ),
-        path(
-          ['value', 'fileDownloader', 'verification', 'pvsDownloading'],
-          state$
-        )
-      ])
-
-      if (path(['value', 'ui', 'menu', 'show'], state$)) {
-        return of(EMPTY_ACTION('Already in download page'))
-      }
-      if (isDownloading) {
-        // Begin tracing to know why this modal was launched
-        const tracingError = new Error('Tracing download in progress modal')
-
-        Sentry.captureException(tracingError, {
-          tags: {
-            type: 'debug',
-            owner: 'Esteban'
-          }
-        })
-
-        // Finish tracing of the error to sentry
-        return concat(
-          of(
-            SHOW_MODAL({
-              title: t('ATTENTION'),
-              componentPath: './Downloads/DownloadInProgressModal.jsx'
-            })
-          ),
-          action$.pipe(
-            ofType(MENU_DISPLAY_ITEM.getType()),
-            map(EMPTY_ACTION),
-            take(1)
-          )
-        )
-      }
-      return of(FILES_VERIFY())
-    })
-  )
-
-/**
  * Shows error downloading firmware files
  */
 export const firmwareDownloadFailedEpic = action$ =>
@@ -152,6 +91,5 @@ export const firmwareDownloadFailedEpic = action$ =>
 export default [
   PVSIsConnectedEpic,
   firmwareDownloadFailedEpic,
-  downloadingLatestFirmwareEpic,
   resumeActionWhenUserContinuesEpic
 ]
