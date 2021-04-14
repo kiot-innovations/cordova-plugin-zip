@@ -170,10 +170,11 @@ export const cleanString = (str = '') => {
 }
 
 export const barcodeValidator = barcode => {
+  const cleanBarcode = barcode.trim()
   const currentYearCode = new Date().getFullYear() % 100
-  const yearcode = parseInt(slice(2, 4, barcode))
-  const weekcode = parseInt(slice(4, 6, barcode))
-  if (length(barcode) === 12) {
+  const yearcode = parseInt(slice(2, 4, cleanBarcode))
+  const weekcode = parseInt(slice(4, 6, cleanBarcode))
+  if (length(cleanBarcode) === 12) {
     if (yearcode >= 18 && yearcode <= currentYearCode) {
       if (weekcode >= 1 && weekcode <= 53) {
         return true
@@ -184,10 +185,13 @@ export const barcodeValidator = barcode => {
   return false
 }
 
-export const buildSN = barcode => ({
-  serial_number: barcodeValidator(barcode) ? `E00${barcode}` : barcode,
-  type: 'SOLARBRIDGE'
-})
+export const buildSN = barcode => {
+  console.info(barcode)
+  return {
+    serial_number: barcodeValidator(barcode) ? `E00${barcode}` : barcode,
+    type: 'SOLARBRIDGE'
+  }
+}
 
 export const trace = t => x => {
   console.info(t)
