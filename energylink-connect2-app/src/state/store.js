@@ -33,7 +33,6 @@ export function configureStore(initialState) {
     initialState,
     composeEnhancers(applyMiddleware(...middlewares))
   )
-  window.store = store
 
   epicMiddleware.run(rootEpic)
 

@@ -40,7 +40,7 @@ exports[`Legacy Discovery Results page renders correctly 1`] = `
     >
       <LegacyDiscovery>
         <div
-          className="legacy-discovery fill-parent has-text-centered pr-15 pl-15"
+          className="legacy-discovery is-flex has-text-centered pr-15 pl-15 mb-10"
         >
           <div
             className="legacy-discovery__title"

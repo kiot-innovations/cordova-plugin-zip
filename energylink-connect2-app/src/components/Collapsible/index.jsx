@@ -11,6 +11,7 @@ function Collapsible({
   children,
   expanded = false,
   className = '',
+  wordBreak = false,
   required = false
 }) {
   const t = useI18n()
@@ -31,7 +32,11 @@ function Collapsible({
             <span className="ml-10 has-text-danger">*</span>
           )}
         </div>
-        <div className="collapsible-actions">{actions}</div>
+        <div
+          className={clsx('collapsible-actions', { 'break-word': wordBreak })}
+        >
+          {actions}
+        </div>
         <div className="collapsible-trigger">
           <div className={clsx({ chevron: true, down: expand })}>
             <span className="sp-chevron-up" />

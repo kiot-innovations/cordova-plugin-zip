@@ -1,8 +1,10 @@
 @import '~@sunpower/theme-dark/styles/variables';
 
 .legacy-discovery {
-  display: grid;
-  grid-template-rows: 5% 1fr 25%;
+  flex-direction: column;
+  width: 100%;
+  min-height: 100%;
+  overflow-x: hidden;
 
   .legacy-discovery__title {
     display: grid;

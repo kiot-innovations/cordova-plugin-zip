@@ -114,7 +114,7 @@ const LegacyDiscovery = () => {
   } = useModal(microinvertersModalContent, microinvertersModalTitle, false)
 
   return (
-    <div className="legacy-discovery fill-parent has-text-centered pr-15 pl-15">
+    <div className="legacy-discovery is-flex has-text-centered pr-15 pl-15 mb-10">
       {microinvertersModal}
       <div className="legacy-discovery__title">
         <div>
@@ -133,7 +133,7 @@ const LegacyDiscovery = () => {
         <div />
       </div>
       <div className="legacy-discovery__devices">
-        {Object.keys(groupedDevices).map((key, i) => (
+        {Object.keys(groupedDevices).map(key => (
           <DeviceGroup
             discoveryComplete={discoveryComplete}
             title={key}
@@ -142,7 +142,7 @@ const LegacyDiscovery = () => {
         ))}
       </div>
       {discoveryComplete ? (
-        <div className="legacy-discovery__complete is-flex flex-column">
+        <div className="legacy-discovery__complete is-flex flex-column mt-20">
           <span className="has-text-weight-bold">
             {t('DISCOVERY_COMPLETE')}
           </span>
@@ -151,10 +151,10 @@ const LegacyDiscovery = () => {
               ? t('CLAIM_DEVICES_ERROR', claimError)
               : t('REMOVE_UNWANTED_MIS')}
           </span>
-          <div className="inline-buttons">
+          <div className="is-flex">
             <button
               onClick={restartDiscovery}
-              className="button half-button-padding is-secondary is-uppercase trigger-scan mr-10"
+              className="button is-primary is-outlined is-uppercase is-fullwidth mr-5"
             >
               {t('REDISCOVER')}
             </button>
@@ -166,7 +166,7 @@ const LegacyDiscovery = () => {
                   : toggleMicroinvertersModal()
               }
               className={clsx(
-                'button half-button-padding is-primary is-uppercase trigger-scan',
+                'button is-primary is-uppercase is-fullwidth ml-5',
                 { 'is-loading': claimingDevices }
               )}
             >

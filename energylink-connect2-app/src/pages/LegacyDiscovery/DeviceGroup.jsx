@@ -38,6 +38,7 @@ const DeviceGroup = ({ title, data, discoveryComplete }) => {
   return (
     <div className="mt-10 mb-10">
       <Collapsible
+        wordBreak
         className="is-flex flex-column"
         title={title}
         actions={length(data)}
