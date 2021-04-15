@@ -84,7 +84,7 @@ The hamburger menu now has a Settings icon to help you view the PV checklist ite
 
 The new changes to the App will take you to the firmware management screen if an update is required and then continue with commissioning. ",
                   "releaseDate": "2021-04-20",
-                  "versionNumber": "6.90.4",
+                  "versionNumber": "6.90.5",
                 },
                 Object {
                   "bodyMarkdown": "# CT setup and grid profile changes
@@ -195,7 +195,7 @@ You will now see a message that &quot;Commissioning was successfully completed&q
                 >
                   <Collapsible
                     expanded={true}
-                    title="VERSION 6.90.4"
+                    title="VERSION 6.90.5"
                   >
                     <div
                       className="collapsible"
@@ -211,7 +211,7 @@ You will now see a message that &quot;Commissioning was successfully completed&q
                           <span
                             className="has-text-weight-bold"
                           >
-                            VERSION 6.90.4
+                            VERSION 6.90.5
                           </span>
                         </div>
                         <div
