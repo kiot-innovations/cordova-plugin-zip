@@ -9,6 +9,7 @@ import { RESET_DISCOVERY, PUSH_CANDIDATES_INIT } from 'state/actions/devices'
 import { REMOVE_SN } from 'state/actions/pvs'
 import { UPDATE_MI_COUNT } from 'state/actions/inventory'
 import { useI18n } from 'shared/i18n'
+import { generateCandidates } from 'shared/utils'
 
 import SNManualEntry from './SNManualEntry'
 import SNScanButtons from './SNScanButtons'
@@ -65,10 +66,7 @@ function SNList() {
   }
 
   const submitSN = () => {
-    const snList = serialNumbers.map(device => ({
-      DEVICE_TYPE: 'Inverter',
-      SERIAL: device.serial_number
-    }))
+    const snList = generateCandidates(serialNumbers)
     serialNumbersError.forEach(snList.push)
     toggleSerialNumbersModal()
     dispatch(UPDATE_MI_COUNT(snList.length))

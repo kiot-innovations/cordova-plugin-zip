@@ -22,7 +22,7 @@ import { Loader } from 'components/Loader'
 import GridBehaviorWidget from 'pages/SystemConfiguration/GridBehaviorWidget'
 import MetersWidget from 'pages/SystemConfiguration/MetersWidget'
 
-import { either } from 'shared/utils'
+import { either, generateCandidates } from 'shared/utils'
 
 import './PrecommissioningConfigs.scss'
 
@@ -103,7 +103,8 @@ const continueCommissioning = (
         history.push(paths.PROTECTED.LEGACY_DISCOVERY.path)
       } else {
         // Do a standard MI discovery if site doesn't contain legacy devices.
-        dispatch(PUSH_CANDIDATES_INIT(serialNumbers))
+        const candidates = generateCandidates(serialNumbers)
+        dispatch(PUSH_CANDIDATES_INIT(candidates))
         history.push(paths.PROTECTED.RMA_MI_DISCOVERY.path)
       }
     }
@@ -146,7 +147,8 @@ const PrecommissioningConfigs = () => {
   const { selectedOptions } = gridBehavior
   const { rmaMode, newEquipment, rma } = useSelector(state => state.rma)
   const { bom } = useSelector(state => state.inventory)
-  const { serialNumbers, found } = useSelector(state => state.devices)
+  const { found } = useSelector(state => state.devices)
+  const { serialNumbers } = useSelector(state => state.pvs)
 
   const { canAccessScandit } = useSelector(state => state.global)
 

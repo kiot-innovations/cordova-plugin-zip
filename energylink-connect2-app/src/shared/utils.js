@@ -419,6 +419,11 @@ export const isPVSDevice = compose(
 
 export const eqByProp = curry((prop, obj1, obj2) => obj1[prop] === obj2[prop])
 
+export const generateCandidates = map(device => ({
+  DEVICE_TYPE: 'Inverter',
+  SERIAL: prop('serial_number', device)
+}))
+
 export const getAccessToken = path(['user', 'auth', 'access_token'])
 
 export const getUrl = () => compose(last, split('#'))(window.location.href)

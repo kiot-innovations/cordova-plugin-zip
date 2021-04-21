@@ -57,6 +57,9 @@ describe('Precommissioning configurations page', () => {
       site: {
         siteKey: ''
       }
+    },
+    pvs: {
+      serialNumbers: []
     }
   }
 
