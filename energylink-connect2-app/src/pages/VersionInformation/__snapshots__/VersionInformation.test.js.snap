@@ -59,6 +59,13 @@ exports[`VersionInformation component renders correctly 1`] = `
               },
               "versions": Array [
                 Object {
+                  "bodyMarkdown": "# Bug fixes
+
+REPLACE PVS flow error where commissioning failed due to no payload is now addressed. You will now be able to replace and commission the new PVS.",
+                  "releaseDate": "2021-04-22",
+                  "versionNumber": "6.90.8",
+                },
+                Object {
                   "bodyMarkdown": "# Improvements
 
 MIs not communicating or disconnected will now report an “Error” in the status tab under Power Production.
@@ -195,6 +202,79 @@ You will now see a message that &quot;Commissioning was successfully completed&q
                 >
                   <Collapsible
                     expanded={true}
+                    title="VERSION 6.90.8"
+                  >
+                    <div
+                      className="collapsible"
+                    >
+                      <div
+                        className="collapsible-header"
+                        onClick={[Function]}
+                      >
+                        <div
+                          className="collapsible-title"
+                        >
+                          <span />
+                          <span
+                            className="has-text-weight-bold"
+                          >
+                            VERSION 6.90.8
+                          </span>
+                        </div>
+                        <div
+                          className="collapsible-actions"
+                        />
+                        <div
+                          className="collapsible-trigger"
+                        >
+                          <div
+                            className="chevron down"
+                          >
+                            <span
+                              className="sp-chevron-up"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                      <div
+                        className="collapsible-content expanded"
+                      >
+                        <div
+                          className="releaseDate"
+                        >
+                          RELEASE_DATE
+                           
+                          04/22/2021
+                        </div>
+                        <div
+                          className="content"
+                          dangerouslySetInnerHTML={
+                            Object {
+                              "__html": "<h1 id=\\"bug-fixes\\">Bug fixes</h1>
+<p>REPLACE PVS flow error where commissioning failed due to no payload is now addressed. You will now be able to replace and commission the new PVS.</p>
+",
+                            }
+                          }
+                        />
+                      </div>
+                    </div>
+                  </Collapsible>
+                </div>
+              </div>
+              <div
+                className="version"
+                key="1"
+              >
+                <div
+                  className="previous-release-notes"
+                >
+                  PREVIOUS_RELEASE_NOTES
+                </div>
+                <div
+                  className="mb-10"
+                >
+                  <Collapsible
+                    expanded={false}
                     title="VERSION 6.90.5"
                   >
                     <div
@@ -221,7 +301,7 @@ You will now see a message that &quot;Commissioning was successfully completed&q
                           className="collapsible-trigger"
                         >
                           <div
-                            className="chevron down"
+                            className="chevron"
                           >
                             <span
                               className="sp-chevron-up"
@@ -230,7 +310,7 @@ You will now see a message that &quot;Commissioning was successfully completed&q
                         </div>
                       </div>
                       <div
-                        className="collapsible-content expanded"
+                        className="collapsible-content collapsed"
                       >
                         <div
                           className="releaseDate"
@@ -262,13 +342,8 @@ You will now see a message that &quot;Commissioning was successfully completed&q
               </div>
               <div
                 className="version"
-                key="1"
+                key="2"
               >
-                <div
-                  className="previous-release-notes"
-                >
-                  PREVIOUS_RELEASE_NOTES
-                </div>
                 <div
                   className="mb-10"
                 >
@@ -347,7 +422,7 @@ This functionality provides you a way to edit the panel model after commissionin
               </div>
               <div
                 className="version"
-                key="2"
+                key="3"
               >
                 <div
                   className="mb-10"
@@ -421,7 +496,7 @@ This functionality provides you a way to edit the panel model after commissionin
               </div>
               <div
                 className="version"
-                key="3"
+                key="4"
               >
                 <div
                   className="mb-10"
@@ -489,7 +564,7 @@ This functionality provides you a way to edit the panel model after commissionin
               </div>
               <div
                 className="version"
-                key="4"
+                key="5"
               >
                 <div
                   className="mb-10"
@@ -563,7 +638,7 @@ This functionality provides you a way to edit the panel model after commissionin
               </div>
               <div
                 className="version"
-                key="5"
+                key="6"
               >
                 <div
                   className="mb-10"
@@ -631,7 +706,7 @@ This functionality provides you a way to edit the panel model after commissionin
               </div>
               <div
                 className="version"
-                key="6"
+                key="7"
               >
                 <div
                   className="mb-10"
