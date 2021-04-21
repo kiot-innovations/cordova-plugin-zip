@@ -2,7 +2,7 @@ import * as Sentry from '@sentry/browser'
 import { ofType } from 'redux-observable'
 import { of, from } from 'rxjs'
 import { catchError, exhaustMap, map, switchMap } from 'rxjs/operators'
-import { path, prop } from 'ramda'
+import { includes, path, prop } from 'ramda'
 import {
   CONNECT_NETWORK_AP_INIT,
   CONNECT_NETWORK_AP_ERROR,
@@ -44,7 +44,7 @@ export const connectNetworkAPEpic = (action$, state$) => {
         switchMap(response => {
           const { mode } = payload
 
-          if (response.result !== 'succeed') {
+          if (!includes(response.result, ['success', 'succeed'])) {
             return trackConnectionError(mode, response.error)
           }
 
