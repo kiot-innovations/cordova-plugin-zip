@@ -41,6 +41,7 @@
   }
 
   &-content {
+    overflow-y: scroll;
     opacity: 0;
     transition: max-height 0.4s ease-out, opacity 0.4s;
   }
@@ -52,7 +53,6 @@
 
   .expanded {
     max-height: 700px;
-    overflow: visible !important;
     opacity: 1;
     border-top: 1px solid #f2f2f22e;
     padding-top: 10px;

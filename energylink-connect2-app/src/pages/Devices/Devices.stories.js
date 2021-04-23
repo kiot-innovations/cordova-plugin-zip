@@ -17,6 +17,116 @@ const state = {
         serial_number: 'E00110223232324',
         indicator: 'MI_OK',
         STATEDESCR: 'OK'
+      },
+      {
+        serial_number: 'E00110223232323',
+        indicator: 'MI_OK',
+        STATEDESCR: 'OK'
+      },
+      {
+        serial_number: 'E00110223232324',
+        indicator: 'MI_OK',
+        STATEDESCR: 'OK'
+      },
+      {
+        serial_number: 'E00110223232323',
+        indicator: 'MI_OK',
+        STATEDESCR: 'OK'
+      },
+      {
+        serial_number: 'E00110223232324',
+        indicator: 'MI_OK',
+        STATEDESCR: 'OK'
+      },
+      {
+        serial_number: 'E00110223232323',
+        indicator: 'MI_OK',
+        STATEDESCR: 'OK'
+      },
+      {
+        serial_number: 'E00110223232324',
+        indicator: 'MI_OK',
+        STATEDESCR: 'OK'
+      },
+      {
+        serial_number: 'E00110223232323',
+        indicator: 'MI_OK',
+        STATEDESCR: 'OK'
+      },
+      {
+        serial_number: 'E00110223232324',
+        indicator: 'MI_OK',
+        STATEDESCR: 'OK'
+      },
+      {
+        serial_number: 'E00110223232323',
+        indicator: 'MI_OK',
+        STATEDESCR: 'OK'
+      },
+      {
+        serial_number: 'E00110223232324',
+        indicator: 'MI_OK',
+        STATEDESCR: 'OK'
+      },
+      {
+        serial_number: 'E00110223232323',
+        indicator: 'MI_OK',
+        STATEDESCR: 'OK'
+      },
+      {
+        serial_number: 'E00110223232324',
+        indicator: 'MI_OK',
+        STATEDESCR: 'OK'
+      },
+      {
+        serial_number: 'E00110223232323',
+        indicator: 'MI_OK',
+        STATEDESCR: 'OK'
+      },
+      {
+        serial_number: 'E00110223232324',
+        indicator: 'MI_OK',
+        STATEDESCR: 'OK'
+      },
+      {
+        serial_number: 'E00110223232323',
+        indicator: 'MI_OK',
+        STATEDESCR: 'OK'
+      },
+      {
+        serial_number: 'E00110223232324',
+        indicator: 'MI_OK',
+        STATEDESCR: 'OK'
+      },
+      {
+        serial_number: 'E00110223232323',
+        indicator: 'MI_OK',
+        STATEDESCR: 'OK'
+      },
+      {
+        serial_number: 'E00110223232324',
+        indicator: 'MI_OK',
+        STATEDESCR: 'OK'
+      },
+      {
+        serial_number: 'E00110223232323',
+        indicator: 'MI_OK',
+        STATEDESCR: 'OK'
+      },
+      {
+        serial_number: 'E00110223232324',
+        indicator: 'MI_OK',
+        STATEDESCR: 'OK'
+      },
+      {
+        serial_number: 'E00110223232323',
+        indicator: 'MI_OK',
+        STATEDESCR: 'OK'
+      },
+      {
+        serial_number: 'E00110223232324',
+        indicator: 'MI_OK',
+        STATEDESCR: 'OK'
       }
     ]
   },
