@@ -43,12 +43,12 @@ exports[`PVS Provide Internet page renders correctly 1`] = `
           className="pvs-provide-internet full-height pr-20 pl-20"
         >
           <p
-            className="is-uppercase has-text-centered has-text-weight-bold"
+            className="is-uppercase has-text-centered has-text-weight-bold align-start"
           >
             CONFIGURE_NETWORK
           </p>
           <div
-            className="mb-10"
+            className="mb-10 mt-20"
           >
             <InterfacesWidget>
               <section
@@ -136,12 +136,12 @@ exports[`PVS Provide Internet page renders correctly 1`] = `
               </section>
             </InterfacesWidget>
           </div>
-          <NetworkWidget
-            expanded={true}
-            hideWPSButton={true}
+          <div
+            className="align-start mt-10"
           >
-            <div
-              className="pb-15"
+            <NetworkWidget
+              expanded={true}
+              hideWPSButton={true}
             >
               <Collapsible
                 expanded={true}
@@ -1814,15 +1814,15 @@ exports[`PVS Provide Internet page renders correctly 1`] = `
                   </SwipeableBottomSheet>
                 </SwipeableSheet>
               </WpsConnectToWifi>
-            </div>
-          </NetworkWidget>
+            </NetworkWidget>
+          </div>
           <div
-            className="has-text-white is-size-6 is-bold is-text has-text-centered mb-10"
+            className="has-text-white is-size-6 is-bold is-text has-text-centered"
           >
             PVS_PROVIDE_INTERNET
           </div>
           <div
-            className="container is-flex"
+            className="container is-flex pt-20"
           >
             <button
               className="button is-uppercase is-center auto continue-button is-primary"

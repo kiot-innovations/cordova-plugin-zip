@@ -19,6 +19,8 @@ import paths from 'routes/paths'
 import { useI18n } from 'shared/i18n'
 import { FETCH_DEVICES_LIST, UPDATE_DEVICES_LIST } from 'state/actions/devices'
 import PanelLayoutWidget from 'pages/SystemConfiguration/panelLayoutWidget'
+import { METER, METER_ERRORS } from 'state/reducers/systemConfiguration/meter'
+import { GRID_ERRORS } from 'state/reducers/systemConfiguration/gridBehavior'
 import useSiteKey from 'hooks/useSiteKey'
 import { CONFIG_START } from 'state/actions/analytics'
 import {
@@ -36,8 +38,6 @@ import NetworkWidget from './NetworkWidget'
 import RSEWidget from './RSEWidget'
 
 import './SystemConfiguration.scss'
-import { METER, METER_ERRORS } from 'state/reducers/systemConfiguration/meter'
-import { GRID_ERRORS } from 'state/reducers/systemConfiguration/gridBehavior'
 
 const createMeterConfig = (devicesList, meterConfig, dispatch, site) => {
   const updatedDevices = devicesList.map(device => {
@@ -208,7 +208,9 @@ function SystemConfiguration() {
         <span className="has-text-danger mr-5">*</span>
         {t('MANDATORY_FIELDS')}
       </p>
-      <NetworkWidget hideWPSButton={!wpsSupport} />
+      <div className="pb-15">
+        <NetworkWidget hideWPSButton={!wpsSupport} />
+      </div>
       <GridBehaviorWidget />
       <MetersWidget hasStorage={hasStorage} />
       <RSEWidget />

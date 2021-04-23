@@ -73,7 +73,7 @@ function NetworkWidget({ hideWPSButton, expanded }) {
   const placeholder = isFetching ? t('AP_DD_FETCHING') : t('SELECT_NETWORK')
 
   return (
-    <div className="pb-15">
+    <>
       <Collapsible title={t('NETWORK')} icon={NWI} expanded={expanded} required>
         <form>
           <div className="field is-horizontal mb-15">
@@ -232,7 +232,7 @@ function NetworkWidget({ hideWPSButton, expanded }) {
         open={showWpsConnectToWifi}
         onChange={() => setShowWpsConnectToWifi(!showWpsConnectToWifi)}
       />
-    </div>
+    </>
   )
 }
 export default NetworkWidget
