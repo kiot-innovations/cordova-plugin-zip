@@ -261,10 +261,10 @@ export const registerHomeOwnerAccount = ({ location, errorMessage }) => {
 export const setACModuleType = ({ timeElapsed, errorCodes, moduleTypes }) => {
   const { mixpanel } = window
   if (Array.isArray(errorCodes) && errorCodes.length !== 0) {
-    mixpanel.track('Set AC Module type', { success: false, errorCodes })
-    return MIXPANEL_EVENT_QUEUED('Set AC Module type - No success')
+    mixpanel.track('Set AC Module Type', { success: false, errorCodes })
+    return MIXPANEL_EVENT_QUEUED('Set AC Module Type - No success')
   }
-  mixpanel.track('Set AC Module type', {
+  mixpanel.track('Set AC Module Type', {
     success: true,
     $duration: timeElapsed,
     moduleTypes
@@ -275,4 +275,10 @@ export const finishPLTWizard = () => {
   const { mixpanel } = window
   mixpanel.track('Panel Layout Setup')
   return MIXPANEL_EVENT_QUEUED('Panel Layout Setup')
+}
+
+export const trackConnectedDeviceFWUpdate = config => {
+  const { mixpanel } = window
+  mixpanel.track('ESS F/W Update', config)
+  return MIXPANEL_EVENT_QUEUED('Connected Device FW Update')
 }

@@ -9,12 +9,14 @@ import {
   lensIndex,
   not,
   over,
+  pathOr,
   pickAll,
   propSatisfies,
   toLower,
   toUpper,
   when
 } from 'ramda'
+import { getElapsedTime } from 'shared/utils'
 
 export const isNotEmpty = compose(not, isEmpty)
 
@@ -38,4 +40,10 @@ const userProfile = ['uniqueId', 'dealerName', 'recordType']
 
 export const getUserProfile = curry(
   compose(evolve(sanitizeUserProfile), pickAll(userProfile))
+)
+export const getElapsedTimeWithState = curry((state, timerName) =>
+  compose(
+    getElapsedTime,
+    pathOr(new Date().getTime(), ['value', 'analytics', timerName])
+  )(state)
 )

@@ -26,7 +26,7 @@ describe('The analytics file to register actions to mixpanel', () => {
   describe('The set AC module type', () => {
     it('should register the event if it timeElapsed parameter', () => {
       setACModuleType({ timeElapsed: 100, moduleTypes: ['A', 'B', 'C'] })
-      expect(mixpanelMock.track).toBeCalledWith('Set AC Module type', {
+      expect(mixpanelMock.track).toBeCalledWith('Set AC Module Type', {
         success: true,
         $duration: 100,
         moduleTypes: ['A', 'B', 'C']
@@ -36,7 +36,7 @@ describe('The analytics file to register actions to mixpanel', () => {
 
     it('should register the event if it has the errorCodes parameter', () => {
       setACModuleType({ errorCodes: ['123', '456'] })
-      expect(mixpanelMock.track).toBeCalledWith('Set AC Module type', {
+      expect(mixpanelMock.track).toBeCalledWith('Set AC Module Type', {
         errorCodes: ['123', '456'],
         success: false
       })

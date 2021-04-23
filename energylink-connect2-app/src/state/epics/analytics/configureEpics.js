@@ -1,23 +1,16 @@
 import { ofType } from 'redux-observable'
-import { switchMap, withLatestFrom } from 'rxjs/operators'
 import { EMPTY, of } from 'rxjs'
-import {
-  compose,
-  curry,
-  not,
-  always,
-  cond,
-  path,
-  pathOr,
-  propEq,
-  T
-} from 'ramda'
+import { switchMap, withLatestFrom } from 'rxjs/operators'
+import { not, always, cond, path, pathOr, propEq, T } from 'ramda'
+
+import { commissionSite, saveConfiguration } from 'shared/analytics'
+import { getElapsedTimeWithState } from 'shared/analyticsUtils'
+
 import {
   SUBMIT_COMMISSION_ERROR,
   SUBMIT_COMMISSION_SUCCESS
 } from 'state/actions/systemConfiguration'
 import { parseInventory } from 'state/epics/analytics/InventoryEpics'
-import { commissionSite, saveConfiguration } from 'shared/analytics'
 import { COMMISSION_SUCCESS } from 'state/actions/analytics'
 import { getElapsedTime } from 'shared/utils'
 
@@ -138,21 +131,16 @@ const submitConfigurationError = (action$, state$) =>
     )
   )
 
-const getElapsedTimeWithState = curry((timerName, state) =>
-  compose(
-    getElapsedTime,
-    pathOr(new Date().getTime(), ['value', 'analytics', timerName])
-  )(state)
-)
 export const submitCommissionSuccess = (action$, state$) =>
   action$.pipe(
     ofType(SUBMIT_COMMISSION_SUCCESS.getType()),
     switchMap(() => {
       if (state$.value.analytics.commissioningSuccess) return EMPTY
+      const getTime = getElapsedTimeWithState(state$)
 
-      const duration = getElapsedTimeWithState('commissioningTimer', state$)
-      const timeConfiguring = getElapsedTimeWithState('configureTimer', state$)
-      const timeFromMiScan = getElapsedTimeWithState('timeFromMiScan', state$)
+      const duration = getTime('commissioningTimer')
+      const timeConfiguring = getTime('configureTimer')
+      const timeFromMiScan = getTime('timeFromMiScan')
 
       return of(
         commissionSite({ duration, timeConfiguring, timeFromMiScan }),

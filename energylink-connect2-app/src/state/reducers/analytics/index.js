@@ -3,6 +3,7 @@ import {
   BEGIN_INSTALL,
   COMMISSION_SUCCESS,
   CONFIG_START,
+  START_BULK_SETTINGS_TIMER,
   SET_AC_DEVICES
 } from 'state/actions/analytics'
 import { CLAIM_DEVICES_INIT } from 'state/actions/devices'
@@ -15,6 +16,7 @@ export const initialState = {
   pvsInternetTimer: 0,
   selectingACModelTimer: 0,
   submitTimer: 0,
+  bulkSettingsTimer: 0,
   timeFromMiScan: 0,
   commissioningSuccess: false,
   siteUnderCommissioning: ''
@@ -37,6 +39,10 @@ export default createReducer(
     [CLAIM_DEVICES_INIT]: state => ({
       ...state,
       timeFromMiScan: new Date().getTime()
+    }),
+    [START_BULK_SETTINGS_TIMER]: state => ({
+      ...state,
+      bulkSettingsTimer: new Date().getTime()
     }),
     [SUBMIT_CONFIG]: state => ({
       ...state,

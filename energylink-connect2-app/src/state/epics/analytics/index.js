@@ -10,9 +10,11 @@ import homeOwnerAccountAnalytics from './homeOwnerAccountCreation'
 import acModelsEpic from './acModelsMetadata'
 import pvsInternetEpic from './pvsInternetEpic'
 import pltWizard from './panelLayoutTool'
+import bulkSettingsEpic from './bulkSettingsEpic'
 
 export default [
   ...acModelsEpic,
+  ...bulkSettingsEpic,
   ...configureEpics,
   ...deviceResumeEpic,
   ...firmwareUpdate,

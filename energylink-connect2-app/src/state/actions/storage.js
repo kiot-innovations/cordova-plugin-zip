@@ -61,9 +61,6 @@ export const TRIGGER_EQS_FIRMWARE_ERROR = createAction(
   'TRIGGER_EQS_FIRMWARE_ERROR'
 )
 
-export const UPDATE_EQS_FIRMWARE_SUCCESS = createAction(
-  'UPDATE_EQS_FIRMWARE_SUCCESS'
-)
 export const UPDATE_EQS_FIRMWARE_ERROR = createAction(
   'UPDATE_EQS_FIRMWARE_ERROR'
 )

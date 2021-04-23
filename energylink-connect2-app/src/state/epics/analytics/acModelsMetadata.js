@@ -20,11 +20,11 @@ const EssHealthCeckEpic = (action$, state$) =>
     ofType(SET_METADATA_INIT.getType()),
     withLatestFrom(state$),
     exhaustMap(([{ payload }, state]) => {
-      const selectingAcModlesStartPoint = path(
+      const selectingAcModulesStartPoint = path(
         ['analytics', 'selectingACModelTimer'],
         state
       )
-      const timePassed = getElapsedTime(selectingAcModlesStartPoint)
+      const timePassed = getElapsedTime(selectingAcModulesStartPoint)
       const metadata = pathOr([], ['metaData', 'devices'], payload)
       const moduleTypes = getModifiedDevices(metadata)
       return of(setACModuleType({ moduleTypes, timeElapsed: timePassed }))
