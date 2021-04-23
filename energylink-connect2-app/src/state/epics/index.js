@@ -21,6 +21,7 @@ import sentryEpics from './sentry'
 import siteEpics from './site'
 import storageEpics from './storage'
 import systemConfigurationEpics from './systemConfiguration'
+import superuserEpics from './superuser'
 import apisEpic from './api'
 
 export default combineEpics(
@@ -45,5 +46,6 @@ export default combineEpics(
   ...sentryEpics,
   ...siteEpics,
   ...storageEpics,
-  ...systemConfigurationEpics
+  ...systemConfigurationEpics,
+  ...superuserEpics
 )

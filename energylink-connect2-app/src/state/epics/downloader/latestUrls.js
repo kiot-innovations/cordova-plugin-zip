@@ -2,6 +2,7 @@ import { combineLatest, from, of, ReplaySubject } from 'rxjs'
 import { ofType } from 'redux-observable'
 import { catchError, exhaustMap, map, mergeMap } from 'rxjs/operators'
 import * as Sentry from '@sentry/browser'
+import { pathOr } from 'ramda'
 
 import { DOWNLOAD_OS_INIT } from 'state/actions/ess'
 import {
@@ -24,7 +25,7 @@ export const waitForObservable = observable$ =>
  * @param action$
  * @return {*}
  */
-const getTheLatestURL = action$ =>
+const getTheLatestURL = (action$, state$) =>
   action$.pipe(
     ofType(
       PVS_FIRMWARE_DOWNLOAD_INIT.getType(),
@@ -47,23 +48,51 @@ const getTheLatestURL = action$ =>
          *     }
          */
         map(text => {
+          const essUpdateOverrideURL = pathOr(
+            false,
+            ['value', 'fileDownloader', 'settings', 'essUpdateOverride', 'url'],
+            state$
+          )
+          const pvsUpdateOverrideURL = pathOr(
+            false,
+            ['value', 'fileDownloader', 'settings', 'pvsUpdateOverride', 'url'],
+            state$
+          )
+
+          //TODO - Do we still need to have compatibility with the old response format?
+          //TODO - Trillo, what's happening here? -Alvin y Fer
           try {
-            const { pvs, ess, gp } = JSON.parse(text)
+            let { pvs, ess, gp } = JSON.parse(text)
+
+            if (essUpdateOverrideURL) {
+              ess = essUpdateOverrideURL
+            }
+
+            if (pvsUpdateOverrideURL) {
+              pvs = pvsUpdateOverrideURL
+            }
+
             localStorage.setItem('pvs-url', pvs)
             localStorage.setItem('ess-url', ess)
             localStorage.setItem('gp-url', gp)
 
             pvsUpdateUrl$.next(pvs)
-            gridProfileUpdateUrl$.next(gp)
             essUpdateUrl$.next(ess)
+            gridProfileUpdateUrl$.next(gp)
 
             return DOWNLOAD_URLS_UPDATED()
           } catch (e) {
             localStorage.setItem('pvs-url', text)
 
-            pvsUpdateUrl$.next(text)
+            pvsUpdateUrl$.next(
+              pvsUpdateOverrideURL ? pvsUpdateOverrideURL : text
+            )
             gridProfileUpdateUrl$.next(process.env.REACT_APP_GRID_PROFILE_URL)
-            essUpdateUrl$.next(process.env.REACT_APP_ESS_DOWNLOAD_URL)
+            essUpdateUrl$.next(
+              essUpdateOverrideURL
+                ? essUpdateOverrideURL
+                : process.env.REACT_APP_ESS_DOWNLOAD_URL
+            )
 
             return DOWNLOAD_URLS_UPDATED()
           }

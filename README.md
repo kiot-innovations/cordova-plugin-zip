@@ -108,9 +108,7 @@ Get the password for doing this from anyone on the dev team
 
 ```
 cd ~/sunpower/energylink-connect2/energylink-connect2-app;
-openssl aes-256-cbc -d -a -salt -in .env.enc.test -out .env.production;
-cp .env.production .env.local;
-cp .env.production .env.development;
+openssl aes-256-cbc -d -a -salt -in .env.enc.test -out .env.local;
 ```
 
 # How to update the FASTLANE_SESSION when the CI fails because Apple needs a new sesssion

@@ -6,7 +6,22 @@ describe('Footer Component', () => {
   const initialState = {
     ui: { footer: true },
     global: { lastVisitedPage: paths.PROTECTED.CONNECT_TO_PVS.path },
-    network: { connected: false }
+    network: { connected: false },
+    fileDownloader: {
+      settings: {
+        essUpdateOverride: {
+          url: '',
+          displayName: ''
+        },
+        pvsUpdateOverride: {
+          url: '',
+          displayName: ''
+        }
+      }
+    },
+    superuser: {
+      showSuperuserSettings: false
+    }
   }
 
   test('Renders correctly', () => {

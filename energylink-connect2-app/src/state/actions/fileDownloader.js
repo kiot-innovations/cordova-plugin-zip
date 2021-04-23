@@ -29,9 +29,16 @@ export const PVS_FIRMWARE_REPORT_SUCCESS = createAction(
 export const PVS_FIRMWARE_MODAL_IS_CONNECTED = createAction(
   'PVS_FIRMWARE_MODAL_IS_CONNECTED'
 )
-
 export const DOWNLOAD_ALLOW_WITH_PVS = createAction('DOWNLOAD_ALLOW_WITH_PVS')
-
+export const SET_ESS_UPDATE_OVERRIDE = createAction(
+  'SET_ESS_UPDATE_OVERRIDE_URL'
+)
+export const SET_PVS_UPDATE_OVERRIDE = createAction(
+  'SET_PVS_UPDATE_OVERRIDE_URL'
+)
+export const DEFAULT_ALL_UPDATE_OVERRIDES = createAction(
+  'DEFAULT_ALL_UPDATE_OVERRIDES'
+)
 export const DOWNLOAD_URLS_UPDATED = createAction('DOWNLOAD_URLS_UPDATED')
 export const FILES_VERIFY = createAction('FILES_VERIFY')
 export const FILES_VERIFY_FAILED = createAction('FILES_VERIFY_FAILED')

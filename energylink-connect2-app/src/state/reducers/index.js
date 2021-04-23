@@ -16,6 +16,7 @@ import { energyDataReducer } from './energy-data'
 import { energyLiveData } from './energy-live-data'
 import { storageReducer } from './storage'
 import { pltWizard } from './plt-wizard'
+import { superuserReducer } from './superuser'
 
 import ui from './ui'
 import fileDownloader from './fileDownloader'
@@ -31,6 +32,13 @@ import permissionsReducer from './permissions'
 export default combineReducers({
   ...getPLTReducer(),
   ui,
+  superuser: persistReducer(
+    {
+      key: 'superuser',
+      storage
+    },
+    superuserReducer
+  ),
   analytics: persistReducer(
     {
       key: 'analytics',

@@ -16,7 +16,25 @@ $headerHeight: 60px;
 .menuitems {
   display: grid;
   grid-template-columns: 1fr 1fr;
+
   & > div > button {
     margin: auto;
+  }
+
+  .superuser-options {
+    .tilex {
+      background-color: rgba(196, 196, 196, 0.1);
+      padding-top: 40px;
+    }
+
+    .sp {
+      background: -webkit-linear-gradient(45deg, #b055f7, #25e3fd);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .text {
+      background: -webkit-linear-gradient(45deg, #b055f7, #25e3fd);
+    }
   }
 }

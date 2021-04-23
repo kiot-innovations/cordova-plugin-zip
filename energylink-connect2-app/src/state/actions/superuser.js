@@ -1,0 +1,13 @@
+import { createAction } from 'redux-act'
+
+export const DOWNLOAD_ESS_FIRMWARE_LIST = createAction(
+  'DOWNLOAD_ESS_FIRMWARE_LIST'
+)
+export const DOWNLOAD_ESS_FIRMWARE_LIST_SUCCESS = createAction(
+  'DOWNLOAD_ESS_FIRMWARE_LIST_SUCCESS'
+)
+export const DOWNLOAD_ESS_FIRMWARE_LIST_ERROR = createAction(
+  'DOWNLOAD_ESS_FIRMWARE_LIST_ERROR'
+)
+export const SHOW_SUPERUSER_SETTINGS = createAction('SHOW_SUPERUSER_SETTINGS')
+export const HIDE_SUPERUSER_SETTINGS = createAction('HIDE_SUPERUSER_SETTINGS')

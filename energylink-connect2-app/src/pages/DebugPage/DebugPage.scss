@@ -1,13 +1,41 @@
 @import '~@sunpower/theme-dark/styles/variables';
 
-.debug-route {
-  background-color: $silver-sand4;
-  padding: $font-size-big;
-  font-family: $font;
-  letter-spacing: 0;
-  border-radius: 5px;
-  color: #ffffff;
-  font-weight: bold;
-  display: grid;
-  grid-template-columns: 95% 1fr;
+.debug-page {
+  .title,
+  .use-defaults,
+  .debug-route {
+    background: -webkit-linear-gradient(45deg, #b055f7, #25e3fd);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .download-custom-firmwares-button {
+    background: -webkit-linear-gradient(45deg, #b055f7, #25e3fd);
+    border: none;
+    color: #000000;
+  }
+
+  .use-defaults {
+    float: right;
+  }
+
+  .option-title {
+    color: #ffffff !important;
+  }
+
+  .this-might-not-work {
+    color: #ee0000;
+    text-align: center;
+  }
+
+  .debug-route {
+    padding: $font-size-big;
+    font-family: $font;
+    letter-spacing: 0;
+  }
+
+  .search__menu {
+    position: relative;
+    z-index: 10000;
+  }
 }

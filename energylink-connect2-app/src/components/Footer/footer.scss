@@ -1,12 +1,24 @@
 @import '~@sunpower/theme-dark/styles/variables';
 
-.custom-footer {
-  position: fixed;
-  bottom: constant(safe-area-inset-bottom);
-  bottom: env(safe-area-inset-bottom);
-  width: 100vw;
-  height: 70px;
-  background-color: $black;
-  transform: translate3d(0, 0, 0);
-  transition: max-height 250ms ease-out, opacity 250ms ease-out;
+.cm2-footer {
+  .custom-footer {
+    position: fixed;
+    bottom: constant(safe-area-inset-bottom);
+    bottom: env(safe-area-inset-bottom);
+    width: 100vw;
+    height: 70px;
+    background-color: $black;
+    transform: translate3d(0, 0, 0);
+    transition: max-height 250ms ease-out, opacity 250ms ease-out;
+  }
+
+  .superuser-settings {
+    position: fixed;
+    bottom: constant(safe-area-inset-bottom);
+    bottom: env(safe-area-inset-bottom);
+    right: 0px;
+    font-size: 3px;
+    transform: rotate(-90deg) translate(100%, 0);
+    transform-origin: right bottom;
+  }
 }

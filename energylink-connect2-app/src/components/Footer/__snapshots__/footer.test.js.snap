@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Footer Component Renders correctly 1`] = `"<footer class=\\"custom-footer is-clipper show-footer\\"><nav class=\\"cnav tabs is-marginless\\"><ul class=\\"is-flex\\"><li class=\\"nav-item\\"><a class=\\"is-flex tile is-vertical is-radiusless is-size-6\\" rel=\\"noopener noreferrer\\"><span class=\\"\\"><i class=\\"is-size-4 sp-home\\" aria-hidden=\\"true\\"></i></span><span class=\\"is-size-7\\">Home</span></a></li><li class=\\"nav-item\\"><a class=\\"is-flex tile is-vertical is-radiusless is-size-6\\" rel=\\"noopener noreferrer\\"><span class=\\"\\"><i class=\\"is-size-4 sp-list\\" aria-hidden=\\"true\\"></i></span><span class=\\"is-size-7\\">Install</span></a></li><li class=\\"nav-item\\"><a class=\\"is-flex tile is-vertical is-radiusless is-size-6\\" rel=\\"noopener noreferrer\\"><span class=\\"\\"><i class=\\"is-size-4 sp-signal\\" aria-hidden=\\"true\\"></i></span><span class=\\"is-size-7\\">Configure</span></a></li><li class=\\"nav-item\\"><a class=\\"is-flex tile is-vertical is-radiusless is-size-6\\" rel=\\"noopener noreferrer\\"><span class=\\"\\"><i class=\\"is-size-4 sp-data\\" aria-hidden=\\"true\\"></i></span><span class=\\"is-size-7\\">Status</span></a></li></ul></nav></footer>"`;
+exports[`Footer Component Renders correctly 1`] = `"<div class=\\"cm2-footer\\"><footer class=\\"custom-footer is-clipper show-footer\\"><nav class=\\"cnav tabs is-marginless\\"><ul class=\\"is-flex\\"><li class=\\"nav-item\\"><a class=\\"is-flex tile is-vertical is-radiusless is-size-6\\" rel=\\"noopener noreferrer\\"><span class=\\"\\"><i class=\\"is-size-4 sp-home\\" aria-hidden=\\"true\\"></i></span><span class=\\"is-size-7\\">Home</span></a></li><li class=\\"nav-item\\"><a class=\\"is-flex tile is-vertical is-radiusless is-size-6\\" rel=\\"noopener noreferrer\\"><span class=\\"\\"><i class=\\"is-size-4 sp-list\\" aria-hidden=\\"true\\"></i></span><span class=\\"is-size-7\\">Install</span></a></li><li class=\\"nav-item\\"><a class=\\"is-flex tile is-vertical is-radiusless is-size-6\\" rel=\\"noopener noreferrer\\"><span class=\\"\\"><i class=\\"is-size-4 sp-signal\\" aria-hidden=\\"true\\"></i></span><span class=\\"is-size-7\\">Configure</span></a></li><li class=\\"nav-item\\"><a class=\\"is-flex tile is-vertical is-radiusless is-size-6\\" rel=\\"noopener noreferrer\\"><span class=\\"\\"><i class=\\"is-size-4 sp-data\\" aria-hidden=\\"true\\"></i></span><span class=\\"is-size-7\\">Status</span></a></li></ul></nav></footer><div class=\\"superuser-settings is-clipper\\"></div></div>"`;
 
 exports[`Footer Component Renders nothing if Footer is false 1`] = `
 <BrowserRouter
@@ -41,173 +41,180 @@ exports[`Footer Component Renders nothing if Footer is false 1`] = `
       }
     >
       <Footer>
-        <footer
-          className="custom-footer is-clipper show-footer"
+        <div
+          className="cm2-footer"
         >
-          <Component
-            items={
-              Array [
-                Object {
-                  "active": false,
-                  "icon": "sp-home",
-                  "onClick": [Function],
-                  "text": "Home",
-                },
-                Object {
-                  "active": false,
-                  "icon": "sp-list",
-                  "onClick": [Function],
-                  "text": "Install",
-                },
-                Object {
-                  "active": false,
-                  "icon": "sp-signal",
-                  "onClick": [Function],
-                  "text": "Configure",
-                },
-                Object {
-                  "active": false,
-                  "icon": "sp-data",
-                  "onClick": [Function],
-                  "text": "Status",
-                },
-              ]
-            }
+          <footer
+            className="custom-footer is-clipper show-footer"
           >
-            <nav
-              className="cnav tabs is-marginless"
+            <Component
+              items={
+                Array [
+                  Object {
+                    "active": false,
+                    "icon": "sp-home",
+                    "onClick": [Function],
+                    "text": "Home",
+                  },
+                  Object {
+                    "active": false,
+                    "icon": "sp-list",
+                    "onClick": [Function],
+                    "text": "Install",
+                  },
+                  Object {
+                    "active": false,
+                    "icon": "sp-signal",
+                    "onClick": [Function],
+                    "text": "Configure",
+                  },
+                  Object {
+                    "active": false,
+                    "icon": "sp-data",
+                    "onClick": [Function],
+                    "text": "Status",
+                  },
+                ]
+              }
             >
-              <ul
-                className="is-flex"
+              <nav
+                className="cnav tabs is-marginless"
               >
-                <l
-                  active={false}
-                  icon="sp-home"
-                  key="0"
-                  onClick={[Function]}
-                  text="Home"
+                <ul
+                  className="is-flex"
                 >
-                  <li
-                    className="nav-item"
+                  <l
+                    active={false}
+                    icon="sp-home"
+                    key="0"
+                    onClick={[Function]}
+                    text="Home"
                   >
-                    <a
-                      className="is-flex tile is-vertical is-radiusless is-size-6"
-                      onClick={[Function]}
-                      rel="noopener noreferrer"
+                    <li
+                      className="nav-item"
                     >
-                      <span
-                        className=""
+                      <a
+                        className="is-flex tile is-vertical is-radiusless is-size-6"
+                        onClick={[Function]}
+                        rel="noopener noreferrer"
                       >
-                        <i
-                          aria-hidden="true"
-                          className="is-size-4 sp-home"
-                        />
-                      </span>
-                      <span
-                        className="is-size-7"
-                      >
-                        Home
-                      </span>
-                    </a>
-                  </li>
-                </l>
-                <l
-                  active={false}
-                  icon="sp-list"
-                  key="1"
-                  onClick={[Function]}
-                  text="Install"
-                >
-                  <li
-                    className="nav-item"
+                        <span
+                          className=""
+                        >
+                          <i
+                            aria-hidden="true"
+                            className="is-size-4 sp-home"
+                          />
+                        </span>
+                        <span
+                          className="is-size-7"
+                        >
+                          Home
+                        </span>
+                      </a>
+                    </li>
+                  </l>
+                  <l
+                    active={false}
+                    icon="sp-list"
+                    key="1"
+                    onClick={[Function]}
+                    text="Install"
                   >
-                    <a
-                      className="is-flex tile is-vertical is-radiusless is-size-6"
-                      onClick={[Function]}
-                      rel="noopener noreferrer"
+                    <li
+                      className="nav-item"
                     >
-                      <span
-                        className=""
+                      <a
+                        className="is-flex tile is-vertical is-radiusless is-size-6"
+                        onClick={[Function]}
+                        rel="noopener noreferrer"
                       >
-                        <i
-                          aria-hidden="true"
-                          className="is-size-4 sp-list"
-                        />
-                      </span>
-                      <span
-                        className="is-size-7"
-                      >
-                        Install
-                      </span>
-                    </a>
-                  </li>
-                </l>
-                <l
-                  active={false}
-                  icon="sp-signal"
-                  key="2"
-                  onClick={[Function]}
-                  text="Configure"
-                >
-                  <li
-                    className="nav-item"
+                        <span
+                          className=""
+                        >
+                          <i
+                            aria-hidden="true"
+                            className="is-size-4 sp-list"
+                          />
+                        </span>
+                        <span
+                          className="is-size-7"
+                        >
+                          Install
+                        </span>
+                      </a>
+                    </li>
+                  </l>
+                  <l
+                    active={false}
+                    icon="sp-signal"
+                    key="2"
+                    onClick={[Function]}
+                    text="Configure"
                   >
-                    <a
-                      className="is-flex tile is-vertical is-radiusless is-size-6"
-                      onClick={[Function]}
-                      rel="noopener noreferrer"
+                    <li
+                      className="nav-item"
                     >
-                      <span
-                        className=""
+                      <a
+                        className="is-flex tile is-vertical is-radiusless is-size-6"
+                        onClick={[Function]}
+                        rel="noopener noreferrer"
                       >
-                        <i
-                          aria-hidden="true"
-                          className="is-size-4 sp-signal"
-                        />
-                      </span>
-                      <span
-                        className="is-size-7"
-                      >
-                        Configure
-                      </span>
-                    </a>
-                  </li>
-                </l>
-                <l
-                  active={false}
-                  icon="sp-data"
-                  key="3"
-                  onClick={[Function]}
-                  text="Status"
-                >
-                  <li
-                    className="nav-item"
+                        <span
+                          className=""
+                        >
+                          <i
+                            aria-hidden="true"
+                            className="is-size-4 sp-signal"
+                          />
+                        </span>
+                        <span
+                          className="is-size-7"
+                        >
+                          Configure
+                        </span>
+                      </a>
+                    </li>
+                  </l>
+                  <l
+                    active={false}
+                    icon="sp-data"
+                    key="3"
+                    onClick={[Function]}
+                    text="Status"
                   >
-                    <a
-                      className="is-flex tile is-vertical is-radiusless is-size-6"
-                      onClick={[Function]}
-                      rel="noopener noreferrer"
+                    <li
+                      className="nav-item"
                     >
-                      <span
-                        className=""
+                      <a
+                        className="is-flex tile is-vertical is-radiusless is-size-6"
+                        onClick={[Function]}
+                        rel="noopener noreferrer"
                       >
-                        <i
-                          aria-hidden="true"
-                          className="is-size-4 sp-data"
-                        />
-                      </span>
-                      <span
-                        className="is-size-7"
-                      >
-                        Status
-                      </span>
-                    </a>
-                  </li>
-                </l>
-              </ul>
-            </nav>
-          </Component>
-        </footer>
+                        <span
+                          className=""
+                        >
+                          <i
+                            aria-hidden="true"
+                            className="is-size-4 sp-data"
+                          />
+                        </span>
+                        <span
+                          className="is-size-7"
+                        >
+                          Status
+                        </span>
+                      </a>
+                    </li>
+                  </l>
+                </ul>
+              </nav>
+            </Component>
+          </footer>
+          <div
+            className="superuser-settings is-clipper"
+          />
+        </div>
       </Footer>
     </Provider>
   </Router>

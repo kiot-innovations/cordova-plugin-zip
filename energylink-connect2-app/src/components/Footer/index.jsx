@@ -11,6 +11,7 @@ import { appConnectionStatus } from 'state/reducers/network'
 import { BEGIN_INSTALL } from 'state/actions/analytics'
 import useSiteKey from 'hooks/useSiteKey'
 import paths, { protectedRoutes, TABS } from 'routes/paths'
+import { either } from 'shared/utils'
 
 import './footer.scss'
 
@@ -31,6 +32,12 @@ const Footer = () => {
   const { lastVisitedPage, showPrecommissioningChecklist } = useSelector(
     state => state.global
   )
+
+  const { essUpdateOverride, pvsUpdateOverride } = useSelector(
+    state => state.fileDownloader.settings
+  )
+
+  const { showSuperuserSettings } = useSelector(state => state.superuser)
 
   const location = useLocation()
   const siteKey = useSiteKey()
@@ -106,14 +113,43 @@ const Footer = () => {
   ]
 
   return (
-    <footer
-      className={clsx('custom-footer is-clipper', {
-        'show-footer': showFooter,
-        'hide-footer': !showFooter
-      })}
-    >
-      <Nav items={navBarItems} />
-    </footer>
+    <div className="cm2-footer">
+      <footer
+        className={clsx('custom-footer is-clipper', {
+          'show-footer': showFooter,
+          'hide-footer': !showFooter
+        })}
+      >
+        <Nav items={navBarItems} />
+        {either(showSuperuserSettings)}
+      </footer>
+      <div className="superuser-settings is-clipper">
+        {either(
+          pvsUpdateOverride.displayName,
+          <span>
+            PVS:{' '}
+            {either(
+              pvsUpdateOverride.displayName,
+              pvsUpdateOverride.displayName,
+              '-'
+            )}
+          </span>
+        )}
+
+        {either(
+          pvsUpdateOverride.displayName,
+          <span>
+            {' '}
+            CD:{' '}
+            {either(
+              essUpdateOverride.displayName,
+              essUpdateOverride.displayName,
+              '-'
+            )}
+          </span>
+        )}
+      </div>
+    </div>
   )
 }
 

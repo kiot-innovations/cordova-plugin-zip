@@ -41,13 +41,19 @@ function MenuItemsContainer({ items }) {
             </div>
           )
         )}
+        {isDebug && (
+          <div
+            className="mb-30 is-flex superuser-options"
+            key={t('SUPERUSER_OPTIONS')}
+          >
+            <Tile
+              icon="sp-gear"
+              text={t('SUPERUSER_OPTIONS')}
+              onClick={goToDebug}
+            />
+          </div>
+        )}
       </article>
-
-      {isDebug && (
-        <button onClick={goToDebug} className="button is-primary is-outlined">
-          {t('DEBUG_ROUTES')}
-        </button>
-      )}
     </section>
   )
 }
