@@ -10,7 +10,7 @@ exports[`Connected Device Update Component Renders Correctly 1`] = `
     <span
       className="has-text-white has-text-weight-bold"
     >
-      Storage Inverter
+      STORAGE INVERTER
     </span>
     <span
       className="has-text-weight-bold"
@@ -43,7 +43,7 @@ exports[`Connected Device Update Component Renders Correctly when error 1`] = `
     <span
       className="has-text-white has-text-weight-bold"
     >
-      Storage Inverter
+      STORAGE INVERTER
     </span>
     <span
       className="has-text-weight-bold"
@@ -71,7 +71,7 @@ exports[`Connected Device Update Component Renders Correctly when error 1`] = `
         className="error-colored percentage has-text-weight-bold is-size-1"
       >
         <span
-          className="sp sp-hey"
+          className="sp sp-hey is-size-2"
         />
       </span>
     </div>

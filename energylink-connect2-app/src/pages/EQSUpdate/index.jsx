@@ -30,7 +30,8 @@ const checkForErrors = (errorList, devices) => {
   return devices.map(device => {
     if (
       device.progress < 0 ||
-      includes(device.serial_number, affectedDevices)
+      (includes(device.serial_number, affectedDevices) &&
+        !isEmpty(device.serial_number))
     ) {
       device.progress = device.progress < 0 ? 0 : device.progress
       device.error = true

@@ -40,7 +40,7 @@ function ConnectedDeviceUpdate({ device }) {
     <div className="device-updating mb-10 mt-10">
       <div className="device-info">
         <span className="has-text-white has-text-weight-bold">
-          {device.device_type}
+          {t(device.device_type)}
         </span>
         <span className="has-text-weight-bold">{device.serial_number}</span>
         <span className={fwVersionClass}>
@@ -58,7 +58,7 @@ function ConnectedDeviceUpdate({ device }) {
             <span className={percentageClass}>
               {either(
                 updateStatus === status.ERROR,
-                <span className="sp sp-hey" />,
+                <span className="sp sp-hey is-size-2" />,
                 `${Math.floor(device.progress)}%`
               )}
             </span>
