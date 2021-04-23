@@ -28,8 +28,8 @@ import {
   BLE_GET_DEVICES,
   BLE_GET_DEVICES_ERROR,
   SET_AP_PWD,
-  SET_CONNECTION_STATUS,
-  SET_SSID
+  SET_SSID,
+  SET_CONNECTION_STATUS
 } from 'state/actions/network'
 
 import { RESET_COMMISSIONING } from 'state/actions/global'

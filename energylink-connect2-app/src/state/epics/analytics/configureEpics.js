@@ -88,15 +88,17 @@ const getConfiguration = (state, success, errorMessage) => {
   const inventory = parseInventory(path(['inventory', 'bom'], state))
   const hasESS = not(propEq('ESS', '0', inventory))
   const networkInterfaces = getConnectionInterfaces(state)
-  const ESSRelatedProperties = {
+
+  const essProperties = {
     'Storage Operation Mode': getESSOperationalMode(state),
     'Storage Reserve Amount': getESSReserveAmount(state)
   }
 
   const timePassedChoosing = getElapsedTime(state.analytics.configureTimer)
   const EDPEndpointDuration = getElapsedTime(state.analytics.submitTimer)
+  const { reconnectionTimes } = state.analytics
 
-  const configEvent = {
+  const acpvProperties = {
     ...networkInterfaces,
     'Grid Profile': getGridProfile(state),
     'Grid Voltage': getGridVoltage(state),
@@ -107,11 +109,12 @@ const getConfiguration = (state, success, errorMessage) => {
     'Error Message': errorMessage,
 
     'Time Elapsed Choosing': timePassedChoosing,
-    'Time Elapsed Submitting': EDPEndpointDuration
+    'Time Elapsed Submitting': EDPEndpointDuration,
+    'Reconnections To PVS WiFi': reconnectionTimes
   }
 
   return saveConfiguration(
-    hasESS ? { ...configEvent, ...ESSRelatedProperties } : configEvent
+    hasESS ? { ...acpvProperties, ...essProperties } : acpvProperties
   )
 }
 
@@ -131,6 +134,12 @@ const submitConfigurationError = (action$, state$) =>
     )
   )
 
+const getReconnectionTimes = pathOr(0, [
+  'value',
+  'network',
+  'reconnectionTimes'
+])
+
 export const submitCommissionSuccess = (action$, state$) =>
   action$.pipe(
     ofType(SUBMIT_COMMISSION_SUCCESS.getType()),
@@ -142,8 +151,15 @@ export const submitCommissionSuccess = (action$, state$) =>
       const timeConfiguring = getTime('configureTimer')
       const timeFromMiScan = getTime('timeFromMiScan')
 
+      const reconnectionTimes = getReconnectionTimes(state$)
+
       return of(
-        commissionSite({ duration, timeConfiguring, timeFromMiScan }),
+        commissionSite({
+          duration,
+          timeConfiguring,
+          timeFromMiScan,
+          reconnectionTimes
+        }),
         COMMISSION_SUCCESS()
       )
     })

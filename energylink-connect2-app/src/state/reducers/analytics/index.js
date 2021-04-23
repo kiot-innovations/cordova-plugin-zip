@@ -1,4 +1,5 @@
 import { createReducer } from 'redux-act'
+import { getElapsedTime, gotDisconnection, gotReconnection } from 'shared/utils'
 import {
   BEGIN_INSTALL,
   COMMISSION_SUCCESS,
@@ -6,8 +7,12 @@ import {
   START_BULK_SETTINGS_TIMER,
   SET_AC_DEVICES
 } from 'state/actions/analytics'
+import { SET_CONNECTION_STATUS } from 'state/actions/network'
+import {
+  SUBMIT_COMMISSION_SUCCESS,
+  SUBMIT_CONFIG
+} from 'state/actions/systemConfiguration'
 import { CLAIM_DEVICES_INIT } from 'state/actions/devices'
-import { SUBMIT_CONFIG } from 'state/actions/systemConfiguration'
 import { CONNECT_NETWORK_AP_INIT } from 'state/actions/systemConfiguration'
 
 export const initialState = {
@@ -19,7 +24,11 @@ export const initialState = {
   bulkSettingsTimer: 0,
   timeFromMiScan: 0,
   commissioningSuccess: false,
-  siteUnderCommissioning: ''
+  siteUnderCommissioning: '',
+  disconnectionTimer: 0,
+  reconnectionTime: 0,
+  reconnectionTimes: 0,
+  connectionStatus: null
 }
 
 const siteUnderCommissioningChanged = (siteKey, siteUnderCommissioning) => {
@@ -74,6 +83,27 @@ export default createReducer(
     [CONNECT_NETWORK_AP_INIT]: state => ({
       ...state,
       pvsInternetTimer: new Date().getTime()
+    }),
+    [SET_CONNECTION_STATUS]: (state, payload) => ({
+      ...state,
+      connectionStatus: payload,
+      disconnectionTimer: gotDisconnection(state.connectionStatus, payload)
+        ? new Date().getTime()
+        : 0,
+
+      reconnectionTime: gotReconnection(state.connectionStatus, payload)
+        ? getElapsedTime(state.disconnectionTimer)
+        : 0,
+
+      reconnectionTimes: gotReconnection(state.connectionStatus, payload)
+        ? state.reconnectionTimes + 1
+        : state.reconnectionTimes
+    }),
+    [SUBMIT_COMMISSION_SUCCESS]: state => ({
+      ...state,
+      reconnectionTimes: 0,
+      reconnectionTime: 0,
+      disconnectionTimer: 0
     })
   },
   initialState

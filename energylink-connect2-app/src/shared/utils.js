@@ -46,6 +46,7 @@ import {
   values,
   when
 } from 'ramda'
+import { appConnectionStatus } from 'state/reducers/network'
 
 export const either = (condition, whenTrue, whenFalse = null) =>
   condition ? whenTrue : whenFalse
@@ -428,9 +429,10 @@ export const getAccessToken = path(['user', 'auth', 'access_token'])
 
 export const getUrl = () => compose(last, split('#'))(window.location.href)
 
-export const getElapsedTime = startTime => {
-  const now = new Date().getTime()
-  return (now - startTime) / 1000
+export const getElapsedTime = (initialTimestamp = 0) => {
+  const now = Date.now()
+  const it = initialTimestamp || now
+  return (now - it) / 1000
 }
 
 export const headersToObj = headers => {
@@ -443,6 +445,14 @@ export const headersToObj = headers => {
 
 export const edpErrorMessage = ({ code = '', message = '' }) =>
   code && message ? `${code}: ${message}` : message
+
+export const gotDisconnection = (prev, current) =>
+  prev === appConnectionStatus.CONNECTED &&
+  current !== appConnectionStatus.CONNECTED
+
+export const gotReconnection = (prev, current) =>
+  prev !== appConnectionStatus.CONNECTED &&
+  current === appConnectionStatus.CONNECTED
 
 export const createMeterConfig = (devicesList, meterConfig, site) => {
   const updatedDevices = devicesList.map(device => {

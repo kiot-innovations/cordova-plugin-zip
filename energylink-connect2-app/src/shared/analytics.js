@@ -155,9 +155,9 @@ export const createSite = ({ success, error = '' }) => {
   )
 }
 
-export const saveConfiguration = config => {
+export const saveConfiguration = eventProperties => {
   const { mixpanel } = window
-  mixpanel.track('Configure', config)
+  mixpanel.track('Configure', eventProperties)
   return MIXPANEL_EVENT_QUEUED('Configure - submit site config')
 }
 
@@ -234,13 +234,15 @@ export const timeMixPanelEvent = name => {
 export const commissionSite = ({
   duration,
   timeConfiguring,
-  timeFromMiScan
+  timeFromMiScan,
+  reconnectionTimes
 }) => {
   const { mixpanel } = window
   mixpanel.track('Commission Site', {
     $duration: duration,
     'Time Configuring': timeConfiguring,
-    'Duration from MI Scan': timeFromMiScan
+    'Duration from MI Scan': timeFromMiScan,
+    'Reconnections To PVS WiFi': reconnectionTimes
   })
   mixpanel.unregister('PVS SN')
   return MIXPANEL_EVENT_QUEUED(
@@ -271,6 +273,21 @@ export const setACModuleType = ({ timeElapsed, errorCodes, moduleTypes }) => {
   })
   return MIXPANEL_EVENT_QUEUED('Set AC Module type - success')
 }
+
+export const trackDisconnectionPVS = () => {
+  const { mixpanel } = window
+  mixpanel.track('Disconnect From PVS WiFi')
+  return MIXPANEL_EVENT_QUEUED('Disconnect From PVS WiFi')
+}
+
+export const trackReconnectionPVS = ({ reconnectionTime }) => {
+  const { mixpanel } = window
+  mixpanel.track('Reconnect To PVS WiFi', {
+    $duration: reconnectionTime
+  })
+  return MIXPANEL_EVENT_QUEUED('Reconnect To PVS WiFi')
+}
+
 export const finishPLTWizard = () => {
   const { mixpanel } = window
   mixpanel.track('Panel Layout Setup')

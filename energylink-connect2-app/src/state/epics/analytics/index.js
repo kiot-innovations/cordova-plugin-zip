@@ -8,6 +8,7 @@ import deviceResumeEpic from './deviceResumeEpic'
 import firmwareUpdate from './firmwareUpdate'
 import homeOwnerAccountAnalytics from './homeOwnerAccountCreation'
 import acModelsEpic from './acModelsMetadata'
+import trackDisReconnectionPVS from './trackDisReconnectionPVS'
 import pvsInternetEpic from './pvsInternetEpic'
 import pltWizard from './panelLayoutTool'
 import bulkSettingsEpic from './bulkSettingsEpic'
@@ -18,6 +19,7 @@ export default [
   ...configureEpics,
   ...deviceResumeEpic,
   ...firmwareUpdate,
+  ...trackDisReconnectionPVS,
   ...homeOwnerAccountAnalytics,
   ...inventoryEpics,
   ...loginEpics,

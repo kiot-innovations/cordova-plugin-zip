@@ -13,11 +13,16 @@ describe('The analytics file to register actions to mixpanel', () => {
   })
 
   it('should register the commission Site event', () => {
-    commissionSite({ duration: 100, timeConfiguring: 50 })
+    commissionSite({
+      duration: 100,
+      timeConfiguring: 50,
+      reconnectionTimes: 0
+    })
     expect(mixpanelMock.track).toBeCalledTimes(1)
     expect(mixpanelMock.track).toBeCalledWith('Commission Site', {
       $duration: 100,
-      'Time Configuring': 50
+      'Time Configuring': 50,
+      'Reconnections To PVS WiFi': 0
     })
     expect(mixpanelMock.unregister).toBeCalledTimes(1)
     expect(mixpanelMock.unregister).toBeCalledWith('PVS SN')
