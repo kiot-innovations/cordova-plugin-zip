@@ -8,7 +8,7 @@ import { ALLOW_COMMISSIONING } from 'state/actions/systemConfiguration'
 import clsx from 'clsx'
 import paths from 'routes/paths'
 import './InventoryCounts.scss'
-import SwipeableBottomSheet from 'react-swipeable-bottom-sheet'
+import SwipeableSheet from 'hocs/SwipeableSheet'
 
 function submitInventory(inventory, dispatch, history, connected) {
   dispatch(saveInventory(inventory))
@@ -171,8 +171,7 @@ function InventoryCount() {
         </button>
       </div>
 
-      <SwipeableBottomSheet
-        shadowTip={false}
+      <SwipeableSheet
         open={storageWarning}
         onChange={() => setStorageWarning(!storageWarning)}
       >
@@ -199,10 +198,9 @@ function InventoryCount() {
             </div>
           </div>
         </div>
-      </SwipeableBottomSheet>
+      </SwipeableSheet>
 
-      <SwipeableBottomSheet
-        shadowTip={false}
+      <SwipeableSheet
         open={configWarning}
         onChange={() => setConfigWarning(!configWarning)}
       >
@@ -230,7 +228,7 @@ function InventoryCount() {
             </div>
           </div>
         </div>
-      </SwipeableBottomSheet>
+      </SwipeableSheet>
     </section>
   )
 }

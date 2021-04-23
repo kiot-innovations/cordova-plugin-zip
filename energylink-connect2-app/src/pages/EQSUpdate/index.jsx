@@ -3,7 +3,7 @@ import { useI18n } from 'shared/i18n'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import { includes, isEmpty, length, map, pathOr, pluck, prop } from 'ramda'
-import SwipeableBottomSheet from 'react-swipeable-bottom-sheet'
+import SwipeableSheet from 'hocs/SwipeableSheet'
 import {
   CHECK_EQS_FIRMWARE,
   TRIGGER_EQS_FIRMWARE_UPDATE_INIT
@@ -207,11 +207,7 @@ const EQSUpdate = ({ history }) => {
         />
       )}
 
-      <SwipeableBottomSheet
-        shadowTip={false}
-        open={modal}
-        onChange={() => showModal(!modal)}
-      >
+      <SwipeableSheet open={modal} onChange={() => showModal(!modal)}>
         <div className="update-in-progress is-flex">
           <span className="has-text-weight-bold">{t('HOLD_ON')}</span>
           <span className="mt-10 mb-10">{t('WAIT_FOR_UPDATE')}</span>
@@ -224,7 +220,7 @@ const EQSUpdate = ({ history }) => {
             </button>
           </div>
         </div>
-      </SwipeableBottomSheet>
+      </SwipeableSheet>
     </div>
   )
 }

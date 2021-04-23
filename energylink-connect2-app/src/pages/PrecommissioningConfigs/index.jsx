@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import { endsWith, find, path, pathOr, propEq } from 'ramda'
-import SwipeableBottomSheet from 'react-swipeable-bottom-sheet'
+import SwipeableSheet from 'hocs/SwipeableSheet'
 
 import { useI18n } from 'shared/i18n'
 import paths from 'routes/paths'
@@ -195,7 +195,7 @@ const PrecommissioningConfigs = () => {
         </div>
       </div>
 
-      <SwipeableBottomSheet shadowTip={false} open={submitModal}>
+      <SwipeableSheet open={submitModal}>
         <div className="applying-settings is-flex has-text-centered">
           {either(
             preconfigState === preconfigStates.STARTED,
@@ -249,12 +249,9 @@ const PrecommissioningConfigs = () => {
             </>
           )}
         </div>
-      </SwipeableBottomSheet>
+      </SwipeableSheet>
 
-      <SwipeableBottomSheet
-        onChange={showProductionCTModal}
-        open={productionCTModal}
-      >
+      <SwipeableSheet onChange={showProductionCTModal} open={productionCTModal}>
         <div className="is-flex flex-column has-text-centered">
           <div className="mb-10">
             <span className="sp-hey has-text-white is-size-1" />
@@ -273,7 +270,7 @@ const PrecommissioningConfigs = () => {
             </button>
           </div>
         </div>
-      </SwipeableBottomSheet>
+      </SwipeableSheet>
     </div>
   )
 }

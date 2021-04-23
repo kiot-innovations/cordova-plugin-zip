@@ -16,7 +16,7 @@ import {
   isEmpty,
   includes
 } from 'ramda'
-import SwipeableBottomSheet from 'react-swipeable-bottom-sheet'
+import SwipeableSheet from 'hocs/SwipeableSheet'
 import { useI18n } from 'shared/i18n'
 import { RESET_METADATA_STATUS, SET_METADATA_INIT } from 'state/actions/pvs'
 import { CLAIM_DEVICES_RESET, FETCH_MODELS_INIT } from 'state/actions/devices'
@@ -184,11 +184,7 @@ const ModelEdit = () => {
         </div>
       )}
 
-      <SwipeableBottomSheet
-        shadowTip={false}
-        open={warning}
-        onChange={() => toggleWarning(!warning)}
-      >
+      <SwipeableSheet open={warning} onChange={() => toggleWarning(!warning)}>
         <div className="missing-models-warning is-flex">
           <span className="has-text-weight-bold">{t('ATTENTION')}</span>
           <span className="mt-10 mb-10">{t('MISSING_MODELS')}</span>
@@ -201,12 +197,9 @@ const ModelEdit = () => {
             </button>
           </div>
         </div>
-      </SwipeableBottomSheet>
+      </SwipeableSheet>
 
-      <SwipeableBottomSheet
-        shadowTip={false}
-        open={commissioned || submitting || !isEmpty(error)}
-      >
+      <SwipeableSheet open={commissioned || submitting || !isEmpty(error)}>
         <div className="missing-models-warning is-flex pb-20">
           {either(
             submitting,
@@ -293,7 +286,7 @@ const ModelEdit = () => {
             </>
           )}
         </div>
-      </SwipeableBottomSheet>
+      </SwipeableSheet>
     </div>
   )
 }

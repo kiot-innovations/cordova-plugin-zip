@@ -2,7 +2,7 @@ import React from 'react'
 import { useHistory } from 'react-router-dom'
 import clsx from 'clsx'
 import { isEmpty, length, pathOr, isNil, path } from 'ramda'
-import SwipeableBottomSheet from 'react-swipeable-bottom-sheet'
+import SwipeableSheet from 'hocs/SwipeableSheet'
 import { useI18n } from 'shared/i18n'
 import { either, addHasErrorProp, warningsLength } from 'shared/utils'
 import paths from 'routes/paths'
@@ -68,8 +68,7 @@ function ESSHealthCheck(props) {
         )}
       </div>
 
-      <SwipeableBottomSheet
-        shadowTip={false}
+      <SwipeableSheet
         open={waitModal}
         onChange={() => showWaitModal(!waitModal)}
       >
@@ -85,7 +84,7 @@ function ESSHealthCheck(props) {
             </button>
           </div>
         </div>
-      </SwipeableBottomSheet>
+      </SwipeableSheet>
 
       {either(
         hasErrors && !loading,
@@ -110,8 +109,7 @@ function ESSHealthCheck(props) {
         />
       )}
 
-      <SwipeableBottomSheet
-        shadowTip={false}
+      <SwipeableSheet
         open={modelsWarning}
         onChange={() => toggleModelsWarning(!modelsWarning)}
       >
@@ -129,7 +127,7 @@ function ESSHealthCheck(props) {
             </button>
           </div>
         </div>
-      </SwipeableBottomSheet>
+      </SwipeableSheet>
     </div>
   )
 }

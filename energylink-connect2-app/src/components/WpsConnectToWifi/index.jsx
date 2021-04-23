@@ -1,7 +1,7 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { path } from 'ramda'
-import SwipeableBottomSheet from 'react-swipeable-bottom-sheet'
+import SwipeableSheet from 'hocs/SwipeableSheet'
 import WpsLogo from './WpsLogo'
 import { useI18n } from 'shared/i18n'
 import useTimer from 'hooks/useTimer'
@@ -179,15 +179,11 @@ const WpsConnectToWifi = ({ open, onChange }) => {
   }
 
   return (
-    <SwipeableBottomSheet
-      open={open}
-      onChange={onChange}
-      style={{ zIndex: '9999' }}
-    >
+    <SwipeableSheet open={open} onChange={onChange} style={{ zIndex: '9999' }}>
       <div className="wps-connect-to-wifi has-text-centered">
         {modalContent[wpsConnectionStatus]}
       </div>
-    </SwipeableBottomSheet>
+    </SwipeableSheet>
   )
 }
 

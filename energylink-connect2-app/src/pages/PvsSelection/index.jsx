@@ -17,7 +17,7 @@ import {
 } from 'ramda'
 import { useDispatch, useSelector } from 'react-redux'
 import clsx from 'clsx'
-import SwipeableBottomSheet from 'react-swipeable-bottom-sheet'
+import SwipeableSheet from 'hocs/SwipeableSheet'
 import { useHistory } from 'react-router-dom'
 import moment from 'moment'
 import paths from 'routes/paths'
@@ -472,8 +472,7 @@ function PvsSelection() {
         </button>
       </section>
 
-      <SwipeableBottomSheet
-        shadowTip={false}
+      <SwipeableSheet
         open={fetchDevicesStatus}
         onChange={() => showFetchDevicesStatus(!fetchDevicesStatus)}
       >
@@ -495,9 +494,9 @@ function PvsSelection() {
             </div>
           )}
         </div>
-      </SwipeableBottomSheet>
+      </SwipeableSheet>
 
-      <SwipeableBottomSheet
+      <SwipeableSheet
         onChange={dismissModal}
         open={Boolean(err) || connecting || connected}
       >
@@ -509,17 +508,16 @@ function PvsSelection() {
             bluetoothEnabled ? failureModalContent : failureModalContent_noBLE
           )}
         </div>
-      </SwipeableBottomSheet>
+      </SwipeableSheet>
 
-      <SwipeableBottomSheet
+      <SwipeableSheet
         onChange={() => showBtPermissions(!btPermissions)}
         open={btPermissions}
       >
         {btPermContent}
-      </SwipeableBottomSheet>
+      </SwipeableSheet>
 
-      <SwipeableBottomSheet
-        shadowTip={false}
+      <SwipeableSheet
         open={manualEntry}
         onChange={() => showManualEntry(!manualEntry)}
       >
@@ -543,14 +541,14 @@ function PvsSelection() {
             </button>
           </div>
         </div>
-      </SwipeableBottomSheet>
+      </SwipeableSheet>
 
-      <SwipeableBottomSheet
+      <SwipeableSheet
         onChange={dismissConfirmConnection}
         open={confirmConnectionModal}
       >
         <div className="has-text-centered">{confirmModalContent}</div>
-      </SwipeableBottomSheet>
+      </SwipeableSheet>
     </main>
   )
 }

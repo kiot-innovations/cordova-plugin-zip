@@ -60,3 +60,8 @@ html {
   background-color: inherit !important;
   border-color: inherit !important;
 }
+
+.swipeable,
+.swipeable + div {
+  height: 0 !important;
+}

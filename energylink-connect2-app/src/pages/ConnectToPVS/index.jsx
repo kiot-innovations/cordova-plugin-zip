@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import { length, pathOr } from 'ramda'
-import SwipeableBottomSheet from 'react-swipeable-bottom-sheet'
+import SwipeableSheet from 'hocs/SwipeableSheet'
 import { useI18n } from 'shared/i18n'
 import { decodeQRData, scanBarcodes } from 'shared/scanning'
 import { generatePassword, generateSSID, isIos } from 'shared/utils'
@@ -171,8 +171,7 @@ function ConnectToPVS() {
         </div>
       </div>
 
-      <SwipeableBottomSheet
-        shadowTip={false}
+      <SwipeableSheet
         open={manualEntry}
         onChange={() => showManualEntry(!manualEntry)}
       >
@@ -196,15 +195,14 @@ function ConnectToPVS() {
             </button>
           </div>
         </div>
-      </SwipeableBottomSheet>
+      </SwipeableSheet>
 
-      <SwipeableBottomSheet
-        shadowTip={false}
+      <SwipeableSheet
         open={enableBle}
         onChange={() => showEnableBle(!enableBle)}
       >
         {btPermContent}
-      </SwipeableBottomSheet>
+      </SwipeableSheet>
     </div>
   )
 }

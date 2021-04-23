@@ -1,6 +1,6 @@
 import React from 'react'
 import { isEmpty, map } from 'ramda'
-import SwipeableBottomSheet from 'react-swipeable-bottom-sheet'
+import SwipeableSheet from 'hocs/SwipeableSheet'
 import { useI18n } from 'shared/i18n'
 import { either } from 'shared/utils'
 import { Loader } from 'components/Loader'
@@ -116,15 +116,12 @@ function NearbyPVSUI({
       </div>
       {either(!bleSearching, retryFooter)}
 
-      <SwipeableBottomSheet
-        onChange={dismissModal}
-        open={connecting || connected}
-      >
+      <SwipeableSheet onChange={dismissModal} open={connecting || connected}>
         <div className="nearby-devices-connecting is-flex pb-20">
           {either(connecting, connectingModalContent)}
           {either(connected, connectedModalContent)}
         </div>
-      </SwipeableBottomSheet>
+      </SwipeableSheet>
     </main>
   )
 }

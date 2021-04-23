@@ -13,7 +13,7 @@ import {
 } from 'ramda'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
-import SwipeableBottomSheet from 'react-swipeable-bottom-sheet'
+import SwipeableSheet from 'hocs/SwipeableSheet'
 
 import paths from 'routes/paths'
 import { useI18n } from 'shared/i18n'
@@ -223,8 +223,7 @@ function SystemConfiguration() {
         </button>
       </div>
 
-      <SwipeableBottomSheet
-        shadowTip={false}
+      <SwipeableSheet
         open={commissionBlockModal}
         onChange={() => showCommissionBlockModal(!commissionBlockModal)}
       >
@@ -240,10 +239,9 @@ function SystemConfiguration() {
             </button>
           </div>
         </div>
-      </SwipeableBottomSheet>
+      </SwipeableSheet>
 
-      <SwipeableBottomSheet
-        shadowTip={false}
+      <SwipeableSheet
         open={length(validationErrors) > 0}
         onChange={() => setValidationErrors([])}
       >
@@ -263,7 +261,7 @@ function SystemConfiguration() {
             </button>
           </div>
         </div>
-      </SwipeableBottomSheet>
+      </SwipeableSheet>
     </div>
   )
 }

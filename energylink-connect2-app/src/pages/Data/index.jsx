@@ -35,7 +35,7 @@ import Collapsible from 'components/Collapsible'
 import { ButtonLink } from 'components/ButtonLink'
 import paths from 'routes/paths'
 import './Data.scss'
-import SwipeableBottomSheet from 'react-swipeable-bottom-sheet'
+import SwipeableSheet from 'hocs/SwipeableSheet'
 
 const isMeter = propEq('isSolarAvailable', true)
 
@@ -174,8 +174,7 @@ export default () => {
       <div className="separator" />
       <EnergyGraphSection />
 
-      <SwipeableBottomSheet
-        shadowTip={false}
+      <SwipeableSheet
         open={livePowerInfo}
         onChange={() => showLivePowerInfo(!livePowerInfo)}
       >
@@ -193,7 +192,7 @@ export default () => {
             </button>
           </div>
         </div>
-      </SwipeableBottomSheet>
+      </SwipeableSheet>
     </section>
   )
 }

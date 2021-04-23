@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import { clone, includes, map, pluck } from 'ramda'
-import SwipeableBottomSheet from 'react-swipeable-bottom-sheet'
+import SwipeableSheet from 'hocs/SwipeableSheet'
 import { useI18n } from 'shared/i18n'
 import { SHOW_PRECOMMISSIONING_CHECKLIST } from 'state/actions/global'
 import { ChecklistRow } from 'components/ChecklistRow'
@@ -101,11 +101,7 @@ function PreCommissioning() {
           {t('CONTINUE')}
         </button>
       </div>
-      <SwipeableBottomSheet
-        shadowTip={false}
-        open={modal}
-        onChange={() => showModal(!modal)}
-      >
+      <SwipeableSheet open={modal} onChange={() => showModal(!modal)}>
         <div className="precomm_modal has-text-white has-text-centered">
           <div className="mb-20">
             <span className="sp-hey is-size-1" />
@@ -122,7 +118,7 @@ function PreCommissioning() {
             </button>
           </div>
         </div>
-      </SwipeableBottomSheet>
+      </SwipeableSheet>
     </div>
   )
 }

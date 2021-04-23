@@ -1,6 +1,6 @@
 import React from 'react'
 import { useField, useForm } from 'react-final-form-hooks'
-import SwipeableBottomSheet from 'react-swipeable-bottom-sheet'
+import SwipeableSheet from 'hocs/SwipeableSheet'
 import { evolve, isEmpty, pathOr } from 'ramda'
 import { CREATE_HOMEOWNER_ACCOUNT } from 'state/actions/site'
 import { useDispatch, useSelector } from 'react-redux'
@@ -62,7 +62,7 @@ const HomeownerAccountCreation = ({ open, onChange }) => {
     isEmpty(email.input.value.trim())
 
   return (
-    <SwipeableBottomSheet open={open} onChange={onChange}>
+    <SwipeableSheet open={open} onChange={onChange}>
       <div className="homeowner-account-creation has-text-centered">
         <span className="has-text-weight-bold">
           {t('CREATE_HOMEOWNER_ACCOUNT')}
@@ -129,7 +129,7 @@ const HomeownerAccountCreation = ({ open, onChange }) => {
           </form>
         )}
       </div>
-    </SwipeableBottomSheet>
+    </SwipeableSheet>
   )
 }
 
