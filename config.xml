@@ -103,8 +103,8 @@
     <plugin name="cordova-plugin-inappbrowser" spec="^3.2.0" />
     <plugin name="cordova-plugin-keyboard" spec="^1.2.0" />
     <plugin name="cordova-plugin-networkinterface" spec="^2.0.0" />
-    <plugin name="scandit-cordova-datacapture-core" spec="^6.6.4" />
-    <plugin name="scandit-cordova-datacapture-barcode" spec="^6.6.4" />
+    <plugin name="scandit-cordova-datacapture-core" spec="^6.7.2" />
+    <plugin name="scandit-cordova-datacapture-barcode" spec="^6.7.2" />
     <plugin name="cordova-plugin-httpd" spec="^0.9.3" />
     <plugin name="cordova-plugin-statusbar" spec="^2.4.3" />
     <plugin name="cordova-plugin-market" spec="~1.2.0" />
