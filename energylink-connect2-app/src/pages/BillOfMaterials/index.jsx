@@ -148,7 +148,13 @@ function BillOfMaterials() {
           className="button pt-0 pb-0 is-primary"
           onClick={redirectInstall}
         >
-          {t(lastVisitedPage ? 'CONTINUE_INSTALL' : 'BEGIN_INSTALL')}
+          {t(
+            either(
+              lastVisitedPage,
+              'CONTINUE_INSTALL',
+              showHomeownerCreation ? 'CONTINUE_INSTALL' : 'BEGIN_INSTALL'
+            )
+          )}
         </button>
       </section>
       {either(
