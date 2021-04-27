@@ -1,9 +1,13 @@
 @import '~@sunpower/theme-dark/styles/variables';
 
 .existing-devices {
+  span {
+    word-break: break-all;
+  }
+
   display: grid;
   height: 100%;
-  grid-template-rows: 5% 1fr 6rem;
+  grid-template-rows: 15% 1fr 6rem;
 
   &-header {
     display: grid;

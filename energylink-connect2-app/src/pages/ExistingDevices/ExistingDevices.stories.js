@@ -599,6 +599,11 @@ const deviceListWithStorage = {
           }
         },
         {
+          DvcTy: 'battery',
+          ConnDvcSn:
+            'ThisIsAPrettyLongSerialNumber_AssignedToAFakeBattery_HowDoesThisLook?_001'
+        },
+        {
           FwVerNo: '2020.09.28.8133',
           EvtMsgNm: 'InitialSetUp',
           DvcCrtEps: 1602014506,
