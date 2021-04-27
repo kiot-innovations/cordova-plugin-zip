@@ -1,5 +1,7 @@
 import { createAction } from 'redux-act'
 
+export const SET_PVS_MODEL = createAction('SET_PVS_MODEL')
+
 export const ADD_PVS_SN = createAction('ADD_PVS_SN')
 export const SAVE_PVS_SN = createAction('SAVE_PVS_SN')
 export const GET_SN_INIT = createAction('GET_SN_INIT')

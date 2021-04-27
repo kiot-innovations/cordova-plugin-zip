@@ -21,7 +21,8 @@ import {
   RESET_PVS_INFO_STATE,
   MI_DATA_SUCCESS,
   MI_DATA_ERROR,
-  SET_WPS_SUPPORT
+  SET_WPS_SUPPORT,
+  SET_PVS_MODEL
 } from 'state/actions/pvs'
 import { RESET_COMMISSIONING } from 'state/actions/global'
 import { PUSH_CANDIDATES_ERROR } from 'state/actions/devices'
@@ -31,6 +32,7 @@ import {
 } from 'state/actions/network'
 
 const initialState = {
+  model: '',
   serialNumber: '',
   serialNumbers: [],
   serialNumbersError: [],
@@ -50,6 +52,7 @@ const initialState = {
 
 export const pvsReducer = createReducer(
   {
+    [SET_PVS_MODEL]: (state, model) => ({ ...state, model }),
     [START_DISCOVERY_INIT]: (state, payload) => ({
       ...state,
       lastDiscoveryType: payload.type
