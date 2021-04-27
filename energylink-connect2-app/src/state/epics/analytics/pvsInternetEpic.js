@@ -1,57 +1,53 @@
 import { ofType } from 'redux-observable'
 import { switchMap } from 'rxjs/operators'
 import { of, EMPTY } from 'rxjs'
+import { find, propEq } from 'ramda'
 import { pvsInternet } from 'shared/analytics'
 import { getElapsedTime } from 'shared/utils'
-import { SET_ONLINE } from 'state/actions/network'
-import { CONNECT_NETWORK_AP_ERROR } from 'state/actions/systemConfiguration'
+import { GET_INTERFACES_SUCCESS } from 'state/actions/systemConfiguration'
+import { RESET_PVS_INTERNET_TRACKING } from 'state/actions/analytics'
+
+const getWiFiInterface = find(propEq('interface', 'sta0'))
 
 const pvsInternetEpic = (action$, state$) =>
   action$.pipe(
-    ofType(SET_ONLINE.getType(), CONNECT_NETWORK_AP_ERROR.getType()),
-    switchMap(({ type, payload }) => {
-      const { pvsInternetTimer: startTime } = state$.value.analytics
-      let duration = getElapsedTime(startTime)
-      const { wpsConnectionStatus } = state$.value.systemConfiguration.network
+    ofType(GET_INTERFACES_SUCCESS.getType()),
+    switchMap(({ payload: interfaces }) => {
+      const {
+        pvsInternetSsid: connectingSsid,
+        pvsInternetMode: connectingMode,
+        pvsInternetTimer: startTime
+      } = state$.value.analytics
 
-      if (type === CONNECT_NETWORK_AP_ERROR.getType()) {
-        const connectionMethod =
-          wpsConnectionStatus === 'connecting' ? 'WPS' : 'HO WiFi'
-
-        return of(
-          pvsInternet({
-            connectionMethod,
-            success: false,
-            duration
-          })
-        )
-      }
-
-      if (type === SET_ONLINE.getType() && payload) {
-        const interfaceUp = payload
+      // Only send the Internet Setup event if action CONNECT_NETWORK_AP_INIT was
+      // triggered previously
+      if (connectingSsid && connectingMode) {
+        const wiFiInterface = getWiFiInterface(interfaces)
+        const { internet, ssid, status } = wiFiInterface
+        const success =
+          ssid === connectingSsid && internet === 'up' && status === 'connected'
+        const duration = getElapsedTime(startTime)
         let connectionMethod
 
-        switch (interfaceUp) {
-          case 'WiFi':
-            connectionMethod =
-              wpsConnectionStatus === 'success' ? 'WPS' : 'HO WiFi'
+        switch (connectingMode) {
+          case 'psk':
+            connectionMethod = 'HO WiFi'
             break
-          case 'Ethernet':
-            connectionMethod = 'Wired'
-            duration = 0
+          case 'wps-pbc':
+            connectionMethod = 'WPS'
             break
           default:
-            connectionMethod = interfaceUp
-            duration = 0
+            connectionMethod = 'Unknown'
             break
         }
 
         return of(
           pvsInternet({
             connectionMethod,
-            success: true,
+            success,
             duration
-          })
+          }),
+          RESET_PVS_INTERNET_TRACKING()
         )
       }
 

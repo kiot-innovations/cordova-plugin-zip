@@ -4,20 +4,24 @@ import {
   BEGIN_INSTALL,
   COMMISSION_SUCCESS,
   CONFIG_START,
+  RESET_PVS_INTERNET_TRACKING,
   START_BULK_SETTINGS_TIMER,
   SET_AC_DEVICES
 } from 'state/actions/analytics'
 import { SET_CONNECTION_STATUS } from 'state/actions/network'
+import { CLAIM_DEVICES_INIT } from 'state/actions/devices'
 import {
+  CONNECT_NETWORK_AP_INIT,
+  CONNECT_NETWORK_AP_ERROR,
   SUBMIT_COMMISSION_SUCCESS,
   SUBMIT_CONFIG
 } from 'state/actions/systemConfiguration'
-import { CLAIM_DEVICES_INIT } from 'state/actions/devices'
-import { CONNECT_NETWORK_AP_INIT } from 'state/actions/systemConfiguration'
 
 export const initialState = {
   commissioningTimer: 0,
   configureTimer: 0,
+  pvsInternetSsid: '',
+  pvsInternetMode: '',
   pvsInternetTimer: 0,
   selectingACModelTimer: 0,
   submitTimer: 0,
@@ -80,9 +84,23 @@ export default createReducer(
       ...state,
       commissioningSuccess: true
     }),
-    [CONNECT_NETWORK_AP_INIT]: state => ({
+    [CONNECT_NETWORK_AP_INIT]: (state, { mode, ssid }) => ({
       ...state,
-      pvsInternetTimer: new Date().getTime()
+      pvsInternetSsid: ssid,
+      pvsInternetMode: mode,
+      pvsInternetTimer: Date.now()
+    }),
+    [RESET_PVS_INTERNET_TRACKING]: state => ({
+      ...state,
+      pvsInternetSsid: '',
+      pvsInternetMode: '',
+      pvsInternetTimer: 0
+    }),
+    [CONNECT_NETWORK_AP_ERROR]: state => ({
+      ...state,
+      pvsInternetSsid: '',
+      pvsInternetMode: '',
+      pvsInternetTimer: 0
     }),
     [SET_CONNECTION_STATUS]: (state, payload) => ({
       ...state,

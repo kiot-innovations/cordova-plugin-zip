@@ -11,6 +11,9 @@ export const CONNECT_PVS_CAMERA = analyticsAction('Connect pvs camera')
 
 export const BEGIN_INSTALL = analyticsAction('Begin install')
 export const COMMISSION_SUCCESS = analyticsAction('Commission success')
+export const RESET_PVS_INTERNET_TRACKING = analyticsAction(
+  'RESET_PVS_INTERNET_TRACKING'
+)
 export const SCANNING_START = analyticsAction('Scanning start')
 export const CONFIG_START = analyticsAction('Configure start')
 export const SET_AC_DEVICES = analyticsAction('Set AC modules')
