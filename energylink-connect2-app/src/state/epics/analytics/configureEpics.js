@@ -1,18 +1,17 @@
 import { ofType } from 'redux-observable'
-import { EMPTY, of } from 'rxjs'
 import { switchMap, withLatestFrom } from 'rxjs/operators'
-import { not, always, cond, path, pathOr, propEq, T } from 'ramda'
+import { EMPTY, of } from 'rxjs'
+import { T, always, cond, pathOr, propEq, not, path } from 'ramda'
 
 import { commissionSite, saveConfiguration } from 'shared/analytics'
 import { getElapsedTimeWithState } from 'shared/analyticsUtils'
-
+import { parseInventory } from 'state/epics/analytics/InventoryEpics'
+import { COMMISSION_SUCCESS } from 'state/actions/analytics'
+import { getElapsedTime } from 'shared/utils'
 import {
   SUBMIT_COMMISSION_ERROR,
   SUBMIT_COMMISSION_SUCCESS
 } from 'state/actions/systemConfiguration'
-import { parseInventory } from 'state/epics/analytics/InventoryEpics'
-import { COMMISSION_SUCCESS } from 'state/actions/analytics'
-import { getElapsedTime } from 'shared/utils'
 
 const pathNA = pathOr('N/A')
 const getRse = pathNA(['systemConfiguration', 'rse', 'selectedPowerProduction'])
@@ -38,21 +37,23 @@ const getESSReserveAmount = state => {
   return undefined
 }
 
-const getGridProfile = pathNA([
+export const getGridProfile = pathNA([
   'systemConfiguration',
   'gridBehavior',
   'selectedOptions',
   'profile',
   'name'
 ])
-const getConsumptionMeterType = pathNA([
+
+export const getConsumptionMeterType = pathNA([
   'systemConfiguration',
   'meter',
   'consumptionCT'
 ])
 
 const getConnectionInterfaces = state => {
-  const networkInterfaces = path(
+  const networkInterfaces = pathOr(
+    [],
     ['systemConfiguration', 'interfaces', 'data'],
     state
   )
@@ -72,12 +73,13 @@ const getConnectionInterfaces = state => {
   }, {})
 }
 
-const getProductionMeterType = pathNA([
+export const getProductionMeterType = pathNA([
   'systemConfiguration',
   'meter',
   'productionCT'
 ])
-const getGridVoltage = pathNA([
+
+export const getGridVoltage = pathNA([
   'systemConfiguration',
   'gridBehavior',
   'gridVoltage',
