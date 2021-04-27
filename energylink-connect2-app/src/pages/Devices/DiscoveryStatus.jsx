@@ -13,7 +13,8 @@ function DiscoveryStatus({
   claimDevices,
   claimProgress,
   discoveryComplete,
-  retryDiscovery
+  retryDiscovery,
+  cleanAndGoBack
 }) {
   const t = useI18n()
   if (
@@ -24,13 +25,25 @@ function DiscoveryStatus({
     if (errMICount > 0) {
       return (
         <>
-          <button
-            className="button is-primary is-uppercase is-paddingless is-fullwidth"
-            onClick={retryDiscovery}
-          >
-            {t('RETRY')}
-          </button>
-          <span className="has-text-weight-bold mt-20">{t('MI_ERRORS')}</span>
+          <div className="has-text-centered mb-10">
+            <span className="has-text-weight-bold mt-20">
+              {t('UNFOUND_MIS')}
+            </span>
+          </div>
+          <div className="is-flex">
+            <button
+              className="button is-primary is-uppercase is-outlined is-fullwidth mr-10"
+              onClick={cleanAndGoBack}
+            >
+              {t('GO_BACK')}
+            </button>
+            <button
+              onClick={retryDiscovery}
+              className="button is-primary is-uppercase is-fullwidth ml-10"
+            >
+              {t('RETRY')}
+            </button>
+          </div>
         </>
       )
     }
@@ -38,15 +51,25 @@ function DiscoveryStatus({
     if (error) {
       return (
         <>
-          <button
-            className="button is-primary is-uppercase is-paddingless is-fullwidth"
-            onClick={retryDiscovery}
-          >
-            {t('RETRY')}
-          </button>
-          <span className="has-text-weight-bold mt-20">
-            {t(is(String, error) ? error : 'DEVICE_UNKNOWN_ERROR')}
-          </span>
+          <div className="has-text-centered mb-10">
+            <span className="has-text-weight-bold mt-20">
+              {t(is(String, error) ? error : 'DEVICE_UNKNOWN_ERROR')}
+            </span>
+          </div>
+          <div className="is-flex">
+            <button
+              className="button is-primary is-uppercase is-outlined is-fullwidth mr-10"
+              onClick={cleanAndGoBack}
+            >
+              {t('GO_BACK')}
+            </button>
+            <button
+              onClick={retryDiscovery}
+              className="button is-primary is-uppercase is-fullwidth ml-10"
+            >
+              {t('RETRY')}
+            </button>
+          </div>
         </>
       )
     }
@@ -54,19 +77,21 @@ function DiscoveryStatus({
     if (claimError) {
       return (
         <>
-          <span className="has-text-weight-bold mb-20">
-            {t('CLAIM_DEVICES_ERROR', claimError)}
-          </span>
-          <div className="inline-buttons">
+          <div>
+            <span className="has-text-weight-bold mb-20">
+              {t('CLAIM_DEVICES_ERROR', claimError)}
+            </span>
+          </div>
+          <div className="is-flex">
             <button
-              className="button is-primary is-outlined is-uppercase is-paddingless mb-10"
+              className="button is-primary is-outlined is-uppercase is-fullwidth mr-10"
               disabled={claimingDevices}
-              onClick={retryDiscovery}
+              onClick={cleanAndGoBack}
             >
-              {t('ADD-DEVICES')}
+              {t('ADD_DEVICES')}
             </button>
             <button
-              className={'button is-primary is-uppercase'}
+              className={'button is-primary is-uppercase is-fullwidth ml-10'}
               disabled={claimingDevices}
               onClick={claimDevices}
             >
@@ -78,16 +103,16 @@ function DiscoveryStatus({
     }
 
     return (
-      <div className="inline-buttons">
+      <div className="is-flex">
         <button
-          className="button is-primary is-outlined is-uppercase is-paddingless mb-10"
+          className="button is-primary is-outlined is-uppercase is-fullwidth mr-10"
           disabled={claimingDevices}
-          onClick={retryDiscovery}
+          onClick={cleanAndGoBack}
         >
-          {t('ADD-DEVICES')}
+          {t('ADD_DEVICES')}
         </button>
         <button
-          className={'button is-primary is-uppercase'}
+          className={'button is-primary is-uppercase is-fullwidth ml-10'}
           disabled={claimingDevices}
           onClick={claimDevices}
         >
@@ -98,15 +123,25 @@ function DiscoveryStatus({
   } else {
     return error && discoveryComplete ? (
       <>
-        <button
-          className="button is-primary is-uppercase is-paddingless is-fullwidth"
-          onClick={retryDiscovery}
-        >
-          {t('RETRY')}
-        </button>
-        <span className="has-text-weight-bold mt-20">
-          {t(is(String, error) ? error : 'DEVICE_UNKNOWN_ERROR')}
-        </span>
+        <div className="has-text-centered mb-10">
+          <span className="has-text-weight-bold">
+            {t(is(String, error) ? error : 'DEVICE_UNKNOWN_ERROR')}
+          </span>
+        </div>
+        <div className="is-flex">
+          <button
+            className="button is-primary is-uppercase is-outlined is-fullwidth mr-10"
+            onClick={cleanAndGoBack}
+          >
+            {t('GO_BACK')}
+          </button>
+          <button
+            onClick={retryDiscovery}
+            className="button is-primary is-uppercase is-fullwidth ml-10"
+          >
+            {t('RETRY')}
+          </button>
+        </div>
       </>
     ) : (
       <span className="has-text-weight-bold mb-20">
@@ -118,7 +153,7 @@ function DiscoveryStatus({
               disabled={claimingDevices}
               onClick={retryDiscovery}
             >
-              {t('ADD-DEVICES')}
+              {t('ADD_DEVICES')}
             </button>
             <button
               className={'button is-primary is-uppercase'}

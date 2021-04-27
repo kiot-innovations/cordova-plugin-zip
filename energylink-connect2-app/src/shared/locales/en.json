@@ -119,7 +119,7 @@
   "USE_WPS": "Use WPS",
   "RESCAN": "Rescan",
   "DEVICES": "Devices",
-  "ADD-DEVICES": "Add devices",
+  "ADD_DEVICES": "Add devices",
   "STORAGE": "Storage",
   "MICROINVERTERS": "Microinverters",
   "INVALID_ROLE": "You are not authorized to use this app",
@@ -712,5 +712,6 @@
   "PRODUCTION_CT_REQUIRED": "Production CTs are required for Equinox commissioning. Install production CTs before proceeding.",
   "CONSENT_ANALYTICS_1": "SunPower Pro Connect would like your permission to enable App Tracking",
   "CONSENT_ANALYTICS_2": "SunPower does not track any data on your device outside of your usage of our app.  We track anonymous device identifiers to support integrated features in the app.  This is required to enable MI scanning and error reporting. SunPower also tracks user information and product interaction for app analytics to support improvements to the overall commissioning process.",
-  "CLOSE_APP": "Close App"
+  "CLOSE_APP": "Close App",
+  "UNFOUND_MIS": "Some MIs reported errors or were not found. Please go back and verify the MI SNs or try discovery again"
 }

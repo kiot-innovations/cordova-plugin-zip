@@ -12,7 +12,7 @@ exports[`DiscoveryStatus page Renders correctly when claiming devices 1`] = `
       disabled={true}
       onClick={[MockFunction]}
     >
-      ADD-DEVICES
+      ADD_DEVICES
     </button>
     <button
       className="button is-primary is-uppercase"
@@ -35,33 +35,45 @@ exports[`DiscoveryStatus page Renders correctly when discovering 1`] = `
 
 exports[`DiscoveryStatus page Renders correctly when discovery complete and has errors 1`] = `
 <Fragment>
-  <button
-    className="button is-primary is-uppercase is-paddingless is-fullwidth"
-    onClick={[MockFunction]}
+  <div
+    className="has-text-centered mb-10"
   >
-    RETRY
-  </button>
-  <span
-    className="has-text-weight-bold mt-20"
+    <span
+      className="has-text-weight-bold mt-20"
+    >
+      BAD_REQUEST_OFFLINE
+    </span>
+  </div>
+  <div
+    className="is-flex"
   >
-    BAD_REQUEST_OFFLINE
-  </span>
+    <button
+      className="button is-primary is-uppercase is-outlined is-fullwidth mr-10"
+    >
+      GO_BACK
+    </button>
+    <button
+      className="button is-primary is-uppercase is-fullwidth ml-10"
+      onClick={[MockFunction]}
+    >
+      RETRY
+    </button>
+  </div>
 </Fragment>
 `;
 
 exports[`DiscoveryStatus page Renders correctly when ended discovering 1`] = `
 <div
-  className="inline-buttons"
+  className="is-flex"
 >
   <button
-    className="button is-primary is-outlined is-uppercase is-paddingless mb-10"
+    className="button is-primary is-outlined is-uppercase is-fullwidth mr-10"
     disabled={false}
-    onClick={[MockFunction]}
   >
-    ADD-DEVICES
+    ADD_DEVICES
   </button>
   <button
-    className="button is-primary is-uppercase"
+    className="button is-primary is-uppercase is-fullwidth ml-10"
     disabled={false}
     onClick={[MockFunction]}
   >

@@ -89,7 +89,7 @@ describe('DiscoveryStatus page', () => {
     mprops.error = 'DISCOVER_ERROR'
     const component = shallow(<DiscoveryStatus {...mprops} />)
 
-    const btn = component.find('button.is-primary')
+    const btn = component.find('button.ml-10')
     expect(btn.exists()).toBe(true)
     expect(btn.text()).toBe('RETRY')
     btn.simulate('click')

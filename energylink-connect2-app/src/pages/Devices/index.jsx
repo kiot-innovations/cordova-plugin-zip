@@ -11,6 +11,7 @@ import {
   FETCH_CANDIDATES_COMPLETE,
   FETCH_CANDIDATES_INIT,
   FETCH_DEVICES_LIST,
+  PUSH_CANDIDATES_INIT,
   RESET_DISCOVERY,
   SAVE_OK_MI
 } from 'state/actions/devices'
@@ -55,7 +56,8 @@ const miIndicators = {
     </div>
   )
 }
-const filterFoundMI = (SNList, candidatesList) => {
+
+export const filterFoundMI = (SNList, candidatesList) => {
   const okMI = []
   const nonOkMI = []
   const pendingMI = []
@@ -165,11 +167,22 @@ function Devices() {
     }
   }, [claimedDevices, dispatch, history])
 
-  const retryDiscovery = () => {
+  const cleanAndGoBack = () => {
     dispatch(RESET_DISCOVERY())
     dispatch(SAVE_OK_MI(okMI))
     dispatch(DISCOVER_COMPLETE())
     history.push(paths.PROTECTED.SN_LIST.path)
+  }
+
+  const retryDiscovery = () => {
+    const snList = serialNumbers.map(device => ({
+      DEVICE_TYPE: 'Inverter',
+      SERIAL: device.serial_number
+    }))
+
+    dispatch(RESET_DISCOVERY())
+    dispatch(DISCOVER_COMPLETE())
+    dispatch(PUSH_CANDIDATES_INIT(snList))
   }
 
   const claimDevices = () => {
@@ -247,6 +260,7 @@ function Devices() {
         claimDevices={claimDevices}
         claimProgress={claimProgress}
         discoveryComplete={discoveryComplete}
+        cleanAndGoBack={cleanAndGoBack}
         retryDiscovery={retryDiscovery}
       />
     </div>

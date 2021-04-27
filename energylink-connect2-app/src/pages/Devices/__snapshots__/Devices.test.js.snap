@@ -203,6 +203,7 @@ Object {
               claimError={null}
               claimProgress={0}
               claimingDevices={false}
+              cleanAndGoBack={[Function]}
               errMICount={0}
               error={null}
               expected={2}

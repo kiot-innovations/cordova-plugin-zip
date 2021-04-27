@@ -112,7 +112,7 @@ const discoveryStatus = (
             disabled={claimingDevices}
             onClick={retryDiscovery}
           >
-            {t('ADD-DEVICES')}
+            {t('ADD_DEVICES')}
           </button>
           <button
             className="button is-primary is-uppercase ml-75 mr-75"
@@ -132,7 +132,7 @@ const discoveryStatus = (
             disabled={claimingDevices}
             onClick={retryDiscovery}
           >
-            {t('ADD-DEVICES')}
+            {t('ADD_DEVICES')}
           </button>
           <button
             className={clsx('button is-primary is-uppercase', {
