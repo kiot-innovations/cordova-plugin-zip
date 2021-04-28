@@ -94,6 +94,10 @@ jobs:
       #
       # iOS Application
       #
+      - name: Run Cocoapods Repo Update
+        uses: ty0x2333/cocoapods-action@master
+        run: pod repo update
+
       - name: Build iOS Application
         run: bundle exec fastlane ios build
         env:
