@@ -1,8 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.sunpower.energylink.commissioning2.test" version="6.97.8"
-    xmlns="http://www.w3.org/ns/widgets"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="com.sunpower.energylink.commissioning2.test" version="6.97.8" xmlns="http://www.w3.org/ns/widgets" xmlns:android="http://schemas.android.com/apk/res/android" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>SunPowerProConnect-dev</name>
     <description>
         PVS Commissioning by SunPower
@@ -73,7 +70,7 @@
         <splash src="www/res/screen/ios/Default@2x~ipad~comany.png" />
     </platform>
     <preference name="Orientation" value="portrait" />
-    <edit-config target="NSCameraUsageDescription" file="*-Info.plist" mode="merge">
+    <edit-config file="*-Info.plist" mode="merge" target="NSCameraUsageDescription">
         <string>We need camera access to scan for microinverter serial numbers</string>
     </edit-config>
     <edit-config file="*-Info.plist" mode="merge" target="NSPhotoLibraryUsageDescription">
@@ -103,8 +100,6 @@
     <plugin name="cordova-plugin-inappbrowser" spec="^3.2.0" />
     <plugin name="cordova-plugin-keyboard" spec="^1.2.0" />
     <plugin name="cordova-plugin-networkinterface" spec="^2.0.0" />
-    <plugin name="scandit-cordova-datacapture-core" spec="^6.7.2" />
-    <plugin name="scandit-cordova-datacapture-barcode" spec="^6.7.2" />
     <plugin name="cordova-plugin-httpd" spec="^0.9.3" />
     <plugin name="cordova-plugin-statusbar" spec="^2.4.3" />
     <plugin name="cordova-plugin-market" spec="~1.2.0" />
