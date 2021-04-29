@@ -18,6 +18,16 @@ Get the password string from a developer
 export CM2_ENVFILE_PASSWORD="${GET_THIS_PASSWORD_FROM_ANY_DEVELOPER}"
 ```
 
+## Decrypt the env files
+
+Get the password for doing this from anyone on the dev team
+
+```
+cd ~/sunpower/energylink-connect2/energylink-connect2-app;
+openssl aes-256-cbc -d -a -salt -in .env.enc.test -out .env.production;
+openssl aes-256-cbc -d -a -salt -in .env.enc.uat -out .env.development;
+```
+
 ## Install all dependencies:
 
 ```
@@ -101,15 +111,6 @@ git push origin X.Y.Z
 - Has One Site Assocciated
 - username: spwr_dev_partner_pro@outlook.com
 - password: ThisisIt01
-
-# Example of how to decrypt the env files
-
-Get the password for doing this from anyone on the dev team
-
-```
-cd ~/sunpower/energylink-connect2/energylink-connect2-app;
-openssl aes-256-cbc -d -a -salt -in .env.enc.test -out .env.local;
-```
 
 # How to update the FASTLANE_SESSION when the CI fails because Apple needs a new sesssion
 

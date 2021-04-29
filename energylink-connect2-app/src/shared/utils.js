@@ -389,6 +389,8 @@ export const getExpectedMD5 = async url => {
   throw new Error(`getExpectedMD5: Failed fetching md5 for: ${url}`)
 }
 
+export const isTest = includes(process.env.REACT_APP_FLAVOR, ['cm2-test'])
+
 export const isDebug = includes(process.env.REACT_APP_FLAVOR, [
   'cm2-uat',
   'cm2-test'

@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import paths from 'routes/paths'
 import { useI18n } from 'shared/i18n'
-import { either, isDebug } from 'shared/utils'
+import { either, isTest } from 'shared/utils'
 import { MENU_DISPLAY_ITEM, MENU_HIDE } from 'state/actions/ui'
 
 function MenuItemsContainer({ items }) {
@@ -41,7 +41,7 @@ function MenuItemsContainer({ items }) {
             </div>
           )
         )}
-        {isDebug && (
+        {isTest && (
           <div
             className="mb-30 is-flex superuser-options"
             key={t('SUPERUSER_OPTIONS')}
