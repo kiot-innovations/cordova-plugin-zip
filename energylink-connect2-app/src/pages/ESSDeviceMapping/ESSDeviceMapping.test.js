@@ -3,6 +3,8 @@ import ESSDeviceMapping from '.'
 import * as i18n from 'shared/i18n'
 
 describe('ESSDeviceMapping component', () => {
+  const historyMock = { block: jest.fn() }
+
   beforeEach(() => {
     jest
       .spyOn(i18n, 'useI18n')
@@ -71,7 +73,9 @@ describe('ESSDeviceMapping component', () => {
   }
 
   test('renders correctly', () => {
-    const component = mountWithProvider(<ESSDeviceMapping />)(mockedStore)
+    const component = mountWithProvider(
+      <ESSDeviceMapping history={historyMock} />
+    )(mockedStore)
     expect(component).toMatchSnapshot()
   })
 })

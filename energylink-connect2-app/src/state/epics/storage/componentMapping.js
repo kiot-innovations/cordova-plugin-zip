@@ -4,12 +4,11 @@ import { from, of, timer } from 'rxjs'
 import {
   catchError,
   map,
-  mergeMap,
   switchMap,
   takeUntil,
   exhaustMap
 } from 'rxjs/operators'
-import { path, pathOr, cond, equals, always } from 'ramda'
+import { path, cond, equals, always, isNil } from 'ramda'
 import { getApiPVS, storageSwaggerTag } from 'shared/api'
 
 import {
@@ -24,7 +23,7 @@ import {
 export const postComponentMappingEpic = action$ => {
   return action$.pipe(
     ofType(POST_COMPONENT_MAPPING.getType()),
-    mergeMap(() => {
+    exhaustMap(() => {
       const promise = getApiPVS()
         .then(path(['apis', storageSwaggerTag]))
         .then(api => api.startComponentMapping())
@@ -63,11 +62,15 @@ export const getComponentMappingEpic = action$ => {
 
           return from(promise).pipe(
             map(response => {
-              const status = pathOr(
-                'FAILED',
+              /*
+                response could be an empty object while the operation
+                is still in progress, so we need to take that into account
+              */
+              const status = path(
                 ['body', 'component_mapping_status'],
                 response
               )
+
               const statusMatcher = cond([
                 [
                   equals('FAILED'),
@@ -83,6 +86,7 @@ export const getComponentMappingEpic = action$ => {
                   equals('RUNNING'),
                   always(GET_COMPONENT_MAPPING_PROGRESS(response.body))
                 ],
+                [isNil, always(GET_COMPONENT_MAPPING_PROGRESS(response.body))],
                 [
                   equals('SUCCEEDED'),
                   always(GET_COMPONENT_MAPPING_COMPLETED(response.body))

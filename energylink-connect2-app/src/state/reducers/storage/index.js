@@ -1,5 +1,5 @@
 import { createReducer } from 'redux-act'
-import { isEmpty } from 'ramda'
+import { isEmpty, isNil } from 'ramda'
 import {
   CHECK_EQS_FIRMWARE,
   CLEAR_HEALTH_CHECK,
@@ -159,10 +159,20 @@ export const storageReducer = createReducer(
       deviceUpdate: payload.response,
       currentStep: eqsSteps.FW_ERROR
     }),
-    [GET_COMPONENT_MAPPING_PROGRESS]: (state, payload) => ({
-      ...state,
-      componentMapping: payload
-    }),
+    [GET_COMPONENT_MAPPING_PROGRESS]: (state, payload) => {
+      const noProgressDataAvailable =
+        isNil(payload) ||
+        isEmpty(payload) ||
+        isEmpty(payload.component_mapping) ||
+        isNil(payload.component_mapping)
+
+      return {
+        ...state,
+        componentMapping: noProgressDataAvailable
+          ? state.componentMapping
+          : payload
+      }
+    },
     [GET_COMPONENT_MAPPING_COMPLETED]: (state, payload) => ({
       ...state,
       componentMapping: payload
