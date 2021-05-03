@@ -282,7 +282,7 @@
   "PLT_SAVE_ERROR": "Error while saving panel layout data",
   "PLT_SAVING": "Saving Panel Layout Data",
   "PLT_SAVED": "Panel layout was correctly saved",
-  "PLT_LINK": "Go to panel layout tool",
+  "PLT_LINK": "Edit layout",
   "PLT_LOADING": "Hold on, we're fetching the panel layout data",
   "ADD_PANEL_PLT": "Tap the grid to place the panel",
   "GROUP_PANEL_PLT": "Tap an array to make adjustments",
@@ -616,7 +616,7 @@
   "PRECOMM_CHECK_ALL": "Please check all boxes before continuing",
   "PANEL_LAYOUT": "Panel Layout",
   "UNABLE_RETRIEVE_LAST_DATE": "No historic data on this panel layout",
-  "NO_PANEL_DATA": "This site has no panel layout data.",
+  "NO_PANEL_DATA": "No panel layout data was found for this site.",
   "PANEL_DATA_EXISTS": "Panel layout available on this site.",
   "MODULES_PRESENT": "Module{0} placed",
   "MODULES_NO_PRESENT": "Module{0} not placed",
@@ -714,5 +714,7 @@
   "CONSENT_ANALYTICS_1": "SunPower Pro Connect would like your permission to enable App Tracking",
   "CONSENT_ANALYTICS_2": "SunPower does not track any data on your device outside of your usage of our app.  We track anonymous device identifiers to support integrated features in the app.  This is required to enable MI scanning and error reporting. SunPower also tracks user information and product interaction for app analytics to support improvements to the overall commissioning process.",
   "CLOSE_APP": "Close App",
+  "REFRESH_LAYOUT": "Refresh data",
+  "RETRIEVING_LAYOUT_DATA": "Please wait, we're retrieving the layout data",
   "UNFOUND_MIS": "Some MIs reported errors or were not found. Please go back and verify the MI SNs or try discovery again"
 }

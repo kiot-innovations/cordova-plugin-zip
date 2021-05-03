@@ -2,6 +2,7 @@
   .collapsible {
     padding-bottom: 0.6rem;
   }
+
   .collapsible-content.expanded {
     min-height: 200px;
     button {
@@ -45,4 +46,12 @@ form .input:disabled,
   .button {
     display: block;
   }
+}
+
+.width-100 {
+  width: 100%;
+}
+
+.align-baseline {
+  align-items: baseline;
 }
