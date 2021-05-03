@@ -15,7 +15,6 @@ import {
   FETCH_CANDIDATES_INIT,
   FETCH_CANDIDATES_UPDATE,
   FETCH_DEVICES_LIST,
-  FETCH_MODELS_LOAD_DEFAULT,
   FETCH_MODELS_SUCCESS,
   PUSH_CANDIDATES_ERROR,
   PUSH_CANDIDATES_INIT,
@@ -25,6 +24,61 @@ import {
   UPDATE_DEVICES_LIST_ERROR
 } from 'state/actions/devices'
 import { RESET_COMMISSIONING } from 'state/actions/global'
+
+const defaultModels = {
+  C: [
+    'SPR-E19-320-C-AC',
+    'SPR-E20-327-C-AC',
+    'SPR-X21-335-BLK-C-AC',
+    'SPR-X21-335-C-AC',
+    'SPR-X21-345-C-AC',
+    'SPR-X22-360-C-AC'
+  ],
+  D: [
+    'SPR-E20-327-D-AC',
+    'SPR-X19-315-D-AC',
+    'SPR-X20-327-BLK-D-AC',
+    'SPR-X20-327-D-AC',
+    'SPR-X21-335-BLK-D-AC',
+    'SPR-X21-335-D-AC',
+    'SPR-X21-345-D-AC',
+    'SPR-X21-350-BLK-D-AC',
+    'SPR-X22-360-D-AC',
+    'SPR-X22-370-D-AC',
+    'SPR-240E-WHT-D AR'
+  ],
+  E: [
+    'SPR-E19-320-E-AC',
+    'SPR-E20-327-E-AC',
+    'SPR-X20-327-BLK-E-AC',
+    'SPR-X20-327-E-AC',
+    'SPR-X21-335-BLK-E-AC',
+    'SPR-X21-335-E-AC',
+    'SPR-X21-345-E-AC',
+    'SPR-X21-350-BLK-E-AC',
+    'SPR-X22-360-E-AC',
+    'SPR-X22-370-E-AC',
+    'SPR-X21-355-E-AC'
+  ],
+  G: [
+    'SPR-A390-G-AC',
+    'SPR-A400-G-AC',
+    'SPR-A410-G-AC',
+    'SPR-A415-G-AC',
+    'SPR-A420-G-AC',
+    'SPR-A390-BLK-G-AC',
+    'SPR-A400-BLK-G-AC'
+  ],
+  H: [
+    'SPR-A390-H-AC',
+    'SPR-A400-H-AC',
+    'SPR-A410-H-AC',
+    'SPR-A415-H-AC',
+    'SPR-A420-H-AC',
+    'SPR-A390-BLK-H-AC',
+    'SPR-A400-BLK-H-AC'
+  ]
+}
 
 export const discoveryTypes = {
   LEGACY: 'LEGACY',
@@ -47,7 +101,7 @@ const initialState = {
   claimProgress: 0,
   claimedDevices: false,
   claimError: '',
-  miModels: [],
+  miModels: defaultModels,
   fetchingDevices: false
 }
 
@@ -146,10 +200,6 @@ export default createReducer(
     }),
     [RESET_COMMISSIONING]: () => initialState,
     [FETCH_MODELS_SUCCESS]: (state, miModels) => ({
-      ...state,
-      miModels
-    }),
-    [FETCH_MODELS_LOAD_DEFAULT]: (state, miModels) => ({
       ...state,
       miModels
     }),

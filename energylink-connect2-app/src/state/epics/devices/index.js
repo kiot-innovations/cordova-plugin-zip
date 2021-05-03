@@ -3,7 +3,7 @@ import { pollClaimingEpic } from './pollClaiming'
 import { scanDevicesEpic } from './discoverDevices'
 import { pushCandidatesEpic } from './pushCandidates'
 import { fetchCandidatesEpic } from './pollCandidates'
-import { fetchModelsEpic, loadBackupModelsEpic } from './fetchModels'
+import { fetchModelsEpic } from './fetchModels'
 import { fetchDeviceListEpic } from './fetchDeviceList'
 
 export default [
@@ -13,6 +13,5 @@ export default [
   claimDevicesEpic,
   pollClaimingEpic,
   fetchModelsEpic,
-  loadBackupModelsEpic,
   fetchDeviceListEpic
 ]

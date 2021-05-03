@@ -86,14 +86,7 @@ export default combineReducers({
     },
     siteReducer
   ),
-  devices: persistReducer(
-    {
-      key: 'devices',
-      storage,
-      whitelist: ['miModels']
-    },
-    devicesReducer
-  ),
+  devices: devicesReducer,
   share: shareReducer,
   systemConfiguration: systemConfigurationReducer,
   storage: storageReducer,
