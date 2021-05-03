@@ -1,5 +1,5 @@
 import { propOr } from 'ramda'
-import { forkJoin, from, of } from 'rxjs'
+import { forkJoin, from, of, EMPTY } from 'rxjs'
 import { catchError, exhaustMap, map, withLatestFrom } from 'rxjs/operators'
 import { ofType } from 'redux-observable'
 import * as Sentry from '@sentry/browser'
@@ -14,7 +14,6 @@ import {
 import { ERROR_CODES, getFileInfo, getFileNameFromURL } from 'shared/fileSystem'
 import fileTransferObservable from 'state/epics/observables/downloader'
 import { getExpectedMD5, hasInternetConnection } from 'shared/utils'
-import { modalNoInternet } from 'state/epics/downloader/firmware'
 import { getMd5FromFile } from 'shared/cordovaMapping'
 import { EMPTY_ACTION } from 'state/actions/share'
 import { gridProfileUpdateUrl$ } from 'state/epics/downloader/latestUrls'
@@ -80,7 +79,11 @@ export const gridProfileManageErrorsEpic = action$ =>
     exhaustMap(({ payload: { retry, error } }) =>
       from(hasInternetConnection()).pipe(
         map(() => (retry ? GRID_PROFILE_DOWNLOAD_INIT(true) : EMPTY_ACTION())),
-        catchError(() => of(modalNoInternet()))
+        catchError(err => {
+          Sentry.addBreadcrumb({ message: 'GRID_PROFILE_DOWNLOAD_ERROR' })
+          Sentry.captureException(err)
+          return EMPTY
+        })
       )
     )
   )

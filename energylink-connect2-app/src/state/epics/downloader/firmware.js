@@ -1,7 +1,7 @@
 import { propOr } from 'ramda'
 import { ofType } from 'redux-observable'
 import * as Sentry from '@sentry/browser'
-import { from, of } from 'rxjs'
+import { from, of, EMPTY } from 'rxjs'
 import { catchError, exhaustMap, map } from 'rxjs/operators'
 
 import {
@@ -34,21 +34,10 @@ import {
 } from 'shared/fileSystem'
 import { getFileSystemFromLuaFile } from 'shared/PVSUtils'
 import { hasInternetConnection } from 'shared/utils'
-import { SHOW_MODAL } from 'state/actions/modal'
-import { translate } from 'shared/i18n'
 import {
   pvsUpdateUrl$,
   waitForObservable
 } from 'state/epics/downloader/latestUrls'
-
-export const modalNoInternet = () => {
-  const t = translate()
-  return SHOW_MODAL({
-    title: t('ATTENTION'),
-    body: t('NO_INTERNET'),
-    dismissable: true
-  })
-}
 
 export const updatePVSFirmwareUrl = action$ => {
   return action$.pipe(
@@ -132,7 +121,11 @@ export const deleteFirmwareOnError = action$ =>
     exhaustMap(({ payload }) => {
       return from(hasInternetConnection()).pipe(
         map(() => PVS_FIRMWARE_DOWNLOAD_INIT(true)),
-        catchError(() => of(modalNoInternet()))
+        catchError(err => {
+          Sentry.addBreadcrumb({ message: 'PVS_FIRMWARE_DOWNLOAD_ERROR' })
+          Sentry.captureException(err)
+          return EMPTY
+        })
       )
     })
   )
