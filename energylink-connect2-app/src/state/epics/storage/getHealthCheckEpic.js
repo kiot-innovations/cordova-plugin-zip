@@ -1,15 +1,23 @@
 import * as Sentry from '@sentry/browser'
 import { ofType } from 'redux-observable'
-import { from, of } from 'rxjs'
-import { exhaustMap, map, catchError } from 'rxjs/operators'
+import { from, of, timer } from 'rxjs'
+import {
+  exhaustMap,
+  map,
+  catchError,
+  switchMap,
+  takeUntil
+} from 'rxjs/operators'
 import { path, pathOr } from 'ramda'
 import { getApiPVS, storageSwaggerTag } from 'shared/api'
 import { START_DISCOVERY_ERROR, START_DISCOVERY_INIT } from 'state/actions/pvs'
 import { DISCOVER_COMPLETE, DISCOVER_ERROR } from 'state/actions/devices'
 import {
+  GET_ESS_STATUS_COMPLETE,
   GET_ESS_STATUS_ERROR,
   GET_ESS_STATUS_INIT,
   GET_ESS_STATUS_SUCCESS,
+  GET_ESS_STATUS_UPDATE,
   RUN_EQS_SYSTEMCHECK,
   RUN_EQS_SYSTEMCHECK_SUCCESS
 } from 'state/actions/storage'
@@ -74,23 +82,67 @@ export const runSystemCheckEpic = action$ => {
   )
 }
 
-export const getHealthCheckEpic = action$ =>
-  action$.pipe(
+export const getHealthCheckEpic = action$ => {
+  const stopPolling$ = action$.pipe(
+    ofType(GET_ESS_STATUS_SUCCESS.getType(), GET_ESS_STATUS_ERROR.getType())
+  )
+
+  return action$.pipe(
     ofType(RUN_EQS_SYSTEMCHECK_SUCCESS.getType()),
-    exhaustMap(() => {
+    switchMap(() =>
+      timer(0, 2500).pipe(
+        takeUntil(stopPolling$),
+        exhaustMap(() => {
+          const promise = getApiPVS()
+            .then(path(['apis', storageSwaggerTag]))
+            .then(api => api.getSystemHealthReport())
+
+          return from(promise).pipe(
+            map(response => {
+              const status = pathOr(
+                false,
+                ['body', 'equinox_system_check_status'],
+                response
+              )
+
+              if (status === 'SUCCEEDED') {
+                return GET_ESS_STATUS_SUCCESS()
+              } else {
+                return GET_ESS_STATUS_UPDATE()
+              }
+            }),
+            catchError(error => {
+              Sentry.addBreadcrumb({
+                message:
+                  'Failure while polling /dl_cgi/equinox-system-check/status'
+              })
+              Sentry.captureException(error)
+              return of(GET_ESS_STATUS_ERROR(errorObj))
+            })
+          )
+        })
+      )
+    )
+  )
+}
+
+export const retrieveStorageStatusEpic = action$ =>
+  action$.pipe(
+    ofType(GET_ESS_STATUS_SUCCESS.getType()),
+    switchMap(() => {
       const promise = getApiPVS()
         .then(path(['apis', storageSwaggerTag]))
         .then(api => api.getEssStatus())
 
       return from(promise).pipe(
-        map(response =>
-          response.status === 200
-            ? GET_ESS_STATUS_SUCCESS(response.body)
-            : GET_ESS_STATUS_ERROR(errorObj)
-        ),
+        map(response => GET_ESS_STATUS_COMPLETE(response.body)),
         catchError(error => {
+          Sentry.addBreadcrumb({
+            message:
+              'Failure while calling /dl_cgi/energy-storage-system/status'
+          })
           Sentry.captureException(error)
-          return of(GET_ESS_STATUS_ERROR(error))
+          return of(GET_ESS_STATUS_ERROR(errorObj))
         })
       )
     })

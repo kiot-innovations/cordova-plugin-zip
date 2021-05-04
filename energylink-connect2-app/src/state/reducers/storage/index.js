@@ -9,7 +9,7 @@ import {
   GET_DELAYED_PREDISCOVERY,
   GET_ESS_STATUS_ERROR,
   GET_ESS_STATUS_INIT,
-  GET_ESS_STATUS_SUCCESS,
+  GET_ESS_STATUS_COMPLETE,
   GET_PREDISCOVERY,
   GET_PREDISCOVERY_ERROR,
   GET_PREDISCOVERY_RESET,
@@ -63,7 +63,7 @@ export const storageReducer = createReducer(
       status: { waiting: true, results: null, error: null },
       currentStep: eqsSteps.HEALTH_CHECK
     }),
-    [GET_ESS_STATUS_SUCCESS]: (state, results) => ({
+    [GET_ESS_STATUS_COMPLETE]: (state, results) => ({
       ...state,
       status: { results, waiting: false, error: null }
     }),

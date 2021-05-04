@@ -14,6 +14,7 @@ import ErrorDetected from 'components/ESSErrorDetected'
 import ContinueFooter from 'components/ESSContinueFooter'
 
 import './ESSHealthCheck.scss'
+import { Loader } from '../Loader'
 
 function ESSHealthCheck(props) {
   const t = useI18n()
@@ -56,11 +57,22 @@ function ESSHealthCheck(props) {
       <div className="status-message">
         {either(
           waiting,
-          <span className="discovery-percentage mb-20 has-text-weight-bold is-size-1 has-text-white">
-            {progress || 0}%
+          progress !== 100 ? (
+            <span className="discovery-percentage mb-20 has-text-weight-bold is-size-1 has-text-white">
+              {progress || 0}%
+            </span>
+          ) : (
+            <div>
+              <Loader />
+            </div>
+          )
+        )}
+        {either(
+          loading,
+          <span>
+            {t(progress !== 100 ? 'SYSTEM_REPORT' : 'POLLING_SYSTEM_CHECK')}
           </span>
         )}
-        {either(loading, <span> {t('SYSTEM_REPORT')} </span>)}
 
         {either(
           !props.error && report,

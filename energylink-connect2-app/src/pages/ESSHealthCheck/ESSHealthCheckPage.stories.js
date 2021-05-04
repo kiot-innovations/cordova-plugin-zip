@@ -6,6 +6,58 @@ import { Provider } from 'react-redux'
 import ESSHealthCheck from '.'
 import { rmaModes } from '../../state/reducers/rma'
 
+const runningDiscovery = {
+  storage: {
+    status: {
+      error: '',
+      waiting: true,
+      results: null
+    }
+  },
+  devices: {
+    progress: {
+      progress: [
+        {
+          TYPE: 'DISCOVERY_TYPE',
+          PROGR: '20',
+          NFOUND: '0'
+        }
+      ],
+      complete: true,
+      result: 'succeed'
+    }
+  },
+  rma: {
+    pvs: false
+  }
+}
+
+const pollingSystemCheck = {
+  storage: {
+    status: {
+      error: '',
+      waiting: true,
+      results: null
+    }
+  },
+  devices: {
+    progress: {
+      progress: [
+        {
+          TYPE: 'DISCOVERY_TYPE',
+          PROGR: '100',
+          NFOUND: '0'
+        }
+      ],
+      complete: true,
+      result: 'succeed'
+    }
+  },
+  rma: {
+    pvs: false
+  }
+}
+
 const faultyReport = {
   storage: {
     status: {
@@ -1857,6 +1909,28 @@ const warningsReportWithModels = {
 }
 
 storiesOf('Storage - Health Check', module)
+  .add('Running discovery', () => {
+    const { store } = configureStore(runningDiscovery)
+
+    return (
+      <div className="full-min-height pl-10 pr-10">
+        <Provider store={store}>
+          <ESSHealthCheck />
+        </Provider>
+      </div>
+    )
+  })
+  .add('Discovery finished, polling system check', () => {
+    const { store } = configureStore(pollingSystemCheck)
+
+    return (
+      <div className="full-min-height pl-10 pr-10">
+        <Provider store={store}>
+          <ESSHealthCheck />
+        </Provider>
+      </div>
+    )
+  })
   .add('Faulty Report', () => {
     const { store } = configureStore(faultyReport)
 

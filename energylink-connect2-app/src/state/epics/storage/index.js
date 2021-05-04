@@ -8,7 +8,8 @@ import {
   waitHealthCheckEpic,
   errorHealthCheckEpic,
   getHealthCheckEpic,
-  runSystemCheckEpic
+  runSystemCheckEpic,
+  retrieveStorageStatusEpic
 } from './getHealthCheckEpic'
 import {
   checkEqsFwFile,
@@ -32,5 +33,6 @@ export default [
   getHealthCheckEpic,
   runSystemCheckEpic,
   getPreDiscoveryEpic,
-  getDelayedPreDiscoveryEpic
+  getDelayedPreDiscoveryEpic,
+  retrieveStorageStatusEpic
 ]
