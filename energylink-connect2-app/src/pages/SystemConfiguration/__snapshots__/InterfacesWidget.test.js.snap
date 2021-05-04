@@ -57,6 +57,22 @@ exports[`Interfaces Widget renders correctly 1`] = `
             >
               ZT188585000882A8888
             </div>
+            <InternetStatus
+              name=""
+            >
+              <p
+                className="if mt-5 ml-20"
+              >
+                <span
+                  className="mr-10 sp-hey has-text-danger"
+                />
+                <span
+                  className="has-text-danger"
+                >
+                  PVS_NO_INTERNET_INTERFACE
+                </span>
+              </p>
+            </InternetStatus>
             <Interface
               icon="sp-eth"
               key="wan"
@@ -108,13 +124,13 @@ exports[`Interfaces Widget renders correctly 1`] = `
                 className="if mt-5 ml-20"
               >
                 <span
-                  className="sp connected"
+                  className="sp connected has-text-white"
                 />
                 <span
-                  className="sp-cell mr-10 connected"
+                  className="sp-cell mr-10 has-text-white"
                 />
                 <span
-                  className="connected"
+                  className="has-text-white"
                 >
                   AT&T (cell)
                 </span>

@@ -22,10 +22,12 @@ import {
 } from 'ramda'
 import { useDispatch, useSelector } from 'react-redux'
 import { useI18n } from 'shared/i18n'
+import { either } from 'shared/utils'
+
 import { GET_INTERFACES_INIT } from 'state/actions/systemConfiguration'
+import { SET_ONLINE } from 'state/actions/network'
 
 import './InterfacesWidget.scss'
-import { SET_ONLINE } from 'state/actions/network'
 
 function InterfacesWidget(props) {
   const dispatch = useDispatch()
@@ -53,7 +55,7 @@ function InterfacesWidget(props) {
         <div className="mb-5 has-text-white is-uppercase has-text-weight-bold">
           {serialNumber}
         </div>
-        {upInterface ? <InternetInterface name={upInterface} /> : null}
+        {either(!isFetching, <InternetStatus name={upInterface} />)}
         {isFetching ? t('LOADING') : showInterfaces(data, error, t)}
       </div>
     </section>
@@ -76,13 +78,23 @@ const internetUpInterface = compose(
   internetUpInterfaces
 )
 
-function InternetInterface({ name }) {
+function InternetStatus({ name }) {
   const t = useI18n()
+  const connected = !isEmpty(name) && !isNil(name)
+  const iconClass = clsx('mr-10', {
+    'sp-check up connected': connected,
+    'sp-hey has-text-danger': !connected
+  })
+  const textClass = clsx({ connected, 'has-text-danger': !connected })
+  const text = t(
+    connected ? 'PVS_INTERNET_INTERFACE' : 'PVS_NO_INTERNET_INTERFACE',
+    name
+  )
 
   return (
     <p className="if mt-5 ml-20">
-      <span className="mr-10 sp-check up connected" />
-      <span className="connected">{t('PVS_INTERNET_INTERFACE', name)}</span>
+      <span className={iconClass} />
+      <span className={textClass}>{text}</span>
     </p>
   )
 }
@@ -114,14 +126,14 @@ function Interface({ icon, name }) {
     !test(new RegExp(t('NO_CONNECTION')), name) && !test(/UNKNOWN/, name)
 
   const classConnected = {
-    connected: isConnected
+    'has-text-white': isConnected
   }
 
   const iconClasses = clsx(icon, 'mr-10', classConnected)
   const textClasses = clsx(classConnected)
 
   const indicator = clsx('sp', {
-    connected: isConnected,
+    'connected has-text-white': isConnected,
     disconnected: !isConnected
   })
 
