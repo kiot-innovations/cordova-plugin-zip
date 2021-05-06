@@ -109,7 +109,10 @@ const checkForConnection = async () => {
   const isConnected = parsePromises(await allSettled(promises))
   if (!isConnected) throw new Error('WAITING_FOR_CONNECTION')
 }
-
+const addDelayForiOS = () => {
+  if (isIos()) return timer(10000)
+  return timer(0)
+}
 export const waitForSwaggerEpic = (action$, state$) => {
   const stopPolling$ = action$.pipe(
     ofType(
@@ -123,6 +126,7 @@ export const waitForSwaggerEpic = (action$, state$) => {
 
   return action$.pipe(
     ofType(WAIT_FOR_SWAGGER.getType()),
+    delayWhen(addDelayForiOS),
     exhaustMap(() =>
       timer(0, 3000).pipe(
         takeUntil(stopPolling$),
