@@ -33,13 +33,13 @@ const paths = {
       path: '/panel-layout-tool',
       header: true,
       footer: true,
-      tab: TABS.INSTALL
+      tab: TABS.CONFIGURE
     },
     PANEL_LAYOUT_TOOL_GROUPS: {
       path: '/panel-layout-tool-groups',
       header: true,
       footer: true,
-      tab: TABS.INSTALL
+      tab: TABS.CONFIGURE
     },
     UPDATE: {
       path: '/update-in-progress',
