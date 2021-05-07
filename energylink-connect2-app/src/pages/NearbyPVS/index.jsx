@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
-import { filter, propOr, startsWith } from 'ramda'
+import { filter, pathOr, startsWith } from 'ramda'
 import {
   BLE_GET_DEVICES,
   CONNECT_PVS_VIA_BLE,
@@ -12,7 +12,7 @@ import NearbyPVSUI from './NearbyPVSUI'
 import { generatePassword, generateSSID, getBLEPath } from 'shared/utils'
 import paths from 'routes/paths'
 
-const isPVS = device => startsWith('ZT', propOr('', getBLEPath, device))
+const isPVS = device => startsWith('ZT', pathOr('', getBLEPath, device))
 
 function NearbyPVS() {
   const dispatch = useDispatch()

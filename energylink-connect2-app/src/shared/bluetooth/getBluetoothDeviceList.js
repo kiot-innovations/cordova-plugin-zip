@@ -1,6 +1,6 @@
 import { pathOr } from 'ramda'
 import { Observable } from 'rxjs'
-import { isIos } from 'shared/utils'
+import { getBLEPath } from 'shared/utils'
 
 export const getBLEDeviceList = () =>
   new Observable(subscriber => {
@@ -8,11 +8,7 @@ export const getBLEDeviceList = () =>
       [],
       30,
       device => {
-        const name = pathOr(
-          null,
-          isIos() ? ['advertising', 'kCBAdvDataLocalName'] : ['name'],
-          device
-        )
+        const name = pathOr(null, getBLEPath, device)
 
         subscriber.next({ name, id: device.id })
       },

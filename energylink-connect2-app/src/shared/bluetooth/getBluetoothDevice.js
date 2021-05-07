@@ -1,4 +1,5 @@
 import { equals, pathOr } from 'ramda'
+import { getBLEPath } from 'shared/utils'
 
 export const getBLEDevice = pvsSerialNumber =>
   new Promise((resolve, reject) => {
@@ -6,18 +7,9 @@ export const getBLEDevice = pvsSerialNumber =>
     window.ble.startScan(
       [],
       device => {
-        const sniOS = pathOr(
-          'NOT_FOUND',
-          ['advertising', 'kCBAdvDataLocalName'],
-          device
-        )
+        const sn = pathOr('NOT_FOUND', getBLEPath, device)
 
-        const snAndroid = pathOr('NOT_FOUND', ['name'], device)
-
-        if (
-          equals(sniOS, pvsSerialNumber) ||
-          equals(snAndroid, pvsSerialNumber)
-        ) {
+        if (equals(sn, pvsSerialNumber)) {
           found = true
           resolve(device)
         }
