@@ -19,6 +19,6 @@ export const getBLEDeviceList = () =>
       subscriber.error
     )
     setTimeout(() => {
-      subscriber.error('CLOSING_STREAM')
+      subscriber.complete()
     }, 30000)
   })
