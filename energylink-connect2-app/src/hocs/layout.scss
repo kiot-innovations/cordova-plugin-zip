@@ -61,6 +61,14 @@ html {
   border-color: inherit !important;
 }
 
+.button.is-primary {
+  text-transform: uppercase;
+}
+
+[class*='sp-'] {
+  text-transform: none !important;
+}
+
 .swipeable,
 .swipeable + div {
   height: 0 !important;
