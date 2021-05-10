@@ -21,3 +21,6 @@ export const SHOW_PRECOMMISSIONING_CHECKLIST = createAction(
 export const CHECK_SSL_CERTS = createAction('CHECK_SSL_CERTS')
 export const CHECK_SSL_CERTS_SUCCESS = createAction('CHECK_SSL_CERTS_SUCCESS')
 export const CHECK_SSL_CERTS_ERROR = createAction('CHECK_SSL_CERTS_ERROR')
+
+export const FETCH_STATUS_MESSAGES = createAction('FETCH_STATUS_MESSAGES')
+export const SET_STATUS_MESSAGES = createAction('SET_STATUS_MESSAGES')

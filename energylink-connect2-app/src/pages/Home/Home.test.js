@@ -18,7 +18,9 @@ describe('Home component', () => {
         isFetching: false
       },
       user: { auth: { access_token: '123' } },
-      global: {},
+      global: {
+        statusMessages: []
+      },
       firmwareUpdate: {},
       network: {}
     })
@@ -36,7 +38,37 @@ describe('Home component', () => {
         },
         isFetching: false
       },
-      global: {},
+      global: {
+        statusMessages: []
+      },
+      firmwareUpdate: {},
+      network: {}
+    })
+    expect(component).toMatchSnapshot()
+  })
+
+  test('renders messages', () => {
+    const component = mountWithProvider(<Home />)({
+      user: { auth: { access_token: '123' } },
+      site: {
+        sites: [{}, {}, {}],
+        site: {
+          latitude: 20.6881818,
+          longitude: -103.4218501
+        },
+        isFetching: false
+      },
+      global: {
+        statusMessages: [
+          {
+            meta: {
+              notes: 'This message always shows'
+            },
+            content:
+              "<div style='color:blue;'><h1>Some Title Content</h1><p>Some explanation for something we need to tell the installer goes here.</p></div>"
+          }
+        ]
+      },
       firmwareUpdate: {},
       network: {}
     })

@@ -1,8 +1,18 @@
+@import '~@sunpower/theme-dark/styles/variables';
+
 .home {
   display: grid;
-  grid-template-rows: 1fr minmax(15px, 50px);
   align-items: center;
+
   span.sp-map {
     font-size: 6rem;
+  }
+
+  .message {
+    background-color: $silver-sand4;
+    color: $white;
+    display: grid;
+    text-align: left;
+    margin: 0 0 10px 0;
   }
 }

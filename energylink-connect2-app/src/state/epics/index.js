@@ -23,6 +23,7 @@ import storageEpics from './storage'
 import systemConfigurationEpics from './systemConfiguration'
 import superuserEpics from './superuser'
 import apisEpic from './api'
+import statusMessages from './statusMessages'
 
 export default combineEpics(
   ...analyticsEpics,
@@ -47,5 +48,6 @@ export default combineEpics(
   ...siteEpics,
   ...storageEpics,
   ...systemConfigurationEpics,
+  ...statusMessages,
   ...superuserEpics
 )

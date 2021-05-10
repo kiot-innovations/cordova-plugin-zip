@@ -1,3 +1,4 @@
+import { filter } from 'ramda'
 import { createReducer } from 'redux-act'
 import {
   RESET_FEEDBACK_FORM,
@@ -17,7 +18,8 @@ import {
   RESET_LAST_VISITED_PAGE,
   CHECK_APP_UPDATE_SUCCESS,
   CHECK_APP_UPDATE_ERROR,
-  SHOW_PRECOMMISSIONING_CHECKLIST
+  SHOW_PRECOMMISSIONING_CHECKLIST,
+  SET_STATUS_MESSAGES
 } from 'state/actions/global'
 import { SET_SCANDIT_ACCESS } from 'state/actions/scandit'
 import {
@@ -42,7 +44,28 @@ const initialState = {
   updateVersion: 0,
   showPrecommissioningChecklist: true,
   checkingSSLCerts: false,
-  hasValidSSLCerts: null
+  hasValidSSLCerts: null,
+  statusMessages: []
+}
+
+const shouldShow = message => {
+  const now = new Date()
+  const hasStartDate = message.startDate !== undefined
+  const hasEndDate = message.endDate !== undefined
+
+  if (!hasStartDate && !hasEndDate) {
+    return true
+  } else if (hasStartDate && !hasEndDate) {
+    const startDate = new Date(message.startDate)
+    return now > startDate
+  } else if (!hasStartDate && hasEndDate) {
+    const endDate = new Date(message.endDate)
+    return now < endDate
+  } else if (hasStartDate && hasEndDate) {
+    const startDate = new Date(message.startDate)
+    const endDate = new Date(message.endDate)
+    return now > startDate && now < endDate
+  }
 }
 
 export const globalReducer = createReducer(
@@ -137,6 +160,10 @@ export const globalReducer = createReducer(
     [SET_SHOW_CHECKLIST]: (state, showPrecommissioningChecklist) => ({
       ...state,
       showPrecommissioningChecklist
+    }),
+    [SET_STATUS_MESSAGES]: (state, statusMessages) => ({
+      ...state,
+      statusMessages: filter(shouldShow, statusMessages)
     })
   },
   initialState

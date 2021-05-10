@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react'
 import { Link, useHistory } from 'react-router-dom'
 import { compose, prop } from 'ramda'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
 import { useI18n } from 'shared/i18n'
-import { renameKeys } from 'shared/utils'
+import { renameKeys, either } from 'shared/utils'
 
 import { FETCH_MODELS_INIT } from 'state/actions/devices'
 import {
@@ -12,10 +12,14 @@ import {
   SET_SITE,
   GET_SITES_INIT
 } from 'state/actions/site'
-import { CHECK_APP_UPDATE_INIT, CHECK_SSL_CERTS } from 'state/actions/global'
+import {
+  CHECK_APP_UPDATE_INIT,
+  CHECK_SSL_CERTS,
+  RESET_COMMISSIONING,
+  FETCH_STATUS_MESSAGES
+} from 'state/actions/global'
 import { PVS_FIRMWARE_DOWNLOAD_INIT } from 'state/actions/fileDownloader'
 import { GRID_PROFILE_DOWNLOAD_INIT } from 'state/actions/gridProfileDownloader'
-import { RESET_COMMISSIONING } from 'state/actions/global'
 import { CHECK_BLUETOOTH_STATUS_INIT } from 'state/actions/network'
 
 import paths from 'routes/paths'
@@ -52,6 +56,7 @@ function Home() {
     dispatch(GRID_PROFILE_DOWNLOAD_INIT())
     dispatch(CHECK_APP_UPDATE_INIT())
     dispatch(FETCH_MODELS_INIT())
+    dispatch(FETCH_STATUS_MESSAGES())
   }, [dispatch])
   const notFoundText = t('NOT_FOUND')
 
@@ -63,8 +68,23 @@ function Home() {
     dispatch(CHECK_SSL_CERTS())
   }, [dispatch])
 
+  const { statusMessages } = useSelector(state => state.global)
+
   return (
     <section className="home has-text-centered full-height pl-15 pr-15">
+      {either(
+        statusMessages,
+        <section>
+          {statusMessages.map((statusMessage, index) => (
+            <p
+              className="message"
+              dangerouslySetInnerHTML={{ __html: statusMessage.content }}
+              key={index}
+            />
+          ))}
+        </section>
+      )}
+
       <div className="search">
         <span className="sp sp-map has-text-white" />
         <h6 className="is-uppercase mt-20 mb-20">{t('SELECT_SITE')}</h6>
