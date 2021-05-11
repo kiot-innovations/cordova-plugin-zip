@@ -266,6 +266,11 @@ const DebugPage = () => {
             'POC for BLE Connection',
             paths.PROTECTED.NEARBY_PVS.path
           )}
+          {renderDebugLink(
+            history,
+            'Precommissioning Configurations',
+            paths.PROTECTED.PRECOMMISSIONING_CONFIGS.path
+          )}
         </Collapsible>
       </div>
     </div>

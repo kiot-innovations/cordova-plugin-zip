@@ -1,13 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import { useI18n } from 'shared/i18n'
-import { findByPathValue } from 'shared/utils'
 import { useDispatch, useSelector } from 'react-redux'
-import {
-  FETCH_GRID_BEHAVIOR,
-  SET_GRID_PROFILE,
-  SET_EXPORT_LIMIT,
-  SET_GRID_VOLTAGE
-} from 'state/actions/systemConfiguration'
+import { useI18n } from 'shared/i18n'
 import {
   always,
   compose,
@@ -15,6 +8,7 @@ import {
   flip,
   head,
   includes,
+  isEmpty,
   length,
   pathOr,
   pipe,
@@ -22,6 +16,15 @@ import {
   T,
   when
 } from 'ramda'
+import { findByPathValue } from 'shared/utils'
+import {
+  FETCH_GRID_BEHAVIOR,
+  SET_GRID_PROFILE,
+  SET_EXPORT_LIMIT,
+  SET_GRID_VOLTAGE
+} from 'state/actions/systemConfiguration'
+import { fwupStatus } from 'state/reducers/firmware-update'
+
 import Collapsible from 'components/Collapsible'
 import SelectField from 'components/SelectField'
 import './SystemConfiguration.scss'
@@ -61,12 +64,19 @@ function GridBehaviorWidget() {
     fetchingGridBehavior
   } = useSelector(state => state.systemConfiguration.gridBehavior)
   const { site } = useSelector(state => state.site)
+  const { status } = useSelector(state => state.firmwareUpdate)
 
   const [hasDefaultGridProfile, setHasDefaultGridProfile] = useState(false)
 
+  const uploadingOrFetchingProfiles =
+    status === fwupStatus.UPLOADING_GRID_PROFILES ||
+    status === fwupStatus.UPGRADE_COMPLETE ||
+    fetchingGridBehavior === true
+
   useEffect(() => {
-    dispatch(FETCH_GRID_BEHAVIOR())
-  }, [dispatch])
+    if (isEmpty(profiles) && !uploadingOrFetchingProfiles)
+      dispatch(FETCH_GRID_BEHAVIOR())
+  }, [dispatch, profiles, uploadingOrFetchingProfiles])
 
   useEffect(() => {
     if (!prop('gridVoltage', selectedOptions)) {

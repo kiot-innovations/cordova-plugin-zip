@@ -7,6 +7,9 @@ describe('GridBehaviorWidget', () => {
   let dispatchMock
 
   const gridVoltageZero = {
+    firmwareUpdate: {
+      status: ''
+    },
     systemConfiguration: {
       gridBehavior: {
         selectedOptions: {
@@ -38,6 +41,9 @@ describe('GridBehaviorWidget', () => {
   }
 
   const gridVoltage240 = {
+    firmwareUpdate: {
+      status: ''
+    },
     systemConfiguration: {
       gridBehavior: {
         selectedOptions: {
@@ -69,6 +75,9 @@ describe('GridBehaviorWidget', () => {
   }
 
   const gridVoltage208 = {
+    firmwareUpdate: {
+      status: ''
+    },
     systemConfiguration: {
       gridBehavior: {
         selectedOptions: {

@@ -2,6 +2,7 @@ import React from 'react'
 import * as i18n from 'shared/i18n'
 import PrecommissioningConfigs from '.'
 import { rmaModes } from 'state/reducers/rma'
+import { fwupStatus } from 'state/reducers/firmware-update'
 
 describe('Precommissioning configurations page', () => {
   let mockState = {
@@ -60,6 +61,9 @@ describe('Precommissioning configurations page', () => {
     },
     pvs: {
       serialNumbers: []
+    },
+    firmwareUpdate: {
+      status: fwupStatus.GRID_PROFILES_UPLOADED
     }
   }
 

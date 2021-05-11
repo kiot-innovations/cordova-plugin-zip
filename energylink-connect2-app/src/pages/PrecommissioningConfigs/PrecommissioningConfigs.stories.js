@@ -5,8 +5,9 @@ import { Provider } from 'react-redux'
 
 import PrecommissioningConfigs from '.'
 import { rmaModes } from 'state/reducers/rma'
+import { fwupStatus } from '../../state/reducers/firmware-update'
 
-const mockStore = {
+const standardScenario = {
   global: {
     canAccessScandit: true
   },
@@ -64,14 +65,196 @@ const mockStore = {
   }
 }
 
-storiesOf('Precommissioning Configs', module).add('Config is valid', () => {
-  const { store } = configureStore(mockStore)
+const fetchingGridProfiles = {
+  global: {
+    canAccessScandit: true
+  },
+  rma: {
+    rmaMode: rmaModes.NONE
+  },
+  inventory: {
+    bom: [
+      { item: 'AC_MODULES', value: '0' },
+      { item: 'DC_MODULES', value: '0' },
+      { item: 'STRING_INVERTERS', value: '0' },
+      { item: 'EXTERNAL_METERS', value: '0' },
+      { item: 'ESS', value: '0' }
+    ]
+  },
+  systemConfiguration: {
+    meter: {
+      consumptionCT: 1,
+      productionCT: 1,
+      ratedCurrent: 100
+    },
+    gridBehavior: {
+      fetchingGridBehavior: true,
+      selectedOptions: {
+        gridVoltage: 240,
+        profile: {},
+        lazyGridProfile: 0,
+        exportLimit: -1
+      },
+      profiles: [],
+      gridVoltage: {
+        grid_voltage: 240,
+        measured: 0,
+        selected: 0
+      }
+    }
+  },
+  devices: {
+    found: []
+  },
+  site: {
+    site: {
+      siteKey: 'ABCDE'
+    }
+  }
+}
 
-  return (
-    <div className="full-min-height pt-20 pb-20">
-      <Provider store={store}>
-        <PrecommissioningConfigs />
-      </Provider>
-    </div>
-  )
-})
+const errorWhileUploadingGridProfiles = {
+  global: {
+    canAccessScandit: true
+  },
+  rma: {
+    rmaMode: rmaModes.NONE
+  },
+  inventory: {
+    bom: [
+      { item: 'AC_MODULES', value: '0' },
+      { item: 'DC_MODULES', value: '0' },
+      { item: 'STRING_INVERTERS', value: '0' },
+      { item: 'EXTERNAL_METERS', value: '0' },
+      { item: 'ESS', value: '0' }
+    ]
+  },
+  systemConfiguration: {
+    meter: {
+      consumptionCT: 1,
+      productionCT: 1,
+      ratedCurrent: 100
+    },
+    gridBehavior: {
+      fetchingGridBehavior: false,
+      selectedOptions: {
+        gridVoltage: 240,
+        profile: {},
+        lazyGridProfile: 0,
+        exportLimit: -1
+      },
+      profiles: [],
+      gridVoltage: {
+        grid_voltage: 240,
+        measured: 0,
+        selected: 0
+      }
+    },
+    firmwareUpdate: {
+      status: fwupStatus.ERROR_GRID_PROFILE
+    }
+  },
+  devices: {
+    found: []
+  },
+  site: {
+    site: {
+      siteKey: 'ABCDE'
+    }
+  }
+}
+
+const errorWhileFetchingGridProfiles = {
+  global: {
+    canAccessScandit: true
+  },
+  rma: {
+    rmaMode: rmaModes.NONE
+  },
+  inventory: {
+    bom: [
+      { item: 'AC_MODULES', value: '0' },
+      { item: 'DC_MODULES', value: '0' },
+      { item: 'STRING_INVERTERS', value: '0' },
+      { item: 'EXTERNAL_METERS', value: '0' },
+      { item: 'ESS', value: '0' }
+    ]
+  },
+  systemConfiguration: {
+    meter: {
+      consumptionCT: 1,
+      productionCT: 1,
+      ratedCurrent: 100
+    },
+    gridBehavior: {
+      fetchingGridBehavior: false,
+      err: 'Error While Fetching Grid Profiles',
+      selectedOptions: {
+        gridVoltage: 240,
+        profile: {},
+        lazyGridProfile: 0,
+        exportLimit: -1
+      },
+      profiles: [],
+      gridVoltage: {
+        grid_voltage: 240,
+        measured: 0,
+        selected: 0
+      }
+    }
+  },
+  devices: {
+    found: []
+  },
+  site: {
+    site: {
+      siteKey: 'ABCDE'
+    }
+  }
+}
+
+storiesOf('Precommissioning Configs', module)
+  .add('Config is valid', () => {
+    const { store } = configureStore(standardScenario)
+
+    return (
+      <div className="full-min-height pt-20 pb-20">
+        <Provider store={store}>
+          <PrecommissioningConfigs />
+        </Provider>
+      </div>
+    )
+  })
+  .add('Fetching Grid Profiles', () => {
+    const { store } = configureStore(fetchingGridProfiles)
+
+    return (
+      <div className="full-min-height pt-20 pb-20">
+        <Provider store={store}>
+          <PrecommissioningConfigs />
+        </Provider>
+      </div>
+    )
+  })
+  .add('Error while uploading Grid Profiles', () => {
+    const { store } = configureStore(errorWhileUploadingGridProfiles)
+
+    return (
+      <div className="full-min-height pt-20 pb-20">
+        <Provider store={store}>
+          <PrecommissioningConfigs />
+        </Provider>
+      </div>
+    )
+  })
+  .add('Error while fetching Grid Profiles', () => {
+    const { store } = configureStore(errorWhileFetchingGridProfiles)
+
+    return (
+      <div className="full-min-height pt-20 pb-20">
+        <Provider store={store}>
+          <PrecommissioningConfigs />
+        </Provider>
+      </div>
+    )
+  })

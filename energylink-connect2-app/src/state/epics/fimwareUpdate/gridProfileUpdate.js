@@ -7,8 +7,11 @@ import { catchError, map, switchMap } from 'rxjs/operators'
 import {
   FIRMWARE_GET_VERSION_COMPLETE,
   GRID_PROFILE_UPLOAD_COMPLETE,
-  GRID_PROFILE_UPLOAD_ERROR
+  GRID_PROFILE_UPLOAD_ERROR,
+  GRID_PROFILE_UPLOAD_INIT
 } from 'state/actions/firmwareUpdate'
+import { FETCH_GRID_BEHAVIOR } from 'state/actions/systemConfiguration'
+
 import { ERROR_CODES, getFileBlob, getFileNameFromURL } from 'shared/fileSystem'
 import { translate } from 'shared/i18n'
 import { SHOW_MODAL } from 'state/actions/modal'
@@ -48,7 +51,8 @@ export const epicUploadGridProfile = (action$, state$) =>
   action$.pipe(
     ofType(
       FIRMWARE_GET_VERSION_COMPLETE.getType(),
-      FIRMWARE_UPDATE_COMPLETE.getType()
+      FIRMWARE_UPDATE_COMPLETE.getType(),
+      GRID_PROFILE_UPLOAD_INIT.getType()
     ),
     waitForObservable(gridProfileUpdateUrl$),
     switchMap(([, gridProfileUrl]) =>
@@ -58,7 +62,9 @@ export const epicUploadGridProfile = (action$, state$) =>
           gridProfileUrl
         )
       ).pipe(
-        map(() => GRID_PROFILE_UPLOAD_COMPLETE()),
+        switchMap(() =>
+          of(GRID_PROFILE_UPLOAD_COMPLETE(), FETCH_GRID_BEHAVIOR())
+        ),
         catchError(err => {
           Sentry.captureException(err)
           return of(GRID_PROFILE_UPLOAD_ERROR.asError(err.message))

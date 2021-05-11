@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
-import { endsWith, find, path, pathOr, propEq } from 'ramda'
+import { endsWith, find, isEmpty, path, pathOr, propEq } from 'ramda'
 import SwipeableSheet from 'hocs/SwipeableSheet'
 
 import { useI18n } from 'shared/i18n'
@@ -13,10 +13,12 @@ import {
   UPDATE_DEVICES_LIST
 } from 'state/actions/devices'
 import { SUBMIT_PRECONFIG_GRIDPROFILE } from 'state/actions/systemConfiguration'
+import { GRID_PROFILE_UPLOAD_INIT } from 'state/actions/firmwareUpdate'
 
 import { discoveryTypes } from 'state/reducers/devices'
 import { rmaModes } from 'state/reducers/rma'
 import { preconfigStates } from 'state/reducers/systemConfiguration/submitConfiguration'
+import { fwupStatus } from 'state/reducers/firmware-update'
 
 import { Loader } from 'components/Loader'
 import GridBehaviorWidget from 'pages/SystemConfiguration/GridBehaviorWidget'
@@ -56,8 +58,6 @@ const createMeterConfig = (devicesList = [], meterConfig, site) => {
 }
 
 const validateConfig = configObject => {
-  console.info({ configObject }, 'configObject')
-
   if (!configObject.metaData || !configObject.metaData.site_key) return false
   for (const value of Object.values(configObject)) {
     if (value == null) {
@@ -132,11 +132,13 @@ const PrecommissioningConfigs = () => {
   const history = useHistory()
   const dispatch = useDispatch()
   const [submitModal, showSubmitModal] = useState(false)
+  const [gridProfilesModal, showGridProfilesModal] = useState(false)
   const [canContinue, setCanContinue] = useState(false)
   const [productionCTModal, showProductionCTModal] = useState(false)
 
   const siteKey = useSelector(path(['site', 'site', 'siteKey']))
 
+  const { status } = useSelector(state => state.firmwareUpdate)
   const { gridBehavior, meter } = useSelector(
     state => state.systemConfiguration
   )
@@ -155,6 +157,14 @@ const PrecommissioningConfigs = () => {
   const storageValue = find(propEq('item', 'ESS'), bom) || { value: '0' }
   const miValue = find(propEq('item', 'AC_MODULES'), bom) || { value: '0' }
 
+  const uploadingOrFetchingProfiles =
+    status === fwupStatus.UPLOADING_GRID_PROFILES ||
+    status === fwupStatus.UPGRADE_COMPLETE ||
+    gridBehavior.fetchingGridBehavior === true
+
+  const errorWhileFetchingProfiles =
+    status === fwupStatus.ERROR_GRID_PROFILE || !isEmpty(gridBehavior.err)
+
   const submitConfig = () => {
     if (propEq('productionCT', 'NOT_USED')(meter)) {
       showProductionCTModal(true)
@@ -166,6 +176,16 @@ const PrecommissioningConfigs = () => {
       dispatch(SUBMIT_PRECONFIG_GRIDPROFILE(configObject))
     }
   }
+
+  useEffect(() => {
+    if (!isEmpty(gridBehavior.profiles)) {
+      showGridProfilesModal(false)
+    } else {
+      if (isEmpty(gridBehavior.profiles) && gridProfilesModal === false) {
+        showGridProfilesModal(true)
+      }
+    }
+  }, [gridBehavior.profiles, gridProfilesModal])
 
   useEffect(() => {
     const { metaData } = createMeterConfig(found, meter, siteKey)
@@ -269,6 +289,52 @@ const PrecommissioningConfigs = () => {
               {t('OK')}
             </button>
           </div>
+        </div>
+      </SwipeableSheet>
+
+      <SwipeableSheet
+        onChange={() => showGridProfilesModal(!gridProfilesModal)}
+        open={gridProfilesModal}
+      >
+        <div className="is-flex flex-column has-text-centered has-text-white">
+          {either(
+            uploadingOrFetchingProfiles,
+            <>
+              <div>
+                <Loader />
+              </div>
+              <div>
+                <span>{t('FETCHING_GRID_PROFILES')}</span>
+              </div>
+            </>,
+            errorWhileFetchingProfiles ? (
+              <>
+                <div>
+                  <span className="sp-hey is-size-1" />
+                </div>
+                <div className="mt-20 mb-10">
+                  <span className="">{t('FETCHING_GRID_PROFILES_ERROR')}</span>
+                </div>
+                <div>
+                  <button
+                    onClick={() => dispatch(GRID_PROFILE_UPLOAD_INIT())}
+                    className="button is-primary"
+                  >
+                    {t('RETRY')}
+                  </button>
+                </div>
+              </>
+            ) : (
+              <>
+                <div>
+                  <Loader />
+                </div>
+                <div>
+                  <span>{t('FETCHING_GRID_PROFILES')}</span>
+                </div>
+              </>
+            )
+          )}
         </div>
       </SwipeableSheet>
     </div>
