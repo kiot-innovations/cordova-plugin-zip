@@ -1,0 +1,61 @@
+@import '~@sunpower/theme-dark/styles/variables';
+
+.banner {
+  background-color: $silver-sand4;
+  font: $font;
+  max-height: 150px;
+  display: grid;
+  padding: 10px;
+  border-radius: 5px;
+
+  &-warning {
+    border: 2px solid $sun;
+  }
+  
+  &-success {
+    border: 2px solid $success-green;
+  }
+  
+  &-error {
+    border: 2px solid $error-red;
+  }
+  
+  &-info {
+    border: 2px solid $earth;
+  }
+
+  &-content {
+    display: flex;
+    max-width: 100%;
+
+    .icon-warning {
+      color: $sun
+    }
+
+    .icon-success {
+      color: $success-green;
+    }
+
+    .icon-error {
+      color: $error-red;
+    }
+
+    .icon-info {
+      color: $earth;
+    }
+
+    &-text {
+      text-overflow: ellipsis;
+      max-width: 100%;
+      overflow: hidden;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+    }
+  }
+
+  &-action {
+    letter-spacing: 2px;
+    font-size: 12px;
+  }
+}

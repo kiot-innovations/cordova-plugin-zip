@@ -32,6 +32,7 @@ import { Loader } from 'components/Loader'
 import MiGroup from './MiGroup'
 import './ModelEdit.scss'
 import { SET_AC_DEVICES } from 'state/actions/analytics'
+import { SET_LAST_VISITED_PAGE } from '../../state/actions/global'
 
 const getDeviceType = compose(last, split('_'))
 
@@ -102,6 +103,7 @@ const ModelEdit = () => {
 
   const clearAndContinue = () => {
     dispatch(SUBMIT_CLEAR())
+    dispatch(SET_LAST_VISITED_PAGE(paths.PROTECTED.RMA_DEVICES.path))
     history.push(paths.PROTECTED.SYSTEM_CONFIGURATION.path)
   }
 

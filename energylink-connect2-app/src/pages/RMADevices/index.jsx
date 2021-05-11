@@ -21,6 +21,8 @@ import { Menu, MenuItem, MenuDivider } from '@szhsin/react-menu'
 import '@szhsin/react-menu/dist/index.css'
 import paths from 'routes/paths'
 import Collapsible from 'components/Collapsible'
+import ColoredBanner, { bannerCategories } from 'components/ColoredBanner'
+
 import { FETCH_DEVICES_LIST } from 'state/actions/devices'
 import { RMA_REMOVE_DEVICES, CLEAR_RMA } from 'state/actions/rma'
 import { SHOW_MODAL } from 'state/actions/modal'
@@ -99,6 +101,8 @@ function RMADevices() {
     dispatch(FETCH_DEVICES_LIST())
   }
 
+  const invertersWithoutModel = !isEmpty(microInverters.filter(mi => !mi.PANEL))
+
   const miDropdown = (
     <Menu
       className="dark-menu"
@@ -133,6 +137,16 @@ function RMADevices() {
           {t('RMA_DEVICES')}
         </span>
       </div>
+      {either(
+        invertersWithoutModel,
+        <ColoredBanner
+          category={bannerCategories.WARNING}
+          text={t('MISSING_PV_MODELS')}
+          actionText={t('ASSIGN_MODELS')}
+          action={() => history.push(paths.PROTECTED.MODEL_EDIT.path)}
+          className="mb-20"
+        />
+      )}
       <Collapsible title={t('MICROINVERTERS')} actions={miDropdown} expanded>
         {either(
           length(microInverters) > 0,
