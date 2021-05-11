@@ -90,7 +90,9 @@ const discoveryStatus = (
     if (error) {
       return (
         <>
-          <span className="has-text-weight-bold mt-10 mb-20">{t(error)}</span>
+          <span className="has-text-weight-bold mt-10 mb-20">
+            {t('CLAIMING_MIS_ERROR')}
+          </span>
           <button
             className="button is-primary is-uppercase is-paddingless ml-75 mr-75"
             onClick={retryDiscovery}
@@ -149,7 +151,9 @@ const discoveryStatus = (
   } else {
     return error ? (
       <>
-        <span className="has-text-weight-bold mt-20">{t(error)}</span>
+        <span className="has-text-weight-bold mt-20">
+          {t('DISCOVERY_ERROR')}
+        </span>
         <button
           className="button is-primary is-uppercase is-paddingless ml-75 mr-75"
           onClick={retryDiscovery}

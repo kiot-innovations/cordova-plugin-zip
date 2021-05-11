@@ -252,7 +252,7 @@
   "PGE": "PG&E",
   "NO_STORAGE_INSTALLED": "This site has no storage hardware installed",
   "CONNECTING": "Connecting...",
-  "DISCOVERY_ERROR": "There were errors detected. Please verify and try again.",
+  "DISCOVERY_ERROR": "An error occurred during discovery. Please try again.",
   "MI_ERRORS": "Some MIs reported errors or were not found. Please verify and try again.",
   "MI_ERRORS_ALL": "All devices reported errors or were not found. Please verify and try again.",
   "MI_STATUS": "Status for {0}",
@@ -710,5 +710,6 @@
   "POLLING_SYSTEM_CHECK": "We're almost there. This may take up to three minutes.",
   "REFRESH_LAYOUT": "Refresh data",
   "RETRIEVING_LAYOUT_DATA": "Please wait, we're retrieving the layout data",
-  "UNFOUND_MIS": "Some MIs reported errors or were not found. Please go back and verify the MI SNs or try discovery again"
+  "UNFOUND_MIS": "Some MIs reported errors or were not found. Please go back and verify the MI SNs or try discovery again",
+  "CLAIMING_MIS_ERROR": "An error occurred while claiming the microinverters. Please try again"
 }
