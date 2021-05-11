@@ -711,5 +711,6 @@
   "REFRESH_LAYOUT": "Refresh data",
   "RETRIEVING_LAYOUT_DATA": "Please wait, we're retrieving the layout data",
   "UNFOUND_MIS": "Some MIs reported errors or were not found. Please go back and verify the MI SNs or try discovery again",
+  "ESS_STATUS_ERROR": "System Check could not be executed. Please retry.",
   "CLAIMING_MIS_ERROR": "An error occurred while claiming the microinverters. Please try again"
 }

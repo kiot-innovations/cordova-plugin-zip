@@ -8,7 +8,7 @@ import {
   switchMap,
   takeUntil
 } from 'rxjs/operators'
-import { path, pathOr } from 'ramda'
+import { always, cond, equals, isNil, path, pathOr } from 'ramda'
 import { getApiPVS, storageSwaggerTag } from 'shared/api'
 import { START_DISCOVERY_ERROR, START_DISCOVERY_INIT } from 'state/actions/pvs'
 import { DISCOVER_COMPLETE, DISCOVER_ERROR } from 'state/actions/devices'
@@ -105,11 +105,15 @@ export const getHealthCheckEpic = action$ => {
                 response
               )
 
-              if (status === 'SUCCEEDED') {
-                return GET_ESS_STATUS_SUCCESS()
-              } else {
-                return GET_ESS_STATUS_UPDATE()
-              }
+              const statusMatcher = cond([
+                [equals('FAILED'), always(GET_ESS_STATUS_ERROR(errorObj))],
+                [equals('NOT_RUNNING'), always(GET_ESS_STATUS_ERROR(errorObj))],
+                [equals('RUNNING'), always(GET_ESS_STATUS_UPDATE())],
+                [isNil, always(GET_ESS_STATUS_ERROR(errorObj))],
+                [equals('SUCCEEDED'), always(GET_ESS_STATUS_SUCCESS())]
+              ])
+
+              return statusMatcher(status)
             }),
             catchError(error => {
               Sentry.addBreadcrumb({

@@ -12,7 +12,7 @@ exports[`ErrorDetected component render correctly when a global status error hap
   <p
     className="has-text-centered"
   >
-    Make sure you have run discovery successful completion
+    MAKE SURE YOU HAVE RUN DISCOVERY SUCCESSFUL COMPLETION
   </p>
   <button
     className="button is-primary is-outlined is-uppercase mt-20 is-fullwidth ml-5"

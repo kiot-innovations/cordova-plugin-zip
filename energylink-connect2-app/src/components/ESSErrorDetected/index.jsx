@@ -24,7 +24,7 @@ function ErrorDetected({
           <p className="has-text-primary has-text-weight-bold has-text-centered mb-10 is-size-6">
             {t('ERRORS_DETECTED', 1)}
           </p>
-          <p className="has-text-centered">{globalError}</p>
+          <p className="has-text-centered">{t(globalError)}</p>
           <button
             className="button is-primary is-outlined is-uppercase mt-20 is-fullwidth ml-5"
             onClick={onRetry}
