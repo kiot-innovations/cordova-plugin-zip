@@ -2,8 +2,9 @@ import React, { useEffect } from 'react'
 import { Provider } from 'react-redux'
 import { HashRouter as Router } from 'react-router-dom'
 import { PersistGate } from 'redux-persist/integration/react'
-import appVersion from './macros/appVersion.macro'
 import * as Sentry from '@sentry/browser'
+import { Integrations } from '@sentry/tracing'
+import appVersion from './macros/appVersion.macro'
 
 import { configureStore } from 'state/store'
 
@@ -30,10 +31,9 @@ Sentry.init({
     return null
   },
   release: appVersion(),
-  environment: process.env.REACT_APP_FLAVOR,
-  ignoreErrors: [
-    /Non-Error promise rejection captured with keys: code, message/g
-  ]
+  integrations: [new Integrations.BrowserTracing()],
+  tracesSampleRate: 1.0,
+  environment: process.env.REACT_APP_FLAVOR
 })
 
 const App = () => {

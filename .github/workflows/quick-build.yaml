@@ -38,10 +38,6 @@ jobs:
           NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
         working-directory: energylink-connect2-app
 
-      - name: Enable source maps for debugging
-        run: sed -i"" -E "s/'source-map'/'inline-source-map'/" node_modules/react-scripts/config/webpack.config.js
-        working-directory: energylink-connect2-app
-
       - run: npm run validate-env-files
         env:
           CM2_ENVFILE_PASSWORD: ${{ secrets.ENVFILE_PASSWORD }}
@@ -56,7 +52,7 @@ jobs:
         run: openssl enc -aes256 -d -base64 -md md5 -pass pass:'${{ secrets.ENVFILE_PASSWORD }}' -in .env.enc.${APP_ENV} -out .env
         working-directory: energylink-connect2-app
 
-      - run: npm run buildsm
+      - run: npm run build
         working-directory: energylink-connect2-app
 
       - name: Set the application environment to ${{ env.APP_ENV }}
