@@ -23,7 +23,7 @@ import {
 } from 'state/actions/energy-data'
 import {
   CLEAR_HEALTH_CHECK,
-  RUN_EQS_SYSTEMCHECK_SUCCESS
+  GET_ESS_STATUS_SUCCESS
 } from 'state/actions/storage'
 import { MI_DATA_START_POLLING, MI_DATA_STOP_POLLING } from 'state/actions/pvs'
 import { FETCH_DEVICES_LIST } from 'state/actions/devices'
@@ -72,7 +72,7 @@ export default () => {
     dispatch(FETCH_DEVICES_LIST())
     dispatch(ENERGY_DATA_START_POLLING())
     dispatch(MI_DATA_START_POLLING())
-    dispatch(RUN_EQS_SYSTEMCHECK_SUCCESS())
+    dispatch(GET_ESS_STATUS_SUCCESS())
     return () => {
       dispatch(ENERGY_DATA_STOP_POLLING())
       dispatch(MI_DATA_STOP_POLLING())

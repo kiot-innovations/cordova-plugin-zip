@@ -73,7 +73,7 @@ exports[`VersionInformation component renders correctly 1`] = `
  - Fixed issue with grid profiles sometimes not loading. 
 ",
                   "releaseDate": "2021-05-11",
-                  "versionNumber": "6.107.6",
+                  "versionNumber": "6.107.7",
                 },
                 Object {
                   "bodyMarkdown": "# Features
@@ -248,7 +248,7 @@ You will now see a message that &quot;Commissioning was successfully completed&q
                 >
                   <Collapsible
                     expanded={true}
-                    title="VERSION 6.107.6"
+                    title="VERSION 6.107.7"
                   >
                     <div
                       className="collapsible"
@@ -264,7 +264,7 @@ You will now see a message that &quot;Commissioning was successfully completed&q
                           <span
                             className="has-text-weight-bold"
                           >
-                            VERSION 6.107.6
+                            VERSION 6.107.7
                           </span>
                         </div>
                         <div
