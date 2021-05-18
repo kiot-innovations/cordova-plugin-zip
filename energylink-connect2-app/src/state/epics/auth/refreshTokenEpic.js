@@ -1,11 +1,12 @@
 import * as Sentry from '@sentry/browser'
 import { ofType } from 'redux-observable'
 import { of, from } from 'rxjs'
-import { catchError, map, switchMap } from 'rxjs/operators'
+import { catchError, map, retryWhen, switchMap } from 'rxjs/operators'
 import { pathOr } from 'ramda'
 import authClient from 'shared/auth/sdk'
 import * as authActions from 'state/actions/auth'
 import { translate } from 'shared/i18n'
+import genericRetryStrategy from 'shared/rxjs/genericRetryStrategy'
 
 export const refreshTokenEpic = (action$, state$) => {
   const t = translate()
@@ -14,6 +15,7 @@ export const refreshTokenEpic = (action$, state$) => {
   return action$.pipe(
     ofType(authActions.REFRESH_TOKEN_INIT.getType()),
     switchMap(() => {
+      retries = 0
       const { refresh_token } = pathOr({}, ['user', 'auth'], state$.value)
       return from(authClient.refreshTokenOAuth(refresh_token)).pipe(
         map(response => {
@@ -28,6 +30,11 @@ export const refreshTokenEpic = (action$, state$) => {
           }
           return authActions.REFRESH_TOKEN_SUCCESS(response)
         }),
+        retryWhen(
+          genericRetryStrategy({
+            maxRetryAttempts: 3
+          })
+        ),
         catchError(err => {
           Sentry.addBreadcrumb({
             data: {

@@ -34,6 +34,13 @@ export function configureStore(initialState) {
     composeEnhancers(applyMiddleware(...middlewares))
   )
 
+  if (
+    process.env.NODE_ENV === 'development' ||
+    process.env.REACT_APP_ENABLE_LOGGER
+  ) {
+    window.store = store
+  }
+
   epicMiddleware.run(rootEpic)
 
   const persistor = persistStore(store)
