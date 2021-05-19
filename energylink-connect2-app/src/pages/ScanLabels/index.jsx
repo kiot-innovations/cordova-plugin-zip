@@ -3,8 +3,7 @@ import { compose, identity, ifElse, map, prop, startsWith } from 'ramda'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import { useI18n } from 'shared/i18n'
-import { scanM } from 'shared/scandit'
-import { scanAR } from 'shared/scanditAr'
+import { scanAR } from 'shared/scandit'
 import { buildSN } from 'shared/utils'
 import { ADD_PVS_SN } from 'state/actions/pvs'
 import { rmaModes } from 'state/reducers/rma'
@@ -22,10 +21,8 @@ const addSN = dispatch =>
     buildSN
   )
 const addCodes = compose(map, addSN)
-const scanMatrix = compose(
-  process.env.REACT_APP_FLAVOR === 'cm2-prod' ? scanAR : scanM,
-  addCodes
-)
+const scanMatrix = compose(scanAR, addCodes)
+
 const startScanning = dispatch => {
   if (window.Scandit) return scanMatrix(dispatch)
 }
