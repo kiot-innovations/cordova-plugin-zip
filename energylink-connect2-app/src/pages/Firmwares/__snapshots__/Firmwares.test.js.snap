@@ -213,7 +213,7 @@ exports[`Firmwares Menu component render correctly 1`] = `
           <FileCollapsible
             downloadFile={[Function]}
             expanded={true}
-            fileName="GRID_PROFILES_PACKAGE"
+            fileName="GRID_PROFILES_PVS6_PACKAGE"
             isDownloaded={true}
             isDownloading={true}
             lastTimeDownloaded={null}
@@ -222,7 +222,7 @@ exports[`Firmwares Menu component render correctly 1`] = `
             <Collapsible
               actions={null}
               expanded={true}
-              title="GRID_PROFILES_PACKAGE"
+              title="GRID_PROFILES_PVS6_PACKAGE"
             >
               <div
                 className="collapsible"
@@ -238,7 +238,7 @@ exports[`Firmwares Menu component render correctly 1`] = `
                     <span
                       className="has-text-weight-bold"
                     >
-                      GRID_PROFILES_PACKAGE
+                      GRID_PROFILES_PVS6_PACKAGE
                     </span>
                   </div>
                   <div
@@ -265,7 +265,99 @@ exports[`Firmwares Menu component render correctly 1`] = `
                     <span
                       className="has-text-white"
                     >
-                      YOU_HAVE_THE_LATEST_FIRMWARE GRID_PROFILES_PACKAGE
+                      YOU_HAVE_THE_LATEST_FIRMWARE GRID_PROFILES_PVS6_PACKAGE
+                    </span>
+                  </section>
+                  <section
+                    className="mt-20 mb-10"
+                  >
+                    <p
+                      className="mb-5"
+                    >
+                      <span
+                        className="mr-10 has-text-white has-text-weight-bold"
+                      >
+                        0
+                        %
+                      </span>
+                      <span
+                        className="is-pulled-right has-text-white has-text-weight-bold"
+                      >
+                        NaN
+                         MB
+                      </span>
+                    </p>
+                    <progress
+                      className="progress is-tiny is-white"
+                      max="100"
+                      value={0}
+                    />
+                  </section>
+                </div>
+              </div>
+            </Collapsible>
+          </FileCollapsible>
+          <Separator>
+            <div
+              className="mt-20"
+            />
+          </Separator>
+          <FileCollapsible
+            downloadFile={[Function]}
+            expanded={true}
+            fileName="GRID_PROFILES_PVS5_PACKAGE"
+            isDownloaded={true}
+            isDownloading={true}
+            lastTimeDownloaded={null}
+            size="NaN"
+          >
+            <Collapsible
+              actions={null}
+              expanded={true}
+              title="GRID_PROFILES_PVS5_PACKAGE"
+            >
+              <div
+                className="collapsible"
+              >
+                <div
+                  className="collapsible-header"
+                  onClick={[Function]}
+                >
+                  <div
+                    className="collapsible-title"
+                  >
+                    <span />
+                    <span
+                      className="has-text-weight-bold"
+                    >
+                      GRID_PROFILES_PVS5_PACKAGE
+                    </span>
+                  </div>
+                  <div
+                    className="collapsible-actions"
+                  />
+                  <div
+                    className="collapsible-trigger"
+                  >
+                    <div
+                      className="chevron down"
+                    >
+                      <span
+                        className="sp-chevron-up"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div
+                  className="collapsible-content expanded"
+                >
+                  <section
+                    className="mb-5"
+                  >
+                    <span
+                      className="has-text-white"
+                    >
+                      YOU_HAVE_THE_LATEST_FIRMWARE GRID_PROFILES_PVS5_PACKAGE
                     </span>
                   </section>
                   <section
@@ -527,7 +619,7 @@ exports[`Firmwares component render correctly 1`] = `
             <FileCollapsible
               downloadFile={[Function]}
               expanded={false}
-              fileName="GRID_PROFILES_PACKAGE"
+              fileName="GRID_PROFILES_PVS6_PACKAGE"
               isDownloaded={true}
               isDownloading={true}
               lastTimeDownloaded={null}
@@ -536,7 +628,7 @@ exports[`Firmwares component render correctly 1`] = `
               <Collapsible
                 actions={null}
                 expanded={false}
-                title="GRID_PROFILES_PACKAGE"
+                title="GRID_PROFILES_PVS6_PACKAGE"
               >
                 <div
                   className="collapsible"
@@ -552,7 +644,7 @@ exports[`Firmwares component render correctly 1`] = `
                       <span
                         className="has-text-weight-bold"
                       >
-                        GRID_PROFILES_PACKAGE
+                        GRID_PROFILES_PVS6_PACKAGE
                       </span>
                     </div>
                     <div
@@ -579,7 +671,99 @@ exports[`Firmwares component render correctly 1`] = `
                       <span
                         className="has-text-white"
                       >
-                        YOU_HAVE_THE_LATEST_FIRMWARE GRID_PROFILES_PACKAGE
+                        YOU_HAVE_THE_LATEST_FIRMWARE GRID_PROFILES_PVS6_PACKAGE
+                      </span>
+                    </section>
+                    <section
+                      className="mt-20 mb-10"
+                    >
+                      <p
+                        className="mb-5"
+                      >
+                        <span
+                          className="mr-10 has-text-white has-text-weight-bold"
+                        >
+                          0
+                          %
+                        </span>
+                        <span
+                          className="is-pulled-right has-text-white has-text-weight-bold"
+                        >
+                          NaN
+                           MB
+                        </span>
+                      </p>
+                      <progress
+                        className="progress is-tiny is-white"
+                        max="100"
+                        value={0}
+                      />
+                    </section>
+                  </div>
+                </div>
+              </Collapsible>
+            </FileCollapsible>
+            <Separator>
+              <div
+                className="mt-20"
+              />
+            </Separator>
+            <FileCollapsible
+              downloadFile={[Function]}
+              expanded={false}
+              fileName="GRID_PROFILES_PVS5_PACKAGE"
+              isDownloaded={true}
+              isDownloading={true}
+              lastTimeDownloaded={null}
+              size="NaN"
+            >
+              <Collapsible
+                actions={null}
+                expanded={false}
+                title="GRID_PROFILES_PVS5_PACKAGE"
+              >
+                <div
+                  className="collapsible"
+                >
+                  <div
+                    className="collapsible-header"
+                    onClick={[Function]}
+                  >
+                    <div
+                      className="collapsible-title"
+                    >
+                      <span />
+                      <span
+                        className="has-text-weight-bold"
+                      >
+                        GRID_PROFILES_PVS5_PACKAGE
+                      </span>
+                    </div>
+                    <div
+                      className="collapsible-actions"
+                    />
+                    <div
+                      className="collapsible-trigger"
+                    >
+                      <div
+                        className="chevron"
+                      >
+                        <span
+                          className="sp-chevron-up"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    className="collapsible-content collapsed"
+                  >
+                    <section
+                      className="mb-5"
+                    >
+                      <span
+                        className="has-text-white"
+                      >
+                        YOU_HAVE_THE_LATEST_FIRMWARE GRID_PROFILES_PVS5_PACKAGE
                       </span>
                     </section>
                     <section

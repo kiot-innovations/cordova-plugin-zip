@@ -1,13 +1,6 @@
 import gridProfile from './gridProfile'
 import firmware from './firmware'
 import ess from './EssFirmware'
-import links from './latestUrls'
-import validateDownloadsEpic from './validateFilesEpic'
+import pvsUpdateUrls from './latestUrls'
 
-export default [
-  ...gridProfile,
-  ...firmware,
-  ...ess,
-  ...validateDownloadsEpic,
-  links
-]
+export default [...gridProfile, ...firmware, ...ess, ...pvsUpdateUrls]

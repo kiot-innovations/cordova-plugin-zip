@@ -32,7 +32,12 @@ describe('Firmwares component', () => {
           lastProgress: 0,
           downloading: false
         },
-        gridProfileInfo: {
+        pvs6GridProfileInfo: {
+          progress: 0,
+          lastProgress: 0,
+          lastModified: null
+        },
+        pvs5GridProfileInfo: {
           progress: 0,
           lastProgress: 0,
           lastModified: null
@@ -96,7 +101,12 @@ describe('Firmwares Menu component', () => {
           lastProgress: 0,
           downloading: false
         },
-        gridProfileInfo: {
+        pvs6GridProfileInfo: {
+          progress: 0,
+          lastProgress: 0,
+          lastModified: null
+        },
+        pvs5GridProfileInfo: {
           progress: 0,
           lastProgress: 0,
           lastModified: null

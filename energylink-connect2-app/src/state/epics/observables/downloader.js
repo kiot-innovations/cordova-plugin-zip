@@ -34,7 +34,7 @@ const fileTransferObservable = ({
   url,
   retry = false,
   accessToken,
-  fileExtention,
+  fileExtension,
   headers = ['']
 }) =>
   new Observable(subscriber => {
@@ -51,7 +51,7 @@ const fileTransferObservable = ({
 
     fileExists(path).then(async entry => {
       if (retry) await deleteFile(path)
-      if (!entry) await deleteFilesDirectory(path, fileExtention)
+      if (!entry) await deleteFilesDirectory(path, fileExtension)
       if (!entry || retry) {
         const xhr = new XMLHttpRequest()
         xhr.open('GET', url, true)

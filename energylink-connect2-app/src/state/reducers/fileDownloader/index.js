@@ -4,7 +4,8 @@ import storage from 'redux-persist/lib/storage'
 
 import fileInfo from './info'
 import progress from './progress'
-import gridProfileInfo from './gridProfileInfo'
+import pvs6GridProfileInfo from './pvs6GridProfileInfo'
+import pvs5GridProfileInfo from './pvs5GridProfileInfo'
 import settings from './downloadSettings'
 import verification from './verification'
 
@@ -18,7 +19,8 @@ export default combineReducers({
     },
     fileInfo
   ),
-  gridProfileInfo,
+  pvs6GridProfileInfo,
+  pvs5GridProfileInfo,
   settings,
   verification
 })

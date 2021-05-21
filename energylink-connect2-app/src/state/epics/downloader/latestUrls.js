@@ -9,45 +9,36 @@ import {
   DOWNLOAD_URLS_UPDATED,
   PVS_FIRMWARE_DOWNLOAD_INIT
 } from 'state/actions/fileDownloader'
-import { GRID_PROFILE_DOWNLOAD_INIT } from 'state/actions/gridProfileDownloader'
+import {
+  PVS6_GRID_PROFILE_DOWNLOAD_INIT,
+  PVS5_GRID_PROFILE_DOWNLOAD_INIT
+} from 'state/actions/gridProfileDownloader'
 
 export const pvsUpdateUrl$ = new ReplaySubject(1)
-export const gridProfileUpdateUrl$ = new ReplaySubject(1)
+export const pvs6GridProfileUpdateUrl$ = new ReplaySubject(1)
+export const pvs5GridProfileUpdateUrl$ = new ReplaySubject(1)
 export const essUpdateUrl$ = new ReplaySubject(1)
 
 export const waitForObservable = observable$ =>
   mergeMap(action => combineLatest([from([action]), observable$]))
 
-/**
- * The decision in why this rxjs way of the architecture instead of the redux way is
- * because of the benefits of using withLatestFrom, the downloads will not proceed
- * until there is a value inside the observable.
- * @param action$
- * @return {*}
- */
-const getTheLatestURL = (action$, state$) =>
+const getPvs6UpdateUrls = (action$, state$) =>
   action$.pipe(
     ofType(
       PVS_FIRMWARE_DOWNLOAD_INIT.getType(),
-      GRID_PROFILE_DOWNLOAD_INIT.getType(),
+      PVS6_GRID_PROFILE_DOWNLOAD_INIT.getType(),
       DOWNLOAD_OS_INIT.getType()
     ),
     exhaustMap(() =>
       from(
-        fetch(process.env.REACT_APP_HARDWARE_URLS).then(res => res.text())
+        fetch(process.env.REACT_APP_PVS6_HARDWARE_URLS).then(response =>
+          response.json()
+        )
       ).pipe(
-        /**
-         * The reason for the weird try/catch inside this map is because we need to ba able to check if the endpoint gives us the latest version or the previous one.
-         * Example of the "old" response
-         *      https://fw-assets-pvs6-dev.dev-edp.sunpower.com/staging-prod-cylon/8133/fwup/fwup.lua
-         * Example of the "new" response
-         *     {
-         *      "pvs": "https://fw-assets-pvs6-dev.dev-edp.sunpower.com/staging-prod-cylon/8133/fwup/fwup.lua",
-         *      "ess": "https://prod-jfrog-artifactory-proxy-oauth2.p2e.io/spfw/pvs-connected-devices-firmware/chief_hopper/ChiefHopper.zip",
-         *      "gp": "https://s3-us-west-2.amazonaws.com/2oduso0/gridprofiles/v2/gridprofiles.tar.gz"
-         *     }
-         */
-        map(text => {
+        map(urls => {
+          const { gp } = urls
+          let { pvs, ess } = urls
+
           const essUpdateOverrideURL = pathOr(
             false,
             ['value', 'fileDownloader', 'settings', 'essUpdateOverride', 'url'],
@@ -59,59 +50,75 @@ const getTheLatestURL = (action$, state$) =>
             state$
           )
 
-          //TODO - Do we still need to have compatibility with the old response format?
-          //TODO - Trillo, what's happening here? -Alvin y Fer
-          try {
-            let { pvs, ess, gp } = JSON.parse(text)
-
-            if (essUpdateOverrideURL) {
-              ess = essUpdateOverrideURL
-            }
-
-            if (pvsUpdateOverrideURL) {
-              pvs = pvsUpdateOverrideURL
-            }
-
-            localStorage.setItem('pvs-url', pvs)
-            localStorage.setItem('ess-url', ess)
-            localStorage.setItem('gp-url', gp)
-
-            pvsUpdateUrl$.next(pvs)
-            essUpdateUrl$.next(ess)
-            gridProfileUpdateUrl$.next(gp)
-
-            return DOWNLOAD_URLS_UPDATED()
-          } catch (e) {
-            localStorage.setItem('pvs-url', text)
-
-            pvsUpdateUrl$.next(
-              pvsUpdateOverrideURL ? pvsUpdateOverrideURL : text
-            )
-            gridProfileUpdateUrl$.next(process.env.REACT_APP_GRID_PROFILE_URL)
-            essUpdateUrl$.next(
-              essUpdateOverrideURL
-                ? essUpdateOverrideURL
-                : process.env.REACT_APP_ESS_DOWNLOAD_URL
-            )
-
-            return DOWNLOAD_URLS_UPDATED()
+          if (essUpdateOverrideURL) {
+            ess = essUpdateOverrideURL
           }
+          if (pvsUpdateOverrideURL) {
+            pvs = pvsUpdateOverrideURL
+          }
+
+          localStorage.setItem('pvs-url', pvs)
+          localStorage.setItem('ess-url', ess)
+          localStorage.setItem('pvs6-gp-url', gp)
+
+          pvsUpdateUrl$.next(pvs)
+          essUpdateUrl$.next(ess)
+          pvs6GridProfileUpdateUrl$.next(gp)
+
+          return DOWNLOAD_URLS_UPDATED('PVS6')
         }),
-        catchError(err => {
+        catchError(error => {
           const pvs = localStorage.getItem('pvs-url')
           const ess = localStorage.getItem('ess-url')
-          const gp = localStorage.getItem('gp-url')
+          const gp = localStorage.getItem('pvs6-gp-url')
 
           if (pvs === null || ess === null || gp === null) {
-            Sentry.captureException(err)
-            return of({ type: 'NO UPDATE URL :(' })
+            Sentry.captureException(error)
+            return of({ type: 'ERROR GETTING PVS6 UPDATE URLs' })
           }
+
           pvsUpdateUrl$.next(pvs)
-          gridProfileUpdateUrl$.next(gp)
           essUpdateUrl$.next(ess)
-          return of(DOWNLOAD_URLS_UPDATED())
+          pvs6GridProfileUpdateUrl$.next(gp)
+
+          return of(DOWNLOAD_URLS_UPDATED('PVS6'))
         })
       )
     )
   )
-export default getTheLatestURL
+
+const getPvs5UpdateUrls = (action$, state$) =>
+  action$.pipe(
+    ofType(PVS5_GRID_PROFILE_DOWNLOAD_INIT.getType()),
+    exhaustMap(() =>
+      from(
+        fetch(process.env.REACT_APP_PVS5_HARDWARE_URLS).then(response =>
+          response.json()
+        )
+      ).pipe(
+        map(urls => {
+          const { gp } = urls
+
+          localStorage.setItem('pvs5-gp-url', gp)
+
+          pvs5GridProfileUpdateUrl$.next(gp)
+
+          return DOWNLOAD_URLS_UPDATED('PVS5')
+        }),
+        catchError(error => {
+          const gp = localStorage.getItem('pvs5-gp-url')
+
+          if (gp === null) {
+            Sentry.captureException(error)
+            return of({ type: 'ERROR GETTING PVS5 UPDATE URLs' })
+          }
+
+          pvs5GridProfileUpdateUrl$.next(gp)
+
+          return of(DOWNLOAD_URLS_UPDATED('PVS5'))
+        })
+      )
+    )
+  )
+
+export default [getPvs6UpdateUrls, getPvs5UpdateUrls]

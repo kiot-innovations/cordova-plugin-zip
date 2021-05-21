@@ -1,55 +1,96 @@
 import { propOr } from 'ramda'
 import { forkJoin, from, of, EMPTY } from 'rxjs'
-import { catchError, exhaustMap, map, withLatestFrom } from 'rxjs/operators'
+import {
+  catchError,
+  exhaustMap,
+  map,
+  withLatestFrom,
+  tap
+} from 'rxjs/operators'
 import { ofType } from 'redux-observable'
 import * as Sentry from '@sentry/browser'
 
 import {
-  GRID_PROFILE_DOWNLOAD_ERROR,
-  GRID_PROFILE_DOWNLOAD_INIT,
-  GRID_PROFILE_DOWNLOAD_PROGRESS,
-  GRID_PROFILE_DOWNLOAD_SUCCESS,
-  GRID_PROFILE_REPORT_SUCCESS
+  PVS6_GRID_PROFILE_DOWNLOAD_INIT,
+  PVS6_GRID_PROFILE_DOWNLOAD_PROGRESS,
+  PVS6_GRID_PROFILE_DOWNLOAD_SUCCESS,
+  PVS6_GRID_PROFILE_REPORT_SUCCESS,
+  PVS6_GRID_PROFILE_DOWNLOAD_ERROR,
+  PVS5_GRID_PROFILE_DOWNLOAD_INIT,
+  PVS5_GRID_PROFILE_DOWNLOAD_PROGRESS,
+  PVS5_GRID_PROFILE_DOWNLOAD_SUCCESS,
+  PVS5_GRID_PROFILE_REPORT_SUCCESS,
+  PVS5_GRID_PROFILE_DOWNLOAD_ERROR
 } from 'state/actions/gridProfileDownloader'
 import { ERROR_CODES, getFileInfo, getFileNameFromURL } from 'shared/fileSystem'
 import fileTransferObservable from 'state/epics/observables/downloader'
 import { getExpectedMD5, hasInternetConnection } from 'shared/utils'
 import { getMd5FromFile } from 'shared/cordovaMapping'
 import { EMPTY_ACTION } from 'state/actions/share'
-import { gridProfileUpdateUrl$ } from 'state/epics/downloader/latestUrls'
-import { waitForObservable } from './latestUrls'
+import {
+  pvs6GridProfileUpdateUrl$,
+  pvs5GridProfileUpdateUrl$,
+  waitForObservable
+} from './latestUrls'
 
-export const initDownloadGridProfileEpic = action$ =>
+export const initDownloadPvs6GridProfileEpic = action$ =>
   action$.pipe(
-    ofType(GRID_PROFILE_DOWNLOAD_INIT.getType()),
-    waitForObservable(gridProfileUpdateUrl$),
+    ofType(PVS6_GRID_PROFILE_DOWNLOAD_INIT.getType()),
+    waitForObservable(pvs6GridProfileUpdateUrl$), // Download won't start until the observable contains a value
     exhaustMap(([action, gridProfileUrl]) =>
       fileTransferObservable({
-        path: `firmware/${getFileNameFromURL(gridProfileUrl)}`,
+        path: `firmware/pvs6-${getFileNameFromURL(gridProfileUrl)}`,
         url: gridProfileUrl,
         retry: propOr(false, 'payload', action),
-        fileExtention: 'gz'
+        fileExtension: 'gz'
       }).pipe(
         map(({ entry, progress }) =>
           progress
-            ? GRID_PROFILE_DOWNLOAD_PROGRESS(progress)
-            : GRID_PROFILE_REPORT_SUCCESS(`firmware/${entry.name}`)
+            ? PVS6_GRID_PROFILE_DOWNLOAD_PROGRESS(progress)
+            : PVS6_GRID_PROFILE_REPORT_SUCCESS(`firmware/${entry.name}`)
         ),
         catchError(err => {
           Sentry.addBreadcrumb({
-            message: 'Downloading grid profile'
+            message: 'Error occurred while downloading grid profiles for PVS6'
           })
           Sentry.captureException(err)
-          return of(GRID_PROFILE_DOWNLOAD_ERROR(err))
+          return of(PVS6_GRID_PROFILE_DOWNLOAD_ERROR(err))
         })
       )
     )
   )
 
-export const gridProfileReportSuccessEpic = action$ =>
+export const initDownloadPvs5GridProfileEpic = action$ =>
   action$.pipe(
-    ofType(GRID_PROFILE_REPORT_SUCCESS.getType()),
-    withLatestFrom(gridProfileUpdateUrl$),
+    ofType(PVS5_GRID_PROFILE_DOWNLOAD_INIT.getType()),
+    waitForObservable(pvs5GridProfileUpdateUrl$), // Download won't start until the observable contains a value
+    exhaustMap(([action, gridProfileUrl]) =>
+      fileTransferObservable({
+        path: `firmware/pvs5-${getFileNameFromURL(gridProfileUrl)}`,
+        url: gridProfileUrl,
+        retry: propOr(false, 'payload', action),
+        fileExtension: 'gz'
+      }).pipe(
+        map(({ entry, progress }) =>
+          progress
+            ? PVS5_GRID_PROFILE_DOWNLOAD_PROGRESS(progress)
+            : PVS5_GRID_PROFILE_REPORT_SUCCESS(`firmware/${entry.name}`)
+        ),
+        catchError(err => {
+          Sentry.addBreadcrumb({
+            message: 'Error occurred while downloading grid profiles for PVS5'
+          })
+          Sentry.captureException(err)
+          return of(PVS5_GRID_PROFILE_DOWNLOAD_ERROR(err))
+        })
+      )
+    )
+  )
+
+export const pvs6GridProfileReportSuccessEpic = action$ =>
+  action$.pipe(
+    ofType(PVS6_GRID_PROFILE_REPORT_SUCCESS.getType()),
+    withLatestFrom(pvs6GridProfileUpdateUrl$),
     exhaustMap(([{ payload }, gridProfileURl]) =>
       forkJoin([
         from(getFileInfo(payload)),
@@ -58,29 +99,88 @@ export const gridProfileReportSuccessEpic = action$ =>
       ]).pipe(
         map(([{ size, lastModified }, fileMd5, expectedMd5]) =>
           fileMd5 === expectedMd5
-            ? GRID_PROFILE_DOWNLOAD_SUCCESS({ size, lastModified })
-            : GRID_PROFILE_DOWNLOAD_ERROR({
+            ? PVS6_GRID_PROFILE_DOWNLOAD_SUCCESS({ size, lastModified })
+            : PVS6_GRID_PROFILE_DOWNLOAD_ERROR({
                 error: ERROR_CODES.MD5_NOT_MATCHING,
                 retry: false
               })
         ),
         catchError(err => {
-          Sentry.addBreadcrumb({ message: 'epic grid profile report success' })
+          Sentry.addBreadcrumb({
+            message: 'Error occurred while verifying grid profiles for PVS6'
+          })
           Sentry.captureException(err)
-          return of(GRID_PROFILE_DOWNLOAD_ERROR({ error: err, retry: true }))
+          return of(
+            PVS6_GRID_PROFILE_DOWNLOAD_ERROR({ error: err, retry: true })
+          )
         })
       )
     )
   )
 
-export const gridProfileManageErrorsEpic = action$ =>
+export const pvs5GridProfileReportSuccessEpic = action$ =>
   action$.pipe(
-    ofType(GRID_PROFILE_DOWNLOAD_ERROR.getType()),
+    ofType(PVS5_GRID_PROFILE_REPORT_SUCCESS.getType()),
+    withLatestFrom(pvs5GridProfileUpdateUrl$),
+    exhaustMap(([{ payload }, gridProfileURl]) =>
+      forkJoin([
+        from(getFileInfo(payload)),
+        from(getMd5FromFile(payload)),
+        from(getExpectedMD5(gridProfileURl))
+      ]).pipe(
+        tap(console.warn),
+        map(([{ size, lastModified }, fileMd5, expectedMd5]) =>
+          fileMd5 === expectedMd5
+            ? PVS5_GRID_PROFILE_DOWNLOAD_SUCCESS({ size, lastModified })
+            : PVS5_GRID_PROFILE_DOWNLOAD_ERROR({
+                error: ERROR_CODES.MD5_NOT_MATCHING,
+                retry: false
+              })
+        ),
+        catchError(err => {
+          Sentry.addBreadcrumb({
+            message: 'Error occurred while verifying grid profiles for PVS5'
+          })
+          Sentry.captureException(err)
+          return of(
+            PVS5_GRID_PROFILE_DOWNLOAD_ERROR({ error: err, retry: true })
+          )
+        })
+      )
+    )
+  )
+
+export const pvs6GridProfileManageErrorsEpic = action$ =>
+  action$.pipe(
+    ofType(PVS6_GRID_PROFILE_DOWNLOAD_ERROR.getType()),
     exhaustMap(({ payload: { retry, error } }) =>
       from(hasInternetConnection()).pipe(
-        map(() => (retry ? GRID_PROFILE_DOWNLOAD_INIT(true) : EMPTY_ACTION())),
+        map(() =>
+          retry ? PVS6_GRID_PROFILE_DOWNLOAD_INIT(true) : EMPTY_ACTION()
+        ),
         catchError(err => {
-          Sentry.addBreadcrumb({ message: 'GRID_PROFILE_DOWNLOAD_ERROR' })
+          Sentry.addBreadcrumb({
+            message: 'Error downloading grid profiles for PVS6'
+          })
+          Sentry.captureException(err)
+          return EMPTY
+        })
+      )
+    )
+  )
+
+export const pvs5GridProfileManageErrorsEpic = action$ =>
+  action$.pipe(
+    ofType(PVS5_GRID_PROFILE_DOWNLOAD_ERROR.getType()),
+    exhaustMap(({ payload: { retry, error } }) =>
+      from(hasInternetConnection()).pipe(
+        map(() =>
+          retry ? PVS5_GRID_PROFILE_DOWNLOAD_INIT(true) : EMPTY_ACTION()
+        ),
+        catchError(err => {
+          Sentry.addBreadcrumb({
+            message: 'Error downloading grid profiles for PVS5'
+          })
           Sentry.captureException(err)
           return EMPTY
         })
@@ -89,7 +189,10 @@ export const gridProfileManageErrorsEpic = action$ =>
   )
 
 export default [
-  initDownloadGridProfileEpic,
-  gridProfileReportSuccessEpic,
-  gridProfileManageErrorsEpic
+  initDownloadPvs6GridProfileEpic,
+  initDownloadPvs5GridProfileEpic,
+  pvs6GridProfileReportSuccessEpic,
+  pvs5GridProfileReportSuccessEpic,
+  pvs6GridProfileManageErrorsEpic,
+  pvs5GridProfileManageErrorsEpic
 ]

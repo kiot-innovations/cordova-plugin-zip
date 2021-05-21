@@ -218,14 +218,14 @@ export const getFullPath = compose(join('/'), tail, split('/'))
 
 export async function deleteFilesDirectory(
   directory,
-  fileExtentionDelete = ''
+  fileExtensionDelete = ''
 ) {
   if (!directory) throw new Error('Please specify a directory')
   try {
     const fileEntries = await listDir(getDirPath(directory))
     for (const file of fileEntries) {
       if (!file.isFile) continue
-      if (getFileExtension(file.fullPath) === fileExtentionDelete) {
+      if (getFileExtension(file.fullPath) === fileExtensionDelete) {
         await deleteFile(getFullPath(file.fullPath))
       }
     }

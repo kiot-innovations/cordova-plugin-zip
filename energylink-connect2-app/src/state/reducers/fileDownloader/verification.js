@@ -1,9 +1,5 @@
 import { createReducer } from 'redux-act'
 import {
-  FILES_VERIFY,
-  FILES_VERIFY_GP_COMPLETED,
-  FILES_VERIFY_ESS_COMPLETED,
-  FILES_VERIFY_PVS_COMPLETED,
   PVS_FIRMWARE_DOWNLOAD_INIT,
   PVS_FIRMWARE_DOWNLOAD_ERROR,
   PVS_DECOMPRESS_LUA_FILES_SUCCESS,
@@ -15,42 +11,41 @@ import {
   DOWNLOAD_OS_SUCCESS
 } from 'state/actions/ess'
 import {
-  GRID_PROFILE_DOWNLOAD_ERROR,
-  GRID_PROFILE_DOWNLOAD_INIT,
-  GRID_PROFILE_DOWNLOAD_SUCCESS
+  PVS6_GRID_PROFILE_DOWNLOAD_INIT,
+  PVS6_GRID_PROFILE_DOWNLOAD_SUCCESS,
+  PVS6_GRID_PROFILE_DOWNLOAD_ERROR,
+  PVS5_GRID_PROFILE_DOWNLOAD_INIT,
+  PVS5_GRID_PROFILE_DOWNLOAD_SUCCESS,
+  PVS5_GRID_PROFILE_DOWNLOAD_ERROR
 } from 'state/actions/gridProfileDownloader'
 
 const initialState = {
-  gpVerified: null,
-  pvsVerified: null,
-  essVerified: null,
-  gpDownloading: false,
+  pvs6GpDownloading: false,
+  pvs5GpDownloading: false,
   pvsDownloading: false,
   essDownloading: false
 }
 
 export default createReducer(
   {
-    [FILES_VERIFY]: () => initialState,
-    [FILES_VERIFY_GP_COMPLETED]: (state, gpVerified) => ({
+    [PVS6_GRID_PROFILE_DOWNLOAD_INIT]: state => ({
       ...state,
-      gpVerified
+      pvs6GpDownloading: true
     }),
-    [FILES_VERIFY_ESS_COMPLETED]: (state, essVerified) => ({
+    [PVS5_GRID_PROFILE_DOWNLOAD_INIT]: state => ({
       ...state,
-      essVerified
+      pvs5GpDownloading: true
     }),
-    [FILES_VERIFY_PVS_COMPLETED]: (state, pvsVerified) => ({
-      ...state,
-      pvsVerified
-    }),
-    [GRID_PROFILE_DOWNLOAD_INIT]: state => ({ ...state, gpDownloading: true }),
     [DOWNLOAD_OS_INIT]: state => ({ ...state, essDownloading: true }),
     [PVS_FIRMWARE_DOWNLOAD_INIT]: state => ({ ...state, pvsDownloading: true }),
 
-    [GRID_PROFILE_DOWNLOAD_ERROR]: state => ({
+    [PVS6_GRID_PROFILE_DOWNLOAD_ERROR]: state => ({
       ...state,
-      gpDownloading: false
+      pvs6GpDownloading: false
+    }),
+    [PVS5_GRID_PROFILE_DOWNLOAD_ERROR]: state => ({
+      ...state,
+      pvs5GpDownloading: false
     }),
     [DOWNLOAD_OS_ERROR]: state => ({ ...state, essDownloading: false }),
     [PVS_FIRMWARE_DOWNLOAD_ERROR]: state => ({
@@ -61,9 +56,13 @@ export default createReducer(
       ...state,
       pvsDownloading: false
     }),
-    [GRID_PROFILE_DOWNLOAD_SUCCESS]: state => ({
+    [PVS6_GRID_PROFILE_DOWNLOAD_SUCCESS]: state => ({
       ...state,
-      gpDownloading: false
+      pvs6GpDownloading: false
+    }),
+    [PVS5_GRID_PROFILE_DOWNLOAD_SUCCESS]: state => ({
+      ...state,
+      pvs5GpDownloading: false
     }),
     [DOWNLOAD_OS_SUCCESS]: state => ({ ...state, essDownloading: false }),
     [PVS_DECOMPRESS_LUA_FILES_SUCCESS]: state => ({

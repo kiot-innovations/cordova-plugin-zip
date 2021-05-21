@@ -43,6 +43,7 @@ import {
   startsWith,
   toPairs,
   toUpper,
+  trim,
   values,
   when
 } from 'ramda'
@@ -119,7 +120,8 @@ export const isDownloadingFiles = state =>
   any(equals(true), [
     path(['fileDownloader', 'progress', 'downloading'], state),
     path(['ess', 'isDownloading'], state),
-    pathEq(['fileDownloader', 'gridProfileInfo', 'progress'], '100', state)
+    pathEq(['fileDownloader', 'pvs6GridProfileInfo', 'progress'], '100', state),
+    pathEq(['fileDownloader', 'pvs5GridProfileInfo', 'progress'], '100', state)
   ])
 
 export const waitFor = (ms = 0) =>
@@ -372,7 +374,13 @@ export const generatePassword = serialNumber => {
     serialNumber.substring(lastIndex - 4, lastIndex)
   return password
 }
-export const parseMD5FromResponse = compose(head, split(' '))
+const removeCarriageReturn = replace(/[\n\r]+/gi, '')
+export const parseMD5FromResponse = compose(
+  trim,
+  removeCarriageReturn,
+  head,
+  split(' ')
+)
 export const renameExtension = replace(/\.tar\.gz$/, '.md5')
 
 export const getExpectedMD5 = async url => {
@@ -482,4 +490,13 @@ export const createMeterConfig = (devicesList, meterConfig, site) => {
       devices: updatedDevices
     }
   }
+}
+export const isPvs5 = pathEq(['value', 'pvs', 'model'], 'PVS5')
+
+export const getGPDownloadError = state$ => {
+  const pvsGridProfileInfo = isPvs5(state$)
+    ? 'pvs5GridProfileInfo'
+    : 'pvs6GridProfileInfo'
+
+  return path(['value', 'fileDownloader', pvsGridProfileInfo, 'error'], state$)
 }

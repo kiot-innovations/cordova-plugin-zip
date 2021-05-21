@@ -11,15 +11,15 @@
   &-warning {
     border: 2px solid $sun;
   }
-  
+
   &-success {
     border: 2px solid $success-green;
   }
-  
+
   &-error {
     border: 2px solid $error-red;
   }
-  
+
   &-info {
     border: 2px solid $earth;
   }
@@ -29,7 +29,7 @@
     max-width: 100%;
 
     .icon-warning {
-      color: $sun
+      color: $sun;
     }
 
     .icon-success {

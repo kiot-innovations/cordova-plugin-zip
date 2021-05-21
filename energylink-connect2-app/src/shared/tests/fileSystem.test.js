@@ -67,7 +67,7 @@ describe('getFirmwareVersionData', () => {
   })
 })
 
-describe('getFileExtention function', () => {
+describe('getFileExtension function', () => {
   it('should return the extension without the dot', () => {
     expect(getFileExtension('new-file.zip')).toBe('zip')
     expect(getFileExtension('new-file.mp4.gz')).toBe('gz')

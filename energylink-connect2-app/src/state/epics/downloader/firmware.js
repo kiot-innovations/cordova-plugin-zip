@@ -96,7 +96,7 @@ export const downloadPVSFirmware = action$ =>
         path: `firmware/${pvsFileSystemName}`,
         url: getFileSystemFromLuaFile(fileURL),
         retry: shouldRetry,
-        fileExtention: 'fs'
+        fileExtension: 'fs'
       }).pipe(
         map(({ progress, total, step }) =>
           progress

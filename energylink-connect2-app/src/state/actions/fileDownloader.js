@@ -40,14 +40,3 @@ export const DEFAULT_ALL_UPDATE_OVERRIDES = createAction(
   'DEFAULT_ALL_UPDATE_OVERRIDES'
 )
 export const DOWNLOAD_URLS_UPDATED = createAction('DOWNLOAD_URLS_UPDATED')
-export const FILES_VERIFY = createAction('FILES_VERIFY')
-export const FILES_VERIFY_FAILED = createAction('FILES_VERIFY_FAILED')
-export const FILES_VERIFY_GP_COMPLETED = createAction(
-  'FILES_VERIFY_GP_COMPLETED'
-)
-export const FILES_VERIFY_ESS_COMPLETED = createAction(
-  'FILES_VERIFY_ESS_COMPLETED'
-)
-export const FILES_VERIFY_PVS_COMPLETED = createAction(
-  'FILES_VERIFY_PVS_COMPLETED'
-)

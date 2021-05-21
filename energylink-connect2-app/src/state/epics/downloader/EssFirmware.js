@@ -47,7 +47,7 @@ const downloadOSZipEpic = (action$, state$) => {
         retry: shouldRetry(payload),
         accessToken: getAccessToken(state$.value),
         headers: ['x-amz-meta-md5-hash', 'x-checksum-md5'],
-        fileExtention: 'zip'
+        fileExtension: 'zip'
       }).pipe(
         map(({ entry, progress, total, serverHeaders, step }) =>
           progress

@@ -19,7 +19,10 @@ import {
   FETCH_STATUS_MESSAGES
 } from 'state/actions/global'
 import { PVS_FIRMWARE_DOWNLOAD_INIT } from 'state/actions/fileDownloader'
-import { GRID_PROFILE_DOWNLOAD_INIT } from 'state/actions/gridProfileDownloader'
+import {
+  PVS6_GRID_PROFILE_DOWNLOAD_INIT,
+  PVS5_GRID_PROFILE_DOWNLOAD_INIT
+} from 'state/actions/gridProfileDownloader'
 import { CHECK_BLUETOOTH_STATUS_INIT } from 'state/actions/network'
 
 import paths from 'routes/paths'
@@ -53,7 +56,8 @@ function Home() {
   useEffect(() => {
     dispatch(CHECK_BLUETOOTH_STATUS_INIT())
     dispatch(PVS_FIRMWARE_DOWNLOAD_INIT())
-    dispatch(GRID_PROFILE_DOWNLOAD_INIT())
+    dispatch(PVS6_GRID_PROFILE_DOWNLOAD_INIT())
+    dispatch(PVS5_GRID_PROFILE_DOWNLOAD_INIT())
     dispatch(CHECK_APP_UPDATE_INIT())
     dispatch(FETCH_MODELS_INIT())
     dispatch(FETCH_STATUS_MESSAGES())
