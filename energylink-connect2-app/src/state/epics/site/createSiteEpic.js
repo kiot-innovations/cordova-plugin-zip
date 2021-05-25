@@ -28,11 +28,15 @@ const getOrDefaultParentPartnerId = ifElse(
   identity
 )
 
+const getAPI = o =>
+  path(['apis', '/v2', 'createSiteMDS'], o) ||
+  path(['apis', 'default', 'post_v1_site'], o)
+
 const postCreateSite = curry((access_token, { parentPartyId }, payload) =>
   getApiSite(access_token)
-    .then(path(['apis', 'default']))
-    .then(api =>
-      api.post_v1_site(
+    .then(getAPI)
+    .then(createSite =>
+      createSite(
         {},
         {
           requestBody: {
