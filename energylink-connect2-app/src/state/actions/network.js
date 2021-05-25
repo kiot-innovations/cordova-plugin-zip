@@ -10,12 +10,8 @@ export const PVS_CONNECTION_CLOSE_FINISHED = createAction(
 export const PVS_CLEAR_ERROR = createAction('PVS_CLEAR_ERROR')
 export const STOP_NETWORK_POLLING = createAction('STOP_NETWORK_POLLING')
 export const WAIT_FOR_SWAGGER = createAction('WAIT_FOR_SWAGGER')
-export const WAITING_FOR_SWAGGER = createAction('WAITING_FOR_SWAGGER')
-export const GET_AVAILABLE_NETWORKS = createAction('GET AVAILABLE NETWORKS')
 export const RESET_PVS_CONNECTION = createAction('RESET_PVS_CONNECTION')
-export const STOP_POLLING_AVAILABLE_NETWORKS = createAction(
-  'GET AVAILABLE NETWORKS'
-)
+
 export const clearPVSErr = () => {
   return async dispatch => {
     dispatch(PVS_CLEAR_ERROR())
@@ -64,7 +60,6 @@ export const CHECK_PERMISSIONS_SUCCESS = createAction(
 )
 export const CHECK_PERMISSIONS_ERROR = createAction('CHECK_PERMISSIONS_ERROR')
 
-export const BLE_POLL_INIT = createAction('BLE_POLL_INIT')
 export const BLE_GET_DEVICES = createAction('BLE_GET_DEVICES')
 export const BLE_UPDATE_DEVICES = createAction('BLE_UPDATE_DEVICES')
 export const BLE_GET_DEVICES_ERROR = createAction('BLE_GET_DEVICES_ERROR')

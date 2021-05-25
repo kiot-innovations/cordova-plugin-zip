@@ -74,9 +74,14 @@ function GridBehaviorWidget() {
     fetchingGridBehavior === true
 
   useEffect(() => {
-    if (isEmpty(profiles) && !uploadingOrFetchingProfiles)
+    if (
+      isEmpty(profiles) &&
+      !uploadingOrFetchingProfiles &&
+      status !== fwupStatus.ERROR_GRID_PROFILE
+    ) {
       dispatch(FETCH_GRID_BEHAVIOR())
-  }, [dispatch, profiles, uploadingOrFetchingProfiles])
+    }
+  }, [dispatch, profiles, uploadingOrFetchingProfiles, status])
 
   useEffect(() => {
     if (!prop('gridVoltage', selectedOptions)) {

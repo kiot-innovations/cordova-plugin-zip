@@ -3,9 +3,11 @@ import {
   PERSIST_DATA_PATH,
   headersToObj,
   getUrl,
+  isActionError,
   getElapsedTime
 } from './utils'
 import { equals } from 'ramda'
+import { createAction } from 'redux-act'
 
 describe("The variables that shouldn't change", () => {
   it('should not change, PERSIST DATA PATH', function() {
@@ -67,5 +69,15 @@ describe('getElapsedTime function', () => {
     const elapsedTime = getElapsedTime(null)
 
     expect(elapsedTime).toBe(0)
+  })
+})
+
+describe('Is ActionError function', function() {
+  const TEST_ACTION = createAction('TEST ACTION')
+  it('should return true in case the redux action is dispatches as error', function() {
+    expect(isActionError(TEST_ACTION.asError({ hello: 'world' }))).toBe(true)
+  })
+  it('should return false in case the redux action is dispatches normally', function() {
+    expect(isActionError(TEST_ACTION({ hello: 'world' }))).toBe(false)
   })
 })

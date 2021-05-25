@@ -7,11 +7,16 @@
     ],
     "example": {
       "versionNumber": "x.x.x",
-      "releaseDate": "2021-04-20",
+      "releaseDate": "2021-05-24",
       "bodyMarkdown": "# TBD"
     }
   },
   "versions": [
+    {
+      "versionNumber": "6.107.10",
+      "releaseDate": "2021-04-20",
+      "bodyMarkdown": "# Bug fixes\n - The firmware update screen will no longer freeze and will allow you to proceed with commissioning without requiring you to restart the App."
+    },
     {
       "versionNumber": "6.107.7",
       "releaseDate": "2021-05-11",

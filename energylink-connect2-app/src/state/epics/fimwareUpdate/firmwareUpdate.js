@@ -1,9 +1,10 @@
 import * as Sentry from '@sentry/browser'
-import { path, pick } from 'ramda'
+import { path, pick, propOr } from 'ramda'
 import { ofType } from 'redux-observable'
 import { concat, from, of, timer } from 'rxjs'
 import {
   catchError,
+  retryWhen,
   exhaustMap,
   map,
   mergeMap,
@@ -14,6 +15,8 @@ import { ERROR_CODES } from 'shared/fileSystem'
 import { translate } from 'shared/i18n'
 import { sendCommandToPVS } from 'shared/PVSUtils'
 import { getPVSVersionNumber, waitFor } from 'shared/utils'
+import genericRetryStrategy from 'shared/rxjs/genericRetryStrategy'
+
 import {
   getFirmwareUpgradePackageURL,
   startWebserver,
@@ -129,8 +132,7 @@ export const initFirmwareDownload = (action$, state$) =>
     )
   )
 
-export const firmwarePollStatus = (action$, state$) => {
-  const t = translate(state$.value.language)
+export const firmwarePollStatus = action$ => {
   const stopPolling$ = action$.pipe(
     ofType(FIRMWARE_UPDATE_POLL_STOP.getType(), FIRMWARE_UPDATE_ERROR.getType())
   )
@@ -140,18 +142,17 @@ export const firmwarePollStatus = (action$, state$) => {
       timer(0, 1500).pipe(
         takeUntil(stopPolling$),
         exhaustMap(() => from(sendCommandToPVS('GetFWUpgradeStatus'))),
-        map(status => {
-          return path(['STATE'], status) === 'complete'
+        map(status =>
+          propOr('complete', 'STATE', status) === 'complete'
             ? FIRMWARE_UPDATE_POLL_STOP()
             : FIRMWARE_UPDATE_POLLING(pick(['STATE', 'PERCENT'], status))
-        }),
-        catchError(() => {
-          const firmware = getFirmwareFromState(state$)
-          const errorMsg = t('ERROR_POLLING_UPGRADE', firmware)
-          Sentry.captureException(new Error(errorMsg))
-
-          return of(FIRMWARE_UPDATE_POLL_STOP())
-        })
+        ),
+        retryWhen(
+          genericRetryStrategy({
+            maxRetryAttempts: 90,
+            shouldScaleTime: false
+          })
+        )
       )
     )
   )
@@ -160,7 +161,7 @@ export const firmwarePollStatus = (action$, state$) => {
 const firmwareWaitForWifi = (action$, state$) =>
   action$.pipe(
     ofType(FIRMWARE_UPDATE_POLL_STOP.getType()),
-    exhaustMap(() =>
+    exhaustMap(
       concat(
         of(STOP_NETWORK_POLLING()),
         of(FIRMWARE_UPDATE_WAITING_FOR_NETWORK()),

@@ -491,6 +491,9 @@ export const createMeterConfig = (devicesList, meterConfig, site) => {
     }
   }
 }
+
+export const isActionError = propEq('error', true)
+
 export const isPvs5 = pathEq(['value', 'pvs', 'model'], 'PVS5')
 
 export const getGPDownloadError = state$ => {

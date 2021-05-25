@@ -22,6 +22,9 @@ import appVersion from '../../../macros/appVersion.macro'
 //     "build_number": "4.0.0"
 //   }
 //}
+
+// To update this in prod, go here to swap this file out and make it public
+// https://s3.console.aws.amazon.com/s3/buckets/sunpower-dev-cm2-config?region=us-west-2&prefix=prod/&showversions=false
 const appFlavor = getAppFlavor()
 const VERSION_URL = `https://sunpower-dev-cm2-config.s3-us-west-2.amazonaws.com/${appFlavor}/buildNumber.json`
 

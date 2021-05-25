@@ -8,11 +8,11 @@ import {
   FIRMWARE_UPDATE_POLLING,
   FIRMWARE_UPDATE_WAITING_FOR_NETWORK,
   FIRMWARE_SET_LAST_SUCCESSFUL_STAGE,
-  GRID_PROFILE_UPLOAD_ERROR,
   RESET_FIRMWARE_UPDATE,
   SET_FIRMWARE_RELEASE_NOTES,
   GRID_PROFILE_UPLOAD_INIT,
-  GRID_PROFILE_UPLOAD_COMPLETE
+  GRID_PROFILE_UPLOAD_COMPLETE,
+  GRID_PROFILE_UPLOAD_ERROR
 } from 'state/actions/firmwareUpdate'
 
 const initialState = {
@@ -20,7 +20,8 @@ const initialState = {
   status: '',
   upgrading: false,
   versionBeforeUpgrade: 0,
-  lastSuccessfulStage: -1
+  lastSuccessfulStage: -1,
+  canContinue: true
 }
 
 const getState = prop('STATE')
@@ -42,12 +43,14 @@ export default createReducer(
       ...initialState,
       status: fwupStatus.UPLOADING_FS,
       upgrading: true,
+      canContinue: false,
       versionBeforeUpgrade: PVSFromVersion
     }),
     [FIRMWARE_UPDATE_POLLING]: (state, payload) => ({
       ...state,
       status: getState(payload),
-      percent: getPercent(payload)
+      percent: getPercent(payload),
+      canContinue: false
     }),
     [FIRMWARE_UPDATE_WAITING_FOR_NETWORK]: state => ({
       ...state,
@@ -65,30 +68,27 @@ export default createReducer(
       upgrading: false,
       canContinue: true
     }),
-    [GRID_PROFILE_UPLOAD_INIT]: () => ({
-      ...initialState,
+    [GRID_PROFILE_UPLOAD_INIT]: state => ({
+      ...state,
       status: fwupStatus.UPLOADING_GRID_PROFILES
     }),
-    [GRID_PROFILE_UPLOAD_COMPLETE]: () => ({
-      ...initialState,
+    [GRID_PROFILE_UPLOAD_COMPLETE]: state => ({
+      ...state,
       status: fwupStatus.GRID_PROFILES_UPLOADED
     }),
+    [GRID_PROFILE_UPLOAD_ERROR]: state => ({
+      ...state,
+      status: fwupStatus.ERROR_GRID_PROFILE
+    }),
     [FIRMWARE_UPDATE_ERROR]: state => ({
-      ...initialState,
       ...state,
       upgrading: false,
       status: fwupStatus.ERROR,
       canContinue: true
     }),
-    [GRID_PROFILE_UPLOAD_ERROR]: state => ({
-      ...initialState,
-      ...state,
-      status: fwupStatus.ERROR_GRID_PROFILE
-    }),
     [RESET_FIRMWARE_UPDATE]: () => ({ ...initialState, canContinue: true }),
     [FIRMWARE_GET_VERSION_COMPLETE]: ({ versionBeforeUpgrade }) => ({
       ...initialState,
-      canContinue: true,
       versionBeforeUpgrade
     }),
     [SET_FIRMWARE_RELEASE_NOTES]: (state, releaseNotes) => ({

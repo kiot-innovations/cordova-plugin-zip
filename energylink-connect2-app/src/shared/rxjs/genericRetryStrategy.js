@@ -11,7 +11,8 @@ import { throwError, timer } from 'rxjs'
 const genericRetryStrategy = ({
   excludedStatusCodes = [],
   maxRetryAttempts = 3,
-  scalingDuration = 1000
+  scalingDuration = 1000,
+  shouldScaleTime = true
 }) => attempts =>
   attempts.pipe(
     mergeMap((error, i) => {
@@ -22,8 +23,9 @@ const genericRetryStrategy = ({
       ) {
         return throwError(error)
       }
-      // retry after 1s, 2s, etc...
-      return timer(retryAttempt * scalingDuration)
+      return timer(
+        shouldScaleTime ? retryAttempt * scalingDuration : scalingDuration
+      )
     })
   )
 export default genericRetryStrategy

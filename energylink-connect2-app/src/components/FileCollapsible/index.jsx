@@ -29,7 +29,7 @@ const FileCollapsible = ({
     <Collapsible
       title={fileName}
       actions={either(
-        !isDownloading,
+        !isDownloading || error,
         <span
           className={clsx('is-size-4 sp-color-sun', {
             'sp-download': !isDownloaded,

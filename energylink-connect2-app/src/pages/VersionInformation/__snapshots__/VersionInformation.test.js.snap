@@ -52,12 +52,18 @@ exports[`VersionInformation component renders correctly 1`] = `
                 "description": "This file contains the release notes for SunPower Pro Connect",
                 "example": Object {
                   "bodyMarkdown": "# TBD",
-                  "releaseDate": "2021-04-20",
+                  "releaseDate": "2021-05-24",
                   "versionNumber": "x.x.x",
                 },
                 "version": "1.0.0",
               },
               "versions": Array [
+                Object {
+                  "bodyMarkdown": "# Bug fixes
+ - The firmware update screen will no longer freeze and will allow you to proceed with commissioning without requiring you to restart the App.",
+                  "releaseDate": "2021-04-20",
+                  "versionNumber": "6.107.10",
+                },
                 Object {
                   "bodyMarkdown": "# Features
  - You will now get a banner on the INSTALL tab if panel model type is missing for microinverters previously commissioned. This can happen when the site was previously commissioned with SunPower Console. When you see the banner make sure to tap on ASSIGN MODELS and follow the steps to set the panel model type. 
@@ -248,6 +254,81 @@ You will now see a message that &quot;Commissioning was successfully completed&q
                 >
                   <Collapsible
                     expanded={true}
+                    title="VERSION 6.107.10"
+                  >
+                    <div
+                      className="collapsible"
+                    >
+                      <div
+                        className="collapsible-header"
+                        onClick={[Function]}
+                      >
+                        <div
+                          className="collapsible-title"
+                        >
+                          <span />
+                          <span
+                            className="has-text-weight-bold"
+                          >
+                            VERSION 6.107.10
+                          </span>
+                        </div>
+                        <div
+                          className="collapsible-actions"
+                        />
+                        <div
+                          className="collapsible-trigger"
+                        >
+                          <div
+                            className="chevron down"
+                          >
+                            <span
+                              className="sp-chevron-up"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                      <div
+                        className="collapsible-content expanded"
+                      >
+                        <div
+                          className="releaseDate"
+                        >
+                          RELEASE_DATE
+                           
+                          04/20/2021
+                        </div>
+                        <div
+                          className="content"
+                          dangerouslySetInnerHTML={
+                            Object {
+                              "__html": "<h1 id=\\"bug-fixes\\">Bug fixes</h1>
+<ul>
+<li>The firmware update screen will no longer freeze and will allow you to proceed with commissioning without requiring you to restart the App.</li>
+</ul>
+",
+                            }
+                          }
+                        />
+                      </div>
+                    </div>
+                  </Collapsible>
+                </div>
+              </div>
+              <div
+                className="version"
+                key="1"
+              >
+                <div
+                  className="previous-release-notes"
+                >
+                  PREVIOUS_RELEASE_NOTES
+                </div>
+                <div
+                  className="mb-10"
+                >
+                  <Collapsible
+                    expanded={false}
                     title="VERSION 6.107.7"
                   >
                     <div
@@ -274,7 +355,7 @@ You will now see a message that &quot;Commissioning was successfully completed&q
                           className="collapsible-trigger"
                         >
                           <div
-                            className="chevron down"
+                            className="chevron"
                           >
                             <span
                               className="sp-chevron-up"
@@ -283,7 +364,7 @@ You will now see a message that &quot;Commissioning was successfully completed&q
                         </div>
                       </div>
                       <div
-                        className="collapsible-content expanded"
+                        className="collapsible-content collapsed"
                       >
                         <div
                           className="releaseDate"
@@ -320,13 +401,8 @@ You will now see a message that &quot;Commissioning was successfully completed&q
               </div>
               <div
                 className="version"
-                key="1"
+                key="2"
               >
-                <div
-                  className="previous-release-notes"
-                >
-                  PREVIOUS_RELEASE_NOTES
-                </div>
                 <div
                   className="mb-10"
                 >
@@ -403,7 +479,7 @@ You will now see a message that &quot;Commissioning was successfully completed&q
               </div>
               <div
                 className="version"
-                key="2"
+                key="3"
               >
                 <div
                   className="mb-10"
@@ -475,7 +551,7 @@ You will now see a message that &quot;Commissioning was successfully completed&q
               </div>
               <div
                 className="version"
-                key="3"
+                key="4"
               >
                 <div
                   className="mb-10"
@@ -543,7 +619,7 @@ You will now see a message that &quot;Commissioning was successfully completed&q
               </div>
               <div
                 className="version"
-                key="4"
+                key="5"
               >
                 <div
                   className="mb-10"
@@ -617,7 +693,7 @@ You will now see a message that &quot;Commissioning was successfully completed&q
               </div>
               <div
                 className="version"
-                key="5"
+                key="6"
               >
                 <div
                   className="mb-10"
@@ -697,7 +773,7 @@ This functionality provides you a way to edit the panel model after commissionin
               </div>
               <div
                 className="version"
-                key="6"
+                key="7"
               >
                 <div
                   className="mb-10"
@@ -771,7 +847,7 @@ This functionality provides you a way to edit the panel model after commissionin
               </div>
               <div
                 className="version"
-                key="7"
+                key="8"
               >
                 <div
                   className="mb-10"
@@ -839,7 +915,7 @@ This functionality provides you a way to edit the panel model after commissionin
               </div>
               <div
                 className="version"
-                key="8"
+                key="9"
               >
                 <div
                   className="mb-10"
@@ -913,7 +989,7 @@ This functionality provides you a way to edit the panel model after commissionin
               </div>
               <div
                 className="version"
-                key="9"
+                key="10"
               >
                 <div
                   className="mb-10"
@@ -981,7 +1057,7 @@ This functionality provides you a way to edit the panel model after commissionin
               </div>
               <div
                 className="version"
-                key="10"
+                key="11"
               >
                 <div
                   className="mb-10"
