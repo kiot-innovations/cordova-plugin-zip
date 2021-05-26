@@ -59,6 +59,14 @@ exports[`VersionInformation component renders correctly 1`] = `
               },
               "versions": Array [
                 Object {
+                  "bodyMarkdown": "# Features
+ - Users will now see the PVS5 grid profile downloaded in the FIRMWARE MANAGEMENT screen. We're working to add features for PVS5 support and will be rolling out additional features in the following weeks.
+ - # Bug Fix
+ - You will not be logged out in the middle of commissioning anymore.",
+                  "releaseDate": "2021-06-02",
+                  "versionNumber": "6.111.1",
+                },
+                Object {
                   "bodyMarkdown": "# Bug fixes
  - The firmware update screen will no longer freeze and will allow you to proceed with commissioning without requiring you to restart the App.",
                   "releaseDate": "2021-04-20",
@@ -254,6 +262,84 @@ You will now see a message that &quot;Commissioning was successfully completed&q
                 >
                   <Collapsible
                     expanded={true}
+                    title="VERSION 6.111.1"
+                  >
+                    <div
+                      className="collapsible"
+                    >
+                      <div
+                        className="collapsible-header"
+                        onClick={[Function]}
+                      >
+                        <div
+                          className="collapsible-title"
+                        >
+                          <span />
+                          <span
+                            className="has-text-weight-bold"
+                          >
+                            VERSION 6.111.1
+                          </span>
+                        </div>
+                        <div
+                          className="collapsible-actions"
+                        />
+                        <div
+                          className="collapsible-trigger"
+                        >
+                          <div
+                            className="chevron down"
+                          >
+                            <span
+                              className="sp-chevron-up"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                      <div
+                        className="collapsible-content expanded"
+                      >
+                        <div
+                          className="releaseDate"
+                        >
+                          RELEASE_DATE
+                           
+                          06/02/2021
+                        </div>
+                        <div
+                          className="content"
+                          dangerouslySetInnerHTML={
+                            Object {
+                              "__html": "<h1 id=\\"features\\">Features</h1>
+<ul>
+<li>Users will now see the PVS5 grid profile downloaded in the FIRMWARE MANAGEMENT screen. We&#39;re working to add features for PVS5 support and will be rolling out additional features in the following weeks.</li>
+<li><h1 id=\\"bug-fix\\">Bug Fix</h1>
+</li>
+<li>You will not be logged out in the middle of commissioning anymore.</li>
+</ul>
+",
+                            }
+                          }
+                        />
+                      </div>
+                    </div>
+                  </Collapsible>
+                </div>
+              </div>
+              <div
+                className="version"
+                key="1"
+              >
+                <div
+                  className="previous-release-notes"
+                >
+                  PREVIOUS_RELEASE_NOTES
+                </div>
+                <div
+                  className="mb-10"
+                >
+                  <Collapsible
+                    expanded={false}
                     title="VERSION 6.107.10"
                   >
                     <div
@@ -280,7 +366,7 @@ You will now see a message that &quot;Commissioning was successfully completed&q
                           className="collapsible-trigger"
                         >
                           <div
-                            className="chevron down"
+                            className="chevron"
                           >
                             <span
                               className="sp-chevron-up"
@@ -289,7 +375,7 @@ You will now see a message that &quot;Commissioning was successfully completed&q
                         </div>
                       </div>
                       <div
-                        className="collapsible-content expanded"
+                        className="collapsible-content collapsed"
                       >
                         <div
                           className="releaseDate"
@@ -317,13 +403,8 @@ You will now see a message that &quot;Commissioning was successfully completed&q
               </div>
               <div
                 className="version"
-                key="1"
+                key="2"
               >
-                <div
-                  className="previous-release-notes"
-                >
-                  PREVIOUS_RELEASE_NOTES
-                </div>
                 <div
                   className="mb-10"
                 >
@@ -401,7 +482,7 @@ You will now see a message that &quot;Commissioning was successfully completed&q
               </div>
               <div
                 className="version"
-                key="2"
+                key="3"
               >
                 <div
                   className="mb-10"
@@ -479,7 +560,7 @@ You will now see a message that &quot;Commissioning was successfully completed&q
               </div>
               <div
                 className="version"
-                key="3"
+                key="4"
               >
                 <div
                   className="mb-10"
@@ -551,7 +632,7 @@ You will now see a message that &quot;Commissioning was successfully completed&q
               </div>
               <div
                 className="version"
-                key="4"
+                key="5"
               >
                 <div
                   className="mb-10"
@@ -619,7 +700,7 @@ You will now see a message that &quot;Commissioning was successfully completed&q
               </div>
               <div
                 className="version"
-                key="5"
+                key="6"
               >
                 <div
                   className="mb-10"
@@ -693,7 +774,7 @@ You will now see a message that &quot;Commissioning was successfully completed&q
               </div>
               <div
                 className="version"
-                key="6"
+                key="7"
               >
                 <div
                   className="mb-10"
@@ -773,7 +854,7 @@ This functionality provides you a way to edit the panel model after commissionin
               </div>
               <div
                 className="version"
-                key="7"
+                key="8"
               >
                 <div
                   className="mb-10"
@@ -847,7 +928,7 @@ This functionality provides you a way to edit the panel model after commissionin
               </div>
               <div
                 className="version"
-                key="8"
+                key="9"
               >
                 <div
                   className="mb-10"
@@ -915,7 +996,7 @@ This functionality provides you a way to edit the panel model after commissionin
               </div>
               <div
                 className="version"
-                key="9"
+                key="10"
               >
                 <div
                   className="mb-10"
@@ -989,7 +1070,7 @@ This functionality provides you a way to edit the panel model after commissionin
               </div>
               <div
                 className="version"
-                key="10"
+                key="11"
               >
                 <div
                   className="mb-10"
@@ -1057,7 +1138,7 @@ This functionality provides you a way to edit the panel model after commissionin
               </div>
               <div
                 className="version"
-                key="11"
+                key="12"
               >
                 <div
                   className="mb-10"

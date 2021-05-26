@@ -13,6 +13,11 @@
   },
   "versions": [
     {
+      "versionNumber": "6.111.1",
+      "releaseDate": "2021-06-02",
+      "bodyMarkdown": "# Features\n - Users will now see the PVS5 grid profile downloaded in the FIRMWARE MANAGEMENT screen. We're working to add features for PVS5 support and will be rolling out additional features in the following weeks.\n - # Bug Fix\n - You will not be logged out in the middle of commissioning anymore."
+    },
+    {
       "versionNumber": "6.107.10",
       "releaseDate": "2021-04-20",
       "bodyMarkdown": "# Bug fixes\n - The firmware update screen will no longer freeze and will allow you to proceed with commissioning without requiring you to restart the App."
