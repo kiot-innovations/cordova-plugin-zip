@@ -13,9 +13,9 @@
   },
   "versions": [
     {
-      "versionNumber": "6.111.2",
+      "versionNumber": "6.111.3",
       "releaseDate": "2021-06-02",
-      "bodyMarkdown": "# Features\n - Users will now see the PVS5 grid profile downloaded in the FIRMWARE MANAGEMENT screen. We're working to add features for PVS5 support and will be rolling out additional features in the following weeks.\n - # Bug Fix\n - You will not be logged out in the middle of commissioning anymore."
+      "bodyMarkdown": "# Features\n - Users will now see the PVS5 grid profile downloaded in the FIRMWARE MANAGEMENT screen. We're working to add features for PVS5 support and will be rolling out additional features in the following weeks.\n\n# Bug Fix\n - You will not be logged out in the middle of commissioning anymore."
     },
     {
       "versionNumber": "6.107.10",
