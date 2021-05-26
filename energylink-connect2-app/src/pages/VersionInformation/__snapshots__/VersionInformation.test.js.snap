@@ -64,7 +64,7 @@ exports[`VersionInformation component renders correctly 1`] = `
  - # Bug Fix
  - You will not be logged out in the middle of commissioning anymore.",
                   "releaseDate": "2021-06-02",
-                  "versionNumber": "6.111.1",
+                  "versionNumber": "6.111.2",
                 },
                 Object {
                   "bodyMarkdown": "# Bug fixes
@@ -262,7 +262,7 @@ You will now see a message that &quot;Commissioning was successfully completed&q
                 >
                   <Collapsible
                     expanded={true}
-                    title="VERSION 6.111.1"
+                    title="VERSION 6.111.2"
                   >
                     <div
                       className="collapsible"
@@ -278,7 +278,7 @@ You will now see a message that &quot;Commissioning was successfully completed&q
                           <span
                             className="has-text-weight-bold"
                           >
-                            VERSION 6.111.1
+                            VERSION 6.111.2
                           </span>
                         </div>
                         <div
