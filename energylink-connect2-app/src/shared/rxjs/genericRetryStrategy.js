@@ -4,8 +4,8 @@ import { throwError, timer } from 'rxjs'
 /**
  * It is a retry strategy that will re-run the code X ammout of times
  * @param {number} scalingDuration
- * @param {number}maxRetryAttempts
- * @param {number[]}excludedStatusCodes
+ * @param {number} maxRetryAttempts
+ * @param {number[]} excludedStatusCodes
  * @returns {function(*): *}
  */
 const genericRetryStrategy = ({

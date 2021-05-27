@@ -4,10 +4,10 @@ import { ofType } from 'redux-observable'
 import { concat, from, of, timer } from 'rxjs'
 import {
   catchError,
-  retryWhen,
   exhaustMap,
   map,
   mergeMap,
+  retryWhen,
   take,
   takeUntil
 } from 'rxjs/operators'
@@ -152,7 +152,14 @@ export const firmwarePollStatus = action$ => {
             maxRetryAttempts: 90,
             shouldScaleTime: false
           })
-        )
+        ),
+        catchError(err => {
+          const message = err.message
+          err.message = 'Polling update error'
+          Sentry.addBreadcrumb({ message })
+          Sentry.captureException(err)
+          return of(FIRMWARE_UPDATE_POLL_STOP())
+        })
       )
     )
   )
@@ -161,7 +168,7 @@ export const firmwarePollStatus = action$ => {
 const firmwareWaitForWifi = (action$, state$) =>
   action$.pipe(
     ofType(FIRMWARE_UPDATE_POLL_STOP.getType()),
-    exhaustMap(
+    exhaustMap(() =>
       concat(
         of(STOP_NETWORK_POLLING()),
         of(FIRMWARE_UPDATE_WAITING_FOR_NETWORK()),
