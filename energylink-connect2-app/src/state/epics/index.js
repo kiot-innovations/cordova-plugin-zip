@@ -27,8 +27,8 @@ import statusMessages from './statusMessages'
 
 export default combineEpics(
   ...analyticsEpics,
-  ...appUpdaterEpics,
   ...apisEpic,
+  ...appUpdaterEpics,
   ...authEpics,
   ...bluetoothEpics,
   ...checkSSLCertsEpics,
@@ -36,7 +36,6 @@ export default combineEpics(
   ...downloader,
   ...feedbackEpic,
   ...firmwareUpdateEpics,
-  liveEnergyData,
   ...modalEpics,
   ...networkPollingEpics,
   ...panelLayoutToolEpics,
@@ -46,8 +45,9 @@ export default combineEpics(
   ...scanditEpics,
   ...sentryEpics,
   ...siteEpics,
-  ...storageEpics,
-  ...systemConfigurationEpics,
   ...statusMessages,
-  ...superuserEpics
+  ...storageEpics,
+  ...superuserEpics,
+  ...systemConfigurationEpics,
+  liveEnergyData
 )

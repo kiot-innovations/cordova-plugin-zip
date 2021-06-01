@@ -4,12 +4,20 @@ import {
   BEGIN_INSTALL,
   COMMISSION_SUCCESS,
   CONFIG_START,
+  CLAIM_DEVICES_MIXPANEL_EVENT,
   RESET_PVS_INTERNET_TRACKING,
-  START_BULK_SETTINGS_TIMER,
-  SET_AC_DEVICES
+  SET_AC_DEVICES,
+  START_BULK_SETTINGS_TIMER
 } from 'state/actions/analytics'
+
+import {
+  CLAIM_DEVICES_ERROR,
+  CLAIM_DEVICES_COMPLETE,
+  CLAIM_DEVICES_INIT,
+  PUSH_CANDIDATES_INIT
+} from 'state/actions/devices'
+
 import { SET_CONNECTION_STATUS } from 'state/actions/network'
-import { CLAIM_DEVICES_INIT } from 'state/actions/devices'
 import {
   CONNECT_NETWORK_AP_INIT,
   CONNECT_NETWORK_AP_ERROR,
@@ -27,6 +35,10 @@ export const initialState = {
   submitTimer: 0,
   bulkSettingsTimer: 0,
   timeFromMiScan: 0,
+  claimingDevices: {
+    status: 'idle',
+    claimingTime: 0
+  },
   commissioningSuccess: false,
   siteUnderCommissioning: '',
   disconnectionTimer: 0,
@@ -45,11 +57,48 @@ const siteUnderCommissioningChanged = (siteKey, siteUnderCommissioning) => {
 
 export default createReducer(
   {
+    [CLAIM_DEVICES_ERROR]: state => ({
+      ...state,
+      claimDeviceErrorTimer: new Date().getTime()
+    }),
     [CONFIG_START]: state => ({
       ...state,
       configureTimer: new Date().getTime()
     }),
-    [CLAIM_DEVICES_INIT]: state => ({
+
+    [CLAIM_DEVICES_INIT]: state => {
+      if (state.claimingDevices.status === 'idle')
+        return {
+          ...state,
+          claimingDevices: {
+            ...state.claimingDevices,
+            status: 'claiming',
+            claimingTime: Date.now()
+          }
+        }
+      return state
+    },
+    [CLAIM_DEVICES_COMPLETE]: state => {
+      if (state.claimingDevices.status === 'claiming')
+        return {
+          ...state,
+          claimingDevices: {
+            ...state.claimingDevices,
+            status: 'waiting device update',
+            claimingTime: getElapsedTime(state.claimingDevices.claimingTime)
+          }
+        }
+      return state
+    },
+    [CLAIM_DEVICES_MIXPANEL_EVENT]: state => {
+      if (state.claimingDevices.status === 'waiting device update')
+        return {
+          ...state,
+          claimingDevices: initialState.claimingDevices
+        }
+      return state
+    },
+    [PUSH_CANDIDATES_INIT]: state => ({
       ...state,
       timeFromMiScan: new Date().getTime()
     }),

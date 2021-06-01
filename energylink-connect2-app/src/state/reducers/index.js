@@ -42,6 +42,7 @@ export default combineReducers({
   analytics: persistReducer(
     {
       key: 'analytics',
+      blacklist: ['claimingTime', 'claimingDevices'],
       storage
     },
     analyticsReducer

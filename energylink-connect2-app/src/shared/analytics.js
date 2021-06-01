@@ -250,6 +250,33 @@ export const commissionSite = ({
   )
 }
 
+export const trackDeviceClaiming = ({
+  duration,
+  typesMiClaimed,
+  miClaimedSN,
+  prodMeter,
+  consumptionMeter,
+  httpResponseCode,
+  errorMessage,
+  retryDuration,
+  success
+}) => {
+  const { mixpanel } = window
+  mixpanel.track('Claim Devices', {
+    $duration: duration,
+    'Types of MIs Claimed': typesMiClaimed,
+    'SN of MIs Claimed': miClaimedSN,
+    'Production Meters Claimed': prodMeter,
+    'Consumption Meters claimed': consumptionMeter,
+    'HTTP Response Code': httpResponseCode,
+    'Error Message': errorMessage,
+    'Retry Duration': retryDuration,
+    Success: success
+  })
+
+  return MIXPANEL_EVENT_QUEUED('Device Claiming - track message')
+}
+
 export const registerHomeOwnerAccount = ({ location, errorMessage }) => {
   const { mixpanel } = window
   mixpanel.track('Register HomeOwner', {
