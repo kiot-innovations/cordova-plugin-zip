@@ -24,7 +24,7 @@
     "sentrifySourceMaps": "node sentrifySourceMaps.js"
   },
   "dependencies": {
-    "@sentry/browser": "^5.30.0",
+    "@sentry/browser": "^6.5.1",
     "@sentry/tracing": "^6.3.6",
     "@sunpower/nav": "^0.1.38",
     "@sunpower/panel-layout-tool": "^2.0.3",
