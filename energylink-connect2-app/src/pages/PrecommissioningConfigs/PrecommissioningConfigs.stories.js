@@ -6,8 +6,12 @@ import { Provider } from 'react-redux'
 import PrecommissioningConfigs from '.'
 import { rmaModes } from 'state/reducers/rma'
 import { fwupStatus } from '../../state/reducers/firmware-update'
+import { clone } from 'ramda'
 
 const standardScenario = {
+  pvs: {
+    model: 'PVS6'
+  },
   global: {
     canAccessScandit: true
   },
@@ -66,6 +70,9 @@ const standardScenario = {
 }
 
 const fetchingGridProfiles = {
+  pvs: {
+    model: 'PVS6'
+  },
   global: {
     canAccessScandit: true
   },
@@ -114,6 +121,9 @@ const fetchingGridProfiles = {
 }
 
 const errorWhileUploadingGridProfiles = {
+  pvs: {
+    model: 'PVS6'
+  },
   global: {
     canAccessScandit: true
   },
@@ -165,6 +175,9 @@ const errorWhileUploadingGridProfiles = {
 }
 
 const errorWhileFetchingGridProfiles = {
+  pvs: {
+    model: 'PVS6'
+  },
   global: {
     canAccessScandit: true
   },
@@ -249,6 +262,61 @@ storiesOf('Precommissioning Configs', module)
   })
   .add('Error while fetching Grid Profiles', () => {
     const { store } = configureStore(errorWhileFetchingGridProfiles)
+
+    return (
+      <div className="full-min-height pt-20 pb-20">
+        <Provider store={store}>
+          <PrecommissioningConfigs />
+        </Provider>
+      </div>
+    )
+  })
+
+let PVS5standardScenario = clone(standardScenario)
+let PVS5fetchingGridProfiles = clone(fetchingGridProfiles)
+let PVS5errorWhileUploadingGridProfiles = clone(errorWhileUploadingGridProfiles)
+let PVS5errorWhileFetchingGridProfiles = clone(errorWhileFetchingGridProfiles)
+PVS5standardScenario.pvs.model = 'PVS5'
+PVS5fetchingGridProfiles.pvs.model = 'PVS5'
+PVS5errorWhileUploadingGridProfiles.pvs.model = 'PVS5'
+PVS5errorWhileFetchingGridProfiles.pvs.model = 'PVS5'
+
+storiesOf('Precommissioning Configs', module)
+  .add('PVS5 Config is valid', () => {
+    const { store } = configureStore(PVS5standardScenario)
+
+    return (
+      <div className="full-min-height pt-20 pb-20">
+        <Provider store={store}>
+          <PrecommissioningConfigs />
+        </Provider>
+      </div>
+    )
+  })
+  .add('PVS5 Fetching Grid Profiles', () => {
+    const { store } = configureStore(PVS5fetchingGridProfiles)
+
+    return (
+      <div className="full-min-height pt-20 pb-20">
+        <Provider store={store}>
+          <PrecommissioningConfigs />
+        </Provider>
+      </div>
+    )
+  })
+  .add('PVS5 Error while uploading Grid Profiles', () => {
+    const { store } = configureStore(PVS5errorWhileUploadingGridProfiles)
+
+    return (
+      <div className="full-min-height pt-20 pb-20">
+        <Provider store={store}>
+          <PrecommissioningConfigs />
+        </Provider>
+      </div>
+    )
+  })
+  .add('PVS5 Error while fetching Grid Profiles', () => {
+    const { store } = configureStore(PVS5errorWhileFetchingGridProfiles)
 
     return (
       <div className="full-min-height pt-20 pb-20">

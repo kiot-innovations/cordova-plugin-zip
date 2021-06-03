@@ -7,6 +7,9 @@ describe('GridBehaviorWidget', () => {
   let dispatchMock
 
   const gridVoltageZero = {
+    pvs: {
+      model: 'PVS6'
+    },
     firmwareUpdate: {
       status: ''
     },
@@ -41,6 +44,9 @@ describe('GridBehaviorWidget', () => {
   }
 
   const gridVoltage240 = {
+    pvs: {
+      model: 'PVS6'
+    },
     firmwareUpdate: {
       status: ''
     },
@@ -75,6 +81,9 @@ describe('GridBehaviorWidget', () => {
   }
 
   const gridVoltage208 = {
+    pvs: {
+      model: 'PVS6'
+    },
     firmwareUpdate: {
       status: ''
     },

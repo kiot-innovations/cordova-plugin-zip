@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
 import { useI18n } from 'shared/i18n'
+import { either, findByPathValue } from 'shared/utils'
+import { useDispatch, useSelector } from 'react-redux'
 import {
   always,
   compose,
@@ -16,7 +17,6 @@ import {
   T,
   when
 } from 'ramda'
-import { findByPathValue } from 'shared/utils'
 import {
   FETCH_GRID_BEHAVIOR,
   SET_GRID_PROFILE,
@@ -65,6 +65,15 @@ function GridBehaviorWidget() {
   } = useSelector(state => state.systemConfiguration.gridBehavior)
   const { site } = useSelector(state => state.site)
   const { status } = useSelector(state => state.firmwareUpdate)
+
+  const { model } = useSelector(state => state.pvs)
+
+  const [selfSupplyOptions, setSelfSupplyOptions] = useState(
+    getExportLimitOptions(
+      pathOr(false, ['profile', 'selfsupply'], selectedOptions),
+      pathOr(false, ['exportLimit'], selectedOptions)
+    )
+  )
 
   const [hasDefaultGridProfile, setHasDefaultGridProfile] = useState(false)
 
@@ -130,12 +139,17 @@ function GridBehaviorWidget() {
     dispatch(SET_GRID_PROFILE(value.value))
     const selfSupplyAvailability = pathOr(false, ['value', 'selfsupply'], value)
     const options = getExportLimitOptions(selfSupplyAvailability)
+    setSelfSupplyOptions(options)
     dispatch(SET_EXPORT_LIMIT(head(options).value))
   }
 
   if (!hasDefaultGridProfile && defaultGridProfile) {
     setGridProfile(defaultGridProfile)
     setHasDefaultGridProfile(true)
+  }
+
+  const setExportLimit = value => {
+    dispatch(SET_EXPORT_LIMIT(value.value))
   }
 
   const setGridVoltage = value => {
@@ -148,6 +162,7 @@ function GridBehaviorWidget() {
   ]
 
   const findVoltageByValue = findByPathValue(gridVoltageOptions, ['value'])
+  const findExportLimitValue = findByPathValue(selfSupplyOptions, ['value'])
 
   const showVoltageWarning = gridVoltage.selected !== gridVoltage.measured
 
@@ -183,6 +198,38 @@ function GridBehaviorWidget() {
             </div>
           </div>
         </div>
+
+        {//only show this for PVS5 because PVS6 doesn't support setting the self supply option yet
+        either(
+          model === 'PVS5',
+          <div className="field is-horizontal mb-20">
+            <div className="field-label">
+              <label htmlFor="siteName" className="label has-text-white">
+                {t('CUSTOMER_SELF_SUPPLY')}
+              </label>
+            </div>
+            <div className="field-body">
+              <div className="field">
+                <div className="control">
+                  <SelectField
+                    isSearchable={false}
+                    useDefaultDropDown
+                    options={selfSupplyOptions}
+                    notFoundText={
+                      length(selfSupplyOptions) === 0
+                        ? t('SELECT_A_GRID_PROFILE')
+                        : null
+                    }
+                    onSelect={setExportLimit}
+                    value={findExportLimitValue(
+                      pathOr(null, ['exportLimit'], selectedOptions)
+                    )}
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
 
         <div className="field is-horizontal mb-15">
           <div className="field-label">
