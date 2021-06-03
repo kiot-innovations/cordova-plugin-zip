@@ -16,6 +16,9 @@ export const GET_SITE_INIT = createAction('GET_SITE_INIT')
 export const GET_SITE_SUCCESS = createAction('GET_SITE_SUCCESS')
 export const GET_SITE_ERROR = createAction('GET_SITE_ERROR')
 
+export const ON_GET_SITE_INFO = createAction('ON_GET_SITE_INFO')
+export const ON_GET_SITE_INFO_END = createAction('ON_GET_SITE_INFO_END')
+
 //ANALYTICS
 const siteAnalyticsActions = namedAction('SITE ANALYTICS')
 export const NO_SITE_FOUND = siteAnalyticsActions('NO_SITE_FOUND')

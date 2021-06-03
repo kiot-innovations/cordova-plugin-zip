@@ -52,9 +52,16 @@ function BillOfMaterials() {
     bom: inventory.bom
   }))
 
-  const { address1, latitude, longitude, siteName, siteKey } = useSelector(
-    pathOr({}, ['site', 'site'])
-  )
+  const {
+    address1,
+    latitude,
+    longitude,
+    siteName,
+    siteKey,
+    contractNumber,
+    financeType
+  } = useSelector(pathOr({}, ['site', 'site']))
+
   const redirectInstall = () => {
     dispatch(BEGIN_INSTALL({ siteKey }))
     if (isDownloading)
@@ -102,15 +109,36 @@ function BillOfMaterials() {
                 {siteName}
               </span>
             </div>
-            <div className="tile is-flex is-vertical">
-              <span className=" is-uppercase is-size-7">{t('PHONE')}:</span>
-              {either(
-                prop('phone', data),
+
+            {either(
+              contractNumber,
+              <div className="tile is-flex is-vertical">
+                <span className=" is-uppercase is-size-7">
+                  {t('CONTRACT_NO')}:
+                </span>
+                <p className="has-text-white mb-10">{contractNumber}</p>
+              </div>
+            )}
+
+            {either(
+              financeType,
+              <div className="tile is-flex is-vertical">
+                <span className=" is-uppercase is-size-7">
+                  {t('FINANCE_TYPE')}:
+                </span>
+                <p className="has-text-white mb-10">{financeType}</p>
+              </div>
+            )}
+
+            {either(
+              prop('phone', data),
+              <div className="tile is-flex is-vertical">
+                <span className=" is-uppercase is-size-7">{t('PHONE')}:</span>
                 <a className="has-text-white mb-10" href={`tel:${data.phone}`}>
                   {data.phone}
                 </a>
-              )}
-            </div>
+              </div>
+            )}
           </div>
           <div className="is-flex is-vertical tile is-center pr-40">
             <div className="tile is-flex is-vertical is-hidden">

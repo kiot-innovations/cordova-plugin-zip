@@ -16,7 +16,9 @@ import {
   CREATE_HOMEOWNER_ACCOUNT_ERROR,
   CREATE_HOMEOWNER_ACCOUNT,
   CREATE_HOMEOWNER_ACCOUNT_COMPLETE,
-  CREATE_HOMEOWNER_ACCOUNT_RESET
+  CREATE_HOMEOWNER_ACCOUNT_RESET,
+  ON_GET_SITE_INFO,
+  ON_GET_SITE_INFO_END
 } from 'state/actions/site'
 
 const initialState = {
@@ -127,7 +129,25 @@ export const siteReducer = createReducer(
     [GET_SITE_SUCCESS]: (state, payload) => ({
       ...state,
       sitePVS: payload
-    })
+    }),
+    [ON_GET_SITE_INFO]: state => ({
+      ...state,
+      isFetching: true,
+      error: null
+    }),
+    [ON_GET_SITE_INFO_END]: (
+      state,
+      { error, message, contractNumber, financeType }
+    ) => {
+      return {
+        ...state,
+        isFetching: false,
+        error: error ? message : null,
+        site: error
+          ? state.site
+          : { ...state.site, contractNumber, financeType }
+      }
+    }
   },
   initialState
 )

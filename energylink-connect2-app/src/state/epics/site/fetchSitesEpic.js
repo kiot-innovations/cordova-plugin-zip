@@ -34,7 +34,7 @@ const getAccessToken = path(['user', 'auth', 'access_token'])
 const formatAddress = compose(
   join(', '),
   values,
-  pick(['st_addr_lbl', 'city_id'])
+  pick(['st_addr_lbl', 'city_id', 'cntrc_no'])
 )
 
 const buildSelectValue = value => ({
@@ -109,6 +109,49 @@ export const fetchSiteData = (action$, state$) => {
           Sentry.captureException(error)
           return of(
             siteActions.GET_SITE_ERROR({ message: 'ERROR GETTING SITE' })
+          )
+        })
+      )
+    )
+  )
+}
+
+async function getSiteInfoPromise(accessToken, siteId = '') {
+  const api = await getApiSite(accessToken)
+  const getSite = path(['apis', '/v1', 'getSite'], api)
+  if (!getSite) throw new Error('NOT_IMPLEMENTED')
+  const res = await getSite({ siteKey: siteId })
+  return res.body
+}
+
+export const fetchSiteInfo = (action$, state$) => {
+  return action$.pipe(
+    ofType(siteActions.ON_GET_SITE_INFO.getType()),
+    exhaustMap(({ payload }) =>
+      from(getSiteInfoPromise(getAccessToken(state$.value), payload)).pipe(
+        tap(e => console.info({ e })),
+        map(siteInfo =>
+          siteActions.ON_GET_SITE_INFO_END({
+            error: false,
+            contractNumber: pathOr(
+              'N/A',
+              ['energyContracts', '0', 'contractNumber'],
+              siteInfo
+            ),
+            financeType: pathOr(
+              'N/A',
+              ['energyContracts', '0', 'financeType'],
+              siteInfo
+            )
+          })
+        ),
+        catchError(error => {
+          Sentry.captureException(error)
+          return of(
+            siteActions.ON_GET_SITE_INFO_END({
+              error: true,
+              message: error.message
+            })
           )
         })
       )

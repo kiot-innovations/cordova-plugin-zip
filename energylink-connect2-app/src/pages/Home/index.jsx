@@ -10,7 +10,8 @@ import { FETCH_MODELS_INIT } from 'state/actions/devices'
 import {
   HOME_SCREEN_CREATE_SITE,
   SET_SITE,
-  GET_SITES_INIT
+  GET_SITES_INIT,
+  ON_GET_SITE_INFO
 } from 'state/actions/site'
 import {
   CHECK_APP_UPDATE_INIT,
@@ -43,6 +44,7 @@ const siteKeysMap = {
 
 const setSite = (history, dispatch) => site => {
   dispatch(RESET_COMMISSIONING())
+  dispatch(ON_GET_SITE_INFO(site.site_key))
   const siteKeysRenamed = renameKeys(siteKeysMap, site)
   dispatch(SET_SITE(siteKeysRenamed))
   history.push(paths.PROTECTED.BILL_OF_MATERIALS.path)

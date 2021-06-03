@@ -129,16 +129,6 @@ exports[`BillOfMaterials component render correctly 1`] = `
                     className="has-text-white mb-10 is-capitalized"
                   />
                 </div>
-                <div
-                  className="tile is-flex is-vertical"
-                >
-                  <span
-                    className=" is-uppercase is-size-7"
-                  >
-                    PHONE
-                    :
-                  </span>
-                </div>
               </div>
               <div
                 className="is-flex is-vertical tile is-center pr-40"
