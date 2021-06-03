@@ -73,3 +73,15 @@ html {
 .swipeable + div {
   height: 0 !important;
 }
+
+.ReactSwipeableBottomSheet--closed {
+  display: none;
+}
+
+.ReactSwipeableBottomSheet--open,
+.ReactSwipeableBottomSheet--closed {
+  padding: 1rem 1rem 2.125rem 1rem;
+  background-color: $light-black !important;
+  border-radius: 20px;
+  margin-bottom: 70px;
+}
