@@ -6,7 +6,12 @@ import { useHistory } from 'react-router-dom'
 import { path, pathOr, propOr, isEmpty, length } from 'ramda'
 import moment from 'moment'
 import { useI18n } from 'shared/i18n'
-import { createMeterConfig, either, warningsLength } from 'shared/utils'
+import {
+  createMeterConfig,
+  either,
+  warningsLength,
+  withoutInfoCodes
+} from 'shared/utils'
 import { Loader } from 'components/Loader'
 import {
   GET_PREDISCOVERY,
@@ -39,6 +44,11 @@ function StoragePrediscovery() {
     prediscovery
   )
   const prediscoveryErrors = propOr([], 'errors', prediscovery)
+
+  const noInfo = withoutInfoCodes(prediscoveryErrors)
+  const warningsCount = warningsLength(noInfo)
+  const errorsDetected = length(noInfo) - warningsCount
+
   const lastTimestamp = propOr(
     moment().toISOString(),
     'last_updated',
@@ -120,17 +130,14 @@ function StoragePrediscovery() {
               </div>,
 
               either(
-                isEmpty(prediscoveryErrors),
+                isEmpty(noInfo),
                 <ContinueFooter
                   url={paths.PROTECTED.EQS_UPDATE.path}
                   text={'PREDISCOVERY_SUCCESS'}
                 />,
                 <ErrorDetected
-                  number={
-                    length(prediscoveryErrors) -
-                    warningsLength(prediscoveryErrors)
-                  }
-                  warnings={warningsLength(prediscoveryErrors)}
+                  number={errorsDetected}
+                  warnings={warningsCount}
                   onRetry={retryPrediscovery}
                   url={paths.PROTECTED.EQS_PREDISCOVERY_ERRORS.path}
                   next={paths.PROTECTED.EQS_UPDATE.path}

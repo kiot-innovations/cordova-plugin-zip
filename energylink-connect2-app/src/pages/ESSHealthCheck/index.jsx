@@ -12,7 +12,7 @@ import {
   propOr,
   reduce
 } from 'ramda'
-import { addHasErrorProp, warningsLength } from 'shared/utils'
+import { addHasErrorProp, warningsLength, withoutInfoCodes } from 'shared/utils'
 import { GET_ESS_STATUS_INIT, RUN_EQS_SYSTEMCHECK } from 'state/actions/storage'
 import { RESET_DISCOVERY } from 'state/actions/devices'
 import {
@@ -48,7 +48,9 @@ function ESSHealthCheck() {
 
   const report = addHasErrorProp(results)
   const errors = pathOr([], ['errors'], report)
-  const hasErrors = !isEmpty(errors) || error
+
+  const noInfo = withoutInfoCodes(errors)
+  const warningsCount = warningsLength(noInfo)
 
   useEffect(() => {
     unblockHandle.current = history.block(() => {
@@ -65,12 +67,12 @@ function ESSHealthCheck() {
   useEffect(() => {
     if (
       results &&
-      warningsLength(errors) === length(errors) &&
+      warningsCount === length(noInfo) &&
       canCommission === false
     ) {
       dispatch(ALLOW_COMMISSIONING())
     }
-  }, [canCommission, dispatch, errors, hasErrors, results])
+  }, [canCommission, dispatch, noInfo, results, warningsCount])
 
   useEffect(() => {
     if (isEmpty(results) || isNil(results)) {

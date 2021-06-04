@@ -6,7 +6,12 @@ import { Link, useHistory } from 'react-router-dom'
 import paths, { setParams } from 'routes/paths'
 import { useI18n } from 'shared/i18n'
 import { getError } from 'shared/errorCodes'
-import { either, strSatisfiesAWarning, warningsLength } from 'shared/utils'
+import {
+  either,
+  strSatisfiesAWarning,
+  warningsLength,
+  withoutInfoCodes
+} from 'shared/utils'
 import { eqsSteps } from 'state/reducers/storage'
 import './ErrorListGeneric.scss'
 import { PVS_CONNECTION_CLOSE } from 'state/actions/network'
@@ -78,7 +83,12 @@ const ErrorListScreen = ({ errors = [] }) => {
   const dispatch = useDispatch()
   const history = useHistory()
   const { currentStep } = useSelector(state => state.storage)
-  const onlyWarnings = length(errors) - warningsLength(errors) === 0
+
+  const noInfo = withoutInfoCodes(errors)
+  const warningsCount = warningsLength(noInfo)
+  const errorsDetected = length(noInfo) - warningsCount
+
+  const onlyWarnings = errorsDetected === 0
 
   const cancelCommissioning = () => {
     dispatch(PVS_CONNECTION_CLOSE())

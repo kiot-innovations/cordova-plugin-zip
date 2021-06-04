@@ -329,14 +329,19 @@ export const isError = (status = '', percent) =>
 
 const _strStartsWith = what => (str = '') => str.startsWith(what)
 
-export const strSatisfiesAWarning = str =>
-  _strStartsWith('1')(str) || _strStartsWith('0')(str)
+export const strSatisfiesAWarning = str => _strStartsWith('1')(str)
+
+export const strSatisfiesInfo = str => _strStartsWith('0')(str)
 
 /* [a] -> Number */
 export const warningsLength = compose(
   length,
   filter(propSatisfies(strSatisfiesAWarning, 'error_code')),
   defaultTo([])
+)
+
+export const withoutInfoCodes = reject(
+  propSatisfies(strSatisfiesInfo, 'error_code')
 )
 
 export const PERSIST_DATA_PATH = 'cdvfile://localhost/persistent/'

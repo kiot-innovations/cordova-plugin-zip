@@ -9,7 +9,7 @@ import {
   TRIGGER_EQS_FIRMWARE_UPDATE_INIT
 } from 'state/actions/storage'
 import { Loader } from 'components/Loader'
-import { either, warningsLength } from 'shared/utils'
+import { either, warningsLength, withoutInfoCodes } from 'shared/utils'
 import { eqsSteps } from 'state/reducers/storage'
 import {
   eqsUpdateErrors,
@@ -92,6 +92,10 @@ const EQSUpdate = ({ history }) => {
   const updateErrors = useSelector(
     pathOr([], ['storage', 'deviceUpdate', 'errors'])
   )
+
+  const noInfo = withoutInfoCodes(updateErrors)
+  const warningsCount = warningsLength(noInfo)
+  const errorsDetected = length(noInfo) - warningsCount
 
   const updatingDevices = checkForErrors(updateErrors, updateProgress)
 
@@ -200,8 +204,8 @@ const EQSUpdate = ({ history }) => {
           text={'EQS_FW_UPDATE_SUCCESS'}
         />,
         <ErrorDetected
-          number={length(updateErrors) - warningsLength(updateErrors)}
-          warnings={warningsLength(updateErrors)}
+          number={errorsDetected}
+          warnings={warningsCount}
           onRetry={() => dispatch(CHECK_EQS_FIRMWARE())}
           url={paths.PROTECTED.EQS_UPDATE_ERRORS.path}
           next={paths.PROTECTED.ESS_DEVICE_MAPPING.path}

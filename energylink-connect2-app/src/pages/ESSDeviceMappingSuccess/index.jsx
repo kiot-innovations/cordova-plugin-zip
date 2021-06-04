@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { useI18n } from 'shared/i18n'
 import DeviceMap from 'components/DeviceMap'
 import { pathOr, isEmpty, length, head } from 'ramda'
-import { either, warningsLength } from 'shared/utils'
+import { either, warningsLength, withoutInfoCodes } from 'shared/utils'
 import paths from 'routes/paths'
 import { useHistory } from 'react-router-dom'
 import { RESET_COMPONENT_MAPPING } from 'state/actions/storage'
@@ -17,6 +17,11 @@ function DeviceMappingSuccess() {
   const mappingErrors = useSelector(
     pathOr([], ['storage', 'componentMapping', 'errors'])
   )
+
+  const noInfo = withoutInfoCodes(mappingErrors)
+  const warningsCount = warningsLength(noInfo)
+  const errorsDetected = length(noInfo) - warningsCount
+
   const devices = useSelector(
     pathOr({}, ['storage', 'componentMapping', 'component_mapping'])
   )
@@ -71,14 +76,14 @@ function DeviceMappingSuccess() {
       )}
 
       {either(
-        isEmpty(mappingErrors),
+        isEmpty(noInfo),
         <ContinueFooter
           url={paths.PROTECTED.ESS_HEALTH_CHECK.path}
           text={'DEVICE_MAPPING_SUCCESS'}
         />,
         <ErrorDetected
-          number={length(mappingErrors) - warningsLength(mappingErrors)}
-          warnings={warningsLength(mappingErrors)}
+          number={errorsDetected}
+          warnings={warningsCount}
           onRetry={retryMapping}
           url={paths.PROTECTED.ESS_DEVICE_MAPPING_ERROR_LIST.path}
           next={paths.PROTECTED.ESS_HEALTH_CHECK.path}

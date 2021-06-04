@@ -4,7 +4,13 @@ import clsx from 'clsx'
 import { isEmpty, length, pathOr, isNil, path } from 'ramda'
 import SwipeableSheet from 'hocs/SwipeableSheet'
 import { useI18n } from 'shared/i18n'
-import { either, addHasErrorProp, warningsLength } from 'shared/utils'
+import {
+  either,
+  addHasErrorProp,
+  warningsLength,
+  withoutInfoCodes
+} from 'shared/utils'
+
 import paths from 'routes/paths'
 
 import { rmaModes } from 'state/reducers/rma'
@@ -20,13 +26,18 @@ function ESSHealthCheck(props) {
   const t = useI18n()
   const history = useHistory()
   const results = addHasErrorProp(props.results)
+
   const errors = pathOr([], ['errors'], results)
+  const noInfo = withoutInfoCodes(errors)
+  const warningsCount = warningsLength(noInfo)
+  const errorsDetected = length(noInfo) - warningsCount
+
   const report = path(['ess_report'], results)
   const loading = isNil(results) && !props.error
   const classes = clsx('ess-hc has-text-centered pt-10 pl-10 pr-10', {
     gridit: loading || props.error
   })
-  const hasErrors = !isEmpty(errors) || props.error
+  const hasErrors = !isEmpty(noInfo) || props.error
 
   const statusErrorMessage = pathOr(
     props.error,
@@ -101,8 +112,8 @@ function ESSHealthCheck(props) {
       {either(
         hasErrors && !loading,
         <ErrorDetected
-          number={length(errors) - warningsLength(errors)}
-          warnings={warningsLength(errors)}
+          number={errorsDetected}
+          warnings={warningsCount}
           onRetry={onRetry}
           url={pathToErrors}
           globalError={statusErrorMessage}

@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import { RESET_COMPONENT_MAPPING } from 'state/actions/storage'
 import { pathOr, isEmpty, length } from 'ramda'
-import { either, warningsLength } from 'shared/utils'
+import { either, warningsLength, withoutInfoCodes } from 'shared/utils'
 import paths from 'routes/paths'
 import ErrorDetected from 'components/ESSErrorDetected'
 import './ESSDeviceMappingError.scss'
@@ -15,6 +15,10 @@ function DeviceMappingError() {
   const dispatch = useDispatch()
   const { componentMapping } = useSelector(pathOr({}, ['storage']))
   const errors = pathOr([], ['errors'], componentMapping)
+
+  const noInfo = withoutInfoCodes(errors)
+  const warningsCount = warningsLength(noInfo)
+  const errorsDetected = length(noInfo) - warningsCount
 
   const retryMapping = () => {
     dispatch(RESET_COMPONENT_MAPPING())
@@ -35,7 +39,7 @@ function DeviceMappingError() {
       </div>
 
       {either(
-        isEmpty(errors),
+        isEmpty(noInfo),
         <div className="has-text-centered">
           <div className="has-text-centered pr-20 pl-20">
             {t('DEVICE_MAPPING_ERROR_ADVICE')}
@@ -50,8 +54,8 @@ function DeviceMappingError() {
           </div>
         </div>,
         <ErrorDetected
-          number={length(errors) - warningsLength(errors)}
-          warnings={warningsLength(errors)}
+          number={errorsDetected}
+          warnings={warningsCount}
           onRetry={retryMapping}
           url={paths.PROTECTED.ESS_DEVICE_MAPPING_ERROR_LIST.path}
           next={paths.PROTECTED.ESS_DEVICE_MAPPING_ERROR_LIST.path}
