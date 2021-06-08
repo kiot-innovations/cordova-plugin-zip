@@ -27,7 +27,6 @@ const createWebsocketObservable = () =>
     ws.on('close', () => subscriber.error(new Error('Connection closed')))
 
     ws.on('open', () => {
-      ws.subscribe('power')
       subscriber.next({ evt: 'open' })
 
       ws.on('power', data => subscriber.next({ evt: 'power', data }))
