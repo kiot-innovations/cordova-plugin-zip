@@ -3,7 +3,9 @@ import { useDispatch } from 'react-redux'
 import { useI18n } from 'shared/i18n'
 import { useHistory } from 'react-router-dom'
 import { Loader } from 'components/Loader'
+import Rating from 'components/Rating'
 import HomeownerAccountCreation from 'components/HomeownerAccountCreation'
+import FeedbackModal from 'components/FeedbackModal'
 import { isEmpty, test, pathOr, propOr } from 'ramda'
 import { either, buildFullAddress } from 'shared/utils'
 import {
@@ -22,6 +24,10 @@ const SavingConfiguration = () => {
   const history = useHistory()
   const dispatch = useDispatch()
   const [showHomeownerCreation, setShowHomeownerCreation] = useState(false)
+  const [showFeedbackModal, setShowFeedbackModal] = useState(false)
+  const [feedbackRating, setFeedbackRating] = useState(0)
+  const [feedbackSent, setFeedbackSent] = useState(false)
+  const markFeedbackAsSent = () => setFeedbackSent(true)
   const { submitting, commissioned, error } = useSelector(
     state => state.systemConfiguration.submit
   )
@@ -54,6 +60,11 @@ const SavingConfiguration = () => {
     history.push(paths.PROTECTED.DATA.path)
   }
 
+  const handleFeedbackRating = rating => {
+    setShowFeedbackModal(true)
+    setFeedbackRating(rating)
+  }
+
   const configContent =
     commissioned && isEmpty(error)
       ? {
@@ -80,6 +91,19 @@ const SavingConfiguration = () => {
                 >
                   {t('CREATE_HOMEOWNER_ACCOUNT')}
                 </button>
+              )}
+              {either(
+                !feedbackSent,
+                <>
+                  <div className="mt-15 has-text-white has-text-weight-bold">
+                    {t('COMMISSIONING_SUCCESS_FEEDBACK_REQUEST')}
+                  </div>
+
+                  <Rating
+                    onClick={handleFeedbackRating}
+                    rating={feedbackRating}
+                  />
+                </>
               )}
               <div className="inline-buttons">
                 <button
@@ -152,6 +176,16 @@ const SavingConfiguration = () => {
       ) : (
         configContent.controls
       )}
+      <FeedbackModal
+        rating={feedbackRating}
+        open={showFeedbackModal}
+        onRatingChange={setFeedbackRating}
+        feedbackSent={feedbackSent}
+        handleFeedbackSuccess={markFeedbackAsSent}
+        onChange={() => {
+          setShowFeedbackModal(!showFeedbackModal)
+        }}
+      />
     </div>
   )
 }

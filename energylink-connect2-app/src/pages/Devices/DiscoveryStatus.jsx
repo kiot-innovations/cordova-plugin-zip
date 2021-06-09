@@ -27,7 +27,7 @@ function DiscoveryStatus({
         <>
           <div className="has-text-centered mb-10">
             <span className="has-text-weight-bold mt-20">
-              {t('UNFOUND_MIS')}
+              {t('NOT_FOUND_MIS')}
             </span>
           </div>
           <div className="is-flex">

@@ -1,0 +1,21 @@
+@import '~@sunpower/theme-dark/styles/variables';
+
+.feedback-modal {
+  .inline-buttons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 1rem;
+
+    button {
+      padding: unset;
+    }
+  }
+}
+
+.ReactSwipeableBottomSheet--open,
+.ReactSwipeableBottomSheet--closed {
+  padding: 1rem 1rem 2rem 1rem;
+  background-color: $light-black !important;
+  border-radius: 20px;
+  margin-bottom: 70px;
+}

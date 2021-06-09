@@ -1,7 +1,8 @@
 import React from 'react'
-import * as reactRedux from 'react-redux'
-import SavingConfiguration from '.'
+import FeedbackForm from '.'
 import * as i18n from 'shared/i18n'
+import { shallow } from 'enzyme'
+import * as reactRedux from 'react-redux'
 
 jest.mock('react-router-dom', () => ({
   useHistory: () => ({
@@ -9,21 +10,12 @@ jest.mock('react-router-dom', () => ({
   })
 }))
 
-describe('SavingConfiguration component', () => {
+describe('FeedbackForm component', () => {
   let dispatchMock
-
-  const initialState = {
-    submit: {
-      submitting: true,
-      submitted: false,
-      error: ''
-    }
-  }
-
   beforeEach(() => {
     dispatchMock = jest.fn()
     jest.spyOn(reactRedux, 'useDispatch').mockImplementation(() => dispatchMock)
-    jest.spyOn(reactRedux, 'useSelector').mockImplementation(() => initialState)
+    jest.spyOn(reactRedux, 'useSelector').mockImplementation(() => dispatchMock)
     jest
       .spyOn(i18n, 'useI18n')
       .mockImplementation(path => (key, ...params) =>
@@ -31,8 +23,13 @@ describe('SavingConfiguration component', () => {
       )
   })
 
-  test('renders correctly', () => {
-    const { component } = mountWithProvider(<SavingConfiguration />)({})
+  test('render correctly', () => {
+    const component = shallow(
+      <FeedbackForm
+        title={'RATE_APP'}
+        placeholder={'GIVE_FEEDBACK_PAGE_PLACEHOLDER'}
+      />
+    )
     expect(component).toMatchSnapshot()
   })
 })

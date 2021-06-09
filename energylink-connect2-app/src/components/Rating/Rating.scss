@@ -1,15 +1,24 @@
 @import '~@sunpower/theme-dark/styles/variables';
 
 .raitings {
+  display: flex;
+  justify-content: center;
+  margin: 5px 0px;
+
   svg {
     path.outline {
       fill: $white;
-      fill-opacity: 0.8;
+      fill-opacity: 0.9;
     }
+
+    &:not(:last-child) {
+      margin-right: 10px;
+    }
+
     &.active {
-      path.fill {
+      path.outline {
         fill: $sun;
-        fill-opacity: 0.9;
+        fill-opacity: 0.8;
       }
     }
   }

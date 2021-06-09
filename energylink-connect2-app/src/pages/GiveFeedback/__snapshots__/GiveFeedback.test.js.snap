@@ -1,7 +1,17 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`GiveFeedback component render correctly 1`] = `
-<Redirect
-  to="/"
-/>
+<section
+  className="is-flex tile is-vertical section pt-0 fill-parent"
+>
+  <h1
+    className="has-text-centered is-uppercase has-text-weight-bold  pb-20"
+  >
+    GIVE_FEEDBACK
+  </h1>
+  <FeedbackForm
+    placeholder="GIVE_FEEDBACK_PAGE_PLACEHOLDER"
+    title="RATE_APP"
+  />
+</section>
 `;
