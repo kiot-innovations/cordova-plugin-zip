@@ -31,7 +31,7 @@
     "@sunpower/sunpowerimage": "^0.1.2",
     "@sunpower/tabs": "^0.1.38",
     "@sunpower/textfield": "^0.1.5",
-    "@sunpower/theme-dark": "^0.2.0",
+    "@sunpower/theme-dark": "^0.2.1",
     "@sunpower/tile": "^0.1.37",
     "@szhsin/react-menu": "^1.8.0",
     "bulma": "^0.7.5",

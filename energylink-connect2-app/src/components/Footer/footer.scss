@@ -7,7 +7,7 @@
     bottom: env(safe-area-inset-bottom);
     width: 100vw;
     height: 70px;
-    background-color: $black;
+    background-color: $dark-blue;
     transform: translate3d(0, 0, 0);
     transition: max-height 250ms ease-out, opacity 250ms ease-out;
   }
