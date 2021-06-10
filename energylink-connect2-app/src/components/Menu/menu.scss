@@ -7,7 +7,7 @@ $headerHeight: 60px;
   top: $headerHeight;
   z-index: 30;
   height: calc(100% - #{$headerHeight});
-  background-color: $black;
+  background-color: $dark-blue;
   width: 100%;
   margin-top: env(safe-area-inset-top);
   padding-bottom: calc(4 * env(safe-area-inset-bottom));

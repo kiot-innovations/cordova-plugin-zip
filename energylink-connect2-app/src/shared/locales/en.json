@@ -656,7 +656,7 @@
   "PVS_LISTED_DOWN": "PVS Devices detected nearby",
   "CONFIRM_CONNECTION": "Do you want to connect to {0}?",
   "ENABLE_BLE": "Enable Bluetooth",
-  "PVS_DEVICES": "PVS devices associated with site,",
+  "PVS_DEVICES": "PVS devices associated with site",
   "APPLYING_PRECOMM_CONFIG": "Please wait while the settings are being applied",
   "PRECOMM_SETTINGS_APPLIED": "Settings succesfully applied",
   "MANDATORY_FIELDS": "Required information for commissioning",

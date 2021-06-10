@@ -19,7 +19,7 @@ import { CHECK_LOCATION_PERMISSION_INIT } from 'state/actions/permissions'
 const { store, persistor } = configureStore({})
 
 if (window && window.StatusBar) {
-  window.StatusBar.backgroundColorByHexString('#15202e')
+  window.StatusBar.backgroundColorByHexString('#0c1724')
 }
 
 Sentry.init({
