@@ -161,7 +161,9 @@ function Devices() {
   }, [errMICount, expected, okMICount, dispatch])
 
   useEffect(() => {
+    //TODO: Remove duplicate Fetch Devices List when newest FW is rolled out
     if (claimedDevices) {
+      dispatch(FETCH_DEVICES_LIST())
       dispatch(FETCH_DEVICES_LIST())
       history.push(paths.PROTECTED.MODEL_EDIT.path)
     }

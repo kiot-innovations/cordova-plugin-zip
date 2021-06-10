@@ -1,7 +1,7 @@
 import * as Sentry from '@sentry/browser'
 import { ofType } from 'redux-observable'
 import { from, of } from 'rxjs'
-import { switchMap, map, catchError } from 'rxjs/operators'
+import { concatMap, map, catchError } from 'rxjs/operators'
 import { getApiPVS } from 'shared/api'
 import {
   FETCH_DEVICES_LIST,
@@ -13,7 +13,7 @@ import { path } from 'ramda'
 export const fetchDeviceListEpic = action$ => {
   return action$.pipe(
     ofType(FETCH_DEVICES_LIST.getType()),
-    switchMap(() => {
+    concatMap(() => {
       const promise = getApiPVS()
         .then(path(['apis', 'devices']))
         .then(api => api.getDevices())
