@@ -1,7 +1,7 @@
 import * as Sentry from '@sentry/browser'
 import { ofType } from 'redux-observable'
-import { from, of } from 'rxjs'
-import { catchError, delay, exhaustMap, map } from 'rxjs/operators'
+import { from, of, timer } from 'rxjs'
+import { catchError, exhaustMap, map, takeUntil } from 'rxjs/operators'
 import {
   converge,
   curry,
@@ -14,7 +14,9 @@ import {
   clone,
   lensProp,
   when,
-  includes
+  includes,
+  pathOr,
+  prop
 } from 'ramda'
 import {
   RMA_REMOVE_DEVICES_ERROR,
@@ -22,12 +24,30 @@ import {
   RMA_REMOVE_DEVICES_SUCCESS
 } from 'state/actions/rma'
 import {
+  DEVICELIST_PROCESSING_COMPLETE,
+  DEVICELIST_PROCESSING_ERROR,
   FETCH_DEVICES_LIST,
   UPDATE_DEVICES_LIST_ERROR,
-  WAIT_FOR_DL_PROCESSING
+  WAIT_FOR_DEVICELIST_PROCESSING
 } from 'state/actions/devices'
+import { EMPTY_ACTION } from 'state/actions/share'
 import { getApiDevice, getApiPVS } from 'shared/api'
 import { filterInverters } from 'shared/utils'
+
+const updateDeviceListProgress = progress => {
+  const percent = prop('percent', progress)
+  const result = prop('result', progress)
+  const code = prop('code', progress)
+
+  if (percent === 100 && result === 'succeed')
+    return DEVICELIST_PROCESSING_COMPLETE(progress)
+
+  if (result === 'error') {
+    return DEVICELIST_PROCESSING_ERROR(code)
+  }
+
+  return EMPTY_ACTION()
+}
 
 const getAccessToken = path(['user', 'auth', 'access_token'])
 const getSelectedPVS = path(['rma', 'pvs'])
@@ -122,14 +142,56 @@ export const removeDevicesEpic = (action$, state$) => {
   )
 }
 
-export const retriggerDevicesListEpic = action$ => {
+export const triggerDeviceListPollingEpic = action$ => {
   return action$.pipe(
     ofType(
       RMA_REMOVE_DEVICES_SUCCESS.getType(),
       RMA_REMOVE_DEVICES_ERROR.getType()
     ),
-    map(WAIT_FOR_DL_PROCESSING),
-    delay(3000),
+    map(() => WAIT_FOR_DEVICELIST_PROCESSING()),
+    catchError(err => {
+      Sentry.captureException(err)
+      return of(UPDATE_DEVICES_LIST_ERROR())
+    })
+  )
+}
+
+export const waitForDeviceListProcessingEpic = action$ => {
+  const stopPolling$ = action$.pipe(
+    ofType(
+      DEVICELIST_PROCESSING_COMPLETE.getType(),
+      DEVICELIST_PROCESSING_ERROR.getType()
+    )
+  )
+
+  return action$.pipe(
+    ofType(WAIT_FOR_DEVICELIST_PROCESSING.getType()),
+    exhaustMap(() =>
+      timer(0, 2500).pipe(
+        takeUntil(stopPolling$),
+        exhaustMap(() => {
+          const promise = getApiPVS()
+            .then(path(['apis', 'devices']))
+            .then(api => api.getClaim())
+          return from(promise).pipe(
+            map(response => {
+              const progress = pathOr([], ['body'], response)
+              return updateDeviceListProgress(progress)
+            }),
+            catchError(() => {
+              Sentry.captureException('Error during device list processing')
+              return of(UPDATE_DEVICES_LIST_ERROR())
+            })
+          )
+        })
+      )
+    )
+  )
+}
+
+export const retriggerDevicesListEpic = action$ => {
+  return action$.pipe(
+    ofType(DEVICELIST_PROCESSING_COMPLETE.getType()),
     map(FETCH_DEVICES_LIST),
     catchError(err => {
       Sentry.captureException(err)

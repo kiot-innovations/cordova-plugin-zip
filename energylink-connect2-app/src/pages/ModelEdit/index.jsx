@@ -119,7 +119,8 @@ const ModelEdit = () => {
       }
       if (rmaMode === rmaModes.EDIT_DEVICES) {
         dispatch(RESET_METADATA_STATUS())
-        syncWithCloud()
+        dispatch(SET_LAST_VISITED_PAGE(paths.PROTECTED.RMA_DEVICES.path))
+        history.push(paths.PROTECTED.SYSTEM_CONFIGURATION.path)
       } else if (essValue.value !== '0') {
         history.push(paths.PROTECTED.STORAGE_PREDISCOVERY.path)
       } else {
