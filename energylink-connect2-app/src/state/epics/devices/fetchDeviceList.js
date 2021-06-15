@@ -23,6 +23,8 @@ export const fetchDeviceListEpic = action$ => {
           UPDATE_DEVICES_LIST(path(['body', 'devices'], response))
         ),
         catchError(err => {
+          Sentry.setTag('endpoint', 'devices.getDevices')
+          Sentry.captureMessage(`${err.message} - fetchDevicesList.js`)
           Sentry.captureException(err)
           return of(UPDATE_DEVICES_LIST_ERROR(err))
         })

@@ -53,6 +53,8 @@ export const miLiveDataEpic = action$ => {
             map(getData),
             map(MI_DATA_SUCCESS),
             catchError(error => {
+              Sentry.setTag('endpoint', 'devices.getDevices')
+              Sentry.captureMessage(`${error.message} - miLiveDataEpic.js`)
               Sentry.captureException(error)
               return of(MI_DATA_ERROR(error))
             })

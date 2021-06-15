@@ -54,6 +54,8 @@ export const scanDevicesEpic = action$ => {
                 : DISCOVER_UPDATE(response)
             ),
             catchError(error => {
+              Sentry.setTag('endpoint', 'devices.getDevices')
+              Sentry.captureMessage(`${error.message} - discoverDevices.js`)
               Sentry.captureException(error)
               return of(DISCOVER_ERROR('DISCOVERY_ERROR'))
             })
