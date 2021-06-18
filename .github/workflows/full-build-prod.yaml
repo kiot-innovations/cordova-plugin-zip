@@ -1,7 +1,7 @@
 ####
 # Full version of build workflow
 #
-# It triggers a job targeted at the test flavor
+# It triggers a job targeted at the production flavor
 # BUILD_TYPE is defined by .github/workflows/setup_environment.sh script
 #
 # 1. Native application energylink-connect2-app
@@ -21,7 +21,7 @@
 on:
   push:
     tags:
-      - '[0-9]+.[0-9]+.[0-9]+-test'
+      - '[0-9]+.[0-9]+.[0-9]+-prod'
 
 jobs:
   build:
@@ -29,7 +29,7 @@ jobs:
     timeout-minutes: 45
     strategy:
       matrix:
-        app_env: [test]
+        app_env: [prod]
     env:
       APP_ENV: ${{ matrix.app_env }}
     steps:
@@ -150,7 +150,7 @@ jobs:
           args: |
             {
               "channel": "cm2-builds",
-              "text": "New test release is available",
+              "text": "New production release is available",
               "as_user": true,
               "attachments": [{
                 "color": "good",

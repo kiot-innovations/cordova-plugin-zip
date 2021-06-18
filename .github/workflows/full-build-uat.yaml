@@ -1,7 +1,7 @@
 ####
 # Full version of build workflow
 #
-# It triggers a job targeted at the test flavor
+# It triggers a job targeted at the BETA/UAT flavor
 # BUILD_TYPE is defined by .github/workflows/setup_environment.sh script
 #
 # 1. Native application energylink-connect2-app
@@ -21,7 +21,7 @@
 on:
   push:
     tags:
-      - '[0-9]+.[0-9]+.[0-9]+-test'
+      - '[0-9]+.[0-9]+.[0-9]+-uat'
 
 jobs:
   build:
@@ -29,7 +29,7 @@ jobs:
     timeout-minutes: 45
     strategy:
       matrix:
-        app_env: [test]
+        app_env: [uat]
     env:
       APP_ENV: ${{ matrix.app_env }}
     steps:
@@ -45,8 +45,7 @@ jobs:
       #
       # Native Application
       #
-      - name: Install Dependencies
-        run: npm install
+      - run: npm install
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
         working-directory: energylink-connect2-app
@@ -66,7 +65,9 @@ jobs:
           openssl enc -aes256 -d -base64 -md md5 -pass pass:'${{ secrets.ENVFILE_PASSWORD }}' -in .env.enc.${APP_ENV} -out .env
         working-directory: energylink-connect2-app
 
-      - run: npm run build
+      - run: |
+          npm run build
+          SENTRY_AUTH_TOKEN=${{ secrets.SENTRY_AUTH_TOKEN }} node sentrifySourceMaps
         working-directory: energylink-connect2-app
 
       #
@@ -95,6 +96,9 @@ jobs:
       #
       # iOS Application
       #
+      - name: Run Cocoapods Repo Update
+        run: pod repo update
+
       - name: Build iOS Application
         run: bundle exec fastlane ios build
         env:
@@ -102,14 +106,14 @@ jobs:
           MATCH_GIT_BASIC_AUTHORIZATION: ${{ secrets.MATCH_GIT_BASIC_AUTHORIZATION }}
           MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
           KEYCHAIN_PASSWORD: ${{ secrets.KEYCHAIN_PASSWORD }}
-      # - name: Upload build to Apple TestFlight
-      #   run: bundle exec fastlane ios release
-      #   if: startsWith(github.ref, 'refs/tags/')
-      #   env:
-      #     FASTLANE_SESSION: ${{ secrets.FASTLANE_SESSION }}
-      #     FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD: ${{ secrets.FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD }}
-      #     FASTLANE_PASSWORD: ${{ secrets.FASTLANE_PASSWORD }}
-      #     MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
+      - name: Upload build to Apple TestFlight
+        run: bundle exec fastlane ios release
+        if: startsWith(github.ref, 'refs/tags/')
+        env:
+          FASTLANE_SESSION: ${{ secrets.FASTLANE_SESSION }}
+          FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD: ${{ secrets.FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD }}
+          FASTLANE_PASSWORD: ${{ secrets.FASTLANE_PASSWORD }}
+          MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
 
       #
       # Android Application
@@ -118,8 +122,6 @@ jobs:
         run: |
           echo "${{ secrets.GOOGLE_PLAY_UPLOAD_KEYSTORE }}" | base64 -d > upload-keystore.jks
           echo "${{ secrets.GOOGLE_PLAY_API_KEY }}" | base64 -d > google-api.json
-      - name: Install NDK 21.0.6113669
-        run: echo "y" | sudo ${ANDROID_HOME}/tools/bin/sdkmanager --install "ndk;21.0.6113669"
       - name: Build Android Application
         run: bundle exec fastlane android build
         env:
@@ -128,12 +130,12 @@ jobs:
         with:
           name: Android-${{ env.APP_ENV }}
           path: ${{ env.CORDOVA_ANDROID_RELEASE_BUILD_PATH }}
-      # - name: Upload build to Google Play store
-      #   run: bundle exec fastlane android release
-      #   if: startsWith(github.ref, 'refs/tags/')
+      - name: Upload build to Google Play store
+        run: bundle exec fastlane android release
+        if: startsWith(github.ref, 'refs/tags/')
 
       #
-      # Slack Notification (run once, only for test environment)
+      # Slack Notification (run once, only for prod environment)
       #
       - name: Calculate GIT branch name
         run: |
@@ -143,14 +145,14 @@ jobs:
           echo "TAG=${TAG}" >> $GITHUB_ENV
       - name: Send slack notification
         uses: hbfernandes/slack-action@1.0
-        if: env.APP_ENV == 'test'
+        if: env.APP_ENV == 'prod'
         env:
           SLACK_TOKEN: ${{ secrets.SLACK_TOKEN }}
         with:
           args: |
             {
               "channel": "cm2-builds",
-              "text": "New test release is available",
+              "text": "New Beta/UAT release is available",
               "as_user": true,
               "attachments": [{
                 "color": "good",
