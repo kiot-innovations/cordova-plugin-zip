@@ -15,7 +15,6 @@ export const refreshTokenEpic = (action$, state$) => {
   return action$.pipe(
     ofType(authActions.REFRESH_TOKEN_INIT.getType()),
     switchMap(() => {
-      retries = 0
       const { refresh_token } = pathOr({}, ['user', 'auth'], state$.value)
       return from(authClient.refreshTokenOAuth(refresh_token)).pipe(
         map(response => {
