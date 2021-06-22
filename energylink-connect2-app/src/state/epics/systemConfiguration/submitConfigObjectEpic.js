@@ -30,13 +30,13 @@ export const submitConfigObjectEpic = (action$, state$) => {
         catchError(error => {
           const apiResult = pathOr({}, ['response', 'body', 'result'], error)
           const pvsSn = state$.value.pvs.serialNumber
-          const message = propOr('', 'message', apiResult)
+          const message = propOr('Unknown message', 'message', apiResult)
 
           const data = {
             pvsSerialNumber: pvsSn,
-            code: propOr('', 'code', apiResult),
+            code: propOr('Unknown code', 'code', apiResult),
             message,
-            exception: propOr('', 'exception', apiResult)
+            exception: propOr('Unknown exception', 'exception', apiResult)
           }
 
           const text = pvsIsOffline(message)
@@ -50,10 +50,9 @@ export const submitConfigObjectEpic = (action$, state$) => {
             category: 'error',
             level: 'error'
           })
-
           Sentry.captureMessage(text)
-
-          return of(SUBMIT_COMMISSION_ERROR(text))
+          Sentry.captureException(error)
+          return of(SUBMIT_COMMISSION_ERROR(data))
         })
       )
     })

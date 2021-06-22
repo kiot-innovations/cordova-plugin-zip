@@ -1,10 +1,20 @@
 import { ofType } from 'redux-observable'
 import { switchMap, withLatestFrom } from 'rxjs/operators'
 import { EMPTY, of } from 'rxjs'
-import { T, always, cond, pathOr, propEq, not, path } from 'ramda'
+import {
+  compose,
+  curry,
+  not,
+  always,
+  cond,
+  path,
+  pathOr,
+  propEq,
+  T,
+  prop
+} from 'ramda'
 
 import { commissionSite, saveConfiguration } from 'shared/analytics'
-import { getElapsedTimeWithState } from 'shared/analyticsUtils'
 import { parseInventory } from 'state/epics/analytics/InventoryEpics'
 import { COMMISSION_SUCCESS } from 'state/actions/analytics'
 import { getElapsedTime } from 'shared/utils'
@@ -86,7 +96,16 @@ export const getGridVoltage = pathNA([
   'selected'
 ])
 
-const getConfiguration = (state, success, errorMessage) => {
+/**
+ * Generates an object to send to mixpanel
+ * @param state
+ * @param {boolean}success
+ * @param {({error:string,message:string} | null)}error
+ * @return {Action<null, null> | Action<unknown, {}>}
+ */
+const getConfiguration = (state, success, error) => {
+  const errorMessage = prop('message', error)
+  const errorCode = prop('code', error)
   const inventory = parseInventory(path(['inventory', 'bom'], state))
   const hasESS = not(propEq('ESS', '0', inventory))
   const networkInterfaces = getConnectionInterfaces(state)
@@ -95,12 +114,17 @@ const getConfiguration = (state, success, errorMessage) => {
     'Storage Operation Mode': getESSOperationalMode(state),
     'Storage Reserve Amount': getESSReserveAmount(state)
   }
+  const errorProperties = {
+    'Error Message': errorMessage,
+    'Error Code': errorCode
+  }
 
   const timePassedChoosing = getElapsedTime(state.analytics.configureTimer)
   const EDPEndpointDuration = getElapsedTime(state.analytics.submitTimer)
   const { reconnectionTimes } = state.analytics
 
   const acpvProperties = {
+    ...(error ? errorProperties : {}),
     ...networkInterfaces,
     'Grid Profile': getGridProfile(state),
     'Grid Voltage': getGridVoltage(state),
@@ -108,8 +132,6 @@ const getConfiguration = (state, success, errorMessage) => {
     'Consumption Meter Type': getConsumptionMeterType(state),
     'Remote System Energize': getRse(state),
     Success: success,
-    'Error Message': errorMessage,
-
     'Time Elapsed Choosing': timePassedChoosing,
     'Time Elapsed Submitting': EDPEndpointDuration,
     'Reconnections To PVS WiFi': reconnectionTimes
@@ -124,7 +146,7 @@ const submitConfigurationSuccess = (action$, state$) =>
   action$.pipe(
     ofType(SUBMIT_COMMISSION_SUCCESS.getType()),
     withLatestFrom(state$),
-    switchMap(([, state]) => of(getConfiguration(state, true)))
+    switchMap(([, state]) => of(getConfiguration(state, true, null)))
   )
 
 const submitConfigurationError = (action$, state$) =>
@@ -136,6 +158,12 @@ const submitConfigurationError = (action$, state$) =>
     )
   )
 
+const getElapsedTimeWithState = curry((state, timerName) =>
+  compose(
+    getElapsedTime,
+    pathOr(new Date().getTime(), ['value', 'analytics', timerName])
+  )(state)
+)
 const getReconnectionTimes = pathOr(0, [
   'value',
   'network',

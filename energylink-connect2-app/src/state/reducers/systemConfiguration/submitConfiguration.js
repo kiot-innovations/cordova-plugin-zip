@@ -59,10 +59,10 @@ export const submitConfigReducer = createReducer(
       submitting: false,
       commissioned: true
     }),
-    [SUBMIT_COMMISSION_ERROR]: (state, payload) => ({
+    [SUBMIT_COMMISSION_ERROR]: (state, { message }) => ({
       ...state,
       submitting: false,
-      error: payload
+      error: message
     }),
     [ALLOW_COMMISSIONING]: state => ({
       ...state,
