@@ -52,7 +52,7 @@ jobs:
         run: openssl enc -aes256 -d -base64 -md md5 -pass pass:'${{ secrets.ENVFILE_PASSWORD }}' -in .env.enc.${APP_ENV} -out .env
         working-directory: energylink-connect2-app
 
-      - run: npm run build
+      - run: npm run buildsm
         working-directory: energylink-connect2-app
 
       - name: Set the application environment to ${{ env.APP_ENV }}

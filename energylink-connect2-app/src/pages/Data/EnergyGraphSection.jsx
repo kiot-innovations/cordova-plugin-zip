@@ -1,6 +1,6 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { filter, head, length, pathOr } from 'ramda'
+import { filter, head, isNil, last, length, pathOr, propOr } from 'ramda'
 
 import { useI18n } from 'shared/i18n'
 import { DATA_SOURCES, GRAPHS, SELECT_ENERGY_GRAPH } from 'state/actions/user'
@@ -8,6 +8,7 @@ import EnergyGraph, { VIEWS } from 'components/EnergyGraph'
 import EnergySwitch from 'components/EnergySwitch'
 
 import './EnergyGraphSection.scss'
+import { roundDecimals } from '../../shared/rounding'
 
 const SelectedGraph = ({ selectedId, data, dataSource }) => {
   const t = useI18n()
@@ -30,12 +31,20 @@ const SelectedGraph = ({ selectedId, data, dataSource }) => {
   }
 
   const dataEntries = Object.entries(data)
-  const lastDataPoint = dataEntries.length
-    ? dataEntries[dataEntries.length - 1][1]
-    : {
-        pp: 0,
-        pc: 0
-      }
+  const lastDataPoint =
+    length(dataEntries) > 0
+      ? last(dataEntries)[1]
+      : {
+          pp: 0,
+          pc: 0,
+          ps: 0
+        }
+
+  const produced = propOr(0, 'pp', lastDataPoint)
+  const rawConsumed = roundDecimals(
+    pathOr(0, ['rawData', 'site_load_p'], lastDataPoint)
+  )
+  const consumed = isNil(lastDataPoint.pc) ? rawConsumed : lastDataPoint.pc
 
   return (
     <React.Fragment>
@@ -43,14 +52,14 @@ const SelectedGraph = ({ selectedId, data, dataSource }) => {
         <div className="graph-top-values mt-20">
           <div className="prod ml-10">
             <div>
-              {lastDataPoint.pp}
+              {produced}
               <span className="unit"> kW</span>
             </div>
             <div>{t('PRODUCED')}</div>
           </div>
           <div className="cons mr-10">
             <div>
-              {lastDataPoint.pc}
+              {consumed}
               <span className="unit"> kW</span>
             </div>
             <div>{t('CONSUMED')}</div>
