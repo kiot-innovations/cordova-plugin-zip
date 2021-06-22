@@ -1,11 +1,15 @@
+import { Observable } from 'rxjs'
 import { compose } from 'ramda'
 import { trace } from 'shared/utils'
 
 export const connectBLE = device =>
-  new Promise((resolve, reject) => {
+  new Observable(subscriber => {
     window.ble.connect(
       device.id,
-      compose(resolve, trace('ble.connect success')),
-      compose(reject, trace('ble.connect failed'))
+      compose(
+        bleDeviceInfo => subscriber.next(bleDeviceInfo),
+        trace('ble.connect_SUCCESS')
+      ),
+      compose(error => subscriber.error(error), trace('ble.connect_FAILED'))
     )
   })
