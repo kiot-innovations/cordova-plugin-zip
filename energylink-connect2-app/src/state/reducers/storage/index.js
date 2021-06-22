@@ -142,7 +142,8 @@ export const storageReducer = createReducer(
     }),
     [TRIGGER_EQS_FIRMWARE_ERROR]: (state, payload) => ({
       ...state,
-      error: payload
+      error: payload,
+      currentStep: eqsSteps.FW_ERROR
     }),
     [UPDATE_EQS_FIRMWARE_PROGRESS]: (state, payload) => ({
       ...state,
