@@ -21,4 +21,10 @@ export const CLAIM_DEVICES_MIXPANEL_EVENT = analyticsAction(
   'CLAIM DEVICES MIXPANEL EVENT'
 )
 export const START_BULK_SETTINGS_TIMER = analyticsAction('Start bulk settings')
+export const MIS_DISCOVERY_START_TIMER = analyticsAction(
+  'Start MIs discovery timer'
+)
+export const UPDATE_NOT_FOUND_MIS_SERIAL_NUMBERS = analyticsAction(
+  'Update not found MIs serial numbers'
+)
 export const START_PLT_SETUP = analyticsAction('Start PLT setup')

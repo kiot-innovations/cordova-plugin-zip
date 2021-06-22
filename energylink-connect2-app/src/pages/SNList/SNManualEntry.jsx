@@ -3,7 +3,7 @@ import { compose, isEmpty } from 'ramda'
 import TextField from '@sunpower/textfield'
 import { useDispatch } from 'react-redux'
 import { useI18n } from 'shared/i18n'
-import { buildSN, isValidSN } from 'shared/utils'
+import { buildSN, snEntryMethods, isValidSN } from 'shared/utils'
 import { useField, useForm } from 'react-final-form-hooks'
 import { ADD_PVS_SN } from 'state/actions/pvs'
 import './SNManualEntry.scss'
@@ -13,7 +13,7 @@ const ManualEntryForm = ({ serialNumber, callback }) => {
   const t = useI18n()
   const dispatch = useDispatch()
   const isIos = useIsIos()
-  const addSN = compose(dispatch, ADD_PVS_SN, buildSN)
+  const addSN = compose(dispatch, ADD_PVS_SN, buildSN(snEntryMethods.MANUAL))
 
   const { form, handleSubmit } = useForm({
     initialValues: {

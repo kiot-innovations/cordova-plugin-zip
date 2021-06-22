@@ -13,6 +13,7 @@ import trackDisReconnectionPVS from './trackDisReconnectionPVS'
 import pvsInternetEpic from './pvsInternetEpic'
 import pltWizard from './panelLayoutTool'
 import bulkSettingsEpic from './bulkSettingsEpic'
+import scanMicroInverters from './scanMicroInvertersEpic'
 
 export default [
   ...acModelsEpic,
@@ -29,5 +30,6 @@ export default [
   ...scanPVS,
   ...siteEpics,
   errorEpic,
-  pvsInternetEpic
+  pvsInternetEpic,
+  scanMicroInverters
 ]

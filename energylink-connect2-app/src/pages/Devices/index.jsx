@@ -3,7 +3,7 @@ import useModal from 'hooks/useModal'
 import { isEmpty, length, pathOr } from 'ramda'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
-import { either, miTypes } from 'shared/utils'
+import { either, miTypes, filterFoundMI, miStates } from 'shared/utils'
 import { useI18n } from 'shared/i18n'
 import {
   CLAIM_DEVICES_INIT,
@@ -26,25 +26,6 @@ const microInverterIcon = (
   <span className="sp-inverter mr-20 devices-icon ml-0 mt-0 mb-0" />
 )
 
-const miStates = {
-  LOADING: 'LOADING',
-  NEW: 'LOADING',
-  PINGING: 'LOADING',
-  PING_OK: 'LOADING',
-  PING_ERROR: 'ERROR',
-  GETTING_VERSION_INFORMATION: 'LOADING',
-  VERSION_INFORMATION_OK: 'LOADING',
-  VERSION_INFORMATION_ERROR: 'ERROR',
-  INVALID_SERIAL_NUMBER: 'ERROR',
-  GETTING_PLC_STATS: 'LOADING',
-  PLC_STATS_OK: 'LOADING',
-  PLC_STATS_ERROR: 'ERROR',
-  GETTING_PV_INFO: 'LOADING',
-  PV_INFO_OK: 'LOADING',
-  PV_INFO_ERROR: 'ERROR',
-  OK: 'MI_OK'
-}
-
 const miIndicators = {
   MI_OK: <span className="is-size-4 mr-10 sp-check has-text-white" />,
   ERROR: <span className="is-size-4 mr-10 sp-hey has-text-primary" />,
@@ -55,47 +36,6 @@ const miIndicators = {
       </div>
     </div>
   )
-}
-
-export const filterFoundMI = (SNList, candidatesList) => {
-  const okMI = []
-  const nonOkMI = []
-  const pendingMI = []
-  SNList.forEach(device => {
-    try {
-      let deviceCopy = device
-      const foundCandidate = candidatesList.find(
-        item => item.SERIAL === deviceCopy.serial_number
-      )
-      if (foundCandidate) {
-        deviceCopy = { ...deviceCopy, ...foundCandidate }
-        deviceCopy.indicator = miStates[deviceCopy.STATEDESCR]
-        if (deviceCopy.indicator === 'MI_OK') {
-          okMI.push(deviceCopy)
-        } else {
-          if (deviceCopy.indicator === 'LOADING') {
-            pendingMI.push(deviceCopy)
-          } else {
-            if (deviceCopy.indicator === 'ERROR') {
-              nonOkMI.push(deviceCopy)
-            }
-          }
-        }
-      } else {
-        deviceCopy.STATEDESCR = miStates.PINGING
-        deviceCopy.indicator = 'LOADING'
-        pendingMI.push(deviceCopy)
-      }
-    } catch (e) {
-      console.error('Filtering error', e)
-    }
-  })
-
-  return {
-    okMI,
-    nonOkMI,
-    pendingMI
-  }
 }
 
 const miActions = (num = 0, max = 0) => (

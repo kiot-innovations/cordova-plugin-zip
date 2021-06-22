@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import { useI18n } from 'shared/i18n'
 import { scanAR } from 'shared/scandit'
-import { buildSN } from 'shared/utils'
+import { buildSN, snEntryMethods } from 'shared/utils'
 import { ADD_PVS_SN } from 'state/actions/pvs'
 import { rmaModes } from 'state/reducers/rma'
 import paths from 'routes/paths'
@@ -18,7 +18,7 @@ const addSN = dispatch =>
       compose(dispatch, ADD_PVS_SN),
       identity
     ),
-    buildSN
+    buildSN(snEntryMethods.SCAN)
   )
 const addCodes = compose(map, addSN)
 const scanMatrix = compose(scanAR, addCodes)

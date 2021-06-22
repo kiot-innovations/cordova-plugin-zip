@@ -7,17 +7,20 @@ import {
   CLAIM_DEVICES_MIXPANEL_EVENT,
   RESET_PVS_INTERNET_TRACKING,
   SET_AC_DEVICES,
-  START_BULK_SETTINGS_TIMER
+  START_BULK_SETTINGS_TIMER,
+  UPDATE_NOT_FOUND_MIS_SERIAL_NUMBERS
 } from 'state/actions/analytics'
 
 import {
   CLAIM_DEVICES_ERROR,
   CLAIM_DEVICES_COMPLETE,
   CLAIM_DEVICES_INIT,
-  PUSH_CANDIDATES_INIT
+  PUSH_CANDIDATES_INIT,
+  RESET_DISCOVERY
 } from 'state/actions/devices'
 
 import { SET_CONNECTION_STATUS } from 'state/actions/network'
+import { MIS_DISCOVERY_START_TIMER } from 'state/actions/analytics'
 import {
   CONNECT_NETWORK_AP_INIT,
   CONNECT_NETWORK_AP_ERROR,
@@ -32,6 +35,7 @@ export const initialState = {
   pvsInternetMode: '',
   pvsInternetTimer: 0,
   selectingACModelTimer: 0,
+  scanMicroInvertersTimer: 0,
   submitTimer: 0,
   bulkSettingsTimer: 0,
   timeFromMiScan: 0,
@@ -40,6 +44,8 @@ export const initialState = {
     claimingTime: 0
   },
   commissioningSuccess: false,
+  scanMicroInvertersDone: false,
+  scanMicroInvertersNotFoundSerialNumbers: [],
   siteUnderCommissioning: '',
   disconnectionTimer: 0,
   reconnectionTime: 0,
@@ -74,9 +80,10 @@ export default createReducer(
             ...state.claimingDevices,
             status: 'claiming',
             claimingTime: Date.now()
-          }
+          },
+          scanMicroInvertersNotFoundSerialNumbers: []
         }
-      return state
+      return { ...state, scanMicroInvertersNotFoundSerialNumbers: [] }
     },
     [CLAIM_DEVICES_COMPLETE]: state => {
       if (state.claimingDevices.status === 'claiming')
@@ -100,7 +107,20 @@ export default createReducer(
     },
     [PUSH_CANDIDATES_INIT]: state => ({
       ...state,
+      scanMicroInvertersDone: true,
       timeFromMiScan: new Date().getTime()
+    }),
+    [RESET_DISCOVERY]: state => ({
+      ...state,
+      scanMicroInvertersTimer: state.scanMicroInvertersDone
+        ? Date.now()
+        : state.scanMicroInvertersTimer,
+      scanMicroInvertersDone: false
+    }),
+    [MIS_DISCOVERY_START_TIMER]: state => ({
+      ...state,
+      scanMicroInvertersTimer: Date.now(),
+      scanMicroInvertersDone: false
     }),
     [START_BULK_SETTINGS_TIMER]: state => ({
       ...state,
@@ -171,6 +191,10 @@ export default createReducer(
       reconnectionTimes: 0,
       reconnectionTime: 0,
       disconnectionTimer: 0
+    }),
+    [UPDATE_NOT_FOUND_MIS_SERIAL_NUMBERS]: (state, payload) => ({
+      ...state,
+      scanMicroInvertersNotFoundSerialNumbers: payload
     })
   },
   initialState

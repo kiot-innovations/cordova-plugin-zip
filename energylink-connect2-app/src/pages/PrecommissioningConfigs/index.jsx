@@ -14,6 +14,7 @@ import {
 } from 'state/actions/devices'
 import { SUBMIT_PRECONFIG_GRIDPROFILE } from 'state/actions/systemConfiguration'
 import { GRID_PROFILE_UPLOAD_INIT } from 'state/actions/firmwareUpdate'
+import { MIS_DISCOVERY_START_TIMER } from 'state/actions/analytics'
 
 import { discoveryTypes } from 'state/reducers/devices'
 import { rmaModes } from 'state/reducers/rma'
@@ -85,6 +86,8 @@ const continueCommissioning = (
   history,
   dispatch
 ) => {
+  dispatch(MIS_DISCOVERY_START_TIMER())
+
   // If we're going through a PVS replacement
   if (rmaMode === rmaModes.REPLACE_PVS) {
     // If there's new equipment, take them to inventory count

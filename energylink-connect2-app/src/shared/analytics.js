@@ -301,6 +301,26 @@ export const setACModuleType = ({ timeElapsed, errorCodes, moduleTypes }) => {
   return MIXPANEL_EVENT_QUEUED('Set AC Module type - success')
 }
 
+export const scanMicroInverters = ({
+  success,
+  manualEntered,
+  scanEntered,
+  duration,
+  notFound
+}) => {
+  const { mixpanel } = window
+
+  mixpanel.track('Scan MIs', {
+    $duration: duration,
+    'Count of MIs Scanned': scanEntered,
+    'Count of MIs Entered Manually': manualEntered,
+    'Count of MIs Not Found': notFound,
+    Success: success
+  })
+
+  return MIXPANEL_EVENT_QUEUED('Scan MIs')
+}
+
 export const trackDisconnectionPVS = () => {
   const { mixpanel } = window
   mixpanel.track('Disconnect From PVS WiFi')

@@ -9,6 +9,7 @@ import {
   concat,
   curry,
   defaultTo,
+  difference,
   dissoc,
   endsWith,
   equals,
@@ -32,6 +33,7 @@ import {
   pathEq,
   pathOr,
   pickBy,
+  pluck,
   prop,
   propEq,
   propOr,
@@ -188,13 +190,19 @@ export const barcodeValidator = barcode => {
   return false
 }
 
-export const buildSN = barcode => {
+export const snEntryMethods = {
+  MANUAL: 'manual',
+  SCAN: 'scan'
+}
+
+export const buildSN = curry((entryMethod, barcode) => {
   console.info(barcode)
   return {
     serial_number: barcodeValidator(barcode) ? `E00${barcode}` : barcode,
-    type: 'SOLARBRIDGE'
+    type: 'SOLARBRIDGE',
+    entryMethod
   }
-}
+})
 
 export const trace = t => x => {
   console.info(t)
@@ -507,4 +515,75 @@ export const getGPDownloadError = state$ => {
     : 'pvs6GridProfileInfo'
 
   return path(['value', 'fileDownloader', pvsGridProfileInfo, 'error'], state$)
+}
+
+export const miStates = {
+  LOADING: 'LOADING',
+  NEW: 'LOADING',
+  PINGING: 'LOADING',
+  PING_OK: 'LOADING',
+  PING_ERROR: 'ERROR',
+  GETTING_VERSION_INFORMATION: 'LOADING',
+  VERSION_INFORMATION_OK: 'LOADING',
+  VERSION_INFORMATION_ERROR: 'ERROR',
+  INVALID_SERIAL_NUMBER: 'ERROR',
+  GETTING_PLC_STATS: 'LOADING',
+  PLC_STATS_OK: 'LOADING',
+  PLC_STATS_ERROR: 'ERROR',
+  GETTING_PV_INFO: 'LOADING',
+  PV_INFO_OK: 'LOADING',
+  PV_INFO_ERROR: 'ERROR',
+  OK: 'MI_OK'
+}
+
+export const filterFoundMI = (SNList, candidatesList) => {
+  const okMI = []
+  const nonOkMI = []
+  const pendingMI = []
+  SNList.forEach(device => {
+    try {
+      let deviceCopy = device
+      const foundCandidate = candidatesList.find(
+        item => item.SERIAL === deviceCopy.serial_number
+      )
+      if (foundCandidate) {
+        deviceCopy = { ...deviceCopy, ...foundCandidate }
+        deviceCopy.indicator = miStates[deviceCopy.STATEDESCR]
+        if (deviceCopy.indicator === 'MI_OK') {
+          okMI.push(deviceCopy)
+        } else {
+          if (deviceCopy.indicator === 'LOADING') {
+            pendingMI.push(deviceCopy)
+          } else {
+            if (deviceCopy.indicator === 'ERROR') {
+              nonOkMI.push(deviceCopy)
+            }
+          }
+        }
+      } else {
+        deviceCopy.STATEDESCR = miStates.PINGING
+        deviceCopy.indicator = 'LOADING'
+        pendingMI.push(deviceCopy)
+      }
+    } catch (e) {
+      console.error('Filtering error', e)
+    }
+  })
+
+  return {
+    okMI,
+    nonOkMI,
+    pendingMI
+  }
+}
+
+export const getNotFoundMIs = (previousSerialNumbers, currentNotFound) => {
+  const currentSerialNumbers = pluck('SERIAL', currentNotFound)
+  const newSerialNumbers = difference(
+    currentSerialNumbers,
+    previousSerialNumbers
+  )
+  const serialNumbers = concat(previousSerialNumbers, newSerialNumbers)
+
+  return [length(currentSerialNumbers), serialNumbers]
 }

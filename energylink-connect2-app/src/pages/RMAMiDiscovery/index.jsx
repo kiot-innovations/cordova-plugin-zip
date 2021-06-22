@@ -12,7 +12,7 @@ import {
 } from 'state/actions/devices'
 import paths from 'routes/paths'
 import RMAMiDiscoveryUI from './RMAMiDiscoveryUI'
-import { filterFoundMI } from 'pages/Devices'
+import { filterFoundMI } from 'shared/utils'
 
 function RMAMiDiscovery() {
   const dispatch = useDispatch()
