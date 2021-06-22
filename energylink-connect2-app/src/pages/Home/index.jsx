@@ -25,7 +25,7 @@ import {
   PVS5_GRID_PROFILE_DOWNLOAD_INIT
 } from 'state/actions/gridProfileDownloader'
 import { CHECK_BLUETOOTH_STATUS_INIT } from 'state/actions/network'
-
+import { WAKELOCK_RELEASE } from 'state/actions/wakelock'
 import paths from 'routes/paths'
 
 import SearchField from 'components/SearchField'
@@ -63,6 +63,7 @@ function Home() {
     dispatch(CHECK_APP_UPDATE_INIT())
     dispatch(FETCH_MODELS_INIT())
     dispatch(FETCH_STATUS_MESSAGES())
+    dispatch(WAKELOCK_RELEASE())
   }, [dispatch])
   const notFoundText = t('NOT_FOUND')
 

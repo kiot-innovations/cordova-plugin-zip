@@ -23,6 +23,7 @@ import storageEpics from './storage'
 import systemConfigurationEpics from './systemConfiguration'
 import superuserEpics from './superuser'
 import apisEpic from './api'
+import wakelockEpics from './wakelock'
 import statusMessages from './statusMessages'
 
 export default combineEpics(
@@ -49,5 +50,6 @@ export default combineEpics(
   ...storageEpics,
   ...superuserEpics,
   ...systemConfigurationEpics,
+  ...wakelockEpics,
   liveEnergyData
 )
