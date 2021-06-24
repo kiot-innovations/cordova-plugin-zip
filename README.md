@@ -87,14 +87,28 @@ grunt;
 
 # How to release a new version
 
+## Happy Path
+
 1. Set `version` and `ios-CFBundleVersion` in [config.xml](config.xml)
 2. Commit your changes, create and push your tag
 
 ```
-git commit -m 'Release: X.Y.Z`
+git checkout -b release/X.Y.Z
+git add .
+git commit -m '[Release Notes CM2 Ticket Number] Release X.Y.Z`
+git push origin
 git tag X.Y.Z
 git push origin X.Y.Z
 ```
+
+## Targeting specific flavors for build
+
+```
+git tag X.Y.Z-${flavor}
+git push origin X.Y.Z-${flavor}
+```
+
+where ${flavor} can be any of ['prod', 'uat', 'test']
 
 3. Github Actions will build and release a new version (X.Y.Z) of the application
 
