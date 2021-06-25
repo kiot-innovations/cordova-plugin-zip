@@ -18,7 +18,7 @@ export const release = action$ =>
         map(WAKELOCK_RELEASED),
         catchError(() => {
           Sentry.captureException(new Error('Failed to release wakelock'))
-          return of(WAKELOCK_RELEASE_ERROR)
+          return of(WAKELOCK_RELEASE_ERROR())
         })
       )
     )
