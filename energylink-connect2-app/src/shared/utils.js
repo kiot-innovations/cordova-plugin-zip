@@ -429,9 +429,8 @@ export const buildFullAddress = (address1, address2, streetId, city) =>
     streetId ? ', ' + streetId : ''
   }`
 
-export const getBLEPath = isIos()
-  ? ['advertising', 'kCBAdvDataLocalName']
-  : ['name']
+export const getBLEPath = () =>
+  isIos() ? ['advertising', 'kCBAdvDataLocalName'] : ['name']
 
 // { name: string, id: string} -> Boolean
 export const isPVSDevice = compose(

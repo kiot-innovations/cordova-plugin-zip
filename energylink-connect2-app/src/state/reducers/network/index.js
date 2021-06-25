@@ -29,7 +29,8 @@ import {
   BLE_GET_DEVICES_ERROR,
   SET_AP_PWD,
   SET_SSID,
-  SET_CONNECTION_STATUS
+  SET_CONNECTION_STATUS,
+  BLE_GET_DEVICES_ENDED
 } from 'state/actions/network'
 
 import { RESET_COMMISSIONING } from 'state/actions/global'
@@ -214,14 +215,20 @@ export const networkReducer = createReducer(
       ...state,
       bleSearching: true
     }),
-    [BLE_UPDATE_DEVICES]: (state, device) => ({
+    [BLE_UPDATE_DEVICES]: (state, device) => {
+      return {
+        ...state,
+        bleSearching: false,
+        bluetoothStatus: BLESTATUS.DISCOVERY_SUCCESS,
+        nearbyDevices: uniqWith(eqByProp('name'), [
+          ...state.nearbyDevices,
+          device
+        ])
+      }
+    },
+    [BLE_GET_DEVICES_ENDED]: state => ({
       ...state,
-      bleSearching: false,
-      bluetoothStatus: BLESTATUS.DISCOVERY_SUCCESS,
-      nearbyDevices: uniqWith(eqByProp('name'), [
-        ...state.nearbyDevices,
-        device
-      ])
+      bleSearching: false
     }),
     [BLE_GET_DEVICES_ERROR]: state => {
       const nextstate = {

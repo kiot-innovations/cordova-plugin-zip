@@ -7,14 +7,18 @@ export const getBLEDeviceList = () =>
     window.ble.scan(
       [],
       30,
-      device => {
-        const name = pathOr(null, getBLEPath, device)
-
-        subscriber.next({ name, id: device.id })
+      dev => {
+        const name = pathOr(null, getBLEPath(), dev)
+        const device = { name, id: dev.id }
+        const response = { device, ended: false }
+        subscriber.next(response)
       },
-      subscriber.error
+      error => {
+        subscriber.error(error)
+      }
     )
     setTimeout(() => {
+      subscriber.next({ device: null, ended: true })
       subscriber.complete()
     }, 30000)
   })

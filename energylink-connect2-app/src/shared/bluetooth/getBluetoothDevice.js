@@ -7,7 +7,7 @@ export const getBLEDevice = pvsSerialNumber =>
     window.ble.startScan(
       [],
       device => {
-        const sn = pathOr('NOT_FOUND', getBLEPath, device)
+        const sn = pathOr('NOT_FOUND', getBLEPath(), device)
 
         if (equals(sn, pvsSerialNumber)) {
           found = true

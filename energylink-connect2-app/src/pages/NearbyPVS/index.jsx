@@ -12,7 +12,7 @@ import NearbyPVSUI from './NearbyPVSUI'
 import { generatePassword, generateSSID, getBLEPath } from 'shared/utils'
 import paths from 'routes/paths'
 
-const isPVS = device => startsWith('ZT', pathOr('', getBLEPath, device))
+const isPVS = device => startsWith('ZT', pathOr('', getBLEPath(), device))
 
 function NearbyPVS() {
   const dispatch = useDispatch()
