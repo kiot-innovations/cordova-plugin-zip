@@ -13,7 +13,7 @@
   },
   "versions": [
     {
-      "versionNumber": "6.113.4",
+      "versionNumber": "6.113.5",
       "releaseDate": "2021-06-29",
       "bodyMarkdown": "# Features\n\nThe phone will no longer go to sleep when the SunPower Pro Connect app is used to commission devices.\n\n# Bug Fixes\n\nUser is able to RETRY and continue navigation in the FIRMWARE UPDATE screen when the storage firmware update fails."
     },
