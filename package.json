@@ -56,8 +56,8 @@
     "cordova.plugins.diagnostic": "^6.0.2",
     "es6-promise-plugin": "^4.1.0",
     "phonegap-plugin-barcodescanner": "^8.1.0",
-    "scandit-cordova-datacapture-barcode": "^6.6.4",
-    "scandit-cordova-datacapture-core": "^6.6.4",
+    "scandit-cordova-datacapture-barcode": "^6.8.1",
+    "scandit-cordova-datacapture-core": "^6.8.1",
     "xcode": "^2.1.0"
   },
   "cordova": {
@@ -118,7 +118,9 @@
       "at.gofg.sportscomputer.powermanagement": {},
       "cordova-launch-review": {
         "ANDROID_PLAY_SERVICES_CORE_VERSION": "1.8.0"
-      }
+      },
+      "scandit-cordova-datacapture-core": {},
+      "scandit-cordova-datacapture-barcode": {}
     },
     "platforms": [
       "android",

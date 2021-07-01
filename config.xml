@@ -40,7 +40,8 @@
         </feature>
         <preference name="CordovaWebViewEngine" value="CDVWKWebViewEngine" />
         <preference name="Allow3DTouchLinkPreview" value="false" />
-        <preference name="UseSwiftLanguageVersion" value="4" />
+        <preference name="UseSwiftLanguageVersion" value="5" />
+        <preference name="SwiftVersion" value="5" />
         <preference name="DisallowOverscroll" value="true" />
         <allow-intent href="itms:*" />
         <allow-intent href="itms-apps:*" />

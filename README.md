@@ -24,13 +24,28 @@ Get the password for doing this from anyone on the dev team
 
 ```
 cd ~/sunpower/energylink-connect2/energylink-connect2-app;
-openssl aes-256-cbc -d -a -salt -in .env.enc.test -out .env.production;
-openssl aes-256-cbc -d -a -salt -in .env.enc.uat -out .env.development;
+
+openssl aes-256-cbc -d -a -salt -in .env.enc.prod -out .env.prod;
+openssl aes-256-cbc -d -a -salt -in .env.enc.test -out .env.test;
+openssl aes-256-cbc -d -a -salt -in .env.enc.training -out .env.training;
+openssl aes-256-cbc -d -a -salt -in .env.enc.uat -out .env.uat;
+
 ```
+
+## Encrypt the env files
+
+```
+cd ~/sunpower/energylink-connect2/energylink-connect2-app;
+
+openssl aes-256-cbc -e -a -salt -in .env.prod -out .env.enc.prod;
+openssl aes-256-cbc -e -a -salt -in .env.test -out .env.enc.test;
+openssl aes-256-cbc -e -a -salt -in .env.training -out .env.enc.training;
+openssl aes-256-cbc -e -a -salt -in .env.uat -out .env.enc.uat;
 
 ## Install all dependencies:
 
 ```
+
 cd ~/sunpower/energylink-connect2;
 nvm install 10.15.3
 nvm use
@@ -48,41 +63,50 @@ git clone git@github.com:SunPower/pvsmgmt-console.git;
 cd ~/sunpower/pvsmgmt-console/pvsServer;
 nvm use;
 npm i;
+
 ```
 
 Test and build native application:
 
 ```
+
 cd ~/sunpower/energylink-connect2/energylink-connect2-app;
 npm install;
 npm run test;
 npm run build;
+
 ```
 
 Build iOS and android app for development
 
 ```
+
 cd ~/sunpower/energylink-connect2/energylink-connect2-app;
 phonegap platform add android;
 phonegap platform add ios;
 npm run dev:android;
 npm run dev:ios;
+
 ```
 
 # Run in iOS simulator
 
 ```
+
 cd ~/sunpower/energylink-connect2/;
 nvm use;
 cordova emulate ios;
+
 ```
 
 # Run local PVS Simulator
 
 ```
+
 cd ~/sunpower/pvsmgmt-console/pvsServer;
 nvm use;
 grunt;
+
 ```
 
 # How to release a new version
@@ -93,19 +117,23 @@ grunt;
 2. Commit your changes, create and push your tag
 
 ```
+
 git checkout -b release/X.Y.Z
 git add .
 git commit -m '[Release Notes CM2 Ticket Number] Release X.Y.Z`
 git push origin
 git tag X.Y.Z
 git push origin X.Y.Z
+
 ```
 
 ## Targeting specific flavors for build
 
 ```
+
 git tag X.Y.Z-${flavor}
 git push origin X.Y.Z-${flavor}
+
 ```
 
 where ${flavor} can be any of ['prod', 'uat', 'test']
@@ -156,8 +184,10 @@ Apple:
 ## Run this
 
 ```
+
 brew install fastlane;
 fastlane match appstore;
+
 ```
 
 ## It'll ask you for the following information:
@@ -168,3 +198,4 @@ _password:_ ask Alvin, Chris, or Kamil for this password
 _Bundle IDs:_ com.sunpower.energylink.commissioning2.test,com.sunpower.energylink.commissioning2.prod,com.sunpower.energylink.commissioning2.training,com.sunpower.energylink.commissioning2
 
 Modify the bundle IDs to be whatever you need them to be, then update this readme with the latest app ids
+```
