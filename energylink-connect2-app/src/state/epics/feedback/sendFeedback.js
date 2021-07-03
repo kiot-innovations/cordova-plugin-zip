@@ -22,8 +22,10 @@ export const sendFeedbackEpic = (action$, state$) =>
     ofType(feedbackActions.SEND_FEEDBACK_INIT.getType()),
     mergeMap(({ payload }) => {
       const t = translate(state$.value.language)
+      const { comment, rating, source } = payload
       const bodyValues = {
-        ...payload,
+        rating,
+        comment,
         contactEmail: path(['value', 'user', 'data', 'email'], state$),
         userstime: moment().format('YYYY-MM-DDTHH:mm:ss')
       }
@@ -42,7 +44,7 @@ export const sendFeedbackEpic = (action$, state$) =>
       return from(sendFeedbackPromise(access_token, values)).pipe(
         map(({ status, data }) =>
           status === 200
-            ? feedbackActions.SEND_FEEDBACK_SUCCESS()
+            ? feedbackActions.SEND_FEEDBACK_SUCCESS({ rating, source })
             : feedbackActions.SEND_FEEDBACK_ERROR({ status, data })
         ),
         catchError(err => of(feedbackActions.SEND_FEEDBACK_ERROR(err)))

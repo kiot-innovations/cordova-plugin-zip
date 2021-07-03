@@ -47,6 +47,8 @@ function FeedbackForm({
   const rating = useField('rating', form)
   const comment = useField('comment', form)
 
+  form.change('source', modal ? 'Commissioning Success' : 'Menu')
+
   if (!modal && isFeedbackSuccessful) {
     dispatch(MENU_HIDE())
     history.push(routes.PROTECTED.ROOT.path)

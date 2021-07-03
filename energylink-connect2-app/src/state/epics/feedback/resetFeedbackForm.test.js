@@ -1,4 +1,5 @@
 import * as feedbackActions from '../../actions/feedback'
+import { MIXPANEL_EVENT_QUEUED } from 'state/actions/analytics'
 
 describe('resetFeedbackForm Epic', () => {
   let epicTest
@@ -8,18 +9,22 @@ describe('resetFeedbackForm Epic', () => {
     jest.resetModules()
     resetFeedbackFormEpic = require('./resetFeedbackForm').resetFeedbackFormEpic
     epicTest = epicTester(resetFeedbackFormEpic)
+    window.mixpanel = {
+      track: jest.fn(() => {})
+    }
   })
 
-  it('dispatches an RESET_FEEDBACK_FORM action if the feedback successfuly processed', () => {
+  it('dispatches RESET_FEEDBACK_FORM and MIXPANEL_EVENT_QUEUED actions if the feedback is successfully processed', () => {
     const inputValues = {
-      a: feedbackActions.SEND_FEEDBACK_SUCCESS()
+      a: feedbackActions.SEND_FEEDBACK_SUCCESS({ rating: 4, source: 'Menu' })
     }
     const expectedValues = {
-      b: feedbackActions.RESET_FEEDBACK_FORM()
+      b: feedbackActions.RESET_FEEDBACK_FORM(),
+      m: MIXPANEL_EVENT_QUEUED('Feedback Sent')
     }
 
     const inputMarble = 'a'
-    const expectedMarble = 'b'
+    const expectedMarble = '(bm)'
 
     epicTest(inputMarble, expectedMarble, inputValues, expectedValues)
   })

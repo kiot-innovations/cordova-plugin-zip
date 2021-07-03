@@ -346,3 +346,14 @@ export const trackConnectedDeviceFWUpdate = config => {
   mixpanel.track('ESS F/W Update', config)
   return MIXPANEL_EVENT_QUEUED('Connected Device FW Update')
 }
+
+export const feedbackSent = ({ source, rating }) => {
+  const { mixpanel } = window
+
+  mixpanel.track('Feedback Sent', {
+    Source: source,
+    Rating: rating
+  })
+
+  return MIXPANEL_EVENT_QUEUED('Feedback Sent')
+}
