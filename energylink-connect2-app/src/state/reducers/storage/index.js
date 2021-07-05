@@ -10,6 +10,7 @@ import {
   GET_ESS_STATUS_ERROR,
   GET_ESS_STATUS_INIT,
   GET_ESS_STATUS_COMPLETE,
+  SET_ESS_STATUS,
   GET_PREDISCOVERY,
   GET_PREDISCOVERY_ERROR,
   GET_PREDISCOVERY_RESET,
@@ -25,7 +26,9 @@ import {
   UPLOAD_EQS_FIRMWARE,
   UPLOAD_EQS_FIRMWARE_ERROR,
   UPLOAD_EQS_FIRMWARE_PROGRESS,
-  TRIGGER_EQS_FIRMWARE_UPDATE_INIT
+  TRIGGER_EQS_FIRMWARE_UPDATE_INIT,
+  GET_ESS_STATUS,
+  SET_ESS_STATUS_ERROR
 } from 'state/actions/storage'
 import { eqsUpdateStates } from 'state/epics/storage/deviceUpdate'
 import { RESET_COMMISSIONING } from 'state/actions/global'
@@ -41,6 +44,8 @@ const initialState = {
     results: null,
     error: null
   },
+  statusReport: {},
+  statusReportError: {},
   error: '',
   loadingPrediscovery: false
 }
@@ -184,6 +189,19 @@ export const storageReducer = createReducer(
         ? payload.payload
         : state.componentMapping,
       error: payload.error
+    }),
+    [GET_ESS_STATUS]: state => ({
+      ...state,
+      statusReport: initialState.statusReport,
+      statusReportError: initialState.statusReportError
+    }),
+    [SET_ESS_STATUS]: (state, payload) => ({
+      ...state,
+      statusReport: payload
+    }),
+    [SET_ESS_STATUS_ERROR]: (state, payload) => ({
+      ...state,
+      statusReportError: payload
     }),
     [RESET_COMPONENT_MAPPING]: state => ({
       ...state,

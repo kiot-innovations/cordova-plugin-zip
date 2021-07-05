@@ -8,6 +8,10 @@ export const GET_ESS_STATUS_UPDATE = createAction('GET_ESS_STATUS_UPDATE')
 export const GET_ESS_STATUS_COMPLETE = createAction('GET_ESS_STATUS_COMPLETE')
 export const CLEAR_HEALTH_CHECK = createAction('CLEAR_HEALTH_CHECK')
 
+export const GET_ESS_STATUS = createAction('GET_ESS_STATUS')
+export const SET_ESS_STATUS = createAction('SET_ESS_STATUS')
+export const SET_ESS_STATUS_ERROR = createAction('SET_ESS_STATUS_ERROR')
+
 export const RUN_EQS_SYSTEMCHECK = createAction('RUN_EQS_SYSTEMCHECK')
 export const RUN_EQS_SYSTEMCHECK_SUCCESS = createAction(
   'RUN_EQS_SYSTEMCHECK_SUCCESS'

@@ -346,7 +346,7 @@
 	"SYSTEM_REPORT_ERROR_LIST": "Error list",
 	"CONTROLLER NOT RUNNING": "Controller not running",
 	"EQS_STATUS": "SunVault Status",
-	"EQS_ERROR": "System not yet installed or configured",
+	"STORAGE_STATUS_ERROR": "We couldn't retrieve the storage status.",
 	"CONTROLLER IN PRE-PTO MODE": "Controller in PRE-PTO mode",
 	"CONTROLLER RUNNING NORMALLY": "Controller running normally",
 	"LAST_UPDATED": "Last updated",
@@ -724,5 +724,6 @@
 	"FEEDBACK_MODAL_GOOGLE_PLAY_REVIEW_REQUEST": "Can you please rate our app in Google Play?",
 	"GO_TO_STORE": "Go to store",
 	"FEEDBACK_SUCCESSFULLY_SENT": "Feedback successfully sent!",
-	"CONTRACT_NO": "Contract number"
+	"CONTRACT_NO": "Contract number",
+  "PLEASE_TRY_AGAIN": "Please try again"
 }

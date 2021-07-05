@@ -18,6 +18,9 @@ import {
   GET_ESS_STATUS_INIT,
   GET_ESS_STATUS_SUCCESS,
   GET_ESS_STATUS_UPDATE,
+  GET_ESS_STATUS,
+  SET_ESS_STATUS,
+  SET_ESS_STATUS_ERROR,
   RUN_EQS_SYSTEMCHECK,
   RUN_EQS_SYSTEMCHECK_SUCCESS
 } from 'state/actions/storage'
@@ -116,11 +119,14 @@ export const getHealthCheckEpic = action$ => {
               return statusMatcher(status)
             }),
             catchError(error => {
+              Sentry.setTag('endpoint', 'storage.status')
               Sentry.addBreadcrumb({
                 message:
                   'Failure while polling /dl_cgi/equinox-system-check/status'
               })
-              Sentry.captureException(error)
+              Sentry.captureMessage(
+                'getHealthCheckEpic - getSingleStorageStatusEpic'
+              )
               return of(GET_ESS_STATUS_ERROR(errorObj))
             })
           )
@@ -147,6 +153,28 @@ export const retrieveStorageStatusEpic = action$ =>
           })
           Sentry.captureException(error)
           return of(GET_ESS_STATUS_ERROR(errorObj))
+        })
+      )
+    })
+  )
+
+export const getSingleStorageStatusEpic = action$ =>
+  action$.pipe(
+    ofType(GET_ESS_STATUS.getType()),
+    switchMap(() => {
+      const promise = getApiPVS()
+        .then(path(['apis', storageSwaggerTag]))
+        .then(api => api.getEssStatus())
+
+      return from(promise).pipe(
+        map(response => SET_ESS_STATUS(response.body)),
+        catchError(error => {
+          Sentry.addBreadcrumb({
+            message:
+              'Failure while calling /dl_cgi/energy-storage-system/status'
+          })
+          Sentry.captureException(error)
+          return of(SET_ESS_STATUS_ERROR(errorObj.response.body))
         })
       )
     })

@@ -21,10 +21,7 @@ import {
   ENERGY_DATA_START_POLLING,
   ENERGY_DATA_STOP_POLLING
 } from 'state/actions/energy-data'
-import {
-  CLEAR_HEALTH_CHECK,
-  GET_ESS_STATUS_SUCCESS
-} from 'state/actions/storage'
+import { CLEAR_HEALTH_CHECK, GET_ESS_STATUS } from 'state/actions/storage'
 import { MI_DATA_START_POLLING, MI_DATA_STOP_POLLING } from 'state/actions/pvs'
 import { FETCH_DEVICES_LIST } from 'state/actions/devices'
 import { either } from 'shared/utils'
@@ -46,10 +43,10 @@ export default () => {
   const [livePowerInfo, showLivePowerInfo] = useState(false)
   const { liveData = {} } = useSelector(state => state.energyLiveData)
   const { miData } = useSelector(state => state.pvs)
-  const storageStatus = useSelector(pathOr({}, ['storage', 'status']))
-  const essState = pathOr({}, ['results', 'ess_report', 'ess_state', 0])(
-    storageStatus
+  const { statusReport, statusReportError } = useSelector(
+    state => state.storage
   )
+  const essState = pathOr({}, ['ess_report', 'ess_state'])(statusReport)
 
   const prodMeterConfig = find(isMeter, Object.values(liveData))
     ? 'GROSS_PRODUCTION_SITE'
@@ -72,7 +69,7 @@ export default () => {
     dispatch(FETCH_DEVICES_LIST())
     dispatch(ENERGY_DATA_START_POLLING())
     dispatch(MI_DATA_START_POLLING())
-    dispatch(GET_ESS_STATUS_SUCCESS())
+    dispatch(GET_ESS_STATUS())
     return () => {
       dispatch(ENERGY_DATA_STOP_POLLING())
       dispatch(MI_DATA_STOP_POLLING())
@@ -125,17 +122,29 @@ export default () => {
         {either(
           hasStorage,
           <Collapsible title={t('SUNVAULT_STATUS')}>
-            <span className="has-text-weight-bold has-text-white mt-10 mb-10">
-              {either(
-                !isEmpty(essState),
-                <span>
-                  {storageStatus.error
-                    ? t('EQS_ERROR')
-                    : t(essDisplayStatus(essState))}
-                </span>,
-                <span className="loader-label">{t('LOADING')}</span>
-              )}
-            </span>
+            {either(
+              !isEmpty(statusReportError),
+              <>
+                <span className="has-text-weight-bold has-text-white mt-10 mb-10">
+                  {t('STORAGE_STATUS_ERROR')}
+                </span>
+                <span
+                  onClick={() => dispatch(GET_ESS_STATUS())}
+                  className="has-text-weight-bold has-text-primary ml-5 mt-10 mb-10"
+                >
+                  {t('PLEASE_TRY_AGAIN')}
+                </span>
+              </>,
+              isEmpty(statusReport) ? (
+                <span className="has-text-weight-bold has-text-white mt-10 mb-10">
+                  {t('LOADING')}
+                </span>
+              ) : (
+                <span className="has-text-weight-bold has-text-white mt-10 mb-10">
+                  {t(essDisplayStatus(essState))}
+                </span>
+              )
+            )}
             <ButtonLink
               title={t('SYSTEM_CHECK')}
               onClick={executeHealthCheck}
