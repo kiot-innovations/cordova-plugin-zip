@@ -1,6 +1,6 @@
 import Collapsible from 'components/Collapsible'
 import {
-  DOWNLOAD_ESS_FIRMWARE_LIST,
+  DOWNLOAD_SUPERUSER_FIRMWARE_LIST,
   SHOW_SUPERUSER_SETTINGS,
   HIDE_SUPERUSER_SETTINGS
 } from 'state/actions/superuser'
@@ -13,12 +13,14 @@ import './DebugPage.scss'
 import {
   SET_ESS_UPDATE_OVERRIDE,
   SET_PVS_UPDATE_OVERRIDE,
+  SET_DO_NOT_UPDATE_PVS,
   DEFAULT_ALL_UPDATE_OVERRIDES
 } from 'state/actions/fileDownloader'
 import { DOWNLOAD_OS_INIT } from 'state/actions/ess'
 import { useI18n } from 'shared/i18n'
 import SelectField from 'components/SelectField'
 import { either } from 'shared/utils'
+import Toggler from 'components/Toggler'
 
 const renderDebugLink = (history, name, path) => (
   <div className="debug-route mb-10" onClick={() => history.push(path)}>
@@ -32,9 +34,12 @@ const DebugPage = () => {
   const t = useI18n()
   const history = useHistory()
   const dispatch = useDispatch()
-  const { essUpdateOverride, pvsUpdateOverride } = useSelector(
-    state => state.fileDownloader.settings
-  )
+  const {
+    essUpdateOverride,
+    pvsUpdateOverride,
+    doNotUpdatePVS
+    // doNotUpdateESS
+  } = useSelector(state => state.fileDownloader.settings)
   const [selectedESSUpdate, setSelectedESSUpdate] = useState(essUpdateOverride)
   const [selectedPVSUpdate, setSelectedPVSUpdate] = useState(pvsUpdateOverride)
   const [showThisMightNotWork, setShowThisMightNotWork] = useState(false)
@@ -65,7 +70,7 @@ const DebugPage = () => {
   }
 
   useEffect(() => {
-    dispatch(DOWNLOAD_ESS_FIRMWARE_LIST())
+    dispatch(DOWNLOAD_SUPERUSER_FIRMWARE_LIST())
   }, [dispatch])
 
   const getPVSDisplayName = pvsURL => {
@@ -151,8 +156,18 @@ const DebugPage = () => {
             onSelect={pvsUpdateChangeHandler}
             className="mt-10 mb-10"
           />
-
           <br />
+          <div className="pr-15">
+            <Toggler
+              text={t('SUPERUSER_DO_NOT_PUSH')}
+              checked={doNotUpdatePVS}
+              onChange={setting => {
+                dispatch(SET_DO_NOT_UPDATE_PVS(setting))
+                dispatch(SHOW_SUPERUSER_SETTINGS())
+              }}
+            ></Toggler>
+          </div>
+          <hr className="mb-10" />
           <b className="option-title">
             {t('SUPERUSER_OPTIONS_CONNECTED_DEVICES_FIRMWARE_TITLE')}
           </b>
@@ -168,7 +183,7 @@ const DebugPage = () => {
             onSelect={essUpdateChangeHandler}
             className="mt-10 mb-10"
           />
-
+          <br />
           <div className="mt-10 mb-10 is-uppercase this-might-not-work error">
             {either(
               showThisMightNotWork,

@@ -3,7 +3,9 @@ import {
   DOWNLOAD_ALLOW_WITH_PVS,
   SET_ESS_UPDATE_OVERRIDE,
   SET_PVS_UPDATE_OVERRIDE,
-  DEFAULT_ALL_UPDATE_OVERRIDES
+  DEFAULT_ALL_UPDATE_OVERRIDES,
+  SET_DO_NOT_UPDATE_PVS,
+  SET_DO_NOT_UPDATE_ESS
 } from 'state/actions/fileDownloader'
 
 const initialState = {
@@ -16,7 +18,8 @@ const initialState = {
     url: '',
     displayName: ''
   },
-  displaySuperuserSettings: false
+  doNotUpdatePVS: false,
+  doNotUpdateESS: false
 }
 
 export default createReducer(
@@ -27,16 +30,24 @@ export default createReducer(
     }),
     [SET_ESS_UPDATE_OVERRIDE]: (state, essUpdateOverride) => ({
       ...state,
-      essUpdateOverride,
-      displaySuperuserSettings: true
+      essUpdateOverride
     }),
     [SET_PVS_UPDATE_OVERRIDE]: (state, pvsUpdateOverride) => ({
       ...state,
-      pvsUpdateOverride,
-      displaySuperuserSettings: true
+      pvsUpdateOverride
+    }),
+    [SET_DO_NOT_UPDATE_PVS]: (state, doNotUpdatePVS) => ({
+      ...state,
+      doNotUpdatePVS
+    }),
+    [SET_DO_NOT_UPDATE_ESS]: (state, doNotUpdateESS) => ({
+      ...state,
+      doNotUpdateESS
     }),
     [DEFAULT_ALL_UPDATE_OVERRIDES]: state => ({
       ...state,
+      doNotUpdatePVS: false,
+      doNotUpdateESS: false,
       essUpdateOverride: {
         url: '',
         displayName: ''
@@ -44,8 +55,7 @@ export default createReducer(
       pvsUpdateOverride: {
         url: '',
         displayName: ''
-      },
-      displaySuperuserSettings: false
+      }
     })
   },
   initialState

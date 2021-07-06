@@ -2,6 +2,7 @@ import { createReducer } from 'redux-act'
 
 import {
   DOWNLOAD_ESS_FIRMWARE_LIST_SUCCESS,
+  DOWNLOAD_CM2_FIRMWARE_LIST_SUCCESS,
   SHOW_SUPERUSER_SETTINGS,
   HIDE_SUPERUSER_SETTINGS
 } from 'state/actions/superuser'
@@ -28,22 +29,31 @@ export const superuserReducer = createReducer(
       }))
       return {
         ...state,
-        essUpdateList: payload,
-        pvsUpdateList: pvsUpdateList
+        essUpdateList: state.essUpdateList.concat(payload),
+        pvsUpdateList: state.pvsUpdateList.concat(pvsUpdateList)
       }
     },
-    [SHOW_SUPERUSER_SETTINGS]: state => {
+    [DOWNLOAD_CM2_FIRMWARE_LIST_SUCCESS]: (state, payload) => {
+      const essUpdateList = payload['sunvault-releases']
+      const pvsUpdateList = payload['pvs-releases']
       return {
         ...state,
-        showSuperuserSettings: true
+        essUpdateList: state.essUpdateList.concat(essUpdateList),
+        pvsUpdateList: state.pvsUpdateList.concat(pvsUpdateList)
       }
     },
-    [HIDE_SUPERUSER_SETTINGS]: state => {
-      return {
-        ...state,
-        showSuperuserSettings: false
-      }
-    }
+    [HIDE_SUPERUSER_SETTINGS]: state => ({
+      ...state,
+      showSuperuserSettings: false
+    }),
+    [SHOW_SUPERUSER_SETTINGS]: state => ({
+      ...state,
+      showSuperuserSettings: true
+    }),
+    [HIDE_SUPERUSER_SETTINGS]: state => ({
+      ...state,
+      showSuperuserSettings: false
+    })
   },
   initialState
 )

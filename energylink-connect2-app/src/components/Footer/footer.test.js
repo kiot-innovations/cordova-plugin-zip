@@ -7,6 +7,7 @@ describe('Footer Component', () => {
     ui: { footer: true },
     global: { lastVisitedPage: paths.PROTECTED.CONNECT_TO_PVS.path },
     network: { connected: false },
+    language: {},
     fileDownloader: {
       settings: {
         essUpdateOverride: {

@@ -40,3 +40,5 @@ export const DEFAULT_ALL_UPDATE_OVERRIDES = createAction(
   'DEFAULT_ALL_UPDATE_OVERRIDES'
 )
 export const DOWNLOAD_URLS_UPDATED = createAction('DOWNLOAD_URLS_UPDATED')
+export const SET_DO_NOT_UPDATE_PVS = createAction('SET_DO_NOT_UPDATE_PVS')
+export const SET_DO_NOT_UPDATE_ESS = createAction('SET_DO_NOT_UPDATE_ESS')

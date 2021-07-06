@@ -1,3 +1,3 @@
-import { getessUpdateListEpic } from './firmwareListEpic'
+import { getessUpdateListEpic, getCM2UpdateListEpic } from './firmwareListEpic'
 
-export default [getessUpdateListEpic]
+export default [getessUpdateListEpic, getCM2UpdateListEpic]

@@ -20,14 +20,24 @@ export const getFirmwareUrlFromState = path([
   'updateURL'
 ])
 
-const checkIfNeedToUpdatePVSToLatestVersion = async url => {
+export const getDoNotUpdatePVSFromState = path([
+  'value',
+  'fileDownloader',
+  'settings',
+  'doNotUpdatePVS'
+])
+
+const checkIfNeedToUpdatePVSToLatestVersion = async (url, doNotUpdatePVS) => {
   try {
     const { version: PVSToVersion } = getFirmwareVersionData(url)
     const info = await sendCommandToPVS('GetSupervisorInformation')
     const PVSFromVersion = getPVSVersionNumber(info) || '-1'
     const model = pathOr('', ['supervisor', 'MODEL'], info)
-    const shouldUpdate =
-      !model.startsWith('PVS5') && PVSToVersion > PVSFromVersion
+    // if doNotUpdatePVS is true, then we should not update
+    // else, use the logic we had in place already
+    const shouldUpdate = doNotUpdatePVS
+      ? false
+      : !model.startsWith('PVS5') && PVSToVersion > PVSFromVersion
     return { shouldUpdate, PVSFromVersion, PVSToVersion }
   } catch (e) {
     return { shouldUpdate: false }
@@ -39,7 +49,10 @@ const checkVersionPVS = (action$, state$) =>
     ofType(PVS_CONNECTION_SUCCESS.getType()),
     exhaustMap(() =>
       from(
-        checkIfNeedToUpdatePVSToLatestVersion(getFirmwareUrlFromState(state$))
+        checkIfNeedToUpdatePVSToLatestVersion(
+          getFirmwareUrlFromState(state$),
+          getDoNotUpdatePVSFromState(state$)
+        )
       ).pipe(
         map(({ shouldUpdate, PVSFromVersion, PVSToVersion }) =>
           state$.value.firmwareUpdate.upgrading

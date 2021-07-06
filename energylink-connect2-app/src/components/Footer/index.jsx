@@ -12,6 +12,7 @@ import { BEGIN_INSTALL } from 'state/actions/analytics'
 import useSiteKey from 'hooks/useSiteKey'
 import paths, { protectedRoutes, TABS } from 'routes/paths'
 import { either } from 'shared/utils'
+import { useI18n } from 'shared/i18n'
 
 import './footer.scss'
 
@@ -26,6 +27,7 @@ const isActive = (path = '', tab = '') =>
 const Footer = () => {
   const history = useHistory()
   const dispatch = useDispatch()
+  const t = useI18n()
 
   const showFooter = useSelector(({ ui }) => !!ui.footer)
   const { connectionStatus } = useSelector(state => state.network)
@@ -33,9 +35,12 @@ const Footer = () => {
     state => state.global
   )
 
-  const { essUpdateOverride, pvsUpdateOverride } = useSelector(
-    state => state.fileDownloader.settings
-  )
+  const {
+    essUpdateOverride,
+    pvsUpdateOverride,
+    doNotUpdatePVS,
+    doNotUpdateESS
+  } = useSelector(state => state.fileDownloader.settings)
 
   const { showSuperuserSettings } = useSelector(state => state.superuser)
 
@@ -121,34 +126,38 @@ const Footer = () => {
         })}
       >
         <Nav items={navBarItems} />
-        {either(showSuperuserSettings)}
-      </footer>
-      <div className="superuser-settings is-clipper">
         {either(
-          pvsUpdateOverride.displayName,
-          <span>
-            PVS:{' '}
+          showSuperuserSettings,
+          <div className="superuser-settings is-clipper">
             {either(
               pvsUpdateOverride.displayName,
-              pvsUpdateOverride.displayName,
-              '-'
+              <span>
+                {t('SUPERUSER_PVS')}:
+                {either(
+                  pvsUpdateOverride.displayName,
+                  pvsUpdateOverride.displayName,
+                  '-'
+                )}
+              </span>
             )}
-          </span>
-        )}
 
-        {either(
-          pvsUpdateOverride.displayName,
-          <span>
-            {' '}
-            CD:{' '}
+            <span> {either(doNotUpdatePVS, 'SUPERUSER_PVS_NO_FWUP')}</span>
+
             {either(
-              essUpdateOverride.displayName,
-              essUpdateOverride.displayName,
-              '-'
+              pvsUpdateOverride.displayName,
+              <span>
+                {t('SUPERUSER_CD')}:
+                {either(
+                  essUpdateOverride.displayName,
+                  essUpdateOverride.displayName,
+                  '-'
+                )}
+              </span>
             )}
-          </span>
+            <span> {either(doNotUpdateESS, t('SUPERUSER_CD_NO_FWUP'))}</span>
+          </div>
         )}
-      </div>
+      </footer>
     </div>
   )
 }
