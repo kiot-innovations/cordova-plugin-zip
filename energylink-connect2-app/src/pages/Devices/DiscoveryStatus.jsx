@@ -14,7 +14,8 @@ function DiscoveryStatus({
   claimProgress,
   discoveryComplete,
   retryDiscovery,
-  cleanAndGoBack
+  cleanAndGoBack,
+  areOnboardMetersMissing
 }) {
   const t = useI18n()
   if (
@@ -91,8 +92,10 @@ function DiscoveryStatus({
               {t('ADD_DEVICES')}
             </button>
             <button
-              className={'button is-primary is-uppercase is-fullwidth ml-10'}
-              disabled={claimingDevices}
+              className="button is-primary is-uppercase is-fullwidth ml-10 claim-devices-button"
+              disabled={
+                claimingDevices || areOnboardMetersMissing || !discoveryComplete
+              }
               onClick={claimDevices}
             >
               {either(claimingDevices, `${claimProgress}%`, t('CLAIM_DEVICES'))}
@@ -112,8 +115,10 @@ function DiscoveryStatus({
           {t('ADD_DEVICES')}
         </button>
         <button
-          className={'button is-primary is-uppercase is-fullwidth ml-10'}
-          disabled={claimingDevices}
+          className="button is-primary is-uppercase is-fullwidth ml-10 claim-devices-button"
+          disabled={
+            claimingDevices || areOnboardMetersMissing || !discoveryComplete
+          }
           onClick={claimDevices}
         >
           {either(claimingDevices, `${claimProgress}%`, t('CLAIM_DEVICES'))}
@@ -156,8 +161,10 @@ function DiscoveryStatus({
               {t('ADD_DEVICES')}
             </button>
             <button
-              className={'button is-primary is-uppercase'}
-              disabled={claimingDevices}
+              className="button is-primary is-uppercase claim-devices-button"
+              disabled={
+                claimingDevices || areOnboardMetersMissing || !discoveryComplete
+              }
               onClick={claimDevices}
             >
               {either(claimingDevices, `${claimProgress}%`, t('CLAIM_DEVICES'))}

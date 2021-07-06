@@ -1,7 +1,16 @@
 import React, { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
-import { endsWith, find, isEmpty, path, pathOr, propEq } from 'ramda'
+import {
+  endsWith,
+  filter,
+  find,
+  isEmpty,
+  length,
+  path,
+  pathOr,
+  propEq
+} from 'ramda'
 import SwipeableSheet from 'hocs/SwipeableSheet'
 
 import { useI18n } from 'shared/i18n'
@@ -10,6 +19,7 @@ import paths from 'routes/paths'
 import { START_DISCOVERY_INIT } from 'state/actions/pvs'
 import {
   PUSH_CANDIDATES_INIT,
+  RESET_DISCOVERY_PROGRESS,
   UPDATE_DEVICES_LIST
 } from 'state/actions/devices'
 import { SUBMIT_PRECONFIG_GRIDPROFILE } from 'state/actions/systemConfiguration'
@@ -22,6 +32,7 @@ import { preconfigStates } from 'state/reducers/systemConfiguration/submitConfig
 import { fwupStatus } from 'state/reducers/firmware-update'
 
 import { Loader } from 'components/Loader'
+import ColoredBanner, { bannerCategories } from 'components/ColoredBanner'
 import GridBehaviorWidget from 'pages/SystemConfiguration/GridBehaviorWidget'
 import MetersWidget from 'pages/SystemConfiguration/MetersWidget'
 
@@ -152,7 +163,9 @@ const PrecommissioningConfigs = () => {
   const { selectedOptions } = gridBehavior
   const { rmaMode, newEquipment, rma } = useSelector(state => state.rma)
   const { bom } = useSelector(state => state.inventory)
-  const { found } = useSelector(state => state.devices)
+  const { found, isFetching, discoveryComplete } = useSelector(
+    state => state.devices
+  )
   const { serialNumbers } = useSelector(state => state.pvs)
 
   const { canAccessScandit } = useSelector(state => state.global)
@@ -180,6 +193,20 @@ const PrecommissioningConfigs = () => {
     }
   }
 
+  const meters = filter(propEq('DEVICE_TYPE', 'Power Meter'), found)
+  const areOnboardMetersMissing = !isFetching && length(meters) < 2
+
+  const retryDiscovery = () => {
+    dispatch(RESET_DISCOVERY_PROGRESS())
+    dispatch(
+      START_DISCOVERY_INIT({
+        Device: 'allnomi',
+        Interfaces: ['mime'],
+        type: discoveryTypes.ALLNOMI
+      })
+    )
+  }
+
   useEffect(() => {
     if (!isEmpty(gridBehavior.profiles)) {
       showGridProfilesModal(false)
@@ -196,14 +223,48 @@ const PrecommissioningConfigs = () => {
     setCanContinue(validateConfig(configObject))
   }, [dispatch, found, meter, selectedOptions, siteKey])
 
+  useEffect(() => {
+    if (!isFetching && !discoveryComplete) {
+      dispatch(RESET_DISCOVERY_PROGRESS())
+      dispatch(
+        START_DISCOVERY_INIT({
+          Device: 'allnomi',
+          Interfaces: ['mime'],
+          type: discoveryTypes.ALLNOMI
+        })
+      )
+    }
+  }, [dispatch, discoveryComplete, isFetching])
+
   return (
     <div className="precommissioning-configs pr-20 pl-20 full-height">
       <div className="has-text-weight-bold is-uppercase has-text-centered mb-15">
         {t('SITE_SETTINGS')}
       </div>
-      <div className="mt-10 mb-10">
-        <GridBehaviorWidget />
-        <MetersWidget hasStorage={storageValue.value !== '0'} />
+      <div>
+        {either(
+          areOnboardMetersMissing,
+          <ColoredBanner
+            category={bannerCategories.ERROR}
+            text={t('METERS_NOT_FOUND')}
+            actionText={t('RETRY_DISCOVERY')}
+            action={retryDiscovery}
+            className="mb-15"
+          />
+        )}
+        {either(
+          isFetching,
+          <div className="mt-10 mb-10 loading-banner">
+            <div className="loading-banner--title">
+              <span>{t('LOOKING_FOR_METERS')}</span>
+            </div>
+            <div className="loading-banner--loader loader" />
+          </div>
+        )}
+        <div className="mt-10 mb-10">
+          <GridBehaviorWidget />
+          <MetersWidget hasStorage={storageValue.value !== '0'} />
+        </div>
       </div>
       <div>
         <div className="has-text-centered mb-10">{t('SITE_SETTINGS_HINT')}</div>
@@ -211,7 +272,7 @@ const PrecommissioningConfigs = () => {
           <button
             className="button is-primary"
             onClick={submitConfig}
-            disabled={!canContinue}
+            disabled={!canContinue || areOnboardMetersMissing}
           >
             {t('CONTINUE')}
           </button>

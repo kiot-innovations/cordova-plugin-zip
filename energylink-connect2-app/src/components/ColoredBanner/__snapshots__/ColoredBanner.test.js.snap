@@ -15,7 +15,7 @@ exports[`Banner component Renders correctly 1`] = `
       />
     </div>
     <div
-      className="banner-content-text has-text-white"
+      className="banner-content-text has-text-white has-text-left"
     >
       <span>
         Default banner text

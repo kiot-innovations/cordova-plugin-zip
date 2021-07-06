@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { filter, length, propEq } from 'ramda'
+import { filter, find, length, pathOr, propEq, propOr } from 'ramda'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import {
@@ -78,6 +78,14 @@ function RMAMiDiscovery() {
     dispatch(CLAIM_DEVICES_INIT(claimObject))
   }
 
+  const meterDiscoveryProgress = find(propEq('TYPE', 'PVS5Meter'))(
+    pathOr([], ['progress'], progress)
+  )
+
+  const areOnboardMetersMissing =
+    propEq('complete', true, progress) &&
+    propOr(0, 'NFOUND', meterDiscoveryProgress) === 0
+
   return (
     <RMAMiDiscoveryUI
       serialNumbers={serialNumbers}
@@ -95,6 +103,7 @@ function RMAMiDiscovery() {
       errMICount={errMICount}
       expected={expected}
       claimFoundMI={claimFoundMI}
+      areOnboardMetersMissing={areOnboardMetersMissing}
     />
   )
 }

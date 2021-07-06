@@ -7,6 +7,7 @@ import { useI18n } from 'shared/i18n'
 import Collapsible from 'components/Collapsible'
 import ProgressIndicators from 'pages/Devices/ProgressIndicators'
 import 'pages/Devices/Devices.scss'
+import ColoredBanner, { bannerCategories } from '../../components/ColoredBanner'
 
 const microInverterIcon = (
   <span className="sp-inverter mr-20 devices-icon ml-0 mt-0 mb-0" />
@@ -187,7 +188,8 @@ function RMAMiDiscoveryUI({
   okMICount,
   errMICount,
   expected,
-  claimFoundMI
+  claimFoundMI,
+  areOnboardMetersMissing
 }) {
   const t = useI18n()
 
@@ -218,6 +220,16 @@ function RMAMiDiscoveryUI({
       <span className="is-uppercase has-text-weight-bold mb-20" role="button">
         {t('DEVICES')}
       </span>
+      {either(
+        areOnboardMetersMissing,
+        <ColoredBanner
+          category={bannerCategories.ERROR}
+          text={t('METERS_NOT_FOUND')}
+          actionText={t('RETRY_DISCOVERY')}
+          action={retryDiscovery}
+          className="mb-15"
+        />
+      )}
       <div className="pb-15">
         <Collapsible
           title={t('MICROINVERTERS')}

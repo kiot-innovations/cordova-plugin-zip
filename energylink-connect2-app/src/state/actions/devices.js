@@ -21,6 +21,7 @@ export const CLAIM_DEVICES_COMPLETE = createAction('CLAIM_COMPLETE')
 export const CLAIM_DEVICES_RESET = createAction('CLAIM_DEVICES_RESET')
 
 export const RESET_DISCOVERY = createAction('RESET_DISCOVERY')
+export const RESET_DISCOVERY_PROGRESS = createAction('RESET_DISCOVERY_PROGRESS')
 
 export const SAVE_OK_MI = createAction('SAVE_OK_MI')
 export const FETCH_MODELS_INIT = createAction('FETCH_MODELS_INIT')

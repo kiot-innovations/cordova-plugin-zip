@@ -15,7 +15,7 @@ exports[`DiscoveryStatus page Renders correctly when claiming devices 1`] = `
       ADD_DEVICES
     </button>
     <button
-      className="button is-primary is-uppercase"
+      className="button is-primary is-uppercase claim-devices-button"
       disabled={true}
       onClick={[MockFunction]}
     >
@@ -73,7 +73,7 @@ exports[`DiscoveryStatus page Renders correctly when ended discovering 1`] = `
     ADD_DEVICES
   </button>
   <button
-    className="button is-primary is-uppercase is-fullwidth ml-10"
+    className="button is-primary is-uppercase is-fullwidth ml-10 claim-devices-button"
     disabled={false}
     onClick={[MockFunction]}
   >

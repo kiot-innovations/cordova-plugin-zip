@@ -199,6 +199,7 @@ Object {
               />
             </div>
             <DiscoveryStatus
+              areOnboardMetersMissing={false}
               claimDevices={[Function]}
               claimError={null}
               claimProgress={0}
@@ -208,7 +209,7 @@ Object {
               error={null}
               expected={2}
               okMICount={2}
-              retryDiscovery={[Function]}
+              retryMiDiscovery={[Function]}
             >
               <span
                 className="has-text-weight-bold mb-20"

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import useModal from 'hooks/useModal'
-import { isEmpty, length, pathOr } from 'ramda'
+import { find, isEmpty, length, pathOr, propEq, propOr } from 'ramda'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import { either, miTypes, filterFoundMI, miStates } from 'shared/utils'
@@ -13,14 +13,18 @@ import {
   FETCH_DEVICES_LIST,
   PUSH_CANDIDATES_INIT,
   RESET_DISCOVERY,
+  RESET_DISCOVERY_PROGRESS,
   SAVE_OK_MI
 } from 'state/actions/devices'
 import paths from 'routes/paths'
 import Collapsible from 'components/Collapsible'
+import ColoredBanner, { bannerCategories } from 'components/ColoredBanner'
 import ProgressIndicators from './ProgressIndicators'
 import DiscoveryStatus from './DiscoveryStatus'
 
 import './Devices.scss'
+import { START_DISCOVERY_INIT } from 'state/actions/pvs'
+import { discoveryTypes } from 'state/reducers/devices'
 
 const microInverterIcon = (
   <span className="sp-inverter mr-20 devices-icon ml-0 mt-0 mb-0" />
@@ -52,6 +56,7 @@ function Devices() {
   const { serialNumbers } = useSelector(state => state.pvs)
 
   const {
+    isFetching,
     candidates,
     claimingDevices,
     claimedDevices,
@@ -90,6 +95,14 @@ function Devices() {
     toggleModal()
   }
 
+  const meterDiscoveryProgress = find(propEq('TYPE', 'PVS5Meter'))(
+    pathOr([], ['progress'], progress)
+  )
+
+  const areOnboardMetersMissing =
+    propEq('complete', true, progress) &&
+    propOr(0, 'NFOUND', meterDiscoveryProgress) === 0
+
   useEffect(() => {
     dispatch(FETCH_CANDIDATES_INIT())
   }, [dispatch])
@@ -109,6 +122,19 @@ function Devices() {
     }
   }, [claimedDevices, dispatch, history])
 
+  useEffect(() => {
+    if (!isFetching && !discoveryComplete) {
+      dispatch(RESET_DISCOVERY_PROGRESS())
+      dispatch(
+        START_DISCOVERY_INIT({
+          Device: 'allnomi',
+          Interfaces: ['mime'],
+          type: discoveryTypes.ALLNOMI
+        })
+      )
+    }
+  }, [dispatch, discoveryComplete, isFetching])
+
   const cleanAndGoBack = () => {
     dispatch(RESET_DISCOVERY())
     dispatch(SAVE_OK_MI(okMI))
@@ -117,6 +143,17 @@ function Devices() {
   }
 
   const retryDiscovery = () => {
+    dispatch(RESET_DISCOVERY_PROGRESS())
+    dispatch(
+      START_DISCOVERY_INIT({
+        Device: 'allnomi',
+        Interfaces: ['mime'],
+        type: discoveryTypes.ALLNOMI
+      })
+    )
+  }
+
+  const retryMiDiscovery = () => {
     const snList = serialNumbers.map(device => ({
       DEVICE_TYPE: 'Inverter',
       SERIAL: device.serial_number
@@ -142,6 +179,16 @@ function Devices() {
       <span className="is-uppercase has-text-weight-bold mb-20" role="button">
         {t('DEVICES')}
       </span>
+      {either(
+        areOnboardMetersMissing,
+        <ColoredBanner
+          category={bannerCategories.ERROR}
+          text={t('METERS_NOT_FOUND')}
+          actionText={t('RETRY_DISCOVERY')}
+          action={retryDiscovery}
+          className="mb-15"
+        />
+      )}
       <div className="pb-15">
         <Collapsible
           title={t('MICROINVERTERS')}
@@ -203,7 +250,8 @@ function Devices() {
         claimProgress={claimProgress}
         discoveryComplete={discoveryComplete}
         cleanAndGoBack={cleanAndGoBack}
-        retryDiscovery={retryDiscovery}
+        retryMiDiscovery={retryMiDiscovery}
+        areOnboardMetersMissing={areOnboardMetersMissing}
       />
     </div>
   )

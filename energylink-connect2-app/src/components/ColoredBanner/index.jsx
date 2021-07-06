@@ -24,7 +24,7 @@ function ColoredBanner({
         <div className="banner-content-icon mr-10 has-text-primary">
           <span className={clsx(['is-size-5', category.icon])} />
         </div>
-        <div className="banner-content-text has-text-white">
+        <div className="banner-content-text has-text-white has-text-left">
           <span>{text}</span>
         </div>
       </div>

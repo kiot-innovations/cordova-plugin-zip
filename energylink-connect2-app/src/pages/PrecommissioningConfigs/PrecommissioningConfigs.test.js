@@ -1,8 +1,10 @@
 import React from 'react'
+import { clone } from 'ramda'
 import * as i18n from 'shared/i18n'
 import PrecommissioningConfigs from '.'
 import { rmaModes } from 'state/reducers/rma'
 import { fwupStatus } from 'state/reducers/firmware-update'
+import Devices from '../Devices'
 
 describe('Precommissioning configurations page', () => {
   let mockState = {
@@ -52,7 +54,8 @@ describe('Precommissioning configurations page', () => {
       }
     },
     devices: {
-      found: []
+      found: [],
+      progress: []
     },
     site: {
       site: {
@@ -80,5 +83,55 @@ describe('Precommissioning configurations page', () => {
       mockState
     )
     expect(component).toMatchSnapshot()
+  })
+
+  test('banner shows up if meters are not present in store', () => {
+    const baseState = clone(mockState)
+    baseState.devices.progress = {
+      progress: [
+        {
+          TYPE: 'MicroInverters',
+          PROGR: '100',
+          NFOUND: '0'
+        },
+        {
+          TYPE: 'PVS5Meter',
+          PROGR: '100',
+          NFOUND: '2'
+        }
+      ],
+      complete: true,
+      result: 'succeed'
+    }
+    baseState.devices.found = [
+      {
+        DETAIL: 'detail',
+        STATE: 'working',
+        STATEDESCR: 'Working',
+        SERIAL: 'ZT191585000549A0355',
+        MODEL: 'PV Supervisor PVS6',
+        HWVER: '6.02',
+        SWVER: '2020.9, Build 8126',
+        DEVICE_TYPE: 'PVS',
+        DATATIME: '2020,09,15,16,32,23',
+        dl_err_count: '0',
+        dl_comm_err: '0',
+        dl_skipped_scans: '0',
+        dl_scan_time: '0',
+        dl_untransmitted: '0',
+        dl_uptime: '6235',
+        dl_cpu_load: '1.14',
+        dl_mem_used: '51476',
+        dl_flash_avail: '107329',
+        panid: 453726776,
+        CURTIME: '2020,09,15,16,32,25'
+      }
+    ]
+
+    const { component } = mountWithProvider(<PrecommissioningConfigs />)(
+      baseState
+    )
+
+    expect(component.find('.banner')).toHaveLength(1)
   })
 })

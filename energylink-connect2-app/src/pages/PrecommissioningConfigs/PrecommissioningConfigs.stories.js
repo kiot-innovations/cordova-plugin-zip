@@ -238,6 +238,20 @@ storiesOf('Precommissioning Configs', module)
       </div>
     )
   })
+  .add('Discovery in progress', () => {
+    const baseStore = standardScenario
+    baseStore.devices.isFetching = true
+
+    const { store } = configureStore(baseStore)
+
+    return (
+      <div className="full-min-height pt-20 pb-20">
+        <Provider store={store}>
+          <PrecommissioningConfigs />
+        </Provider>
+      </div>
+    )
+  })
   .add('Fetching Grid Profiles', () => {
     const { store } = configureStore(fetchingGridProfiles)
 

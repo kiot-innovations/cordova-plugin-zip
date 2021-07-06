@@ -19,6 +19,7 @@ import {
   PUSH_CANDIDATES_ERROR,
   PUSH_CANDIDATES_INIT,
   RESET_DISCOVERY,
+  RESET_DISCOVERY_PROGRESS,
   SAVE_OK_MI,
   UPDATE_DEVICES_LIST,
   UPDATE_DEVICES_LIST_ERROR
@@ -197,6 +198,12 @@ export default createReducer(
         ? state.found
         : initialState.found,
       miModels: state.miModels
+    }),
+    [RESET_DISCOVERY_PROGRESS]: state => ({
+      ...state,
+      isFetching: false,
+      discoveryComplete: false,
+      progress: initialState.progress
     }),
     [RESET_COMMISSIONING]: () => initialState,
     [FETCH_MODELS_SUCCESS]: (state, miModels) => ({

@@ -7,4 +7,19 @@
   .applying-settings {
     flex-direction: column;
   }
+
+  .loading-banner {
+    background-color: $silver-sand4;
+    border-radius: 5px;
+    padding: 10px;
+    display: grid;
+    grid-template-columns: 80% 1fr;
+    vertical-align: center;
+
+    &--loader {
+      margin: auto;
+      height: 2em;
+      width: 2em;
+    }
+  }
 }
