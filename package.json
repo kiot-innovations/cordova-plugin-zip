@@ -43,6 +43,7 @@
     "cordova-plugin-network-information": "^2.0.2",
     "cordova-plugin-networkinterface": "^2.0.0",
     "cordova-plugin-powermanagement": "^1.0.5",
+    "cordova-plugin-powermanagement-orig": "git+https://github.com/Viras-/cordova-plugin-powermanagement.git",
     "cordova-plugin-safariviewcontroller": "^1.6.0",
     "cordova-plugin-sslcertificatechecker": "^6.0.0",
     "cordova-plugin-statusbar": "^2.4.3",
@@ -118,9 +119,7 @@
       "at.gofg.sportscomputer.powermanagement": {},
       "cordova-launch-review": {
         "ANDROID_PLAY_SERVICES_CORE_VERSION": "1.8.0"
-      },
-      "scandit-cordova-datacapture-core": {},
-      "scandit-cordova-datacapture-barcode": {}
+      }
     },
     "platforms": [
       "android",

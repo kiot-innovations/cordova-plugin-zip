@@ -4,7 +4,6 @@ import * as i18n from 'shared/i18n'
 import PrecommissioningConfigs from '.'
 import { rmaModes } from 'state/reducers/rma'
 import { fwupStatus } from 'state/reducers/firmware-update'
-import Devices from '../Devices'
 
 describe('Precommissioning configurations page', () => {
   let mockState = {
