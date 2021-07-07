@@ -56,7 +56,6 @@ cd ~/sunpower/energylink-connect2/energylink-connect2-app;
 echo "SKIP_PREFLIGHT_CHECK=true" > .env
 
 npm install -g cordova@9.0.0
-npm install -g phonegap@9.0.0
 
 cd ~/sunpower;
 git clone git@github.com:SunPower/pvsmgmt-console.git;
@@ -81,9 +80,16 @@ Build iOS and android app for development
 
 ```
 
-cd ~/sunpower/energylink-connect2/energylink-connect2-app;
-phonegap platform add android;
-phonegap platform add ios;
+cd ~/sunpower/energylink-connect2/
+cordova platform add android;
+cordova platform add ios;
+
+# For iOS only
+
+cd platforms/ios
+pod repo update
+pod update
+
 npm run dev:android;
 npm run dev:ios;
 
