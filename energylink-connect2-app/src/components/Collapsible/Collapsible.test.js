@@ -1,7 +1,9 @@
-import React from 'react'
 import { shallow } from 'enzyme'
-import * as i18n from 'shared/i18n'
+import React from 'react'
+
 import Collapsible from '.'
+
+import * as i18n from 'shared/i18n'
 
 describe('Collapsible Component', () => {
   beforeEach(() => {

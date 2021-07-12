@@ -1,6 +1,6 @@
 import * as Sentry from '@sentry/browser'
-import { ofType } from 'redux-observable'
 import { always, cond, equals, path, pathOr } from 'ramda'
+import { ofType } from 'redux-observable'
 import { from, of, timer } from 'rxjs'
 import { catchError, exhaustMap, map, takeUntil } from 'rxjs/operators'
 

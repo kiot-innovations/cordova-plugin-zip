@@ -1,15 +1,16 @@
 import * as Sentry from '@sentry/browser'
-import { ofType } from 'redux-observable'
-import { catchError, map, exhaustMap } from 'rxjs/operators'
-import { from, of, EMPTY } from 'rxjs'
 import { pathOr } from 'ramda'
+import { ofType } from 'redux-observable'
+import { from, of, EMPTY } from 'rxjs'
+import { catchError, map, exhaustMap } from 'rxjs/operators'
+
+import { enableAccessPointOnPVS } from 'shared/bluetooth/enableAPViaBluetooth'
 import {
   EXECUTE_ENABLE_ACCESS_POINT,
   EXECUTE_ENABLE_ACCESS_POINT_SUCCESS,
   FAILURE_BLUETOOTH_ACTION,
   PVS_CONNECTION_INIT
 } from 'state/actions/network'
-import { enableAccessPointOnPVS } from 'shared/bluetooth/enableAPViaBluetooth'
 
 export const enableAccessPointViaBluetoothEpic = action$ => {
   return action$.pipe(

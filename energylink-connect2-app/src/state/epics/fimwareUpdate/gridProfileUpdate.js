@@ -3,25 +3,24 @@ import { ofType } from 'redux-observable'
 import { from, of } from 'rxjs'
 import { catchError, map, switchMap } from 'rxjs/operators'
 
+import { ERROR_CODES, getFileBlob, getFileNameFromURL } from 'shared/fileSystem'
+import { translate } from 'shared/i18n'
+import { isPvs5, getGPDownloadError } from 'shared/utils'
 import {
   GRID_PROFILE_UPLOAD_COMPLETE,
   GRID_PROFILE_UPLOAD_ERROR,
-  GRID_PROFILE_UPLOAD_INIT
+  GRID_PROFILE_UPLOAD_INIT,
+  FIRMWARE_UPDATE_COMPLETE
 } from 'state/actions/firmwareUpdate'
-import { FETCH_GRID_BEHAVIOR } from 'state/actions/systemConfiguration'
-
-import { ERROR_CODES, getFileBlob, getFileNameFromURL } from 'shared/fileSystem'
-import { translate } from 'shared/i18n'
 import { SHOW_MODAL } from 'state/actions/modal'
-import { FIRMWARE_UPDATE_COMPLETE } from 'state/actions/firmwareUpdate'
-import { EMPTY_ACTION } from 'state/actions/share'
 import { SET_PVS_MODEL } from 'state/actions/pvs'
+import { EMPTY_ACTION } from 'state/actions/share'
+import { FETCH_GRID_BEHAVIOR } from 'state/actions/systemConfiguration'
 import {
   pvs6GridProfileUpdateUrl$,
   pvs5GridProfileUpdateUrl$,
   waitForObservable
 } from 'state/epics/downloader/latestUrls'
-import { isPvs5, getGPDownloadError } from 'shared/utils'
 
 /**
  * Will upload the Grid Profile file to the PVS

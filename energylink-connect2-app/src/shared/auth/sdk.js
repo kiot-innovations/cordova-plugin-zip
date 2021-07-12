@@ -1,7 +1,9 @@
-import { fromPairs, head, join, map, pipe, split, tail, toPairs } from 'ramda'
 import jwtDecode from 'jwt-decode'
 import moment from 'moment'
+import { fromPairs, head, join, map, pipe, split, tail, toPairs } from 'ramda'
+
 import config from './config'
+
 import { openUrl } from 'shared/browserUtils'
 
 /******************************************************************************

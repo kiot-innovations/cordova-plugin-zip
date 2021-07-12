@@ -1,5 +1,6 @@
-import React, { useState } from 'react'
 import clsx from 'clsx'
+import React, { useState } from 'react'
+
 import { useI18n } from 'shared/i18n'
 import './Collapsible.scss'
 import { either } from 'shared/utils'

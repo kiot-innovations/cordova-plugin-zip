@@ -1,14 +1,15 @@
-import React, { useState } from 'react'
-import { useHistory } from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux'
-import { useI18n } from 'shared/i18n'
+import clsx from 'clsx'
 import { compose, find, propEq, propOr } from 'ramda'
+import React, { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { useHistory } from 'react-router-dom'
+
+import SwipeableSheet from 'hocs/SwipeableSheet'
+import paths from 'routes/paths'
+import { useI18n } from 'shared/i18n'
 import { saveInventory } from 'state/actions/inventory'
 import { ALLOW_COMMISSIONING } from 'state/actions/systemConfiguration'
-import clsx from 'clsx'
-import paths from 'routes/paths'
 import './InventoryCounts.scss'
-import SwipeableSheet from 'hocs/SwipeableSheet'
 
 function submitInventory(inventory, dispatch, history, connected) {
   dispatch(saveInventory(inventory))

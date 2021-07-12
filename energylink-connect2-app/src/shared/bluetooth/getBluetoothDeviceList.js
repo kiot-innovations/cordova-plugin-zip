@@ -1,5 +1,6 @@
 import { pathOr } from 'ramda'
 import { Observable } from 'rxjs'
+
 import { getBLEPath } from 'shared/utils'
 
 export const getBLEDeviceList = () =>

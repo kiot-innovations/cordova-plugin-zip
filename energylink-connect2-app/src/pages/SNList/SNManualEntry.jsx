@@ -1,13 +1,14 @@
-import React from 'react'
-import { compose, isEmpty } from 'ramda'
 import TextField from '@sunpower/textfield'
+import { compose, isEmpty } from 'ramda'
+import React from 'react'
+import { useField, useForm } from 'react-final-form-hooks'
 import { useDispatch } from 'react-redux'
+
+import useIsIos from 'hooks/useDeviceInfo'
 import { useI18n } from 'shared/i18n'
 import { buildSN, snEntryMethods, isValidSN } from 'shared/utils'
-import { useField, useForm } from 'react-final-form-hooks'
 import { ADD_PVS_SN } from 'state/actions/pvs'
 import './SNManualEntry.scss'
-import useIsIos from 'hooks/useDeviceInfo'
 
 const ManualEntryForm = ({ serialNumber, callback }) => {
   const t = useI18n()

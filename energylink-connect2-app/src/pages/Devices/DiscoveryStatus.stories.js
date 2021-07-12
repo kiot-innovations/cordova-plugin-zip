@@ -1,7 +1,8 @@
-import React from 'react'
-import { storiesOf } from '@storybook/react'
 import { action } from '@storybook/addon-actions'
+import { storiesOf } from '@storybook/react'
 import { clone } from 'ramda'
+import React from 'react'
+
 import DiscoveryStatus from './DiscoveryStatus'
 
 const okMI = [

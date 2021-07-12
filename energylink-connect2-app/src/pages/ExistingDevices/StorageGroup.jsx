@@ -1,8 +1,9 @@
-import React from 'react'
 import { anyPass, length, map, endsWith, reject, isNil, propOr } from 'ramda'
+import React from 'react'
+
+import Collapsible from 'components/Collapsible'
 import { useI18n } from 'shared/i18n'
 import { either } from 'shared/utils'
-import Collapsible from 'components/Collapsible'
 import './ExistingDevices.scss'
 
 // Add conditions here to omit devices from the results

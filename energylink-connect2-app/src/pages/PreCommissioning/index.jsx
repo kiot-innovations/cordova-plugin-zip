@@ -1,12 +1,13 @@
+import { clone, includes, map, pluck } from 'ramda'
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
-import { clone, includes, map, pluck } from 'ramda'
+
+import { ChecklistRow } from 'components/ChecklistRow'
 import SwipeableSheet from 'hocs/SwipeableSheet'
+import paths from 'routes/paths'
 import { useI18n } from 'shared/i18n'
 import { SHOW_PRECOMMISSIONING_CHECKLIST } from 'state/actions/global'
-import { ChecklistRow } from 'components/ChecklistRow'
-import paths from 'routes/paths'
 import './PreCommissioning.scss'
 
 const initialChecklistState = [

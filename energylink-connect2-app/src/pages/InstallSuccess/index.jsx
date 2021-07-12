@@ -1,11 +1,12 @@
 import React, { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
-import { ALLOW_COMMISSIONING } from 'state/actions/systemConfiguration'
-import { STOP_NETWORK_POLLING } from 'state/actions/network'
+
 import useModal from 'hooks/useModal'
 import paths from 'routes/paths'
 import { useI18n } from 'shared/i18n'
+import { STOP_NETWORK_POLLING } from 'state/actions/network'
+import { ALLOW_COMMISSIONING } from 'state/actions/systemConfiguration'
 
 import './InstallSuccess.scss'
 

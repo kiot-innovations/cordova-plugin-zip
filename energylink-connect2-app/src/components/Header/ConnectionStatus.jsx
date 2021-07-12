@@ -1,10 +1,11 @@
+import { always, cond, equals, T } from 'ramda'
 import * as React from 'react'
 import { useDispatch } from 'react-redux'
-import { always, cond, equals, T } from 'ramda'
-import { appConnectionStatus } from 'state/reducers/network'
-import { SHOW_MODAL } from 'state/actions/modal'
 
-export const ConnectionStatus = ({ status }) => {
+import { SHOW_MODAL } from 'state/actions/modal'
+import { appConnectionStatus } from 'state/reducers/network'
+
+const ConnectionStatus = ({ status }) => {
   const dispatch = useDispatch()
 
   const openConnectionStatus = () => {

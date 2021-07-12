@@ -1,4 +1,5 @@
 import { equals, pathOr } from 'ramda'
+
 import { getBLEPath } from 'shared/utils'
 
 export const getBLEDevice = pvsSerialNumber =>

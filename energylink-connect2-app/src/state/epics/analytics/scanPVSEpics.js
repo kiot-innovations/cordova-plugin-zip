@@ -1,16 +1,17 @@
 import { ofType } from 'redux-observable'
+import { EMPTY } from 'rxjs'
 import { map, switchMap, take } from 'rxjs/operators'
+
+import { scanPVS } from 'shared/analytics'
 import {
   CONNECT_PVS_CAMERA,
   CONNECT_PVS_MANUALLY,
   SCANNING_START
 } from 'state/actions/analytics'
-import { scanPVS } from 'shared/analytics'
 import {
   CONNECT_PVS_VIA_BLE,
   PVS_CONNECTION_SUCCESS
 } from 'state/actions/network'
-import { EMPTY } from 'rxjs'
 
 const enterSNManuallyEpic = action$ =>
   action$.pipe(

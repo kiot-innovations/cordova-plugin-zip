@@ -1,13 +1,15 @@
 import * as Sentry from '@sentry/browser'
 import { ofType } from 'redux-observable'
-import { exhaustMap, map, catchError } from 'rxjs/operators'
 import { from, of } from 'rxjs'
+import { exhaustMap, map, catchError } from 'rxjs/operators'
+
+import { acquireWakeLock } from './utilities'
+
 import { SET_SITE } from 'state/actions/site'
 import {
   WAKELOCK_ACQUIRED,
   WAKELOCK_ACQUIRE_ERROR
 } from 'state/actions/wakelock'
-import { acquireWakeLock } from './utilities'
 
 export const acquire = action$ =>
   action$.pipe(

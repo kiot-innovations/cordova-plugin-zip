@@ -1,12 +1,13 @@
 import * as Sentry from '@sentry/browser'
+import { pathOr } from 'ramda'
 import { ofType } from 'redux-observable'
 import { of, from } from 'rxjs'
 import { catchError, map, retryWhen, switchMap } from 'rxjs/operators'
-import { pathOr } from 'ramda'
+
 import authClient from 'shared/auth/sdk'
-import * as authActions from 'state/actions/auth'
 import { translate } from 'shared/i18n'
 import genericRetryStrategy from 'shared/rxjs/genericRetryStrategy'
+import * as authActions from 'state/actions/auth'
 
 export const refreshTokenEpic = (action$, state$) => {
   const t = translate()

@@ -1,20 +1,21 @@
-import React, { useEffect } from 'react'
 import { pathOr, isEmpty, isNil } from 'ramda'
+import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
-import { either } from 'shared/utils'
+
+import paths from 'routes/paths'
 import { useI18n } from 'shared/i18n'
+import { either } from 'shared/utils'
 import { RESET_DISCOVERY } from 'state/actions/devices'
-import { RESET_PVS_INFO_STATE } from 'state/actions/pvs'
+import { RESET_LAST_VISITED_PAGE } from 'state/actions/global'
+import { RESET_INVENTORY } from 'state/actions/inventory'
 import {
   RESET_PVS_CONNECTION,
   PVS_CONNECTION_INIT,
   clearPVSErr
 } from 'state/actions/network'
-import { RESET_INVENTORY } from 'state/actions/inventory'
+import { RESET_PVS_INFO_STATE } from 'state/actions/pvs'
 import { RESET_SITE } from 'state/actions/site'
-import { RESET_LAST_VISITED_PAGE } from 'state/actions/global'
-import paths from 'routes/paths'
 import 'pages/ConnectToPVS/ConnectToPVS.scss'
 import './ConnectionLost.scss'
 

@@ -1,11 +1,13 @@
-import React from 'react'
+import { action } from '@storybook/addon-actions/dist'
 import { storiesOf } from '@storybook/react'
-import { configureStore } from 'state/store'
+import React from 'react'
 import { Provider } from 'react-redux'
 
-import SNList from '.'
 import SNManualEntry from './SNManualEntry'
-import { action } from '@storybook/addon-actions/dist'
+
+import SNList from '.'
+
+import { configureStore } from 'state/store'
 
 let initialState = {
   devices: {

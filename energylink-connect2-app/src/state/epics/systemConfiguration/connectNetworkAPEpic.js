@@ -1,15 +1,16 @@
 import * as Sentry from '@sentry/browser'
+import { includes, path, prop } from 'ramda'
 import { ofType } from 'redux-observable'
 import { of, from } from 'rxjs'
 import { catchError, exhaustMap, map, switchMap } from 'rxjs/operators'
-import { includes, path, prop } from 'ramda'
+
+import { getApiPVS } from 'shared/api'
 import {
   CONNECT_NETWORK_AP_INIT,
   CONNECT_NETWORK_AP_ERROR,
   GET_INTERFACES_INIT,
   SET_WPS_CONNECTION_STATUS
 } from 'state/actions/systemConfiguration'
-import { getApiPVS } from 'shared/api'
 
 const trackConnectionError = (mode, error) =>
   mode === 'wps-pbc'

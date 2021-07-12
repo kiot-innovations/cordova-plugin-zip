@@ -1,20 +1,21 @@
 import { of, throwError } from 'rxjs'
-import { ERROR_CODES } from 'shared/fileSystem'
-import {
-  PVS_FIRMWARE_DOWNLOAD_INIT,
-  PVS_FIRMWARE_DOWNLOAD_SUCCESS
-} from 'state/actions/fileDownloader'
+import * as rxjs from 'rxjs'
 
 import {
   FIRMWARE_UPDATE_ERROR_NO_FILE,
   FIRMWARE_UPDATE_INIT
 } from '../../actions/firmwareUpdate'
-import * as fileSystem from 'shared/fileSystem'
-import * as rxjs from 'rxjs'
 import {
   PVS_CONNECTION_CLOSE_FINISHED,
   PVS_CONNECTION_INIT
 } from '../../actions/network'
+
+import { ERROR_CODES } from 'shared/fileSystem'
+import * as fileSystem from 'shared/fileSystem'
+import {
+  PVS_FIRMWARE_DOWNLOAD_INIT,
+  PVS_FIRMWARE_DOWNLOAD_SUCCESS
+} from 'state/actions/fileDownloader'
 
 describe('Epic firmware update', () => {
   let epicTest

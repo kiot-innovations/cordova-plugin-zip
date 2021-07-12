@@ -1,8 +1,9 @@
+import { pathOr } from 'ramda'
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { pathOr } from 'ramda'
-import { useI18n } from 'shared/i18n'
+
 import paths from 'routes/paths'
+import { useI18n } from 'shared/i18n'
 import './FallbackUI.scss'
 
 function FallBackUI(props) {

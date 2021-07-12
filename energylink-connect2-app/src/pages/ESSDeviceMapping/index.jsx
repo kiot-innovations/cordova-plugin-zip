@@ -1,11 +1,12 @@
+import { pathOr } from 'ramda'
 import React, { useEffect, useRef, useState } from 'react'
-import { useI18n } from 'shared/i18n'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
-import { pathOr } from 'ramda'
-import paths from 'routes/paths'
-import { POST_COMPONENT_MAPPING } from 'state/actions/storage'
+
 import SwipeableSheet from 'hocs/SwipeableSheet'
+import paths from 'routes/paths'
+import { useI18n } from 'shared/i18n'
+import { POST_COMPONENT_MAPPING } from 'state/actions/storage'
 
 import './ESSDeviceMapping.scss'
 

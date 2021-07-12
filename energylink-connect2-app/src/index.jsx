@@ -2,6 +2,7 @@ import 'unfetch/polyfill' // Fetch polyfill
 import React from 'react'
 import ReactDOM from 'react-dom'
 import ReactGA from 'react-ga'
+
 import '@sunpower/theme-dark'
 import App from './App'
 

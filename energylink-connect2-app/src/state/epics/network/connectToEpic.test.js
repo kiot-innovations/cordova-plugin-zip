@@ -1,9 +1,10 @@
+import { of } from 'rxjs'
+
 import {
   PVS_CONNECTION_INIT,
   WAIT_FOR_SWAGGER,
   SET_CONNECTION_STATUS
 } from 'state/actions/network'
-import { of } from 'rxjs'
 import { appConnectionStatus } from 'state/reducers/network'
 
 describe('Connect to epic', () => {

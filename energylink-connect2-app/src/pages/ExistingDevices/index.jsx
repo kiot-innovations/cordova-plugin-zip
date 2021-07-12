@@ -1,6 +1,3 @@
-import React from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { useHistory } from 'react-router-dom'
 import {
   concat,
   difference,
@@ -13,20 +10,26 @@ import {
   propOr,
   values
 } from 'ramda'
+import React from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { useHistory } from 'react-router-dom'
+
+import MetersGroup from './MetersGroup'
+import MicroinvertersGroup from './MicroinvertersGroup'
+import OtherGroup from './OtherGroup'
+import StorageGroup from './StorageGroup'
+
+import paths from 'routes/paths'
 import { useI18n } from 'shared/i18n'
 import { either, removeUndefined } from 'shared/utils'
-import { CLEAR_RMA, SET_NEW_EQUIPMENT } from 'state/actions/rma'
-import { UPDATE_SN } from 'state/actions/pvs'
 import {
   UPDATE_OTHER_INVENTORY,
   UPDATE_INVENTORY
 } from 'state/actions/inventory'
-import MicroinvertersGroup from './MicroinvertersGroup'
-import MetersGroup from './MetersGroup'
-import StorageGroup from './StorageGroup'
+import { UPDATE_SN } from 'state/actions/pvs'
+import { CLEAR_RMA, SET_NEW_EQUIPMENT } from 'state/actions/rma'
+
 import './ExistingDevices.scss'
-import OtherGroup from './OtherGroup'
-import paths from 'routes/paths'
 
 const ExistingDevices = () => {
   const t = useI18n()

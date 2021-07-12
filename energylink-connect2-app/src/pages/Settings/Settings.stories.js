@@ -1,8 +1,10 @@
-import React from 'react'
 import { storiesOf } from '@storybook/react'
-import { configureStore } from 'state/store'
+import React from 'react'
 import { Provider } from 'react-redux'
+
 import Settings from '.'
+
+import { configureStore } from 'state/store'
 
 storiesOf('Settings Page', module)
   .add('Checklist enabled', () => {

@@ -1,8 +1,10 @@
-import React from 'react'
-import { clone } from 'ramda'
 import { shallow } from 'enzyme'
-import * as i18n from 'shared/i18n'
+import { clone } from 'ramda'
+import React from 'react'
+
 import DiscoveryStatus from './DiscoveryStatus'
+
+import * as i18n from 'shared/i18n'
 
 const okMI = [
   {

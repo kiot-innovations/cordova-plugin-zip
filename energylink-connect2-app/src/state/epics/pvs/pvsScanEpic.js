@@ -1,11 +1,13 @@
 import * as Sentry from '@sentry/browser'
+import { eqBy, prop, unionWith } from 'ramda'
 import { ofType } from 'redux-observable'
 import { of, from } from 'rxjs'
 import { catchError, mergeMap, map } from 'rxjs/operators'
-import * as pvsActions from 'state/actions/pvs'
-import { postBinary } from 'shared/fetch'
-import { eqBy, prop, unionWith } from 'ramda'
+
 import { b64toBlob } from '../../../shared/utils'
+
+import { postBinary } from 'shared/fetch'
+import * as pvsActions from 'state/actions/pvs'
 
 export const pvsScanEpic = (action$, state$) => {
   let state

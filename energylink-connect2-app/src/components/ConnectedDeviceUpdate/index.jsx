@@ -1,9 +1,11 @@
-import React from 'react'
 import clsx from 'clsx'
 import { cond, isNil, always, equals, T } from 'ramda'
+import React from 'react'
+
+import { Loader } from '../Loader'
+
 import { useI18n } from 'shared/i18n'
 import { either } from 'shared/utils'
-import { Loader } from '../Loader'
 
 import './ConnectedDeviceUpdate.scss'
 

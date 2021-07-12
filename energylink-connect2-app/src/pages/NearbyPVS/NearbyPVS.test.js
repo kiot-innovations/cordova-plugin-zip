@@ -1,7 +1,9 @@
-import * as i18n from 'shared/i18n'
-import NearbyPVS from './index'
 import React from 'react'
 import * as reactRedux from 'react-redux'
+
+import NearbyPVS from './index'
+
+import * as i18n from 'shared/i18n'
 
 describe('RMA devices component', () => {
   let dispatchMock

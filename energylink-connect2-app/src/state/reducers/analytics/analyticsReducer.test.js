@@ -1,11 +1,11 @@
+import analyticsReducer, { initialState } from './index'
+
 import {
   BEGIN_INSTALL,
   COMMISSION_SUCCESS,
   CONFIG_START
 } from 'state/actions/analytics'
 import { CLAIM_DEVICES_INIT } from 'state/actions/devices'
-
-import analyticsReducer, { initialState } from './index'
 
 describe('The analytics reducer', () => {
   it('should have the correct actions', () => {

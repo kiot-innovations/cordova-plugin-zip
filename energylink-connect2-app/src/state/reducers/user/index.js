@@ -1,4 +1,5 @@
 import { createReducer } from 'redux-act'
+
 import {
   LOGIN_SUCCESS,
   LOGIN_INIT,
@@ -9,9 +10,11 @@ import {
   VALIDATE_SESSION_SUCCESS,
   VALIDATE_SESSION_ERROR
 } from 'state/actions/auth'
-import { SET_DEALER_NAME } from 'state/actions/user'
-
-import { GET_USER_INIT, GET_USER_SUCCESS } from 'state/actions/user'
+import {
+  SET_DEALER_NAME,
+  GET_USER_INIT,
+  GET_USER_SUCCESS
+} from 'state/actions/user'
 
 const initialState = {
   auth: {},

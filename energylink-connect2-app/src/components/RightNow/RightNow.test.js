@@ -1,7 +1,9 @@
-import React from 'react'
 import { mount, shallow } from 'enzyme'
-import RightNow from '.'
+import React from 'react'
+
 import * as i18n from '../../shared/i18n'
+
+import RightNow from '.'
 
 describe('Right Now component', () => {
   const previousLocation = {

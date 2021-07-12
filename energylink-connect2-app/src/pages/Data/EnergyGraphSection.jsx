@@ -1,14 +1,14 @@
+import { filter, head, isNil, last, length, pathOr, propOr } from 'ramda'
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { filter, head, isNil, last, length, pathOr, propOr } from 'ramda'
 
-import { useI18n } from 'shared/i18n'
-import { DATA_SOURCES, GRAPHS, SELECT_ENERGY_GRAPH } from 'state/actions/user'
 import EnergyGraph, { VIEWS } from 'components/EnergyGraph'
 import EnergySwitch from 'components/EnergySwitch'
+import { useI18n } from 'shared/i18n'
+import { roundDecimals } from 'shared/rounding'
+import { DATA_SOURCES, GRAPHS, SELECT_ENERGY_GRAPH } from 'state/actions/user'
 
 import './EnergyGraphSection.scss'
-import { roundDecimals } from '../../shared/rounding'
 
 const SelectedGraph = ({ selectedId, data, dataSource }) => {
   const t = useI18n()

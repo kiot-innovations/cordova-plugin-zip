@@ -1,10 +1,12 @@
+import { path } from 'ramda'
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { path } from 'ramda'
-import SwipeableSheet from 'hocs/SwipeableSheet'
+
 import WpsLogo from './WpsLogo'
-import { useI18n } from 'shared/i18n'
+
+import SwipeableSheet from 'hocs/SwipeableSheet'
 import useTimer from 'hooks/useTimer'
+import { useI18n } from 'shared/i18n'
 import {
   CONNECT_NETWORK_AP_INIT,
   SET_WPS_CONNECTION_STATUS

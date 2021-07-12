@@ -1,7 +1,8 @@
 import * as Sentry from '@sentry/browser'
 import { ofType } from 'redux-observable'
-import { catchError, map, exhaustMap } from 'rxjs/operators'
 import { from, of } from 'rxjs'
+import { catchError, map, exhaustMap } from 'rxjs/operators'
+
 import { OPEN_SETTINGS } from 'state/actions/network'
 import { EMPTY_ACTION } from 'state/actions/share'
 

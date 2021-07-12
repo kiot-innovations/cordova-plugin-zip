@@ -1,13 +1,13 @@
 import { of, throwError } from 'rxjs'
+
+import * as permissionsChecker from 'shared/permissionsChecker'
+import { SHOW_MODAL, HIDE_MODAL } from 'state/actions/modal'
 import {
   CHECK_LOCATION_PERMISSION_INIT,
   CHECK_LOCATION_PERMISSION_SUCCESS,
   CHECK_LOCATION_PERMISSION_ERROR
 } from 'state/actions/permissions'
 import { LOCATION_PERMISSIONS } from 'state/reducers/permissions'
-
-import * as permissionsChecker from 'shared/permissionsChecker'
-import { SHOW_MODAL, HIDE_MODAL } from 'state/actions/modal'
 
 describe('checkLocationPermissionsEpic', () => {
   beforeEach(() => {

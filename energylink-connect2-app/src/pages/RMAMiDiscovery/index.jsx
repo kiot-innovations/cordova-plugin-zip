@@ -1,7 +1,12 @@
-import React, { useEffect } from 'react'
 import { filter, find, length, pathOr, propEq, propOr } from 'ramda'
+import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
+
+import RMAMiDiscoveryUI from './RMAMiDiscoveryUI'
+
+import paths from 'routes/paths'
+import { filterFoundMI } from 'shared/utils'
 import {
   CLAIM_DEVICES_INIT,
   FETCH_CANDIDATES_COMPLETE,
@@ -10,9 +15,6 @@ import {
   RESET_DISCOVERY,
   SAVE_OK_MI
 } from 'state/actions/devices'
-import paths from 'routes/paths'
-import RMAMiDiscoveryUI from './RMAMiDiscoveryUI'
-import { filterFoundMI } from 'shared/utils'
 
 function RMAMiDiscovery() {
   const dispatch = useDispatch()

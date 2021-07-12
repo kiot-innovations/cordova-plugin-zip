@@ -1,5 +1,6 @@
-import * as permissionsActions from 'state/actions/permissions'
 import permissionsReducer, { LOCATION_PERMISSIONS } from '.'
+
+import * as permissionsActions from 'state/actions/permissions'
 
 describe('Permissions reducer', () => {
   const reducerTest = reducerTester(permissionsReducer)

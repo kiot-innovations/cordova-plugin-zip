@@ -1,6 +1,7 @@
+import { isEmpty } from 'ramda'
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { isEmpty } from 'ramda'
+
 import { useI18n } from 'shared/i18n'
 import { either } from 'shared/utils'
 import './ErrorDetected.scss'

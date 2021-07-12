@@ -1,3 +1,6 @@
+import { always, compose, equals, ifElse, is, pathOr } from 'ramda'
+import { ofType } from 'redux-observable'
+import { Client as WebSocket } from 'rpc-websockets'
 import { Observable, of } from 'rxjs'
 import {
   catchError,
@@ -7,13 +10,10 @@ import {
   tap,
   exhaustMap
 } from 'rxjs/operators'
-import { ofType } from 'redux-observable'
-import { Client as WebSocket } from 'rpc-websockets'
 
 import * as energyDataActions from '../../actions/energy-data'
 
 import { roundDecimals } from 'shared/rounding'
-import { always, compose, equals, ifElse, is, pathOr } from 'ramda'
 import { PVS_CONNECTION_SUCCESS } from 'state/actions/network'
 
 const createWebsocketObservable = () =>

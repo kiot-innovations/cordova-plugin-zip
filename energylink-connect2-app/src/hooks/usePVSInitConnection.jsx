@@ -1,7 +1,8 @@
-import { useDispatch, useSelector } from 'react-redux'
-import { PVS_CONNECTION_INIT } from 'state/actions/network'
 import { propOr, path } from 'ramda'
+import { useDispatch, useSelector } from 'react-redux'
+
 import { generateSSID, generatePassword } from 'shared/utils'
+import { PVS_CONNECTION_INIT } from 'state/actions/network'
 
 const usePVSInitConnection = () => {
   const dispatch = useDispatch()

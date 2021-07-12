@@ -12,8 +12,8 @@ import {
 import { ofType } from 'redux-observable'
 import { from, of, timer } from 'rxjs'
 import { catchError, exhaustMap, takeUntil, map } from 'rxjs/operators'
-import { getApiPVS } from 'shared/api'
 
+import { getApiPVS } from 'shared/api'
 import {
   MI_DATA_STOP_POLLING,
   MI_DATA_START_POLLING,

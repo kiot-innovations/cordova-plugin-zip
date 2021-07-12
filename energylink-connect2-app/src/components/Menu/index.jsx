@@ -1,11 +1,12 @@
-import React from 'react'
 import clsx from 'clsx'
 import { find, path, propEq, propOr } from 'ramda'
+import React from 'react'
 import { useSelector } from 'react-redux'
-import { either } from 'shared/utils'
 
 import menuItems from './menuItems'
 import MenuItemsContainer from './MenuItemsContainer'
+
+import { either } from 'shared/utils'
 import './menu.scss'
 
 function Menu() {

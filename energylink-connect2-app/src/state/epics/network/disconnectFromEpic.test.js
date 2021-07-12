@@ -1,8 +1,9 @@
+import { of } from 'rxjs'
+
 import {
   PVS_CONNECTION_CLOSE,
   PVS_CONNECTION_CLOSE_FINISHED
 } from 'state/actions/network'
-import { of } from 'rxjs'
 
 describe('Disconnect from PVS epic', () => {
   let disconnectFromEpic

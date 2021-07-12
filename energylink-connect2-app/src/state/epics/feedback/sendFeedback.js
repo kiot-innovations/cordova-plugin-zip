@@ -1,12 +1,13 @@
+import moment from 'moment'
+import { path } from 'ramda'
 import { ofType } from 'redux-observable'
 import { of, from } from 'rxjs'
 import { mergeMap, map, catchError } from 'rxjs/operators'
-import * as feedbackActions from 'state/actions/feedback'
-import { path } from 'ramda'
-import moment from 'moment'
-import { translate } from 'shared/i18n'
+
 import { getApiParty } from 'shared/api'
+import { translate } from 'shared/i18n'
 import { getAccessToken } from 'shared/utils'
+import * as feedbackActions from 'state/actions/feedback'
 
 const getAPIMethods = path(['apis', 'default'])
 

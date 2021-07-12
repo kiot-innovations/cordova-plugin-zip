@@ -3,8 +3,9 @@ import { path } from 'ramda'
 import { ofType } from 'redux-observable'
 import { from, of } from 'rxjs'
 import { catchError, map, switchMap } from 'rxjs/operators'
-import * as pvsActions from 'state/actions/pvs'
+
 import { getApiPVS } from 'shared/api'
+import * as pvsActions from 'state/actions/pvs'
 
 export const setMetaDataEpic = action$ => {
   return action$.pipe(

@@ -1,11 +1,12 @@
-import { ofType } from 'redux-observable'
-import { map, retryWhen, switchMap } from 'rxjs/operators'
-import { PVS_CONNECTION_SUCCESS } from 'state/actions/network'
-import { from } from 'rxjs'
 import { always, compose, head, ifElse, match, path, test } from 'ramda'
+import { ofType } from 'redux-observable'
+import { from } from 'rxjs'
+import { map, retryWhen, switchMap } from 'rxjs/operators'
+
 import { sendCommandToPVS } from 'shared/PVSUtils'
-import { SET_PVS_MODEL } from 'state/actions/pvs'
 import genericRetryStrategy from 'shared/rxjs/genericRetryStrategy'
+import { PVS_CONNECTION_SUCCESS } from 'state/actions/network'
+import { SET_PVS_MODEL } from 'state/actions/pvs'
 
 export const isPvsRegex = /pvs[0-9]+/gi
 export const getPvsModelFromResponse = compose(

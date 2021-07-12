@@ -1,6 +1,7 @@
-import { globalReducer } from '.'
 import * as mobileActions from '../../actions/mobile'
 import * as userActions from '../../actions/user'
+
+import { globalReducer } from '.'
 
 describe('Global reducer', () => {
   const initialState = {

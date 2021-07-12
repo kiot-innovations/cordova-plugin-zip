@@ -1,24 +1,25 @@
+import { includes, isEmpty, length, map, pathOr, pluck, prop } from 'ramda'
 import React, { useEffect, useRef, useState } from 'react'
-import { useI18n } from 'shared/i18n'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
-import { includes, isEmpty, length, map, pathOr, pluck, prop } from 'ramda'
+
+import ConnectedDeviceUpdate from 'components/ConnectedDeviceUpdate'
+import ContinueFooter from 'components/ESSContinueFooter'
+import ErrorDetected from 'components/ESSErrorDetected'
+import { Loader } from 'components/Loader'
 import SwipeableSheet from 'hocs/SwipeableSheet'
+import paths from 'routes/paths'
+import { useI18n } from 'shared/i18n'
+import { either, warningsLength, withoutInfoCodes } from 'shared/utils'
 import {
   CHECK_EQS_FIRMWARE,
   TRIGGER_EQS_FIRMWARE_UPDATE_INIT
 } from 'state/actions/storage'
-import { Loader } from 'components/Loader'
-import { either, warningsLength, withoutInfoCodes } from 'shared/utils'
-import { eqsSteps } from 'state/reducers/storage'
 import {
   eqsUpdateErrors,
   eqsUpdateStates
 } from 'state/epics/storage/deviceUpdate'
-import ConnectedDeviceUpdate from 'components/ConnectedDeviceUpdate'
-import ContinueFooter from 'components/ESSContinueFooter'
-import ErrorDetected from 'components/ESSErrorDetected'
-import paths from 'routes/paths'
+import { eqsSteps } from 'state/reducers/storage'
 import './EQSUpdate.scss'
 
 const renderUpdateComponent = device => (

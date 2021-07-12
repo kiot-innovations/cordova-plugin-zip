@@ -1,8 +1,16 @@
-import React from 'react'
-import { useHistory } from 'react-router-dom'
 import clsx from 'clsx'
 import { isEmpty, length, pathOr, isNil, path } from 'ramda'
+import React from 'react'
+import { useHistory } from 'react-router-dom'
+
+import { Loader } from '../Loader'
+
+import ESSHealthCheckReport from './ESSHealthCheckReport'
+
+import ContinueFooter from 'components/ESSContinueFooter'
+import ErrorDetected from 'components/ESSErrorDetected'
 import SwipeableSheet from 'hocs/SwipeableSheet'
+import paths from 'routes/paths'
 import { useI18n } from 'shared/i18n'
 import {
   either,
@@ -10,17 +18,9 @@ import {
   warningsLength,
   withoutInfoCodes
 } from 'shared/utils'
-
-import paths from 'routes/paths'
-
 import { rmaModes } from 'state/reducers/rma'
 
-import ESSHealthCheckReport from './ESSHealthCheckReport'
-import ErrorDetected from 'components/ESSErrorDetected'
-import ContinueFooter from 'components/ESSContinueFooter'
-
 import './ESSHealthCheck.scss'
-import { Loader } from '../Loader'
 
 function ESSHealthCheck(props) {
   const t = useI18n()

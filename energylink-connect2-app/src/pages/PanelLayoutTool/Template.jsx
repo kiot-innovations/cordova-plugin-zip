@@ -9,6 +9,7 @@ import {
 } from '@sunpower/panel-layout-tool'
 import React from 'react'
 import { useDispatch, useStore } from 'react-redux'
+
 import { useI18n } from 'shared/i18n'
 import { either } from 'shared/utils'
 

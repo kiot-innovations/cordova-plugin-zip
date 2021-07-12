@@ -1,4 +1,5 @@
 import * as languageActions from '../../actions/language'
+
 import { languageReducer } from '.'
 
 describe('Language reducer', () => {

@@ -1,5 +1,6 @@
 import { shallow } from 'enzyme'
 import React from 'react'
+
 import Banner from './index'
 
 describe('Ribbon should be', function() {

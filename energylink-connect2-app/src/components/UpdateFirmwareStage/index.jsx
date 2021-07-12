@@ -1,6 +1,6 @@
+import clsx from 'clsx'
 import { includes } from 'ramda'
 import React from 'react'
-import clsx from 'clsx'
 
 import { either } from 'shared/utils'
 import './UpdateFirmwareStage.scss'

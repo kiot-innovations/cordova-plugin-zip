@@ -1,9 +1,11 @@
-import { LOGIN_SUCCESS } from 'state/actions/auth'
-import { SET_DEALER_NAME } from 'state/actions/user'
+import { of } from 'rxjs'
+
+import * as utils from './epicUtils'
+
 import * as analytics from 'shared/analytics'
 import { MIXPANEL_EVENT_QUEUED } from 'state/actions/analytics'
-import * as utils from './epicUtils'
-import { of } from 'rxjs'
+import { LOGIN_SUCCESS } from 'state/actions/auth'
+import { SET_DEALER_NAME } from 'state/actions/user'
 
 describe('The loginSuccessEpic', function() {
   let epicTest

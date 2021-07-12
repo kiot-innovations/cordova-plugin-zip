@@ -1,10 +1,10 @@
-import React from 'react'
 import { prop } from 'ramda'
+import React from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 
-import { either } from 'shared/utils'
 import Collapsible from 'components/Collapsible'
 import { useI18n } from 'shared/i18n'
-import { useDispatch, useSelector } from 'react-redux'
+import { either } from 'shared/utils'
 import { DOWNLOAD_OS_INIT } from 'state/actions/ess'
 
 const EssFirmwareStatus = ({ isDownloading, progress, step }) => {

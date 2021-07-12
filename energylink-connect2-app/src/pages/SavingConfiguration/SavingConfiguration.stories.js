@@ -1,9 +1,10 @@
-import React from 'react'
 import { storiesOf } from '@storybook/react'
-import { configureStore } from 'state/store'
+import React from 'react'
 import { Provider } from 'react-redux'
 
 import SavingConfiguration from './index'
+
+import { configureStore } from 'state/store'
 
 storiesOf('Saving Configuration Page', module)
   .add('Successful Configuration', () => {

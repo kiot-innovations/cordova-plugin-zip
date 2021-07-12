@@ -1,8 +1,9 @@
-import React from 'react'
 import { length, map } from 'ramda'
+import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { UPDATE_DEVICES_LIST } from 'state/actions/devices'
+
 import Collapsible from 'components/Collapsible'
+import { UPDATE_DEVICES_LIST } from 'state/actions/devices'
 import './LegacyDiscovery.scss'
 
 const deviceRow = (discoveryComplete, removeInverter, title) => deviceItem => (

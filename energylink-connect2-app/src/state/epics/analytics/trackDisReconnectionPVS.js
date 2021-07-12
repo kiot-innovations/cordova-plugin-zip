@@ -1,6 +1,7 @@
-import { EMPTY, of } from 'rxjs'
 import { ofType } from 'redux-observable'
+import { EMPTY, of } from 'rxjs'
 import { switchMap } from 'rxjs/operators'
+
 import { trackDisconnectionPVS, trackReconnectionPVS } from 'shared/analytics'
 import { SET_CONNECTION_STATUS } from 'state/actions/network'
 

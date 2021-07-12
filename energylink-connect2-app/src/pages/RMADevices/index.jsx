@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from 'react'
-import { useHistory } from 'react-router-dom'
+import { Menu, MenuItem, MenuDivider } from '@szhsin/react-menu'
 import {
   assoc,
   compose,
@@ -16,19 +15,20 @@ import {
   propEq,
   propOr
 } from 'ramda'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Menu, MenuItem, MenuDivider } from '@szhsin/react-menu'
+import { useHistory } from 'react-router-dom'
+
 import '@szhsin/react-menu/dist/index.css'
-import paths from 'routes/paths'
 import Collapsible from 'components/Collapsible'
 import ColoredBanner, { bannerCategories } from 'components/ColoredBanner'
-
-import { FETCH_DEVICES_LIST } from 'state/actions/devices'
-import { RMA_REMOVE_DEVICES, CLEAR_RMA } from 'state/actions/rma'
-import { SHOW_MODAL } from 'state/actions/modal'
-import { ALLOW_COMMISSIONING } from 'state/actions/systemConfiguration'
-import { either } from 'shared/utils'
+import paths from 'routes/paths'
 import { useI18n } from 'shared/i18n'
+import { either } from 'shared/utils'
+import { FETCH_DEVICES_LIST } from 'state/actions/devices'
+import { SHOW_MODAL } from 'state/actions/modal'
+import { RMA_REMOVE_DEVICES, CLEAR_RMA } from 'state/actions/rma'
+import { ALLOW_COMMISSIONING } from 'state/actions/systemConfiguration'
 
 import './RMADevices.scss'
 

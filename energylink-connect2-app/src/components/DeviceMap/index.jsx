@@ -1,5 +1,5 @@
-import React from 'react'
 import { is, pluck, head, map, pathOr } from 'ramda'
+import React from 'react'
 import './DeviceMap.scss'
 
 const renderDeviceItem = device => {

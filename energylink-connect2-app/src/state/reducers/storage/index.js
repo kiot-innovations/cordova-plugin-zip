@@ -1,5 +1,7 @@
-import { createReducer } from 'redux-act'
 import { isEmpty, isNil } from 'ramda'
+import { createReducer } from 'redux-act'
+
+import { RESET_COMMISSIONING } from 'state/actions/global'
 import {
   CHECK_EQS_FIRMWARE,
   CLEAR_HEALTH_CHECK,
@@ -31,7 +33,6 @@ import {
   SET_ESS_STATUS_ERROR
 } from 'state/actions/storage'
 import { eqsUpdateStates } from 'state/epics/storage/deviceUpdate'
-import { RESET_COMMISSIONING } from 'state/actions/global'
 
 const initialState = {
   currentStep: '',

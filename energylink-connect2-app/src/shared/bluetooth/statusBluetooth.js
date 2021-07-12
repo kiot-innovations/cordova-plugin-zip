@@ -1,4 +1,5 @@
 import { compose } from 'ramda'
+
 import { trace } from 'shared/utils'
 
 export const statusBluetooth = () =>

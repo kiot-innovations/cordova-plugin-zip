@@ -1,4 +1,5 @@
 import { createReducer } from 'redux-act'
+
 import {
   LIVE_ENERGY_DATA_NOTIFICATION,
   LIVE_ENERGY_DATA_DAILY

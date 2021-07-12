@@ -1,5 +1,6 @@
-import * as feedbackActions from '../../actions/feedback'
 import { throwError } from 'rxjs'
+
+import * as feedbackActions from '../../actions/feedback'
 
 describe('sendFeedback Epic', () => {
   const mockData = { some: 'data' }

@@ -1,5 +1,4 @@
 import clsx from 'clsx'
-import FileCollapsible from 'components/FileCollapsible'
 import {
   always,
   complement,
@@ -15,10 +14,10 @@ import {
 import React, { useCallback, useEffect, useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
+import FileCollapsible from 'components/FileCollapsible'
 import { useI18n } from 'shared/i18n'
 import { either } from 'shared/utils'
 import { DOWNLOAD_OS_INIT } from 'state/actions/ess'
-
 import { PVS_FIRMWARE_DOWNLOAD_INIT } from 'state/actions/fileDownloader'
 import {
   PVS6_GRID_PROFILE_DOWNLOAD_INIT,

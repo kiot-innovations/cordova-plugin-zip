@@ -1,17 +1,18 @@
-import React from 'react'
 import { find, prop, propEq } from 'ramda'
+import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
+
+import SelectField from 'components/SelectField'
 import paths from 'routes/paths'
 import { useI18n } from 'shared/i18n'
 import {
   UPDATE_INVENTORY,
   UPDATE_OTHER_INVENTORY
 } from 'state/actions/inventory'
+import { SHOW_MODAL } from 'state/actions/modal'
 import { START_DISCOVERY_INIT } from 'state/actions/pvs'
 import { discoveryTypes } from 'state/reducers/devices'
-import { SHOW_MODAL } from 'state/actions/modal'
-import SelectField from 'components/SelectField'
 
 import './RMAInventory.scss'
 

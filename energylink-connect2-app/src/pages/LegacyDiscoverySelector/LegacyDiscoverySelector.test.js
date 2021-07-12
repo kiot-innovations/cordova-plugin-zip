@@ -1,6 +1,8 @@
 import React from 'react'
-import * as i18n from 'shared/i18n'
+
 import LegacyDiscoverySelector from '.'
+
+import * as i18n from 'shared/i18n'
 
 describe('Legacy Discovery Settings', () => {
   beforeEach(() => {

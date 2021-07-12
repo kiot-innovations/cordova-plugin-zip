@@ -1,13 +1,13 @@
-import React from 'react'
 import { pathOr } from 'ramda'
-import { useI18n } from 'shared/i18n'
+import React from 'react'
 import { useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
-import paths from 'routes/paths'
-import { either } from 'shared/utils'
 
-import './PvsConnectionSuccessful.scss'
+import paths from 'routes/paths'
+import { useI18n } from 'shared/i18n'
+import { either } from 'shared/utils'
 import { rmaModes } from 'state/reducers/rma'
+import './PvsConnectionSuccessful.scss'
 
 const getPVSVersionChecked = pathOr(false, ['firmwareUpdate', 'canContinue'])
 

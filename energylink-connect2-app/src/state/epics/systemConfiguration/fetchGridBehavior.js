@@ -1,9 +1,10 @@
 import * as Sentry from '@sentry/browser'
+import { prop } from 'ramda'
 import { ofType } from 'redux-observable'
 import { from, of } from 'rxjs'
 import { catchError, switchMap } from 'rxjs/operators'
+
 import { getApiPVS } from 'shared/api'
-import { prop } from 'ramda'
 import {
   FETCH_GRID_BEHAVIOR,
   FETCH_GRID_BEHAVIOR_ERR,

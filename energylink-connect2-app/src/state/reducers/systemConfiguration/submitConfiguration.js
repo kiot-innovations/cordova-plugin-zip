@@ -1,5 +1,6 @@
 import { createReducer } from 'redux-act'
 
+import { RESET_COMMISSIONING } from 'state/actions/global'
 import {
   SUBMIT_CLEAR,
   REPLACE_RMA_PVS,
@@ -14,7 +15,6 @@ import {
   SUBMIT_PRECONFIG_ERROR,
   SUBMIT_PRECONFIG_SUCCESS
 } from 'state/actions/systemConfiguration'
-import { RESET_COMMISSIONING } from 'state/actions/global'
 
 export const preconfigStates = {
   NOT_STARTED: 'NOT_STARTED',

@@ -1,9 +1,10 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
+
+import { useGlobalHideModal } from 'hooks/useGlobalModal'
 import paths from 'routes/paths'
 import { useI18n } from 'shared/i18n'
-import { useGlobalHideModal } from 'hooks/useGlobalModal'
 import { CREATE_SITE_RESET } from 'state/actions/site'
 
 export const CreateSiteSuccessModal = () => {

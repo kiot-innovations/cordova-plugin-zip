@@ -1,15 +1,16 @@
 import { createReducer } from 'redux-act'
+
+import {
+  DOWNLOAD_OS_ERROR,
+  DOWNLOAD_OS_INIT,
+  DOWNLOAD_OS_SUCCESS
+} from 'state/actions/ess'
 import {
   PVS_FIRMWARE_DOWNLOAD_INIT,
   PVS_FIRMWARE_DOWNLOAD_ERROR,
   PVS_DECOMPRESS_LUA_FILES_SUCCESS,
   PVS_DECOMPRESS_LUA_FILES_ERROR
 } from 'state/actions/fileDownloader'
-import {
-  DOWNLOAD_OS_ERROR,
-  DOWNLOAD_OS_INIT,
-  DOWNLOAD_OS_SUCCESS
-} from 'state/actions/ess'
 import {
   PVS6_GRID_PROFILE_DOWNLOAD_INIT,
   PVS6_GRID_PROFILE_DOWNLOAD_SUCCESS,

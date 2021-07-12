@@ -1,7 +1,8 @@
 import React from 'react'
-import * as i18n from 'shared/i18n'
 
 import PVSSelection from '.'
+
+import * as i18n from 'shared/i18n'
 import { BLESTATUS } from 'state/reducers/network'
 import { rmaModes } from 'state/reducers/rma'
 

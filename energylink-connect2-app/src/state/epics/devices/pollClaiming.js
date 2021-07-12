@@ -9,6 +9,7 @@ import {
   switchMap,
   takeUntil
 } from 'rxjs/operators'
+
 import { getApiPVS } from 'shared/api'
 import {
   CLAIM_DEVICES_COMPLETE,

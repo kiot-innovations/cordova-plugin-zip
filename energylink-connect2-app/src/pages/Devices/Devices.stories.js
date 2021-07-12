@@ -1,10 +1,10 @@
+import { storiesOf } from '@storybook/react'
 import React from 'react'
 import { Provider } from 'react-redux'
-import { storiesOf } from '@storybook/react'
-
-import { configureStore } from 'state/store'
 
 import Devices from '.'
+
+import { configureStore } from 'state/store'
 
 const discoveryInProgress = {
   pvs: {

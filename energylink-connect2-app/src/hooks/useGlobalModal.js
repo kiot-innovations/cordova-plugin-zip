@@ -1,5 +1,6 @@
 import { useCallback } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+
 import { HIDE_MODAL, SHOW_MODAL } from 'state/actions/modal'
 
 const useGlobalModal = () => useSelector(state => state.modal)

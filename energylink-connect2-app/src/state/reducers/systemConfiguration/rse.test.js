@@ -1,4 +1,5 @@
 import * as systemConfigurationReducers from '../../actions/systemConfiguration'
+
 import rseReducer from './rse'
 describe('RSE Reducer', () => {
   const reducerTest = reducerTester(rseReducer)

@@ -1,6 +1,3 @@
-import { ofType } from 'redux-observable'
-import { SAVE_INVENTORY_SUCCESS } from 'state/actions/inventory'
-import { map } from 'rxjs/operators'
 import {
   assoc,
   compose,
@@ -12,8 +9,12 @@ import {
   propEq,
   split
 } from 'ramda'
-import { arrayToObject } from 'shared/utils'
+import { ofType } from 'redux-observable'
+import { map } from 'rxjs/operators'
+
 import { saveInventory } from 'shared/analytics'
+import { arrayToObject } from 'shared/utils'
+import { SAVE_INVENTORY_SUCCESS } from 'state/actions/inventory'
 
 export const parsePropertyToNumber = curry((key, obj) =>
   assoc(key, Number(prop(key, obj)), obj)

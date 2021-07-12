@@ -1,8 +1,10 @@
 import React from 'react'
 import * as reactRedux from 'react-redux'
-import * as authActions from '../../state/actions/auth'
-import Login from '.'
+
 import * as i18n from '../../shared/i18n'
+import * as authActions from '../../state/actions/auth'
+
+import Login from '.'
 
 describe('Login page', () => {
   let dispatchMock

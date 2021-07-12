@@ -3,13 +3,14 @@ import { differenceWith, path, pathOr } from 'ramda'
 import { ofType } from 'redux-observable'
 import { from, of } from 'rxjs'
 import { catchError, map, mergeMap, withLatestFrom } from 'rxjs/operators'
+
 import { getApiPVS } from 'shared/api'
+import { isSerialEqual } from 'shared/utils'
 import {
   PUSH_CANDIDATES_ERROR,
   PUSH_CANDIDATES_INIT,
   PUSH_CANDIDATES_SUCCESS
 } from 'state/actions/devices'
-import { isSerialEqual } from 'shared/utils'
 
 export const pushCandidatesEpic = (action$, state$) =>
   action$.pipe(

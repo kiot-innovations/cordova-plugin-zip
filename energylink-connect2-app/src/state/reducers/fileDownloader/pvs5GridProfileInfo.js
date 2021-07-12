@@ -1,10 +1,11 @@
+import { createReducer } from 'redux-act'
+
 import {
   PVS5_GRID_PROFILE_DOWNLOAD_ERROR,
   PVS5_GRID_PROFILE_DOWNLOAD_INIT,
   PVS5_GRID_PROFILE_DOWNLOAD_PROGRESS,
   PVS5_GRID_PROFILE_DOWNLOAD_SUCCESS
 } from 'state/actions/gridProfileDownloader'
-import { createReducer } from 'redux-act'
 
 const initialState = {
   size: 0,

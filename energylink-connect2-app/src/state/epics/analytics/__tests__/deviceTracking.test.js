@@ -1,4 +1,5 @@
-import * as utils from 'shared/utils'
+import { identity, propOr } from 'ramda'
+
 import {
   getTimePassedState,
   isInverter,
@@ -6,7 +7,8 @@ import {
   isProductionMeter,
   parseDevicesObject
 } from '../deviceTracking'
-import { identity, propOr } from 'ramda'
+
+import * as utils from 'shared/utils'
 
 describe('The device tracking utilities', () => {
   beforeEach(() => {

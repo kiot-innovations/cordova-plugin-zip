@@ -1,15 +1,15 @@
-import React from 'react'
-import { useHistory } from 'react-router'
-import { useSelector, useDispatch } from 'react-redux'
 import { compose, isNil, path, prop } from 'ramda'
-import { useI18n } from 'shared/i18n'
-import { SET_SHOW_CHECKLIST } from 'state/actions/settings'
-import { MENU_HIDE } from 'state/actions/ui'
-import { LOGOUT } from 'state/actions/auth'
-import { either } from 'shared/utils'
+import React from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import { useHistory } from 'react-router'
 
 import Toggler from 'components/Toggler'
 import paths from 'routes/paths'
+import { useI18n } from 'shared/i18n'
+import { either } from 'shared/utils'
+import { LOGOUT } from 'state/actions/auth'
+import { SET_SHOW_CHECKLIST } from 'state/actions/settings'
+import { MENU_HIDE } from 'state/actions/ui'
 
 function Settings() {
   const t = useI18n()

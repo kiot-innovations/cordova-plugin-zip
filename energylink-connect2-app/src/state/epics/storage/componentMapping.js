@@ -1,4 +1,5 @@
 import * as Sentry from '@sentry/browser'
+import { path, cond, equals, always, isNil } from 'ramda'
 import { ofType } from 'redux-observable'
 import { from, of, timer } from 'rxjs'
 import {
@@ -8,9 +9,8 @@ import {
   takeUntil,
   exhaustMap
 } from 'rxjs/operators'
-import { path, cond, equals, always, isNil } from 'ramda'
-import { getApiPVS, storageSwaggerTag } from 'shared/api'
 
+import { getApiPVS, storageSwaggerTag } from 'shared/api'
 import {
   POST_COMPONENT_MAPPING,
   POST_COMPONENT_MAPPING_SUCCESS,

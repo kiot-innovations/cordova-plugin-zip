@@ -1,11 +1,12 @@
-import { ofType } from 'redux-observable'
-import { switchMap } from 'rxjs/operators'
-import { of, EMPTY } from 'rxjs'
 import { find, propEq } from 'ramda'
+import { ofType } from 'redux-observable'
+import { of, EMPTY } from 'rxjs'
+import { switchMap } from 'rxjs/operators'
+
 import { pvsInternet } from 'shared/analytics'
 import { getElapsedTime } from 'shared/utils'
-import { GET_INTERFACES_SUCCESS } from 'state/actions/systemConfiguration'
 import { RESET_PVS_INTERNET_TRACKING } from 'state/actions/analytics'
+import { GET_INTERFACES_SUCCESS } from 'state/actions/systemConfiguration'
 
 const getWiFiInterface = find(propEq('interface', 'sta0'))
 

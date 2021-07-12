@@ -1,7 +1,9 @@
-import React from 'react'
 import { shallow } from 'enzyme'
-import * as i18n from 'shared/i18n'
+import React from 'react'
+
 import DeviceMap from '.'
+
+import * as i18n from 'shared/i18n'
 
 const deviceList = [
   {

@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory, useLocation } from 'react-router-dom'
+
 import routes from 'routes/paths'
 import { RESET_FIRMWARE_UPDATE } from 'state/actions/firmwareUpdate'
 

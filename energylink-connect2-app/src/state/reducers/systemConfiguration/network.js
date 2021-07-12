@@ -1,6 +1,8 @@
-import { createReducer } from 'redux-act'
 import { isEmpty, prop } from 'ramda'
+import { createReducer } from 'redux-act'
 
+import { getConnectedAP } from 'shared/utils'
+import { RESET_COMMISSIONING } from 'state/actions/global'
 import {
   GET_NETWORK_APS_INIT,
   GET_NETWORK_APS_SUCCESS,
@@ -12,9 +14,6 @@ import {
   RESET_SYSTEM_CONFIGURATION,
   SET_WPS_CONNECTION_STATUS
 } from 'state/actions/systemConfiguration'
-import { RESET_COMMISSIONING } from 'state/actions/global'
-
-import { getConnectedAP } from 'shared/utils'
 
 const initialState = {
   aps: [],

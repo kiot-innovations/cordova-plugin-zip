@@ -1,5 +1,6 @@
-import React from 'react'
 import { storiesOf } from '@storybook/react'
+import React from 'react'
+
 import VersionInformation from '.'
 
 storiesOf('Version Information Page', module).add('Simple', () => {

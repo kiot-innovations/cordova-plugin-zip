@@ -1,6 +1,7 @@
-const { createMacro, MacroError } = require('babel-plugin-macros')
 const fs = require('fs')
 const path = require('path')
+
+const { createMacro, MacroError } = require('babel-plugin-macros')
 const cheerio = require('cheerio')
 
 const configXmlPath = path.join(__dirname, '../../../config.xml')

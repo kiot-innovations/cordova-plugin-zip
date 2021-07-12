@@ -1,7 +1,9 @@
 import React from 'react'
-import ConnectToPVS from '.'
-import * as i18n from 'shared/i18n'
 import * as reactRedux from 'react-redux'
+
+import ConnectToPVS from '.'
+
+import * as i18n from 'shared/i18n'
 
 describe('Connect to PVS page', () => {
   let dispatchMock

@@ -1,8 +1,10 @@
-import React from 'react'
 import { storiesOf } from '@storybook/react'
-import Home from '.'
-import { configureStore } from 'state/store'
+import React from 'react'
 import { Provider } from 'react-redux'
+
+import Home from '.'
+
+import { configureStore } from 'state/store'
 
 storiesOf('Home Page', module)
   .add('Simple', () => {

@@ -1,16 +1,17 @@
 import * as Sentry from '@sentry/browser'
+import { path, prop, compose } from 'ramda'
 import { ofType } from 'redux-observable'
 import { from, of, timer } from 'rxjs'
 import { exhaustMap, map, catchError, delayWhen } from 'rxjs/operators'
-import { path, prop, compose } from 'ramda'
+
 import { getApiPVS, storageSwaggerTag } from 'shared/api'
+import { calculateTimeout } from 'shared/utils'
 import {
   GET_PREDISCOVERY,
   GET_PREDISCOVERY_SUCCESS,
   GET_PREDISCOVERY_ERROR,
   GET_DELAYED_PREDISCOVERY
 } from 'state/actions/storage'
-import { calculateTimeout } from 'shared/utils'
 
 export const getPreDiscoveryEpic = action$ => {
   return action$.pipe(

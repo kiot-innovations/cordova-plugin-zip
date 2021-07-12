@@ -1,4 +1,5 @@
 import * as feedbackActions from '../../actions/feedback'
+
 import { MIXPANEL_EVENT_QUEUED } from 'state/actions/analytics'
 
 describe('resetFeedbackForm Epic', () => {

@@ -1,4 +1,7 @@
 import { propOr } from 'ramda'
+import { createReducer } from 'redux-act'
+
+import { getVersionFromUrl } from 'shared/download'
 import {
   PVS_FIRMWARE_DOWNLOAD_ERROR,
   PVS_FIRMWARE_DOWNLOAD_INIT,
@@ -7,8 +10,6 @@ import {
   PVS_FIRMWARE_UPDATE_URL,
   PVS_SET_FILE_INFO
 } from 'state/actions/fileDownloader'
-import { createReducer } from 'redux-act'
-import { getVersionFromUrl } from 'shared/download'
 
 const initialState = {
   name: '',

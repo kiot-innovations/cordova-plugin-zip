@@ -2,17 +2,18 @@ import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 
-import paths from 'routes/paths'
-import useModal from 'hooks/useModal'
-import { Loader } from 'components/Loader'
-import { RESET_DISCOVERY, PUSH_CANDIDATES_INIT } from 'state/actions/devices'
-import { REMOVE_SN } from 'state/actions/pvs'
-import { UPDATE_MI_COUNT } from 'state/actions/inventory'
-import { useI18n } from 'shared/i18n'
-import { generateCandidates } from 'shared/utils'
-
 import SNManualEntry from './SNManualEntry'
 import SNScanButtons from './SNScanButtons'
+
+import { Loader } from 'components/Loader'
+import useModal from 'hooks/useModal'
+import paths from 'routes/paths'
+import { useI18n } from 'shared/i18n'
+import { generateCandidates } from 'shared/utils'
+import { RESET_DISCOVERY, PUSH_CANDIDATES_INIT } from 'state/actions/devices'
+import { UPDATE_MI_COUNT } from 'state/actions/inventory'
+import { REMOVE_SN } from 'state/actions/pvs'
+
 import './SNList.scss'
 
 function SNList() {

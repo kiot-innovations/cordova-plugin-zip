@@ -1,12 +1,15 @@
 import { __, assocPath, countBy, map, test } from 'ramda'
 import * as rxjs from 'rxjs'
 import { of } from 'rxjs'
-import { PVS_CONNECTION_SUCCESS } from 'state/actions/network'
-import { SET_PVS_MODEL } from 'state/actions/pvs'
+
 import setPVSModelEpic, {
   isPvsRegex,
   getPvsModelFromResponse
 } from '../setPVSModelEpic'
+
+import { PVS_CONNECTION_SUCCESS } from 'state/actions/network'
+import { SET_PVS_MODEL } from 'state/actions/pvs'
+
 describe('The setPVS Model Epic', function() {
   beforeEach(function() {
     jest.spyOn(rxjs, 'from').mockImplementation(() => of('PVS6'))

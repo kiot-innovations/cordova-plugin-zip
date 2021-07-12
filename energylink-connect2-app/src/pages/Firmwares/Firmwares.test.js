@@ -1,9 +1,11 @@
-import FirmwaresMenu from 'pages/Firmwares/MenuComponent'
 import React from 'react'
 import * as ReactDOM from 'react-dom'
 import * as reactRedux from 'react-redux'
-import * as i18n from 'shared/i18n'
+
 import Firmwares, { getFileName, getFileSize } from '.'
+
+import FirmwaresMenu from 'pages/Firmwares/MenuComponent'
+import * as i18n from 'shared/i18n'
 
 describe('Firmwares component', () => {
   beforeAll(() => {

@@ -1,20 +1,18 @@
-import React, { useEffect } from 'react'
-import { curry, compose, equals, path, prop, isNil, propEq, find } from 'ramda'
-import { useDispatch, useSelector } from 'react-redux'
 import clsx from 'clsx'
+import { curry, compose, equals, path, prop, isNil, propEq, find } from 'ramda'
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 
+import Collapsible from 'components/Collapsible'
+import { Loader } from 'components/Loader'
+import SelectField from 'components/SelectField'
+import { useI18n } from 'shared/i18n'
+import { either } from 'shared/utils'
 import {
   GET_RSE_INIT,
   SET_RSE_INIT,
   SET_SELECTED_POWER_PRODUCTION
 } from 'state/actions/systemConfiguration'
-
-import { useI18n } from 'shared/i18n'
-import { either } from 'shared/utils'
-
-import Collapsible from 'components/Collapsible'
-import SelectField from 'components/SelectField'
-import { Loader } from 'components/Loader'
 
 const RSE = <span className="sp-power file level mr-15 is-size-4" />
 

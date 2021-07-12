@@ -1,4 +1,5 @@
 import { createReducer } from 'redux-act'
+
 import {
   DOWNLOAD_OS_ERROR,
   DOWNLOAD_OS_REPORT_SUCCESS,

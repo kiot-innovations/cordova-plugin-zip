@@ -1,7 +1,8 @@
 import * as Sentry from '@sentry/browser'
 import { ofType } from 'redux-observable'
-import { catchError, map, mergeMap } from 'rxjs/operators'
 import { from } from 'rxjs'
+import { catchError, map, mergeMap } from 'rxjs/operators'
+
 import {
   DOWNLOAD_SUPERUSER_FIRMWARE_LIST,
   DOWNLOAD_ESS_FIRMWARE_LIST_SUCCESS,

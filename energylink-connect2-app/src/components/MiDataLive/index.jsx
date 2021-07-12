@@ -1,12 +1,14 @@
-import React from 'react'
 import clsx from 'clsx'
 import { isEmpty, map, compose, pluck, sum, length, filter } from 'ramda'
-import { either } from 'shared/utils'
+import React from 'react'
+
+import Collapsible from '../Collapsible'
+
 import { useI18n } from 'shared/i18n'
 import { roundDecimals } from 'shared/rounding'
+import { either } from 'shared/utils'
 
 import './MiDataLive.scss'
-import Collapsible from '../Collapsible'
 
 function MiDataLive({ data }) {
   const t = useI18n()

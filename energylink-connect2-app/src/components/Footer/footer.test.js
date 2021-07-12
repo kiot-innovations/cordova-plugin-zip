@@ -1,5 +1,7 @@
 import React from 'react'
+
 import Footer from '.'
+
 import paths from 'routes/paths'
 
 describe('Footer Component', () => {

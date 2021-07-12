@@ -1,6 +1,5 @@
-import moment from 'moment'
 import marked from 'marked'
-
+import moment from 'moment'
 import {
   any,
   assoc,
@@ -49,6 +48,7 @@ import {
   values,
   when
 } from 'ramda'
+
 import { appConnectionStatus } from 'state/reducers/network'
 
 export const either = (condition, whenTrue, whenFalse = null) =>

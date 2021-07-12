@@ -1,5 +1,8 @@
 import * as Sentry from '@sentry/browser'
 import { of, throwError } from 'rxjs'
+
+import * as fileSystem from 'shared/fileSystem'
+import * as PVSUtils from 'shared/PVSUtils'
 import {
   PVS_DECOMPRESS_LUA_FILES_ERROR,
   PVS_DECOMPRESS_LUA_FILES_INIT,
@@ -11,13 +14,10 @@ import {
   PVS_FIRMWARE_UPDATE_URL,
   PVS_SET_FILE_INFO
 } from 'state/actions/fileDownloader'
-
-import * as fileSystem from 'shared/fileSystem'
-import * as PVSUtils from 'shared/PVSUtils'
-import * as fileTransferObservable from 'state/epics/observables/downloader'
-import * as unzipObservable from 'state/epics/observables/unzip'
 import { EMPTY_ACTION } from 'state/actions/share'
 import { pvsUpdateUrl$ } from 'state/epics/downloader/latestUrls'
+import * as fileTransferObservable from 'state/epics/observables/downloader'
+import * as unzipObservable from 'state/epics/observables/unzip'
 
 describe('Epic firmware', () => {
   let epicTest

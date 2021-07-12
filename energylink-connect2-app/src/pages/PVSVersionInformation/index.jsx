@@ -1,17 +1,15 @@
-import React from 'react'
 import moment from 'moment'
+import React from 'react'
 
-import { useI18n } from 'shared/i18n'
-import { createMarkup } from 'shared/utils'
 import appVersion from '../../macros/appVersion.macro'
+
 import * as releaseNotes from './releaseNotes.json'
 
 import Collapsible from 'components/Collapsible'
+import { useI18n } from 'shared/i18n'
+import { createMarkup } from 'shared/utils'
 
-//Version information data is hardcoded in this file
-import './VersionInformation.scss'
-
-const { versions } = releaseNotes.default
+const { versions = [] } = releaseNotes.default
 
 function VersionInformation() {
   const t = useI18n()

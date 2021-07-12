@@ -4,14 +4,16 @@ import { ofType } from 'redux-observable'
 import { from, of } from 'rxjs'
 import { map, exhaustMap, catchError } from 'rxjs/operators'
 import gt from 'semver/functions/gt'
+
+import appVersion from '../../../macros/appVersion.macro'
+
+import { plainHttpGet } from 'shared/fetch'
+import { isIos, getAppFlavor, getEnvironment } from 'shared/utils'
 import {
   CHECK_APP_UPDATE_INIT,
   CHECK_APP_UPDATE_SUCCESS,
   CHECK_APP_UPDATE_ERROR
 } from 'state/actions/global'
-import { plainHttpGet } from 'shared/fetch'
-import { isIos, getAppFlavor, getEnvironment } from 'shared/utils'
-import appVersion from '../../../macros/appVersion.macro'
 
 //This version file looks like this from the S3 bucket defined
 //{

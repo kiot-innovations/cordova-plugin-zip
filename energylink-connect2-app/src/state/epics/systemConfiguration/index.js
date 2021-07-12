@@ -1,13 +1,10 @@
-import { fetchBatteriesEpic } from 'state/epics/systemConfiguration/fetchBatteriesEpic'
-import { fetchGridBehaviorEpic } from './fetchGridBehavior'
-import { fetchNetworkAPsEpic } from './fetchNetworkAPsEpic'
 import { connectNetworkAPEpic } from './connectNetworkAPEpic'
-import { wpsSupportEpic } from './wpsSupportEpic'
+import { fetchGridBehaviorEpic } from './fetchGridBehavior'
 import { fetchInterfacesEpic } from './fetchInterfacesEpic'
+import { fetchNetworkAPsEpic } from './fetchNetworkAPsEpic'
 import { fetchRSEEpic } from './fetchRSEEpic'
-import { setRSEEpic, pollRSEEpic } from './setRSEEpic'
 import { replaceRmaPvsEpic } from './replaceRmaPvsEpic'
-import { submitConfigObjectEpic } from './submitConfigObjectEpic'
+import { setRSEEpic, pollRSEEpic } from './setRSEEpic'
 import {
   submitMeterDataEpic,
   submitGridProfileEpic,
@@ -15,10 +12,14 @@ import {
   submitGridVoltageEpic,
   submitCTRatedCurrentEpic
 } from './submitConfigEpic'
+import { submitConfigObjectEpic } from './submitConfigObjectEpic'
 import {
   submitPreConfigGridProfileEpic,
   submitPreConfigMeterDataEpic
 } from './submitPreconfiguration/submitPreconfigurationEpic'
+import { wpsSupportEpic } from './wpsSupportEpic'
+
+import { fetchBatteriesEpic } from 'state/epics/systemConfiguration/fetchBatteriesEpic'
 
 export default [
   fetchGridBehaviorEpic,

@@ -1,16 +1,17 @@
-import { ofType } from 'redux-observable'
-import { switchMap } from 'rxjs/operators'
-import { of } from 'rxjs'
 import { any, filter, length, propEq } from 'ramda'
+import { ofType } from 'redux-observable'
+import { of } from 'rxjs'
+import { switchMap } from 'rxjs/operators'
+
 import { scanMicroInverters } from 'shared/analytics'
-import { FETCH_CANDIDATES_COMPLETE } from 'state/actions/devices'
-import { UPDATE_NOT_FOUND_MIS_SERIAL_NUMBERS } from 'state/actions/analytics'
 import {
   getElapsedTime,
   snEntryMethods,
   filterFoundMI,
   getNotFoundMIs
 } from 'shared/utils'
+import { UPDATE_NOT_FOUND_MIS_SERIAL_NUMBERS } from 'state/actions/analytics'
+import { FETCH_CANDIDATES_COMPLETE } from 'state/actions/devices'
 
 const scanMicroInvertersEpic = (action$, state$) =>
   action$.pipe(

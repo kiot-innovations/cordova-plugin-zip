@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from 'react'
-import { isNil, pathOr, propOr, prop } from 'ramda'
 import moment from 'moment'
-import { useI18n } from 'shared/i18n'
-import Collapsible from 'components/Collapsible'
-import { createMarkup, either } from 'shared/utils'
+import { isNil, pathOr, propOr, prop } from 'ramda'
+import React, { useState, useEffect } from 'react'
 import { useSelector } from 'react-redux'
+
+import Collapsible from 'components/Collapsible'
+import { useI18n } from 'shared/i18n'
+import { createMarkup, either } from 'shared/utils'
 
 import './ReleaseNotes.scss'
 

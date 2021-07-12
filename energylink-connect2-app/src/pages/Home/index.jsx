@@ -1,34 +1,32 @@
-import React, { useEffect } from 'react'
-import { Link, useHistory } from 'react-router-dom'
 import { compose, prop } from 'ramda'
+import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { Link, useHistory } from 'react-router-dom'
 
+import SearchField from 'components/SearchField'
+import paths from 'routes/paths'
 import { useI18n } from 'shared/i18n'
 import { renameKeys, either } from 'shared/utils'
-
 import { FETCH_MODELS_INIT } from 'state/actions/devices'
-import {
-  HOME_SCREEN_CREATE_SITE,
-  SET_SITE,
-  GET_SITES_INIT,
-  ON_GET_SITE_INFO
-} from 'state/actions/site'
+import { PVS_FIRMWARE_DOWNLOAD_INIT } from 'state/actions/fileDownloader'
 import {
   CHECK_APP_UPDATE_INIT,
   CHECK_SSL_CERTS,
   RESET_COMMISSIONING,
   FETCH_STATUS_MESSAGES
 } from 'state/actions/global'
-import { PVS_FIRMWARE_DOWNLOAD_INIT } from 'state/actions/fileDownloader'
 import {
   PVS6_GRID_PROFILE_DOWNLOAD_INIT,
   PVS5_GRID_PROFILE_DOWNLOAD_INIT
 } from 'state/actions/gridProfileDownloader'
 import { CHECK_BLUETOOTH_STATUS_INIT } from 'state/actions/network'
+import {
+  HOME_SCREEN_CREATE_SITE,
+  SET_SITE,
+  GET_SITES_INIT,
+  ON_GET_SITE_INFO
+} from 'state/actions/site'
 import { WAKELOCK_RELEASE } from 'state/actions/wakelock'
-import paths from 'routes/paths'
-
-import SearchField from 'components/SearchField'
 
 import './Home.scss'
 

@@ -1,3 +1,4 @@
+import moment from 'moment'
 import {
   converge,
   equals,
@@ -11,8 +12,8 @@ import {
   prop,
   useWith
 } from 'ramda'
-import moment from 'moment'
 import { createAction } from 'redux-act'
+
 import { getApiAuth } from 'shared/api'
 import authClient from 'shared/auth/sdk'
 

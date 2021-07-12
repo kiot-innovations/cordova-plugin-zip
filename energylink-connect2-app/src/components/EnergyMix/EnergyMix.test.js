@@ -1,10 +1,13 @@
+import { shallow } from 'enzyme'
+import moment from 'moment'
 import React from 'react'
 import * as reactRedux from 'react-redux'
-import EnergyMix from './index'
-import { shallow } from 'enzyme'
+
 import * as i18n from '../../shared/i18n'
+
 import EnergyMixChart from './EnergyMixChart'
-import moment from 'moment'
+
+import EnergyMix from './index'
 
 describe('EnergyMix component', () => {
   beforeEach(() => {

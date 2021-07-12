@@ -1,4 +1,5 @@
 import { createReducer } from 'redux-act'
+
 import {
   CONVERT_BASE64_INIT,
   CONVERT_BASE64_SUCCESS

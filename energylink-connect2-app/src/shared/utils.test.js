@@ -1,3 +1,6 @@
+import { equals } from 'ramda'
+import { createAction } from 'redux-act'
+
 import {
   miTypes,
   PERSIST_DATA_PATH,
@@ -6,8 +9,6 @@ import {
   isActionError,
   getElapsedTime
 } from './utils'
-import { equals } from 'ramda'
-import { createAction } from 'redux-act'
 
 describe("The variables that shouldn't change", () => {
   it('should not change, PERSIST DATA PATH', function() {

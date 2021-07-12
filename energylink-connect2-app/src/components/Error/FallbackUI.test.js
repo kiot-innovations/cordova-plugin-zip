@@ -1,7 +1,9 @@
-import React from 'react'
 import { shallow } from 'enzyme'
-import * as i18n from 'shared/i18n'
+import React from 'react'
+
 import FallbackUI from './FallbackUI'
+
+import * as i18n from 'shared/i18n'
 
 describe('FallbackUI component', () => {
   beforeEach(() => {

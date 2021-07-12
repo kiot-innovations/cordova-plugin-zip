@@ -1,15 +1,17 @@
 import { ofType } from 'redux-observable'
-import { catchError, map, switchMap } from 'rxjs/operators'
 import { of } from 'rxjs'
+import { catchError, map, switchMap } from 'rxjs/operators'
+
+import { EMPTY_ACTION } from '../../actions/share'
+
+import { getBLEDeviceList } from 'shared/bluetooth/getBluetoothDeviceList'
+import { isPVSDevice } from 'shared/utils'
 import {
   BLE_GET_DEVICES,
   BLE_GET_DEVICES_ENDED,
   BLE_GET_DEVICES_ERROR,
   BLE_UPDATE_DEVICES
 } from 'state/actions/network'
-import { getBLEDeviceList } from 'shared/bluetooth/getBluetoothDeviceList'
-import { isPVSDevice } from 'shared/utils'
-import { EMPTY_ACTION } from '../../actions/share'
 
 export const getBLEDeviceListEpic = action$ =>
   action$.pipe(

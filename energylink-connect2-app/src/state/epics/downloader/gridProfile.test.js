@@ -1,4 +1,8 @@
 import { of } from 'rxjs'
+
+import * as cordovaMapping from 'shared/cordovaMapping'
+import * as fileSystem from 'shared/fileSystem'
+import * as utils from 'shared/utils'
 import {
   PVS6_GRID_PROFILE_DOWNLOAD_INIT,
   PVS6_GRID_PROFILE_DOWNLOAD_PROGRESS,
@@ -11,14 +15,11 @@ import {
   PVS5_GRID_PROFILE_REPORT_SUCCESS,
   PVS5_GRID_PROFILE_DOWNLOAD_ERROR
 } from 'state/actions/gridProfileDownloader'
-import * as fileTransferObservable from 'state/epics/observables/downloader'
-import * as fileSystem from 'shared/fileSystem'
-import * as utils from 'shared/utils'
-import * as cordovaMapping from 'shared/cordovaMapping'
 import {
   pvs6GridProfileUpdateUrl$,
   pvs5GridProfileUpdateUrl$
 } from 'state/epics/downloader/latestUrls'
+import * as fileTransferObservable from 'state/epics/observables/downloader'
 
 describe('Epic pvs6GridProfile', () => {
   beforeAll(() => {

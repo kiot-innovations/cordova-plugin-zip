@@ -1,11 +1,11 @@
+import { equals, includes, map, path, pathOr, pluck, prop, union } from 'ramda'
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { equals, includes, map, path, pathOr, pluck, prop, union } from 'ramda'
 
-import { useI18n } from 'shared/i18n'
-import { UPDATE_DEVICES_LIST } from 'state/actions/devices'
 import Collapsible from 'components/Collapsible'
 import SelectField from 'components/SelectField'
+import { useI18n } from 'shared/i18n'
+import { UPDATE_DEVICES_LIST } from 'state/actions/devices'
 
 import './ModelEdit.scss'
 

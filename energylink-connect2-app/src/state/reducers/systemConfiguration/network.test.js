@@ -1,4 +1,5 @@
 import * as systemConfigurationReducers from '../../actions/systemConfiguration'
+
 import { networkReducer } from './network'
 describe('SC Network Reducer', () => {
   const reducerTest = reducerTester(networkReducer)

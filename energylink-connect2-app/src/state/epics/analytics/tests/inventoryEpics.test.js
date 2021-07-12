@@ -1,9 +1,10 @@
+import { equals } from 'ramda'
+
 import {
   parseInventory,
   parseESSValue,
   parsePropertyToNumber
 } from '../InventoryEpics'
-import { equals } from 'ramda'
 
 const dataWithESS = [
   {

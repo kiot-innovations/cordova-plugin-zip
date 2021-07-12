@@ -1,6 +1,8 @@
-import FileCollapsible from './index'
-import React from 'react'
 import { shallow } from 'enzyme'
+import React from 'react'
+
+import FileCollapsible from './index'
+
 import * as i18n from 'shared/i18n'
 
 describe('File Collapsible component', () => {

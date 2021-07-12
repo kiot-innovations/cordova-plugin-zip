@@ -1,9 +1,11 @@
-import React from 'react'
 import { clone } from 'ramda'
-import * as i18n from 'shared/i18n'
+import React from 'react'
+
 import PrecommissioningConfigs from '.'
-import { rmaModes } from 'state/reducers/rma'
+
+import * as i18n from 'shared/i18n'
 import { fwupStatus } from 'state/reducers/firmware-update'
+import { rmaModes } from 'state/reducers/rma'
 
 describe('Precommissioning configurations page', () => {
   let mockState = {

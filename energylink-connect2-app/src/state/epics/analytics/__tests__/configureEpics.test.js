@@ -1,9 +1,8 @@
-import { SUBMIT_COMMISSION_SUCCESS } from 'state/actions/systemConfiguration'
-
 import {
   MIXPANEL_EVENT_QUEUED,
   COMMISSION_SUCCESS
 } from 'state/actions/analytics'
+import { SUBMIT_COMMISSION_SUCCESS } from 'state/actions/systemConfiguration'
 
 describe('The configure epics file', () => {
   const mixpanelMock = {

@@ -1,11 +1,12 @@
+import { path, equals } from 'ramda'
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { path, equals } from 'ramda'
-import { either } from 'shared/utils'
+
 import { useI18n } from 'shared/i18n'
-import { LOCATION_PERMISSIONS } from 'state/reducers/permissions'
-import { REQUEST_LOCATION_PERMISSION_INIT } from 'state/actions/permissions'
+import { either } from 'shared/utils'
 import { OPEN_SETTINGS } from 'state/actions/network'
+import { REQUEST_LOCATION_PERMISSION_INIT } from 'state/actions/permissions'
+import { LOCATION_PERMISSIONS } from 'state/reducers/permissions'
 
 function AskForLocationPermissionModal() {
   const t = useI18n()

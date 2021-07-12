@@ -8,15 +8,17 @@ import {
   withNotOverlappablePanel,
   withSelectableGroupsContainer
 } from '@sunpower/panel-layout-tool'
-import PanelLayoutTool from 'pages/PanelLayoutTool/Template'
 import { path } from 'ramda'
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
+
+import { useError } from './hooks'
+
+import PanelLayoutTool from 'pages/PanelLayoutTool/Template'
 import paths from 'routes/paths'
 import { useI18n } from 'shared/i18n'
 import { FINISH_PLT_SETUP } from 'state/actions/analytics'
-import { useError } from './hooks'
 import './panelLayoutTool.scss'
 
 const EPanel = withNotOverlappablePanel(Panel)

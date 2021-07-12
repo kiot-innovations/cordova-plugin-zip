@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react'
+import clsx from 'clsx'
+import moment from 'moment'
 import {
   compose,
   includes,
@@ -15,22 +16,20 @@ import {
   flip,
   reject
 } from 'ramda'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import clsx from 'clsx'
-import SwipeableSheet from 'hocs/SwipeableSheet'
 import { useHistory } from 'react-router-dom'
-import moment from 'moment'
+
+import { Loader } from 'components/Loader'
+import SwipeableSheet from 'hocs/SwipeableSheet'
 import paths from 'routes/paths'
 import { useI18n } from 'shared/i18n'
-import { either, generatePassword, generateSSID, isIos } from 'shared/utils'
 import { decodeQRData, scanBarcodes } from 'shared/scanning'
-import { rmaModes } from 'state/reducers/rma'
+import { either, generatePassword, generateSSID, isIos } from 'shared/utils'
 import {
-  RMA_SELECT_PVS,
-  SET_RMA_MODE,
-  FETCH_DEVICE_TREE
-} from 'state/actions/rma'
-import { RESET_SYSTEM_CONFIGURATION } from 'state/actions/systemConfiguration'
+  CONNECT_PVS_CAMERA,
+  CONNECT_PVS_MANUALLY
+} from 'state/actions/analytics'
 import {
   BLE_GET_DEVICES,
   CHECK_BLUETOOTH_STATUS_INIT,
@@ -44,13 +43,15 @@ import {
   ENABLE_BLUETOOTH_INIT,
   ENABLE_ACCESS_POINT
 } from 'state/actions/network'
-import {
-  CONNECT_PVS_CAMERA,
-  CONNECT_PVS_MANUALLY
-} from 'state/actions/analytics'
 import { SAVE_PVS_SN } from 'state/actions/pvs'
+import {
+  RMA_SELECT_PVS,
+  SET_RMA_MODE,
+  FETCH_DEVICE_TREE
+} from 'state/actions/rma'
+import { RESET_SYSTEM_CONFIGURATION } from 'state/actions/systemConfiguration'
 import { BLESTATUS } from 'state/reducers/network'
-import { Loader } from 'components/Loader'
+import { rmaModes } from 'state/reducers/rma'
 import './PVSelection.scss'
 
 const getPvsSerialNumbers = compose(

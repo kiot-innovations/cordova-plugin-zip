@@ -1,11 +1,12 @@
 import { ofType } from 'redux-observable'
-import { switchMap } from 'rxjs/operators'
 import { of } from 'rxjs'
+import { switchMap } from 'rxjs/operators'
+
+import { feedbackSent } from 'shared/analytics'
 import {
   SEND_FEEDBACK_SUCCESS,
   RESET_FEEDBACK_FORM
 } from 'state/actions/feedback'
-import { feedbackSent } from 'shared/analytics'
 
 export const resetFeedbackFormEpic = action$ =>
   action$.pipe(

@@ -1,7 +1,3 @@
-import React, { useEffect, useState } from 'react'
-import { useI18n } from 'shared/i18n'
-import { either, findByPathValue } from 'shared/utils'
-import { useDispatch, useSelector } from 'react-redux'
 import {
   always,
   compose,
@@ -17,6 +13,13 @@ import {
   T,
   when
 } from 'ramda'
+import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+
+import Collapsible from 'components/Collapsible'
+import SelectField from 'components/SelectField'
+import { useI18n } from 'shared/i18n'
+import { either, findByPathValue } from 'shared/utils'
 import {
   FETCH_GRID_BEHAVIOR,
   SET_GRID_PROFILE,
@@ -24,9 +27,6 @@ import {
   SET_GRID_VOLTAGE
 } from 'state/actions/systemConfiguration'
 import { fwupStatus } from 'state/reducers/firmware-update'
-
-import Collapsible from 'components/Collapsible'
-import SelectField from 'components/SelectField'
 import './SystemConfiguration.scss'
 
 const GBI = <span className="sp-grid file level mr-15 is-size-4" />

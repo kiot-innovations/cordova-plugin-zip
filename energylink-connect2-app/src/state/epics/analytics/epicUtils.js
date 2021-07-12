@@ -1,5 +1,6 @@
-import { getApiParty } from 'shared/api'
 import { path } from 'ramda'
+
+import { getApiParty } from 'shared/api'
 
 export const getPartyPromise = (accessToken, partyId) =>
   getApiParty(accessToken)

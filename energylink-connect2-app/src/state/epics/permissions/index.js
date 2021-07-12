@@ -1,11 +1,11 @@
-import { openSettingsEpic } from './openSettingsEpic'
 import { checkBLEPermissionsEpic } from './checkBLEPermissionsEpic'
 import {
   checkLocationPermissionsEpic,
   showLocationPermissionModalEpic
 } from './checkLocationPermissionsEpic'
-import { requestLocationPermissionsEpic } from './requestLocationPermissionsEpic'
 import { checkTrackingPermissionsEpic } from './checkTrackingPermissionsEpic'
+import { openSettingsEpic } from './openSettingsEpic'
+import { requestLocationPermissionsEpic } from './requestLocationPermissionsEpic'
 import { requestTrackingPermissionsEpic } from './requestTrackingPermissionsEpic'
 
 export default [

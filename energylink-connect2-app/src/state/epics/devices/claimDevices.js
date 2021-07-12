@@ -1,8 +1,9 @@
 import * as Sentry from '@sentry/browser'
-import { ofType } from 'redux-observable'
-import { catchError, map, mergeMap } from 'rxjs/operators'
-import { from, of } from 'rxjs'
 import { path } from 'ramda'
+import { ofType } from 'redux-observable'
+import { from, of } from 'rxjs'
+import { catchError, map, mergeMap } from 'rxjs/operators'
+
 import { getApiPVS } from 'shared/api'
 import {
   CLAIM_DEVICES_INIT,

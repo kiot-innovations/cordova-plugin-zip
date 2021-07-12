@@ -1,7 +1,6 @@
-import React from 'react'
-
-import { storiesOf } from '@storybook/react'
 import { linkTo } from '@storybook/addon-links'
+import { storiesOf } from '@storybook/react'
+import React from 'react'
 
 const Welcome = () => (
   <div className="card has-background-white has-text-black">

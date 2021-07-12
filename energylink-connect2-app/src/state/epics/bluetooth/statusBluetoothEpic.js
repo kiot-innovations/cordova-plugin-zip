@@ -1,13 +1,14 @@
-import { ofType } from 'redux-observable'
-import { catchError, map, exhaustMap, delayWhen } from 'rxjs/operators'
-import { from, of, timer } from 'rxjs'
 import { always } from 'ramda'
+import { ofType } from 'redux-observable'
+import { from, of, timer } from 'rxjs'
+import { catchError, map, exhaustMap, delayWhen } from 'rxjs/operators'
+
+import { statusBluetooth } from 'shared/bluetooth/statusBluetooth'
 import {
   CHECK_BLUETOOTH_STATUS_INIT,
   CHECK_BLUETOOTH_STATUS_SUCCESS,
   ENABLE_BLUETOOTH_ERROR
 } from 'state/actions/network'
-import { statusBluetooth } from 'shared/bluetooth/statusBluetooth'
 
 export const statusBluetoothEpic = action$ => {
   return action$.pipe(

@@ -1,7 +1,9 @@
 import React from 'react'
 import * as reactRedux from 'react-redux'
-import * as i18n from 'shared/i18n'
+
 import SNScanButtons from './SNScanButtons'
+
+import * as i18n from 'shared/i18n'
 
 describe('SNScanButtons', () => {
   let dispatchMock

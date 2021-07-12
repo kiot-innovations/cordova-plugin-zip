@@ -15,23 +15,23 @@ import { ofType } from 'redux-observable'
 import { forkJoin, from, of } from 'rxjs'
 import { catchError, exhaustMap, map } from 'rxjs/operators'
 
-import fileTransferObservable from 'state/epics/observables/downloader'
 import { getMd5FromFile } from 'shared/cordovaMapping'
+import { getVersionFromUrl, getValidFileName } from 'shared/download'
 import { getFileInfo } from 'shared/fileSystem'
-import {
-  essUpdateUrl$,
-  waitForObservable
-} from 'state/epics/downloader/latestUrls'
+import { headersToObj, getAccessToken } from 'shared/utils'
 import {
   DOWNLOAD_OS_ERROR,
   DOWNLOAD_OS_INIT,
   DOWNLOAD_OS_PROGRESS,
   DOWNLOAD_OS_REPORT_SUCCESS,
-  DOWNLOAD_OS_SUCCESS
+  DOWNLOAD_OS_SUCCESS,
+  DOWNLOAD_OS_UPDATE_VERSION
 } from 'state/actions/ess'
-import { getVersionFromUrl, getValidFileName } from 'shared/download'
-import { DOWNLOAD_OS_UPDATE_VERSION } from 'state/actions/ess'
-import { headersToObj, getAccessToken } from 'shared/utils'
+import {
+  essUpdateUrl$,
+  waitForObservable
+} from 'state/epics/downloader/latestUrls'
+import fileTransferObservable from 'state/epics/observables/downloader'
 
 const downloadOSZipEpic = (action$, state$) => {
   const shouldRetry = ifElse(is(Boolean), identity, always(false))

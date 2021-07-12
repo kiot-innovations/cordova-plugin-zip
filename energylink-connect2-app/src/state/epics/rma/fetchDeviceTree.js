@@ -1,14 +1,15 @@
 import * as Sentry from '@sentry/browser'
+import { path } from 'ramda'
 import { ofType } from 'redux-observable'
 import { from, of } from 'rxjs'
 import { catchError, exhaustMap, map } from 'rxjs/operators'
-import { path } from 'ramda'
+
+import { getApiDevice } from 'shared/api'
 import {
   FETCH_DEVICE_TREE,
   FETCH_DEVICE_TREE_SUCCESS,
   FETCH_DEVICE_TREE_ERROR
 } from 'state/actions/rma'
-import { getApiDevice } from 'shared/api'
 
 const getAccessToken = path(['user', 'auth', 'access_token'])
 const getSelectedPVS = path(['rma', 'pvs'])

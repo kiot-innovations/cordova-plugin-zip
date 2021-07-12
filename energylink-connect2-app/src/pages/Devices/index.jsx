@@ -1,10 +1,17 @@
-import React, { useEffect, useState } from 'react'
-import useModal from 'hooks/useModal'
 import { find, isEmpty, length, pathOr, propEq, propOr } from 'ramda'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
-import { either, miTypes, filterFoundMI, miStates } from 'shared/utils'
+
+import DiscoveryStatus from './DiscoveryStatus'
+import ProgressIndicators from './ProgressIndicators'
+
+import Collapsible from 'components/Collapsible'
+import ColoredBanner, { bannerCategories } from 'components/ColoredBanner'
+import useModal from 'hooks/useModal'
+import paths from 'routes/paths'
 import { useI18n } from 'shared/i18n'
+import { either, miTypes, filterFoundMI, miStates } from 'shared/utils'
 import {
   CLAIM_DEVICES_INIT,
   DISCOVER_COMPLETE,
@@ -16,15 +23,10 @@ import {
   RESET_DISCOVERY_PROGRESS,
   SAVE_OK_MI
 } from 'state/actions/devices'
-import paths from 'routes/paths'
-import Collapsible from 'components/Collapsible'
-import ColoredBanner, { bannerCategories } from 'components/ColoredBanner'
-import ProgressIndicators from './ProgressIndicators'
-import DiscoveryStatus from './DiscoveryStatus'
-
-import './Devices.scss'
 import { START_DISCOVERY_INIT } from 'state/actions/pvs'
 import { discoveryTypes } from 'state/reducers/devices'
+
+import './Devices.scss'
 
 const microInverterIcon = (
   <span className="sp-inverter mr-20 devices-icon ml-0 mt-0 mb-0" />

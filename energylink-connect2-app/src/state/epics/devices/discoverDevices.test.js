@@ -1,10 +1,12 @@
 import { of } from 'rxjs'
+
+import { scanDevicesEpic } from './discoverDevices'
+
+import * as apis from 'shared/api'
 import {
   FETCH_CANDIDATES_COMPLETE,
   DISCOVER_UPDATE
 } from 'state/actions/devices'
-import { scanDevicesEpic } from './discoverDevices'
-import * as apis from 'shared/api'
 
 describe('the discover device epic', () => {
   let action

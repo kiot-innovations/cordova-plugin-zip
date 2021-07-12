@@ -1,13 +1,13 @@
-import React, { useEffect, useCallback } from 'react'
 import { pathOr } from 'ramda'
+import React, { useEffect, useCallback } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
-import { useI18n } from 'shared/i18n'
-import paths from 'routes/paths'
 
-import './Permissions.scss'
-import { OPEN_SETTINGS, CHECK_PERMISSIONS_INIT } from 'state/actions/network'
+import paths from 'routes/paths'
+import { useI18n } from 'shared/i18n'
 import { either } from 'shared/utils'
+import { OPEN_SETTINGS, CHECK_PERMISSIONS_INIT } from 'state/actions/network'
+import './Permissions.scss'
 
 const Permissions = () => {
   const t = useI18n()

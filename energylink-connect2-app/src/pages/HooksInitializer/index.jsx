@@ -1,10 +1,11 @@
 import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
+
 import useAppUpdate from 'hooks/useAppUpdate'
 import useUpgrade from 'hooks/useUpgrade'
-import { deviceResumeListener } from 'state/actions/mobile'
-import { validateSession } from 'state/actions/auth'
 import { updateBodyHeight } from 'shared/utils'
+import { validateSession } from 'state/actions/auth'
+import { deviceResumeListener } from 'state/actions/mobile'
 
 function HooksInitializer() {
   const dispatch = useDispatch()

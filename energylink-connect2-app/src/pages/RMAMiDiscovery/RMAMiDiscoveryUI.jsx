@@ -1,13 +1,14 @@
-import React, { useState } from 'react'
 import clsx from 'clsx'
-import useModal from 'hooks/useModal'
 import { length, pathOr } from 'ramda'
-import { either, miTypes } from 'shared/utils'
-import { useI18n } from 'shared/i18n'
+import React, { useState } from 'react'
+
 import Collapsible from 'components/Collapsible'
+import ColoredBanner, { bannerCategories } from 'components/ColoredBanner'
+import useModal from 'hooks/useModal'
 import ProgressIndicators from 'pages/Devices/ProgressIndicators'
+import { useI18n } from 'shared/i18n'
+import { either, miTypes } from 'shared/utils'
 import 'pages/Devices/Devices.scss'
-import ColoredBanner, { bannerCategories } from '../../components/ColoredBanner'
 
 const microInverterIcon = (
   <span className="sp-inverter mr-20 devices-icon ml-0 mt-0 mb-0" />

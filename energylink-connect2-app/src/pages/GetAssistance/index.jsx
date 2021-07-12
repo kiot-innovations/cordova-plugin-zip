@@ -1,5 +1,6 @@
 import React from 'react'
 import { useHistory } from 'react-router-dom'
+
 import paths from 'routes/paths'
 import { useI18n } from 'shared/i18n'
 import './GetAssistance.scss'

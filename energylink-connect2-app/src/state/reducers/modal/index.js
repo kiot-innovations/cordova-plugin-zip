@@ -1,4 +1,5 @@
 import { createReducer } from 'redux-act'
+
 import { HIDE_MODAL, SET_CURRENT_MODAL } from 'state/actions/modal'
 
 const initialState = {}

@@ -1,7 +1,4 @@
 import * as Sentry from '@sentry/browser'
-import { ofType } from 'redux-observable'
-import { from, of } from 'rxjs'
-import { catchError, exhaustMap, map } from 'rxjs/operators'
 import {
   always,
   converge,
@@ -16,9 +13,13 @@ import {
   pipe,
   split
 } from 'ramda'
-import * as siteActions from 'state/actions/site'
+import { ofType } from 'redux-observable'
+import { from, of } from 'rxjs'
+import { catchError, exhaustMap, map } from 'rxjs/operators'
+
 import { getApiSite } from 'shared/api'
 import { cleanString } from 'shared/utils'
+import * as siteActions from 'state/actions/site'
 
 const getAccessToken = path(['user', 'auth', 'access_token'])
 const getServicer = pipe(path(['user', 'data']), pick(['parentPartyId']))

@@ -1,7 +1,9 @@
-import React from 'react'
 import { shallow } from 'enzyme'
-import EnergySwitch from '.'
+import React from 'react'
+
 import * as i18n from '../../shared/i18n'
+
+import EnergySwitch from '.'
 
 describe('Energy switch', () => {
   it('renders without crashing', () => {

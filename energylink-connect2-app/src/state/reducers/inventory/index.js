@@ -1,5 +1,7 @@
-import { createReducer } from 'redux-act'
 import { clone } from 'ramda'
+import { createReducer } from 'redux-act'
+
+import { RESET_COMMISSIONING } from 'state/actions/global'
 import {
   FETCH_INVENTORY_INIT,
   FETCH_INVENTORY_ERROR,
@@ -11,7 +13,6 @@ import {
   RESET_INVENTORY,
   UPDATE_INVENTORY
 } from 'state/actions/inventory'
-import { RESET_COMMISSIONING } from 'state/actions/global'
 
 const initialState = {
   bom: [

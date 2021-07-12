@@ -1,9 +1,10 @@
-import React from 'react'
 import { storiesOf } from '@storybook/react'
-import { configureStore } from 'state/store'
+import React from 'react'
 import { Provider } from 'react-redux'
 
 import RMAInventory from './index'
+
+import { configureStore } from 'state/store'
 
 const inventoryStore = {
   inventory: {

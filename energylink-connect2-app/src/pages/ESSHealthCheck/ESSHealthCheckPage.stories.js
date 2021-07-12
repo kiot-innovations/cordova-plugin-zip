@@ -1,10 +1,12 @@
-import React from 'react'
 import { storiesOf } from '@storybook/react'
-import { configureStore } from 'state/store'
+import React from 'react'
 import { Provider } from 'react-redux'
 
-import ESSHealthCheck from '.'
 import { rmaModes } from '../../state/reducers/rma'
+
+import ESSHealthCheck from '.'
+
+import { configureStore } from 'state/store'
 
 const runningDiscovery = {
   storage: {

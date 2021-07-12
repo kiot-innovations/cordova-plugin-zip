@@ -1,12 +1,13 @@
+import { pathOr, isEmpty, length } from 'ramda'
 import React from 'react'
-import { useI18n } from 'shared/i18n'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
-import { RESET_COMPONENT_MAPPING } from 'state/actions/storage'
-import { pathOr, isEmpty, length } from 'ramda'
-import { either, warningsLength, withoutInfoCodes } from 'shared/utils'
-import paths from 'routes/paths'
+
 import ErrorDetected from 'components/ESSErrorDetected'
+import paths from 'routes/paths'
+import { useI18n } from 'shared/i18n'
+import { either, warningsLength, withoutInfoCodes } from 'shared/utils'
+import { RESET_COMPONENT_MAPPING } from 'state/actions/storage'
 import './ESSDeviceMappingError.scss'
 
 function DeviceMappingError() {

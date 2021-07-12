@@ -1,5 +1,8 @@
-import { createReducer } from 'redux-act'
 import { propOr, uniqWith } from 'ramda'
+import { createReducer } from 'redux-act'
+
+import { eqByProp } from 'shared/utils'
+import { RESET_COMMISSIONING } from 'state/actions/global'
 import {
   PVS_CONNECTION_INIT,
   PVS_CONNECTION_SUCCESS,
@@ -32,9 +35,6 @@ import {
   SET_CONNECTION_STATUS,
   BLE_GET_DEVICES_ENDED
 } from 'state/actions/network'
-
-import { RESET_COMMISSIONING } from 'state/actions/global'
-import { eqByProp } from 'shared/utils'
 
 export const appConnectionStatus = {
   NOT_CONNECTED: 'Not connected',

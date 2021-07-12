@@ -1,5 +1,6 @@
-import React from 'react'
 import { storiesOf } from '@storybook/react'
+import React from 'react'
+
 import InventoryCount from '.'
 
 storiesOf('Inventory Count Page', module).add('Simple', () => (

@@ -1,5 +1,6 @@
-import React from 'react'
 import { storiesOf } from '@storybook/react'
+import React from 'react'
+
 import ErrorList from '.'
 
 storiesOf('Error list - All with known errors', module)

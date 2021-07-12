@@ -1,11 +1,11 @@
-import React from 'react'
 import { storiesOf } from '@storybook/react'
-import { configureStore } from 'state/store'
+import React from 'react'
 import { Provider } from 'react-redux'
 
-import { appConnectionStatus } from 'state/reducers/network'
-
 import ConnectionStatusModal from './ConnectionStatusModal'
+
+import { appConnectionStatus } from 'state/reducers/network'
+import { configureStore } from 'state/store'
 
 storiesOf('Connection Status Modal', module)
   .add('Connected', () => {

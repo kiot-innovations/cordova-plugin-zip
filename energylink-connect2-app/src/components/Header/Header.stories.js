@@ -1,11 +1,12 @@
-import React from 'react'
 import { storiesOf } from '@storybook/react'
-
-import { configureStore } from 'state/store'
+import React from 'react'
 import { Provider } from 'react-redux'
 
-import { Header } from '.'
 import { appConnectionStatus } from '../../state/reducers/network'
+
+import { Header } from '.'
+
+import { configureStore } from 'state/store'
 
 const noAddressNotConnected = {
   firmwareUpdate: {

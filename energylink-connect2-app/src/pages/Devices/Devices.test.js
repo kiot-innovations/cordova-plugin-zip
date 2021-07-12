@@ -1,7 +1,9 @@
 import React from 'react'
 import * as ReactDOM from 'react-dom'
-import * as i18n from 'shared/i18n'
+
 import Devices from '.'
+
+import * as i18n from 'shared/i18n'
 
 const state = {
   pvs: {

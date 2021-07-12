@@ -1,6 +1,7 @@
 import React from 'react'
-import HomeownerAccountCreation from '.'
 import * as reactRedux from 'react-redux'
+
+import HomeownerAccountCreation from '.'
 
 describe('HomeownerAccountCreation Component', () => {
   beforeEach(() => {

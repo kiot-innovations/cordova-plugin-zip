@@ -1,14 +1,15 @@
 import * as Sentry from '@sentry/browser'
+import { assoc, isEmpty, path, pathOr, propOr, reduce } from 'ramda'
 import { ofType } from 'redux-observable'
 import { from, of } from 'rxjs'
 import { catchError, map, mergeMap } from 'rxjs/operators'
+
+import { getApiDevice } from 'shared/api'
 import {
   FETCH_MODELS_ERROR,
   FETCH_MODELS_INIT,
   FETCH_MODELS_SUCCESS
 } from 'state/actions/devices'
-import { assoc, isEmpty, path, pathOr, propOr, reduce } from 'ramda'
-import { getApiDevice } from 'shared/api'
 
 const getAccessToken = path(['user', 'auth', 'access_token'])
 

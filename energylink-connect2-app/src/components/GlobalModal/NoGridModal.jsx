@@ -1,6 +1,7 @@
 import React from 'react'
-import { useI18n } from 'shared/i18n'
+
 import { useGlobalHideModal } from 'hooks/useGlobalModal'
+import { useI18n } from 'shared/i18n'
 
 const NoGridSelectedModal = () => {
   const t = useI18n()

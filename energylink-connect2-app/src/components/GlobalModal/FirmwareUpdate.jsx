@@ -1,8 +1,9 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
+
+import { useGlobalHideModal } from 'hooks/useGlobalModal'
 import { useI18n } from 'shared/i18n'
 import { FIRMWARE_UPDATE_INIT } from 'state/actions/firmwareUpdate'
-import { useGlobalHideModal } from 'hooks/useGlobalModal'
 
 function FirmwareUpdate(props) {
   const dispatch = useDispatch()

@@ -1,4 +1,5 @@
 import { createAction } from 'redux-act'
+
 import { validateSession } from './auth'
 
 export const DEVICE_RESUME = createAction('DEVICE_RESUME')

@@ -1,8 +1,14 @@
-import { getPreDiscoveryEpic, getDelayedPreDiscoveryEpic } from './preDiscovery'
 import {
   postComponentMappingEpic,
   getComponentMappingEpic
 } from './componentMapping'
+import {
+  checkEqsFwFile,
+  getEqsFwFile,
+  triggerFwUpdateEpic,
+  uploadEqsFwEpic,
+  pollFwUpdateEpic
+} from './deviceUpdate'
 import {
   startHealthCheckEpic,
   waitHealthCheckEpic,
@@ -12,13 +18,7 @@ import {
   retrieveStorageStatusEpic,
   getSingleStorageStatusEpic
 } from './getHealthCheckEpic'
-import {
-  checkEqsFwFile,
-  getEqsFwFile,
-  triggerFwUpdateEpic,
-  uploadEqsFwEpic,
-  pollFwUpdateEpic
-} from './deviceUpdate'
+import { getPreDiscoveryEpic, getDelayedPreDiscoveryEpic } from './preDiscovery'
 
 export default [
   checkEqsFwFile,

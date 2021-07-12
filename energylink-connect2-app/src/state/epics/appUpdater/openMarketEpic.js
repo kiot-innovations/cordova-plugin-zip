@@ -2,13 +2,14 @@ import * as Sentry from '@sentry/browser'
 import { ofType } from 'redux-observable'
 import { from, of } from 'rxjs'
 import { map, exhaustMap, catchError } from 'rxjs/operators'
+
+import { createExternalLinkHandler } from 'shared/routing'
+import { isDebug, isIos } from 'shared/utils'
 import {
   APP_UPDATE_OPEN_MARKET,
   APP_UPDATE_OPEN_MARKET_SUCCESS,
   APP_UPDATE_OPEN_MARKET_ERROR
 } from 'state/actions/global'
-import { isDebug, isIos } from 'shared/utils'
-import { createExternalLinkHandler } from 'shared/routing'
 
 const APPLE_ID = process.env.REACT_APP_APPLE_ID
 const ANDROID_ID = process.env.REACT_APP_ANDROID_ID

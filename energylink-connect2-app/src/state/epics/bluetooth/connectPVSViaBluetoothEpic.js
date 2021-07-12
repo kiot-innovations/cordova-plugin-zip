@@ -1,14 +1,15 @@
 import * as Sentry from '@sentry/browser'
 import { ofType } from 'redux-observable'
-import { catchError, map, mergeMap, retryWhen } from 'rxjs/operators'
 import { of } from 'rxjs'
+import { catchError, map, mergeMap, retryWhen } from 'rxjs/operators'
+
+import { connectBLE } from 'shared/bluetooth/connectViaBluetooth'
+import genericRetryStrategy from 'shared/rxjs/genericRetryStrategy'
 import {
   CONNECT_PVS_VIA_BLE,
   EXECUTE_ENABLE_ACCESS_POINT,
   FAILURE_BLUETOOTH_ACTION
 } from 'state/actions/network'
-import { connectBLE } from 'shared/bluetooth/connectViaBluetooth'
-import genericRetryStrategy from 'shared/rxjs/genericRetryStrategy'
 
 export const connectPVSViaBluetoothEpic = action$ => {
   return action$.pipe(

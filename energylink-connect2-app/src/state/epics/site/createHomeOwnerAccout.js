@@ -1,17 +1,17 @@
 import * as Sentry from '@sentry/browser'
-import { from, of } from 'rxjs'
-import { catchError, exhaustMap, map, withLatestFrom } from 'rxjs/operators'
 import { pathOr, prop } from 'ramda'
 import { ofType } from 'redux-observable'
+import { from, of } from 'rxjs'
+import { catchError, exhaustMap, map, withLatestFrom } from 'rxjs/operators'
 
 import { getApiParty } from 'shared/api'
+import { getAccessToken } from 'shared/utils'
 import {
   CREATE_HOMEOWNER_ACCOUNT,
   CREATE_HOMEOWNER_ACCOUNT_COMPLETE,
   CREATE_HOMEOWNER_ACCOUNT_ERROR,
   ACTIVATE_HOMEOWNER_ACCOUNT
 } from 'state/actions/site'
-import { getAccessToken } from 'shared/utils'
 
 const reportCreateHOError = catchError(err => {
   Sentry.captureException(err)

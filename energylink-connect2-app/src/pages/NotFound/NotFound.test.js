@@ -1,7 +1,9 @@
-import React from 'react'
-import * as i18n from 'shared/i18n'
 import { shallow } from 'enzyme'
+import React from 'react'
+
 import NotFound from '.'
+
+import * as i18n from 'shared/i18n'
 
 describe('NotFound Page', () => {
   beforeEach(() => {

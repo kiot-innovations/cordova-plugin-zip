@@ -1,4 +1,3 @@
-import React, { useEffect, useState } from 'react'
 import {
   endsWith,
   equals,
@@ -11,31 +10,32 @@ import {
   length,
   map
 } from 'ramda'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
-import SwipeableSheet from 'hocs/SwipeableSheet'
-
-import paths from 'routes/paths'
-import { useI18n } from 'shared/i18n'
-import { FETCH_DEVICES_LIST, UPDATE_DEVICES_LIST } from 'state/actions/devices'
-import PanelLayoutWidget from 'pages/SystemConfiguration/panelLayoutWidget'
-import { METER, METER_ERRORS } from 'state/reducers/systemConfiguration/meter'
-import { GRID_ERRORS } from 'state/reducers/systemConfiguration/gridBehavior'
-import useSiteKey from 'hooks/useSiteKey'
-import { CONFIG_START } from 'state/actions/analytics'
-import {
-  ALLOW_COMMISSIONING,
-  REPLACE_RMA_PVS,
-  SUBMIT_CONFIG
-} from 'state/actions/systemConfiguration'
-import { rmaModes } from 'state/reducers/rma'
-import { useShowModal } from 'hooks/useGlobalModal'
 
 import GridBehaviorWidget from './GridBehaviorWidget'
 import InterfacesWidget from './InterfacesWidget'
 import MetersWidget from './MetersWidget'
 import NetworkWidget from './NetworkWidget'
 import RSEWidget from './RSEWidget'
+
+import SwipeableSheet from 'hocs/SwipeableSheet'
+import { useShowModal } from 'hooks/useGlobalModal'
+import useSiteKey from 'hooks/useSiteKey'
+import PanelLayoutWidget from 'pages/SystemConfiguration/panelLayoutWidget'
+import paths from 'routes/paths'
+import { useI18n } from 'shared/i18n'
+import { CONFIG_START } from 'state/actions/analytics'
+import { FETCH_DEVICES_LIST, UPDATE_DEVICES_LIST } from 'state/actions/devices'
+import {
+  ALLOW_COMMISSIONING,
+  REPLACE_RMA_PVS,
+  SUBMIT_CONFIG
+} from 'state/actions/systemConfiguration'
+import { rmaModes } from 'state/reducers/rma'
+import { GRID_ERRORS } from 'state/reducers/systemConfiguration/gridBehavior'
+import { METER, METER_ERRORS } from 'state/reducers/systemConfiguration/meter'
 
 import './SystemConfiguration.scss'
 

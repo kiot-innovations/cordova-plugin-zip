@@ -1,6 +1,3 @@
-import { ofType } from 'redux-observable'
-import { switchMap, withLatestFrom } from 'rxjs/operators'
-import { EMPTY, of } from 'rxjs'
 import {
   compose,
   curry,
@@ -13,15 +10,18 @@ import {
   T,
   prop
 } from 'ramda'
+import { ofType } from 'redux-observable'
+import { EMPTY, of } from 'rxjs'
+import { switchMap, withLatestFrom } from 'rxjs/operators'
 
 import { commissionSite, saveConfiguration } from 'shared/analytics'
-import { parseInventory } from 'state/epics/analytics/InventoryEpics'
-import { COMMISSION_SUCCESS } from 'state/actions/analytics'
 import { getElapsedTime } from 'shared/utils'
+import { COMMISSION_SUCCESS } from 'state/actions/analytics'
 import {
   SUBMIT_COMMISSION_ERROR,
   SUBMIT_COMMISSION_SUCCESS
 } from 'state/actions/systemConfiguration'
+import { parseInventory } from 'state/epics/analytics/InventoryEpics'
 
 const pathNA = pathOr('N/A')
 const getRse = pathNA(['systemConfiguration', 'rse', 'selectedPowerProduction'])

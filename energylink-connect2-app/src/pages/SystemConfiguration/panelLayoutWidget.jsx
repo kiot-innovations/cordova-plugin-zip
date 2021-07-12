@@ -1,15 +1,14 @@
+import moment from 'moment'
+import { filter, includes, isEmpty, length, pluck, prop, propEq } from 'ramda'
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { filter, includes, isEmpty, length, pluck, prop, propEq } from 'ramda'
 import { useHistory } from 'react-router-dom'
-import moment from 'moment'
 
+import Collapsible from 'components/Collapsible'
+import { Loader } from 'components/Loader'
+import paths from 'routes/paths'
 import { useI18n } from 'shared/i18n'
 import { either } from 'shared/utils'
-import { Loader } from 'components/Loader'
-import Collapsible from 'components/Collapsible'
-import paths from 'routes/paths'
-
 import { PLT_LOAD } from 'state/actions/panel-layout-tool'
 
 import './panelLayoutWidget.scss'

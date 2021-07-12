@@ -1,6 +1,3 @@
-import React, { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { useHistory } from 'react-router-dom'
 import {
   always,
   cond,
@@ -15,24 +12,30 @@ import {
   propOr,
   T
 } from 'ramda'
+import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { useHistory } from 'react-router-dom'
+
+import EnergyGraphSection from './EnergyGraphSection'
+
+import { ButtonLink } from 'components/ButtonLink'
+import Collapsible from 'components/Collapsible'
+import MiDataLive from 'components/MiDataLive'
+import RightNow from 'components/RightNow'
+import SwipeableSheet from 'hocs/SwipeableSheet'
+import paths from 'routes/paths'
 import { useI18n } from 'shared/i18n'
 import { roundDecimals } from 'shared/rounding'
+import { either } from 'shared/utils'
+import { FETCH_DEVICES_LIST } from 'state/actions/devices'
 import {
   ENERGY_DATA_START_POLLING,
   ENERGY_DATA_STOP_POLLING
 } from 'state/actions/energy-data'
-import { CLEAR_HEALTH_CHECK, GET_ESS_STATUS } from 'state/actions/storage'
 import { MI_DATA_START_POLLING, MI_DATA_STOP_POLLING } from 'state/actions/pvs'
-import { FETCH_DEVICES_LIST } from 'state/actions/devices'
-import { either } from 'shared/utils'
-import EnergyGraphSection from './EnergyGraphSection'
-import RightNow from 'components/RightNow'
-import MiDataLive from 'components/MiDataLive'
-import Collapsible from 'components/Collapsible'
-import { ButtonLink } from 'components/ButtonLink'
-import paths from 'routes/paths'
+import { CLEAR_HEALTH_CHECK, GET_ESS_STATUS } from 'state/actions/storage'
+
 import './Data.scss'
-import SwipeableSheet from 'hocs/SwipeableSheet'
 
 const isMeter = propEq('isSolarAvailable', true)
 

@@ -1,6 +1,7 @@
-import React from 'react'
 import { mount } from 'enzyme'
+import React from 'react'
 import * as reactRedux from 'react-redux'
+
 import * as i18n from './i18n'
 import mock from './locales/__mocks__/en'
 

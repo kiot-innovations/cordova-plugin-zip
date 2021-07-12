@@ -1,7 +1,6 @@
+import { storiesOf } from '@storybook/react'
 import React from 'react'
 import { useForm, useField } from 'react-final-form-hooks'
-
-import { storiesOf } from '@storybook/react'
 
 import TextArea from './index'
 

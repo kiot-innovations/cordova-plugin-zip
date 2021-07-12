@@ -3,8 +3,10 @@
 import React from 'react'
 import * as ReactDOM from 'react-dom'
 import * as reactRedux from 'react-redux'
-import * as i18n from 'shared/i18n'
+
 import LegacyDiscovery from '.'
+
+import * as i18n from 'shared/i18n'
 
 describe('Legacy Discovery Results page', () => {
   let dispatchMock

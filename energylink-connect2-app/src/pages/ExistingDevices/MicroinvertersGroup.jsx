@@ -1,9 +1,10 @@
+import { length, map, propOr, reject } from 'ramda'
 import React from 'react'
 import { useDispatch } from 'react-redux'
-import { length, map, propOr, reject } from 'ramda'
+
+import Collapsible from 'components/Collapsible'
 import { useI18n } from 'shared/i18n'
 import { UPDATE_DEVICE_TREE } from 'state/actions/rma'
-import Collapsible from 'components/Collapsible'
 import './ExistingDevices.scss'
 
 const deviceRow = removeInverter => deviceItem => {

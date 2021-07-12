@@ -1,7 +1,8 @@
 import * as Sentry from '@sentry/browser'
 import { prop } from 'ramda'
+
+import ErrorCodesList from 'shared/errorCodesList.json'
 import { arrayToObject } from 'shared/utils'
-import ErrorCodesList from 'shared/errorCodesList'
 
 const unknownError = code => {
   Sentry.captureException(`Error code not found ${code}`)

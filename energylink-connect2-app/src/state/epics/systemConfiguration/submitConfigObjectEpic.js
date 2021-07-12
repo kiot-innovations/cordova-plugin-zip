@@ -1,10 +1,11 @@
 import * as Sentry from '@sentry/browser'
-import { ofType } from 'redux-observable'
-import { catchError, map, mergeMap } from 'rxjs/operators'
 import { includes, path, pathOr, propOr, prop } from 'ramda'
+import { ofType } from 'redux-observable'
 import { from, of } from 'rxjs'
-import { translate } from 'shared/i18n'
+import { catchError, map, mergeMap } from 'rxjs/operators'
+
 import { getApiPVS } from 'shared/api'
+import { translate } from 'shared/i18n'
 import { edpErrorMessage } from 'shared/utils'
 import {
   SUBMIT_CONFIG_SUCCESS,

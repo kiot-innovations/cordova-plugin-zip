@@ -1,18 +1,17 @@
+import Nav from '@sunpower/nav'
+import clsx from 'clsx'
+import { isNil } from 'ramda'
 import React, { useEffect, useMemo } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory, useLocation } from 'react-router-dom'
-import { isNil } from 'ramda'
-import clsx from 'clsx'
 
-import Nav from '@sunpower/nav'
-
-import { SET_LAST_VISITED_PAGE } from 'state/actions/global'
-import { appConnectionStatus } from 'state/reducers/network'
-import { BEGIN_INSTALL } from 'state/actions/analytics'
 import useSiteKey from 'hooks/useSiteKey'
 import paths, { protectedRoutes, TABS } from 'routes/paths'
-import { either } from 'shared/utils'
 import { useI18n } from 'shared/i18n'
+import { either } from 'shared/utils'
+import { BEGIN_INSTALL } from 'state/actions/analytics'
+import { SET_LAST_VISITED_PAGE } from 'state/actions/global'
+import { appConnectionStatus } from 'state/reducers/network'
 
 import './footer.scss'
 

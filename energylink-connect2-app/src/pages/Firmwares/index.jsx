@@ -1,4 +1,3 @@
-import React from 'react'
 import {
   complement,
   compose,
@@ -10,13 +9,15 @@ import {
   prop,
   propOr
 } from 'ramda'
+import React from 'react'
 import { useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
-import paths from 'routes/paths'
 
+import FirmwaresMenu from './MenuComponent'
+
+import paths from 'routes/paths'
 import { useI18n } from 'shared/i18n'
 import { isDownloadingFiles } from 'shared/utils'
-import FirmwaresMenu from './MenuComponent'
 
 export const getFileName = compose(
   ifElse(complement(isNil), compose(head, match(/([0-9]+)$/)), identity),

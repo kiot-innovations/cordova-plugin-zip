@@ -1,4 +1,5 @@
 import { createReducer } from 'redux-act'
+
 import { getElapsedTime, gotDisconnection, gotReconnection } from 'shared/utils'
 import {
   BEGIN_INSTALL,
@@ -8,9 +9,9 @@ import {
   RESET_PVS_INTERNET_TRACKING,
   SET_AC_DEVICES,
   START_BULK_SETTINGS_TIMER,
-  UPDATE_NOT_FOUND_MIS_SERIAL_NUMBERS
+  UPDATE_NOT_FOUND_MIS_SERIAL_NUMBERS,
+  MIS_DISCOVERY_START_TIMER
 } from 'state/actions/analytics'
-
 import {
   CLAIM_DEVICES_ERROR,
   CLAIM_DEVICES_COMPLETE,
@@ -18,9 +19,7 @@ import {
   PUSH_CANDIDATES_INIT,
   RESET_DISCOVERY
 } from 'state/actions/devices'
-
 import { SET_CONNECTION_STATUS } from 'state/actions/network'
-import { MIS_DISCOVERY_START_TIMER } from 'state/actions/analytics'
 import {
   CONNECT_NETWORK_AP_INIT,
   CONNECT_NETWORK_AP_ERROR,

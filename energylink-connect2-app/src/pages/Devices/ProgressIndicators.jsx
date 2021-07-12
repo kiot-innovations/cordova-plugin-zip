@@ -1,5 +1,6 @@
-import React from 'react'
 import { prop } from 'ramda'
+import React from 'react'
+
 import { useI18n } from 'shared/i18n'
 
 const ProgressIndicators = ({ progressList }) => {

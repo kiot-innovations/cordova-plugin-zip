@@ -1,8 +1,7 @@
-import React from 'react'
 import { storiesOf } from '@storybook/react'
-import { bannerCategories } from '.'
+import React from 'react'
 
-import ColoredBanner from '.'
+import ColoredBanner, { bannerCategories } from '.'
 
 storiesOf('Banner', module)
   .add('All banners, no action', () => (

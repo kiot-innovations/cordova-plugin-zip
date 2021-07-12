@@ -1,12 +1,13 @@
+import { compose, equals, filter, length, propOr, props } from 'ramda'
 import React from 'react'
 import { useSelector } from 'react-redux'
-import { compose, equals, filter, length, propOr, props } from 'ramda'
 import { useHistory, useLocation, useParams } from 'react-router-dom'
+
+import paths from 'routes/paths'
 import { getError } from 'shared/errorCodes'
 import { useI18n } from 'shared/i18n'
 import { createMarkup, either } from 'shared/utils'
 import { eqsSteps } from 'state/reducers/storage'
-import paths from 'routes/paths'
 import './ErrorDetail.scss'
 
 const storageRoutesMap = {

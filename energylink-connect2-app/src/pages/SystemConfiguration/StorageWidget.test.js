@@ -1,7 +1,9 @@
 import React from 'react'
 import * as reactRedux from 'react-redux'
-import * as i18n from 'shared/i18n'
+
 import StorageWidget from './StorageWidget'
+
+import * as i18n from 'shared/i18n'
 
 describe('Storage Widget', () => {
   let dispatchMock

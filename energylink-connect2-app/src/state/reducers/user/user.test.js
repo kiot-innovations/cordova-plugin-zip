@@ -1,4 +1,5 @@
 import * as userActions from '../../actions/user'
+
 import { userReducer } from '.'
 
 describe('User reducer', () => {

@@ -1,8 +1,10 @@
 /* eslint-disable jsx-a11y/heading-has-content */
-import React from 'react'
 import Logo from '@sunpower/sunpowerimage'
+import React from 'react'
 import { Link } from 'react-router-dom'
+
 import { useI18n } from '../../shared/i18n'
+
 import paths from 'routes/paths'
 import './NotFound.scss'
 

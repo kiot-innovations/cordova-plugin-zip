@@ -1,7 +1,8 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
-import { useI18n } from 'shared/i18n'
+
 import { useGlobalHideModal } from 'hooks/useGlobalModal'
+import { useI18n } from 'shared/i18n'
 import { DOWNLOAD_ALLOW_WITH_PVS } from 'state/actions/fileDownloader'
 
 export const DownloadConnectedToPVSModal = () => {

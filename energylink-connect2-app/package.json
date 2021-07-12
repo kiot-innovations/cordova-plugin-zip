@@ -14,13 +14,13 @@
     "build.ci": "eslint src && cross-env CI=true react-scripts test && cross-env NODE_ENV=production react-scripts build",
     "cleanwww": "find ../www -name 'precache*' -delete && rm -rf ../www/static",
     "test": "cross-env SKIP_PREFLIGHT_CHECK=true react-scripts test",
-    "lint": "eslint --fix src",
+    "lint": "eslint --ext .jsx,.js --fix src/",
     "validate-env-files": "node ./gitHooks/envFiles/validate",
     "storybook": "start-storybook -p 9009 -s public",
     "build-storybook": "build-storybook -s public",
     "live-reload-proxy": "node ./live-reload/proxy.js",
     "live-reload-precommit": "node ./gitHooks/liveReloadValidate",
-    "prettify": "prettier --write 'src/**/**/*.{js,jsx,scss,md,json}'",
+    "prettify": "prettier 'src/**/**/*.{js,jsx,scss,md,json}'",
     "sentrifySourceMaps": "node sentrifySourceMaps.js"
   },
   "dependencies": {
@@ -94,6 +94,8 @@
     "enzyme-adapter-react-16": "^1.14.0",
     "enzyme-to-json": "^3.3.5",
     "eslint-config-prettier": "^6.0.0",
+    "eslint-import-resolver-custom-alias": "^1.2.0",
+    "eslint-plugin-import": "^2.23.4",
     "eslint-plugin-prettier": "^3.1.0",
     "execa": "^4.1.0",
     "husky": "^4.2.5",
@@ -123,7 +125,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run validate-env-files && cross-env CI=true npm run  test -- --coverage -o && eslint src && npm run live-reload-precommit && npm run prettify"
+      "pre-commit": "npm run live-reload-precommit && npm run validate-env-files && npm run lint && npm run prettify && cross-env CI=true npm run  test -- --coverage -o"
     }
   },
   "jest": {
@@ -154,5 +156,9 @@
   },
   "msw": {
     "workerDirectory": "public"
+  },
+  "engines": {
+    "node": ">=10.15.3 <11",
+    "npm": ">=6.11.3 <7"
   }
 }

@@ -1,4 +1,9 @@
+import { pathOr } from 'ramda'
 import { ofType } from 'redux-observable'
+import { EMPTY, race, of } from 'rxjs'
+import { map, switchMap, take } from 'rxjs/operators'
+
+import { siteFound, siteNotFound, createSite } from 'shared/analytics'
 import {
   GET_SITE_ERROR,
   GET_SITE_SUCCESS,
@@ -8,10 +13,6 @@ import {
   CREATE_SITE_SUCCESS,
   CREATE_SITE_ERROR
 } from 'state/actions/site'
-import { map, switchMap, take } from 'rxjs/operators'
-import { EMPTY, race, of } from 'rxjs'
-import { pathOr } from 'ramda'
-import { siteFound, siteNotFound, createSite } from 'shared/analytics'
 
 /**
  * We need to race the actions so that we don't waste CPU by cancelling

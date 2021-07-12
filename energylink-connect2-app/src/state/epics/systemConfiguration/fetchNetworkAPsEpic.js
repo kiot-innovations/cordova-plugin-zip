@@ -1,14 +1,15 @@
 import * as Sentry from '@sentry/browser'
+import { path, prop, uniqBy } from 'ramda'
 import { ofType } from 'redux-observable'
 import { of, from } from 'rxjs'
 import { catchError, map, concatMap, retry } from 'rxjs/operators'
-import { path, prop, uniqBy } from 'ramda'
+
+import { getApiPVS } from 'shared/api'
 import {
   GET_NETWORK_APS_INIT,
   GET_NETWORK_APS_SUCCESS,
   GET_NETWORK_APS_ERROR
 } from 'state/actions/systemConfiguration'
-import { getApiPVS } from 'shared/api'
 
 const filterDuplicateAPs = uniqBy(prop('ssid'))
 

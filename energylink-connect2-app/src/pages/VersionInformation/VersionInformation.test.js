@@ -1,5 +1,7 @@
 import React from 'react'
+
 import VersionInformation from './index'
+
 import * as i18n from 'shared/i18n'
 
 describe('VersionInformation component', () => {

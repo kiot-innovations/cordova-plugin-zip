@@ -1,8 +1,10 @@
-import React from 'react'
 import * as Sentry from '@sentry/browser'
-import { either } from 'shared/utils'
-import { translate } from 'shared/i18n'
+import React from 'react'
+
 import FallBackUI from './FallbackUI'
+
+import { translate } from 'shared/i18n'
+import { either } from 'shared/utils'
 
 class ErrorBoundary extends React.Component {
   constructor(props) {

@@ -1,6 +1,6 @@
+import { pathOr } from 'ramda'
 import React from 'react'
 import { useSelector } from 'react-redux'
-import { pathOr } from 'ramda'
 
 import ReleaseNotes from 'components/ReleaseNotes'
 

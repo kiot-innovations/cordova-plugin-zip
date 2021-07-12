@@ -1,14 +1,15 @@
+import { always, cond, equals, includes, lte, T } from 'ramda'
 import { ofType } from 'redux-observable'
+import { EMPTY, of, ReplaySubject } from 'rxjs'
+import { exhaustMap, switchMap, withLatestFrom } from 'rxjs/operators'
+
+import { firmwareUpdateEvent, timeMixPanelEvent } from 'shared/analytics'
 import {
   FIRMWARE_SHOW_MODAL,
   FIRMWARE_UPDATE_COMPLETE,
   FIRMWARE_UPDATE_ERROR,
   FIRMWARE_UPDATE_INIT
 } from 'state/actions/firmwareUpdate'
-import { exhaustMap, switchMap, withLatestFrom } from 'rxjs/operators'
-import { always, cond, equals, includes, lte, T } from 'ramda'
-import { EMPTY, of, ReplaySubject } from 'rxjs'
-import { firmwareUpdateEvent, timeMixPanelEvent } from 'shared/analytics'
 
 const wasUpdateSuccessful = includes('COMPLETE FIRMWARE UPDATE')
 

@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+
 import { useI18n } from 'shared/i18n'
 import './ESScontinueFooter.scss'
 

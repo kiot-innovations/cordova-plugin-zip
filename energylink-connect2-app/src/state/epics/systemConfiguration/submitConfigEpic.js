@@ -1,9 +1,4 @@
 import * as Sentry from '@sentry/browser'
-import { ofType } from 'redux-observable'
-import { from, of } from 'rxjs'
-import { catchError, exhaustMap, map } from 'rxjs/operators'
-import { getApiPVS } from 'shared/api'
-import { translate } from 'shared/i18n'
 import {
   compose,
   filter,
@@ -15,7 +10,13 @@ import {
   propSatisfies,
   test
 } from 'ramda'
+import { ofType } from 'redux-observable'
+import { from, of } from 'rxjs'
+import { catchError, exhaustMap, map } from 'rxjs/operators'
 
+import { getApiPVS } from 'shared/api'
+import { translate } from 'shared/i18n'
+import { EMPTY_ACTION } from 'state/actions/share'
 import {
   SAVE_CT_RATED_CURRENT_ERROR,
   SAVE_CT_RATED_CURRENT_INIT,
@@ -26,7 +27,6 @@ import {
   SUBMIT_GRIDPROFILE,
   SUBMIT_METERCONFIG
 } from 'state/actions/systemConfiguration'
-import { EMPTY_ACTION } from 'state/actions/share'
 
 const setCtRatedCurrent = ({ ratedCurrent, devices }) =>
   devices.reduce(async (prevPromise, nextDevice) => {

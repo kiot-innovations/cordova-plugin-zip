@@ -1,9 +1,9 @@
-import FirmwaresMenu from 'pages/Firmwares/MenuComponent'
-import paths from 'routes/paths'
-import GiveFeedback from 'pages/GiveFeedback'
-import VersionInformation from 'pages/VersionInformation'
 import FirmwareReleaseNotes from 'pages/FirmwareReleaseNotes'
+import FirmwaresMenu from 'pages/Firmwares/MenuComponent'
+import GiveFeedback from 'pages/GiveFeedback'
 import Settings from 'pages/Settings'
+import VersionInformation from 'pages/VersionInformation'
+import paths from 'routes/paths'
 
 export default [
   {

@@ -1,11 +1,10 @@
+import { useLottie } from 'lottie-react'
 import React, { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
-import { useLottie } from 'lottie-react'
 
-import { useI18n } from 'shared/i18n'
 import analyticsAnimation from 'shared/animations/Analytics.json'
-
+import { useI18n } from 'shared/i18n'
 import './AnalyticsConsent.scss'
 import { trackingPermissionValues } from 'state/reducers/permissions'
 

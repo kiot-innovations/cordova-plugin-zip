@@ -1,7 +1,9 @@
 import React from 'react'
-import ModelEdit from '.'
-import * as i18n from 'shared/i18n'
 import * as ReactDOM from 'react-dom'
+
+import ModelEdit from '.'
+
+import * as i18n from 'shared/i18n'
 
 describe('MI Model Editing page', () => {
   beforeEach(() => {

@@ -1,15 +1,17 @@
+import { of, throwError } from 'rxjs'
+
+import * as epicFunctions from './epicFunctions'
 import {
   submitPreConfigGridProfileEpic,
   submitPreConfigMeterDataEpic
 } from './submitPreconfigurationEpic'
+
 import {
   SUBMIT_PRECONFIG_SUCCESS,
   SUBMIT_PRECONFIG_ERROR,
   SUBMIT_PRECONFIG_GRIDPROFILE,
   SUBMIT_PRECONFIG_METER
 } from 'state/actions/systemConfiguration'
-import { of, throwError } from 'rxjs'
-import * as epicFunctions from './epicFunctions'
 
 describe('Precommissioning - Submit Grid Profile', function() {
   const state = {

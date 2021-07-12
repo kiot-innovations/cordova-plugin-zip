@@ -1,4 +1,6 @@
 import { createReducer } from 'redux-act'
+
+import { RESET_COMMISSIONING } from 'state/actions/global'
 import {
   SET_RMA_MODE,
   CLEAR_RMA,
@@ -13,7 +15,6 @@ import {
   RMA_REMOVE_DEVICES_SUCCESS,
   RMA_REMOVE_DEVICES_ERROR
 } from 'state/actions/rma'
-import { RESET_COMMISSIONING } from 'state/actions/global'
 
 export const rmaModes = {
   NONE: 'NONE',

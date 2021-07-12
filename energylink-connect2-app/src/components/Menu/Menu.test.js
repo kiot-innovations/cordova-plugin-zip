@@ -1,10 +1,11 @@
-import React from 'react'
-import * as reactRedux from 'react-redux'
-import * as i18n from 'shared/i18n'
-import * as ReactDOM from 'react-dom'
 import { shallow } from 'enzyme'
+import React from 'react'
+import * as ReactDOM from 'react-dom'
+import * as reactRedux from 'react-redux'
 
 import Menu from '.'
+
+import * as i18n from 'shared/i18n'
 
 jest.mock('react-router-dom', () => ({
   useHistory: () => ({

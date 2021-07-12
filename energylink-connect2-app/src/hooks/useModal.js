@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
-import Modal from 'components/Modal'
 import * as ReactDOM from 'react-dom'
+
+import Modal from 'components/Modal'
 
 const useModal = (
   content,

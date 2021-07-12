@@ -1,11 +1,11 @@
-import { ofType } from 'redux-observable'
 import { equals, prop, compose, uniq, map, filter, pathOr, path } from 'ramda'
+import { ofType } from 'redux-observable'
+import { of } from 'rxjs'
 import { exhaustMap, withLatestFrom } from 'rxjs/operators'
 
-import { SET_METADATA_INIT } from 'state/actions/pvs'
-import { of } from 'rxjs'
 import { setACModuleType } from 'shared/analytics'
 import { getElapsedTime } from 'shared/utils'
+import { SET_METADATA_INIT } from 'state/actions/pvs'
 
 const isInverter = n => equals('Inverter', prop('DEVICE_TYPE', n))
 

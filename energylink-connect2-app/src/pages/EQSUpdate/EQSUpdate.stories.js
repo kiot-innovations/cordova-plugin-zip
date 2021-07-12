@@ -1,8 +1,10 @@
-import React from 'react'
 import { storiesOf } from '@storybook/react'
-import EQSUpdate from '.'
-import { configureStore } from 'state/store'
+import React from 'react'
 import { Provider } from 'react-redux'
+
+import EQSUpdate from '.'
+
+import { configureStore } from 'state/store'
 
 storiesOf('Storage - FW Update', module)
   .add('Simple', () => {

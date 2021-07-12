@@ -1,5 +1,5 @@
-import { mergeMap } from 'rxjs/operators'
 import { throwError, timer } from 'rxjs'
+import { mergeMap } from 'rxjs/operators'
 
 /**
  * It is a retry strategy that will re-run the code X amount of times

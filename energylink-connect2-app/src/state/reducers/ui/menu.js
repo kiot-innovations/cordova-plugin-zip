@@ -1,6 +1,6 @@
-import { MENU_DISPLAY_ITEM, MENU_HIDE, MENU_SHOW } from 'state/actions/ui'
-
 import { createReducer } from 'redux-act'
+
+import { MENU_DISPLAY_ITEM, MENU_HIDE, MENU_SHOW } from 'state/actions/ui'
 
 const initialState = {
   show: false,

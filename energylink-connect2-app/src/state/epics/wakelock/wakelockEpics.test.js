@@ -1,4 +1,10 @@
 import { of, throwError } from 'rxjs'
+
+import { acquire } from './acquire'
+import { release } from './release'
+import * as utils from './utilities'
+
+import { COMMISSION_SUCCESS } from 'state/actions/analytics'
 import { SET_SITE } from 'state/actions/site'
 import {
   WAKELOCK_ACQUIRE_ERROR,
@@ -6,11 +12,6 @@ import {
   WAKELOCK_RELEASE_ERROR,
   WAKELOCK_RELEASED
 } from 'state/actions/wakelock'
-
-import * as utils from './utilities'
-import { COMMISSION_SUCCESS } from 'state/actions/analytics'
-import { acquire } from './acquire'
-import { release } from './release'
 
 describe('The wakeLock epics', function() {
   const inputMarble = 'a'

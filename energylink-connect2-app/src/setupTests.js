@@ -1,13 +1,13 @@
-import React from 'react'
-import { configure, mount } from 'enzyme'
-import { Provider } from 'react-redux'
-import Adapter from 'enzyme-adapter-react-16'
 import deepFreeze from 'deep-freeze'
-import configureStore from 'redux-mock-store'
+import { configure, mount } from 'enzyme'
+import Adapter from 'enzyme-adapter-react-16'
+import React from 'react'
+import { Provider } from 'react-redux'
 import { BrowserRouter, Router } from 'react-router-dom'
+import configureStore from 'redux-mock-store'
+import { ActionsObservable } from 'redux-observable'
 import thunk from 'redux-thunk'
 import { TestScheduler } from 'rxjs/testing'
-import { ActionsObservable } from 'redux-observable'
 
 configure({ adapter: new Adapter() })
 

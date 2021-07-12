@@ -1,7 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react'
 import clsx from 'clsx'
-import { useHistory } from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux'
 import {
   compose,
   find,
@@ -16,23 +13,28 @@ import {
   isEmpty,
   includes
 } from 'ramda'
+import React, { useCallback, useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { useHistory } from 'react-router-dom'
+
+import MiGroup from './MiGroup'
+
+import { Loader } from 'components/Loader'
 import SwipeableSheet from 'hocs/SwipeableSheet'
+import paths from 'routes/paths'
 import { useI18n } from 'shared/i18n'
-import { RESET_METADATA_STATUS, SET_METADATA_INIT } from 'state/actions/pvs'
+import { filterInverters, miTypes, either } from 'shared/utils'
+import { SET_AC_DEVICES } from 'state/actions/analytics'
 import { CLAIM_DEVICES_RESET, FETCH_MODELS_INIT } from 'state/actions/devices'
+import { SET_LAST_VISITED_PAGE } from 'state/actions/global'
+import { RESET_METADATA_STATUS, SET_METADATA_INIT } from 'state/actions/pvs'
 import {
   ALLOW_COMMISSIONING,
   SUBMIT_CLEAR,
   SUBMIT_CONFIG_SUCCESS
 } from 'state/actions/systemConfiguration'
 import { rmaModes } from 'state/reducers/rma'
-import { filterInverters, miTypes, either } from 'shared/utils'
-import paths from 'routes/paths'
-import { Loader } from 'components/Loader'
-import MiGroup from './MiGroup'
 import './ModelEdit.scss'
-import { SET_AC_DEVICES } from 'state/actions/analytics'
-import { SET_LAST_VISITED_PAGE } from '../../state/actions/global'
 
 const getDeviceType = compose(last, split('_'))
 

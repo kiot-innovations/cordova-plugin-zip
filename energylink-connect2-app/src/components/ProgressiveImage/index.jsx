@@ -1,8 +1,9 @@
+import Logo from '@sunpower/sunpowerimage'
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import Logo from '@sunpower/sunpowerimage'
-import { either } from 'shared/utils'
+
 import { Loader } from 'components/Loader'
+import { either } from 'shared/utils'
 import { SET_MAP_VIEW_SRC } from 'state/actions/site'
 import './ProgressiveImage.scss'
 

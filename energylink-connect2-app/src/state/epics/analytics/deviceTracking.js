@@ -1,6 +1,3 @@
-import { ofType } from 'redux-observable'
-import { withLatestFrom, switchMap, filter } from 'rxjs/operators'
-import { of } from 'rxjs'
 import {
   compose,
   last,
@@ -13,11 +10,14 @@ import {
   propOr,
   pathOr
 } from 'ramda'
+import { ofType } from 'redux-observable'
+import { of } from 'rxjs'
+import { withLatestFrom, switchMap, filter } from 'rxjs/operators'
 
-import { UPDATE_DEVICES_LIST } from 'state/actions/devices'
-import { CLAIM_DEVICES_MIXPANEL_EVENT } from 'state/actions/analytics'
 import { trackDeviceClaiming } from 'shared/analytics'
 import { getElapsedTime } from 'shared/utils'
+import { CLAIM_DEVICES_MIXPANEL_EVENT } from 'state/actions/analytics'
+import { UPDATE_DEVICES_LIST } from 'state/actions/devices'
 
 export const getTimePassedState = (propertyName, state) =>
   compose(

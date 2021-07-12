@@ -1,6 +1,7 @@
 import React from 'react'
-import WpsConnectToWifi from '.'
 import * as reactRedux from 'react-redux'
+
+import WpsConnectToWifi from '.'
 
 describe('WpsConnectToWifi Component', () => {
   beforeEach(() => {

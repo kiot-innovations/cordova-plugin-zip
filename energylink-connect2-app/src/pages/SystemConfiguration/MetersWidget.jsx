@@ -1,11 +1,10 @@
+import { path, compose, prop, find, propEq } from 'ramda'
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { path, compose, prop, find, propEq } from 'ramda'
-import { useI18n } from 'shared/i18n'
 
 import Collapsible from 'components/Collapsible'
 import SelectField from 'components/SelectField'
-
+import { useI18n } from 'shared/i18n'
 import {
   SET_PRODUCTION_CT,
   SET_RATED_CURRENT,

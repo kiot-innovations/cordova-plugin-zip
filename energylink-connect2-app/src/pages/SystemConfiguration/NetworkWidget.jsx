@@ -1,18 +1,18 @@
-import React, { useEffect, useState } from 'react'
 import clsx from 'clsx'
-import { useDispatch, useSelector } from 'react-redux'
 import { compose, path, prop, isEmpty } from 'ramda'
+import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+
+import Collapsible from 'components/Collapsible'
+import SelectField from 'components/SelectField'
+import WpsConnectToWifi from 'components/WpsConnectToWifi'
 import { useI18n } from 'shared/i18n'
 import { buildAPsItems, either, buildAPItem } from 'shared/utils'
-import WpsConnectToWifi from 'components/WpsConnectToWifi'
 import {
   CONNECT_NETWORK_AP_INIT,
   GET_NETWORK_APS_INIT,
   SET_SELECTED_AP
 } from 'state/actions/systemConfiguration'
-
-import Collapsible from 'components/Collapsible'
-import SelectField from 'components/SelectField'
 
 const NWI = <span className="sp-wifi file level mr-15 is-size-4" />
 

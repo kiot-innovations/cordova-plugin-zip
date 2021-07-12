@@ -1,7 +1,4 @@
 import * as Sentry from '@sentry/browser'
-import { ofType } from 'redux-observable'
-import { from, of, timer } from 'rxjs'
-import { catchError, exhaustMap, map, takeUntil } from 'rxjs/operators'
 import {
   converge,
   curry,
@@ -18,11 +15,12 @@ import {
   pathOr,
   prop
 } from 'ramda'
-import {
-  RMA_REMOVE_DEVICES_ERROR,
-  RMA_REMOVE_DEVICES,
-  RMA_REMOVE_DEVICES_SUCCESS
-} from 'state/actions/rma'
+import { ofType } from 'redux-observable'
+import { from, of, timer } from 'rxjs'
+import { catchError, exhaustMap, map, takeUntil } from 'rxjs/operators'
+
+import { getApiDevice, getApiPVS } from 'shared/api'
+import { filterInverters } from 'shared/utils'
 import {
   DEVICELIST_PROCESSING_COMPLETE,
   DEVICELIST_PROCESSING_ERROR,
@@ -30,9 +28,12 @@ import {
   UPDATE_DEVICES_LIST_ERROR,
   WAIT_FOR_DEVICELIST_PROCESSING
 } from 'state/actions/devices'
+import {
+  RMA_REMOVE_DEVICES_ERROR,
+  RMA_REMOVE_DEVICES,
+  RMA_REMOVE_DEVICES_SUCCESS
+} from 'state/actions/rma'
 import { EMPTY_ACTION } from 'state/actions/share'
-import { getApiDevice, getApiPVS } from 'shared/api'
-import { filterInverters } from 'shared/utils'
 
 const updateDeviceListProgress = progress => {
   const percent = prop('percent', progress)

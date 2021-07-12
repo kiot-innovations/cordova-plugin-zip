@@ -1,5 +1,5 @@
-import * as energyDataActions from '../../actions/energy-data'
 import * as authActions from '../../actions/auth'
+import * as energyDataActions from '../../actions/energy-data'
 
 import { energyDataReducer } from '.'
 

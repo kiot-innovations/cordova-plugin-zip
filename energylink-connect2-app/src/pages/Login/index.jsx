@@ -1,17 +1,14 @@
-import React, { useEffect } from 'react'
+import Logo from '@sunpower/sunpowerimage'
 import clsx from 'clsx'
+import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 
-import Logo from '@sunpower/sunpowerimage'
-
-import { requestLogin, handleLoginFromPing } from 'state/actions/auth'
-import { CHECK_SSL_CERTS } from 'state/actions/global'
-
+import paths from 'routes/paths'
 import { useI18n } from 'shared/i18n'
 import { either } from 'shared/utils'
-
-import paths from 'routes/paths'
+import { requestLogin, handleLoginFromPing } from 'state/actions/auth'
+import { CHECK_SSL_CERTS } from 'state/actions/global'
 
 import './Login.scss'
 

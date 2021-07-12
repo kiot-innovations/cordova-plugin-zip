@@ -1,14 +1,15 @@
-import { ofType } from 'redux-observable'
-import { DEVICE_READY, DEVICE_RESUME } from 'state/actions/mobile'
-import { catchError, map, switchMap } from 'rxjs/operators'
 import { compose, last, split } from 'ramda'
+import { ofType } from 'redux-observable'
+import { from, of } from 'rxjs'
+import { catchError, map, switchMap } from 'rxjs/operators'
+
 import { deviceResume, internetConnection } from 'shared/analytics'
+import { sendCommandToPVS } from 'shared/PVSUtils'
+import { DEVICE_READY, DEVICE_RESUME } from 'state/actions/mobile'
 import {
   PVS_CONNECTION_ERROR,
   PVS_CONNECTION_SUCCESS
 } from 'state/actions/network'
-import { from, of } from 'rxjs'
-import { sendCommandToPVS } from 'shared/PVSUtils'
 
 const getAddress = compose(deviceResume, last, split('#'))
 

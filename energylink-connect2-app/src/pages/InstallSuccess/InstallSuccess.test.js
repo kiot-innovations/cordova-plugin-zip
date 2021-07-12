@@ -1,7 +1,9 @@
-import InstallSuccessful from 'pages/InstallSuccess'
 import React from 'react'
-import * as i18n from 'shared/i18n'
 import * as ReactDOM from 'react-dom'
+
+import InstallSuccessful from 'pages/InstallSuccess'
+import * as i18n from 'shared/i18n'
+
 describe('PVS connection successful component', () => {
   beforeAll(() => {
     ReactDOM.createPortal = jest.fn((element, node) => {

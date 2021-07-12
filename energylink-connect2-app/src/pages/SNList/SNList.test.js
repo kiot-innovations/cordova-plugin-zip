@@ -1,8 +1,10 @@
 import React from 'react'
-import * as reactRedux from 'react-redux'
-import * as i18n from 'shared/i18n'
 import * as ReactDOM from 'react-dom'
+import * as reactRedux from 'react-redux'
+
 import SNList from '.'
+
+import * as i18n from 'shared/i18n'
 
 describe('Serial Number List Page', () => {
   let dispatchMock

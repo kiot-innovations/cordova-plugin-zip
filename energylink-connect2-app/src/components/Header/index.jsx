@@ -1,19 +1,21 @@
-import React from 'react'
-import { path } from 'ramda'
-import clsx from 'clsx'
-import { useDispatch, useSelector } from 'react-redux'
-import isNil from 'ramda/src/isNil'
 import Logo from '@sunpower/sunpowerimage'
+import clsx from 'clsx'
+import { path } from 'ramda'
+import isNil from 'ramda/src/isNil'
+import React from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { useHistory } from 'react-router-dom'
+
+import ConnectionStatus from './ConnectionStatus'
+
+import Menu from 'components/Menu'
 import withHeaderAnimation from 'hocs/headerAnimation'
+import paths from 'routes/paths'
 import { trimString } from 'shared/trim'
 import { either, isError } from 'shared/utils'
-import { useHistory } from 'react-router-dom'
-import paths from 'routes/paths'
-import Menu from 'components/Menu'
 import { MENU_HIDE, MENU_SHOW } from 'state/actions/ui'
 
 import './Header.scss'
-import ConnectionStatus from './ConnectionStatus'
 
 const getCount = window => (window.innerWidth > 375 ? 35 : 30)
 const isMenuPath = history =>

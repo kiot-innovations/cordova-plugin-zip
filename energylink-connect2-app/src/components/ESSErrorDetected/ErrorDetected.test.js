@@ -1,8 +1,10 @@
-import React from 'react'
-import { length } from 'ramda'
 import { shallow } from 'enzyme'
-import * as i18n from 'shared/i18n'
+import { length } from 'ramda'
+import React from 'react'
+
 import ErrorDetected from '.'
+
+import * as i18n from 'shared/i18n'
 import { warningsLength } from 'shared/utils'
 
 describe('ErrorDetected component', () => {

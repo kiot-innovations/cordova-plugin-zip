@@ -1,7 +1,8 @@
-import { ofType } from 'redux-observable'
-import { catchError, map, delayWhen } from 'rxjs/operators'
-import { of, timer } from 'rxjs'
 import { always } from 'ramda'
+import { ofType } from 'redux-observable'
+import { of, timer } from 'rxjs'
+import { catchError, map, delayWhen } from 'rxjs/operators'
+
 import {
   CHECK_WIFI_STATUS_SUCCESS,
   CHECK_WIFI_STATUS_ERROR,

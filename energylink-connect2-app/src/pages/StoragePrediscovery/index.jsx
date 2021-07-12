@@ -1,10 +1,16 @@
 /* disable-eslint */
 
+import moment from 'moment'
+import { path, pathOr, propOr, isEmpty, length } from 'ramda'
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
-import { path, pathOr, propOr, isEmpty, length } from 'ramda'
-import moment from 'moment'
+
+import ContinueFooter from 'components/ESSContinueFooter'
+import ErrorDetected from 'components/ESSErrorDetected'
+import { Loader } from 'components/Loader'
+import StorageDevices from 'components/PrediscoveryDevices/StorageDevices'
+import paths from 'routes/paths'
 import { useI18n } from 'shared/i18n'
 import {
   createMeterConfig,
@@ -12,7 +18,6 @@ import {
   warningsLength,
   withoutInfoCodes
 } from 'shared/utils'
-import { Loader } from 'components/Loader'
 import {
   GET_PREDISCOVERY,
   GET_PREDISCOVERY_RESET,
@@ -20,10 +25,6 @@ import {
 } from 'state/actions/storage'
 import { SUBMIT_METERCONFIG } from 'state/actions/systemConfiguration'
 import { rmaModes } from 'state/reducers/rma'
-import ContinueFooter from 'components/ESSContinueFooter'
-import ErrorDetected from 'components/ESSErrorDetected'
-import StorageDevices from 'components/PrediscoveryDevices/StorageDevices'
-import paths from 'routes/paths'
 import './StoragePrediscovery.scss'
 
 function StoragePrediscovery() {

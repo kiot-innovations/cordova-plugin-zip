@@ -1,4 +1,5 @@
 import * as Sentry from '@sentry/browser'
+import { always, cond, equals, isNil, path, pathOr } from 'ramda'
 import { ofType } from 'redux-observable'
 import { from, of, timer } from 'rxjs'
 import {
@@ -8,10 +9,11 @@ import {
   switchMap,
   takeUntil
 } from 'rxjs/operators'
-import { always, cond, equals, isNil, path, pathOr } from 'ramda'
+
 import { getApiPVS, storageSwaggerTag } from 'shared/api'
-import { START_DISCOVERY_ERROR, START_DISCOVERY_INIT } from 'state/actions/pvs'
 import { DISCOVER_COMPLETE, DISCOVER_ERROR } from 'state/actions/devices'
+import { START_DISCOVERY_ERROR, START_DISCOVERY_INIT } from 'state/actions/pvs'
+import { EMPTY_ACTION } from 'state/actions/share'
 import {
   GET_ESS_STATUS_COMPLETE,
   GET_ESS_STATUS_ERROR,
@@ -24,7 +26,6 @@ import {
   RUN_EQS_SYSTEMCHECK,
   RUN_EQS_SYSTEMCHECK_SUCCESS
 } from 'state/actions/storage'
-import { EMPTY_ACTION } from 'state/actions/share'
 import { discoveryTypes } from 'state/reducers/devices'
 import { eqsSteps } from 'state/reducers/storage'
 

@@ -1,5 +1,5 @@
-import { ofType } from 'redux-observable'
 import { includes, pathOr } from 'ramda'
+import { ofType } from 'redux-observable'
 import { EMPTY, from, of, timer } from 'rxjs'
 import {
   catchError,
@@ -8,6 +8,7 @@ import {
   switchMap,
   takeUntil
 } from 'rxjs/operators'
+
 import {
   PVS_CONNECTION_SUCCESS,
   SET_CONNECTION_STATUS,

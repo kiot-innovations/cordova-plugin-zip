@@ -1,6 +1,8 @@
 import React from 'react'
 import * as reactRedux from 'react-redux'
+
 import ESSHealthCheckErrorList from '.'
+
 import * as i18n from 'shared/i18n'
 
 describe('ESSHealthCheckErrorList', () => {

@@ -1,11 +1,12 @@
-import React from 'react'
 import { storiesOf } from '@storybook/react'
-import { configureStore } from 'state/store'
+import React from 'react'
 import { Provider } from 'react-redux'
 
 import PVSSelection from '.'
-import { rmaModes } from 'state/reducers/rma'
+
 import { BLESTATUS } from 'state/reducers/network'
+import { rmaModes } from 'state/reducers/rma'
+import { configureStore } from 'state/store'
 
 let initialState = {
   site: {

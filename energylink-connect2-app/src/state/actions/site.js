@@ -1,4 +1,5 @@
 import { createAction } from 'redux-act'
+
 import { namedAction } from 'shared/redux-utils'
 
 export const GET_SITES_INIT = createAction('GET_SITES_INIT')

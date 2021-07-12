@@ -1,7 +1,8 @@
-import React from 'react'
 import { storiesOf } from '@storybook/react'
+import React from 'react'
 import { Route, Link } from 'react-router-dom'
 import StoryRouter from 'storybook-react-router'
+
 import ErrorDetailScreen from './ErrorDetail'
 
 const ErrorCodes = () => (

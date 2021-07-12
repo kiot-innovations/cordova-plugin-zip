@@ -1,21 +1,21 @@
-import React, { useEffect } from 'react'
 import { indexOf, pathOr } from 'ramda'
+import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 
 import { Loader } from 'components/Loader'
 import UpdateFirmwareStage from 'components/UpdateFirmwareStage'
+import usePVSInitConnection from 'hooks/usePVSInitConnection'
+import useTimer from 'hooks/useTimer'
+import paths from 'routes/paths'
 import { useI18n } from 'shared/i18n'
 import { either, isError } from 'shared/utils'
 import {
   FIRMWARE_UPDATE_ERROR,
   FIRMWARE_SET_LAST_SUCCESSFUL_STAGE
 } from 'state/actions/firmwareUpdate'
-import paths from 'routes/paths'
-import useTimer from 'hooks/useTimer'
 
 import './UpdateScreen.scss'
-import usePVSInitConnection from 'hooks/usePVSInitConnection'
 
 const stagesFromThePvs = [
   'downloading images',

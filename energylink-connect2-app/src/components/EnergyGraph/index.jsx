@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
-import moment from 'moment'
 import clsx from 'clsx'
+import moment from 'moment'
+import React, { useState } from 'react'
 import {
   Area,
   Bar,
@@ -14,8 +14,10 @@ import {
   XAxis,
   YAxis
 } from 'recharts'
+
 import { useI18n } from '../../shared/i18n'
 import { roundDecimals } from '../../shared/rounding'
+
 import * as Icons from './Icons'
 import './energy-graph.scss'
 

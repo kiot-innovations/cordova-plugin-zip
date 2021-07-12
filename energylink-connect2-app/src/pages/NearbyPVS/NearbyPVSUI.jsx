@@ -1,9 +1,10 @@
-import React from 'react'
 import { isEmpty, map } from 'ramda'
+import React from 'react'
+
+import { Loader } from 'components/Loader'
 import SwipeableSheet from 'hocs/SwipeableSheet'
 import { useI18n } from 'shared/i18n'
 import { either } from 'shared/utils'
-import { Loader } from 'components/Loader'
 import './NearbyPVS.scss'
 
 function NearbyPVSUI({

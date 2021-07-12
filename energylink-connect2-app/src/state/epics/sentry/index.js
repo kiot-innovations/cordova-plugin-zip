@@ -1,13 +1,12 @@
+import * as Sentry from '@sentry/browser'
 import { ofType } from 'redux-observable'
+import { interval, of, EMPTY } from 'rxjs'
+import { switchMap } from 'rxjs/operators'
+
 import {
   SENTRY_START_LISTENER,
   SENTRY_UNQUEUE_EVENT
 } from 'state/actions/sentry'
-
-import { switchMap } from 'rxjs/operators'
-import { interval, of } from 'rxjs'
-import * as Sentry from '@sentry/browser'
-import { EMPTY } from 'rxjs'
 
 const sendPendingEventsEpic = (action$, state$) =>
   action$.pipe(

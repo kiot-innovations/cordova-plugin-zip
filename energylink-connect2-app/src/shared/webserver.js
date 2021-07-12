@@ -1,5 +1,6 @@
 import * as Sentry from '@sentry/browser'
 import { compose, concat, curry, pathOr, replace } from 'ramda'
+
 import { flipConcat, getLastIPOctet, isIos, padNumber } from 'shared/utils'
 
 const defaultPort = 8080

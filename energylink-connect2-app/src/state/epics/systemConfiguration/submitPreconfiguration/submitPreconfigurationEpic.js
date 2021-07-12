@@ -2,10 +2,10 @@ import * as Sentry from '@sentry/browser'
 import { ofType } from 'redux-observable'
 import { from, of } from 'rxjs'
 import { catchError, exhaustMap, map } from 'rxjs/operators'
-import { translate } from 'shared/i18n'
 
 import { submitGridProfile, submitMeterConfigurations } from './epicFunctions'
 
+import { translate } from 'shared/i18n'
 import {
   SUBMIT_PRECONFIG_GRIDPROFILE,
   SUBMIT_PRECONFIG_METER,

@@ -1,5 +1,6 @@
-import { useEffect, useState } from 'react'
 import { compose } from 'ramda'
+import { useEffect, useState } from 'react'
+
 import { padNumber } from 'shared/utils'
 
 const formatTime = value =>

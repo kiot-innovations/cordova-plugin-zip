@@ -1,6 +1,7 @@
-import React from 'react'
-import { isEmpty } from 'ramda'
 import clsx from 'clsx'
+import { isEmpty } from 'ramda'
+import React from 'react'
+
 import './ColoredBanner.scss'
 import { either } from 'shared/utils'
 

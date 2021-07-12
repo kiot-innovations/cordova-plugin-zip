@@ -1,5 +1,6 @@
-import React from 'react'
 import { storiesOf } from '@storybook/react'
+import React from 'react'
+
 import FileCollapsible from './index'
 
 storiesOf('File collapsible', module).add('Downloading', () => (

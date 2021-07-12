@@ -1,11 +1,12 @@
 import { createReducer } from 'redux-act'
+
+import { RESET_COMMISSIONING } from 'state/actions/global'
 import {
   GET_STORAGE_INIT,
   GET_STORAGE_SUCCESS,
   GET_STORAGE_ERROR,
   RESET_SYSTEM_CONFIGURATION
 } from 'state/actions/systemConfiguration'
-import { RESET_COMMISSIONING } from 'state/actions/global'
 
 const initialState = {
   isFetching: false,

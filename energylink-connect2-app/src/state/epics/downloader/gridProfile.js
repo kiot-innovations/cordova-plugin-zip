@@ -1,4 +1,6 @@
+import * as Sentry from '@sentry/browser'
 import { propOr } from 'ramda'
+import { ofType } from 'redux-observable'
 import { forkJoin, from, of, EMPTY } from 'rxjs'
 import {
   catchError,
@@ -7,9 +9,16 @@ import {
   withLatestFrom,
   tap
 } from 'rxjs/operators'
-import { ofType } from 'redux-observable'
-import * as Sentry from '@sentry/browser'
 
+import {
+  pvs6GridProfileUpdateUrl$,
+  pvs5GridProfileUpdateUrl$,
+  waitForObservable
+} from './latestUrls'
+
+import { getMd5FromFile } from 'shared/cordovaMapping'
+import { ERROR_CODES, getFileInfo, getFileNameFromURL } from 'shared/fileSystem'
+import { getExpectedMD5, hasInternetConnection } from 'shared/utils'
 import {
   PVS6_GRID_PROFILE_DOWNLOAD_INIT,
   PVS6_GRID_PROFILE_DOWNLOAD_PROGRESS,
@@ -22,16 +31,8 @@ import {
   PVS5_GRID_PROFILE_REPORT_SUCCESS,
   PVS5_GRID_PROFILE_DOWNLOAD_ERROR
 } from 'state/actions/gridProfileDownloader'
-import { ERROR_CODES, getFileInfo, getFileNameFromURL } from 'shared/fileSystem'
-import fileTransferObservable from 'state/epics/observables/downloader'
-import { getExpectedMD5, hasInternetConnection } from 'shared/utils'
-import { getMd5FromFile } from 'shared/cordovaMapping'
 import { EMPTY_ACTION } from 'state/actions/share'
-import {
-  pvs6GridProfileUpdateUrl$,
-  pvs5GridProfileUpdateUrl$,
-  waitForObservable
-} from './latestUrls'
+import fileTransferObservable from 'state/epics/observables/downloader'
 
 export const initDownloadPvs6GridProfileEpic = action$ =>
   action$.pipe(

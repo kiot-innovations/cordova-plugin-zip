@@ -1,7 +1,9 @@
-import * as i18n from 'shared/i18n'
-import RmaDevices from './index'
 import React from 'react'
 import * as reactRedux from 'react-redux'
+
+import RmaDevices from './index'
+
+import * as i18n from 'shared/i18n'
 
 describe('RMA devices component', () => {
   let dispatchMock

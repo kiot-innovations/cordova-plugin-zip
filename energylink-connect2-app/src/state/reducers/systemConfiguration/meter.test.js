@@ -1,4 +1,5 @@
 import * as systemConfigurationReducers from '../../actions/systemConfiguration'
+
 import { meterReducer } from './meter'
 describe('SC Meter Reducer', () => {
   const reducerTest = reducerTester(meterReducer)

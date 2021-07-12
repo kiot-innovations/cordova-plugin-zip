@@ -1,7 +1,8 @@
 import { ofType } from 'redux-observable'
-import { HIDE_MODAL, SET_CURRENT_MODAL, SHOW_MODAL } from 'state/actions/modal'
-import { switchMap, map, take } from 'rxjs/operators'
 import { concat, of } from 'rxjs'
+import { switchMap, map, take } from 'rxjs/operators'
+
+import { HIDE_MODAL, SET_CURRENT_MODAL, SHOW_MODAL } from 'state/actions/modal'
 import { EMPTY_ACTION } from 'state/actions/share'
 
 const showModalEpic = action$ =>

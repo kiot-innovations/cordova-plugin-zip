@@ -1,6 +1,6 @@
 import { ofType } from 'redux-observable'
-import { switchMap } from 'rxjs/operators'
 import { of } from 'rxjs'
+import { switchMap } from 'rxjs/operators'
 
 import { registerHomeOwnerAccount } from 'shared/analytics'
 import { getUrl } from 'shared/utils'

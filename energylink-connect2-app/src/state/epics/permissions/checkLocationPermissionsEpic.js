@@ -1,18 +1,19 @@
 import * as Sentry from '@sentry/browser'
 import { ofType } from 'redux-observable'
-import { catchError, map, exhaustMap } from 'rxjs/operators'
 import { from, of } from 'rxjs'
+import { catchError, map, exhaustMap } from 'rxjs/operators'
+
+import { translate } from 'shared/i18n'
+import { checkLocationPermissions } from 'shared/permissionsChecker'
+import { DEVICE_RESUME } from 'state/actions/mobile'
+import { SHOW_MODAL, HIDE_MODAL } from 'state/actions/modal'
 import {
   CHECK_LOCATION_PERMISSION_SUCCESS,
   CHECK_LOCATION_PERMISSION_ERROR,
   CHECK_LOCATION_PERMISSION_INIT
 } from 'state/actions/permissions'
-import { checkLocationPermissions } from 'shared/permissionsChecker'
-import { LOCATION_PERMISSIONS } from 'state/reducers/permissions'
-import { SHOW_MODAL, HIDE_MODAL } from 'state/actions/modal'
-import { translate } from 'shared/i18n'
-import { DEVICE_RESUME } from 'state/actions/mobile'
 import { EMPTY_ACTION } from 'state/actions/share'
+import { LOCATION_PERMISSIONS } from 'state/reducers/permissions'
 
 export const checkLocationPermissionsEpic = action$ => {
   return action$.pipe(

@@ -1,10 +1,11 @@
-import React from 'react'
 import { storiesOf } from '@storybook/react'
+import React from 'react'
+import { Provider } from 'react-redux'
 
 import SC from './InterfacesWidget'
-import { configureStore } from 'state/store'
-import { Provider } from 'react-redux'
 import PanelLayoutWidget from './panelLayoutWidget'
+
+import { configureStore } from 'state/store'
 
 storiesOf('System Configuration Page', module).add('InterfacesWidget', () => (
   <div className="full-min-height ml-10 mr-10 mt-20">

@@ -1,20 +1,21 @@
-import React from 'react'
 import clsx from 'clsx'
-import { useSelector, useDispatch } from 'react-redux'
 import { omit, length, not, map, compose } from 'ramda'
+import React from 'react'
+import { useSelector, useDispatch } from 'react-redux'
 import { Link, useHistory } from 'react-router-dom'
+
 import paths, { setParams } from 'routes/paths'
-import { useI18n } from 'shared/i18n'
 import { getError } from 'shared/errorCodes'
+import { useI18n } from 'shared/i18n'
 import {
   either,
   strSatisfiesAWarning,
   warningsLength,
   withoutInfoCodes
 } from 'shared/utils'
+import { PVS_CONNECTION_CLOSE } from 'state/actions/network'
 import { eqsSteps } from 'state/reducers/storage'
 import './ErrorListGeneric.scss'
-import { PVS_CONNECTION_CLOSE } from 'state/actions/network'
 
 const ErrorComponent = ({ title, code = '', errorInfo, t }) => {
   const toParams = {

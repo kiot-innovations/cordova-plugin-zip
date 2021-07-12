@@ -1,6 +1,12 @@
-import { createReducer } from 'redux-act'
 import { unionWith, eqBy, prop } from 'ramda'
+import { createReducer } from 'redux-act'
 
+import { PUSH_CANDIDATES_ERROR } from 'state/actions/devices'
+import { RESET_COMMISSIONING } from 'state/actions/global'
+import {
+  CONNECT_PVS_VIA_BLE,
+  EXECUTE_ENABLE_ACCESS_POINT
+} from 'state/actions/network'
 import {
   ADD_PVS_SN,
   SAVE_PVS_SN,
@@ -24,12 +30,6 @@ import {
   SET_WPS_SUPPORT,
   SET_PVS_MODEL
 } from 'state/actions/pvs'
-import { RESET_COMMISSIONING } from 'state/actions/global'
-import { PUSH_CANDIDATES_ERROR } from 'state/actions/devices'
-import {
-  CONNECT_PVS_VIA_BLE,
-  EXECUTE_ENABLE_ACCESS_POINT
-} from 'state/actions/network'
 
 const initialState = {
   model: '',

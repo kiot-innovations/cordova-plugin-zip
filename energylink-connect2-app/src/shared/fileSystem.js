@@ -1,6 +1,7 @@
 import { compose, tail, defaultTo, head, join, last, slice, split } from 'ramda'
-import { flipConcat, PERSIST_DATA_PATH } from 'shared/utils'
+
 import { getSHA256FromFile } from 'shared/cordovaMapping'
+import { flipConcat, PERSIST_DATA_PATH } from 'shared/utils'
 
 export const ERROR_CODES = {
   NO_FILESYSTEM_FILE: 'no filesystem file',

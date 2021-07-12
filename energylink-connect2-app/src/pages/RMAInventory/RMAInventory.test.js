@@ -1,7 +1,9 @@
 import React from 'react'
-import * as i18n from 'shared/i18n'
-import * as SelectField from 'components/SelectField'
+
 import RMAInventory from '.'
+
+import * as SelectField from 'components/SelectField'
+import * as i18n from 'shared/i18n'
 
 describe('RMAInventory', () => {
   let state = {

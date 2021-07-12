@@ -1,11 +1,12 @@
 import * as Sentry from '@sentry/browser'
+import { is, path, prop } from 'ramda'
 import { ofType } from 'redux-observable'
 import { from } from 'rxjs'
 import { catchError, exhaustMap, map } from 'rxjs/operators'
-import { is, path, prop } from 'ramda'
+
+import { getApiPVS } from 'shared/api'
 import { PVS_CONNECTION_SUCCESS } from 'state/actions/network'
 import { SET_WPS_SUPPORT } from 'state/actions/pvs'
-import { getApiPVS } from 'shared/api'
 
 export const wpsSupportEpic = action$ => {
   return action$.pipe(

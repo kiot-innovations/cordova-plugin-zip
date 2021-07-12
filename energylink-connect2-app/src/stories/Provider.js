@@ -1,7 +1,8 @@
 import React from 'react'
-import { Switch } from 'react-router-dom'
 import { Provider } from 'react-redux'
+import { Switch } from 'react-router-dom'
 import { PersistGate } from 'redux-persist/integration/react'
+
 import { configureStore } from 'state/store'
 
 const { store, persistor } = configureStore({})

@@ -1,8 +1,8 @@
-import { pvsScanEpic } from './pvsScanEpic'
-import { startDiscoveryEpic } from './startDiscoveryEpic'
-import { setMetaDataEpic } from './setMetaDataEpic'
 import { miLiveDataEpic } from './miLiveDataEpic'
+import { pvsScanEpic } from './pvsScanEpic'
+import { setMetaDataEpic } from './setMetaDataEpic'
 import setPVSModelEpic from './setPVSModelEpic'
+import { startDiscoveryEpic } from './startDiscoveryEpic'
 
 export default [
   pvsScanEpic,

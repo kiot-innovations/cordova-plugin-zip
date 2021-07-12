@@ -1,14 +1,15 @@
 import * as Sentry from '@sentry/browser'
-import { ofType } from 'redux-observable'
-import { catchError, map, exhaustMap } from 'rxjs/operators'
-import { from, of } from 'rxjs'
 import { path } from 'ramda'
+import { ofType } from 'redux-observable'
+import { from, of } from 'rxjs'
+import { catchError, map, exhaustMap } from 'rxjs/operators'
+
+import { getBLEDevice } from 'shared/bluetooth/getBluetoothDevice'
 import {
   ENABLE_ACCESS_POINT,
   CONNECT_PVS_VIA_BLE,
   FAILURE_BLUETOOTH_ACTION
 } from 'state/actions/network'
-import { getBLEDevice } from 'shared/bluetooth/getBluetoothDevice'
 
 export const getPVSBluetoothDeviceEpic = (action$, state$) => {
   return action$.pipe(

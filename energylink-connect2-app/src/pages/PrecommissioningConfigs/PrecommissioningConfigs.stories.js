@@ -1,12 +1,14 @@
-import React from 'react'
 import { storiesOf } from '@storybook/react'
-import { configureStore } from 'state/store'
+import { clone } from 'ramda'
+import React from 'react'
 import { Provider } from 'react-redux'
 
-import PrecommissioningConfigs from '.'
-import { rmaModes } from 'state/reducers/rma'
 import { fwupStatus } from '../../state/reducers/firmware-update'
-import { clone } from 'ramda'
+
+import PrecommissioningConfigs from '.'
+
+import { rmaModes } from 'state/reducers/rma'
+import { configureStore } from 'state/store'
 
 const standardScenario = {
   pvs: {

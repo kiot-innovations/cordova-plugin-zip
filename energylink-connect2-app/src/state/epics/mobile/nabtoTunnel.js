@@ -1,3 +1,7 @@
+import { promisify } from 'util'
+
+import { ofType } from 'redux-observable'
+import { of, from, empty } from 'rxjs'
 import {
   mergeMap,
   map,
@@ -6,10 +10,8 @@ import {
   tap,
   delay
 } from 'rxjs/operators'
+
 import * as mobileActions from '../../actions/mobile'
-import { ofType } from 'redux-observable'
-import { promisify } from 'util'
-import { of, from, empty } from 'rxjs'
 
 export const nabtoTunnelEpic = (action$, state$) =>
   action$.pipe(

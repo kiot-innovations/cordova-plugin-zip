@@ -1,5 +1,5 @@
-import React, { lazy, Suspense } from 'react'
 import clsx from 'clsx'
+import React, { lazy, Suspense } from 'react'
 
 import useGlobalModal, { useGlobalHideModal } from 'hooks/useGlobalModal'
 import { useI18n } from 'shared/i18n'

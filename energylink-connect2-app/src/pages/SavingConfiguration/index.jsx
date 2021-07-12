@@ -1,23 +1,25 @@
+import { isEmpty, test, pathOr, propOr } from 'ramda'
 import React, { useState } from 'react'
-import { useDispatch } from 'react-redux'
-import { useI18n } from 'shared/i18n'
+import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
+
+import PanelLayoutToolSavingStatus from './PanelLayoutToolSavingStatus'
+
+import FeedbackModal from 'components/FeedbackModal'
+import HomeownerAccountCreation from 'components/HomeownerAccountCreation'
 import { Loader } from 'components/Loader'
 import Rating from 'components/Rating'
-import HomeownerAccountCreation from 'components/HomeownerAccountCreation'
-import FeedbackModal from 'components/FeedbackModal'
-import { isEmpty, test, pathOr, propOr } from 'ramda'
+import paths from 'routes/paths'
+import { useI18n } from 'shared/i18n'
 import { either, buildFullAddress } from 'shared/utils'
+import { STOP_NETWORK_POLLING } from 'state/actions/network'
+import { CREATE_HOMEOWNER_ACCOUNT_RESET } from 'state/actions/site'
 import {
   ALLOW_COMMISSIONING,
   SUBMIT_CLEAR
 } from 'state/actions/systemConfiguration'
-import { STOP_NETWORK_POLLING } from 'state/actions/network'
-import paths from 'routes/paths'
+
 import './SavingConfiguration.scss'
-import { useSelector } from 'react-redux'
-import PanelLayoutToolSavingStatus from './PanelLayoutToolSavingStatus'
-import { CREATE_HOMEOWNER_ACCOUNT_RESET } from 'state/actions/site'
 
 const SavingConfiguration = () => {
   const t = useI18n()

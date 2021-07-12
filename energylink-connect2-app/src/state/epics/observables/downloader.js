@@ -1,12 +1,12 @@
+import { prop, filter, identity } from 'ramda'
 import { Observable } from 'rxjs'
+
 import {
   createFile,
   deleteFile,
   fileExists,
   deleteFilesDirectory
 } from 'shared/fileSystem'
-
-import { prop, filter, identity } from 'ramda'
 
 const createHeadersObj = headers => {
   const parsedHeaders = {}

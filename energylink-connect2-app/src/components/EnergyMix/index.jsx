@@ -1,6 +1,9 @@
 import React from 'react'
-import EnergyMixChart from './EnergyMixChart'
+
 import { Battery, Grid, SolarPanel } from '../Icons'
+
+import EnergyMixChart from './EnergyMixChart'
+
 import { useI18n } from 'shared/i18n'
 import './EnergyMix.scss'
 

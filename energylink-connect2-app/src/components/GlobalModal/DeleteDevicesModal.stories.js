@@ -1,9 +1,10 @@
-import React from 'react'
 import { storiesOf } from '@storybook/react'
-import { configureStore } from 'state/store'
+import React from 'react'
 import { Provider } from 'react-redux'
 
 import DeleteDvicesModal from './DeleteDevicesModal'
+
+import { configureStore } from 'state/store'
 
 storiesOf('DeleteDevicesModal', module)
   .add('loading', () => {

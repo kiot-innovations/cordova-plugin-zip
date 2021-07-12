@@ -1,5 +1,6 @@
-import { createReducer } from 'redux-act'
 import { length, pathOr, propOr } from 'ramda'
+import { createReducer } from 'redux-act'
+
 import {
   CLAIM_DEVICES_COMPLETE,
   CLAIM_DEVICES_ERROR,

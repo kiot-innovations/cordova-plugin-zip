@@ -1,9 +1,10 @@
-import { ofType } from 'redux-observable'
-import { mergeMap } from 'rxjs/operators'
-import { forEach } from 'ramda'
 import * as Sentry from '@sentry/browser'
-import { MIXPANEL_EVENT_ERROR } from 'state/actions/analytics'
+import { forEach } from 'ramda'
+import { ofType } from 'redux-observable'
 import { EMPTY } from 'rxjs'
+import { mergeMap } from 'rxjs/operators'
+
+import { MIXPANEL_EVENT_ERROR } from 'state/actions/analytics'
 
 export const errorEpic = action$ =>
   action$.pipe(

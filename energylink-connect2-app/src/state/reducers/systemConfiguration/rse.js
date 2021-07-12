@@ -1,5 +1,7 @@
-import { createReducer } from 'redux-act'
 import { propOr } from 'ramda'
+import { createReducer } from 'redux-act'
+
+import { RESET_COMMISSIONING } from 'state/actions/global'
 import {
   GET_RSE_INIT,
   GET_RSE_SUCCESS,
@@ -11,7 +13,6 @@ import {
   SET_SELECTED_POWER_PRODUCTION,
   RESET_SYSTEM_CONFIGURATION
 } from 'state/actions/systemConfiguration'
-import { RESET_COMMISSIONING } from 'state/actions/global'
 
 const initialState = {
   isSetting: false,

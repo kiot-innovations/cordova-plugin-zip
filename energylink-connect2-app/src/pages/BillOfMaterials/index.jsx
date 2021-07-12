@@ -1,22 +1,22 @@
-import React, { useEffect, useState } from 'react'
 import { compose, isEmpty, isNil, map, pathOr, pick, prop } from 'ramda'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 
-import ProgressiveImage from 'components/ProgressiveImage'
 import HomeownerAccountCreation from 'components/HomeownerAccountCreation'
-import { either, isDownloadingFiles } from 'shared/utils'
+import ProgressiveImage from 'components/ProgressiveImage'
 import paths from 'routes/paths'
-import { createExternalLinkHandler } from 'shared/routing'
 import { useI18n } from 'shared/i18n'
+import { createExternalLinkHandler } from 'shared/routing'
+import { either, isDownloadingFiles } from 'shared/utils'
+import { BEGIN_INSTALL } from 'state/actions/analytics'
+import { DOWNLOAD_OS_INIT } from 'state/actions/ess'
+import { CHECK_PERMISSIONS_INIT } from 'state/actions/network'
+import { GET_SCANDIT_USERS } from 'state/actions/scandit'
 import {
   GET_SITE_INIT,
   CREATE_HOMEOWNER_ACCOUNT_RESET
 } from 'state/actions/site'
-import { GET_SCANDIT_USERS } from 'state/actions/scandit'
-import { CHECK_PERMISSIONS_INIT } from 'state/actions/network'
-import { DOWNLOAD_OS_INIT } from 'state/actions/ess'
-import { BEGIN_INSTALL } from 'state/actions/analytics'
 
 import './BillOfMaterials.scss'
 

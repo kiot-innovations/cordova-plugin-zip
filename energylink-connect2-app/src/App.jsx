@@ -1,20 +1,20 @@
+import * as Sentry from '@sentry/browser'
+import { Integrations } from '@sentry/tracing'
 import React, { useEffect } from 'react'
 import { Provider } from 'react-redux'
 import { HashRouter as Router } from 'react-router-dom'
 import { PersistGate } from 'redux-persist/integration/react'
-import * as Sentry from '@sentry/browser'
-import { Integrations } from '@sentry/tracing'
-import appVersion from './macros/appVersion.macro'
 
-import { configureStore } from 'state/store'
+import appVersion from './macros/appVersion.macro'
 
 import Banner from 'components/Banner'
 import Footer from 'components/Footer'
 import ModalWrapper from 'components/GlobalModal/Wrapper'
-import Header from 'components/Header'
+import HeaderHoc from 'components/Header'
 import Routes from 'routes'
-import { SENTRY_QUEUE_EVENT, SENTRY_START_LISTENER } from 'state/actions/sentry'
 import { CHECK_LOCATION_PERMISSION_INIT } from 'state/actions/permissions'
+import { SENTRY_QUEUE_EVENT, SENTRY_START_LISTENER } from 'state/actions/sentry'
+import { configureStore } from 'state/store'
 
 const { store, persistor } = configureStore({})
 
@@ -47,7 +47,7 @@ const App = () => {
       <PersistGate persistor={persistor}>
         <Router>
           <Banner flavor={process.env.REACT_APP_FLAVOR} />
-          <Header />
+          <HeaderHoc />
           <Routes />
           <Footer />
           <ModalWrapper />

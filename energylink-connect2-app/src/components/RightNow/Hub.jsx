@@ -1,4 +1,5 @@
 import React from 'react'
+
 import { useI18n } from 'shared/i18n'
 
 const hubProducing = '#56a662'

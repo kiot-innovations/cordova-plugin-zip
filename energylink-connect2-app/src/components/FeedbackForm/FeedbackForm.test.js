@@ -1,8 +1,10 @@
-import React from 'react'
-import FeedbackForm from '.'
-import * as i18n from 'shared/i18n'
 import { shallow } from 'enzyme'
+import React from 'react'
 import * as reactRedux from 'react-redux'
+
+import FeedbackForm from '.'
+
+import * as i18n from 'shared/i18n'
 
 jest.mock('react-router-dom', () => ({
   useHistory: () => ({

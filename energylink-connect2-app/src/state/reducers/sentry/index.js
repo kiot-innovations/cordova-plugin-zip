@@ -1,5 +1,6 @@
-import { createReducer } from 'redux-act'
 import { tail } from 'ramda'
+import { createReducer } from 'redux-act'
+
 import { SENTRY_QUEUE_EVENT, SENTRY_UNQUEUE_EVENT } from 'state/actions/sentry'
 
 const initialState = {

@@ -1,26 +1,28 @@
-import Collapsible from 'components/Collapsible'
-import {
-  DOWNLOAD_SUPERUSER_FIRMWARE_LIST,
-  SHOW_SUPERUSER_SETTINGS,
-  HIDE_SUPERUSER_SETTINGS
-} from 'state/actions/superuser'
-import React, { useState, useEffect } from 'react'
 import { map } from 'ramda'
+import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
+
+import Collapsible from 'components/Collapsible'
+import SelectField from 'components/SelectField'
+import Toggler from 'components/Toggler'
 import paths from 'routes/paths'
-import './DebugPage.scss'
+import { useI18n } from 'shared/i18n'
+import { either } from 'shared/utils'
+import { DOWNLOAD_OS_INIT } from 'state/actions/ess'
 import {
   SET_ESS_UPDATE_OVERRIDE,
   SET_PVS_UPDATE_OVERRIDE,
   SET_DO_NOT_UPDATE_PVS,
   DEFAULT_ALL_UPDATE_OVERRIDES
 } from 'state/actions/fileDownloader'
-import { DOWNLOAD_OS_INIT } from 'state/actions/ess'
-import { useI18n } from 'shared/i18n'
-import SelectField from 'components/SelectField'
-import { either } from 'shared/utils'
-import Toggler from 'components/Toggler'
+import {
+  DOWNLOAD_SUPERUSER_FIRMWARE_LIST,
+  SHOW_SUPERUSER_SETTINGS,
+  HIDE_SUPERUSER_SETTINGS
+} from 'state/actions/superuser'
+
+import './DebugPage.scss'
 
 const renderDebugLink = (history, name, path) => (
   <div className="debug-route mb-10" onClick={() => history.push(path)}>

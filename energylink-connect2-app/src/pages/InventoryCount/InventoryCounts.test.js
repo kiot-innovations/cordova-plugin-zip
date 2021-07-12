@@ -1,7 +1,9 @@
 import React from 'react'
-import InventoryCount from '.'
-import * as i18n from 'shared/i18n'
 import * as reactRedux from 'react-redux'
+
+import InventoryCount from '.'
+
+import * as i18n from 'shared/i18n'
 
 describe('Inventory Count page', () => {
   let dispatchMock

@@ -1,34 +1,33 @@
 import { filter } from 'ramda'
 import { createReducer } from 'redux-act'
+
 import {
   RESET_FEEDBACK_FORM,
   SEND_FEEDBACK_ERROR,
   SEND_FEEDBACK_INIT,
   SEND_FEEDBACK_SUCCESS
 } from 'state/actions/feedback'
-import { DEVICE_RESUME } from 'state/actions/mobile'
-import {
-  DATA_SOURCES,
-  GRAPHS,
-  SELECT_DATA_SOURCE,
-  SELECT_ENERGY_GRAPH
-} from 'state/actions/user'
 import {
   SET_LAST_VISITED_PAGE,
   RESET_LAST_VISITED_PAGE,
   CHECK_APP_UPDATE_SUCCESS,
   CHECK_APP_UPDATE_ERROR,
   SHOW_PRECOMMISSIONING_CHECKLIST,
-  SET_STATUS_MESSAGES
-} from 'state/actions/global'
-import { SET_SCANDIT_ACCESS } from 'state/actions/scandit'
-import {
+  SET_STATUS_MESSAGES,
   RESET_COMMISSIONING,
   CHECK_SSL_CERTS,
   CHECK_SSL_CERTS_SUCCESS,
   CHECK_SSL_CERTS_ERROR
 } from 'state/actions/global'
+import { DEVICE_RESUME } from 'state/actions/mobile'
+import { SET_SCANDIT_ACCESS } from 'state/actions/scandit'
 import { SET_SHOW_CHECKLIST } from 'state/actions/settings'
+import {
+  DATA_SOURCES,
+  GRAPHS,
+  SELECT_DATA_SOURCE,
+  SELECT_ENERGY_GRAPH
+} from 'state/actions/user'
 
 const initialState = {
   isAccountCreated: false,

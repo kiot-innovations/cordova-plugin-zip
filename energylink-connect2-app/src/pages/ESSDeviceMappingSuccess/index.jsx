@@ -1,14 +1,15 @@
+import { pathOr, isEmpty, length, head } from 'ramda'
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { useI18n } from 'shared/i18n'
-import DeviceMap from 'components/DeviceMap'
-import { pathOr, isEmpty, length, head } from 'ramda'
-import { either, warningsLength, withoutInfoCodes } from 'shared/utils'
-import paths from 'routes/paths'
 import { useHistory } from 'react-router-dom'
-import { RESET_COMPONENT_MAPPING } from 'state/actions/storage'
+
+import DeviceMap from 'components/DeviceMap'
 import ContinueFooter from 'components/ESSContinueFooter'
 import ErrorDetected from 'components/ESSErrorDetected'
+import paths from 'routes/paths'
+import { useI18n } from 'shared/i18n'
+import { either, warningsLength, withoutInfoCodes } from 'shared/utils'
+import { RESET_COMPONENT_MAPPING } from 'state/actions/storage'
 
 function DeviceMappingSuccess() {
   const t = useI18n()

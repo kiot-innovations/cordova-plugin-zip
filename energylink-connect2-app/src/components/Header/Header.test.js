@@ -1,7 +1,9 @@
-import React from 'react'
 import { createMemoryHistory } from 'history'
-import * as i18n from 'shared/i18n'
+import React from 'react'
+
 import { Header } from '.'
+
+import * as i18n from 'shared/i18n'
 
 describe('Header Component', () => {
   beforeEach(() => {

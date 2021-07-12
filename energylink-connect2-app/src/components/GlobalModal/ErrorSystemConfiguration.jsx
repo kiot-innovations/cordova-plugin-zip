@@ -1,4 +1,5 @@
 import React from 'react'
+
 import { useGlobalHideModal } from 'hooks/useGlobalModal'
 import { useI18n } from 'shared/i18n'
 

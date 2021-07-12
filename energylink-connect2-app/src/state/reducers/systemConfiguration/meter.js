@@ -1,12 +1,12 @@
 import { createReducer } from 'redux-act'
 
+import { RESET_COMMISSIONING } from 'state/actions/global'
 import {
   SET_CONSUMPTION_CT,
   SET_PRODUCTION_CT,
   SET_RATED_CURRENT,
   RESET_SYSTEM_CONFIGURATION
 } from 'state/actions/systemConfiguration'
-import { RESET_COMMISSIONING } from 'state/actions/global'
 
 export const METER = {
   NOT_USED: 'NOT_USED',

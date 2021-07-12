@@ -1,4 +1,5 @@
 import { createAction } from 'redux-act'
+
 import { httpGet } from '../../shared/fetch'
 
 export const GET_USER_INIT = createAction('GET_USER_INIT')

@@ -1,16 +1,4 @@
 import * as Sentry from '@sentry/browser'
-import { ofType } from 'redux-observable'
-import { from, of } from 'rxjs'
-import {
-  catchError,
-  exhaustMap,
-  map,
-  switchMap,
-  tap,
-  filter as filterX,
-  debounceTime,
-  distinctUntilChanged
-} from 'rxjs/operators'
 import {
   compose,
   equals,
@@ -23,11 +11,24 @@ import {
   values,
   pick
 } from 'ramda'
-import * as siteActions from 'state/actions/site'
-import * as devicesActions from 'state/actions/devices'
+import { ofType } from 'redux-observable'
+import { from, of } from 'rxjs'
+import {
+  catchError,
+  exhaustMap,
+  map,
+  switchMap,
+  tap,
+  filter as filterX,
+  debounceTime,
+  distinctUntilChanged
+} from 'rxjs/operators'
+
 import { getApiSite, getApiSearch } from 'shared/api'
-import { EMPTY_ACTION } from 'state/actions/share'
 import { cleanString } from 'shared/utils'
+import * as devicesActions from 'state/actions/devices'
+import { EMPTY_ACTION } from 'state/actions/share'
+import * as siteActions from 'state/actions/site'
 
 const getAccessToken = path(['user', 'auth', 'access_token'])
 

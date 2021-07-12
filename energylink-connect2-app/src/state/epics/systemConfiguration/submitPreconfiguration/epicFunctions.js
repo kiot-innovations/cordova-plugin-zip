@@ -1,5 +1,6 @@
-import { getApiPVS } from 'shared/api'
 import { path } from 'ramda'
+
+import { getApiPVS } from 'shared/api'
 
 export const submitGridProfile = ({ gridProfile, lazyGridProfile }) => {
   return getApiPVS()

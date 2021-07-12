@@ -5,7 +5,6 @@ import { switchMap } from 'rxjs/operators'
 
 import { SHOW_MODAL } from 'state/actions/modal'
 import { SET_CONNECTION_STATUS } from 'state/actions/network'
-
 import { appConnectionStatus } from 'state/reducers/network'
 
 export const connectionStateListenerEpic = action$ =>

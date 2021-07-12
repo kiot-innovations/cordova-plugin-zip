@@ -1,8 +1,12 @@
 import React from 'react'
-import Settings from '.'
-import * as i18n from '../../shared/i18n'
 import * as reactRedux from 'react-redux'
+
+import * as i18n from '../../shared/i18n'
+
+import Settings from '.'
+
 import * as utils from 'shared/utils'
+
 describe('Settings component', () => {
   let dispatchMock
   let isIosMock

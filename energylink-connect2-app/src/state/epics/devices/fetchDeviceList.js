@@ -1,14 +1,15 @@
 import * as Sentry from '@sentry/browser'
+import { path } from 'ramda'
 import { ofType } from 'redux-observable'
 import { from, of } from 'rxjs'
 import { concatMap, map, catchError } from 'rxjs/operators'
+
 import { getApiPVS } from 'shared/api'
 import {
   FETCH_DEVICES_LIST,
   UPDATE_DEVICES_LIST,
   UPDATE_DEVICES_LIST_ERROR
 } from 'state/actions/devices'
-import { path } from 'ramda'
 
 export const fetchDeviceListEpic = action$ => {
   return action$.pipe(

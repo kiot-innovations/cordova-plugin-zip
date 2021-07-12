@@ -1,7 +1,9 @@
 import * as Sentry from '@sentry/browser'
+import { path, pathOr } from 'ramda'
 import { ofType } from 'redux-observable'
 import { from, of } from 'rxjs'
 import { catchError, map, exhaustMap } from 'rxjs/operators'
+
 import { getFirmwareVersionData } from 'shared/fileSystem'
 import { sendCommandToPVS } from 'shared/PVSUtils'
 import { getPVSVersionNumber } from 'shared/utils'
@@ -10,7 +12,6 @@ import {
   FIRMWARE_SHOW_MODAL
 } from 'state/actions/firmwareUpdate'
 import { PVS_CONNECTION_SUCCESS } from 'state/actions/network'
-import { path, pathOr } from 'ramda'
 import { EMPTY_ACTION } from 'state/actions/share'
 
 export const getFirmwareUrlFromState = path([

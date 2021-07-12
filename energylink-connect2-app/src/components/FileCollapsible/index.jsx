@@ -1,9 +1,9 @@
-import React from 'react'
 import clsx from 'clsx'
 import moment from 'moment'
+import React from 'react'
 
-import { useI18n } from 'shared/i18n'
 import Collapsible from 'components/Collapsible'
+import { useI18n } from 'shared/i18n'
 import { either } from 'shared/utils'
 
 import './FileCollapsible.scss'

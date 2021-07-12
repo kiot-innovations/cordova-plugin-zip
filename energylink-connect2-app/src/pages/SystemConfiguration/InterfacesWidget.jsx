@@ -1,4 +1,3 @@
-import React, { useEffect } from 'react'
 import clsx from 'clsx'
 import {
   anyPass,
@@ -20,12 +19,13 @@ import {
   equals,
   always
 } from 'ramda'
+import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+
 import { useI18n } from 'shared/i18n'
 import { either } from 'shared/utils'
-
-import { GET_INTERFACES_INIT } from 'state/actions/systemConfiguration'
 import { SET_ONLINE } from 'state/actions/network'
+import { GET_INTERFACES_INIT } from 'state/actions/systemConfiguration'
 
 import './InterfacesWidget.scss'
 

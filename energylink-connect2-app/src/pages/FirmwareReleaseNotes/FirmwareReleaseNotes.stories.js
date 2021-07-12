@@ -1,9 +1,10 @@
-import React from 'react'
 import { storiesOf } from '@storybook/react'
+import React from 'react'
 import { Provider } from 'react-redux'
-import { configureStore } from 'state/store'
 
 import FirmwareReleaseNotes from '.'
+
+import { configureStore } from 'state/store'
 
 const mockedStore = {
   firmwareUpdate: {

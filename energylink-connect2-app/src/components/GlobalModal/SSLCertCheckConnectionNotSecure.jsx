@@ -1,9 +1,9 @@
-import React from 'react'
-import { useI18n } from 'shared/i18n'
 import clsx from 'clsx'
-import { useDispatch, useSelector } from 'react-redux'
 import { path } from 'ramda'
+import React from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 
+import { useI18n } from 'shared/i18n'
 import { CHECK_SSL_CERTS } from 'state/actions/global'
 
 const SSLCertCheckConnectionInsecure = () => {

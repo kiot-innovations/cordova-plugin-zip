@@ -1,6 +1,9 @@
 import React from 'react'
+
 import appVersion from '../../macros/appVersion.macro'
+
 import releaseNotesJSON from './releaseNotes'
+
 import ReleaseNotes from 'components/ReleaseNotes'
 
 function VersionInformation(props) {

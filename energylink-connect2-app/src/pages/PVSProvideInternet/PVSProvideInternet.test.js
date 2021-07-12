@@ -1,7 +1,9 @@
 import React from 'react'
+
+import PVSProvideInternet from '.'
+
 import * as i18n from 'shared/i18n'
 import { rmaModes } from 'state/reducers/rma'
-import PVSProvideInternet from '.'
 
 describe('PVS Provide Internet page', () => {
   let initialState = {

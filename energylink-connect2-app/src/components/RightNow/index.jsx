@@ -1,9 +1,10 @@
 import React from 'react'
+
 import './RightNow.scss'
-import SolarSquare from './SolarSquare'
+import GridSquare from './GridSquare'
 import HomeSquare from './HomeSquare'
 import Hub from './Hub'
-import GridSquare from './GridSquare'
+import SolarSquare from './SolarSquare'
 import StorageSquare from './StorageSquare'
 
 const hubStates = {

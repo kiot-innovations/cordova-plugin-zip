@@ -1,5 +1,7 @@
 import React from 'react'
+
 import PvsConnectionSuccessful from '.'
+
 import * as i18n from 'shared/i18n'
 import { rmaModes } from 'state/reducers/rma'
 

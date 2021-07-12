@@ -1,8 +1,9 @@
 /* eslint-disable react-hooks/exhaustive-deps */
+import { includes } from 'ramda'
 import { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
-import { includes } from 'ramda'
+
 import paths from 'routes/paths'
 
 const useCanceledPVSConnection = () => {

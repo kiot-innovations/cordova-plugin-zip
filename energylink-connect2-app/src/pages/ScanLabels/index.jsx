@@ -1,13 +1,14 @@
-import React, { useEffect, useRef } from 'react'
 import { compose, identity, ifElse, map, prop, startsWith } from 'ramda'
+import React, { useEffect, useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
+
+import paths from 'routes/paths'
 import { useI18n } from 'shared/i18n'
 import { scanAR } from 'shared/scandit'
 import { buildSN, snEntryMethods } from 'shared/utils'
 import { ADD_PVS_SN } from 'state/actions/pvs'
 import { rmaModes } from 'state/reducers/rma'
-import paths from 'routes/paths'
 
 import './ScanLabels.scss'
 

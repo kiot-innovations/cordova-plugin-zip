@@ -1,12 +1,13 @@
 import { ofType } from 'redux-observable'
-import { catchError, map, exhaustMap } from 'rxjs/operators'
 import { from, of } from 'rxjs'
+import { catchError, map, exhaustMap } from 'rxjs/operators'
+
+import { enableBluetooth } from 'shared/bluetooth/enableBluetooth'
 import {
   ENABLE_BLUETOOTH_INIT,
   ENABLE_BLUETOOTH_SUCCESS,
   ENABLE_BLUETOOTH_ERROR
 } from 'state/actions/network'
-import { enableBluetooth } from 'shared/bluetooth/enableBluetooth'
 
 export const enableBluetoothEpic = action$ => {
   return action$.pipe(

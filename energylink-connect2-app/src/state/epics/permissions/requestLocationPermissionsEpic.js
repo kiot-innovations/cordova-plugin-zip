@@ -1,13 +1,14 @@
 import * as Sentry from '@sentry/browser'
 import { ofType } from 'redux-observable'
-import { catchError, map, exhaustMap } from 'rxjs/operators'
 import { from, of } from 'rxjs'
+import { catchError, map, exhaustMap } from 'rxjs/operators'
+
+import { requestLocationPermissions } from 'shared/permissionsChecker'
 import {
   CHECK_LOCATION_PERMISSION_ERROR,
   CHECK_LOCATION_PERMISSION_INIT,
   REQUEST_LOCATION_PERMISSION_INIT
 } from 'state/actions/permissions'
-import { requestLocationPermissions } from 'shared/permissionsChecker'
 
 export const requestLocationPermissionsEpic = action$ => {
   return action$.pipe(

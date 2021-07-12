@@ -1,17 +1,15 @@
-import { mergeMap, map, catchError, tap } from 'rxjs/operators'
-import * as mobileActions from '../../actions/mobile'
-import * as wifiActions from '../../actions/wifi'
-import { ofType } from 'redux-observable'
 import { promisify } from 'util'
+
+import { ofType } from 'redux-observable'
 import { of, from, empty, throwError } from 'rxjs'
-import { httpPost } from '../../../shared/fetch'
+import { mergeMap, map, catchError, tap } from 'rxjs/operators'
+
+import { httpPost } from 'shared/fetch'
+import * as mobileActions from 'state/actions/mobile'
 
 export const nabtoAssociateDeviceEpic = (action$, state$) =>
   action$.pipe(
-    ofType(
-      mobileActions.DEVICE_READY.getType(),
-      wifiActions.WIFI_COLLECTOR_SUCCESS.getType()
-    ),
+    ofType(mobileActions.DEVICE_READY.getType()),
     mergeMap(() => {
       const nabto = window.nabto || global.nabto || null
       const device = window.device || global.device || null

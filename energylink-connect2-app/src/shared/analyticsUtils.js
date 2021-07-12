@@ -16,6 +16,7 @@ import {
   toUpper,
   when
 } from 'ramda'
+
 import { getElapsedTime } from 'shared/utils'
 
 export const isNotEmpty = compose(not, isEmpty)

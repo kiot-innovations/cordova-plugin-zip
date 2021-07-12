@@ -1,6 +1,3 @@
-import React, { useState, useEffect } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
-import { useHistory } from 'react-router-dom'
 import {
   endsWith,
   filter,
@@ -11,32 +8,31 @@ import {
   pathOr,
   propEq
 } from 'ramda'
+import React, { useState, useEffect } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import { useHistory } from 'react-router-dom'
+
+import ColoredBanner, { bannerCategories } from 'components/ColoredBanner'
+import { Loader } from 'components/Loader'
 import SwipeableSheet from 'hocs/SwipeableSheet'
-
-import { useI18n } from 'shared/i18n'
+import GridBehaviorWidget from 'pages/SystemConfiguration/GridBehaviorWidget'
+import MetersWidget from 'pages/SystemConfiguration/MetersWidget'
 import paths from 'routes/paths'
-
-import { START_DISCOVERY_INIT } from 'state/actions/pvs'
+import { useI18n } from 'shared/i18n'
+import { either, generateCandidates } from 'shared/utils'
+import { MIS_DISCOVERY_START_TIMER } from 'state/actions/analytics'
 import {
   PUSH_CANDIDATES_INIT,
   RESET_DISCOVERY_PROGRESS,
   UPDATE_DEVICES_LIST
 } from 'state/actions/devices'
-import { SUBMIT_PRECONFIG_GRIDPROFILE } from 'state/actions/systemConfiguration'
 import { GRID_PROFILE_UPLOAD_INIT } from 'state/actions/firmwareUpdate'
-import { MIS_DISCOVERY_START_TIMER } from 'state/actions/analytics'
-
+import { START_DISCOVERY_INIT } from 'state/actions/pvs'
+import { SUBMIT_PRECONFIG_GRIDPROFILE } from 'state/actions/systemConfiguration'
 import { discoveryTypes } from 'state/reducers/devices'
+import { fwupStatus } from 'state/reducers/firmware-update'
 import { rmaModes } from 'state/reducers/rma'
 import { preconfigStates } from 'state/reducers/systemConfiguration/submitConfiguration'
-import { fwupStatus } from 'state/reducers/firmware-update'
-
-import { Loader } from 'components/Loader'
-import ColoredBanner, { bannerCategories } from 'components/ColoredBanner'
-import GridBehaviorWidget from 'pages/SystemConfiguration/GridBehaviorWidget'
-import MetersWidget from 'pages/SystemConfiguration/MetersWidget'
-
-import { either, generateCandidates } from 'shared/utils'
 
 import './PrecommissioningConfigs.scss'
 

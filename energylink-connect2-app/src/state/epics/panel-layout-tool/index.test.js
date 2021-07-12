@@ -1,6 +1,7 @@
-import { of } from 'rxjs'
 import { actions } from '@sunpower/panel-layout-tool'
+import { of } from 'rxjs'
 import * as rxjs from 'rxjs'
+
 import {
   PLT_LOAD,
   PLT_LOAD_FINISHED,

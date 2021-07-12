@@ -1,4 +1,5 @@
 import { compose } from 'ramda'
+
 import { trace, isIos } from 'shared/utils'
 
 // needs to be manually enabled on iOS

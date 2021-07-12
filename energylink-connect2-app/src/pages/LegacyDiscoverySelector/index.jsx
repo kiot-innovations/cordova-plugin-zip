@@ -1,13 +1,13 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
-import { useI18n } from 'shared/i18n'
+
 import SelectField from 'components/SelectField'
+import paths from 'routes/paths'
+import { useI18n } from 'shared/i18n'
 import { RESET_DISCOVERY } from 'state/actions/devices'
 import { START_DISCOVERY_INIT } from 'state/actions/pvs'
 import { discoveryTypes } from 'state/reducers/devices'
-
-import paths from 'routes/paths'
 
 import './LegacyDiscoverySelector.scss'
 

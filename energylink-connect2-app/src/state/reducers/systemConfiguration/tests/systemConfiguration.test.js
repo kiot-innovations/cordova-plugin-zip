@@ -1,4 +1,11 @@
 import {
+  submitConfigReducer,
+  initialState,
+  preconfigStates
+} from '../submitConfiguration'
+
+import { RESET_COMMISSIONING } from 'state/actions/global'
+import {
   SUBMIT_CLEAR,
   REPLACE_RMA_PVS,
   SUBMIT_CONFIG,
@@ -12,12 +19,6 @@ import {
   SUBMIT_PRECONFIG_ERROR,
   SUBMIT_PRECONFIG_SUCCESS
 } from 'state/actions/systemConfiguration'
-import { RESET_COMMISSIONING } from 'state/actions/global'
-import {
-  submitConfigReducer,
-  initialState,
-  preconfigStates
-} from '../submitConfiguration'
 
 describe('[Reducer] System Configuration', function() {
   it('should have the correct actions', function() {

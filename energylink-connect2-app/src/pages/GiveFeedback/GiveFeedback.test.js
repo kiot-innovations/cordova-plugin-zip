@@ -1,8 +1,10 @@
-import React from 'react'
-import GiveFeedback from '.'
-import * as i18n from 'shared/i18n'
 import { shallow } from 'enzyme'
+import React from 'react'
 import * as reactRedux from 'react-redux'
+
+import GiveFeedback from '.'
+
+import * as i18n from 'shared/i18n'
 
 describe('GiveFeedback component', () => {
   let dispatchMock

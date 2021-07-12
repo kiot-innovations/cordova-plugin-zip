@@ -1,4 +1,6 @@
 import { createReducer } from 'redux-act'
+
+import { LOGIN_SUCCESS } from '../../actions/auth'
 import {
   NORMALIZE_ENERGY_DATA_SUCCESS,
   NORMALIZE_POWER_DATA_SUCCESS,
@@ -20,7 +22,6 @@ import {
   CURRENT_POWER_DATA_STOP_POLLING,
   LTE_DATA_POLL_STOP
 } from '../../actions/energy-data'
-import { LOGIN_SUCCESS } from '../../actions/auth'
 
 const initialState = {
   [INTERVALS.HOUR]: { startTime: 0, endTime: 0, data: {}, powerData: {} },

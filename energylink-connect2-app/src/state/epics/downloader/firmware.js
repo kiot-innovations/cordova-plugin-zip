@@ -1,9 +1,18 @@
+import * as Sentry from '@sentry/browser'
 import { propOr } from 'ramda'
 import { ofType } from 'redux-observable'
-import * as Sentry from '@sentry/browser'
 import { from, of, EMPTY } from 'rxjs'
 import { catchError, exhaustMap, map } from 'rxjs/operators'
 
+import {
+  fileExists,
+  getFirmwareVersionData,
+  getFS,
+  readFile,
+  verifySHA256
+} from 'shared/fileSystem'
+import { getFileSystemFromLuaFile } from 'shared/PVSUtils'
+import { hasInternetConnection } from 'shared/utils'
 import {
   PVS_DECOMPRESS_LUA_FILES_ERROR,
   PVS_DECOMPRESS_LUA_FILES_INIT,
@@ -16,28 +25,17 @@ import {
   PVS_FIRMWARE_UPDATE_URL,
   PVS_SET_FILE_INFO
 } from 'state/actions/fileDownloader'
-
 import {
   SET_FIRMWARE_RELEASE_NOTES,
   GET_RELEASE_NOTES_ERROR
 } from 'state/actions/firmwareUpdate'
-
 import { EMPTY_ACTION } from 'state/actions/share'
-import unzipObservable from 'state/epics/observables/unzip'
-import fileTransferObservable from 'state/epics/observables/downloader'
-import {
-  fileExists,
-  getFirmwareVersionData,
-  getFS,
-  readFile,
-  verifySHA256
-} from 'shared/fileSystem'
-import { getFileSystemFromLuaFile } from 'shared/PVSUtils'
-import { hasInternetConnection } from 'shared/utils'
 import {
   pvsUpdateUrl$,
   waitForObservable
 } from 'state/epics/downloader/latestUrls'
+import fileTransferObservable from 'state/epics/observables/downloader'
+import unzipObservable from 'state/epics/observables/unzip'
 
 export const updatePVSFirmwareUrl = action$ => {
   return action$.pipe(

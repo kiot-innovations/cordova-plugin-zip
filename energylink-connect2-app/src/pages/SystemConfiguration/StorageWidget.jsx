@@ -1,8 +1,9 @@
 import clsx from 'clsx'
-import Collapsible from 'components/Collapsible'
 import { isEmpty, pathOr } from 'ramda'
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+
+import Collapsible from 'components/Collapsible'
 import { useI18n } from 'shared/i18n'
 import { either } from 'shared/utils'
 import { GET_STORAGE_INIT } from 'state/actions/systemConfiguration'

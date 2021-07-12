@@ -1,5 +1,5 @@
-import React from 'react'
 import clsx from 'clsx'
+import React from 'react'
 import './Loader.scss'
 
 export const Loader = ({ type = 'line-scale-pulse-out-rapid', outerClass }) => {

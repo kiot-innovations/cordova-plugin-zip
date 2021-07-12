@@ -1,6 +1,7 @@
 /* eslint-disable no-undef */
 import * as Sentry from '@sentry/browser'
 import { path, map, contains, flip, reject } from 'ramda'
+
 import { isIos } from './utils'
 
 const fcontains = flip(contains)

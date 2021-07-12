@@ -1,7 +1,8 @@
 import React from 'react'
 import { PieChart, Pie, Cell, Label } from 'recharts'
-import { Home } from '../Icons'
+
 import { useI18n } from '../../shared/i18n'
+import { Home } from '../Icons'
 
 const COLORS = ['#2B93CC', '#F7921E', '#FFE600']
 

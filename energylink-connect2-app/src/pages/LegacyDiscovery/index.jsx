@@ -1,7 +1,15 @@
+import clsx from 'clsx'
+import { groupBy, prop, propOr, length, pluck, reduce, add, path } from 'ramda'
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useI18n } from 'shared/i18n'
 import { useHistory } from 'react-router-dom'
+
+import DeviceGroup from './DeviceGroup'
+
+import useModal from 'hooks/useModal'
+import paths from 'routes/paths'
+import { useI18n } from 'shared/i18n'
+import { either, filterInverters } from 'shared/utils'
 import {
   CLAIM_DEVICES_INIT,
   FETCH_CANDIDATES_COMPLETE,
@@ -9,12 +17,7 @@ import {
 } from 'state/actions/devices'
 import { START_DISCOVERY_INIT } from 'state/actions/pvs'
 import { discoveryTypes } from 'state/reducers/devices'
-import { either, filterInverters } from 'shared/utils'
-import useModal from 'hooks/useModal'
-import { groupBy, prop, propOr, length, pluck, reduce, add, path } from 'ramda'
-import clsx from 'clsx'
-import paths from 'routes/paths'
-import DeviceGroup from './DeviceGroup'
+
 import './LegacyDiscovery.scss'
 
 const claimDevices = (inverters, dispatch) => {

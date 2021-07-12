@@ -1,14 +1,14 @@
+import TextField from '@sunpower/textfield'
+import { evolve, isEmpty, pathOr } from 'ramda'
 import React from 'react'
 import { useField, useForm } from 'react-final-form-hooks'
-import SwipeableSheet from 'hocs/SwipeableSheet'
-import { evolve, isEmpty, pathOr } from 'ramda'
-import { CREATE_HOMEOWNER_ACCOUNT } from 'state/actions/site'
 import { useDispatch, useSelector } from 'react-redux'
-import TextField from '@sunpower/textfield'
 
 import { Loader } from 'components/Loader'
+import SwipeableSheet from 'hocs/SwipeableSheet'
 import { useI18n } from 'shared/i18n'
 import { cleanString, either } from 'shared/utils'
+import { CREATE_HOMEOWNER_ACCOUNT } from 'state/actions/site'
 
 import './HomeownerAccountCreation.scss'
 

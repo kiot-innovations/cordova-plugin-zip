@@ -1,5 +1,6 @@
 import { prop } from 'ramda'
 import { createReducer } from 'redux-act'
+
 import {
   FIRMWARE_GET_VERSION_COMPLETE,
   FIRMWARE_UPDATE_COMPLETE,

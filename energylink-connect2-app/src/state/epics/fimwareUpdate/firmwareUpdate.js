@@ -11,18 +11,21 @@ import {
   take,
   takeUntil
 } from 'rxjs/operators'
+
 import { ERROR_CODES } from 'shared/fileSystem'
 import { translate } from 'shared/i18n'
 import { sendCommandToPVS } from 'shared/PVSUtils'
-import { getPVSVersionNumber, waitFor } from 'shared/utils'
 import genericRetryStrategy from 'shared/rxjs/genericRetryStrategy'
-
+import { getPVSVersionNumber, waitFor } from 'shared/utils'
 import {
   getFirmwareUpgradePackageURL,
   startWebserver,
   stopWebserver
 } from 'shared/webserver'
-
+import {
+  PVS_FIRMWARE_DOWNLOAD_INIT,
+  PVS_FIRMWARE_DOWNLOAD_SUCCESS
+} from 'state/actions/fileDownloader'
 import {
   FIRMWARE_SHOW_MODAL,
   FIRMWARE_UPDATE_COMPLETE,
@@ -34,6 +37,7 @@ import {
   FIRMWARE_UPDATE_POLLING,
   FIRMWARE_UPDATE_WAITING_FOR_NETWORK
 } from 'state/actions/firmwareUpdate'
+import { SHOW_MODAL } from 'state/actions/modal'
 import {
   PVS_CONNECTION_CLOSE,
   PVS_CONNECTION_CLOSE_FINISHED,
@@ -41,11 +45,6 @@ import {
   PVS_CONNECTION_SUCCESS,
   STOP_NETWORK_POLLING
 } from 'state/actions/network'
-import {
-  PVS_FIRMWARE_DOWNLOAD_INIT,
-  PVS_FIRMWARE_DOWNLOAD_SUCCESS
-} from 'state/actions/fileDownloader'
-import { SHOW_MODAL } from 'state/actions/modal'
 
 const getFirmwareFromState = path([
   'value',

@@ -1,15 +1,15 @@
+import clsx from 'clsx'
 import React from 'react'
 import { useField, useForm } from 'react-final-form-hooks'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
-import clsx from 'clsx'
 
 import Rating from 'components/Rating'
 import TextArea from 'components/TextArea'
 import routes from 'routes/paths'
 import { useI18n } from 'shared/i18n'
-import { SEND_FEEDBACK_INIT } from 'state/actions/feedback'
 import { cleanString } from 'shared/utils'
+import { SEND_FEEDBACK_INIT } from 'state/actions/feedback'
 import { MENU_HIDE } from 'state/actions/ui'
 
 const onSubmit = dispatch => values => {

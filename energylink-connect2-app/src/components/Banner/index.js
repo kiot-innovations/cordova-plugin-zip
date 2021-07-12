@@ -1,4 +1,5 @@
 import React from 'react'
+
 import './banner.scss'
 import { either, isDebug } from 'shared/utils'
 

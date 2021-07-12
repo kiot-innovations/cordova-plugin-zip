@@ -1,6 +1,7 @@
 import { path } from 'ramda'
 import { from, of } from 'rxjs'
 import { catchError, exhaustMap, map } from 'rxjs/operators'
+
 import { isConnectedToPVS } from 'shared/PVSUtils'
 
 export const wifiCheckOperator = state$ =>

@@ -1,10 +1,11 @@
+import { prop } from 'ramda'
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { prop } from 'ramda'
+
+import { Loader } from 'components/Loader'
 import { useI18n } from 'shared/i18n'
 import { either } from 'shared/utils'
 import { PLT_SAVE } from 'state/actions/panel-layout-tool'
-import { Loader } from 'components/Loader'
 
 const PanelLayoutToolSavingStatus = () => {
   const { saved, error, saving } = useSelector(prop('pltWizard'))

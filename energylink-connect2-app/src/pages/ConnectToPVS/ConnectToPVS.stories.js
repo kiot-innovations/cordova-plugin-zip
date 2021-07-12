@@ -1,10 +1,11 @@
-import React from 'react'
-import { assocPath } from 'ramda'
 import { storiesOf } from '@storybook/react'
+import { assocPath } from 'ramda'
+import React from 'react'
 import { Provider } from 'react-redux'
-import { configureStore } from 'state/store'
 
 import ConnectToPVS from '.'
+
+import { configureStore } from 'state/store'
 
 const cs = {
   network: {

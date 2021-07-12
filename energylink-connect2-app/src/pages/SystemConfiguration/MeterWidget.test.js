@@ -1,7 +1,9 @@
 import React from 'react'
 import * as reactRedux from 'react-redux'
-import * as i18n from 'shared/i18n'
+
 import MeterWidgets from './MetersWidget'
+
+import * as i18n from 'shared/i18n'
 
 describe('Meter Widget', () => {
   let dispatchMock

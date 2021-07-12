@@ -1,5 +1,6 @@
-import { shareReducer } from '.'
 import * as shareActions from '../../actions/share'
+
+import { shareReducer } from '.'
 
 describe('Share reducer', () => {
   const reducerTest = reducerTester(shareReducer)

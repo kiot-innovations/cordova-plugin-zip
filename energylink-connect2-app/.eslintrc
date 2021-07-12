@@ -1,8 +1,14 @@
 {
-  "extends": ["eslint:recommended", "react-app", "plugin:prettier/recommended"],
-  "plugins": ["prettier"],
+  "plugins": ["prettier", "import"],
+  "extends": [
+    "react-app",
+    "eslint:recommended",
+    "plugin:prettier/recommended",
+    "plugin:import/recommended"
+  ],
   "rules": {
     "prettier/prettier": "error",
+    "import/namespace": "off",
     "no-unused-vars": 2,
     "eqeqeq": "error",
     "import/no-anonymous-default-export": "off",
@@ -13,7 +19,39 @@
         "allow": ["info", "error", "warn"]
       }
     ],
-    "no-debugger": "error"
+    "no-debugger": "error",
+    "import/order": [
+      "error",
+      {
+        "groups": ["builtin", "external", "parent", "sibling", "index"],
+        "newlines-between": "always",
+        "alphabetize": {
+          "order": "asc",
+          "caseInsensitive": true
+        }
+      }
+    ]
+  },
+  "settings": {
+    "import/extensions": [
+      ".js",
+      ".jsx"
+    ],
+    "import/resolver": {
+      "eslint-import-resolver-custom-alias": {
+        "alias": {
+          "components": "./src/components",
+          "hocs": "./src/hocs",
+          "hooks": "./src/hooks",
+          "pages": "./src/pages",
+          "routes": "./src/routes",
+          "shared": "./src/shared",
+          "state": "./src/state",
+          "stories": "./src/stories"
+        },
+        "extensions": [".js", ".jsx", ".json"]
+      }
+    }
   },
   "globals": {
     "mountWithProvider": true,

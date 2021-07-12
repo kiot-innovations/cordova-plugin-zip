@@ -1,11 +1,12 @@
 import * as Sentry from '@sentry/browser'
+import { path } from 'ramda'
 import { ofType } from 'redux-observable'
 import { from, of } from 'rxjs'
 import { catchError, exhaustMap, switchMap } from 'rxjs/operators'
-import { path } from 'ramda'
+
+import { getApiPVS } from 'shared/api'
 import { DISCOVER_INIT } from 'state/actions/devices'
 import * as pvsActions from 'state/actions/pvs'
-import { getApiPVS } from 'shared/api'
 
 const startDiscovery = payload =>
   getApiPVS()

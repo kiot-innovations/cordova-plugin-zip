@@ -1,5 +1,7 @@
-import { createReducer } from 'redux-act'
 import { path } from 'ramda'
+import { createReducer } from 'redux-act'
+
+import { RESET_COMMISSIONING } from 'state/actions/global'
 import {
   FETCH_GRID_BEHAVIOR,
   FETCH_GRID_BEHAVIOR_ERR,
@@ -9,7 +11,6 @@ import {
   SET_GRID_VOLTAGE,
   RESET_SYSTEM_CONFIGURATION
 } from 'state/actions/systemConfiguration'
-import { RESET_COMMISSIONING } from 'state/actions/global'
 
 export const GRID_ERRORS = {
   NO_PROFILE_AVAILABLE: 'NO_PROFILE_AVAILABLE'

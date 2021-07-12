@@ -1,5 +1,5 @@
-import React from 'react'
 import clsx from 'clsx'
+import React from 'react'
 import './EnergySwitch.scss'
 
 function EnergySwitch({ entries = [], onChange = () => {} }) {

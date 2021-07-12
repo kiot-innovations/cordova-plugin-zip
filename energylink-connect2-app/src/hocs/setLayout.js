@@ -1,10 +1,11 @@
-import React, { useEffect } from 'react'
 import clsx from 'clsx'
+import React, { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
-import { setHeader, setFooter } from 'state/actions/ui'
-import './layout.scss'
+
 import ErrorBoundary from 'components/Error'
 import HooksInitializer from 'pages/HooksInitializer'
+import { setHeader, setFooter } from 'state/actions/ui'
+import './layout.scss'
 
 const setLayout = (header, footer) => ChildComponent => props => {
   const dispatch = useDispatch()

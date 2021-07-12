@@ -1,6 +1,3 @@
-import React, { useEffect, useRef, useState } from 'react'
-import { useHistory } from 'react-router-dom'
-import { useSelector, useDispatch } from 'react-redux'
 import {
   add,
   isEmpty,
@@ -12,15 +9,19 @@ import {
   propOr,
   reduce
 } from 'ramda'
+import React, { useEffect, useRef, useState } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import { useHistory } from 'react-router-dom'
+
+import ESSHealthCheckComponent from 'components/ESSHealthCheck'
+import paths from 'routes/paths'
 import { addHasErrorProp, warningsLength, withoutInfoCodes } from 'shared/utils'
-import { GET_ESS_STATUS_INIT, RUN_EQS_SYSTEMCHECK } from 'state/actions/storage'
 import { RESET_DISCOVERY } from 'state/actions/devices'
+import { GET_ESS_STATUS_INIT, RUN_EQS_SYSTEMCHECK } from 'state/actions/storage'
 import {
   SUBMIT_CLEAR,
   ALLOW_COMMISSIONING
 } from 'state/actions/systemConfiguration'
-import paths from 'routes/paths'
-import ESSHealthCheckComponent from 'components/ESSHealthCheck'
 
 function ESSHealthCheck() {
   const dispatch = useDispatch()

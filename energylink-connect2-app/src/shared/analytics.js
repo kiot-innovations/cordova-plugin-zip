@@ -1,8 +1,10 @@
-import appVersion from '../macros/appVersion.macro'
-import { capitalizeWord, getUserProfile } from 'shared/analyticsUtils'
-import { MIXPANEL_EVENT_QUEUED } from 'state/actions/analytics'
-import { getAppleDeviceFamily } from 'shared/appleDevicesTable'
 import { prop } from 'ramda'
+
+import appVersion from '../macros/appVersion.macro'
+
+import { capitalizeWord, getUserProfile } from 'shared/analyticsUtils'
+import { getAppleDeviceFamily } from 'shared/appleDevicesTable'
+import { MIXPANEL_EVENT_QUEUED } from 'state/actions/analytics'
 
 const getAppAndDeviceProperties = () => {
   const { device } = window

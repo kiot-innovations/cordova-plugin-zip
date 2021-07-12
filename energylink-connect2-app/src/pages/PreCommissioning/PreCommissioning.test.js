@@ -1,7 +1,9 @@
 import React from 'react'
 import * as reactRedux from 'react-redux'
-import * as i18n from 'shared/i18n'
+
 import PreCommissioning from './index'
+
+import * as i18n from 'shared/i18n'
 
 describe('Precommissioning Checklist', () => {
   let dispatchMock

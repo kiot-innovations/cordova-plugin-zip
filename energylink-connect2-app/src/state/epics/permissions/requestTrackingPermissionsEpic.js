@@ -1,7 +1,8 @@
 import * as Sentry from '@sentry/browser'
 import { ofType } from 'redux-observable'
-import { catchError, map, exhaustMap } from 'rxjs/operators'
 import { from } from 'rxjs'
+import { catchError, map, exhaustMap } from 'rxjs/operators'
+
 import {
   REQUEST_TRACKING_PERMISSION,
   SET_TRACKING_PERMISSION

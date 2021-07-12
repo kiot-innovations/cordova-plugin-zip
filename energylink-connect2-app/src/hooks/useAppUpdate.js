@@ -1,8 +1,9 @@
 import { useEffect, useCallback } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+
 import { useI18n } from 'shared/i18n'
-import { SHOW_MODAL } from 'state/actions/modal'
 import { APP_UPDATE_OPEN_MARKET } from 'state/actions/global'
+import { SHOW_MODAL } from 'state/actions/modal'
 
 function useAppUpdate() {
   const t = useI18n()

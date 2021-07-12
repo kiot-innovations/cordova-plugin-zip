@@ -1,9 +1,9 @@
 import { ofType } from 'redux-observable'
-import { switchMap } from 'rxjs/operators'
 import { EMPTY, of } from 'rxjs'
+import { switchMap } from 'rxjs/operators'
 
-import { FINISH_PLT_SETUP, START_PLT_SETUP } from 'state/actions/analytics'
 import { finishPLTWizard, timeMixPanelEvent } from 'shared/analytics'
+import { FINISH_PLT_SETUP, START_PLT_SETUP } from 'state/actions/analytics'
 
 const finishPLTWizardEpic = action$ =>
   action$.pipe(

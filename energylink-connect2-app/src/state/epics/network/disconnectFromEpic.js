@@ -3,11 +3,11 @@ import { ofType } from 'redux-observable'
 import { from, of } from 'rxjs'
 import { catchError, exhaustMap, map } from 'rxjs/operators'
 
+import { isIos } from 'shared/utils'
 import {
   PVS_CONNECTION_CLOSE,
   PVS_CONNECTION_CLOSE_FINISHED
 } from 'state/actions/network'
-import { isIos } from 'shared/utils'
 
 const disconnectFromPVS = ssid =>
   isIos

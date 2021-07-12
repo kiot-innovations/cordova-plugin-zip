@@ -1,5 +1,6 @@
-import { Observable } from 'rxjs'
 import { compose } from 'ramda'
+import { Observable } from 'rxjs'
+
 import { trace } from 'shared/utils'
 
 export const connectBLE = device =>

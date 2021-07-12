@@ -1,25 +1,26 @@
+import { length, pathOr } from 'ramda'
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
-import { length, pathOr } from 'ramda'
+
+import { Loader } from 'components/Loader'
 import SwipeableSheet from 'hocs/SwipeableSheet'
+import paths from 'routes/paths'
 import { useI18n } from 'shared/i18n'
 import { decodeQRData, scanBarcodes } from 'shared/scanning'
 import { generatePassword, generateSSID, isIos } from 'shared/utils'
+import {
+  CONNECT_PVS_CAMERA,
+  CONNECT_PVS_MANUALLY,
+  SCANNING_START
+} from 'state/actions/analytics'
 import {
   PVS_CONNECTION_INIT,
   PVS_TIMEOUT_FOR_CONNECTION,
   OPEN_SETTINGS,
   ENABLE_BLUETOOTH_INIT
 } from 'state/actions/network'
-import {
-  CONNECT_PVS_CAMERA,
-  CONNECT_PVS_MANUALLY,
-  SCANNING_START
-} from 'state/actions/analytics'
 import { SAVE_PVS_SN } from 'state/actions/pvs'
-import { Loader } from 'components/Loader'
-import paths from 'routes/paths'
 import './ConnectToPVS.scss'
 
 const onSuccess = (generatePassword, dispatch, t, setStarted) => data => {

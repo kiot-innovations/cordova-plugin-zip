@@ -1,4 +1,5 @@
 import React from 'react'
+
 import Collapsible from 'components/Collapsible'
 import 'pages/Devices/Devices.scss'
 import { useI18n } from 'shared/i18n'

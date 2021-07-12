@@ -1,7 +1,8 @@
-import React from 'react'
 import { length, map, propOr } from 'ramda'
-import { useI18n } from 'shared/i18n'
+import React from 'react'
+
 import Collapsible from 'components/Collapsible'
+import { useI18n } from 'shared/i18n'
 import './ExistingDevices.scss'
 
 const deviceRow = deviceItem => {

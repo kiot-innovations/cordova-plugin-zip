@@ -1,20 +1,19 @@
-import React, { useEffect } from 'react'
 import { pathOr, isEmpty, isNil, path } from 'ramda'
-import { useI18n } from 'shared/i18n'
+import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
+
+import InterfacesWidget from 'pages/SystemConfiguration/InterfacesWidget'
+import NetworkWidget from 'pages/SystemConfiguration/NetworkWidget'
+import paths from 'routes/paths'
+import { useI18n } from 'shared/i18n'
+import { either } from 'shared/utils'
 import {
   START_COMMISSIONING_INIT,
   START_DISCOVERY_INIT
 } from 'state/actions/pvs'
 import { discoveryTypes } from 'state/reducers/devices'
 import { rmaModes } from 'state/reducers/rma'
-import { either } from 'shared/utils'
-
-import paths from 'routes/paths'
-
-import InterfacesWidget from 'pages/SystemConfiguration/InterfacesWidget'
-import NetworkWidget from 'pages/SystemConfiguration/NetworkWidget'
 
 import './PVSProvideInternet.scss'
 

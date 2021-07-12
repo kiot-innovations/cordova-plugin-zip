@@ -1,29 +1,26 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
-import { useGlobalHideModal } from 'hooks/useGlobalModal'
 
+import ConnectedGraphic from './ConnectedGraphic'
+import ConnectingGraphic from './ConnectingGraphic'
+import NotConnectedGraphic from './NotConnectedGraphic'
+
+import { useGlobalHideModal } from 'hooks/useGlobalModal'
+import paths from 'routes/paths'
 import { useI18n } from 'shared/i18n'
 import { either } from 'shared/utils'
-
-import { RESET_PVS_INFO_STATE } from 'state/actions/pvs'
+import { RESET_DISCOVERY } from 'state/actions/devices'
+import { RESET_LAST_VISITED_PAGE } from 'state/actions/global'
+import { RESET_INVENTORY } from 'state/actions/inventory'
 import {
   PVS_CONNECTION_INIT,
   RESET_PVS_CONNECTION,
   STOP_NETWORK_POLLING
 } from 'state/actions/network'
-import { RESET_DISCOVERY } from 'state/actions/devices'
-import { RESET_INVENTORY } from 'state/actions/inventory'
+import { RESET_PVS_INFO_STATE } from 'state/actions/pvs'
 import { RESET_SITE } from 'state/actions/site'
-import { RESET_LAST_VISITED_PAGE } from 'state/actions/global'
-
 import { appConnectionStatus } from 'state/reducers/network'
-
-import ConnectedGraphic from './ConnectedGraphic'
-import NotConnectedGraphic from './NotConnectedGraphic'
-import ConnectingGraphic from './ConnectingGraphic'
-
-import paths from 'routes/paths'
 
 const ConnectionStatusModal = () => {
   const dispatch = useDispatch()

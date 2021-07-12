@@ -1,9 +1,10 @@
-import React from 'react'
-import { length } from 'ramda'
-import { storiesOf } from '@storybook/react'
 import { linkTo } from '@storybook/addon-links'
+import { storiesOf } from '@storybook/react'
+import { length } from 'ramda'
+import React from 'react'
 
 import ErrorDetected from '.'
+
 import { warningsLength, withoutInfoCodes } from 'shared/utils'
 
 const justErrors = [

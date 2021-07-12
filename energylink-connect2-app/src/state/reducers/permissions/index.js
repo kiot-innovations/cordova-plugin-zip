@@ -1,11 +1,12 @@
 import { createReducer } from 'redux-act'
+
+import { SHOW_MODAL, HIDE_MODAL } from 'state/actions/modal'
 import {
   CHECK_LOCATION_PERMISSION_INIT,
   CHECK_LOCATION_PERMISSION_SUCCESS,
   CHECK_LOCATION_PERMISSION_ERROR,
   SET_TRACKING_PERMISSION
 } from 'state/actions/permissions'
-import { SHOW_MODAL, HIDE_MODAL } from 'state/actions/modal'
 
 export const trackingPermissionValues = {
   TRACKING_PERMISSION_NOT_DETERMINED: 0,

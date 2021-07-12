@@ -1,6 +1,8 @@
 import React from 'react'
 import * as reactRedux from 'react-redux'
+
 import SavingConfiguration from '.'
+
 import * as i18n from 'shared/i18n'
 
 jest.mock('react-router-dom', () => ({
