@@ -232,6 +232,7 @@ exports[`RMA devices component render correctly 1`] = `
                 >
                   <button
                     className="button is-paddingless has-text-primary has-text-weight-bold is-size-7 button-transparent"
+                    disabled={false}
                     onClick={[Function]}
                   >
                     SELECT_ALL
@@ -317,6 +318,7 @@ exports[`RMA devices component render correctly 1`] = `
           >
             <button
               className="button mb-30 is-paddingless has-text-primary has-text-weight-bold is-size-7 button-transparent"
+              disabled={false}
               onClick={[Function]}
             >
               REFRESH_DEVICE_LIST

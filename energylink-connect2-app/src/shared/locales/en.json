@@ -730,6 +730,7 @@
   "GO_TO_STORE": "Go to store",
   "FEEDBACK_SUCCESSFULLY_SENT": "Feedback successfully sent!",
   "CONTRACT_NO": "Contract number",
-  "LOOKING_FOR_METERS": "Hold on, we're looking for the onboard meters.",
-  "PLEASE_TRY_AGAIN": "Please try again"
+  "PLEASE_TRY_AGAIN": "Please try again",
+  "FETCHING_DEVICES": "Please wait we're loading the devices...",
+  "LOOKING_FOR_METERS": "Hold on, we're looking for the onboard meters."
 }

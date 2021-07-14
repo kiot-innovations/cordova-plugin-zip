@@ -64,6 +64,9 @@ function RMADevices() {
 
   const [selectedMIs, setSelectedMIs] = useState({})
   const devicesData = useSelector(pathOr([], ['devices', 'found']))
+  const fetchingDevices = useSelector(
+    pathOr(false, ['devices', 'fetchingDevices'])
+  )
   const storageDevices = filter(propEq('TYPE', 'EQUINOX-ESS'), devicesData)
   const hasStorage = !isEmpty(storageDevices)
 
@@ -148,14 +151,21 @@ function RMADevices() {
         />
       )}
       <Collapsible title={t('MICROINVERTERS')} actions={miDropdown} expanded>
-        {either(
-          length(microInverters) > 0,
-          map(renderMicroinverter(toggleCheckbox, selectedMIs), microInverters),
-          t('NO_MICROINVERTERS_RMA')
-        )}
+        {fetchingDevices
+          ? t('FETCHING_DEVICES')
+          : either(
+              length(microInverters) > 0,
+              map(
+                renderMicroinverter(toggleCheckbox, selectedMIs),
+                microInverters
+              ),
+              t('NO_MICROINVERTERS_RMA')
+            )}
+
         <div className="buttons-container">
           <button
             onClick={selectAllMi}
+            disabled={fetchingDevices}
             className="button is-paddingless has-text-primary has-text-weight-bold is-size-7 button-transparent"
           >
             {t('SELECT_ALL')}
@@ -195,6 +205,7 @@ function RMADevices() {
       <div className="mt-10 has-text-centered button-container">
         <button
           onClick={fetchDevices}
+          disabled={fetchingDevices}
           className="button mb-30 is-paddingless has-text-primary has-text-weight-bold is-size-7 button-transparent"
         >
           {t('REFRESH_DEVICE_LIST')}

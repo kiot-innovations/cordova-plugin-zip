@@ -158,7 +158,8 @@ describe('RMA devices component', () => {
             OPERATION: 'noop',
             CURTIME: '2020,09,15,16,32,26'
           }
-        ]
+        ],
+        fetchingDevices: false
       },
       storage: {
         prediscovery: {
