@@ -1,6 +1,7 @@
 import FirmwareReleaseNotes from 'pages/FirmwareReleaseNotes'
 import FirmwaresMenu from 'pages/Firmwares/MenuComponent'
 import GiveFeedback from 'pages/GiveFeedback'
+import KnowledgeBase from 'pages/KnowledgeBase'
 import Settings from 'pages/Settings'
 import VersionInformation from 'pages/VersionInformation'
 import paths from 'routes/paths'
@@ -39,6 +40,12 @@ export default [
     icon: 'sp-gear',
     text: 'SETTINGS',
     component: Settings,
+    display: true
+  },
+  {
+    icon: 'sp-guide',
+    text: 'KNOWLEDGE_BASE',
+    component: KnowledgeBase,
     display: true
   }
 ]

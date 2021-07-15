@@ -42,6 +42,12 @@ exports[`Menu Page render correctly 1`] = `
           "icon": "sp-gear",
           "text": "SETTINGS",
         },
+        Object {
+          "component": [Function],
+          "display": true,
+          "icon": "sp-guide",
+          "text": "KNOWLEDGE_BASE",
+        },
       ]
     }
   />

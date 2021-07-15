@@ -125,6 +125,12 @@ exports[`Header Component Renders correctly 1`] = `
                     "icon": "sp-gear",
                     "text": "SETTINGS",
                   },
+                  Object {
+                    "component": [Function],
+                    "display": true,
+                    "icon": "sp-guide",
+                    "text": "KNOWLEDGE_BASE",
+                  },
                 ]
               }
             >
@@ -135,7 +141,7 @@ exports[`Header Component Renders correctly 1`] = `
                   className="menuitems mt-15"
                 >
                   <div
-                    className="mb-30 is-flex"
+                    className="mb-30 is-flex tile-item"
                     key="CHANGE_ADDRESS"
                   >
                     <Component
@@ -159,7 +165,7 @@ exports[`Header Component Renders correctly 1`] = `
                     </Component>
                   </div>
                   <div
-                    className="mb-30 is-flex"
+                    className="mb-30 is-flex tile-item"
                     key="MANAGE_FIRMWARES"
                   >
                     <Component
@@ -183,7 +189,7 @@ exports[`Header Component Renders correctly 1`] = `
                     </Component>
                   </div>
                   <div
-                    className="mb-30 is-flex"
+                    className="mb-30 is-flex tile-item"
                     key="VERSION_INFORMATION"
                   >
                     <Component
@@ -207,7 +213,7 @@ exports[`Header Component Renders correctly 1`] = `
                     </Component>
                   </div>
                   <div
-                    className="mb-30 is-flex"
+                    className="mb-30 is-flex tile-item"
                     key="GIVE_FEEDBACK"
                   >
                     <Component
@@ -231,7 +237,7 @@ exports[`Header Component Renders correctly 1`] = `
                     </Component>
                   </div>
                   <div
-                    className="mb-30 is-flex"
+                    className="mb-30 is-flex tile-item"
                     key="SETTINGS"
                   >
                     <Component
@@ -250,6 +256,30 @@ exports[`Header Component Renders correctly 1`] = `
                           className="text is-size-5 pt-10 pl-10 pr-10 pb-10"
                         >
                           SETTINGS
+                        </div>
+                      </button>
+                    </Component>
+                  </div>
+                  <div
+                    className="mb-30 is-flex tile-item"
+                    key="KNOWLEDGE_BASE"
+                  >
+                    <Component
+                      icon="sp-guide"
+                      onClick={[Function]}
+                      text="KNOWLEDGE_BASE"
+                    >
+                      <button
+                        className="tilex tile has-text-white is-flex is-vertical space-around"
+                        onClick={[Function]}
+                      >
+                        <div
+                          className="sp is-size-1 sp-guide"
+                        />
+                        <div
+                          className="text is-size-5 pt-10 pl-10 pr-10 pb-10"
+                        >
+                          KNOWLEDGE_BASE
                         </div>
                       </button>
                     </Component>
@@ -377,6 +407,12 @@ exports[`Header Component Renders text instead of logo 1`] = `
                   "icon": "sp-gear",
                   "text": "SETTINGS",
                 },
+                Object {
+                  "component": [Function],
+                  "display": true,
+                  "icon": "sp-guide",
+                  "text": "KNOWLEDGE_BASE",
+                },
               ]
             }
           >
@@ -387,7 +423,7 @@ exports[`Header Component Renders text instead of logo 1`] = `
                 className="menuitems mt-15"
               >
                 <div
-                  className="mb-30 is-flex"
+                  className="mb-30 is-flex tile-item"
                   key="CHANGE_ADDRESS"
                 >
                   <Component
@@ -411,7 +447,7 @@ exports[`Header Component Renders text instead of logo 1`] = `
                   </Component>
                 </div>
                 <div
-                  className="mb-30 is-flex"
+                  className="mb-30 is-flex tile-item"
                   key="MANAGE_FIRMWARES"
                 >
                   <Component
@@ -435,7 +471,7 @@ exports[`Header Component Renders text instead of logo 1`] = `
                   </Component>
                 </div>
                 <div
-                  className="mb-30 is-flex"
+                  className="mb-30 is-flex tile-item"
                   key="VERSION_INFORMATION"
                 >
                   <Component
@@ -459,7 +495,7 @@ exports[`Header Component Renders text instead of logo 1`] = `
                   </Component>
                 </div>
                 <div
-                  className="mb-30 is-flex"
+                  className="mb-30 is-flex tile-item"
                   key="GIVE_FEEDBACK"
                 >
                   <Component
@@ -483,7 +519,7 @@ exports[`Header Component Renders text instead of logo 1`] = `
                   </Component>
                 </div>
                 <div
-                  className="mb-30 is-flex"
+                  className="mb-30 is-flex tile-item"
                   key="SETTINGS"
                 >
                   <Component
@@ -502,6 +538,30 @@ exports[`Header Component Renders text instead of logo 1`] = `
                         className="text is-size-5 pt-10 pl-10 pr-10 pb-10"
                       >
                         SETTINGS
+                      </div>
+                    </button>
+                  </Component>
+                </div>
+                <div
+                  className="mb-30 is-flex tile-item"
+                  key="KNOWLEDGE_BASE"
+                >
+                  <Component
+                    icon="sp-guide"
+                    onClick={[Function]}
+                    text="KNOWLEDGE_BASE"
+                  >
+                    <button
+                      className="tilex tile has-text-white is-flex is-vertical space-around"
+                      onClick={[Function]}
+                    >
+                      <div
+                        className="sp is-size-1 sp-guide"
+                      />
+                      <div
+                        className="text is-size-5 pt-10 pl-10 pr-10 pb-10"
+                      >
+                        KNOWLEDGE_BASE
                       </div>
                     </button>
                   </Component>

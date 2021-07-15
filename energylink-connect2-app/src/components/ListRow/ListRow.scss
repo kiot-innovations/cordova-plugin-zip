@@ -1,0 +1,39 @@
+@import '~@sunpower/theme-dark/styles/variables';
+
+.row {
+  background-color: $silver-sand4;
+  text-align: left;
+  padding: $font-size-big $font-size-big $font-size;
+  font-family: $font;
+  letter-spacing: 0;
+  border-radius: 5px;
+  cursor: pointer;
+
+  &-header {
+    color: $white;
+    font-size: 18px;
+    display: grid;
+    grid-template-columns: 1fr 20% 20px;
+    margin-bottom: 5px;
+  }
+
+  &-trigger {
+    text-align: right;
+
+    .download {
+      color: $sun;
+    }
+  }
+
+  &-title {
+    display: flex;
+  }
+
+  &-actions {
+    text-align: right;
+    padding-right: 15px;
+  }
+}
+.break-word {
+  word-break: break-all;
+}

@@ -33,7 +33,7 @@ function MenuItemsContainer({ items }) {
         {items.map(menuItem =>
           either(
             menuItem.display,
-            <div className="mb-30 is-flex" key={menuItem.text}>
+            <div className="mb-30 is-flex tile-item" key={menuItem.text}>
               <Tile
                 icon={menuItem.icon}
                 text={t(menuItem.text)}

@@ -21,6 +21,12 @@ $headerHeight: 60px;
     margin: auto;
   }
 
+  .tile-item {
+    .text {
+      min-height: 67px;
+    }
+  }
+
   .superuser-options {
     .tilex {
       background-color: rgba(196, 196, 196, 0.1);

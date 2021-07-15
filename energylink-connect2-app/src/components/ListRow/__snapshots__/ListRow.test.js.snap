@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ListRow component renders correctly 1`] = `
+<div
+  className="row"
+  onClick={null}
+>
+  <div
+    className="row-header"
+  >
+    <div
+      className="row-title"
+    >
+      <span
+        className="has-text-weight-bold"
+      >
+        TITLE
+      </span>
+    </div>
+    <div
+      className="row-trigger"
+    >
+      <div
+        className="download"
+      >
+        <span
+          className="sp-download is-size-4"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+`;
