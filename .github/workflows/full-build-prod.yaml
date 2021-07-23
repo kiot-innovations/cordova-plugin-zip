@@ -42,10 +42,31 @@ jobs:
           node-version: ${{ env.NODE_VERSION }}
           registry-url: 'https://registry.npmjs.org'
 
+      - name: Restore cached plugins folder
+        id: cordova-plugins
+        uses: actions/cache@v2
+        env:
+          cache-name: cache-plugins-folder
+        with:
+          path: |
+            plugins
+          key: ${{ env.cache-name }}-${{ hashFiles('package-lock.json') }}
+
+      - name: Restore cached webapp node_modules folder
+        id: webapp-node-modules
+        uses: actions/cache@v2
+        env:
+          cache-name: cache-webapp-nm-folder
+        with:
+          path: |
+            energylink-connect2-app/node_modules
+          key: ${{ runner.os }}-${{ env.cache-name }}-${{ hashFiles('energylink-connect2-app/package-lock.json') }}
+
       #
-      # Native Application
+      # Webapp Application
       #
       - name: Install Dependencies
+        if: steps.webapp-node-modules.outputs.cache-hit != 'true'
         run: npm install
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
@@ -70,7 +91,8 @@ jobs:
         working-directory: energylink-connect2-app
 
       #
-      # Configure environment for iOS and Android build
+      # Configure application name for iOS and Android build
+      # according to the environment (test, prod, etc)
       #
       - name: Set the application environment to ${{ env.APP_ENV }}
         run: |
