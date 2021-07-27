@@ -5,7 +5,6 @@ import ReactGA from 'react-ga'
 
 import '@sunpower/theme-dark'
 import App from './App'
-
 const GAproperty = process.env.REACT_APP_IS_MOBILE
   ? process.env.NODE_ENV === 'production'
     ? 'UA-150756685-2'
