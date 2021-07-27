@@ -1,6 +1,8 @@
 import React from 'react'
-import RMAMiDiscovery from '.'
 import * as ReactDOM from 'react-dom'
+
+import RMAMiDiscovery from '.'
+
 import * as i18n from 'shared/i18n'
 
 describe('RMAMiDiscovery page', () => {

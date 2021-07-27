@@ -1,20 +1,13 @@
 import { includes, pathOr } from 'ramda'
 import { ofType } from 'redux-observable'
 import { EMPTY, from, of, timer } from 'rxjs'
-import {
-  catchError,
-  exhaustMap,
-  map,
-  switchMap,
-  takeUntil
-} from 'rxjs/operators'
+import { catchError, exhaustMap, switchMap, takeUntil } from 'rxjs/operators'
 
 import {
   PVS_CONNECTION_SUCCESS,
   SET_CONNECTION_STATUS,
   STOP_NETWORK_POLLING
 } from 'state/actions/network'
-import { EMPTY_ACTION } from 'state/actions/share'
 import { appConnectionStatus } from 'state/reducers/network'
 
 const fetchSSID = async ssid => {
@@ -44,14 +37,14 @@ export const networkPollingEpic = (action$, state$) => {
   return action$.pipe(
     ofType(PVS_CONNECTION_SUCCESS.getType()),
     switchMap(() =>
-      timer(0, 1000).pipe(
+      timer(0, 5000).pipe(
         takeUntil(stopPolling$),
         exhaustMap(() =>
           from(fetchSSID(state.network.SSID)).pipe(
-            map(result => {
+            switchMap(result => {
               return state.network.connectionStatus !== result
-                ? SET_CONNECTION_STATUS(result)
-                : EMPTY_ACTION()
+                ? of(SET_CONNECTION_STATUS(result))
+                : EMPTY
             }),
             catchError(() =>
               pathOr(

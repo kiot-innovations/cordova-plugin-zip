@@ -1,6 +1,8 @@
 import React from 'react'
-import RMASnList from '.'
 import * as ReactDOM from 'react-dom'
+
+import RMASnList from '.'
+
 import * as i18n from 'shared/i18n'
 
 describe('RMASnList page', () => {

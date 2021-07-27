@@ -1,6 +1,9 @@
 import React from 'react'
-import ESSHealthCheck from '.'
+
 import { rmaModes } from '../../state/reducers/rma'
+
+import ESSHealthCheck from '.'
+
 import * as i18n from 'shared/i18n'
 
 describe('ESSHealthCheck page', () => {

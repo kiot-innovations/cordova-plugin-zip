@@ -1,6 +1,8 @@
-import React from 'react'
-import PVSVersionInformation from '.'
 import { shallow } from 'enzyme'
+import React from 'react'
+
+import PVSVersionInformation from '.'
+
 import * as i18n from 'shared/i18n'
 
 describe('PVS Version Information page', () => {

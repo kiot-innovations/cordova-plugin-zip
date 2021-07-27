@@ -1,5 +1,7 @@
 import React from 'react'
+
 import ExistingDevices from '.'
+
 import * as i18n from 'shared/i18n'
 
 describe('ExistingDevices page', () => {

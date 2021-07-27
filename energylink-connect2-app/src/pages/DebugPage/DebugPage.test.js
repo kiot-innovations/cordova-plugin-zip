@@ -1,5 +1,7 @@
 import React from 'react'
+
 import Data from '.'
+
 import * as i18n from 'shared/i18n'
 
 describe('Data page', () => {

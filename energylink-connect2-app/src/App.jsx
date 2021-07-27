@@ -1,4 +1,5 @@
 import * as Sentry from '@sentry/browser'
+import { Offline as OfflineIntegration } from '@sentry/integrations'
 import { Integrations } from '@sentry/tracing'
 import React, { useEffect } from 'react'
 import { Provider } from 'react-redux'
@@ -13,7 +14,7 @@ import ModalWrapper from 'components/GlobalModal/Wrapper'
 import HeaderHoc from 'components/Header'
 import Routes from 'routes'
 import { CHECK_LOCATION_PERMISSION_INIT } from 'state/actions/permissions'
-import { SENTRY_QUEUE_EVENT, SENTRY_START_LISTENER } from 'state/actions/sentry'
+import { SENTRY_QUEUE_EVENT } from 'state/actions/sentry'
 import { configureStore } from 'state/store'
 
 const { store, persistor } = configureStore({})
@@ -31,14 +32,16 @@ Sentry.init({
     return null
   },
   release: appVersion(),
-  integrations: [new Integrations.BrowserTracing()],
+  integrations: [
+    new Integrations.BrowserTracing(),
+    new OfflineIntegration({ maxStoredEvents: 100 })
+  ],
   tracesSampleRate: 1.0,
   environment: process.env.REACT_APP_FLAVOR
 })
 
 const App = () => {
   useEffect(() => {
-    store.dispatch(SENTRY_START_LISTENER())
     store.dispatch(CHECK_LOCATION_PERMISSION_INIT())
   }, [])
 

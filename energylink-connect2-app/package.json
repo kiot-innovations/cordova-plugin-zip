@@ -25,6 +25,7 @@
   },
   "dependencies": {
     "@sentry/browser": "^6.5.1",
+    "@sentry/integrations": "^6.10.0",
     "@sentry/tracing": "^6.3.6",
     "@sunpower/nav": "^0.1.38",
     "@sunpower/panel-layout-tool": "^2.0.3",

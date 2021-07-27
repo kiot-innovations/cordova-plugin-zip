@@ -1,8 +1,10 @@
 import React from 'react'
+
 import Data from '.'
+
+import * as i18n from 'shared/i18n'
 import { DATA_SOURCES } from 'state/actions/user'
 import * as userActions from 'state/actions/user'
-import * as i18n from 'shared/i18n'
 
 describe('Data page', () => {
   const provider = {
