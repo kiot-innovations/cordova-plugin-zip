@@ -1,0 +1,335 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RMASnList page render correctly 1`] = `
+<BrowserRouter
+  keyLength={0}
+>
+  <Router
+    history={
+      Object {
+        "action": "POP",
+        "block": [Function],
+        "createHref": [Function],
+        "go": [Function],
+        "goBack": [Function],
+        "goForward": [Function],
+        "length": 1,
+        "listen": [Function],
+        "location": Object {
+          "hash": "",
+          "pathname": "/",
+          "search": "",
+          "state": undefined,
+        },
+        "push": [Function],
+        "replace": [Function],
+      }
+    }
+  >
+    <Provider
+      store={
+        Object {
+          "clearActions": [Function],
+          "dispatch": [Function],
+          "getActions": [Function],
+          "getState": [Function],
+          "replaceReducer": [Function],
+          "subscribe": [Function],
+        }
+      }
+    >
+      <RMASnList>
+        <BlockUi
+          blocking={false}
+          className="snlist-blockui"
+          loader={[Function]}
+          message="OPENING_CAMERA"
+          renderChildren={true}
+          tag="div"
+        >
+          <div
+            aria-busy={false}
+            className="snlist-blockui"
+          >
+            <div
+              className="snlist is-vertical has-text-centered pl-10 pr-10"
+            >
+              <div
+                className="top-text"
+              >
+                <span
+                  className="is-uppercase has-text-weight-bold"
+                >
+                  SCAN_MI_LABELS
+                </span>
+                <span
+                  className="has-text-white"
+                />
+              </div>
+              <div
+                className="flex-inverter-list"
+              >
+                <Collapsible
+                  actions={
+                    <span
+                      className="is-secondary has-no-border"
+                    >
+                      0
+                    </span>
+                  }
+                  title="NEW_INVERTERS"
+                >
+                  <div
+                    className="collapsible"
+                  >
+                    <div
+                      className="collapsible-header"
+                      onClick={[Function]}
+                    >
+                      <div
+                        className="collapsible-title"
+                      >
+                        <span />
+                        <span
+                          className="has-text-weight-bold"
+                        >
+                          NEW_INVERTERS
+                        </span>
+                      </div>
+                      <div
+                        className="collapsible-actions"
+                      >
+                        <span
+                          className="is-secondary has-no-border"
+                        >
+                          0
+                        </span>
+                      </div>
+                      <div
+                        className="collapsible-trigger"
+                      >
+                        <div
+                          className="chevron"
+                        >
+                          <span
+                            className="sp-chevron-up"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      className="collapsible-content collapsed"
+                    >
+                      <div
+                        className="rma-sn"
+                      >
+                        <div
+                          className="rma-sn-list mb-10"
+                        >
+                          <span>
+                            SCAN_HINT
+                          </span>
+                        </div>
+                        <ManualEntryForm
+                          callback={[Function]}
+                          serialNumber=""
+                        >
+                          <form
+                            className="sn-manual-entry"
+                            onSubmit={[Function]}
+                          >
+                            <div
+                              className="is-flex file buttons-container"
+                            >
+                              <div
+                                className="ifield mr-10"
+                              >
+                                <Component
+                                  autoComplete="barcode"
+                                  className="field-barcode"
+                                  input={
+                                    Object {
+                                      "name": "barcode",
+                                      "onBlur": [Function],
+                                      "onChange": [Function],
+                                      "onFocus": [Function],
+                                      "pattern": "\\\\d*",
+                                      "value": "",
+                                    }
+                                  }
+                                  meta={
+                                    Object {
+                                      "active": false,
+                                      "data": Object {},
+                                      "dirty": false,
+                                      "dirtySinceLastSubmit": false,
+                                      "error": undefined,
+                                      "initial": "",
+                                      "invalid": false,
+                                      "length": undefined,
+                                      "modified": false,
+                                      "pristine": true,
+                                      "submitError": undefined,
+                                      "submitFailed": false,
+                                      "submitSucceeded": false,
+                                      "submitting": false,
+                                      "touched": false,
+                                      "valid": true,
+                                      "validating": false,
+                                      "visited": false,
+                                    }
+                                  }
+                                  placeholder="ENTER_SERIAL_MANUALLY"
+                                  type="number"
+                                >
+                                  <div
+                                    className="field"
+                                  >
+                                    <p
+                                      className="control"
+                                    >
+                                      <input
+                                        autoComplete="barcode"
+                                        className="input field-barcode"
+                                        disabled={false}
+                                        id="barcode"
+                                        name="barcode"
+                                        onBlur={[Function]}
+                                        onChange={[Function]}
+                                        onFocus={[Function]}
+                                        pattern="\\\\d*"
+                                        placeholder="ENTER_SERIAL_MANUALLY"
+                                        type="number"
+                                        value=""
+                                      />
+                                    </p>
+                                  </div>
+                                </Component>
+                              </div>
+                              <button
+                                className="button is-paddingless is-primary has-text-weight-bold is-uppercase is-outlined"
+                                disabled={true}
+                                type="submit"
+                              >
+                                ADD
+                              </button>
+                            </div>
+                          </form>
+                        </ManualEntryForm>
+                      </div>
+                    </div>
+                  </div>
+                </Collapsible>
+                <div
+                  className="mt-20"
+                />
+                <Collapsible
+                  actions={
+                    <span
+                      className="is-secondary has-no-border"
+                    >
+                      0
+                    </span>
+                  }
+                  title="EXISTING_INVERTERS"
+                >
+                  <div
+                    className="collapsible"
+                  >
+                    <div
+                      className="collapsible-header"
+                      onClick={[Function]}
+                    >
+                      <div
+                        className="collapsible-title"
+                      >
+                        <span />
+                        <span
+                          className="has-text-weight-bold"
+                        >
+                          EXISTING_INVERTERS
+                        </span>
+                      </div>
+                      <div
+                        className="collapsible-actions"
+                      >
+                        <span
+                          className="is-secondary has-no-border"
+                        >
+                          0
+                        </span>
+                      </div>
+                      <div
+                        className="collapsible-trigger"
+                      >
+                        <div
+                          className="chevron"
+                        >
+                          <span
+                            className="sp-chevron-up"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      className="collapsible-content collapsed"
+                    >
+                      <div
+                        className="rma-sn"
+                      >
+                        <div
+                          className="rma-sn-list"
+                        >
+                          <span>
+                            SCAN_HINT
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </Collapsible>
+              </div>
+              <div
+                className="sn-buttons"
+              >
+                <ScanButtons
+                  canScanMore={true}
+                  countSN={[Function]}
+                  fetchingSN={false}
+                  onScanMore={[Function]}
+                >
+                  <div
+                    className="sn-buttons"
+                  >
+                    <button
+                      className="button half-button-padding is-secondary is-uppercase trigger-scan mr-10"
+                      disabled={false}
+                      onClick={[Function]}
+                    >
+                      SCAN_MORE
+                    </button>
+                    <button
+                      className="button half-button-padding is-primary is-uppercase trigger-scan"
+                      disabled={false}
+                      onClick={[Function]}
+                    >
+                      CONTINUE
+                    </button>
+                  </div>
+                </ScanButtons>
+                <button
+                  className="button has-text-centered is-uppercase is-secondary has-no-border pl-0 pr-0"
+                  onClick={[Function]}
+                >
+                  LEGACY_DISCOVERY
+                </button>
+              </div>
+            </div>
+            <span />
+          </div>
+        </BlockUi>
+      </RMASnList>
+    </Provider>
+  </Router>
+</BrowserRouter>
+`;

@@ -1,0 +1,387 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ESSHealthCheck page render correctly 1`] = `
+Object {
+  "component": <BrowserRouter
+    keyLength={0}
+  >
+    <Router
+      history={
+        Object {
+          "action": "POP",
+          "block": [Function],
+          "createHref": [Function],
+          "go": [Function],
+          "goBack": [Function],
+          "goForward": [Function],
+          "length": 1,
+          "listen": [Function],
+          "location": Object {
+            "hash": "",
+            "pathname": "/",
+            "search": "",
+            "state": undefined,
+          },
+          "push": [Function],
+          "replace": [Function],
+        }
+      }
+    >
+      <Provider
+        store={
+          Object {
+            "clearActions": [Function],
+            "dispatch": [Function],
+            "getActions": [Function],
+            "getState": [Function],
+            "replaceReducer": [Function],
+            "subscribe": [Function],
+          }
+        }
+      >
+        <ESSHealthCheckErrors>
+          <div
+            className="pl-10 pr-10"
+          >
+            <ErrorListScreen
+              errors={
+                Array [
+                  Object {
+                    "device_sn": "00001B3DDACD",
+                    "error_code": "32058",
+                    "error_message": "f72_external_contactor_malfunction_critical",
+                    "error_name": "f72_external_contactor_malfunction_critical",
+                    "last_occurence": "2020-07-30 18:37:20",
+                    "value": Object {
+                      "unit": "",
+                      "value": 256,
+                    },
+                  },
+                  Object {
+                    "device_sn": "Serial-MIDC-Saturn",
+                    "error_code": "11018",
+                    "error_message": "hubplus_inverter_aux_under_voltage_warning",
+                    "error_name": "hubplus_inverter_aux_under_voltage_warning",
+                    "last_occurence": "2020-07-30 18:37:20",
+                    "value": Object {
+                      "unit": "",
+                      "value": 0,
+                    },
+                  },
+                  Object {
+                    "device_sn": "Serial-MIDC-Saturn",
+                    "error_code": "31003",
+                    "error_message": "contactor_stuck_open_critical",
+                    "error_name": "contactor_stuck_open_critical",
+                    "last_occurence": "2020-07-30 18:37:20",
+                    "value": Object {
+                      "unit": "",
+                      "value": 1,
+                    },
+                  },
+                ]
+              }
+            >
+              <div
+                className="error-list pr-10 pl-10"
+              >
+                <div
+                  className="error-list-header has-text-centered"
+                >
+                  <span
+                    className="has-text-primary sp-chevron-left is-size-4"
+                    onClick={[Function]}
+                  />
+                  <span
+                    className="has-text-weight-bold"
+                  >
+                    ERROR_LIST
+                  </span>
+                  <span />
+                </div>
+                <div
+                  className="error-list-container"
+                >
+                  <ErrorComponent
+                    code="32058"
+                    errorInfo={
+                      Object {
+                        "code": "32058",
+                        "display": true,
+                        "event_name": "f72_external_contactor_malfunction_critical",
+                        "in_use": true,
+                        "possible_causes": "Could be one of the following:
+- Aux Cable severed
+- Aux Cable terminations are incorrect
+- Bad inverter comm card",
+                        "recommended_actions": "Try the following:
+- Check for continuity on Aux cable terminations.
+- Check that the conductors are terminated correctly and in the right order on both ends of the cable.
+- Measure the voltage on the Aux terminals (Red to Black) of the inverter. It should read 12V. If you can’t read any voltage, the inverter COMM card may be defective and the unit may need to be serviced.",
+                      }
+                    }
+                    key="32058"
+                    t={[Function]}
+                    title="MID contactor malfunction"
+                  >
+                    <div
+                      className="error-component mb-10"
+                    >
+                      <div
+                        className="error-text"
+                      >
+                        <span
+                          className="error-title has-text-white has-text-weight-bold"
+                        >
+                          MID contactor malfunction
+                        </span>
+                        <span
+                          className="error-code"
+                        >
+                           
+                          ERROR_CODE 32058
+                        </span>
+                        <span
+                          className="has-text-primary has-text-weight-bold"
+                        >
+                          FIX_ERROR_TO_PROCEED
+                        </span>
+                      </div>
+                      <div>
+                        <Link
+                          className="has-text-primary details is-flex"
+                          to={
+                            Object {
+                              "pathname": "/error/32058",
+                              "state": Object {
+                                "code": "32058",
+                                "display": true,
+                                "event_name": "f72_external_contactor_malfunction_critical",
+                                "in_use": true,
+                                "possible_causes": "Could be one of the following:
+- Aux Cable severed
+- Aux Cable terminations are incorrect
+- Bad inverter comm card",
+                                "recommended_actions": "Try the following:
+- Check for continuity on Aux cable terminations.
+- Check that the conductors are terminated correctly and in the right order on both ends of the cable.
+- Measure the voltage on the Aux terminals (Red to Black) of the inverter. It should read 12V. If you can’t read any voltage, the inverter COMM card may be defective and the unit may need to be serviced.",
+                              },
+                            }
+                          }
+                        >
+                          <LinkAnchor
+                            className="has-text-primary details is-flex"
+                            href="/error/32058"
+                            navigate={[Function]}
+                          >
+                            <a
+                              className="has-text-primary details is-flex"
+                              href="/error/32058"
+                              onClick={[Function]}
+                            >
+                              <span
+                                className="sp sp-chevron-right auto is-size-2"
+                              />
+                            </a>
+                          </LinkAnchor>
+                        </Link>
+                      </div>
+                    </div>
+                  </ErrorComponent>
+                  <ErrorComponent
+                    code="11018"
+                    errorInfo={
+                      Object {
+                        "code": "11018",
+                        "display": true,
+                        "event_name": "hubplus_inverter_aux_under_voltage_warning",
+                        "in_use": true,
+                        "possible_causes": "Aux cable between inverter and MIDC board in the Hub+ may not be properly made or installed.",
+                        "recommended_actions": "Check that all the connectors and conductors are properly made, terminated and seated. On the inverter and MIDC side.",
+                      }
+                    }
+                    key="11018"
+                    t={[Function]}
+                    title="Aux cable voltage low"
+                  >
+                    <div
+                      className="error-component mb-10"
+                    >
+                      <div
+                        className="error-text"
+                      >
+                        <span
+                          className="error-title has-text-white has-text-weight-bold"
+                        >
+                          Aux cable voltage low
+                        </span>
+                        <span
+                          className="error-code"
+                        >
+                           
+                          ERROR_CODE 11018
+                        </span>
+                      </div>
+                      <div>
+                        <Link
+                          className="has-text-primary details is-flex"
+                          to={
+                            Object {
+                              "pathname": "/error/11018",
+                              "state": Object {
+                                "code": "11018",
+                                "display": true,
+                                "event_name": "hubplus_inverter_aux_under_voltage_warning",
+                                "in_use": true,
+                                "possible_causes": "Aux cable between inverter and MIDC board in the Hub+ may not be properly made or installed.",
+                                "recommended_actions": "Check that all the connectors and conductors are properly made, terminated and seated. On the inverter and MIDC side.",
+                              },
+                            }
+                          }
+                        >
+                          <LinkAnchor
+                            className="has-text-primary details is-flex"
+                            href="/error/11018"
+                            navigate={[Function]}
+                          >
+                            <a
+                              className="has-text-primary details is-flex"
+                              href="/error/11018"
+                              onClick={[Function]}
+                            >
+                              <span
+                                className="sp sp-chevron-right auto is-size-2"
+                              />
+                            </a>
+                          </LinkAnchor>
+                        </Link>
+                      </div>
+                    </div>
+                  </ErrorComponent>
+                  <ErrorComponent
+                    code="31003"
+                    errorInfo={
+                      Object {
+                        "code": "31003",
+                        "display": true,
+                        "event_name": "contactor_stuck_open_critical",
+                        "in_use": true,
+                        "possible_causes": "A fault with the MIDC board or with the transfer switch has occurred.",
+                        "recommended_actions": "Check MIDC LEDs
+Check MID cables for damage
+Check for damage between PVS and MIDC communications cables.
+Check the Aux cable is correctly connected an terminated.
+If problem persists, please contact SunPower.
+",
+                      }
+                    }
+                    key="31003"
+                    t={[Function]}
+                    title="Transfer switch contactor stuck open "
+                  >
+                    <div
+                      className="error-component mb-10"
+                    >
+                      <div
+                        className="error-text"
+                      >
+                        <span
+                          className="error-title has-text-white has-text-weight-bold"
+                        >
+                          Transfer switch contactor stuck open 
+                        </span>
+                        <span
+                          className="error-code"
+                        >
+                           
+                          ERROR_CODE 31003
+                        </span>
+                        <span
+                          className="has-text-primary has-text-weight-bold"
+                        >
+                          FIX_ERROR_TO_PROCEED
+                        </span>
+                      </div>
+                      <div>
+                        <Link
+                          className="has-text-primary details is-flex"
+                          to={
+                            Object {
+                              "pathname": "/error/31003",
+                              "state": Object {
+                                "code": "31003",
+                                "display": true,
+                                "event_name": "contactor_stuck_open_critical",
+                                "in_use": true,
+                                "possible_causes": "A fault with the MIDC board or with the transfer switch has occurred.",
+                                "recommended_actions": "Check MIDC LEDs
+Check MID cables for damage
+Check for damage between PVS and MIDC communications cables.
+Check the Aux cable is correctly connected an terminated.
+If problem persists, please contact SunPower.
+",
+                              },
+                            }
+                          }
+                        >
+                          <LinkAnchor
+                            className="has-text-primary details is-flex"
+                            href="/error/31003"
+                            navigate={[Function]}
+                          >
+                            <a
+                              className="has-text-primary details is-flex"
+                              href="/error/31003"
+                              onClick={[Function]}
+                            >
+                              <span
+                                className="sp sp-chevron-right auto is-size-2"
+                              />
+                            </a>
+                          </LinkAnchor>
+                        </Link>
+                      </div>
+                    </div>
+                  </ErrorComponent>
+                </div>
+                <div>
+                  <div
+                    className="has-text-centered error-list-hint"
+                  >
+                    <span>
+                      PLEASE_FIX_ERRORS
+                    </span>
+                    <span>
+                      GO_BACK_AND_FIX
+                    </span>
+                  </div>
+                  <div
+                    className="has-text-centered mt-10"
+                  >
+                    <span
+                      className="has-text-primary has-text-weight-bold"
+                      onClick={[Function]}
+                      role="button"
+                    >
+                      CANCEL_COMMISSION
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </ErrorListScreen>
+          </div>
+        </ESSHealthCheckErrors>
+      </Provider>
+    </Router>
+  </BrowserRouter>,
+  "store": Object {
+    "clearActions": [Function],
+    "dispatch": [Function],
+    "getActions": [Function],
+    "getState": [Function],
+    "replaceReducer": [Function],
+    "subscribe": [Function],
+  },
+}
+`;

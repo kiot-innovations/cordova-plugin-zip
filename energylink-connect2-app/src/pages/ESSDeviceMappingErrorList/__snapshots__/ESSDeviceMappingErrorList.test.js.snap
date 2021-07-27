@@ -1,0 +1,196 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ESSDeviceMappingErrorList page render correctly 1`] = `
+Object {
+  "component": <BrowserRouter
+    keyLength={0}
+  >
+    <Router
+      history={
+        Object {
+          "action": "POP",
+          "block": [Function],
+          "createHref": [Function],
+          "go": [Function],
+          "goBack": [Function],
+          "goForward": [Function],
+          "length": 1,
+          "listen": [Function],
+          "location": Object {
+            "hash": "",
+            "pathname": "/",
+            "search": "",
+            "state": undefined,
+          },
+          "push": [Function],
+          "replace": [Function],
+        }
+      }
+    >
+      <Provider
+        store={
+          Object {
+            "clearActions": [Function],
+            "dispatch": [Function],
+            "getActions": [Function],
+            "getState": [Function],
+            "replaceReducer": [Function],
+            "subscribe": [Function],
+          }
+        }
+      >
+        <ESSDeviceMappingErrorList>
+          <ErrorListScreen
+            errors={
+              Array [
+                Object {
+                  "device_sn": "048572340857NND",
+                  "error_code": "4.5.1",
+                  "error_message": "Critical: low battery SOH.",
+                  "error_name": "UNDER_VOLT_ALARM",
+                  "last_occurrence": "2020-02-15 01:23:45",
+                  "value": Object {
+                    "unit": "string",
+                    "value": 0,
+                  },
+                },
+              ]
+            }
+          >
+            <div
+              className="error-list pr-10 pl-10"
+            >
+              <div
+                className="error-list-header has-text-centered"
+              >
+                <span
+                  className="has-text-primary sp-chevron-left is-size-4"
+                  onClick={[Function]}
+                />
+                <span
+                  className="has-text-weight-bold"
+                >
+                  ERROR_LIST
+                </span>
+                <span />
+              </div>
+              <div
+                className="error-list-container"
+              >
+                <ErrorComponent
+                  code="4.5.1"
+                  errorInfo={
+                    Object {
+                      "device_sn": "048572340857NND",
+                      "error_name": "UNDER_VOLT_ALARM",
+                      "last_occurrence": "2020-02-15 01:23:45",
+                      "value": Object {
+                        "unit": "string",
+                        "value": 0,
+                      },
+                    }
+                  }
+                  key="4.5.1"
+                  t={[Function]}
+                  title="Critical: low battery SOH."
+                >
+                  <div
+                    className="error-component mb-10"
+                  >
+                    <div
+                      className="error-text"
+                    >
+                      <span
+                        className="error-title has-text-white has-text-weight-bold"
+                      >
+                        Critical: low battery SOH.
+                      </span>
+                      <span
+                        className="error-code"
+                      >
+                         
+                        ERROR_CODE 4.5.1
+                      </span>
+                      <span
+                        className="has-text-primary has-text-weight-bold"
+                      >
+                        FIX_ERROR_TO_PROCEED
+                      </span>
+                    </div>
+                    <div>
+                      <Link
+                        className="has-text-primary details is-flex"
+                        to={
+                          Object {
+                            "pathname": "/error/4.5.1",
+                            "state": Object {
+                              "device_sn": "048572340857NND",
+                              "error_name": "UNDER_VOLT_ALARM",
+                              "last_occurrence": "2020-02-15 01:23:45",
+                              "value": Object {
+                                "unit": "string",
+                                "value": 0,
+                              },
+                            },
+                          }
+                        }
+                      >
+                        <LinkAnchor
+                          className="has-text-primary details is-flex"
+                          href="/error/4.5.1"
+                          navigate={[Function]}
+                        >
+                          <a
+                            className="has-text-primary details is-flex"
+                            href="/error/4.5.1"
+                            onClick={[Function]}
+                          >
+                            <span
+                              className="sp sp-chevron-right auto is-size-2"
+                            />
+                          </a>
+                        </LinkAnchor>
+                      </Link>
+                    </div>
+                  </div>
+                </ErrorComponent>
+              </div>
+              <div>
+                <div
+                  className="has-text-centered error-list-hint"
+                >
+                  <span>
+                    PLEASE_FIX_ERRORS
+                  </span>
+                  <span>
+                    GO_BACK_AND_FIX
+                  </span>
+                </div>
+                <div
+                  className="has-text-centered mt-10"
+                >
+                  <span
+                    className="has-text-primary has-text-weight-bold"
+                    onClick={[Function]}
+                    role="button"
+                  >
+                    CANCEL_COMMISSION
+                  </span>
+                </div>
+              </div>
+            </div>
+          </ErrorListScreen>
+        </ESSDeviceMappingErrorList>
+      </Provider>
+    </Router>
+  </BrowserRouter>,
+  "store": Object {
+    "clearActions": [Function],
+    "dispatch": [Function],
+    "getActions": [Function],
+    "getState": [Function],
+    "replaceReducer": [Function],
+    "subscribe": [Function],
+  },
+}
+`;

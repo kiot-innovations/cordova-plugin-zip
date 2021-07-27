@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PVS Version Information page render correctly 1`] = `
+<section
+  className="version-info is-flex tile is-vertical has-text-weight-bold pt-0 pr-10 pl-10 full-height"
+>
+  <h1
+    className="has-text-centered is-uppercase pb-20"
+  >
+    PRO_CONNECT_VERSION_INFORMATION
+  </h1>
+  <div
+    className="body has-text-white"
+  />
+  <div
+    className="currentVersion"
+  >
+    CURRENT_VERSION
+     
+    6.114.0
+  </div>
+</section>
+`;

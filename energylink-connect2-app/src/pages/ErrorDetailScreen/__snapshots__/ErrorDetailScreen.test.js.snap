@@ -1,0 +1,82 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ErrorDetailScreen page render correctly 1`] = `
+Object {
+  "component": <BrowserRouter
+    keyLength={0}
+  >
+    <Router
+      history={
+        Object {
+          "action": "POP",
+          "block": [Function],
+          "createHref": [Function],
+          "go": [Function],
+          "goBack": [Function],
+          "goForward": [Function],
+          "length": 1,
+          "listen": [Function],
+          "location": Object {
+            "hash": "",
+            "pathname": "/",
+            "search": "",
+            "state": undefined,
+          },
+          "push": [Function],
+          "replace": [Function],
+        }
+      }
+    >
+      <Provider
+        store={
+          Object {
+            "clearActions": [Function],
+            "dispatch": [Function],
+            "getActions": [Function],
+            "getState": [Function],
+            "replaceReducer": [Function],
+            "subscribe": [Function],
+          }
+        }
+      >
+        <ErrorDetailScreen>
+          <main
+            className="error-detail-screen"
+          >
+            <BackButton
+              currentStep="PREDISCOVERY"
+            >
+              <button
+                className="button is-primary is-outlined is-center mt-10 mb-10"
+                onClick={[Function]}
+              >
+                GO_BACK
+              </button>
+            </BackButton>
+            <div
+              className="mt-10 mb-10 ml-10 mr-10"
+            >
+              <h1
+                className="has-text-white is-size-5 has-text-weight-bold mb-10"
+              >
+                API_RESPONSE
+              </h1>
+              <span>
+                UNKNOWN_ERROR
+              </span>
+            </div>
+          </main>
+        </ErrorDetailScreen>
+      </Provider>
+    </Router>
+  </BrowserRouter>,
+  "store": Object {
+    "clearActions": [Function],
+    "dispatch": [Function],
+    "getActions": [Function],
+    "getState": [Function],
+    "replaceReducer": [Function],
+    "subscribe": [Function],
+  },
+}
+`;

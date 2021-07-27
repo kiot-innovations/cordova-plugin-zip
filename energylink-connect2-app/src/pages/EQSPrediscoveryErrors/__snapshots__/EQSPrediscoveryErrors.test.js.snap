@@ -1,0 +1,81 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EQSUpdateErrors page render correctly 1`] = `
+Object {
+  "component": <BrowserRouter
+    keyLength={0}
+  >
+    <Router
+      history={
+        Object {
+          "action": "POP",
+          "block": [Function],
+          "createHref": [Function],
+          "go": [Function],
+          "goBack": [Function],
+          "goForward": [Function],
+          "length": 1,
+          "listen": [Function],
+          "location": Object {
+            "hash": "",
+            "pathname": "/",
+            "search": "",
+            "state": undefined,
+          },
+          "push": [Function],
+          "replace": [Function],
+        }
+      }
+    >
+      <Provider
+        store={
+          Object {
+            "clearActions": [Function],
+            "dispatch": [Function],
+            "getActions": [Function],
+            "getState": [Function],
+            "replaceReducer": [Function],
+            "subscribe": [Function],
+          }
+        }
+      >
+        <EQSPrediscoveryErrors>
+          <ErrorListScreen
+            errors={Array []}
+          >
+            <div
+              className="error-list pr-10 pl-10 warning-list"
+            >
+              <div
+                className="error-list-header has-text-centered"
+              >
+                <span
+                  className="has-text-primary sp-chevron-left is-size-4"
+                  onClick={[Function]}
+                />
+                <span
+                  className="has-text-weight-bold"
+                >
+                  ERROR_LIST
+                </span>
+                <span />
+              </div>
+              <div
+                className="error-list-container"
+              />
+            </div>
+          </ErrorListScreen>
+        </EQSPrediscoveryErrors>
+      </Provider>
+    </Router>
+  </BrowserRouter>,
+  "store": Object {
+    "clearActions": [Function],
+    "dispatch": [Function],
+    "getActions": [Function],
+    "getState": [Function],
+    "replaceReducer": [Function],
+    "subscribe": [Function],
+  },
+}
+`;

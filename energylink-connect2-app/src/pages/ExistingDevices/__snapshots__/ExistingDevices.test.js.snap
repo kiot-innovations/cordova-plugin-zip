@@ -1,0 +1,1592 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ExistingDevices page render correctly 1`] = `
+Object {
+  "component": <BrowserRouter
+    keyLength={0}
+  >
+    <Router
+      history={
+        Object {
+          "action": "POP",
+          "block": [Function],
+          "createHref": [Function],
+          "go": [Function],
+          "goBack": [Function],
+          "goForward": [Function],
+          "length": 1,
+          "listen": [Function],
+          "location": Object {
+            "hash": "",
+            "pathname": "/",
+            "search": "",
+            "state": undefined,
+          },
+          "push": [Function],
+          "replace": [Function],
+        }
+      }
+    >
+      <Provider
+        store={
+          Object {
+            "clearActions": [Function],
+            "dispatch": [Function],
+            "getActions": [Function],
+            "getState": [Function],
+            "replaceReducer": [Function],
+            "subscribe": [Function],
+          }
+        }
+      >
+        <ExistingDevices>
+          <div
+            className="existing-devices pl-10 pr-10"
+          >
+            <div
+              className="existing-devices-header has-text-centered"
+            >
+              <span
+                className="has-text-primary sp-chevron-left is-size-4"
+                onClick={[Function]}
+              />
+              <span
+                className="has-text-weight-bold"
+              >
+                EXISTING_DEVICES
+              </span>
+              <span />
+            </div>
+            <div
+              className="existing-devices-content"
+            >
+              <MicroinvertersGroup
+                allDevices={
+                  Array [
+                    Object {
+                      "ComDvcProdMdlNm": "PV Supervisor PVS6",
+                      "ComDvcSn": "ZT192585000549A0566",
+                      "ComProto": "MQTT",
+                      "ConnDvcSn": "29",
+                      "DvcCrtEps": 1602014528,
+                      "DvcKey": "ZT192585000549A0566_29_PA -Komodo 1.1",
+                      "DvcSubTy": "SUBTY_UNKNOWN",
+                      "DvcTy": "battery",
+                      "EvtMsgNm": "DeviceDiscoveryReport",
+                      "HdwVerNo": "3.202",
+                      "LastUpdEps": 1602014528,
+                      "MsgCmdTkn": "20d894c8-6dae-4f2f-b567-70d1fab400b0",
+                      "MsgCrtEps": 1602014511,
+                      "ParDvcSn": "00001B3E5A44_17_29",
+                      "ParmSetId": 1,
+                      "ProdFamNm": "BATTERY",
+                      "ProdMdlNm": "PA -Komodo 1.1",
+                      "SfwVerNo": "1.2",
+                      "SlavIp": "0",
+                    },
+                    Object {
+                      "ComDvcProdMdlNm": "PV Supervisor PVS6",
+                      "ComDvcSn": "ZT192585000549A0566",
+                      "ComIntfType": "mime",
+                      "ComProto": "MQTT",
+                      "ConnDvcSn": "E00121943008564",
+                      "DvcCrtEps": 1602014513,
+                      "DvcKey": "ZT192585000549A0566_E00121943008564_AC_Module_Type_E",
+                      "DvcSubTy": "SUBTY_UNKNOWN",
+                      "DvcTy": "inverter",
+                      "EvtMsgNm": "DeviceDiscoveryReport",
+                      "HdwVerNo": "4405",
+                      "LastData": Object {
+                        "freqHz": 59.975,
+                        "i3phsumA": 1.065,
+                        "iMppt1A": 5.295,
+                        "ltea3phsumKwh": 292.4636569931565,
+                        "msmtEps": "2020-10-07T19:15:00Z",
+                        "p3phsumKw": 0.26602,
+                        "pMppt1Kw": 0.274445,
+                        "prodMdlNm": "AC_Module_Type_E",
+                        "sn": "E00121943008564",
+                        "tHtsnkDegc": 51,
+                        "vMppt1V": 51.78,
+                        "vldFld2Msk": "1",
+                        "vldFldMsk": "8125",
+                        "vln3phavgV": 249.05,
+                      },
+                      "LastRcvdEps": 1602098100,
+                      "LastUpdEps": 1602088154,
+                      "MsgCmdTkn": "20d894c8-6dae-4f2f-b567-70d1fab400b0",
+                      "MsgCrtEps": 1602088154,
+                      "ParDvcSn": "ZT192585000549A0566",
+                      "ParmSetId": 1,
+                      "ProdFamNm": "SOLARBRIDGE",
+                      "ProdMdlNm": "AC_Module_Type_E",
+                      "SfwVerNo": "4.21.3",
+                      "SlavIp": "0",
+                    },
+                    Object {
+                      "ComDvcProdMdlNm": "PV Supervisor PVS6",
+                      "ComDvcSn": "ZT192585000549A0566",
+                      "ComProto": "MQTT",
+                      "ConnDvcSn": "ZT192585000549A0566-dcm",
+                      "DcmCtrlModeReportCtnt": Object {
+                        "BkupParams": Object {
+                          "SuccOpModeEnum": "SELF_CONSUMPTION",
+                        },
+                        "DmndTgtKw": 0,
+                        "EssOpModeEnum": "STANDBY",
+                        "PRto": 0,
+                        "TgtSocVal": 1,
+                      },
+                      "DvcCrtEps": 1602014526,
+                      "DvcKey": "ZT192585000549A0566_ZT192585000549A0566-dcm_HS-DCM-ctrl",
+                      "DvcTy": "dcm controller",
+                      "EvtMsgNm": "DcmCtrlModeReport",
+                      "LastData": Object {
+                        "essOpModeEnum": "SELF_CONSUMPTION",
+                        "msmtEps": "2020-10-06T20:25:00Z",
+                        "netDmndTgtKw": 10000000300000000,
+                        "prodMdlNm": "HS-DCM-ctrl",
+                        "sn": "ZT192585000549A0566-dcm",
+                        "vldFldMsk": "6",
+                      },
+                      "LastRcvdEps": 1602015900,
+                      "LastUpdEps": 1602014526,
+                      "MsgCrtEps": 1602014494,
+                      "ParDvcSn": "ZT192585000549A0566",
+                      "ParmSetId": 1,
+                      "ProdMdlNm": "HS-DCM-ctrl",
+                    },
+                    Object {
+                      "ComDvcProdMdlNm": "PV Supervisor PVS6",
+                      "ComDvcSn": "ZT192585000549A0566",
+                      "ComIntfType": "mime",
+                      "ComProto": "MQTT",
+                      "ConnDvcSn": "E00121948003841",
+                      "DvcCrtEps": 1602014513,
+                      "DvcKey": "ZT192585000549A0566_E00121948003841_AC_Module_Type_G",
+                      "DvcSubTy": "SUBTY_UNKNOWN",
+                      "DvcTy": "inverter",
+                      "EvtMsgNm": "DeviceDiscoveryReport",
+                      "HdwVerNo": "4400",
+                      "LastData": Object {
+                        "freqHz": 59.975,
+                        "iMppt1A": 0.085,
+                        "ltea3phsumKwh": 304.6805,
+                        "msmtEps": "2020-10-07T19:15:00Z",
+                        "pMppt1Kw": 0.00384,
+                        "prodMdlNm": "AC_Module_Type_G",
+                        "sn": "E00121948003841",
+                        "tHtsnkDegc": 50,
+                        "vMppt1V": 42.685,
+                        "vldFld2Msk": "1",
+                        "vldFldMsk": "8125",
+                        "vln3phavgV": 249.365,
+                      },
+                      "LastRcvdEps": 1602098100,
+                      "LastUpdEps": 1602088154,
+                      "MsgCmdTkn": "20d894c8-6dae-4f2f-b567-70d1fab400b0",
+                      "MsgCrtEps": 1602088154,
+                      "ParDvcSn": "ZT192585000549A0566",
+                      "ParmSetId": 1,
+                      "ProdFamNm": "SOLARBRIDGE",
+                      "ProdMdlNm": "AC_Module_Type_G",
+                      "SfwVerNo": "4.21.3",
+                      "SlavIp": "0",
+                    },
+                    Object {
+                      "ComDvcProdMdlNm": "PV Supervisor PVS6",
+                      "ComDvcSn": "ZT192585000549A0566",
+                      "ComIntfType": "mime",
+                      "ComProto": "MQTT",
+                      "ConnDvcSn": "E00121947168440",
+                      "DvcCrtEps": 1602014513,
+                      "DvcKey": "ZT192585000549A0566_E00121947168440_AC_Module_Type_G",
+                      "DvcSubTy": "SUBTY_UNKNOWN",
+                      "DvcTy": "inverter",
+                      "EvtMsgNm": "DeviceDiscoveryReport",
+                      "HdwVerNo": "4400",
+                      "LastData": Object {
+                        "freqHz": 59.975,
+                        "i3phsumA": 1.255,
+                        "iMppt1A": 9.275,
+                        "ltea3phsumKwh": 348.37279341317367,
+                        "msmtEps": "2020-10-07T19:15:00Z",
+                        "p3phsumKw": 0.314755,
+                        "pMppt1Kw": 0.328485,
+                        "prodMdlNm": "AC_Module_Type_G",
+                        "sn": "E00121947168440",
+                        "tHtsnkDegc": 55,
+                        "vMppt1V": 35.4,
+                        "vldFld2Msk": "1",
+                        "vldFldMsk": "8125",
+                        "vln3phavgV": 250.035,
+                      },
+                      "LastRcvdEps": 1602098100,
+                      "LastUpdEps": 1602088154,
+                      "MsgCmdTkn": "20d894c8-6dae-4f2f-b567-70d1fab400b0",
+                      "MsgCrtEps": 1602088154,
+                      "ParDvcSn": "ZT192585000549A0566",
+                      "ParmSetId": 1,
+                      "ProdFamNm": "SOLARBRIDGE",
+                      "ProdMdlNm": "AC_Module_Type_G",
+                      "SfwVerNo": "4.21.3",
+                      "SlavIp": "0",
+                    },
+                    Object {
+                      "ComDvcProdMdlNm": "PV Supervisor PVS6",
+                      "ComDvcSn": "ZT192585000549A0566",
+                      "ComIntfType": "sunspec",
+                      "ComProto": "MQTT",
+                      "ConnDvcSn": "00001B3E5A44",
+                      "DvcCrtEps": 1602014528,
+                      "DvcKey": "ZT192585000549A0566_00001B3E5A44_SchneiderElectric-XW6848-21",
+                      "DvcSubTy": "SUBTY_UNKNOWN",
+                      "DvcTy": "storage inverter",
+                      "EvtMsgNm": "DeviceDiscoveryReport",
+                      "LastUpdEps": 1602014528,
+                      "MsgCmdTkn": "20d894c8-6dae-4f2f-b567-70d1fab400b0",
+                      "MsgCrtEps": 1602014511,
+                      "ParDvcSn": "00001B3E5A44_17_29",
+                      "ParmSetId": 1,
+                      "ProdFamNm": "SCHNEIDER-XWPRO",
+                      "ProdMdlNm": "SchneiderElectric-XW6848-21",
+                      "SfwVerNo": "V1",
+                      "SlavIp": "88:3f:4a:a9:e5:ec",
+                    },
+                    Object {
+                      "ComDvcProdMdlNm": "PV Supervisor PVS6",
+                      "ComDvcSn": "ZT192585000549A0566",
+                      "ComIntfType": "mime",
+                      "ComProto": "MQTT",
+                      "ConnDvcSn": "PVS6M19250566p",
+                      "DvcCrtEps": 1602014513,
+                      "DvcKey": "ZT192585000549A0566_PVS6M19250566p_PVS6M0400p",
+                      "DvcSubTy": "SUBTY_UNKNOWN",
+                      "DvcTy": "power meter",
+                      "EvtMsgNm": "DeviceDiscoveryReport",
+                      "LastData": Object {
+                        "ctSclFctr": 50,
+                        "freqHz": 59.97721,
+                        "msmtEps": "2020-10-07T19:15:00Z",
+                        "netLtea3phsumKwh": 2057.26,
+                        "p3phsumKw": 2.5013638,
+                        "prodMdlNm": "PVS6M0400p",
+                        "q3phsumKvar": 0.071027845,
+                        "s3phsumKva": 2.5034857,
+                        "sn": "PVS6M19250566p",
+                        "totPfRto": 0.9991302,
+                        "vldFldMsk": "67109119",
+                      },
+                      "LastRcvdEps": 1602098100,
+                      "LastUpdEps": 1602088154,
+                      "MsgCmdTkn": "20d894c8-6dae-4f2f-b567-70d1fab400b0",
+                      "MsgCrtEps": 1602088154,
+                      "ParDvcSn": "ZT192585000549A0566",
+                      "ParmSetId": 1,
+                      "ProdFamNm": "PVS5-METER-P",
+                      "ProdMdlNm": "PVS6M0400p",
+                      "SfwVerNo": "3000",
+                      "SlavIp": "0",
+                    },
+                    Object {
+                      "ComDvcProdMdlNm": "PV Supervisor PVS6",
+                      "ComDvcSn": "ZT192585000549A0566",
+                      "ComProto": "MQTT",
+                      "ConnDvcSn": "17",
+                      "DvcCrtEps": 1602014528,
+                      "DvcKey": "ZT192585000549A0566_17_PA -Komodo 1.1",
+                      "DvcSubTy": "SUBTY_UNKNOWN",
+                      "DvcTy": "battery",
+                      "EvtMsgNm": "DeviceDiscoveryReport",
+                      "HdwVerNo": "3.202",
+                      "LastUpdEps": 1602014528,
+                      "MsgCmdTkn": "20d894c8-6dae-4f2f-b567-70d1fab400b0",
+                      "MsgCrtEps": 1602014511,
+                      "ParDvcSn": "00001B3E5A44_17_29",
+                      "ParmSetId": 1,
+                      "ProdFamNm": "BATTERY",
+                      "ProdMdlNm": "PA -Komodo 1.1",
+                      "SfwVerNo": "1.2",
+                      "SlavIp": "0",
+                    },
+                    Object {
+                      "ComDvcProdMdlNm": "PV Supervisor PVS6",
+                      "ComDvcSn": "ZT192585000549A0566",
+                      "ComProto": "MQTT",
+                      "ConnDvcSn": "ZT192585000549A0566-esmm",
+                      "DvcCrtEps": 1602014526,
+                      "DvcKey": "ZT192585000549A0566_ZT192585000549A0566-esmm_ESMM",
+                      "DvcTy": "ess",
+                      "EvtMsgNm": "EssAlert",
+                      "LastUpdEps": 1602014526,
+                      "MsgCrtEps": 1602014494,
+                      "ParDvcSn": "ZT192585000549A0566",
+                      "ParmSetId": 1,
+                      "ProdFamNm": "standard-ess-protocol-version-10",
+                      "ProdMdlNm": "ESMM",
+                    },
+                    Object {
+                      "ComDvcProdMdlNm": "PV Supervisor PVS6",
+                      "ComDvcSn": "ZT192585000549A0566",
+                      "ComIntfType": "mime",
+                      "ComProto": "MQTT",
+                      "ConnDvcSn": "E00121943008705",
+                      "DvcCrtEps": 1602014513,
+                      "DvcKey": "ZT192585000549A0566_E00121943008705_AC_Module_Type_E",
+                      "DvcSubTy": "SUBTY_UNKNOWN",
+                      "DvcTy": "inverter",
+                      "EvtMsgNm": "DeviceDiscoveryReport",
+                      "HdwVerNo": "4405",
+                      "LastData": Object {
+                        "freqHz": 59.975,
+                        "i3phsumA": 1.07,
+                        "iMppt1A": 5.28,
+                        "ltea3phsumKwh": 292.1197622754491,
+                        "msmtEps": "2020-10-07T19:15:00Z",
+                        "p3phsumKw": 0.26783,
+                        "pMppt1Kw": 0.273995,
+                        "prodMdlNm": "AC_Module_Type_E",
+                        "sn": "E00121943008705",
+                        "tHtsnkDegc": 49.5,
+                        "vMppt1V": 51.85,
+                        "vldFld2Msk": "1",
+                        "vldFldMsk": "8125",
+                        "vln3phavgV": 249.155,
+                      },
+                      "LastRcvdEps": 1602098100,
+                      "LastUpdEps": 1602088154,
+                      "MsgCmdTkn": "20d894c8-6dae-4f2f-b567-70d1fab400b0",
+                      "MsgCrtEps": 1602088154,
+                      "ParDvcSn": "ZT192585000549A0566",
+                      "ParmSetId": 1,
+                      "ProdFamNm": "SOLARBRIDGE",
+                      "ProdMdlNm": "AC_Module_Type_E",
+                      "SfwVerNo": "4.21.3",
+                      "SlavIp": "0",
+                    },
+                    Object {
+                      "ComDvcProdMdlNm": "PV Supervisor PVS6",
+                      "ComDvcSn": "ZT192585000549A0566",
+                      "ComIntfType": "sunspec",
+                      "ComProto": "MQTT",
+                      "ConnDvcSn": "F21903001960",
+                      "DvcCrtEps": 1602014528,
+                      "DvcKey": "ZT192585000549A0566_F21903001960_SchneiderElectric-ConextGateway",
+                      "DvcSubTy": "SUBTY_UNKNOWN",
+                      "DvcTy": "storage gateway",
+                      "EvtMsgNm": "DeviceDiscoveryReport",
+                      "LastUpdEps": 1602014528,
+                      "MsgCmdTkn": "20d894c8-6dae-4f2f-b567-70d1fab400b0",
+                      "MsgCrtEps": 1602014511,
+                      "ParDvcSn": "ZT192585000549A0566",
+                      "ParmSetId": 1,
+                      "ProdFamNm": "GATEWAY",
+                      "ProdMdlNm": "SchneiderElectric-ConextGateway",
+                      "SfwVerNo": "V1",
+                      "SlavIp": "88:3f:4a:a9:e5:ec",
+                    },
+                    Object {
+                      "ComDvcProdMdlNm": "PV Supervisor PVS6",
+                      "ComDvcSn": "ZT192585000549A0566",
+                      "ComIntfType": "mime",
+                      "ComProto": "MQTT",
+                      "ConnDvcSn": "PVS6M19250566c",
+                      "DvcCrtEps": 1602014513,
+                      "DvcKey": "ZT192585000549A0566_PVS6M19250566c_PVS6M0400c",
+                      "DvcSubTy": "SUBTY_UNKNOWN",
+                      "DvcTy": "power meter",
+                      "EvtMsgNm": "DeviceDiscoveryReport",
+                      "LastData": Object {
+                        "ctSclFctr": 100,
+                        "freqHz": 59.97721,
+                        "i1A": 10.132054,
+                        "i2A": 10.302034,
+                        "msmtEps": "2020-10-07T19:15:00Z",
+                        "negLtea3phsumKwh": 2653.9300000000003,
+                        "netLtea3phsumKwh": -2000.3,
+                        "p1Kw": -1.2199581,
+                        "p2Kw": -1.2356348,
+                        "p3phsumKw": -2.4555929,
+                        "posLtea3phsumKwh": 653.65,
+                        "prodMdlNm": "PVS6M0400c",
+                        "q3phsumKvar": -0.23132841,
+                        "s3phsumKva": 2.4689758,
+                        "sn": "PVS6M19250566c",
+                        "totPfRto": -0.9945834,
+                        "v12V": 241.65266,
+                        "v1nV": 120.84305,
+                        "v2nV": 120.80977,
+                        "vldFldMsk": "70239999",
+                      },
+                      "LastRcvdEps": 1602098100,
+                      "LastUpdEps": 1602088154,
+                      "MsgCmdTkn": "20d894c8-6dae-4f2f-b567-70d1fab400b0",
+                      "MsgCrtEps": 1602088154,
+                      "ParDvcSn": "ZT192585000549A0566",
+                      "ParmSetId": 1,
+                      "ProdFamNm": "PVS5-METER-C",
+                      "ProdMdlNm": "PVS6M0400c",
+                      "SfwVerNo": "3000",
+                      "SlavIp": "0",
+                    },
+                    Object {
+                      "ComDvcProdMdlNm": "PV Supervisor PVS6",
+                      "ComDvcSn": "ZT192585000549A0566",
+                      "ComProto": "MQTT",
+                      "ConnDvcSn": "ZT192585000549A0566-dcm-vm-ba",
+                      "DvcCrtEps": 1602009530,
+                      "DvcKey": "ZT192585000549A0566_ZT192585000549A0566-dcm-vm-ba_HS-DCM-meter",
+                      "DvcSubTy": "SUBTY_ESS_METER",
+                      "DvcTy": "power meter",
+                      "EvtMsgNm": "EDP-API:PVSClient",
+                      "LastData": Object {
+                        "msmtEps": "2020-10-06T20:25:00Z",
+                        "negLtea3phsumKwh": 425.488,
+                        "netLtea3phsumKwh": -147.727,
+                        "p3phsumKw": -0.013,
+                        "posLtea3phsumKwh": 277.761,
+                        "prodMdlNm": "HS-DCM-meter",
+                        "sn": "ZT192585000549A0566-dcm-vm-ba",
+                        "vldFldMsk": "1549",
+                      },
+                      "LastRcvdEps": 1602015900,
+                      "LastUpdEps": 1602009530,
+                      "ParDvcSn": "ZT192585000549A0566",
+                      "ProdMdlNm": "HS-DCM-meter",
+                      "VrtlDvcFl": true,
+                    },
+                    Object {
+                      "ComDvcProdMdlNm": "PV Supervisor PVS6",
+                      "ComDvcSn": "ZT192585000549A0566",
+                      "ComIntfType": "mime",
+                      "ComProto": "MQTT",
+                      "ConnDvcSn": "E00121948016552",
+                      "DvcCrtEps": 1602014513,
+                      "DvcKey": "ZT192585000549A0566_E00121948016552_AC_Module_Type_G",
+                      "DvcSubTy": "SUBTY_UNKNOWN",
+                      "DvcTy": "inverter",
+                      "EvtMsgNm": "DeviceDiscoveryReport",
+                      "HdwVerNo": "4400",
+                      "LastData": Object {
+                        "freqHz": 59.975,
+                        "i3phsumA": 1.23,
+                        "iMppt1A": 9.25,
+                        "ltea3phsumKwh": 344.46713754277164,
+                        "msmtEps": "2020-10-07T19:15:00Z",
+                        "p3phsumKw": 0.309095,
+                        "pMppt1Kw": 0.327135,
+                        "prodMdlNm": "AC_Module_Type_G",
+                        "sn": "E00121948016552",
+                        "tHtsnkDegc": 56,
+                        "vMppt1V": 35.35,
+                        "vldFld2Msk": "1",
+                        "vldFldMsk": "8125",
+                        "vln3phavgV": 249.85,
+                      },
+                      "LastRcvdEps": 1602098100,
+                      "LastUpdEps": 1602088154,
+                      "MsgCmdTkn": "20d894c8-6dae-4f2f-b567-70d1fab400b0",
+                      "MsgCrtEps": 1602088154,
+                      "ParDvcSn": "ZT192585000549A0566",
+                      "ParmSetId": 1,
+                      "ProdFamNm": "SOLARBRIDGE",
+                      "ProdMdlNm": "AC_Module_Type_G",
+                      "SfwVerNo": "4.21.3",
+                      "SlavIp": "0",
+                    },
+                    Object {
+                      "ComDvcProdMdlNm": "PV Supervisor PVS6",
+                      "ComDvcSn": "ZT192585000549A0566",
+                      "ComIntfType": "ttymxc5",
+                      "ComProto": "MQTT",
+                      "ConnDvcSn": "SW2036850005505.00003",
+                      "DvcCrtEps": 1602014528,
+                      "DvcKey": "ZT192585000549A0566_SW2036850005505.00003_Model-MIDC-rev5",
+                      "DvcSubTy": "SUBTY_UNKNOWN",
+                      "DvcTy": "transfer switch",
+                      "EvtMsgNm": "DeviceDiscoveryReport",
+                      "HdwVerNo": "0.0.0",
+                      "LastData": Object {
+                        "msmtEps": "2020-10-06T20:20:00Z",
+                        "prodMdlNm": "Model-MIDC-rev5",
+                        "sn": "SW2036850005505.00003",
+                        "tDegc": 28,
+                        "v1nGridV": 122.544,
+                        "v1nV": 122.42934,
+                        "v2nGridV": 122.528,
+                        "v2nV": 122.43733,
+                        "vSpplyV": 11.341487,
+                        "vldFldMsk": "829",
+                      },
+                      "LastRcvdEps": 1602015600,
+                      "LastUpdEps": 1602014528,
+                      "MsgCmdTkn": "20d894c8-6dae-4f2f-b567-70d1fab400b0",
+                      "MsgCrtEps": 1602014511,
+                      "ParDvcSn": "ZT192585000549A0566",
+                      "ParmSetId": 1,
+                      "ProdFamNm": "HUB+",
+                      "ProdMdlNm": "Model-MIDC-rev5",
+                      "SfwVerNo": "0.6.16",
+                      "SlavIp": "220",
+                    },
+                    Object {
+                      "ComDvcProdMdlNm": "PV Supervisor PVS6",
+                      "ComDvcSn": "ZT192585000549A0566",
+                      "ComIntfType": "mime",
+                      "ComProto": "MQTT",
+                      "ConnDvcSn": "E00121943004650",
+                      "DvcCrtEps": 1602014513,
+                      "DvcKey": "ZT192585000549A0566_E00121943004650_AC_Module_Type_E",
+                      "DvcSubTy": "SUBTY_UNKNOWN",
+                      "DvcTy": "inverter",
+                      "EvtMsgNm": "DeviceDiscoveryReport",
+                      "HdwVerNo": "4405",
+                      "LastData": Object {
+                        "freqHz": 59.975,
+                        "i3phsumA": 1.075,
+                        "iMppt1A": 5.245,
+                        "ltea3phsumKwh": 293.3534604790419,
+                        "msmtEps": "2020-10-07T19:15:00Z",
+                        "p3phsumKw": 0.268725,
+                        "pMppt1Kw": 0.273145,
+                        "prodMdlNm": "AC_Module_Type_E",
+                        "sn": "E00121943004650",
+                        "tHtsnkDegc": 48.5,
+                        "vMppt1V": 52.035,
+                        "vldFld2Msk": "1",
+                        "vldFldMsk": "8125",
+                        "vln3phavgV": 248.985,
+                      },
+                      "LastRcvdEps": 1602098100,
+                      "LastUpdEps": 1602088154,
+                      "MsgCmdTkn": "20d894c8-6dae-4f2f-b567-70d1fab400b0",
+                      "MsgCrtEps": 1602088154,
+                      "ParDvcSn": "ZT192585000549A0566",
+                      "ParmSetId": 1,
+                      "ProdFamNm": "SOLARBRIDGE",
+                      "ProdMdlNm": "AC_Module_Type_E",
+                      "SfwVerNo": "4.21.3",
+                      "SlavIp": "0",
+                    },
+                    Object {
+                      "ComDvcProdMdlNm": "PV Supervisor PVS6",
+                      "ComDvcSn": "ZT192585000549A0566",
+                      "ComIntfType": "mime",
+                      "ComProto": "MQTT",
+                      "ConnDvcSn": "E00121943009330",
+                      "DvcCrtEps": 1602014513,
+                      "DvcKey": "ZT192585000549A0566_E00121943009330_AC_Module_Type_E",
+                      "DvcSubTy": "SUBTY_UNKNOWN",
+                      "DvcTy": "inverter",
+                      "EvtMsgNm": "DeviceDiscoveryReport",
+                      "HdwVerNo": "4405",
+                      "LastData": Object {
+                        "freqHz": 59.975,
+                        "i3phsumA": 1.065,
+                        "iMppt1A": 5.245,
+                        "ltea3phsumKwh": 291.4058598802395,
+                        "msmtEps": "2020-10-07T19:15:00Z",
+                        "p3phsumKw": 0.26624,
+                        "pMppt1Kw": 0.272385,
+                        "prodMdlNm": "AC_Module_Type_E",
+                        "sn": "E00121943009330",
+                        "tHtsnkDegc": 48,
+                        "vMppt1V": 51.88,
+                        "vldFld2Msk": "1",
+                        "vldFldMsk": "8125",
+                        "vln3phavgV": 248.97,
+                      },
+                      "LastRcvdEps": 1602098100,
+                      "LastUpdEps": 1602088154,
+                      "MsgCmdTkn": "20d894c8-6dae-4f2f-b567-70d1fab400b0",
+                      "MsgCrtEps": 1602088154,
+                      "ParDvcSn": "ZT192585000549A0566",
+                      "ParmSetId": 1,
+                      "ProdFamNm": "SOLARBRIDGE",
+                      "ProdMdlNm": "AC_Module_Type_E",
+                      "SfwVerNo": "4.21.3",
+                      "SlavIp": "0",
+                    },
+                    Object {
+                      "ComDvcProdMdlNm": "PV Supervisor PVS6",
+                      "ComDvcSn": "ZT192585000549A0566",
+                      "ComProto": "MQTT",
+                      "ConnDvcSn": "00001B3E5A44_17_29",
+                      "DvcCrtEps": 1602014528,
+                      "DvcKey": "ZT192585000549A0566_00001B3E5A44_17_29_SPWR-Equinox-model",
+                      "DvcSubTy": "SUBTY_UNKNOWN",
+                      "DvcTy": "ess",
+                      "EvtMsgNm": "DeviceDiscoveryReport",
+                      "HdwVerNo": "0",
+                      "LastData": Object {
+                        "battCycCt": 41,
+                        "bmsReqstMsk": 2,
+                        "maxTBattCellDegc": 25,
+                        "maxVBattCellV": 33.9825,
+                        "minTBattCellDegc": 21.1,
+                        "minVBattCellV": 33.7035,
+                        "msmtEps": "2020-10-06T20:20:00Z",
+                        "negLtea3phsumKwh": 425.497,
+                        "opMode": 4,
+                        "p3phsumKw": -0.013,
+                        "posLtea3phsumKwh": 277.746,
+                        "prodMdlNm": "SPWR-Equinox-model",
+                        "sn": "00001B3E5A44_17_29",
+                        "socVal": 1,
+                        "sohVal": 1,
+                        "tInvtrDegc": 29.988,
+                        "v1nV": 121.726,
+                        "v2nV": 121.726,
+                        "vBattV": 54.23,
+                        "vldFldMsk": "16514271",
+                      },
+                      "LastRcvdEps": 1602015600,
+                      "LastUpdEps": 1602014528,
+                      "MsgCmdTkn": "20d894c8-6dae-4f2f-b567-70d1fab400b0",
+                      "MsgCrtEps": 1602014511,
+                      "ParDvcSn": "ZT192585000549A0566",
+                      "ParmSetId": 1,
+                      "ProdFamNm": "EQUINOX-ESS",
+                      "ProdMdlNm": "SPWR-Equinox-model",
+                      "SfwVerNo": "0",
+                      "SlavIp": "0",
+                    },
+                    Object {
+                      "ConnDvcSn": "ThisIsAPrettyLongSerialNumber_AssignedToAFakeBattery_HowDoesThisLook?_001",
+                      "DvcTy": "battery",
+                    },
+                    Object {
+                      "ComDvcProdMdlNm": "PV Supervisor PVS6",
+                      "ComDvcSn": "ZT192585000549A0566",
+                      "ComProto": "MQTT",
+                      "ConnDvcSn": "ZT192585000549A0566",
+                      "DvcCrtEps": 1602014506,
+                      "DvcKey": "ZT192585000549A0566_ZT192585000549A0566_PV Supervisor PVS6",
+                      "DvcTy": "logger",
+                      "EvtMsgNm": "InitialSetUp",
+                      "FwVerNo": "2020.09.28.8133",
+                      "HdwVerNo": "6.02",
+                      "LastData": Object {
+                        "avlFlashKb": 108855,
+                        "begTmWdwEps": "2020-10-07T19:20:00Z",
+                        "dvcComErrCt": 126,
+                        "loadCpuAvg05mNo": 0.4243164,
+                        "sn": "ZT192585000549A0566",
+                        "tmelapsDvcComS": 1,
+                        "tmelapsLastBootS": 11322,
+                        "utilRamKb": 64844,
+                      },
+                      "LastRcvdEps": 1602098400,
+                      "LastUpdEps": 1602087157,
+                      "MsgCrtEps": 1602087143,
+                      "ParDvcSn": "ZT192585000549A0566",
+                      "ParmSetId": 1,
+                      "ProdFamNm": "SMS5.0",
+                      "ProdMdlNm": "PV Supervisor PVS6",
+                      "SfwVerNo": "2020.9 build 8133",
+                    },
+                  ]
+                }
+                data={
+                  Array [
+                    Object {
+                      "ComDvcProdMdlNm": "PV Supervisor PVS6",
+                      "ComDvcSn": "ZT192585000549A0566",
+                      "ComIntfType": "mime",
+                      "ComProto": "MQTT",
+                      "ConnDvcSn": "E00121943008564",
+                      "DvcCrtEps": 1602014513,
+                      "DvcKey": "ZT192585000549A0566_E00121943008564_AC_Module_Type_E",
+                      "DvcSubTy": "SUBTY_UNKNOWN",
+                      "DvcTy": "inverter",
+                      "EvtMsgNm": "DeviceDiscoveryReport",
+                      "HdwVerNo": "4405",
+                      "LastData": Object {
+                        "freqHz": 59.975,
+                        "i3phsumA": 1.065,
+                        "iMppt1A": 5.295,
+                        "ltea3phsumKwh": 292.4636569931565,
+                        "msmtEps": "2020-10-07T19:15:00Z",
+                        "p3phsumKw": 0.26602,
+                        "pMppt1Kw": 0.274445,
+                        "prodMdlNm": "AC_Module_Type_E",
+                        "sn": "E00121943008564",
+                        "tHtsnkDegc": 51,
+                        "vMppt1V": 51.78,
+                        "vldFld2Msk": "1",
+                        "vldFldMsk": "8125",
+                        "vln3phavgV": 249.05,
+                      },
+                      "LastRcvdEps": 1602098100,
+                      "LastUpdEps": 1602088154,
+                      "MsgCmdTkn": "20d894c8-6dae-4f2f-b567-70d1fab400b0",
+                      "MsgCrtEps": 1602088154,
+                      "ParDvcSn": "ZT192585000549A0566",
+                      "ParmSetId": 1,
+                      "ProdFamNm": "SOLARBRIDGE",
+                      "ProdMdlNm": "AC_Module_Type_E",
+                      "SfwVerNo": "4.21.3",
+                      "SlavIp": "0",
+                    },
+                    Object {
+                      "ComDvcProdMdlNm": "PV Supervisor PVS6",
+                      "ComDvcSn": "ZT192585000549A0566",
+                      "ComIntfType": "mime",
+                      "ComProto": "MQTT",
+                      "ConnDvcSn": "E00121948003841",
+                      "DvcCrtEps": 1602014513,
+                      "DvcKey": "ZT192585000549A0566_E00121948003841_AC_Module_Type_G",
+                      "DvcSubTy": "SUBTY_UNKNOWN",
+                      "DvcTy": "inverter",
+                      "EvtMsgNm": "DeviceDiscoveryReport",
+                      "HdwVerNo": "4400",
+                      "LastData": Object {
+                        "freqHz": 59.975,
+                        "iMppt1A": 0.085,
+                        "ltea3phsumKwh": 304.6805,
+                        "msmtEps": "2020-10-07T19:15:00Z",
+                        "pMppt1Kw": 0.00384,
+                        "prodMdlNm": "AC_Module_Type_G",
+                        "sn": "E00121948003841",
+                        "tHtsnkDegc": 50,
+                        "vMppt1V": 42.685,
+                        "vldFld2Msk": "1",
+                        "vldFldMsk": "8125",
+                        "vln3phavgV": 249.365,
+                      },
+                      "LastRcvdEps": 1602098100,
+                      "LastUpdEps": 1602088154,
+                      "MsgCmdTkn": "20d894c8-6dae-4f2f-b567-70d1fab400b0",
+                      "MsgCrtEps": 1602088154,
+                      "ParDvcSn": "ZT192585000549A0566",
+                      "ParmSetId": 1,
+                      "ProdFamNm": "SOLARBRIDGE",
+                      "ProdMdlNm": "AC_Module_Type_G",
+                      "SfwVerNo": "4.21.3",
+                      "SlavIp": "0",
+                    },
+                    Object {
+                      "ComDvcProdMdlNm": "PV Supervisor PVS6",
+                      "ComDvcSn": "ZT192585000549A0566",
+                      "ComIntfType": "mime",
+                      "ComProto": "MQTT",
+                      "ConnDvcSn": "E00121947168440",
+                      "DvcCrtEps": 1602014513,
+                      "DvcKey": "ZT192585000549A0566_E00121947168440_AC_Module_Type_G",
+                      "DvcSubTy": "SUBTY_UNKNOWN",
+                      "DvcTy": "inverter",
+                      "EvtMsgNm": "DeviceDiscoveryReport",
+                      "HdwVerNo": "4400",
+                      "LastData": Object {
+                        "freqHz": 59.975,
+                        "i3phsumA": 1.255,
+                        "iMppt1A": 9.275,
+                        "ltea3phsumKwh": 348.37279341317367,
+                        "msmtEps": "2020-10-07T19:15:00Z",
+                        "p3phsumKw": 0.314755,
+                        "pMppt1Kw": 0.328485,
+                        "prodMdlNm": "AC_Module_Type_G",
+                        "sn": "E00121947168440",
+                        "tHtsnkDegc": 55,
+                        "vMppt1V": 35.4,
+                        "vldFld2Msk": "1",
+                        "vldFldMsk": "8125",
+                        "vln3phavgV": 250.035,
+                      },
+                      "LastRcvdEps": 1602098100,
+                      "LastUpdEps": 1602088154,
+                      "MsgCmdTkn": "20d894c8-6dae-4f2f-b567-70d1fab400b0",
+                      "MsgCrtEps": 1602088154,
+                      "ParDvcSn": "ZT192585000549A0566",
+                      "ParmSetId": 1,
+                      "ProdFamNm": "SOLARBRIDGE",
+                      "ProdMdlNm": "AC_Module_Type_G",
+                      "SfwVerNo": "4.21.3",
+                      "SlavIp": "0",
+                    },
+                    Object {
+                      "ComDvcProdMdlNm": "PV Supervisor PVS6",
+                      "ComDvcSn": "ZT192585000549A0566",
+                      "ComIntfType": "mime",
+                      "ComProto": "MQTT",
+                      "ConnDvcSn": "E00121943008705",
+                      "DvcCrtEps": 1602014513,
+                      "DvcKey": "ZT192585000549A0566_E00121943008705_AC_Module_Type_E",
+                      "DvcSubTy": "SUBTY_UNKNOWN",
+                      "DvcTy": "inverter",
+                      "EvtMsgNm": "DeviceDiscoveryReport",
+                      "HdwVerNo": "4405",
+                      "LastData": Object {
+                        "freqHz": 59.975,
+                        "i3phsumA": 1.07,
+                        "iMppt1A": 5.28,
+                        "ltea3phsumKwh": 292.1197622754491,
+                        "msmtEps": "2020-10-07T19:15:00Z",
+                        "p3phsumKw": 0.26783,
+                        "pMppt1Kw": 0.273995,
+                        "prodMdlNm": "AC_Module_Type_E",
+                        "sn": "E00121943008705",
+                        "tHtsnkDegc": 49.5,
+                        "vMppt1V": 51.85,
+                        "vldFld2Msk": "1",
+                        "vldFldMsk": "8125",
+                        "vln3phavgV": 249.155,
+                      },
+                      "LastRcvdEps": 1602098100,
+                      "LastUpdEps": 1602088154,
+                      "MsgCmdTkn": "20d894c8-6dae-4f2f-b567-70d1fab400b0",
+                      "MsgCrtEps": 1602088154,
+                      "ParDvcSn": "ZT192585000549A0566",
+                      "ParmSetId": 1,
+                      "ProdFamNm": "SOLARBRIDGE",
+                      "ProdMdlNm": "AC_Module_Type_E",
+                      "SfwVerNo": "4.21.3",
+                      "SlavIp": "0",
+                    },
+                    Object {
+                      "ComDvcProdMdlNm": "PV Supervisor PVS6",
+                      "ComDvcSn": "ZT192585000549A0566",
+                      "ComIntfType": "mime",
+                      "ComProto": "MQTT",
+                      "ConnDvcSn": "E00121948016552",
+                      "DvcCrtEps": 1602014513,
+                      "DvcKey": "ZT192585000549A0566_E00121948016552_AC_Module_Type_G",
+                      "DvcSubTy": "SUBTY_UNKNOWN",
+                      "DvcTy": "inverter",
+                      "EvtMsgNm": "DeviceDiscoveryReport",
+                      "HdwVerNo": "4400",
+                      "LastData": Object {
+                        "freqHz": 59.975,
+                        "i3phsumA": 1.23,
+                        "iMppt1A": 9.25,
+                        "ltea3phsumKwh": 344.46713754277164,
+                        "msmtEps": "2020-10-07T19:15:00Z",
+                        "p3phsumKw": 0.309095,
+                        "pMppt1Kw": 0.327135,
+                        "prodMdlNm": "AC_Module_Type_G",
+                        "sn": "E00121948016552",
+                        "tHtsnkDegc": 56,
+                        "vMppt1V": 35.35,
+                        "vldFld2Msk": "1",
+                        "vldFldMsk": "8125",
+                        "vln3phavgV": 249.85,
+                      },
+                      "LastRcvdEps": 1602098100,
+                      "LastUpdEps": 1602088154,
+                      "MsgCmdTkn": "20d894c8-6dae-4f2f-b567-70d1fab400b0",
+                      "MsgCrtEps": 1602088154,
+                      "ParDvcSn": "ZT192585000549A0566",
+                      "ParmSetId": 1,
+                      "ProdFamNm": "SOLARBRIDGE",
+                      "ProdMdlNm": "AC_Module_Type_G",
+                      "SfwVerNo": "4.21.3",
+                      "SlavIp": "0",
+                    },
+                    Object {
+                      "ComDvcProdMdlNm": "PV Supervisor PVS6",
+                      "ComDvcSn": "ZT192585000549A0566",
+                      "ComIntfType": "mime",
+                      "ComProto": "MQTT",
+                      "ConnDvcSn": "E00121943004650",
+                      "DvcCrtEps": 1602014513,
+                      "DvcKey": "ZT192585000549A0566_E00121943004650_AC_Module_Type_E",
+                      "DvcSubTy": "SUBTY_UNKNOWN",
+                      "DvcTy": "inverter",
+                      "EvtMsgNm": "DeviceDiscoveryReport",
+                      "HdwVerNo": "4405",
+                      "LastData": Object {
+                        "freqHz": 59.975,
+                        "i3phsumA": 1.075,
+                        "iMppt1A": 5.245,
+                        "ltea3phsumKwh": 293.3534604790419,
+                        "msmtEps": "2020-10-07T19:15:00Z",
+                        "p3phsumKw": 0.268725,
+                        "pMppt1Kw": 0.273145,
+                        "prodMdlNm": "AC_Module_Type_E",
+                        "sn": "E00121943004650",
+                        "tHtsnkDegc": 48.5,
+                        "vMppt1V": 52.035,
+                        "vldFld2Msk": "1",
+                        "vldFldMsk": "8125",
+                        "vln3phavgV": 248.985,
+                      },
+                      "LastRcvdEps": 1602098100,
+                      "LastUpdEps": 1602088154,
+                      "MsgCmdTkn": "20d894c8-6dae-4f2f-b567-70d1fab400b0",
+                      "MsgCrtEps": 1602088154,
+                      "ParDvcSn": "ZT192585000549A0566",
+                      "ParmSetId": 1,
+                      "ProdFamNm": "SOLARBRIDGE",
+                      "ProdMdlNm": "AC_Module_Type_E",
+                      "SfwVerNo": "4.21.3",
+                      "SlavIp": "0",
+                    },
+                    Object {
+                      "ComDvcProdMdlNm": "PV Supervisor PVS6",
+                      "ComDvcSn": "ZT192585000549A0566",
+                      "ComIntfType": "mime",
+                      "ComProto": "MQTT",
+                      "ConnDvcSn": "E00121943009330",
+                      "DvcCrtEps": 1602014513,
+                      "DvcKey": "ZT192585000549A0566_E00121943009330_AC_Module_Type_E",
+                      "DvcSubTy": "SUBTY_UNKNOWN",
+                      "DvcTy": "inverter",
+                      "EvtMsgNm": "DeviceDiscoveryReport",
+                      "HdwVerNo": "4405",
+                      "LastData": Object {
+                        "freqHz": 59.975,
+                        "i3phsumA": 1.065,
+                        "iMppt1A": 5.245,
+                        "ltea3phsumKwh": 291.4058598802395,
+                        "msmtEps": "2020-10-07T19:15:00Z",
+                        "p3phsumKw": 0.26624,
+                        "pMppt1Kw": 0.272385,
+                        "prodMdlNm": "AC_Module_Type_E",
+                        "sn": "E00121943009330",
+                        "tHtsnkDegc": 48,
+                        "vMppt1V": 51.88,
+                        "vldFld2Msk": "1",
+                        "vldFldMsk": "8125",
+                        "vln3phavgV": 248.97,
+                      },
+                      "LastRcvdEps": 1602098100,
+                      "LastUpdEps": 1602088154,
+                      "MsgCmdTkn": "20d894c8-6dae-4f2f-b567-70d1fab400b0",
+                      "MsgCrtEps": 1602088154,
+                      "ParDvcSn": "ZT192585000549A0566",
+                      "ParmSetId": 1,
+                      "ProdFamNm": "SOLARBRIDGE",
+                      "ProdMdlNm": "AC_Module_Type_E",
+                      "SfwVerNo": "4.21.3",
+                      "SlavIp": "0",
+                    },
+                  ]
+                }
+              >
+                <div
+                  className="mt-10 mb-10"
+                >
+                  <Collapsible
+                    actions={7}
+                    className="is-flex flex-column"
+                    title="MICROINVERTERS"
+                  >
+                    <div
+                      className="collapsible"
+                    >
+                      <div
+                        className="collapsible-header"
+                        onClick={[Function]}
+                      >
+                        <div
+                          className="collapsible-title"
+                        >
+                          <span />
+                          <span
+                            className="has-text-weight-bold"
+                          >
+                            MICROINVERTERS
+                          </span>
+                        </div>
+                        <div
+                          className="collapsible-actions"
+                        >
+                          7
+                        </div>
+                        <div
+                          className="collapsible-trigger"
+                        >
+                          <div
+                            className="chevron"
+                          >
+                            <span
+                              className="sp-chevron-up"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                      <div
+                        className="is-flex flex-column collapsible-content collapsed"
+                      >
+                        <div
+                          className="pt-5 pb-5 device-item-deletable"
+                          key="E00121943008564"
+                        >
+                          <span
+                            className="mt-5 mb-5 has-text-white"
+                          >
+                            E00121943008564
+                          </span>
+                          <button
+                            className="has-text-white is-size-6"
+                            onClick={[Function]}
+                          >
+                            <i
+                              className="sp-close"
+                            />
+                          </button>
+                        </div>
+                        <div
+                          className="pt-5 pb-5 device-item-deletable"
+                          key="E00121948003841"
+                        >
+                          <span
+                            className="mt-5 mb-5 has-text-white"
+                          >
+                            E00121948003841
+                          </span>
+                          <button
+                            className="has-text-white is-size-6"
+                            onClick={[Function]}
+                          >
+                            <i
+                              className="sp-close"
+                            />
+                          </button>
+                        </div>
+                        <div
+                          className="pt-5 pb-5 device-item-deletable"
+                          key="E00121947168440"
+                        >
+                          <span
+                            className="mt-5 mb-5 has-text-white"
+                          >
+                            E00121947168440
+                          </span>
+                          <button
+                            className="has-text-white is-size-6"
+                            onClick={[Function]}
+                          >
+                            <i
+                              className="sp-close"
+                            />
+                          </button>
+                        </div>
+                        <div
+                          className="pt-5 pb-5 device-item-deletable"
+                          key="E00121943008705"
+                        >
+                          <span
+                            className="mt-5 mb-5 has-text-white"
+                          >
+                            E00121943008705
+                          </span>
+                          <button
+                            className="has-text-white is-size-6"
+                            onClick={[Function]}
+                          >
+                            <i
+                              className="sp-close"
+                            />
+                          </button>
+                        </div>
+                        <div
+                          className="pt-5 pb-5 device-item-deletable"
+                          key="E00121948016552"
+                        >
+                          <span
+                            className="mt-5 mb-5 has-text-white"
+                          >
+                            E00121948016552
+                          </span>
+                          <button
+                            className="has-text-white is-size-6"
+                            onClick={[Function]}
+                          >
+                            <i
+                              className="sp-close"
+                            />
+                          </button>
+                        </div>
+                        <div
+                          className="pt-5 pb-5 device-item-deletable"
+                          key="E00121943004650"
+                        >
+                          <span
+                            className="mt-5 mb-5 has-text-white"
+                          >
+                            E00121943004650
+                          </span>
+                          <button
+                            className="has-text-white is-size-6"
+                            onClick={[Function]}
+                          >
+                            <i
+                              className="sp-close"
+                            />
+                          </button>
+                        </div>
+                        <div
+                          className="pt-5 pb-5 device-item-deletable"
+                          key="E00121943009330"
+                        >
+                          <span
+                            className="mt-5 mb-5 has-text-white"
+                          >
+                            E00121943009330
+                          </span>
+                          <button
+                            className="has-text-white is-size-6"
+                            onClick={[Function]}
+                          >
+                            <i
+                              className="sp-close"
+                            />
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </Collapsible>
+                </div>
+              </MicroinvertersGroup>
+              <MetersGroup
+                data={
+                  Array [
+                    Object {
+                      "ComDvcProdMdlNm": "PV Supervisor PVS6",
+                      "ComDvcSn": "ZT192585000549A0566",
+                      "ComIntfType": "mime",
+                      "ComProto": "MQTT",
+                      "ConnDvcSn": "PVS6M19250566p",
+                      "DvcCrtEps": 1602014513,
+                      "DvcKey": "ZT192585000549A0566_PVS6M19250566p_PVS6M0400p",
+                      "DvcSubTy": "SUBTY_UNKNOWN",
+                      "DvcTy": "power meter",
+                      "EvtMsgNm": "DeviceDiscoveryReport",
+                      "LastData": Object {
+                        "ctSclFctr": 50,
+                        "freqHz": 59.97721,
+                        "msmtEps": "2020-10-07T19:15:00Z",
+                        "netLtea3phsumKwh": 2057.26,
+                        "p3phsumKw": 2.5013638,
+                        "prodMdlNm": "PVS6M0400p",
+                        "q3phsumKvar": 0.071027845,
+                        "s3phsumKva": 2.5034857,
+                        "sn": "PVS6M19250566p",
+                        "totPfRto": 0.9991302,
+                        "vldFldMsk": "67109119",
+                      },
+                      "LastRcvdEps": 1602098100,
+                      "LastUpdEps": 1602088154,
+                      "MsgCmdTkn": "20d894c8-6dae-4f2f-b567-70d1fab400b0",
+                      "MsgCrtEps": 1602088154,
+                      "ParDvcSn": "ZT192585000549A0566",
+                      "ParmSetId": 1,
+                      "ProdFamNm": "PVS5-METER-P",
+                      "ProdMdlNm": "PVS6M0400p",
+                      "SfwVerNo": "3000",
+                      "SlavIp": "0",
+                    },
+                    Object {
+                      "ComDvcProdMdlNm": "PV Supervisor PVS6",
+                      "ComDvcSn": "ZT192585000549A0566",
+                      "ComIntfType": "mime",
+                      "ComProto": "MQTT",
+                      "ConnDvcSn": "PVS6M19250566c",
+                      "DvcCrtEps": 1602014513,
+                      "DvcKey": "ZT192585000549A0566_PVS6M19250566c_PVS6M0400c",
+                      "DvcSubTy": "SUBTY_UNKNOWN",
+                      "DvcTy": "power meter",
+                      "EvtMsgNm": "DeviceDiscoveryReport",
+                      "LastData": Object {
+                        "ctSclFctr": 100,
+                        "freqHz": 59.97721,
+                        "i1A": 10.132054,
+                        "i2A": 10.302034,
+                        "msmtEps": "2020-10-07T19:15:00Z",
+                        "negLtea3phsumKwh": 2653.9300000000003,
+                        "netLtea3phsumKwh": -2000.3,
+                        "p1Kw": -1.2199581,
+                        "p2Kw": -1.2356348,
+                        "p3phsumKw": -2.4555929,
+                        "posLtea3phsumKwh": 653.65,
+                        "prodMdlNm": "PVS6M0400c",
+                        "q3phsumKvar": -0.23132841,
+                        "s3phsumKva": 2.4689758,
+                        "sn": "PVS6M19250566c",
+                        "totPfRto": -0.9945834,
+                        "v12V": 241.65266,
+                        "v1nV": 120.84305,
+                        "v2nV": 120.80977,
+                        "vldFldMsk": "70239999",
+                      },
+                      "LastRcvdEps": 1602098100,
+                      "LastUpdEps": 1602088154,
+                      "MsgCmdTkn": "20d894c8-6dae-4f2f-b567-70d1fab400b0",
+                      "MsgCrtEps": 1602088154,
+                      "ParDvcSn": "ZT192585000549A0566",
+                      "ParmSetId": 1,
+                      "ProdFamNm": "PVS5-METER-C",
+                      "ProdMdlNm": "PVS6M0400c",
+                      "SfwVerNo": "3000",
+                      "SlavIp": "0",
+                    },
+                    Object {
+                      "ComDvcProdMdlNm": "PV Supervisor PVS6",
+                      "ComDvcSn": "ZT192585000549A0566",
+                      "ComProto": "MQTT",
+                      "ConnDvcSn": "ZT192585000549A0566-dcm-vm-ba",
+                      "DvcCrtEps": 1602009530,
+                      "DvcKey": "ZT192585000549A0566_ZT192585000549A0566-dcm-vm-ba_HS-DCM-meter",
+                      "DvcSubTy": "SUBTY_ESS_METER",
+                      "DvcTy": "power meter",
+                      "EvtMsgNm": "EDP-API:PVSClient",
+                      "LastData": Object {
+                        "msmtEps": "2020-10-06T20:25:00Z",
+                        "negLtea3phsumKwh": 425.488,
+                        "netLtea3phsumKwh": -147.727,
+                        "p3phsumKw": -0.013,
+                        "posLtea3phsumKwh": 277.761,
+                        "prodMdlNm": "HS-DCM-meter",
+                        "sn": "ZT192585000549A0566-dcm-vm-ba",
+                        "vldFldMsk": "1549",
+                      },
+                      "LastRcvdEps": 1602015900,
+                      "LastUpdEps": 1602009530,
+                      "ParDvcSn": "ZT192585000549A0566",
+                      "ProdMdlNm": "HS-DCM-meter",
+                      "VrtlDvcFl": true,
+                    },
+                  ]
+                }
+              >
+                <div
+                  className="mt-10 mb-10"
+                >
+                  <Collapsible
+                    actions={2}
+                    className="is-flex flex-column"
+                    title="METERS"
+                  >
+                    <div
+                      className="collapsible"
+                    >
+                      <div
+                        className="collapsible-header"
+                        onClick={[Function]}
+                      >
+                        <div
+                          className="collapsible-title"
+                        >
+                          <span />
+                          <span
+                            className="has-text-weight-bold"
+                          >
+                            METERS
+                          </span>
+                        </div>
+                        <div
+                          className="collapsible-actions"
+                        >
+                          2
+                        </div>
+                        <div
+                          className="collapsible-trigger"
+                        >
+                          <div
+                            className="chevron"
+                          >
+                            <span
+                              className="sp-chevron-up"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                      <div
+                        className="is-flex flex-column collapsible-content collapsed"
+                      >
+                        <div
+                          className="pt-5 pb-5 device-item"
+                          key="PVS6M19250566p"
+                        >
+                          <span
+                            className="mt-5 mb-5 has-text-white"
+                          >
+                            PVS6M19250566p
+                          </span>
+                        </div>
+                        <div
+                          className="pt-5 pb-5 device-item"
+                          key="PVS6M19250566c"
+                        >
+                          <span
+                            className="mt-5 mb-5 has-text-white"
+                          >
+                            PVS6M19250566c
+                          </span>
+                        </div>
+                        <span
+                          className="mt-10 mb-10 has-text-weight-bold"
+                        >
+                          METERS_TRANSFER_DISCLAIMER
+                        </span>
+                      </div>
+                    </div>
+                  </Collapsible>
+                </div>
+              </MetersGroup>
+              <StorageGroup
+                data={
+                  Array [
+                    Object {
+                      "ComDvcProdMdlNm": "PV Supervisor PVS6",
+                      "ComDvcSn": "ZT192585000549A0566",
+                      "ComProto": "MQTT",
+                      "ConnDvcSn": "ZT192585000549A0566-esmm",
+                      "DvcCrtEps": 1602014526,
+                      "DvcKey": "ZT192585000549A0566_ZT192585000549A0566-esmm_ESMM",
+                      "DvcTy": "ess",
+                      "EvtMsgNm": "EssAlert",
+                      "LastUpdEps": 1602014526,
+                      "MsgCrtEps": 1602014494,
+                      "ParDvcSn": "ZT192585000549A0566",
+                      "ParmSetId": 1,
+                      "ProdFamNm": "standard-ess-protocol-version-10",
+                      "ProdMdlNm": "ESMM",
+                    },
+                    Object {
+                      "ComDvcProdMdlNm": "PV Supervisor PVS6",
+                      "ComDvcSn": "ZT192585000549A0566",
+                      "ComProto": "MQTT",
+                      "ConnDvcSn": "00001B3E5A44_17_29",
+                      "DvcCrtEps": 1602014528,
+                      "DvcKey": "ZT192585000549A0566_00001B3E5A44_17_29_SPWR-Equinox-model",
+                      "DvcSubTy": "SUBTY_UNKNOWN",
+                      "DvcTy": "ess",
+                      "EvtMsgNm": "DeviceDiscoveryReport",
+                      "HdwVerNo": "0",
+                      "LastData": Object {
+                        "battCycCt": 41,
+                        "bmsReqstMsk": 2,
+                        "maxTBattCellDegc": 25,
+                        "maxVBattCellV": 33.9825,
+                        "minTBattCellDegc": 21.1,
+                        "minVBattCellV": 33.7035,
+                        "msmtEps": "2020-10-06T20:20:00Z",
+                        "negLtea3phsumKwh": 425.497,
+                        "opMode": 4,
+                        "p3phsumKw": -0.013,
+                        "posLtea3phsumKwh": 277.746,
+                        "prodMdlNm": "SPWR-Equinox-model",
+                        "sn": "00001B3E5A44_17_29",
+                        "socVal": 1,
+                        "sohVal": 1,
+                        "tInvtrDegc": 29.988,
+                        "v1nV": 121.726,
+                        "v2nV": 121.726,
+                        "vBattV": 54.23,
+                        "vldFldMsk": "16514271",
+                      },
+                      "LastRcvdEps": 1602015600,
+                      "LastUpdEps": 1602014528,
+                      "MsgCmdTkn": "20d894c8-6dae-4f2f-b567-70d1fab400b0",
+                      "MsgCrtEps": 1602014511,
+                      "ParDvcSn": "ZT192585000549A0566",
+                      "ParmSetId": 1,
+                      "ProdFamNm": "EQUINOX-ESS",
+                      "ProdMdlNm": "SPWR-Equinox-model",
+                      "SfwVerNo": "0",
+                      "SlavIp": "0",
+                    },
+                    Object {
+                      "ComDvcProdMdlNm": "PV Supervisor PVS6",
+                      "ComDvcSn": "ZT192585000549A0566",
+                      "ComProto": "MQTT",
+                      "ConnDvcSn": "29",
+                      "DvcCrtEps": 1602014528,
+                      "DvcKey": "ZT192585000549A0566_29_PA -Komodo 1.1",
+                      "DvcSubTy": "SUBTY_UNKNOWN",
+                      "DvcTy": "battery",
+                      "EvtMsgNm": "DeviceDiscoveryReport",
+                      "HdwVerNo": "3.202",
+                      "LastUpdEps": 1602014528,
+                      "MsgCmdTkn": "20d894c8-6dae-4f2f-b567-70d1fab400b0",
+                      "MsgCrtEps": 1602014511,
+                      "ParDvcSn": "00001B3E5A44_17_29",
+                      "ParmSetId": 1,
+                      "ProdFamNm": "BATTERY",
+                      "ProdMdlNm": "PA -Komodo 1.1",
+                      "SfwVerNo": "1.2",
+                      "SlavIp": "0",
+                    },
+                    Object {
+                      "ComDvcProdMdlNm": "PV Supervisor PVS6",
+                      "ComDvcSn": "ZT192585000549A0566",
+                      "ComProto": "MQTT",
+                      "ConnDvcSn": "17",
+                      "DvcCrtEps": 1602014528,
+                      "DvcKey": "ZT192585000549A0566_17_PA -Komodo 1.1",
+                      "DvcSubTy": "SUBTY_UNKNOWN",
+                      "DvcTy": "battery",
+                      "EvtMsgNm": "DeviceDiscoveryReport",
+                      "HdwVerNo": "3.202",
+                      "LastUpdEps": 1602014528,
+                      "MsgCmdTkn": "20d894c8-6dae-4f2f-b567-70d1fab400b0",
+                      "MsgCrtEps": 1602014511,
+                      "ParDvcSn": "00001B3E5A44_17_29",
+                      "ParmSetId": 1,
+                      "ProdFamNm": "BATTERY",
+                      "ProdMdlNm": "PA -Komodo 1.1",
+                      "SfwVerNo": "1.2",
+                      "SlavIp": "0",
+                    },
+                    Object {
+                      "ConnDvcSn": "ThisIsAPrettyLongSerialNumber_AssignedToAFakeBattery_HowDoesThisLook?_001",
+                      "DvcTy": "battery",
+                    },
+                  ]
+                }
+              >
+                <div
+                  className="mt-10 mb-10"
+                >
+                  <Collapsible
+                    actions={4}
+                    className="is-flex flex-column"
+                    title="STORAGE_DEVICES"
+                  >
+                    <div
+                      className="collapsible"
+                    >
+                      <div
+                        className="collapsible-header"
+                        onClick={[Function]}
+                      >
+                        <div
+                          className="collapsible-title"
+                        >
+                          <span />
+                          <span
+                            className="has-text-weight-bold"
+                          >
+                            STORAGE_DEVICES
+                          </span>
+                        </div>
+                        <div
+                          className="collapsible-actions"
+                        >
+                          4
+                        </div>
+                        <div
+                          className="collapsible-trigger"
+                        >
+                          <div
+                            className="chevron"
+                          >
+                            <span
+                              className="sp-chevron-up"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                      <div
+                        className="is-flex flex-column collapsible-content collapsed"
+                      >
+                        <div
+                          className="pt-5 pb-5 device-item is-flex"
+                          key="00001B3E5A44_17_29"
+                        >
+                          <span
+                            className="has-text-white"
+                          >
+                            00001B3E5A44_17_29
+                          </span>
+                          <span
+                            className="has-text-weight-bold"
+                          >
+                            ess
+                          </span>
+                        </div>
+                        <div
+                          className="pt-5 pb-5 device-item is-flex"
+                          key="29"
+                        >
+                          <span
+                            className="has-text-white"
+                          >
+                            29
+                          </span>
+                          <span
+                            className="has-text-weight-bold"
+                          >
+                            battery
+                          </span>
+                        </div>
+                        <div
+                          className="pt-5 pb-5 device-item is-flex"
+                          key="17"
+                        >
+                          <span
+                            className="has-text-white"
+                          >
+                            17
+                          </span>
+                          <span
+                            className="has-text-weight-bold"
+                          >
+                            battery
+                          </span>
+                        </div>
+                        <div
+                          className="pt-5 pb-5 device-item is-flex"
+                          key="ThisIsAPrettyLongSerialNumber_AssignedToAFakeBattery_HowDoesThisLook?_001"
+                        >
+                          <span
+                            className="has-text-white"
+                          >
+                            ThisIsAPrettyLongSerialNumber_AssignedToAFakeBattery_HowDoesThisLook?_001
+                          </span>
+                          <span
+                            className="has-text-weight-bold"
+                          >
+                            battery
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </Collapsible>
+                </div>
+              </StorageGroup>
+            </div>
+            <div
+              className="existing-devices-footer has-text-centered"
+            >
+              <div
+                className="mb-10 has-text-weight-bold"
+              >
+                <span>
+                   
+                  CONTAINS_NEW_EQUIPMENT
+                   
+                </span>
+              </div>
+              <div>
+                <button
+                  className="button is-primary is-outlined mr-20"
+                  onClick={[Function]}
+                >
+                  NO
+                </button>
+                <button
+                  className="button is-primary ml-20"
+                  onClick={[Function]}
+                >
+                  YES
+                </button>
+              </div>
+            </div>
+          </div>
+        </ExistingDevices>
+      </Provider>
+    </Router>
+  </BrowserRouter>,
+  "store": Object {
+    "clearActions": [Function],
+    "dispatch": [Function],
+    "getActions": [Function],
+    "getState": [Function],
+    "replaceReducer": [Function],
+    "subscribe": [Function],
+  },
+}
+`;

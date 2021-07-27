@@ -1,0 +1,258 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RMAMiDiscovery page render correctly 1`] = `
+<BrowserRouter
+  keyLength={0}
+>
+  <Router
+    history={
+      Object {
+        "action": "POP",
+        "block": [Function],
+        "createHref": [Function],
+        "go": [Function],
+        "goBack": [Function],
+        "goForward": [Function],
+        "length": 1,
+        "listen": [Function],
+        "location": Object {
+          "hash": "",
+          "pathname": "/",
+          "search": "",
+          "state": undefined,
+        },
+        "push": [Function],
+        "replace": [Function],
+      }
+    }
+  >
+    <Provider
+      store={
+        Object {
+          "clearActions": [Function],
+          "dispatch": [Function],
+          "getActions": [Function],
+          "getState": [Function],
+          "replaceReducer": [Function],
+          "subscribe": [Function],
+        }
+      }
+    >
+      <RMAMiDiscovery>
+        <RMAMiDiscoveryUI
+          areOnboardMetersMissing={false}
+          candidates={
+            Array [
+              Object {
+                "SERIAL": "E00110223232323",
+                "STATEDESCR": "OK",
+              },
+              Object {
+                "SERIAL": "E00110223232324",
+                "STATEDESCR": "OK",
+              },
+            ]
+          }
+          claimDevices={[Function]}
+          claimError={null}
+          claimFoundMI={[Function]}
+          claimingDevices={false}
+          errMICount={0}
+          error={null}
+          expected={2}
+          inverter={
+            Array [
+              Object {
+                "SERIAL": "E00110223232323",
+                "STATEDESCR": "OK",
+                "indicator": "MI_OK",
+                "serial_number": "E00110223232323",
+              },
+              Object {
+                "SERIAL": "E00110223232324",
+                "STATEDESCR": "OK",
+                "indicator": "MI_OK",
+                "serial_number": "E00110223232324",
+              },
+            ]
+          }
+          okMICount={2}
+          progress={10}
+          retryDiscovery={[Function]}
+          serialNumbers={
+            Array [
+              Object {
+                "STATEDESCR": "OK",
+                "indicator": "MI_OK",
+                "serial_number": "E00110223232323",
+              },
+              Object {
+                "STATEDESCR": "OK",
+                "indicator": "MI_OK",
+                "serial_number": "E00110223232324",
+              },
+            ]
+          }
+        >
+          <div
+            className="fill-parent is-flex tile is-vertical has-text-centered sunpower-devices pr-15 pl-15"
+          >
+            <span
+              className="is-uppercase has-text-weight-bold mb-20"
+              role="button"
+            >
+              DEVICES
+            </span>
+            <div
+              className="pb-15"
+            >
+              <Collapsible
+                actions={
+                  <div>
+                    <span
+                      className="devices-counter mr-10 ml-0 mt-0 mb-0"
+                    >
+                      2/2
+                    </span>
+                  </div>
+                }
+                expanded={true}
+                icon={
+                  <span
+                    className="sp-inverter mr-20 devices-icon ml-0 mt-0 mb-0"
+                  />
+                }
+                title="MICROINVERTERS"
+              >
+                <div
+                  className="collapsible"
+                >
+                  <div
+                    className="collapsible-header"
+                    onClick={[Function]}
+                  >
+                    <div
+                      className="collapsible-title"
+                    >
+                      <span>
+                        <span
+                          className="sp-inverter mr-20 devices-icon ml-0 mt-0 mb-0"
+                        />
+                      </span>
+                      <span
+                        className="has-text-weight-bold"
+                      >
+                        MICROINVERTERS
+                      </span>
+                    </div>
+                    <div
+                      className="collapsible-actions"
+                    >
+                      <div>
+                        <span
+                          className="devices-counter mr-10 ml-0 mt-0 mb-0"
+                        >
+                          2/2
+                        </span>
+                      </div>
+                    </div>
+                    <div
+                      className="collapsible-trigger"
+                    >
+                      <div
+                        className="chevron down"
+                      >
+                        <span
+                          className="sp-chevron-up"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    className="collapsible-content expanded"
+                  >
+                    <ul
+                      className="equipment-list"
+                    >
+                      <li
+                        className="equipment-piece is-flex flow-wrap tile"
+                        key="E00110223232323"
+                      >
+                        <div
+                          className="is-flex is-vertical has-text-white tile"
+                        >
+                          <span>
+                            <span
+                              className="has-text-weight-bold has-text-white"
+                            >
+                              SN:
+                            </span>
+                            E00110223232323
+                            <span
+                              className="has-text-weight-bold ml-10"
+                            />
+                          </span>
+                          <span>
+                            NO_MODEL
+                          </span>
+                        </div>
+                        <div
+                          className="mi-indicator is-flex"
+                          onClick={[Function]}
+                        >
+                          <span
+                            className="is-size-4 mr-10 sp-check has-text-white"
+                          />
+                        </div>
+                      </li>
+                      <li
+                        className="equipment-piece is-flex flow-wrap tile"
+                        key="E00110223232324"
+                      >
+                        <div
+                          className="is-flex is-vertical has-text-white tile"
+                        >
+                          <span>
+                            <span
+                              className="has-text-weight-bold has-text-white"
+                            >
+                              SN:
+                            </span>
+                            E00110223232324
+                            <span
+                              className="has-text-weight-bold ml-10"
+                            />
+                          </span>
+                          <span>
+                            NO_MODEL
+                          </span>
+                        </div>
+                        <div
+                          className="mi-indicator is-flex"
+                          onClick={[Function]}
+                        >
+                          <span
+                            className="is-size-4 mr-10 sp-check has-text-white"
+                          />
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </Collapsible>
+              <ProgressIndicators
+                progressList={Array []}
+              />
+            </div>
+            <span
+              className="has-text-weight-bold mb-20"
+            >
+              DISCOVERY_IN_PROGRESS
+            </span>
+          </div>
+        </RMAMiDiscoveryUI>
+      </RMAMiDiscovery>
+    </Provider>
+  </Router>
+</BrowserRouter>
+`;

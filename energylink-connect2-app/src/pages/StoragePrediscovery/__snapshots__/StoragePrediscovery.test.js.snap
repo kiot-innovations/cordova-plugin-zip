@@ -1,0 +1,125 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`StoragePrediscovery page render correctly 1`] = `
+<BrowserRouter
+  keyLength={0}
+>
+  <Router
+    history={
+      Object {
+        "action": "POP",
+        "block": [Function],
+        "createHref": [Function],
+        "go": [Function],
+        "goBack": [Function],
+        "goForward": [Function],
+        "length": 1,
+        "listen": [Function],
+        "location": Object {
+          "hash": "",
+          "pathname": "/",
+          "search": "",
+          "state": undefined,
+        },
+        "push": [Function],
+        "replace": [Function],
+      }
+    }
+  >
+    <Provider
+      store={
+        Object {
+          "clearActions": [Function],
+          "dispatch": [Function],
+          "getActions": [Function],
+          "getState": [Function],
+          "replaceReducer": [Function],
+          "subscribe": [Function],
+        }
+      }
+    >
+      <StoragePrediscovery>
+        <div
+          className="storage-prediscovery"
+        >
+          <div
+            className="prediscovery-title has-text-centered mt-10 mb-20"
+          >
+            <div />
+            <span
+              className="is-uppercase has-text-weight-bold"
+            >
+              STORAGE_DEVICES
+            </span>
+          </div>
+          <div
+            className="prediscovery-content has-text-centered is-flex mt-20 mb-20 pl-15 pr-15"
+          >
+            <span
+              className="is-size-1 sp-hey has-text-white mb-15"
+            />
+            <span>
+              NO_PREDISCOVERY
+            </span>
+          </div>
+          <div
+            className="prediscovery-footer"
+          >
+            <ErrorDetected
+              next="/eqs-update"
+              number={1}
+              onRetry={[Function]}
+              url="/eqs-prediscovery-errors"
+              warnings={0}
+            >
+              <div
+                className="error-list-detected pl-20 pr-20"
+              >
+                <p
+                  className="has-text-primary has-text-weight-bold has-text-centered mb-10 is-size-6"
+                >
+                  ERRORS_DETECTED 1
+                    
+                </p>
+                <p
+                  className="has-text-centered"
+                >
+                  FIX_ERRORS
+                </p>
+                <div
+                  className="is-flex level"
+                >
+                  <Link
+                    className="button is-primary is-outlined is-uppercase mt-20 is-fullwidth mr-5"
+                    to="/eqs-prediscovery-errors"
+                  >
+                    <LinkAnchor
+                      className="button is-primary is-outlined is-uppercase mt-20 is-fullwidth mr-5"
+                      href="/eqs-prediscovery-errors"
+                      navigate={[Function]}
+                    >
+                      <a
+                        className="button is-primary is-outlined is-uppercase mt-20 is-fullwidth mr-5"
+                        href="/eqs-prediscovery-errors"
+                        onClick={[Function]}
+                      >
+                        ERROR_LIST
+                      </a>
+                    </LinkAnchor>
+                  </Link>
+                  <button
+                    className="button is-primary is-uppercase mt-20 is-fullwidth ml-5"
+                    onClick={[Function]}
+                  >
+                    RETRY
+                  </button>
+                </div>
+              </div>
+            </ErrorDetected>
+          </div>
+        </div>
+      </StoragePrediscovery>
+    </Provider>
+  </Router>
+</BrowserRouter>
+`;

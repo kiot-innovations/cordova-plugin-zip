@@ -1,0 +1,170 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`UpdateScreen page render correctly 1`] = `
+<BrowserRouter
+  keyLength={0}
+>
+  <Router
+    history={
+      Object {
+        "action": "POP",
+        "block": [Function],
+        "createHref": [Function],
+        "go": [Function],
+        "goBack": [Function],
+        "goForward": [Function],
+        "length": 1,
+        "listen": [Function],
+        "location": Object {
+          "hash": "",
+          "pathname": "/",
+          "search": "",
+          "state": undefined,
+        },
+        "push": [Function],
+        "replace": [Function],
+      }
+    }
+  >
+    <Provider
+      store={
+        Object {
+          "clearActions": [Function],
+          "dispatch": [Function],
+          "getActions": [Function],
+          "getState": [Function],
+          "replaceReducer": [Function],
+          "subscribe": [Function],
+        }
+      }
+    >
+      <UpdateScreen>
+        <div
+          className="pvs-update-screen page-height pr-15 pl-15"
+        >
+          <span
+            className="is-uppercase has-text-weight-bold"
+          >
+            HOLD ON
+          </span>
+          <span>
+            DONT_CLOSE_APP_UPGRADING
+          </span>
+          <div
+            className="percent-loader"
+          >
+            <UpdateFirmwareStage
+              percent={100}
+              stage="STAGE_DOWNLOADING_IMAGES"
+              waiting={true}
+            >
+              <div
+                className="update-firmware-step has-text-white"
+              >
+                <span
+                  className="mr-10 is-capitalized has-text-weight-bold"
+                >
+                  STAGE_DOWNLOADING_IMAGES
+                </span>
+                <span
+                  className="is-pulled-right  is-size-4 mr-10 sp-check has-text-white"
+                />
+              </div>
+            </UpdateFirmwareStage>
+            <UpdateFirmwareStage
+              percent={100}
+              stage="STAGE_DECOMPRESSING"
+            >
+              <div
+                className="update-firmware-step has-text-white"
+              >
+                <span
+                  className="mr-10 is-capitalized has-text-weight-bold"
+                >
+                  STAGE_DECOMPRESSING
+                </span>
+                <span
+                  className="is-pulled-right  is-size-4 mr-10 sp-check has-text-white"
+                />
+              </div>
+            </UpdateFirmwareStage>
+            <UpdateFirmwareStage
+              percent={0}
+              stage="STAGE_FLASHING_IMAGES"
+            >
+              <div
+                className="update-firmware-step"
+              >
+                <span
+                  className="mr-10 is-capitalized has-text-weight-bold"
+                >
+                  STAGE_FLASHING_IMAGES
+                </span>
+                <span
+                  className="is-pulled-right  is-size-4 mr-10"
+                />
+              </div>
+            </UpdateFirmwareStage>
+            <UpdateFirmwareStage
+              percent={0}
+              stage="STAGE_VERIFYING_IMAGES"
+            >
+              <div
+                className="update-firmware-step"
+              >
+                <span
+                  className="mr-10 is-capitalized has-text-weight-bold"
+                >
+                  STAGE_VERIFYING_IMAGES
+                </span>
+                <span
+                  className="is-pulled-right  is-size-4 mr-10"
+                />
+              </div>
+            </UpdateFirmwareStage>
+            <UpdateFirmwareStage
+              percent={100}
+              stage="STAGE_FW_UPGRADE_SUCCESS"
+            >
+              <div
+                className="update-firmware-step has-text-white"
+              >
+                <span
+                  className="mr-10 is-capitalized has-text-weight-bold"
+                >
+                  STAGE_FW_UPGRADE_SUCCESS
+                </span>
+                <span
+                  className="is-pulled-right  is-size-4 mr-10 sp-check has-text-white"
+                />
+              </div>
+            </UpdateFirmwareStage>
+            <UpdateFirmwareStage
+              percent={0}
+              stage="STAGE_COMPLETE"
+            >
+              <div
+                className="update-firmware-step"
+              >
+                <span
+                  className="mr-10 is-capitalized has-text-weight-bold"
+                >
+                  STAGE_COMPLETE
+                </span>
+                <span
+                  className="is-pulled-right  is-size-4 mr-10"
+                />
+                <div
+                  className="has-text-white"
+                >
+                  WAITING_FOR_NETWORK 1:40
+                </div>
+              </div>
+            </UpdateFirmwareStage>
+          </div>
+        </div>
+      </UpdateScreen>
+    </Provider>
+  </Router>
+</BrowserRouter>
+`;

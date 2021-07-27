@@ -19,6 +19,10 @@ jobs:
       APP_ENV: test
       BUILD_TYPE: debug
     steps:
+      - uses: szenius/set-timezone@v1.0
+        with:
+          timezoneLinux: "UTC-8"
+
       - uses: actions/checkout@v2
         with:
           token: ${{ secrets.ACCESS_TOKEN }}

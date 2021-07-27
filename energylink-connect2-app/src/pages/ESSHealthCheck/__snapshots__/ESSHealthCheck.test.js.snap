@@ -1,0 +1,1262 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ESSHealthCheck page render correctly 1`] = `
+Object {
+  "component": <BrowserRouter
+    keyLength={0}
+  >
+    <Router
+      history={
+        Object {
+          "action": "POP",
+          "block": [Function],
+          "createHref": [Function],
+          "go": [Function],
+          "goBack": [Function],
+          "goForward": [Function],
+          "length": 1,
+          "listen": [Function],
+          "location": Object {
+            "hash": "",
+            "pathname": "/",
+            "search": "",
+            "state": undefined,
+          },
+          "push": [Function],
+          "replace": [Function],
+        }
+      }
+    >
+      <Provider
+        store={
+          Object {
+            "clearActions": [Function],
+            "dispatch": [Function],
+            "getActions": [Function],
+            "getState": [Function],
+            "replaceReducer": [Function],
+            "subscribe": [Function],
+          }
+        }
+      >
+        <ESSHealthCheck>
+          <ESSHealthCheck
+            clear={[Function]}
+            commissioned={false}
+            error=""
+            modelsWarning={false}
+            onRetry={[Function]}
+            pathToContinue="/system-configuration"
+            pathToErrors="/ess-health-check-errors"
+            progress={NaN}
+            results={
+              Object {
+                "errors": Array [
+                  Object {
+                    "device_sn": "048572340857NND",
+                    "error_code": "10031",
+                    "error_message": "Critical: low battery SOH.",
+                    "error_name": "UNDER_VOLT_ALARM",
+                    "last_occurrence": "2020-02-15 01:23:45",
+                    "value": Object {
+                      "unit": "string",
+                      "value": 0,
+                    },
+                  },
+                  Object {
+                    "device_sn": "048572340857NND",
+                    "error_code": "20031",
+                    "error_message": "Critical: low battery SOH.",
+                    "error_name": "UNDER_VOLT_ALARM",
+                    "last_occurrence": "2020-02-15 01:23:45",
+                    "value": Object {
+                      "unit": "string",
+                      "value": 0,
+                    },
+                  },
+                ],
+                "ess_report": Object {
+                  "battery_status": Array [
+                    null,
+                  ],
+                  "ess_state": Array [
+                    Object {
+                      "operational_mode": "SELF_CONSUMPTION",
+                      "permission_to_operate": false,
+                      "storage_controller_status": "RUNNING",
+                    },
+                  ],
+                  "ess_status": Array [
+                    Object {
+                      "enclosure_humidity": Object {
+                        "unit": "%",
+                        "value": 17,
+                      },
+                      "enclosure_temperature": Object {
+                        "unit": "C",
+                        "value": 30,
+                      },
+                      "ess_meter_reading": null,
+                      "last_updated": "2020-09-29 23:54:43",
+                      "serial_number": "00001B3DDACD_178_15",
+                    },
+                  ],
+                  "hub_plus_status": Object {
+                    "aux_port_voltage": Object {
+                      "unit": "V",
+                      "value": 11.353,
+                    },
+                    "contactor_error": "NONE",
+                    "contactor_position": "CLOSED",
+                    "grid_frequency_state": "METER_FREQ_IN_RANGE",
+                    "grid_phase1_voltage": Object {
+                      "unit": "V",
+                      "value": 123,
+                    },
+                    "grid_phase2_voltage": Object {
+                      "unit": "V",
+                      "value": 122.60000000000001,
+                    },
+                    "grid_voltage_state": "METER_VOLTAGE_IN_RANGE",
+                    "hub_humidity": Object {
+                      "unit": "%",
+                      "value": 21,
+                    },
+                    "hub_temperature": Object {
+                      "unit": "C",
+                      "value": 28,
+                    },
+                    "inverter_connection_voltage": Object {
+                      "unit": "V",
+                      "value": 0.267,
+                    },
+                    "jump_start_voltage": Object {
+                      "unit": "V",
+                      "value": 0.594,
+                    },
+                    "last_updated": "2020-09-29 23:54:51",
+                    "load_frequency_state": "METER_FREQ_IN_RANGE",
+                    "load_phase1_voltage": Object {
+                      "unit": "V",
+                      "value": 122.80000000000001,
+                    },
+                    "load_phase2_voltage": Object {
+                      "unit": "V",
+                      "value": 122.60000000000001,
+                    },
+                    "load_voltage_state": "METER_VOLTAGE_IN_RANGE",
+                    "main_voltage": Object {
+                      "unit": "V",
+                      "value": 11.254,
+                    },
+                    "serial_number": "Serial-MIDC-Saturn",
+                  },
+                  "inverter_status": Array [
+                    null,
+                  ],
+                  "last_updated": "2020-09-29 23:54:53",
+                },
+              }
+            }
+            rmaMode="REPLACE_PVS"
+            showWaitModal={[Function]}
+            submitting={true}
+            syncError={false}
+            toggleModelsWarning={[Function]}
+            waitModal={false}
+            waiting={false}
+            warnMissingModels={[Function]}
+          >
+            <div
+              className="ess-hc has-text-centered pt-10 pl-10 pr-10"
+            >
+              <span
+                className="is-uppercase has-text-weight-bold"
+              >
+                SYSTEM_CHECK
+              </span>
+              <div
+                className="status-message"
+              >
+                <ESSHealthCheckReport
+                  report={
+                    Object {
+                      "battery_status": Array [],
+                      "ess_state": Array [
+                        Object {
+                          "hasError": false,
+                          "operational_mode": "SELF_CONSUMPTION",
+                          "permission_to_operate": false,
+                          "storage_controller_status": "RUNNING",
+                        },
+                      ],
+                      "ess_status": Array [
+                        Object {
+                          "enclosure_humidity": Object {
+                            "unit": "%",
+                            "value": 17,
+                          },
+                          "enclosure_temperature": Object {
+                            "unit": "C",
+                            "value": 30,
+                          },
+                          "ess_meter_reading": null,
+                          "hasError": false,
+                          "last_updated": "2020-09-29 23:54:43",
+                          "serial_number": "00001B3DDACD_178_15",
+                        },
+                      ],
+                      "hub_plus_status": Object {
+                        "aux_port_voltage": Object {
+                          "unit": "V",
+                          "value": 11.353,
+                        },
+                        "contactor_error": "NONE",
+                        "contactor_position": "CLOSED",
+                        "grid_frequency_state": "METER_FREQ_IN_RANGE",
+                        "grid_phase1_voltage": Object {
+                          "unit": "V",
+                          "value": 123,
+                        },
+                        "grid_phase2_voltage": Object {
+                          "unit": "V",
+                          "value": 122.60000000000001,
+                        },
+                        "grid_voltage_state": "METER_VOLTAGE_IN_RANGE",
+                        "hasError": false,
+                        "hub_humidity": Object {
+                          "unit": "%",
+                          "value": 21,
+                        },
+                        "hub_temperature": Object {
+                          "unit": "C",
+                          "value": 28,
+                        },
+                        "inverter_connection_voltage": Object {
+                          "unit": "V",
+                          "value": 0.267,
+                        },
+                        "jump_start_voltage": Object {
+                          "unit": "V",
+                          "value": 0.594,
+                        },
+                        "last_updated": "2020-09-29 23:54:51",
+                        "load_frequency_state": "METER_FREQ_IN_RANGE",
+                        "load_phase1_voltage": Object {
+                          "unit": "V",
+                          "value": 122.80000000000001,
+                        },
+                        "load_phase2_voltage": Object {
+                          "unit": "V",
+                          "value": 122.60000000000001,
+                        },
+                        "load_voltage_state": "METER_VOLTAGE_IN_RANGE",
+                        "main_voltage": Object {
+                          "unit": "V",
+                          "value": 11.254,
+                        },
+                        "serial_number": "Serial-MIDC-Saturn",
+                      },
+                      "inverter_status": Array [],
+                      "last_updated": Object {
+                        "0": "2",
+                        "1": "0",
+                        "10": " ",
+                        "11": "2",
+                        "12": "3",
+                        "13": ":",
+                        "14": "5",
+                        "15": "4",
+                        "16": ":",
+                        "17": "5",
+                        "18": "3",
+                        "2": "2",
+                        "3": "0",
+                        "4": "-",
+                        "5": "0",
+                        "6": "9",
+                        "7": "-",
+                        "8": "2",
+                        "9": "9",
+                        "hasError": false,
+                      },
+                    }
+                  }
+                >
+                  <section>
+                    <h6
+                      className="has-text-white has-text-weight-bold mb-10"
+                    >
+                      SUNVAULT_STATE
+                    </h6>
+                    <ESSHealthCheckReportItem
+                      hasError={false}
+                      key="NO_SN"
+                      operational_mode="SELF_CONSUMPTION"
+                      permission_to_operate={false}
+                      storage_controller_status="RUNNING"
+                    >
+                      <div
+                        className="collapsible mb-10"
+                      >
+                        <i
+                          className="is-size-5 sp-check has-text-white"
+                        />
+                        <p
+                          className="has-text-white has-text-weight-bold mb-10"
+                        >
+                          undefined
+                        </p>
+                        <p>
+                          <span
+                            className="has-text-weight-bold mr-5"
+                          >
+                            LAST_UPDATED
+                            :
+                          </span>
+                          08/27/2019 05:00 PM
+                        </p>
+                        <p
+                          key="operational_mode"
+                        >
+                          <span
+                            className="mr-5 has-text-weight-bold"
+                          >
+                            operational_mode
+                            :
+                          </span>
+                          <span
+                            className="mr-5 is-capitalized"
+                          >
+                            SELF_CONSUMPTION
+                          </span>
+                        </p>
+                        <p
+                          key="permission_to_operate"
+                        >
+                          <span
+                            className="mr-5 has-text-weight-bold"
+                          >
+                            permission_to_operate
+                            :
+                          </span>
+                          <span
+                            className="mr-5 is-capitalized"
+                          >
+                            false
+                          </span>
+                        </p>
+                        <p
+                          key="storage_controller_status"
+                        >
+                          <span
+                            className="mr-5 has-text-weight-bold"
+                          >
+                            storage_controller_status
+                            :
+                          </span>
+                          <span
+                            className="mr-5 is-capitalized"
+                          >
+                            RUNNING
+                          </span>
+                        </p>
+                      </div>
+                    </ESSHealthCheckReportItem>
+                  </section>
+                  <div
+                    className="hc-missing-report has-text-centered is-flex mb-10 mt-10 pt-10 pb-10"
+                  >
+                    <span
+                      className="has-text-weight-bold has-text-white"
+                    >
+                      MISSING_HC_REPORT BATTERIES
+                    </span>
+                  </div>
+                  <div
+                    className="hc-missing-report has-text-centered is-flex mb-10 mt-10 pt-10 pb-10"
+                  >
+                    <span
+                      className="has-text-weight-bold has-text-white"
+                    >
+                      MISSING_HC_REPORT INVERTERS
+                    </span>
+                  </div>
+                  <section>
+                    <h6
+                      className="has-text-white has-text-weight-bold mb-10"
+                    >
+                      HUB_PLUS
+                    </h6>
+                    <ESSHealthCheckReportItem
+                      aux_port_voltage={
+                        Object {
+                          "unit": "V",
+                          "value": 11.353,
+                        }
+                      }
+                      contactor_error="NONE"
+                      contactor_position="CLOSED"
+                      grid_frequency_state="METER_FREQ_IN_RANGE"
+                      grid_phase1_voltage={
+                        Object {
+                          "unit": "V",
+                          "value": 123,
+                        }
+                      }
+                      grid_phase2_voltage={
+                        Object {
+                          "unit": "V",
+                          "value": 122.60000000000001,
+                        }
+                      }
+                      grid_voltage_state="METER_VOLTAGE_IN_RANGE"
+                      hasError={false}
+                      hub_humidity={
+                        Object {
+                          "unit": "%",
+                          "value": 21,
+                        }
+                      }
+                      hub_temperature={
+                        Object {
+                          "unit": "C",
+                          "value": 28,
+                        }
+                      }
+                      inverter_connection_voltage={
+                        Object {
+                          "unit": "V",
+                          "value": 0.267,
+                        }
+                      }
+                      jump_start_voltage={
+                        Object {
+                          "unit": "V",
+                          "value": 0.594,
+                        }
+                      }
+                      key="Serial-MIDC-Saturn"
+                      last_updated="2020-09-29 23:54:51"
+                      load_frequency_state="METER_FREQ_IN_RANGE"
+                      load_phase1_voltage={
+                        Object {
+                          "unit": "V",
+                          "value": 122.80000000000001,
+                        }
+                      }
+                      load_phase2_voltage={
+                        Object {
+                          "unit": "V",
+                          "value": 122.60000000000001,
+                        }
+                      }
+                      load_voltage_state="METER_VOLTAGE_IN_RANGE"
+                      main_voltage={
+                        Object {
+                          "unit": "V",
+                          "value": 11.254,
+                        }
+                      }
+                      serial_number="Serial-MIDC-Saturn"
+                    >
+                      <div
+                        className="collapsible mb-10"
+                      >
+                        <i
+                          className="is-size-5 sp-check has-text-white"
+                        />
+                        <p
+                          className="has-text-white has-text-weight-bold mb-10"
+                        >
+                          Serial-MIDC-Saturn
+                        </p>
+                        <p>
+                          <span
+                            className="has-text-weight-bold mr-5"
+                          >
+                            LAST_UPDATED
+                            :
+                          </span>
+                          09/29/2020 11:54 PM
+                        </p>
+                        <p
+                          key="aux_port_voltage"
+                        >
+                          <span
+                            className="mr-5 has-text-weight-bold"
+                          >
+                            aux_port_voltage
+                            :
+                          </span>
+                          <span
+                            className="mr-5 is-capitalized"
+                          >
+                            11.35
+                          </span>
+                          V
+                        </p>
+                        <p
+                          key="contactor_error"
+                        >
+                          <span
+                            className="mr-5 has-text-weight-bold"
+                          >
+                            contactor_error
+                            :
+                          </span>
+                          <span
+                            className="mr-5 is-capitalized"
+                          >
+                            NONE
+                          </span>
+                        </p>
+                        <p
+                          key="contactor_position"
+                        >
+                          <span
+                            className="mr-5 has-text-weight-bold"
+                          >
+                            contactor_position
+                            :
+                          </span>
+                          <span
+                            className="mr-5 is-capitalized"
+                          >
+                            CLOSED
+                          </span>
+                        </p>
+                        <p
+                          key="grid_frequency_state"
+                        >
+                          <span
+                            className="mr-5 has-text-weight-bold"
+                          >
+                            grid_frequency_state
+                            :
+                          </span>
+                          <span
+                            className="mr-5 is-capitalized"
+                          >
+                            METER_FREQ_IN_RANGE
+                          </span>
+                        </p>
+                        <p
+                          key="grid_phase1_voltage"
+                        >
+                          <span
+                            className="mr-5 has-text-weight-bold"
+                          >
+                            grid_phase1_voltage
+                            :
+                          </span>
+                          <span
+                            className="mr-5 is-capitalized"
+                          >
+                            123.00
+                          </span>
+                          V
+                        </p>
+                        <p
+                          key="grid_phase2_voltage"
+                        >
+                          <span
+                            className="mr-5 has-text-weight-bold"
+                          >
+                            grid_phase2_voltage
+                            :
+                          </span>
+                          <span
+                            className="mr-5 is-capitalized"
+                          >
+                            122.60
+                          </span>
+                          V
+                        </p>
+                        <p
+                          key="grid_voltage_state"
+                        >
+                          <span
+                            className="mr-5 has-text-weight-bold"
+                          >
+                            grid_voltage_state
+                            :
+                          </span>
+                          <span
+                            className="mr-5 is-capitalized"
+                          >
+                            METER_VOLTAGE_IN_RANGE
+                          </span>
+                        </p>
+                        <p
+                          key="hub_humidity"
+                        >
+                          <span
+                            className="mr-5 has-text-weight-bold"
+                          >
+                            hub_humidity
+                            :
+                          </span>
+                          <span
+                            className="mr-5 is-capitalized"
+                          >
+                            21.00
+                          </span>
+                          %
+                        </p>
+                        <p
+                          key="hub_temperature"
+                        >
+                          <span
+                            className="mr-5 has-text-weight-bold"
+                          >
+                            hub_temperature
+                            :
+                          </span>
+                          <span
+                            className="mr-5 is-capitalized"
+                          >
+                            28.00
+                          </span>
+                          C
+                        </p>
+                        <p
+                          key="inverter_connection_voltage"
+                        >
+                          <span
+                            className="mr-5 has-text-weight-bold"
+                          >
+                            inverter_connection_voltage
+                            :
+                          </span>
+                          <span
+                            className="mr-5 is-capitalized"
+                          >
+                            0.27
+                          </span>
+                          V
+                        </p>
+                        <p
+                          key="jump_start_voltage"
+                        >
+                          <span
+                            className="mr-5 has-text-weight-bold"
+                          >
+                            jump_start_voltage
+                            :
+                          </span>
+                          <span
+                            className="mr-5 is-capitalized"
+                          >
+                            0.59
+                          </span>
+                          V
+                        </p>
+                        <p
+                          key="load_frequency_state"
+                        >
+                          <span
+                            className="mr-5 has-text-weight-bold"
+                          >
+                            load_frequency_state
+                            :
+                          </span>
+                          <span
+                            className="mr-5 is-capitalized"
+                          >
+                            METER_FREQ_IN_RANGE
+                          </span>
+                        </p>
+                        <p
+                          key="load_phase1_voltage"
+                        >
+                          <span
+                            className="mr-5 has-text-weight-bold"
+                          >
+                            load_phase1_voltage
+                            :
+                          </span>
+                          <span
+                            className="mr-5 is-capitalized"
+                          >
+                            122.80
+                          </span>
+                          V
+                        </p>
+                        <p
+                          key="load_phase2_voltage"
+                        >
+                          <span
+                            className="mr-5 has-text-weight-bold"
+                          >
+                            load_phase2_voltage
+                            :
+                          </span>
+                          <span
+                            className="mr-5 is-capitalized"
+                          >
+                            122.60
+                          </span>
+                          V
+                        </p>
+                        <p
+                          key="load_voltage_state"
+                        >
+                          <span
+                            className="mr-5 has-text-weight-bold"
+                          >
+                            load_voltage_state
+                            :
+                          </span>
+                          <span
+                            className="mr-5 is-capitalized"
+                          >
+                            METER_VOLTAGE_IN_RANGE
+                          </span>
+                        </p>
+                        <p
+                          key="main_voltage"
+                        >
+                          <span
+                            className="mr-5 has-text-weight-bold"
+                          >
+                            main_voltage
+                            :
+                          </span>
+                          <span
+                            className="mr-5 is-capitalized"
+                          >
+                            11.25
+                          </span>
+                          V
+                        </p>
+                      </div>
+                    </ESSHealthCheckReportItem>
+                  </section>
+                  <section>
+                    <h6
+                      className="has-text-white has-text-weight-bold mb-10"
+                    >
+                      ALL_IN_ONE
+                    </h6>
+                    <ESSHealthCheckReportItem
+                      enclosure_humidity={
+                        Object {
+                          "unit": "%",
+                          "value": 17,
+                        }
+                      }
+                      enclosure_temperature={
+                        Object {
+                          "unit": "C",
+                          "value": 30,
+                        }
+                      }
+                      ess_meter_reading={null}
+                      hasError={false}
+                      key="00001B3DDACD_178_15"
+                      last_updated="2020-09-29 23:54:43"
+                      serial_number="00001B3DDACD_178_15"
+                    >
+                      <div
+                        className="collapsible mb-10"
+                      >
+                        <i
+                          className="is-size-5 sp-check has-text-white"
+                        />
+                        <p
+                          className="has-text-white has-text-weight-bold mb-10"
+                        >
+                          00001B3DDACD_178_15
+                        </p>
+                        <p>
+                          <span
+                            className="has-text-weight-bold mr-5"
+                          >
+                            LAST_UPDATED
+                            :
+                          </span>
+                          09/29/2020 11:54 PM
+                        </p>
+                        <p
+                          key="enclosure_humidity"
+                        >
+                          <span
+                            className="mr-5 has-text-weight-bold"
+                          >
+                            enclosure_humidity
+                            :
+                          </span>
+                          <span
+                            className="mr-5 is-capitalized"
+                          >
+                            17.00
+                          </span>
+                          %
+                        </p>
+                        <p
+                          key="enclosure_temperature"
+                        >
+                          <span
+                            className="mr-5 has-text-weight-bold"
+                          >
+                            enclosure_temperature
+                            :
+                          </span>
+                          <span
+                            className="mr-5 is-capitalized"
+                          >
+                            30.00
+                          </span>
+                          C
+                        </p>
+                        <div
+                          className="hc-missing-report has-text-centered is-flex mb-10 mt-10 pt-10 pb-10"
+                        >
+                          <span
+                            className="has-text-weight-bold has-text-white"
+                          >
+                            MISSING_HC_REPORT METER_READINGS
+                          </span>
+                        </div>
+                      </div>
+                    </ESSHealthCheckReportItem>
+                  </section>
+                </ESSHealthCheckReport>
+              </div>
+              <SwipeableSheet
+                onChange={[Function]}
+                open={false}
+              >
+                <SwipeableBottomSheet
+                  defaultOpen={false}
+                  fullScreen={false}
+                  marginTop={0}
+                  onChange={[Function]}
+                  open={false}
+                  overflowHeight={0}
+                  overlay={true}
+                  scrollTopAtClose={true}
+                  shadowTip={true}
+                  swipeableViewsProps={
+                    Object {
+                      "className": "swipeable",
+                    }
+                  }
+                  topShadow={true}
+                >
+                  <div
+                    style={
+                      Object {
+                        "bottom": 0,
+                        "height": 0,
+                        "left": 0,
+                        "position": "fixed",
+                        "right": 0,
+                      }
+                    }
+                  >
+                    <HeightUpdater
+                      height={768}
+                      onHeightChange={[Function]}
+                    />
+                    <div
+                      onClick={[Function]}
+                      style={
+                        Object {
+                          "backgroundColor": "black",
+                          "height": 768,
+                          "left": 0,
+                          "opacity": 0,
+                          "pointerEvents": "none",
+                          "position": "fixed",
+                          "right": 0,
+                          "top": 0,
+                          "transition": "opacity 450ms",
+                        }
+                      }
+                    />
+                    <ReactSwipableView
+                      animateHeight={false}
+                      animateTransitions={true}
+                      axis="y"
+                      className="swipeable"
+                      containerStyle={
+                        Object {
+                          "boxSizing": "border-box",
+                        }
+                      }
+                      disableLazyLoading={false}
+                      disabled={false}
+                      enableMouseEvents={true}
+                      hysteresis={0.6}
+                      ignoreNativeScroll={false}
+                      index={0}
+                      onChangeIndex={[Function]}
+                      onTransitionEnd={[Function]}
+                      resistance={false}
+                      slideStyle={
+                        Object {
+                          "boxSizing": "border-box",
+                          "marginBottom": -0,
+                          "overflow": "visible",
+                        }
+                      }
+                      springConfig={
+                        Object {
+                          "delay": "0s",
+                          "duration": "0.35s",
+                          "easeFunction": "cubic-bezier(0.15, 0.3, 0.25, 1)",
+                        }
+                      }
+                      style={
+                        Object {
+                          "boxSizing": "border-box",
+                          "overflowY": "initial",
+                        }
+                      }
+                      threshold={5}
+                    >
+                      <div
+                        className="swipeable"
+                        onMouseDown={[Function]}
+                        onMouseLeave={[Function]}
+                        onMouseMove={[Function]}
+                        onMouseUp={[Function]}
+                        onScroll={[Function]}
+                        onTouchEnd={[Function]}
+                        onTouchStart={[Function]}
+                        style={
+                          Object {
+                            "boxSizing": "border-box",
+                            "overflowY": "initial",
+                          }
+                        }
+                      >
+                        <div
+                          className="react-swipeable-view-container"
+                          style={
+                            Object {
+                              "WebkitFlexDirection": "column",
+                              "WebkitTransition": "all 0s ease 0s",
+                              "boxSizing": "border-box",
+                              "direction": "ltr",
+                              "display": "flex",
+                              "flexDirection": "column",
+                              "height": null,
+                              "transition": "all 0s ease 0s",
+                              "willChange": "transform",
+                            }
+                          }
+                        >
+                          <div
+                            aria-hidden={false}
+                            data-swipeable="true"
+                            key=".0"
+                            style={
+                              Object {
+                                "WebkitFlexShrink": 0,
+                                "boxSizing": "border-box",
+                                "flexShrink": 0,
+                                "marginBottom": -0,
+                                "overflow": "visible",
+                                "width": "100%",
+                              }
+                            }
+                          >
+                            <div
+                              className="ReactSwipeableBottomSheet--closed"
+                              style={
+                                Object {
+                                  "backgroundColor": "white",
+                                  "height": "initial",
+                                  "maxHeight": 768,
+                                  "overflow": "hidden",
+                                }
+                              }
+                            >
+                              <div
+                                className="check-in-progress is-flex"
+                              >
+                                <span
+                                  className="has-text-weight-bold"
+                                >
+                                  HOLD_ON
+                                </span>
+                                <span
+                                  className="mt-10 mb-10"
+                                >
+                                  WAIT_FOR_CHECK
+                                </span>
+                                <div
+                                  className="mt-10 mb-20"
+                                >
+                                  <button
+                                    className="button is-primary"
+                                    onClick={[Function]}
+                                  >
+                                    CLOSE
+                                  </button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </ReactSwipableView>
+                  </div>
+                </SwipeableBottomSheet>
+              </SwipeableSheet>
+              <ErrorDetected
+                customAction={Object {}}
+                globalError=""
+                next="/system-configuration"
+                number={1}
+                onRetry={[Function]}
+                url="/ess-health-check-errors"
+                warnings={1}
+              >
+                <div
+                  className="error-list-detected pl-20 pr-20"
+                >
+                  <p
+                    className="has-text-primary has-text-weight-bold has-text-centered mb-10 is-size-6"
+                  >
+                    ERRORS_DETECTED 1
+                      
+                    WARNINGS_DETECTED 1
+                  </p>
+                  <p
+                    className="has-text-centered"
+                  >
+                    FIX_ERRORS
+                  </p>
+                  <div
+                    className="is-flex level"
+                  >
+                    <Link
+                      className="button is-primary is-outlined is-uppercase mt-20 is-fullwidth mr-5"
+                      to="/ess-health-check-errors"
+                    >
+                      <LinkAnchor
+                        className="button is-primary is-outlined is-uppercase mt-20 is-fullwidth mr-5"
+                        href="/ess-health-check-errors"
+                        navigate={[Function]}
+                      >
+                        <a
+                          className="button is-primary is-outlined is-uppercase mt-20 is-fullwidth mr-5"
+                          href="/ess-health-check-errors"
+                          onClick={[Function]}
+                        >
+                          ERROR_LIST
+                        </a>
+                      </LinkAnchor>
+                    </Link>
+                    <button
+                      className="button is-primary is-uppercase mt-20 is-fullwidth ml-5"
+                      onClick={[Function]}
+                    >
+                      RETRY
+                    </button>
+                  </div>
+                </div>
+              </ErrorDetected>
+              <SwipeableSheet
+                onChange={[Function]}
+                open={false}
+              >
+                <SwipeableBottomSheet
+                  defaultOpen={false}
+                  fullScreen={false}
+                  marginTop={0}
+                  onChange={[Function]}
+                  open={false}
+                  overflowHeight={0}
+                  overlay={true}
+                  scrollTopAtClose={true}
+                  shadowTip={true}
+                  swipeableViewsProps={
+                    Object {
+                      "className": "swipeable",
+                    }
+                  }
+                  topShadow={true}
+                >
+                  <div
+                    style={
+                      Object {
+                        "bottom": 0,
+                        "height": 0,
+                        "left": 0,
+                        "position": "fixed",
+                        "right": 0,
+                      }
+                    }
+                  >
+                    <HeightUpdater
+                      height={768}
+                      onHeightChange={[Function]}
+                    />
+                    <div
+                      onClick={[Function]}
+                      style={
+                        Object {
+                          "backgroundColor": "black",
+                          "height": 768,
+                          "left": 0,
+                          "opacity": 0,
+                          "pointerEvents": "none",
+                          "position": "fixed",
+                          "right": 0,
+                          "top": 0,
+                          "transition": "opacity 450ms",
+                        }
+                      }
+                    />
+                    <ReactSwipableView
+                      animateHeight={false}
+                      animateTransitions={true}
+                      axis="y"
+                      className="swipeable"
+                      containerStyle={
+                        Object {
+                          "boxSizing": "border-box",
+                        }
+                      }
+                      disableLazyLoading={false}
+                      disabled={false}
+                      enableMouseEvents={true}
+                      hysteresis={0.6}
+                      ignoreNativeScroll={false}
+                      index={0}
+                      onChangeIndex={[Function]}
+                      onTransitionEnd={[Function]}
+                      resistance={false}
+                      slideStyle={
+                        Object {
+                          "boxSizing": "border-box",
+                          "marginBottom": -0,
+                          "overflow": "visible",
+                        }
+                      }
+                      springConfig={
+                        Object {
+                          "delay": "0s",
+                          "duration": "0.35s",
+                          "easeFunction": "cubic-bezier(0.15, 0.3, 0.25, 1)",
+                        }
+                      }
+                      style={
+                        Object {
+                          "boxSizing": "border-box",
+                          "overflowY": "initial",
+                        }
+                      }
+                      threshold={5}
+                    >
+                      <div
+                        className="swipeable"
+                        onMouseDown={[Function]}
+                        onMouseLeave={[Function]}
+                        onMouseMove={[Function]}
+                        onMouseUp={[Function]}
+                        onScroll={[Function]}
+                        onTouchEnd={[Function]}
+                        onTouchStart={[Function]}
+                        style={
+                          Object {
+                            "boxSizing": "border-box",
+                            "overflowY": "initial",
+                          }
+                        }
+                      >
+                        <div
+                          className="react-swipeable-view-container"
+                          style={
+                            Object {
+                              "WebkitFlexDirection": "column",
+                              "WebkitTransition": "all 0s ease 0s",
+                              "boxSizing": "border-box",
+                              "direction": "ltr",
+                              "display": "flex",
+                              "flexDirection": "column",
+                              "height": null,
+                              "transition": "all 0s ease 0s",
+                              "willChange": "transform",
+                            }
+                          }
+                        >
+                          <div
+                            aria-hidden={false}
+                            data-swipeable="true"
+                            key=".0"
+                            style={
+                              Object {
+                                "WebkitFlexShrink": 0,
+                                "boxSizing": "border-box",
+                                "flexShrink": 0,
+                                "marginBottom": -0,
+                                "overflow": "visible",
+                                "width": "100%",
+                              }
+                            }
+                          >
+                            <div
+                              className="ReactSwipeableBottomSheet--closed"
+                              style={
+                                Object {
+                                  "backgroundColor": "white",
+                                  "height": "initial",
+                                  "maxHeight": 768,
+                                  "overflow": "hidden",
+                                }
+                              }
+                            >
+                              <div
+                                className="is-flex flex-column has-text-white has-text-centered"
+                              >
+                                <span
+                                  className="has-text-weight-bold mb-10"
+                                >
+                                  ALMOST_THERE
+                                </span>
+                                <span
+                                  className="mb-10"
+                                >
+                                  RMA_MISSING_MODELS
+                                </span>
+                                <div
+                                  className="mt-10"
+                                >
+                                  <button
+                                    className="button is-primary"
+                                    onClick={[Function]}
+                                  >
+                                    ASSIGN_MODELS
+                                  </button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </ReactSwipableView>
+                  </div>
+                </SwipeableBottomSheet>
+              </SwipeableSheet>
+            </div>
+          </ESSHealthCheck>
+        </ESSHealthCheck>
+      </Provider>
+    </Router>
+  </BrowserRouter>,
+  "store": Object {
+    "clearActions": [Function],
+    "dispatch": [Function],
+    "getActions": [Function],
+    "getState": [Function],
+    "replaceReducer": [Function],
+    "subscribe": [Function],
+  },
+}
+`;
