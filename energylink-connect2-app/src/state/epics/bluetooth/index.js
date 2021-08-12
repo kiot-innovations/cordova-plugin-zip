@@ -4,6 +4,7 @@ import {
   reConnectToPVSWiFiEpic
 } from './enableAccessPointViaBluetoothEpic'
 import { enableBluetoothEpic } from './enableBluetoothEpic'
+import { getPairedPVSEpic } from './getPairedPVSEpic'
 import { getPVSBluetoothDeviceEpic } from './getPVSBluetoothDeviceEpic'
 import { getBLEDeviceListEpic } from './getPVSBluetoothDeviceListEpic'
 import { statusBluetoothEpic } from './statusBluetoothEpic'
@@ -15,5 +16,6 @@ export default [
   enableBluetoothEpic,
   statusBluetoothEpic,
   reConnectToPVSWiFiEpic,
-  getBLEDeviceListEpic
+  getBLEDeviceListEpic,
+  getPairedPVSEpic
 ]

@@ -7,7 +7,7 @@ export const getBLEDeviceList = () =>
   new Observable(subscriber => {
     window.ble.scan(
       [],
-      30,
+      20,
       dev => {
         const name = pathOr(null, getBLEPath(), dev)
         const device = { name, id: dev.id }
@@ -21,5 +21,5 @@ export const getBLEDeviceList = () =>
     setTimeout(() => {
       subscriber.next({ device: null, ended: true })
       subscriber.complete()
-    }, 30000)
+    }, 22000)
   })

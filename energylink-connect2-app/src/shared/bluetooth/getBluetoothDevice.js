@@ -1,9 +1,10 @@
 import { equals, pathOr } from 'ramda'
+import { Observable } from 'rxjs'
 
 import { getBLEPath } from 'shared/utils'
 
 export const getBLEDevice = pvsSerialNumber =>
-  new Promise((resolve, reject) => {
+  new Observable(subscriber => {
     let found = false
     window.ble.startScan(
       [],
@@ -12,17 +13,22 @@ export const getBLEDevice = pvsSerialNumber =>
 
         if (equals(sn, pvsSerialNumber)) {
           found = true
-          resolve(device)
+          subscriber.next({ devices: [device] })
+          subscriber.complete()
         }
       },
-      reject
+      error => subscriber.error(error)
     )
 
-    setTimeout(
-      () =>
-        window.ble.stopScan(() => {
-          if (!found) reject('NOT_FOUND')
-        }, reject),
-      30000
-    )
+    setTimeout(() => {
+      window.ble.stopScan(
+        () => {
+          if (!found) {
+            subscriber.next({ devices: [] })
+            subscriber.complete()
+          }
+        },
+        error => subscriber.error(error)
+      )
+    }, 20000)
   })

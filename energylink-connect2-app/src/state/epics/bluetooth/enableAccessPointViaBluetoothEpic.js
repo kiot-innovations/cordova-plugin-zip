@@ -1,5 +1,5 @@
 import * as Sentry from '@sentry/browser'
-import { pathOr } from 'ramda'
+import { isEmpty, pathOr } from 'ramda'
 import { ofType } from 'redux-observable'
 import { from, of, EMPTY } from 'rxjs'
 import { catchError, map, exhaustMap } from 'rxjs/operators'
@@ -11,6 +11,7 @@ import {
   FAILURE_BLUETOOTH_ACTION,
   PVS_CONNECTION_INIT
 } from 'state/actions/network'
+import { EMPTY_ACTION } from 'state/actions/share'
 
 export const enableAccessPointViaBluetoothEpic = action$ => {
   return action$.pipe(
@@ -37,7 +38,9 @@ export const reConnectToPVSWiFiEpic = (action$, state$) => {
     map(() => {
       const ssid = pathOr('', ['value', 'network', 'SSID'], state$)
       const password = pathOr('', ['value', 'network', 'password'], state$)
-      return PVS_CONNECTION_INIT({ ssid, password })
+      return !isEmpty(ssid) && !isEmpty(password)
+        ? PVS_CONNECTION_INIT({ ssid, password })
+        : EMPTY_ACTION()
     }),
     catchError(err => {
       Sentry.addBreadcrumb({ message: 'EXECUTE_ENABLE_ACCESS_POINT' })

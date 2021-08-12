@@ -339,11 +339,7 @@ function PvsSelection() {
     dispatch(SET_SSID(ssid))
     dispatch(SET_AP_PWD(password))
 
-    dispatch(
-      bluetoothEnabled
-        ? ENABLE_ACCESS_POINT(PVSSelected)
-        : PVS_CONNECTION_INIT({ ssid, password })
-    )
+    dispatch(ENABLE_ACCESS_POINT(PVSSelected))
     setConnecting(true)
   }
 

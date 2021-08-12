@@ -1,7 +1,7 @@
 import { always } from 'ramda'
 import { ofType } from 'redux-observable'
 import { from, of, timer } from 'rxjs'
-import { catchError, map, exhaustMap, delayWhen } from 'rxjs/operators'
+import { catchError, map, delayWhen, mergeMap } from 'rxjs/operators'
 
 import { statusBluetooth } from 'shared/bluetooth/statusBluetooth'
 import {
@@ -13,11 +13,12 @@ import {
 export const statusBluetoothEpic = action$ => {
   return action$.pipe(
     ofType(CHECK_BLUETOOTH_STATUS_INIT.getType()),
-    exhaustMap(() =>
+    mergeMap(() =>
       from(statusBluetooth()).pipe(
         map(CHECK_BLUETOOTH_STATUS_SUCCESS),
         catchError(error => {
-          console.warn('STATUS CATCHERROR', error)
+          console.error('CHECK_BLUETOOTH_STATUS_INIT')
+          console.error({ error })
           return of(ENABLE_BLUETOOTH_ERROR(error))
         })
       )
