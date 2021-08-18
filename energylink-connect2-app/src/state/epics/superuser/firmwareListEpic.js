@@ -14,7 +14,10 @@ export const getessUpdateList = async () => {
     const essUpdateListResponse = await fetch(
       process.env.REACT_APP_FW_DOWNLOAD_LIST_ESS_URL,
       {
-        method: 'GET'
+        method: 'GET',
+        headers: {
+          'x-api-key': process.env.REACT_APP_FW_DOWNLOAD_LIST_ESS_URL_API_KEY
+        }
       }
     )
     const essUpdateListObject = await essUpdateListResponse.json()
