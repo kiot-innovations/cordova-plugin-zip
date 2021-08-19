@@ -53,7 +53,6 @@ exports[`Network Widget after selecting network network is selected 1`] = `
           >
             <div
               className="collapsible-header"
-              onClick={[Function]}
             >
               <div
                 className="collapsible-title"
@@ -79,6 +78,7 @@ exports[`Network Widget after selecting network network is selected 1`] = `
               />
               <div
                 className="collapsible-trigger"
+                onClick={[Function]}
               >
                 <div
                   className="chevron"
@@ -2171,7 +2171,6 @@ exports[`Network Widget on initial state renders correctly 1`] = `
           >
             <div
               className="collapsible-header"
-              onClick={[Function]}
             >
               <div
                 className="collapsible-title"
@@ -2197,6 +2196,7 @@ exports[`Network Widget on initial state renders correctly 1`] = `
               />
               <div
                 className="collapsible-trigger"
+                onClick={[Function]}
               >
                 <div
                   className="chevron"

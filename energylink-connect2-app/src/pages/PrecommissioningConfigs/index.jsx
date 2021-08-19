@@ -94,12 +94,12 @@ const continueCommissioning = (
   dispatch
 ) => {
   dispatch(MIS_DISCOVERY_START_TIMER())
-
+  dispatch(RESET_DISCOVERY_PROGRESS())
   // If we're going through a PVS replacement
   if (rmaMode === rmaModes.REPLACE_PVS) {
     // If there's new equipment, take them to inventory count
     if (newEquipment) {
-      history.push(paths.PROTECTED.RMA_INVENTORY.path)
+      return history.push(paths.PROTECTED.RMA_INVENTORY.path)
     } else {
       // If there's no new equipment
       if (pathOr(false, ['other'], rma)) {
@@ -107,34 +107,20 @@ const continueCommissioning = (
         dispatch(
           START_DISCOVERY_INIT({
             Device: 'allplusmime',
+            KeepDevices: '1',
             type: discoveryTypes.LEGACY
           })
         )
-        history.push(paths.PROTECTED.LEGACY_DISCOVERY.path)
+        return history.push(paths.PROTECTED.LEGACY_DISCOVERY.path)
       } else {
         // Do a standard MI discovery if site doesn't contain legacy devices.
         const candidates = generateCandidates(serialNumbers)
         dispatch(PUSH_CANDIDATES_INIT(candidates))
-        history.push(paths.PROTECTED.RMA_MI_DISCOVERY.path)
-      }
-    }
-  } else if (rmaMode === rmaModes.EDIT_DEVICES) {
-    history.push(paths.PROTECTED.RMA_DEVICES.path)
-  } else {
-    if (miValue.value > 0) {
-      history.push(
-        canAccessScandit
-          ? paths.PROTECTED.SCAN_LABELS.path
-          : paths.PROTECTED.SN_LIST.path
-      )
-    } else {
-      if (storageValue.value !== '0') {
-        history.push(paths.PROTECTED.STORAGE_PREDISCOVERY.path)
-      } else {
-        history.push(paths.PROTECTED.SYSTEM_CONFIGURATION.path)
+        return history.push(paths.PROTECTED.RMA_MI_DISCOVERY.path)
       }
     }
   }
+  return history.push(paths.PROTECTED.RMA_DEVICES.path)
 }
 
 const PrecommissioningConfigs = () => {
@@ -198,6 +184,7 @@ const PrecommissioningConfigs = () => {
       START_DISCOVERY_INIT({
         Device: 'allnomi',
         Interfaces: ['mime'],
+        KeepDevices: '1',
         type: discoveryTypes.ALLNOMI
       })
     )
@@ -226,6 +213,7 @@ const PrecommissioningConfigs = () => {
         START_DISCOVERY_INIT({
           Device: 'allnomi',
           Interfaces: ['mime'],
+          KeepDevices: '1',
           type: discoveryTypes.ALLNOMI
         })
       )

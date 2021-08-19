@@ -25,8 +25,7 @@ function LegacyDiscoverySelector() {
   }
 
   const discoveryOptions = [
-    { label: t('SUNPOWER_AC_MODULES'), value: discoveryTypes.ONLYMI },
-    { label: t('ALL_DEVICES'), value: discoveryTypes.LEGACY }
+    { label: t('ALL_MICROINVERTERS'), value: discoveryTypes.ONLYMI }
   ]
 
   const startDiscovery = () => {
@@ -34,7 +33,7 @@ function LegacyDiscoverySelector() {
     if (selectedDiscovery === discoveryTypes.ONLYMI)
       dispatch(
         START_DISCOVERY_INIT({
-          MIType: 'ENPH',
+          MIType: 'ALL',
           Device: 'allplusmime',
           Interfaces: 'mime',
           KeepDevices: '1',
@@ -45,7 +44,7 @@ function LegacyDiscoverySelector() {
       dispatch(
         START_DISCOVERY_INIT({
           Device: 'allplusmime',
-          KeepDevices: '0',
+          KeepDevices: '1',
           type: discoveryTypes.LEGACY
         })
       )

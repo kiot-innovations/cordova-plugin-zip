@@ -20,7 +20,7 @@ import { from, of, timer } from 'rxjs'
 import { catchError, exhaustMap, map, takeUntil } from 'rxjs/operators'
 
 import { getApiDevice, getApiPVS } from 'shared/api'
-import { filterInverters } from 'shared/utils'
+import { getMicroinverters } from 'shared/utils'
 import {
   DEVICELIST_PROCESSING_COMPLETE,
   DEVICELIST_PROCESSING_ERROR,
@@ -52,7 +52,7 @@ const updateDeviceListProgress = progress => {
 
 const getAccessToken = path(['user', 'auth', 'access_token'])
 const getSelectedPVS = path(['rma', 'pvs'])
-const getAllInverters = compose(filterInverters, path(['devices', 'found']))
+const getAllInverters = compose(getMicroinverters, path(['devices', 'found']))
 
 const bulkSize = 10
 

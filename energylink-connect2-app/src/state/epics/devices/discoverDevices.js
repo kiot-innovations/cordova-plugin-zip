@@ -20,20 +20,15 @@ import {
 import { START_DISCOVERY_SUCCESS } from 'state/actions/pvs'
 
 const fetchDiscovery = async () => {
-  // eslint-disable-next-line no-useless-catch
-  try {
-    const swagger = await getApiPVS()
-    const res = await Promise.all([
-      swagger.apis.devices.getDevices(),
-      swagger.apis.discovery.getDiscoveryProgress()
-    ])
-    const data = res.map(req => req.body)
-    return {
-      devices: data[0],
-      progress: data[1]
-    }
-  } catch (e) {
-    throw e
+  const swagger = await getApiPVS()
+  const res = await Promise.all([
+    swagger.apis.devices.getDevices(),
+    swagger.apis.discovery.getDiscoveryProgress()
+  ])
+  const data = res.map(req => req.body)
+  return {
+    devices: data[0],
+    progress: data[1]
   }
 }
 
@@ -49,11 +44,11 @@ export const scanDevicesEpic = action$ => {
         takeUntil(stopPolling$),
         exhaustMap(() =>
           from(fetchDiscovery()).pipe(
-            map(response =>
-              pathOr(false, ['progress', 'complete'], response)
+            map(response => {
+              return pathOr(false, ['progress', 'complete'], response)
                 ? DISCOVER_COMPLETE(response)
                 : DISCOVER_UPDATE(response)
-            ),
+            }),
             catchError(error => {
               Sentry.setTag('endpoint', 'devices.getDevices')
               Sentry.captureMessage(`${error.message} - discoverDevices.js`)

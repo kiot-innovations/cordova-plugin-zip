@@ -2,10 +2,10 @@ import {
   always,
   cond,
   equals,
+  filter,
   find,
   has,
   isEmpty,
-  length,
   pathOr,
   prop,
   propEq,
@@ -49,6 +49,7 @@ export default () => {
   const { statusReport, statusReportError } = useSelector(
     state => state.storage
   )
+  const { found } = useSelector(prop('devices'))
   const essState = pathOr({}, ['ess_report', 'ess_state'])(statusReport)
 
   const prodMeterConfig = find(isMeter, Object.values(liveData))
@@ -102,6 +103,9 @@ export default () => {
   }
 
   const hasStorage = has('soc', data.rawData)
+  const storageDevices = filter(propEq('TYPE', 'EQUINOX-ESS'), found)
+  const isStorageCommissioned = !isEmpty(storageDevices)
+
   const consumptionValue = has('site_load_p', data.rawData)
     ? prop('site_load_p', data.rawData)
     : propOr(0, 'powerHomeUsage', data)
@@ -123,7 +127,7 @@ export default () => {
     <section className="data is-flex has-text-centered full-height pl-10 pr-10">
       <section>
         {either(
-          hasStorage,
+          isStorageCommissioned,
           <Collapsible title={t('SUNVAULT_STATUS')}>
             {either(
               !isEmpty(statusReportError),
@@ -154,7 +158,7 @@ export default () => {
             />
           </Collapsible>
         )}
-        {either(length(miData) > 0, <MiDataLive data={miData} />)}
+        {either(!isEmpty(miData), <MiDataLive data={miData} />)}
       </section>
       <section>
         <div className="live-power-title pt-20 pb-20">

@@ -9,11 +9,9 @@ import {
   propEq,
   split,
   map,
-  length,
-  isEmpty,
-  includes
+  length
 } from 'ramda'
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 
@@ -23,16 +21,12 @@ import { Loader } from 'components/Loader'
 import SwipeableSheet from 'hocs/SwipeableSheet'
 import paths from 'routes/paths'
 import { useI18n } from 'shared/i18n'
-import { filterInverters, miTypes, either } from 'shared/utils'
+import { miTypes, either, getMicroinverters } from 'shared/utils'
 import { SET_AC_DEVICES } from 'state/actions/analytics'
 import { CLAIM_DEVICES_RESET, FETCH_MODELS_INIT } from 'state/actions/devices'
 import { SET_LAST_VISITED_PAGE } from 'state/actions/global'
 import { RESET_METADATA_STATUS, SET_METADATA_INIT } from 'state/actions/pvs'
-import {
-  ALLOW_COMMISSIONING,
-  SUBMIT_CLEAR,
-  SUBMIT_CONFIG_SUCCESS
-} from 'state/actions/systemConfiguration'
+import { ALLOW_COMMISSIONING } from 'state/actions/systemConfiguration'
 import { rmaModes } from 'state/reducers/rma'
 import './ModelEdit.scss'
 
@@ -61,9 +55,6 @@ const ModelEdit = () => {
   const { rmaMode } = useSelector(state => state.rma)
   const { settingMetadata, setMetadataStatus } = useSelector(state => state.pvs)
   const { fetchingDevices, found } = useSelector(state => state.devices)
-  const { submitting, commissioned, error } = useSelector(
-    path(['systemConfiguration', 'submit'])
-  )
   const rmaPvs = useSelector(path(['rma', 'pvs']))
   const { bom } = useSelector(state => state.inventory)
   const siteKey = useSelector(path(['site', 'site', 'siteKey']))
@@ -74,7 +65,7 @@ const ModelEdit = () => {
     history.goBack()
   }
 
-  const miSource = filterInverters(found)
+  const miSource = getMicroinverters(found)
   const groupedSerialNumbers = groupBy(prop('MODEL'), miSource)
 
   const [warning, toggleWarning] = useState(false)
@@ -82,9 +73,7 @@ const ModelEdit = () => {
   const devicesWithModels = map(copyModel, found)
 
   const validateModels = () => {
-    const filterModels = found.filter(
-      mi => mi.DEVICE_TYPE === 'Inverter' && !mi.PANEL
-    )
+    const filterModels = miSource.filter(mi => !mi.PANEL)
     if (filterModels.length > 0) {
       toggleWarning(true)
     } else {
@@ -98,17 +87,6 @@ const ModelEdit = () => {
     }
   }
 
-  const syncWithCloud = useCallback(() => {
-    dispatch(SUBMIT_CLEAR())
-    dispatch(SUBMIT_CONFIG_SUCCESS())
-  }, [dispatch])
-
-  const clearAndContinue = () => {
-    dispatch(SUBMIT_CLEAR())
-    dispatch(SET_LAST_VISITED_PAGE(paths.PROTECTED.RMA_DEVICES.path))
-    history.push(paths.PROTECTED.SYSTEM_CONFIGURATION.path)
-  }
-
   useEffect(() => {
     dispatch(FETCH_MODELS_INIT())
     dispatch(SET_AC_DEVICES())
@@ -116,32 +94,21 @@ const ModelEdit = () => {
 
   useEffect(() => {
     if (setMetadataStatus === 'success') {
+      dispatch(ALLOW_COMMISSIONING())
       if (rmaMode === rmaModes.REPLACE_PVS) {
-        dispatch(ALLOW_COMMISSIONING())
-      }
-      if (rmaMode === rmaModes.EDIT_DEVICES) {
+        dispatch(RESET_METADATA_STATUS())
+        if (essValue.value !== '0') {
+          history.push(paths.PROTECTED.STORAGE_PREDISCOVERY.path)
+        } else {
+          history.push(paths.PROTECTED.SYSTEM_CONFIGURATION.path)
+        }
+      } else {
         dispatch(RESET_METADATA_STATUS())
         dispatch(SET_LAST_VISITED_PAGE(paths.PROTECTED.RMA_DEVICES.path))
-        history.push(paths.PROTECTED.SYSTEM_CONFIGURATION.path)
-      } else if (essValue.value !== '0') {
-        history.push(paths.PROTECTED.STORAGE_PREDISCOVERY.path)
-      } else {
-        history.push(
-          rmaPvs
-            ? paths.PROTECTED.SYSTEM_CONFIGURATION.path
-            : paths.PROTECTED.INSTALL_SUCCESS.path
-        )
+        history.push(paths.PROTECTED.RMA_DEVICES.path)
       }
     }
-  }, [
-    history,
-    essValue.value,
-    rmaPvs,
-    setMetadataStatus,
-    rmaMode,
-    dispatch,
-    syncWithCloud
-  ])
+  }, [history, essValue.value, rmaPvs, setMetadataStatus, rmaMode, dispatch])
 
   return (
     <div className="model-edit is-vertical has-text-centered pr-10 pl-10">
@@ -201,95 +168,6 @@ const ModelEdit = () => {
               {t('CLOSE')}
             </button>
           </div>
-        </div>
-      </SwipeableSheet>
-
-      <SwipeableSheet open={commissioned || submitting || !isEmpty(error)}>
-        <div className="missing-models-warning is-flex pb-20">
-          {either(
-            submitting,
-            <>
-              <span className="has-text-weight-bold has-text-white">
-                {t('HOLD_ON')}
-              </span>
-              <span className="has-text-white mt-10 mb-10">
-                {t('ADDING_DEVICES')}
-              </span>
-              <Loader />
-              <span className="has-text-weight-bold mt-10">
-                {t('DONT_CLOSE_APP')}
-              </span>
-            </>
-          )}
-          {either(
-            !isEmpty(error),
-            either(
-              includes('COMMISSIONCFG4005', error),
-              <>
-                <div className="mt-10 mb-10">
-                  <span className="is-size-1 sp-hey has-text-white" />
-                </div>
-                <div className="mb-5">
-                  <span className="has-text-weight-bold">
-                    {t('ALMOST_THERE')}
-                  </span>
-                </div>
-                <div className="mb-10">
-                  <span>{t('MISSING_METER_SUBTYPES')}</span>
-                </div>
-                <div className="has-text-centered">
-                  <span>
-                    <button
-                      className="button is-primary"
-                      onClick={() =>
-                        history.push(paths.PROTECTED.SYSTEM_CONFIGURATION.path)
-                      }
-                    >
-                      {t('CONFIGURE_METERS')}
-                    </button>
-                  </span>
-                </div>
-              </>,
-              <>
-                <div className="mt-10 mb-10">
-                  <span className="is-size-1 sp-hey has-text-white" />
-                </div>
-                <div className="mt-10 has-text-white">
-                  <span>{t('ADDING_DEVICES_ERROR')}</span>
-                </div>
-                <div className="mt-10 has-text-centered">
-                  <span>
-                    <button
-                      className="button is-primary"
-                      onClick={syncWithCloud}
-                    >
-                      {t('RETRY')}
-                    </button>
-                  </span>
-                </div>
-              </>
-            )
-          )}
-          {either(
-            commissioned,
-            <>
-              <span className="has-text-weight-bold">{t('SUCCESS')}</span>
-              <span className="mt-10 mb-10">{t('ADDING_DEVICES_SUCCESS')}</span>
-              <div className="mt-10 mb-10">
-                <span className="is-size-4 sp-check has-text-white" />
-              </div>
-              <div className="mt-10 has-text-centered">
-                <span>
-                  <button
-                    className="button is-primary"
-                    onClick={clearAndContinue}
-                  >
-                    {t('CONTINUE')}
-                  </button>
-                </span>
-              </div>
-            </>
-          )}
         </div>
       </SwipeableSheet>
     </div>

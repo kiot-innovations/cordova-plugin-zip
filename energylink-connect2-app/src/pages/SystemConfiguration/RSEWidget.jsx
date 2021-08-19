@@ -1,5 +1,15 @@
 import clsx from 'clsx'
-import { curry, compose, equals, path, prop, isNil, propEq, find } from 'ramda'
+import {
+  curry,
+  compose,
+  equals,
+  path,
+  prop,
+  isNil,
+  propEq,
+  find,
+  isEmpty
+} from 'ramda'
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
@@ -23,6 +33,9 @@ const getPowerProductionDropDownValue = curry((RSES, pp) =>
 function RSEWidget() {
   const t = useI18n()
   const dispatch = useDispatch()
+
+  const { newDevices } = useSelector(state => state.stringInverters)
+  const commissioningStringInverters = !isEmpty(newDevices)
 
   const {
     isSetting,
@@ -67,83 +80,89 @@ function RSEWidget() {
   return (
     <div className="pb-15">
       <Collapsible title={t('REMOTE_SYSTEM_ENERGIZE')} icon={RSE}>
-        {selectedPowerProduction ? (
-          <React.Fragment>
-            <div className="field is-horizontal mb-15">
-              <div className="field-label">
-                <label htmlFor="siteName" className="label has-text-white">
-                  {t('RSE')}
-                </label>
-              </div>
-              <div className="field-body">
-                <div className="field">
-                  <div className="control">
-                    <SelectField
-                      disabled={isWorking}
-                      isSearchable={false}
-                      options={dropDownValues}
-                      value={getPowerProductionDropDownValue(
-                        dropDownValues,
-                        selectedPowerProduction
-                      )}
-                      onSelect={onChangePowerProductionValue}
-                    />
+        {either(
+          commissioningStringInverters,
+          <div className="mt-30 mb-30 ml-15 mr-15 has-text-centered">
+            <span id="rse-not-available">{t('RSE_NOT_AVAILABLE')}</span>
+          </div>,
+          selectedPowerProduction ? (
+            <React.Fragment>
+              <div className="field is-horizontal mb-15">
+                <div className="field-label">
+                  <label htmlFor="siteName" className="label has-text-white">
+                    {t('RSE')}
+                  </label>
+                </div>
+                <div className="field-body">
+                  <div className="field">
+                    <div className="control">
+                      <SelectField
+                        disabled={isWorking}
+                        isSearchable={false}
+                        options={dropDownValues}
+                        value={getPowerProductionDropDownValue(
+                          dropDownValues,
+                          selectedPowerProduction
+                        )}
+                        onSelect={onChangePowerProductionValue}
+                      />
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
 
-            {renderRSEDescription(
-              getPowerProductionDropDownValue(
-                dropDownValues,
-                selectedPowerProduction
-              ).value,
-              t
-            )}
+              {renderRSEDescription(
+                getPowerProductionDropDownValue(
+                  dropDownValues,
+                  selectedPowerProduction
+                ).value,
+                t
+              )}
 
-            {either(
-              error,
-              <div className="block">
-                <div className="message error">
-                  {t(error)}
-                  <button
-                    className="button has-text-primary is-uppercase is-text pl-0"
-                    onClick={() => dispatch(GET_RSE_INIT())}
-                  >
-                    {t('RETRY_CLICK')}
-                  </button>
+              {either(
+                error,
+                <div className="block">
+                  <div className="message error">
+                    {t(error)}
+                    <button
+                      className="button has-text-primary is-uppercase is-text pl-0"
+                      onClick={() => dispatch(GET_RSE_INIT())}
+                    >
+                      {t('RETRY_CLICK')}
+                    </button>
+                  </div>
                 </div>
-              </div>
-            )}
+              )}
 
-            <div className="is-flex mt-15">
-              <button
-                className={clsx('button is-primary is-uppercase auto', {
-                  'sp-check': updated
-                })}
-                disabled={isSetting || disableApplyBtn}
-                onClick={() =>
-                  onApplyPowerProductionValue(
-                    getPowerProductionDropDownValue(
-                      dropDownValues,
-                      selectedPowerProduction
+              <div className="is-flex mt-15">
+                <button
+                  className={clsx('button is-primary is-uppercase auto', {
+                    'sp-check': updated
+                  })}
+                  disabled={isSetting || disableApplyBtn}
+                  onClick={() =>
+                    onApplyPowerProductionValue(
+                      getPowerProductionDropDownValue(
+                        dropDownValues,
+                        selectedPowerProduction
+                      )
                     )
-                  )
-                }
-              >
-                {either(
-                  isWorking,
-                  t(
-                    'APPLYING',
-                    progress && progress < 100 ? `${progress}%` : '0%'
-                  ),
-                  updated ? t('APPLIED') : t('APPLY')
-                )}
-              </button>
-            </div>
-          </React.Fragment>
-        ) : (
-          <Loader />
+                  }
+                >
+                  {either(
+                    isWorking,
+                    t(
+                      'APPLYING',
+                      progress && progress < 100 ? `${progress}%` : '0%'
+                    ),
+                    updated ? t('APPLIED') : t('APPLY')
+                  )}
+                </button>
+              </div>
+            </React.Fragment>
+          ) : (
+            <Loader />
+          )
         )}
       </Collapsible>
     </div>

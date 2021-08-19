@@ -23,6 +23,7 @@ import sentryReducer from './sentry'
 import { shareReducer } from './share'
 import { siteReducer } from './site'
 import { storageReducer } from './storage'
+import stringInverters from './stringInverters'
 import { superuserReducer } from './superuser'
 import systemConfigurationReducer from './systemConfiguration'
 import ui from './ui'
@@ -66,6 +67,7 @@ export default combineReducers({
     languageReducer
   ),
   fileDownloader,
+  stringInverters,
   firmwareUpdate,
   global: persistReducer(
     {

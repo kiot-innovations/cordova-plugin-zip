@@ -6,6 +6,8 @@ import thunk from 'redux-thunk'
 import rootEpic from './epics'
 import rootReducer from './reducers'
 
+import { LIVE_ENERGY_DATA_NOTIFICATION } from 'state/actions/energy-data'
+
 const epicMiddleware = createEpicMiddleware()
 
 export function configureStore(initialState) {
@@ -23,8 +25,11 @@ export function configureStore(initialState) {
   ) {
     const { createLogger } = require('redux-logger')
     const logger = createLogger({
-      predicate: (getState, action) => action.type !== 'DEVICE_IS_CONNECTED',
-      collapsed: (getState, action, logEntry) => !logEntry.error
+      predicate: (getState, action) =>
+        action.type !== 'DEVICE_IS_CONNECTED' &&
+        action.type !== LIVE_ENERGY_DATA_NOTIFICATION.getType(),
+      collapsed: (getState, action, logEntry) => !logEntry.error,
+      diff: true
     })
     middlewares.push(logger)
   }

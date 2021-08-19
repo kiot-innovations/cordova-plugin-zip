@@ -42,7 +42,7 @@ const initialState = {
   startDiscoveryStatus: null,
   settingMetadata: false,
   setMetadataStatus: null,
-  miData: null,
+  miData: [],
   miDataError: null,
   lastDiscoveryType: '',
   bleDevice: null,

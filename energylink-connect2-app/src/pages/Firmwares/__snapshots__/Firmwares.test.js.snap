@@ -72,7 +72,6 @@ exports[`Firmwares Menu component render correctly 1`] = `
               >
                 <div
                   className="collapsible-header"
-                  onClick={[Function]}
                 >
                   <div
                     className="collapsible-title"
@@ -94,6 +93,7 @@ exports[`Firmwares Menu component render correctly 1`] = `
                   </div>
                   <div
                     className="collapsible-trigger"
+                    onClick={[Function]}
                   >
                     <div
                       className="chevron down"
@@ -157,7 +157,6 @@ exports[`Firmwares Menu component render correctly 1`] = `
               >
                 <div
                   className="collapsible-header"
-                  onClick={[Function]}
                 >
                   <div
                     className="collapsible-title"
@@ -179,6 +178,7 @@ exports[`Firmwares Menu component render correctly 1`] = `
                   </div>
                   <div
                     className="collapsible-trigger"
+                    onClick={[Function]}
                   >
                     <div
                       className="chevron down"
@@ -229,7 +229,6 @@ exports[`Firmwares Menu component render correctly 1`] = `
               >
                 <div
                   className="collapsible-header"
-                  onClick={[Function]}
                 >
                   <div
                     className="collapsible-title"
@@ -246,6 +245,7 @@ exports[`Firmwares Menu component render correctly 1`] = `
                   />
                   <div
                     className="collapsible-trigger"
+                    onClick={[Function]}
                   >
                     <div
                       className="chevron down"
@@ -321,7 +321,6 @@ exports[`Firmwares Menu component render correctly 1`] = `
               >
                 <div
                   className="collapsible-header"
-                  onClick={[Function]}
                 >
                   <div
                     className="collapsible-title"
@@ -338,6 +337,7 @@ exports[`Firmwares Menu component render correctly 1`] = `
                   />
                   <div
                     className="collapsible-trigger"
+                    onClick={[Function]}
                   >
                     <div
                       className="chevron down"
@@ -478,7 +478,6 @@ exports[`Firmwares component render correctly 1`] = `
                 >
                   <div
                     className="collapsible-header"
-                    onClick={[Function]}
                   >
                     <div
                       className="collapsible-title"
@@ -500,6 +499,7 @@ exports[`Firmwares component render correctly 1`] = `
                     </div>
                     <div
                       className="collapsible-trigger"
+                      onClick={[Function]}
                     >
                       <div
                         className="chevron"
@@ -563,7 +563,6 @@ exports[`Firmwares component render correctly 1`] = `
                 >
                   <div
                     className="collapsible-header"
-                    onClick={[Function]}
                   >
                     <div
                       className="collapsible-title"
@@ -585,6 +584,7 @@ exports[`Firmwares component render correctly 1`] = `
                     </div>
                     <div
                       className="collapsible-trigger"
+                      onClick={[Function]}
                     >
                       <div
                         className="chevron"
@@ -635,7 +635,6 @@ exports[`Firmwares component render correctly 1`] = `
                 >
                   <div
                     className="collapsible-header"
-                    onClick={[Function]}
                   >
                     <div
                       className="collapsible-title"
@@ -652,6 +651,7 @@ exports[`Firmwares component render correctly 1`] = `
                     />
                     <div
                       className="collapsible-trigger"
+                      onClick={[Function]}
                     >
                       <div
                         className="chevron"
@@ -727,7 +727,6 @@ exports[`Firmwares component render correctly 1`] = `
                 >
                   <div
                     className="collapsible-header"
-                    onClick={[Function]}
                   >
                     <div
                       className="collapsible-title"
@@ -744,6 +743,7 @@ exports[`Firmwares component render correctly 1`] = `
                     />
                     <div
                       className="collapsible-trigger"
+                      onClick={[Function]}
                     >
                       <div
                         className="chevron"

@@ -199,7 +199,7 @@ describe('Data page', () => {
       selectedDataSource: DATA_SOURCES.LIVE
     },
     pvs: {
-      miData: null
+      miData: []
     },
     devices: {
       found: [

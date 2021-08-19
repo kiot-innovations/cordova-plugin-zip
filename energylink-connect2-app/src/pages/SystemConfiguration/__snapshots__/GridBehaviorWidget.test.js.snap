@@ -56,7 +56,6 @@ exports[`GridBehaviorWidget renders correctly with grid voltage measured equals 
             >
               <div
                 className="collapsible-header"
-                onClick={[Function]}
               >
                 <div
                   className="collapsible-title"
@@ -82,6 +81,7 @@ exports[`GridBehaviorWidget renders correctly with grid voltage measured equals 
                 />
                 <div
                   className="collapsible-trigger"
+                  onClick={[Function]}
                 >
                   <div
                     className="chevron"
@@ -2634,7 +2634,6 @@ exports[`GridBehaviorWidget renders correctly with grid voltage measured equals 
             >
               <div
                 className="collapsible-header"
-                onClick={[Function]}
               >
                 <div
                   className="collapsible-title"
@@ -2660,6 +2659,7 @@ exports[`GridBehaviorWidget renders correctly with grid voltage measured equals 
                 />
                 <div
                   className="collapsible-trigger"
+                  onClick={[Function]}
                 >
                   <div
                     className="chevron"
@@ -5224,7 +5224,6 @@ exports[`GridBehaviorWidget renders correctly with grid voltage measured equals 
             >
               <div
                 className="collapsible-header"
-                onClick={[Function]}
               >
                 <div
                   className="collapsible-title"
@@ -5250,6 +5249,7 @@ exports[`GridBehaviorWidget renders correctly with grid voltage measured equals 
                 />
                 <div
                   className="collapsible-trigger"
+                  onClick={[Function]}
                 >
                   <div
                     className="chevron"

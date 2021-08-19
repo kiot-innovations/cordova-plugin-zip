@@ -1,5 +1,3 @@
-/* disable-eslint */
-
 import moment from 'moment'
 import { path, pathOr, propOr, isEmpty, length } from 'ramda'
 import React, { useEffect } from 'react'
@@ -15,6 +13,8 @@ import { useI18n } from 'shared/i18n'
 import {
   createMeterConfig,
   either,
+  getMicroinverters,
+  getStringInverters,
   warningsLength,
   withoutInfoCodes
 } from 'shared/utils'
@@ -50,6 +50,8 @@ function StoragePrediscovery() {
   const warningsCount = warningsLength(noInfo)
   const errorsDetected = length(noInfo) - warningsCount
 
+  const inverters = [...getMicroinverters(found), ...getStringInverters(found)]
+
   const lastTimestamp = propOr(
     moment().toISOString(),
     'last_updated',
@@ -84,7 +86,7 @@ function StoragePrediscovery() {
     <div className="storage-prediscovery">
       <div className="prediscovery-title has-text-centered mt-10 mb-20">
         {either(
-          rmaMode === rmaModes.EDIT_DEVICES,
+          rmaMode === rmaModes.EDIT_DEVICES || !isEmpty(inverters),
           <span
             className="sp-chevron-left has-text-primary is-size-4 go-back"
             onClick={() => history.push(paths.PROTECTED.RMA_DEVICES.path)}

@@ -1,4 +1,4 @@
-import { find, isEmpty, length, pathOr, propEq, propOr } from 'ramda'
+import { find, isEmpty, length, pathOr, propEq, propOr, filter } from 'ramda'
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
@@ -131,6 +131,7 @@ function Devices() {
         START_DISCOVERY_INIT({
           Device: 'allnomi',
           Interfaces: ['mime'],
+          KeepDevices: '1',
           type: discoveryTypes.ALLNOMI
         })
       )
@@ -144,12 +145,17 @@ function Devices() {
     history.push(paths.PROTECTED.SN_LIST.path)
   }
 
+  const progressList = pathOr([], ['progress'], progress)
+
+  const filteredProgressList = filter(propEq('TYPE', 'PVS5Meter'), progressList)
+
   const retryDiscovery = () => {
     dispatch(RESET_DISCOVERY_PROGRESS())
     dispatch(
       START_DISCOVERY_INIT({
         Device: 'allnomi',
         Interfaces: ['mime'],
+        KeepDevices: '1',
         type: discoveryTypes.ALLNOMI
       })
     )
@@ -239,7 +245,7 @@ function Devices() {
             })}
           </ul>
         </Collapsible>
-        <ProgressIndicators progressList={pathOr([], ['progress'], progress)} />
+        <ProgressIndicators progressList={filteredProgressList} />
       </div>
       <DiscoveryStatus
         error={error}

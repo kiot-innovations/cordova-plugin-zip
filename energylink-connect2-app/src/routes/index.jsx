@@ -7,6 +7,7 @@ import paths from './paths'
 import { routeAuthorization, setLayout } from 'hocs'
 import AnalyticsConsent from 'pages/AnalyticsConsent'
 import BillOfMaterials from 'pages/BillOfMaterials'
+import ConfigureStringInverters from 'pages/ConfigureStringInverters'
 import ConnectionLost from 'pages/ConnectionLost'
 import ConnectToPVS from 'pages/ConnectToPVS'
 import CreateSite from 'pages/CreateSite'
@@ -28,7 +29,6 @@ import FirmwareDownload from 'pages/Firmwares'
 import GetAssistance from 'pages/GetAssistance'
 import Home from 'pages/Home'
 import InstallSuccessful from 'pages/InstallSuccess'
-import InventoryCount from 'pages/InventoryCount'
 import LegacyDiscovery from 'pages/LegacyDiscovery'
 import LegacyDiscoverySelector from 'pages/LegacyDiscoverySelector'
 import Login from 'pages/Login'
@@ -52,6 +52,7 @@ import ScanLabels from 'pages/ScanLabels'
 import Settings from 'pages/Settings'
 import SNList from 'pages/SNList'
 import StoragePrediscovery from 'pages/StoragePrediscovery'
+import StringInverters from 'pages/StringInverters'
 import SystemConfiguration from 'pages/SystemConfiguration'
 import UpdateScreen from 'pages/UpdateScreen'
 import { withTracker } from 'shared/ga'
@@ -74,12 +75,13 @@ const mapComponents = {
   [paths.PROTECTED.PVS_PROVIDE_INTERNET.path]: PVSProvideInternet,
   [paths.PROTECTED.INSTALL_SUCCESS.path]: InstallSuccessful,
   [paths.PROTECTED.ROOT.path]: Home,
-  [paths.PROTECTED.INVENTORY_COUNT.path]: InventoryCount,
   [paths.PROTECTED.CONNECT_TO_PVS.path]: ConnectToPVS,
   [paths.PROTECTED.SCAN_LABELS.path]: ScanLabels,
   [paths.PROTECTED.SYSTEM_CONFIGURATION.path]: SystemConfiguration,
   [paths.PROTECTED.SAVING_CONFIGURATION.path]: SavingConfiguration,
   [paths.PROTECTED.SN_LIST.path]: SNList,
+  [paths.PROTECTED.ADD_STRING_INVERTERS.path]: StringInverters,
+  [paths.PROTECTED.CONFIGURE_STRING_INVERTER.path]: ConfigureStringInverters,
   [paths.PROTECTED.MODEL_EDIT.path]: ModelEdit,
   [paths.PROTECTED.LEGACY_DISCOVERY.path]: LegacyDiscovery,
   [paths.PROTECTED.CONNECTION_LOST.path]: ConnectionLost,

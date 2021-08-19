@@ -28,7 +28,7 @@ import PanelLayoutTool from './Template'
 import { Loader } from 'components/Loader'
 import paths from 'routes/paths'
 import { useI18n } from 'shared/i18n'
-import { either } from 'shared/utils'
+import { either, isStringInverter } from 'shared/utils'
 import { START_PLT_SETUP } from 'state/actions/analytics'
 import { PLT_LOAD } from 'state/actions/panel-layout-tool'
 import './panelLayoutTool.scss'
@@ -42,6 +42,7 @@ const getEPanel = compose(
 const EPanel = getEPanel(Panel)
 
 const getSerialNumbers = compose(
+  reject(isStringInverter),
   reject(propEq('STATE', 'discovered')),
   filter(propEq('DEVICE_TYPE', 'Inverter')),
   pathOr([], ['devices', 'found'])

@@ -1,0 +1,277 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`StringInverter Component Renders Correctly 1`] = `
+<article
+  className="string-inverter mb-25 pl-20 pr-20 pt-20 pb-20 pb-5 "
+>
+  <h1
+    className="has-text-weight-bold has-text-white"
+  >
+    SMA-SB3.8-1SP-US-40
+  </h1>
+  <div
+    className="has-text-weight-bold mt-10 mb-10 has-text-left"
+  >
+    SERIAL_NUMBER
+  </div>
+  <TextInput
+    disabled={true}
+    onChange={[Function]}
+    placeholder="ENTER_INVERTER_SERIAL_NUMBER"
+    value="0142142142"
+  />
+  <div
+    className="has-text-weight-bold mt-20 has-text-left"
+  >
+    MODULE_QUANTITY
+     
+    <span
+      className="required has-text-danger"
+    >
+      *
+    </span>
+  </div>
+  <SelectField
+    className="mt-10 mb-10"
+    isSearchable={true}
+    onSelect={[Function]}
+    options={
+      Array [
+        Object {
+          "label": 0,
+          "value": 0,
+        },
+        Object {
+          "label": 1,
+          "value": 1,
+        },
+        Object {
+          "label": 2,
+          "value": 2,
+        },
+        Object {
+          "label": 3,
+          "value": 3,
+        },
+        Object {
+          "label": 4,
+          "value": 4,
+        },
+        Object {
+          "label": 5,
+          "value": 5,
+        },
+        Object {
+          "label": 6,
+          "value": 6,
+        },
+        Object {
+          "label": 7,
+          "value": 7,
+        },
+        Object {
+          "label": 8,
+          "value": 8,
+        },
+        Object {
+          "label": 9,
+          "value": 9,
+        },
+        Object {
+          "label": 10,
+          "value": 10,
+        },
+        Object {
+          "label": 11,
+          "value": 11,
+        },
+        Object {
+          "label": 12,
+          "value": 12,
+        },
+        Object {
+          "label": 13,
+          "value": 13,
+        },
+        Object {
+          "label": 14,
+          "value": 14,
+        },
+        Object {
+          "label": 15,
+          "value": 15,
+        },
+        Object {
+          "label": 16,
+          "value": 16,
+        },
+        Object {
+          "label": 17,
+          "value": 17,
+        },
+        Object {
+          "label": 18,
+          "value": 18,
+        },
+        Object {
+          "label": 19,
+          "value": 19,
+        },
+        Object {
+          "label": 20,
+          "value": 20,
+        },
+        Object {
+          "label": 21,
+          "value": 21,
+        },
+        Object {
+          "label": 22,
+          "value": 22,
+        },
+        Object {
+          "label": 23,
+          "value": 23,
+        },
+        Object {
+          "label": 24,
+          "value": 24,
+        },
+        Object {
+          "label": 25,
+          "value": 25,
+        },
+        Object {
+          "label": 26,
+          "value": 26,
+        },
+        Object {
+          "label": 27,
+          "value": 27,
+        },
+        Object {
+          "label": 28,
+          "value": 28,
+        },
+        Object {
+          "label": 29,
+          "value": 29,
+        },
+        Object {
+          "label": 30,
+          "value": 30,
+        },
+        Object {
+          "label": 31,
+          "value": 31,
+        },
+        Object {
+          "label": 32,
+          "value": 32,
+        },
+        Object {
+          "label": 33,
+          "value": 33,
+        },
+        Object {
+          "label": 34,
+          "value": 34,
+        },
+        Object {
+          "label": 35,
+          "value": 35,
+        },
+        Object {
+          "label": 36,
+          "value": 36,
+        },
+        Object {
+          "label": 37,
+          "value": 37,
+        },
+        Object {
+          "label": 38,
+          "value": 38,
+        },
+        Object {
+          "label": 39,
+          "value": 39,
+        },
+        Object {
+          "label": 40,
+          "value": 40,
+        },
+        Object {
+          "label": 41,
+          "value": 41,
+        },
+        Object {
+          "label": 42,
+          "value": 42,
+        },
+        Object {
+          "label": 43,
+          "value": 43,
+        },
+        Object {
+          "label": 44,
+          "value": 44,
+        },
+        Object {
+          "label": 45,
+          "value": 45,
+        },
+        Object {
+          "label": 46,
+          "value": 46,
+        },
+        Object {
+          "label": 47,
+          "value": 47,
+        },
+        Object {
+          "label": 48,
+          "value": 48,
+        },
+        Object {
+          "label": 49,
+          "value": 49,
+        },
+        Object {
+          "label": 50,
+          "value": 50,
+        },
+      ]
+    }
+    value={
+      Object {
+        "label": undefined,
+        "value": undefined,
+      }
+    }
+  />
+  <div
+    className="has-text-weight-bold mt-20 has-text-left"
+  >
+    MODULE_MODEL
+     
+    <span
+      className="required has-text-danger"
+    >
+      *
+    </span>
+  </div>
+  <SelectField
+    className="mt-10 mb-10"
+    notFoundText="NOT_FOUND"
+    onSelect={[Function]}
+    options={[MockFunction]}
+    value={
+      Object {
+        "label": "",
+        "value": "",
+      }
+    }
+  />
+</article>
+`;

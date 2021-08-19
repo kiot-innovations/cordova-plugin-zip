@@ -1,0 +1,387 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`The main OtherDevices component should render correctly 1`] = `
+<CommonLayout
+  onClick={[Function]}
+  subtitle="DEVICES_FOUND"
+  title="DISCOVERY_COMPLETE_OTHERDEVICES"
+>
+  <span
+    className="has-text-primary sp-update is-size-2 rediscover-button"
+  />
+</CommonLayout>
+`;
+
+exports[`The small components of the page The RetryDiscovery component should render correctly 1`] = `
+Object {
+  "component": <BrowserRouter
+    keyLength={0}
+  >
+    <Router
+      history={
+        Object {
+          "action": "POP",
+          "block": [Function],
+          "createHref": [Function],
+          "go": [Function],
+          "goBack": [Function],
+          "goForward": [Function],
+          "length": 1,
+          "listen": [Function],
+          "location": Object {
+            "hash": "",
+            "pathname": "/",
+            "search": "",
+            "state": undefined,
+          },
+          "push": [Function],
+          "replace": [Function],
+        }
+      }
+    >
+      <Provider
+        store={
+          Object {
+            "clearActions": [Function],
+            "dispatch": [Function],
+            "getActions": [Function],
+            "getState": [Function],
+            "replaceReducer": [Function],
+            "subscribe": [Function],
+          }
+        }
+      >
+        <OtherDevicesList>
+          <Template>
+            <div
+              className="fill-parent is-flex tile is-vertical has-text-centered pl-10 pr-10 mb-40 string-inverters is-relative"
+            >
+              <div
+                className="header mb-20"
+              >
+                <span
+                  className="sp-chevron-left has-text-primary is-size-4 go-back"
+                  onClick={[Function]}
+                />
+                <span
+                  className="is-uppercase has-text-weight-bold page-title"
+                >
+                  OTHER_DEVICES
+                </span>
+              </div>
+              <div
+                className="full-height"
+              >
+                <div
+                  className="is-flex tile is-vertical discovery-progress"
+                >
+                  <ProgressBar
+                    progress={0}
+                    subtitle="DEVICES_FOUND 0"
+                    title="STRING_INVERTER_DISCOVERY_IN_PROGRESS"
+                  >
+                    <CommonLayout
+                      subtitle="DEVICES_FOUND 0"
+                      title="STRING_INVERTER_DISCOVERY_IN_PROGRESS"
+                    >
+                      <div
+                        className="common-layout"
+                      >
+                        <div
+                          className="common-layout-content"
+                          onClick={[Function]}
+                        >
+                          <div
+                            className="is-flex is-vertical tile"
+                          >
+                            <span
+                              className="has-text-weight-bold mt-auto mb-auto"
+                            >
+                              STRING_INVERTER_DISCOVERY_IN_PROGRESS
+                            </span>
+                            <span>
+                              DEVICES_FOUND 0
+                            </span>
+                          </div>
+                          <div
+                            className="has-text-right"
+                          >
+                            <CircularProgressbar
+                              background={false}
+                              backgroundPadding={0}
+                              circleRatio={1}
+                              className="discovery-progress-bar"
+                              classes={
+                                Object {
+                                  "background": "CircularProgressbar-background",
+                                  "path": "CircularProgressbar-path",
+                                  "root": "CircularProgressbar",
+                                  "text": "CircularProgressbar-text",
+                                  "trail": "CircularProgressbar-trail",
+                                }
+                              }
+                              counterClockwise={false}
+                              maxValue={100}
+                              minValue={0}
+                              strokeWidth={8}
+                              styles={
+                                Object {
+                                  "background": Object {},
+                                  "path": Object {},
+                                  "root": Object {},
+                                  "text": Object {},
+                                  "trail": Object {},
+                                }
+                              }
+                              text="0"
+                              value={0}
+                            >
+                              <svg
+                                className="CircularProgressbar discovery-progress-bar"
+                                data-test-id="CircularProgressbar"
+                                style={Object {}}
+                                viewBox="0 0 100 100"
+                              >
+                                <Path
+                                  className="CircularProgressbar-trail"
+                                  counterClockwise={false}
+                                  dashRatio={1}
+                                  pathRadius={46}
+                                  strokeWidth={8}
+                                  style={Object {}}
+                                >
+                                  <path
+                                    className="CircularProgressbar-trail"
+                                    d="
+      M 50,50
+      m 0,-46
+      a 46,46 0 1 1 0,92
+      a 46,46 0 1 1 0,-92
+    "
+                                    fillOpacity={0}
+                                    strokeWidth={8}
+                                    style={
+                                      Object {
+                                        "strokeDasharray": "289.02652413026095px 289.02652413026095px",
+                                        "strokeDashoffset": "0px",
+                                      }
+                                    }
+                                  />
+                                </Path>
+                                <Path
+                                  className="CircularProgressbar-path"
+                                  counterClockwise={false}
+                                  dashRatio={0}
+                                  pathRadius={46}
+                                  strokeWidth={8}
+                                  style={Object {}}
+                                >
+                                  <path
+                                    className="CircularProgressbar-path"
+                                    d="
+      M 50,50
+      m 0,-46
+      a 46,46 0 1 1 0,92
+      a 46,46 0 1 1 0,-92
+    "
+                                    fillOpacity={0}
+                                    strokeWidth={8}
+                                    style={
+                                      Object {
+                                        "strokeDasharray": "289.02652413026095px 289.02652413026095px",
+                                        "strokeDashoffset": "289.02652413026095px",
+                                      }
+                                    }
+                                  />
+                                </Path>
+                                <text
+                                  className="CircularProgressbar-text"
+                                  style={Object {}}
+                                  x={50}
+                                  y={50}
+                                >
+                                  0
+                                </text>
+                              </svg>
+                            </CircularProgressbar>
+                          </div>
+                        </div>
+                      </div>
+                    </CommonLayout>
+                  </ProgressBar>
+                  <SwipeableSheet
+                    onChange={[Function]}
+                    open={false}
+                  >
+                    <SwipeableBottomSheet
+                      defaultOpen={false}
+                      fullScreen={false}
+                      marginTop={0}
+                      onChange={[Function]}
+                      open={false}
+                      overflowHeight={0}
+                      overlay={true}
+                      scrollTopAtClose={true}
+                      shadowTip={true}
+                      swipeableViewsProps={
+                        Object {
+                          "className": "swipeable",
+                        }
+                      }
+                      topShadow={true}
+                    >
+                      <div
+                        style={
+                          Object {
+                            "bottom": 0,
+                            "height": 0,
+                            "left": 0,
+                            "position": "fixed",
+                            "right": 0,
+                          }
+                        }
+                      >
+                        <HeightUpdater
+                          height={768}
+                          onHeightChange={[Function]}
+                        />
+                        <div
+                          onClick={[Function]}
+                          style={
+                            Object {
+                              "backgroundColor": "black",
+                              "height": 768,
+                              "left": 0,
+                              "opacity": 0,
+                              "pointerEvents": "none",
+                              "position": "fixed",
+                              "right": 0,
+                              "top": 0,
+                              "transition": "opacity 450ms",
+                            }
+                          }
+                        />
+                        <ReactSwipableView
+                          animateHeight={false}
+                          animateTransitions={true}
+                          axis="y"
+                          className="swipeable"
+                          containerStyle={
+                            Object {
+                              "boxSizing": "border-box",
+                            }
+                          }
+                          disableLazyLoading={false}
+                          disabled={false}
+                          enableMouseEvents={true}
+                          hysteresis={0.6}
+                          ignoreNativeScroll={false}
+                          index={0}
+                          onChangeIndex={[Function]}
+                          onTransitionEnd={[Function]}
+                          resistance={false}
+                          slideStyle={
+                            Object {
+                              "boxSizing": "border-box",
+                              "marginBottom": -0,
+                              "overflow": "visible",
+                            }
+                          }
+                          springConfig={
+                            Object {
+                              "delay": "0s",
+                              "duration": "0.35s",
+                              "easeFunction": "cubic-bezier(0.15, 0.3, 0.25, 1)",
+                            }
+                          }
+                          style={
+                            Object {
+                              "boxSizing": "border-box",
+                              "overflowY": "initial",
+                            }
+                          }
+                          threshold={5}
+                        >
+                          <div
+                            className="swipeable"
+                            onMouseDown={[Function]}
+                            onMouseLeave={[Function]}
+                            onMouseMove={[Function]}
+                            onMouseUp={[Function]}
+                            onScroll={[Function]}
+                            onTouchEnd={[Function]}
+                            onTouchStart={[Function]}
+                            style={
+                              Object {
+                                "boxSizing": "border-box",
+                                "overflowY": "initial",
+                              }
+                            }
+                          >
+                            <div
+                              className="react-swipeable-view-container"
+                              style={
+                                Object {
+                                  "WebkitFlexDirection": "column",
+                                  "WebkitTransition": "all 0s ease 0s",
+                                  "boxSizing": "border-box",
+                                  "direction": "ltr",
+                                  "display": "flex",
+                                  "flexDirection": "column",
+                                  "height": null,
+                                  "transition": "all 0s ease 0s",
+                                  "willChange": "transform",
+                                }
+                              }
+                            >
+                              <div
+                                aria-hidden={false}
+                                data-swipeable="true"
+                                key=".0"
+                                style={
+                                  Object {
+                                    "WebkitFlexShrink": 0,
+                                    "boxSizing": "border-box",
+                                    "flexShrink": 0,
+                                    "marginBottom": -0,
+                                    "overflow": "visible",
+                                    "width": "100%",
+                                  }
+                                }
+                              >
+                                <div
+                                  className="ReactSwipeableBottomSheet--closed"
+                                  style={
+                                    Object {
+                                      "backgroundColor": "white",
+                                      "height": "initial",
+                                      "maxHeight": 768,
+                                      "overflow": "hidden",
+                                    }
+                                  }
+                                />
+                              </div>
+                            </div>
+                          </div>
+                        </ReactSwipableView>
+                      </div>
+                    </SwipeableBottomSheet>
+                  </SwipeableSheet>
+                </div>
+              </div>
+            </div>
+          </Template>
+        </OtherDevicesList>
+      </Provider>
+    </Router>
+  </BrowserRouter>,
+  "store": Object {
+    "clearActions": [Function],
+    "dispatch": [Function],
+    "getActions": [Function],
+    "getState": [Function],
+    "replaceReducer": [Function],
+    "subscribe": [Function],
+  },
+}
+`;

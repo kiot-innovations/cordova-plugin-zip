@@ -1,4 +1,5 @@
 import { Menu, MenuItem, MenuDivider } from '@szhsin/react-menu'
+import clsx from 'clsx'
 import {
   assoc,
   compose,
@@ -10,7 +11,6 @@ import {
   keys,
   length,
   map,
-  pathOr,
   prop,
   propEq,
   propOr
@@ -20,19 +20,47 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 
 import '@szhsin/react-menu/dist/index.css'
+
 import Collapsible from 'components/Collapsible'
 import ColoredBanner, { bannerCategories } from 'components/ColoredBanner'
 import paths from 'routes/paths'
 import { useI18n } from 'shared/i18n'
-import { either } from 'shared/utils'
+import { either, getMicroinverters } from 'shared/utils'
 import { FETCH_DEVICES_LIST } from 'state/actions/devices'
 import { SHOW_MODAL } from 'state/actions/modal'
 import { RMA_REMOVE_DEVICES, CLEAR_RMA } from 'state/actions/rma'
 import { ALLOW_COMMISSIONING } from 'state/actions/systemConfiguration'
+import { rmaModes } from 'state/reducers/rma'
 
 import './RMADevices.scss'
 
-const renderMicroinverter = (toggleCheckbox, selectedMIs) => inverter => {
+const OtherDevicesTag = () => {
+  const t = useI18n()
+  const history = useHistory()
+  const goToStringInverters = () => {
+    history.push(paths.PROTECTED.ADD_STRING_INVERTERS.path)
+  }
+  return (
+    <div className="collapsible" role="button" onClick={goToStringInverters}>
+      <div className="collapsible-header">
+        <div className="collapsible-title">
+          <span className="has-text-weight-bold">{t('OTHER_DEVICES')}</span>
+        </div>
+        <div className="collapsible-actions" />
+        <div className="collapsible-trigger">
+          <div className={clsx({ chevron: true })}>
+            <span className="sp-chevron-up" />
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
+const renderMicroinverter = (
+  toggleCheckbox,
+  selectedMIs,
+  rmaMode
+) => inverter => {
   const serial = propOr('', 'SERIAL', inverter)
   const isChecked = has(serial, selectedMIs)
   return (
@@ -40,13 +68,16 @@ const renderMicroinverter = (toggleCheckbox, selectedMIs) => inverter => {
       className="has-text-weight-bold has-text-white pb-10 pt-10 is-flex"
       key={serial}
     >
-      <input
-        type="checkbox"
-        value={serial}
-        checked={isChecked}
-        onChange={() => toggleCheckbox(serial)}
-        className="mr-10 checkbox-dark"
-      />
+      {either(
+        rmaMode === rmaModes.EDIT_DEVICES,
+        <input
+          type="checkbox"
+          value={serial}
+          checked={isChecked}
+          onChange={() => toggleCheckbox(serial)}
+          className="mr-10 checkbox-dark"
+        />
+      )}
       {serial}
     </label>
   )
@@ -63,14 +94,12 @@ function RMADevices() {
   }, [dispatch])
 
   const [selectedMIs, setSelectedMIs] = useState({})
-  const devicesData = useSelector(pathOr([], ['devices', 'found']))
-  const fetchingDevices = useSelector(
-    pathOr(false, ['devices', 'fetchingDevices'])
-  )
-  const storageDevices = filter(propEq('TYPE', 'EQUINOX-ESS'), devicesData)
-  const hasStorage = !isEmpty(storageDevices)
 
-  const microInverters = filter(propEq('DEVICE_TYPE', 'Inverter'), devicesData)
+  const { rmaMode } = useSelector(state => state.rma)
+  const { found, fetchingDevices } = useSelector(state => state.devices)
+  const storageDevices = filter(propEq('TYPE', 'EQUINOX-ESS'), found)
+  const hasStorage = !isEmpty(storageDevices)
+  const microInverters = getMicroinverters(found)
 
   const toggleCheckbox = id =>
     compose(setSelectedMIs, ifElse(has(id), dissoc(id), assoc(id)))(selectedMIs)
@@ -156,28 +185,31 @@ function RMADevices() {
           : either(
               length(microInverters) > 0,
               map(
-                renderMicroinverter(toggleCheckbox, selectedMIs),
+                renderMicroinverter(toggleCheckbox, selectedMIs, rmaMode),
                 microInverters
               ),
-              t('NO_MICROINVERTERS_RMA')
+              t('NO_MICROINVERTERS_PRESENT')
             )}
 
-        <div className="buttons-container">
-          <button
-            onClick={selectAllMi}
-            disabled={fetchingDevices}
-            className="button is-paddingless has-text-primary has-text-weight-bold is-size-7 button-transparent"
-          >
-            {t('SELECT_ALL')}
-          </button>
-          <button
-            onClick={removeSelectedMIs}
-            disabled={Object.values(selectedMIs).length === 0}
-            className="button is-paddingless has-text-primary has-text-weight-bold is-size-7 button-transparent"
-          >
-            {t('REMOVE')}
-          </button>
-        </div>
+        {either(
+          rmaMode === rmaModes.EDIT_DEVICES,
+          <div className="buttons-container">
+            <button
+              onClick={selectAllMi}
+              disabled={fetchingDevices}
+              className="button is-paddingless has-text-primary has-text-weight-bold is-size-7 button-transparent"
+            >
+              {t('SELECT_ALL')}
+            </button>
+            <button
+              onClick={removeSelectedMIs}
+              disabled={Object.values(selectedMIs).length === 0}
+              className="button is-paddingless has-text-primary has-text-weight-bold is-size-7 button-transparent"
+            >
+              {t('REMOVE')}
+            </button>
+          </div>
+        )}
       </Collapsible>
       <div className="mt-10" />
       <Collapsible title="Storage Equipment" expanded>
@@ -202,6 +234,8 @@ function RMADevices() {
           </button>
         </div>
       </Collapsible>
+      <div className="mt-10" />
+      <OtherDevicesTag />
       <div className="mt-10 has-text-centered button-container">
         <button
           onClick={fetchDevices}
@@ -209,6 +243,16 @@ function RMADevices() {
           className="button mb-30 is-paddingless has-text-primary has-text-weight-bold is-size-7 button-transparent"
         >
           {t('REFRESH_DEVICE_LIST')}
+        </button>
+      </div>
+      <div className="mt-auto has-text-centered">
+        <button
+          className="button is-primary"
+          onClick={() =>
+            history.push(paths.PROTECTED.SYSTEM_CONFIGURATION.path)
+          }
+        >
+          {t('CONFIGURE_PVS')}
         </button>
       </div>
     </main>

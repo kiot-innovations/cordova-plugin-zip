@@ -95,6 +95,18 @@ const paths = {
       footer: true,
       tab: TABS.INSTALL
     },
+    CONFIGURE_STRING_INVERTER: {
+      path: '/configure-string-inverter',
+      header: true,
+      footer: true,
+      tab: TABS.INSTALL
+    },
+    ADD_STRING_INVERTERS: {
+      path: '/add-string-inverters',
+      header: true,
+      footer: true,
+      tab: TABS.INSTALL
+    },
     INSTALL_SUCCESS: {
       path: '/install-success',
       header: true,
@@ -139,12 +151,6 @@ const paths = {
     },
     EQS_PREDISCOVERY_ERRORS: {
       path: '/eqs-prediscovery-errors',
-      header: true,
-      footer: true,
-      tab: TABS.INSTALL
-    },
-    INVENTORY_COUNT: {
-      path: '/inventory-count',
       header: true,
       footer: true,
       tab: TABS.INSTALL

@@ -52,6 +52,16 @@ html {
   max-height: 0;
 }
 
+.justify-center {
+  justify-content: center;
+}
+.justify-between {
+  justify-content: space-between;
+}
+.self-between {
+  justify-self: flex-start;
+}
+
 .button {
   min-height: 40px !important;
 }
@@ -73,6 +83,25 @@ html {
 .swipeable,
 .swipeable + div {
   height: 0 !important;
+}
+
+.control .input {
+  background-color: $dark;
+  border-color: $black;
+  color: $white;
+}
+.control .input::placeholder {
+  color: $faded;
+}
+.input[disabled] {
+  border-color: $black;
+}
+
+.mt-auto {
+  margin-top: auto;
+}
+.mb-auto {
+  margin-bottom: auto;
 }
 
 .ReactSwipeableBottomSheet--closed {

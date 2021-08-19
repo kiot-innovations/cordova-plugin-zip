@@ -37,4 +37,19 @@ describe('SavingConfiguration component', () => {
     const { component } = mountWithProvider(<SavingConfiguration />)({})
     expect(component).toMatchSnapshot()
   })
+
+  test('properly renders commissioning error', () => {
+    const mockedStore = {
+      systemConfiguration: {
+        submit: {
+          error: 'This is an error'
+        }
+      }
+    }
+
+    const { component } = mountWithProvider(<SavingConfiguration />)(
+      mockedStore
+    )
+    expect(component.find('.error-message')).toHaveLength(1)
+  })
 })

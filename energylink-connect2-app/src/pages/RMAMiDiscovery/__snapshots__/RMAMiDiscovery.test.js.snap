@@ -129,7 +129,6 @@ exports[`RMAMiDiscovery page render correctly 1`] = `
                 >
                   <div
                     className="collapsible-header"
-                    onClick={[Function]}
                   >
                     <div
                       className="collapsible-title"
@@ -158,6 +157,7 @@ exports[`RMAMiDiscovery page render correctly 1`] = `
                     </div>
                     <div
                       className="collapsible-trigger"
+                      onClick={[Function]}
                     >
                       <div
                         className="chevron down"

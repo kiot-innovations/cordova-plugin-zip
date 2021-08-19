@@ -4,6 +4,9 @@ import { Provider } from 'react-redux'
 
 import SC from './InterfacesWidget'
 import PanelLayoutWidget from './panelLayoutWidget'
+import RSEWidget from './RSEWidget'
+
+import SystemConfiguration from '.'
 
 import { configureStore } from 'state/store'
 
@@ -13,9 +16,8 @@ storiesOf('System Configuration Page', module).add('InterfacesWidget', () => (
   </div>
 ))
 
-storiesOf('System Configuration Page', module).add(
-  'panelLayoutWidget no data',
-  () => {
+storiesOf('System Configuration Page', module)
+  .add('panelLayoutWidget no data', () => {
     const state = {
       pltWizard: {
         loading: false,
@@ -173,11 +175,8 @@ storiesOf('System Configuration Page', module).add(
         </Provider>
       </div>
     )
-  }
-)
-storiesOf('System Configuration Page', module).add(
-  'panelLayoutWidget with PLT',
-  () => {
+  })
+  .add('panelLayoutWidget with PLT', () => {
     const state = {
       pltWizard: {
         loading: false,
@@ -305,11 +304,8 @@ storiesOf('System Configuration Page', module).add(
         </Provider>
       </div>
     )
-  }
-)
-storiesOf('System Configuration Page', module).add(
-  'panelLayoutWidget with PLT NO DATE',
-  () => {
+  })
+  .add('panelLayoutWidget with PLT NO DATE', () => {
     const state = {
       pltWizard: {
         loading: false,
@@ -486,5 +482,352 @@ storiesOf('System Configuration Page', module).add(
         </Provider>
       </div>
     )
-  }
-)
+  })
+  .add('panelLayoutWidget with SI + MI', () => {
+    const state = {
+      pltWizard: {
+        loading: false,
+        panels: [
+          {
+            azimuth: null,
+            groupKey: null,
+            id: 'E00121939001311',
+            orientation: 'lying',
+            slope: null,
+            x: -19.375,
+            y: 20.625
+          },
+          {
+            azimuth: null,
+            groupKey: null,
+            id: 'E00121939002888',
+            orientation: 'lying',
+            slope: null,
+            x: -18.75,
+            y: 21.25
+          }
+        ]
+      },
+      devices: {
+        found: [
+          {
+            ISDETAIL: true,
+            SERIAL: 'E00121939002888',
+            TYPE: 'SOLARBRIDGE',
+            STATE: 'working',
+            STATEDESCR: 'Working',
+            MODEL: 'AC_Module_Type_E',
+            DESCR: 'Inverter E00121939002888',
+            DEVICE_TYPE: 'Inverter',
+            PANEL: 'SPR-E19-320-E-AC',
+            SWVER: '4.14.5',
+            PORT: '',
+            MOD_SN: '',
+            NMPLT_SKU: '',
+            DATATIME: '2020,11,10,22,54,49',
+            ltea_3phsum_kwh: '0',
+            p_3phsum_kw: '0',
+            vln_3phavg_v: '0',
+            i_3phsum_a: '0',
+            p_mppt1_kw: '0.0019',
+            v_mppt1_v: '48.15',
+            i_mppt1_a: '0.04',
+            t_htsnk_degc: '29',
+            freq_hz: '155.39',
+            stat_ind: '0',
+            origin: 'data_logger',
+            OPERATION: 'noop',
+            CURTIME: '2020,11,10,22,54,51'
+          },
+          {
+            ISDETAIL: true,
+            SERIAL: 'E00121939002888',
+            TYPE: 'SOLARBRIDGE',
+            STATE: 'working',
+            STATEDESCR: 'Working',
+            MODEL: 'String Inverter',
+            DESCR: 'Inverter E00121939002888',
+            DEVICE_TYPE: 'Inverter',
+            PANEL: 'SPR-E19-320-E-AC',
+            SWVER: '4.14.5',
+            PORT: '',
+            MOD_SN: '',
+            NMPLT_SKU: '',
+            DATATIME: '2020,11,10,22,54,49',
+            ltea_3phsum_kwh: '0',
+            p_3phsum_kw: '0',
+            vln_3phavg_v: '0',
+            i_3phsum_a: '0',
+            p_mppt1_kw: '0.0019',
+            v_mppt1_v: '48.15',
+            i_mppt1_a: '0.04',
+            t_htsnk_degc: '29',
+            freq_hz: '155.39',
+            stat_ind: '0',
+            origin: 'data_logger',
+            OPERATION: 'noop',
+            CURTIME: '2020,11,10,22,54,51'
+          },
+          {
+            ISDETAIL: true,
+            SERIAL: 'E00121939001311',
+            TYPE: 'SOLARBRIDGE',
+            STATE: 'working',
+            STATEDESCR: 'Working',
+            MODEL: 'AC_Module_Type_E',
+            DESCR: 'Inverter E00121939001311',
+            DEVICE_TYPE: 'Inverter',
+            PANEL: 'SPR-E19-320-E-AC',
+            SWVER: '4.14.5',
+            PORT: '',
+            MOD_SN: '',
+            NMPLT_SKU: '',
+            DATATIME: '2020,11,10,22,54,49',
+            ltea_3phsum_kwh: '0',
+            p_3phsum_kw: '0',
+            vln_3phavg_v: '0',
+            i_3phsum_a: '0',
+            p_mppt1_kw: '0.0008',
+            v_mppt1_v: '48.18',
+            i_mppt1_a: '0.01',
+            t_htsnk_degc: '26',
+            freq_hz: '155.39',
+            stat_ind: '0',
+            origin: 'data_logger',
+            OPERATION: 'noop',
+            CURTIME: '2020,11,10,22,54,51'
+          },
+          {
+            ISDETAIL: true,
+            SERIAL: 'E00121939001314',
+            TYPE: 'SOLARBRIDGE',
+            STATE: 'working',
+            STATEDESCR: 'Working',
+            MODEL: 'AC_Module_Type_E',
+            DESCR: 'Inverter E00121939001311',
+            DEVICE_TYPE: 'Inverter',
+            PANEL: 'SPR-E19-320-E-AC',
+            SWVER: '4.14.5',
+            PORT: '',
+            MOD_SN: '',
+            NMPLT_SKU: '',
+            DATATIME: '2020,11,10,22,54,49',
+            ltea_3phsum_kwh: '0',
+            p_3phsum_kw: '0',
+            vln_3phavg_v: '0',
+            i_3phsum_a: '0',
+            p_mppt1_kw: '0.0008',
+            v_mppt1_v: '48.18',
+            i_mppt1_a: '0.01',
+            t_htsnk_degc: '26',
+            freq_hz: '155.39',
+            stat_ind: '0',
+            origin: 'data_logger',
+            OPERATION: 'noop',
+            CURTIME: '2020,11,10,22,54,51'
+          }
+        ]
+      },
+      stringInverters: {
+        newDevices: [{ SERIAL: '0000001' }]
+      }
+    }
+
+    const { store } = configureStore(state)
+
+    return (
+      <div id="modal-root" className="full-min-height pt-20 pl-10 pr-10">
+        <Provider store={store}>
+          <PanelLayoutWidget />
+        </Provider>
+      </div>
+    )
+  })
+  .add('panelLayoutWidget with only SI', () => {
+    const state = {
+      pltWizard: {
+        loading: false,
+        panels: [
+          {
+            azimuth: null,
+            groupKey: null,
+            id: 'E00121939001311',
+            orientation: 'lying',
+            slope: null,
+            x: -19.375,
+            y: 20.625
+          },
+          {
+            azimuth: null,
+            groupKey: null,
+            id: 'E00121939002888',
+            orientation: 'lying',
+            slope: null,
+            x: -18.75,
+            y: 21.25
+          }
+        ]
+      },
+      devices: {
+        found: []
+      },
+      stringInverters: {
+        newDevices: [{ SERIAL: '0000001' }]
+      }
+    }
+
+    const { store } = configureStore(state)
+
+    return (
+      <div id="modal-root" className="full-min-height pt-20 pl-10 pr-10">
+        <Provider store={store}>
+          <PanelLayoutWidget />
+        </Provider>
+      </div>
+    )
+  })
+  .add('RSE Widget w/ String Inverters', () => {
+    const state = {
+      stringInverters: {
+        newDevices: [{ SERIAL: '0000001' }]
+      }
+    }
+    const { store } = configureStore(state)
+
+    return (
+      <div id="modal-root" className="full-min-height pt-20 pb-20 pl-10 pr-10">
+        <Provider store={store}>
+          <RSEWidget />
+        </Provider>
+      </div>
+    )
+  })
+  .add('Page', () => {
+    const state = {
+      pltWizard: {
+        loading: false,
+        lastModifiedDate: '2020-11-10T23:05:59.908Z',
+        panels: [
+          {
+            azimuth: null,
+            groupKey: null,
+            id: 'E00121939001311',
+            orientation: 'lying',
+            slope: null,
+            x: -19.375,
+            y: 20.625
+          },
+          {
+            azimuth: null,
+            groupKey: null,
+            id: 'E00121939002888',
+            orientation: 'lying',
+            slope: null,
+            x: -18.75,
+            y: 21.25
+          }
+        ]
+      },
+      devices: {
+        found: [
+          {
+            ISDETAIL: true,
+            SERIAL: 'E00121939002888',
+            TYPE: 'SOLARBRIDGE',
+            STATE: 'working',
+            STATEDESCR: 'Working',
+            MODEL: 'AC_Module_Type_E',
+            DESCR: 'Inverter E00121939002888',
+            DEVICE_TYPE: 'Inverter',
+            PANEL: 'SPR-E19-320-E-AC',
+            SWVER: '4.14.5',
+            PORT: '',
+            MOD_SN: '',
+            NMPLT_SKU: '',
+            DATATIME: '2020,11,10,22,54,49',
+            ltea_3phsum_kwh: '0',
+            p_3phsum_kw: '0',
+            vln_3phavg_v: '0',
+            i_3phsum_a: '0',
+            p_mppt1_kw: '0.0019',
+            v_mppt1_v: '48.15',
+            i_mppt1_a: '0.04',
+            t_htsnk_degc: '29',
+            freq_hz: '155.39',
+            stat_ind: '0',
+            origin: 'data_logger',
+            OPERATION: 'noop',
+            CURTIME: '2020,11,10,22,54,51'
+          },
+          {
+            ISDETAIL: true,
+            SERIAL: 'E00121939001311',
+            TYPE: 'SOLARBRIDGE',
+            STATE: 'working',
+            STATEDESCR: 'Working',
+            MODEL: 'AC_Module_Type_E',
+            DESCR: 'Inverter E00121939001311',
+            DEVICE_TYPE: 'Inverter',
+            PANEL: 'SPR-E19-320-E-AC',
+            SWVER: '4.14.5',
+            PORT: '',
+            MOD_SN: '',
+            NMPLT_SKU: '',
+            DATATIME: '2020,11,10,22,54,49',
+            ltea_3phsum_kwh: '0',
+            p_3phsum_kw: '0',
+            vln_3phavg_v: '0',
+            i_3phsum_a: '0',
+            p_mppt1_kw: '0.0008',
+            v_mppt1_v: '48.18',
+            i_mppt1_a: '0.01',
+            t_htsnk_degc: '26',
+            freq_hz: '155.39',
+            stat_ind: '0',
+            origin: 'data_logger',
+            OPERATION: 'noop',
+            CURTIME: '2020,11,10,22,54,51'
+          },
+          {
+            ISDETAIL: true,
+            SERIAL: 'E00121939001314',
+            TYPE: 'SOLARBRIDGE',
+            STATE: 'working',
+            STATEDESCR: 'Working',
+            MODEL: 'AC_Module_Type_E',
+            DESCR: 'Inverter E00121939001311',
+            DEVICE_TYPE: 'Inverter',
+            PANEL: 'SPR-E19-320-E-AC',
+            SWVER: '4.14.5',
+            PORT: '',
+            MOD_SN: '',
+            NMPLT_SKU: '',
+            DATATIME: '2020,11,10,22,54,49',
+            ltea_3phsum_kwh: '0',
+            p_3phsum_kw: '0',
+            vln_3phavg_v: '0',
+            i_3phsum_a: '0',
+            p_mppt1_kw: '0.0008',
+            v_mppt1_v: '48.18',
+            i_mppt1_a: '0.01',
+            t_htsnk_degc: '26',
+            freq_hz: '155.39',
+            stat_ind: '0',
+            origin: 'data_logger',
+            OPERATION: 'noop',
+            CURTIME: '2020,11,10,22,54,51'
+          }
+        ]
+      }
+    }
+
+    const { store } = configureStore(state)
+
+    return (
+      <div id="modal-root" className="full-min-height pt-20 pb-20 pl-10 pr-10">
+        <Provider store={store}>
+          <SystemConfiguration />
+        </Provider>
+      </div>
+    )
+  })

@@ -97,7 +97,6 @@ exports[`RMA devices component render correctly 1`] = `
             >
               <div
                 className="collapsible-header"
-                onClick={[Function]}
               >
                 <div
                   className="collapsible-title"
@@ -188,6 +187,7 @@ exports[`RMA devices component render correctly 1`] = `
                 </div>
                 <div
                   className="collapsible-trigger"
+                  onClick={[Function]}
                 >
                   <div
                     className="chevron down"
@@ -260,7 +260,6 @@ exports[`RMA devices component render correctly 1`] = `
             >
               <div
                 className="collapsible-header"
-                onClick={[Function]}
               >
                 <div
                   className="collapsible-title"
@@ -277,6 +276,7 @@ exports[`RMA devices component render correctly 1`] = `
                 />
                 <div
                   className="collapsible-trigger"
+                  onClick={[Function]}
                 >
                   <div
                     className="chevron down"
@@ -314,6 +314,44 @@ exports[`RMA devices component render correctly 1`] = `
             </div>
           </Collapsible>
           <div
+            className="mt-10"
+          />
+          <OtherDevicesTag>
+            <div
+              className="collapsible"
+              onClick={[Function]}
+              role="button"
+            >
+              <div
+                className="collapsible-header"
+              >
+                <div
+                  className="collapsible-title"
+                >
+                  <span
+                    className="has-text-weight-bold"
+                  >
+                    OTHER_DEVICES
+                  </span>
+                </div>
+                <div
+                  className="collapsible-actions"
+                />
+                <div
+                  className="collapsible-trigger"
+                >
+                  <div
+                    className="chevron"
+                  >
+                    <span
+                      className="sp-chevron-up"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </OtherDevicesTag>
+          <div
             className="mt-10 has-text-centered button-container"
           >
             <button
@@ -322,6 +360,16 @@ exports[`RMA devices component render correctly 1`] = `
               onClick={[Function]}
             >
               REFRESH_DEVICE_LIST
+            </button>
+          </div>
+          <div
+            className="mt-auto has-text-centered"
+          >
+            <button
+              className="button is-primary"
+              onClick={[Function]}
+            >
+              CONFIGURE_PVS
             </button>
           </div>
         </main>

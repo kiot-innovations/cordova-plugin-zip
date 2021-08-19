@@ -280,6 +280,147 @@ const withMeters = {
     }
   }
 }
+const onlyMicroInverters = {
+  storage: {
+    statusReportError: 'Error Here'
+  },
+  devices: {
+    found: [
+      {
+        SERIAL: 'ConsumptionMeter001ca',
+        DEVICE_TYPE: 'Inverter',
+        SUBTYPE: 'NOT_USED',
+        MODEL: 'inverter'
+      },
+      {
+        SERIAL: 'ConsumptionMeter002ca',
+        DEVICE_TYPE: 'Inverter',
+        SUBTYPE: 'NOT_USED',
+        MODEL: 'inverter'
+      }
+    ]
+  },
+  energyLiveData: {
+    liveData: {
+      [new Date().toISOString()]: {
+        isSolarAvailable: true,
+        ess_en: -162.80300000000005,
+        ess_p: -0.041,
+        net_en: -2157.16,
+        net_p: -0.8628927917480469,
+        pv_en: 2228.32,
+        pv_p: 0.8872415161132813,
+        site_load_en: -91.64299999999974,
+        site_load_p: -0.016651275634765615,
+        soc: 0.9500000000000001,
+        rawData: {
+          ess_en: -162.80300000000005,
+          ess_p: -0.041,
+          net_en: -2157.16,
+          net_p: -0.8628927917480469,
+          pv_en: 2228.32,
+          pv_p: 0.8872415161132813,
+          site_load_en: -91.64299999999974,
+          site_load_p: -0.016651275634765615,
+          soc: 0.9500000000000001
+        }
+      }
+    }
+  }
+}
+const onlyStringInverters = {
+  storage: {
+    statusReportError: 'Error Here'
+  },
+  devices: {
+    found: [
+      {
+        ISDETAIL: true,
+        SERIAL: 'E00121943009545',
+        TYPE: 'SOLARBRIDGE',
+        STATE: 'working',
+        STATEDESCR: 'Working',
+        MODEL: 'AC_Module_Type_E',
+        DESCR: 'Inverter E00121943009545',
+        DEVICE_TYPE: 'Inverter',
+        SWVER: '4.18.2',
+        PORT: '',
+        MOD_SN: '',
+        NMPLT_SKU: '',
+        DATATIME: '2020,11,04,19,28,59',
+        ltea_3phsum_kwh: '258.6419',
+        p_3phsum_kw: '0',
+        vln_3phavg_v: '0',
+        i_3phsum_a: '0',
+        p_mppt1_kw: '0.001',
+        v_mppt1_v: '63.12',
+        i_mppt1_a: '0.01',
+        t_htsnk_degc: '38',
+        freq_hz: '67.98',
+        stat_ind: '0',
+        origin: 'data_logger',
+        OPERATION: 'noop',
+        CURTIME: '2020,11,04,19,29,15'
+      },
+      {
+        ISDETAIL: true,
+        SERIAL: 'E00121919007686',
+        TYPE: 'SOLARBRIDGE',
+        STATE: 'working',
+        STATEDESCR: 'Working',
+        MODEL: 'AC_Module_Type_E',
+        DESCR: 'Inverter E00121919007686',
+        DEVICE_TYPE: 'Inverter',
+        PANEL: 'SPR-X20-327-BLK-E-AC',
+        SWVER: '4.18.98',
+        PORT: '',
+        MOD_SN: '',
+        NMPLT_SKU: '',
+        DATATIME: '2020,11,04,19,28,59',
+        ltea_3phsum_kwh: '403.9664',
+        p_3phsum_kw: '0',
+        vln_3phavg_v: '0',
+        i_3phsum_a: '0',
+        p_mppt1_kw: '0.0008',
+        v_mppt1_v: '63.3',
+        i_mppt1_a: '0.01',
+        t_htsnk_degc: '38',
+        freq_hz: '0',
+        stat_ind: '0',
+        origin: 'data_logger',
+        OPERATION: 'noop',
+        CURTIME: '2020,11,04,19,29,15'
+      }
+    ]
+  },
+  energyLiveData: {
+    liveData: {
+      [new Date().toISOString()]: {
+        isSolarAvailable: true,
+        ess_en: -162.80300000000005,
+        ess_p: -0.041,
+        net_en: -2157.16,
+        net_p: -0.8628927917480469,
+        pv_en: 2228.32,
+        pv_p: 0.8872415161132813,
+        site_load_en: -91.64299999999974,
+        site_load_p: -0.016651275634765615,
+        soc: 0.9500000000000001,
+        rawData: {
+          ess_en: -162.80300000000005,
+          ess_p: -0.041,
+          net_en: -2157.16,
+          net_p: -0.8628927917480469,
+          pv_en: 2228.32,
+          pv_p: 0.8872415161132813,
+          site_load_en: -91.64299999999974,
+          site_load_p: -0.016651275634765615,
+          soc: 0.9500000000000001
+        }
+      }
+    }
+  }
+}
 
 storiesOf('Data', module)
   .add('With Meters', () => {
@@ -295,6 +436,28 @@ storiesOf('Data', module)
   })
   .add('Without Meter Configs', () => {
     const { store } = configureStore(noMeters)
+
+    return (
+      <div className="full-min-height pt-20 pb-20 pl-10 pr-10">
+        <Provider store={store}>
+          <Data />
+        </Provider>
+      </div>
+    )
+  })
+  .add('With only String Inverters', () => {
+    const { store } = configureStore(onlyStringInverters)
+
+    return (
+      <div className="full-min-height pt-20 pb-20 pl-10 pr-10">
+        <Provider store={store}>
+          <Data />
+        </Provider>
+      </div>
+    )
+  })
+  .add('With only Micro Inverters', () => {
+    const { store } = configureStore(onlyMicroInverters)
 
     return (
       <div className="full-min-height pt-20 pb-20 pl-10 pr-10">

@@ -4,6 +4,9 @@ import ReactDOM from 'react-dom'
 import ReactGA from 'react-ga'
 
 import '@sunpower/theme-dark'
+import 'react-circular-progressbar/dist/styles.css'
+
+// eslint-disable-next-line import/order
 import App from './App'
 const GAproperty = process.env.REACT_APP_IS_MOBILE
   ? process.env.NODE_ENV === 'production'

@@ -7,7 +7,8 @@ import {
   headersToObj,
   getUrl,
   isActionError,
-  getElapsedTime
+  getElapsedTime,
+  isUnknownSerialNumber
 } from './utils'
 
 describe("The variables that shouldn't change", () => {
@@ -35,6 +36,16 @@ describe('The headers to obj funtion', () => {
     const expectedObj = { one: '1', two: '2' }
 
     expect(equals(parsedHeaders, expectedObj)).toBe(true)
+  })
+})
+describe('The isUnknownSerialNumber helper', function() {
+  it('should be a valid serial number', function() {
+    const invalid = 'abc?123'
+    expect(isUnknownSerialNumber(invalid)).toBe(true)
+  })
+  it('should be a valid serial number', function() {
+    const valid = 'abc123'
+    expect(isUnknownSerialNumber(valid)).toBe(false)
   })
 })
 

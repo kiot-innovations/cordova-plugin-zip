@@ -85,7 +85,7 @@ exports[`Legacy Discovery Settings renders correctly 1`] = `
                 <SelectField
                   defaultValue={
                     Object {
-                      "label": "SUNPOWER_AC_MODULES",
+                      "label": "ALL_MICROINVERTERS",
                       "value": "ONLYMI",
                     }
                   }
@@ -94,12 +94,8 @@ exports[`Legacy Discovery Settings renders correctly 1`] = `
                   options={
                     Array [
                       Object {
-                        "label": "SUNPOWER_AC_MODULES",
+                        "label": "ALL_MICROINVERTERS",
                         "value": "ONLYMI",
-                      },
-                      Object {
-                        "label": "ALL_DEVICES",
-                        "value": "LEGACY",
                       },
                     ]
                   }
@@ -118,7 +114,7 @@ exports[`Legacy Discovery Settings renders correctly 1`] = `
                     defaultMenuIsOpen={false}
                     defaultValue={
                       Object {
-                        "label": "SUNPOWER_AC_MODULES",
+                        "label": "ALL_MICROINVERTERS",
                         "value": "ONLYMI",
                       }
                     }
@@ -129,12 +125,8 @@ exports[`Legacy Discovery Settings renders correctly 1`] = `
                     options={
                       Array [
                         Object {
-                          "label": "SUNPOWER_AC_MODULES",
+                          "label": "ALL_MICROINVERTERS",
                           "value": "ONLYMI",
-                        },
-                        Object {
-                          "label": "ALL_DEVICES",
-                          "value": "LEGACY",
                         },
                       ]
                     }
@@ -187,12 +179,8 @@ exports[`Legacy Discovery Settings renders correctly 1`] = `
                       options={
                         Array [
                           Object {
-                            "label": "SUNPOWER_AC_MODULES",
+                            "label": "ALL_MICROINVERTERS",
                             "value": "ONLYMI",
-                          },
-                          Object {
-                            "label": "ALL_DEVICES",
-                            "value": "LEGACY",
                           },
                         ]
                       }
@@ -205,7 +193,7 @@ exports[`Legacy Discovery Settings renders correctly 1`] = `
                       theme={[Function]}
                       value={
                         Object {
-                          "label": "SUNPOWER_AC_MODULES",
+                          "label": "ALL_MICROINVERTERS",
                           "value": "ONLYMI",
                         }
                       }
@@ -230,12 +218,8 @@ exports[`Legacy Discovery Settings renders correctly 1`] = `
                         options={
                           Array [
                             Object {
-                              "label": "SUNPOWER_AC_MODULES",
+                              "label": "ALL_MICROINVERTERS",
                               "value": "ONLYMI",
-                            },
-                            Object {
-                              "label": "ALL_DEVICES",
-                              "value": "LEGACY",
                             },
                           ]
                         }
@@ -286,12 +270,8 @@ exports[`Legacy Discovery Settings renders correctly 1`] = `
                             "openMenuOnFocus": false,
                             "options": Array [
                               Object {
-                                "label": "SUNPOWER_AC_MODULES",
+                                "label": "ALL_MICROINVERTERS",
                                 "value": "ONLYMI",
-                              },
-                              Object {
-                                "label": "ALL_DEVICES",
-                                "value": "LEGACY",
                               },
                             ],
                             "pageSize": 5,
@@ -303,7 +283,7 @@ exports[`Legacy Discovery Settings renders correctly 1`] = `
                             "tabSelectsValue": true,
                             "theme": [Function],
                             "value": Object {
-                              "label": "SUNPOWER_AC_MODULES",
+                              "label": "ALL_MICROINVERTERS",
                               "value": "ONLYMI",
                             },
                           }
@@ -379,12 +359,8 @@ exports[`Legacy Discovery Settings renders correctly 1`] = `
                               options={
                                 Array [
                                   Object {
-                                    "label": "SUNPOWER_AC_MODULES",
+                                    "label": "ALL_MICROINVERTERS",
                                     "value": "ONLYMI",
-                                  },
-                                  Object {
-                                    "label": "ALL_DEVICES",
-                                    "value": "LEGACY",
                                   },
                                 ]
                               }
@@ -435,12 +411,8 @@ exports[`Legacy Discovery Settings renders correctly 1`] = `
                                   "openMenuOnFocus": false,
                                   "options": Array [
                                     Object {
-                                      "label": "SUNPOWER_AC_MODULES",
+                                      "label": "ALL_MICROINVERTERS",
                                       "value": "ONLYMI",
-                                    },
-                                    Object {
-                                      "label": "ALL_DEVICES",
-                                      "value": "LEGACY",
                                     },
                                   ],
                                   "pageSize": 5,
@@ -452,7 +424,7 @@ exports[`Legacy Discovery Settings renders correctly 1`] = `
                                   "tabSelectsValue": true,
                                   "theme": [Function],
                                   "value": Object {
-                                    "label": "SUNPOWER_AC_MODULES",
+                                    "label": "ALL_MICROINVERTERS",
                                     "value": "ONLYMI",
                                   },
                                 }
@@ -536,12 +508,8 @@ exports[`Legacy Discovery Settings renders correctly 1`] = `
                                     options={
                                       Array [
                                         Object {
-                                          "label": "SUNPOWER_AC_MODULES",
+                                          "label": "ALL_MICROINVERTERS",
                                           "value": "ONLYMI",
-                                        },
-                                        Object {
-                                          "label": "ALL_DEVICES",
-                                          "value": "LEGACY",
                                         },
                                       ]
                                     }
@@ -592,12 +560,8 @@ exports[`Legacy Discovery Settings renders correctly 1`] = `
                                         "openMenuOnFocus": false,
                                         "options": Array [
                                           Object {
-                                            "label": "SUNPOWER_AC_MODULES",
+                                            "label": "ALL_MICROINVERTERS",
                                             "value": "ONLYMI",
-                                          },
-                                          Object {
-                                            "label": "ALL_DEVICES",
-                                            "value": "LEGACY",
                                           },
                                         ],
                                         "pageSize": 5,
@@ -609,7 +573,7 @@ exports[`Legacy Discovery Settings renders correctly 1`] = `
                                         "tabSelectsValue": true,
                                         "theme": [Function],
                                         "value": Object {
-                                          "label": "SUNPOWER_AC_MODULES",
+                                          "label": "ALL_MICROINVERTERS",
                                           "value": "ONLYMI",
                                         },
                                       }
@@ -671,7 +635,7 @@ exports[`Legacy Discovery Settings renders correctly 1`] = `
                                           cx={[Function]}
                                           data={
                                             Object {
-                                              "label": "SUNPOWER_AC_MODULES",
+                                              "label": "ALL_MICROINVERTERS",
                                               "value": "ONLYMI",
                                             }
                                           }
@@ -684,12 +648,8 @@ exports[`Legacy Discovery Settings renders correctly 1`] = `
                                           options={
                                             Array [
                                               Object {
-                                                "label": "SUNPOWER_AC_MODULES",
+                                                "label": "ALL_MICROINVERTERS",
                                                 "value": "ONLYMI",
-                                              },
-                                              Object {
-                                                "label": "ALL_DEVICES",
-                                                "value": "LEGACY",
                                               },
                                             ]
                                           }
@@ -740,12 +700,8 @@ exports[`Legacy Discovery Settings renders correctly 1`] = `
                                               "openMenuOnFocus": false,
                                               "options": Array [
                                                 Object {
-                                                  "label": "SUNPOWER_AC_MODULES",
+                                                  "label": "ALL_MICROINVERTERS",
                                                   "value": "ONLYMI",
-                                                },
-                                                Object {
-                                                  "label": "ALL_DEVICES",
-                                                  "value": "LEGACY",
                                                 },
                                               ],
                                               "pageSize": 5,
@@ -757,7 +713,7 @@ exports[`Legacy Discovery Settings renders correctly 1`] = `
                                               "tabSelectsValue": true,
                                               "theme": [Function],
                                               "value": Object {
-                                                "label": "SUNPOWER_AC_MODULES",
+                                                "label": "ALL_MICROINVERTERS",
                                                 "value": "ONLYMI",
                                               },
                                             }
@@ -817,7 +773,7 @@ exports[`Legacy Discovery Settings renders correctly 1`] = `
                                             <div
                                               className="search__single-value css-5sz5u5-singleValue"
                                             >
-                                              SUNPOWER_AC_MODULES
+                                              ALL_MICROINVERTERS
                                             </div>
                                           </EmotionCssPropInternal>
                                         </SingleValue>
@@ -884,12 +840,8 @@ exports[`Legacy Discovery Settings renders correctly 1`] = `
                                     options={
                                       Array [
                                         Object {
-                                          "label": "SUNPOWER_AC_MODULES",
+                                          "label": "ALL_MICROINVERTERS",
                                           "value": "ONLYMI",
-                                        },
-                                        Object {
-                                          "label": "ALL_DEVICES",
-                                          "value": "LEGACY",
                                         },
                                       ]
                                     }
@@ -940,12 +892,8 @@ exports[`Legacy Discovery Settings renders correctly 1`] = `
                                         "openMenuOnFocus": false,
                                         "options": Array [
                                           Object {
-                                            "label": "SUNPOWER_AC_MODULES",
+                                            "label": "ALL_MICROINVERTERS",
                                             "value": "ONLYMI",
-                                          },
-                                          Object {
-                                            "label": "ALL_DEVICES",
-                                            "value": "LEGACY",
                                           },
                                         ],
                                         "pageSize": 5,
@@ -957,7 +905,7 @@ exports[`Legacy Discovery Settings renders correctly 1`] = `
                                         "tabSelectsValue": true,
                                         "theme": [Function],
                                         "value": Object {
-                                          "label": "SUNPOWER_AC_MODULES",
+                                          "label": "ALL_MICROINVERTERS",
                                           "value": "ONLYMI",
                                         },
                                       }
@@ -1023,12 +971,8 @@ exports[`Legacy Discovery Settings renders correctly 1`] = `
                                           options={
                                             Array [
                                               Object {
-                                                "label": "SUNPOWER_AC_MODULES",
+                                                "label": "ALL_MICROINVERTERS",
                                                 "value": "ONLYMI",
-                                              },
-                                              Object {
-                                                "label": "ALL_DEVICES",
-                                                "value": "LEGACY",
                                               },
                                             ]
                                           }
@@ -1079,12 +1023,8 @@ exports[`Legacy Discovery Settings renders correctly 1`] = `
                                               "openMenuOnFocus": false,
                                               "options": Array [
                                                 Object {
-                                                  "label": "SUNPOWER_AC_MODULES",
+                                                  "label": "ALL_MICROINVERTERS",
                                                   "value": "ONLYMI",
-                                                },
-                                                Object {
-                                                  "label": "ALL_DEVICES",
-                                                  "value": "LEGACY",
                                                 },
                                               ],
                                               "pageSize": 5,
@@ -1096,7 +1036,7 @@ exports[`Legacy Discovery Settings renders correctly 1`] = `
                                               "tabSelectsValue": true,
                                               "theme": [Function],
                                               "value": Object {
-                                                "label": "SUNPOWER_AC_MODULES",
+                                                "label": "ALL_MICROINVERTERS",
                                                 "value": "ONLYMI",
                                               },
                                             }
@@ -1152,12 +1092,8 @@ exports[`Legacy Discovery Settings renders correctly 1`] = `
                                           options={
                                             Array [
                                               Object {
-                                                "label": "SUNPOWER_AC_MODULES",
+                                                "label": "ALL_MICROINVERTERS",
                                                 "value": "ONLYMI",
-                                              },
-                                              Object {
-                                                "label": "ALL_DEVICES",
-                                                "value": "LEGACY",
                                               },
                                             ]
                                           }
@@ -1208,12 +1144,8 @@ exports[`Legacy Discovery Settings renders correctly 1`] = `
                                               "openMenuOnFocus": false,
                                               "options": Array [
                                                 Object {
-                                                  "label": "SUNPOWER_AC_MODULES",
+                                                  "label": "ALL_MICROINVERTERS",
                                                   "value": "ONLYMI",
-                                                },
-                                                Object {
-                                                  "label": "ALL_DEVICES",
-                                                  "value": "LEGACY",
                                                 },
                                               ],
                                               "pageSize": 5,
@@ -1225,7 +1157,7 @@ exports[`Legacy Discovery Settings renders correctly 1`] = `
                                               "tabSelectsValue": true,
                                               "theme": [Function],
                                               "value": Object {
-                                                "label": "SUNPOWER_AC_MODULES",
+                                                "label": "ALL_MICROINVERTERS",
                                                 "value": "ONLYMI",
                                               },
                                             }

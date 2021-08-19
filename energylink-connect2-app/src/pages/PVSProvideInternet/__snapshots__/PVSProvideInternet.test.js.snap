@@ -174,7 +174,6 @@ exports[`PVS Provide Internet page renders correctly 1`] = `
                 >
                   <div
                     className="collapsible-header"
-                    onClick={[Function]}
                   >
                     <div
                       className="collapsible-title"
@@ -195,6 +194,7 @@ exports[`PVS Provide Internet page renders correctly 1`] = `
                     />
                     <div
                       className="collapsible-trigger"
+                      onClick={[Function]}
                     >
                       <div
                         className="chevron down"

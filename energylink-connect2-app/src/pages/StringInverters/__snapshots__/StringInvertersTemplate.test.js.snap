@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`The StringInvertersTemplate should render correctly 1`] = `
+<div
+  className="fill-parent is-flex tile is-vertical has-text-centered pl-10 pr-10 mb-40 string-inverters is-relative"
+>
+  <div
+    className="header mb-20"
+  >
+    <span
+      className="sp-chevron-left has-text-primary is-size-4 go-back"
+      onClick={[Function]}
+    />
+    <span
+      className="is-uppercase has-text-weight-bold page-title"
+    >
+      OTHER_DEVICES
+    </span>
+  </div>
+  <div
+    className="full-height"
+  />
+</div>
+`;

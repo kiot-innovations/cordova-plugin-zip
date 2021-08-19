@@ -55,6 +55,7 @@ const SavingConfiguration = () => {
   const goToConfig = () => {
     dispatch(SUBMIT_CLEAR())
     dispatch(ALLOW_COMMISSIONING())
+
     history.push(paths.PROTECTED.SYSTEM_CONFIGURATION.path)
   }
 

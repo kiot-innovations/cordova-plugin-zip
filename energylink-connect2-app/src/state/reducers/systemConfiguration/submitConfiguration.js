@@ -1,3 +1,4 @@
+import { prop } from 'ramda'
 import { createReducer } from 'redux-act'
 
 import { RESET_COMMISSIONING } from 'state/actions/global'
@@ -59,10 +60,10 @@ export const submitConfigReducer = createReducer(
       submitting: false,
       commissioned: true
     }),
-    [SUBMIT_COMMISSION_ERROR]: (state, { message }) => ({
+    [SUBMIT_COMMISSION_ERROR]: (state, payload) => ({
       ...state,
       submitting: false,
-      error: message
+      error: prop('message', payload)
     }),
     [ALLOW_COMMISSIONING]: state => ({
       ...state,

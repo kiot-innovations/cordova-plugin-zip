@@ -4,6 +4,7 @@ import * as reactRedux from 'react-redux'
 import RmaDevices from './index'
 
 import * as i18n from 'shared/i18n'
+import { rmaModes } from 'state/reducers/rma'
 
 describe('RMA devices component', () => {
   let dispatchMock
@@ -19,6 +20,9 @@ describe('RMA devices component', () => {
 
   test('render correctly', () => {
     const initialState = {
+      rma: {
+        rmaMode: rmaModes.EDIT_DEVICES
+      },
       devices: {
         found: [
           {

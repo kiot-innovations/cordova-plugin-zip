@@ -6,7 +6,6 @@ import {
   pathOr,
   multiply,
   filter,
-  propEq,
   reject
 } from 'ramda'
 import { ofType } from 'redux-observable'
@@ -14,6 +13,7 @@ import { from, of, timer } from 'rxjs'
 import { catchError, exhaustMap, takeUntil, map } from 'rxjs/operators'
 
 import { getApiPVS } from 'shared/api'
+import { isMicroinverter } from 'shared/utils'
 import {
   MI_DATA_STOP_POLLING,
   MI_DATA_START_POLLING,
@@ -32,7 +32,7 @@ const isUnclaimed = device => device.state === 'discovered'
 const getData = compose(
   reject(isUnclaimed),
   mapRamda(transformDevice),
-  filter(propEq('DEVICE_TYPE', 'Inverter')),
+  filter(isMicroinverter),
   pathOr([], ['body', 'devices'])
 )
 

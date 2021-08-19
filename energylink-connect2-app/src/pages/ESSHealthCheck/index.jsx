@@ -22,6 +22,7 @@ import {
   SUBMIT_CLEAR,
   ALLOW_COMMISSIONING
 } from 'state/actions/systemConfiguration'
+import { rmaModes } from 'state/reducers/rma'
 
 function ESSHealthCheck() {
   const dispatch = useDispatch()
@@ -34,7 +35,6 @@ function ESSHealthCheck() {
   const { waiting, results, error } = useSelector(state => state.storage.status)
   const { found, progress } = useSelector(state => state.devices)
   const { canCommission } = useSelector(path(['systemConfiguration', 'submit']))
-  const rmaPvs = useSelector(path(['rma', 'pvs']))
 
   const discoveryProgress = propOr([], 'progress', progress)
   const deviceProgress = pluck('PROGR', discoveryProgress)
@@ -87,15 +87,16 @@ function ESSHealthCheck() {
       ? dispatch(RUN_EQS_SYSTEMCHECK())
       : dispatch(GET_ESS_STATUS_INIT())
 
-  const pathToContinue = rmaPvs
-    ? paths.PROTECTED.SYSTEM_CONFIGURATION.path
-    : paths.PROTECTED.INSTALL_SUCCESS.path
+  const pathToContinue =
+    rmaMode === rmaModes.REPLACE_PVS
+      ? paths.PROTECTED.SYSTEM_CONFIGURATION.path
+      : paths.PROTECTED.RMA_DEVICES.path
 
   const pathToErrors = paths.PROTECTED.ESS_HEALTH_CHECK_ERRORS.path
 
   const clearAndContinue = () => {
     dispatch(SUBMIT_CLEAR())
-    history.push(paths.PROTECTED.SYSTEM_CONFIGURATION.path)
+    history.push(paths.PROTECTED.RMA_DEVICES.path)
   }
 
   const validateModels = () => {

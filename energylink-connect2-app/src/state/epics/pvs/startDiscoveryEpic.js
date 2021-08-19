@@ -5,7 +5,6 @@ import { from, of } from 'rxjs'
 import { catchError, exhaustMap, switchMap } from 'rxjs/operators'
 
 import { getApiPVS } from 'shared/api'
-import { DISCOVER_INIT } from 'state/actions/devices'
 import * as pvsActions from 'state/actions/pvs'
 
 const startDiscovery = payload =>
@@ -20,7 +19,7 @@ export const startDiscoveryEpic = action$ =>
       from(startDiscovery(payload)).pipe(
         switchMap(response => {
           return response.status === 200
-            ? of(DISCOVER_INIT(), pvsActions.START_DISCOVERY_SUCCESS(response))
+            ? of(pvsActions.START_DISCOVERY_SUCCESS(response))
             : of(pvsActions.START_DISCOVERY_ERROR('SEND_COMMAND_ERROR'))
         }),
         catchError(err => {

@@ -12,7 +12,11 @@ import {
   submitGridVoltageEpic,
   submitCTRatedCurrentEpic
 } from './submitConfigEpic'
-import { submitConfigObjectEpic } from './submitConfigObjectEpic'
+import {
+  submitConfigObjectEpic,
+  submitConfigSuccessEpic,
+  submitStringInvertersEpic
+} from './submitConfigObjectEpic'
 import {
   submitPreConfigGridProfileEpic,
   submitPreConfigMeterDataEpic
@@ -28,6 +32,8 @@ export default [
   wpsSupportEpic,
   replaceRmaPvsEpic,
   submitConfigObjectEpic,
+  submitStringInvertersEpic,
+  submitConfigSuccessEpic,
   submitMeterDataEpic,
   submitGridProfileEpic,
   submitExportLimitEpic,

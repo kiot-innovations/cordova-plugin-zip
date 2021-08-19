@@ -46,6 +46,7 @@ const PVSProvideInternet = () => {
           START_DISCOVERY_INIT({
             Device: 'allnomi',
             Interfaces: ['mime'],
+            KeepDevices: '1',
             type: discoveryTypes.ALLNOMI
           })
         )

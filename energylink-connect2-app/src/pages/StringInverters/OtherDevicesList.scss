@@ -1,0 +1,42 @@
+@import '~@sunpower/theme-dark/styles/variables';
+
+.string-inverters {
+  .discovery-progress {
+    gap: 20px;
+  }
+  .discovery-item {
+    gap: 5px;
+    align-items: center;
+    justify-content: flex-end;
+  }
+  .CircularProgressbar {
+    width: 40px;
+
+    .CircularProgressbar-path {
+      stroke: $white;
+    }
+    .CircularProgressbar-trail {
+      stroke: none;
+    }
+    .CircularProgressbar-text {
+      fill: $white;
+      font-size: 2rem;
+    }
+  }
+}
+
+.common-layout {
+  background-color: $silver-sand4;
+  padding: $font-size-big $font-size-big $font-size;
+  text-align: left;
+  border-radius: 5px;
+  letter-spacing: 0;
+
+  &-content {
+    color: $white;
+    font-size: 18px;
+    display: grid;
+    grid-template-columns: 1fr 20%;
+    margin-bottom: 5px;
+  }
+}

@@ -30,7 +30,7 @@ describe('Collapsible Component', () => {
 
   test('Expands Correctly', () => {
     const component = shallow(<Collapsible />)
-    component.find('.collapsible-header').simulate('click')
+    component.find('.collapsible-trigger').simulate('click')
     expect(component.find('.expanded').length).toBe(1)
   })
 })

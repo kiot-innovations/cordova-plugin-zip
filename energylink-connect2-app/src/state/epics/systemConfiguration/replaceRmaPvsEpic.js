@@ -1,10 +1,11 @@
 import * as Sentry from '@sentry/browser'
-import { path, pathOr, propOr } from 'ramda'
+import { path, pathOr } from 'ramda'
 import { ofType } from 'redux-observable'
 import { from, of } from 'rxjs'
 import { catchError, map, mergeMap } from 'rxjs/operators'
 
 import { getApiPVS } from 'shared/api'
+import { translate } from 'shared/i18n'
 import {
   REPLACE_RMA_PVS,
   SUBMIT_CONFIG,
@@ -15,6 +16,7 @@ export const replaceRmaPvsEpic = (action$, state$) =>
   action$.pipe(
     ofType(REPLACE_RMA_PVS.getType()),
     mergeMap(({ payload }) => {
+      const t = translate()
       const promise = getApiPVS()
         .then(path(['apis', 'commission']))
         .then(api =>
@@ -34,19 +36,27 @@ export const replaceRmaPvsEpic = (action$, state$) =>
           response.status === 200
             ? SUBMIT_CONFIG(payload)
             : SUBMIT_COMMISSION_ERROR({
-                code: propOr('Unknown code', 'code', response),
-                message: propOr('Unknown error.', 'message', response)
+                error: pathOr(
+                  t('REPLACE_RMA_PVS_ERROR'),
+                  ['response', 'body', 'msg'],
+                  response
+                )
               })
         ),
-        catchError(err => {
-          Sentry.captureException(err)
+        catchError(response => {
+          Sentry.captureException(response)
           return of(
             SUBMIT_COMMISSION_ERROR({
-              code: pathOr('Unknown code', ['response', 'body', 'code'], err),
+              error: t('REPLACE_RMA_PVS_ERROR'),
+              code: pathOr(
+                'Unknown code',
+                ['response', 'body', 'code'],
+                response
+              ),
               message: pathOr(
                 'Unknown error.',
                 ['response', 'body', 'msg'],
-                err
+                response
               )
             })
           )

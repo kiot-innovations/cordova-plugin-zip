@@ -1,5 +1,5 @@
 import * as Sentry from '@sentry/browser'
-import { assoc, isEmpty, path, pathOr, propOr, reduce } from 'ramda'
+import { isEmpty, path, pathOr, propOr, reduceBy } from 'ramda'
 import { ofType } from 'redux-observable'
 import { from, of } from 'rxjs'
 import { catchError, map, mergeMap } from 'rxjs/operators'
@@ -13,11 +13,9 @@ import {
 
 const getAccessToken = path(['user', 'auth', 'access_token'])
 
-const getAllMiModelsFromResponse = reduce((acc, elem) => {
-  const { modelName, miType } = elem
-  if (miType === null) return acc
-  return assoc(miType, [...propOr([], miType, acc), modelName], acc)
-}, {})
+const getModel = (acc, { modelName }) => acc.concat(modelName)
+
+const groupByType = reduceBy(getModel, [], propOr('stringInverters', 'miType'))
 
 export const fetchModelsEpic = (action$, state$) => {
   return action$.pipe(
@@ -32,7 +30,7 @@ export const fetchModelsEpic = (action$, state$) => {
           const models = pathOr([], ['body'], moduleModels)
           return isEmpty(models)
             ? FETCH_MODELS_ERROR(MIType)
-            : FETCH_MODELS_SUCCESS(getAllMiModelsFromResponse(models))
+            : FETCH_MODELS_SUCCESS(groupByType(models))
         }),
         catchError(error => {
           Sentry.captureException(error)

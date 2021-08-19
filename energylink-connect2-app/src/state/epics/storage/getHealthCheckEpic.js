@@ -1,7 +1,7 @@
 import * as Sentry from '@sentry/browser'
 import { always, cond, equals, isNil, path, pathOr } from 'ramda'
 import { ofType } from 'redux-observable'
-import { from, of, timer } from 'rxjs'
+import { EMPTY, from, of, timer } from 'rxjs'
 import {
   exhaustMap,
   map,
@@ -35,6 +35,7 @@ export const startHealthCheckEpic = action$ => {
     map(() =>
       START_DISCOVERY_INIT({
         Device: 'storage',
+        KeepDevices: '1',
         type: discoveryTypes.STORAGE
       })
     )
@@ -181,11 +182,18 @@ export const getSingleStorageStatusEpic = action$ =>
     })
   )
 
-export const errorHealthCheckEpic = action$ => {
+export const errorHealthCheckEpic = (action$, state$) => {
   return action$.pipe(
     ofType(START_DISCOVERY_ERROR.getType(), DISCOVER_ERROR.getType()),
     exhaustMap(() => {
-      return of(GET_ESS_STATUS_ERROR(errorObj))
+      const currentStep = pathOr(
+        '',
+        ['value', 'storage', 'currentStep'],
+        state$
+      )
+      return currentStep === eqsSteps.HEALTH_CHECK
+        ? of(GET_ESS_STATUS_ERROR(errorObj))
+        : EMPTY
     })
   )
 }

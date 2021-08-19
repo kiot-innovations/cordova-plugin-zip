@@ -84,7 +84,6 @@ exports[`RMASnList page render correctly 1`] = `
                   >
                     <div
                       className="collapsible-header"
-                      onClick={[Function]}
                     >
                       <div
                         className="collapsible-title"
@@ -107,6 +106,7 @@ exports[`RMASnList page render correctly 1`] = `
                       </div>
                       <div
                         className="collapsible-trigger"
+                        onClick={[Function]}
                       >
                         <div
                           className="chevron"
@@ -238,7 +238,6 @@ exports[`RMASnList page render correctly 1`] = `
                   >
                     <div
                       className="collapsible-header"
-                      onClick={[Function]}
                     >
                       <div
                         className="collapsible-title"
@@ -261,6 +260,7 @@ exports[`RMASnList page render correctly 1`] = `
                       </div>
                       <div
                         className="collapsible-trigger"
+                        onClick={[Function]}
                       >
                         <div
                           className="chevron"
@@ -311,7 +311,6 @@ exports[`RMASnList page render correctly 1`] = `
                     <button
                       className="button half-button-padding is-primary is-uppercase trigger-scan"
                       disabled={false}
-                      onClick={[Function]}
                     >
                       CONTINUE
                     </button>

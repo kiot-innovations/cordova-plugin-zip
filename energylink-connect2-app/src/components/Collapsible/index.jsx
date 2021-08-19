@@ -24,7 +24,7 @@ function Collapsible({
 
   return (
     <div className="collapsible">
-      <div className="collapsible-header" onClick={toggle}>
+      <div className="collapsible-header">
         <div className="collapsible-title">
           <span>{icon}</span>
           <span className="has-text-weight-bold">{t(title)}</span>
@@ -38,7 +38,7 @@ function Collapsible({
         >
           {actions}
         </div>
-        <div className="collapsible-trigger">
+        <div className="collapsible-trigger" onClick={toggle}>
           <div className={clsx({ chevron: true, down: expand })}>
             <span className="sp-chevron-up" />
           </div>

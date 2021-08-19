@@ -126,13 +126,13 @@ function PvsSelection() {
 
   const dismissModal = () => setConnecting(false)
 
-  const continueCommissioning = (rma = rmaModes.NONE) => {
+  const continueCommissioning = () => {
     setConnecting(false)
-    if (rma === rmaModes.EDIT_DEVICES) {
-      history.push(paths.PROTECTED.RMA_DEVICES.path)
-    } else {
-      history.push(paths.PROTECTED.INVENTORY_COUNT.path)
-    }
+    history.push(
+      rmaMode !== rmaModes.EDIT_DEVICES
+        ? paths.PROTECTED.PVS_PROVIDE_INTERNET.path
+        : paths.PROTECTED.RMA_DEVICES.path
+    )
   }
 
   const resetErrors = () => {

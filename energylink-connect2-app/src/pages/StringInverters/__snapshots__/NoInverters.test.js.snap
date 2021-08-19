@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`No Inverters page The NoInverters component should render correctly 1`] = `
+<Template>
+  <div
+    className="string-inverters tile is-flex flex-column"
+  >
+    <span
+      className="sp-inverter has-text-white is-size-1 mt-20 mb-20"
+    />
+    <p
+      className="mb-20 has-text-white mt-10 is-size-4"
+    >
+      NO_OTHER_DEVICES
+    </p>
+    <button
+      className="is-primary button discover"
+      onClick={[Function]}
+    >
+      RUN_DISCOVERY
+    </button>
+  </div>
+</Template>
+`;

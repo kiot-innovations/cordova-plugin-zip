@@ -6,7 +6,7 @@ import { useHistory } from 'react-router-dom'
 import paths from 'routes/paths'
 import { useI18n } from 'shared/i18n'
 import { either } from 'shared/utils'
-import { rmaModes } from 'state/reducers/rma'
+
 import './PvsConnectionSuccessful.scss'
 
 const getPVSVersionChecked = pathOr(false, ['firmwareUpdate', 'canContinue'])
@@ -14,15 +14,11 @@ const getPVSVersionChecked = pathOr(false, ['firmwareUpdate', 'canContinue'])
 const PvsConnectionSuccessful = () => {
   const t = useI18n()
   const serialNumber = useSelector(state => state.pvs.serialNumber)
-  const { rmaMode } = useSelector(state => state.rma)
 
   const versionChecked = useSelector(getPVSVersionChecked)
   const history = useHistory()
 
   const goNext = () => {
-    if (rmaMode === rmaModes.NONE) {
-      return history.push(paths.PROTECTED.INVENTORY_COUNT.path)
-    }
     history.push(paths.PROTECTED.PVS_PROVIDE_INTERNET.path)
   }
 

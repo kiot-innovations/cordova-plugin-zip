@@ -63,7 +63,6 @@ exports[`Data page render correctly 1`] = `
               >
                 <div
                   className="collapsible-header"
-                  onClick={[Function]}
                 >
                   <div
                     className="collapsible-title"
@@ -80,6 +79,7 @@ exports[`Data page render correctly 1`] = `
                   />
                   <div
                     className="collapsible-trigger"
+                    onClick={[Function]}
                   >
                     <div
                       className="chevron down"
@@ -2668,7 +2668,6 @@ exports[`Data page render correctly 1`] = `
               >
                 <div
                   className="collapsible-header"
-                  onClick={[Function]}
                 >
                   <div
                     className="collapsible-title"
@@ -2685,6 +2684,7 @@ exports[`Data page render correctly 1`] = `
                   />
                   <div
                     className="collapsible-trigger"
+                    onClick={[Function]}
                   >
                     <div
                       className="chevron down"
@@ -2707,6 +2707,30 @@ exports[`Data page render correctly 1`] = `
                     >
                       <span>
                         Live Data
+                      </span>
+                    </div>
+                  </div>
+                  <div
+                    className="debug-route mb-10"
+                    onClick={[Function]}
+                  >
+                    <div
+                      className="route-name"
+                    >
+                      <span>
+                        Other Devices
+                      </span>
+                    </div>
+                  </div>
+                  <div
+                    className="debug-route mb-10"
+                    onClick={[Function]}
+                  >
+                    <div
+                      className="route-name"
+                    >
+                      <span>
+                        String Inverters Setup
                       </span>
                     </div>
                   </div>
@@ -2899,6 +2923,42 @@ exports[`Data page render correctly 1`] = `
                     >
                       <span>
                         Precommissioning Configurations
+                      </span>
+                    </div>
+                  </div>
+                  <div
+                    className="debug-route mb-10"
+                    onClick={[Function]}
+                  >
+                    <div
+                      className="route-name"
+                    >
+                      <span>
+                        Microinverters Discovery
+                      </span>
+                    </div>
+                  </div>
+                  <div
+                    className="debug-route mb-10"
+                    onClick={[Function]}
+                  >
+                    <div
+                      className="route-name"
+                    >
+                      <span>
+                        System Configuration
+                      </span>
+                    </div>
+                  </div>
+                  <div
+                    className="debug-route mb-10"
+                    onClick={[Function]}
+                  >
+                    <div
+                      className="route-name"
+                    >
+                      <span>
+                        Saving Configuration
                       </span>
                     </div>
                   </div>

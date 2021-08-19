@@ -150,7 +150,8 @@ function RMASnList() {
     dispatch(
       START_DISCOVERY_INIT({
         Device: 'allplusmime',
-        type: discoveryTypes.LEGACY
+        type: discoveryTypes.LEGACY,
+        KeepDevices: '1'
       })
     )
     history.push(paths.PROTECTED.LEGACY_DISCOVERY.path)

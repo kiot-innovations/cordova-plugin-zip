@@ -175,12 +175,14 @@ function SystemConfiguration() {
       : dispatch(SUBMIT_CONFIG(configObject))
     history.push(paths.PROTECTED.SAVING_CONFIGURATION.path)
   }
+
   const showErrorConfigurationModal = useShowModal({
     title: t('ATTENTION'),
     componentPath: './ErrorSystemConfiguration.jsx',
     componentProps: { forceSubmit },
     dismissable: true
   })
+
   const showNoGridModal = useShowModal({
     title: t('ATTENTION'),
     componentPath: './NoGridModal.jsx',

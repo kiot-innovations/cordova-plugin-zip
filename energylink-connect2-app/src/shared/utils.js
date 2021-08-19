@@ -1,6 +1,7 @@
 import marked from 'marked'
 import moment from 'moment'
 import {
+  add,
   any,
   assoc,
   clone,
@@ -10,6 +11,7 @@ import {
   defaultTo,
   difference,
   dissoc,
+  divide,
   endsWith,
   equals,
   filter,
@@ -25,6 +27,7 @@ import {
   last,
   length,
   lensIndex,
+  lift,
   lt,
   map,
   over,
@@ -37,11 +40,13 @@ import {
   propEq,
   propOr,
   propSatisfies,
+  reduce,
   reject,
   replace,
   slice,
   split,
   startsWith,
+  sum,
   toPairs,
   toUpper,
   trim,
@@ -57,6 +62,11 @@ export const either = (condition, whenTrue, whenFalse = null) =>
 export function createMarkup(recommendedAction) {
   return { __html: marked(recommendedAction) }
 }
+
+/**
+ * Will get the average of an array
+ */
+export const average = lift(divide)(sum, length)
 
 /**
  * Will return the data of the placed found with google maps
@@ -133,6 +143,7 @@ export const capitalize = when(
   compose(lt(0), length),
   compose(join(''), over(lensIndex(0), toUpper))
 )
+export const isUnknownSerialNumber = serialNumber => serialNumber.includes('?')
 
 export const isIos = () =>
   pathOr('none', ['device', 'platform'], window) === 'iOS'
@@ -247,9 +258,6 @@ const flattenObject = ob => {
 export const findProp = curry((prop, obj) =>
   compose(includes(prop), values, flattenObject)(obj)
 )
-
-export const filterInverters = filter(propEq('DEVICE_TYPE', 'Inverter'))
-
 export const applyToEventListeners = (
   addRemoveEventListenerFn,
   eventListeners
@@ -586,3 +594,48 @@ export const getNotFoundMIs = (previousSerialNumbers, currentNotFound) => {
 
   return [length(currentSerialNumbers), serialNumbers]
 }
+
+export const deviceTypes = {
+  INVERTER: 'Inverter',
+  POWER_METER: 'Power Meter',
+  MET_STATION: 'MET Station',
+  GCM: 'Ground Current Monitor',
+  ESS: 'Energy Storage System',
+  HUB: 'Hub+',
+  BATTERY: 'Battery',
+  STORAGE_INVERTER: 'Storage Inverter',
+  ESS_HUB: 'ESS Hub',
+  ESS_BMS: 'ESS BMS',
+  GATEWAY: 'Gateway',
+  PV_DISCONNECT: 'PV Disconnect'
+}
+
+export const isOtherDevice = device =>
+  includes(propOr('', 'DEVICE_TYPE', device), [
+    deviceTypes.POWER_METER,
+    deviceTypes.MET_STATION,
+    deviceTypes.GCM
+  ])
+
+export const isMicroinverter = device =>
+  device.DEVICE_TYPE === 'Inverter' && startsWith('AC_Module', device.MODEL)
+
+export const isStringInverter = device =>
+  device.DEVICE_TYPE === 'Inverter' && !startsWith('AC_Module', device.MODEL)
+
+export const getOtherDevices = deviceList => {
+  const stringInverters = filter(isStringInverter, deviceList)
+  const otherDevices = filter(isOtherDevice, deviceList)
+
+  return [...stringInverters, ...otherDevices]
+}
+
+export const getOverallDiscoveryProgress = progress => {
+  const discoveryProgress = propOr([], 'progress', progress)
+  const deviceProgress = pluck('PROGR', discoveryProgress)
+  return Math.floor(reduce(add, 0, deviceProgress) / length(deviceProgress))
+}
+
+export const getMicroinverters = filter(isMicroinverter)
+
+export const getStringInverters = filter(isStringInverter)

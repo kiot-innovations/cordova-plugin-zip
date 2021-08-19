@@ -1,4 +1,4 @@
-import { length, pathOr, propOr } from 'ramda'
+import { length, omit, pathOr, prop, propOr, uniqWith } from 'ramda'
 import { createReducer } from 'redux-act'
 
 import {
@@ -9,7 +9,6 @@ import {
   CLAIM_DEVICES_UPDATE,
   DISCOVER_COMPLETE,
   DISCOVER_ERROR,
-  DISCOVER_INIT,
   DISCOVER_UPDATE,
   FETCH_CANDIDATES_COMPLETE,
   FETCH_CANDIDATES_ERROR,
@@ -26,6 +25,7 @@ import {
   UPDATE_DEVICES_LIST_ERROR
 } from 'state/actions/devices'
 import { RESET_COMMISSIONING } from 'state/actions/global'
+import { START_DISCOVERY_INIT } from 'state/actions/pvs'
 
 const defaultModels = {
   C: [
@@ -106,20 +106,19 @@ const initialState = {
   miModels: defaultModels,
   fetchingDevices: false
 }
-
+// TODO refactor this reducer to an actual state machine
 export default createReducer(
   {
-    [DISCOVER_INIT]: state => ({
+    [START_DISCOVERY_INIT]: state => ({
       ...state,
-      isFetching: true,
-      found: [],
-      progress: {},
-      discoveryComplete: false,
-      error: ''
+      isFetching: true
     }),
     [DISCOVER_UPDATE]: (state, payload) => ({
       ...state,
-      found: pathOr(state.found, ['devices', 'devices'], payload),
+      found: uniqWith(prop('SERIAL'), [
+        ...state.found,
+        ...pathOr(state.found, ['devices', 'devices'], payload)
+      ]),
       progress: propOr(state.progress, 'progress', payload)
     }),
     [DISCOVER_COMPLETE]: (state, payload) => ({
@@ -209,7 +208,7 @@ export default createReducer(
     [RESET_COMMISSIONING]: () => initialState,
     [FETCH_MODELS_SUCCESS]: (state, miModels) => ({
       ...state,
-      miModels
+      miModels: omit(['stringInverters'], miModels)
     }),
     [FETCH_DEVICES_LIST]: state => ({
       ...state,

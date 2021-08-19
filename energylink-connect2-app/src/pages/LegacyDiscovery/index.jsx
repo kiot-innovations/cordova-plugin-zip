@@ -1,5 +1,5 @@
 import clsx from 'clsx'
-import { groupBy, prop, propOr, length, pluck, reduce, add, path } from 'ramda'
+import { groupBy, prop, propOr, length, path } from 'ramda'
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
@@ -9,7 +9,11 @@ import DeviceGroup from './DeviceGroup'
 import useModal from 'hooks/useModal'
 import paths from 'routes/paths'
 import { useI18n } from 'shared/i18n'
-import { either, filterInverters } from 'shared/utils'
+import {
+  either,
+  getMicroinverters,
+  getOverallDiscoveryProgress
+} from 'shared/utils'
 import {
   CLAIM_DEVICES_INIT,
   FETCH_CANDIDATES_COMPLETE,
@@ -40,7 +44,7 @@ const LegacyDiscovery = () => {
   } = useSelector(state => state.devices)
   const rmaPvs = useSelector(path(['rma', 'pvs']))
   const { lastDiscoveryType } = useSelector(state => state.pvs)
-  const inverters = filterInverters(found)
+  const inverters = getMicroinverters(found)
   const dispatch = useDispatch()
 
   const discoveryComplete = propOr(false, 'complete', progress)
@@ -58,18 +62,17 @@ const LegacyDiscovery = () => {
     dispatch(RESET_DISCOVERY())
     dispatch(
       START_DISCOVERY_INIT({
+        MIType: 'ALL',
         Device: 'allplusmime',
-        type: discoveryTypes.LEGACY
+        Interfaces: 'mime',
+        KeepDevices: '1',
+        type: discoveryTypes.ONLYMI
       })
     )
     dispatch(FETCH_CANDIDATES_COMPLETE())
   }
 
-  const discoveryProgress = propOr([], 'progress', progress)
-  const deviceProgress = pluck('PROGR', discoveryProgress)
-  const overallProgress = Math.floor(
-    reduce(add, 0, deviceProgress) / length(deviceProgress)
-  )
+  const overallProgress = getOverallDiscoveryProgress(progress)
 
   const groupedDevices =
     length(found) > 0 ? groupBy(prop('DEVICE_TYPE'), found) : []

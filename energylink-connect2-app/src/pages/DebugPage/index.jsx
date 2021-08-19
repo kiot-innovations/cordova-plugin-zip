@@ -210,6 +210,16 @@ const DebugPage = () => {
           {renderDebugLink(history, 'Live Data', paths.PROTECTED.DATA.path)}
           {renderDebugLink(
             history,
+            'Other Devices',
+            paths.PROTECTED.ADD_STRING_INVERTERS.path
+          )}
+          {renderDebugLink(
+            history,
+            'String Inverters Setup',
+            paths.PROTECTED.CONFIGURE_STRING_INVERTER.path
+          )}
+          {renderDebugLink(
+            history,
             'Precommissioning Configs',
             paths.PROTECTED.PRECOMMISSIONING_CONFIGS.path
           )}
@@ -287,6 +297,21 @@ const DebugPage = () => {
             history,
             'Precommissioning Configurations',
             paths.PROTECTED.PRECOMMISSIONING_CONFIGS.path
+          )}
+          {renderDebugLink(
+            history,
+            'Microinverters Discovery',
+            paths.PROTECTED.DEVICES.path
+          )}
+          {renderDebugLink(
+            history,
+            'System Configuration',
+            paths.PROTECTED.SYSTEM_CONFIGURATION.path
+          )}
+          {renderDebugLink(
+            history,
+            'Saving Configuration',
+            paths.PROTECTED.SAVING_CONFIGURATION.path
           )}
         </Collapsible>
       </div>

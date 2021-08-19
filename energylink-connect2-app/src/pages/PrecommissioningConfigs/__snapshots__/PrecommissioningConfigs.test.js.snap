@@ -113,7 +113,6 @@ exports[`Precommissioning configurations page renders correctly 1`] = `
                     >
                       <div
                         className="collapsible-header"
-                        onClick={[Function]}
                       >
                         <div
                           className="collapsible-title"
@@ -139,6 +138,7 @@ exports[`Precommissioning configurations page renders correctly 1`] = `
                         />
                         <div
                           className="collapsible-trigger"
+                          onClick={[Function]}
                         >
                           <div
                             className="chevron"
@@ -2650,7 +2650,6 @@ exports[`Precommissioning configurations page renders correctly 1`] = `
                     >
                       <div
                         className="collapsible-header"
-                        onClick={[Function]}
                       >
                         <div
                           className="collapsible-title"
@@ -2676,6 +2675,7 @@ exports[`Precommissioning configurations page renders correctly 1`] = `
                         />
                         <div
                           className="collapsible-trigger"
+                          onClick={[Function]}
                         >
                           <div
                             className="chevron"

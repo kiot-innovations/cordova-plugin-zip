@@ -6,7 +6,6 @@ exports[`Collapsible Component Renders Correctly 1`] = `
 >
   <div
     className="collapsible-header"
-    onClick={[Function]}
   >
     <div
       className="collapsible-title"
@@ -23,6 +22,7 @@ exports[`Collapsible Component Renders Correctly 1`] = `
     />
     <div
       className="collapsible-trigger"
+      onClick={[Function]}
     >
       <div
         className="chevron"
@@ -45,7 +45,6 @@ exports[`Collapsible Component Renders Correctly when expanded 1`] = `
 >
   <div
     className="collapsible-header"
-    onClick={[Function]}
   >
     <div
       className="collapsible-title"
@@ -62,6 +61,7 @@ exports[`Collapsible Component Renders Correctly when expanded 1`] = `
     />
     <div
       className="collapsible-trigger"
+      onClick={[Function]}
     >
       <div
         className="chevron down"

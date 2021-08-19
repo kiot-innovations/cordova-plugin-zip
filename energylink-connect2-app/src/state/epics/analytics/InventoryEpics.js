@@ -14,7 +14,7 @@ import { map } from 'rxjs/operators'
 
 import { saveInventory } from 'shared/analytics'
 import { arrayToObject } from 'shared/utils'
-import { SAVE_INVENTORY_SUCCESS } from 'state/actions/inventory'
+import { SAVE_INVENTORY } from 'state/actions/inventory'
 
 export const parsePropertyToNumber = curry((key, obj) =>
   assoc(key, Number(prop(key, obj)), obj)
@@ -33,7 +33,7 @@ export const parseInventory = compose(
 
 const sendInventoryEpic = action$ =>
   action$.pipe(
-    ofType(SAVE_INVENTORY_SUCCESS.getType()),
+    ofType(SAVE_INVENTORY.getType()),
     map(({ payload }) => {
       const inventory = parseInventory(payload)
       const hasESS = not(propEq('ESS', '0', inventory))

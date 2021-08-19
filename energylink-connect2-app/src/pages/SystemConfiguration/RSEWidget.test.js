@@ -11,6 +11,9 @@ describe('RSE Widget', () => {
   let initialState = {
     systemConfiguration: {
       rse: { data: { powerProduction: 'Off' } }
+    },
+    stringInverters: {
+      newDevices: []
     }
   }
 
@@ -27,5 +30,19 @@ describe('RSE Widget', () => {
   test('renders correctly', () => {
     const { component } = mountWithProvider(<RSEWidget />)(initialState)
     expect(component).toMatchSnapshot()
+  })
+
+  test('disabled if string inverters are present', () => {
+    const store = {
+      systemConfiguration: {
+        rse: { data: { powerProduction: 'Off' } }
+      },
+      stringInverters: {
+        newDevices: [{ SERIAL: '0000001' }]
+      }
+    }
+
+    const { component } = mountWithProvider(<RSEWidget />)(store)
+    expect(component.find('#rse-not-available').length).toBe(1)
   })
 })

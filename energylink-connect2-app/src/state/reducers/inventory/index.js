@@ -6,9 +6,7 @@ import {
   FETCH_INVENTORY_INIT,
   FETCH_INVENTORY_ERROR,
   FETCH_INVENTORY_SUCCESS,
-  SAVE_INVENTORY_INIT,
-  SAVE_INVENTORY_SUCCESS,
-  SAVE_INVENTORY_ERROR,
+  SAVE_INVENTORY,
   UPDATE_OTHER_INVENTORY,
   RESET_INVENTORY,
   UPDATE_INVENTORY
@@ -18,7 +16,7 @@ const initialState = {
   bom: [
     { item: 'AC_MODULES', value: '0', disabled: false },
     { item: 'DC_MODULES', value: '0', disabled: true },
-    { item: 'STRING_INVERTERS', value: '0', disabled: true },
+    { item: 'STRING_INVERTERS', value: '0', disabled: false },
     { item: 'EXTERNAL_METERS', value: '0', disabled: true },
     { item: 'ESS', value: '0', disabled: false }
   ],
@@ -46,19 +44,9 @@ export const inventoryReducer = createReducer(
       fetchingInventory: false,
       err: payload
     }),
-    [SAVE_INVENTORY_INIT]: state => ({
+    [SAVE_INVENTORY]: (state, payload) => ({
       ...state,
-      savingInventory: true
-    }),
-    [SAVE_INVENTORY_SUCCESS]: (state, payload) => ({
-      ...state,
-      bom: clone(payload),
-      savingInventory: false
-    }),
-    [SAVE_INVENTORY_ERROR]: (state, payload) => ({
-      ...state,
-      savingInventory: false,
-      err: payload
+      bom: clone(payload)
     }),
     [RESET_INVENTORY]: () => ({
       ...initialState,

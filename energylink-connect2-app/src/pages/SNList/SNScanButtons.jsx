@@ -3,7 +3,7 @@ import React from 'react'
 import { useI18n } from 'shared/i18n'
 import { either } from 'shared/utils'
 
-const ScanButtons = ({ fetchingSN, onScanMore, countSN, canScanMore }) => {
+const ScanButtons = ({ fetchingSN, onScanMore, submitSN, canScanMore }) => {
   const t = useI18n()
 
   return (
@@ -21,7 +21,7 @@ const ScanButtons = ({ fetchingSN, onScanMore, countSN, canScanMore }) => {
 
       <button
         className="button half-button-padding is-primary is-uppercase trigger-scan"
-        onClick={countSN}
+        onClick={submitSN}
         disabled={fetchingSN}
       >
         {fetchingSN ? t('SCANNING_SN') : t('CONTINUE')}
