@@ -17,7 +17,7 @@ exports[`PVS Version Information page render correctly 1`] = `
   >
     CURRENT_VERSION
      
-    6.115.0
+    6.115.1
   </div>
 </section>
 `;

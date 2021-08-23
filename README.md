@@ -47,6 +47,8 @@ openssl aes-256-cbc -e -a -salt -in .env.uat -out .env.enc.uat;
 ```
 
 cd ~/sunpower/energylink-connect2;
+unzip -qq ./libraries/scandit-cordova-datacapture-barcode.zip -d ./libraries
+unzip -qq ./libraries/scandit-cordova-datacapture-core.zip -d ./libraries
 nvm install 10.15.3
 nvm use
 npm login;
@@ -56,13 +58,6 @@ cd ~/sunpower/energylink-connect2/energylink-connect2-app;
 echo "SKIP_PREFLIGHT_CHECK=true" > .env
 
 npm install -g cordova@9.0.0
-
-cd ~/sunpower;
-git clone git@github.com:SunPower/pvsmgmt-console.git;
-cd ~/sunpower/pvsmgmt-console/pvsServer;
-nvm use;
-npm i;
-
 ```
 
 Test and build native application:

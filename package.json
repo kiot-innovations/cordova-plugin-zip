@@ -57,6 +57,8 @@
     "cordova.plugins.diagnostic": "^6.0.2",
     "es6-promise-plugin": "^4.1.0",
     "phonegap-plugin-barcodescanner": "^8.1.0",
+    "scandit-cordova-datacapture-barcode": "file:./libraries/scandit-cordova-datacapture-barcode",
+    "scandit-cordova-datacapture-core": "file:./libraries/scandit-cordova-datacapture-core",
     "xcode": "^2.1.0"
   },
   "cordova": {

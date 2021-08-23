@@ -1,0 +1,154 @@
+####
+# Full version of build workflow
+#
+# It triggers a job targeted at the production flavor
+# BUILD_TYPE is defined by .github/workflows/setup_environment.sh script
+#
+# 1. Native application energylink-connect2-app
+#    - test
+#    - build
+# 2. Android application
+#    - build with code signing
+#    - store APK file as a build artifact
+#    - upload APK to Google Play store (only for git tag/release)
+# 3. iOS application
+#    - build with code signing
+#    - upload IPA file to Apple Test Flight (only for git tag/release)
+# 4. Slack notification
+#
+# Note: Google Play store and Apple TestFlight don't allow for debug build type.
+# If you upload debug build to the Play or TestFlight it will fail.
+on:
+  push:
+    tags:
+      - '[0-9]+.[0-9]+.[0-9]+-iostest'
+
+jobs:
+  build:
+    runs-on: macos-10.15
+    timeout-minutes: 45
+    strategy:
+      matrix:
+        app_env: [test]
+    env:
+      APP_ENV: ${{ matrix.app_env }}
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.ACCESS_TOKEN }}
+      - run: .github/workflows/setup_environment.sh
+      - uses: actions/setup-node@v1
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          registry-url: 'https://registry.npmjs.org'
+
+      #
+      # Webapp Application
+      #
+      - run: npm install
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
+        working-directory: energylink-connect2-app
+
+      - run: npm run validate-env-files
+        env:
+          CM2_ENVFILE_PASSWORD: ${{ secrets.ENVFILE_PASSWORD }}
+        working-directory: energylink-connect2-app
+
+      - run: npm run test
+        env:
+          CI: 1
+        working-directory: energylink-connect2-app
+
+      - name: Decrypt and create .env file
+        run: |
+          openssl enc -aes256 -d -base64 -md md5 -pass pass:'${{ secrets.ENVFILE_PASSWORD }}' -in .env.enc.${APP_ENV} -out .env
+        working-directory: energylink-connect2-app
+
+      - run: npm run build
+        working-directory: energylink-connect2-app
+
+      #
+      # Configure application name for iOS and Android build
+      # according to the environment (test, prod, etc)
+      #
+      - name: Set the application environment to ${{ env.APP_ENV }}
+        run: |
+          sed -i"" -E "s/com.sunpower.energylink.commissioning2.test/${APP_ID}/g" config.xml
+          sed -i"" -E "s/SunPowerProConnect-dev/${APP_NAME}/" config.xml
+
+      - uses: actions/setup-java@v1
+        with:
+          java-version: ${{ env.JAVA_VERSION }}
+
+      - uses: actions/setup-ruby@v1
+        with:
+          ruby-version: ${{ env.RUBY_VERSION }}
+      - name: Install RubyGems
+        run: bundle install --jobs 4 --retry 3
+
+      - name: Install NPM packages
+        run: |
+          git config --global url."https://${{ secrets.ACCESS_TOKEN }}@github.com/".insteadOf ssh://git@github.com/
+          npm install
+
+      #
+      # iOS Application
+      #
+      - name: Run Cocoapods Repo Update	
+        run: pod repo update
+      - name: Build iOS Application
+        run: bundle exec fastlane ios build
+        env:
+          FASTLANE_PASSWORD: ${{ secrets.FASTLANE_PASSWORD }}
+          MATCH_GIT_BASIC_AUTHORIZATION: ${{ secrets.MATCH_GIT_BASIC_AUTHORIZATION }}
+          MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
+          KEYCHAIN_PASSWORD: ${{ secrets.KEYCHAIN_PASSWORD }}
+      - name: Upload build to Apple TestFlight
+        run: bundle exec fastlane ios release
+        if: startsWith(github.ref, 'refs/tags/')
+        env:
+          FASTLANE_SESSION: ${{ secrets.FASTLANE_SESSION }}
+          FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD: ${{ secrets.FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD }}
+          FASTLANE_PASSWORD: ${{ secrets.FASTLANE_PASSWORD }}
+          MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
+
+      #
+      # Slack Notification (run once, only for test environment)
+      #
+      - name: Calculate GIT branch name
+        run: |
+          export BRANCH_NAME=${GITHUB_REF#refs/heads/}
+          export TAG=${BRANCH_NAME#refs/tags/}
+          echo "BRANCH_NAME=${BRANCH_NAME}" >> $GITHUB_ENV
+          echo "TAG=${TAG}" >> $GITHUB_ENV
+      - name: Send slack notification
+        uses: hbfernandes/slack-action@1.0
+        env:
+          SLACK_TOKEN: ${{ secrets.SLACK_TOKEN }}
+        with:
+          args: |
+            {
+              "channel": "cm2-builds",
+              "text": "New test release for iOS is available",
+              "as_user": true,
+              "attachments": [{
+                "color": "good",
+                "fields": [{
+                    "title": "Revision",
+                    "value": "<https://sunpowercorp.atlassian.net/issues/?jql=labels%20%3D%20%22${{ env.TAG }}%22|${{ env.TAG }}>",
+                    "short": true
+                  },
+                  {
+                    "title": "Build Artifacts",
+                    "value": "<https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}|Open>",
+                    "short": true
+                  },
+                  {
+                    "title": "Branch",
+                    "value": "<https://github.com/SunPower/energylink-connect2/tree/${{ env.BRANCH_NAME }}|${{ env.BRANCH_NAME }}>",
+                    "short": true
+                  }
+                ]
+              }]
+            }

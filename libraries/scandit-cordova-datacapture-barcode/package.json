@@ -1,0 +1,41 @@
+{
+  "name": "scandit-cordova-datacapture-barcode",
+  "version": "6.6.4",
+  "description": "Scandit Data Capture SDK for Cordova",
+  "license": "Apache-2.0",
+  "keywords": [
+    "ecosystem:cordova",
+    "cordova-ios",
+    "cordova-android"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "postbuild": "node ./scripts/post-build.js",
+    "test": "npm run lint && jest",
+    "lint": "tslint --project .",
+    "paramedic:ios": "cordova-paramedic --verbose --platform ios@5.1.1 --plugin ../scandit-cordova-datacapture-core --plugin ./ --skipAppiumTests --cleanUpAfterRun",
+    "paramedic:android": "cordova-paramedic --verbose --platform android@8.1.0 --plugin ../scandit-cordova-datacapture-core --plugin ./ --skipAppiumTests --cleanUpAfterRun",
+    "paramedic": "npm run paramedic:ios && npm run paramedic:android",
+    "coverage": "jest --coverage",
+    "clear-jest-cache": "jest --clearCache || true",
+    "clean": "npm run clear-jest-cache && node ./scripts/clean.js",
+    "clean-all": "npm run clean && node ./scripts/clean-all.js"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "typescript": "^3.4.5",
+    "@types/jest": "^24.0.13",
+    "cordova-paramedic": "https://github.com/apache/cordova-paramedic.git",
+    "jest": "^24.8.0",
+    "jest-canvas-mock": "^2.2.0",
+    "ts-jest": "^24.0.2",
+    "tslint": "^5.16.0"
+  },
+  "cordova": {
+    "id": "scandit-cordova-datacapture-barcode",
+    "platforms": [
+      "ios",
+      "android"
+    ]
+  }
+}

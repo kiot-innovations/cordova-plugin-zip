@@ -22,31 +22,17 @@ jobs:
       - uses: szenius/set-timezone@v1.0
         with:
           timezoneLinux: "UTC-8"
-
       - uses: actions/checkout@v2
         with:
           token: ${{ secrets.ACCESS_TOKEN }}
-
       - run: |
           ls /usr/local/lib/android/sdk/tools/bin
           /usr/local/lib/android/sdk/tools/bin/sdkmanager --uninstall "build-tools;31.0.0"
-
       - run: .github/workflows/setup_environment.sh
-
       - uses: actions/setup-node@v1
         with:
           node-version: ${{ env.NODE_VERSION }}
           registry-url: 'https://registry.npmjs.org'
-
-      - name: Restore cached plugins folder
-        id: cordova-plugins
-        uses: actions/cache@v2
-        env:
-          cache-name: cache-plugins-folder
-        with:
-          path: |
-            plugins
-          key: ${{ env.cache-name }}-${{ hashFiles('package-lock.json') }}
 
       - name: Restore cached webapp node_modules folder
         id: webapp-node-modules
