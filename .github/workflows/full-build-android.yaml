@@ -1,51 +1,56 @@
 ####
-# Full version of build workflow
+# Quick version of build workflow
 #
-# It triggers a job targeted at the test flavor
-# BUILD_TYPE is defined by .github/workflows/setup_environment.sh script
-#
-# 1. Native application energylink-connect2-app
+# 1. Webapp application energylink-connect2-app
 #    - test
 #    - build
-# 2. Android application
+# 2. Android application (BUILD_TYPE=debug, APP_ENV=test)
 #    - build with code signing
 #    - store APK file as a build artifact
-#    - upload APK to Google Play store (only for git tag/release)
-# 3. iOS application
-#    - build with code signing
-#    - upload IPA file to Apple Test Flight (only for git tag/release)
-# 4. Slack notification
-#
-# Note: Google Play store and Apple TestFlight don't allow for debug build type.
-# If you upload debug build to the Play or TestFlight it will fail.
 on:
   push:
     tags:
-      - '[0-9]+.[0-9]+.[0-9]+-test'
-
+      - '[0-9]+.[0-9]+.[0-9]+-android'
 jobs:
   build:
-    runs-on: macos-10.15
-    timeout-minutes: 45
+    # Run Quick Builds on Ubuntu 18.04 (Linux) instead of MacOS
+    # because MacOS builds are 10x more expensive (minute multiplier is 10)
+    # https://help.github.com/en/github/setting-up-and-managing-billing-and-payments-on-github/about-billing-for-github-actions#about-billing-for-github-actions
+    runs-on: ubuntu-18.04
+    timeout-minutes: 20
     strategy:
       matrix:
-        app_env: [test]
+        app_env: [uat, test, prod]
     env:
       APP_ENV: ${{ matrix.app_env }}
     steps:
+      - uses: szenius/set-timezone@v1.0
+        with:
+          timezoneLinux: "UTC-8"
       - uses: actions/checkout@v2
         with:
           token: ${{ secrets.ACCESS_TOKEN }}
+      - run: |
+          ls /usr/local/lib/android/sdk/tools/bin
+          /usr/local/lib/android/sdk/tools/bin/sdkmanager --uninstall "build-tools;31.0.0"
       - run: .github/workflows/setup_environment.sh
       - uses: actions/setup-node@v1
         with:
           node-version: ${{ env.NODE_VERSION }}
           registry-url: 'https://registry.npmjs.org'
 
-      #
-      # Native Application
-      #
+      - name: Restore cached webapp node_modules folder
+        id: webapp-node-modules
+        uses: actions/cache@v2
+        env:
+          cache-name: cache-webapp-nm-folder
+        with:
+          path: |
+            energylink-connect2-app/node_modules
+          key: ${{ runner.os }}-${{ env.cache-name }}-${{ hashFiles('energylink-connect2-app/package-lock.json') }}
+
       - name: Install Dependencies
+        if: steps.webapp-node-modules.outputs.cache-hit != 'true'
         run: npm install
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
@@ -62,16 +67,12 @@ jobs:
         working-directory: energylink-connect2-app
 
       - name: Decrypt and create .env file
-        run: |
-          openssl enc -aes256 -d -base64 -md md5 -pass pass:'${{ secrets.ENVFILE_PASSWORD }}' -in .env.enc.${APP_ENV} -out .env
+        run: openssl enc -aes256 -d -base64 -md md5 -pass pass:'${{ secrets.ENVFILE_PASSWORD }}' -in .env.enc.${APP_ENV} -out .env
         working-directory: energylink-connect2-app
 
       - run: npm run build
         working-directory: energylink-connect2-app
 
-      #
-      # Configure environment for iOS and Android build
-      #
       - name: Set the application environment to ${{ env.APP_ENV }}
         run: |
           sed -i"" -E "s/com.sunpower.energylink.commissioning2.test/${APP_ID}/g" config.xml
@@ -87,53 +88,33 @@ jobs:
       - name: Install RubyGems
         run: bundle install --jobs 4 --retry 3
 
-      - name: Install NPM packages
+      - name: Install Cordova NPM packages
         run: |
           git config --global url."https://${{ secrets.ACCESS_TOKEN }}@github.com/".insteadOf ssh://git@github.com/
           npm install
 
-      #
-      # iOS Application
-      #
-      - name: Build iOS Application
-        run: bundle exec fastlane ios build
-        env:
-          FASTLANE_PASSWORD: ${{ secrets.FASTLANE_PASSWORD }}
-          MATCH_GIT_BASIC_AUTHORIZATION: ${{ secrets.MATCH_GIT_BASIC_AUTHORIZATION }}
-          MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
-          KEYCHAIN_PASSWORD: ${{ secrets.KEYCHAIN_PASSWORD }}
-      - name: Upload build to Apple TestFlight
-        run: bundle exec fastlane ios release
-        if: startsWith(github.ref, 'refs/tags/')
-        env:
-          FASTLANE_SESSION: ${{ secrets.FASTLANE_SESSION }}
-          FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD: ${{ secrets.FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD }}
-          FASTLANE_PASSWORD: ${{ secrets.FASTLANE_PASSWORD }}
-          MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
-
-      #
-      # Android Application
-      #
       - name: Set credentials to Google Play store
         run: |
           echo "${{ secrets.GOOGLE_PLAY_UPLOAD_KEYSTORE }}" | base64 -d > upload-keystore.jks
           echo "${{ secrets.GOOGLE_PLAY_API_KEY }}" | base64 -d > google-api.json
-      - name: Install NDK 21.0.6113669
-        run: echo "y" | sudo ${ANDROID_HOME}/tools/bin/sdkmanager --install "ndk;21.0.6113669"
+
       - name: Build Android Application
-        run: bundle exec fastlane android build
+        run: |
+          bundle exec fastlane android build
         env:
           KEYSTORE_PASSWORD: ${{ secrets.GOOGLE_PLAY_UPLOAD_KEYSTORE_PASSWORD }}
+
       - uses: actions/upload-artifact@v1
         with:
           name: Android-${{ env.APP_ENV }}
           path: ${{ env.CORDOVA_ANDROID_RELEASE_BUILD_PATH }}
-      # - name: Upload build to Google Play store
-      #   run: bundle exec fastlane android release
-      #   if: startsWith(github.ref, 'refs/tags/')
+
+      - name: Upload build to Google Play store
+        run: bundle exec fastlane android release
+        if: startsWith(github.ref, 'refs/tags/')
 
       #
-      # Slack Notification (run once, only for test environment)
+      # Slack Notification
       #
       - name: Calculate GIT branch name
         run: |
@@ -143,14 +124,13 @@ jobs:
           echo "TAG=${TAG}" >> $GITHUB_ENV
       - name: Send slack notification
         uses: hbfernandes/slack-action@1.0
-        if: env.APP_ENV == 'test'
         env:
           SLACK_TOKEN: ${{ secrets.SLACK_TOKEN }}
         with:
           args: |
             {
               "channel": "cm2-builds",
-              "text": "New test release is available",
+              "text": "New release is available in the Android Play Store",
               "as_user": true,
               "attachments": [{
                 "color": "good",

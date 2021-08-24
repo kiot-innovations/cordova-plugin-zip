@@ -1,7 +1,7 @@
 ####
 # Full version of build workflow
 #
-# It triggers a job targeted at the production flavor
+# It triggers a job targeted at the test flavor
 # BUILD_TYPE is defined by .github/workflows/setup_environment.sh script
 #
 # 1. Native application energylink-connect2-app
@@ -25,7 +25,7 @@ on:
 
 jobs:
   build:
-    runs-on: macos-10.15
+    runs-on: macos-11
     timeout-minutes: 45
     strategy:
       matrix:
@@ -97,6 +97,7 @@ jobs:
       #
       - name: Run Cocoapods Repo Update	
         run: pod repo update
+        
       - name: Build iOS Application
         run: bundle exec fastlane ios build
         env:
