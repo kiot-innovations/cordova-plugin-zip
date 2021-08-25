@@ -36,7 +36,8 @@ export const plainHttpGet = fullpath => {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
-      'Cache-Control': 'no-store'
+      'Cache-Control': 'no-cache',
+      Pragma: 'no-cache'
     }
   }).then(parseResponse)
 }
