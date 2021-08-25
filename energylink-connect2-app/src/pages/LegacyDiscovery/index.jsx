@@ -1,4 +1,3 @@
-import clsx from 'clsx'
 import { groupBy, prop, propOr, length, path } from 'ramda'
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
@@ -36,6 +35,7 @@ const LegacyDiscovery = () => {
   const t = useI18n()
   const history = useHistory()
   const {
+    claimProgress,
     claimingDevices,
     claimError,
     claimedDevices,
@@ -171,12 +171,13 @@ const LegacyDiscovery = () => {
                   ? claimDevices(inverters, dispatch)
                   : toggleMicroinvertersModal()
               }
-              className={clsx(
-                'button is-primary is-uppercase is-fullwidth ml-5',
-                { 'is-loading': claimingDevices }
-              )}
+              className="button is-primary is-uppercase is-fullwidth ml-5"
             >
-              {claimError ? t('RETRY') : t('CONTINUE')}
+              {either(
+                claimingDevices,
+                `${claimProgress} %`,
+                claimError ? t('RETRY') : t('CONTINUE')
+              )}
             </button>
           </div>
         </div>
