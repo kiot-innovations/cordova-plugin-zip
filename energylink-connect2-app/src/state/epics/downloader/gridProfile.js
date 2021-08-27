@@ -43,7 +43,7 @@ export const initDownloadPvs6GridProfileEpic = action$ =>
         path: `firmware/pvs6-${getFileNameFromURL(gridProfileUrl)}`,
         url: gridProfileUrl,
         retry: propOr(false, 'payload', action),
-        fileExtension: 'gz'
+        fileExtensions: ['gz']
       }).pipe(
         map(({ entry, progress }) =>
           progress
@@ -70,7 +70,7 @@ export const initDownloadPvs5GridProfileEpic = action$ =>
         path: `firmware/pvs5-${getFileNameFromURL(gridProfileUrl)}`,
         url: gridProfileUrl,
         retry: propOr(false, 'payload', action),
-        fileExtension: 'gz'
+        fileExtensions: ['gz']
       }).pipe(
         map(({ entry, progress }) =>
           progress
