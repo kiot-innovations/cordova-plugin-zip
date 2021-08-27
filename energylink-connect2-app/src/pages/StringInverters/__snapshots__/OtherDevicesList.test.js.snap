@@ -77,11 +77,9 @@ Object {
                 >
                   <ProgressBar
                     progress={0}
-                    subtitle="DEVICES_FOUND 0"
                     title="STRING_INVERTER_DISCOVERY_IN_PROGRESS"
                   >
                     <CommonLayout
-                      subtitle="DEVICES_FOUND 0"
                       title="STRING_INVERTER_DISCOVERY_IN_PROGRESS"
                     >
                       <div
@@ -99,9 +97,7 @@ Object {
                             >
                               STRING_INVERTER_DISCOVERY_IN_PROGRESS
                             </span>
-                            <span>
-                              DEVICES_FOUND 0
-                            </span>
+                            <span />
                           </div>
                           <div
                             className="has-text-right"

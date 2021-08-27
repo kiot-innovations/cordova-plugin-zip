@@ -208,7 +208,6 @@ const OtherDevicesList = () => {
           <ProgressBar
             title={t('STRING_INVERTER_DISCOVERY_IN_PROGRESS')}
             progress={progress}
-            subtitle={t('DEVICES_FOUND', devices.length)}
           />
         )}
         {Object.entries(groupedDevices).map(([type, devices]) => {
