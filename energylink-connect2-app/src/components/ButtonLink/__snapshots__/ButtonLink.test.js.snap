@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ButtonLink Component Renders Correctly 1`] = `
+<div
+  className="button-link mt-10 mb-10"
+>
+  <div
+    className="route-name"
+  >
+    <span>
+      Link Title
+    </span>
+  </div>
+  <div
+    className="arrow-right pt-2"
+  >
+    <span
+      className="sp-chevron-right has-text-primary"
+    />
+  </div>
+</div>
+`;

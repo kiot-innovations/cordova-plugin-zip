@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ChecklistRow Component Renders Correctly 1`] = `
+<div
+  className="precomm_checklist_row mt-10"
+  key="PRECOMM_HO_DETAILS"
+>
+  <div
+    className="precomm_checklist_row_text"
+  >
+    <label
+      className="has-text-white"
+      htmlFor="PRECOMM_HO_DETAILS"
+    >
+      PRECOMM_HO_DETAILS
+    </label>
+  </div>
+  <div
+    className="precomm_checklist_row_checkbox is-flex has-text-centered"
+  >
+    <input
+      checked={false}
+      className="checkbox-dark"
+      id="PRECOMM_HO_DETAILS"
+      name="PRECOMM_HO_DETAILS"
+      onChange={[Function]}
+      type="checkbox"
+    />
+  </div>
+</div>
+`;

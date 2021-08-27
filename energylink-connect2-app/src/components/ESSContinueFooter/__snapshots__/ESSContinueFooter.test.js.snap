@@ -1,0 +1,42 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ESSContinueFooter Component Renders Correctly with text 1`] = `
+<div
+  className="continue-footer"
+>
+  <span
+    className="is-size-6 has-text-white has-text-weight-bold"
+  >
+    NO_ERRORS_DETECTED
+  </span>
+  <span
+    className="is-size-6"
+  >
+    TEST TEXT
+  </span>
+  <Link
+    className="button is-primary is-uppercase mt-20"
+    to=""
+  >
+    CONTINUE
+  </Link>
+</div>
+`;
+
+exports[`ESSContinueFooter Component Renders Correctly without text 1`] = `
+<div
+  className="continue-footer"
+>
+  <span
+    className="is-size-6 has-text-white has-text-weight-bold"
+  >
+    NO_ERRORS_DETECTED
+  </span>
+  <Link
+    className="button is-primary is-uppercase mt-20"
+    to=""
+  >
+    CONTINUE
+  </Link>
+</div>
+`;

@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FeedbackModal Component Renders Correctly 1`] = `
+<SwipeableSheet
+  style={
+    Object {
+      "zIndex": "9999",
+    }
+  }
+>
+  <div
+    className="feedback-modal has-text-centered"
+  >
+    <div
+      className="mt-10 mb-20"
+    >
+      <FeedbackForm
+        modal={true}
+        placeholder="FEEDBACK_MODAL_PLACEHOLDER"
+        title="FEEDBACK_MODAL_TITLE"
+      />
+    </div>
+  </div>
+</SwipeableSheet>
+`;
