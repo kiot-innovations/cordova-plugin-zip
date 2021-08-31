@@ -141,7 +141,7 @@ exports[`Header Component Renders correctly 1`] = `
                   className="menuitems mt-15"
                 >
                   <div
-                    className="mb-30 is-flex tile-item"
+                    className="mb-15 is-flex tile-item"
                     key="CHANGE_ADDRESS"
                   >
                     <Component
@@ -165,7 +165,7 @@ exports[`Header Component Renders correctly 1`] = `
                     </Component>
                   </div>
                   <div
-                    className="mb-30 is-flex tile-item"
+                    className="mb-15 is-flex tile-item"
                     key="MANAGE_FIRMWARES"
                   >
                     <Component
@@ -189,7 +189,7 @@ exports[`Header Component Renders correctly 1`] = `
                     </Component>
                   </div>
                   <div
-                    className="mb-30 is-flex tile-item"
+                    className="mb-15 is-flex tile-item"
                     key="VERSION_INFORMATION"
                   >
                     <Component
@@ -213,7 +213,7 @@ exports[`Header Component Renders correctly 1`] = `
                     </Component>
                   </div>
                   <div
-                    className="mb-30 is-flex tile-item"
+                    className="mb-15 is-flex tile-item"
                     key="GIVE_FEEDBACK"
                   >
                     <Component
@@ -237,7 +237,7 @@ exports[`Header Component Renders correctly 1`] = `
                     </Component>
                   </div>
                   <div
-                    className="mb-30 is-flex tile-item"
+                    className="mb-15 is-flex tile-item"
                     key="SETTINGS"
                   >
                     <Component
@@ -261,7 +261,7 @@ exports[`Header Component Renders correctly 1`] = `
                     </Component>
                   </div>
                   <div
-                    className="mb-30 is-flex tile-item"
+                    className="mb-15 is-flex tile-item"
                     key="KNOWLEDGE_BASE"
                   >
                     <Component
@@ -423,7 +423,7 @@ exports[`Header Component Renders text instead of logo 1`] = `
                 className="menuitems mt-15"
               >
                 <div
-                  className="mb-30 is-flex tile-item"
+                  className="mb-15 is-flex tile-item"
                   key="CHANGE_ADDRESS"
                 >
                   <Component
@@ -447,7 +447,7 @@ exports[`Header Component Renders text instead of logo 1`] = `
                   </Component>
                 </div>
                 <div
-                  className="mb-30 is-flex tile-item"
+                  className="mb-15 is-flex tile-item"
                   key="MANAGE_FIRMWARES"
                 >
                   <Component
@@ -471,7 +471,7 @@ exports[`Header Component Renders text instead of logo 1`] = `
                   </Component>
                 </div>
                 <div
-                  className="mb-30 is-flex tile-item"
+                  className="mb-15 is-flex tile-item"
                   key="VERSION_INFORMATION"
                 >
                   <Component
@@ -495,7 +495,7 @@ exports[`Header Component Renders text instead of logo 1`] = `
                   </Component>
                 </div>
                 <div
-                  className="mb-30 is-flex tile-item"
+                  className="mb-15 is-flex tile-item"
                   key="GIVE_FEEDBACK"
                 >
                   <Component
@@ -519,7 +519,7 @@ exports[`Header Component Renders text instead of logo 1`] = `
                   </Component>
                 </div>
                 <div
-                  className="mb-30 is-flex tile-item"
+                  className="mb-15 is-flex tile-item"
                   key="SETTINGS"
                 >
                   <Component
@@ -543,7 +543,7 @@ exports[`Header Component Renders text instead of logo 1`] = `
                   </Component>
                 </div>
                 <div
-                  className="mb-30 is-flex tile-item"
+                  className="mb-15 is-flex tile-item"
                   key="KNOWLEDGE_BASE"
                 >
                   <Component

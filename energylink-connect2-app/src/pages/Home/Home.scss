@@ -2,10 +2,18 @@
 
 .home {
   display: grid;
-  align-items: center;
+  grid-template-rows: 1fr 12% 14%;
 
   span.sp-map {
     font-size: 6rem;
+  }
+
+  .fill-page {
+    overflow-y: scroll;
+  }
+
+  .ws {
+    border-bottom: 1px solid rgba(200,200,200,.4);
   }
 
   .message {

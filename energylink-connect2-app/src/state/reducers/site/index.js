@@ -18,13 +18,13 @@ import {
   CREATE_HOMEOWNER_ACCOUNT_COMPLETE,
   CREATE_HOMEOWNER_ACCOUNT_RESET,
   ON_GET_SITE_INFO,
-  ON_GET_SITE_INFO_END
+  ON_GET_SITE_INFO_END,
+  NO_SITE_FOUND
 } from 'state/actions/site'
 
 const initialState = {
-  isFetching: false,
   isSaving: false,
-  sites: [], // []
+  sites: [],
   site: null,
   error: null,
   saveError: '',
@@ -99,6 +99,12 @@ export const siteReducer = createReducer(
       sites: payload,
       error: null
     }),
+    [NO_SITE_FOUND]: state => ({
+      ...state,
+      isFetching: false,
+      sites: [],
+      error: null
+    }),
     [GET_SITES_ERROR]: (state, payload) => ({
       ...initialState,
       error: payload
@@ -128,7 +134,8 @@ export const siteReducer = createReducer(
     }),
     [GET_SITE_SUCCESS]: (state, payload) => ({
       ...state,
-      sitePVS: payload
+      sitePVS: payload,
+      isFetching: false
     }),
     [ON_GET_SITE_INFO]: state => ({
       ...state,

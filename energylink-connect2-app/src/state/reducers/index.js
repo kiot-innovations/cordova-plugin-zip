@@ -85,7 +85,7 @@ export default combineReducers({
   site: persistReducer(
     {
       key: 'site',
-      blacklist: ['homeownerCreation'],
+      whitelist: ['sites'],
       storage
     },
     siteReducer

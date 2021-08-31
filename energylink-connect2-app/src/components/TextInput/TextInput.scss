@@ -1,0 +1,21 @@
+@import '~@sunpower/theme-dark/styles/variables';
+
+.control {
+  .input {
+    position: relative;
+    box-shadow: none;
+    border-color: transparent;
+  }
+  i.sp {
+    position: absolute;
+    right: 10px;
+    top: 12px;
+    font-size: 22px;
+  }
+  .lds-ripple {
+    position: absolute;
+    right: -22px;
+    top: -12px;
+    font-size: 22px;
+  }
+}

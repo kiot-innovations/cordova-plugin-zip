@@ -1,9 +1,11 @@
-import { compose, prop } from 'ramda'
-import React, { useEffect } from 'react'
+import clsx from 'clsx'
+import { isEmpty, length, map, path } from 'ramda'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useHistory } from 'react-router-dom'
 
-import SearchField from 'components/SearchField'
+import SiteCard from 'components/SiteCard'
+import TextInput from 'components/TextInput'
 import paths from 'routes/paths'
 import { useI18n } from 'shared/i18n'
 import { renameKeys, either } from 'shared/utils'
@@ -23,8 +25,8 @@ import { CHECK_BLUETOOTH_STATUS_INIT } from 'state/actions/network'
 import {
   HOME_SCREEN_CREATE_SITE,
   SET_SITE,
-  GET_SITES_INIT,
-  ON_GET_SITE_INFO
+  ON_GET_SITE_INFO,
+  GET_SITES_FILTERING
 } from 'state/actions/site'
 import { WAKELOCK_RELEASE } from 'state/actions/wakelock'
 
@@ -41,17 +43,24 @@ const siteKeysMap = {
 }
 
 const setSite = (history, dispatch) => site => {
+  // because it comes with the form { site, state }
+  const siteInner = site.site
+  console.info({ siteInner }, 'setSite')
   dispatch(RESET_COMMISSIONING())
-  dispatch(ON_GET_SITE_INFO(site.site_key))
-  const siteKeysRenamed = renameKeys(siteKeysMap, site)
+  dispatch(ON_GET_SITE_INFO(siteInner.site_key))
+  const siteKeysRenamed = renameKeys(siteKeysMap, siteInner)
   dispatch(SET_SITE(siteKeysRenamed))
-  history.push(paths.PROTECTED.BILL_OF_MATERIALS.path)
 }
 
 function Home() {
   const t = useI18n()
   const dispatch = useDispatch()
   const history = useHistory()
+  const [option, setOption] = useState('')
+
+  const { sites, isFetching } = useSelector(path(['site']))
+
+  console.info({ option, isFetching })
 
   useEffect(() => {
     dispatch(CHECK_BLUETOOTH_STATUS_INIT())
@@ -63,10 +72,11 @@ function Home() {
     dispatch(FETCH_STATUS_MESSAGES())
     dispatch(WAKELOCK_RELEASE())
   }, [dispatch])
-  const notFoundText = t('NOT_FOUND')
 
-  const filterSites = (value, onResults) => {
-    dispatch(GET_SITES_INIT({ value, onResults }))
+  const filterSites = event => {
+    const value = event.target.value
+    setOption(value)
+    dispatch(GET_SITES_FILTERING({ value }))
   }
 
   useEffect(() => {
@@ -74,12 +84,13 @@ function Home() {
   }, [dispatch])
 
   const { statusMessages } = useSelector(state => state.global)
+  const longList = length(sites) > 3
 
   return (
-    <section className="home has-text-centered full-height pl-15 pr-15">
+    <section className="home has-text-centered page-height pl-15 pr-15">
       {either(
         statusMessages,
-        <section>
+        <section className={clsx('fill-page', { ws: longList })}>
           {statusMessages.map((statusMessage, index) => (
             <p
               className="message"
@@ -87,20 +98,42 @@ function Home() {
               key={index}
             />
           ))}
+
+          {either(
+            isEmpty(sites),
+            <section className="container full-height is-flex">
+              <article className="auto">
+                <span className="sp sp-map has-text-white" />
+                <h1 className="mt-40 pl-20 pr-20 is-size-5">
+                  {t(
+                    isEmpty(option) ? 'SITES_HEADER' : 'NO_SITES_FOUND',
+                    option
+                  )}
+                </h1>
+              </article>
+            </section>,
+            map(renderSiteCard(history, dispatch), sites)
+          )}
         </section>
       )}
 
       <div className="search">
-        <span className="sp sp-map has-text-white" />
-        <h6 className="is-uppercase mt-20 mb-20">{t('SELECT_SITE')}</h6>
-
-        <SearchField
-          onSearch={filterSites}
-          onSelect={compose(setSite(history, dispatch), prop('site'))}
-          notFoundText={notFoundText}
+        <p className="mb-5 mt-10 has-text-white has-text-centered">
+          {either(
+            (!isEmpty(option) && !isFetching) || !isEmpty(sites),
+            t('SITES_FOUND', length(sites)),
+            ''
+          )}
+        </p>
+        <TextInput
+          onChange={filterSites}
+          value={option}
+          icon="sp-location"
+          loading={isFetching}
         />
       </div>
-      <article>
+
+      <article className="mt-15">
         <p>{t('CS_NOT_FOUND')}</p>
         <Link
           to={paths.PROTECTED.CREATE_SITE.path}
@@ -113,5 +146,16 @@ function Home() {
     </section>
   )
 }
+
+/*
+ * @param {site}
+ * Contains an object ready to be shown in a SearchField component
+ * that's why we need to access the underlying site object here
+ * */
+const renderSiteCard = (history, dispatch) => site => (
+  <article className="mb-10" key={site.site.site_key}>
+    <SiteCard {...site} setSite={() => setSite(history, dispatch)(site)} />
+  </article>
+)
 
 export default Home

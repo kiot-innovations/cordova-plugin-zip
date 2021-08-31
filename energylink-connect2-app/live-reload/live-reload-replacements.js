@@ -10,11 +10,12 @@
 // eslint-disable-next-line no-console
 const log = console.log
 
-const ip = require('ip')
 const fs = require('fs')
 const path = require('path')
-const replace = require('replace-in-file')
+
 const execa = require('execa')
+const ip = require('ip')
+const replace = require('replace-in-file')
 const selected_platform = process.env.DEV_PLATFORM || 'android'
 const host = process.env.DEV_HOST || ip.address()
 
@@ -23,7 +24,7 @@ const liveReloadPort = 3000
 
 const ipAddressString = `http://${host}:${liveReloadPort}`
 const pathIndexFile = connect2Path + '/energylink-connect2-app/src/index.jsx'
-const beginning = '\n// Begin: This should never get committed'
+const beginning = '// Begin: This should never get committed'
 const ending = '// Ending: above should never get committed\n'
 
 const possiblePlatforms = [
@@ -104,7 +105,8 @@ function onExit() {
 }
 
 function replaceIndexFile(proxyAddress) {
-  const chunk = `${beginning}
+  const chunk = `
+${beginning}
 import addProxyDecorator from './liveReloadDecorators'
 addProxyDecorator('${proxyAddress}/')
 ${ending}`
@@ -121,9 +123,7 @@ ${ending}`
 
   fs.writeFileSync(
     pathIndexFile,
-    content.substring(0, importPos + 1) +
-      chunk +
-      content.substring(importPos + 1)
+    content.substring(0, importPos) + chunk + content.substring(importPos + 1)
   )
 }
 

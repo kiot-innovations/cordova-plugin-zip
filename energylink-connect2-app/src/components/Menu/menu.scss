@@ -11,6 +11,7 @@ $headerHeight: 60px;
   width: 100%;
   margin-top: env(safe-area-inset-top);
   padding-bottom: calc(4 * env(safe-area-inset-bottom));
+  overflow-y: scroll;
 }
 
 .menuitems {
@@ -18,10 +19,12 @@ $headerHeight: 60px;
   grid-template-columns: 1fr 1fr;
 
   & > div > button {
-    margin: auto;
+    margin: 10px;
   }
 
-  .tile-item {
+  .tilex {
+    min-height: 70px;
+    max-width: 100%;
     .text {
       min-height: 67px;
     }

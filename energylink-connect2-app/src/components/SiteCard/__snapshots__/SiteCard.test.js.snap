@@ -1,0 +1,428 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SiteCard component renders without crashing - Site Commissioned 1`] = `
+<ReactCardFlip
+  cardStyles={
+    Object {
+      "back": Object {},
+      "front": Object {},
+    }
+  }
+  cardZIndex="auto"
+  containerStyle={Object {}}
+  flipDirection="horizontal"
+  flipSpeedBackToFront={0.6}
+  flipSpeedFrontToBack={0.6}
+  infinite={false}
+  isFlipped={false}
+>
+  <SiteWrap
+    flipped={false}
+    setFlipped={[Function]}
+  >
+    <h2
+      className="mb-10 has-text-white"
+    >
+      Smith, Terry
+       - Storage Site
+    </h2>
+    <p
+      className="mb-10"
+    >
+      2701 Scenic Meadow Court, CA, 95135
+    </p>
+    <article
+      className="meta is-flex level"
+    >
+      <small
+        className="is-block"
+      >
+        FINANCE_TYPE
+        : 
+        Cash
+      </small>
+      <small>
+        CONTRACT
+        : 
+        2404819
+      </small>
+    </article>
+    <article
+      className="is-flex level is-fullwidth level"
+    >
+      <p>
+        <i
+          className="sp sp-sun has-text-white"
+        />
+        <i
+          className="sp sp-battery has-text-white ml-10"
+        />
+      </p>
+      <div
+        className="is-flex has-text-white"
+      >
+        <span>
+          3
+        </span>
+        <i
+          className="sp sp-pvs pt-2"
+        />
+      </div>
+    </article>
+  </SiteWrap>
+  <SiteWrap
+    flipped={false}
+  >
+    <h2
+      className="mb-10 has-text-white"
+      onClick={[Function]}
+    >
+      <span
+        className="pt-5"
+      >
+        <i
+          className="sp sp-chevron-left has-text-primary"
+        />
+      </span>
+    </h2>
+    <section
+      className="mb-5"
+    />
+    <p
+      className="mb-15"
+    >
+      <i
+        className="sp sp-sun mr-10 has-text-white"
+      />
+      SYSTEM_SIZE
+      : 
+      13kW
+    </p>
+    <Link
+      to="/bill-of-materials"
+    >
+      <span
+        className="has-text-centered is-fullwidth is-block"
+      >
+        SELECT_THIS_SITE
+      </span>
+    </Link>
+  </SiteWrap>
+</ReactCardFlip>
+`;
+
+exports[`SiteCard component renders without crashing - Site Commissioned without Storage 1`] = `
+<ReactCardFlip
+  cardStyles={
+    Object {
+      "back": Object {},
+      "front": Object {},
+    }
+  }
+  cardZIndex="auto"
+  containerStyle={Object {}}
+  flipDirection="horizontal"
+  flipSpeedBackToFront={0.6}
+  flipSpeedFrontToBack={0.6}
+  infinite={false}
+  isFlipped={false}
+>
+  <SiteWrap
+    flipped={false}
+    setFlipped={[Function]}
+  >
+    <h2
+      className="mb-10 has-text-white"
+    >
+      Smith, Terry
+    </h2>
+    <p
+      className="mb-10"
+    >
+      2701 Scenic Meadow Court, CA, 95135
+    </p>
+    <article
+      className="meta is-flex level"
+    >
+      <small
+        className="is-block"
+      >
+        FINANCE_TYPE
+        : 
+        Cash
+      </small>
+      <small>
+        CONTRACT
+        : 
+        2404819
+      </small>
+    </article>
+    <article
+      className="is-flex level is-fullwidth level"
+    >
+      <p>
+        <i
+          className="sp sp-sun has-text-white"
+        />
+      </p>
+      <div
+        className="is-flex has-text-white"
+      >
+        <span>
+          3
+        </span>
+        <i
+          className="sp sp-pvs pt-2"
+        />
+      </div>
+    </article>
+  </SiteWrap>
+  <SiteWrap
+    flipped={false}
+  >
+    <h2
+      className="mb-10 has-text-white"
+      onClick={[Function]}
+    >
+      <span
+        className="pt-5"
+      >
+        <i
+          className="sp sp-chevron-left has-text-primary"
+        />
+      </span>
+    </h2>
+    <section
+      className="mb-5"
+    />
+    <p
+      className="mb-15"
+    >
+      <i
+        className="sp sp-sun mr-10 has-text-white"
+      />
+      SYSTEM_SIZE
+      : 
+      N/A
+    </p>
+    <Link
+      to="/bill-of-materials"
+    >
+      <span
+        className="has-text-centered is-fullwidth is-block"
+      >
+        SELECT_THIS_SITE
+      </span>
+    </Link>
+  </SiteWrap>
+</ReactCardFlip>
+`;
+
+exports[`SiteCard component renders without crashing - Site Not Commissioned Dont Expect Storage 1`] = `
+<ReactCardFlip
+  cardStyles={
+    Object {
+      "back": Object {},
+      "front": Object {},
+    }
+  }
+  cardZIndex="auto"
+  containerStyle={Object {}}
+  flipDirection="horizontal"
+  flipSpeedBackToFront={0.6}
+  flipSpeedFrontToBack={0.6}
+  infinite={false}
+  isFlipped={false}
+>
+  <SiteWrap
+    flipped={false}
+    setFlipped={[Function]}
+  >
+    <h2
+      className="mb-10 has-text-white"
+    >
+      Smith, Terry
+       - Storage Site
+    </h2>
+    <p
+      className="mb-10"
+    >
+      2701 Scenic Meadow Court, CA, 95135
+    </p>
+    <article
+      className="meta is-flex level"
+    >
+      <small
+        className="is-block"
+      >
+        FINANCE_TYPE
+        : 
+        Cash
+      </small>
+      <small>
+        CONTRACT
+        : 
+        2404819
+      </small>
+    </article>
+    <article
+      className="is-flex level is-fullwidth level"
+    >
+      <p>
+        NO_ASSOCIATED_DEVICES
+      </p>
+      <div
+        className="is-flex has-text-white"
+      >
+        <span>
+          0
+        </span>
+        <i
+          className="sp sp-pvs pt-2"
+        />
+      </div>
+    </article>
+  </SiteWrap>
+  <SiteWrap
+    flipped={false}
+  >
+    <h2
+      className="mb-10 has-text-white"
+      onClick={[Function]}
+    >
+      <span
+        className="pt-5"
+      >
+        <i
+          className="sp sp-chevron-left has-text-primary"
+        />
+      </span>
+    </h2>
+    <article
+      className="has-text-centered is-fullwidth"
+    >
+      <p
+        className="mb-15"
+      >
+        NO_ASSOCIATED_DEVICES
+      </p>
+      <Link
+        to="/bill-of-materials"
+      >
+        <span
+          role="button"
+        >
+          BEGIN_INSTALL
+        </span>
+      </Link>
+    </article>
+  </SiteWrap>
+</ReactCardFlip>
+`;
+
+exports[`SiteCard component renders without crashing - Site Not Commissioned Needs Storage 1`] = `
+<ReactCardFlip
+  cardStyles={
+    Object {
+      "back": Object {},
+      "front": Object {},
+    }
+  }
+  cardZIndex="auto"
+  containerStyle={Object {}}
+  flipDirection="horizontal"
+  flipSpeedBackToFront={0.6}
+  flipSpeedFrontToBack={0.6}
+  infinite={false}
+  isFlipped={false}
+>
+  <SiteWrap
+    flipped={false}
+    setFlipped={[Function]}
+  >
+    <h2
+      className="mb-10 has-text-white"
+    >
+      Smith, Terry
+    </h2>
+    <p
+      className="mb-10"
+    >
+      2701 Scenic Meadow Court, CA, 95135
+    </p>
+    <article
+      className="meta is-flex level"
+    >
+      <small
+        className="is-block"
+      >
+        FINANCE_TYPE
+        : 
+        Cash
+      </small>
+      <small>
+        CONTRACT
+        : 
+        2404819
+      </small>
+    </article>
+    <article
+      className="is-flex level is-fullwidth level"
+    >
+      <p>
+        <i
+          className="sp sp-sun has-text-white"
+        />
+      </p>
+      <div
+        className="is-flex has-text-white"
+      >
+        <span>
+          3
+        </span>
+        <i
+          className="sp sp-pvs pt-2"
+        />
+      </div>
+    </article>
+  </SiteWrap>
+  <SiteWrap
+    flipped={false}
+  >
+    <h2
+      className="mb-10 has-text-white"
+      onClick={[Function]}
+    >
+      <span
+        className="pt-5"
+      >
+        <i
+          className="sp sp-chevron-left has-text-primary"
+        />
+      </span>
+    </h2>
+    <section
+      className="mb-5"
+    />
+    <p
+      className="mb-15"
+    >
+      <i
+        className="sp sp-sun mr-10 has-text-white"
+      />
+      SYSTEM_SIZE
+      : 
+      N/A
+    </p>
+    <Link
+      to="/bill-of-materials"
+    >
+      <span
+        className="has-text-centered is-fullwidth is-block"
+      >
+        SELECT_THIS_SITE
+      </span>
+    </Link>
+  </SiteWrap>
+</ReactCardFlip>
+`;

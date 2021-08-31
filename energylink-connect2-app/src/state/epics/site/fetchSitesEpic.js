@@ -3,13 +3,11 @@ import {
   compose,
   equals,
   filter,
+  length,
   map as mapR,
   path,
   pathOr,
-  prop,
-  join,
-  values,
-  pick
+  prop
 } from 'ramda'
 import { ofType } from 'redux-observable'
 import { from, of } from 'rxjs'
@@ -25,26 +23,14 @@ import {
 } from 'rxjs/operators'
 
 import { getApiSite, getApiSearch } from 'shared/api'
+import { getSitePayload, getSiteState } from 'shared/siteHelpers'
 import { cleanString } from 'shared/utils'
 import * as devicesActions from 'state/actions/devices'
-import { EMPTY_ACTION } from 'state/actions/share'
 import * as siteActions from 'state/actions/site'
 
 const getAccessToken = path(['user', 'auth', 'access_token'])
 
-const formatAddress = compose(
-  join(', '),
-  values,
-  pick(['st_addr_lbl', 'city_id', 'cntrc_no'])
-)
-
-const buildSelectValue = value => ({
-  label: formatAddress(value),
-  value: value.site_key,
-  site: value
-})
-
-const accessValue = compose(buildSelectValue, prop('_source'))
+const accessValue = prop('_source')
 
 const getSitesByText = (text, access_token) =>
   getApiSearch(access_token)
@@ -60,30 +46,39 @@ const getSitesByText = (text, access_token) =>
     .then(mapR(accessValue))
 
 export const fetchSitesEpic = (action$, state$) => {
-  let setResults
   return action$.pipe(
     ofType(siteActions.GET_SITES_INIT.getType()),
-    tap(({ payload: { onResults } }) => (setResults = onResults)),
-    map(path(['payload', 'value'])),
-    map(cleanString),
-    filterX(text => text.trim().length > 1),
-    debounceTime(1000),
-    distinctUntilChanged(),
-    exhaustMap(text =>
-      from(getSitesByText(text, getAccessToken(state$.value))).pipe(
-        map(sites => {
-          setResults(sites)
-          return sites.length === 0
-            ? siteActions.NO_SITE_FOUND(text)
-            : EMPTY_ACTION()
-        }),
+    switchMap(({ payload }) =>
+      from(getSitesByText(payload, getAccessToken(state$.value))).pipe(
+        map(sites =>
+          length(sites) < 1
+            ? siteActions.NO_SITE_FOUND(payload)
+            : siteActions.GET_SITES_SUCCESS(mapRawSites(sites))
+        ),
         catchError(error => {
-          setResults([])
           Sentry.captureException(error)
-          return of(siteActions.NO_SITE_FOUND(text))
+          return of(siteActions.NO_SITE_FOUND(payload))
         })
       )
     )
+  )
+}
+
+const toUISite = rawSite => ({
+  site: getSitePayload(rawSite),
+  state: getSiteState(rawSite)
+})
+const mapRawSites = mapR(toUISite)
+
+export const decideIfShoudFetchSiteEpic = (action$, state$) => {
+  return action$.pipe(
+    ofType(siteActions.GET_SITES_FILTERING.getType()),
+    map(path(['payload', 'value'])),
+    map(cleanString),
+    filterX(text => text.trim().length > 2),
+    debounceTime(1000),
+    distinctUntilChanged(),
+    map(siteActions.GET_SITES_INIT)
   )
 }
 

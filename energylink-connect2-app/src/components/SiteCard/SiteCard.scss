@@ -1,0 +1,13 @@
+@import '~@sunpower/theme-dark/styles/variables';
+
+.box {
+  background-color: $silver-sand4;
+  color: $silver-sand2;
+  padding: $font-size-big;
+  text-align: left;
+  min-height: 152px;
+  .meta {
+    margin-bottom: 10px;
+  }
+}
+

@@ -4,7 +4,9 @@ import { useDispatch } from 'react-redux'
 
 import ErrorBoundary from 'components/Error'
 import HooksInitializer from 'pages/HooksInitializer'
+import { isIos } from 'shared/utils'
 import { setHeader, setFooter } from 'state/actions/ui'
+
 import './layout.scss'
 
 const setLayout = (header, footer) => ChildComponent => props => {
@@ -19,6 +21,7 @@ const setLayout = (header, footer) => ChildComponent => props => {
     <div
       className={clsx({
         'custom-layout': true,
+        'ios-layout': isIos(),
         'with-footer': footer,
         'without-footer': !footer,
         'without-header': !header

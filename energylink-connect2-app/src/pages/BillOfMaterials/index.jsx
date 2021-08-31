@@ -90,7 +90,7 @@ function BillOfMaterials() {
   const imageURL = `https://maps.googleapis.com/maps/api/staticmap?center=${latitude},${longitude}&zoom=19&size=320x320&key=${process.env.REACT_APP_MAPS_API_KEY}&maptype=hybrid&markers=scale:1|blue|${latitude},${longitude}&scale=1`
 
   return (
-    <main className="full-height pl-10 pr-10 homeb">
+    <main className="full-min-height pl-10 pr-10 homeb">
       <div
         className="pl-10 pr-10 mb-20"
         onClick={createExternalLinkHandler(googleMapsUrl)}

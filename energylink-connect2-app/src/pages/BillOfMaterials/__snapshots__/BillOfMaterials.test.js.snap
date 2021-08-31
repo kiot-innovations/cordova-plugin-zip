@@ -40,7 +40,7 @@ exports[`BillOfMaterials component render correctly 1`] = `
     >
       <BillOfMaterials>
         <main
-          className="full-height pl-10 pr-10 homeb"
+          className="full-min-height pl-10 pr-10 homeb"
         >
           <div
             className="pl-10 pr-10 mb-20"

@@ -143,13 +143,11 @@ function AppRoutes() {
   })
 
   return (
-    <div>
-      <Switch>
-        {renderedUnprotected}
-        {renderedProtected}
-        <Route component={NotFound} />
-      </Switch>
-    </div>
+    <Switch>
+      {renderedUnprotected}
+      {renderedProtected}
+      <Route component={NotFound} />
+    </Switch>
   )
 }
 

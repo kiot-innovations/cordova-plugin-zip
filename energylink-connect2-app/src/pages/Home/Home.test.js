@@ -33,7 +33,7 @@ describe('Home component', () => {
     const component = mountWithProvider(<Home />)({
       user: { auth: { access_token: '123' } },
       site: {
-        sites: [{}, {}, {}],
+        sites: [],
         site: {
           latitude: 20.6881818,
           longitude: -103.4218501
@@ -53,7 +53,7 @@ describe('Home component', () => {
     const component = mountWithProvider(<Home />)({
       user: { auth: { access_token: '123' } },
       site: {
-        sites: [{}, {}, {}],
+        sites: [],
         site: {
           latitude: 20.6881818,
           longitude: -103.4218501
