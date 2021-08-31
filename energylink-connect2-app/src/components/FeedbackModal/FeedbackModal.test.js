@@ -1,11 +1,11 @@
-import React from 'react'
 import { shallow } from 'enzyme'
-import * as i18n from 'shared/i18n'
+import React from 'react'
+
 import FeedbackModal from '.'
 
-describe('FeedbackModal Component', () => {
-  const text = 'Test text'
+import * as i18n from 'shared/i18n'
 
+describe('FeedbackModal Component', () => {
   beforeEach(() => {
     jest
       .spyOn(i18n, 'useI18n')

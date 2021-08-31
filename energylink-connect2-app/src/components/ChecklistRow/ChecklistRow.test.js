@@ -1,7 +1,9 @@
-import React from 'react'
 import { shallow } from 'enzyme'
-import * as i18n from 'shared/i18n'
+import React from 'react'
+
 import { ChecklistRow } from '.'
+
+import * as i18n from 'shared/i18n'
 
 describe('ChecklistRow Component', () => {
   const row = { text: 'PRECOMM_HO_DETAILS', checked: false }

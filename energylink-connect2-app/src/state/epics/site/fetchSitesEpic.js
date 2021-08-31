@@ -34,9 +34,9 @@ const accessValue = prop('_source')
 
 const getSitesByText = (text, access_token) =>
   getApiSearch(access_token)
-    .then(path(['apis', 'default']))
+    .then(path(['apis', '/v2']))
     .then(api =>
-      api.get_v1_search_index__indexId_({
+      api.get_v2_search_index_site({
         indexId: 'site',
         q: text,
         pg: 1
