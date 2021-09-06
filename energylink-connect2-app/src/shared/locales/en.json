@@ -100,7 +100,7 @@
   "NOT_DOWNLOADED": "not downloaded",
   "DOWNLOADING_FIRMWARE": "Downloading FW image",
   "SCAN_EQUIPMENT": "Scan your Microinverters",
-  "BULK_SCAN_HINT": "Use bulk scan to get all the MIs in one shot.",
+  "BULK_SCAN_HINT": "Scan multiple bar codes at the same time: position your phone so the barcodes appear in the viewfinder.",
   "BULK_SCAN": "Bulk Scan",
   "OPENING_CAMERA": "Opening camera...",
   "SYSTEM_CONFIGURATION": "System Configuration",

@@ -64,14 +64,14 @@ function ScanDeviceLabels() {
 
       <div id="scandit" />
 
-      <div className="hint-text mt-15 pl-15 pr-15">{t('BULK_SCAN_HINT')}</div>
+      <div className="hint-text mt-10 pl-15 pr-15">{t('BULK_SCAN_HINT')}</div>
 
-      <div className="has-text-white mt-10">
+      <div className="has-text-white mt-30">
         {t('FOUND_SN', serialNumbers.length)}
       </div>
 
       <button
-        className="button is-primary is-uppercase trigger-scan mt-15"
+        className="button is-primary is-uppercase trigger-scan mt-20"
         onClick={finishedScanning}
       >
         {t('DONE')}

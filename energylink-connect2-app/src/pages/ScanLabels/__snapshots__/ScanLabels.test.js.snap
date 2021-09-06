@@ -51,17 +51,17 @@ exports[`Bulk Scan screen renders correctly 1`] = `
             id="scandit"
           />
           <div
-            className="hint-text mt-15 pl-15 pr-15"
+            className="hint-text mt-10 pl-15 pr-15"
           >
             BULK_SCAN_HINT
           </div>
           <div
-            className="has-text-white mt-10"
+            className="has-text-white mt-30"
           >
             FOUND_SN 0
           </div>
           <button
-            className="button is-primary is-uppercase trigger-scan mt-15"
+            className="button is-primary is-uppercase trigger-scan mt-20"
             onClick={[Function]}
           >
             DONE
