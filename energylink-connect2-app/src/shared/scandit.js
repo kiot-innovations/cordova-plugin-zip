@@ -1,6 +1,6 @@
 /* eslint-disable no-undef */
-import * as Sentry from '@sentry/browser'
 import { path, map, contains, flip, reject } from 'ramda'
+import * as Sentry from 'sentry-cordova'
 
 import { isIos } from './utils'
 

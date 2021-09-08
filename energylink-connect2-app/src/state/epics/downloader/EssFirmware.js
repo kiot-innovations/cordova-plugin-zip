@@ -1,4 +1,3 @@
-import * as Sentry from '@sentry/browser'
 import {
   always,
   compose,
@@ -14,6 +13,7 @@ import {
 import { ofType } from 'redux-observable'
 import { forkJoin, from, of } from 'rxjs'
 import { catchError, exhaustMap, map } from 'rxjs/operators'
+import * as Sentry from 'sentry-cordova'
 
 import { getMd5FromFile } from 'shared/cordovaMapping'
 import { getVersionFromUrl, getValidFileName } from 'shared/download'

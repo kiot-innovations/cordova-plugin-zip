@@ -1,9 +1,9 @@
-import * as Sentry from '@sentry/browser'
 import { pathOr } from 'ramda'
 import { ofType } from 'redux-observable'
 import { from, of } from 'rxjs'
 import { map, exhaustMap, catchError } from 'rxjs/operators'
 import gt from 'semver/functions/gt'
+import * as Sentry from 'sentry-cordova'
 
 import appVersion from '../../../macros/appVersion.macro'
 

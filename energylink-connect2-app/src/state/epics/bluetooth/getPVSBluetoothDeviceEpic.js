@@ -1,8 +1,8 @@
-import * as Sentry from '@sentry/browser'
 import { isEmpty, path } from 'ramda'
 import { ofType } from 'redux-observable'
 import { of } from 'rxjs'
 import { catchError, mergeMap } from 'rxjs/operators'
+import * as Sentry from 'sentry-cordova'
 
 import { getBLEDevice } from 'shared/bluetooth/getBluetoothDevice'
 import {

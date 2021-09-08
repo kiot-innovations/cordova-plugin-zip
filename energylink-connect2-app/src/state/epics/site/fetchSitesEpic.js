@@ -1,4 +1,3 @@
-import * as Sentry from '@sentry/browser'
 import {
   compose,
   equals,
@@ -21,6 +20,7 @@ import {
   debounceTime,
   distinctUntilChanged
 } from 'rxjs/operators'
+import * as Sentry from 'sentry-cordova'
 
 import { getApiSite, getApiSearch } from 'shared/api'
 import { getSitePayload, getSiteState } from 'shared/siteHelpers'

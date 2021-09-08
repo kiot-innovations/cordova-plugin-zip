@@ -29,8 +29,7 @@ async function createReleaseAndUpload() {
     console.info('Uploading source maps')
     await cli.releases.uploadSourceMaps(release, {
       include: ['build/static/js'],
-      urlPrefix: '~/static/js',
-      rewrite: false
+      urlPrefix: '~/static/js'
     })
     console.info('Finalizing release')
     await cli.releases.finalize(release)

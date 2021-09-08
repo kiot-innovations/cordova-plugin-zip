@@ -1,4 +1,3 @@
-import * as Sentry from '@sentry/browser'
 import {
   __,
   assoc,
@@ -16,6 +15,7 @@ import {
 import { ofType } from 'redux-observable'
 import { from, of } from 'rxjs'
 import { catchError, map, mergeMap, switchMap } from 'rxjs/operators'
+import * as Sentry from 'sentry-cordova'
 
 import paths from 'routes/paths'
 import { getApiDevice, getApiPVS } from 'shared/api'
@@ -159,6 +159,7 @@ export const submitConfigObjectEpic = (action$, state$) => {
             category: 'error',
             level: 'error'
           })
+
           Sentry.captureMessage(text)
           Sentry.captureException(error)
           return of(SUBMIT_COMMISSION_ERROR(data))

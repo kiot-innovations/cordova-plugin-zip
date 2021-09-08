@@ -1,8 +1,8 @@
-import * as Sentry from '@sentry/browser'
 import { path } from 'ramda'
 import { ofType } from 'redux-observable'
 import { from, of } from 'rxjs'
 import { concatMap, map, catchError } from 'rxjs/operators'
+import * as Sentry from 'sentry-cordova'
 
 import { getApiPVS } from 'shared/api'
 import {

@@ -1,4 +1,3 @@
-import * as Sentry from '@sentry/browser'
 import { propOr } from 'ramda'
 import { ofType } from 'redux-observable'
 import { forkJoin, from, of, EMPTY } from 'rxjs'
@@ -9,6 +8,7 @@ import {
   withLatestFrom,
   tap
 } from 'rxjs/operators'
+import * as Sentry from 'sentry-cordova'
 
 import {
   pvs6GridProfileUpdateUrl$,

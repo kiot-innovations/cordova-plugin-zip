@@ -1,5 +1,5 @@
-import * as Sentry from '@sentry/browser'
 import { compose, concat, curry, pathOr, replace } from 'ramda'
+import * as Sentry from 'sentry-cordova'
 
 import { flipConcat, getLastIPOctet, isIos, padNumber } from 'shared/utils'
 

@@ -1,7 +1,7 @@
-import * as Sentry from '@sentry/browser'
 import { ofType } from 'redux-observable'
 import { of } from 'rxjs'
 import { catchError, map, mergeMap, retryWhen } from 'rxjs/operators'
+import * as Sentry from 'sentry-cordova'
 
 import { connectBLE } from 'shared/bluetooth/connectViaBluetooth'
 import genericRetryStrategy from 'shared/rxjs/genericRetryStrategy'

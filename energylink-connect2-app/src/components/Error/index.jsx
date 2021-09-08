@@ -1,5 +1,5 @@
-import * as Sentry from '@sentry/browser'
 import React from 'react'
+import * as Sentry from 'sentry-cordova'
 
 import FallBackUI from './FallbackUI'
 
@@ -27,6 +27,7 @@ class ErrorBoundary extends React.Component {
       message: error.message,
       level: Sentry.Severity.Error
     })
+    Sentry.setTag('app', 'crash')
     Sentry.captureException(error)
   }
 

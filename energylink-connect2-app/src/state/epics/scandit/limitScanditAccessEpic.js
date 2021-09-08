@@ -1,8 +1,8 @@
-import * as Sentry from '@sentry/browser'
 import { path, propOr, contains } from 'ramda'
 import { ofType } from 'redux-observable'
 import { from, of } from 'rxjs'
 import { catchError, exhaustMap, map } from 'rxjs/operators'
+import * as Sentry from 'sentry-cordova'
 
 import { plainHttpGet } from 'shared/fetch'
 import * as scanditActions from 'state/actions/scandit'

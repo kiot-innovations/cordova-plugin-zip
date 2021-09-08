@@ -1,7 +1,7 @@
-import * as Sentry from '@sentry/browser'
 import { ofType } from 'redux-observable'
 import { interval, of, EMPTY } from 'rxjs'
 import { switchMap } from 'rxjs/operators'
+import * as Sentry from 'sentry-cordova'
 
 import {
   SENTRY_START_LISTENER,

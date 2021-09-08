@@ -1,5 +1,5 @@
-import * as Sentry from '@sentry/browser'
 import { prop } from 'ramda'
+import * as Sentry from 'sentry-cordova'
 
 import ErrorCodesList from 'shared/errorCodesList.json'
 import { arrayToObject } from 'shared/utils'

@@ -1,8 +1,8 @@
-import * as Sentry from '@sentry/browser'
 import { pathOr } from 'ramda'
 import { ofType } from 'redux-observable'
 import { from, EMPTY } from 'rxjs'
 import { map, exhaustMap, catchError } from 'rxjs/operators'
+import * as Sentry from 'sentry-cordova'
 
 import { plainHttpGet } from 'shared/fetch'
 import { getAppFlavor, getEnvironment } from 'shared/utils'

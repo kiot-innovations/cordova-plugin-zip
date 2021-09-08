@@ -1,8 +1,8 @@
-import * as Sentry from '@sentry/browser'
 import { isEmpty, path, pathOr, propOr, reduceBy } from 'ramda'
 import { ofType } from 'redux-observable'
 import { from, of } from 'rxjs'
 import { catchError, map, mergeMap } from 'rxjs/operators'
+import * as Sentry from 'sentry-cordova'
 
 import { getApiDevice } from 'shared/api'
 import {

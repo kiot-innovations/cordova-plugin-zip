@@ -1,4 +1,3 @@
-import * as Sentry from '@sentry/browser'
 import {
   compose,
   map as mapRamda,
@@ -11,6 +10,7 @@ import {
 import { ofType } from 'redux-observable'
 import { from, of, timer } from 'rxjs'
 import { catchError, exhaustMap, takeUntil, map } from 'rxjs/operators'
+import * as Sentry from 'sentry-cordova'
 
 import { getApiPVS } from 'shared/api'
 import { isMicroinverter } from 'shared/utils'

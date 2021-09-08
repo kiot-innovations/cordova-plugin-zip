@@ -1,7 +1,7 @@
-import * as Sentry from '@sentry/browser'
 import { ofType } from 'redux-observable'
 import { from, of } from 'rxjs'
 import { catchError, map, exhaustMap } from 'rxjs/operators'
+import * as Sentry from 'sentry-cordova'
 
 import { checkAllSSLCerts } from 'shared/sslCertCheck'
 import {

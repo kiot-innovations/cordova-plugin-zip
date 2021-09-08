@@ -1,8 +1,8 @@
-import * as Sentry from '@sentry/browser'
 import { path, pathOr } from 'ramda'
 import { ofType } from 'redux-observable'
 import { from, of } from 'rxjs'
 import { catchError, map, exhaustMap } from 'rxjs/operators'
+import * as Sentry from 'sentry-cordova'
 
 import { getFirmwareVersionData } from 'shared/fileSystem'
 import { sendCommandToPVS } from 'shared/PVSUtils'

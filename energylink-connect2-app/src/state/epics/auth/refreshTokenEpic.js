@@ -1,8 +1,8 @@
-import * as Sentry from '@sentry/browser'
 import { pathOr } from 'ramda'
 import { ofType } from 'redux-observable'
 import { of, from } from 'rxjs'
 import { catchError, map, retryWhen, switchMap } from 'rxjs/operators'
+import * as Sentry from 'sentry-cordova'
 
 import authClient from 'shared/auth/sdk'
 import { translate } from 'shared/i18n'

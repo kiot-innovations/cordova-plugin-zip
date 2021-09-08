@@ -1,4 +1,3 @@
-import * as Sentry from '@sentry/browser'
 import { path, pathOr, prop } from 'ramda'
 import { ofType } from 'redux-observable'
 import { from, of, timer } from 'rxjs'
@@ -9,6 +8,7 @@ import {
   switchMap,
   takeUntil
 } from 'rxjs/operators'
+import * as Sentry from 'sentry-cordova'
 
 import { getApiPVS } from 'shared/api'
 import {

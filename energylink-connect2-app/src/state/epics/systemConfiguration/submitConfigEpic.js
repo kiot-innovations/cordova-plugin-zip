@@ -1,4 +1,3 @@
-import * as Sentry from '@sentry/browser'
 import {
   compose,
   filter,
@@ -13,6 +12,7 @@ import {
 import { ofType } from 'redux-observable'
 import { from, of } from 'rxjs'
 import { catchError, exhaustMap, map } from 'rxjs/operators'
+import * as Sentry from 'sentry-cordova'
 
 import { getApiPVS } from 'shared/api'
 import { translate } from 'shared/i18n'

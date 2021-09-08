@@ -1,4 +1,3 @@
-import * as Sentry from '@sentry/browser'
 import {
   always,
   converge,
@@ -16,6 +15,7 @@ import {
 import { ofType } from 'redux-observable'
 import { from, of } from 'rxjs'
 import { catchError, exhaustMap, map } from 'rxjs/operators'
+import * as Sentry from 'sentry-cordova'
 
 import { getApiSite } from 'shared/api'
 import { cleanString } from 'shared/utils'

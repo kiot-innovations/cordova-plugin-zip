@@ -1,8 +1,8 @@
-import * as Sentry from '@sentry/browser'
 import { propOr } from 'ramda'
 import { ofType } from 'redux-observable'
 import { from, of, EMPTY } from 'rxjs'
 import { catchError, exhaustMap, map } from 'rxjs/operators'
+import * as Sentry from 'sentry-cordova'
 
 import {
   fileExists,

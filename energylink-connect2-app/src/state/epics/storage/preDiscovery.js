@@ -1,8 +1,8 @@
-import * as Sentry from '@sentry/browser'
 import { path, prop, compose } from 'ramda'
 import { ofType } from 'redux-observable'
 import { from, of, timer } from 'rxjs'
 import { exhaustMap, map, catchError, delayWhen } from 'rxjs/operators'
+import * as Sentry from 'sentry-cordova'
 
 import { getApiPVS, storageSwaggerTag } from 'shared/api'
 import { calculateTimeout } from 'shared/utils'

@@ -1,9 +1,9 @@
-import * as Sentry from '@sentry/browser'
 import { actions, mapFromPVS, mapToPVS } from '@sunpower/panel-layout-tool'
 import { compose, filter, length, pathOr, propIs } from 'ramda'
 import { ofType } from 'redux-observable'
 import { EMPTY, from, of } from 'rxjs'
 import { catchError, exhaustMap, map, switchMap } from 'rxjs/operators'
+import * as Sentry from 'sentry-cordova'
 
 import { getApiPVS } from 'shared/api'
 import {

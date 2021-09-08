@@ -58,6 +58,7 @@
     "phonegap-plugin-barcodescanner": "^8.1.0",
     "scandit-cordova-datacapture-barcode": "file:./libraries/scandit-cordova-datacapture-barcode",
     "scandit-cordova-datacapture-core": "file:./libraries/scandit-cordova-datacapture-core",
+    "sentry-cordova": "^1.0.0",
     "xcode": "^2.1.0"
   },
   "cordova": {
@@ -118,7 +119,10 @@
       "cordova-plugin-bluetoothle": {},
       "scandit-cordova-datacapture-core": {},
       "scandit-cordova-datacapture-barcode": {},
-      "cordova-plugin-powermanagement": {}
+      "cordova-plugin-powermanagement": {},
+      "sentry-cordova": {
+        "SENTRY_ANDROID_SDK_VERSION": "4.1.0"
+      }
     },
     "platforms": [
       "android",

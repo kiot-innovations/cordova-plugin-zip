@@ -1,7 +1,7 @@
-import * as Sentry from '@sentry/browser'
 import { ofType } from 'redux-observable'
 import { from, of } from 'rxjs'
 import { catchError, map, exhaustMap } from 'rxjs/operators'
+import * as Sentry from 'sentry-cordova'
 
 import { translate } from 'shared/i18n'
 import { checkLocationPermissions } from 'shared/permissionsChecker'

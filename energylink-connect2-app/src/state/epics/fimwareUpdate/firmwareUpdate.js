@@ -1,4 +1,3 @@
-import * as Sentry from '@sentry/browser'
 import { path, pick, propOr } from 'ramda'
 import { ofType } from 'redux-observable'
 import { concat, from, of, timer } from 'rxjs'
@@ -11,6 +10,7 @@ import {
   take,
   takeUntil
 } from 'rxjs/operators'
+import * as Sentry from 'sentry-cordova'
 
 import { ERROR_CODES } from 'shared/fileSystem'
 import { translate } from 'shared/i18n'

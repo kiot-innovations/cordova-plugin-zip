@@ -1,4 +1,3 @@
-import * as Sentry from '@sentry/browser'
 import { always, cond, equals, isNil, path, pathOr } from 'ramda'
 import { ofType } from 'redux-observable'
 import { EMPTY, from, of, timer } from 'rxjs'
@@ -9,6 +8,7 @@ import {
   switchMap,
   takeUntil
 } from 'rxjs/operators'
+import * as Sentry from 'sentry-cordova'
 
 import { getApiPVS, storageSwaggerTag } from 'shared/api'
 import { DISCOVER_COMPLETE, DISCOVER_ERROR } from 'state/actions/devices'

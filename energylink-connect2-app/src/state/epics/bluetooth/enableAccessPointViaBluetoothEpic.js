@@ -1,8 +1,8 @@
-import * as Sentry from '@sentry/browser'
-import { isEmpty, pathOr } from 'ramda'
+import { pathOr, isEmpty } from 'ramda'
 import { ofType } from 'redux-observable'
 import { from, of, EMPTY } from 'rxjs'
 import { catchError, map, exhaustMap } from 'rxjs/operators'
+import * as Sentry from 'sentry-cordova'
 
 import { enableAccessPointOnPVS } from 'shared/bluetooth/enableAPViaBluetooth'
 import {

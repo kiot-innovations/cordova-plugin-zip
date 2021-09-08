@@ -1,4 +1,3 @@
-import * as Sentry from '@sentry/browser'
 import { of, throwError } from 'rxjs'
 
 import * as fileSystem from 'shared/fileSystem'
@@ -151,8 +150,6 @@ describe('Epic firmware', () => {
         file: 'luaFiles/all.zip'
       }
       epicTest = epicTester(require('./firmware').decompressLuaFiles)
-      Sentry.addBreadcrumb = jest.fn(() => {})
-      Sentry.captureException = jest.fn(() => {})
       unzipObservable.default = jest.fn(() => throwError(errorData))
 
       const inputValues = { a: PVS_DECOMPRESS_LUA_FILES_INIT() }

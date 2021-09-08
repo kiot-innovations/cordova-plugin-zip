@@ -1,4 +1,3 @@
-import * as Sentry from '@sentry/browser'
 import {
   converge,
   curry,
@@ -18,6 +17,7 @@ import {
 import { ofType } from 'redux-observable'
 import { from, of, timer } from 'rxjs'
 import { catchError, exhaustMap, map, takeUntil } from 'rxjs/operators'
+import * as Sentry from 'sentry-cordova'
 
 import { getApiDevice, getApiPVS } from 'shared/api'
 import { getMicroinverters } from 'shared/utils'

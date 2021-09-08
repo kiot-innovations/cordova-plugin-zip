@@ -1,4 +1,3 @@
-import * as Sentry from '@sentry/browser'
 import allSettled from 'promise.allsettled'
 import {
   compose,
@@ -20,6 +19,7 @@ import {
   takeUntil,
   delayWhen
 } from 'rxjs/operators'
+import * as Sentry from 'sentry-cordova'
 
 import { getApiPVS } from 'shared/api'
 import { translate } from 'shared/i18n'

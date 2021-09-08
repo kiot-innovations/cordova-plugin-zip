@@ -1,8 +1,8 @@
-import * as Sentry from '@sentry/browser'
 import { pathOr } from 'ramda'
 import { ofType } from 'redux-observable'
 import { combineLatest, from, of, ReplaySubject } from 'rxjs'
 import { catchError, exhaustMap, map, mergeMap } from 'rxjs/operators'
+import * as Sentry from 'sentry-cordova'
 
 import { DOWNLOAD_OS_INIT } from 'state/actions/ess'
 import {
