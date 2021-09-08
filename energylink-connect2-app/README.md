@@ -109,6 +109,22 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/ad
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
 
+### Feature Flags
+
+These are the different feature flags JSON end-points per flavor:
+
+```
+https://sunpower-dev-cm2-config.s3-us-west-2.amazonaws.com/prod/featureFlags.json
+https://sunpower-dev-cm2-config.s3-us-west-2.amazonaws.com/test/featureFlags.json
+https://sunpower-dev-cm2-config.s3-us-west-2.amazonaws.com/training/featureFlags.json
+https://sunpower-dev-cm2-config.s3-us-west-2.amazonaws.com/uat/featureFlags.json
+```
+
+Right now, the only one with access to update any feature flag or add a new one, is Alvin Cheung.
+
+We request an update of the feature flags any time a user login successfully on `LOGIN_SUCCESS` or the app gain focus on
+`DEVICE_RESUME`, we also check an elapsed time of at least `5` minutes have passed since the last successful update.
+
 ### `npm run build` fails to minify
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify

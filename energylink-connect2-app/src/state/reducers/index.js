@@ -8,6 +8,7 @@ import devicesReducer from './devices'
 import { energyDataReducer } from './energy-data'
 import { energyLiveData } from './energy-live-data'
 import essReducer from './ess'
+import featureFlagsReducer from './feature-flags'
 import fileDownloader from './fileDownloader'
 import firmwareUpdate from './firmware-update'
 import { globalReducer } from './global'
@@ -128,6 +129,13 @@ export default combineReducers({
     },
     essReducer
   ),
-  permissions: permissionsReducer
+  permissions: permissionsReducer,
+  featureFlags: persistReducer(
+    {
+      key: 'featureFlags',
+      storage
+    },
+    featureFlagsReducer
+  )
   // Add reducers here
 })

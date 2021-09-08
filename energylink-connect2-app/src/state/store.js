@@ -2,13 +2,16 @@ import { applyMiddleware, compose, createStore } from 'redux'
 import { createEpicMiddleware } from 'redux-observable'
 import { persistStore } from 'redux-persist'
 import thunk from 'redux-thunk'
+import { ajax } from 'rxjs/ajax'
 
 import rootEpic from './epics'
 import rootReducer from './reducers'
 
 import { LIVE_ENERGY_DATA_NOTIFICATION } from 'state/actions/energy-data'
 
-const epicMiddleware = createEpicMiddleware()
+const epicMiddleware = createEpicMiddleware({
+  dependencies: { getJSON: ajax.getJSON }
+})
 
 export function configureStore(initialState) {
   const middlewares = []

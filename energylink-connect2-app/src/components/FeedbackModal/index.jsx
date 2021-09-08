@@ -3,6 +3,7 @@ import React from 'react'
 import FeedbackForm from 'components/FeedbackForm'
 import Rating from 'components/Rating'
 import SwipeableSheet from 'hocs/SwipeableSheet'
+import { useFeatureFlag } from 'shared/featureFlags'
 import { useI18n } from 'shared/i18n'
 import { isIos, either } from 'shared/utils'
 
@@ -21,11 +22,26 @@ const FeedbackModal = ({
     ? process.env.REACT_APP_APPLE_ID
     : process.env.REACT_APP_ANDROID_ID
   const closeModal = () => onChange()
-  const showStoreReviewRequest =
-    process.env.REACT_APP_ENABLE_STORE_REVIEWS === 'true' && rating >= 4
 
-  const feedbackForm = either(
-    feedbackSent,
+  const storeReviewsAllowed = useFeatureFlag({
+    page: 'commissioning-success',
+    name: 'appstore-reviews-request'
+  })
+
+  const inModalFeedbackForm = (
+    <div className="mt-10 mb-20">
+      <FeedbackForm
+        title={t('FEEDBACK_MODAL_TITLE')}
+        placeholder={t('FEEDBACK_MODAL_PLACEHOLDER')}
+        modal
+        ratingPreset={rating}
+        onRatingChange={onRatingChange}
+        handleFeedbackSuccess={handleFeedbackSuccess}
+      />
+    </div>
+  )
+
+  const inModalFeedbackSuccessfullySent = (
     <>
       <div className="mt-10 mb-20 has-text-white has-text-weight-bold">
         {t('FEEDBACK_SUCCESSFULLY_SENT')}
@@ -41,20 +57,10 @@ const FeedbackModal = ({
           </button>
         </div>
       </div>
-    </>,
-    <div className="mt-10 mb-20">
-      <FeedbackForm
-        title={t('FEEDBACK_MODAL_TITLE')}
-        placeholder={t('FEEDBACK_MODAL_PLACEHOLDER')}
-        modal
-        ratingPreset={rating}
-        onRatingChange={onRatingChange}
-        handleFeedbackSuccess={handleFeedbackSuccess}
-      />
-    </div>
+    </>
   )
 
-  const rateInAppStore = (
+  const inModalStoreReview = (
     <>
       <Rating rating={rating} />
 
@@ -80,6 +86,7 @@ const FeedbackModal = ({
           <button
             className="button is-primary is-uppercase"
             onClick={() => {
+              closeModal()
               window.LaunchReview.launch(null, null, appId)
             }}
           >
@@ -90,11 +97,19 @@ const FeedbackModal = ({
     </>
   )
 
+  const modalContent = either(
+    feedbackSent,
+    either(
+      storeReviewsAllowed && rating >= 4,
+      inModalStoreReview,
+      inModalFeedbackSuccessfullySent
+    ),
+    inModalFeedbackForm
+  )
+
   return (
     <SwipeableSheet open={open} onChange={onChange} style={{ zIndex: '9999' }}>
-      <div className="feedback-modal has-text-centered">
-        {either(showStoreReviewRequest, rateInAppStore, feedbackForm)}
-      </div>
+      <div className="feedback-modal has-text-centered">{modalContent}</div>
     </SwipeableSheet>
   )
 }

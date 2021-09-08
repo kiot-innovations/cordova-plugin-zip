@@ -7,6 +7,7 @@ import authEpics from './auth'
 import bluetoothEpics from './bluetooth'
 import deviceEpics from './devices'
 import downloader from './downloader'
+import featureFlagsEpics from './feature-flags'
 import feedbackEpic from './feedback'
 import firmwareUpdateEpics from './fimwareUpdate'
 import liveEnergyData from './live-energy-data'
@@ -51,5 +52,6 @@ export default combineEpics(
   ...superuserEpics,
   ...systemConfigurationEpics,
   ...wakelockEpics,
+  ...featureFlagsEpics,
   liveEnergyData
 )

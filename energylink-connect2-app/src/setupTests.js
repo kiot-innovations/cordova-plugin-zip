@@ -29,6 +29,7 @@ global.epicTester = epic => (
   inputValues,
   expectedValues,
   state,
+  dependencies,
   maxFrames
 ) => {
   const ts = new TestScheduler((actual, expected) => {
@@ -41,7 +42,7 @@ global.epicTester = epic => (
   const state$ = {
     value: state
   }
-  const outputAction = epic(action$, state$, ts)
+  const outputAction = epic(action$, state$, { ...dependencies, ts })
 
   ts.expectObservable(outputAction).toBe(expectedMarble, expectedValues)
 

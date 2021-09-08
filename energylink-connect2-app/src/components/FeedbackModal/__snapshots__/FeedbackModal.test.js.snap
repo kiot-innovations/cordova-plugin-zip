@@ -1,7 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`FeedbackModal Component Renders Correctly 1`] = `
+exports[`FeedbackModal component render correctly 1`] = `
 <SwipeableSheet
+  onChange={[Function]}
+  open={true}
   style={
     Object {
       "zIndex": "9999",
@@ -15,8 +17,11 @@ exports[`FeedbackModal Component Renders Correctly 1`] = `
       className="mt-10 mb-20"
     >
       <FeedbackForm
+        handleFeedbackSuccess={[Function]}
         modal={true}
+        onRatingChange={[Function]}
         placeholder="FEEDBACK_MODAL_PLACEHOLDER"
+        ratingPreset={3}
         title="FEEDBACK_MODAL_TITLE"
       />
     </div>
