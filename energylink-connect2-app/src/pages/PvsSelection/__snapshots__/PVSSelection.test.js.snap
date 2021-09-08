@@ -466,7 +466,460 @@ exports[`PVS Selection page renders correctly 1`] = `
                         >
                           <div
                             className="tile is-vertical"
-                          />
+                          >
+                            <div
+                              className="has-text-centered is-vertical tile"
+                            >
+                              <p
+                                className="has-text-white has-text-weight-bold mb-10"
+                              >
+                                ERROR_WHILE_CONNECTING
+                              </p>
+                              <div
+                                className="mt-10 mb-10"
+                              >
+                                <span
+                                  className="sp-hey is-size-2 has-text-white"
+                                />
+                              </div>
+                              <p
+                                className="has-text-white mt-10 mb-10"
+                              >
+                                REBOOT_PVS_0
+                              </p>
+                              <p
+                                className="mb-15 has-text-weight-bold"
+                              >
+                                REBOOT_PVS_HUB
+                              </p>
+                              <ol
+                                className="pl-30 mb-10 has-text-left"
+                              >
+                                <li>
+                                  REBOOT_PVS_1
+                                </li>
+                                <li>
+                                  REBOOT_PVS_2
+                                </li>
+                                <li>
+                                  REBOOT_PVS_3
+                                </li>
+                                <li>
+                                  REBOOT_PVS_4
+                                </li>
+                                <li>
+                                  REBOOT_PVS_5
+                                </li>
+                              </ol>
+                              <p
+                                className="mb-15 has-text-weight-bold"
+                              >
+                                REBOOT_PVS
+                              </p>
+                              <p
+                                className="mb-10"
+                              >
+                                REBOOT_PVS_6
+                              </p>
+                              <button
+                                className="button is-primary is-fullwidth"
+                                onClick={[Function]}
+                              >
+                                CLOSE
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </ReactSwipableView>
+              </div>
+            </SwipeableBottomSheet>
+          </SwipeableSheet>
+          <SwipeableSheet
+            onChange={[Function]}
+            open={false}
+          >
+            <SwipeableBottomSheet
+              defaultOpen={false}
+              fullScreen={false}
+              marginTop={0}
+              onChange={[Function]}
+              open={false}
+              overflowHeight={0}
+              overlay={true}
+              scrollTopAtClose={true}
+              shadowTip={true}
+              swipeableViewsProps={
+                Object {
+                  "className": "swipeable",
+                }
+              }
+              topShadow={true}
+            >
+              <div
+                style={
+                  Object {
+                    "bottom": 0,
+                    "height": 0,
+                    "left": 0,
+                    "position": "fixed",
+                    "right": 0,
+                  }
+                }
+              >
+                <HeightUpdater
+                  height={768}
+                  onHeightChange={[Function]}
+                />
+                <div
+                  onClick={[Function]}
+                  style={
+                    Object {
+                      "backgroundColor": "black",
+                      "height": 768,
+                      "left": 0,
+                      "opacity": 0,
+                      "pointerEvents": "none",
+                      "position": "fixed",
+                      "right": 0,
+                      "top": 0,
+                      "transition": "opacity 450ms",
+                    }
+                  }
+                />
+                <ReactSwipableView
+                  animateHeight={false}
+                  animateTransitions={true}
+                  axis="y"
+                  className="swipeable"
+                  containerStyle={
+                    Object {
+                      "boxSizing": "border-box",
+                    }
+                  }
+                  disableLazyLoading={false}
+                  disabled={false}
+                  enableMouseEvents={true}
+                  hysteresis={0.6}
+                  ignoreNativeScroll={false}
+                  index={0}
+                  onChangeIndex={[Function]}
+                  onTransitionEnd={[Function]}
+                  resistance={false}
+                  slideStyle={
+                    Object {
+                      "boxSizing": "border-box",
+                      "marginBottom": -0,
+                      "overflow": "visible",
+                    }
+                  }
+                  springConfig={
+                    Object {
+                      "delay": "0s",
+                      "duration": "0.35s",
+                      "easeFunction": "cubic-bezier(0.15, 0.3, 0.25, 1)",
+                    }
+                  }
+                  style={
+                    Object {
+                      "boxSizing": "border-box",
+                      "overflowY": "initial",
+                    }
+                  }
+                  threshold={5}
+                >
+                  <div
+                    className="swipeable"
+                    onMouseDown={[Function]}
+                    onMouseLeave={[Function]}
+                    onMouseMove={[Function]}
+                    onMouseUp={[Function]}
+                    onScroll={[Function]}
+                    onTouchEnd={[Function]}
+                    onTouchStart={[Function]}
+                    style={
+                      Object {
+                        "boxSizing": "border-box",
+                        "overflowY": "initial",
+                      }
+                    }
+                  >
+                    <div
+                      className="react-swipeable-view-container"
+                      style={
+                        Object {
+                          "WebkitFlexDirection": "column",
+                          "WebkitTransition": "all 0s ease 0s",
+                          "boxSizing": "border-box",
+                          "direction": "ltr",
+                          "display": "flex",
+                          "flexDirection": "column",
+                          "height": null,
+                          "transition": "all 0s ease 0s",
+                          "willChange": "transform",
+                        }
+                      }
+                    >
+                      <div
+                        aria-hidden={false}
+                        data-swipeable="true"
+                        key=".0"
+                        style={
+                          Object {
+                            "WebkitFlexShrink": 0,
+                            "boxSizing": "border-box",
+                            "flexShrink": 0,
+                            "marginBottom": -0,
+                            "overflow": "visible",
+                            "width": "100%",
+                          }
+                        }
+                      >
+                        <div
+                          className="ReactSwipeableBottomSheet--closed"
+                          style={
+                            Object {
+                              "backgroundColor": "white",
+                              "height": "initial",
+                              "maxHeight": 768,
+                              "overflow": "hidden",
+                            }
+                          }
+                        >
+                          <div
+                            className="tile is-vertical"
+                          >
+                            <div
+                              className="has-text-centered is-vertical tile"
+                            >
+                              <p
+                                className="has-text-weight-bold has-text-white"
+                              >
+                                HOLD_ON
+                              </p>
+                              <p
+                                className="has-text-white mt-10 mb-10"
+                              >
+                                CONNECTING_TO_PVS
+                              </p>
+                              <Loader>
+                                <div
+                                  className="custom-loader"
+                                >
+                                  <div
+                                    className="loader-inner line-scale-pulse-out-rapid"
+                                  >
+                                    <div />
+                                     
+                                    <div />
+                                     
+                                    <div />
+                                     
+                                    <div />
+                                     
+                                    <div />
+                                  </div>
+                                </div>
+                              </Loader>
+                              <span
+                                className="has-text-weight-bold mt-10"
+                              >
+                                PLEASE_STAY_CLOSE
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </ReactSwipableView>
+              </div>
+            </SwipeableBottomSheet>
+          </SwipeableSheet>
+          <SwipeableSheet
+            onChange={[Function]}
+            open={false}
+          >
+            <SwipeableBottomSheet
+              defaultOpen={false}
+              fullScreen={false}
+              marginTop={0}
+              onChange={[Function]}
+              open={false}
+              overflowHeight={0}
+              overlay={true}
+              scrollTopAtClose={true}
+              shadowTip={true}
+              swipeableViewsProps={
+                Object {
+                  "className": "swipeable",
+                }
+              }
+              topShadow={true}
+            >
+              <div
+                style={
+                  Object {
+                    "bottom": 0,
+                    "height": 0,
+                    "left": 0,
+                    "position": "fixed",
+                    "right": 0,
+                  }
+                }
+              >
+                <HeightUpdater
+                  height={768}
+                  onHeightChange={[Function]}
+                />
+                <div
+                  onClick={[Function]}
+                  style={
+                    Object {
+                      "backgroundColor": "black",
+                      "height": 768,
+                      "left": 0,
+                      "opacity": 0,
+                      "pointerEvents": "none",
+                      "position": "fixed",
+                      "right": 0,
+                      "top": 0,
+                      "transition": "opacity 450ms",
+                    }
+                  }
+                />
+                <ReactSwipableView
+                  animateHeight={false}
+                  animateTransitions={true}
+                  axis="y"
+                  className="swipeable"
+                  containerStyle={
+                    Object {
+                      "boxSizing": "border-box",
+                    }
+                  }
+                  disableLazyLoading={false}
+                  disabled={false}
+                  enableMouseEvents={true}
+                  hysteresis={0.6}
+                  ignoreNativeScroll={false}
+                  index={0}
+                  onChangeIndex={[Function]}
+                  onTransitionEnd={[Function]}
+                  resistance={false}
+                  slideStyle={
+                    Object {
+                      "boxSizing": "border-box",
+                      "marginBottom": -0,
+                      "overflow": "visible",
+                    }
+                  }
+                  springConfig={
+                    Object {
+                      "delay": "0s",
+                      "duration": "0.35s",
+                      "easeFunction": "cubic-bezier(0.15, 0.3, 0.25, 1)",
+                    }
+                  }
+                  style={
+                    Object {
+                      "boxSizing": "border-box",
+                      "overflowY": "initial",
+                    }
+                  }
+                  threshold={5}
+                >
+                  <div
+                    className="swipeable"
+                    onMouseDown={[Function]}
+                    onMouseLeave={[Function]}
+                    onMouseMove={[Function]}
+                    onMouseUp={[Function]}
+                    onScroll={[Function]}
+                    onTouchEnd={[Function]}
+                    onTouchStart={[Function]}
+                    style={
+                      Object {
+                        "boxSizing": "border-box",
+                        "overflowY": "initial",
+                      }
+                    }
+                  >
+                    <div
+                      className="react-swipeable-view-container"
+                      style={
+                        Object {
+                          "WebkitFlexDirection": "column",
+                          "WebkitTransition": "all 0s ease 0s",
+                          "boxSizing": "border-box",
+                          "direction": "ltr",
+                          "display": "flex",
+                          "flexDirection": "column",
+                          "height": null,
+                          "transition": "all 0s ease 0s",
+                          "willChange": "transform",
+                        }
+                      }
+                    >
+                      <div
+                        aria-hidden={false}
+                        data-swipeable="true"
+                        key=".0"
+                        style={
+                          Object {
+                            "WebkitFlexShrink": 0,
+                            "boxSizing": "border-box",
+                            "flexShrink": 0,
+                            "marginBottom": -0,
+                            "overflow": "visible",
+                            "width": "100%",
+                          }
+                        }
+                      >
+                        <div
+                          className="ReactSwipeableBottomSheet--closed"
+                          style={
+                            Object {
+                              "backgroundColor": "white",
+                              "height": "initial",
+                              "maxHeight": 768,
+                              "overflow": "hidden",
+                            }
+                          }
+                        >
+                          <div
+                            className="tile is-vertical"
+                          >
+                            <div
+                              className="has-text-centered is-vertical tile"
+                            >
+                              <p
+                                className="has-text-weight-bold has-text-white"
+                              >
+                                CONNECTION_SUCCESS
+                              </p>
+                              <div
+                                className="mt-10 mb-10"
+                              >
+                                <span
+                                  className="sp-check is-size-1 has-text-white"
+                                />
+                              </div>
+                              <p
+                                className="has-text-weight-bold mt-10 mb-10"
+                              >
+                                PLEASE_STAY_CLOSE_CONNECTED
+                              </p>
+                              <button
+                                className="button is-primary"
+                                onClick={[Function]}
+                              >
+                                CONTINUE
+                              </button>
+                            </div>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -651,6 +1104,185 @@ exports[`PVS Selection page renders correctly 1`] = `
                                 ENABLE_BLE
                               </button>
                             </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </ReactSwipableView>
+              </div>
+            </SwipeableBottomSheet>
+          </SwipeableSheet>
+          <SwipeableSheet
+            onChange={[Function]}
+            open={false}
+          >
+            <SwipeableBottomSheet
+              defaultOpen={false}
+              fullScreen={false}
+              marginTop={0}
+              onChange={[Function]}
+              open={false}
+              overflowHeight={0}
+              overlay={true}
+              scrollTopAtClose={true}
+              shadowTip={true}
+              swipeableViewsProps={
+                Object {
+                  "className": "swipeable",
+                }
+              }
+              topShadow={true}
+            >
+              <div
+                style={
+                  Object {
+                    "bottom": 0,
+                    "height": 0,
+                    "left": 0,
+                    "position": "fixed",
+                    "right": 0,
+                  }
+                }
+              >
+                <HeightUpdater
+                  height={768}
+                  onHeightChange={[Function]}
+                />
+                <div
+                  onClick={[Function]}
+                  style={
+                    Object {
+                      "backgroundColor": "black",
+                      "height": 768,
+                      "left": 0,
+                      "opacity": 0,
+                      "pointerEvents": "none",
+                      "position": "fixed",
+                      "right": 0,
+                      "top": 0,
+                      "transition": "opacity 450ms",
+                    }
+                  }
+                />
+                <ReactSwipableView
+                  animateHeight={false}
+                  animateTransitions={true}
+                  axis="y"
+                  className="swipeable"
+                  containerStyle={
+                    Object {
+                      "boxSizing": "border-box",
+                    }
+                  }
+                  disableLazyLoading={false}
+                  disabled={false}
+                  enableMouseEvents={true}
+                  hysteresis={0.6}
+                  ignoreNativeScroll={false}
+                  index={0}
+                  onChangeIndex={[Function]}
+                  onTransitionEnd={[Function]}
+                  resistance={false}
+                  slideStyle={
+                    Object {
+                      "boxSizing": "border-box",
+                      "marginBottom": -0,
+                      "overflow": "visible",
+                    }
+                  }
+                  springConfig={
+                    Object {
+                      "delay": "0s",
+                      "duration": "0.35s",
+                      "easeFunction": "cubic-bezier(0.15, 0.3, 0.25, 1)",
+                    }
+                  }
+                  style={
+                    Object {
+                      "boxSizing": "border-box",
+                      "overflowY": "initial",
+                    }
+                  }
+                  threshold={5}
+                >
+                  <div
+                    className="swipeable"
+                    onMouseDown={[Function]}
+                    onMouseLeave={[Function]}
+                    onMouseMove={[Function]}
+                    onMouseUp={[Function]}
+                    onScroll={[Function]}
+                    onTouchEnd={[Function]}
+                    onTouchStart={[Function]}
+                    style={
+                      Object {
+                        "boxSizing": "border-box",
+                        "overflowY": "initial",
+                      }
+                    }
+                  >
+                    <div
+                      className="react-swipeable-view-container"
+                      style={
+                        Object {
+                          "WebkitFlexDirection": "column",
+                          "WebkitTransition": "all 0s ease 0s",
+                          "boxSizing": "border-box",
+                          "direction": "ltr",
+                          "display": "flex",
+                          "flexDirection": "column",
+                          "height": null,
+                          "transition": "all 0s ease 0s",
+                          "willChange": "transform",
+                        }
+                      }
+                    >
+                      <div
+                        aria-hidden={false}
+                        data-swipeable="true"
+                        key=".0"
+                        style={
+                          Object {
+                            "WebkitFlexShrink": 0,
+                            "boxSizing": "border-box",
+                            "flexShrink": 0,
+                            "marginBottom": -0,
+                            "overflow": "visible",
+                            "width": "100%",
+                          }
+                        }
+                      >
+                        <div
+                          className="ReactSwipeableBottomSheet--closed"
+                          style={
+                            Object {
+                              "backgroundColor": "white",
+                              "height": "initial",
+                              "maxHeight": 768,
+                              "overflow": "hidden",
+                            }
+                          }
+                        >
+                          <div
+                            className="has-text-centered is-vertical tile"
+                          >
+                            <p
+                              className="has-text-weight-bold has-text-white mb-10"
+                            >
+                              UNABLE_TO_CONNECT
+                            </p>
+                            <p
+                              className="has-text-white"
+                            >
+                              RESET_BLE_MSG
+                            </p>
+                            <button
+                              className="button is-primary mt-15 is-fullwidth"
+                              onClick={[Function]}
+                            >
+                              RETRY
+                            </button>
                           </div>
                         </div>
                       </div>
@@ -1381,14 +2013,14 @@ exports[`PVS Selection page renders correctly when bluetooth is disabled 1`] = `
           </SwipeableSheet>
           <SwipeableSheet
             onChange={[Function]}
-            open={true}
+            open={false}
           >
             <SwipeableBottomSheet
               defaultOpen={false}
               fullScreen={false}
               marginTop={0}
               onChange={[Function]}
-              open={true}
+              open={false}
               overflowHeight={0}
               overlay={true}
               scrollTopAtClose={true}
@@ -1422,8 +2054,8 @@ exports[`PVS Selection page renders correctly when bluetooth is disabled 1`] = `
                       "backgroundColor": "black",
                       "height": 768,
                       "left": 0,
-                      "opacity": 0.54,
-                      "pointerEvents": "auto",
+                      "opacity": 0,
+                      "pointerEvents": "none",
                       "position": "fixed",
                       "right": 0,
                       "top": 0,
@@ -1438,7 +2070,6 @@ exports[`PVS Selection page renders correctly when bluetooth is disabled 1`] = `
                   className="swipeable"
                   containerStyle={
                     Object {
-                      "boxShadow": "rgba(0, 0, 0, 0.156863) 0px -6px 5px",
                       "boxSizing": "border-box",
                     }
                   }
@@ -1447,7 +2078,7 @@ exports[`PVS Selection page renders correctly when bluetooth is disabled 1`] = `
                   enableMouseEvents={true}
                   hysteresis={0.6}
                   ignoreNativeScroll={false}
-                  index={1}
+                  index={0}
                   onChangeIndex={[Function]}
                   onTransitionEnd={[Function]}
                   resistance={false}
@@ -1495,7 +2126,6 @@ exports[`PVS Selection page renders correctly when bluetooth is disabled 1`] = `
                         Object {
                           "WebkitFlexDirection": "column",
                           "WebkitTransition": "all 0s ease 0s",
-                          "boxShadow": "rgba(0, 0, 0, 0.156863) 0px -6px 5px",
                           "boxSizing": "border-box",
                           "direction": "ltr",
                           "display": "flex",
@@ -1509,7 +2139,7 @@ exports[`PVS Selection page renders correctly when bluetooth is disabled 1`] = `
                       <div
                         aria-hidden={false}
                         data-swipeable="true"
-                        key=".1"
+                        key=".0"
                         style={
                           Object {
                             "WebkitFlexShrink": 0,
@@ -1522,30 +2152,453 @@ exports[`PVS Selection page renders correctly when bluetooth is disabled 1`] = `
                         }
                       >
                         <div
+                          className="ReactSwipeableBottomSheet--closed"
                           style={
                             Object {
-                              "marginBottom": 0,
+                              "backgroundColor": "white",
+                              "height": "initial",
+                              "maxHeight": 768,
+                              "overflow": "hidden",
                             }
                           }
-                        />
+                        >
+                          <div
+                            className="tile is-vertical"
+                          >
+                            <div
+                              className="has-text-centered"
+                            >
+                              <p
+                                className="mb-10 has-text-white has-text-weight-bold mt-10 "
+                              >
+                                COULD_NOT_CONNECT
+                              </p>
+                              <div
+                                className="mt-10 mb-10"
+                              >
+                                <span
+                                  className="sp-hey is-size-1 has-text-white"
+                                />
+                              </div>
+                              <p
+                                className="has-text-white mt-10 mb-10"
+                              >
+                                COULD_NOT_CONNECT_HINT
+                              </p>
+                              <div
+                                className="inline-buttons"
+                              >
+                                <button
+                                  className="button is-primary is-outlined"
+                                  onClick={[Function]}
+                                >
+                                  ENABLE_BLE
+                                </button>
+                                <button
+                                  className="button is-primary"
+                                  onClick={[Function]}
+                                >
+                                  CLOSE
+                                </button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </ReactSwipableView>
+              </div>
+            </SwipeableBottomSheet>
+          </SwipeableSheet>
+          <SwipeableSheet
+            onChange={[Function]}
+            open={false}
+          >
+            <SwipeableBottomSheet
+              defaultOpen={false}
+              fullScreen={false}
+              marginTop={0}
+              onChange={[Function]}
+              open={false}
+              overflowHeight={0}
+              overlay={true}
+              scrollTopAtClose={true}
+              shadowTip={true}
+              swipeableViewsProps={
+                Object {
+                  "className": "swipeable",
+                }
+              }
+              topShadow={true}
+            >
+              <div
+                style={
+                  Object {
+                    "bottom": 0,
+                    "height": 0,
+                    "left": 0,
+                    "position": "fixed",
+                    "right": 0,
+                  }
+                }
+              >
+                <HeightUpdater
+                  height={768}
+                  onHeightChange={[Function]}
+                />
                 <div
+                  onClick={[Function]}
                   style={
                     Object {
-                      "bottom": -60,
-                      "boxShadow": "rgba(0, 0, 0, 0.7) 0px 0px 30px",
-                      "height": 60,
-                      "left": "-50%",
+                      "backgroundColor": "black",
+                      "height": 768,
+                      "left": 0,
+                      "opacity": 0,
+                      "pointerEvents": "none",
                       "position": "fixed",
-                      "transform": "translateY(50px)",
-                      "transition": "transform 450ms",
-                      "width": "200%",
+                      "right": 0,
+                      "top": 0,
+                      "transition": "opacity 450ms",
                     }
                   }
                 />
+                <ReactSwipableView
+                  animateHeight={false}
+                  animateTransitions={true}
+                  axis="y"
+                  className="swipeable"
+                  containerStyle={
+                    Object {
+                      "boxSizing": "border-box",
+                    }
+                  }
+                  disableLazyLoading={false}
+                  disabled={false}
+                  enableMouseEvents={true}
+                  hysteresis={0.6}
+                  ignoreNativeScroll={false}
+                  index={0}
+                  onChangeIndex={[Function]}
+                  onTransitionEnd={[Function]}
+                  resistance={false}
+                  slideStyle={
+                    Object {
+                      "boxSizing": "border-box",
+                      "marginBottom": -0,
+                      "overflow": "visible",
+                    }
+                  }
+                  springConfig={
+                    Object {
+                      "delay": "0s",
+                      "duration": "0.35s",
+                      "easeFunction": "cubic-bezier(0.15, 0.3, 0.25, 1)",
+                    }
+                  }
+                  style={
+                    Object {
+                      "boxSizing": "border-box",
+                      "overflowY": "initial",
+                    }
+                  }
+                  threshold={5}
+                >
+                  <div
+                    className="swipeable"
+                    onMouseDown={[Function]}
+                    onMouseLeave={[Function]}
+                    onMouseMove={[Function]}
+                    onMouseUp={[Function]}
+                    onScroll={[Function]}
+                    onTouchEnd={[Function]}
+                    onTouchStart={[Function]}
+                    style={
+                      Object {
+                        "boxSizing": "border-box",
+                        "overflowY": "initial",
+                      }
+                    }
+                  >
+                    <div
+                      className="react-swipeable-view-container"
+                      style={
+                        Object {
+                          "WebkitFlexDirection": "column",
+                          "WebkitTransition": "all 0s ease 0s",
+                          "boxSizing": "border-box",
+                          "direction": "ltr",
+                          "display": "flex",
+                          "flexDirection": "column",
+                          "height": null,
+                          "transition": "all 0s ease 0s",
+                          "willChange": "transform",
+                        }
+                      }
+                    >
+                      <div
+                        aria-hidden={false}
+                        data-swipeable="true"
+                        key=".0"
+                        style={
+                          Object {
+                            "WebkitFlexShrink": 0,
+                            "boxSizing": "border-box",
+                            "flexShrink": 0,
+                            "marginBottom": -0,
+                            "overflow": "visible",
+                            "width": "100%",
+                          }
+                        }
+                      >
+                        <div
+                          className="ReactSwipeableBottomSheet--closed"
+                          style={
+                            Object {
+                              "backgroundColor": "white",
+                              "height": "initial",
+                              "maxHeight": 768,
+                              "overflow": "hidden",
+                            }
+                          }
+                        >
+                          <div
+                            className="tile is-vertical"
+                          >
+                            <div
+                              className="has-text-centered is-vertical tile"
+                            >
+                              <p
+                                className="has-text-weight-bold has-text-white"
+                              >
+                                HOLD_ON
+                              </p>
+                              <p
+                                className="has-text-white mt-10 mb-10"
+                              >
+                                CONNECTING_TO_PVS
+                              </p>
+                              <Loader>
+                                <div
+                                  className="custom-loader"
+                                >
+                                  <div
+                                    className="loader-inner line-scale-pulse-out-rapid"
+                                  >
+                                    <div />
+                                     
+                                    <div />
+                                     
+                                    <div />
+                                     
+                                    <div />
+                                     
+                                    <div />
+                                  </div>
+                                </div>
+                              </Loader>
+                              <span
+                                className="has-text-weight-bold mt-10"
+                              >
+                                PLEASE_STAY_CLOSE
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </ReactSwipableView>
+              </div>
+            </SwipeableBottomSheet>
+          </SwipeableSheet>
+          <SwipeableSheet
+            onChange={[Function]}
+            open={false}
+          >
+            <SwipeableBottomSheet
+              defaultOpen={false}
+              fullScreen={false}
+              marginTop={0}
+              onChange={[Function]}
+              open={false}
+              overflowHeight={0}
+              overlay={true}
+              scrollTopAtClose={true}
+              shadowTip={true}
+              swipeableViewsProps={
+                Object {
+                  "className": "swipeable",
+                }
+              }
+              topShadow={true}
+            >
+              <div
+                style={
+                  Object {
+                    "bottom": 0,
+                    "height": 0,
+                    "left": 0,
+                    "position": "fixed",
+                    "right": 0,
+                  }
+                }
+              >
+                <HeightUpdater
+                  height={768}
+                  onHeightChange={[Function]}
+                />
+                <div
+                  onClick={[Function]}
+                  style={
+                    Object {
+                      "backgroundColor": "black",
+                      "height": 768,
+                      "left": 0,
+                      "opacity": 0,
+                      "pointerEvents": "none",
+                      "position": "fixed",
+                      "right": 0,
+                      "top": 0,
+                      "transition": "opacity 450ms",
+                    }
+                  }
+                />
+                <ReactSwipableView
+                  animateHeight={false}
+                  animateTransitions={true}
+                  axis="y"
+                  className="swipeable"
+                  containerStyle={
+                    Object {
+                      "boxSizing": "border-box",
+                    }
+                  }
+                  disableLazyLoading={false}
+                  disabled={false}
+                  enableMouseEvents={true}
+                  hysteresis={0.6}
+                  ignoreNativeScroll={false}
+                  index={0}
+                  onChangeIndex={[Function]}
+                  onTransitionEnd={[Function]}
+                  resistance={false}
+                  slideStyle={
+                    Object {
+                      "boxSizing": "border-box",
+                      "marginBottom": -0,
+                      "overflow": "visible",
+                    }
+                  }
+                  springConfig={
+                    Object {
+                      "delay": "0s",
+                      "duration": "0.35s",
+                      "easeFunction": "cubic-bezier(0.15, 0.3, 0.25, 1)",
+                    }
+                  }
+                  style={
+                    Object {
+                      "boxSizing": "border-box",
+                      "overflowY": "initial",
+                    }
+                  }
+                  threshold={5}
+                >
+                  <div
+                    className="swipeable"
+                    onMouseDown={[Function]}
+                    onMouseLeave={[Function]}
+                    onMouseMove={[Function]}
+                    onMouseUp={[Function]}
+                    onScroll={[Function]}
+                    onTouchEnd={[Function]}
+                    onTouchStart={[Function]}
+                    style={
+                      Object {
+                        "boxSizing": "border-box",
+                        "overflowY": "initial",
+                      }
+                    }
+                  >
+                    <div
+                      className="react-swipeable-view-container"
+                      style={
+                        Object {
+                          "WebkitFlexDirection": "column",
+                          "WebkitTransition": "all 0s ease 0s",
+                          "boxSizing": "border-box",
+                          "direction": "ltr",
+                          "display": "flex",
+                          "flexDirection": "column",
+                          "height": null,
+                          "transition": "all 0s ease 0s",
+                          "willChange": "transform",
+                        }
+                      }
+                    >
+                      <div
+                        aria-hidden={false}
+                        data-swipeable="true"
+                        key=".0"
+                        style={
+                          Object {
+                            "WebkitFlexShrink": 0,
+                            "boxSizing": "border-box",
+                            "flexShrink": 0,
+                            "marginBottom": -0,
+                            "overflow": "visible",
+                            "width": "100%",
+                          }
+                        }
+                      >
+                        <div
+                          className="ReactSwipeableBottomSheet--closed"
+                          style={
+                            Object {
+                              "backgroundColor": "white",
+                              "height": "initial",
+                              "maxHeight": 768,
+                              "overflow": "hidden",
+                            }
+                          }
+                        >
+                          <div
+                            className="tile is-vertical"
+                          >
+                            <div
+                              className="has-text-centered is-vertical tile"
+                            >
+                              <p
+                                className="has-text-weight-bold has-text-white"
+                              >
+                                CONNECTION_SUCCESS
+                              </p>
+                              <div
+                                className="mt-10 mb-10"
+                              >
+                                <span
+                                  className="sp-check is-size-1 has-text-white"
+                                />
+                              </div>
+                              <p
+                                className="has-text-weight-bold mt-10 mb-10"
+                              >
+                                PLEASE_STAY_CLOSE_CONNECTED
+                              </p>
+                              <button
+                                className="button is-primary"
+                                onClick={[Function]}
+                              >
+                                CONTINUE
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </ReactSwipableView>
               </div>
             </SwipeableBottomSheet>
           </SwipeableSheet>
@@ -1725,6 +2778,185 @@ exports[`PVS Selection page renders correctly when bluetooth is disabled 1`] = `
                                 ENABLE_BLE
                               </button>
                             </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </ReactSwipableView>
+              </div>
+            </SwipeableBottomSheet>
+          </SwipeableSheet>
+          <SwipeableSheet
+            onChange={[Function]}
+            open={false}
+          >
+            <SwipeableBottomSheet
+              defaultOpen={false}
+              fullScreen={false}
+              marginTop={0}
+              onChange={[Function]}
+              open={false}
+              overflowHeight={0}
+              overlay={true}
+              scrollTopAtClose={true}
+              shadowTip={true}
+              swipeableViewsProps={
+                Object {
+                  "className": "swipeable",
+                }
+              }
+              topShadow={true}
+            >
+              <div
+                style={
+                  Object {
+                    "bottom": 0,
+                    "height": 0,
+                    "left": 0,
+                    "position": "fixed",
+                    "right": 0,
+                  }
+                }
+              >
+                <HeightUpdater
+                  height={768}
+                  onHeightChange={[Function]}
+                />
+                <div
+                  onClick={[Function]}
+                  style={
+                    Object {
+                      "backgroundColor": "black",
+                      "height": 768,
+                      "left": 0,
+                      "opacity": 0,
+                      "pointerEvents": "none",
+                      "position": "fixed",
+                      "right": 0,
+                      "top": 0,
+                      "transition": "opacity 450ms",
+                    }
+                  }
+                />
+                <ReactSwipableView
+                  animateHeight={false}
+                  animateTransitions={true}
+                  axis="y"
+                  className="swipeable"
+                  containerStyle={
+                    Object {
+                      "boxSizing": "border-box",
+                    }
+                  }
+                  disableLazyLoading={false}
+                  disabled={false}
+                  enableMouseEvents={true}
+                  hysteresis={0.6}
+                  ignoreNativeScroll={false}
+                  index={0}
+                  onChangeIndex={[Function]}
+                  onTransitionEnd={[Function]}
+                  resistance={false}
+                  slideStyle={
+                    Object {
+                      "boxSizing": "border-box",
+                      "marginBottom": -0,
+                      "overflow": "visible",
+                    }
+                  }
+                  springConfig={
+                    Object {
+                      "delay": "0s",
+                      "duration": "0.35s",
+                      "easeFunction": "cubic-bezier(0.15, 0.3, 0.25, 1)",
+                    }
+                  }
+                  style={
+                    Object {
+                      "boxSizing": "border-box",
+                      "overflowY": "initial",
+                    }
+                  }
+                  threshold={5}
+                >
+                  <div
+                    className="swipeable"
+                    onMouseDown={[Function]}
+                    onMouseLeave={[Function]}
+                    onMouseMove={[Function]}
+                    onMouseUp={[Function]}
+                    onScroll={[Function]}
+                    onTouchEnd={[Function]}
+                    onTouchStart={[Function]}
+                    style={
+                      Object {
+                        "boxSizing": "border-box",
+                        "overflowY": "initial",
+                      }
+                    }
+                  >
+                    <div
+                      className="react-swipeable-view-container"
+                      style={
+                        Object {
+                          "WebkitFlexDirection": "column",
+                          "WebkitTransition": "all 0s ease 0s",
+                          "boxSizing": "border-box",
+                          "direction": "ltr",
+                          "display": "flex",
+                          "flexDirection": "column",
+                          "height": null,
+                          "transition": "all 0s ease 0s",
+                          "willChange": "transform",
+                        }
+                      }
+                    >
+                      <div
+                        aria-hidden={false}
+                        data-swipeable="true"
+                        key=".0"
+                        style={
+                          Object {
+                            "WebkitFlexShrink": 0,
+                            "boxSizing": "border-box",
+                            "flexShrink": 0,
+                            "marginBottom": -0,
+                            "overflow": "visible",
+                            "width": "100%",
+                          }
+                        }
+                      >
+                        <div
+                          className="ReactSwipeableBottomSheet--closed"
+                          style={
+                            Object {
+                              "backgroundColor": "white",
+                              "height": "initial",
+                              "maxHeight": 768,
+                              "overflow": "hidden",
+                            }
+                          }
+                        >
+                          <div
+                            className="has-text-centered is-vertical tile"
+                          >
+                            <p
+                              className="has-text-weight-bold has-text-white mb-10"
+                            >
+                              UNABLE_TO_CONNECT
+                            </p>
+                            <p
+                              className="has-text-white"
+                            >
+                              RESET_BLE_MSG
+                            </p>
+                            <button
+                              className="button is-primary mt-15 is-fullwidth"
+                              onClick={[Function]}
+                            >
+                              RETRY
+                            </button>
                           </div>
                         </div>
                       </div>
@@ -2444,14 +3676,14 @@ exports[`PVS Selection page renders correctly when we got an error 1`] = `
           </SwipeableSheet>
           <SwipeableSheet
             onChange={[Function]}
-            open={true}
+            open={false}
           >
             <SwipeableBottomSheet
               defaultOpen={false}
               fullScreen={false}
               marginTop={0}
               onChange={[Function]}
-              open={true}
+              open={false}
               overflowHeight={0}
               overlay={true}
               scrollTopAtClose={true}
@@ -2485,8 +3717,8 @@ exports[`PVS Selection page renders correctly when we got an error 1`] = `
                       "backgroundColor": "black",
                       "height": 768,
                       "left": 0,
-                      "opacity": 0.54,
-                      "pointerEvents": "auto",
+                      "opacity": 0,
+                      "pointerEvents": "none",
                       "position": "fixed",
                       "right": 0,
                       "top": 0,
@@ -2501,7 +3733,6 @@ exports[`PVS Selection page renders correctly when we got an error 1`] = `
                   className="swipeable"
                   containerStyle={
                     Object {
-                      "boxShadow": "rgba(0, 0, 0, 0.156863) 0px -6px 5px",
                       "boxSizing": "border-box",
                     }
                   }
@@ -2510,7 +3741,7 @@ exports[`PVS Selection page renders correctly when we got an error 1`] = `
                   enableMouseEvents={true}
                   hysteresis={0.6}
                   ignoreNativeScroll={false}
-                  index={1}
+                  index={0}
                   onChangeIndex={[Function]}
                   onTransitionEnd={[Function]}
                   resistance={false}
@@ -2558,7 +3789,6 @@ exports[`PVS Selection page renders correctly when we got an error 1`] = `
                         Object {
                           "WebkitFlexDirection": "column",
                           "WebkitTransition": "all 0s ease 0s",
-                          "boxShadow": "rgba(0, 0, 0, 0.156863) 0px -6px 5px",
                           "boxSizing": "border-box",
                           "direction": "ltr",
                           "display": "flex",
@@ -2572,7 +3802,7 @@ exports[`PVS Selection page renders correctly when we got an error 1`] = `
                       <div
                         aria-hidden={false}
                         data-swipeable="true"
-                        key=".1"
+                        key=".0"
                         style={
                           Object {
                             "WebkitFlexShrink": 0,
@@ -2585,30 +3815,477 @@ exports[`PVS Selection page renders correctly when we got an error 1`] = `
                         }
                       >
                         <div
+                          className="ReactSwipeableBottomSheet--closed"
                           style={
                             Object {
-                              "marginBottom": 0,
+                              "backgroundColor": "white",
+                              "height": "initial",
+                              "maxHeight": 768,
+                              "overflow": "hidden",
                             }
                           }
-                        />
+                        >
+                          <div
+                            className="tile is-vertical"
+                          >
+                            <div
+                              className="has-text-centered is-vertical tile"
+                            >
+                              <p
+                                className="has-text-white has-text-weight-bold mb-10"
+                              >
+                                ERROR_WHILE_CONNECTING
+                              </p>
+                              <div
+                                className="mt-10 mb-10"
+                              >
+                                <span
+                                  className="sp-hey is-size-2 has-text-white"
+                                />
+                              </div>
+                              <p
+                                className="has-text-white mt-10 mb-10"
+                              >
+                                REBOOT_PVS_0
+                              </p>
+                              <p
+                                className="mb-15 has-text-weight-bold"
+                              >
+                                REBOOT_PVS_HUB
+                              </p>
+                              <ol
+                                className="pl-30 mb-10 has-text-left"
+                              >
+                                <li>
+                                  REBOOT_PVS_1
+                                </li>
+                                <li>
+                                  REBOOT_PVS_2
+                                </li>
+                                <li>
+                                  REBOOT_PVS_3
+                                </li>
+                                <li>
+                                  REBOOT_PVS_4
+                                </li>
+                                <li>
+                                  REBOOT_PVS_5
+                                </li>
+                              </ol>
+                              <p
+                                className="mb-15 has-text-weight-bold"
+                              >
+                                REBOOT_PVS
+                              </p>
+                              <p
+                                className="mb-10"
+                              >
+                                REBOOT_PVS_6
+                              </p>
+                              <button
+                                className="button is-primary is-fullwidth"
+                                onClick={[Function]}
+                              >
+                                CLOSE
+                              </button>
+                            </div>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </ReactSwipableView>
+              </div>
+            </SwipeableBottomSheet>
+          </SwipeableSheet>
+          <SwipeableSheet
+            onChange={[Function]}
+            open={false}
+          >
+            <SwipeableBottomSheet
+              defaultOpen={false}
+              fullScreen={false}
+              marginTop={0}
+              onChange={[Function]}
+              open={false}
+              overflowHeight={0}
+              overlay={true}
+              scrollTopAtClose={true}
+              shadowTip={true}
+              swipeableViewsProps={
+                Object {
+                  "className": "swipeable",
+                }
+              }
+              topShadow={true}
+            >
+              <div
+                style={
+                  Object {
+                    "bottom": 0,
+                    "height": 0,
+                    "left": 0,
+                    "position": "fixed",
+                    "right": 0,
+                  }
+                }
+              >
+                <HeightUpdater
+                  height={768}
+                  onHeightChange={[Function]}
+                />
                 <div
+                  onClick={[Function]}
                   style={
                     Object {
-                      "bottom": -60,
-                      "boxShadow": "rgba(0, 0, 0, 0.7) 0px 0px 30px",
-                      "height": 60,
-                      "left": "-50%",
+                      "backgroundColor": "black",
+                      "height": 768,
+                      "left": 0,
+                      "opacity": 0,
+                      "pointerEvents": "none",
                       "position": "fixed",
-                      "transform": "translateY(50px)",
-                      "transition": "transform 450ms",
-                      "width": "200%",
+                      "right": 0,
+                      "top": 0,
+                      "transition": "opacity 450ms",
                     }
                   }
                 />
+                <ReactSwipableView
+                  animateHeight={false}
+                  animateTransitions={true}
+                  axis="y"
+                  className="swipeable"
+                  containerStyle={
+                    Object {
+                      "boxSizing": "border-box",
+                    }
+                  }
+                  disableLazyLoading={false}
+                  disabled={false}
+                  enableMouseEvents={true}
+                  hysteresis={0.6}
+                  ignoreNativeScroll={false}
+                  index={0}
+                  onChangeIndex={[Function]}
+                  onTransitionEnd={[Function]}
+                  resistance={false}
+                  slideStyle={
+                    Object {
+                      "boxSizing": "border-box",
+                      "marginBottom": -0,
+                      "overflow": "visible",
+                    }
+                  }
+                  springConfig={
+                    Object {
+                      "delay": "0s",
+                      "duration": "0.35s",
+                      "easeFunction": "cubic-bezier(0.15, 0.3, 0.25, 1)",
+                    }
+                  }
+                  style={
+                    Object {
+                      "boxSizing": "border-box",
+                      "overflowY": "initial",
+                    }
+                  }
+                  threshold={5}
+                >
+                  <div
+                    className="swipeable"
+                    onMouseDown={[Function]}
+                    onMouseLeave={[Function]}
+                    onMouseMove={[Function]}
+                    onMouseUp={[Function]}
+                    onScroll={[Function]}
+                    onTouchEnd={[Function]}
+                    onTouchStart={[Function]}
+                    style={
+                      Object {
+                        "boxSizing": "border-box",
+                        "overflowY": "initial",
+                      }
+                    }
+                  >
+                    <div
+                      className="react-swipeable-view-container"
+                      style={
+                        Object {
+                          "WebkitFlexDirection": "column",
+                          "WebkitTransition": "all 0s ease 0s",
+                          "boxSizing": "border-box",
+                          "direction": "ltr",
+                          "display": "flex",
+                          "flexDirection": "column",
+                          "height": null,
+                          "transition": "all 0s ease 0s",
+                          "willChange": "transform",
+                        }
+                      }
+                    >
+                      <div
+                        aria-hidden={false}
+                        data-swipeable="true"
+                        key=".0"
+                        style={
+                          Object {
+                            "WebkitFlexShrink": 0,
+                            "boxSizing": "border-box",
+                            "flexShrink": 0,
+                            "marginBottom": -0,
+                            "overflow": "visible",
+                            "width": "100%",
+                          }
+                        }
+                      >
+                        <div
+                          className="ReactSwipeableBottomSheet--closed"
+                          style={
+                            Object {
+                              "backgroundColor": "white",
+                              "height": "initial",
+                              "maxHeight": 768,
+                              "overflow": "hidden",
+                            }
+                          }
+                        >
+                          <div
+                            className="tile is-vertical"
+                          >
+                            <div
+                              className="has-text-centered is-vertical tile"
+                            >
+                              <p
+                                className="has-text-weight-bold has-text-white"
+                              >
+                                HOLD_ON
+                              </p>
+                              <p
+                                className="has-text-white mt-10 mb-10"
+                              >
+                                CONNECTING_TO_PVS
+                              </p>
+                              <Loader>
+                                <div
+                                  className="custom-loader"
+                                >
+                                  <div
+                                    className="loader-inner line-scale-pulse-out-rapid"
+                                  >
+                                    <div />
+                                     
+                                    <div />
+                                     
+                                    <div />
+                                     
+                                    <div />
+                                     
+                                    <div />
+                                  </div>
+                                </div>
+                              </Loader>
+                              <span
+                                className="has-text-weight-bold mt-10"
+                              >
+                                PLEASE_STAY_CLOSE
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </ReactSwipableView>
+              </div>
+            </SwipeableBottomSheet>
+          </SwipeableSheet>
+          <SwipeableSheet
+            onChange={[Function]}
+            open={false}
+          >
+            <SwipeableBottomSheet
+              defaultOpen={false}
+              fullScreen={false}
+              marginTop={0}
+              onChange={[Function]}
+              open={false}
+              overflowHeight={0}
+              overlay={true}
+              scrollTopAtClose={true}
+              shadowTip={true}
+              swipeableViewsProps={
+                Object {
+                  "className": "swipeable",
+                }
+              }
+              topShadow={true}
+            >
+              <div
+                style={
+                  Object {
+                    "bottom": 0,
+                    "height": 0,
+                    "left": 0,
+                    "position": "fixed",
+                    "right": 0,
+                  }
+                }
+              >
+                <HeightUpdater
+                  height={768}
+                  onHeightChange={[Function]}
+                />
+                <div
+                  onClick={[Function]}
+                  style={
+                    Object {
+                      "backgroundColor": "black",
+                      "height": 768,
+                      "left": 0,
+                      "opacity": 0,
+                      "pointerEvents": "none",
+                      "position": "fixed",
+                      "right": 0,
+                      "top": 0,
+                      "transition": "opacity 450ms",
+                    }
+                  }
+                />
+                <ReactSwipableView
+                  animateHeight={false}
+                  animateTransitions={true}
+                  axis="y"
+                  className="swipeable"
+                  containerStyle={
+                    Object {
+                      "boxSizing": "border-box",
+                    }
+                  }
+                  disableLazyLoading={false}
+                  disabled={false}
+                  enableMouseEvents={true}
+                  hysteresis={0.6}
+                  ignoreNativeScroll={false}
+                  index={0}
+                  onChangeIndex={[Function]}
+                  onTransitionEnd={[Function]}
+                  resistance={false}
+                  slideStyle={
+                    Object {
+                      "boxSizing": "border-box",
+                      "marginBottom": -0,
+                      "overflow": "visible",
+                    }
+                  }
+                  springConfig={
+                    Object {
+                      "delay": "0s",
+                      "duration": "0.35s",
+                      "easeFunction": "cubic-bezier(0.15, 0.3, 0.25, 1)",
+                    }
+                  }
+                  style={
+                    Object {
+                      "boxSizing": "border-box",
+                      "overflowY": "initial",
+                    }
+                  }
+                  threshold={5}
+                >
+                  <div
+                    className="swipeable"
+                    onMouseDown={[Function]}
+                    onMouseLeave={[Function]}
+                    onMouseMove={[Function]}
+                    onMouseUp={[Function]}
+                    onScroll={[Function]}
+                    onTouchEnd={[Function]}
+                    onTouchStart={[Function]}
+                    style={
+                      Object {
+                        "boxSizing": "border-box",
+                        "overflowY": "initial",
+                      }
+                    }
+                  >
+                    <div
+                      className="react-swipeable-view-container"
+                      style={
+                        Object {
+                          "WebkitFlexDirection": "column",
+                          "WebkitTransition": "all 0s ease 0s",
+                          "boxSizing": "border-box",
+                          "direction": "ltr",
+                          "display": "flex",
+                          "flexDirection": "column",
+                          "height": null,
+                          "transition": "all 0s ease 0s",
+                          "willChange": "transform",
+                        }
+                      }
+                    >
+                      <div
+                        aria-hidden={false}
+                        data-swipeable="true"
+                        key=".0"
+                        style={
+                          Object {
+                            "WebkitFlexShrink": 0,
+                            "boxSizing": "border-box",
+                            "flexShrink": 0,
+                            "marginBottom": -0,
+                            "overflow": "visible",
+                            "width": "100%",
+                          }
+                        }
+                      >
+                        <div
+                          className="ReactSwipeableBottomSheet--closed"
+                          style={
+                            Object {
+                              "backgroundColor": "white",
+                              "height": "initial",
+                              "maxHeight": 768,
+                              "overflow": "hidden",
+                            }
+                          }
+                        >
+                          <div
+                            className="tile is-vertical"
+                          >
+                            <div
+                              className="has-text-centered is-vertical tile"
+                            >
+                              <p
+                                className="has-text-weight-bold has-text-white"
+                              >
+                                CONNECTION_SUCCESS
+                              </p>
+                              <div
+                                className="mt-10 mb-10"
+                              >
+                                <span
+                                  className="sp-check is-size-1 has-text-white"
+                                />
+                              </div>
+                              <p
+                                className="has-text-weight-bold mt-10 mb-10"
+                              >
+                                PLEASE_STAY_CLOSE_CONNECTED
+                              </p>
+                              <button
+                                className="button is-primary"
+                                onClick={[Function]}
+                              >
+                                CONTINUE
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </ReactSwipableView>
               </div>
             </SwipeableBottomSheet>
           </SwipeableSheet>
@@ -2788,6 +4465,185 @@ exports[`PVS Selection page renders correctly when we got an error 1`] = `
                                 ENABLE_BLE
                               </button>
                             </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </ReactSwipableView>
+              </div>
+            </SwipeableBottomSheet>
+          </SwipeableSheet>
+          <SwipeableSheet
+            onChange={[Function]}
+            open={false}
+          >
+            <SwipeableBottomSheet
+              defaultOpen={false}
+              fullScreen={false}
+              marginTop={0}
+              onChange={[Function]}
+              open={false}
+              overflowHeight={0}
+              overlay={true}
+              scrollTopAtClose={true}
+              shadowTip={true}
+              swipeableViewsProps={
+                Object {
+                  "className": "swipeable",
+                }
+              }
+              topShadow={true}
+            >
+              <div
+                style={
+                  Object {
+                    "bottom": 0,
+                    "height": 0,
+                    "left": 0,
+                    "position": "fixed",
+                    "right": 0,
+                  }
+                }
+              >
+                <HeightUpdater
+                  height={768}
+                  onHeightChange={[Function]}
+                />
+                <div
+                  onClick={[Function]}
+                  style={
+                    Object {
+                      "backgroundColor": "black",
+                      "height": 768,
+                      "left": 0,
+                      "opacity": 0,
+                      "pointerEvents": "none",
+                      "position": "fixed",
+                      "right": 0,
+                      "top": 0,
+                      "transition": "opacity 450ms",
+                    }
+                  }
+                />
+                <ReactSwipableView
+                  animateHeight={false}
+                  animateTransitions={true}
+                  axis="y"
+                  className="swipeable"
+                  containerStyle={
+                    Object {
+                      "boxSizing": "border-box",
+                    }
+                  }
+                  disableLazyLoading={false}
+                  disabled={false}
+                  enableMouseEvents={true}
+                  hysteresis={0.6}
+                  ignoreNativeScroll={false}
+                  index={0}
+                  onChangeIndex={[Function]}
+                  onTransitionEnd={[Function]}
+                  resistance={false}
+                  slideStyle={
+                    Object {
+                      "boxSizing": "border-box",
+                      "marginBottom": -0,
+                      "overflow": "visible",
+                    }
+                  }
+                  springConfig={
+                    Object {
+                      "delay": "0s",
+                      "duration": "0.35s",
+                      "easeFunction": "cubic-bezier(0.15, 0.3, 0.25, 1)",
+                    }
+                  }
+                  style={
+                    Object {
+                      "boxSizing": "border-box",
+                      "overflowY": "initial",
+                    }
+                  }
+                  threshold={5}
+                >
+                  <div
+                    className="swipeable"
+                    onMouseDown={[Function]}
+                    onMouseLeave={[Function]}
+                    onMouseMove={[Function]}
+                    onMouseUp={[Function]}
+                    onScroll={[Function]}
+                    onTouchEnd={[Function]}
+                    onTouchStart={[Function]}
+                    style={
+                      Object {
+                        "boxSizing": "border-box",
+                        "overflowY": "initial",
+                      }
+                    }
+                  >
+                    <div
+                      className="react-swipeable-view-container"
+                      style={
+                        Object {
+                          "WebkitFlexDirection": "column",
+                          "WebkitTransition": "all 0s ease 0s",
+                          "boxSizing": "border-box",
+                          "direction": "ltr",
+                          "display": "flex",
+                          "flexDirection": "column",
+                          "height": null,
+                          "transition": "all 0s ease 0s",
+                          "willChange": "transform",
+                        }
+                      }
+                    >
+                      <div
+                        aria-hidden={false}
+                        data-swipeable="true"
+                        key=".0"
+                        style={
+                          Object {
+                            "WebkitFlexShrink": 0,
+                            "boxSizing": "border-box",
+                            "flexShrink": 0,
+                            "marginBottom": -0,
+                            "overflow": "visible",
+                            "width": "100%",
+                          }
+                        }
+                      >
+                        <div
+                          className="ReactSwipeableBottomSheet--closed"
+                          style={
+                            Object {
+                              "backgroundColor": "white",
+                              "height": "initial",
+                              "maxHeight": 768,
+                              "overflow": "hidden",
+                            }
+                          }
+                        >
+                          <div
+                            className="has-text-centered is-vertical tile"
+                          >
+                            <p
+                              className="has-text-weight-bold has-text-white mb-10"
+                            >
+                              UNABLE_TO_CONNECT
+                            </p>
+                            <p
+                              className="has-text-white"
+                            >
+                              RESET_BLE_MSG
+                            </p>
+                            <button
+                              className="button is-primary mt-15 is-fullwidth"
+                              onClick={[Function]}
+                            >
+                              RETRY
+                            </button>
                           </div>
                         </div>
                       </div>

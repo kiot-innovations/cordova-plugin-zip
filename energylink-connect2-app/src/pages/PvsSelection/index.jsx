@@ -14,7 +14,8 @@ import {
   propOr,
   uniqBy,
   flip,
-  reject
+  reject,
+  not
 } from 'ramda'
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
@@ -52,6 +53,7 @@ import {
 import { RESET_SYSTEM_CONFIGURATION } from 'state/actions/systemConfiguration'
 import { BLESTATUS } from 'state/reducers/network'
 import { rmaModes } from 'state/reducers/rma'
+
 import './PVSelection.scss'
 
 const getPvsSerialNumbers = compose(
@@ -109,6 +111,8 @@ function PvsSelection() {
   const [serialNumber, setSerialNumber] = useState('')
   const [confirmConnectionModal, showConfirmConnectionModal] = useState(false)
   const [selectedDevice, setSelectedDevice] = useState()
+  const [showResetModal, setShowResetModal] = useState(false)
+  const [errorCount, setErrorCount] = useState(0)
 
   const getBarcode = () => {
     scanBarcodes(onScanSuccess(generatePassword, dispatch, t), onScanFail)
@@ -151,8 +155,30 @@ function PvsSelection() {
   }
 
   const enableBluetooth = () => {
-    isIos() ? dispatch(OPEN_SETTINGS()) : dispatch(ENABLE_BLUETOOTH_INIT())
+    if (isIos()) dispatch(OPEN_SETTINGS())
+    else dispatch(ENABLE_BLUETOOTH_INIT())
   }
+
+  const dismissResetModal = () => {
+    setShowResetModal(!showResetModal)
+    setErrorCount(errorCount + 1)
+    editDevices()
+  }
+
+  const resetBLEAnthena = (
+    <div className="has-text-centered is-vertical tile">
+      <p className="has-text-weight-bold has-text-white mb-10">
+        {t('UNABLE_TO_CONNECT')}
+      </p>
+      <p className="has-text-white">{t('RESET_BLE_MSG')}</p>
+      <button
+        className="button is-primary mt-15 is-fullwidth"
+        onClick={dismissResetModal}
+      >
+        {t('RETRY')}
+      </button>
+    </div>
+  )
 
   const connectingModalContent = (
     <div className="has-text-centered is-vertical tile">
@@ -307,6 +333,12 @@ function PvsSelection() {
     if (connected || err) {
       setConnecting(false)
     }
+    if (err) {
+      setShowResetModal(errorCount < 1)
+      if (errorCount === 1) setErrorCount(2)
+    }
+    // apologies, we need this :D
+    // eslint-disable-next-line
   }, [connected, err])
 
   useEffect(() => {
@@ -495,16 +527,23 @@ function PvsSelection() {
 
       <SwipeableSheet
         onChange={dismissModal}
-        open={Boolean(err) || connecting || connected}
+        open={Boolean(err) && errorCount > 1}
       >
         <div className="tile is-vertical">
-          {either(connecting, connectingModalContent)}
-          {either(connected, connectedModalContent)}
           {either(
-            err,
-            bluetoothEnabled ? failureModalContent : failureModalContent_noBLE
+            bluetoothEnabled,
+            failureModalContent,
+            failureModalContent_noBLE
           )}
         </div>
+      </SwipeableSheet>
+
+      <SwipeableSheet onChange={dismissModal} open={connecting}>
+        <div className="tile is-vertical">{connectingModalContent}</div>
+      </SwipeableSheet>
+
+      <SwipeableSheet onChange={dismissModal} open={connected}>
+        <div className="tile is-vertical">{connectedModalContent}</div>
       </SwipeableSheet>
 
       <SwipeableSheet
@@ -512,6 +551,13 @@ function PvsSelection() {
         open={btPermissions}
       >
         {btPermContent}
+      </SwipeableSheet>
+
+      <SwipeableSheet
+        onChange={compose(setShowResetModal, not)}
+        open={isIos() && Boolean(err) && errorCount < 1 && showResetModal}
+      >
+        {resetBLEAnthena}
       </SwipeableSheet>
 
       <SwipeableSheet

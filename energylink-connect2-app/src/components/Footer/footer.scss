@@ -3,8 +3,7 @@
 .cm2-footer {
   .custom-footer {
     position: fixed;
-    bottom: constant(safe-area-inset-bottom);
-    bottom: env(safe-area-inset-bottom);
+    bottom: calc(env(safe-area-inset-bottom) - 10px);
     width: 100vw;
     height: 70px;
     background-color: $dark-blue;
@@ -14,9 +13,8 @@
 
   .superuser-settings {
     position: fixed;
-    bottom: constant(safe-area-inset-bottom);
     bottom: env(safe-area-inset-bottom);
-    right: 0px;
+    right: 0;
     font-size: 3px;
     transform: rotate(-90deg) translate(100%, 0);
     transform-origin: right bottom;
