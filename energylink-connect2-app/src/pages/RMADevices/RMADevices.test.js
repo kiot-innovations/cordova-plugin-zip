@@ -20,6 +20,9 @@ describe('RMA devices component', () => {
 
   test('render correctly', () => {
     const initialState = {
+      pvs: {
+        model: 'PVS6'
+      },
       rma: {
         rmaMode: rmaModes.EDIT_DEVICES
       },

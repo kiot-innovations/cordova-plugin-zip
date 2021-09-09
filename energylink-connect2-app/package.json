@@ -20,7 +20,7 @@
     "build-storybook": "build-storybook -s public",
     "live-reload-proxy": "node ./live-reload/proxy.js",
     "live-reload-precommit": "node ./gitHooks/liveReloadValidate",
-    "prettify": "prettier 'src/**/**/*.{js,jsx,scss,md,json}'",
+    "prettify": "prettier --write 'src/**/**/*.{js,jsx,scss,md,json}'",
     "sentrifySourceMaps": "node sentrifySourceMaps.js"
   },
   "dependencies": {

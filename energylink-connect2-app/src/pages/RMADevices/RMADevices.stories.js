@@ -1,4 +1,5 @@
 import { storiesOf } from '@storybook/react'
+import { clone } from 'ramda'
 import React from 'react'
 import { Provider } from 'react-redux'
 
@@ -400,6 +401,9 @@ const hasStorage = {
         ]
       }
     }
+  },
+  pvs: {
+    model: 'PVS6'
   }
 }
 const noStorage = {
@@ -782,6 +786,9 @@ const noStorage = {
         ]
       }
     }
+  },
+  pvs: {
+    model: 'PVS6'
   }
 }
 
@@ -796,9 +803,34 @@ storiesOf('RMA devices', module)
       </div>
     )
   })
+  .add('With Storage (PVS5)', () => {
+    let hasStoragePVS5 = clone(hasStorage)
+    hasStoragePVS5.pvs.model = 'PVS5'
+
+    const { store } = configureStore(hasStoragePVS5)
+    return (
+      <div className="full-min-height pl-10 pr-10">
+        <Provider store={store}>
+          <RMADevices />
+        </Provider>
+      </div>
+    )
+  })
   .add('Without Storage', () => {
     const { store } = configureStore(noStorage)
+    return (
+      <div className="full-min-height pl-10 pr-10">
+        <Provider store={store}>
+          <RMADevices />
+        </Provider>
+      </div>
+    )
+  })
+  .add('Without Storage (PVS5)', () => {
+    let noStoragePVS5 = clone(noStorage)
+    noStoragePVS5.pvs.model = 'PVS5'
 
+    const { store } = configureStore(noStoragePVS5)
     return (
       <div className="full-min-height pl-10 pr-10">
         <Provider store={store}>

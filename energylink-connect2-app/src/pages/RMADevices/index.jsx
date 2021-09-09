@@ -25,7 +25,7 @@ import Collapsible from 'components/Collapsible'
 import ColoredBanner, { bannerCategories } from 'components/ColoredBanner'
 import paths from 'routes/paths'
 import { useI18n } from 'shared/i18n'
-import { either, getMicroinverters } from 'shared/utils'
+import { either, getMicroinverters, isPvs5 } from 'shared/utils'
 import { FETCH_DEVICES_LIST } from 'state/actions/devices'
 import { SHOW_MODAL } from 'state/actions/modal'
 import { RMA_REMOVE_DEVICES, CLEAR_RMA } from 'state/actions/rma'
@@ -94,6 +94,7 @@ function RMADevices() {
   }, [dispatch])
 
   const [selectedMIs, setSelectedMIs] = useState({})
+  const { model } = useSelector(state => state.pvs)
 
   const { rmaMode } = useSelector(state => state.rma)
   const { found, fetchingDevices } = useSelector(state => state.devices)
@@ -212,28 +213,32 @@ function RMADevices() {
         )}
       </Collapsible>
       <div className="mt-10" />
-      <Collapsible title="Storage Equipment" expanded>
-        <span className="has-text-white has-text-weight-bold">
-          {either(hasStorage, t('HAS_STORAGE_RMA'), t('NO_STORAGE_RMA'))}
-        </span>
-        <span className="mt-5">
-          {either(
-            hasStorage,
-            t('HAS_STORAGE_RMA_HINT'),
-            t('NO_STORAGE_RMA_HINT')
-          )}
-        </span>
-        <div className="buttons-container">
-          <button
-            onClick={() =>
-              history.push(paths.PROTECTED.STORAGE_PREDISCOVERY.path)
-            }
-            className="button is-paddingless has-text-primary has-text-weight-bold is-size-7 button-transparent"
-          >
-            {hasStorage ? t('RECOMM_STORAGE') : t('COMM_STORAGE')}
-          </button>
-        </div>
-      </Collapsible>
+      {either(
+        !isPvs5(model),
+        <Collapsible title="Storage Equipment" expanded>
+          <span className="has-text-white has-text-weight-bold">
+            {either(hasStorage, t('HAS_STORAGE_RMA'), t('NO_STORAGE_RMA'))}
+          </span>
+          <span className="mt-5">
+            {either(
+              hasStorage,
+              t('HAS_STORAGE_RMA_HINT'),
+              t('NO_STORAGE_RMA_HINT')
+            )}
+          </span>
+          <div className="buttons-container">
+            <button
+              disabled={isPvs5(model)}
+              onClick={() =>
+                history.push(paths.PROTECTED.STORAGE_PREDISCOVERY.path)
+              }
+              className="button is-paddingless has-text-primary has-text-weight-bold is-size-7 button-transparent"
+            >
+              {hasStorage ? t('RECOMM_STORAGE') : t('COMM_STORAGE')}
+            </button>
+          </div>
+        </Collapsible>
+      )}
       <div className="mt-10" />
       <OtherDevicesTag />
       <div className="mt-10 has-text-centered button-container">
