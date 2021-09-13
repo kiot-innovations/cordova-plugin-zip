@@ -112,7 +112,7 @@ exports[`BillOfMaterials component render correctly 1`] = `
           </span>
           <section>
             <div
-              className="is-flex is-vertical"
+              className="is-flex is-vertical mt-20"
             >
               <div
                 className="is-flex is-vertical tile pl-15"
@@ -161,6 +161,38 @@ exports[`BillOfMaterials component render correctly 1`] = `
               <span
                 className="has-text-white mb-10"
               />
+            </div>
+            <div
+              className="is-flex is-vertical tile pl-15"
+            >
+              <div
+                className="tile is-flex is-vertical"
+              >
+                <span
+                  className=" is-uppercase is-size-7"
+                >
+                  STORAGE_SYSTEM_SIZE
+                  :
+                </span>
+                <p
+                  className="has-text-white mb-10"
+                >
+                  N/A
+                </p>
+              </div>
+              <div
+                className="tile is-flex is-vertical"
+              >
+                <span
+                  className=" is-uppercase is-size-7"
+                >
+                  SYSTEM_SIZE
+                  :
+                </span>
+                <p
+                  className="has-text-white mb-10"
+                />
+              </div>
             </div>
             <div
               className="is-flex is-vertical tile is-center pr-40"

@@ -31,6 +31,7 @@ export const getSitePayload = siteRaw => ({
     : 'N/A',
   isCommissioned: isCommissioned(siteRaw),
   hasStorage: hasStorage(siteRaw),
+  systemSizeKw: siteRaw.sys_sz_w ? `${siteRaw.sys_sz_w / 1000}kW` : 'N/A',
   ...siteRaw
 })
 

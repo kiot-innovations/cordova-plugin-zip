@@ -59,7 +59,11 @@ function BillOfMaterials() {
     siteName,
     siteKey,
     contractNumber,
-    financeType
+    financeType,
+    validStorageSystemSizeKw,
+    hasStorage,
+    systemSizeKw,
+    pvsCount
   } = useSelector(pathOr({}, ['site', 'site']))
 
   const redirectInstall = () => {
@@ -101,7 +105,7 @@ function BillOfMaterials() {
         {t('CUSTOMER_INFORMATION')}
       </span>
       <section>
-        <div className="is-flex is-vertical">
+        <div className="is-flex is-vertical mt-20">
           <div className="is-flex is-vertical tile pl-15">
             <div className="tile is-flex is-vertical">
               <span className="is-uppercase is-size-7 ">{`${t('NAME')}:`}</span>
@@ -109,26 +113,6 @@ function BillOfMaterials() {
                 {siteName}
               </span>
             </div>
-
-            {either(
-              contractNumber,
-              <div className="tile is-flex is-vertical">
-                <span className=" is-uppercase is-size-7">
-                  {t('CONTRACT_NO')}:
-                </span>
-                <p className="has-text-white mb-10">{contractNumber}</p>
-              </div>
-            )}
-
-            {either(
-              financeType,
-              <div className="tile is-flex is-vertical">
-                <span className=" is-uppercase is-size-7">
-                  {t('FINANCE_TYPE')}:
-                </span>
-                <p className="has-text-white mb-10">{financeType}</p>
-              </div>
-            )}
 
             {either(
               prop('phone', data),
@@ -151,6 +135,58 @@ function BillOfMaterials() {
           <span className="is-uppercase is-size-7">{`${t('ADDRESS')}:`}</span>
           <span className="has-text-white mb-10">{address1}</span>
         </div>
+        <div className="is-flex is-vertical tile pl-15">
+          <div className="tile is-flex is-vertical">
+            {either(
+              contractNumber,
+              <div className="tile is-flex is-vertical">
+                <span className=" is-uppercase is-size-7">
+                  {t('CONTRACT_NO')}:
+                </span>
+                <p className="has-text-white mb-10">{contractNumber}</p>
+              </div>
+            )}
+
+            {either(
+              financeType,
+              <div className="tile is-flex is-vertical">
+                <span className=" is-uppercase is-size-7">
+                  {t('FINANCE_TYPE')}:
+                </span>
+                <p className="has-text-white mb-10">{financeType}</p>
+              </div>
+            )}
+
+            <span className=" is-uppercase is-size-7">
+              {t('STORAGE_SYSTEM_SIZE')}:
+            </span>
+            <p className="has-text-white mb-10">
+              {either(hasStorage, `${validStorageSystemSizeKw} kWh`, 'N/A')}
+            </p>
+          </div>
+
+          <div className="tile is-flex is-vertical">
+            <span className=" is-uppercase is-size-7">{t('SYSTEM_SIZE')}:</span>
+            <p className="has-text-white mb-10">{systemSizeKw}</p>
+          </div>
+
+          {either(
+            siteKey,
+            <div className="tile is-flex is-vertical">
+              <span className=" is-uppercase is-size-7">{t('SITE_KEY')}:</span>
+              <p className="has-text-white mb-10">{siteKey}</p>
+            </div>
+          )}
+
+          {either(
+            pvsCount,
+            <div className="tile is-flex is-vertical">
+              <span className=" is-uppercase is-size-7">{t('PVS_COUNT')}:</span>
+              <p className="has-text-white mb-10">{pvsCount}</p>
+            </div>
+          )}
+        </div>
+
         <div className="is-flex is-vertical tile is-center pr-40">
           <div className="tile is-flex is-vertical is-hidden">
             <span className=" is-uppercase is-size-7">{`${t(

@@ -769,5 +769,8 @@
   "NO_SITES_FOUND": "No sites were found using the criteria {0}",
   "SITES_FOUND": "{0} Site(s) found",
   "SITES_HEADER": "Please use the field below to search for the Site you need",
+  "SITE_KEY": "Site ID",
+  "STORAGE_SYSTEM_SIZE": "Storage System Size",
+  "PVS_COUNT": "PVS Count",
   "UNABLE_TO_CONNECT": "Unable to connect to PVS"
 }
