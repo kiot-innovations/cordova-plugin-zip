@@ -107,6 +107,7 @@ function onExit() {
 function replaceIndexFile(proxyAddress) {
   const chunk = `
 ${beginning}
+// eslint-disable-next-line import/order
 import addProxyDecorator from './liveReloadDecorators'
 addProxyDecorator('${proxyAddress}/')
 ${ending}`

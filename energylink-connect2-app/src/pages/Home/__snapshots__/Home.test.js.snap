@@ -43,6 +43,42 @@ Object {
           <section
             className="home has-text-centered page-height pl-15 pr-15"
           >
+            <div
+              className="search"
+            >
+              <h1
+                className="mb-10 is-uppercase is-bold"
+              >
+                SELECT_SITE
+              </h1>
+              <TextInput
+                icon="sp-location"
+                loading={false}
+                onChange={[Function]}
+                placeholder="SITE_SEARCH_PLACEHOLDER"
+                value=""
+              >
+                <div
+                  className="control"
+                >
+                  <input
+                    className="input"
+                    icon="sp-location"
+                    loading={false}
+                    onChange={[Function]}
+                    placeholder="SITE_SEARCH_PLACEHOLDER"
+                    type="text"
+                    value=""
+                  />
+                  <i
+                    className="sp has-text-grey-lighter sp-location"
+                  />
+                </div>
+              </TextInput>
+              <p
+                className="mb-5 mt-10 has-text-white has-text-centered"
+              />
+            </div>
             <section
               className="fill-page"
             >
@@ -55,43 +91,9 @@ Object {
                   <span
                     className="sp sp-map has-text-white"
                   />
-                  <h1
-                    className="mt-40 pl-20 pr-20 is-size-5"
-                  >
-                    SITES_HEADER
-                  </h1>
                 </article>
               </section>
             </section>
-            <div
-              className="search"
-            >
-              <p
-                className="mb-5 mt-10 has-text-white has-text-centered"
-              />
-              <TextInput
-                icon="sp-location"
-                loading={false}
-                onChange={[Function]}
-                value=""
-              >
-                <div
-                  className="control"
-                >
-                  <input
-                    className="input"
-                    icon="sp-location"
-                    loading={false}
-                    onChange={[Function]}
-                    type="text"
-                    value=""
-                  />
-                  <i
-                    className="sp has-text-grey-lighter sp-location"
-                  />
-                </div>
-              </TextInput>
-            </div>
             <article
               className="mt-15"
             >
@@ -180,6 +182,42 @@ Object {
           <section
             className="home has-text-centered page-height pl-15 pr-15"
           >
+            <div
+              className="search"
+            >
+              <h1
+                className="mb-10 is-uppercase is-bold"
+              >
+                SELECT_SITE
+              </h1>
+              <TextInput
+                icon="sp-location"
+                loading={false}
+                onChange={[Function]}
+                placeholder="SITE_SEARCH_PLACEHOLDER"
+                value=""
+              >
+                <div
+                  className="control"
+                >
+                  <input
+                    className="input"
+                    icon="sp-location"
+                    loading={false}
+                    onChange={[Function]}
+                    placeholder="SITE_SEARCH_PLACEHOLDER"
+                    type="text"
+                    value=""
+                  />
+                  <i
+                    className="sp has-text-grey-lighter sp-location"
+                  />
+                </div>
+              </TextInput>
+              <p
+                className="mb-5 mt-10 has-text-white has-text-centered"
+              />
+            </div>
             <section
               className="fill-page"
             >
@@ -192,43 +230,9 @@ Object {
                   <span
                     className="sp sp-map has-text-white"
                   />
-                  <h1
-                    className="mt-40 pl-20 pr-20 is-size-5"
-                  >
-                    SITES_HEADER
-                  </h1>
                 </article>
               </section>
             </section>
-            <div
-              className="search"
-            >
-              <p
-                className="mb-5 mt-10 has-text-white has-text-centered"
-              />
-              <TextInput
-                icon="sp-location"
-                loading={false}
-                onChange={[Function]}
-                value=""
-              >
-                <div
-                  className="control"
-                >
-                  <input
-                    className="input"
-                    icon="sp-location"
-                    loading={false}
-                    onChange={[Function]}
-                    type="text"
-                    value=""
-                  />
-                  <i
-                    className="sp has-text-grey-lighter sp-location"
-                  />
-                </div>
-              </TextInput>
-            </div>
             <article
               className="mt-15"
             >
@@ -317,6 +321,42 @@ Object {
           <section
             className="home has-text-centered page-height pl-15 pr-15"
           >
+            <div
+              className="search"
+            >
+              <h1
+                className="mb-10 is-uppercase is-bold"
+              >
+                SELECT_SITE
+              </h1>
+              <TextInput
+                icon="sp-location"
+                loading={false}
+                onChange={[Function]}
+                placeholder="SITE_SEARCH_PLACEHOLDER"
+                value=""
+              >
+                <div
+                  className="control"
+                >
+                  <input
+                    className="input"
+                    icon="sp-location"
+                    loading={false}
+                    onChange={[Function]}
+                    placeholder="SITE_SEARCH_PLACEHOLDER"
+                    type="text"
+                    value=""
+                  />
+                  <i
+                    className="sp has-text-grey-lighter sp-location"
+                  />
+                </div>
+              </TextInput>
+              <p
+                className="mb-5 mt-10 has-text-white has-text-centered"
+              />
+            </div>
             <section
               className="fill-page"
             >
@@ -338,43 +378,9 @@ Object {
                   <span
                     className="sp sp-map has-text-white"
                   />
-                  <h1
-                    className="mt-40 pl-20 pr-20 is-size-5"
-                  >
-                    SITES_HEADER
-                  </h1>
                 </article>
               </section>
             </section>
-            <div
-              className="search"
-            >
-              <p
-                className="mb-5 mt-10 has-text-white has-text-centered"
-              />
-              <TextInput
-                icon="sp-location"
-                loading={false}
-                onChange={[Function]}
-                value=""
-              >
-                <div
-                  className="control"
-                >
-                  <input
-                    className="input"
-                    icon="sp-location"
-                    loading={false}
-                    onChange={[Function]}
-                    type="text"
-                    value=""
-                  />
-                  <i
-                    className="sp has-text-grey-lighter sp-location"
-                  />
-                </div>
-              </TextInput>
-            </div>
             <article
               className="mt-15"
             >

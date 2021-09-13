@@ -60,8 +60,6 @@ function Home() {
 
   const { sites, isFetching } = useSelector(path(['site']))
 
-  console.info({ option, isFetching })
-
   useEffect(() => {
     dispatch(CHECK_BLUETOOTH_STATUS_INIT())
     dispatch(PVS_FIRMWARE_DOWNLOAD_INIT())
@@ -88,6 +86,28 @@ function Home() {
 
   return (
     <section className="home has-text-centered page-height pl-15 pr-15">
+      <div className="search">
+        <h1 className="mb-10 is-uppercase is-bold">{t('SELECT_SITE')}</h1>
+        <TextInput
+          onChange={filterSites}
+          value={option}
+          icon="sp-location"
+          loading={isFetching}
+          placeholder={t('SITE_SEARCH_PLACEHOLDER')}
+        />
+        <p className="mb-5 mt-10 has-text-white has-text-centered">
+          {either(
+            (!isEmpty(option) && !isFetching) || !isEmpty(sites),
+            either(
+              length(sites) === 1,
+              t('SITE_FOUND'),
+              t('SITES_FOUND', length(sites))
+            ),
+            ''
+          )}
+        </p>
+      </div>
+
       {either(
         statusMessages,
         <section className={clsx('fill-page', { ws: longList })}>
@@ -104,34 +124,18 @@ function Home() {
             <section className="container full-height is-flex">
               <article className="auto">
                 <span className="sp sp-map has-text-white" />
-                <h1 className="mt-40 pl-20 pr-20 is-size-5">
-                  {t(
-                    isEmpty(option) ? 'SITES_HEADER' : 'NO_SITES_FOUND',
-                    option
-                  )}
-                </h1>
+                {either(
+                  !isEmpty(option),
+                  <h1 className="mt-40 pl-20 pr-20 is-size-5">
+                    {t('NO_SITES_FOUND', option)}
+                  </h1>
+                )}
               </article>
             </section>,
             map(renderSiteCard(history, dispatch), sites)
           )}
         </section>
       )}
-
-      <div className="search">
-        <p className="mb-5 mt-10 has-text-white has-text-centered">
-          {either(
-            (!isEmpty(option) && !isFetching) || !isEmpty(sites),
-            t('SITES_FOUND', length(sites)),
-            ''
-          )}
-        </p>
-        <TextInput
-          onChange={filterSites}
-          value={option}
-          icon="sp-location"
-          loading={isFetching}
-        />
-      </div>
 
       <article className="mt-15">
         <p>{t('CS_NOT_FOUND')}</p>

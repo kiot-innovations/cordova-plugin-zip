@@ -207,6 +207,11 @@ const DebugPage = () => {
       </div>
       <div>
         <Collapsible title="Debug Routes" expanded={true}>
+          {renderDebugLink(
+            history,
+            'Saving Configuration',
+            paths.PROTECTED.SAVING_CONFIGURATION.path
+          )}
           {renderDebugLink(history, 'Live Data', paths.PROTECTED.DATA.path)}
           {renderDebugLink(
             history,
@@ -307,11 +312,6 @@ const DebugPage = () => {
             history,
             'System Configuration',
             paths.PROTECTED.SYSTEM_CONFIGURATION.path
-          )}
-          {renderDebugLink(
-            history,
-            'Saving Configuration',
-            paths.PROTECTED.SAVING_CONFIGURATION.path
           )}
         </Collapsible>
       </div>

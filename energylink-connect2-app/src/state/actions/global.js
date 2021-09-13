@@ -24,3 +24,4 @@ export const CHECK_SSL_CERTS_ERROR = createAction('CHECK_SSL_CERTS_ERROR')
 
 export const FETCH_STATUS_MESSAGES = createAction('FETCH_STATUS_MESSAGES')
 export const SET_STATUS_MESSAGES = createAction('SET_STATUS_MESSAGES')
+export const INITIALIZE_KEYBOARD = createAction('INITIALIZE_KEYBOARD')

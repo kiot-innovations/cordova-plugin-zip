@@ -5,11 +5,10 @@ import { Link } from 'react-router-dom'
 
 import './SiteCard.scss'
 
-import paths from '../../routes/paths'
-import { SITE_STATES } from '../../shared/siteHelpers'
-import { either } from '../../shared/utils'
-
+import paths from 'routes/paths'
 import { useI18n } from 'shared/i18n'
+import { SITE_STATES } from 'shared/siteHelpers'
+import { either } from 'shared/utils'
 
 function SiteCard({ site, state, setSite }) {
   const t = useI18n()
@@ -117,7 +116,7 @@ const renderBackCardBody = (setSite, state, t, snList, systemSize) => {
       return (
         <article className="has-text-centered is-fullwidth">
           <p className="mb-15">{t('NO_SV_DEVICES')}</p>
-          <Link to={paths.PROTECTED.RMA_INVENTORY.path}>
+          <Link to={paths.PROTECTED.BILL_OF_MATERIALS.path}>
             <span onClick={setSite}>{t('BEGIN_SV_INSTALL')}</span>
           </Link>
         </article>

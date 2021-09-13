@@ -1,3 +1,4 @@
+import { shallow } from 'enzyme'
 import React from 'react'
 
 import VersionInformation from './index'
@@ -19,13 +20,8 @@ describe('VersionInformation component', () => {
         `${key.toUpperCase()} ${params.join('_')}`.trim()
       )
   })
-  const version = '4.0.1'
   test('renders correctly', () => {
-    const { component } = mountWithProvider(
-      <VersionInformation appVersion={version} />
-    )({})
-
-    expect(component.find('.release-notes').exists()).toBe(true)
+    const component = shallow(<VersionInformation currentVersion="4.0.1" />)
     expect(component).toMatchSnapshot()
   })
 })

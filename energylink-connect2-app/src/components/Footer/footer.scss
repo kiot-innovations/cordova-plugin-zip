@@ -3,9 +3,10 @@
 .cm2-footer {
   .custom-footer {
     position: fixed;
-    bottom: calc(env(safe-area-inset-bottom) - 10px);
+    bottom: constant(safe-area-inset-bottom);
+    bottom: env(safe-area-inset-bottom);
     width: 100vw;
-    height: 70px;
+    height: 65px;
     background-color: $dark-blue;
     transform: translate3d(0, 0, 0);
     transition: max-height 250ms ease-out, opacity 250ms ease-out;

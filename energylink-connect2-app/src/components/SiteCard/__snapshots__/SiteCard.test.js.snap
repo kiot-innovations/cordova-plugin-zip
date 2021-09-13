@@ -268,9 +268,11 @@ exports[`SiteCard component renders without crashing - Site Not Commissioned Don
     <article
       className="is-flex level is-fullwidth level"
     >
-      <p>
-        NO_ASSOCIATED_DEVICES
-      </p>
+      <span
+        className="has-text-primary"
+      >
+        BEGIN_SV_INSTALL
+      </span>
       <div
         className="is-flex has-text-white"
       >
@@ -304,15 +306,13 @@ exports[`SiteCard component renders without crashing - Site Not Commissioned Don
       <p
         className="mb-15"
       >
-        NO_ASSOCIATED_DEVICES
+        NO_SV_DEVICES
       </p>
       <Link
         to="/bill-of-materials"
       >
-        <span
-          role="button"
-        >
-          BEGIN_INSTALL
+        <span>
+          BEGIN_SV_INSTALL
         </span>
       </Link>
     </article>

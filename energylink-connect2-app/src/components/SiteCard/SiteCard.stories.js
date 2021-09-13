@@ -2,9 +2,9 @@ import { storiesOf } from '@storybook/react'
 import { clone } from 'ramda'
 import React from 'react'
 
-import { getSitePayload, getSiteState } from '../../shared/siteHelpers'
-
 import SiteCard from './'
+
+import { toUISite } from 'state/epics/site/fetchSitesEpic'
 
 export const siteCardMock = {
   city_id: 'San Antonio',
@@ -58,10 +58,7 @@ export const siteCardMock = {
 storiesOf('SiteCard', module)
   .add('Site Commissioned', () => (
     <div className="full-min-height ml-20 mr-20 mt-20 mb-20">
-      <SiteCard
-        {...getSitePayload(siteCardMock)}
-        state={getSiteState(siteCardMock)}
-      />
+      <SiteCard {...toUISite(siteCardMock)} />
     </div>
   ))
   .add('Site Commissioned without Storage', () => {
@@ -69,7 +66,7 @@ storiesOf('SiteCard', module)
     siteWSC.strg_sys_sz_kwh = null
     return (
       <div className="full-min-height ml-20 mr-20 mt-20 mb-20">
-        <SiteCard {...getSitePayload(siteWSC)} state={getSiteState(siteWSC)} />
+        <SiteCard {...toUISite(siteWSC)} />
       </div>
     )
   })
@@ -79,22 +76,17 @@ storiesOf('SiteCard', module)
     siteWOSC.pvs_count = 0
     return (
       <div className="full-min-height ml-20 mr-20 mt-20 mb-20">
-        <SiteCard
-          {...getSitePayload(siteWOSC)}
-          state={getSiteState(siteWOSC)}
-        />
+        <SiteCard {...toUISite(siteWOSC)} />
       </div>
     )
   })
   .add('Site Not Commissioned Dont Expect Storage', () => {
     const siteWOSC = clone(siteCardMock)
     siteWOSC.pvs_count = 0
+    siteWOSC.strg_sys_sz_kwh = 0
     return (
       <div className="full-min-height ml-20 mr-20 mt-20 mb-20">
-        <SiteCard
-          {...getSitePayload(siteWOSC)}
-          state={getSiteState(siteWOSC)}
-        />
+        <SiteCard {...toUISite(siteWOSC)} />
       </div>
     )
   })

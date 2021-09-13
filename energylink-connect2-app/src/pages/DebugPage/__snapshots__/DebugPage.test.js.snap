@@ -2706,6 +2706,18 @@ exports[`Data page render correctly 1`] = `
                       className="route-name"
                     >
                       <span>
+                        Saving Configuration
+                      </span>
+                    </div>
+                  </div>
+                  <div
+                    className="debug-route mb-10"
+                    onClick={[Function]}
+                  >
+                    <div
+                      className="route-name"
+                    >
+                      <span>
                         Live Data
                       </span>
                     </div>
@@ -2947,18 +2959,6 @@ exports[`Data page render correctly 1`] = `
                     >
                       <span>
                         System Configuration
-                      </span>
-                    </div>
-                  </div>
-                  <div
-                    className="debug-route mb-10"
-                    onClick={[Function]}
-                  >
-                    <div
-                      className="route-name"
-                    >
-                      <span>
-                        Saving Configuration
                       </span>
                     </div>
                   </div>

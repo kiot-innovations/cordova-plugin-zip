@@ -1,6 +1,6 @@
 @import '~@sunpower/theme-dark/styles/variables';
 
-$headerHeight: 60px;
+$headerHeight: 50px;
 
 .menu-floating {
   position: absolute;
@@ -23,10 +23,10 @@ $headerHeight: 60px;
   }
 
   .tilex {
-    min-height: 70px;
     max-width: 100%;
     .text {
       min-height: 67px;
+      max-height: 75px;
     }
   }
 

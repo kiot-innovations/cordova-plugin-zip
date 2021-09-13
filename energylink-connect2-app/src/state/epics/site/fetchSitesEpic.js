@@ -64,7 +64,7 @@ export const fetchSitesEpic = (action$, state$) => {
   )
 }
 
-const toUISite = rawSite => ({
+export const toUISite = rawSite => ({
   site: getSitePayload(rawSite),
   state: getSiteState(rawSite)
 })

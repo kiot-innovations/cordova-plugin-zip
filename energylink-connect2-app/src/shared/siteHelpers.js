@@ -35,8 +35,7 @@ export const getSitePayload = siteRaw => ({
   ...siteRaw
 })
 
-const needSunVault = siteRaw =>
-  !isCommissioned(siteRaw) && siteRaw.pvs_type === 'Aggregate'
+const needSunVault = siteRaw => !isCommissioned(siteRaw) && hasStorage(siteRaw)
 
 export const getSiteState = (siteRaw, states = SITE_STATES) => {
   if (isCommissioned(siteRaw)) {

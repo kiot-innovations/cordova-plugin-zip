@@ -1,7 +1,7 @@
 @import '~@sunpower/theme-dark/styles/variables';
 
 .custom-layout.ios-layout {
-  top: 110px;
+  top: calc(60px + env(safe-area-inset-top));
 }
 
 .custom-layout {
@@ -17,12 +17,19 @@
 }
 .with-footer {
   --safe-area-inset-bottom: env(safe-area-inset-bottom);
-  height: calc(100vh - 170px - var(--safe-area-inset-bottom));
+  height: calc(100vh - 140px - var(--safe-area-inset-bottom));
   overflow-y: auto;
+  .page-height {
+    height: calc(100vh - 140px);
+  }
 }
 .without-footer {
   --safe-area-inset-bottom: env(safe-area-inset-bottom);
-  height: calc(100vh - 150px - var(--safe-area-inset-bottom));
+  height: calc(100vh - 90px - var(--safe-area-inset-bottom));
+
+  .page-height {
+    height: calc(100vh - 100px - env(safe-area-inset-bottom));
+  }
 }
 .without-header {
   --safe-area-inset-bottom: env(safe-area-inset-bottom);

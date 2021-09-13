@@ -2,7 +2,7 @@
 
 .home {
   display: grid;
-  grid-template-rows: 1fr 12% 14%;
+  grid-template-rows: auto 1fr auto;
 
   span.sp-map {
     font-size: 6rem;
@@ -13,7 +13,7 @@
   }
 
   .ws {
-    border-bottom: 1px solid rgba(200, 200, 200, 0.4);
+    border-bottom: 1px solid rgba(200, 200, 200, 0.1);
   }
 
   .message {

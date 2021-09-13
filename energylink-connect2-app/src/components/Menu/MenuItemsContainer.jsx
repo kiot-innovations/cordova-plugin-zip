@@ -29,7 +29,7 @@ function MenuItemsContainer({ items }) {
 
   return (
     <section className="is-flex tile is-vertical level full-height">
-      <article className="menuitems mt-15">
+      <article className="menuitems mt-10">
         {items.map(menuItem =>
           either(
             menuItem.display,
