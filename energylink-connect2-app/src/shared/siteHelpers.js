@@ -26,12 +26,9 @@ export const getSitePayload = siteRaw => ({
   contractNo: siteRaw.cntrc_no || 'N/A',
   pvsCount: siteRaw.pvs_count,
   snList: siteRaw.sn_list ? getPVSList(siteRaw.sn_list) : [],
-  systemSize: hasStorage(siteRaw)
-    ? `${siteRaw.strg_sys_sz_kwh / 1000}kW`
-    : 'N/A',
+  systemSize: `${siteRaw.sys_sz_w / 1000} kW` || 'N/A',
   isCommissioned: isCommissioned(siteRaw),
   hasStorage: hasStorage(siteRaw),
-  systemSizeKw: siteRaw.sys_sz_w ? `${siteRaw.sys_sz_w / 1000}kW` : 'N/A',
   ...siteRaw
 })
 

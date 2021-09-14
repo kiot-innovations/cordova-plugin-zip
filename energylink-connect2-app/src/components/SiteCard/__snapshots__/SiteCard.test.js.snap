@@ -96,7 +96,7 @@ exports[`SiteCard component renders without crashing - Site Commissioned 1`] = `
       />
       SYSTEM_SIZE
       : 
-      13kW
+      1.675 kW
     </p>
     <Link
       to="/bill-of-materials"
@@ -203,7 +203,7 @@ exports[`SiteCard component renders without crashing - Site Commissioned without
       />
       SYSTEM_SIZE
       : 
-      N/A
+      1.675 kW
     </p>
     <Link
       to="/bill-of-materials"
@@ -412,7 +412,7 @@ exports[`SiteCard component renders without crashing - Site Not Commissioned Nee
       />
       SYSTEM_SIZE
       : 
-      N/A
+      1.675 kW
     </p>
     <Link
       to="/bill-of-materials"
