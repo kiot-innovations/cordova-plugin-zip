@@ -6,7 +6,8 @@ import {
   map as mapR,
   path,
   pathOr,
-  prop
+  prop,
+  reject
 } from 'ramda'
 import { ofType } from 'redux-observable'
 import { from, of } from 'rxjs'
@@ -45,16 +46,19 @@ const getSitesByText = (text, access_token) =>
     .then(pathOr([], ['body', 'items', 'hits']))
     .then(mapR(accessValue))
 
+const isExpansionSite = site => site.siteRelationType === 'EXPANSION'
+
 export const fetchSitesEpic = (action$, state$) => {
   return action$.pipe(
     ofType(siteActions.GET_SITES_INIT.getType()),
     switchMap(({ payload }) =>
       from(getSitesByText(payload, getAccessToken(state$.value))).pipe(
-        map(sites =>
-          length(sites) < 1
+        map(sites => {
+          const filteredSites = reject(isExpansionSite)(sites)
+          return length(filteredSites) < 1
             ? siteActions.NO_SITE_FOUND(payload)
-            : siteActions.GET_SITES_SUCCESS(mapRawSites(sites))
-        ),
+            : siteActions.GET_SITES_SUCCESS(mapRawSites(filteredSites))
+        }),
         catchError(error => {
           Sentry.captureException(error)
           return of(siteActions.NO_SITE_FOUND(payload))
