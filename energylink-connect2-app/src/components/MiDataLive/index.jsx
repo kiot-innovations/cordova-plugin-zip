@@ -10,7 +10,7 @@ import { either } from 'shared/utils'
 
 import './MiDataLive.scss'
 
-function MiDataLive({ data }) {
+function MiDataLive({ data = [] }) {
   const t = useI18n()
   const inverterCount = length(data)
   const miIsNotErroring = mi => mi.state !== 'error'

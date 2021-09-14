@@ -6,6 +6,7 @@ import {
   find,
   has,
   isEmpty,
+  isNil,
   pathOr,
   prop,
   propEq,
@@ -45,11 +46,11 @@ export default () => {
   const history = useHistory()
   const [livePowerInfo, showLivePowerInfo] = useState(false)
   const { liveData = {} } = useSelector(state => state.energyLiveData)
-  const { miData } = useSelector(state => state.pvs)
+  const { miData = [] } = useSelector(state => state.pvs)
   const { statusReport, statusReportError } = useSelector(
     state => state.storage
   )
-  const { found } = useSelector(prop('devices'))
+  const { found = [] } = useSelector(prop('devices'))
   const essState = pathOr({}, ['ess_report', 'ess_state'])(statusReport)
 
   const prodMeterConfig = find(isMeter, Object.values(liveData))
@@ -158,7 +159,10 @@ export default () => {
             />
           </Collapsible>
         )}
-        {either(!isEmpty(miData), <MiDataLive data={miData} />)}
+        {either(
+          !isEmpty(miData) && !isNil(miData),
+          <MiDataLive data={miData} />
+        )}
       </section>
       <section>
         <div className="live-power-title pt-20 pb-20">
