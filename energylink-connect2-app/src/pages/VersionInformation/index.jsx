@@ -1,9 +1,9 @@
 import { isEmpty } from 'ramda'
 import React, { useEffect, useState } from 'react'
 
-import { Loader } from '../../components/Loader'
 import appVersion from '../../macros/appVersion.macro'
 
+import { Loader } from 'components/Loader'
 import ReleaseNotes from 'components/ReleaseNotes'
 
 let loadedRN = {}

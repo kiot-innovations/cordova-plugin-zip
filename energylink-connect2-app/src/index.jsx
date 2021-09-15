@@ -16,14 +16,8 @@ import App from './App'
 import appVersion from './macros/appVersion.macro'
 
 const setupGA = () => {
-  const GAproperty = process.env.REACT_APP_IS_MOBILE
-    ? process.env.NODE_ENV === 'production'
-      ? 'UA-150756685-2'
-      : 'UA-150756685-1' // eslint-disable-line
-    : process.env.NODE_ENV === 'production'
-    ? 'UA-150756685-2'
-    : 'UA-150756685-1' // eslint-disable-line
-
+  const GAproperty =
+    process.env.NODE_ENV === 'production' ? 'UA-150756685-2' : 'UA-150756685-1'
   ReactGA.initialize(GAproperty)
   ReactGA.set({ checkProtocolTask: null })
 }

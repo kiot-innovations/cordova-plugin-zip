@@ -764,15 +764,15 @@
   "CONTRACT": "Contract #",
   "BEGIN_SV_INSTALL": "Begin SunVault Install",
   "NO_SV_DEVICES": "No SunVault devices associated with this site",
-  "SELECT_THIS_SITE": "Select this Site",
+  "SELECT_THIS_SITE": "Select this site",
   "SYSTEM_SIZE": "System Size",
-  "NO_SITES_FOUND": "No sites were found using the criteria {0}",
+  "NO_SITES_FOUND": "Can't find {0}, make sure your site is spelled correctly.",
   "SITES_FOUND": "{0} Sites found",
   "SITE_FOUND": "1 Site found",
   "SITES_HEADER": "Please use the field below to search for the Site you need",
+  "UNABLE_TO_CONNECT": "Unable to connect to PVS",
   "SITE_SEARCH_PLACEHOLDER": "Enter address or homeowners name",
   "SITE_KEY": "Site ID",
   "STORAGE_SYSTEM_SIZE": "Storage System Size",
-  "PVS_COUNT": "PVS Count",
-  "UNABLE_TO_CONNECT": "Unable to connect to PVS"
+  "PVS_COUNT": "PVS Count"
 }

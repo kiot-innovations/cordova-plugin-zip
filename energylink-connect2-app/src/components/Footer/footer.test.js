@@ -33,6 +33,7 @@ describe('Footer Component', () => {
   })
 
   test('Renders nothing if Footer is false', () => {
+    initialState.ui.footer = false
     const { component } = mountWithProvider(<Footer />)(initialState)
     expect(component).toMatchSnapshot()
   })

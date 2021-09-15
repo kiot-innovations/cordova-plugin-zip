@@ -116,7 +116,7 @@ const Footer = () => {
     }
   ]
 
-  return (
+  return showFooter ? (
     <div className="cm2-footer">
       <footer
         className={clsx('custom-footer is-clipper', {
@@ -158,7 +158,7 @@ const Footer = () => {
         )}
       </footer>
     </div>
-  )
+  ) : null
 }
 
 export default Footer
