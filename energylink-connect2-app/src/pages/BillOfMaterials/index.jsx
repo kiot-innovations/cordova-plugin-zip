@@ -62,7 +62,7 @@ function BillOfMaterials() {
     financeType,
     validStorageSystemSizeKw,
     hasStorage,
-    systemSizeKw,
+    systemSize,
     pvsCount
   } = useSelector(pathOr({}, ['site', 'site']))
 
@@ -167,7 +167,7 @@ function BillOfMaterials() {
 
           <div className="tile is-flex is-vertical">
             <span className=" is-uppercase is-size-7">{t('SYSTEM_SIZE')}:</span>
-            <p className="has-text-white mb-10">{systemSizeKw}</p>
+            <p className="has-text-white mb-10">{systemSize}</p>
           </div>
 
           {either(
