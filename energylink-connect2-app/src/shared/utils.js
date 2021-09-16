@@ -3,6 +3,7 @@ import moment from 'moment'
 import {
   add,
   any,
+  anyPass,
   assoc,
   clone,
   compose,
@@ -512,11 +513,32 @@ export const createMeterConfig = (devicesList, meterConfig, site) => {
   }
 }
 
+// Tests for storage devices
+export const isESS = propEq('TYPE', 'EQUINOX-ESS')
+export const isMIO = propEq('TYPE', 'EQUINOX-MIO')
+export const isGateway = propEq('TYPE', 'GATEWAY')
+export const isSchneiderXWPro = propEq('TYPE', 'SCHNEIDER-XWPRO')
+export const isBMS = propEq('TYPE', 'EQUINOX-BMS')
+export const isHUBPlus = propEq('TYPE', 'HUB+')
+export const isBattery = propEq('TYPE', 'BATTERY')
+export const isPVDisconnect = propEq('TYPE', 'PV-DISCONNECT')
+
+export const isStorageDevice = anyPass([
+  isESS,
+  isMIO,
+  isGateway,
+  isSchneiderXWPro,
+  isBMS,
+  isHUBPlus,
+  isBattery,
+  isPVDisconnect
+])
+
+export const isActionError = propEq('error', true)
+
 export const isPvs5 = stateOrModel =>
   pathEq(['value', 'pvs', 'model'], 'PVS5', stateOrModel) ||
   equals(stateOrModel, 'PVS5')
-
-export const isActionError = propEq('error', true)
 
 export const getGPDownloadError = state$ => {
   const pvsGridProfileInfo = isPvs5(state$)

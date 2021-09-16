@@ -402,6 +402,7 @@ const hasStorage = {
       }
     }
   },
+  rma: {},
   pvs: {
     model: 'PVS6'
   }
@@ -787,14 +788,49 @@ const noStorage = {
       }
     }
   },
+  rma: {},
   pvs: {
     model: 'PVS6'
   }
 }
 
+const removingStorage = clone(hasStorage)
+removingStorage.rma = {
+  removingStorage: true,
+  removingStorageError: false,
+  storageRemoved: false
+}
+
+const removingStorageError = clone(hasStorage)
+removingStorageError.rma = {
+  removingStorage: false,
+  removingStorageError: true,
+  storageRemoved: false
+}
+
 storiesOf('RMA devices', module)
   .add('With Storage', () => {
     const { store } = configureStore(hasStorage)
+    return (
+      <div className="full-min-height pl-10 pr-10">
+        <Provider store={store}>
+          <RMADevices />
+        </Provider>
+      </div>
+    )
+  })
+  .add('With Storage and removing', () => {
+    const { store } = configureStore(removingStorage)
+    return (
+      <div className="full-min-height pl-10 pr-10">
+        <Provider store={store}>
+          <RMADevices />
+        </Provider>
+      </div>
+    )
+  })
+  .add('With Storage and error removing', () => {
+    const { store } = configureStore(removingStorageError)
     return (
       <div className="full-min-height pl-10 pr-10">
         <Provider store={store}>

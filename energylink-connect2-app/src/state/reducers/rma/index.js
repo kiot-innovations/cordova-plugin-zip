@@ -13,7 +13,12 @@ import {
   RESET_RMA_PVS,
   RMA_REMOVE_DEVICES,
   RMA_REMOVE_DEVICES_SUCCESS,
-  RMA_REMOVE_DEVICES_ERROR
+  RMA_REMOVE_DEVICES_ERROR,
+  RMA_REMOVE_STORAGE,
+  RMA_REMOVE_STORAGE_SUCCESS,
+  RMA_REMOVE_STORAGE_CANCEL,
+  RMA_REMOVE_STORAGE_ERROR,
+  RMA_REMOVE_STORAGE_RESET_STORAGE_REMOVED
 } from 'state/actions/rma'
 
 export const rmaModes = {
@@ -32,7 +37,10 @@ const initialState = {
   },
   pvs: null,
   deletingMIs: false,
-  deletingMIsError: false
+  deletingMIsError: false,
+  removingStorage: false,
+  removingStorageError: false,
+  storageRemoved: false
 }
 
 const RMAReducer = createReducer(
@@ -94,10 +102,35 @@ const RMAReducer = createReducer(
       deletingMIs: false,
       deletingMIsError: false
     }),
+    [RMA_REMOVE_STORAGE]: state => ({
+      ...state,
+      removingStorage: true,
+      removingStorageError: initialState.removingStorageError
+    }),
+    [RMA_REMOVE_STORAGE_CANCEL]: state => ({
+      ...state,
+      removingStorage: initialState.removingStorage,
+      removingStorageError: initialState.removingStorageError
+    }),
+    [RMA_REMOVE_STORAGE_SUCCESS]: state => ({
+      ...state,
+      removingStorage: initialState.removingStorage,
+      removingStorageError: initialState.removingStorageError,
+      storageRemoved: true
+    }),
+    [RMA_REMOVE_STORAGE_ERROR]: state => ({
+      ...state,
+      removingStorage: initialState.removingStorage,
+      removingStorageError: true
+    }),
     [RMA_REMOVE_DEVICES_ERROR]: state => ({
       ...state,
       deletingMIs: false,
       deletingMIsError: true
+    }),
+    [RMA_REMOVE_STORAGE_RESET_STORAGE_REMOVED]: state => ({
+      ...state,
+      storageRemoved: initialState.storageRemoved
     }),
     [RESET_COMMISSIONING]: () => initialState
   },

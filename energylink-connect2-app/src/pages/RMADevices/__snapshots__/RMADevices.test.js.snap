@@ -205,6 +205,543 @@ exports[`RMA devices component render correctly 1`] = `
                   className="has-text-weight-bold has-text-white pb-10 pt-10 is-flex"
                   key="E00121939001311"
                 >
+                  E00121939001311
+                </label>
+                <label
+                  className="has-text-weight-bold has-text-white pb-10 pt-10 is-flex"
+                  key="E00121939002888"
+                >
+                  E00121939002888
+                </label>
+              </div>
+            </div>
+          </Collapsible>
+          <div
+            className="mt-10"
+          />
+          <Collapsible
+            expanded={true}
+            title="Storage Equipment"
+          >
+            <div
+              className="collapsible"
+            >
+              <div
+                className="collapsible-header"
+              >
+                <div
+                  className="collapsible-title"
+                >
+                  <span />
+                  <span
+                    className="has-text-weight-bold"
+                  >
+                    STORAGE EQUIPMENT
+                  </span>
+                </div>
+                <div
+                  className="collapsible-actions"
+                />
+                <div
+                  className="collapsible-trigger"
+                  onClick={[Function]}
+                >
+                  <div
+                    className="chevron down"
+                  >
+                    <span
+                      className="sp-chevron-up"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div
+                className="collapsible-content expanded"
+              >
+                <span
+                  className="has-text-white has-text-weight-bold"
+                >
+                  NO_STORAGE_RMA
+                </span>
+                <span
+                  className="mt-5"
+                >
+                  NO_STORAGE_RMA_HINT
+                </span>
+                <div
+                  className="buttons-container"
+                >
+                  <button
+                    className="button is-paddingless has-text-primary has-text-weight-bold is-size-7 button-transparent"
+                    id="storageCommissioningOrRecommissioningHandler"
+                    onClick={[Function]}
+                  >
+                    COMM_STORAGE
+                  </button>
+                </div>
+              </div>
+            </div>
+          </Collapsible>
+          <div
+            className="mt-10"
+          />
+          <OtherDevicesTag>
+            <div
+              className="collapsible"
+              onClick={[Function]}
+              role="button"
+            >
+              <div
+                className="collapsible-header"
+              >
+                <div
+                  className="collapsible-title"
+                >
+                  <span
+                    className="has-text-weight-bold"
+                  >
+                    OTHER_DEVICES
+                  </span>
+                </div>
+                <div
+                  className="collapsible-actions"
+                />
+                <div
+                  className="collapsible-trigger"
+                >
+                  <div
+                    className="chevron"
+                  >
+                    <span
+                      className="sp-chevron-up"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </OtherDevicesTag>
+          <div
+            className="mt-10 has-text-centered button-container"
+          >
+            <button
+              className="button mb-30 is-paddingless has-text-primary has-text-weight-bold is-size-7 button-transparent"
+              onClick={[Function]}
+            >
+              REFRESH_DEVICE_LIST
+            </button>
+          </div>
+          <div
+            className="mt-auto has-text-centered"
+          >
+            <button
+              className="button is-primary"
+              onClick={[Function]}
+            >
+              CONFIGURE_PVS
+            </button>
+          </div>
+          <SwipeableSheet
+            onChange={[Function]}
+            open={false}
+          >
+            <SwipeableBottomSheet
+              defaultOpen={false}
+              fullScreen={false}
+              marginTop={0}
+              onChange={[Function]}
+              open={false}
+              overflowHeight={0}
+              overlay={true}
+              scrollTopAtClose={true}
+              shadowTip={true}
+              swipeableViewsProps={
+                Object {
+                  "className": "swipeable",
+                }
+              }
+              topShadow={true}
+            >
+              <div
+                style={
+                  Object {
+                    "bottom": 0,
+                    "height": 0,
+                    "left": 0,
+                    "position": "fixed",
+                    "right": 0,
+                  }
+                }
+              >
+                <HeightUpdater
+                  height={768}
+                  onHeightChange={[Function]}
+                />
+                <div
+                  onClick={[Function]}
+                  style={
+                    Object {
+                      "backgroundColor": "black",
+                      "height": 768,
+                      "left": 0,
+                      "opacity": 0,
+                      "pointerEvents": "none",
+                      "position": "fixed",
+                      "right": 0,
+                      "top": 0,
+                      "transition": "opacity 450ms",
+                    }
+                  }
+                />
+                <ReactSwipableView
+                  animateHeight={false}
+                  animateTransitions={true}
+                  axis="y"
+                  className="swipeable"
+                  containerStyle={
+                    Object {
+                      "boxSizing": "border-box",
+                    }
+                  }
+                  disableLazyLoading={false}
+                  disabled={false}
+                  enableMouseEvents={true}
+                  hysteresis={0.6}
+                  ignoreNativeScroll={false}
+                  index={0}
+                  onChangeIndex={[Function]}
+                  onTransitionEnd={[Function]}
+                  resistance={false}
+                  slideStyle={
+                    Object {
+                      "boxSizing": "border-box",
+                      "marginBottom": -0,
+                      "overflow": "visible",
+                    }
+                  }
+                  springConfig={
+                    Object {
+                      "delay": "0s",
+                      "duration": "0.35s",
+                      "easeFunction": "cubic-bezier(0.15, 0.3, 0.25, 1)",
+                    }
+                  }
+                  style={
+                    Object {
+                      "boxSizing": "border-box",
+                      "overflowY": "initial",
+                    }
+                  }
+                  threshold={5}
+                >
+                  <div
+                    className="swipeable"
+                    onMouseDown={[Function]}
+                    onMouseLeave={[Function]}
+                    onMouseMove={[Function]}
+                    onMouseUp={[Function]}
+                    onScroll={[Function]}
+                    onTouchEnd={[Function]}
+                    onTouchStart={[Function]}
+                    style={
+                      Object {
+                        "boxSizing": "border-box",
+                        "overflowY": "initial",
+                      }
+                    }
+                  >
+                    <div
+                      className="react-swipeable-view-container"
+                      style={
+                        Object {
+                          "WebkitFlexDirection": "column",
+                          "WebkitTransition": "all 0s ease 0s",
+                          "boxSizing": "border-box",
+                          "direction": "ltr",
+                          "display": "flex",
+                          "flexDirection": "column",
+                          "height": null,
+                          "transition": "all 0s ease 0s",
+                          "willChange": "transform",
+                        }
+                      }
+                    >
+                      <div
+                        aria-hidden={false}
+                        data-swipeable="true"
+                        key=".0"
+                        style={
+                          Object {
+                            "WebkitFlexShrink": 0,
+                            "boxSizing": "border-box",
+                            "flexShrink": 0,
+                            "marginBottom": -0,
+                            "overflow": "visible",
+                            "width": "100%",
+                          }
+                        }
+                      >
+                        <div
+                          className="ReactSwipeableBottomSheet--closed"
+                          style={
+                            Object {
+                              "backgroundColor": "white",
+                              "height": "initial",
+                              "maxHeight": 768,
+                              "overflow": "hidden",
+                            }
+                          }
+                        >
+                          <div
+                            className="has-text-centered has-text-white"
+                            id="sunVaultRecommissionConfirmationModal"
+                          >
+                            <p
+                              className="mt-10 mb-20"
+                            >
+                              SUNVAULT_RECOMMISSION_CONFIRMATION_MODAL_TEXT_1
+                            </p>
+                            <p
+                              className="mb-20"
+                            >
+                              SUNVAULT_RECOMMISSION_CONFIRMATION_MODAL_TEXT_2
+                            </p>
+                          </div>
+                          <div
+                            className="inline-buttons"
+                          >
+                            <button
+                              className="button half-button-padding is-primary is-outlined is-uppercase mr-10"
+                              onClick={[Function]}
+                            >
+                              CANCEL
+                            </button>
+                            <button
+                              className="button is-primary is-uppercase"
+                              onClick={[Function]}
+                            >
+                              RECOMMISSION
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </ReactSwipableView>
+              </div>
+            </SwipeableBottomSheet>
+          </SwipeableSheet>
+        </main>
+      </RMADevices>
+    </Provider>
+  </Router>
+</BrowserRouter>
+`;
+
+exports[`RMA devices component render correctly 2`] = `
+<BrowserRouter
+  keyLength={0}
+>
+  <Router
+    history={
+      Object {
+        "action": "POP",
+        "block": [Function],
+        "createHref": [Function],
+        "go": [Function],
+        "goBack": [Function],
+        "goForward": [Function],
+        "length": 2,
+        "listen": [Function],
+        "location": Object {
+          "hash": "",
+          "pathname": "/storage-prediscovery",
+          "search": "",
+          "state": undefined,
+        },
+        "push": [Function],
+        "replace": [Function],
+      }
+    }
+  >
+    <Provider
+      store={
+        Object {
+          "clearActions": [Function],
+          "dispatch": [Function],
+          "getActions": [Function],
+          "getState": [Function],
+          "replaceReducer": [Function],
+          "subscribe": [Function],
+        }
+      }
+    >
+      <RMADevices>
+        <main
+          className="full-height pl-10 pr-10 rma-devices"
+        >
+          <div
+            className="header mb-20"
+          >
+            <span
+              className="sp-chevron-left has-text-primary is-size-4 go-back"
+              onClick={[Function]}
+            />
+            <span
+              className="is-uppercase has-text-weight-bold  page-title"
+            >
+              RMA_DEVICES
+            </span>
+          </div>
+          <Collapsible
+            actions={
+              <Memo(Menu)
+                align="start"
+                animation={true}
+                className="dark-menu"
+                direction="bottom"
+                keepMounted={true}
+                menuButton={
+                  <span
+                    className="has-text-primary is-size-5 sp-contextmenu"
+                  />
+                }
+                offsetX={0}
+                offsetY={0}
+                overflow="visible"
+                position="auto"
+                viewScroll="initial"
+              >
+                <Memo(MenuItem)
+                  className="dark-menu-item has-text-primary has-text-left has-text-weight-bold"
+                  onClick={[Function]}
+                >
+                  ADD_MIS
+                </Memo(MenuItem)>
+                <Memo(MenuDivider) />
+                <Memo(MenuItem)
+                  className="dark-menu-item has-text-primary has-text-left has-text-weight-bold"
+                  onClick={[Function]}
+                >
+                  EDIT_PANELS
+                </Memo(MenuItem)>
+              </Memo(Menu)>
+            }
+            expanded={true}
+            title="MICROINVERTERS"
+          >
+            <div
+              className="collapsible"
+            >
+              <div
+                className="collapsible-header"
+              >
+                <div
+                  className="collapsible-title"
+                >
+                  <span />
+                  <span
+                    className="has-text-weight-bold"
+                  >
+                    MICROINVERTERS
+                  </span>
+                </div>
+                <div
+                  className="collapsible-actions"
+                >
+                  <Menu
+                    align="start"
+                    animation={true}
+                    className="dark-menu"
+                    direction="bottom"
+                    keepMounted={true}
+                    menuButton={
+                      <span
+                        className="has-text-primary is-size-5 sp-contextmenu"
+                      />
+                    }
+                    offsetX={0}
+                    offsetY={0}
+                    overflow="visible"
+                    position="auto"
+                    viewScroll="initial"
+                  >
+                    <span
+                      className="has-text-primary is-size-5 sp-contextmenu"
+                      onClick={[Function]}
+                      onKeyDown={[Function]}
+                    />
+                    <div
+                      className="rc-menu-container"
+                      onBlur={[Function]}
+                      onKeyDown={[Function]}
+                      role="presentation"
+                    >
+                      <Memo(MenuList)
+                        align="start"
+                        anchorRef={
+                          Object {
+                            "current": <span
+                              class="has-text-primary is-size-5 sp-contextmenu"
+                            />,
+                          }
+                        }
+                        ariaLabel="Menu"
+                        className="dark-menu"
+                        containerRef={
+                          Object {
+                            "current": <div
+                              class="rc-menu-container"
+                              role="presentation"
+                            />,
+                          }
+                        }
+                        direction="bottom"
+                        isMounted={false}
+                        isOpen={false}
+                        menuItemFocus={
+                          Object {
+                            "position": "initial",
+                          }
+                        }
+                        offsetX={0}
+                        offsetY={0}
+                        onClose={[Function]}
+                        overflow="visible"
+                        position="auto"
+                      >
+                        <Memo(MenuItem)
+                          className="dark-menu-item has-text-primary has-text-left has-text-weight-bold"
+                          onClick={[Function]}
+                        />
+                        <Memo(MenuDivider) />
+                        <Memo(MenuItem)
+                          className="dark-menu-item has-text-primary has-text-left has-text-weight-bold"
+                          onClick={[Function]}
+                        />
+                      </Memo(MenuList)>
+                    </div>
+                  </Menu>
+                </div>
+                <div
+                  className="collapsible-trigger"
+                  onClick={[Function]}
+                >
+                  <div
+                    className="chevron down"
+                  >
+                    <span
+                      className="sp-chevron-up"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div
+                className="collapsible-content expanded"
+              >
+                <label
+                  className="has-text-weight-bold has-text-white pb-10 pt-10 is-flex"
+                  key="E00121939001311"
+                >
                   <input
                     checked={false}
                     className="mr-10 checkbox-dark"
@@ -305,7 +842,7 @@ exports[`RMA devices component render correctly 1`] = `
                 >
                   <button
                     className="button is-paddingless has-text-primary has-text-weight-bold is-size-7 button-transparent"
-                    disabled={false}
+                    id="storageCommissioningOrRecommissioningHandler"
                     onClick={[Function]}
                   >
                     COMM_STORAGE
@@ -373,6 +910,196 @@ exports[`RMA devices component render correctly 1`] = `
               CONFIGURE_PVS
             </button>
           </div>
+          <SwipeableSheet
+            onChange={[Function]}
+            open={false}
+          >
+            <SwipeableBottomSheet
+              defaultOpen={false}
+              fullScreen={false}
+              marginTop={0}
+              onChange={[Function]}
+              open={false}
+              overflowHeight={0}
+              overlay={true}
+              scrollTopAtClose={true}
+              shadowTip={true}
+              swipeableViewsProps={
+                Object {
+                  "className": "swipeable",
+                }
+              }
+              topShadow={true}
+            >
+              <div
+                style={
+                  Object {
+                    "bottom": 0,
+                    "height": 0,
+                    "left": 0,
+                    "position": "fixed",
+                    "right": 0,
+                  }
+                }
+              >
+                <HeightUpdater
+                  height={768}
+                  onHeightChange={[Function]}
+                />
+                <div
+                  onClick={[Function]}
+                  style={
+                    Object {
+                      "backgroundColor": "black",
+                      "height": 768,
+                      "left": 0,
+                      "opacity": 0,
+                      "pointerEvents": "none",
+                      "position": "fixed",
+                      "right": 0,
+                      "top": 0,
+                      "transition": "opacity 450ms",
+                    }
+                  }
+                />
+                <ReactSwipableView
+                  animateHeight={false}
+                  animateTransitions={true}
+                  axis="y"
+                  className="swipeable"
+                  containerStyle={
+                    Object {
+                      "boxSizing": "border-box",
+                    }
+                  }
+                  disableLazyLoading={false}
+                  disabled={false}
+                  enableMouseEvents={true}
+                  hysteresis={0.6}
+                  ignoreNativeScroll={false}
+                  index={0}
+                  onChangeIndex={[Function]}
+                  onTransitionEnd={[Function]}
+                  resistance={false}
+                  slideStyle={
+                    Object {
+                      "boxSizing": "border-box",
+                      "marginBottom": -0,
+                      "overflow": "visible",
+                    }
+                  }
+                  springConfig={
+                    Object {
+                      "delay": "0s",
+                      "duration": "0.35s",
+                      "easeFunction": "cubic-bezier(0.15, 0.3, 0.25, 1)",
+                    }
+                  }
+                  style={
+                    Object {
+                      "boxSizing": "border-box",
+                      "overflowY": "initial",
+                    }
+                  }
+                  threshold={5}
+                >
+                  <div
+                    className="swipeable"
+                    onMouseDown={[Function]}
+                    onMouseLeave={[Function]}
+                    onMouseMove={[Function]}
+                    onMouseUp={[Function]}
+                    onScroll={[Function]}
+                    onTouchEnd={[Function]}
+                    onTouchStart={[Function]}
+                    style={
+                      Object {
+                        "boxSizing": "border-box",
+                        "overflowY": "initial",
+                      }
+                    }
+                  >
+                    <div
+                      className="react-swipeable-view-container"
+                      style={
+                        Object {
+                          "WebkitFlexDirection": "column",
+                          "WebkitTransition": "all 0s ease 0s",
+                          "boxSizing": "border-box",
+                          "direction": "ltr",
+                          "display": "flex",
+                          "flexDirection": "column",
+                          "height": null,
+                          "transition": "all 0s ease 0s",
+                          "willChange": "transform",
+                        }
+                      }
+                    >
+                      <div
+                        aria-hidden={false}
+                        data-swipeable="true"
+                        key=".0"
+                        style={
+                          Object {
+                            "WebkitFlexShrink": 0,
+                            "boxSizing": "border-box",
+                            "flexShrink": 0,
+                            "marginBottom": -0,
+                            "overflow": "visible",
+                            "width": "100%",
+                          }
+                        }
+                      >
+                        <div
+                          className="ReactSwipeableBottomSheet--closed"
+                          style={
+                            Object {
+                              "backgroundColor": "white",
+                              "height": "initial",
+                              "maxHeight": 768,
+                              "overflow": "hidden",
+                            }
+                          }
+                        >
+                          <div
+                            className="has-text-centered has-text-white"
+                            id="sunVaultRecommissionConfirmationModal"
+                          >
+                            <p
+                              className="mt-10 mb-20"
+                            >
+                              SUNVAULT_RECOMMISSION_CONFIRMATION_MODAL_TEXT_1
+                            </p>
+                            <p
+                              className="mb-20"
+                            >
+                              SUNVAULT_RECOMMISSION_CONFIRMATION_MODAL_TEXT_2
+                            </p>
+                          </div>
+                          <div
+                            className="inline-buttons"
+                          >
+                            <button
+                              className="button half-button-padding is-primary is-outlined is-uppercase mr-10"
+                              onClick={[Function]}
+                            >
+                              CANCEL
+                            </button>
+                            <button
+                              className="button is-primary is-uppercase"
+                              onClick={[Function]}
+                            >
+                              RECOMMISSION
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </ReactSwipableView>
+              </div>
+            </SwipeableBottomSheet>
+          </SwipeableSheet>
         </main>
       </RMADevices>
     </Provider>

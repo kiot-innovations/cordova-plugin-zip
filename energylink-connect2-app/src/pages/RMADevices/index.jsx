@@ -12,23 +12,29 @@ import {
   length,
   map,
   prop,
-  propEq,
   propOr
 } from 'ramda'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useCallback } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 
-import '@szhsin/react-menu/dist/index.css'
-
 import Collapsible from 'components/Collapsible'
 import ColoredBanner, { bannerCategories } from 'components/ColoredBanner'
+import { Loader } from 'components/Loader'
+import SwipeableSheet from 'hocs/SwipeableSheet'
+import '@szhsin/react-menu/dist/index.css'
 import paths from 'routes/paths'
 import { useI18n } from 'shared/i18n'
-import { either, getMicroinverters, isPvs5 } from 'shared/utils'
+import { either, getMicroinverters, isESS, isPvs5 } from 'shared/utils'
 import { FETCH_DEVICES_LIST } from 'state/actions/devices'
 import { SHOW_MODAL } from 'state/actions/modal'
-import { RMA_REMOVE_DEVICES, CLEAR_RMA } from 'state/actions/rma'
+import {
+  RMA_REMOVE_DEVICES,
+  CLEAR_RMA,
+  RMA_REMOVE_STORAGE,
+  RMA_REMOVE_STORAGE_CANCEL,
+  RMA_REMOVE_STORAGE_RESET_STORAGE_REMOVED
+} from 'state/actions/rma'
 import { ALLOW_COMMISSIONING } from 'state/actions/systemConfiguration'
 import { rmaModes } from 'state/reducers/rma'
 
@@ -94,12 +100,17 @@ function RMADevices() {
   }, [dispatch])
 
   const [selectedMIs, setSelectedMIs] = useState({})
+  const [
+    showSunvaultRecommissionConfirmationModal,
+    setShowSunvaultRecommissionConfirmationModal
+  ] = useState(false)
+  const { removingStorage, removingStorageError, storageRemoved } = useSelector(
+    prop('rma')
+  )
   const { model } = useSelector(state => state.pvs)
-
   const { rmaMode } = useSelector(state => state.rma)
   const { found, fetchingDevices } = useSelector(state => state.devices)
-  const storageDevices = filter(propEq('TYPE', 'EQUINOX-ESS'), found)
-  const hasStorage = !isEmpty(storageDevices)
+  const hasFullyCommissionedStorage = !isEmpty(filter(isESS, found))
   const microInverters = getMicroinverters(found)
 
   const toggleCheckbox = id =>
@@ -157,6 +168,121 @@ function RMADevices() {
         {t('EDIT_PANELS')}
       </MenuItem>
     </Menu>
+  )
+
+  const goToStoragePrediscovery = useCallback(() => {
+    history.push(paths.PROTECTED.STORAGE_PREDISCOVERY.path)
+  }, [history])
+
+  const storageCommissioningOrRecommissioningHandler = () => {
+    // If storage hasn't been commissioned before,
+    // go on to storage prediscovery
+    if (!hasFullyCommissionedStorage) {
+      goToStoragePrediscovery()
+    } else {
+      // If storage has been commissioned before,
+      // Tell the user they have to complete recommissioning before storage will work again
+      setShowSunvaultRecommissionConfirmationModal(true)
+    }
+  }
+
+  const storageRecommissioningHandler = () => {
+    dispatch(RMA_REMOVE_STORAGE())
+  }
+
+  useEffect(() => {
+    if (storageRemoved) {
+      setShowSunvaultRecommissionConfirmationModal(false)
+      dispatch(RMA_REMOVE_STORAGE_RESET_STORAGE_REMOVED())
+      goToStoragePrediscovery()
+    }
+  }, [storageRemoved, dispatch, goToStoragePrediscovery])
+
+  useEffect(() => {
+    if (removingStorage && !showSunvaultRecommissionConfirmationModal) {
+      //bring the modal back up
+      setShowSunvaultRecommissionConfirmationModal(true)
+    }
+  }, [
+    showSunvaultRecommissionConfirmationModal,
+    removingStorage,
+    setShowSunvaultRecommissionConfirmationModal
+  ])
+
+  const closeSunvaultRecommissionConfirmationModalHandler = () => {
+    setShowSunvaultRecommissionConfirmationModal(false)
+    if (!removingStorage) {
+      dispatch(RMA_REMOVE_STORAGE_CANCEL())
+    }
+  }
+
+  const storageRemovingModal = (
+    <>
+      <div
+        id="storageRemovingModal"
+        className="has-text-white has-text-weight-bold has-text-centered"
+      >
+        {t('HOLD_ON')}
+      </div>
+      <Loader />
+      <p className="has-text-centered has-text-white mb-20">
+        {t('STORAGE_REMOVING_MODAL_1')}
+      </p>
+      <p className="has-text-centered">{t('STORAGE_REMOVING_MODAL_2')}</p>
+    </>
+  )
+
+  const storageRemovingErrorModal = (
+    <div className="storage-removing-error-modal has-text-centered">
+      <span className="sp-hey mt-40 mb-40 icon" />
+      <p className="mb-20 has-text-white">
+        {t('STORAGE_REMOVING_ERROR_MODAL')}
+      </p>
+      <div className="inline-buttons">
+        <button
+          className="button half-button-padding is-primary is-outlined is-uppercase mr-10"
+          onClick={closeSunvaultRecommissionConfirmationModalHandler}
+        >
+          {t('CANCEL')}
+        </button>
+        <button
+          className="button is-primary is-uppercase"
+          onClick={storageRecommissioningHandler}
+        >
+          {t('RETRY')}
+        </button>
+      </div>
+    </div>
+  )
+
+  const storageRemovingConfirmationModal = (
+    <>
+      <div
+        id="sunVaultRecommissionConfirmationModal"
+        className="has-text-centered has-text-white"
+      >
+        <p className="mt-10 mb-20">
+          {t('SUNVAULT_RECOMMISSION_CONFIRMATION_MODAL_TEXT_1')}
+        </p>
+        <p className="mb-20">
+          {t('SUNVAULT_RECOMMISSION_CONFIRMATION_MODAL_TEXT_2')}
+        </p>
+      </div>
+      <div className="inline-buttons">
+        <button
+          className="button half-button-padding is-primary is-outlined is-uppercase mr-10"
+          onClick={closeSunvaultRecommissionConfirmationModalHandler}
+        >
+          {t('CANCEL')}
+        </button>
+        <button
+          className="button is-primary is-uppercase"
+          onClick={storageRecommissioningHandler}
+        >
+          {t('RECOMMISSION')}
+        </button>
+      </div>
+    </>
   )
 
   return (
@@ -217,24 +343,30 @@ function RMADevices() {
         !isPvs5(model),
         <Collapsible title="Storage Equipment" expanded>
           <span className="has-text-white has-text-weight-bold">
-            {either(hasStorage, t('HAS_STORAGE_RMA'), t('NO_STORAGE_RMA'))}
+            {either(
+              hasFullyCommissionedStorage,
+              t('HAS_STORAGE_RMA'),
+              t('NO_STORAGE_RMA')
+            )}
           </span>
           <span className="mt-5">
             {either(
-              hasStorage,
+              hasFullyCommissionedStorage,
               t('HAS_STORAGE_RMA_HINT'),
               t('NO_STORAGE_RMA_HINT')
             )}
           </span>
           <div className="buttons-container">
             <button
-              disabled={isPvs5(model)}
-              onClick={() =>
-                history.push(paths.PROTECTED.STORAGE_PREDISCOVERY.path)
-              }
+              onClick={storageCommissioningOrRecommissioningHandler}
               className="button is-paddingless has-text-primary has-text-weight-bold is-size-7 button-transparent"
+              id="storageCommissioningOrRecommissioningHandler"
             >
-              {hasStorage ? t('RECOMM_STORAGE') : t('COMM_STORAGE')}
+              {either(
+                hasFullyCommissionedStorage,
+                t('RECOMM_STORAGE'),
+                t('COMM_STORAGE')
+              )}
             </button>
           </div>
         </Collapsible>
@@ -260,6 +392,20 @@ function RMADevices() {
           {t('CONFIGURE_PVS')}
         </button>
       </div>
+      <SwipeableSheet
+        open={showSunvaultRecommissionConfirmationModal}
+        onChange={closeSunvaultRecommissionConfirmationModalHandler}
+      >
+        {either(
+          removingStorage,
+          storageRemovingModal,
+          either(
+            removingStorageError,
+            storageRemovingErrorModal,
+            storageRemovingConfirmationModal
+          )
+        )}
+      </SwipeableSheet>
     </main>
   )
 }
