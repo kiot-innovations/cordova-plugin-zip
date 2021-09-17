@@ -16,7 +16,7 @@ describe('PVS Version Information page', () => {
 
   test('render correctly', () => {
     const component = shallow(
-      <PVSVersionInformation currentVersion="6.117.1" />
+      <PVSVersionInformation currentVersion="6.118.0" />
     )
     expect(component).toMatchSnapshot()
   })
