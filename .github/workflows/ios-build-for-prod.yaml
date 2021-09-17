@@ -21,7 +21,7 @@
 on:
   push:
     tags:
-      - '[0-9]+.[0-9]+.[0-9]+-iosprod'
+      - "[0-9]+.[0-9]+.[0-9]+-iosprod"
 
 jobs:
   build:
@@ -40,7 +40,7 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: ${{ env.NODE_VERSION }}
-          registry-url: 'https://registry.npmjs.org'
+          registry-url: "https://registry.npmjs.org"
 
       #
       # Webapp Application
@@ -87,15 +87,17 @@ jobs:
       - name: Install RubyGems
         run: bundle install --jobs 4 --retry 3
 
-      - name: Install NPM packages
-        run: |
-          git config --global url."https://${{ secrets.ACCESS_TOKEN }}@github.com/".insteadOf ssh://git@github.com/
-          npm install
-
       #
       # iOS Application
       #
-      - name: Run Cocoapods Repo Update	
+      - name: Add platform
+        run: |
+          npm i -g cordova@^9.0.0
+          git config --global url."https://${{ secrets.ACCESS_TOKEN }}@github.com/".insteadOf ssh://git@github.com/
+          cordova platform add ios
+          npx sentry-wizard --quiet true --integration cordova --platform ios --skip-connect true --debug true
+
+      - name: Run Cocoapods Repo Update
         run: pod repo update
 
       - name: Build iOS Application
