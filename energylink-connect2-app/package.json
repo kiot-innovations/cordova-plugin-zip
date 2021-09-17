@@ -21,7 +21,8 @@
     "live-reload-proxy": "node ./live-reload/proxy.js",
     "live-reload-precommit": "node ./gitHooks/liveReloadValidate",
     "prettify": "prettier --write 'src/**/**/*.{js,jsx,scss,md,json}'",
-    "sentrifySourceMaps": "node sentrifySourceMaps.js"
+    "sentrifySourceMaps": "node sentrifySourceMaps.js",
+    "notes": "cd releaseNotes && npm i && npm link && genos add"
   },
   "dependencies": {
     "@sentry/browser": "^6.12.0",

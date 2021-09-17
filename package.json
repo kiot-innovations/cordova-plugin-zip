@@ -8,6 +8,7 @@
   "main": "index.js",
   "scripts": {
     "build": "(cd energylink-connect2-app && npm run build)",
+    "notes": "cd energylink-connect2-app && npm run notes --",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [

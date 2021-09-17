@@ -1,0 +1,24 @@
+{
+  "name": "release-notes",
+  "version": "1.0.0",
+  "description": "Automate release notes generation",
+  "main": "index.js",
+  "bin": {
+    "genos": "bin/genos"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "release",
+    "notes",
+    "generator"
+  ],
+  "author": "Vladimir Lopez",
+  "license": "MIT",
+  "dependencies": {
+    "minimist": "^1.2.5",
+    "ora": "4.0.0",
+    "string.prototype.matchall": "^4.0.5"
+  }
+}
