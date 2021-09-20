@@ -29,5 +29,12 @@ describe('No Inverters page', function() {
       expect(btn.exists()).toBe(true)
       expect(btn.text()).toBe('RUN_DISCOVERY')
     })
+
+    it('has a button called DISCOVERY_STARTING', function() {
+      const component = shallow(<NoInverters isFetching />)
+      const btn = component.find('button')
+      expect(btn.exists()).toBe(true)
+      expect(btn.text()).toBe('DISCOVERY_STARTING')
+    })
   })
 })

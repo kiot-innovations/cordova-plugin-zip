@@ -1,6 +1,7 @@
 import deepFreeze from 'deep-freeze'
 import { configure, mount } from 'enzyme'
 import Adapter from 'enzyme-adapter-react-16'
+import 'jest-canvas-mock'
 import React from 'react'
 import { Provider } from 'react-redux'
 import { BrowserRouter, Router } from 'react-router-dom'

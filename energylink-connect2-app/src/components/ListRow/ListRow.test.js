@@ -25,7 +25,7 @@ describe('ListRow component', () => {
     expect(component).toMatchSnapshot()
   })
 
-  test.only('Runs the onCLick fn when pressing the row', () => {
+  test('Runs the onCLick fn when pressing the row', () => {
     const component = shallow(<ListRow link="google.com" />)
     component.find('.row').simulate('click')
     expect(download).toBeCalled()

@@ -29,7 +29,7 @@ import {
 
 import './OtherDevicesList.scss'
 
-const isValid = properties => {
+export const isValid = properties => {
   if (Array.isArray(properties)) return properties
   return [{ PROGR: 0 }]
 }
@@ -40,7 +40,7 @@ const getProgress = compose(
   isValid
 )
 
-const CommonLayout = ({ children, title, subtitle, onClick }) => {
+export const CommonLayout = ({ children, title, subtitle, onClick }) => {
   const t = useI18n()
   const clickHandler = event => {
     if (typeof onClick === 'function') return onClick(event)
@@ -112,7 +112,7 @@ export const DeviceFound = ({ name, onClick, numberFound, required }) => {
   )
 }
 
-const NothingToDoHere = ({ close, title }) => {
+export const NothingToDoHere = ({ close, title }) => {
   const t = useI18n()
   return (
     <div className="is-flex tile is-vertical">
@@ -129,7 +129,7 @@ const NothingToDoHere = ({ close, title }) => {
   )
 }
 
-const ProgressModal = ({ close }) => {
+export const ProgressModal = ({ close }) => {
   const t = useI18n()
   return (
     <div className="is-flex tile is-vertical">
@@ -144,7 +144,7 @@ const ProgressModal = ({ close }) => {
   )
 }
 
-const ConfigurePending = ({ close }) => {
+export const ConfigurePending = ({ close }) => {
   const t = useI18n()
   return (
     <div className="is-flex tile is-vertical">

@@ -1,0 +1,85 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AnalyticsConsent page render correctly 1`] = `
+<BrowserRouter
+  keyLength={0}
+>
+  <Router
+    history={
+      Object {
+        "action": "POP",
+        "block": [Function],
+        "createHref": [Function],
+        "go": [Function],
+        "goBack": [Function],
+        "goForward": [Function],
+        "length": 1,
+        "listen": [Function],
+        "location": Object {
+          "hash": "",
+          "pathname": "/",
+          "search": "",
+          "state": undefined,
+        },
+        "push": [Function],
+        "replace": [Function],
+      }
+    }
+  >
+    <Provider
+      store={
+        Object {
+          "clearActions": [Function],
+          "dispatch": [Function],
+          "getActions": [Function],
+          "getState": [Function],
+          "replaceReducer": [Function],
+          "subscribe": [Function],
+        }
+      }
+    >
+      <AnalyticsConsent>
+        <div
+          className="analytics-consent is-flex pl-15 pr-15 has-text-white has-text-centered"
+        >
+          <div
+            className="animation"
+          >
+            <div />
+          </div>
+          <div
+            className="mt-10 mb-10"
+          >
+            <span>
+              CONSENT_ANALYTICS_1
+            </span>
+          </div>
+          <div
+            className="mb-10"
+          >
+            <span>
+              CONSENT_ANALYTICS_2
+            </span>
+          </div>
+          <div
+            className="is-flex"
+          >
+            <button
+              className="button is-primary is-outlined is-fullwidth mr-10"
+              onClick={[Function]}
+            >
+              CLOSE_APP
+            </button>
+            <button
+              className="button is-primary is-fullwidth ml-10"
+              onClick={[Function]}
+            >
+              OK
+            </button>
+          </div>
+        </div>
+      </AnalyticsConsent>
+    </Provider>
+  </Router>
+</BrowserRouter>
+`;

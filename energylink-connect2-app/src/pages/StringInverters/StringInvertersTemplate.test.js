@@ -6,9 +6,10 @@ import StringInvertersTemplate from './StringInvertersTemplate'
 
 import * as i18n from 'shared/i18n'
 
+const mockHistory = jest.fn()
 jest.mock('react-router-dom', () => ({
   useHistory: () => ({
-    push: jest.fn()
+    push: mockHistory
   })
 }))
 
@@ -39,5 +40,18 @@ describe('The StringInvertersTemplate', function() {
     expect(span.exists()).toBe(true)
     expect(span.text()).toBe('OTHER_DEVICES')
     expect(component.containsMatchingElement(<span>CHILDREN</span>)).toBe(true)
+  })
+
+  it('should run backToDevices function', function() {
+    const pushMock = jest.fn(path => path)
+    window.history.push = pushMock
+
+    const component = shallow(<StringInvertersTemplate />)
+    const backButton = component.find(
+      '.sp-chevron-left.has-text-primary.is-size-4.go-back'
+    )
+    backButton.simulate('click')
+
+    expect(mockHistory).toBeCalled()
   })
 })
