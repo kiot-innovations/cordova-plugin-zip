@@ -21,6 +21,7 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 
+import ColoredBanner, { bannerCategories } from 'components/ColoredBanner'
 import { Loader } from 'components/Loader'
 import SwipeableSheet from 'hocs/SwipeableSheet'
 import paths from 'routes/paths'
@@ -113,6 +114,7 @@ function PvsSelection() {
   const [selectedDevice, setSelectedDevice] = useState()
   const [showResetModal, setShowResetModal] = useState(false)
   const [errorCount, setErrorCount] = useState(0)
+  const [showStorageWarning, toggleStorageWarning] = useState(false)
 
   const getBarcode = () => {
     scanBarcodes(onScanSuccess(generatePassword, dispatch, t), onScanFail)
@@ -386,7 +388,10 @@ function PvsSelection() {
     return (
       <div
         key={deviceSerialNumber}
-        onClick={() => dispatch(RMA_SELECT_PVS(deviceSerialNumber))}
+        onClick={() => {
+          dispatch(RMA_SELECT_PVS(deviceSerialNumber))
+          toggleStorageWarning(true)
+        }}
         className={clsx(
           { 'label-selected': deviceSerialNumber === PVSSelected },
           'mb-10 label'
@@ -409,6 +414,14 @@ function PvsSelection() {
         <span className="is-uppercase has-text-weight-bold mb-20 select-pvs-title">
           {t('SELECT_PVS')}
         </span>
+        {either(
+          showStorageWarning,
+          <ColoredBanner
+            category={bannerCategories.WARNING}
+            text={t('REPLACE_PVS_WARNING')}
+            className="mb-15"
+          />
+        )}
         {either(
           !isEmpty(PVS),
           <div className="list-separator">

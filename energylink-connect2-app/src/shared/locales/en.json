@@ -780,5 +780,6 @@
   "SITE_SEARCH_PLACEHOLDER": "Enter address or homeowners name",
   "SITE_KEY": "Site ID",
   "STORAGE_SYSTEM_SIZE": "Storage System Size",
-  "PVS_COUNT": "PVS Count"
+  "PVS_COUNT": "PVS Count",
+  "REPLACE_PVS_WARNING": "Do not replace the PVS if you’re adding a Hub+ to the existing system."
 }

@@ -1,4 +1,5 @@
 import { storiesOf } from '@storybook/react'
+import { clone } from 'ramda'
 import React from 'react'
 import { Provider } from 'react-redux'
 
@@ -35,14 +36,30 @@ let initialState = {
   }
 }
 
-storiesOf('PVSSelection Page', module).add('Simple', () => {
-  const { store } = configureStore(initialState)
+storiesOf('PVSSelection Page', module)
+  .add('Simple', () => {
+    const { store } = configureStore(initialState)
 
-  return (
-    <div className="full-min-height">
-      <Provider store={store}>
-        <PVSSelection />
-      </Provider>
-    </div>
-  )
-})
+    return (
+      <div className="full-min-height mt-15">
+        <Provider store={store}>
+          <PVSSelection />
+        </Provider>
+      </div>
+    )
+  })
+  .add('Simple with storage', () => {
+    let withStorage = clone(initialState)
+    withStorage.site.site = {
+      hasStorage: true
+    }
+    const { store } = configureStore(withStorage)
+
+    return (
+      <div className="full-min-height mt-15">
+        <Provider store={store}>
+          <PVSSelection />
+        </Provider>
+      </div>
+    )
+  })
