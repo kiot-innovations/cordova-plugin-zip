@@ -18,7 +18,7 @@ import {
 
 import { getMd5FromFile } from 'shared/cordovaMapping'
 import { ERROR_CODES, getFileInfo, getFileNameFromURL } from 'shared/fileSystem'
-import { getExpectedMD5, hasInternetConnection } from 'shared/utils'
+import { getExpectedMD5, hasInternetConnection, TAGS } from 'shared/utils'
 import {
   PVS6_GRID_PROFILE_DOWNLOAD_INIT,
   PVS6_GRID_PROFILE_DOWNLOAD_PROGRESS,
@@ -54,6 +54,7 @@ export const initDownloadPvs6GridProfileEpic = action$ =>
           Sentry.addBreadcrumb({
             message: 'Error occurred while downloading grid profiles for PVS6'
           })
+          Sentry.setTag(TAGS.KEY.GRID_PROFILES, TAGS.VALUE.DOWNLOADER_PVS6_GP)
           Sentry.captureException(err)
           return of(PVS6_GRID_PROFILE_DOWNLOAD_ERROR(err))
         })
@@ -81,6 +82,7 @@ export const initDownloadPvs5GridProfileEpic = action$ =>
           Sentry.addBreadcrumb({
             message: 'Error occurred while downloading grid profiles for PVS5'
           })
+          Sentry.setTag(TAGS.KEY.GRID_PROFILES, TAGS.VALUE.DOWNLOADER_PVS5_GP)
           Sentry.captureException(err)
           return of(PVS5_GRID_PROFILE_DOWNLOAD_ERROR(err))
         })
@@ -110,6 +112,7 @@ export const pvs6GridProfileReportSuccessEpic = action$ =>
           Sentry.addBreadcrumb({
             message: 'Error occurred while verifying grid profiles for PVS6'
           })
+          Sentry.setTag(TAGS.KEY.GRID_PROFILES, TAGS.VALUE.DOWNLOADER_PVS6_VGP)
           Sentry.captureException(err)
           return of(
             PVS6_GRID_PROFILE_DOWNLOAD_ERROR({ error: err, retry: true })
@@ -142,6 +145,7 @@ export const pvs5GridProfileReportSuccessEpic = action$ =>
           Sentry.addBreadcrumb({
             message: 'Error occurred while verifying grid profiles for PVS5'
           })
+          Sentry.setTag(TAGS.KEY.GRID_PROFILES, TAGS.VALUE.DOWNLOADER_PVS6_VGP)
           Sentry.captureException(err)
           return of(
             PVS5_GRID_PROFILE_DOWNLOAD_ERROR({ error: err, retry: true })

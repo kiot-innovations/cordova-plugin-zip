@@ -12,7 +12,7 @@ import {
   verifySHA256
 } from 'shared/fileSystem'
 import { getFileSystemFromLuaFile } from 'shared/PVSUtils'
-import { hasInternetConnection } from 'shared/utils'
+import { hasInternetConnection, TAGS } from 'shared/utils'
 import {
   PVS_DECOMPRESS_LUA_FILES_ERROR,
   PVS_DECOMPRESS_LUA_FILES_INIT,
@@ -77,6 +77,7 @@ export const downloadPVSFirmwareReleaseNotes = action$ =>
       ).pipe(
         map(SET_FIRMWARE_RELEASE_NOTES),
         catchError(err => {
+          Sentry.setTag(TAGS.KEY.FIRMWARE, TAGS.VALUE.LUAFILEPARSING)
           Sentry.captureException(err)
           return of(GET_RELEASE_NOTES_ERROR({ err: err.message }))
         })
@@ -106,6 +107,7 @@ export const downloadPVSFirmware = action$ =>
             : PVS_FIRMWARE_REPORT_SUCCESS(`firmware/${pvsFileSystemName}`)
         ),
         catchError(err => {
+          Sentry.setTag(TAGS.KEY.FIRMWARE, TAGS.VALUE.DOWNLOADER_FILETRANSFER)
           Sentry.captureException(err)
           return of(PVS_FIRMWARE_DOWNLOAD_ERROR({ err: err.message, url }))
         })
@@ -121,6 +123,7 @@ export const deleteFirmwareOnError = action$ =>
         map(() => PVS_FIRMWARE_DOWNLOAD_INIT(true)),
         catchError(err => {
           Sentry.addBreadcrumb({ message: 'PVS_FIRMWARE_DOWNLOAD_ERROR' })
+          Sentry.setTag(TAGS.KEY.FIRMWARE, TAGS.VALUE.DOWNLOADER_NOINTERNET)
           Sentry.captureException(err)
           return EMPTY
         })
@@ -140,6 +143,7 @@ export const reportPVSDownloadSuccessEpic = action$ => {
           })
         ),
         catchError(err => {
+          Sentry.setTag(TAGS.KEY.FIRMWARE, TAGS.VALUE.DOWNLOADER_VERIFYSHA256)
           Sentry.captureException(err)
           return of(PVS_FIRMWARE_DOWNLOAD_ERROR(err.message))
         })
@@ -206,6 +210,10 @@ export const decompressLuaFiles = action$ =>
         map(PVS_DECOMPRESS_LUA_FILES_SUCCESS),
         catchError(err => {
           Sentry.addBreadcrumb({ message: 'Decompressing lua files' })
+          Sentry.setTag(
+            TAGS.KEY.FIRMWARE,
+            TAGS.VALUE.DOWNLOADER_LUAFILEDECOMPRESS
+          )
           Sentry.captureException(err)
           return of(PVS_DECOMPRESS_LUA_FILES_ERROR(err))
         })

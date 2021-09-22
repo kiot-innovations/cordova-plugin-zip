@@ -5,6 +5,7 @@ import { catchError, exhaustMap, switchMap } from 'rxjs/operators'
 import * as Sentry from 'sentry-cordova'
 
 import { getApiPVS } from 'shared/api'
+import { TAGS } from 'shared/utils'
 import * as pvsActions from 'state/actions/pvs'
 
 const startDiscovery = payload =>
@@ -23,6 +24,7 @@ export const startDiscoveryEpic = action$ =>
             : of(pvsActions.START_DISCOVERY_ERROR('SEND_COMMAND_ERROR'))
         }),
         catchError(err => {
+          Sentry.setTag(TAGS.KEY.ENDPOINT, TAGS.VALUE.DISCOVERY_DISCOVER)
           Sentry.captureException(err)
           return of(pvsActions.START_DISCOVERY_ERROR(err))
         })

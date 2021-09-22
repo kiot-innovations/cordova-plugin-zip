@@ -7,6 +7,7 @@ import * as Sentry from 'sentry-cordova'
 import authClient from 'shared/auth/sdk'
 import { translate } from 'shared/i18n'
 import genericRetryStrategy from 'shared/rxjs/genericRetryStrategy'
+import { TAGS } from 'shared/utils'
 import * as authActions from 'state/actions/auth'
 
 export const refreshTokenEpic = (action$, state$) => {
@@ -45,6 +46,7 @@ export const refreshTokenEpic = (action$, state$) => {
             message: err.message,
             level: Sentry.Severity.Error
           })
+          Sentry.setTag(TAGS.KEY.LOGIN, TAGS.VALUE.REFRESH_TOKEN)
           Sentry.captureException(err)
 
           return of(authActions.LOGOUT())

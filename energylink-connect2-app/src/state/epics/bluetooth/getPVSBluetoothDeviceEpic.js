@@ -5,6 +5,7 @@ import { catchError, mergeMap } from 'rxjs/operators'
 import * as Sentry from 'sentry-cordova'
 
 import { getBLEDevice } from 'shared/bluetooth/getBluetoothDevice'
+import { TAGS } from 'shared/utils'
 import {
   ENABLE_ACCESS_POINT,
   CONNECT_PVS_VIA_BLE,
@@ -23,7 +24,8 @@ export const getPVSBluetoothDeviceEpic = (action$, state$) => {
             : of(...devices.map(CONNECT_PVS_VIA_BLE))
         ),
         catchError(err => {
-          Sentry.addBreadcrumb({ message: 'BLE_DEVICE_SCAN_ERROR' })
+          Sentry.addBreadcrumb({ message: 'GET_BLE_DEVICE' })
+          Sentry.setTag(TAGS.KEY.PVS, TAGS.VALUE.BLE_DEVICE_SCAN_ERROR)
           Sentry.captureException(err)
           return of(FAILURE_BLUETOOTH_ACTION())
         })

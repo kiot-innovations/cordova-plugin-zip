@@ -5,6 +5,7 @@ import * as Sentry from 'sentry-cordova'
 
 import { connectBLE } from 'shared/bluetooth/connectViaBluetooth'
 import genericRetryStrategy from 'shared/rxjs/genericRetryStrategy'
+import { TAGS } from 'shared/utils'
 import {
   CONNECT_PVS_VIA_BLE,
   EXECUTE_ENABLE_ACCESS_POINT,
@@ -20,6 +21,7 @@ export const connectPVSViaBluetoothEpic = action$ => {
         retryWhen(genericRetryStrategy({ maxRetryAttempts: 4 })),
         catchError(err => {
           Sentry.addBreadcrumb({ message: 'CONNECT_TO_PVS_VIA_BLE' })
+          Sentry.setTag(TAGS.KEY.PVS, TAGS.VALUE.CONNECT_TO_PVS_VIA_BLE)
           Sentry.captureException(err)
           return of(FAILURE_BLUETOOTH_ACTION()) // TODO: Use an actionable ACTION
         })

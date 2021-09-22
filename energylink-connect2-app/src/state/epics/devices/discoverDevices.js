@@ -11,6 +11,7 @@ import {
 import * as Sentry from 'sentry-cordova'
 
 import { getApiPVS } from 'shared/api'
+import { TAGS } from 'shared/utils'
 import {
   DISCOVER_COMPLETE,
   DISCOVER_ERROR,
@@ -50,7 +51,7 @@ export const scanDevicesEpic = action$ => {
                 : DISCOVER_UPDATE(response)
             }),
             catchError(error => {
-              Sentry.setTag('endpoint', 'devices.getDevices')
+              Sentry.setTag(TAGS.KEY.ENDPOINT, TAGS.VALUE.DEVICES_GET_DEVICES)
               Sentry.captureMessage(`${error.message} - discoverDevices.js`)
               Sentry.captureException(error)
               return of(DISCOVER_ERROR('DISCOVERY_ERROR'))

@@ -8,7 +8,7 @@ import * as Sentry from 'sentry-cordova'
 import appVersion from '../../../macros/appVersion.macro'
 
 import { plainHttpGet } from 'shared/fetch'
-import { isIos, getAppFlavor, getEnvironment } from 'shared/utils'
+import { isIos, getAppFlavor, getEnvironment, TAGS } from 'shared/utils'
 import {
   CHECK_APP_UPDATE_INIT,
   CHECK_APP_UPDATE_SUCCESS,
@@ -52,6 +52,7 @@ export const appUpdaterEpic = action$ =>
             message: error.message,
             level: Sentry.Severity.Warning
           })
+          Sentry.setTag(TAGS.KEY.ENDPOINT, TAGS.VALUE.APP_UPDATER_VERSION_URL)
           Sentry.captureException(error)
           return of(CHECK_APP_UPDATE_ERROR())
         })

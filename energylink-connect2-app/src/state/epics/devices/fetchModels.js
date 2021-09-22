@@ -5,6 +5,7 @@ import { catchError, map, mergeMap } from 'rxjs/operators'
 import * as Sentry from 'sentry-cordova'
 
 import { getApiDevice } from 'shared/api'
+import { TAGS } from 'shared/utils'
 import {
   FETCH_MODELS_ERROR,
   FETCH_MODELS_INIT,
@@ -33,6 +34,7 @@ export const fetchModelsEpic = (action$, state$) => {
             : FETCH_MODELS_SUCCESS(groupByType(models))
         }),
         catchError(error => {
+          Sentry.setTag(TAGS.KEY.ENDPOINT, TAGS.VALUE.DEVICES_GET_MODULES_MODEL)
           Sentry.captureException(error)
           return of(FETCH_MODELS_ERROR(MIType))
         })

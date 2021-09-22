@@ -5,7 +5,7 @@ import { catchError, map, mergeMap, withLatestFrom } from 'rxjs/operators'
 import * as Sentry from 'sentry-cordova'
 
 import { getApiPVS } from 'shared/api'
-import { isSerialEqual } from 'shared/utils'
+import { isSerialEqual, TAGS } from 'shared/utils'
 import {
   PUSH_CANDIDATES_ERROR,
   PUSH_CANDIDATES_INIT,
@@ -43,6 +43,7 @@ export const pushCandidatesEpic = (action$, state$) =>
               })
         ),
         catchError(err => {
+          Sentry.setTag(TAGS.KEY.ENDPOINT, TAGS.VALUE.DEVICES_SET_CANDIDATES)
           Sentry.captureException(err)
           return of(PUSH_CANDIDATES_ERROR({ error: err, candidates: payload }))
         })

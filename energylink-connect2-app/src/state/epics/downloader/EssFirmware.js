@@ -18,7 +18,7 @@ import * as Sentry from 'sentry-cordova'
 import { getMd5FromFile } from 'shared/cordovaMapping'
 import { getVersionFromUrl, getValidFileName } from 'shared/download'
 import { getFileInfo } from 'shared/fileSystem'
-import { headersToObj, getAccessToken } from 'shared/utils'
+import { headersToObj, getAccessToken, TAGS } from 'shared/utils'
 import {
   DOWNLOAD_OS_ERROR,
   DOWNLOAD_OS_INIT,
@@ -70,6 +70,7 @@ const downloadOSZipEpic = (action$, state$) => {
             message: 'Failed to download ESS firmware',
             level: Sentry.Severity.Error
           })
+          Sentry.setTag(TAGS.KEY.ESSFW, TAGS.VALUE.DOWNLOAD_OS_INIT)
           Sentry.captureException(err)
           return of(DOWNLOAD_OS_ERROR.asError(err))
         })
@@ -139,6 +140,7 @@ const checkIntegrityESSDownload = (action$, state$) =>
         ),
         catchError(err => {
           if (err instanceof Error) {
+            Sentry.setTag(TAGS.KEY.ESSFW, TAGS.VALUE.MD5_AND_FILEINFO)
             Sentry.captureException(err)
           } else {
             Sentry.addBreadcrumb({
@@ -159,6 +161,7 @@ const checkIntegrityESSDownload = (action$, state$) =>
               message: 'Server Headers',
               data: { ...err.responseHeaders }
             })
+            Sentry.setTag(TAGS.KEY.ESSFW, TAGS.VALUE.MD5_AND_FILEINFO)
             Sentry.captureException(new Error('ESS file download error'))
           }
           return of(DOWNLOAD_OS_ERROR.asError(err))

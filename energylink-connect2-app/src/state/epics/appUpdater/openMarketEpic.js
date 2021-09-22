@@ -4,7 +4,7 @@ import { map, exhaustMap, catchError } from 'rxjs/operators'
 import * as Sentry from 'sentry-cordova'
 
 import { createExternalLinkHandler } from 'shared/routing'
-import { isDebug, isIos } from 'shared/utils'
+import { isDebug, isIos, TAGS } from 'shared/utils'
 import {
   APP_UPDATE_OPEN_MARKET,
   APP_UPDATE_OPEN_MARKET_SUCCESS,
@@ -44,6 +44,10 @@ export const openMarketEpic = action$ =>
                 message: error.message,
                 level: Sentry.Severity.Warning
               })
+              Sentry.setTag(
+                TAGS.KEY.ENDPOINT,
+                TAGS.VALUE.APP_UPDATER_OPEN_MARKET
+              )
               Sentry.captureException(error)
               return of(APP_UPDATE_OPEN_MARKET_ERROR())
             })

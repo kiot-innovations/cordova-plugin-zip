@@ -5,6 +5,7 @@ import { catchError, exhaustMap, map } from 'rxjs/operators'
 import * as Sentry from 'sentry-cordova'
 
 import { getApiDevice } from 'shared/api'
+import { TAGS } from 'shared/utils'
 import {
   FETCH_DEVICE_TREE,
   FETCH_DEVICE_TREE_SUCCESS,
@@ -33,6 +34,7 @@ export const fetchDeviceTreeEpic = (action$, state$) => {
             : FETCH_DEVICE_TREE_ERROR('FETCH_DEVICE_TREE_ERROR')
         ),
         catchError(err => {
+          Sentry.setTag(TAGS.KEY.ENDPOINT, TAGS.VALUE.DEVICES_GET_DEVICES_TREE)
           Sentry.captureException(err)
           return of(FETCH_DEVICE_TREE_ERROR('FETCH_DEVICE_TREE_ERROR'))
         })

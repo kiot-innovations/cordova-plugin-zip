@@ -11,6 +11,7 @@ import {
 import * as Sentry from 'sentry-cordova'
 
 import { getApiPVS } from 'shared/api'
+import { TAGS } from 'shared/utils'
 import {
   CLAIM_DEVICES_COMPLETE,
   CLAIM_DEVICES_ERROR,
@@ -52,6 +53,7 @@ export const pollClaimingEpic = action$ => {
               return updateClaimProgress(claimProgress)
             }),
             catchError(error => {
+              Sentry.setTag(TAGS.KEY.ENDPOINT, TAGS.VALUE.DEVICES_GET_CLAIM)
               Sentry.captureException(error)
               return of(CLAIM_DEVICES_ERROR(error))
             })

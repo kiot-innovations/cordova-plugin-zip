@@ -5,6 +5,7 @@ import { catchError, map, exhaustMap } from 'rxjs/operators'
 import * as Sentry from 'sentry-cordova'
 
 import { enableAccessPointOnPVS } from 'shared/bluetooth/enableAPViaBluetooth'
+import { TAGS } from 'shared/utils'
 import {
   EXECUTE_ENABLE_ACCESS_POINT,
   EXECUTE_ENABLE_ACCESS_POINT_SUCCESS,
@@ -21,6 +22,7 @@ export const enableAccessPointViaBluetoothEpic = action$ => {
         map(EXECUTE_ENABLE_ACCESS_POINT_SUCCESS),
         catchError(err => {
           Sentry.addBreadcrumb({ message: 'EXECUTE_ENABLE_ACCESS_POINT' })
+          Sentry.setTag(TAGS.KEY.PVS, TAGS.VALUE.EXECUTE_ENABLE_ACCESS_POINT)
           Sentry.captureException(err)
           return of(FAILURE_BLUETOOTH_ACTION())
         })

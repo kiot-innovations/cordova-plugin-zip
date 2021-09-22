@@ -13,7 +13,7 @@ import { catchError, exhaustMap, takeUntil, map } from 'rxjs/operators'
 import * as Sentry from 'sentry-cordova'
 
 import { getApiPVS } from 'shared/api'
-import { isMicroinverter } from 'shared/utils'
+import { isMicroinverter, TAGS } from 'shared/utils'
 import {
   MI_DATA_STOP_POLLING,
   MI_DATA_START_POLLING,
@@ -53,7 +53,7 @@ export const miLiveDataEpic = action$ => {
             map(getData),
             map(MI_DATA_SUCCESS),
             catchError(error => {
-              Sentry.setTag('endpoint', 'devices.getDevices')
+              Sentry.setTag(TAGS.KEY.ENDPOINT, TAGS.VALUE.DEVICES_GET_DEVICES)
               Sentry.captureMessage(`${error.message} - miLiveDataEpic.js`)
               Sentry.captureException(error)
               return of(MI_DATA_ERROR(error))

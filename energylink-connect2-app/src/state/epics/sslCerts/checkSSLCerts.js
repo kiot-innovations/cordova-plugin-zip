@@ -4,6 +4,7 @@ import { catchError, map, exhaustMap } from 'rxjs/operators'
 import * as Sentry from 'sentry-cordova'
 
 import { checkAllSSLCerts } from 'shared/sslCertCheck'
+import { TAGS } from 'shared/utils'
 import {
   CHECK_SSL_CERTS,
   CHECK_SSL_CERTS_SUCCESS,
@@ -20,7 +21,7 @@ export const checkSSLCertsEpic = action$ => {
           Sentry.addBreadcrumb({ message: 'SSL Cert Failure' })
           Sentry.captureException(err)
           Sentry.withScope(function(scope) {
-            Sentry.setTag('security', 'Failed SSL Certificate Check')
+            Sentry.setTag(TAGS.KEY.SECURITY, TAGS.VALUE.FAILED_SECURITY_CERT)
             scope.setLevel(Sentry.Severity.Warning)
             Sentry.captureMessage(JSON.stringify(err.payload), {})
           })

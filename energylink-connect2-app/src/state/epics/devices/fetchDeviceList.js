@@ -5,6 +5,7 @@ import { concatMap, map, catchError } from 'rxjs/operators'
 import * as Sentry from 'sentry-cordova'
 
 import { getApiPVS } from 'shared/api'
+import { TAGS } from 'shared/utils'
 import {
   FETCH_DEVICES_LIST,
   UPDATE_DEVICES_LIST,
@@ -24,7 +25,7 @@ export const fetchDeviceListEpic = action$ => {
           UPDATE_DEVICES_LIST(path(['body', 'devices'], response))
         ),
         catchError(err => {
-          Sentry.setTag('endpoint', 'devices.getDevices')
+          Sentry.setTag(TAGS.KEY.ENDPOINT, TAGS.VALUE.DEVICES_GET_DEVICES)
           Sentry.captureMessage(`${err.message} - fetchDevicesList.js`)
           Sentry.captureException(err)
           return of(UPDATE_DEVICES_LIST_ERROR(err))

@@ -18,7 +18,7 @@ import { catchError, exhaustMap, map } from 'rxjs/operators'
 import * as Sentry from 'sentry-cordova'
 
 import { getApiSite } from 'shared/api'
-import { cleanString } from 'shared/utils'
+import { cleanString, TAGS } from 'shared/utils'
 import * as siteActions from 'state/actions/site'
 
 const getAccessToken = path(['user', 'auth', 'access_token'])
@@ -77,6 +77,7 @@ export const createSiteEpic = (action$, state$) =>
       from(createSite(state$.value)(sanitizePayload(payload))).pipe(
         map(siteActions.CREATE_SITE_SUCCESS),
         catchError(error => {
+          Sentry.setTag(TAGS.KEY.ENDPOINT, TAGS.VALUE.SITE_CREATION)
           Sentry.captureException(error)
           return of(siteActions.CREATE_SITE_ERROR.asError(error))
         })

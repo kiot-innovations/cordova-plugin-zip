@@ -5,6 +5,7 @@ import { catchError, map, mergeMap } from 'rxjs/operators'
 import * as Sentry from 'sentry-cordova'
 
 import { getApiPVS } from 'shared/api'
+import { TAGS } from 'shared/utils'
 import {
   CLAIM_DEVICES_INIT,
   CLAIM_DEVICES_SUCCESS,
@@ -27,6 +28,7 @@ export const claimDevicesEpic = action$ => {
         ),
         catchError(err => {
           Sentry.addBreadcrumb({ message: 'Claim devices init' })
+          Sentry.setTag(TAGS.KEY.ENDPOINT, TAGS.VALUE.DEVICES_START_CLAIM)
           Sentry.captureException(err)
           return of(CLAIM_DEVICES_ERROR(err))
         })

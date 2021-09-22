@@ -619,6 +619,51 @@ export const getNotFoundMIs = (previousSerialNumbers, currentNotFound) => {
   return [length(currentSerialNumbers), serialNumbers]
 }
 
+export const TAGS = {
+  KEY: {
+    ENDPOINT: 'endpoint',
+    APP: 'app',
+    PVS: 'pvs',
+    LOGIN: 'login',
+    FIRMWARE: 'firmware',
+    ESSFW: 'essFirmware',
+    GRID_PROFILES: 'gridProfiles',
+    SECURITY: 'security'
+  },
+  VALUE: {
+    CRASH: 'crash',
+    CONNECT_TO_PVS_VIA_BLE: 'CONNECT_TO_PVS_VIA_BLE',
+    APP_UPDATER_VERSION_URL: 'APP_UPDATER_VERSION_URL',
+    APP_UPDATER_OPEN_MARKET: 'APP_UPDATER_OPEN_MARKET',
+    REFRESH_TOKEN: 'refreshToken',
+    EXECUTE_ENABLE_ACCESS_POINT: 'EXECUTE_ENABLE_ACCESS_POINT',
+    BLE_DEVICE_SCAN_ERROR: 'BLE_DEVICE_SCAN_ERROR',
+    DEVICES_START_CLAIM: 'devices.startClaim',
+    DEVICES_GET_DEVICES: 'devices.getDevices',
+    DEVICES_GET_MODULES_MODEL: 'device.getModulesModels',
+    DEVICES_GET_CANDIDATES: 'getCandidates',
+    DEVICES_GET_CLAIM: 'getClaim',
+    DEVICES_SET_CANDIDATES: 'setCandidates',
+    DOWNLOAD_OS_INIT: 'DOWNLOAD_OS_INIT',
+    MD5_AND_FILEINFO: 'MD5_AND_FILEINFO',
+    LUAFILEPARSING: 'downloader.luaFileParsing',
+    DOWNLOADER_FILETRANSFER: 'downloader.fileTransfer',
+    DOWNLOADER_NOINTERNET: 'downloader.noInternet',
+    DOWNLOADER_VERIFYSHA256: 'downloader.verifySHA256',
+    DOWNLOADER_LUAFILEDECOMPRESS: 'downloader.luaFileDecompress',
+    DOWNLOADER_PVS6_GP: 'downloader.pvs6GridProfiles',
+    DOWNLOADER_PVS5_GP: 'downloader.pvs5GridProfiles',
+    DOWNLOADER_PVS6_VGP: 'verifying.pvs6GridProfiles',
+    DOWNLOADER_PVS5_VGP: 'verifying.pvs5GridProfiles',
+    START_COMMISSIONING: 'startCommissioning',
+    DISCOVERY_DISCOVER: 'discovery.discover',
+    DEVICES_GET_DEVICES_TREE: 'device.getDeviceTree',
+    SITE_CREATION: 'siteCreation',
+    SITE_SEARCH: 'siteSearch',
+    FAILED_SECURITY_CERT: 'Failed SSL Certificate Check'
+  }
+}
+
 export const deviceTypes = {
   INVERTER: 'Inverter',
   POWER_METER: 'Power Meter',

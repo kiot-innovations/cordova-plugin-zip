@@ -25,7 +25,7 @@ import * as Sentry from 'sentry-cordova'
 
 import { getApiSite, getApiSearch } from 'shared/api'
 import { getSitePayload, getSiteState } from 'shared/siteHelpers'
-import { cleanString } from 'shared/utils'
+import { cleanString, TAGS } from 'shared/utils'
 import * as devicesActions from 'state/actions/devices'
 import * as siteActions from 'state/actions/site'
 
@@ -60,6 +60,7 @@ export const fetchSitesEpic = (action$, state$) => {
             : siteActions.GET_SITES_SUCCESS(mapRawSites(filteredSites))
         }),
         catchError(error => {
+          Sentry.setTag(TAGS.KEY.ENDPOINT, TAGS.VALUE.SITE_SEARCH)
           Sentry.captureException(error)
           return of(siteActions.NO_SITE_FOUND(payload))
         })
@@ -106,6 +107,7 @@ export const fetchSiteData = (action$, state$) => {
           )
         ),
         catchError(error => {
+          Sentry.setTag(TAGS.KEY.ENDPOINT, TAGS.VALUE.SITE_SEARCH)
           Sentry.captureException(error)
           return of(
             siteActions.GET_SITE_ERROR({ message: 'ERROR GETTING SITE' })

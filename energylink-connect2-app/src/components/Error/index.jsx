@@ -4,7 +4,7 @@ import * as Sentry from 'sentry-cordova'
 import FallBackUI from './FallbackUI'
 
 import { translate } from 'shared/i18n'
-import { either } from 'shared/utils'
+import { either, TAGS } from 'shared/utils'
 
 class ErrorBoundary extends React.Component {
   constructor(props) {
@@ -27,7 +27,7 @@ class ErrorBoundary extends React.Component {
       message: error.message,
       level: Sentry.Severity.Error
     })
-    Sentry.setTag('app', 'crash')
+    Sentry.setTag(TAGS.KEY.APP, TAGS.VALUE.CRASH)
     Sentry.captureException(error)
   }
 

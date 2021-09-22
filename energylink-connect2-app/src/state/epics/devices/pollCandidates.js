@@ -11,6 +11,7 @@ import {
 import * as Sentry from 'sentry-cordova'
 
 import { getApiPVS } from 'shared/api'
+import { TAGS } from 'shared/utils'
 import {
   FETCH_CANDIDATES_COMPLETE,
   FETCH_CANDIDATES_ERROR,
@@ -47,6 +48,10 @@ export const fetchCandidatesEpic = action$ => {
                 : FETCH_CANDIDATES_UPDATE(candidatesList)
             }),
             catchError(error => {
+              Sentry.setTag(
+                TAGS.KEY.ENDPOINT,
+                TAGS.VALUE.DEVICES_GET_CANDIDATES
+              )
               Sentry.captureException(error)
               return of(FETCH_CANDIDATES_ERROR(error))
             })
