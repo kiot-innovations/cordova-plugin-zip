@@ -47,7 +47,11 @@ export const miLiveDataEpic = action$ => {
         exhaustMap(() => {
           const promise = getApiPVS()
             .then(path(['apis', 'devices']))
-            .then(api => api.getDevices())
+            .then(api =>
+              api.getDevices({
+                detailed: true
+              })
+            )
 
           return from(promise).pipe(
             map(getData),

@@ -18,7 +18,11 @@ export const fetchDeviceListEpic = action$ => {
     concatMap(() => {
       const promise = getApiPVS()
         .then(path(['apis', 'devices']))
-        .then(api => api.getDevices())
+        .then(api =>
+          api.getDevices({
+            detailed: false
+          })
+        )
 
       return from(promise).pipe(
         map(response =>

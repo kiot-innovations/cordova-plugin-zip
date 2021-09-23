@@ -23,7 +23,9 @@ import { START_DISCOVERY_SUCCESS } from 'state/actions/pvs'
 const fetchDiscovery = async () => {
   const swagger = await getApiPVS()
   const res = await Promise.all([
-    swagger.apis.devices.getDevices(),
+    swagger.apis.devices.getDevices({
+      detailed: false
+    }),
     swagger.apis.discovery.getDiscoveryProgress()
   ])
   const data = res.map(req => req.body)
