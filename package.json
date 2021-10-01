@@ -44,7 +44,7 @@
     "cordova-plugin-nabto": "^2.6.3",
     "cordova-plugin-network-information": "^2.0.2",
     "cordova-plugin-networkinterface": "^2.0.0",
-    "cordova-plugin-powermanagement-orig": "git+https://github.com/Viras-/cordova-plugin-powermanagement.git",
+    "cordova-plugin-powermanagement-orig": "^1.1.2",
     "cordova-plugin-safariviewcontroller": "^1.6.0",
     "cordova-plugin-sslcertificatechecker": "^6.0.0",
     "cordova-plugin-statusbar": "^2.4.3",
@@ -55,7 +55,7 @@
     "cordova-plugin-wkwebviewxhrfix": "git+https://github.com/TheMattRay/cordova-plugin-wkwebviewxhrfix.git",
     "cordova-plugin-zip": "^3.1.0",
     "cordova-support-android-plugin": "^1.0.2",
-    "cordova.plugins.diagnostic": "^6.0.2",
+    "cordova.plugins.diagnostic": "^5.0.2",
     "es6-promise-plugin": "^4.1.0",
     "phonegap-plugin-barcodescanner": "^8.1.0",
     "scandit-cordova-datacapture-barcode": "file:./libraries/scandit-cordova-datacapture-barcode",
@@ -93,9 +93,6 @@
       "cordova-plugin-statusbar": {},
       "cordova-plugin-androidx": {},
       "cordova-plugin-androidx-adapter": {},
-      "cordova.plugins.diagnostic": {
-        "ANDROIDX_VERSION": "1.+"
-      },
       "cordova-clipboard": {},
       "cordova-plugin-wifiwizard2": {},
       "cordova-plugin-zip": {},
@@ -125,7 +122,10 @@
       "sentry-cordova": {
         "SENTRY_ANDROID_SDK_VERSION": "4.1.0"
       },
-      "at.gofg.sportscomputer.powermanagement": {}
+      "at.gofg.sportscomputer.powermanagement": {},
+      "cordova.plugins.diagnostic": {
+        "ANDROID_SUPPORT_VERSION": "28.+"
+      }
     },
     "platforms": [
       "android",
