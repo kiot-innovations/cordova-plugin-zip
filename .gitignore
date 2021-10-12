@@ -9,6 +9,7 @@ build/
 .idea
 .env*
 .vscode
+.gradle
 
 fastlane/README.md
 fastlane/report.xml
