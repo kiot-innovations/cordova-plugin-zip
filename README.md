@@ -41,14 +41,12 @@ openssl aes-256-cbc -e -a -salt -in .env.prod -out .env.enc.prod;
 openssl aes-256-cbc -e -a -salt -in .env.test -out .env.enc.test;
 openssl aes-256-cbc -e -a -salt -in .env.training -out .env.enc.training;
 openssl aes-256-cbc -e -a -salt -in .env.uat -out .env.enc.uat;
+```
 
 ## Install all dependencies:
 
 ```
-
 cd ~/sunpower/energylink-connect2;
-unzip -qq ./libraries/scandit-cordova-datacapture-barcode.zip -d ./libraries
-unzip -qq ./libraries/scandit-cordova-datacapture-core.zip -d ./libraries
 nvm install 10.15.3
 nvm use
 npm login;
@@ -71,7 +69,16 @@ npm run build;
 
 ```
 
-Build iOS and android app for development
+Build Android for development
+
+```
+
+# Use this if you want live reload
+npm run dev:android;
+
+```
+
+Build iOS for development
 
 ```
 
@@ -81,33 +88,55 @@ cordova platform add ios;
 
 # For iOS only
 
-cd platforms/ios
-pod repo update
-pod update
-
-npm run dev:android;
-npm run dev:ios;
-
 ```
 
-# Run in iOS simulator
+cd ~/sunpower/energylink-connect2;
+rm -rf platforms plugins node_modules && npm i;
+cd ~/sunpower/energylink-connect2/energylink-connect2-app;
+rm -rf node_modules && npm i;
+cordova platform add ios;
+npm run build && cordova prepare ios;
+
+# Use this if you want live reload
+
+npm run dev:ios; cordova prepare ios;
+
+# You only have to do this once
 
 ```
+cd platforms/ios;
+pod repo update;
+pod update;
+```
 
+## Add your team's certificate
+
+1. Select your project
+2. Find the [Signing & Capabilities] tab
+3. Uncheck any Automatically Sign checkboxes
+4. Re-check the Automatically Sign checkboxes
+5. Select your team "Sunpower..."
+
+## Change your build settings to validate your workspace
+
+1. Find the [Build Settings] tab
+2. Search for "Validate Workspace" in the search input
+3. Select [Yes]
+
+## Run in iOS simulator
+
+```
 cd ~/sunpower/energylink-connect2/;
 nvm use;
 cordova emulate ios;
-
 ```
 
 # Run local PVS Simulator
 
 ```
-
 cd ~/sunpower/pvsmgmt-console/pvsServer;
 nvm use;
 grunt;
-
 ```
 
 # How to release a new version
@@ -118,23 +147,19 @@ grunt;
 2. Commit your changes, create and push your tag
 
 ```
-
 git checkout -b release/X.Y.Z
 git add .
 git commit -m '[Release Notes CM2 Ticket Number] Release X.Y.Z`
 git push origin
 git tag X.Y.Z
 git push origin X.Y.Z
-
 ```
 
 ## Targeting specific flavors for build
 
 ```
-
 git tag X.Y.Z-${flavor}
 git push origin X.Y.Z-${flavor}
-
 ```
 
 where ${flavor} can be any of ['prod', 'uat', 'test']
@@ -159,7 +184,10 @@ where ${flavor} can be any of ['prod', 'uat', 'test']
 
 ## Run this in terminal
 
-`fastlane spaceauth -u developer_support@sunpowercorp.com`
+```
+fastlane spaceauth -u developer_support@sunpowercorp.com
+```
+
 Get the code from Alvin's phone, type it in the terminal input
 
 ## Put the output here
@@ -185,18 +213,15 @@ Apple:
 ## Run this
 
 ```
-
 brew install fastlane;
 fastlane match appstore;
-
 ```
 
 ## It'll ask you for the following information:
 
 _github url to the fast lane certificates:_ git@github.com:SunPower/firmware-mobile-certificates.git
 _username:_ developer_support@sunpowercorp.com
-_password:_ ask Alvin, Chris, or Kamil for this password
+_password:_ ask Alvin or Fer for this password
 _Bundle IDs:_ com.sunpower.energylink.commissioning2.test,com.sunpower.energylink.commissioning2.prod,com.sunpower.energylink.commissioning2.training,com.sunpower.energylink.commissioning2
 
 Modify the bundle IDs to be whatever you need them to be, then update this readme with the latest app ids
-```

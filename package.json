@@ -1,7 +1,7 @@
 {
   "name": "com.sunpower.energylink.commissioning2",
   "displayName": "SunPower Pro Connect",
-  "version": "0.32.0",
+  "version": "6.119.3",
   "description": "PVS Commissioning by SunPower",
   "author": "SunPower Corporation",
   "private": true,
@@ -18,6 +18,7 @@
     "cordova": "^9.0.0",
     "cordova-android": "^9.1.0",
     "cordova-clipboard": "^1.3.0",
+    "cordova-custom-config": "^5.1.0",
     "cordova-ios": "^5.1.1",
     "cordova-launch-review": "^4.0.1",
     "cordova-plugin-add-swift-support": "^2.0.2",
@@ -58,8 +59,8 @@
     "cordova.plugins.diagnostic": "^5.0.2",
     "es6-promise-plugin": "^4.1.0",
     "phonegap-plugin-barcodescanner": "^8.1.0",
-    "scandit-cordova-datacapture-barcode": "file:./libraries/scandit-cordova-datacapture-barcode",
-    "scandit-cordova-datacapture-core": "file:./libraries/scandit-cordova-datacapture-core",
+    "scandit-cordova-datacapture-barcode": "file:libraries/scandit-cordova-datacapture-barcode",
+    "scandit-cordova-datacapture-core": "file:libraries/scandit-cordova-datacapture-core",
     "sentry-cordova": "^1.0.0",
     "xcode": "^2.1.0"
   },
@@ -125,7 +126,8 @@
       "at.gofg.sportscomputer.powermanagement": {},
       "cordova.plugins.diagnostic": {
         "ANDROID_SUPPORT_VERSION": "28.+"
-      }
+      },
+      "cordova-custom-config": {}
     },
     "platforms": [
       "android",
