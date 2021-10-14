@@ -91,6 +91,11 @@ Object {
                   <span
                     className="sp sp-map has-text-white"
                   />
+                  <h1
+                    className="mt-40 pl-20 pr-20 is-size-5"
+                  >
+                    SITES_HEADER
+                  </h1>
                 </article>
               </section>
             </section>
@@ -230,6 +235,11 @@ Object {
                   <span
                     className="sp sp-map has-text-white"
                   />
+                  <h1
+                    className="mt-40 pl-20 pr-20 is-size-5"
+                  >
+                    SITES_HEADER
+                  </h1>
                 </article>
               </section>
             </section>
@@ -378,6 +388,11 @@ Object {
                   <span
                     className="sp sp-map has-text-white"
                   />
+                  <h1
+                    className="mt-40 pl-20 pr-20 is-size-5"
+                  >
+                    SITES_HEADER
+                  </h1>
                 </article>
               </section>
             </section>

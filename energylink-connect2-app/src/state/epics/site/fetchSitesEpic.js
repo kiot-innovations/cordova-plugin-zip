@@ -62,7 +62,11 @@ export const fetchSitesEpic = (action$, state$) => {
         catchError(error => {
           Sentry.setTag(TAGS.KEY.ENDPOINT, TAGS.VALUE.SITE_SEARCH)
           Sentry.captureException(error)
-          return of(siteActions.NO_SITE_FOUND(payload))
+          return of(
+            error.status === 403
+              ? siteActions.SITE_RESTRICTED()
+              : siteActions.NO_SITE_FOUND(payload)
+          )
         })
       )
     )
@@ -81,7 +85,7 @@ export const decideIfShoudFetchSiteEpic = (action$, state$) => {
     map(path(['payload', 'value'])),
     map(cleanString),
     filterX(text => text.trim().length > 2),
-    debounceTime(1000),
+    debounceTime(2000),
     distinctUntilChanged(),
     map(siteActions.GET_SITES_INIT)
   )

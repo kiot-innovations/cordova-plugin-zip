@@ -772,6 +772,7 @@
   "NO_SV_DEVICES": "No SunVault devices associated with this site",
   "SELECT_THIS_SITE": "Select this site",
   "SYSTEM_SIZE": "System Size",
+  "SITE_RESTRICTED": "You have no permission to access the site ({0}). Please call SunPower for assistance.",
   "NO_SITES_FOUND": "Can't find {0}, make sure your site is spelled correctly.",
   "SITES_FOUND": "{0} Sites found",
   "SITE_FOUND": "1 Site found",

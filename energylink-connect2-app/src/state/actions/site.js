@@ -18,6 +18,8 @@ export const GET_SITE_INIT = createAction('GET_SITE_INIT')
 export const GET_SITE_SUCCESS = createAction('GET_SITE_SUCCESS')
 export const GET_SITE_ERROR = createAction('GET_SITE_ERROR')
 
+export const SITE_RESTRICTED = createAction('SITE_RESTRICTED')
+
 export const ON_GET_SITE_INFO = createAction('ON_GET_SITE_INFO')
 export const ON_GET_SITE_INFO_END = createAction('ON_GET_SITE_INFO_END')
 

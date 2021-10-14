@@ -19,11 +19,13 @@ import {
   CREATE_HOMEOWNER_ACCOUNT_RESET,
   ON_GET_SITE_INFO,
   ON_GET_SITE_INFO_END,
-  NO_SITE_FOUND
+  NO_SITE_FOUND,
+  SITE_RESTRICTED
 } from 'state/actions/site'
 
 const initialState = {
   isSaving: false,
+  isFetching: false,
   sites: [],
   site: null,
   error: null,
@@ -32,6 +34,7 @@ const initialState = {
   mapViewSrc: false,
   sitePVS: null,
   siteChanged: true,
+  siteRestricted: false,
   homeownerCreation: {
     complete: false,
     creating: false,
@@ -90,6 +93,7 @@ export const siteReducer = createReducer(
     }),
     [GET_SITES_INIT]: state => ({
       ...state,
+      siteRestricted: initialState.siteRestricted,
       isFetching: true,
       error: null
     }),
@@ -109,7 +113,12 @@ export const siteReducer = createReducer(
       ...initialState,
       error: payload
     }),
-
+    [SITE_RESTRICTED]: state => ({
+      ...state,
+      isFetching: initialState.isFetching,
+      sites: initialState.sites,
+      siteRestricted: true
+    }),
     [SET_SITE]: (state, site) => {
       const lastSiteKey = path(['site', 'siteKey'], state)
       const siteChanged = site.siteKey !== lastSiteKey

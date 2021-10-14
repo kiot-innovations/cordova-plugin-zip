@@ -58,7 +58,7 @@ function Home() {
   const history = useHistory()
   const [option, setOption] = useState('')
 
-  const { sites, isFetching } = useSelector(path(['site']))
+  const { sites, isFetching, siteRestricted } = useSelector(path(['site']))
 
   useEffect(() => {
     dispatch(CHECK_BLUETOOTH_STATUS_INIT())
@@ -124,12 +124,16 @@ function Home() {
             <section className="container full-height is-flex">
               <article className="auto">
                 <span className="sp sp-map has-text-white" />
-                {either(
-                  !isEmpty(option),
-                  <h1 className="mt-40 pl-20 pr-20 is-size-5">
-                    {t('NO_SITES_FOUND', option)}
-                  </h1>
-                )}
+                <h1 className="mt-40 pl-20 pr-20 is-size-5">
+                  {t(
+                    either(
+                      isEmpty(option),
+                      'SITES_HEADER',
+                      siteRestricted ? 'SITE_RESTRICTED' : 'NO_SITES_FOUND'
+                    ),
+                    option
+                  )}
+                </h1>
               </article>
             </section>,
             map(renderSiteCard(history, dispatch), sites)
