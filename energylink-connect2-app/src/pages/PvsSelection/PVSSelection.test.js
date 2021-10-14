@@ -8,6 +8,7 @@ import { rmaModes } from 'state/reducers/rma'
 
 describe('PVS Selection page', () => {
   let initialState = {
+    pvs: { serialNumber: 'ZT3333333000333' },
     site: {
       sitePVS: [
         {

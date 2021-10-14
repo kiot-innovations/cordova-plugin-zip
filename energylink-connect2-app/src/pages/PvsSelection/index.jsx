@@ -94,6 +94,9 @@ const onScanFail = err => {
 
 function PvsSelection() {
   const PVS = useSelector(getPvsSerialNumbers)
+  const { serialNumber: pvsSNWhenScanningOrManualEnter } = useSelector(
+    state => state.pvs
+  )
   const siteSNs = pluck('deviceSerialNumber', PVS)
   const { rmaMode, cloudDeviceTree } = useSelector(state => state.rma)
   const { bluetoothEnabled, bluetoothStatus, err } = useSelector(
@@ -164,6 +167,12 @@ function PvsSelection() {
   const dismissResetModal = () => {
     setShowResetModal(!showResetModal)
     setErrorCount(errorCount + 1)
+
+    if (pvsSNWhenScanningOrManualEnter) {
+      connectUsingSN(pvsSNWhenScanningOrManualEnter)
+      return
+    }
+
     editDevices()
   }
 
@@ -365,16 +374,20 @@ function PvsSelection() {
 
   const PVSSelected = useSelector(path(['rma', 'pvs']))
 
-  const editDevices = () => {
-    dispatch(SET_RMA_MODE(rmaModes.EDIT_DEVICES))
-    const ssid = generateSSID(PVSSelected)
-    const password = generatePassword(PVSSelected)
+  const connectUsingSN = pvsSerialNumber => {
+    const ssid = generateSSID(pvsSerialNumber)
+    const password = generatePassword(pvsSerialNumber)
 
     dispatch(SET_SSID(ssid))
     dispatch(SET_AP_PWD(password))
 
-    dispatch(ENABLE_ACCESS_POINT(PVSSelected))
+    dispatch(ENABLE_ACCESS_POINT(pvsSerialNumber))
     setConnecting(true)
+  }
+
+  const editDevices = () => {
+    dispatch(SET_RMA_MODE(rmaModes.EDIT_DEVICES))
+    connectUsingSN(PVSSelected)
   }
 
   const replacePVS = () => {
