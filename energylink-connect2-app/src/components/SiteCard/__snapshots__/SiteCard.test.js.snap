@@ -24,7 +24,6 @@ exports[`SiteCard component renders without crashing - Site Commissioned 1`] = `
       className="mb-10 has-text-white"
     >
       Smith, Terry
-       - Storage Site
     </h2>
     <p
       className="mb-10"
@@ -53,9 +52,6 @@ exports[`SiteCard component renders without crashing - Site Commissioned 1`] = `
       <p>
         <i
           className="sp sp-sun has-text-white"
-        />
-        <i
-          className="sp sp-battery has-text-white ml-10"
         />
       </p>
       <div
@@ -242,7 +238,6 @@ exports[`SiteCard component renders without crashing - Site Not Commissioned Don
       className="mb-10 has-text-white"
     >
       Smith, Terry
-       - Storage Site
     </h2>
     <p
       className="mb-10"
@@ -268,11 +263,9 @@ exports[`SiteCard component renders without crashing - Site Not Commissioned Don
     <article
       className="is-flex level is-fullwidth level"
     >
-      <span
-        className="has-text-primary"
-      >
-        BEGIN_SV_INSTALL
-      </span>
+      <p>
+        NO_ASSOCIATED_DEVICES
+      </p>
       <div
         className="is-flex has-text-white"
       >
@@ -306,13 +299,15 @@ exports[`SiteCard component renders without crashing - Site Not Commissioned Don
       <p
         className="mb-15"
       >
-        NO_SV_DEVICES
+        NO_ASSOCIATED_DEVICES
       </p>
       <Link
         to="/bill-of-materials"
       >
-        <span>
-          BEGIN_SV_INSTALL
+        <span
+          role="button"
+        >
+          BEGIN_INSTALL
         </span>
       </Link>
     </article>

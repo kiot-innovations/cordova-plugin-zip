@@ -14,7 +14,9 @@ export const SITE_STATES = {
   IS_COMMISSIONED: 'IS_COMMISSIONED'
 }
 
-const hasStorage = siteRaw => siteRaw.strg_sys_sz_kwh > 0
+const hasStorage = siteRaw =>
+  siteRaw.strg_sys_sz_kwh > 0 || siteRaw.comm_strg_sys_sz_kwh > 0
+
 const isCommissioned = siteRaw => siteRaw.pvs_count > 0
 const isPVS = allPass([startsWith('ZT'), compose(not, includes('dcm'))])
 const getPVSList = compose(filter(isPVS), split(','))
