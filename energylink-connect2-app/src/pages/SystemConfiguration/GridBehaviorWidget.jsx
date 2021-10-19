@@ -64,9 +64,8 @@ function GridBehaviorWidget() {
     fetchingGridBehavior
   } = useSelector(state => state.systemConfiguration.gridBehavior)
   const { site } = useSelector(state => state.site)
-  const { status } = useSelector(state => state.firmwareUpdate)
-
   const { model } = useSelector(state => state.pvs)
+  const { status } = useSelector(state => state.firmwareUpdate)
 
   const [selfSupplyOptions, setSelfSupplyOptions] = useState(
     getExportLimitOptions(
@@ -156,10 +155,25 @@ function GridBehaviorWidget() {
     dispatch(SET_GRID_VOLTAGE(value.value))
   }
 
-  const gridVoltageOptions = [
+  useEffect(() => {
+    if (model === 'PVS5') {
+      dispatch(SET_GRID_VOLTAGE(120))
+    }
+  }, [dispatch, model])
+
+  let gridVoltageOptions = [
     { label: '208', value: 208 },
     { label: '240', value: 240 }
   ]
+  let gridVoltageDefaultValue = null
+  if (model === 'PVS5') {
+    const gridVoltageOption = {
+      label: '120 (L-N)',
+      value: 120
+    }
+    gridVoltageOptions = [gridVoltageOption]
+    gridVoltageDefaultValue = gridVoltageOption
+  }
 
   const findVoltageByValue = findByPathValue(gridVoltageOptions, ['value'])
   const findExportLimitValue = findByPathValue(selfSupplyOptions, ['value'])
@@ -244,8 +258,13 @@ function GridBehaviorWidget() {
                 <SelectField
                   isSearchable={false}
                   useDefaultDropDown
+                  disabled={gridVoltageOptions.length === 1}
                   options={gridVoltageOptions}
-                  value={findVoltageByValue(selectedOptions.gridVoltage)}
+                  value={
+                    gridVoltageDefaultValue
+                      ? gridVoltageDefaultValue
+                      : findVoltageByValue(selectedOptions.gridVoltage)
+                  }
                   onSelect={setGridVoltage}
                 />
                 <p className="control">volts</p>

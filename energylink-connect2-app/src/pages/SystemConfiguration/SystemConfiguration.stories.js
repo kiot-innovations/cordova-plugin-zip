@@ -2,6 +2,7 @@ import { storiesOf } from '@storybook/react'
 import React from 'react'
 import { Provider } from 'react-redux'
 
+import GridBehaviorWidget from './GridBehaviorWidget'
 import SC from './InterfacesWidget'
 import PanelLayoutWidget from './panelLayoutWidget'
 import RSEWidget from './RSEWidget'
@@ -17,8 +18,48 @@ storiesOf('System Configuration Page', module).add('InterfacesWidget', () => (
 ))
 
 storiesOf('System Configuration Page', module)
-  .add('panelLayoutWidget no data', () => {
+  .add('GridBehaviorWidget PVS5', () => {
     const state = {
+      pvs: {
+        model: 'PVS5'
+      }
+    }
+
+    const { store } = configureStore(state)
+
+    return (
+      <div id="modal-root" className="full-min-height pt-20">
+        <Provider store={store}>
+          <GridBehaviorWidget />
+        </Provider>
+      </div>
+    )
+  })
+  .add('GridBehaviorWidget PVS6', () => {
+    const state = {
+      pvs: {
+        model: 'PVS6'
+      }
+    }
+
+    const { store } = configureStore(state)
+
+    return (
+      <div id="modal-root" className="full-min-height pt-20">
+        <Provider store={store}>
+          <GridBehaviorWidget />
+        </Provider>
+      </div>
+    )
+  })
+
+storiesOf('System Configuration Page', module).add(
+  'panelLayoutWidget no data',
+  () => {
+    const state = {
+      pvs: {
+        model: 'PVS5'
+      },
       pltWizard: {
         loading: false,
         panels: []

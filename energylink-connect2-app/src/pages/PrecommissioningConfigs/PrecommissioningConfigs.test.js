@@ -8,7 +8,11 @@ import { fwupStatus } from 'state/reducers/firmware-update'
 import { rmaModes } from 'state/reducers/rma'
 
 describe('Precommissioning configurations page', () => {
-  let mockState = {
+  let mockStatePVS6 = {
+    pvs: {
+      model: 'PVS6',
+      serialNumbers: []
+    },
     global: {
       canAccessScandit: true
     },
@@ -63,13 +67,13 @@ describe('Precommissioning configurations page', () => {
         siteKey: ''
       }
     },
-    pvs: {
-      serialNumbers: []
-    },
     firmwareUpdate: {
       status: fwupStatus.GRID_PROFILES_UPLOADED
     }
   }
+
+  let mockStatePVS5 = JSON.parse(JSON.stringify(mockStatePVS6))
+  mockStatePVS5.pvs.model = 'PVS5'
 
   beforeEach(() => {
     jest
@@ -79,15 +83,22 @@ describe('Precommissioning configurations page', () => {
       )
   })
 
-  test('renders correctly', () => {
+  test('PVS6 renders correctly', () => {
     const { component } = mountWithProvider(<PrecommissioningConfigs />)(
-      mockState
+      mockStatePVS6
+    )
+    expect(component).toMatchSnapshot()
+  })
+
+  test('PVS5 renders correctly', () => {
+    const { component } = mountWithProvider(<PrecommissioningConfigs />)(
+      mockStatePVS5
     )
     expect(component).toMatchSnapshot()
   })
 
   test('banner shows up if meters are not present in store', () => {
-    const baseState = clone(mockState)
+    const baseState = clone(mockStatePVS5)
     baseState.devices.progress = {
       progress: [
         {
