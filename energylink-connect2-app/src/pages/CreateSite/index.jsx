@@ -218,6 +218,7 @@ function CreateSite() {
                   type="text"
                   autoComplete="apartment"
                   className="mt-5"
+                  disabled={true}
                 />
               </article>
 
@@ -231,6 +232,7 @@ function CreateSite() {
                   type="text"
                   autoComplete="city"
                   className="mt-5"
+                  disabled={true}
                 />
               </article>
             </div>
@@ -246,6 +248,7 @@ function CreateSite() {
                   type="text"
                   autoComplete="state"
                   className="mt-5"
+                  disabled={true}
                 />
               </article>
 
@@ -259,6 +262,7 @@ function CreateSite() {
                   type="text"
                   autoComplete="postal code"
                   className="mt-5"
+                  disabled={true}
                 />
               </article>
             </div>
