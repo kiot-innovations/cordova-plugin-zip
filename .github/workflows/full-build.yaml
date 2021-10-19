@@ -118,47 +118,6 @@ jobs:
          FASTLANE_PASSWORD: ${{ secrets.FASTLANE_PASSWORD }}
          MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
 
-      #
-      # Slack Notification (run once, only for prod environment)
-      #
-      - name: Calculate GIT branch name
-        run: |
-          export BRANCH_NAME=${GITHUB_REF#refs/heads/}
-          export TAG=${BRANCH_NAME#refs/tags/}
-          echo "BRANCH_NAME=${BRANCH_NAME}" >> $GITHUB_ENV
-          echo "TAG=${TAG}" >> $GITHUB_ENV
-      - name: Send slack notification
-        uses: hbfernandes/slack-action@1.0
-        if: env.APP_ENV == 'prod'
-
-        env:
-          SLACK_TOKEN: ${{ secrets.SLACK_TOKEN }}
-        with:
-          args: |
-            {
-              "channel": "cm2-builds",
-              "text": "New release is available for iOS",
-              "as_user": true,
-              "attachments": [{
-                "color": "good",
-                "fields": [{
-                    "title": "Revision",
-                    "value": "<https://sunpowercorp.atlassian.net/issues/?jql=labels%20%3D%20%22${{ env.TAG }}%22|${{ env.TAG }}>",
-                    "short": true
-                  },
-                  {
-                    "title": "Build Artifacts",
-                    "value": "<https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}|Open>",
-                    "short": true
-                  },
-                  {
-                    "title": "Branch",
-                    "value": "<https://github.com/SunPower/energylink-connect2/tree/${{ env.BRANCH_NAME }}|${{ env.BRANCH_NAME }}>",
-                    "short": true
-                  }
-                ]
-              }]
-            }
   android-build:
     # Run Quick Builds on Ubuntu 18.04 (Linux) instead of MacOS
     # because MacOS builds are 10x more expensive (minute multiplier is 10)
@@ -259,44 +218,3 @@ jobs:
       - name: Upload build to Google Play store
         run: bundle exec fastlane android release
         if: startsWith(github.ref, 'refs/tags/')
-
-      #
-      # Slack Notification
-      #
-      - name: Calculate GIT branch name
-        run: |
-          export BRANCH_NAME=${GITHUB_REF#refs/heads/}
-          export TAG=${BRANCH_NAME#refs/tags/}
-          echo "BRANCH_NAME=${BRANCH_NAME}" >> $GITHUB_ENV
-          echo "TAG=${TAG}" >> $GITHUB_ENV
-      - name: Send slack notification
-        uses: hbfernandes/slack-action@1.0
-        if: env.APP_ENV == 'prod'
-        env:
-          SLACK_TOKEN: ${{ secrets.SLACK_TOKEN }}
-        with:
-          args: |
-            {
-              "channel": "cm2-builds",
-              "text": "New release is available in the Android Play Store",
-              "as_user": true,
-              "attachments": [{
-                "color": "good",
-                "fields": [{
-                    "title": "Revision",
-                    "value": "<https://sunpowercorp.atlassian.net/issues/?jql=labels%20%3D%20%22${{ env.TAG }}%22|${{ env.TAG }}>",
-                    "short": true
-                  },
-                  {
-                    "title": "Build Artifacts",
-                    "value": "<https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}|Open>",
-                    "short": true
-                  },
-                  {
-                    "title": "Branch",
-                    "value": "<https://github.com/SunPower/energylink-connect2/tree/${{ env.BRANCH_NAME }}|${{ env.BRANCH_NAME }}>",
-                    "short": true
-                  }
-                ]
-              }]
-            }
