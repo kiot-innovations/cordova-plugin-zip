@@ -184,6 +184,7 @@ const renderRSEDescription = (powerProduction, t) =>
         <li>{t('RSE_OFF_3')}</li>
         <li>{t('RSE_OFF_4')}</li>
       </ul>
+      <p className="mt-10">{t('RSE_FOOTER')}</p>
     </article>,
     <p className="text-center">{t('RSE_ON')}</p>
   )
