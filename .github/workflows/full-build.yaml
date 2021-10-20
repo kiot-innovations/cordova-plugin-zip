@@ -99,6 +99,13 @@ jobs:
       #
       # iOS Application
       #
+      - name: Add platform
+        run: |
+          npm i -g cordova@^9.0.0
+          git config --global url."https://${{ secrets.ACCESS_TOKEN }}@github.com/".insteadOf ssh://git@github.com/
+          cordova platform add ios
+          npx sentry-wizard --quiet true --integration cordova --platform ios --skip-connect true --debug true
+
       - name: Run Cocoapods Repo Update
         run: pod repo update
 
