@@ -209,7 +209,7 @@ Object {
               error={null}
               expected={2}
               okMICount={2}
-              retryMiDiscovery={[Function]}
+              retryDiscovery={[Function]}
             >
               <span
                 className="has-text-weight-bold mb-20"

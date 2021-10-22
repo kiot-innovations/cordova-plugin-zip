@@ -258,7 +258,7 @@ function Devices() {
         claimProgress={claimProgress}
         discoveryComplete={discoveryComplete}
         cleanAndGoBack={cleanAndGoBack}
-        retryMiDiscovery={retryMiDiscovery}
+        retryDiscovery={retryMiDiscovery}
         areOnboardMetersMissing={areOnboardMetersMissing}
       />
     </div>
