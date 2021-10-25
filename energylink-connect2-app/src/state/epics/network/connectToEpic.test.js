@@ -1,11 +1,6 @@
 import { of } from 'rxjs'
 
-import {
-  PVS_CONNECTION_INIT,
-  WAIT_FOR_SWAGGER,
-  SET_CONNECTION_STATUS
-} from 'state/actions/network'
-import { appConnectionStatus } from 'state/reducers/network'
+import { PVS_CONNECTION_INIT, WAIT_FOR_SWAGGER } from 'state/actions/network'
 
 describe('Connect to epic', () => {
   let connectToEpic
@@ -41,6 +36,7 @@ describe('Connect to epic', () => {
       done()
     })
   })
+
   it('should wait for swagger file if connection failed', done => {
     global.device = {
       platform: 'android'
@@ -48,11 +44,14 @@ describe('Connect to epic', () => {
     const failFn = jest
       .fn()
       .mockRejectedValueOnce('ERROR_REQUESTED_NETWORK_UNAVAILABLE')
+
     global.WifiWizard2 = {
+      ...global.WifiWizard2,
       connect: failFn
     }
+
     const init = PVS_CONNECTION_INIT({ ssid: 'sunpower', password: '123456' })
-    const success = SET_CONNECTION_STATUS(appConnectionStatus.NOT_CONNECTED_PVS)
+    const success = WAIT_FOR_SWAGGER('ERROR_REQUESTED_NETWORK_UNAVAILABLE')
     const action$ = of(init)
     const epic$ = connectToEpic(action$)
     epic$.subscribe(action => {

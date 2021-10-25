@@ -36,9 +36,6 @@
         <hook src="hooks/beforePrepare.js" type="before_prepare" />
         <hook src="extend_build_phase.js" type="after_platform_add" />
         <preference name="WKWebViewOnly" value="true" />
-        <custom-config-file parent="NSBluetoothAlwaysUsageDescription" platform="ios" target="*-Info.plist">
-            <string>The app uses bluetooth to connect to PVS WiFi. Pro Connect needs to connect to your PVS to commission the devices.</string>
-        </custom-config-file>
         <feature name="CDVWKWebViewEngine">
             <param name="ios-package" value="CDVWKWebViewEngine" />
         </feature>
@@ -115,6 +112,7 @@
     <plugin name="cordova-plugin-wifiwizard2" spec="git+ssh://git@github.com/SunPower/WifiWizard2-private.git" />
     <plugin name="cordova-plugin-sunpowerble" spec="git+ssh://git@github.com/SunPower/cordova-plugin-sunpowerble.git" />
     <plugin name="cordova-plugin-ble-central">
+        <variable name="BLUETOOTH_USAGE_DESCRIPTION" value="The app uses bluetooth to connect to PVS WiFi. Pro Connect needs to connect to your PVS to commission the devices." />
         <variable name="IOS_INIT_ON_LOAD" value="true" />
     </plugin>
 </widget>

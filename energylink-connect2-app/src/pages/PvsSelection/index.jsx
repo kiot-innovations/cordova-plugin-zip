@@ -151,6 +151,7 @@ function PvsSelection() {
   }
 
   const manualConnect = () => {
+    setConnecting(true)
     showManualEntry(false)
     const ssid = generateSSID(serialNumber)
     const password = generatePassword(serialNumber)
@@ -553,7 +554,7 @@ function PvsSelection() {
 
       <SwipeableSheet
         onChange={dismissModal}
-        open={Boolean(err) && errorCount > 1}
+        open={Boolean(err) && (!isIos() || errorCount > 1)}
       >
         <div className="tile is-vertical">
           {either(
