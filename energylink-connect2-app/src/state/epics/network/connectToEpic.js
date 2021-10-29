@@ -8,18 +8,16 @@ import {
   propEq,
   test,
   always,
-  path,
-  equals
+  path
 } from 'ramda'
 import { ofType } from 'redux-observable'
-import { EMPTY, from, Observable, of, timer } from 'rxjs'
+import { EMPTY, from, of, timer } from 'rxjs'
 import {
   catchError,
   exhaustMap,
   map,
   takeUntil,
-  delayWhen,
-  timeout
+  delayWhen
 } from 'rxjs/operators'
 import * as Sentry from 'sentry-cordova'
 
@@ -48,30 +46,20 @@ const isInterrupted = test(/INTERPUT_EXCEPT_WHILE_CONNECTING/)
 const isWIFIDisabled = test(/WIFI_NOT_ENABLED/)
 const isWaitingForConnection = test(/WAITING_FOR_CONNECTION/)
 
-const connectToPVS = (ssid, password) =>
-  new Observable(async observer => {
-    try {
-      if (isIos()) {
-        await window.WifiWizard2.iOSConnectNetwork(ssid, password)
-      } else {
-        //looks like wifiwizard works like this in andrdoid
-        // I don't know why (ET)
-        const current = await window.WifiWizard2.getConnectedSSID()
-        if (equals(current, ssid)) {
-          observer.next()
-          observer.complete()
-          return
-        }
-        await window.WifiWizard2.connect(ssid, false, password, WPA, false)
-      }
-      observer.next()
-      observer.complete()
-    } catch (err) {
-      const normalizedError = err || 'UNKNOWN_ERROR'
-      observer.next(normalizedError)
-      observer.complete()
+const connectToPVS = async (ssid, password) => {
+  try {
+    if (isIos()) {
+      await window.WifiWizard2.iOSConnectNetwork(ssid, password)
+    } else {
+      //looks like wifiwizard works like this in android
+      // I don't know why (ET)
+      await window.WifiWizard2.connect(ssid, false, password, WPA, false)
     }
-  })
+  } catch (err) {
+    const normalizedError = err || 'UNKNOWN_ERROR'
+    throw new Error(normalizedError)
+  }
+}
 
 const connectToEpic = (action$, state$) =>
   action$.pipe(
@@ -85,11 +73,9 @@ const connectToEpic = (action$, state$) =>
         return of(PVS_CONNECTION_ERROR(t('PVS_CONNECTION_EMPTY_SSID')))
       }
 
-      return connectToPVS(ssid, password).pipe(
-        timeout(60000),
+      return from(connectToPVS(ssid, password)).pipe(
         map(WAIT_FOR_SWAGGER),
         catchError(err => {
-          console.error({ err })
           const { message } = err
           const isTimeoutAndNotUpgrading =
             isTimeout(message) &&
@@ -103,6 +89,7 @@ const connectToEpic = (action$, state$) =>
             isNetworkUnavailable(message) ||
             isTimeoutAndNotUpgrading
           ) {
+            console.error(message)
             return of(
               SET_CONNECTION_STATUS(appConnectionStatus.NOT_CONNECTED_PVS),
               PVS_CONNECTION_ERROR(t('PVS_CONN_ERROR'))
@@ -123,7 +110,7 @@ const checkForConnection = async () => {
   if (!isConnected) throw new Error('WAITING_FOR_CONNECTION')
 }
 const addDelayForiOS = () => {
-  if (isIos()) return timer(3000)
+  if (isIos()) return timer(10000)
   return timer(0)
 }
 export const waitForSwaggerEpic = (action$, state$) => {

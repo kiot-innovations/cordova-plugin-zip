@@ -41,9 +41,7 @@ describe('Connect to epic', () => {
     global.device = {
       platform: 'android'
     }
-    const failFn = jest
-      .fn()
-      .mockRejectedValueOnce('ERROR_REQUESTED_NETWORK_UNAVAILABLE')
+    const failFn = jest.fn().mockRejectedValueOnce('Not connected to PVS AP')
 
     global.WifiWizard2 = {
       ...global.WifiWizard2,
@@ -51,7 +49,7 @@ describe('Connect to epic', () => {
     }
 
     const init = PVS_CONNECTION_INIT({ ssid: 'sunpower', password: '123456' })
-    const success = WAIT_FOR_SWAGGER('ERROR_REQUESTED_NETWORK_UNAVAILABLE')
+    const success = WAIT_FOR_SWAGGER()
     const action$ = of(init)
     const epic$ = connectToEpic(action$)
     epic$.subscribe(action => {
