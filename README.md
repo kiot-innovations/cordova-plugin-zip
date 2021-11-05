@@ -25,6 +25,11 @@ Get the password for doing this from anyone on the dev team
 ```
 cd ~/sunpower/energylink-connect2/energylink-connect2-app;
 
+# You need these for building locally
+openssl aes-256-cbc -d -a -salt -in .env.enc.test -out .env.develop;
+openssl aes-256-cbc -d -a -salt -in .env.enc.test -out .env.production;
+
+# You probably don't need these locally
 openssl aes-256-cbc -d -a -salt -in .env.enc.prod -out .env.prod;
 openssl aes-256-cbc -d -a -salt -in .env.enc.test -out .env.test;
 openssl aes-256-cbc -d -a -salt -in .env.enc.training -out .env.training;
