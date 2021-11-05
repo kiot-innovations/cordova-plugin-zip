@@ -53,9 +53,8 @@ storiesOf('System Configuration Page', module)
     )
   })
 
-storiesOf('System Configuration Page', module).add(
-  'panelLayoutWidget no data',
-  () => {
+storiesOf('System Configuration Page', module)
+  .add('panelLayoutWidget no data', () => {
     const state = {
       pvs: {
         model: 'PVS5'

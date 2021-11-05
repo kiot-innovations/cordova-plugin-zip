@@ -47,8 +47,10 @@ export default () => {
   const [livePowerInfo, showLivePowerInfo] = useState(false)
   const { liveData = {} } = useSelector(state => state.energyLiveData)
   const { miData = [] } = useSelector(state => state.pvs)
+  const pvsModel = useSelector(pathOr('', ['pvs', 'model']))
+
   const { statusReport, statusReportError } = useSelector(
-    state => state.storage
+    pathOr({}, ['storage'])
   )
   const { found = [] } = useSelector(prop('devices'))
   const essState = pathOr({}, ['ess_report', 'ess_state'])(statusReport)
@@ -173,22 +175,26 @@ export default () => {
           </div>
         </div>
         {either(
-          prodMeterConfig === 'NOT_USED',
-          <div className="no-meters-warning has-text-weight-bold has-text-centered is-flex pt-20 pb-20">
-            <span className="has-text-white is-size-5">
-              {t('LIVE_DATA_UNAVAILABLE')}
-            </span>
-            <span>{t('NO_METER_CONFIG')}</span>
-          </div>,
-          <RightNow
-            solarValue={powerValues.solar}
-            gridValue={powerValues.grid}
-            hasStorage={hasStorage}
-            storageValue={powerValues.storage}
-            homeValue={powerValues.home}
-            batteryLevel={powerValues.soc}
-            solarAvailable={data.isSolarAvailable}
-          />
+          pvsModel === 'PVS5',
+          t('LIVE_DATA_UNAVAILABLE_FOR_PVS5'),
+          either(
+            prodMeterConfig === 'NOT_USED',
+            <div className="no-meters-warning has-text-weight-bold has-text-centered is-flex pt-20 pb-20">
+              <span className="has-text-white is-size-5">
+                {t('LIVE_DATA_UNAVAILABLE')}
+              </span>
+              <span>{t('NO_METER_CONFIG')}</span>
+            </div>,
+            <RightNow
+              solarValue={powerValues.solar}
+              gridValue={powerValues.grid}
+              hasStorage={hasStorage}
+              storageValue={powerValues.storage}
+              homeValue={powerValues.home}
+              batteryLevel={powerValues.soc}
+              solarAvailable={data.isSolarAvailable}
+            />
+          )
         )}
       </section>
       <div className="separator" />

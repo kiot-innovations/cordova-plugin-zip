@@ -280,6 +280,11 @@ const withMeters = {
     }
   }
 }
+const withPvs5 = {
+  pvs: {
+    model: 'PVS5'
+  }
+}
 const onlyMicroInverters = {
   storage: {
     statusReportError: 'Error Here'
@@ -458,6 +463,17 @@ storiesOf('Data', module)
   })
   .add('With only Micro Inverters', () => {
     const { store } = configureStore(onlyMicroInverters)
+
+    return (
+      <div className="full-min-height pt-20 pb-20 pl-10 pr-10">
+        <Provider store={store}>
+          <Data />
+        </Provider>
+      </div>
+    )
+  })
+  .add('With PVS5', () => {
+    const { store } = configureStore(withPvs5)
 
     return (
       <div className="full-min-height pt-20 pb-20 pl-10 pr-10">
