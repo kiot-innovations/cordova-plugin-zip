@@ -85,21 +85,24 @@ Build iOS for development
 cd ~/sunpower/energylink-connect2/
 cordova platform add android;
 cordova platform add ios;
+```
 
 # For iOS only
 
 ```
-
 cd ~/sunpower/energylink-connect2;
 rm -rf platforms plugins node_modules && npm i;
 cd ~/sunpower/energylink-connect2/energylink-connect2-app;
 rm -rf node_modules && npm i;
 cordova platform add ios;
 npm run build && cordova prepare ios;
+```
 
 # Use this if you want live reload
 
+```
 npm run dev:ios; cordova prepare ios;
+```
 
 # You only have to do this once
 
