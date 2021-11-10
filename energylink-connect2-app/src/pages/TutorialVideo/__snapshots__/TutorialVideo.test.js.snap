@@ -1,0 +1,95 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TutorialVideo component renders correctly 1`] = `
+<BrowserRouter
+  keyLength={0}
+>
+  <Router
+    history={
+      Object {
+        "action": "POP",
+        "block": [Function],
+        "createHref": [Function],
+        "go": [Function],
+        "goBack": [Function],
+        "goForward": [Function],
+        "length": 1,
+        "listen": [Function],
+        "location": Object {
+          "hash": "",
+          "pathname": "/",
+          "search": "",
+          "state": undefined,
+        },
+        "push": [Function],
+        "replace": [Function],
+      }
+    }
+  >
+    <Provider
+      store={
+        Object {
+          "clearActions": [Function],
+          "dispatch": [Function],
+          "getActions": [Function],
+          "getState": [Function],
+          "replaceReducer": [Function],
+          "subscribe": [Function],
+        }
+      }
+    >
+      <TutorialVideo>
+        <section
+          className="is-flex tile is-vertical section pt-0 fill-parent"
+        >
+          <div
+            className="header mb-15"
+          >
+            <span
+              className="sp-chevron-left has-text-primary is-size-4 go-back"
+              onClick={[Function]}
+            />
+            <span
+              className="is-uppercase"
+              role="button"
+            >
+              Downloading firmware
+            </span>
+          </div>
+          <NoInternetView
+            goBack={[Function]}
+          >
+            <div>
+              <div
+                className="is-flex flex-column has-text-centered mb-40"
+              >
+                <span
+                  className="sp-no-connection is-size-1 mb-25 mt-30"
+                />
+                <span
+                  className="has-text-weight-bold is mb-20"
+                >
+                  PVS_NO_INTERNET_INTERFACE
+                </span>
+                <span>
+                  NO_CONNECTION_TUTORIALS
+                </span>
+              </div>
+              <div
+                className="has-text-centered"
+              >
+                <button
+                  className="button is-primary is-uppercase is-outlined"
+                  onClick={[Function]}
+                >
+                  BACK
+                </button>
+              </div>
+            </div>
+          </NoInternetView>
+        </section>
+      </TutorialVideo>
+    </Provider>
+  </Router>
+</BrowserRouter>
+`;

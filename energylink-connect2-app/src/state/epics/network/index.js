@@ -1,3 +1,4 @@
+import { checkInternetConnection } from './checkInternetConnectionEpic'
 import { connectionStateListenerEpic } from './connectionStateListener'
 import connectToEpic, {
   waitForSwaggerEpic,
@@ -15,5 +16,6 @@ export default [
   pvsTimeoutForConnectionEpic,
   statusWifiEpic,
   statusWifiRetryEpic,
-  connectionStateListenerEpic
+  connectionStateListenerEpic,
+  checkInternetConnection
 ]

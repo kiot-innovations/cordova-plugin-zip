@@ -784,5 +784,7 @@
   "STORAGE_SYSTEM_SIZE": "Storage System Size",
   "PVS_COUNT": "PVS Count",
   "REPLACE_PVS_WARNING": "Do not replace the PVS if you’re adding a Hub+ to the existing system.",
-  "RSE_FOOTER": "We recommend using this configuration to turn OFF the system if it does not have PTO from the utility."
+  "RSE_FOOTER": "We recommend using this configuration to turn OFF the system if it does not have PTO from the utility.",
+  "TUTORIAL_VIDEOS": "Tutorial Videos",
+  "NO_CONNECTION_TUTORIALS": "Please make sure you’re connected to a PVS or a wifi network with internet access, or use mobile data to access online support videos."
 }

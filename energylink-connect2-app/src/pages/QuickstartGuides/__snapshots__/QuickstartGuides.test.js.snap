@@ -1,0 +1,28 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`QuickstartGuides component renders correctly 1`] = `
+<section
+  className="is-flex tile is-vertical section pt-0 fill-parent"
+>
+  <div
+    className="header mb-15"
+  >
+    <span
+      className="sp-chevron-left has-text-primary is-size-4 go-back"
+      onClick={[Function]}
+    />
+    <span
+      className="is-uppercase"
+      role="button"
+    >
+      QUICKSTART_GUIDES
+    </span>
+  </div>
+  <ButtonLink
+    icon="sp-download"
+    onClick={[Function]}
+    size={5}
+    title="Equinox AC Modules"
+  />
+</section>
+`;

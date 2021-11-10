@@ -29,6 +29,7 @@ import FirmwareDownload from 'pages/Firmwares'
 import GetAssistance from 'pages/GetAssistance'
 import Home from 'pages/Home'
 import InstallSuccessful from 'pages/InstallSuccess'
+import KnowledgeBase from 'pages/KnowledgeBase'
 import LegacyDiscovery from 'pages/LegacyDiscovery'
 import LegacyDiscoverySelector from 'pages/LegacyDiscoverySelector'
 import Login from 'pages/Login'
@@ -43,6 +44,7 @@ import PrecommissioningConfigs from 'pages/PrecommissioningConfigs'
 import PvsConnectionSuccessful from 'pages/PvsConnectionSuccessful'
 import PVSProvideInternet from 'pages/PVSProvideInternet'
 import PvsSelection from 'pages/PvsSelection'
+import QuickstartGuides from 'pages/QuickstartGuides'
 import RMADevices from 'pages/RMADevices'
 import RMAInventory from 'pages/RMAInventory'
 import RMAMiDiscovery from 'pages/RMAMiDiscovery'
@@ -54,6 +56,8 @@ import SNList from 'pages/SNList'
 import StoragePrediscovery from 'pages/StoragePrediscovery'
 import StringInverters from 'pages/StringInverters'
 import SystemConfiguration from 'pages/SystemConfiguration'
+import TutorialVideo from 'pages/TutorialVideo'
+import TutorialVideosList from 'pages/TutorialVideosList'
 import UpdateScreen from 'pages/UpdateScreen'
 import { withTracker } from 'shared/ga'
 import { isDebug } from 'shared/utils'
@@ -111,6 +115,10 @@ const mapComponents = {
   [paths.PROTECTED.NEARBY_PVS.path]: NearbyPVS,
   [paths.PROTECTED.SETTINGS.path]: Settings,
   [paths.PROTECTED.LEGACY_DISCOVERY_SELECTOR.path]: LegacyDiscoverySelector,
+  [paths.PROTECTED.KNOWLEDGE_BASE.path]: KnowledgeBase,
+  [paths.PROTECTED.TUTORIAL_VIDEOS_LIST.path]: TutorialVideosList,
+  [paths.PROTECTED.TUTORIAL_VIDEO.path]: TutorialVideo,
+  [paths.PROTECTED.QUICKSTART_GUIDES.path]: QuickstartGuides,
   [paths.UNPROTECTED.ANALYTICS_CONSENT.path]: AnalyticsConsent
 }
 

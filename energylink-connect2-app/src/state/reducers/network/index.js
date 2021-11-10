@@ -33,7 +33,8 @@ import {
   SET_AP_PWD,
   SET_SSID,
   SET_CONNECTION_STATUS,
-  BLE_GET_DEVICES_ENDED
+  BLE_GET_DEVICES_ENDED,
+  SET_INTERNET_CONNECTION
 } from 'state/actions/network'
 
 export const appConnectionStatus = {
@@ -63,7 +64,8 @@ const initialState = {
   bleSearching: false,
   bleError: '',
   nearbyDevices: [],
-  connectionStatus: appConnectionStatus.NOT_CONNECTED
+  connectionStatus: appConnectionStatus.NOT_CONNECTED,
+  hasInternetConnection: true
 }
 
 export const BLESTATUS = {
@@ -254,6 +256,10 @@ export const networkReducer = createReducer(
     [SET_CONNECTION_STATUS]: (state, payload) => ({
       ...state,
       connectionStatus: payload
+    }),
+    [SET_INTERNET_CONNECTION]: (state, payload) => ({
+      ...state,
+      hasInternetConnection: payload
     })
   },
   initialState

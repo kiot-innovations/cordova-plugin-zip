@@ -120,16 +120,16 @@ exports[`Header Component Renders correctly 1`] = `
                     "text": "FIRMWARE_RELEASE_NOTES",
                   },
                   Object {
-                    "component": [Function],
                     "display": true,
-                    "icon": "sp-gear",
-                    "text": "SETTINGS",
+                    "icon": "sp-guide",
+                    "text": "KNOWLEDGE_BASE",
+                    "to": "/knowledge-base",
                   },
                   Object {
                     "component": [Function],
                     "display": true,
-                    "icon": "sp-guide",
-                    "text": "KNOWLEDGE_BASE",
+                    "icon": "sp-gear",
+                    "text": "SETTINGS",
                   },
                 ]
               }
@@ -238,30 +238,6 @@ exports[`Header Component Renders correctly 1`] = `
                   </div>
                   <div
                     className="mb-15 is-flex tile-item"
-                    key="SETTINGS"
-                  >
-                    <Component
-                      icon="sp-gear"
-                      onClick={[Function]}
-                      text="SETTINGS"
-                    >
-                      <button
-                        className="tilex tile has-text-white is-flex is-vertical space-around"
-                        onClick={[Function]}
-                      >
-                        <div
-                          className="sp is-size-1 sp-gear"
-                        />
-                        <div
-                          className="text is-size-5 pt-10 pl-10 pr-10 pb-10"
-                        >
-                          SETTINGS
-                        </div>
-                      </button>
-                    </Component>
-                  </div>
-                  <div
-                    className="mb-15 is-flex tile-item"
                     key="KNOWLEDGE_BASE"
                   >
                     <Component
@@ -280,6 +256,30 @@ exports[`Header Component Renders correctly 1`] = `
                           className="text is-size-5 pt-10 pl-10 pr-10 pb-10"
                         >
                           KNOWLEDGE_BASE
+                        </div>
+                      </button>
+                    </Component>
+                  </div>
+                  <div
+                    className="mb-15 is-flex tile-item"
+                    key="SETTINGS"
+                  >
+                    <Component
+                      icon="sp-gear"
+                      onClick={[Function]}
+                      text="SETTINGS"
+                    >
+                      <button
+                        className="tilex tile has-text-white is-flex is-vertical space-around"
+                        onClick={[Function]}
+                      >
+                        <div
+                          className="sp is-size-1 sp-gear"
+                        />
+                        <div
+                          className="text is-size-5 pt-10 pl-10 pr-10 pb-10"
+                        >
+                          SETTINGS
                         </div>
                       </button>
                     </Component>
@@ -402,16 +402,16 @@ exports[`Header Component Renders text instead of logo 1`] = `
                   "text": "FIRMWARE_RELEASE_NOTES",
                 },
                 Object {
-                  "component": [Function],
                   "display": true,
-                  "icon": "sp-gear",
-                  "text": "SETTINGS",
+                  "icon": "sp-guide",
+                  "text": "KNOWLEDGE_BASE",
+                  "to": "/knowledge-base",
                 },
                 Object {
                   "component": [Function],
                   "display": true,
-                  "icon": "sp-guide",
-                  "text": "KNOWLEDGE_BASE",
+                  "icon": "sp-gear",
+                  "text": "SETTINGS",
                 },
               ]
             }
@@ -520,30 +520,6 @@ exports[`Header Component Renders text instead of logo 1`] = `
                 </div>
                 <div
                   className="mb-15 is-flex tile-item"
-                  key="SETTINGS"
-                >
-                  <Component
-                    icon="sp-gear"
-                    onClick={[Function]}
-                    text="SETTINGS"
-                  >
-                    <button
-                      className="tilex tile has-text-white is-flex is-vertical space-around"
-                      onClick={[Function]}
-                    >
-                      <div
-                        className="sp is-size-1 sp-gear"
-                      />
-                      <div
-                        className="text is-size-5 pt-10 pl-10 pr-10 pb-10"
-                      >
-                        SETTINGS
-                      </div>
-                    </button>
-                  </Component>
-                </div>
-                <div
-                  className="mb-15 is-flex tile-item"
                   key="KNOWLEDGE_BASE"
                 >
                   <Component
@@ -562,6 +538,30 @@ exports[`Header Component Renders text instead of logo 1`] = `
                         className="text is-size-5 pt-10 pl-10 pr-10 pb-10"
                       >
                         KNOWLEDGE_BASE
+                      </div>
+                    </button>
+                  </Component>
+                </div>
+                <div
+                  className="mb-15 is-flex tile-item"
+                  key="SETTINGS"
+                >
+                  <Component
+                    icon="sp-gear"
+                    onClick={[Function]}
+                    text="SETTINGS"
+                  >
+                    <button
+                      className="tilex tile has-text-white is-flex is-vertical space-around"
+                      onClick={[Function]}
+                    >
+                      <div
+                        className="sp is-size-1 sp-gear"
+                      />
+                      <div
+                        className="text is-size-5 pt-10 pl-10 pr-10 pb-10"
+                      >
+                        SETTINGS
                       </div>
                     </button>
                   </Component>

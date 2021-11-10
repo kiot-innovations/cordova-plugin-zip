@@ -1,20 +1,21 @@
 import React from 'react'
+import * as reactRedux from 'react-redux'
 
-import KnowledgeBase from '.'
+import TutorialVideoList from '.'
 
 import * as i18n from 'shared/i18n'
 
-const mock = jest.fn()
 jest.mock('react-router-dom', () => ({
   useHistory: () => ({
     history: {
-      push: mock
+      goBack: jest.fn(),
+      push: jest.fn()
     }
   })
 }))
 
-describe('KnowledgeBase component', () => {
-  const providerWithTutorials = {
+describe('TutorialVideoList component', () => {
+  const provider = {
     knowledgeBase: {
       tutorialList: [
         {
@@ -40,34 +41,17 @@ describe('KnowledgeBase component', () => {
     }
   }
 
-  const providerWithoutTutorials = {
-    knowledgeBase: {
-      tutorialList: [],
-      currentTutorial: {},
-      status: 'neverFetched',
-      lastSuccessfulUpdateOn: 0
-    }
-  }
-
   beforeEach(() => {
     jest
       .spyOn(i18n, 'useI18n')
       .mockImplementation(path => (key, ...params) =>
         `${key.toUpperCase()} ${params.join('_')}`.trim()
       )
+    jest.spyOn(reactRedux, 'useDispatch').mockImplementation(() => jest.fn)
   })
 
-  test('renders correctly with tutorials', () => {
-    const { component } = mountWithProvider(<KnowledgeBase />)(
-      providerWithTutorials
-    )
-    expect(component).toMatchSnapshot()
-  })
-
-  test('renders correctly without tutorials', () => {
-    const { component } = mountWithProvider(<KnowledgeBase />)(
-      providerWithoutTutorials
-    )
+  test('renders correctly', () => {
+    const { component } = mountWithProvider(<TutorialVideoList />)(provider)
     expect(component).toMatchSnapshot()
   })
 })

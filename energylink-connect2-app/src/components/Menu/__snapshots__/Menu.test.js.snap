@@ -37,16 +37,16 @@ exports[`Menu Page render correctly 1`] = `
           "text": "FIRMWARE_RELEASE_NOTES",
         },
         Object {
-          "component": [Function],
           "display": true,
-          "icon": "sp-gear",
-          "text": "SETTINGS",
+          "icon": "sp-guide",
+          "text": "KNOWLEDGE_BASE",
+          "to": "/knowledge-base",
         },
         Object {
           "component": [Function],
           "display": true,
-          "icon": "sp-guide",
-          "text": "KNOWLEDGE_BASE",
+          "icon": "sp-gear",
+          "text": "SETTINGS",
         },
       ]
     }

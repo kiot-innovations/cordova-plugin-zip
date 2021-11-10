@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`KnowledgeBase component renders correctly with tutorials 1`] = `
+exports[`TutorialVideoList component renders correctly 1`] = `
 <BrowserRouter
   keyLength={0}
 >
@@ -38,18 +38,28 @@ exports[`KnowledgeBase component renders correctly with tutorials 1`] = `
         }
       }
     >
-      <KnowledgeBase>
+      <TutorialVideosList>
         <section
           className="is-flex tile is-vertical section pt-0 fill-parent"
         >
-          <h1
-            className="has-text-centered is-uppercase has-text-weight-bold pb-20"
+          <div
+            className="header mb-15"
           >
-            KNOWLEDGE_BASE
-          </h1>
+            <span
+              className="sp-chevron-left has-text-primary is-size-4 go-back"
+              onClick={[Function]}
+            />
+            <span
+              className="is-uppercase"
+              role="button"
+            >
+              TUTORIAL_VIDEOS
+            </span>
+          </div>
           <ButtonLink
+            key="Downloading firmware"
             onClick={[Function]}
-            title="QUICKSTART_GUIDES"
+            title="Downloading firmware"
           >
             <div
               className="button-link mt-10 mb-10"
@@ -59,7 +69,7 @@ exports[`KnowledgeBase component renders correctly with tutorials 1`] = `
                 className="route-name"
               >
                 <span>
-                  QUICKSTART_GUIDES
+                  Downloading firmware
                 </span>
               </div>
               <div
@@ -72,8 +82,9 @@ exports[`KnowledgeBase component renders correctly with tutorials 1`] = `
             </div>
           </ButtonLink>
           <ButtonLink
+            key="Connect + Update firmware"
             onClick={[Function]}
-            title="TUTORIAL_VIDEOS"
+            title="Connect + Update firmware"
           >
             <div
               className="button-link mt-10 mb-10"
@@ -83,7 +94,57 @@ exports[`KnowledgeBase component renders correctly with tutorials 1`] = `
                 className="route-name"
               >
                 <span>
-                  TUTORIAL_VIDEOS
+                  Connect + Update firmware
+                </span>
+              </div>
+              <div
+                className="arrow-right pt-2"
+              >
+                <span
+                  className="sp-chevron-right has-text-primary is-size-6"
+                />
+              </div>
+            </div>
+          </ButtonLink>
+          <ButtonLink
+            key="Discover + claim"
+            onClick={[Function]}
+            title="Discover + claim"
+          >
+            <div
+              className="button-link mt-10 mb-10"
+              onClick={[Function]}
+            >
+              <div
+                className="route-name"
+              >
+                <span>
+                  Discover + claim
+                </span>
+              </div>
+              <div
+                className="arrow-right pt-2"
+              >
+                <span
+                  className="sp-chevron-right has-text-primary is-size-6"
+                />
+              </div>
+            </div>
+          </ButtonLink>
+          <ButtonLink
+            key="Configure system"
+            onClick={[Function]}
+            title="Configure system"
+          >
+            <div
+              className="button-link mt-10 mb-10"
+              onClick={[Function]}
+            >
+              <div
+                className="route-name"
+              >
+                <span>
+                  Configure system
                 </span>
               </div>
               <div
@@ -96,85 +157,7 @@ exports[`KnowledgeBase component renders correctly with tutorials 1`] = `
             </div>
           </ButtonLink>
         </section>
-      </KnowledgeBase>
-    </Provider>
-  </Router>
-</BrowserRouter>
-`;
-
-exports[`KnowledgeBase component renders correctly without tutorials 1`] = `
-<BrowserRouter
-  keyLength={0}
->
-  <Router
-    history={
-      Object {
-        "action": "POP",
-        "block": [Function],
-        "createHref": [Function],
-        "go": [Function],
-        "goBack": [Function],
-        "goForward": [Function],
-        "length": 1,
-        "listen": [Function],
-        "location": Object {
-          "hash": "",
-          "pathname": "/",
-          "search": "",
-          "state": undefined,
-        },
-        "push": [Function],
-        "replace": [Function],
-      }
-    }
-  >
-    <Provider
-      store={
-        Object {
-          "clearActions": [Function],
-          "dispatch": [Function],
-          "getActions": [Function],
-          "getState": [Function],
-          "replaceReducer": [Function],
-          "subscribe": [Function],
-        }
-      }
-    >
-      <KnowledgeBase>
-        <section
-          className="is-flex tile is-vertical section pt-0 fill-parent"
-        >
-          <h1
-            className="has-text-centered is-uppercase has-text-weight-bold pb-20"
-          >
-            KNOWLEDGE_BASE
-          </h1>
-          <ButtonLink
-            onClick={[Function]}
-            title="QUICKSTART_GUIDES"
-          >
-            <div
-              className="button-link mt-10 mb-10"
-              onClick={[Function]}
-            >
-              <div
-                className="route-name"
-              >
-                <span>
-                  QUICKSTART_GUIDES
-                </span>
-              </div>
-              <div
-                className="arrow-right pt-2"
-              >
-                <span
-                  className="sp-chevron-right has-text-primary is-size-6"
-                />
-              </div>
-            </div>
-          </ButtonLink>
-        </section>
-      </KnowledgeBase>
+      </TutorialVideosList>
     </Provider>
   </Router>
 </BrowserRouter>

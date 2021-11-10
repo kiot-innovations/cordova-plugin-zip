@@ -10,6 +10,7 @@ import downloader from './downloader'
 import featureFlagsEpics from './feature-flags'
 import feedbackEpic from './feedback'
 import firmwareUpdateEpics from './fimwareUpdate'
+import knowledgeBase from './knowledge-base'
 import liveEnergyData from './live-energy-data'
 import modalEpics from './modals/showModal'
 import networkPollingEpics from './network'
@@ -38,6 +39,7 @@ export default combineEpics(
   ...downloader,
   ...feedbackEpic,
   ...firmwareUpdateEpics,
+  ...knowledgeBase,
   ...modalEpics,
   ...networkPollingEpics,
   ...panelLayoutToolEpics,

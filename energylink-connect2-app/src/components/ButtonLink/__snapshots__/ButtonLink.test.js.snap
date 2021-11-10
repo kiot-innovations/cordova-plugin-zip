@@ -15,7 +15,7 @@ exports[`ButtonLink Component Renders Correctly 1`] = `
     className="arrow-right pt-2"
   >
     <span
-      className="sp-chevron-right has-text-primary"
+      className="sp-chevron-right has-text-primary is-size-6"
     />
   </div>
 </div>

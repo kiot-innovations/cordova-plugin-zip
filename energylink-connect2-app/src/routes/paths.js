@@ -286,6 +286,22 @@ const paths = {
       header: true,
       footer: true,
       tab: TABS.INSTALL
+    },
+    KNOWLEDGE_BASE: {
+      path: '/knowledge-base',
+      header: true
+    },
+    QUICKSTART_GUIDES: {
+      path: '/quickstart-guides',
+      header: true
+    },
+    TUTORIAL_VIDEOS_LIST: {
+      path: '/tutorial-videos-list',
+      header: true
+    },
+    TUTORIAL_VIDEO: {
+      path: '/tutorial-video',
+      header: true
     }
   },
   UNPROTECTED: {

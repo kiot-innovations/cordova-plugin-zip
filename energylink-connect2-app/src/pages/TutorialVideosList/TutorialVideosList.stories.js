@@ -1,12 +1,12 @@
 import { storiesOf } from '@storybook/react'
 import React from 'react'
 
-import KnowledgeBase from '.'
+import TutorialVideosList from '.'
 
-storiesOf('Knowledge Base Page', module).add('Main', () => {
+storiesOf('TutorialVideosList Page', module).add('Main', () => {
   return (
     <div className="full-min-height pl-10 pr-10">
-      <KnowledgeBase />
+      <TutorialVideosList />
     </div>
   )
 })

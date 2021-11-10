@@ -13,6 +13,7 @@ import fileDownloader from './fileDownloader'
 import firmwareUpdate from './firmware-update'
 import { globalReducer } from './global'
 import { inventoryReducer } from './inventory'
+import knowledgeBaseReducer from './knowledgeBase'
 import { languageReducer } from './language'
 import { storesVersions } from './migrations'
 import modal from './modal'
@@ -136,6 +137,14 @@ export default combineReducers({
       storage
     },
     featureFlagsReducer
+  ),
+  knowledgeBase: persistReducer(
+    {
+      key: 'knowledgeBase',
+      storage,
+      blacklist: ['currentTutorial']
+    },
+    knowledgeBaseReducer
   )
   // Add reducers here
 })
