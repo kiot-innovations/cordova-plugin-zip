@@ -560,7 +560,6 @@
   "ADDING_DEVICES": "We're adding the new devices",
   "ADDING_DEVICES_ERROR": "We couldn't add the devices. Please try again",
   "ADDING_DEVICES_SUCCESS": "Devices successfully added",
-  "NO_OTHER_DEVICES": "No other devices on site",
   "SUNVAULT_ALL_ONE": "SunVault All-in one",
   "PHONE_BL_ON": "Please turn On your Phone's Bluetooth",
   "TURNING_PHONE_BL_ON": "Turning Bluetooth On...",
@@ -803,6 +802,8 @@
   "CONSUMPTION_CT_ERRORS": "Consumption CT Errors",
   "REPLACE_PVS_WARNING": "Do not replace the PVS if you’re adding a Hub+ to the existing system.",
   "RSE_FOOTER": "We recommend using this configuration to turn OFF the system if it does not have PTO from the utility.",
+  "STORAGE_FW_OUT_OF_SYNC": "Storage Firmware Out Of Sync",
+  "STORAGE_FW_OUT_OF_SYNC_BODY": "Please recommission the SunVault equipment to ensure compatibility with the just updated PVS firmware version. Not doing so will leave SunVault in an inoperable state.",
   "TUTORIAL_VIDEOS": "Tutorial Videos",
   "NO_CONNECTION_TUTORIALS": "Please make sure you’re connected to a PVS or a wifi network with internet access, or use mobile data to access online support videos."
 }

@@ -715,6 +715,8 @@ export const getMicroinverters = filter(isMicroinverter)
 
 export const getStringInverters = filter(isStringInverter)
 
+export const storagePresent = deviceList => !isEmpty(filter(isESS, deviceList))
+
 export const isWarning = error =>
   startsWith('0', error.error_code) || startsWith('1', error.error_code)
 export const trimWarnings = reject(isWarning)

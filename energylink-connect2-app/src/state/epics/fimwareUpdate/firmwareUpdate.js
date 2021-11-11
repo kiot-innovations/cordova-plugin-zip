@@ -12,11 +12,22 @@ import {
 } from 'rxjs/operators'
 import * as Sentry from 'sentry-cordova'
 
+import { getApiPVS } from '../../../shared/api'
+import {
+  UPDATE_DEVICES_LIST,
+  UPDATE_DEVICES_LIST_ERROR
+} from '../../actions/devices'
+
 import { ERROR_CODES } from 'shared/fileSystem'
 import { translate } from 'shared/i18n'
 import { sendCommandToPVS } from 'shared/PVSUtils'
 import genericRetryStrategy from 'shared/rxjs/genericRetryStrategy'
-import { getPVSVersionNumber, waitFor } from 'shared/utils'
+import {
+  getPVSVersionNumber,
+  storagePresent,
+  TAGS,
+  waitFor
+} from 'shared/utils'
 import {
   getFirmwareUpgradePackageURL,
   startWebserver,
@@ -214,6 +225,37 @@ const firmwareUpdateSuccessEpic = (action$, state$) => {
   )
 }
 
+const forceStorageAfterPVSFWUPEpic = (action$, state$) =>
+  action$.pipe(
+    ofType(FIRMWARE_UPDATE_COMPLETE.getType()),
+    exhaustMap(() => {
+      const promise = getApiPVS()
+        .then(path(['apis', 'devices']))
+        .then(api =>
+          api.getDevices({
+            detailed: false
+          })
+        )
+
+      return from(promise).pipe(
+        map(response => {
+          const deviceList = path(['body', 'devices'], response)
+          return storagePresent(deviceList)
+            ? SHOW_MODAL({
+                componentPath: './ForceStorageAfterPVSFWUP.jsx'
+              })
+            : UPDATE_DEVICES_LIST(path(['body', 'devices'], response))
+        }),
+        catchError(err => {
+          Sentry.setTag(TAGS.KEY.ENDPOINT, TAGS.VALUE.DEVICES_GET_DEVICES)
+          Sentry.captureMessage(`${err.message} - fetchDevicesList.js`)
+          Sentry.captureException(err)
+          return of(UPDATE_DEVICES_LIST_ERROR(err))
+        })
+      )
+    })
+  )
+
 export default [
   firmwareUpgradeInit,
   firmwarePollStatus,
@@ -221,5 +263,6 @@ export default [
   firmwareUpdateSuccessEpic,
   firmwareDisconnectFromPVS,
   initFirmwareDownload,
-  firmwareShowModal
+  firmwareShowModal,
+  forceStorageAfterPVSFWUPEpic
 ]
