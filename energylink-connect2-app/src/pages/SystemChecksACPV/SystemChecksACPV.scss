@@ -1,0 +1,24 @@
+@import '~@sunpower/theme-dark/styles/variables';
+
+.system-checks {
+  display: grid;
+  grid-template-rows: 20px 1fr 135px;
+  height: calc(100vh - 235px);
+
+  .is-text {
+    text-decoration: none;
+    &:hover {
+      background-color: transparent;
+    }
+    &:focus {
+      box-shadow: none;
+    }
+  }
+
+  .simple-error {
+    padding: 5px 10px;
+    text-align: left;
+    background-color: $silver-sand4;
+    border-radius: 5px;
+  }
+}

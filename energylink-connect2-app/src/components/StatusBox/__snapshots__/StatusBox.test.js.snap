@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Connected Device Update Component Renders Correctly 1`] = `
+<section
+  className="boxwrap mb-10 mt-10 pl-20 pr-20 pt-20 pb-20"
+>
+  <article
+    className="left"
+  >
+    <p
+      className="has-text-white has-text-weight-bold"
+    >
+      Production CT
+    </p>
+    <p
+      className="mt-10"
+    >
+      ZT123456789
+    </p>
+  </article>
+  <article
+    className="is-flex file level is-right is-size-2 has-text-white has-text-weight-bold"
+  >
+    50%
+  </article>
+</section>
+`;

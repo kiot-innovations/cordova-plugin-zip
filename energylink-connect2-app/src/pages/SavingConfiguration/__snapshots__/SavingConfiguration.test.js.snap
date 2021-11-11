@@ -38,7 +38,13 @@ exports[`SavingConfiguration component renders correctly 1`] = `
         }
       }
     >
-      <SavingConfiguration>
+      <SavingConfiguration
+        history={
+          Object {
+            "block": [MockFunction],
+          }
+        }
+      >
         <div
           className="saving-configuration has-text-centered pt-20 pr-20 pl-20"
         >

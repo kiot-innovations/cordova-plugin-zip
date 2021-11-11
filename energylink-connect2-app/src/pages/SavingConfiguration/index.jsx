@@ -1,5 +1,5 @@
 import { isEmpty, test, pathOr, propOr } from 'ramda'
-import React, { useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 
@@ -25,6 +25,7 @@ const SavingConfiguration = () => {
   const t = useI18n()
   const history = useHistory()
   const dispatch = useDispatch()
+  const unblockHandle = useRef()
   const [showHomeownerCreation, setShowHomeownerCreation] = useState(false)
   const [showFeedbackModal, setShowFeedbackModal] = useState(false)
   const [feedbackRating, setFeedbackRating] = useState(0)
@@ -55,11 +56,11 @@ const SavingConfiguration = () => {
   const goToConfig = () => {
     dispatch(SUBMIT_CLEAR())
     dispatch(ALLOW_COMMISSIONING())
-
     history.push(paths.PROTECTED.SYSTEM_CONFIGURATION.path)
   }
 
   const goToData = () => {
+    dispatch(SUBMIT_CLEAR())
     history.push(paths.PROTECTED.DATA.path)
   }
 
@@ -162,6 +163,15 @@ const SavingConfiguration = () => {
             </div>
           )
         }
+
+  useEffect(() => {
+    unblockHandle.current = history.block(() => {
+      dispatch(SUBMIT_CLEAR())
+    })
+    return function() {
+      unblockHandle.current && unblockHandle.current()
+    }
+  })
 
   return (
     <div className="saving-configuration has-text-centered pt-20 pr-20 pl-20">

@@ -7,12 +7,14 @@ import * as i18n from 'shared/i18n'
 
 jest.mock('react-router-dom', () => ({
   useHistory: () => ({
-    push: jest.fn()
+    push: jest.fn(),
+    block: jest.fn()
   })
 }))
 
 describe('SavingConfiguration component', () => {
   let dispatchMock
+  const historyMock = { block: jest.fn() }
 
   const initialState = {
     submit: {
@@ -34,7 +36,9 @@ describe('SavingConfiguration component', () => {
   })
 
   test('renders correctly', () => {
-    const { component } = mountWithProvider(<SavingConfiguration />)({})
+    const { component } = mountWithProvider(
+      <SavingConfiguration history={historyMock} />
+    )({})
     expect(component).toMatchSnapshot()
   })
 
@@ -47,9 +51,9 @@ describe('SavingConfiguration component', () => {
       }
     }
 
-    const { component } = mountWithProvider(<SavingConfiguration />)(
-      mockedStore
-    )
+    const { component } = mountWithProvider(
+      <SavingConfiguration history={historyMock} />
+    )(mockedStore)
     expect(component.find('.error-message')).toHaveLength(1)
   })
 })

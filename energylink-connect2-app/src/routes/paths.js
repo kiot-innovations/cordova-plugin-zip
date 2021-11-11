@@ -281,6 +281,18 @@ const paths = {
       footer: true,
       tab: TABS.INSTALL
     },
+    SYSTEM_CHECKS: {
+      path: '/system-checks',
+      header: true,
+      footer: true,
+      tab: TABS.CONFIGURE
+    },
+    SYSTEM_CHECKS_ERROR_LIST: {
+      path: '/system-checks-error-list',
+      header: true,
+      footer: false,
+      tab: TABS.CONFIGURE
+    },
     LEGACY_DISCOVERY_SELECTOR: {
       path: '/legacy-discovery-selector',
       header: true,

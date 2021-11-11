@@ -91,6 +91,7 @@ Object {
                     }
                   }
                   key="4.5.1"
+                  showDetails={true}
                   t={[Function]}
                   title="Critical: low battery SOH."
                 >

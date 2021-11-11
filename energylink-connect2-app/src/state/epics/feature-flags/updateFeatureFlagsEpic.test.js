@@ -122,7 +122,8 @@ describe('updateFeatureFlagsEpic', function() {
             lastUpdatedOn: '2020-06-08',
             name: 'appstore-reviews-request',
             page: 'commissioning-success',
-            status: true
+            status: true,
+            rollout: {}
           }
         ],
         timestamp: 1625589403426,
@@ -165,7 +166,8 @@ describe('updateFeatureFlagsEpic', function() {
             lastUpdatedOn: '2020-06-08',
             name: 'appstore-reviews-request',
             page: 'commissioning-success',
-            status: true
+            status: true,
+            rollout: {}
           }
         ],
         timestamp: 1625589403426,
@@ -207,7 +209,8 @@ describe('updateFeatureFlagsEpic', function() {
             lastUpdatedOn: '2020-06-08',
             name: 'appstore-reviews-request',
             page: 'commissioning-success',
-            status: true
+            status: true,
+            rollout: {}
           }
         ],
         timestamp: 1625589403426,

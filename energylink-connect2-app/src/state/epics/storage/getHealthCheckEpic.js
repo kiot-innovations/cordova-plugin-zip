@@ -70,7 +70,12 @@ export const runSystemCheckEpic = action$ => {
     exhaustMap(() => {
       const promise = getApiPVS()
         .then(path(['apis', storageSwaggerTag]))
-        .then(api => api.runSystemHealthCheck())
+        .then(api =>
+          api.runSystemHealthCheck(
+            { id: 1 },
+            { requestBody: { categories: ['STORAGE'] } }
+          )
+        )
 
       return from(promise).pipe(
         map(response =>

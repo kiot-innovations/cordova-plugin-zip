@@ -8,6 +8,7 @@ Object {
   "error": "",
   "preconfigError": "",
   "preconfigState": "NOT_STARTED",
+  "submitted": false,
   "submitting": false,
 }
 `;

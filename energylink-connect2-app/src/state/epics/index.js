@@ -25,6 +25,7 @@ import checkSSLCertsEpics from './sslCerts'
 import statusMessages from './statusMessages'
 import storageEpics from './storage'
 import superuserEpics from './superuser'
+import systemChecksEpics from './systemChecks'
 import systemConfigurationEpics from './systemConfiguration'
 import wakelockEpics from './wakelock'
 
@@ -55,5 +56,6 @@ export default combineEpics(
   ...systemConfigurationEpics,
   ...wakelockEpics,
   ...featureFlagsEpics,
+  ...systemChecksEpics,
   liveEnergyData
 )

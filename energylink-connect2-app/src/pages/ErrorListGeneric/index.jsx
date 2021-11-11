@@ -17,7 +17,7 @@ import { PVS_CONNECTION_CLOSE } from 'state/actions/network'
 import { eqsSteps } from 'state/reducers/storage'
 import './ErrorListGeneric.scss'
 
-const ErrorComponent = ({ title, code = '', errorInfo, t }) => {
+const ErrorComponent = ({ title, code = '', errorInfo, t, showDetails }) => {
   const toParams = {
     pathname: setParams([code, errorInfo], paths.PROTECTED.ERROR_DETAIL.path),
     state: { ...errorInfo }
@@ -38,9 +38,12 @@ const ErrorComponent = ({ title, code = '', errorInfo, t }) => {
         )}
       </div>
       <div>
-        <Link className="has-text-primary details is-flex" to={toParams}>
-          <span className="sp sp-chevron-right auto is-size-2" />
-        </Link>
+        {either(
+          showDetails,
+          <Link className="has-text-primary details is-flex" to={toParams}>
+            <span className="sp sp-chevron-right auto is-size-2" />
+          </Link>
+        )}
       </div>
     </div>
   )
@@ -53,13 +56,20 @@ const getErrorInfo = omit([
   'event_code'
 ])
 
-const renderError = t => error => (
+const errorType = {
+  error_description: 'N/A',
+  event_code: 'N/A',
+  error_code: 'N/A'
+}
+
+const renderError = (t, showDetails) => (error = errorType) => (
   <ErrorComponent
     title={error.error_description || error.error_message}
     code={error.event_code || error.error_code}
     key={error.event_code || error.error_code}
     errorInfo={getErrorInfo(error)}
     t={t}
+    showDetails={showDetails}
   />
 )
 
@@ -79,7 +89,12 @@ const storageRoutesMap = {
  * @returns React.Component
  * @constructor
  */
-const ErrorListScreen = ({ errors = [] }) => {
+const ErrorListScreen = ({
+  errors = [],
+  goBack = false,
+  showDetails = true,
+  allowCancellingCommissioning = true
+}) => {
   const t = useI18n()
   const dispatch = useDispatch()
   const history = useHistory()
@@ -105,16 +120,20 @@ const ErrorListScreen = ({ errors = [] }) => {
       <div className="error-list-header has-text-centered">
         <span
           className="has-text-primary sp-chevron-left is-size-4"
-          onClick={() => history.push(storageRoutesMap[currentStep])}
+          onClick={
+            goBack
+              ? history.goBack
+              : () => history.push(storageRoutesMap[currentStep])
+          }
         />
         <span className="has-text-weight-bold">{t('ERROR_LIST')}</span>
         <span />
       </div>
       <div className="error-list-container">
-        {map(compose(renderError(t), getError), errors)}
+        {map(compose(renderError(t, showDetails), getError), errors)}
       </div>
       {either(
-        !onlyWarnings,
+        !onlyWarnings && allowCancellingCommissioning,
         <div>
           <div className="has-text-centered error-list-hint">
             <span>{t('PLEASE_FIX_ERRORS')}</span>

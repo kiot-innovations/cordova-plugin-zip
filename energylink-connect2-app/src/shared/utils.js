@@ -47,6 +47,8 @@ import {
   slice,
   split,
   startsWith,
+  test,
+  toLower,
   sum,
   toPairs,
   toUpper,
@@ -142,8 +144,9 @@ export const waitFor = (ms = 0) =>
 
 export const capitalize = when(
   compose(lt(0), length),
-  compose(join(''), over(lensIndex(0), toUpper))
+  compose(join(''), over(lensIndex(0), toUpper), toLower)
 )
+
 export const isUnknownSerialNumber = serialNumber => serialNumber.includes('?')
 
 export const isIos = () =>
@@ -473,6 +476,9 @@ export const headersToObj = headers => {
   return parsedHeaders
 }
 
+export const submitConfigErrorMap = (e, t) =>
+  test(/database|table|foreign/gi, e) ? t('DATABASE_ERROR') : e
+
 export const edpErrorMessage = ({ code = '', message = '' }) =>
   code && message ? `${code}: ${message}` : message
 
@@ -708,3 +714,7 @@ export const getOverallDiscoveryProgress = progress => {
 export const getMicroinverters = filter(isMicroinverter)
 
 export const getStringInverters = filter(isStringInverter)
+
+export const isWarning = error =>
+  startsWith('0', error.error_code) || startsWith('1', error.error_code)
+export const trimWarnings = reject(isWarning)

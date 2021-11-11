@@ -55,6 +55,8 @@ import Settings from 'pages/Settings'
 import SNList from 'pages/SNList'
 import StoragePrediscovery from 'pages/StoragePrediscovery'
 import StringInverters from 'pages/StringInverters'
+import SystemChecksACPV from 'pages/SystemChecksACPV'
+import SystemChecksErrorList from 'pages/SystemChecksErrorList'
 import SystemConfiguration from 'pages/SystemConfiguration'
 import TutorialVideo from 'pages/TutorialVideo'
 import TutorialVideosList from 'pages/TutorialVideosList'
@@ -114,6 +116,8 @@ const mapComponents = {
   [paths.PROTECTED.PERMISSIONS.path]: Permissions,
   [paths.PROTECTED.NEARBY_PVS.path]: NearbyPVS,
   [paths.PROTECTED.SETTINGS.path]: Settings,
+  [paths.PROTECTED.SYSTEM_CHECKS.path]: SystemChecksACPV,
+  [paths.PROTECTED.SYSTEM_CHECKS_ERROR_LIST.path]: SystemChecksErrorList,
   [paths.PROTECTED.LEGACY_DISCOVERY_SELECTOR.path]: LegacyDiscoverySelector,
   [paths.PROTECTED.KNOWLEDGE_BASE.path]: KnowledgeBase,
   [paths.PROTECTED.TUTORIAL_VIDEOS_LIST.path]: TutorialVideosList,

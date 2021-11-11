@@ -1,4 +1,4 @@
-import { compose, equals, filter, length, propOr, props } from 'ramda'
+import { compose, equals, filter, isEmpty, length, propOr, props } from 'ramda'
 import React from 'react'
 import { useSelector } from 'react-redux'
 import { useHistory, useLocation, useParams } from 'react-router-dom'
@@ -38,7 +38,11 @@ const BackButton = ({ currentStep }) => {
   return (
     <button
       className="button is-primary is-outlined is-center mt-10 mb-10"
-      onClick={() => history.push(storageRoutesMap[currentStep])}
+      onClick={() =>
+        isEmpty(currentStep)
+          ? history.goBack()
+          : history.push(storageRoutesMap[currentStep])
+      }
     >
       {t('GO_BACK')}
     </button>

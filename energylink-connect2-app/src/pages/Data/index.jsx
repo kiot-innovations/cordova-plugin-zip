@@ -25,6 +25,7 @@ import MiDataLive from 'components/MiDataLive'
 import RightNow from 'components/RightNow'
 import SwipeableSheet from 'hocs/SwipeableSheet'
 import paths from 'routes/paths'
+import { useFeatureFlag } from 'shared/featureFlags'
 import { useI18n } from 'shared/i18n'
 import { roundDecimals } from 'shared/rounding'
 import { either } from 'shared/utils'
@@ -44,9 +45,14 @@ export default () => {
   const t = useI18n()
   const dispatch = useDispatch()
   const history = useHistory()
+  const ctCheckPermissions = useFeatureFlag({
+    page: 'any-page',
+    name: 'ct-checks-staged-rollout'
+  })
   const [livePowerInfo, showLivePowerInfo] = useState(false)
   const { liveData = {} } = useSelector(state => state.energyLiveData)
-  const { miData = [] } = useSelector(state => state.pvs)
+
+  const { fwVersion, miData = [] } = useSelector(state => state.pvs)
   const pvsModel = useSelector(pathOr('', ['pvs', 'model']))
 
   const { statusReport, statusReportError } = useSelector(
@@ -126,6 +132,11 @@ export default () => {
     history.push(paths.PROTECTED.ESS_HEALTH_CHECK.path)
   }
 
+  const systemChecks = {
+    title: t('SYSTEM_CHECKS'),
+    subtitle: t('RUN_SYSTEM_CHECKS')
+  }
+
   return (
     <section className="data is-flex has-text-centered full-height pl-10 pr-10">
       <section>
@@ -166,6 +177,16 @@ export default () => {
           <MiDataLive data={miData} />
         )}
       </section>
+
+      {either(
+        ctCheckPermissions && fwVersion >= 60400,
+        <ButtonLink
+          title={systemChecks.title}
+          subtitle={systemChecks.subtitle}
+          onClick={() => history.push(paths.PROTECTED.SYSTEM_CHECKS.path)}
+        />
+      )}
+
       <section>
         <div className="live-power-title pt-20 pb-20">
           <div />
@@ -174,6 +195,7 @@ export default () => {
             <span className="sp-info has-text-primary" />
           </div>
         </div>
+
         {either(
           pvsModel === 'PVS5',
           t('LIVE_DATA_UNAVAILABLE_FOR_PVS5'),

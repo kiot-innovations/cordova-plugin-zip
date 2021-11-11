@@ -121,6 +121,7 @@ Object {
                       }
                     }
                     key="32058"
+                    showDetails={true}
                     t={[Function]}
                     title="MID contactor malfunction"
                   >
@@ -202,6 +203,7 @@ Object {
                       }
                     }
                     key="11018"
+                    showDetails={true}
                     t={[Function]}
                     title="Aux cable voltage low"
                   >
@@ -277,6 +279,7 @@ If problem persists, please contact SunPower.
                       }
                     }
                     key="31003"
+                    showDetails={true}
                     t={[Function]}
                     title="Transfer switch contactor stuck open "
                   >

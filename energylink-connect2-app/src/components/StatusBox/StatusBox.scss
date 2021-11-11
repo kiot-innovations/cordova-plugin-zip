@@ -1,0 +1,10 @@
+@import '~@sunpower/theme-dark/styles/variables';
+
+.boxwrap {
+  background-color: $silver-sand4;
+  font-family: $font;
+  border-radius: 5px;
+  display: grid;
+  grid-template-columns: 1fr 30%;
+  letter-spacing: 0;
+}

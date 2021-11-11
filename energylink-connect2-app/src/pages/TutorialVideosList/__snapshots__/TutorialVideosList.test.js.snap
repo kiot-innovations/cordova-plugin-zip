@@ -66,7 +66,7 @@ exports[`TutorialVideoList component renders correctly 1`] = `
               onClick={[Function]}
             >
               <div
-                className="route-name"
+                className="has-text-left route-name"
               >
                 <span>
                   Downloading firmware
@@ -91,7 +91,7 @@ exports[`TutorialVideoList component renders correctly 1`] = `
               onClick={[Function]}
             >
               <div
-                className="route-name"
+                className="has-text-left route-name"
               >
                 <span>
                   Connect + Update firmware
@@ -116,7 +116,7 @@ exports[`TutorialVideoList component renders correctly 1`] = `
               onClick={[Function]}
             >
               <div
-                className="route-name"
+                className="has-text-left route-name"
               >
                 <span>
                   Discover + claim
@@ -141,7 +141,7 @@ exports[`TutorialVideoList component renders correctly 1`] = `
               onClick={[Function]}
             >
               <div
-                className="route-name"
+                className="has-text-left route-name"
               >
                 <span>
                   Configure system

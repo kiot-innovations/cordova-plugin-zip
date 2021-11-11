@@ -29,6 +29,9 @@ const renderDebugLink = (history, name, path) => (
     <div className="route-name">
       <span>{name}</span>
     </div>
+    <div className="arrow-right pt-2">
+      <span className="sp-chevron-right has-text-primary" />
+    </div>
   </div>
 )
 
@@ -122,7 +125,7 @@ const DebugPage = () => {
   }
 
   return (
-    <div className="pr-10 pl-10 debug-page">
+    <div className="pr-10 pl-10">
       <div className="has-text-centered mb-25">
         <span className="has-text-weight-bold title">
           {t('SUPERUSER_OPTIONS')}
@@ -207,6 +210,11 @@ const DebugPage = () => {
       </div>
       <div>
         <Collapsible title="Debug Routes" expanded={true}>
+          {renderDebugLink(
+            history,
+            'SystemChecks',
+            paths.PROTECTED.SYSTEM_CHECKS.path
+          )}
           {renderDebugLink(
             history,
             'Saving Configuration',

@@ -119,24 +119,24 @@ exports[`PVS Selection page renders correctly 1`] = `
               </span>
             </div>
           </section>
-          <section
-            className="pvs-buttons inline-buttons mb-10"
+          <div
+            className="is-flex mb-10"
           >
             <button
-              className="hidden button is-uppercase is-secondary"
+              className="hidden button is-uppercase is-secondary is-fullwidth mr-10"
               disabled={true}
               onClick={[Function]}
             >
               REPLACE_PVS
             </button>
             <button
-              className="hidden button is-uppercase is-secondary"
+              className="hidden button is-uppercase is-secondary is-fullwidth ml-10"
               disabled={true}
               onClick={[Function]}
             >
               CONNECT_TO_PVS
             </button>
-          </section>
+          </div>
           <SwipeableSheet
             onChange={[Function]}
             open={false}
@@ -1817,24 +1817,24 @@ exports[`PVS Selection page renders correctly when bluetooth is disabled 1`] = `
               </span>
             </div>
           </section>
-          <section
-            className="pvs-buttons inline-buttons mb-10"
+          <div
+            className="is-flex mb-10"
           >
             <button
-              className="hidden button is-uppercase is-secondary"
+              className="hidden button is-uppercase is-secondary is-fullwidth mr-10"
               disabled={true}
               onClick={[Function]}
             >
               REPLACE_PVS
             </button>
             <button
-              className="hidden button is-uppercase is-secondary"
+              className="hidden button is-uppercase is-secondary is-fullwidth ml-10"
               disabled={true}
               onClick={[Function]}
             >
               CONNECT_TO_PVS
             </button>
-          </section>
+          </div>
           <SwipeableSheet
             onChange={[Function]}
             open={false}
@@ -3450,24 +3450,24 @@ exports[`PVS Selection page renders correctly when we got an error 1`] = `
               </span>
             </div>
           </section>
-          <section
-            className="pvs-buttons inline-buttons mb-10"
+          <div
+            className="is-flex mb-10"
           >
             <button
-              className="hidden button is-uppercase is-secondary"
+              className="hidden button is-uppercase is-secondary is-fullwidth mr-10"
               disabled={true}
               onClick={[Function]}
             >
               REPLACE_PVS
             </button>
             <button
-              className="hidden button is-uppercase is-secondary"
+              className="hidden button is-uppercase is-secondary is-fullwidth ml-10"
               disabled={true}
               onClick={[Function]}
             >
               CONNECT_TO_PVS
             </button>
-          </section>
+          </div>
           <SwipeableSheet
             onChange={[Function]}
             open={false}

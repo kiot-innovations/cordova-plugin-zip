@@ -27,6 +27,7 @@ import { siteReducer } from './site'
 import { storageReducer } from './storage'
 import stringInverters from './stringInverters'
 import { superuserReducer } from './superuser'
+import systemChecksReducer from './systemChecks'
 import systemConfigurationReducer from './systemConfiguration'
 import ui from './ui'
 import { userReducer } from './user'
@@ -138,6 +139,7 @@ export default combineReducers({
     },
     featureFlagsReducer
   ),
+  systemChecks: systemChecksReducer,
   knowledgeBase: persistReducer(
     {
       key: 'knowledgeBase',

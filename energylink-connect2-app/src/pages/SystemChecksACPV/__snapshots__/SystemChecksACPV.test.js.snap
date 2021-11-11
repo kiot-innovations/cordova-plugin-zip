@@ -1,0 +1,643 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SystemChecksACPV component render correctly 1`] = `
+<BrowserRouter
+  keyLength={0}
+>
+  <Router
+    history={
+      Object {
+        "action": "POP",
+        "block": [Function],
+        "createHref": [Function],
+        "go": [Function],
+        "goBack": [Function],
+        "goForward": [Function],
+        "length": 1,
+        "listen": [Function],
+        "location": Object {
+          "hash": "",
+          "pathname": "/",
+          "search": "",
+          "state": undefined,
+        },
+        "push": [Function],
+        "replace": [Function],
+      }
+    }
+  >
+    <Provider
+      store={
+        Object {
+          "clearActions": [Function],
+          "dispatch": [Function],
+          "getActions": [Function],
+          "getState": [Function],
+          "replaceReducer": [Function],
+          "subscribe": [Function],
+        }
+      }
+    >
+      <SystemChecksACPV>
+        <main
+          className="page-height system-checks pl-10 pr-10"
+        >
+          <header
+            className="is-clearfix has-text"
+          >
+            <button
+              className="button is-text is-paddingless is-borderless has-text-grey has-text-weight-bold is-pulled-left is-size-6"
+              disabled={false}
+              onClick={[Function]}
+            >
+              <i
+                className="sp-chevron-left has-text-primary is-size-5 mr-5 mt-5"
+              />
+              SYSTEM_CHECKS
+            </button>
+            <button
+              className="button is-text is-paddingless is-borderless has-text-grey has-text-weight-bold is-pulled-right is-size-6"
+              disabled={false}
+              onClick={[Function]}
+            >
+              <i
+                className="sp-update left has-text-primary is-size-5 mr-5 mt-5"
+              />
+              RUN_AGAIN
+            </button>
+          </header>
+          <section
+            className="mt-20"
+          >
+            <StatusBox
+              indicator="0%"
+              text="Not_running"
+              title="PRODUCTION_CTE"
+            >
+              <section
+                className="boxwrap mb-10 mt-10 pl-20 pr-20 pt-20 pb-20"
+              >
+                <article
+                  className="left"
+                >
+                  <p
+                    className="has-text-white has-text-weight-bold"
+                  >
+                    PRODUCTION_CTE
+                  </p>
+                  <p
+                    className="mt-10"
+                  >
+                    Not_running
+                  </p>
+                </article>
+                <article
+                  className="is-flex file level is-right is-size-2 has-text-white has-text-weight-bold"
+                >
+                  0%
+                </article>
+              </section>
+            </StatusBox>
+            <StatusBox
+              indicator="0%"
+              text="Not_running"
+              title="CONSUMPTION_CTE"
+            >
+              <section
+                className="boxwrap mb-10 mt-10 pl-20 pr-20 pt-20 pb-20"
+              >
+                <article
+                  className="left"
+                >
+                  <p
+                    className="has-text-white has-text-weight-bold"
+                  >
+                    CONSUMPTION_CTE
+                  </p>
+                  <p
+                    className="mt-10"
+                  >
+                    Not_running
+                  </p>
+                </article>
+                <article
+                  className="is-flex file level is-right is-size-2 has-text-white has-text-weight-bold"
+                >
+                  0%
+                </article>
+              </section>
+            </StatusBox>
+          </section>
+        </main>
+      </SystemChecksACPV>
+    </Provider>
+  </Router>
+</BrowserRouter>
+`;
+
+exports[`SystemChecksACPV component render correctly when FAILED 1`] = `
+<BrowserRouter
+  keyLength={0}
+>
+  <Router
+    history={
+      Object {
+        "action": "POP",
+        "block": [Function],
+        "createHref": [Function],
+        "go": [Function],
+        "goBack": [Function],
+        "goForward": [Function],
+        "length": 1,
+        "listen": [Function],
+        "location": Object {
+          "hash": "",
+          "pathname": "/",
+          "search": "",
+          "state": undefined,
+        },
+        "push": [Function],
+        "replace": [Function],
+      }
+    }
+  >
+    <Provider
+      store={
+        Object {
+          "clearActions": [Function],
+          "dispatch": [Function],
+          "getActions": [Function],
+          "getState": [Function],
+          "replaceReducer": [Function],
+          "subscribe": [Function],
+        }
+      }
+    >
+      <SystemChecksACPV>
+        <main
+          className="page-height system-checks pl-10 pr-10"
+        >
+          <header
+            className="is-clearfix has-text"
+          >
+            <button
+              className="button is-text is-paddingless is-borderless has-text-grey has-text-weight-bold is-pulled-left is-size-6"
+              disabled={false}
+              onClick={[Function]}
+            >
+              <i
+                className="sp-chevron-left has-text-primary is-size-5 mr-5 mt-5"
+              />
+              SYSTEM_CHECKS
+            </button>
+            <button
+              className="button is-text is-paddingless is-borderless has-text-grey has-text-weight-bold is-pulled-right is-size-6"
+              disabled={false}
+              onClick={[Function]}
+            >
+              <i
+                className="sp-update left has-text-primary is-size-5 mr-5 mt-5"
+              />
+              RUN_AGAIN
+            </button>
+          </header>
+          <section
+            className="mt-20"
+          >
+            <StatusBox
+              indicator={
+                <span
+                  className="sp-hey has-text-primary is-size-2"
+                />
+              }
+              text="Failed"
+              title="PRODUCTION_CTE"
+            >
+              <section
+                className="boxwrap mb-10 mt-10 pl-20 pr-20 pt-20 pb-20"
+              >
+                <article
+                  className="left"
+                >
+                  <p
+                    className="has-text-white has-text-weight-bold"
+                  >
+                    PRODUCTION_CTE
+                  </p>
+                  <p
+                    className="mt-10"
+                  >
+                    Failed
+                  </p>
+                </article>
+                <article
+                  className="is-flex file level is-right is-size-2 has-text-white has-text-weight-bold"
+                >
+                  <span
+                    className="sp-hey has-text-primary is-size-2"
+                  />
+                </article>
+              </section>
+            </StatusBox>
+            <StatusBox
+              indicator="100%"
+              text="Succeeded"
+              title="CONSUMPTION_CTE"
+            >
+              <section
+                className="boxwrap mb-10 mt-10 pl-20 pr-20 pt-20 pb-20"
+              >
+                <article
+                  className="left"
+                >
+                  <p
+                    className="has-text-white has-text-weight-bold"
+                  >
+                    CONSUMPTION_CTE
+                  </p>
+                  <p
+                    className="mt-10"
+                  >
+                    Succeeded
+                  </p>
+                </article>
+                <article
+                  className="is-flex file level is-right is-size-2 has-text-white has-text-weight-bold"
+                >
+                  100%
+                </article>
+              </section>
+            </StatusBox>
+            <StatusBox
+              indicator={
+                <span
+                  className="sp-hey has-text-primary is-size-2"
+                />
+              }
+              text={
+                <span
+                  className="has-text-primary"
+                >
+                  ERROR_FOUND
+                </span>
+              }
+              title="GENERAL_CTE"
+            >
+              <section
+                className="boxwrap mb-10 mt-10 pl-20 pr-20 pt-20 pb-20"
+              >
+                <article
+                  className="left"
+                >
+                  <p
+                    className="has-text-white has-text-weight-bold"
+                  >
+                    GENERAL_CTE
+                  </p>
+                  <p
+                    className="mt-10"
+                  >
+                    <span
+                      className="has-text-primary"
+                    >
+                      ERROR_FOUND
+                    </span>
+                  </p>
+                </article>
+                <article
+                  className="is-flex file level is-right is-size-2 has-text-white has-text-weight-bold"
+                >
+                  <span
+                    className="sp-hey has-text-primary is-size-2"
+                  />
+                </article>
+              </section>
+            </StatusBox>
+            <p
+              className="has-text-primary is-size-6 has-text-centered"
+            >
+              1 SYSTEM_CHECKS_ERRORS
+            </p>
+          </section>
+          <section
+            className="mt-10"
+          >
+            <section
+              className="is-flex is-vertical"
+            >
+              <button
+                className="button is-primary is-outlined is-uppercase mt-20 is-fullwidth mr-5 is-fullwidth"
+                onClick={[Function]}
+              >
+                BACK_TO_SETTINGS
+              </button>
+              <button
+                className="button is-primary is-uppercase mt-20 is-fullwidth ml-5 is-fullwidth"
+                onClick={[Function]}
+              >
+                VIEW_ERRORS
+              </button>
+            </section>
+            <button
+              className="button is-primary is-outlined is-uppercase mt-20 is-fullwidth mr-5"
+              onClick={[Function]}
+            >
+              GO_TO_LIVE_DATA
+            </button>
+          </section>
+        </main>
+      </SystemChecksACPV>
+    </Provider>
+  </Router>
+</BrowserRouter>
+`;
+
+exports[`SystemChecksACPV component render correctly when RUNNING 1`] = `
+<BrowserRouter
+  keyLength={0}
+>
+  <Router
+    history={
+      Object {
+        "action": "POP",
+        "block": [Function],
+        "createHref": [Function],
+        "go": [Function],
+        "goBack": [Function],
+        "goForward": [Function],
+        "length": 1,
+        "listen": [Function],
+        "location": Object {
+          "hash": "",
+          "pathname": "/",
+          "search": "",
+          "state": undefined,
+        },
+        "push": [Function],
+        "replace": [Function],
+      }
+    }
+  >
+    <Provider
+      store={
+        Object {
+          "clearActions": [Function],
+          "dispatch": [Function],
+          "getActions": [Function],
+          "getState": [Function],
+          "replaceReducer": [Function],
+          "subscribe": [Function],
+        }
+      }
+    >
+      <SystemChecksACPV>
+        <main
+          className="page-height system-checks pl-10 pr-10"
+        >
+          <header
+            className="is-clearfix has-text"
+          >
+            <button
+              className="button is-text is-paddingless is-borderless has-text-grey has-text-weight-bold is-pulled-left is-size-6"
+              disabled={false}
+              onClick={[Function]}
+            >
+              <i
+                className="sp-chevron-left has-text-primary is-size-5 mr-5 mt-5"
+              />
+              SYSTEM_CHECKS
+            </button>
+            <button
+              className="button is-text is-paddingless is-borderless has-text-grey has-text-weight-bold is-pulled-right is-size-6"
+              disabled={false}
+              onClick={[Function]}
+            >
+              <i
+                className="sp-update left has-text-primary is-size-5 mr-5 mt-5"
+              />
+              RUN_AGAIN
+            </button>
+          </header>
+          <section
+            className="mt-20"
+          >
+            <StatusBox
+              indicator="10%"
+              text="Running"
+              title="PRODUCTION_CTE"
+            >
+              <section
+                className="boxwrap mb-10 mt-10 pl-20 pr-20 pt-20 pb-20"
+              >
+                <article
+                  className="left"
+                >
+                  <p
+                    className="has-text-white has-text-weight-bold"
+                  >
+                    PRODUCTION_CTE
+                  </p>
+                  <p
+                    className="mt-10"
+                  >
+                    Running
+                  </p>
+                </article>
+                <article
+                  className="is-flex file level is-right is-size-2 has-text-white has-text-weight-bold"
+                >
+                  10%
+                </article>
+              </section>
+            </StatusBox>
+            <StatusBox
+              indicator="0%"
+              text="Running"
+              title="CONSUMPTION_CTE"
+            >
+              <section
+                className="boxwrap mb-10 mt-10 pl-20 pr-20 pt-20 pb-20"
+              >
+                <article
+                  className="left"
+                >
+                  <p
+                    className="has-text-white has-text-weight-bold"
+                  >
+                    CONSUMPTION_CTE
+                  </p>
+                  <p
+                    className="mt-10"
+                  >
+                    Running
+                  </p>
+                </article>
+                <article
+                  className="is-flex file level is-right is-size-2 has-text-white has-text-weight-bold"
+                >
+                  0%
+                </article>
+              </section>
+            </StatusBox>
+          </section>
+        </main>
+      </SystemChecksACPV>
+    </Provider>
+  </Router>
+</BrowserRouter>
+`;
+
+exports[`SystemChecksACPV component render correctly when SUCCEEDED 1`] = `
+<BrowserRouter
+  keyLength={0}
+>
+  <Router
+    history={
+      Object {
+        "action": "POP",
+        "block": [Function],
+        "createHref": [Function],
+        "go": [Function],
+        "goBack": [Function],
+        "goForward": [Function],
+        "length": 1,
+        "listen": [Function],
+        "location": Object {
+          "hash": "",
+          "pathname": "/",
+          "search": "",
+          "state": undefined,
+        },
+        "push": [Function],
+        "replace": [Function],
+      }
+    }
+  >
+    <Provider
+      store={
+        Object {
+          "clearActions": [Function],
+          "dispatch": [Function],
+          "getActions": [Function],
+          "getState": [Function],
+          "replaceReducer": [Function],
+          "subscribe": [Function],
+        }
+      }
+    >
+      <SystemChecksACPV>
+        <main
+          className="page-height system-checks pl-10 pr-10"
+        >
+          <header
+            className="is-clearfix has-text"
+          >
+            <button
+              className="button is-text is-paddingless is-borderless has-text-grey has-text-weight-bold is-pulled-left is-size-6"
+              disabled={false}
+              onClick={[Function]}
+            >
+              <i
+                className="sp-chevron-left has-text-primary is-size-5 mr-5 mt-5"
+              />
+              SYSTEM_CHECKS
+            </button>
+            <button
+              className="button is-text is-paddingless is-borderless has-text-grey has-text-weight-bold is-pulled-right is-size-6"
+              disabled={false}
+              onClick={[Function]}
+            >
+              <i
+                className="sp-update left has-text-primary is-size-5 mr-5 mt-5"
+              />
+              RUN_AGAIN
+            </button>
+          </header>
+          <section
+            className="mt-20"
+          >
+            <StatusBox
+              indicator="100%"
+              text="Succeeded"
+              title="PRODUCTION_CTE"
+            >
+              <section
+                className="boxwrap mb-10 mt-10 pl-20 pr-20 pt-20 pb-20"
+              >
+                <article
+                  className="left"
+                >
+                  <p
+                    className="has-text-white has-text-weight-bold"
+                  >
+                    PRODUCTION_CTE
+                  </p>
+                  <p
+                    className="mt-10"
+                  >
+                    Succeeded
+                  </p>
+                </article>
+                <article
+                  className="is-flex file level is-right is-size-2 has-text-white has-text-weight-bold"
+                >
+                  100%
+                </article>
+              </section>
+            </StatusBox>
+            <StatusBox
+              indicator="100%"
+              text="Succeeded"
+              title="CONSUMPTION_CTE"
+            >
+              <section
+                className="boxwrap mb-10 mt-10 pl-20 pr-20 pt-20 pb-20"
+              >
+                <article
+                  className="left"
+                >
+                  <p
+                    className="has-text-white has-text-weight-bold"
+                  >
+                    CONSUMPTION_CTE
+                  </p>
+                  <p
+                    className="mt-10"
+                  >
+                    Succeeded
+                  </p>
+                </article>
+                <article
+                  className="is-flex file level is-right is-size-2 has-text-white has-text-weight-bold"
+                >
+                  100%
+                </article>
+              </section>
+            </StatusBox>
+          </section>
+          <section
+            className="mt-10"
+          >
+            <section
+              className="is-flex"
+            >
+              <button
+                className="button is-primary is-outlined is-uppercase mt-20 is-fullwidth mr-5"
+                onClick={[Function]}
+              >
+                GO_TO_LIVE_DATA
+              </button>
+              <button
+                className="button is-primary is-uppercase mt-20 is-fullwidth ml-5 is-fullwidth"
+                onClick={[Function]}
+              >
+                COMMISSION
+              </button>
+            </section>
+          </section>
+        </main>
+      </SystemChecksACPV>
+    </Provider>
+  </Router>
+</BrowserRouter>
+`;

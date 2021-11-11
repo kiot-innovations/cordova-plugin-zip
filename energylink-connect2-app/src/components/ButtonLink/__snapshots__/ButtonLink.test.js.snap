@@ -5,7 +5,7 @@ exports[`ButtonLink Component Renders Correctly 1`] = `
   className="button-link mt-10 mb-10"
 >
   <div
-    className="route-name"
+    className="has-text-left route-name"
   >
     <span>
       Link Title

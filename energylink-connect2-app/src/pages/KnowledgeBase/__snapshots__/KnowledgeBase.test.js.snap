@@ -56,7 +56,7 @@ exports[`KnowledgeBase component renders correctly with tutorials 1`] = `
               onClick={[Function]}
             >
               <div
-                className="route-name"
+                className="has-text-left route-name"
               >
                 <span>
                   QUICKSTART_GUIDES
@@ -80,7 +80,7 @@ exports[`KnowledgeBase component renders correctly with tutorials 1`] = `
               onClick={[Function]}
             >
               <div
-                className="route-name"
+                className="has-text-left route-name"
               >
                 <span>
                   TUTORIAL_VIDEOS
@@ -158,7 +158,7 @@ exports[`KnowledgeBase component renders correctly without tutorials 1`] = `
               onClick={[Function]}
             >
               <div
-                className="route-name"
+                className="has-text-left route-name"
               >
                 <span>
                   QUICKSTART_GUIDES

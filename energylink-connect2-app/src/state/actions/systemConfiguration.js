@@ -61,6 +61,7 @@ export const SET_WPS_CONNECTION_STATUS = createAction(
 
 export const SET_SELECTED_AP = createAction('SET_SELECTED_AP')
 
+export const SUBMIT_COMMISSION_INIT = createAction('SUBMIT_COMMISSION_INIT')
 export const SUBMIT_COMMISSION_SUCCESS = createAction(
   'SUBMIT_COMMISSION_SUCCESS'
 )
@@ -82,5 +83,3 @@ export const SUBMIT_PRECONFIG_SUCCESS = createAction('SUBMIT_PRECONFIG_SUCCESS')
 export const SUBMIT_STRING_INVERTERS_INIT = createAction(
   'SUBMIT_STRING_INVERTERS_INIT'
 )
-
-export const SUBMIT_COMMISSION_INIT = createAction('SUBMIT_COMMISSION_INIT')

@@ -7,7 +7,10 @@
   letter-spacing: 0;
   border-radius: 5px;
   color: #ffffff;
-  font-weight: bold;
   display: grid;
   grid-template-columns: 95% 1fr;
+
+  .arrow-right {
+    margin: auto;
+  }
 }

@@ -890,6 +890,86 @@
     "recommended_actions": "Try clearing the error by rebooting the batteries. The following steps will reboot the batteries:\n\t1. Hold the power button on the right-hand-side of the front battery to power down all batteries.\n\t2. Wait 15 seconds.\n\t3. Press the power button again to turn all batteries on.\n\n Tap Retry in SunPower ProConnect. If the problem persists, please contact SunPower"
   },
   {
+    "event_code": "26701",
+    "event_name": "ONE_OR_MORE_CMETERS_NOT_CONNECTED",
+    "code": "26701",
+    "in_use": true,
+    "error_description": "One or more consumption meters is not connected to a CT",
+    "display": true,
+    "possible_causes": "One or more consumption meters is not connected to a CT",
+    "recommended_actions": "Make sure all the consumption CTs are installed.\n Check CT wiring and ensure that Arrow or label “This side toward source” is facing toward the Utility Meter and away from the Hub+ or Customer Service panel.\n Consumption CT wiring may not be terminated in the correct positions inside the PVS6.Verify and correct the CT wiring inside the PVS6.\n Verify and correct the CT installation. L1 CT must be installed on the same phase conductor that is connected to L1 Voltage input. L2 CT must be installed on the same phase conductor that is connected to L2 Voltage input.\n Consumption CTs must not pop open or must close.Verify and close the CTs per manufacturer guidelines. After the CTs are closed, a nylon cable tie may be secured around the perimeter of the CT to prevent accidental opening."
+  },
+  {
+    "event_code": "26702",
+    "event_name": "CONSUMPTION_CT_PHASE_RATING_MISMATCH",
+    "code": "26702",
+    "in_use": true,
+    "error_description": "CT ratings are different A=100 != B=50",
+    "display": true,
+    "possible_causes": "CT ratings are different A=100 != B=50",
+    "recommended_actions": "Ensure the correct CT rating are set up during commissioning.\n If multiple CTs are installed in parallel, program the effective CT rating during commissioning.\n Effective CT rating is equal to the sum of the individual CT rated amps. E.g. if two 100A CTs are installed in parallel, the effective CT rating is 200A."
+  },
+  {
+    "event_code": "26705",
+    "event_name": "NO_CHANGE_IN_CONSUMPTION_CT_READING_AFTER_PRODUCTION_OFF",
+    "code": "26705",
+    "in_use": true,
+    "error_description": "Consumption CT reading didn't change after production was turned OFF ",
+    "display": true,
+    "possible_causes": "Consumption CT is installed lineside ",
+    "recommended_actions": "Ensure the correct consumption CT settings are entered correctly during commissioning.\n Consumption CT values will not change if the CTs are installed lineside. Lineside PV system is installed upstream of CT.  CTs will only measure what is consumed on the site, production is not included in the  measured consumption."
+  },
+  {
+    "event_code": "26706",
+    "event_name": "CONSUMPTION_CT_RATING_TOO_LOW",
+    "code": "26706",
+    "in_use": true,
+    "error_description": "Consumption CT rating is too low",
+    "display": true,
+    "possible_causes": "Consumption CT rating setting might be configured to a low value",
+    "recommended_actions": "Adjust the CT rating setting on the Configure tab to a higher value, then, run these checks again."
+  },
+  {
+    "event_code": "26707",
+    "event_name": "CONSUMPTION_CT_RATING_TOO_HIGH",
+    "code": "26707",
+    "in_use": true,
+    "error_description": "Consumption CT rating is too high",
+    "display": true,
+    "possible_causes": "Consumption CT rating setting might be configured to a higher value",
+    "recommended_actions": "Adjust the CT rating setting on the Configure tab to a lower value, then, run these checks again."
+  },
+  {
+    "event_code": "26709",
+    "event_name": "LOAD_SIDE_CT_EXPECTED",
+    "code": "26709",
+    "in_use": true,
+    "error_description": "Consumption CT check detected as load side",
+    "display": true,
+    "possible_causes": "Consumption CT configuration in Pro Connect does not match the installation",
+    "recommended_actions": "Ensure the correct consumption CT settings are entered correctly during commissioning.\n Ensure that the Pro Connect consumption CT configuration(loadside/lineside) matches the actual CT installation.\n Note: Lineside PV system is installed upstream of CT.  CT’s will only measure what is consumed on the site, production is not included in the  measured consumption.\n Loadside PV system is connected downstream of CT’s.  Consumption CT’s measurement includes the consumption from the home offset by the PV production (net power of home consumption minus PV production)."
+  },
+  {
+    "event_code": "28708",
+    "event_name": "MIS_ARE_OFF",
+    "code": "28708",
+    "in_use": true,
+    "error_description": "reported production is zero",
+    "display": true,
+    "possible_causes": "Production CT is not installed or production CT is flipped",
+    "recommended_actions": "Make sure that the production CT is installed.\n Verify to make sure that the CTs are measuring all the MIs at the site.\n Make sure that the production CT is not installed quite close to the busbar.\n Check the CT orientation: Arrow or label “This side toward source” must face toward the PV Array and away from the Utility Meter.\n Verify and correct the CT wiring inside the PVS6.\n Verify and make sure the Production CT are around the PV wires."
+  },
+  {
+    "event_code": "28709",
+    "event_name": "REPORTED_MI_PRODUCTION_DISCREPANCY",
+    "code": "28709",
+    "in_use": true,
+    "error_description": "Reported MI production and measured production differ more than 5%",
+    "display": true,
+    "possible_causes": "Not all MIs are measured by the production CT",
+    "recommended_actions": "Make sure that the production CT is installed.\n Verify to make sure that the CTs are measuring all the MIs at the site.\n Make sure that the production CT is not installed quite close to the busbar.\n Check the CT orientation: Arrow or label “This side toward source” must face toward the PV Array and away from the Utility Meter.\n Verify and correct the CT wiring inside the PVS6.\n Verify and make sure the Production CT are around the PV wires."
+  },
+  {
     "event_code": "30000",
     "event_name": "component_check_no_midc_critical",
     "code": "30000",

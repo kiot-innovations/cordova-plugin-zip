@@ -2,7 +2,7 @@ import * as reactRedux from 'react-redux'
 
 import {
   getLastSuccessfulUpdate,
-  getFeatureFlagStatus,
+  getCurrentDevicePlatformStatus,
   getParsedFeatureFlags,
   useFeatureFlag
 } from './featureFlags'
@@ -27,7 +27,7 @@ describe('getLastSuccessfulUpdate', () => {
   })
 })
 
-describe('getFeatureFlagStatus', () => {
+describe('getCurrentDevicePlatformStatus', () => {
   it('should be true for iOS when feature flag is enabled', function() {
     window.device = { platform: 'iOS' }
     const statuses = [
@@ -40,7 +40,7 @@ describe('getFeatureFlagStatus', () => {
         status: true
       }
     ]
-    const result = getFeatureFlagStatus(statuses)
+    const result = getCurrentDevicePlatformStatus(statuses)
 
     expect(result).toEqual(true)
   })
@@ -57,7 +57,7 @@ describe('getFeatureFlagStatus', () => {
         status: false
       }
     ]
-    const result = getFeatureFlagStatus(statuses)
+    const result = getCurrentDevicePlatformStatus(statuses)
 
     expect(result).toEqual(true)
   })
@@ -70,7 +70,7 @@ describe('getFeatureFlagStatus', () => {
         status: true
       }
     ]
-    const result = getFeatureFlagStatus(statuses)
+    const result = getCurrentDevicePlatformStatus(statuses)
 
     expect(result).toEqual(false)
   })
@@ -83,7 +83,7 @@ describe('getFeatureFlagStatus', () => {
         status: true
       }
     ]
-    const result = getFeatureFlagStatus(statuses)
+    const result = getCurrentDevicePlatformStatus(statuses)
 
     expect(result).toEqual(false)
   })
@@ -110,6 +110,17 @@ describe('getParsedFeatureFlags', () => {
               status: true
             }
           ],
+          rollout: {
+            criteria: 'all',
+            dealerName: ['SunPower Global', 'Gabi Solar'],
+            permissions: [
+              'DEVICE_OVERVIEW_SEARCH',
+              'EDIT_CT_SCALING_FACTOR',
+              'EDIT_DCM_BILL_PERIOD',
+              'EDIT_DCM_CONTROLLER_MODE'
+            ],
+            userGroup: ['Employee', 'Admin', 'Installer']
+          },
           meta: {
             date: '2020-06-08',
             description: '',
@@ -144,13 +155,25 @@ describe('getParsedFeatureFlags', () => {
         lastUpdatedOn: '2020-06-08',
         name: 'appstore-reviews-request',
         page: 'commissioning-success',
-        status: true
+        status: true,
+        rollout: {
+          criteria: 'all',
+          dealerName: ['SunPower Global', 'Gabi Solar'],
+          permissions: [
+            'DEVICE_OVERVIEW_SEARCH',
+            'EDIT_CT_SCALING_FACTOR',
+            'EDIT_DCM_BILL_PERIOD',
+            'EDIT_DCM_CONTROLLER_MODE'
+          ],
+          userGroup: ['Employee', 'Admin', 'Installer']
+        }
       },
       {
         lastUpdatedOn: '2020-06-08',
         name: 'a-different-feature-flag',
         page: 'commissioning-success',
-        status: true
+        status: true,
+        rollout: {}
       }
     ]
     const result = getParsedFeatureFlags(featureFlags)
@@ -212,13 +235,15 @@ describe('getParsedFeatureFlags', () => {
         lastUpdatedOn: '2020-06-08',
         name: 'appstore-reviews-request',
         page: 'commissioning-success',
-        status: true
+        status: true,
+        rollout: {}
       },
       {
         lastUpdatedOn: '2020-06-08',
         name: 'a-different-feature-flag',
         page: 'commissioning-success',
-        status: true
+        status: true,
+        rollout: {}
       }
     ]
     const result = getParsedFeatureFlags(featureFlags)
@@ -256,6 +281,7 @@ describe('useFeatureFlag', () => {
         ]
       }
     }
+
     jest
       .spyOn(reactRedux, 'useSelector')
       .mockImplementation(callback => callback(featureFlags))
@@ -264,5 +290,167 @@ describe('useFeatureFlag', () => {
     const result = useFeatureFlag({ name, page })
 
     expect(result).toEqual(true)
+  })
+
+  it('should return true when requested flag is defined, enabled and rollout allowed (any)', function() {
+    const featureFlags = {
+      featureFlags: {
+        featureFlags: [
+          {
+            lastUpdatedOn: '2020-06-08',
+            name: 'appstore-reviews-request',
+            page: 'commissioning-success',
+            status: true,
+            rollout: {
+              criteria: 'any',
+              dealerName: ['SunPower Global', 'Gabi Solar'],
+              permissions: ['DEVICE_OVERVIEW_SEARCH', 'EDIT_CT_SCALING_FACTOR']
+            }
+          },
+          {
+            lastUpdatedOn: '2020-06-08',
+            name: 'a-different-feature-flag',
+            page: 'commissioning-success',
+            status: true
+          }
+        ]
+      },
+      user: {
+        data: {
+          dealerName: 'SunPower Global'
+        }
+      }
+    }
+
+    jest
+      .spyOn(reactRedux, 'useSelector')
+      .mockImplementation(callback => callback(featureFlags))
+    const name = 'appstore-reviews-request'
+    const page = 'commissioning-success'
+    const result = useFeatureFlag({ name, page })
+
+    expect(result).toEqual(true)
+  })
+
+  it('should return false when requested flag is defined, enabled and rollout disallowed (any)', function() {
+    const featureFlags = {
+      featureFlags: {
+        featureFlags: [
+          {
+            lastUpdatedOn: '2020-06-08',
+            name: 'appstore-reviews-request',
+            page: 'commissioning-success',
+            status: true,
+            rollout: {
+              criteria: 'any',
+              dealerName: ['Gabi Solar'],
+              permissions: ['DEVICE_OVERVIEW_SEARCH', 'EDIT_CT_SCALING_FACTOR']
+            }
+          },
+          {
+            lastUpdatedOn: '2020-06-08',
+            name: 'a-different-feature-flag',
+            page: 'commissioning-success',
+            status: true
+          }
+        ]
+      },
+      user: {
+        data: {
+          dealerName: 'SunPower Global',
+          permissions: ['CREATE_SITE']
+        }
+      }
+    }
+
+    jest
+      .spyOn(reactRedux, 'useSelector')
+      .mockImplementation(callback => callback(featureFlags))
+    const name = 'appstore-reviews-request'
+    const page = 'commissioning-success'
+    const result = useFeatureFlag({ name, page })
+
+    expect(result).toEqual(false)
+  })
+
+  it('should return true when requested flag is defined, enabled and rollout allowed (all)', function() {
+    const featureFlags = {
+      featureFlags: {
+        featureFlags: [
+          {
+            lastUpdatedOn: '2020-06-08',
+            name: 'appstore-reviews-request',
+            page: 'commissioning-success',
+            status: true,
+            rollout: {
+              criteria: 'all',
+              dealerName: ['SunPower Global', 'Gabi Solar'],
+              permissions: ['DEVICE_OVERVIEW_SEARCH', 'EDIT_CT_SCALING_FACTOR']
+            }
+          },
+          {
+            lastUpdatedOn: '2020-06-08',
+            name: 'a-different-feature-flag',
+            page: 'commissioning-success',
+            status: true
+          }
+        ]
+      },
+      user: {
+        data: {
+          dealerName: 'SunPower Global',
+          permissions: ['EDIT_CT_SCALING_FACTOR']
+        }
+      }
+    }
+
+    jest
+      .spyOn(reactRedux, 'useSelector')
+      .mockImplementation(callback => callback(featureFlags))
+    const name = 'appstore-reviews-request'
+    const page = 'commissioning-success'
+    const result = useFeatureFlag({ name, page })
+
+    expect(result).toEqual(true)
+  })
+
+  it('should return false when requested flag is defined, enabled and rollout disallowed (all)', function() {
+    const featureFlags = {
+      featureFlags: {
+        featureFlags: [
+          {
+            lastUpdatedOn: '2020-06-08',
+            name: 'appstore-reviews-request',
+            page: 'commissioning-success',
+            status: true,
+            rollout: {
+              criteria: 'all',
+              dealerName: ['SunPower Global', 'Gabi Solar'],
+              permissions: ['DEVICE_OVERVIEW_SEARCH', 'EDIT_CT_SCALING_FACTOR']
+            }
+          },
+          {
+            lastUpdatedOn: '2020-06-08',
+            name: 'a-different-feature-flag',
+            page: 'commissioning-success',
+            status: true
+          }
+        ]
+      },
+      user: {
+        data: {
+          dealerName: 'SunPower Global'
+        }
+      }
+    }
+
+    jest
+      .spyOn(reactRedux, 'useSelector')
+      .mockImplementation(callback => callback(featureFlags))
+    const name = 'appstore-reviews-request'
+    const page = 'commissioning-success'
+    const result = useFeatureFlag({ name, page })
+
+    expect(result).toEqual(false)
   })
 })

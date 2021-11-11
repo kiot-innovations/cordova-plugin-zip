@@ -4,15 +4,23 @@ import './ButtonLink.scss'
 
 export const ButtonLink = ({
   title = 'Link Title',
-  onClick,
+  subtitle,
   icon = 'sp-chevron-right',
-  size = 6
+  size = 6,
+  onClick
 }) => {
   return (
     <div className="button-link mt-10 mb-10" onClick={onClick}>
-      <div className="route-name">
-        <span>{title}</span>
-      </div>
+      {subtitle ? (
+        <div className="has-text-left">
+          <p className="route-name has-text-weight-bold">{title}</p>
+          <p>{subtitle}</p>
+        </div>
+      ) : (
+        <div className="has-text-left route-name">
+          <span>{title}</span>
+        </div>
+      )}
       <div className="arrow-right pt-2">
         <span className={clsx([icon, 'has-text-primary', `is-size-${size}`])} />
       </div>

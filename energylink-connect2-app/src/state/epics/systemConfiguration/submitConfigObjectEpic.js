@@ -22,11 +22,11 @@ import { getApiDevice, getApiPVS } from 'shared/api'
 import { translate } from 'shared/i18n'
 import { edpErrorMessage } from 'shared/utils'
 import {
-  SUBMIT_CONFIG_SUCCESS,
+  SUBMIT_COMMISSION_INIT,
   SUBMIT_COMMISSION_SUCCESS,
   SUBMIT_COMMISSION_ERROR,
-  SUBMIT_COMMISSION_INIT,
-  SUBMIT_STRING_INVERTERS_INIT
+  SUBMIT_STRING_INVERTERS_INIT,
+  SUBMIT_CONFIG_SUCCESS
 } from 'state/actions/systemConfiguration'
 
 const pvsIsOffline = message =>

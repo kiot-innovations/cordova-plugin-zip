@@ -2,6 +2,7 @@ import { unionWith, eqBy, prop } from 'ramda'
 import { createReducer } from 'redux-act'
 
 import { PUSH_CANDIDATES_ERROR } from 'state/actions/devices'
+import { FIRMWARE_GET_VERSION_COMPLETE } from 'state/actions/firmwareUpdate'
 import { RESET_COMMISSIONING } from 'state/actions/global'
 import {
   CONNECT_PVS_VIA_BLE,
@@ -47,7 +48,8 @@ const initialState = {
   lastDiscoveryType: '',
   bleDevice: null,
   bleConnectionInfo: null,
-  wpsSupport: false
+  wpsSupport: false,
+  fwVersion: 0
 }
 
 export const pvsReducer = createReducer(
@@ -156,6 +158,10 @@ export const pvsReducer = createReducer(
     [EXECUTE_ENABLE_ACCESS_POINT]: (state, bleConnectionInfo) => ({
       ...state,
       bleConnectionInfo
+    }),
+    [FIRMWARE_GET_VERSION_COMPLETE]: (state, payload) => ({
+      ...state,
+      fwVersion: payload
     })
   },
   initialState

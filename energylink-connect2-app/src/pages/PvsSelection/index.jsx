@@ -505,12 +505,12 @@ function PvsSelection() {
         )}
       </section>
 
-      <section className="pvs-buttons inline-buttons mb-10">
+      <div className="is-flex mb-10">
         <button
           disabled={!PVSSelected}
           className={clsx(
             { hidden: !PVSSelected },
-            'button is-uppercase is-secondary'
+            'button is-uppercase is-secondary is-fullwidth mr-10'
           )}
           onClick={replacePVS}
         >
@@ -520,13 +520,13 @@ function PvsSelection() {
           disabled={!PVSSelected}
           className={clsx(
             { hidden: !PVSSelected },
-            'button is-uppercase is-secondary'
+            'button is-uppercase is-secondary is-fullwidth ml-10'
           )}
           onClick={editDevices}
         >
           {t('CONNECT_TO_PVS')}
         </button>
-      </section>
+      </div>
 
       <SwipeableSheet
         open={fetchDevicesStatus}

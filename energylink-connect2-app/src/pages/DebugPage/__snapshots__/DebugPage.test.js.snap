@@ -40,7 +40,7 @@ exports[`Data page render correctly 1`] = `
     >
       <DebugPage>
         <div
-          className="pr-10 pl-10 debug-page"
+          className="pr-10 pl-10"
         >
           <div
             className="has-text-centered mb-25"
@@ -2706,8 +2706,34 @@ exports[`Data page render correctly 1`] = `
                       className="route-name"
                     >
                       <span>
+                        SystemChecks
+                      </span>
+                    </div>
+                    <div
+                      className="arrow-right pt-2"
+                    >
+                      <span
+                        className="sp-chevron-right has-text-primary"
+                      />
+                    </div>
+                  </div>
+                  <div
+                    className="debug-route mb-10"
+                    onClick={[Function]}
+                  >
+                    <div
+                      className="route-name"
+                    >
+                      <span>
                         Saving Configuration
                       </span>
+                    </div>
+                    <div
+                      className="arrow-right pt-2"
+                    >
+                      <span
+                        className="sp-chevron-right has-text-primary"
+                      />
                     </div>
                   </div>
                   <div
@@ -2721,6 +2747,13 @@ exports[`Data page render correctly 1`] = `
                         Live Data
                       </span>
                     </div>
+                    <div
+                      className="arrow-right pt-2"
+                    >
+                      <span
+                        className="sp-chevron-right has-text-primary"
+                      />
+                    </div>
                   </div>
                   <div
                     className="debug-route mb-10"
@@ -2732,6 +2765,13 @@ exports[`Data page render correctly 1`] = `
                       <span>
                         Other Devices
                       </span>
+                    </div>
+                    <div
+                      className="arrow-right pt-2"
+                    >
+                      <span
+                        className="sp-chevron-right has-text-primary"
+                      />
                     </div>
                   </div>
                   <div
@@ -2745,6 +2785,13 @@ exports[`Data page render correctly 1`] = `
                         String Inverters Setup
                       </span>
                     </div>
+                    <div
+                      className="arrow-right pt-2"
+                    >
+                      <span
+                        className="sp-chevron-right has-text-primary"
+                      />
+                    </div>
                   </div>
                   <div
                     className="debug-route mb-10"
@@ -2756,6 +2803,13 @@ exports[`Data page render correctly 1`] = `
                       <span>
                         Precommissioning Configs
                       </span>
+                    </div>
+                    <div
+                      className="arrow-right pt-2"
+                    >
+                      <span
+                        className="sp-chevron-right has-text-primary"
+                      />
                     </div>
                   </div>
                   <div
@@ -2769,6 +2823,13 @@ exports[`Data page render correctly 1`] = `
                         Scan Labels (Scandit)
                       </span>
                     </div>
+                    <div
+                      className="arrow-right pt-2"
+                    >
+                      <span
+                        className="sp-chevron-right has-text-primary"
+                      />
+                    </div>
                   </div>
                   <div
                     className="debug-route mb-10"
@@ -2780,6 +2841,13 @@ exports[`Data page render correctly 1`] = `
                       <span>
                         SunVault PreDiscovery
                       </span>
+                    </div>
+                    <div
+                      className="arrow-right pt-2"
+                    >
+                      <span
+                        className="sp-chevron-right has-text-primary"
+                      />
                     </div>
                   </div>
                   <div
@@ -2793,6 +2861,13 @@ exports[`Data page render correctly 1`] = `
                         SunVault Connected Device Update
                       </span>
                     </div>
+                    <div
+                      className="arrow-right pt-2"
+                    >
+                      <span
+                        className="sp-chevron-right has-text-primary"
+                      />
+                    </div>
                   </div>
                   <div
                     className="debug-route mb-10"
@@ -2804,6 +2879,13 @@ exports[`Data page render correctly 1`] = `
                       <span>
                         SunVault Device Mapping
                       </span>
+                    </div>
+                    <div
+                      className="arrow-right pt-2"
+                    >
+                      <span
+                        className="sp-chevron-right has-text-primary"
+                      />
                     </div>
                   </div>
                   <div
@@ -2817,6 +2899,13 @@ exports[`Data page render correctly 1`] = `
                         SunVault Health Check
                       </span>
                     </div>
+                    <div
+                      className="arrow-right pt-2"
+                    >
+                      <span
+                        className="sp-chevron-right has-text-primary"
+                      />
+                    </div>
                   </div>
                   <div
                     className="debug-route mb-10"
@@ -2828,6 +2917,13 @@ exports[`Data page render correctly 1`] = `
                       <span>
                         Connection Recovery Page
                       </span>
+                    </div>
+                    <div
+                      className="arrow-right pt-2"
+                    >
+                      <span
+                        className="sp-chevron-right has-text-primary"
+                      />
                     </div>
                   </div>
                   <div
@@ -2841,6 +2937,13 @@ exports[`Data page render correctly 1`] = `
                         RMA - Existing Devices for PVS Replacement
                       </span>
                     </div>
+                    <div
+                      className="arrow-right pt-2"
+                    >
+                      <span
+                        className="sp-chevron-right has-text-primary"
+                      />
+                    </div>
                   </div>
                   <div
                     className="debug-route mb-10"
@@ -2852,6 +2955,13 @@ exports[`Data page render correctly 1`] = `
                       <span>
                         RMA - New Inventory Count
                       </span>
+                    </div>
+                    <div
+                      className="arrow-right pt-2"
+                    >
+                      <span
+                        className="sp-chevron-right has-text-primary"
+                      />
                     </div>
                   </div>
                   <div
@@ -2865,6 +2975,13 @@ exports[`Data page render correctly 1`] = `
                         RMA - New and existing Microinverters
                       </span>
                     </div>
+                    <div
+                      className="arrow-right pt-2"
+                    >
+                      <span
+                        className="sp-chevron-right has-text-primary"
+                      />
+                    </div>
                   </div>
                   <div
                     className="debug-route mb-10"
@@ -2876,6 +2993,13 @@ exports[`Data page render correctly 1`] = `
                       <span>
                         RMA - Edit Devices
                       </span>
+                    </div>
+                    <div
+                      className="arrow-right pt-2"
+                    >
+                      <span
+                        className="sp-chevron-right has-text-primary"
+                      />
                     </div>
                   </div>
                   <div
@@ -2889,6 +3013,13 @@ exports[`Data page render correctly 1`] = `
                         Standard Serial Number List
                       </span>
                     </div>
+                    <div
+                      className="arrow-right pt-2"
+                    >
+                      <span
+                        className="sp-chevron-right has-text-primary"
+                      />
+                    </div>
                   </div>
                   <div
                     className="debug-route mb-10"
@@ -2900,6 +3031,13 @@ exports[`Data page render correctly 1`] = `
                       <span>
                         Connect PVS to Internet
                       </span>
+                    </div>
+                    <div
+                      className="arrow-right pt-2"
+                    >
+                      <span
+                        className="sp-chevron-right has-text-primary"
+                      />
                     </div>
                   </div>
                   <div
@@ -2913,6 +3051,13 @@ exports[`Data page render correctly 1`] = `
                         Precommissioning Checklist
                       </span>
                     </div>
+                    <div
+                      className="arrow-right pt-2"
+                    >
+                      <span
+                        className="sp-chevron-right has-text-primary"
+                      />
+                    </div>
                   </div>
                   <div
                     className="debug-route mb-10"
@@ -2924,6 +3069,13 @@ exports[`Data page render correctly 1`] = `
                       <span>
                         POC for BLE Connection
                       </span>
+                    </div>
+                    <div
+                      className="arrow-right pt-2"
+                    >
+                      <span
+                        className="sp-chevron-right has-text-primary"
+                      />
                     </div>
                   </div>
                   <div
@@ -2937,6 +3089,13 @@ exports[`Data page render correctly 1`] = `
                         Precommissioning Configurations
                       </span>
                     </div>
+                    <div
+                      className="arrow-right pt-2"
+                    >
+                      <span
+                        className="sp-chevron-right has-text-primary"
+                      />
+                    </div>
                   </div>
                   <div
                     className="debug-route mb-10"
@@ -2949,6 +3108,13 @@ exports[`Data page render correctly 1`] = `
                         Microinverters Discovery
                       </span>
                     </div>
+                    <div
+                      className="arrow-right pt-2"
+                    >
+                      <span
+                        className="sp-chevron-right has-text-primary"
+                      />
+                    </div>
                   </div>
                   <div
                     className="debug-route mb-10"
@@ -2960,6 +3126,13 @@ exports[`Data page render correctly 1`] = `
                       <span>
                         System Configuration
                       </span>
+                    </div>
+                    <div
+                      className="arrow-right pt-2"
+                    >
+                      <span
+                        className="sp-chevron-right has-text-primary"
+                      />
                     </div>
                   </div>
                 </div>

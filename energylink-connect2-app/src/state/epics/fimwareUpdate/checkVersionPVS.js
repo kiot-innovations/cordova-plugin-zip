@@ -60,7 +60,7 @@ const checkVersionPVS = (action$, state$) =>
             ? EMPTY_ACTION()
             : shouldUpdate
             ? FIRMWARE_SHOW_MODAL({ PVSFromVersion, PVSToVersion })
-            : FIRMWARE_GET_VERSION_COMPLETE()
+            : FIRMWARE_GET_VERSION_COMPLETE(PVSFromVersion)
         ),
         catchError(err => {
           Sentry.captureException(err)

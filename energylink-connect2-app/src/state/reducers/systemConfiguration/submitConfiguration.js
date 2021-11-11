@@ -14,7 +14,8 @@ import {
   ALLOW_COMMISSIONING,
   SUBMIT_PRECONFIG_GRIDPROFILE,
   SUBMIT_PRECONFIG_ERROR,
-  SUBMIT_PRECONFIG_SUCCESS
+  SUBMIT_PRECONFIG_SUCCESS,
+  SUBMIT_COMMISSION_INIT
 } from 'state/actions/systemConfiguration'
 
 export const preconfigStates = {
@@ -26,6 +27,7 @@ export const preconfigStates = {
 
 export const initialState = {
   submitting: false,
+  submitted: false,
   config: {},
   error: '',
   commissioned: false,
@@ -43,17 +45,26 @@ export const submitConfigReducer = createReducer(
     [SUBMIT_CONFIG]: (state, payload) => ({
       ...state,
       submitting: true,
+      submitted: false,
       config: payload
     }),
     [SUBMIT_CONFIG_SUCCESS]: state => ({
       ...state,
-      submitting: true,
+      submitting: false,
+      submitted: true,
       error: initialState.error
     }),
     [SUBMIT_CONFIG_ERROR]: (state, payload) => ({
       ...state,
       submitting: false,
+      submitted: false,
       error: payload
+    }),
+    [SUBMIT_COMMISSION_INIT]: state => ({
+      ...state,
+      submitting: true,
+      error: initialState.error,
+      commissioned: false
     }),
     [SUBMIT_COMMISSION_SUCCESS]: state => ({
       ...state,
@@ -63,6 +74,7 @@ export const submitConfigReducer = createReducer(
     [SUBMIT_COMMISSION_ERROR]: (state, payload) => ({
       ...state,
       submitting: false,
+      commissioned: false,
       error: prop('message', payload)
     }),
     [ALLOW_COMMISSIONING]: state => ({
