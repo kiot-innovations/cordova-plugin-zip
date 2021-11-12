@@ -3070,9 +3070,9 @@ export const swaggerDocs = {
             enum: ['COMM', 'BIND', 'REMOVE'],
             example: 'COMM'
           },
-          SUBTYPE: {
+          subtype: {
             type: 'string',
-            description: 'Subtypes available',
+            description: 'subtypes available',
             enum: [
               'GROSS_CONSUMPTION_LINESIDE',
               'GROSS_PRODUCTION',

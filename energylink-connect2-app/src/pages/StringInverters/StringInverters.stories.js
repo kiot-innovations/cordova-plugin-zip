@@ -25,18 +25,18 @@ storiesOf('String Inverters Page', module)
           {
             SERIAL: 'ConsumptionMeter001ca',
             DEVICE_TYPE: 'Inverter',
-            SUBTYPE: 'NOT_USED',
+            subtype: 'NOT_USED',
             MODEL: 'inverter'
           },
           {
             SERIAL: 'ProductionMeter001p',
             DEVICE_TYPE: 'Power Meter',
-            SUBTYPE: 'NOT_USED'
+            subtype: 'NOT_USED'
           },
           {
             SERIAL: 'ConsumptionMeter001c',
             DEVICE_TYPE: 'Power Meter',
-            SUBTYPE: 'NOT_USED'
+            subtype: 'NOT_USED'
           }
         ],
         progress: {

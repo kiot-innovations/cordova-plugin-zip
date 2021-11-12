@@ -13,13 +13,13 @@ storiesOf('Storage - Prediscovery Screen', module).add('Simple', () => {
         {
           SERIAL: 'ConsumptionMeter001ca',
           DEVICE_TYPE: 'Inverter',
-          SUBTYPE: 'NOT_USED',
+          subtype: 'NOT_USED',
           MODEL: 'inverter'
         },
         {
           SERIAL: 'ConsumptionMeter002ca',
           DEVICE_TYPE: 'Inverter',
-          SUBTYPE: 'NOT_USED',
+          subtype: 'NOT_USED',
           MODEL: 'inverter'
         }
       ]

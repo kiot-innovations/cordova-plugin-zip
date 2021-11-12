@@ -11,12 +11,12 @@ describe('StoragePrediscovery page', () => {
         {
           SERIAL: 'ProductionMeter001p',
           DEVICE_TYPE: 'Power Meter',
-          SUBTYPE: 'NOT_USED'
+          subtype: 'NOT_USED'
         },
         {
           SERIAL: 'ConsumptionMeter001c',
           DEVICE_TYPE: 'Power Meter',
-          SUBTYPE: 'NOT_USED'
+          subtype: 'NOT_USED'
         }
       ]
     },

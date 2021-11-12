@@ -206,12 +206,12 @@ describe('Data page', () => {
         {
           SERIAL: 'ProductionMeter001p',
           DEVICE_TYPE: 'Power Meter',
-          SUBTYPE: 'GROSS_PRODUCTION_LINESIDE'
+          subtype: 'GROSS_PRODUCTION_LINESIDE'
         },
         {
           SERIAL: 'ConsumptionMeter001c',
           DEVICE_TYPE: 'Power Meter',
-          SUBTYPE: 'NOT_USED'
+          subtype: 'NOT_USED'
         }
       ]
     },

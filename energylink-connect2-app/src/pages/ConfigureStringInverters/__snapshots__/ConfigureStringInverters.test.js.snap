@@ -63,8 +63,8 @@ exports[`ConfigureStringInverters component render correctly 1`] = `
                   "DEVICE_TYPE": "Inverter",
                   "MODEL": "inverter",
                   "SERIAL": "ConsumptionMeter001ca",
-                  "SUBTYPE": "NOT_USED",
                   "panelModel": "SPR-A390-BLK",
+                  "subtype": "NOT_USED",
                 }
               }
               index={0}
@@ -6519,8 +6519,8 @@ exports[`ConfigureStringInverters component render correctly 1`] = `
                   "DEVICE_TYPE": "Inverter",
                   "MODEL": "inverter",
                   "SERIAL": "ConsumptionMeter002ca",
-                  "SUBTYPE": "NOT_USED",
                   "panelModel": "SPR-A400-BLK",
+                  "subtype": "NOT_USED",
                 }
               }
               index={1}

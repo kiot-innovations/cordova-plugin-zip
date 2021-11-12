@@ -704,7 +704,7 @@
   "RMA_MISSING_MODELS": "Some microinverters don’t have module models assigned, assign them to finish commissioning",
   "ASSIGN_MODELS": "Assign Models",
   "ALMOST_THERE": "We're almost there",
-  "MISSING_METER_SUBTYPES": "We noticed that the meter configurations are missing",
+  "MISSING_METER_subtypeS": "We noticed that the meter configurations are missing",
   "CONFIGURE_METERS": "Configure Meters",
   "COMMISSION_ERROR_NO_INTERNET": "PVS is not connected to the internet. Make sure Wi-Fi data is turned on, then try again.",
   "UNKNOWN_CONFIG_ERROR": "Unknown error.",

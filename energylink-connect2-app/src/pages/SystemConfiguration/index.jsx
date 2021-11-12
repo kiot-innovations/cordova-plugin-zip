@@ -53,7 +53,7 @@ const createMeterConfig = (devicesList, meterConfig, dispatch, site) => {
       endsWith('p', device.SERIAL) &&
       meterConfig.productionCT
     ) {
-      device.SUBTYPE = meterConfig.productionCT
+      device.subtype = meterConfig.productionCT
     }
 
     if (
@@ -61,7 +61,7 @@ const createMeterConfig = (devicesList, meterConfig, dispatch, site) => {
       endsWith('c', device.SERIAL) &&
       meterConfig.consumptionCT
     ) {
-      device.SUBTYPE = meterConfig.consumptionCT
+      device.subtype = meterConfig.consumptionCT
     }
 
     return device

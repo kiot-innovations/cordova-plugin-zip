@@ -36,7 +36,7 @@ describe('The StringInverters main page', function() {
           SERIAL: 'ConsumptionMeter001ca',
           DEVICE_TYPE: 'Inverter',
           type: 'Inverter',
-          SUBTYPE: 'NOT_USED',
+          subtype: 'NOT_USED',
           MODEL: 'inverter',
           panelModel: 'SPR-A390-BLK',
           COUNT: 1
@@ -45,7 +45,7 @@ describe('The StringInverters main page', function() {
           SERIAL: 'ConsumptionMeter002ca',
           DEVICE_TYPE: 'Inverter',
           type: 'Inverter',
-          SUBTYPE: 'NOT_USED',
+          subtype: 'NOT_USED',
           MODEL: 'inverter',
           panelModel: 'SPR-A400-BLK',
           COUNT: 1
@@ -54,7 +54,7 @@ describe('The StringInverters main page', function() {
           SERIAL: 'ConsumptionMeter001ca',
           DEVICE_TYPE: 'Power Meter',
           type: 'Power Meter',
-          SUBTYPE: 'NOT_USED',
+          subtype: 'NOT_USED',
           MODEL: 'inverter',
           panelModel: 'SPR-A390-BLK',
           COUNT: 1

@@ -24,7 +24,7 @@ describe('ConfigureStringInverters component', () => {
         {
           SERIAL: 'ConsumptionMeter001ca',
           DEVICE_TYPE: 'Inverter',
-          SUBTYPE: 'NOT_USED',
+          subtype: 'NOT_USED',
           MODEL: 'inverter',
           panelModel: 'SPR-A390-BLK',
           COUNT: 1
@@ -32,7 +32,7 @@ describe('ConfigureStringInverters component', () => {
         {
           SERIAL: 'ConsumptionMeter002ca',
           DEVICE_TYPE: 'Inverter',
-          SUBTYPE: 'NOT_USED',
+          subtype: 'NOT_USED',
           MODEL: 'inverter',
           panelModel: 'SPR-A400-BLK',
           COUNT: 1

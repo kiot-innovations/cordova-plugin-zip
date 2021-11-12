@@ -198,12 +198,12 @@ const noMeters = {
       {
         SERIAL: 'ProductionMeter001p',
         DEVICE_TYPE: 'Power Meter',
-        SUBTYPE: 'NOT_USED'
+        subtype: 'NOT_USED'
       },
       {
         SERIAL: 'ConsumptionMeter001c',
         DEVICE_TYPE: 'Power Meter',
-        SUBTYPE: 'NOT_USED'
+        subtype: 'NOT_USED'
       }
     ]
   },
@@ -243,12 +243,12 @@ const withMeters = {
       {
         SERIAL: 'ProductionMeter001p',
         DEVICE_TYPE: 'Power Meter',
-        SUBTYPE: 'GROSS_PRODUCTION_LINESIDE'
+        subtype: 'GROSS_PRODUCTION_LINESIDE'
       },
       {
         SERIAL: 'ConsumptionMeter001c',
         DEVICE_TYPE: 'Power Meter',
-        SUBTYPE: 'NOT_USED'
+        subtype: 'NOT_USED'
       }
     ]
   },
@@ -294,13 +294,13 @@ const onlyMicroInverters = {
       {
         SERIAL: 'ConsumptionMeter001ca',
         DEVICE_TYPE: 'Inverter',
-        SUBTYPE: 'NOT_USED',
+        subtype: 'NOT_USED',
         MODEL: 'inverter'
       },
       {
         SERIAL: 'ConsumptionMeter002ca',
         DEVICE_TYPE: 'Inverter',
-        SUBTYPE: 'NOT_USED',
+        subtype: 'NOT_USED',
         MODEL: 'inverter'
       }
     ]
