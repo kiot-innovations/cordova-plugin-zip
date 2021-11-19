@@ -21,7 +21,8 @@ function SiteCard({ site, state, setSite }) {
     pvsCount = 0,
     snList = ['ZT190785000549A0371', 'ZT190785000549A0372'],
     systemSize = '10kW',
-    hasStorage = true
+    hasStorage,
+    expectsStorage = false
   } = site
 
   return (
@@ -30,7 +31,7 @@ function SiteCard({ site, state, setSite }) {
       <SiteWrap flipped={flipped} setFlipped={setFlipped}>
         <h2 className="mb-10 has-text-white">
           {name}
-          {either(hasStorage, ' - Storage Site')}
+          {either(expectsStorage, ' - Storage Site')}
         </h2>
         <p className="mb-10">{address}</p>
 

@@ -40,7 +40,6 @@ export const siteCardMock = {
   stat_ind: 'ACTIVE',
   strg_sys_sz_kwh: 0,
   tm_zone_id: 'US/Pacific',
-  sys_sz_w: 1675,
   root_path_list: 'AC_12345, AC_45667, SPWR_PARTNER, SUNPOWER_GLOBAL',
   party_fn_list: 'John, Chris, Edward',
   party_ln_list: 'Smith, Lopez, Thompson',
@@ -56,18 +55,10 @@ export const siteCardMock = {
 }
 
 storiesOf('SiteCard', module)
-  .add('Site Commissioned without storage', () => (
-    <div className="full-min-height ml-20 mr-20 mt-20 mb-20">
-      <SiteCard {...toUISite(siteCardMock)} />
-    </div>
-  ))
-  .add('Site Commissioned with storage', () => {
-    const siteWSC = clone(siteCardMock)
-    siteWSC.comm_strg_sys_sz_kwh = 13
-
+  .add('Site Commissioned', () => {
     return (
       <div className="full-min-height ml-20 mr-20 mt-20 mb-20">
-        <SiteCard {...toUISite(siteWSC)} />
+        <SiteCard {...toUISite(siteCardMock)} />
       </div>
     )
   })
@@ -82,11 +73,23 @@ storiesOf('SiteCard', module)
   })
   .add('Site Not Commissioned Needs Storage', () => {
     const siteWOSC = clone(siteCardMock)
+    siteWOSC.pvs_type = 'Aggregate'
     siteWOSC.pvs_count = 0
     siteWOSC.strg_sys_sz_kwh = 13000
     return (
       <div className="full-min-height ml-20 mr-20 mt-20 mb-20">
         <SiteCard {...toUISite(siteWOSC)} />
+      </div>
+    )
+  })
+  .add('Site Commissioned with storage', () => {
+    const siteWSC = clone(siteCardMock)
+    siteWSC.comm_strg_sys_sz_kwh = 13
+    siteWSC.sys_sz_w = 1675
+
+    return (
+      <div className="full-min-height ml-20 mr-20 mt-20 mb-20">
+        <SiteCard {...toUISite(siteWSC)} />
       </div>
     )
   })

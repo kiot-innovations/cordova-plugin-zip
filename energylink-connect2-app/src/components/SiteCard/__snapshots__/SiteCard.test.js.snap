@@ -92,7 +92,7 @@ exports[`SiteCard component renders without crashing - Site Commissioned 1`] = `
       />
       SYSTEM_SIZE
       : 
-      1.675 kW
+      N/A
     </p>
     <Link
       to="/bill-of-materials"
@@ -199,7 +199,7 @@ exports[`SiteCard component renders without crashing - Site Commissioned without
       />
       SYSTEM_SIZE
       : 
-      1.675 kW
+      N/A
     </p>
     <Link
       to="/bill-of-materials"
@@ -339,6 +339,7 @@ exports[`SiteCard component renders without crashing - Site Not Commissioned Nee
       className="mb-10 has-text-white"
     >
       Smith, Terry
+       - Storage Site
     </h2>
     <p
       className="mb-10"
@@ -364,16 +365,16 @@ exports[`SiteCard component renders without crashing - Site Not Commissioned Nee
     <article
       className="is-flex level is-fullwidth level"
     >
-      <p>
-        <i
-          className="sp sp-sun has-text-white"
-        />
-      </p>
+      <span
+        className="has-text-primary"
+      >
+        BEGIN_SV_INSTALL
+      </span>
       <div
         className="is-flex has-text-white"
       >
         <span>
-          3
+          0
         </span>
         <i
           className="sp sp-pvs pt-2"
@@ -396,28 +397,22 @@ exports[`SiteCard component renders without crashing - Site Not Commissioned Nee
         />
       </span>
     </h2>
-    <section
-      className="mb-5"
-    />
-    <p
-      className="mb-15"
+    <article
+      className="has-text-centered is-fullwidth"
     >
-      <i
-        className="sp sp-sun mr-10 has-text-white"
-      />
-      SYSTEM_SIZE
-      : 
-      1.675 kW
-    </p>
-    <Link
-      to="/bill-of-materials"
-    >
-      <span
-        className="has-text-centered is-fullwidth is-block"
+      <p
+        className="mb-15"
       >
-        SELECT_THIS_SITE
-      </span>
-    </Link>
+        NO_SV_DEVICES
+      </p>
+      <Link
+        to="/bill-of-materials"
+      >
+        <span>
+          BEGIN_SV_INSTALL
+        </span>
+      </Link>
+    </article>
   </SiteWrap>
 </ReactCardFlip>
 `;

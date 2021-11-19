@@ -39,7 +39,9 @@ describe('SiteCard component', () => {
 
   it('renders without crashing - Site Not Commissioned Needs Storage', () => {
     const siteWSC = clone(siteCardMock)
-    siteWSC.strg_sys_sz_kwh = null
+    siteWSC.pvs_type = 'Aggregate'
+    siteWSC.pvs_count = 0
+    siteWSC.strg_sys_sz_kwh = 1000
     const component = shallow(
       <SiteCard site={getSitePayload(siteWSC)} state={getSiteState(siteWSC)} />
     )
@@ -49,6 +51,7 @@ describe('SiteCard component', () => {
   it('renders without crashing - Site Not Commissioned Dont Expect Storage', () => {
     const siteWOSC = clone(siteCardMock)
     siteWOSC.pvs_count = 0
+    siteWOSC.strg_sys_sz_kwh = 0
     const component = shallow(
       <SiteCard
         site={getSitePayload(siteWOSC)}
