@@ -328,6 +328,7 @@
   "STAGE_VERIFYING_IMAGES": "Verifying Installation",
   "STAGE_FW_UPGRADE_SUCCESS": "PVS update successful",
   "STAGE_COMPLETE": "Rebooting PVS",
+  "STAGE_COMPLETE_INSTRUCTIONS": "Dark green PVS LED will indicate successful reboot",
   "ERROR_POLLING_UPGRADE": "The request to get the PVS upgrade disconnected V:{0}",
   "NETWORK_DIFFERENT": "Network name different",
   "DONT_CLOSE_APP_UPGRADING": "We're updating the PVS. Please don't close the application.​",

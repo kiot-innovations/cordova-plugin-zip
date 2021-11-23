@@ -157,9 +157,12 @@ const UpdateScreen = () => {
                     >
                       {either(
                         status === 'WAITING_FOR_NETWORK',
-
                         <div className="has-text-white">
-                          {t('WAITING_FOR_NETWORK', formattedTime)}
+                          {either(
+                            secondsLeft === 0,
+                            t('STAGE_COMPLETE_INSTRUCTIONS'),
+                            t('WAITING_FOR_NETWORK', formattedTime)
+                          )}
                         </div>
                       )}
                     </UpdateFirmwareStage>
