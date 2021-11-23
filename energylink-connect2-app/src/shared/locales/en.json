@@ -801,6 +801,7 @@
   "PRODUCTION_CT_ERRORS": "Production CT Errors",
   "CONSUMPTION_CT_ERRORS": "Consumption CT Errors",
   "REPLACE_PVS_WARNING": "Do not replace the PVS if you’re adding a Hub+ to the existing system.",
+  "PLACES_ERROR": "An error occurred, please try again.",
   "RSE_FOOTER": "We recommend using this configuration to turn OFF the system if it does not have PTO from the utility.",
   "STORAGE_FW_OUT_OF_SYNC": "Storage Firmware Out Of Sync",
   "STORAGE_FW_OUT_OF_SYNC_BODY": "Please recommission the SunVault equipment to ensure compatibility with the just updated PVS firmware version. Not doing so will leave SunVault in an inoperable state.",

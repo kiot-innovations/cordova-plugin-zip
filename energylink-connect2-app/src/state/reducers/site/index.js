@@ -1,4 +1,4 @@
-import { path, pathOr, propOr } from 'ramda'
+import { path, propOr } from 'ramda'
 import { createReducer } from 'redux-act'
 
 import {
@@ -85,11 +85,9 @@ export const siteReducer = createReducer(
     [CREATE_SITE_ERROR]: (state, error) => ({
       ...initialState,
       saveModal: false,
-      saveError: pathOr(
-        'SITE_CREATE_ERROR',
-        ['response', 'body', 'message'],
-        error
-      )
+      saveError: path(['response', 'body', 'message'], error)
+        ? 'PLACES_ERROR'
+        : 'SITE_CREATE_ERROR'
     }),
     [GET_SITES_INIT]: state => ({
       ...state,
