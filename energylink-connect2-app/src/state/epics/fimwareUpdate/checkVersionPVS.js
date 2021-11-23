@@ -9,7 +9,8 @@ import { sendCommandToPVS } from 'shared/PVSUtils'
 import { getPVSVersionNumber } from 'shared/utils'
 import {
   FIRMWARE_GET_VERSION_COMPLETE,
-  FIRMWARE_SHOW_MODAL
+  FIRMWARE_SHOW_MODAL,
+  FIRMWARE_UPDATE_COMPLETE
 } from 'state/actions/firmwareUpdate'
 import { PVS_CONNECTION_SUCCESS } from 'state/actions/network'
 import { EMPTY_ACTION } from 'state/actions/share'
@@ -47,7 +48,10 @@ const checkIfNeedToUpdatePVSToLatestVersion = async (url, doNotUpdatePVS) => {
 
 const checkVersionPVS = (action$, state$) =>
   action$.pipe(
-    ofType(PVS_CONNECTION_SUCCESS.getType()),
+    ofType(
+      PVS_CONNECTION_SUCCESS.getType(),
+      FIRMWARE_UPDATE_COMPLETE.getType()
+    ),
     exhaustMap(() =>
       from(
         checkIfNeedToUpdatePVSToLatestVersion(
