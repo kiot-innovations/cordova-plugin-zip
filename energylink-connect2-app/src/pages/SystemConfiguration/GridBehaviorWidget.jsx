@@ -18,6 +18,7 @@ import { useDispatch, useSelector } from 'react-redux'
 
 import Collapsible from 'components/Collapsible'
 import SelectField from 'components/SelectField'
+import { useFeatureFlag } from 'shared/featureFlags'
 import { useI18n } from 'shared/i18n'
 import { either, findByPathValue } from 'shared/utils'
 import {
@@ -180,6 +181,11 @@ function GridBehaviorWidget() {
 
   const showVoltageWarning = gridVoltage.selected !== gridVoltage.measured
 
+  const isInHawaii = site.st_id === 'Hawaii' || site.st_id === 'HI'
+  const featureFlagIsOn = useFeatureFlag({
+    page: 'system-configuration',
+    name: 'enable-customer-self-supply'
+  })
   return (
     <div className="pb-15">
       <Collapsible title={t('GRID_BEHAVIOR')} icon={GBI} required>
@@ -213,9 +219,9 @@ function GridBehaviorWidget() {
           </div>
         </div>
 
-        {//only show this for PVS5 because PVS6 doesn't support setting the self supply option yet
+        {//Show this for PVS5 if they're in Hawaii && Show this for PVS6 if they're in Hawaii and the feature flag is on
         either(
-          model === 'PVS5',
+          (model === 'PVS5' && isInHawaii) || (featureFlagIsOn && isInHawaii),
           <div className="field is-horizontal mb-20">
             <div className="field-label">
               <label htmlFor="siteName" className="label has-text-white">

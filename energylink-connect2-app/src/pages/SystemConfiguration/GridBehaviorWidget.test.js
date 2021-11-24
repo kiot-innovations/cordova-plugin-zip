@@ -42,7 +42,12 @@ describe('GridBehaviorWidget', () => {
         }
       }
     },
-    site: {}
+    site: {
+      site: {
+        siteName: 'Test Site',
+        st_id: 'HI'
+      }
+    }
   }
 
   const gridVoltage240 = {
@@ -79,7 +84,12 @@ describe('GridBehaviorWidget', () => {
         }
       }
     },
-    site: {}
+    site: {
+      site: {
+        siteName: 'Test Site',
+        st_id: 'HI'
+      }
+    }
   }
 
   const gridVoltage208 = {
@@ -116,7 +126,12 @@ describe('GridBehaviorWidget', () => {
         }
       }
     },
-    site: {}
+    site: {
+      site: {
+        siteName: 'Test Site',
+        st_id: 'HI'
+      }
+    }
   }
 
   beforeEach(() => {
