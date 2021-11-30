@@ -96,7 +96,7 @@ cordova platform add ios;
 
 ```
 cd ~/sunpower/energylink-connect2;
-rm -rf platforms plugins node_modules && npm i;
+rm -rf platforms plugins node_modules;
 cd ~/sunpower/energylink-connect2/energylink-connect2-app;
 rm -rf node_modules && npm i;
 cordova platform add ios;
@@ -109,7 +109,10 @@ npm run build && cordova prepare ios;
 npm run dev:ios; cordova prepare ios;
 ```
 
-# You only have to do this once
+# You only have to do this once (deprecated)
+
+> For the time being, we don't need to do this anymore, since we're using a fixed version
+of Scandit, which doesn't require pod installations.
 
 ```
 cd platforms/ios;
@@ -117,9 +120,17 @@ pod repo update;
 pod update;
 ```
 
+## Open Xcode
+
+> You need Xcode installed in your machine in order to continue with the next steps
+
+```
+ open ~/sunpower/energylink-connect2/platforms/ios/SunPowerProConnect-dev.xcworkspace/
+```
+
 ## Add your team's certificate
 
-1. Select your project
+1. Select your project (it says SunpowerProConnect-dev on the sidebar)
 2. Find the [Signing & Capabilities] tab
 3. Uncheck any Automatically Sign checkboxes
 4. Re-check the Automatically Sign checkboxes
@@ -131,7 +142,15 @@ pod update;
 2. Search for "Validate Workspace" in the search input
 3. Select [Yes]
 
+## Run the app on your iPhone
+
+1. Connect your iPhone to the Mac
+2. On Xcode, select your iPhone from the devices list (located at the top center in Xcode)
+3. Hit the Run button (it's a triangle icon)
+
 ## Run in iOS simulator
+
+> Note: The app has limited functionality on a simulator; you should use a real device instead
 
 ```
 cd ~/sunpower/energylink-connect2/;
@@ -139,13 +158,6 @@ nvm use;
 cordova emulate ios;
 ```
 
-# Run local PVS Simulator
-
-```
-cd ~/sunpower/pvsmgmt-console/pvsServer;
-nvm use;
-grunt;
-```
 
 # How to release a new version
 
@@ -164,6 +176,8 @@ git push origin X.Y.Z
 ```
 
 ## Targeting specific flavors for build
+
+> Note: There is a script that automates this: `release.sh`
 
 ```
 git tag X.Y.Z-${flavor}
