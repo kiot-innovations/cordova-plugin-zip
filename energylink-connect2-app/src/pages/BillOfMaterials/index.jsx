@@ -207,7 +207,7 @@ function BillOfMaterials() {
           </div>
         )}
       </section>
-      <section className="tile is-flex is-vertical button-container mb-20">
+      <section className="tile is-flex is-vertical button-container mb-20 ha">
         <button
           className="button pt-0 pb-0 is-primary"
           onClick={redirectInstall}

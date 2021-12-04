@@ -1,7 +1,7 @@
 @import '~@sunpower/theme-dark/styles/variables';
 .homeb {
-  height: 100%;
-  display: grid;
+  height: 110vh;
+  display: contents;
   grid-template-rows: 1fr 15px 1fr 1fr;
 
   .button-container {
@@ -11,6 +11,10 @@
   > div > img {
     border: 3px solid $white;
     border-radius: 5px;
+  }
+
+  .ha {
+    height: auto;
   }
 
   .bill-of-materials {
