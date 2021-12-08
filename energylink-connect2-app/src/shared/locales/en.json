@@ -785,7 +785,7 @@
   "DISCOVERY_COMPLETE_OTHERDEVICES": "Discovery Complete - Tap to refresh",
   "RESET_BLE_MSG": "Before trying to reconnect, turn off Bluetooth on your device.\nWait 5 seconds, then turn Bluetooth on again.",
   "CONTRACT": "Contract #",
-  "BEGIN_SV_INSTALL": "Begin SunVault Install",
+  "BEGIN_SV_INSTALL": "Commission SunVault",
   "NO_SV_DEVICES": "No SunVault devices associated with this site",
   "SELECT_THIS_SITE": "Select this site",
   "SYSTEM_SIZE": "System Size",
