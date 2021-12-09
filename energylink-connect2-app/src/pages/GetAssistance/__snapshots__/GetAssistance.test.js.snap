@@ -82,6 +82,11 @@ Object {
                 </a>
                 ASSISTANCE_3.1
               </p>
+              <p
+                className="mb-15"
+              >
+                URGENT_ASSISTANCE
+              </p>
             </article>
             <button
               className="button button-transparent is-fullwidth is-outlined is-uppercase has-text-primary"

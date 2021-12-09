@@ -47,6 +47,8 @@ function GetAssistance() {
           </a>
           {t('ASSISTANCE_3.1')}
         </p>
+
+        <p className="mb-15">{t('URGENT_ASSISTANCE')}</p>
       </article>
 
       <button
