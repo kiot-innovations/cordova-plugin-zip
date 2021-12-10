@@ -156,7 +156,15 @@ function RMADevices() {
     >
       <MenuItem
         className="dark-menu-item has-text-primary has-text-left has-text-weight-bold"
-        onClick={() => history.push(paths.PROTECTED.SCAN_LABELS.path)}
+        onClick={() =>
+          history.push(
+            either(
+              isPvs5(model),
+              paths.PROTECTED.LEGACY_DISCOVERY.path,
+              paths.PROTECTED.SCAN_LABELS.path
+            )
+          )
+        }
       >
         {t('ADD_MIS')}
       </MenuItem>

@@ -19,7 +19,7 @@ import GridBehaviorWidget from 'pages/SystemConfiguration/GridBehaviorWidget'
 import MetersWidget from 'pages/SystemConfiguration/MetersWidget'
 import paths from 'routes/paths'
 import { useI18n } from 'shared/i18n'
-import { either, generateCandidates } from 'shared/utils'
+import { either, generateCandidates, isPvs5 } from 'shared/utils'
 import { MIS_DISCOVERY_START_TIMER } from 'state/actions/analytics'
 import {
   PUSH_CANDIDATES_INIT,
@@ -90,6 +90,8 @@ const continueCommissioning = (
   canAccessScandit,
   storageValue,
   serialNumbers,
+  model,
+  isFetching,
   history,
   dispatch
 ) => {
@@ -104,13 +106,15 @@ const continueCommissioning = (
       // If there's no new equipment
       if (pathOr(false, ['other'], rma)) {
         // Do a legacy discovery if site contains legacy devices.
-        dispatch(
-          START_DISCOVERY_INIT({
-            Device: 'allplusmime',
-            KeepDevices: '1',
-            type: discoveryTypes.LEGACY
-          })
-        )
+        if (!isPvs5(model) || !isFetching) {
+          dispatch(
+            START_DISCOVERY_INIT({
+              Device: 'allplusmime',
+              KeepDevices: '1',
+              type: discoveryTypes.LEGACY
+            })
+          )
+        }
         return history.push(paths.PROTECTED.LEGACY_DISCOVERY.path)
       } else {
         // Do a standard MI discovery if site doesn't contain legacy devices.
@@ -148,7 +152,7 @@ const PrecommissioningConfigs = () => {
   const { found, isFetching, discoveryComplete } = useSelector(
     state => state.devices
   )
-  const { serialNumbers } = useSelector(state => state.pvs)
+  const { serialNumbers, model } = useSelector(state => state.pvs)
 
   const { canAccessScandit } = useSelector(state => state.global)
 
@@ -291,6 +295,8 @@ const PrecommissioningConfigs = () => {
                       canAccessScandit,
                       storageValue,
                       serialNumbers,
+                      model,
+                      isFetching,
                       history,
                       dispatch
                     )
