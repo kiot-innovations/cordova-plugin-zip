@@ -746,6 +746,7 @@
   "STORAGE_REMOVING_ERROR_MODAL": "We couldn't remove the storage devices. Please try again.",
   "MISSING_PV_MODELS": "Some microinverters don’t have PV module models assigned.",
   "ESS_STATUS_ERROR": "System Check could not be executed. Please retry.",
+  "PLEASE_WAIT": "Please Wait",
   "CONTRACT_NO": "Contract number",
   "DEVICES_FOUND": "{0} devices found.",
   "DISCOVERY_WAIT": "Please wait for discovery to complete",

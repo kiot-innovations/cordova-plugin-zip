@@ -6,6 +6,10 @@ import * as i18n from 'shared/i18n'
 
 describe('UpdateScreen page', () => {
   const provider = {
+    network: {
+      connected: false,
+      connecting: true
+    },
     fileDownloader: {
       progress: {
         progress: 0,

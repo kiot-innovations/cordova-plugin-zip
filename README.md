@@ -247,3 +247,16 @@ _password:_ ask Alvin or Fer for this password
 _Bundle IDs:_ com.sunpower.energylink.commissioning2.test,com.sunpower.energylink.commissioning2.prod,com.sunpower.energylink.commissioning2.training,com.sunpower.energylink.commissioning2
 
 Modify the bundle IDs to be whatever you need them to be, then update this readme with the latest app ids
+
+
+# Upgrading/Downgrading the PVS Firmware Version via USB
+
+1. Go to the Slack channel `fw-builds` and find the notification for the version you need.
+2. Search for the `LUA USB file` `Open` link and click on it to download a ZIP file.
+3. Copy that ZIP file to a blank USB drive.
+4. Once in the USB drive, unzip the ZIP file and delete the ZIP file.
+5. Turn off the PVS and plug the USB drive on any PVS' USB port.
+6. Turn on the PVS and wait for around 10 minutes for the process to complete.
+7. Turn off the PVS and remove the USB drive.
+8. Turn on the PVS, wait for it to boot. It should be now using the downgraded/upgraded PVS FW version.
+9. You may need to repeat this process using different FW versions until the PVS works properly.

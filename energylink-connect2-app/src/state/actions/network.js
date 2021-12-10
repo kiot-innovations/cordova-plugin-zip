@@ -1,7 +1,13 @@
 import { createAction } from 'redux-act'
 
 export const PVS_CONNECTION_INIT = createAction('PVS_CONNECTION_INIT')
+export const PVS_CONNECTION_INIT_AFTER_REBOOT = createAction(
+  'PVS_CONNECTION_INIT_AFTER_REBOOT'
+)
 export const PVS_CONNECTION_SUCCESS = createAction('PVS_CONNECTION_SUCCESS')
+export const PVS_CONNECTION_SUCCESS_AFTER_REBOOT = createAction(
+  'PVS_CONNECTION_SUCCESS_AFTER_REBOOT'
+)
 export const PVS_CONNECTION_ERROR = createAction('PVS_CONNECTION_ERROR')
 export const PVS_CONNECTION_CLOSE = createAction('PVS_CONNECTION_CLOSE')
 export const PVS_CONNECTION_CLOSE_FINISHED = createAction(
@@ -10,6 +16,9 @@ export const PVS_CONNECTION_CLOSE_FINISHED = createAction(
 export const PVS_CLEAR_ERROR = createAction('PVS_CLEAR_ERROR')
 export const STOP_NETWORK_POLLING = createAction('STOP_NETWORK_POLLING')
 export const WAIT_FOR_SWAGGER = createAction('WAIT_FOR_SWAGGER')
+export const WAIT_FOR_SWAGGER_AFTER_REBOOT = createAction(
+  'WAIT_FOR_SWAGGER_AFTER_REBOOT'
+)
 export const RESET_PVS_CONNECTION = createAction('RESET_PVS_CONNECTION')
 
 export const clearPVSErr = () => {

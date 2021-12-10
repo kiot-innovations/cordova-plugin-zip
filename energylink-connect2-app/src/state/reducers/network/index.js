@@ -5,7 +5,9 @@ import { eqByProp } from 'shared/utils'
 import { RESET_COMMISSIONING } from 'state/actions/global'
 import {
   PVS_CONNECTION_INIT,
+  PVS_CONNECTION_INIT_AFTER_REBOOT,
   PVS_CONNECTION_SUCCESS,
+  PVS_CONNECTION_SUCCESS_AFTER_REBOOT,
   PVS_CONNECTION_ERROR,
   PVS_CLEAR_ERROR,
   RESET_PVS_CONNECTION,
@@ -43,6 +45,7 @@ export const appConnectionStatus = {
   NOT_CONNECTED_PVS: 'Not connected to PVS AP',
   CONNECTED: 'Connected'
 }
+
 const initialState = {
   connected: false,
   connecting: false,
@@ -101,7 +104,36 @@ export const networkReducer = createReducer(
 
       return newState
     },
+    [PVS_CONNECTION_INIT_AFTER_REBOOT]: (state, { ssid, password }) => {
+      const newState = {
+        ...state,
+        SSID: ssid,
+        password: password,
+        connecting: true,
+        connected: false,
+        showEnablingAccessPoint: false,
+        err: ''
+      }
+
+      if (
+        state.SSID === ssid &&
+        state.password === password &&
+        state.connecting &&
+        !state.connected
+      )
+        return state
+
+      return newState
+    },
     [PVS_CONNECTION_SUCCESS]: state => ({
+      ...state,
+      connected: true,
+      connecting: false,
+      connectionCanceled: false,
+      showEnablingAccessPoint: false,
+      err: ''
+    }),
+    [PVS_CONNECTION_SUCCESS_AFTER_REBOOT]: state => ({
       ...state,
       connected: true,
       connecting: false,

@@ -28,9 +28,12 @@ import { isIos } from 'shared/utils'
 import {
   PVS_CONNECTION_ERROR,
   PVS_CONNECTION_INIT,
+  PVS_CONNECTION_INIT_AFTER_REBOOT,
   PVS_CONNECTION_SUCCESS,
+  PVS_CONNECTION_SUCCESS_AFTER_REBOOT,
   STOP_NETWORK_POLLING,
   WAIT_FOR_SWAGGER,
+  WAIT_FOR_SWAGGER_AFTER_REBOOT,
   PVS_TIMEOUT_FOR_CONNECTION,
   SET_CONNECTION_STATUS
 } from 'state/actions/network'
@@ -63,8 +66,12 @@ const connectToPVS = async (ssid, password) => {
 
 const connectToEpic = (action$, state$) =>
   action$.pipe(
-    ofType(PVS_CONNECTION_INIT.getType()),
+    ofType(
+      PVS_CONNECTION_INIT.getType(),
+      PVS_CONNECTION_INIT_AFTER_REBOOT.getType()
+    ),
     exhaustMap(action => {
+      const { type } = action
       const ssid = pathOr('', ['payload', 'ssid'], action)
       const password = pathOr('', ['payload', 'password'], action)
       const t = translate(pathOr('en', ['value', 'language'], state$))
@@ -74,7 +81,13 @@ const connectToEpic = (action$, state$) =>
       }
 
       return from(connectToPVS(ssid, password)).pipe(
-        map(WAIT_FOR_SWAGGER),
+        map(() => {
+          if (type === 'PVS_CONNECTION_INIT_AFTER_REBOOT') {
+            return WAIT_FOR_SWAGGER_AFTER_REBOOT()
+          }
+
+          return WAIT_FOR_SWAGGER()
+        }),
         catchError(err => {
           const { message } = err
           const isTimeoutAndNotUpgrading =
@@ -118,6 +131,7 @@ export const waitForSwaggerEpic = (action$, state$) => {
     ofType(
       PVS_CONNECTION_ERROR.getType(),
       PVS_CONNECTION_SUCCESS.getType(),
+      PVS_CONNECTION_SUCCESS_AFTER_REBOOT.getType(),
       STOP_NETWORK_POLLING.getType()
     )
   )
@@ -125,14 +139,22 @@ export const waitForSwaggerEpic = (action$, state$) => {
   const t = translate(state$.value.language)
 
   return action$.pipe(
-    ofType(WAIT_FOR_SWAGGER.getType()),
+    ofType(WAIT_FOR_SWAGGER.getType(), WAIT_FOR_SWAGGER_AFTER_REBOOT.getType()),
     delayWhen(addDelayForiOS),
-    exhaustMap(() =>
-      timer(0, 3000).pipe(
+    exhaustMap(action => {
+      const { type } = action
+
+      return timer(0, 3000).pipe(
         takeUntil(stopPolling$),
         exhaustMap(() =>
           from(checkForConnection()).pipe(
-            map(() => PVS_CONNECTION_SUCCESS()),
+            map(() => {
+              if (type === 'WAIT_FOR_SWAGGER_AFTER_REBOOT') {
+                return PVS_CONNECTION_SUCCESS_AFTER_REBOOT()
+              }
+
+              return PVS_CONNECTION_SUCCESS()
+            }),
             catchError(err => {
               if (
                 !isNil(err.message) &&
@@ -153,7 +175,7 @@ export const waitForSwaggerEpic = (action$, state$) => {
           )
         )
       )
-    )
+    })
   )
 }
 

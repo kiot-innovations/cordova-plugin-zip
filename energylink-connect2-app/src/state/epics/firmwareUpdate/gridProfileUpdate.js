@@ -9,7 +9,7 @@ import { isPvs5, getGPDownloadError } from 'shared/utils'
 import {
   GRID_PROFILE_UPLOAD_COMPLETE,
   GRID_PROFILE_UPLOAD_ERROR,
-  GRID_PROFILE_UPLOAD_INIT,
+  INIT_GRID_PROFILE_UPLOAD,
   FIRMWARE_UPDATE_COMPLETE
 } from 'state/actions/firmwareUpdate'
 import { SHOW_MODAL } from 'state/actions/modal'
@@ -54,7 +54,7 @@ export const epicUploadGridProfile = (action$, state$) =>
     ofType(
       SET_PVS_MODEL.getType(),
       FIRMWARE_UPDATE_COMPLETE.getType(),
-      GRID_PROFILE_UPLOAD_INIT.getType()
+      INIT_GRID_PROFILE_UPLOAD.getType()
     ),
     waitForObservable(
       isPvs5(state$) ? pvs5GridProfileUpdateUrl$ : pvs6GridProfileUpdateUrl$

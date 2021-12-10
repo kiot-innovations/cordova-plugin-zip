@@ -125,8 +125,7 @@ export const b64toBlob = (b64Data, contentType = '', sliceSize = 512) => {
     byteArrays.push(byteArray)
   }
 
-  const blob = new Blob(byteArrays, { type: contentType })
-  return blob
+  return new Blob(byteArrays, { type: contentType })
 }
 
 export const isValidSN = sn => /^(?:\d{12}|\d{15})$/.test(sn)
@@ -344,8 +343,7 @@ export function getEnvironment() {
   return 'prod'
 }
 
-export const isError = (status = '', percent) =>
-  status.toLowerCase() === 'error'
+export const isError = (status = '') => status.toLowerCase() === 'error'
 
 const _strStartsWith = what => (str = '') => str.startsWith(what)
 
@@ -719,4 +717,15 @@ export const storagePresent = deviceList => !isEmpty(filter(isESS, deviceList))
 
 export const isWarning = error =>
   startsWith('0', error.error_code) || startsWith('1', error.error_code)
+
 export const trimWarnings = reject(isWarning)
+
+export const SECONDS_TO_WAIT_FOR_PVS_TO_REBOOT = 100
+
+export const stagesFromThePvs = [
+  'downloading images',
+  'decompressing images',
+  'flashing images',
+  'verifying images',
+  'complete'
+]

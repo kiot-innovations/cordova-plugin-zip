@@ -2,7 +2,7 @@ import { unionWith, eqBy, prop } from 'ramda'
 import { createReducer } from 'redux-act'
 
 import { PUSH_CANDIDATES_ERROR } from 'state/actions/devices'
-import { FIRMWARE_GET_VERSION_COMPLETE } from 'state/actions/firmwareUpdate'
+import { NO_FIRMWARE_UPDATE_AVAILABLE } from 'state/actions/firmwareUpdate'
 import { RESET_COMMISSIONING } from 'state/actions/global'
 import {
   CONNECT_PVS_VIA_BLE,
@@ -159,7 +159,7 @@ export const pvsReducer = createReducer(
       ...state,
       bleConnectionInfo
     }),
-    [FIRMWARE_GET_VERSION_COMPLETE]: (state, payload) => ({
+    [NO_FIRMWARE_UPDATE_AVAILABLE]: (state, payload) => ({
       ...state,
       fwVersion: payload
     })

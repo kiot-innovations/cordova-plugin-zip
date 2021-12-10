@@ -26,7 +26,7 @@ import {
   RESET_DISCOVERY_PROGRESS,
   UPDATE_DEVICES_LIST
 } from 'state/actions/devices'
-import { GRID_PROFILE_UPLOAD_INIT } from 'state/actions/firmwareUpdate'
+import { INIT_GRID_PROFILE_UPLOAD } from 'state/actions/firmwareUpdate'
 import { START_DISCOVERY_INIT } from 'state/actions/pvs'
 import { SUBMIT_PRECONFIG_GRIDPROFILE } from 'state/actions/systemConfiguration'
 import { discoveryTypes } from 'state/reducers/devices'
@@ -371,7 +371,7 @@ const PrecommissioningConfigs = () => {
                 </div>
                 <div>
                   <button
-                    onClick={() => dispatch(GRID_PROFILE_UPLOAD_INIT())}
+                    onClick={() => dispatch(INIT_GRID_PROFILE_UPLOAD())}
                     className="button is-primary"
                   >
                     {t('RETRY')}

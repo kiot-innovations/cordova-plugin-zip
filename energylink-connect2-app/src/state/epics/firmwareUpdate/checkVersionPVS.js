@@ -8,8 +8,9 @@ import { getFirmwareVersionData } from 'shared/fileSystem'
 import { sendCommandToPVS } from 'shared/PVSUtils'
 import { getPVSVersionNumber } from 'shared/utils'
 import {
-  FIRMWARE_GET_VERSION_COMPLETE,
-  FIRMWARE_SHOW_MODAL,
+  FIRMWARE_UPDATE_CHECK_FAILURE,
+  NO_FIRMWARE_UPDATE_AVAILABLE,
+  SHOW_FIRMWARE_UPDATE_MODAL,
   FIRMWARE_UPDATE_COMPLETE
 } from 'state/actions/firmwareUpdate'
 import { PVS_CONNECTION_SUCCESS } from 'state/actions/network'
@@ -63,12 +64,12 @@ const checkVersionPVS = (action$, state$) =>
           state$.value.firmwareUpdate.upgrading
             ? EMPTY_ACTION()
             : shouldUpdate
-            ? FIRMWARE_SHOW_MODAL({ PVSFromVersion, PVSToVersion })
-            : FIRMWARE_GET_VERSION_COMPLETE(PVSFromVersion)
+            ? SHOW_FIRMWARE_UPDATE_MODAL({ PVSFromVersion, PVSToVersion })
+            : NO_FIRMWARE_UPDATE_AVAILABLE(PVSFromVersion)
         ),
-        catchError(err => {
-          Sentry.captureException(err)
-          return of(FIRMWARE_GET_VERSION_COMPLETE())
+        catchError(error => {
+          Sentry.captureException(error)
+          return of(FIRMWARE_UPDATE_CHECK_FAILURE(error))
         })
       )
     )

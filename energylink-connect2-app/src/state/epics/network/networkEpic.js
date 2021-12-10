@@ -5,6 +5,7 @@ import { catchError, exhaustMap, switchMap, takeUntil } from 'rxjs/operators'
 
 import {
   PVS_CONNECTION_SUCCESS,
+  PVS_CONNECTION_SUCCESS_AFTER_REBOOT,
   SET_CONNECTION_STATUS,
   STOP_NETWORK_POLLING
 } from 'state/actions/network'
@@ -35,7 +36,10 @@ export const networkPollingEpic = (action$, state$) => {
     state = s
   })
   return action$.pipe(
-    ofType(PVS_CONNECTION_SUCCESS.getType()),
+    ofType(
+      PVS_CONNECTION_SUCCESS.getType(),
+      PVS_CONNECTION_SUCCESS_AFTER_REBOOT.getType()
+    ),
     switchMap(() =>
       timer(0, 5000).pipe(
         takeUntil(stopPolling$),

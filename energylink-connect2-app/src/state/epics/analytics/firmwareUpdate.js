@@ -5,10 +5,10 @@ import { exhaustMap, switchMap, withLatestFrom } from 'rxjs/operators'
 
 import { firmwareUpdateEvent, timeMixPanelEvent } from 'shared/analytics'
 import {
-  FIRMWARE_SHOW_MODAL,
+  SHOW_FIRMWARE_UPDATE_MODAL,
   FIRMWARE_UPDATE_COMPLETE,
   FIRMWARE_UPDATE_ERROR,
-  FIRMWARE_UPDATE_INIT
+  INIT_FIRMWARE_UPDATE
 } from 'state/actions/firmwareUpdate'
 
 const wasUpdateSuccessful = includes('COMPLETE FIRMWARE UPDATE')
@@ -33,7 +33,7 @@ const fromPVSVersion$ = new ReplaySubject(1)
 
 export const getPvsFirmwareUpdateVersions = action$ =>
   action$.pipe(
-    ofType(FIRMWARE_SHOW_MODAL.getType()),
+    ofType(SHOW_FIRMWARE_UPDATE_MODAL.getType()),
     switchMap(({ payload }) => {
       fromPVSVersion$.next({ ...payload })
       return EMPTY
@@ -60,7 +60,7 @@ const firmwareUpdateAnalytics = action$ =>
 
 const startTrackingTime = action$ =>
   action$.pipe(
-    ofType(FIRMWARE_UPDATE_INIT.getType()),
+    ofType(INIT_FIRMWARE_UPDATE.getType()),
     switchMap(() => {
       timeMixPanelEvent('Firmware Update')
       return EMPTY

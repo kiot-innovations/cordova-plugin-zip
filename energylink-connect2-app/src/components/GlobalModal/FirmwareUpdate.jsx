@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux'
 
 import { useGlobalHideModal } from 'hooks/useGlobalModal'
 import { useI18n } from 'shared/i18n'
-import { FIRMWARE_UPDATE_INIT } from 'state/actions/firmwareUpdate'
+import { INIT_FIRMWARE_UPDATE } from 'state/actions/firmwareUpdate'
 
 function FirmwareUpdate(props) {
   const dispatch = useDispatch()
@@ -24,7 +24,7 @@ function FirmwareUpdate(props) {
       <button
         className="button is-primary is-uppercase"
         onClick={() => {
-          dispatch(FIRMWARE_UPDATE_INIT(props))
+          dispatch(INIT_FIRMWARE_UPDATE(props))
           hideModal()
         }}
       >

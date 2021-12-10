@@ -9,21 +9,18 @@ import usePVSInitConnection from 'hooks/usePVSInitConnection'
 import useTimer from 'hooks/useTimer'
 import paths from 'routes/paths'
 import { useI18n } from 'shared/i18n'
-import { either, isError } from 'shared/utils'
+import {
+  either,
+  isError,
+  stagesFromThePvs,
+  SECONDS_TO_WAIT_FOR_PVS_TO_REBOOT
+} from 'shared/utils'
 import {
   FIRMWARE_UPDATE_ERROR,
   FIRMWARE_SET_LAST_SUCCESSFUL_STAGE
 } from 'state/actions/firmwareUpdate'
 
 import './UpdateScreen.scss'
-
-const stagesFromThePvs = [
-  'downloading images',
-  'decompressing images',
-  'flashing images',
-  'verifying images',
-  'complete'
-]
 
 const UpdateScreen = () => {
   const t = useI18n()
@@ -32,12 +29,13 @@ const UpdateScreen = () => {
   const { status, percent, upgrading, lastSuccessfulStage } = useSelector(
     state => state.firmwareUpdate
   )
+  const { connecting, connected } = useSelector(state => state.network)
   const firmwareDownload = useSelector(
     pathOr({}, ['fileDownloader', 'progress'])
   )
   const retryConnection = usePVSInitConnection()
   const [formattedTime, isTimerActive, activateTimer, , secondsLeft] = useTimer(
-    100,
+    SECONDS_TO_WAIT_FOR_PVS_TO_REBOOT,
     false
   )
   useEffect(() => {
@@ -63,7 +61,7 @@ const UpdateScreen = () => {
     firmwareDownload.downloading &&
     fwFileInfo.name === firmwareDownload.fileName
 
-  const errorUpdating = isError(status, percent)
+  const errorUpdating = isError(status)
 
   const onGoBack = () => {
     history.push(paths.PROTECTED.CONNECT_TO_PVS.path)
@@ -171,8 +169,15 @@ const UpdateScreen = () => {
                       <button
                         className="mt-5 button is-primary is-uppercase"
                         onClick={() => retryConnection()}
+                        disabled={connecting || connected}
                       >
-                        {t('RETRY_CONNECTION')}
+                        {t(
+                          either(
+                            connecting,
+                            'RECONNECTING',
+                            either(connected, 'PLEASE_WAIT', 'RETRY_CONNECTION')
+                          )
+                        )}
                       </button>
                     )}
                   </>

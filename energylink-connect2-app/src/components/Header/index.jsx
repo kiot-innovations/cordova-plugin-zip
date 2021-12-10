@@ -31,13 +31,11 @@ export const Header = ({ icon = 'sp-menu', iconOpen = 'sp-chevron-left' }) => {
   const history = useHistory()
   const dispatch = useDispatch()
 
-  const { upgrading, status, percent } = useSelector(
-    state => state.firmwareUpdate
-  )
+  const { upgrading, status } = useSelector(state => state.firmwareUpdate)
   const showMenu = useSelector(path(['ui', 'menu', 'show']))
   const itemToDisplay = useSelector(path(['ui', 'menu', 'itemToDisplay']))
   const siteAddress = useSelector(path(['site', 'site', 'address1']))
-  const shouldDisableMenu = upgrading && !isError(status, percent)
+  const shouldDisableMenu = upgrading && !isError(status)
 
   const menuOpen = isMenuPath(history) || showMenu
   const menuIcon = menuOpen ? iconOpen : icon

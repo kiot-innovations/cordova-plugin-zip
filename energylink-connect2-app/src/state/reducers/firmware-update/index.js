@@ -2,16 +2,16 @@ import { prop } from 'ramda'
 import { createReducer } from 'redux-act'
 
 import {
-  FIRMWARE_GET_VERSION_COMPLETE,
+  NO_FIRMWARE_UPDATE_AVAILABLE,
   FIRMWARE_UPDATE_COMPLETE,
   FIRMWARE_UPDATE_ERROR,
-  FIRMWARE_UPDATE_INIT,
-  FIRMWARE_UPDATE_POLLING,
-  FIRMWARE_UPDATE_WAITING_FOR_NETWORK,
+  INIT_FIRMWARE_UPDATE,
+  POLL_FIRMWARE_UPDATE,
+  WAIT_FOR_NETWORK_AFTER_FIRMWARE_UPDATE,
   FIRMWARE_SET_LAST_SUCCESSFUL_STAGE,
   RESET_FIRMWARE_UPDATE,
   SET_FIRMWARE_RELEASE_NOTES,
-  GRID_PROFILE_UPLOAD_INIT,
+  INIT_GRID_PROFILE_UPLOAD,
   GRID_PROFILE_UPLOAD_COMPLETE,
   GRID_PROFILE_UPLOAD_ERROR
 } from 'state/actions/firmwareUpdate'
@@ -40,20 +40,20 @@ export const fwupStatus = {
 
 export default createReducer(
   {
-    [FIRMWARE_UPDATE_INIT]: (state, { PVSFromVersion }) => ({
+    [INIT_FIRMWARE_UPDATE]: (state, { PVSFromVersion }) => ({
       ...initialState,
       status: fwupStatus.UPLOADING_FS,
       upgrading: true,
       canContinue: false,
       versionBeforeUpgrade: PVSFromVersion
     }),
-    [FIRMWARE_UPDATE_POLLING]: (state, payload) => ({
+    [POLL_FIRMWARE_UPDATE]: (state, payload) => ({
       ...state,
       status: getState(payload),
       percent: getPercent(payload),
       canContinue: false
     }),
-    [FIRMWARE_UPDATE_WAITING_FOR_NETWORK]: state => ({
+    [WAIT_FOR_NETWORK_AFTER_FIRMWARE_UPDATE]: state => ({
       ...state,
       status: fwupStatus.WAITING_FOR_NETWORK,
       percent: 100,
@@ -69,7 +69,7 @@ export default createReducer(
       upgrading: false,
       canContinue: true
     }),
-    [GRID_PROFILE_UPLOAD_INIT]: state => ({
+    [INIT_GRID_PROFILE_UPLOAD]: state => ({
       ...state,
       status: fwupStatus.UPLOADING_GRID_PROFILES
     }),
@@ -88,7 +88,7 @@ export default createReducer(
       canContinue: true
     }),
     [RESET_FIRMWARE_UPDATE]: () => ({ ...initialState, canContinue: true }),
-    [FIRMWARE_GET_VERSION_COMPLETE]: ({ versionBeforeUpgrade }) => ({
+    [NO_FIRMWARE_UPDATE_AVAILABLE]: ({ versionBeforeUpgrade }) => ({
       ...initialState,
       versionBeforeUpgrade
     }),

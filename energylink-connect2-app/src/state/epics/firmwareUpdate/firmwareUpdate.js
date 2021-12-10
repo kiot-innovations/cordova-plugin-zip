@@ -1,24 +1,17 @@
 import { path, pick, propOr } from 'ramda'
 import { ofType } from 'redux-observable'
-import { concat, from, of, timer } from 'rxjs'
+import { concat, from, of, timer, EMPTY } from 'rxjs'
 import {
   catchError,
   exhaustMap,
   map,
-  mergeMap,
   retryWhen,
   take,
   takeUntil
 } from 'rxjs/operators'
 import * as Sentry from 'sentry-cordova'
 
-import { getApiPVS } from '../../../shared/api'
-import {
-  UPDATE_DEVICES_LIST,
-  UPDATE_DEVICES_LIST_ERROR
-} from '../../actions/devices'
-
-import { ERROR_CODES } from 'shared/fileSystem'
+import { getApiPVS } from 'shared/api'
 import { translate } from 'shared/i18n'
 import { sendCommandToPVS } from 'shared/PVSUtils'
 import genericRetryStrategy from 'shared/rxjs/genericRetryStrategy'
@@ -26,7 +19,9 @@ import {
   getPVSVersionNumber,
   storagePresent,
   TAGS,
-  waitFor
+  waitFor,
+  SECONDS_TO_WAIT_FOR_PVS_TO_REBOOT,
+  stagesFromThePvs
 } from 'shared/utils'
 import {
   getFirmwareUpgradePackageURL,
@@ -34,28 +29,27 @@ import {
   stopWebserver
 } from 'shared/webserver'
 import {
-  PVS_FIRMWARE_DOWNLOAD_INIT,
-  PVS_FIRMWARE_DOWNLOAD_SUCCESS
-} from 'state/actions/fileDownloader'
+  UPDATE_DEVICES_LIST,
+  UPDATE_DEVICES_LIST_ERROR
+} from 'state/actions/devices'
 import {
-  FIRMWARE_SHOW_MODAL,
+  SHOW_FIRMWARE_UPDATE_MODAL,
   FIRMWARE_UPDATE_COMPLETE,
   FIRMWARE_UPDATE_ERROR,
-  FIRMWARE_UPDATE_ERROR_NO_FILE,
-  FIRMWARE_UPDATE_INIT,
-  FIRMWARE_UPDATE_POLL_INIT,
-  FIRMWARE_UPDATE_POLL_STOP,
-  FIRMWARE_UPDATE_POLLING,
-  FIRMWARE_UPDATE_WAITING_FOR_NETWORK
+  INIT_FIRMWARE_UPDATE,
+  START_FIRMWARE_UPDATE_POLLING,
+  STOP_FIRMWARE_UPDATE_POLLING,
+  POLL_FIRMWARE_UPDATE,
+  WAIT_FOR_NETWORK_AFTER_FIRMWARE_UPDATE
 } from 'state/actions/firmwareUpdate'
 import { SHOW_MODAL } from 'state/actions/modal'
 import {
-  PVS_CONNECTION_CLOSE,
-  PVS_CONNECTION_CLOSE_FINISHED,
-  PVS_CONNECTION_INIT,
-  PVS_CONNECTION_SUCCESS,
-  STOP_NETWORK_POLLING
+  PVS_CONNECTION_INIT_AFTER_REBOOT,
+  PVS_CONNECTION_SUCCESS_AFTER_REBOOT,
+  STOP_NETWORK_POLLING,
+  SET_CONNECTION_STATUS
 } from 'state/actions/network'
+import { appConnectionStatus } from 'state/reducers/network'
 
 const getFirmwareFromState = path([
   'value',
@@ -72,7 +66,7 @@ async function uploadFirmwareToAdama() {
 export const firmwareShowModal = action$ => {
   const t = translate()
   return action$.pipe(
-    ofType(FIRMWARE_SHOW_MODAL.getType()),
+    ofType(SHOW_FIRMWARE_UPDATE_MODAL.getType()),
     map(({ payload }) =>
       SHOW_MODAL({
         title: t('ATTENTION'),
@@ -84,78 +78,38 @@ export const firmwareShowModal = action$ => {
 }
 
 /**
- * Epic that will upload the FS to the PVS
+ * Upload PVS FW file to the PVS
  * @param action$
  * @returns {*}
  */
 export const firmwareUpgradeInit = action$ =>
   action$.pipe(
-    ofType(FIRMWARE_UPDATE_INIT.getType()),
+    ofType(INIT_FIRMWARE_UPDATE.getType()),
     exhaustMap(() =>
       from(uploadFirmwareToAdama()).pipe(
-        map(() => FIRMWARE_UPDATE_POLL_INIT()),
-        catchError(err =>
-          err.message === ERROR_CODES.NO_FILESYSTEM_FILE
-            ? of(FIRMWARE_UPDATE_ERROR_NO_FILE())
-            : of(FIRMWARE_UPDATE_ERROR.asError(err))
-        )
-      )
-    )
-  )
-
-/**
- * If the firmware file doesn't exist we disconnect from the PVS
- * @param action$
- * @returns {*}
- */
-export const firmwareDisconnectFromPVS = action$ =>
-  action$.pipe(
-    ofType(
-      FIRMWARE_UPDATE_ERROR_NO_FILE.getType(),
-      FIRMWARE_UPDATE_ERROR.getType()
-    ),
-    map(PVS_CONNECTION_CLOSE)
-  )
-
-/**
- * When PVS_CONNECTION_CLOSE_FINISHED we wait for the firmware to get downloaded
- * @param action$
- * @returns {*}
- */
-export const initFirmwareDownload = (action$, state$) =>
-  action$.pipe(
-    ofType(PVS_CONNECTION_CLOSE_FINISHED.getType()),
-    mergeMap(() =>
-      concat(
-        of(PVS_FIRMWARE_DOWNLOAD_INIT()),
-        action$.pipe(
-          ofType(PVS_FIRMWARE_DOWNLOAD_SUCCESS.getType()),
-          take(1),
-          map(() =>
-            PVS_CONNECTION_INIT({
-              ssid: state$.value.network.SSID,
-              password: state$.value.network.password
-            })
-          )
-        )
+        map(() => START_FIRMWARE_UPDATE_POLLING()),
+        catchError(error => of(FIRMWARE_UPDATE_ERROR.asError(error)))
       )
     )
   )
 
 export const firmwarePollStatus = action$ => {
   const stopPolling$ = action$.pipe(
-    ofType(FIRMWARE_UPDATE_POLL_STOP.getType(), FIRMWARE_UPDATE_ERROR.getType())
+    ofType(
+      STOP_FIRMWARE_UPDATE_POLLING.getType(),
+      FIRMWARE_UPDATE_ERROR.getType()
+    )
   )
   return action$.pipe(
-    ofType(FIRMWARE_UPDATE_POLL_INIT.getType()),
+    ofType(START_FIRMWARE_UPDATE_POLLING.getType()),
     exhaustMap(() =>
       timer(0, 1500).pipe(
         takeUntil(stopPolling$),
         exhaustMap(() => from(sendCommandToPVS('GetFWUpgradeStatus'))),
         map(status =>
           propOr('complete', 'STATE', status) === 'complete'
-            ? FIRMWARE_UPDATE_POLL_STOP()
-            : FIRMWARE_UPDATE_POLLING(pick(['STATE', 'PERCENT'], status))
+            ? STOP_FIRMWARE_UPDATE_POLLING()
+            : POLL_FIRMWARE_UPDATE(pick(['STATE', 'PERCENT'], status))
         ),
         retryWhen(
           genericRetryStrategy({
@@ -168,7 +122,7 @@ export const firmwarePollStatus = action$ => {
           err.message = 'Polling update error'
           Sentry.addBreadcrumb({ message })
           Sentry.captureException(err)
-          return of(FIRMWARE_UPDATE_POLL_STOP())
+          return of(STOP_FIRMWARE_UPDATE_POLLING())
         })
       )
     )
@@ -177,37 +131,48 @@ export const firmwarePollStatus = action$ => {
 
 const firmwareWaitForWifi = (action$, state$) =>
   action$.pipe(
-    ofType(FIRMWARE_UPDATE_POLL_STOP.getType()),
-    exhaustMap(() =>
-      concat(
-        of(STOP_NETWORK_POLLING()),
-        of(FIRMWARE_UPDATE_WAITING_FOR_NETWORK()),
-        from(waitFor(1000 * 100)).pipe(
-          map(() =>
-            PVS_CONNECTION_INIT({
-              ssid: state$.value.network.SSID,
-              password: state$.value.network.password
-            })
+    ofType(
+      STOP_FIRMWARE_UPDATE_POLLING.getType(),
+      SET_CONNECTION_STATUS.getType()
+    ),
+    exhaustMap(({ payload }) => {
+      if (
+        state$.value.firmwareUpdate.status === stagesFromThePvs[3] &&
+        (payload === appConnectionStatus.NOT_CONNECTED_PVS ||
+          payload === appConnectionStatus.NOT_USING_WIFI)
+      ) {
+        return concat(
+          of(STOP_NETWORK_POLLING()),
+          of(WAIT_FOR_NETWORK_AFTER_FIRMWARE_UPDATE()),
+          from(waitFor(1000 * SECONDS_TO_WAIT_FOR_PVS_TO_REBOOT)).pipe(
+            map(() =>
+              PVS_CONNECTION_INIT_AFTER_REBOOT({
+                ssid: state$.value.network.SSID,
+                password: state$.value.network.password
+              })
+            )
           )
         )
-      )
-    )
+      }
+
+      return EMPTY
+    })
   )
 
 async function didThePVSUpgrade(lastVersion) {
   const PVSinfo = await sendCommandToPVS('GetSupervisorInformation')
   const PVSversion = getPVSVersionNumber(PVSinfo)
   if (PVSversion > lastVersion) return true
-  throw new Error('UPDATE_WENT_WRONG')
+  throw new Error('FIRMWARE_UPDATE_ERROR')
 }
 
 const firmwareUpdateSuccessEpic = (action$, state$) => {
   const t = translate(state$.value.language)
   return action$.pipe(
-    ofType(FIRMWARE_UPDATE_WAITING_FOR_NETWORK.getType()),
+    ofType(WAIT_FOR_NETWORK_AFTER_FIRMWARE_UPDATE.getType()),
     exhaustMap(() =>
       action$.pipe(
-        ofType(PVS_CONNECTION_SUCCESS.getType()),
+        ofType(PVS_CONNECTION_SUCCESS_AFTER_REBOOT.getType()),
         take(1),
         exhaustMap(() => {
           stopWebserver()
@@ -261,8 +226,6 @@ export default [
   firmwarePollStatus,
   firmwareWaitForWifi,
   firmwareUpdateSuccessEpic,
-  firmwareDisconnectFromPVS,
-  initFirmwareDownload,
   firmwareShowModal,
   forceStorageAfterPVSFWUPEpic
 ]
