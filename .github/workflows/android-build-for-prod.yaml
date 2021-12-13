@@ -28,8 +28,8 @@ jobs:
         with:
           token: ${{ secrets.ACCESS_TOKEN }}
       - run: |
-          ls /usr/local/lib/android/sdk/tools/bin
-          /usr/local/lib/android/sdk/tools/bin/sdkmanager --uninstall "build-tools;31.0.0"
+          cp /usr/local/lib/android/sdk/build-tools/32.0.0/d8 /usr/local/lib/android/sdk/build-tools/32.0.0/dx
+          cp /usr/local/lib/android/sdk/build-tools/32.0.0/lib/d8.jar /usr/local/lib/android/sdk/build-tools/32.0.0/lib/dx.jar
       - run: .github/workflows/setup_environment.sh
       - uses: actions/setup-node@v1
         with:
