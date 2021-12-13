@@ -60,8 +60,12 @@ const fileTransferObservable = ({
       }
       if (!entry || retry) {
         const xhr = new XMLHttpRequest()
+        const timeoutMiliseconds = url.includes('gridprofiles')
+          ? 180000
+          : 300000
         xhr.open('GET', url, true)
         xhr.responseType = 'blob'
+        xhr.timeout = timeoutMiliseconds
         const requestHeaders = {
           'Cache-Control':
             'no-cache, must-revalidate, post-check=0, pre-check=0, max-age=0',
@@ -127,6 +131,22 @@ const fileTransferObservable = ({
             })
           })
         }
+
+        xhr.ontimeout = function() {
+          function timeOutError(error = '') {
+            this.error = error
+          }
+          timeOutError.prototype = new Error()
+          const errorCode = 'REQUEST_TIMEOUT'
+          const error = new timeOutError(errorCode)
+
+          return errorCallback(
+            error,
+            requestHeaders,
+            createHeadersObj(xhr.getAllResponseHeaders())
+          )
+        }
+
         xhr.onerror = function(err) {
           return errorCallback(
             err,

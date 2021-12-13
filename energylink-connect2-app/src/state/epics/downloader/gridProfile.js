@@ -84,7 +84,9 @@ export const initDownloadPvs5GridProfileEpic = action$ =>
           })
           Sentry.setTag(TAGS.KEY.GRID_PROFILES, TAGS.VALUE.DOWNLOADER_PVS5_GP)
           Sentry.captureException(err)
-          return of(PVS5_GRID_PROFILE_DOWNLOAD_ERROR(err))
+          return of(
+            PVS5_GRID_PROFILE_DOWNLOAD_ERROR({ error: err, retry: false })
+          )
         })
       )
     )
