@@ -1,3 +1,4 @@
+import moment from 'moment'
 import { createReducer } from 'redux-act'
 
 import {
@@ -48,7 +49,13 @@ export const userReducer = createReducer(
     [LOGOUT]: () => initialState,
     [REFRESH_TOKEN_SUCCESS]: (state, payload) => ({
       ...state,
-      auth: payload // payload comes with all
+      // we need to recalculate the future expiry date
+      auth: {
+        ...payload,
+        expires_in_date: moment()
+          .add(payload.expires_in, 'second')
+          .unix()
+      }
     }),
     [SET_DEALER_NAME]: (state, dealerName) => ({
       ...state,

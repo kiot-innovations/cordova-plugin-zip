@@ -1,3 +1,4 @@
 import { refreshTokenEpic } from './refreshTokenEpic'
+import { validateSessionEpic } from './validateSessionEpic'
 
-export default [refreshTokenEpic]
+export default [refreshTokenEpic, validateSessionEpic]

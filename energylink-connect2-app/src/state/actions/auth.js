@@ -7,7 +7,6 @@ import {
   last,
   merge,
   omit,
-  pathOr,
   pipe,
   prop,
   useWith
@@ -87,7 +86,14 @@ export const handleUserProfile = (tokenInfo = {}) => {
       ])
         .then(buildUser)
         .then(user => {
-          const payload = { data: user, auth: tokenInfo }
+          const expires_in_date = moment()
+            .add(tokenInfo.expires_in, 'seconds')
+            .unix()
+
+          const payload = {
+            data: user,
+            auth: { ...tokenInfo, expires_in_date }
+          }
           dispatch(LOGIN_SUCCESS(payload))
         })
         .catch(error => {
@@ -119,30 +125,6 @@ export const handleUserProfile = (tokenInfo = {}) => {
   }
 }
 
-export const verifyToken = (access_token, refresh_token) => {
-  return dispatch => {
-    try {
-      const isValidToken = authClient.verifyTokenOAuth(access_token)
-      if (!isValidToken) dispatch(REFRESH_TOKEN_INIT(refresh_token))
-    } catch (error) {
-      console.error(error)
-      dispatch(REFRESH_TOKEN_INIT(refresh_token))
-    }
-  }
-}
-
 export const VALIDATE_SESSION_INIT = createAction('VALIDATE_SESSION_INIT')
 export const VALIDATE_SESSION_SUCCESS = createAction('VALIDATE_SESSION_SUCCESS')
 export const VALIDATE_SESSION_ERROR = createAction('VALIDATE_SESSION_ERROR')
-
-export const validateSession = () => {
-  return (dispatch, getState) => {
-    const { user } = getState()
-    const expires = pathOr(0, ['data', 'exp'], user) * 1000
-    const diff = moment(expires).diff(moment(), 'hours')
-    const isValid = diff > 1
-    if (expires > 0 && !isValid) {
-      dispatch(REFRESH_TOKEN_INIT())
-    }
-  }
-}

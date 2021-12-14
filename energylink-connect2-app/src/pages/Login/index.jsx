@@ -1,5 +1,6 @@
 import Logo from '@sunpower/sunpowerimage'
 import clsx from 'clsx'
+import { pipe } from 'ramda'
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
@@ -56,7 +57,7 @@ function Login() {
                 type="button"
                 className={loginClassName}
                 disabled={!!isAuthenticating}
-                onClick={onSubmit(dispatch)}
+                onClick={pipe(requestLogin, dispatch)}
               >
                 {isAuthenticating ? t('BTN_LOGGING_IN') : t('BTN_LOG_IN')}
               </button>
@@ -68,7 +69,7 @@ function Login() {
             <p>
               <button
                 className="button has-text-primary is-text is-uppercase is-size-6 mt-20"
-                onClick={onSubmit(dispatch)}
+                onClick={pipe(requestLogin, dispatch)}
               >
                 {t('LOGIN_TRY_AGAIN')}
               </button>
@@ -87,10 +88,6 @@ function Login() {
 }
 
 export default Login
-
-const onSubmit = dispatch => () => {
-  dispatch(requestLogin())
-}
 
 const handleOpenURL = dispatch => URL => {
   setTimeout(() => {

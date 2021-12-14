@@ -12,6 +12,7 @@ import feedbackEpic from './feedback'
 import firmwareUpdateEpics from './firmwareUpdate'
 import knowledgeBase from './knowledge-base'
 import liveEnergyData from './live-energy-data'
+import mobile from './mobile'
 import modalEpics from './modals/showModal'
 import networkPollingEpics from './network'
 import panelLayoutToolEpics from './panel-layout-tool'
@@ -30,6 +31,7 @@ import systemConfigurationEpics from './systemConfiguration'
 import wakelockEpics from './wakelock'
 
 export default combineEpics(
+  ...mobile,
   ...analyticsEpics,
   ...apisEpic,
   ...appUpdaterEpics,

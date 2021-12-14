@@ -1,4 +1,4 @@
-import * as mobileActions from '../../actions/mobile'
+import * as mobileActions from 'state/actions/mobile'
 
 describe('deviceResume Epic', () => {
   let epicTest

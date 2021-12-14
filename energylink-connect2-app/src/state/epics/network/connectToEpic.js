@@ -17,7 +17,8 @@ import {
   exhaustMap,
   map,
   takeUntil,
-  delayWhen
+  delayWhen,
+  timeout
 } from 'rxjs/operators'
 import * as Sentry from 'sentry-cordova'
 
@@ -148,6 +149,7 @@ export const waitForSwaggerEpic = (action$, state$) => {
         takeUntil(stopPolling$),
         exhaustMap(() =>
           from(checkForConnection()).pipe(
+            timeout(25000),
             map(() => {
               if (type === 'WAIT_FOR_SWAGGER_AFTER_REBOOT') {
                 return PVS_CONNECTION_SUCCESS_AFTER_REBOOT()

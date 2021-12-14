@@ -1,40 +1,26 @@
 import { pathOr } from 'ramda'
 import { ofType } from 'redux-observable'
 import { of, from } from 'rxjs'
-import { catchError, map, retryWhen, switchMap } from 'rxjs/operators'
+import { catchError, map, switchMap, timeout } from 'rxjs/operators'
 import * as Sentry from 'sentry-cordova'
 
 import authClient from 'shared/auth/sdk'
 import { translate } from 'shared/i18n'
-import genericRetryStrategy from 'shared/rxjs/genericRetryStrategy'
 import { TAGS } from 'shared/utils'
 import * as authActions from 'state/actions/auth'
 
 export const refreshTokenEpic = (action$, state$) => {
   const t = translate()
-  let retries = 0
-
   return action$.pipe(
     ofType(authActions.REFRESH_TOKEN_INIT.getType()),
     switchMap(() => {
       const { refresh_token } = pathOr({}, ['user', 'auth'], state$.value)
       return from(authClient.refreshTokenOAuth(refresh_token)).pipe(
-        map(response => {
-          if (response.error) {
-            retries = retries + 1
-
-            if (retries > 2) {
-              retries = 0
-              return authActions.LOGOUT()
-            }
-            return authActions.REFRESH_TOKEN_INIT(refresh_token)
-          }
-          return authActions.REFRESH_TOKEN_SUCCESS(response)
-        }),
-        retryWhen(
-          genericRetryStrategy({
-            maxRetryAttempts: 3
-          })
+        timeout(3000),
+        map(response =>
+          response.error
+            ? authActions.LOGOUT()
+            : authActions.REFRESH_TOKEN_SUCCESS(response)
         ),
         catchError(err => {
           Sentry.addBreadcrumb({
@@ -48,7 +34,7 @@ export const refreshTokenEpic = (action$, state$) => {
           })
           Sentry.setTag(TAGS.KEY.LOGIN, TAGS.VALUE.REFRESH_TOKEN)
           Sentry.captureException(err)
-
+          console.info({ err })
           return of(authActions.LOGOUT())
         })
       )
