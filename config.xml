@@ -18,6 +18,8 @@
     <allow-intent href="mailto:*" />
     <platform name="android">
         <hook src="hooks/beforePrepare.js" type="before_prepare" />
+        <hook src="hooks/afterAdd.js" type="after_platform_add" />
+        <hook src="hooks/afterAdd.js" type="after_prepare" />
         <hook src="hooks/useRunnerNDK.js" type="before_prepare" />
         <preference name="android-targetSdkVersion" value="30" />
         <allow-intent href="market:*" />
@@ -34,7 +36,9 @@
     </platform>
     <platform name="ios">
         <hook src="hooks/beforePrepare.js" type="before_prepare" />
-        <hook src="extend_build_phase.js" type="after_platform_add" />
+        <hook src="hooks/afterAdd.js" type="after_platform_add" />
+        <hook src="hooks/afterAdd.js" type="after_prepare" />
+        <hook src="hooks/extend_build_phase.js" type="after_platform_add" />
         <preference name="WKWebViewOnly" value="true" />
         <feature name="CDVWKWebViewEngine">
             <param name="ios-package" value="CDVWKWebViewEngine" />
