@@ -58,6 +58,7 @@ import StringInverters from 'pages/StringInverters'
 import SystemChecksACPV from 'pages/SystemChecksACPV'
 import SystemChecksErrorList from 'pages/SystemChecksErrorList'
 import SystemConfiguration from 'pages/SystemConfiguration'
+import TroubleshootingGuides from 'pages/TroubleshootingGuides'
 import TutorialVideo from 'pages/TutorialVideo'
 import TutorialVideosList from 'pages/TutorialVideosList'
 import UpdateScreen from 'pages/UpdateScreen'
@@ -123,6 +124,7 @@ const mapComponents = {
   [paths.PROTECTED.TUTORIAL_VIDEOS_LIST.path]: TutorialVideosList,
   [paths.PROTECTED.TUTORIAL_VIDEO.path]: TutorialVideo,
   [paths.PROTECTED.QUICKSTART_GUIDES.path]: QuickstartGuides,
+  [paths.PROTECTED.TROUBLESHOOTING_GUIDES.path]: TroubleshootingGuides,
   [paths.UNPROTECTED.ANALYTICS_CONSENT.path]: AnalyticsConsent
 }
 

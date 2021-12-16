@@ -1,6 +1,33 @@
+import { from } from 'rxjs'
 import Swagger from 'swagger-client'
 let apiParty, apiSite, apiScanSN, apiPVS, apiDevice, apiSearch, apiAuth
 let lastAccessToken
+
+const zendeskCredentials = {
+  url:
+    'https://sunpower.zendesk.com/api/v2/help_center/incremental/articles.json?start_time=0',
+  api_token: process.env.REACT_APP_ZENDESK_TOKEN,
+  email: process.env.REACT_APP_ZENDESK_EMAIL
+}
+
+export const zendeskToken = Buffer.from(
+  `${zendeskCredentials.email}/token:${zendeskCredentials.api_token}`
+).toString('base64')
+
+export const zendeskApi = {
+  fetchArticles: () => {
+    const request = fetch(zendeskCredentials.url, {
+      method: 'GET',
+      mode: 'cors',
+      cache: 'no-cache',
+      headers: {
+        Authorization: `Basic ${zendeskToken}`,
+        'Content-Type': 'application/json'
+      }
+    }).then(response => response.json())
+    return from(request)
+  }
+}
 
 const requestOptions = accessToken => ({
   requestInterceptor: req => {

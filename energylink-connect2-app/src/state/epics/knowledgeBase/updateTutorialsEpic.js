@@ -28,7 +28,7 @@ const DELAY_BEFORE_UPDATE = 30 * 60 // 30 minutes
 
 const tutorialsUrl = process.env.REACT_APP_TUTORIALS_URL
 
-export const updateTuturials = (action$, state$, { getJSON }) =>
+export const updateTutorials = (action$, state$, { getJSON }) =>
   action$.pipe(
     ofType(LOGIN_SUCCESS.getType(), DEVICE_RESUME.getType()),
     switchMap(() =>

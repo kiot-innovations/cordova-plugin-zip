@@ -809,5 +809,9 @@
   "STORAGE_FW_OUT_OF_SYNC_BODY": "Please recommission the SunVault equipment to ensure compatibility with the just updated PVS firmware version. Not doing so will leave SunVault in an inoperable state.",
   "TUTORIAL_VIDEOS": "Tutorial Videos",
   "NO_CONNECTION_TUTORIALS": "Please make sure you’re connected to a PVS or a wifi network with internet access, or use mobile data to access online support videos.",
+  "TROUBLESHOOTING_GUIDES": "Troubleshooting Guides",
+  "UPDATING_ARTICLES": "Please wait while we retrieve the latest articles.",
+  "NO_ARTICLES": "There are no current articles on the Help Center. Please check back later.",
+  "GET_ARTICLES": "Update Articles",
   "URGENT_ASSISTANCE": "If you have urgent issues, we recommend reaching out to our technical support hotline for real time assistance 855 977 7867."
 }

@@ -87,3 +87,8 @@
 .eqs-device {
   border-bottom: 1px solid $silver-sand4;
 }
+
+.page-layout-header {
+  display: grid;
+  grid-template-columns: 15% 1fr 15%;
+}

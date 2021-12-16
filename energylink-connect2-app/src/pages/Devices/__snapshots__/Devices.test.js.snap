@@ -43,12 +43,25 @@ Object {
           <div
             className="fill-parent is-flex tile is-vertical has-text-centered sunpower-devices pr-15 pl-15"
           >
-            <span
-              className="is-uppercase has-text-weight-bold mb-20"
-              role="button"
+            <div
+              className="page-layout-header mb-10"
             >
-              DEVICES
-            </span>
+              <div
+                onClick={[Function]}
+              >
+                <span
+                  className="sp-chevron-left is-size-4 has-text-primary"
+                />
+              </div>
+              <div>
+                <span
+                  className="is-uppercase has-text-weight-bold mb-20"
+                  role="button"
+                >
+                  DEVICES
+                </span>
+              </div>
+            </div>
             <div
               className="pb-15"
             >
@@ -208,6 +221,7 @@ Object {
               errMICount={0}
               error={null}
               expected={2}
+              goToTroubleshooting={[Function]}
               okMICount={2}
               retryDiscovery={[Function]}
             >

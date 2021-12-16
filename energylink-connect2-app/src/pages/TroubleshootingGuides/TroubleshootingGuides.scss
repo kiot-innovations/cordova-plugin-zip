@@ -1,0 +1,12 @@
+.troubleshooting-guides {
+  overflow: scroll;
+
+  .viewing-article {
+    display: grid;
+    grid-template-columns: 10% 1fr 10%;
+  }
+
+  .link-style {
+    text-decoration: underline;
+  }
+}

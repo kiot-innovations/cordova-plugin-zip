@@ -123,13 +123,25 @@ exports[`Header Component Renders correctly 1`] = `
                     "display": true,
                     "icon": "sp-guide",
                     "text": "KNOWLEDGE_BASE",
-                    "to": "/knowledge-base",
+                    "to": "/knowledgeBase",
                   },
                   Object {
                     "component": [Function],
                     "display": true,
                     "icon": "sp-gear",
                     "text": "SETTINGS",
+                  },
+                  Object {
+                    "component": [Function],
+                    "display": true,
+                    "icon": "sp-help",
+                    "text": "TROUBLESHOOTING_GUIDES",
+                  },
+                  Object {
+                    "component": [Function],
+                    "display": false,
+                    "icon": "sp-gear",
+                    "text": "Superuser Options",
                   },
                 ]
               }
@@ -284,6 +296,30 @@ exports[`Header Component Renders correctly 1`] = `
                       </button>
                     </Component>
                   </div>
+                  <div
+                    className="mb-15 is-flex tile-item"
+                    key="TROUBLESHOOTING_GUIDES"
+                  >
+                    <Component
+                      icon="sp-help"
+                      onClick={[Function]}
+                      text="TROUBLESHOOTING_GUIDES"
+                    >
+                      <button
+                        className="tilex tile has-text-white is-flex is-vertical space-around"
+                        onClick={[Function]}
+                      >
+                        <div
+                          className="sp is-size-1 sp-help"
+                        />
+                        <div
+                          className="text is-size-5 pt-10 pl-10 pr-10 pb-10"
+                        >
+                          TROUBLESHOOTING_GUIDES
+                        </div>
+                      </button>
+                    </Component>
+                  </div>
                 </article>
               </section>
             </MenuItemsContainer>
@@ -405,13 +441,25 @@ exports[`Header Component Renders text instead of logo 1`] = `
                   "display": true,
                   "icon": "sp-guide",
                   "text": "KNOWLEDGE_BASE",
-                  "to": "/knowledge-base",
+                  "to": "/knowledgeBase",
                 },
                 Object {
                   "component": [Function],
                   "display": true,
                   "icon": "sp-gear",
                   "text": "SETTINGS",
+                },
+                Object {
+                  "component": [Function],
+                  "display": true,
+                  "icon": "sp-help",
+                  "text": "TROUBLESHOOTING_GUIDES",
+                },
+                Object {
+                  "component": [Function],
+                  "display": false,
+                  "icon": "sp-gear",
+                  "text": "Superuser Options",
                 },
               ]
             }
@@ -562,6 +610,30 @@ exports[`Header Component Renders text instead of logo 1`] = `
                         className="text is-size-5 pt-10 pl-10 pr-10 pb-10"
                       >
                         SETTINGS
+                      </div>
+                    </button>
+                  </Component>
+                </div>
+                <div
+                  className="mb-15 is-flex tile-item"
+                  key="TROUBLESHOOTING_GUIDES"
+                >
+                  <Component
+                    icon="sp-help"
+                    onClick={[Function]}
+                    text="TROUBLESHOOTING_GUIDES"
+                  >
+                    <button
+                      className="tilex tile has-text-white is-flex is-vertical space-around"
+                      onClick={[Function]}
+                    >
+                      <div
+                        className="sp is-size-1 sp-help"
+                      />
+                      <div
+                        className="text is-size-5 pt-10 pl-10 pr-10 pb-10"
+                      >
+                        TROUBLESHOOTING_GUIDES
                       </div>
                     </button>
                   </Component>

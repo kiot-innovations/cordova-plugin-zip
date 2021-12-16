@@ -45,7 +45,7 @@
     "cordova-plugin-nabto": "^2.6.3",
     "cordova-plugin-network-information": "^2.0.2",
     "cordova-plugin-networkinterface": "^2.0.0",
-    "cordova-plugin-powermanagement-orig": "^1.1.2",
+    "cordova-plugin-powermanagement-orig": "git+https://github.com/Viras-/cordova-plugin-powermanagement.git",
     "cordova-plugin-safariviewcontroller": "^1.6.0",
     "cordova-plugin-sslcertificatechecker": "^6.0.0",
     "cordova-plugin-statusbar": "^2.4.3",

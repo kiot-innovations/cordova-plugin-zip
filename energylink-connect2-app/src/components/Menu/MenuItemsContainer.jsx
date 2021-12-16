@@ -3,9 +3,8 @@ import React from 'react'
 import { useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 
-import paths from 'routes/paths'
 import { useI18n } from 'shared/i18n'
-import { either, isTest } from 'shared/utils'
+import { either } from 'shared/utils'
 import { MENU_DISPLAY_ITEM, MENU_HIDE } from 'state/actions/ui'
 
 function MenuItemsContainer({ items }) {
@@ -22,11 +21,6 @@ function MenuItemsContainer({ items }) {
     }
   }
 
-  const goToDebug = () => {
-    dispatch(MENU_HIDE())
-    history.push(paths.PROTECTED.DEBUG_PAGE.path)
-  }
-
   return (
     <section className="is-flex tile is-vertical level full-height">
       <article className="menuitems mt-10">
@@ -41,18 +35,6 @@ function MenuItemsContainer({ items }) {
               />
             </div>
           )
-        )}
-        {isTest && (
-          <div
-            className="mb-30 is-flex superuser-options"
-            key={t('SUPERUSER_OPTIONS')}
-          >
-            <Tile
-              icon="sp-gear"
-              text={t('SUPERUSER_OPTIONS')}
-              onClick={goToDebug}
-            />
-          </div>
         )}
       </article>
     </section>

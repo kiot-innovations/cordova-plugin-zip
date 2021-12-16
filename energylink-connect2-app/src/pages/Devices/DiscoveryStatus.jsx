@@ -16,7 +16,8 @@ function DiscoveryStatus({
   discoveryComplete,
   retryDiscovery,
   cleanAndGoBack,
-  areOnboardMetersMissing
+  areOnboardMetersMissing,
+  goToTroubleshooting
 }) {
   const t = useI18n()
   if (
@@ -35,9 +36,9 @@ function DiscoveryStatus({
           <div className="is-flex">
             <button
               className="button is-primary is-uppercase is-outlined is-fullwidth mr-10"
-              onClick={cleanAndGoBack}
+              onClick={goToTroubleshooting}
             >
-              {t('GO_BACK')}
+              {t('TROUBLESHOOTING')}
             </button>
             <button
               onClick={retryDiscovery}

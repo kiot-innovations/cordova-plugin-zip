@@ -1,6 +1,6 @@
-import * as knowledgeBaseActions from '../../actions/knowledgeBase'
-
 import knowledgeBaseReducer from '.'
+
+import * as knowledgeBaseActions from 'state/actions/knowledgeBase'
 
 describe('Language reducer', () => {
   const reducerTest = reducerTester(knowledgeBaseReducer)

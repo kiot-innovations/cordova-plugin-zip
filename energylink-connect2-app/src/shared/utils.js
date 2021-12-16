@@ -632,7 +632,8 @@ export const TAGS = {
     FIRMWARE: 'firmware',
     ESSFW: 'essFirmware',
     GRID_PROFILES: 'gridProfiles',
-    SECURITY: 'security'
+    SECURITY: 'security',
+    THIRD_PARTY_SERVICE: 'thirdPartyService'
   },
   VALUE: {
     CRASH: 'crash',
@@ -664,7 +665,8 @@ export const TAGS = {
     DEVICES_GET_DEVICES_TREE: 'device.getDeviceTree',
     SITE_CREATION: 'siteCreation',
     SITE_SEARCH: 'siteSearch',
-    FAILED_SECURITY_CERT: 'Failed SSL Certificate Check'
+    FAILED_SECURITY_CERT: 'Failed SSL Certificate Check',
+    GET_ZENDESK_ARTICLES: 'Unable to fetch Zendesk Help Center Articles'
   }
 }
 

@@ -40,13 +40,25 @@ exports[`Menu Page render correctly 1`] = `
           "display": true,
           "icon": "sp-guide",
           "text": "KNOWLEDGE_BASE",
-          "to": "/knowledge-base",
+          "to": "/knowledgeBase",
         },
         Object {
           "component": [Function],
           "display": true,
           "icon": "sp-gear",
           "text": "SETTINGS",
+        },
+        Object {
+          "component": [Function],
+          "display": true,
+          "icon": "sp-help",
+          "text": "TROUBLESHOOTING_GUIDES",
+        },
+        Object {
+          "component": [Function],
+          "display": false,
+          "icon": "sp-gear",
+          "text": "Superuser Options",
         },
       ]
     }

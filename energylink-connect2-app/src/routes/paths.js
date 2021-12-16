@@ -300,7 +300,7 @@ const paths = {
       tab: TABS.INSTALL
     },
     KNOWLEDGE_BASE: {
-      path: '/knowledge-base',
+      path: '/knowledgeBase',
       header: true
     },
     QUICKSTART_GUIDES: {
@@ -313,6 +313,10 @@ const paths = {
     },
     TUTORIAL_VIDEO: {
       path: '/tutorial-video',
+      header: true
+    },
+    TROUBLESHOOTING_GUIDES: {
+      path: '/troubleshooting-guides',
       header: true
     }
   },

@@ -23,6 +23,7 @@ import {
   RESET_DISCOVERY_PROGRESS,
   SAVE_OK_MI
 } from 'state/actions/devices'
+import { SELECT_ARTICLE } from 'state/actions/knowledgeBase'
 import { START_DISCOVERY_INIT } from 'state/actions/pvs'
 import { discoveryTypes } from 'state/reducers/devices'
 
@@ -181,12 +182,27 @@ function Devices() {
     dispatch(CLAIM_DEVICES_INIT(claimObject))
   }
 
+  const goToTroubleshooting = () => {
+    dispatch(SELECT_ARTICLE(4412512966925))
+    history.push(paths.PROTECTED.TROUBLESHOOTING_GUIDES.path)
+  }
+
   return (
     <div className="fill-parent is-flex tile is-vertical has-text-centered sunpower-devices pr-15 pl-15">
       {modal}
-      <span className="is-uppercase has-text-weight-bold mb-20" role="button">
-        {t('DEVICES')}
-      </span>
+      <div className="page-layout-header mb-10">
+        <div onClick={cleanAndGoBack}>
+          <span className="sp-chevron-left is-size-4 has-text-primary" />
+        </div>
+        <div>
+          <span
+            className="is-uppercase has-text-weight-bold mb-20"
+            role="button"
+          >
+            {t('DEVICES')}
+          </span>
+        </div>
+      </div>
       {either(
         areOnboardMetersMissing,
         <ColoredBanner
@@ -260,6 +276,7 @@ function Devices() {
         cleanAndGoBack={cleanAndGoBack}
         retryDiscovery={retryMiDiscovery}
         areOnboardMetersMissing={areOnboardMetersMissing}
+        goToTroubleshooting={goToTroubleshooting}
       />
     </div>
   )
