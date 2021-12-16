@@ -3206,7 +3206,7 @@
     "in_use": true,
     "error_description": "MID failed to switch to commissioning mode.",
     "display": true,
-    "possible_causes": "During commissioning, we force the MID to the closed position in order to keduring commissioning. A problem ocurred that prevented us from setting the MID to the force closed position. This could be due to: \n1. The gird-sense breaker was left open. \n2. The ESS inverter breaker was left open.\n",
+    "possible_causes": "During commissioning, we force the MID to the closed position in order to enduring commissioning. A problem occurred that prevented us from setting the MID to the force closed position. This could be due to: \n1. The gird-sense breaker was left open. \n2. The ESS inverter breaker was left open.\n",
     "recommended_actions": "Make sure ESS and grid-sense breakers are closed, if the problem persists, please contact SunPower."
   },
   {
