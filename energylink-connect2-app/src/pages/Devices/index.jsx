@@ -183,7 +183,7 @@ function Devices() {
   }
 
   const goToTroubleshooting = () => {
-    dispatch(SELECT_ARTICLE(4412512966925))
+    dispatch(SELECT_ARTICLE(4412608401293))
     history.push(paths.PROTECTED.TROUBLESHOOTING_GUIDES.path)
   }
 

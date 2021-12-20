@@ -40,7 +40,7 @@ const initialState = {
 }
 
 const retrieveArticle = (articleId, articles) => {
-  const article = find(propEq('id', 4412512966925), articles)
+  const article = find(propEq('id', articleId), articles)
   return isEmpty(article) ? placeholderArticle : article
 }
 
