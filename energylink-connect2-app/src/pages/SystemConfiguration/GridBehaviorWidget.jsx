@@ -45,18 +45,6 @@ const setDefaultGridVoltage = (dispatch, value) =>
 
 function GridBehaviorWidget() {
   const t = useI18n()
-  const getExportLimitOptions = (availability, exportLimit) => {
-    if (!availability) {
-      return [{ label: t('NO_SELF_SUPPLY'), value: -1 }]
-    }
-    return exportLimit === -1
-      ? [{ label: 'No', value: -1 }]
-      : [
-          { label: 'Yes', value: 0 },
-          { label: 'No', value: -1 }
-        ]
-  }
-
   const dispatch = useDispatch()
   const {
     profiles,
@@ -67,6 +55,20 @@ function GridBehaviorWidget() {
   const { site } = useSelector(state => state.site)
   const { model } = useSelector(state => state.pvs)
   const { status } = useSelector(state => state.firmwareUpdate)
+
+  const isInHawaii = site.st_id === 'Hawaii' || site.st_id === 'HI'
+
+  const getExportLimitOptions = (availability, exportLimit) => {
+    if (!availability) {
+      return [{ label: t('NO_SELF_SUPPLY'), value: -1 }]
+    }
+    return exportLimit === -1 && !isInHawaii
+      ? [{ label: 'No', value: -1 }]
+      : [
+          { label: 'Yes', value: 0 },
+          { label: 'No', value: -1 }
+        ]
+  }
 
   const [selfSupplyOptions, setSelfSupplyOptions] = useState(
     getExportLimitOptions(
@@ -181,11 +183,11 @@ function GridBehaviorWidget() {
 
   const showVoltageWarning = gridVoltage.selected !== gridVoltage.measured
 
-  const isInHawaii = site.st_id === 'Hawaii' || site.st_id === 'HI'
   const featureFlagIsOn = useFeatureFlag({
     page: 'system-configuration',
     name: 'enable-customer-self-supply'
   })
+
   return (
     <div className="pb-15">
       <Collapsible title={t('GRID_BEHAVIOR')} icon={GBI} required>

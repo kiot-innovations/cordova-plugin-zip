@@ -22,6 +22,11 @@ storiesOf('System Configuration Page', module)
     const state = {
       pvs: {
         model: 'PVS5'
+      },
+      site: {
+        site: {
+          st_id: 'Hawaii'
+        }
       }
     }
 
@@ -39,6 +44,11 @@ storiesOf('System Configuration Page', module)
     const state = {
       pvs: {
         model: 'PVS6'
+      },
+      site: {
+        site: {
+          st_id: 'Hawaii'
+        }
       }
     }
 
