@@ -1,4 +1,12 @@
-import { compose, includes, isEmpty, pathEq, pathOr, split } from 'ramda'
+import {
+  anyPass,
+  compose,
+  includes,
+  isEmpty,
+  pathEq,
+  pathOr,
+  split
+} from 'ramda'
 import { ofType } from 'redux-observable'
 import { of, EMPTY } from 'rxjs'
 import { switchMap } from 'rxjs/operators'
@@ -14,22 +22,44 @@ const isSelectingPVS = compose(
   pathOr('url#/page', ['location', 'href'])
 )
 
+const notConnected = payload =>
+  includes(payload, [
+    appConnectionStatus.NOT_USING_WIFI,
+    appConnectionStatus.NOT_CONNECTED_PVS
+  ])
+
+const noNetworkError = state$ => isEmpty(state$.value.network.err)
+
+const notSelectingPVS = !isSelectingPVS(window)
+
+const isNotUpdating = state$ => state$.value.firmwareUpdate.upgrading === false
+
+const updateAlmostFinished = state$ =>
+  includes(state$.value.firmwareUpdate.status, [
+    stagesFromThePvs[3],
+    stagesFromThePvs[4],
+    stagesFromThePvs[5],
+    stagesFromThePvs[6]
+  ])
+
+const showReconnectionModalOn = anyPass([
+  noNetworkError,
+  notSelectingPVS,
+  isNotUpdating
+])
+
 export const connectionStateListenerEpic = (action$, state$) =>
   action$.pipe(
     ofType(SET_CONNECTION_STATUS.getType()),
-    switchMap(({ payload }) =>
-      includes(payload, [
-        appConnectionStatus.NOT_USING_WIFI,
-        appConnectionStatus.NOT_CONNECTED_PVS
-      ]) &&
-      isEmpty(state$.value.network.err) &&
-      !isSelectingPVS(window) &&
-      state$.value.firmwareUpdate.status !== stagesFromThePvs[3]
+    switchMap(({ payload }) => {
+      return notConnected(payload) &&
+        showReconnectionModalOn(state$) &&
+        !updateAlmostFinished(state$)
         ? of(
             SHOW_MODAL({
               componentPath: './ConnectionStatus/ConnectionStatusModal.jsx'
             })
           )
         : EMPTY
-    )
+    })
   )

@@ -137,7 +137,8 @@ const firmwareWaitForWifi = (action$, state$) =>
     ),
     exhaustMap(({ payload }) => {
       if (
-        state$.value.firmwareUpdate.status === stagesFromThePvs[3] &&
+        (state$.value.firmwareUpdate.status === stagesFromThePvs[3] ||
+          state$.value.firmwareUpdate.status === stagesFromThePvs[4]) &&
         (payload === appConnectionStatus.NOT_CONNECTED_PVS ||
           payload === appConnectionStatus.NOT_USING_WIFI)
       ) {

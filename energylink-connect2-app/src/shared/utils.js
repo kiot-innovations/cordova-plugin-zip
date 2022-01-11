@@ -729,5 +729,7 @@ export const stagesFromThePvs = [
   'decompressing images',
   'flashing images',
   'verifying images',
-  'complete'
+  'switching volume',
+  'complete',
+  'WAITING_FOR_NETWORK'
 ]
