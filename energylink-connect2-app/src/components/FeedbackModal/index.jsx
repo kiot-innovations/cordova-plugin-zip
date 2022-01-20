@@ -19,8 +19,8 @@ const FeedbackModal = ({
 }) => {
   const t = useI18n()
   const appId = isIos()
-    ? process.env.REACT_APP_APPLE_ID
-    : process.env.REACT_APP_ANDROID_ID
+    ? process.env.REACT_APP_STORE_REVIEW_APPLE_ID
+    : process.env.REACT_APP_STORE_REVIEW_ANDROID_ID
   const closeModal = () => onChange()
 
   const storeReviewsAllowed = useFeatureFlag({
