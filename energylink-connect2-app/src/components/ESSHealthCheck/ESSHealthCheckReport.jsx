@@ -9,7 +9,16 @@ import { either } from 'shared/utils'
 function ESSHealthCheckReport({ report }) {
   const t = useI18n()
 
-  return (
+  return isEmpty(report) ? (
+    <div className="has-text-centered">
+      <div className="mt-10 mb-20">
+        <span className="sp-hey is-size-1" />
+      </div>
+      <div className="mb-20">
+        <span>{t('SYSTEM_REPORT_ERROR')}</span>
+      </div>
+    </div>
+  ) : (
     <>
       {either(
         !isEmpty(report.ess_state),

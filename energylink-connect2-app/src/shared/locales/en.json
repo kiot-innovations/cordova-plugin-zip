@@ -800,6 +800,8 @@
   "SITE_KEY": "Site ID",
   "STORAGE_SYSTEM_SIZE": "Storage System Size",
   "PVS_COUNT": "PVS Count",
+  "UNABLE_TO_CONNECT": "Unable to connect to PVS",
+  "SUPERUSER_OPTIONS_NOT_AVAILABLE": "This feature not available yet.",
   "PRODUCTION_CT_ERRORS": "Production CT Errors",
   "CONSUMPTION_CT_ERRORS": "Consumption CT Errors",
   "REPLACE_PVS_WARNING": "Do not replace the PVS if you’re adding a Hub+ to the existing system.",

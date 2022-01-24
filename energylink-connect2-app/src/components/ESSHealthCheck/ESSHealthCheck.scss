@@ -1,6 +1,10 @@
 @import '~@sunpower/theme-dark/styles/variables';
 
 .ess-hc {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
   .hc-missing-report {
     border: 1px solid $silver-sand3;
     border-radius: 5px;

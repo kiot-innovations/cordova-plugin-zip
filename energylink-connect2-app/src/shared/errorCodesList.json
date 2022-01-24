@@ -180,6 +180,16 @@
     "recommended_actions": "This message is for informational purposes only. No action is required."
   },
   {
+    "event_code": "05006",
+    "event_name": "gateway_grid_profile_default_configured_info",
+    "code": "05006",
+    "in_use": true,
+    "error_description": "System was configured with a default grid profile",
+    "display": true,
+    "possible_causes": "A storage inverter grid profile is not available for this geographical area.",
+    "recommended_actions": "No action is required at this time. SunPower will update the grid profile remotely once it becomes available."
+  },
+  {
     "event_code": "10009",
     "event_name": "component_check_odd_battery_count_warning",
     "code": "10009",
@@ -188,6 +198,46 @@
     "display": true,
     "possible_causes": "We detected an odd number of batteries. We expect the system to have an even number fo batteries",
     "recommended_actions": "Please check that both batteries are turned on and that the ethernet cable connecting the batteries is properly placed. If the problem persists, please contact SunPower"
+  },
+  {
+    "event_code": "10425",
+    "event_name": "health_check_rpo_adc_too_low_warning",
+    "code": "10425",
+    "in_use": true,
+    "error_description": "RPO is not detected.",
+    "display": true,
+    "possible_causes": "The system could not detect an RPO switch connected.",
+    "recommended_actions": "Check that RPO is connected correctly to MIDC. Check that RPO cable is connected correctly from the MIO to the inverter."
+  },
+  {
+    "event_code": "10426",
+    "event_name": "health_check_rpo_adc_too_high_warning",
+    "code": "10426",
+    "in_use": true,
+    "error_description": "RPO is not detected.",
+    "display": true,
+    "possible_causes": "The system could not detect an RPO switch connected.",
+    "recommended_actions": "Check that RPO is connected correctly to MIDC. Check that RPO cable is connected correctly from the MIO to the inverter."
+  },
+  {
+    "event_code": "10458",
+    "event_name": "health_check_pvd_initially_not_closed_warning",
+    "code": "10458",
+    "in_use": true,
+    "error_description": "PVDR is not initially open.",
+    "display": true,
+    "possible_causes": "Large voltage on the load side might have triggered the PVDR to open.",
+    "recommended_actions": "Please contact SunPower for a remote solution."
+  },
+  {
+    "event_code": "10461",
+    "event_name": "health_check_pvd_high_voltage_warning",
+    "code": "10461",
+    "in_use": true,
+    "error_description": "One or both of the line voltage is over 130V.",
+    "display": true,
+    "possible_causes": "High grid voltage might prevent the PVDR from functioning correctly.",
+    "recommended_actions": "Check that the neutral line is properly torque. Measured the voltage of line 1 and line 2 and corroborate that it is over 130V."
   },
   {
     "event_code": "11010",
@@ -648,6 +698,16 @@
     "display": true,
     "possible_causes": "Check user manual",
     "recommended_actions": "Check user manual"
+  },
+  {
+    "event_code": "15003",
+    "event_name": "gateway_grid_profile_unknown_warning",
+    "code": "15003",
+    "in_use": true,
+    "error_description": "Unknown grid profile",
+    "display": true,
+    "possible_causes": "The storage inverter grid profile for this site is unknown. A default grid profile was applied.",
+    "recommended_actions": "No action is required at this time. SunPower will update the grid profile remotely once it becomes available."
   },
   {
     "event_code": "16000",
@@ -1178,6 +1238,347 @@
     "display": true,
     "possible_causes": "N/A",
     "recommended_actions": "N/A"
+  },
+  {
+    "event_code": "30100",
+    "event_name": "failed_to_switch_mid_operating_mode_critical",
+    "code": "30100",
+    "in_use": true,
+    "error_description": "MID failed to switch to commissioning mode.",
+    "display": true,
+    "possible_causes": "During commissioning, we force the MID to the closed position in order to enduring commissioning. A problem occurred that prevented us from setting the MID to the force closed position. This could be due to: \n1. The gird-sense breaker was left open. \n2. The ESS inverter breaker was left open. \n3. The site may be experiencing a power grid outage.\n",
+    "recommended_actions": "Make sure ESS and grid-sense breakers are closed. If the house is experiencing a grid outage, you cannot complete commissioning. If the problem persists, please contact SunPower."
+  },
+  {
+    "event_code": "30101",
+    "event_name": "failed_to_start_fw_update_critical",
+    "code": "30101",
+    "in_use": true,
+    "error_description": "Firmware update failed to start.",
+    "display": true,
+    "possible_causes": "An internal error prevented firmware updates to start.",
+    "recommended_actions": "Please tap retry. If the problem persists, please contact SunPower."
+  },
+  {
+    "event_code": "30102",
+    "event_name": "failed_to_start_component_mapping_critical",
+    "code": "30102",
+    "in_use": true,
+    "error_description": "Component mapping failed to start.",
+    "display": true,
+    "possible_causes": "An internal error prevented component mapping to start.",
+    "recommended_actions": "Please tap retry. If the problem persists, please contact SunPower."
+  },
+  {
+    "event_code": "30103",
+    "event_name": "failed_to_start_health_checks_critical",
+    "code": "30103",
+    "in_use": true,
+    "error_description": "System checks failed to start.",
+    "display": true,
+    "possible_causes": "An internal error prevented system checks to start.",
+    "recommended_actions": "Please tap retry. If the problem persists, please contact SunPower."
+  },
+  {
+    "event_code": "30400",
+    "event_name": "health_check_missing_ess_component_map_critical",
+    "code": "30400",
+    "in_use": true,
+    "error_description": "There is a device mapping error.",
+    "display": true,
+    "possible_causes": "During commissioning, an error occurred and could not complete device mapping.",
+    "recommended_actions": "Recommission the system. Make sure ProConnect was run correctly without errors, and all devices were discovered during component mapper and pre-discovery."
+  },
+  {
+    "event_code": "30401",
+    "event_name": "health_check_invalid_ess_component_map_critical",
+    "code": "30401",
+    "in_use": true,
+    "error_description": "There is a device mapping file corruption.",
+    "display": true,
+    "possible_causes": "During commissioning, an error occurred and could not complete device mapping.",
+    "recommended_actions": "Recommission the system. Make sure ProConnect was run correctly without errors, and all devices were discovered during component mapper and pre-discovery."
+  },
+  {
+    "event_code": "30402",
+    "event_name": "health_check_missing_ess_critical",
+    "code": "30402",
+    "in_use": true,
+    "error_description": "There is a device mapping error.",
+    "display": true,
+    "possible_causes": "During commissioning, an error occurred and could not complete device mapping.",
+    "recommended_actions": "Recommission the system. Make sure ProConnect was run correctly without errors, and all devices were discovered during component mapper and pre-discovery."
+  },
+  {
+    "event_code": "30403",
+    "event_name": "health_check_too_few_batteries_critical",
+    "code": "30403",
+    "in_use": true,
+    "error_description": "Mismatch between the devices detected and devices mapped during pre-discovery.",
+    "display": true,
+    "possible_causes": "During commissioning, a device could not be properly mapped.",
+    "recommended_actions": "Recommission the system. Make sure ProConnect was run correctly without errors, and all devices were discovered during component mapper and pre-discovery."
+  },
+  {
+    "event_code": "30404",
+    "event_name": "health_check_too_few_inverter_critical",
+    "code": "30404",
+    "in_use": true,
+    "error_description": "Mismatch between the devices detected and devices mapped during pre-discovery.",
+    "display": true,
+    "possible_causes": "During commissioning, a device could not be properly mapped.",
+    "recommended_actions": "Recommission the system. Make sure ProConnect was run correctly without errors, and all devices were discovered during component mapper and pre-discovery."
+  },
+  {
+    "event_code": "30405",
+    "event_name": "health_check_too_few_mio_critical",
+    "code": "30405",
+    "in_use": true,
+    "error_description": "Mismatch between the devices detected and devices mapped during pre-discovery.",
+    "display": true,
+    "possible_causes": "During commissioning, a device could not be properly mapped.",
+    "recommended_actions": "Recommission the system. Make sure ProConnect was run correctly without errors, and all devices were discovered during component mapper and pre-discovery."
+  },
+  {
+    "event_code": "30406",
+    "event_name": "health_check_too_few_bms_critical",
+    "code": "30406",
+    "in_use": true,
+    "error_description": "Mismatch between the devices detected and devices mapped during pre-discovery.",
+    "display": true,
+    "possible_causes": "During commissioning, a device could not be properly mapped.",
+    "recommended_actions": "Recommission the system. Make sure ProConnect was run correctly without errors, and all devices were discovered during component mapper and pre-discovery."
+  },
+  {
+    "event_code": "30407",
+    "event_name": "health_check_too_many_batteries_critical",
+    "code": "30407",
+    "in_use": true,
+    "error_description": "Mismatch between the devices detected and devices mapped during pre-discovery.",
+    "display": true,
+    "possible_causes": "During commissioning, a device could not be properly mapped.",
+    "recommended_actions": "Recommission the system. Make sure ProConnect was run correctly without errors, and all devices were discovered during component mapper and pre-discovery."
+  },
+  {
+    "event_code": "30408",
+    "event_name": "health_check_too_many_inverter_critical",
+    "code": "30408",
+    "in_use": true,
+    "error_description": "Mismatch between the devices detected and devices mapped during pre-discovery.",
+    "display": true,
+    "possible_causes": "During commissioning, a device could not be properly mapped.",
+    "recommended_actions": "Recommission the system. Make sure ProConnect was run correctly without errors, and all devices were discovered during component mapper and pre-discovery."
+  },
+  {
+    "event_code": "30409",
+    "event_name": "health_check_too_many_mio_critical",
+    "code": "30409",
+    "in_use": true,
+    "error_description": "Mismatch between the devices detected and devices mapped during pre-discovery.",
+    "display": true,
+    "possible_causes": "During commissioning, a device could not be properly mapped.",
+    "recommended_actions": "Recommission the system. Make sure ProConnect was run correctly without errors, and all devices were discovered during component mapper and pre-discovery."
+  },
+  {
+    "event_code": "30410",
+    "event_name": "health_check_too_many_bms_critical",
+    "code": "30410",
+    "in_use": true,
+    "error_description": "Mismatch between the devices detected and devices mapped during pre-discovery.",
+    "display": true,
+    "possible_causes": "During commissioning, a device could not be properly mapped.",
+    "recommended_actions": "Recommission the system. Make sure ProConnect was run correctly without errors, and all devices were discovered during component mapper and pre-discovery."
+  },
+  {
+    "event_code": "30411",
+    "event_name": "health_check_unassigned_battery_critical",
+    "code": "30411",
+    "in_use": true,
+    "error_description": "Device is not link to a parent.",
+    "display": true,
+    "possible_causes": "During commissioning, the device could not be properly mapped.",
+    "recommended_actions": "Recommission the system. Make sure ProConnect was run correctly without errors, and all devices were discovered during component mapper and pre-discovery."
+  },
+  {
+    "event_code": "30412",
+    "event_name": "health_check_unassigned_inverter_critical",
+    "code": "30412",
+    "in_use": true,
+    "error_description": "Device is not link to a parent.",
+    "display": true,
+    "possible_causes": "During commissioning, the device could not be properly mapped.",
+    "recommended_actions": "Recommission the system. Make sure ProConnect was run correctly without errors, and all devices were discovered during component mapper and pre-discovery."
+  },
+  {
+    "event_code": "30413",
+    "event_name": "health_check_unassigned_mio_critical",
+    "code": "30413",
+    "in_use": true,
+    "error_description": "Device is not link to a parent.",
+    "display": true,
+    "possible_causes": "During commissioning, the device could not be properly mapped.",
+    "recommended_actions": "Recommission the system. Make sure ProConnect was run correctly without errors, and all devices were discovered during component mapper and pre-discovery."
+  },
+  {
+    "event_code": "30414",
+    "event_name": "health_check_unassigned_bms_critical",
+    "code": "30414",
+    "in_use": true,
+    "error_description": "Device is not link to a parent.",
+    "display": true,
+    "possible_causes": "During commissioning, the device could not be properly mapped.",
+    "recommended_actions": "Recommission the system. Make sure ProConnect was run correctly without errors, and all devices were discovered during component mapper and pre-discovery."
+  },
+  {
+    "event_code": "30417",
+    "event_name": "health_check_net_ct_dispatch_error_critical",
+    "code": "30417",
+    "in_use": true,
+    "error_description": "Inverter power dispatch difference",
+    "display": true,
+    "possible_causes": "Batteries and inverter might be too cold or hot to provide the desire power dispatch.",
+    "recommended_actions": "If the problem persists, please contact SunPower."
+  },
+  {
+    "event_code": "30418",
+    "event_name": "health_check_net_ct_orientation_error_critical",
+    "code": "30418",
+    "in_use": true,
+    "error_description": "Inverter power dispatch and consuption meter different sign.",
+    "display": true,
+    "possible_causes": "Dispatched power from the inverter has a different sign from the measured power from the consumption meter. This could be due to: \n1. Conductor terminations flipped \n2. CT Terminations are incorrectly installed.\n",
+    "recommended_actions": "Check installation of load terminations. Check that CT voltage sensing is correctly installed."
+  },
+
+  {
+    "event_code": "30419",
+    "event_name": "health_check_net_ct_scaling_factor_error_critical",
+    "code": "30419",
+    "in_use": true,
+    "error_description": "Inverter power dispatch and consuption meter difference.",
+    "display": true,
+    "possible_causes": "Dispatch power from the inverter has a 10% difference from the measured power from the consumption meter. This could be due to: \n1. CT Terminations are incorrectly installed. \n2. The CT scaling factor may be incorrect. \n3. A large load might have turned on during the check.\n",
+    "recommended_actions": "Check installation of load terminations. Check that CT voltage sensing is correctly installed. Check that the scaling factor is properly set."
+  },
+  {
+    "event_code": "30420",
+    "event_name": "health_check_net_ct_verification_incomplete_critical",
+    "code": "30420",
+    "in_use": true,
+    "error_description": "CT verification fail",
+    "display": true,
+    "possible_causes": "A problem occurred that prevented us from testing the CTs.",
+    "recommended_actions": "Make sure ESS and grid-sense breakers are closed. Make sure that the battery breakers are close, and the inverter does not have any active faults."
+  },
+  {
+    "event_code": "30421",
+    "event_name": "health_check_communication_outage_critical",
+    "code": "30421",
+    "in_use": true,
+    "error_description": "PVS cannot communicate with one or more devices",
+    "display": true,
+    "possible_causes": "During the commissioning check, the PVS could not communicate with one or more devices. This could be due to: \n1. Cables related to the device may be disconnected \n2. Cables related to the device may not be terminated properly. \n3. The cable may have gotten damaged.\n",
+    "recommended_actions": "Make sure all cables are connected and properly terminated. You may also reset all devices. If the problem persists, please contact SunPower."
+  },
+  {
+    "event_code": "30422",
+    "event_name": "health_check_rpo_incomplete_critical",
+    "code": "30422",
+    "in_use": true,
+    "error_description": "The system could not complete the RPO health check.",
+    "display": true,
+    "possible_causes": "A problem occurred that prevented us from checking RPO.",
+    "recommended_actions": "Check that RPO is connected correctly to MIDC. Check that RPO cable is connected correctly from the MIO to the inverter."
+  },
+  {
+    "event_code": "30423",
+    "event_name": "health_check_rpo_no_inverter_critical",
+    "code": "30423",
+    "in_use": true,
+    "error_description": "The storage system could not find an inverter.",
+    "display": true,
+    "possible_causes": "Storage was not properly commissioned and could not find an inverter.",
+    "recommended_actions": "Recommission the system. Make sure ProConnect was run correctly without errors, and all devices were discovered during component mapper and pre-discovery."
+  },
+  {
+    "event_code": "30424",
+    "event_name": "health_check_rpo_no_mio_critical",
+    "code": "30424",
+    "in_use": true,
+    "error_description": "The storage system could not find a MIO.",
+    "display": true,
+    "possible_causes": "Storage was not properly commissioned and could not find an MIO.",
+    "recommended_actions": "Recommission the system. Make sure ProConnect was run correctly without errors, and all devices were discovered during component mapper and pre-discovery."
+  },
+  {
+    "event_code": "30451",
+    "event_name": "health_check_backup_cannot_close_contactor_critical",
+    "code": "30451",
+    "in_use": true,
+    "error_description": "MIDC is not close after returning the grid.",
+    "display": true,
+    "possible_causes": "During the system check, the system could close the MID after returning the grid.",
+    "recommended_actions": "Make sure ESS and grid-sense breakers are closed. Check that the invert does not have any errors. If the problem persists, please contact SunPower."
+  },
+  {
+    "event_code": "30452",
+    "event_name": "health_check_backup_failed_forming_microgrid_critical",
+    "code": "30452",
+    "in_use": true,
+    "error_description": "System check could not form a microgrid.",
+    "display": true,
+    "possible_causes": "During the system check, the system could not form a microgrid after the MID opened.",
+    "recommended_actions": "Make sure ESS and grid-sense breakers are closed. Check that the invert does not have any errors. If the problem persists, please contact SunPower."
+  },
+  {
+    "event_code": "30454",
+    "event_name": "health_check_backup_check_preconditions_critical",
+    "code": "30454",
+    "in_use": true,
+    "error_description": "MID is not closed at the begining of the test.",
+    "display": true,
+    "possible_causes": "During commissioning, the MIDC might have opened due to loose cables.",
+    "recommended_actions": "Check the MID is on the close position. Check the aux cable is connected correctly on the MIDC and the inverter."
+  },
+  {
+    "event_code": "30456",
+    "event_name": "health_check_backup_io_error_critical",
+    "code": "30456",
+    "in_use": true,
+    "error_description": "The inverter could not be configure correctly.",
+    "display": true,
+    "possible_causes": "There was an error configuring the inverter. ",
+    "recommended_actions": "Make sure ESS and grid-sense breakers are closed. Check that the invert does not have any errors. Reset the inverter and gateway. If the problem persists, please contact SunPower."
+  },
+  {
+    "event_code": "30457",
+    "event_name": "health_check_pvd_incomplete_critical",
+    "code": "30457",
+    "in_use": true,
+    "error_description": "PVDR has an active error.",
+    "display": true,
+    "possible_causes": "A problem occurred that prevented us from testing the PVDR.",
+    "recommended_actions": "Check that the cable is connected and properly terminated. Reset the PVDR to clear any errors. If the problem persists, please contact SunPower."
+  },
+  {
+    "event_code": "30459",
+    "event_name": "health_check_pvd_failed_to_open_critical",
+    "code": "30459",
+    "in_use": true,
+    "error_description": "PVDR did not open after command.",
+    "display": true,
+    "possible_causes": "A problem occurred that prevented us from opening the PVDR. This could be due to: /n1. The PVDR cable might have disconnected. /n2.PVDR has an active error.",
+    "recommended_actions": "Check that the cable is connected and properly terminated. Reset the PVDR to clear any errors. If the problem persists, please contact SunPower."
+  },
+  {
+    "event_code": "30460",
+    "event_name": "health_check_pvd_failed_to_close_critical",
+    "code": "30460",
+    "in_use": true,
+    "error_description": "PVDR did not close after command.",
+    "display": true,
+    "possible_causes": "A problem occurred that prevented us from closing the PVDR. This could be due to: /n1. The PVDR cable might have disconnected. /n2.PVDR has an active error.",
+    "recommended_actions": "Check that the cable is connected and properly terminated. Reset the PVDR to clear any errors. If the problem persists, please contact SunPower."
   },
   {
     "event_code": "31000",
@@ -2790,6 +3191,36 @@
     "recommended_actions": "1. Reboot the gateway. In order to do so:\n     a. Disconnect the yellow ethernet cable from its port on the left side of the gateway.\n     b. Disconnect the green ethernet cable from the J4 port on the right side of the Multi I/O (MIO) board.\n     c. Wait for about 30 seconds.\n     d. Reconnect all the cables mentioned in sections 1a and 1b \n     e. Wait for the LEDs show gateway is in normal operation (see manual).\n2. Try applying bulk settings again by tapping 'retry' or running the firmware update step again.\nIf the problem persists, please contact SunPower."
   },
   {
+    "event_code": "35003",
+    "event_name": "gateway_grid_profile_unknown_critical",
+    "code": "35003",
+    "in_use": true,
+    "error_description": "Grid profile was not updated to XW Inverter",
+    "display": true,
+    "possible_causes": "Internal error: system attempted to apply an unknown grid profile.",
+    "recommended_actions": "Please tap retry. If the problem persists, please contact SunPower."
+  },
+  {
+    "event_code": "35004",
+    "event_name": "gateway_grid_profile_not_supported_critical",
+    "code": "35004",
+    "in_use": true,
+    "error_description": "Grid profile was not updated to XW Inverter",
+    "display": true,
+    "possible_causes": "Internal error: grid profile is not supported by XW inverter.",
+    "recommended_actions": "Please tap retry. If the problem persists, please contact SunPower."
+  },
+  {
+    "event_code": "35005",
+    "event_name": "gateway_grid_profile_not_configured_critical",
+    "code": "35005",
+    "in_use": true,
+    "error_description": "Grid profile was not updated to XW Inverter",
+    "display": true,
+    "possible_causes": "Internal error: grid profile was not configued.",
+    "recommended_actions": "Please tap retry. If the problem persists, please contact SunPower."
+  },
+  {
     "event_code": "43040",
     "event_name": "battery_cell_under_voltage_permanent",
     "code": "43040",
@@ -3178,95 +3609,5 @@
     "display": true,
     "possible_causes": "PV disconnect relay board firmware may be corrupted",
     "recommended_actions": "Tap retry in SunPower ProConnect. If the problem persists, press the blue button on the PV Disconnect Relay board. Take adequate precautions as there may be live conductors near the board. If the problem still persists, please contact SunPower."
-  },
-  {
-    "event_code": "05006",
-    "event_name": "gateway_grid_profile_default_configured_info",
-    "code": "05006",
-    "in_use": true,
-    "error_description": "System was configured with a default grid profile",
-    "display": true,
-    "possible_causes": "A storage inverter grid profile is not available for this geographical area.",
-    "recommended_actions": "No action is required at this time. SunPower will update the grid profile remotely once it becomes available."
-  },
-  {
-    "event_code": "15003",
-    "event_name": "gateway_grid_profile_unknown_warning",
-    "code": "15003",
-    "in_use": true,
-    "error_description": "Unknown grid profile",
-    "display": true,
-    "possible_causes": "The storage inverter grid profile for this site is unknown. A default grid profile was applied.",
-    "recommended_actions": "No action is required at this time. SunPower will update the grid profile remotely once it becomes available."
-  },
-  {
-    "event_code": "30100",
-    "event_name": "failed_to_switch_mid_operating_mode_critical",
-    "code": "30100",
-    "in_use": true,
-    "error_description": "MID failed to switch to commissioning mode.",
-    "display": true,
-    "possible_causes": "During commissioning, we force the MID to the closed position in order to enduring commissioning. A problem occurred that prevented us from setting the MID to the force closed position. This could be due to: \n1. The gird-sense breaker was left open. \n2. The ESS inverter breaker was left open.\n",
-    "recommended_actions": "Make sure ESS and grid-sense breakers are closed, if the problem persists, please contact SunPower."
-  },
-  {
-    "event_code": "30101",
-    "event_name": "failed_to_start_fw_update_critical",
-    "code": "30101",
-    "in_use": true,
-    "error_description": "Firmware update failed to start.",
-    "display": true,
-    "possible_causes": "An internal error prevented firmware updates to start.",
-    "recommended_actions": "Please tap retry. If the problem persists, please contact SunPower."
-  },
-  {
-    "event_code": "30102",
-    "event_name": "failed_to_start_component_mapping_critical",
-    "code": "30102",
-    "in_use": true,
-    "error_description": "Component mapping failed to start.",
-    "display": true,
-    "possible_causes": "An internal error prevented component mapping to start.",
-    "recommended_actions": "Please tap retry. If the problem persists, please contact SunPower."
-  },
-  {
-    "event_code": "30103",
-    "event_name": "failed_to_start_health_checks_critical",
-    "code": "30103",
-    "in_use": true,
-    "error_description": "System checks failed to start.",
-    "display": true,
-    "possible_causes": "An internal error prevented system checks to start.",
-    "recommended_actions": "Please tap retry. If the problem persists, please contact SunPower."
-  },
-  {
-    "event_code": "35003",
-    "event_name": "gateway_grid_profile_unknown_critical",
-    "code": "35003",
-    "in_use": true,
-    "error_description": "Grid profile was not updated to XW Inverter",
-    "display": true,
-    "possible_causes": "Internal error: system attempted to apply an unknown grid profile.",
-    "recommended_actions": "Please tap retry. If the problem persists, please contact SunPower."
-  },
-  {
-    "event_code": "35004",
-    "event_name": "gateway_grid_profile_not_supported_critical",
-    "code": "35004",
-    "in_use": true,
-    "error_description": "Grid profile was not updated to XW Inverter",
-    "display": true,
-    "possible_causes": "Internal error: grid profile is not supported by XW inverter.",
-    "recommended_actions": "Please tap retry. If the problem persists, please contact SunPower."
-  },
-  {
-    "event_code": "35005",
-    "event_name": "gateway_grid_profile_not_configured_critical",
-    "code": "35005",
-    "in_use": true,
-    "error_description": "Grid profile was not updated to XW Inverter",
-    "display": true,
-    "possible_causes": "Internal error: grid profile was not configued.",
-    "recommended_actions": "Please tap retry. If the problem persists, please contact SunPower."
   }
 ]

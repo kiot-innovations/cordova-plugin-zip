@@ -1,4 +1,15 @@
-import { always, cond, equals, isNil, path, pathOr } from 'ramda'
+import {
+  always,
+  cond,
+  equals,
+  flatten,
+  has,
+  isEmpty,
+  isNil,
+  path,
+  pathOr,
+  pluck
+} from 'ramda'
 import { ofType } from 'redux-observable'
 import { EMPTY, from, of, timer } from 'rxjs'
 import {
@@ -11,6 +22,7 @@ import {
 import * as Sentry from 'sentry-cordova'
 
 import { getApiPVS, storageSwaggerTag } from 'shared/api'
+import { trimInfos } from 'shared/utils'
 import { DISCOVER_COMPLETE, DISCOVER_ERROR } from 'state/actions/devices'
 import { START_DISCOVERY_ERROR, START_DISCOVERY_INIT } from 'state/actions/pvs'
 import { EMPTY_ACTION } from 'state/actions/share'
@@ -92,9 +104,18 @@ export const runSystemCheckEpic = action$ => {
   )
 }
 
+const getNewSchemaErrors = checks => {
+  const errorArrays = pluck('errors', checks)
+  return flatten(errorArrays)
+}
+
 export const getHealthCheckEpic = action$ => {
   const stopPolling$ = action$.pipe(
-    ofType(GET_ESS_STATUS_SUCCESS.getType(), GET_ESS_STATUS_ERROR.getType())
+    ofType(
+      GET_ESS_STATUS_SUCCESS.getType(),
+      GET_ESS_STATUS_ERROR.getType(),
+      GET_ESS_STATUS_COMPLETE.getType()
+    )
   )
 
   return action$.pipe(
@@ -109,18 +130,37 @@ export const getHealthCheckEpic = action$ => {
 
           return from(promise).pipe(
             map(response => {
+              const isNewSchema = !!has('check_status', response.body)
+
               const status = pathOr(
                 false,
-                ['body', 'equinox_system_check_status'],
+                [
+                  'body',
+                  isNewSchema ? 'check_status' : 'equinox_system_check_status'
+                ],
                 response
               )
 
+              const errors = isNewSchema
+                ? getNewSchemaErrors(pathOr([], ['body', 'checks'], response))
+                : pathOr([], ['body', 'errors'], response)
+
               const statusMatcher = cond([
-                [equals('FAILED'), always(GET_ESS_STATUS_ERROR(errorObj))],
+                [
+                  equals('FAILED'),
+                  always(
+                    isEmpty(errors)
+                      ? GET_ESS_STATUS_ERROR(errorObj)
+                      : GET_ESS_STATUS_COMPLETE({
+                          ess_report: {},
+                          errors: trimInfos(errors)
+                        })
+                  )
+                ],
                 [equals('NOT_RUNNING'), always(GET_ESS_STATUS_ERROR(errorObj))],
                 [equals('RUNNING'), always(GET_ESS_STATUS_UPDATE())],
-                [isNil, always(GET_ESS_STATUS_ERROR(errorObj))],
-                [equals('SUCCEEDED'), always(GET_ESS_STATUS_SUCCESS())]
+                [equals('SUCCEEDED'), always(GET_ESS_STATUS_SUCCESS())],
+                [isNil, always(GET_ESS_STATUS_ERROR(errorObj))]
               ])
 
               return statusMatcher(status)

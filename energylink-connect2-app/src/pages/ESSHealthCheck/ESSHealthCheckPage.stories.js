@@ -60,6 +60,46 @@ const pollingSystemCheck = {
   }
 }
 
+const failureWhilePolling = {
+  storage: {
+    status: {
+      error: '',
+      waiting: false,
+      results: {
+        errors: [
+          {
+            error_name: 'UNDER_VOLT_ALARM',
+            last_occurrence: '2020-02-15 01:23:45',
+            error_code: '4.21.2',
+            device_sn: '048572340857NND',
+            error_message: 'Critical: low battery SOH.',
+            value: {
+              value: 0,
+              unit: 'string'
+            }
+          }
+        ]
+      }
+    }
+  },
+  devices: {
+    progress: {
+      progress: [
+        {
+          TYPE: 'DISCOVERY_TYPE',
+          PROGR: '100',
+          NFOUND: '0'
+        }
+      ],
+      complete: true,
+      result: 'succeed'
+    }
+  },
+  rma: {
+    pvs: false
+  }
+}
+
 const faultyReport = {
   storage: {
     status: {
@@ -1977,3 +2017,17 @@ storiesOf('Storage - Health Check', module)
       </div>
     )
   })
+  .add(
+    'Polling GET /dl_cgi/equinox-system-check failed, but still has info',
+    () => {
+      const { store } = configureStore(failureWhilePolling)
+
+      return (
+        <div className="full-min-height pl-10 pr-10">
+          <Provider store={store}>
+            <ESSHealthCheck />
+          </Provider>
+        </div>
+      )
+    }
+  )

@@ -717,10 +717,14 @@ export const getStringInverters = filter(isStringInverter)
 
 export const storagePresent = deviceList => !isEmpty(filter(isESS, deviceList))
 
+export const isInfo = error => startsWith('0', error.error_code)
+
 export const isWarning = error =>
   startsWith('0', error.error_code) || startsWith('1', error.error_code)
 
 export const trimWarnings = reject(isWarning)
+
+export const trimInfos = reject(isInfo)
 
 export const SECONDS_TO_WAIT_FOR_PVS_TO_REBOOT = 100
 
