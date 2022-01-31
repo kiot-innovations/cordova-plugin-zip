@@ -43,13 +43,6 @@ function RMASnList() {
   const serialNumbersNew = reject(isExistingSN, serialNumbers)
 
   const [editingSn, setEditingSn] = useState('')
-  const { bom } = useSelector(state => state.inventory)
-
-  const modulesOnInventory = bom.filter(item => {
-    return item.item === 'AC_MODULES'
-  })
-  const expectedMICount = modulesOnInventory[0].value
-  const scannedMICount = length(serialNumbersNew)
 
   const onScanMore = () => {
     history.push(paths.PROTECTED.SCAN_LABELS.path)
@@ -95,50 +88,10 @@ function RMASnList() {
       SERIAL: device.serial_number
     }))
     serialNumbersError.forEach(snList.push)
-    toggleSerialNumbersModal()
     dispatch(UPDATE_MI_COUNT(serialNumbers.length))
     dispatch(PUSH_CANDIDATES_INIT(snList))
     history.push(paths.PROTECTED.RMA_MI_DISCOVERY.path)
   }
-
-  const serialNumbersModalTemplate = text => {
-    return (
-      <div className="sn-modal">
-        <span className="has-text-white mb-10">{text}</span>
-        <div className="sn-buttons">
-          <button
-            className="button half-button-padding is-secondary is-uppercase trigger-scan mr-10"
-            onClick={() => toggleSerialNumbersModal()}
-          >
-            {t('CANCEL')}
-          </button>
-          <button
-            className="button half-button-padding is-primary is-uppercase trigger-scan"
-            onClick={submitSN}
-          >
-            {t('CONTINUE')}
-          </button>
-        </div>
-      </div>
-    )
-  }
-
-  const getCountType = (scannedMICount, expectedMICount) => {
-    const numExpected = parseInt(expectedMICount)
-    const numScanned = parseInt(scannedMICount)
-
-    if (parseInt(numScanned) === 0 && numExpected === 0) return 'MI_NO_COUNT'
-    if (numScanned > numExpected) return 'MI_OVERCOUNT'
-    return 'MI_UNDERCOUNT'
-  }
-
-  const serialNumbersModalContent = serialNumbersModalTemplate(
-    t(
-      getCountType(scannedMICount, expectedMICount),
-      scannedMICount,
-      expectedMICount
-    )
-  )
 
   const modalsTitle = (
     <span className="has-text-white has-text-weight-bold">
@@ -180,28 +133,9 @@ function RMASnList() {
   )
 
   const {
-    modal: serialNumbersModal,
-    toggleModal: toggleSerialNumbersModal
-  } = useModal(serialNumbersModalContent, modalsTitle, false)
-
-  const {
     modal: legacyDiscoveryModal,
     toggleModal: toggleLegacyDiscoveryModal
   } = useModal(legacyDiscoveryModalContent, modalsTitle, false)
-
-  const countSN = () => {
-    const parsedScannedMICount = parseInt(scannedMICount)
-    const parsedExpectedMiCount = parseInt(expectedMICount)
-    if (
-      parsedScannedMICount !== parsedExpectedMiCount ||
-      (parsedScannedMICount === 0 && parsedExpectedMiCount === 0)
-    ) {
-      toggleSerialNumbersModal()
-    } else {
-      submitSN()
-      history.push(paths.PROTECTED.RMA_MI_DISCOVERY.path)
-    }
-  }
 
   const serialNumbersNewList = sortSNList(serialNumbersNew, createSnItem)
   const serialNumbersExistingList = sortSNList(
@@ -218,7 +152,6 @@ function RMASnList() {
       blocking={false}
       message={t('OPENING_CAMERA')}
     >
-      {serialNumbersModal}
       {legacyDiscoveryModal}
       <div className="snlist is-vertical has-text-centered pl-10 pr-10">
         <div className="top-text">
@@ -284,7 +217,7 @@ function RMASnList() {
           <SNScanButtons
             fetchingSN={fetchingSN}
             onScanMore={onScanMore}
-            countSN={countSN}
+            submitSN={submitSN}
             canScanMore={canAccessScandit}
           />
           <button
