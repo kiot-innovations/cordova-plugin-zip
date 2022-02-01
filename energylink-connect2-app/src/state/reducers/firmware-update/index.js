@@ -40,12 +40,14 @@ export const fwupStatus = {
 
 export default createReducer(
   {
-    [INIT_FIRMWARE_UPDATE]: (state, { PVSFromVersion }) => ({
+    [INIT_FIRMWARE_UPDATE]: ({ versionBeforeUpgrade }, { PVSFromVersion }) => ({
       ...initialState,
       status: fwupStatus.UPLOADING_FS,
       upgrading: true,
       canContinue: false,
       versionBeforeUpgrade: PVSFromVersion
+        ? PVSFromVersion
+        : versionBeforeUpgrade
     }),
     [POLL_FIRMWARE_UPDATE]: (state, payload) => ({
       ...state,

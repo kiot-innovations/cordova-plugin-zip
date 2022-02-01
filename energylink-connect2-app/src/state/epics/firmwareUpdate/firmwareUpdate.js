@@ -58,6 +58,7 @@ const getFirmwareFromState = path([
 ])
 
 async function uploadFirmwareToAdama() {
+  await stopWebserver()
   await startWebserver()
   const fileUrl = await getFirmwareUpgradePackageURL()
   return await sendCommandToPVS(`StartFWUpgrade&url=${fileUrl}`)

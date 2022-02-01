@@ -16,6 +16,7 @@ import {
   SECONDS_TO_WAIT_FOR_PVS_TO_REBOOT
 } from 'shared/utils'
 import {
+  INIT_FIRMWARE_UPDATE,
   FIRMWARE_UPDATE_ERROR,
   FIRMWARE_SET_LAST_SUCCESSFUL_STAGE
 } from 'state/actions/firmwareUpdate'
@@ -64,7 +65,7 @@ const UpdateScreen = () => {
   const errorUpdating = isError(status)
 
   const onGoBack = () => {
-    history.push(paths.PROTECTED.CONNECT_TO_PVS.path)
+    dispatch(INIT_FIRMWARE_UPDATE({ PVSFromVersion: '' }))
   }
 
   const onGotoFirmware = () => {
