@@ -1,9 +1,16 @@
 @import '~@sunpower/theme-dark/styles/variables';
 
 .debug-page {
+  .debug-route {
+    justify-content: space-between;
+    cursor: pointer;
+  }
+
   .title,
   .use-defaults,
-  .debug-route {
+  .debug-route,
+  .sp-chevron-right:before,
+  .route-name span {
     background: -webkit-linear-gradient(45deg, #b055f7, #25e3fd);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -29,7 +36,7 @@
   }
 
   .debug-route {
-    padding: $font-size-big;
+    padding: 5px 0;
     font-family: $font;
     letter-spacing: 0;
   }

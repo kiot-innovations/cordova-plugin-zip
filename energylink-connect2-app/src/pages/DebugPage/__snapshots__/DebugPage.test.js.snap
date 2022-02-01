@@ -40,7 +40,7 @@ exports[`Data page render correctly 1`] = `
     >
       <DebugPage>
         <div
-          className="pr-10 pl-10"
+          className="pr-10 pl-10 debug-page"
         >
           <div
             className="has-text-centered mb-25"
@@ -2699,7 +2699,7 @@ exports[`Data page render correctly 1`] = `
                   className="collapsible-content expanded"
                 >
                   <div
-                    className="debug-route mb-10"
+                    className="debug-route is-flex mb-10"
                     onClick={[Function]}
                   >
                     <div
@@ -2718,7 +2718,7 @@ exports[`Data page render correctly 1`] = `
                     </div>
                   </div>
                   <div
-                    className="debug-route mb-10"
+                    className="debug-route is-flex mb-10"
                     onClick={[Function]}
                   >
                     <div
@@ -2737,7 +2737,7 @@ exports[`Data page render correctly 1`] = `
                     </div>
                   </div>
                   <div
-                    className="debug-route mb-10"
+                    className="debug-route is-flex mb-10"
                     onClick={[Function]}
                   >
                     <div
@@ -2756,7 +2756,7 @@ exports[`Data page render correctly 1`] = `
                     </div>
                   </div>
                   <div
-                    className="debug-route mb-10"
+                    className="debug-route is-flex mb-10"
                     onClick={[Function]}
                   >
                     <div
@@ -2775,7 +2775,7 @@ exports[`Data page render correctly 1`] = `
                     </div>
                   </div>
                   <div
-                    className="debug-route mb-10"
+                    className="debug-route is-flex mb-10"
                     onClick={[Function]}
                   >
                     <div
@@ -2794,7 +2794,7 @@ exports[`Data page render correctly 1`] = `
                     </div>
                   </div>
                   <div
-                    className="debug-route mb-10"
+                    className="debug-route is-flex mb-10"
                     onClick={[Function]}
                   >
                     <div
@@ -2813,7 +2813,7 @@ exports[`Data page render correctly 1`] = `
                     </div>
                   </div>
                   <div
-                    className="debug-route mb-10"
+                    className="debug-route is-flex mb-10"
                     onClick={[Function]}
                   >
                     <div
@@ -2832,7 +2832,7 @@ exports[`Data page render correctly 1`] = `
                     </div>
                   </div>
                   <div
-                    className="debug-route mb-10"
+                    className="debug-route is-flex mb-10"
                     onClick={[Function]}
                   >
                     <div
@@ -2851,7 +2851,7 @@ exports[`Data page render correctly 1`] = `
                     </div>
                   </div>
                   <div
-                    className="debug-route mb-10"
+                    className="debug-route is-flex mb-10"
                     onClick={[Function]}
                   >
                     <div
@@ -2870,7 +2870,7 @@ exports[`Data page render correctly 1`] = `
                     </div>
                   </div>
                   <div
-                    className="debug-route mb-10"
+                    className="debug-route is-flex mb-10"
                     onClick={[Function]}
                   >
                     <div
@@ -2889,7 +2889,7 @@ exports[`Data page render correctly 1`] = `
                     </div>
                   </div>
                   <div
-                    className="debug-route mb-10"
+                    className="debug-route is-flex mb-10"
                     onClick={[Function]}
                   >
                     <div
@@ -2908,7 +2908,7 @@ exports[`Data page render correctly 1`] = `
                     </div>
                   </div>
                   <div
-                    className="debug-route mb-10"
+                    className="debug-route is-flex mb-10"
                     onClick={[Function]}
                   >
                     <div
@@ -2927,7 +2927,7 @@ exports[`Data page render correctly 1`] = `
                     </div>
                   </div>
                   <div
-                    className="debug-route mb-10"
+                    className="debug-route is-flex mb-10"
                     onClick={[Function]}
                   >
                     <div
@@ -2946,7 +2946,7 @@ exports[`Data page render correctly 1`] = `
                     </div>
                   </div>
                   <div
-                    className="debug-route mb-10"
+                    className="debug-route is-flex mb-10"
                     onClick={[Function]}
                   >
                     <div
@@ -2965,7 +2965,7 @@ exports[`Data page render correctly 1`] = `
                     </div>
                   </div>
                   <div
-                    className="debug-route mb-10"
+                    className="debug-route is-flex mb-10"
                     onClick={[Function]}
                   >
                     <div
@@ -2984,7 +2984,7 @@ exports[`Data page render correctly 1`] = `
                     </div>
                   </div>
                   <div
-                    className="debug-route mb-10"
+                    className="debug-route is-flex mb-10"
                     onClick={[Function]}
                   >
                     <div
@@ -3003,7 +3003,7 @@ exports[`Data page render correctly 1`] = `
                     </div>
                   </div>
                   <div
-                    className="debug-route mb-10"
+                    className="debug-route is-flex mb-10"
                     onClick={[Function]}
                   >
                     <div
@@ -3022,7 +3022,7 @@ exports[`Data page render correctly 1`] = `
                     </div>
                   </div>
                   <div
-                    className="debug-route mb-10"
+                    className="debug-route is-flex mb-10"
                     onClick={[Function]}
                   >
                     <div
@@ -3041,7 +3041,7 @@ exports[`Data page render correctly 1`] = `
                     </div>
                   </div>
                   <div
-                    className="debug-route mb-10"
+                    className="debug-route is-flex mb-10"
                     onClick={[Function]}
                   >
                     <div
@@ -3060,7 +3060,7 @@ exports[`Data page render correctly 1`] = `
                     </div>
                   </div>
                   <div
-                    className="debug-route mb-10"
+                    className="debug-route is-flex mb-10"
                     onClick={[Function]}
                   >
                     <div
@@ -3079,7 +3079,7 @@ exports[`Data page render correctly 1`] = `
                     </div>
                   </div>
                   <div
-                    className="debug-route mb-10"
+                    className="debug-route is-flex mb-10"
                     onClick={[Function]}
                   >
                     <div
@@ -3098,7 +3098,7 @@ exports[`Data page render correctly 1`] = `
                     </div>
                   </div>
                   <div
-                    className="debug-route mb-10"
+                    className="debug-route is-flex mb-10"
                     onClick={[Function]}
                   >
                     <div
@@ -3117,7 +3117,7 @@ exports[`Data page render correctly 1`] = `
                     </div>
                   </div>
                   <div
-                    className="debug-route mb-10"
+                    className="debug-route is-flex mb-10"
                     onClick={[Function]}
                   >
                     <div
