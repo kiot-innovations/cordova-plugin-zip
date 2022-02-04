@@ -19,11 +19,15 @@ function DeviceMapping({ history }) {
 
   const { componentMapping, error } = useSelector(pathOr({}, ['storage']))
   const status = useSelector(
-    pathOr('', ['storage', 'componentMapping', 'component_mapping_status'])
+    pathOr('NOT_RUNNING', [
+      'storage',
+      'componentMapping',
+      'component_mapping_status'
+    ])
   )
 
   useEffect(() => {
-    if (status !== 'RUNNING') dispatch(POST_COMPONENT_MAPPING())
+    if (status === 'NOT_RUNNING') dispatch(POST_COMPONENT_MAPPING())
   }, [dispatch, status])
 
   useEffect(() => {

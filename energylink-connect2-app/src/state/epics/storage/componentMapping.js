@@ -1,13 +1,7 @@
 import { path, cond, equals, always, isNil } from 'ramda'
 import { ofType } from 'redux-observable'
 import { from, of, timer } from 'rxjs'
-import {
-  catchError,
-  map,
-  switchMap,
-  takeUntil,
-  exhaustMap
-} from 'rxjs/operators'
+import { catchError, map, takeUntil, exhaustMap } from 'rxjs/operators'
 import * as Sentry from 'sentry-cordova'
 
 import { getApiPVS, storageSwaggerTag } from 'shared/api'
@@ -52,7 +46,7 @@ export const getComponentMappingEpic = action$ => {
   )
   return action$.pipe(
     ofType(POST_COMPONENT_MAPPING_SUCCESS.getType()),
-    switchMap(() =>
+    exhaustMap(() =>
       timer(0, 5000).pipe(
         takeUntil(stopPolling$),
         exhaustMap(() => {
