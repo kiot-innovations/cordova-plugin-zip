@@ -1,8 +1,9 @@
 import { pathOr, length } from 'ramda'
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 
+import FeatureFeedbackModal from 'components/FeatureFeedbackModal'
 import { Loader } from 'components/Loader'
 import StatusBox from 'components/StatusBox'
 import paths from 'routes/paths'
@@ -21,6 +22,7 @@ function SystemChecksACPV() {
   const t = useI18n()
   const dispatch = useDispatch()
   const history = useHistory()
+  const [showFeedbackForm, setShowFeedbackForm] = useState(false)
 
   const {
     productionCTProgress,
@@ -69,6 +71,12 @@ function SystemChecksACPV() {
       dispatch(SYSTEM_CHECKS_INIT())
   }, [dispatch, overallStatus])
 
+  useEffect(() => {
+    if (overallStatus === SYSTEM_CHECKS_STATUS.SUCCEEDED && !hasErrors) {
+      setShowFeedbackForm(true)
+    }
+  }, [overallStatus, hasErrors])
+
   const commission = () => {
     dispatch(SUBMIT_COMMISSION_INIT())
     history.push(paths.PROTECTED.SAVING_CONFIGURATION.path)
@@ -81,6 +89,12 @@ function SystemChecksACPV() {
 
   return (
     <main className="page-height system-checks pl-10 pr-10">
+      <FeatureFeedbackModal
+        featureFlagName="ct-checks"
+        open={showFeedbackForm}
+        title={t('CT_CHECKS_FEEDBACK_TITLE')}
+        placeholder={t('CT_CHECKS_FEEDBACK_PLACEHOLDER')}
+      />
       <header className="is-clearfix has-text">
         <button
           className="button is-text is-paddingless is-borderless has-text-grey has-text-weight-bold is-pulled-left is-size-6"

@@ -23,26 +23,19 @@ export const sendFeedbackEpic = (action$, state$) =>
     ofType(feedbackActions.SEND_FEEDBACK_INIT.getType()),
     mergeMap(({ payload }) => {
       const t = translate(state$.value.language)
-      const { comment, rating, source } = payload
-      const bodyValues = {
-        rating,
-        comment,
-        contactEmail: path(['value', 'user', 'data', 'email'], state$),
-        userstime: moment().format('YYYY-MM-DDTHH:mm:ss')
-      }
-      const values = {
-        subject: t('FEEDBACK_SUBJECT', bodyValues.rating),
-        htmlBody: t(
-          'FEEDBACK_BODY',
-          bodyValues.contactEmail,
-          bodyValues.userstime,
-          bodyValues.comment
-        )
+      const { comment, feature, rating, source } = payload
+      const userEmail = path(['value', 'user', 'data', 'email'], state$)
+      const userTime = moment().format('YYYY-MM-DDTHH:mm:ss')
+      const feedbackEmail = {
+        subject: feature
+          ? t('FEATURE_FEEDBACK_SUBJECT', rating, source)
+          : t('FEEDBACK_SUBJECT', rating),
+        htmlBody: t('FEEDBACK_BODY', userEmail, userTime, comment)
       }
 
       const access_token = getAccessToken(state$.value)
 
-      return from(sendFeedbackPromise(access_token, values)).pipe(
+      return from(sendFeedbackPromise(access_token, feedbackEmail)).pipe(
         map(({ status, data }) =>
           status === 200
             ? feedbackActions.SEND_FEEDBACK_SUCCESS({ rating, source })

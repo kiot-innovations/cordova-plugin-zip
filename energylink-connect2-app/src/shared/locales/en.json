@@ -155,6 +155,7 @@
   "ENERGY_MIX": "Today's Energy Mix",
   "FEEDBACK_SUBJECT": "Received {0} star rating from EnergyLink Connect 2 feedback form",
   "FEEDBACK_BODY": "From {0} at {1}: {2}",
+  "FEATURE_FEEDBACK_SUBJECT": "Received {0} star rating for {1} in EnergyLink Connect 2",
   "RSE": "PV System Operational State",
   "RSE_OFF_SYSTEM": "In the current configuration, the system:",
   "RSE_OFF_MICROINVERTERS": "and the microinverters:",
@@ -815,5 +816,7 @@
   "UPDATING_ARTICLES": "Please wait while we retrieve the latest articles.",
   "NO_ARTICLES": "There are no current articles on the Help Center. Please check back later.",
   "GET_ARTICLES": "Update Articles",
-  "URGENT_ASSISTANCE": "If you have urgent issues, we recommend reaching out to our technical support hotline for real time assistance 855 977 7867."
+  "URGENT_ASSISTANCE": "If you have urgent issues, we recommend reaching out to our technical support hotline for real time assistance 855 977 7867.",
+  "CT_CHECKS_FEEDBACK_TITLE": "What did you think of CT Checks?",
+  "CT_CHECKS_FEEDBACK_PLACEHOLDER": "Help us improve CT Checks. Tell us what's working and what's not. We want to improve your experience and your feedback is valuable!"
 }

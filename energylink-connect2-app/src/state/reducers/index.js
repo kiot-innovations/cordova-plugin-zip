@@ -8,6 +8,7 @@ import devicesReducer from './devices'
 import { energyDataReducer } from './energy-data'
 import { energyLiveData } from './energy-live-data'
 import essReducer from './ess'
+import featureFeedbackReducer from './feature-feedback'
 import featureFlagsReducer from './feature-flags'
 import fileDownloader from './fileDownloader'
 import firmwareUpdate from './firmware-update'
@@ -147,6 +148,7 @@ export default combineReducers({
       blacklist: ['currentTutorial']
     },
     knowledgeBaseReducer
-  )
+  ),
+  featureFeedback: featureFeedbackReducer
   // Add reducers here
 })

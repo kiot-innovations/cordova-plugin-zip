@@ -5,3 +5,7 @@ export const SEND_FEEDBACK_SUCCESS = createAction('SEND_FEEDBACK_SUCCESS')
 export const SEND_FEEDBACK_ERROR = createAction('SEND_FEEDBACK_ERROR')
 
 export const RESET_FEEDBACK_FORM = createAction('RESET_FEEDBACK_FORM')
+
+export const FEATURE_FEEDBACK_MODAL_OPEN = createAction(
+  'FEATURE_FEEDBACK_MODAL_OPEN'
+)
