@@ -795,7 +795,7 @@
   "NO_SITES_FOUND": "Can't find {0}, make sure your site is spelled correctly.",
   "SITES_FOUND": "{0} Sites found",
   "SITE_FOUND": "1 Site found",
-  "SITES_HEADER": "Please use the field below to search for the Site you need",
+  "SITES_HEADER": "Please use the field above to search for the Site you need",
   "UNABLE_TO_CONNECT": "Unable to connect to PVS",
   "SITE_SEARCH_PLACEHOLDER": "Enter address or homeowners name",
   "SITE_KEY": "Site ID",
