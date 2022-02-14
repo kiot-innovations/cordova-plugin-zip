@@ -168,7 +168,7 @@ const PrecommissioningConfigs = () => {
     status === fwupStatus.ERROR_GRID_PROFILE || !isEmpty(gridBehavior.err)
 
   const submitConfig = () => {
-    if (propEq('productionCT', 'NOT_USED')(meter)) {
+    if (propEq('productionCT', 'NOT_USED')(meter) && !isPvs5(model)) {
       showProductionCTModal(true)
     } else {
       showSubmitModal(true)

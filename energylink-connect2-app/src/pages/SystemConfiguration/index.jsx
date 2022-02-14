@@ -33,7 +33,7 @@ import PanelLayoutWidget from 'pages/SystemConfiguration/panelLayoutWidget'
 import paths from 'routes/paths'
 import { useFeatureFlag } from 'shared/featureFlags'
 import { useI18n } from 'shared/i18n'
-import { submitConfigErrorMap } from 'shared/utils'
+import { isPvs5, submitConfigErrorMap } from 'shared/utils'
 import { CONFIG_START } from 'state/actions/analytics'
 import { FETCH_DEVICES_LIST, UPDATE_DEVICES_LIST } from 'state/actions/devices'
 import {
@@ -90,7 +90,7 @@ function SystemConfiguration() {
   const [commissionBlockModal, showCommissionBlockModal] = useState(false)
   const [validationErrors, setValidationErrors] = useState([])
 
-  const { fwVersion, wpsSupport } = useSelector(state => state.pvs)
+  const { fwVersion, wpsSupport, model } = useSelector(state => state.pvs)
   const { selectedOptions } = useSelector(
     state => state.systemConfiguration.gridBehavior
   )
@@ -149,7 +149,7 @@ function SystemConfiguration() {
   const validateData = () => {
     const { productionCT } = meter
     const errors = []
-    if (productionCT !== METER.GROSS_PRODUCTION_SITE)
+    if (productionCT !== METER.GROSS_PRODUCTION_SITE && !isPvs5(model))
       errors.push(METER_ERRORS.PRODUCTION_CT_NOT_SET)
     const { profile } = selectedOptions
     if (isEmpty(profile) || isNil(profile))
@@ -257,7 +257,7 @@ function SystemConfiguration() {
     [
       pipe(prop('submitted'), equals(true)),
       always(
-        ctCheckPermissions && fwVersion >= 60400 ? (
+        ctCheckPermissions && fwVersion >= 60400 && !isPvs5(model) ? (
           <>
             <div>
               <p className="mt-10 mb-10 has-text-weight-bold">

@@ -16,6 +16,9 @@ describe('Meter Widget', () => {
         productionCT: 1,
         ratedCurrent: 100
       }
+    },
+    pvs: {
+      model: 'PVS5'
     }
   }
 

@@ -2,6 +2,8 @@ import { path, compose, prop, find, propEq } from 'ramda'
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
+import { either, isPvs5 } from '../../shared/utils'
+
 import Collapsible from 'components/Collapsible'
 import SelectField from 'components/SelectField'
 import { useI18n } from 'shared/i18n'
@@ -21,6 +23,8 @@ function MetersWidget({ hasStorage = false }) {
   const { consumptionCT, productionCT, ratedCurrent } = useSelector(
     path(['systemConfiguration', 'meter'])
   )
+
+  const { model } = useSelector(state => state.pvs)
 
   const CONSUMPTION_METER_TYPES = [
     {
@@ -59,7 +63,10 @@ function MetersWidget({ hasStorage = false }) {
           <div className="field-label">
             <label htmlFor="siteName" className="label has-text-white">
               {t('PRODUCTION_CT')}
-              <span className="ml-5 pt-5 has-text-danger">*</span>
+              {either(
+                !isPvs5(model),
+                <span className="ml-5 pt-5 has-text-danger">*</span>
+              )}
             </label>
           </div>
           <div className="field-body">

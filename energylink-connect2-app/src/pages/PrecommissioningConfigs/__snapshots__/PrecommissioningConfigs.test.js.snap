@@ -2634,11 +2634,6 @@ exports[`Precommissioning configurations page PVS5 renders correctly 1`] = `
                               htmlFor="siteName"
                             >
                               PRODUCTION_CT
-                              <span
-                                className="ml-5 pt-5 has-text-danger"
-                              >
-                                *
-                              </span>
                             </label>
                           </div>
                           <div
