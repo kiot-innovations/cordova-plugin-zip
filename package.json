@@ -54,7 +54,7 @@
     "cordova-plugin-wifiwizard2": "git+ssh://git@github.com/SunPower/WifiWizard2-private.git",
     "cordova-plugin-wkwebview-engine": "^1.1.4",
     "cordova-plugin-wkwebviewxhrfix": "git+https://github.com/TheMattRay/cordova-plugin-wkwebviewxhrfix.git",
-    "cordova-plugin-zip": "^3.1.0",
+    "cordova-plugin-zip": "git+ssh://git@github.com:SunPower/cordova-plugin-zip.git",
     "cordova-support-android-plugin": "^1.0.2",
     "cordova.plugins.diagnostic": "^5.0.2",
     "es6-promise-plugin": "^4.1.0",
