@@ -1,4 +1,4 @@
-import { pathOr, isEmpty } from 'ramda'
+import { path, pathOr, isEmpty } from 'ramda'
 import { ofType } from 'redux-observable'
 import { from, of, EMPTY } from 'rxjs'
 import { catchError, map, exhaustMap } from 'rxjs/operators'
@@ -40,7 +40,8 @@ export const reConnectToPVSWiFiEpic = (action$, state$) => {
     map(() => {
       const ssid = pathOr('', ['value', 'network', 'SSID'], state$)
       const password = pathOr('', ['value', 'network', 'password'], state$)
-      return !isEmpty(ssid) && !isEmpty(password)
+      const { connecting, connected } = path(['value', 'network'], state$)
+      return !isEmpty(ssid) && !isEmpty(password) && !connecting && !connected
         ? PVS_CONNECTION_INIT({ ssid, password })
         : EMPTY_ACTION()
     }),

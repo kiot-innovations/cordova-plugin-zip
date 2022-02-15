@@ -221,8 +221,6 @@ export const networkReducer = createReducer(
       ...state,
       bluetoothStatus: BLESTATUS.FAILED_ACCESS_POINT_ON_PVS,
       showEnablingAccessPoint: false,
-      connecting: false,
-      connected: false,
       showManualInstructions: false
     }),
     [SET_ONLINE]: (state, isOnline) => ({
