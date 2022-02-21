@@ -1,4 +1,4 @@
-import marked from 'marked'
+import { marked } from 'marked'
 import moment from 'moment'
 import {
   add,
@@ -63,7 +63,7 @@ export const either = (condition, whenTrue, whenFalse = null) =>
   condition ? whenTrue : whenFalse
 
 export function createMarkup(recommendedAction) {
-  return { __html: marked(recommendedAction) }
+  return { __html: marked.parse(recommendedAction) }
 }
 
 /**

@@ -1,4 +1,4 @@
-import marked from 'marked'
+import { marked } from 'marked'
 import { map, isEmpty, isNil } from 'ramda'
 import React from 'react'
 import { useHistory } from 'react-router-dom'
@@ -51,8 +51,8 @@ const renderErrors = t => err => {
       ? error_description
       : error_message
 
-  const possibleCauses = { __html: marked(possible_causes) }
-  const recommendations = { __html: marked(recommended_actions) }
+  const possibleCauses = { __html: marked.parse(possible_causes) }
+  const recommendations = { __html: marked.parse(recommended_actions) }
 
   return (
     <div className="ess-health-check-error-list mb-10" key={error_code}>
