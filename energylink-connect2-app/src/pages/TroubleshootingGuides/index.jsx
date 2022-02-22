@@ -1,6 +1,6 @@
 import { head, isEmpty, map } from 'ramda'
 import React, { useEffect, useState } from 'react'
-import ReactHtmlParser from 'react-html-parser'
+import ReactHtmlParser, { convertNodeToElement } from 'react-html-parser'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 
@@ -84,20 +84,49 @@ function TroubleshootingGuides() {
     }
   }
 
-  const processHtmlNodes = node => {
-    if (node.name === 'a') {
-      const text = head(node.children)
-      return (
-        <span
-          className="link-style has-text-primary"
-          onClick={() =>
-            window.open(node.attribs.href, '_system', 'usewkwebview=yes')
-          }
-        >
-          {text.data}
-        </span>
-      )
+  const processHtmlNodes = (node, index) => {
+    const nodeName = node.name
+
+    const styling = {
+      strong: () => {
+        node.attribs.style = 'color: white'
+        return convertNodeToElement(node, index, processHtmlNodes)
+      },
+      h1: () => {
+        node.attribs.style =
+          'color:white;font-weight:bold;margin-bottom:12px;margin-top:25px;font-size:20px'
+        return convertNodeToElement(node, index, processHtmlNodes)
+      },
+      h2: () => {
+        node.attribs.style =
+          'color:white;font-weight:bold;margin-bottom:12px;margin-top:25px;font-size:20px'
+        return convertNodeToElement(node, index, processHtmlNodes)
+      },
+      ol: () => {
+        node.attribs.style = 'margin-top:7px;margin-bottom:7px'
+        return convertNodeToElement(node, index, processHtmlNodes)
+      },
+      ul: () => {
+        node.attribs.style = 'margin-top:7px;margin-bottomt:7px'
+        return convertNodeToElement(node, index, processHtmlNodes)
+      },
+      a: () => {
+        const text = head(node.children)
+        return (
+          <span
+            className="link-style has-text-primary"
+            onClick={() =>
+              window.open(node.attribs.href, '_system', 'usewkwebview=yes')
+            }
+          >
+            {text.data}
+          </span>
+        )
+      },
+      default: () => {}
     }
+
+    return styling[nodeName] ? styling[nodeName]() : styling['default']()
   }
 
   useEffect(() => {
@@ -161,7 +190,7 @@ function TroubleshootingGuides() {
             map(renderArticle, articles))
           }
         </div>,
-        <div>
+        <div className="pt-10 pb-10 pl-20 pr-20">
           {ReactHtmlParser(selectedArticle.body, {
             transform: processHtmlNodes
           })}
