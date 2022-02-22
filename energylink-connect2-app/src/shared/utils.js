@@ -128,6 +128,9 @@ export const b64toBlob = (b64Data, contentType = '', sliceSize = 512) => {
   return new Blob(byteArrays, { type: contentType })
 }
 
+export const isValidPVSSN = serialNumber =>
+  startsWith('ZT', serialNumber) || startsWith('ZA', serialNumber)
+
 export const isValidSN = sn => /^(?:\d{12}|\d{15})$/.test(sn)
 
 export const isDownloadingFiles = state =>

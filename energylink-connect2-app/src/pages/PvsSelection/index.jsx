@@ -21,12 +21,19 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 
+import Collapsible from 'components/Collapsible'
 import { Loader } from 'components/Loader'
 import SwipeableSheet from 'hocs/SwipeableSheet'
 import paths from 'routes/paths'
 import { useI18n } from 'shared/i18n'
 import { decodeQRData, scanBarcodes } from 'shared/scanning'
-import { either, generatePassword, generateSSID, isIos } from 'shared/utils'
+import {
+  either,
+  generatePassword,
+  generateSSID,
+  isIos,
+  isValidPVSSN
+} from 'shared/utils'
 import {
   CONNECT_PVS_CAMERA,
   CONNECT_PVS_MANUALLY
@@ -63,27 +70,35 @@ const getPvsSerialNumbers = compose(
 )
 
 const onScanSuccess = (generatePassword, dispatch, t) => data => {
-  try {
-    let wifiData
-
+  if (isValidPVSSN(data)) {
+    const ssid = generateSSID(data)
+    const password = generatePassword(data)
+    dispatch(SAVE_PVS_SN(data))
+    dispatch(CONNECT_PVS_CAMERA(data))
+    dispatch(PVS_CONNECTION_INIT({ ssid, password }))
+  } else {
     try {
-      wifiData = decodeQRData(data)
-    } catch (err) {
-      wifiData = ''
-    }
+      let wifiData
 
-    if (wifiData.length > 0) {
-      const qrData = wifiData.split('|')
-      const [serialNumber, ssid] = qrData
-      const password = generatePassword(serialNumber)
-      dispatch(SAVE_PVS_SN(serialNumber))
-      dispatch(CONNECT_PVS_CAMERA(serialNumber))
-      dispatch(PVS_CONNECTION_INIT({ ssid, password }))
-    } else {
-      alert(t('INVALID_QRCODE'))
+      try {
+        wifiData = decodeQRData(data)
+      } catch (err) {
+        wifiData = ''
+      }
+
+      if (wifiData.length > 0) {
+        const qrData = wifiData.split('|')
+        const [serialNumber, ssid] = qrData
+        const password = generatePassword(serialNumber)
+        dispatch(SAVE_PVS_SN(serialNumber))
+        dispatch(CONNECT_PVS_CAMERA(serialNumber))
+        dispatch(PVS_CONNECTION_INIT({ ssid, password }))
+      } else {
+        alert(t('INVALID_QRCODE'))
+      }
+    } catch (error) {
+      console.warn(error)
     }
-  } catch (error) {
-    console.warn(error)
   }
 }
 
@@ -227,19 +242,41 @@ function PvsSelection() {
         {t('ERROR_WHILE_CONNECTING')}
       </p>
       <div className="mt-10 mb-10">
-        <span className="sp-hey is-size-2 has-text-white" />
+        <span>{t('WIFI_CONNECTION_REQUIRED')}</span>
       </div>
-      <p className="has-text-white mt-10 mb-10">{t('REBOOT_PVS_0')}</p>
-      <p className="mb-15 has-text-weight-bold">{t('REBOOT_PVS_HUB')}</p>
-      <ol className="pl-30 mb-10 has-text-left">
-        <li>{t('REBOOT_PVS_1')}</li>
-        <li>{t('REBOOT_PVS_2')}</li>
-        <li>{t('REBOOT_PVS_3')}</li>
-        <li>{t('REBOOT_PVS_4')}</li>
-        <li>{t('REBOOT_PVS_5')}</li>
-      </ol>
-      <p className="mb-15 has-text-weight-bold">{t('REBOOT_PVS')}</p>
-      <p className="mb-10">{t('REBOOT_PVS_6')}</p>
+      <div className="mt-10 mb-10">
+        <span>{t('REBOOT_PVS')}</span>
+      </div>
+      <div className="mb-10">
+        <Collapsible title="Hub+" className="has-text-white">
+          <p className="mb-15 has-text-weight-bold">{t('REBOOT_HUB_0')}</p>
+          <ol className="pl-30 mb-10 has-text-left">
+            <li>{t('REBOOT_HUB_1')}</li>
+            <li>{t('REBOOT_HUB_2')}</li>
+            <li>{t('REBOOT_HUB_3')}</li>
+            <li>{t('REBOOT_HUB_4')}</li>
+            <li>{t('REBOOT_HUB_5')}</li>
+          </ol>
+        </Collapsible>
+      </div>
+      <div className="mb-10">
+        <Collapsible title="PVS6" className="has-text-white">
+          <p className="mb-10">{t('REBOOT_PVS6_0')}</p>
+          <p className="mb-10">{t('REBOOT_PVS6_1')}</p>
+        </Collapsible>
+      </div>
+      <div className="mb-10">
+        <Collapsible title="PVS5" className="has-text-white">
+          <p className="mb-10">{t('REBOOT_PVS5_0')}</p>
+          <ol className="pl-30 mb-10 has-text-left">
+            <li>{t('REBOOT_PVS5_2')}</li>
+            <li>{t('REBOOT_PVS5_3')}</li>
+            <li>{t('REBOOT_PVS5_4')}</li>
+            <li>{t('REBOOT_PVS5_5')}</li>
+            <li>{t('REBOOT_PVS5_6')}</li>
+          </ol>
+        </Collapsible>
+      </div>
       <button className="button is-primary is-fullwidth" onClick={resetErrors}>
         {t('CLOSE')}
       </button>
