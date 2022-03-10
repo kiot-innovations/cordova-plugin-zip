@@ -240,6 +240,16 @@
     "recommended_actions": "Check that the neutral line is properly torque. Measured the voltage of line 1 and line 2 and corroborate that it is over 130V."
   },
   {
+    "event_code": "10551",
+    "event_name": "pvbreaker_mayhave_tripped_warning",
+    "code": "10551",
+    "in_use": true,
+    "error_description": "PV Breaker May Have Tripped",
+    "display": true,
+    "possible_causes": "Over the last 24 hours, there has been very low solar production. The PV breaker may have tripped and prevented solar production. If you are commissioning a new site, you may safely ignore this warning.\n",
+    "recommended_actions": "Check the PV breakers to ensure they are open. If you are commissioning a new site, you may safely ignore this warning."
+  },
+  {
     "event_code": "11010",
     "event_name": "hubplus_under_temperature_warning",
     "code": "11010",
@@ -274,10 +284,10 @@
     "event_name": "remote_poweroff_disconnected_warning",
     "code": "11014",
     "in_use": true,
-    "error_description": "Remote power off button is disconnected.",
+    "error_description": "RPO Switch is not Connected",
     "display": true,
-    "possible_causes": "Connection between the Hub+ and Remote power off button was severed or the shunts are not properly connected.",
-    "recommended_actions": "If a remote disconnect, also known as remote power off switch is needed, ensure the Remote power off switch is properly connected to the MIDC board. If this switch is not needed, you can ignore this warning."
+    "possible_causes": "If an RPO is not needed, you may safely ignore this warning. Otherwise, check that the RPO is connected correctly to MIDC. Check that the RPO cable is connected correctly from the MIO to the inverter.\n",
+    "recommended_actions": "If an RPO is not needed, you may safely ignore this warning. Otherwise, check that RPO is connected correctly to MIDC. Check that RPO cable is connected correctly from the MIO to the inverter."
   },
   {
     "event_code": "11016",
@@ -419,6 +429,17 @@
     "possible_causes": "Load is too high for the batteries. ",
     "recommended_actions": "Make sure the loads on the back-up side are sized appropriately for the inverter power capacity."
   },
+  {
+    "event_code": "12070",
+    "event_name": "storage_inv_op_voltage_not_adjusted_warning",
+    "code": "12070",
+    "in_use": true,
+    "error_description": "Inverter Operating Voltage is not Adjusted",
+    "display": true,
+    "possible_causes": "Operating voltage could not be calibrated. This will happen automatically within 12 hours.\n",
+    "recommended_actions": "SunVault will calibrate the operational voltage within 12 hours. No action is required."
+  },
+
   {
     "event_code": "13000",
     "event_name": "battery_low_state_of_charge_warning",
@@ -1579,6 +1600,16 @@
     "display": true,
     "possible_causes": "A problem occurred that prevented us from closing the PVDR. This could be due to: /n1. The PVDR cable might have disconnected. /n2.PVDR has an active error.",
     "recommended_actions": "Check that the cable is connected and properly terminated. Reset the PVDR to clear any errors. If the problem persists, please contact SunPower."
+  },
+  {
+    "event_code": "30551",
+    "event_name": "pvbreaker_mayhave_tripped_critical",
+    "code": "30551",
+    "in_use": true,
+    "error_description": "PV Breaker May Have Tripped",
+    "display": true,
+     "possible_causes": "Over the last 24 hours, there has been very low solar production. The PV breaker may have tripped and prevented solar production.\n",
+    "recommended_actions": "Check the PV breakers to ensure they are open. If the problem persists, please contact SunPower."
   },
   {
     "event_code": "31000",
