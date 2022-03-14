@@ -808,6 +808,11 @@ removingStorageError.rma = {
   storageRemoved: false
 }
 
+const removingCommissionedMIs = clone(hasStorage)
+removingCommissionedMIs.devices.found.forEach(
+  device => (device.STATE = 'discovered')
+)
+
 storiesOf('RMA devices', module)
   .add('With Storage', () => {
     const { store } = configureStore(hasStorage)
@@ -867,6 +872,16 @@ storiesOf('RMA devices', module)
     noStoragePVS5.pvs.model = 'PVS5'
 
     const { store } = configureStore(noStoragePVS5)
+    return (
+      <div className="full-min-height pl-10 pr-10">
+        <Provider store={store}>
+          <RMADevices />
+        </Provider>
+      </div>
+    )
+  })
+  .add('Without Commissioned MIs', () => {
+    const { store } = configureStore(removingCommissionedMIs)
     return (
       <div className="full-min-height pl-10 pr-10">
         <Provider store={store}>

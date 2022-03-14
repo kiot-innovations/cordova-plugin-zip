@@ -258,26 +258,31 @@ exports[`RMA devices component render correctly 1`] = `
               <div
                 className="collapsible-content expanded"
               >
-                <span
-                  className="has-text-white has-text-weight-bold"
-                >
-                  NO_STORAGE_RMA
-                </span>
-                <span
-                  className="mt-5"
-                >
-                  NO_STORAGE_RMA_HINT
-                </span>
                 <div
-                  className="buttons-container"
+                  className="conditional-render-container"
                 >
-                  <button
-                    className="button is-paddingless has-text-primary has-text-weight-bold is-size-7 button-transparent"
-                    id="storageCommissioningOrRecommissioningHandler"
-                    onClick={[Function]}
+                  <span
+                    className="has-text-white has-text-weight-bold"
                   >
-                    COMM_STORAGE
-                  </button>
+                    NO_STORAGE_RMA
+                  </span>
+                  <span
+                    className="mt-5"
+                  >
+                    NO_STORAGE_RMA_HINT
+                  </span>
+                  <div
+                    className="buttons-container"
+                  >
+                    <button
+                      className="button is-paddingless has-text-primary has-text-weight-bold is-size-7 button-transparent"
+                      disabled={false}
+                      id="storageCommissioningOrRecommissioningHandler"
+                      onClick={[Function]}
+                    >
+                      COMM_STORAGE
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
@@ -827,26 +832,31 @@ exports[`RMA devices component render correctly 2`] = `
               <div
                 className="collapsible-content expanded"
               >
-                <span
-                  className="has-text-white has-text-weight-bold"
-                >
-                  NO_STORAGE_RMA
-                </span>
-                <span
-                  className="mt-5"
-                >
-                  NO_STORAGE_RMA_HINT
-                </span>
                 <div
-                  className="buttons-container"
+                  className="conditional-render-container"
                 >
-                  <button
-                    className="button is-paddingless has-text-primary has-text-weight-bold is-size-7 button-transparent"
-                    id="storageCommissioningOrRecommissioningHandler"
-                    onClick={[Function]}
+                  <span
+                    className="has-text-white has-text-weight-bold"
                   >
-                    COMM_STORAGE
-                  </button>
+                    NO_STORAGE_RMA
+                  </span>
+                  <span
+                    className="mt-5"
+                  >
+                    NO_STORAGE_RMA_HINT
+                  </span>
+                  <div
+                    className="buttons-container"
+                  >
+                    <button
+                      className="button is-paddingless has-text-primary has-text-weight-bold is-size-7 button-transparent"
+                      disabled={false}
+                      id="storageCommissioningOrRecommissioningHandler"
+                      onClick={[Function]}
+                    >
+                      COMM_STORAGE
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>

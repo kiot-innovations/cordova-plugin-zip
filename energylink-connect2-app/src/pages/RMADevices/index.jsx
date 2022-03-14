@@ -293,6 +293,59 @@ function RMADevices() {
     </>
   )
 
+  const checkMIBeforeCommissionSunvault = (
+    hasFullyCommissionedStorage,
+    microInverters
+  ) => {
+    const isClaimed = device => device.STATE.toLowerCase() === 'working'
+    const hasAtLeastOneWorking = microInverters.some(mi => isClaimed(mi))
+
+    return (
+      <div className="conditional-render-container">
+        <span className="has-text-white has-text-weight-bold">
+          {either(
+            hasAtLeastOneWorking,
+            either(
+              hasFullyCommissionedStorage,
+              t('HAS_STORAGE_RMA'),
+              t('NO_STORAGE_RMA')
+            ),
+            t('NO_MI_COMMISSIONED_TITLE')
+          )}
+        </span>
+        <span className="mt-5">
+          {either(
+            hasAtLeastOneWorking,
+            either(
+              hasFullyCommissionedStorage,
+              t('HAS_STORAGE_RMA_HINT'),
+              t('NO_STORAGE_RMA_HINT')
+            ),
+            t('NO_MI_COMMISSIONED_SUBT')
+          )}
+        </span>
+        <div className="buttons-container">
+          <button
+            onClick={() =>
+              hasAtLeastOneWorking
+                ? storageCommissioningOrRecommissioningHandler()
+                : false
+            }
+            className="button is-paddingless has-text-primary has-text-weight-bold is-size-7 button-transparent"
+            id="storageCommissioningOrRecommissioningHandler"
+            disabled={!hasAtLeastOneWorking}
+          >
+            {either(
+              hasFullyCommissionedStorage,
+              t('RECOMM_STORAGE'),
+              t('COMM_STORAGE')
+            )}
+          </button>
+        </div>
+      </div>
+    )
+  }
+
   return (
     <main className="full-height pl-10 pr-10 rma-devices">
       <div className="header mb-20">
@@ -350,33 +403,10 @@ function RMADevices() {
       {either(
         !isPvs5(model),
         <Collapsible title="Storage Equipment" expanded>
-          <span className="has-text-white has-text-weight-bold">
-            {either(
-              hasFullyCommissionedStorage,
-              t('HAS_STORAGE_RMA'),
-              t('NO_STORAGE_RMA')
-            )}
-          </span>
-          <span className="mt-5">
-            {either(
-              hasFullyCommissionedStorage,
-              t('HAS_STORAGE_RMA_HINT'),
-              t('NO_STORAGE_RMA_HINT')
-            )}
-          </span>
-          <div className="buttons-container">
-            <button
-              onClick={storageCommissioningOrRecommissioningHandler}
-              className="button is-paddingless has-text-primary has-text-weight-bold is-size-7 button-transparent"
-              id="storageCommissioningOrRecommissioningHandler"
-            >
-              {either(
-                hasFullyCommissionedStorage,
-                t('RECOMM_STORAGE'),
-                t('COMM_STORAGE')
-              )}
-            </button>
-          </div>
+          {checkMIBeforeCommissionSunvault(
+            hasFullyCommissionedStorage,
+            microInverters
+          )}
         </Collapsible>
       )}
       <div className="mt-10" />

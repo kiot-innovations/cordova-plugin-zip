@@ -518,6 +518,8 @@
   "HAS_STORAGE_RMA": "A SunVault system has been commissioned on this PVS",
   "HAS_STORAGE_RMA_HINT": "Did you add or replace SunVault equipment?",
   "COMM_STORAGE": "Commission SunVault",
+  "NO_MI_COMMISSIONED_TITLE": "No MIs found",
+  "NO_MI_COMMISSIONED_SUBT": "Please add MIs to the system before you commission SunVault",
   "RECOMM_STORAGE": "Recommission SunVault",
   "RECOMMISSION": "Recommission",
   "SUNVAULT_RECOMMISSION_CONFIRMATION_MODAL_TEXT_1": "Are you sure you want to recommission the SunVault System?",
