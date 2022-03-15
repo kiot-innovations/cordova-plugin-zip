@@ -35,6 +35,7 @@
     "cordova-plugin-file-downloader": "^0.4.0",
     "cordova-plugin-file-hash": "^0.4.1",
     "cordova-plugin-file-md5": "^0.3.3",
+    "cordova-plugin-file-opener2": "^3.0.5",
     "cordova-plugin-file-transfer": "^1.7.1",
     "cordova-plugin-http": "^1.2.0",
     "cordova-plugin-httpd": "^0.9.3",
@@ -127,7 +128,10 @@
       "cordova.plugins.diagnostic": {
         "ANDROID_SUPPORT_VERSION": "28.+"
       },
-      "cordova-custom-config": {}
+      "cordova-custom-config": {},
+      "cordova-plugin-file-opener2": {
+        "ANDROID_SUPPORT_V4_VERSION": "27.+"
+      }
     },
     "platforms": [
       "android",
