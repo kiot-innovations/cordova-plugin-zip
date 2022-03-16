@@ -731,12 +731,19 @@ export const trimInfos = reject(isInfo)
 
 export const SECONDS_TO_WAIT_FOR_PVS_TO_REBOOT = 100
 
-export const stagesFromThePvs = [
+export const pvs6FwupStages = [
   'downloading images',
   'decompressing images',
   'flashing images',
   'verifying images',
   'switching volume',
+  'complete',
+  'WAITING_FOR_NETWORK'
+]
+
+export const pvs5FwupStages = [
+  'downloading images',
+  'flashing images',
   'complete',
   'WAITING_FOR_NETWORK'
 ]

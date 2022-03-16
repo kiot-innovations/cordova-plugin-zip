@@ -1,13 +1,7 @@
 import { propOr } from 'ramda'
 import { ofType } from 'redux-observable'
 import { forkJoin, from, of, EMPTY } from 'rxjs'
-import {
-  catchError,
-  exhaustMap,
-  map,
-  withLatestFrom,
-  tap
-} from 'rxjs/operators'
+import { catchError, exhaustMap, map, withLatestFrom } from 'rxjs/operators'
 import * as Sentry from 'sentry-cordova'
 
 import {
@@ -134,7 +128,6 @@ export const pvs5GridProfileReportSuccessEpic = action$ =>
         from(getMd5FromFile(payload)),
         from(getExpectedMD5(gridProfileURl))
       ]).pipe(
-        tap(console.warn),
         map(([{ size, lastModified }, fileMd5, expectedMd5]) =>
           fileMd5 === expectedMd5
             ? PVS5_GRID_PROFILE_DOWNLOAD_SUCCESS({ size, lastModified })

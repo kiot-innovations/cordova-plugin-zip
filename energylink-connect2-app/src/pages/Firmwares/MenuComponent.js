@@ -9,16 +9,21 @@ import {
   isNil,
   match,
   pathOr,
-  prop
+  prop,
+  propEq,
+  propOr
 } from 'ramda'
-import React, { useCallback, useEffect, useRef } from 'react'
+import React, { useEffect, useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 import FileCollapsible from 'components/FileCollapsible'
 import { useI18n } from 'shared/i18n'
 import { either } from 'shared/utils'
 import { DOWNLOAD_OS_INIT } from 'state/actions/ess'
-import { PVS_FIRMWARE_DOWNLOAD_INIT } from 'state/actions/fileDownloader'
+import {
+  PVS5_FW_DOWNLOAD_INIT,
+  PVS_FIRMWARE_DOWNLOAD_INIT
+} from 'state/actions/fileDownloader'
 import {
   PVS6_GRID_PROFILE_DOWNLOAD_INIT,
   PVS5_GRID_PROFILE_DOWNLOAD_INIT
@@ -45,7 +50,16 @@ function FirmwaresMenu({ message, children, className, showDetails = true }) {
   const essState = useSelector(prop('ess'))
 
   const forceDownloadESS = compose(dispatch, DOWNLOAD_OS_INIT, always(true))
-
+  const forceDownloadPVS5 = compose(
+    dispatch,
+    PVS5_FW_DOWNLOAD_INIT,
+    always(true)
+  )
+  const downloadFile = compose(
+    dispatch,
+    PVS_FIRMWARE_DOWNLOAD_INIT,
+    always(true)
+  )
   const {
     pvs6GpError,
     pvs5GpError,
@@ -55,8 +69,14 @@ function FirmwaresMenu({ message, children, className, showDetails = true }) {
     pvs5GpSize,
     isDownloadingPvs6GridProfile,
     isDownloadingPvs5GridProfile,
-    verification
+    verification,
+    pvs5Fw,
+    pvs5Scripts,
+    pvs5Kernel
   } = useSelector(({ fileDownloader }) => ({
+    pvs5Fw: propOr({}, 'pvs5Fw', fileDownloader),
+    pvs5Scripts: propOr({}, 'pvs5Scripts', fileDownloader),
+    pvs5Kernel: propOr({}, 'pvs5Kernel', fileDownloader),
     pvs6GpError: fileDownloader.pvs6GridProfileInfo.error,
     pvs5GpError: fileDownloader.pvs5GridProfileInfo.error,
     pvs6GpLastModified: fileDownloader.pvs6GridProfileInfo.lastModified,
@@ -70,31 +90,31 @@ function FirmwaresMenu({ message, children, className, showDetails = true }) {
     verification: fileDownloader.verification
   }))
 
-  const downloadFile = useCallback(
-    () => dispatch(PVS_FIRMWARE_DOWNLOAD_INIT(true)),
-    [dispatch]
-  )
-
   const downloadPvs6GridProfiles = () =>
     dispatch(PVS6_GRID_PROFILE_DOWNLOAD_INIT(true))
   const downloadPvs5GridProfiles = () =>
     dispatch(PVS5_GRID_PROFILE_DOWNLOAD_INIT(true))
 
   const isFirstRender = useRef(true)
+
   useEffect(() => {
     if (isFirstRender.current) {
       if (!prop('pvsDownloading', verification)) {
         dispatch(PVS_FIRMWARE_DOWNLOAD_INIT())
       }
+
       if (!prop('pvs6GpDownloading', verification)) {
         dispatch(PVS6_GRID_PROFILE_DOWNLOAD_INIT())
       }
+
       if (!prop('pvs5GpDownloading', verification)) {
         dispatch(PVS5_GRID_PROFILE_DOWNLOAD_INIT())
       }
+
       if (!prop('essDownloading', verification)) {
         dispatch(DOWNLOAD_OS_INIT())
       }
+
       isFirstRender.current = false
     }
   }, [dispatch, verification])
@@ -109,7 +129,7 @@ function FirmwaresMenu({ message, children, className, showDetails = true }) {
       <h1 className="has-text-centered is-uppercase pb-20">{t('FIRMWARE')}</h1>
       {either(message, <p className="pb-20">{message}</p>)}
       <FileCollapsible
-        fileName={t('PVS_FIRMWARE')}
+        fileName={t('PVS6_FIRMWARE')}
         version={prop('version', fwFileInfo)}
         error={fwFileInfo.error}
         downloadFile={downloadFile}
@@ -126,6 +146,55 @@ function FirmwaresMenu({ message, children, className, showDetails = true }) {
       />
 
       <Separator />
+
+      <FileCollapsible
+        fileName={t('PVS5_FIRMWARE')}
+        version={prop('version', pvs5Fw)}
+        error={propEq('status', 'error', pvs5Fw)}
+        downloadFile={forceDownloadPVS5}
+        isDownloaded={propEq('status', 'downloaded', pvs5Fw)}
+        isDownloading={propEq('status', 'downloading', pvs5Fw)}
+        step={prop('step', pvs5Fw)}
+        size={prop('size', pvs5Fw)}
+        progress={prop('progress', pvs5Fw)}
+        lastTimeDownloaded={prop('lastModified', pvs5Fw)}
+        expanded={showDetails}
+      />
+
+      <Separator />
+
+      <FileCollapsible
+        fileName={t('PVS5_SCRIPTS')}
+        version={prop('version', pvs5Scripts)}
+        error={propEq('status', 'error', pvs5Scripts)}
+        downloadFile={forceDownloadPVS5}
+        isDownloaded={propEq('status', 'downloaded', pvs5Scripts)}
+        isDownloading={propEq('status', 'downloading', pvs5Scripts)}
+        step={prop('step', pvs5Scripts)}
+        size={prop('size', pvs5Scripts)}
+        progress={prop('progress', pvs5Scripts)}
+        lastTimeDownloaded={prop('lastModified', pvs5Scripts)}
+        expanded={showDetails}
+      />
+
+      <Separator />
+
+      <FileCollapsible
+        fileName={t('PVS5_KERNEL')}
+        version={prop('version', pvs5Kernel)}
+        error={propEq('status', 'error', pvs5Kernel)}
+        downloadFile={forceDownloadPVS5}
+        isDownloaded={propEq('status', 'downloaded', pvs5Kernel)}
+        isDownloading={propEq('status', 'downloading', pvs5Kernel)}
+        step={prop('step', pvs5Kernel)}
+        size={prop('size', pvs5Kernel)}
+        progress={prop('progress', pvs5Kernel)}
+        lastTimeDownloaded={prop('lastModified', pvs5Kernel)}
+        expanded={showDetails}
+      />
+
+      <Separator />
+
       <FileCollapsible
         fileName={t('STORAGE_FW_FILE')}
         version={prop('version', essState)}
@@ -141,6 +210,7 @@ function FirmwaresMenu({ message, children, className, showDetails = true }) {
       />
 
       <Separator />
+
       <FileCollapsible
         fileName={t('GRID_PROFILES_PVS6_PACKAGE')}
         downloadFile={downloadPvs6GridProfiles}
@@ -153,6 +223,7 @@ function FirmwaresMenu({ message, children, className, showDetails = true }) {
       />
 
       <Separator />
+
       <FileCollapsible
         fileName={t('GRID_PROFILES_PVS5_PACKAGE')}
         downloadFile={downloadPvs5GridProfiles}

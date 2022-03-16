@@ -1,4 +1,4 @@
-import { path, pick, propOr } from 'ramda'
+import { includes, path, pick } from 'ramda'
 import { ofType } from 'redux-observable'
 import { concat, from, of, timer, EMPTY } from 'rxjs'
 import {
@@ -17,11 +17,11 @@ import { sendCommandToPVS } from 'shared/PVSUtils'
 import genericRetryStrategy from 'shared/rxjs/genericRetryStrategy'
 import {
   getPVSVersionNumber,
+  isPvs5,
+  SECONDS_TO_WAIT_FOR_PVS_TO_REBOOT,
   storagePresent,
   TAGS,
-  waitFor,
-  SECONDS_TO_WAIT_FOR_PVS_TO_REBOOT,
-  stagesFromThePvs
+  waitFor
 } from 'shared/utils'
 import {
   getFirmwareUpgradePackageURL,
@@ -46,6 +46,7 @@ import { SHOW_MODAL } from 'state/actions/modal'
 import {
   PVS_CONNECTION_INIT_AFTER_REBOOT,
   PVS_CONNECTION_SUCCESS_AFTER_REBOOT,
+  PVS_CONNECTION_SUCCESS,
   STOP_NETWORK_POLLING,
   SET_CONNECTION_STATUS
 } from 'state/actions/network'
@@ -57,10 +58,10 @@ const getFirmwareFromState = path([
   'versionBeforeUpgrade'
 ])
 
-async function uploadFirmwareToAdama() {
+async function uploadFirmwareToAdama(isPvs5) {
   await stopWebserver()
   await startWebserver()
-  const fileUrl = await getFirmwareUpgradePackageURL()
+  const fileUrl = await getFirmwareUpgradePackageURL(isPvs5)
   return await sendCommandToPVS(`StartFWUpgrade&url=${fileUrl}`)
 }
 
@@ -83,50 +84,70 @@ export const firmwareShowModal = action$ => {
  * @param action$
  * @returns {*}
  */
-export const firmwareUpgradeInit = action$ =>
+export const firmwareUpgradeInit = (action$, state$) =>
   action$.pipe(
     ofType(INIT_FIRMWARE_UPDATE.getType()),
     exhaustMap(() =>
-      from(uploadFirmwareToAdama()).pipe(
+      from(uploadFirmwareToAdama(isPvs5(state$))).pipe(
         map(() => START_FIRMWARE_UPDATE_POLLING()),
         catchError(error => of(FIRMWARE_UPDATE_ERROR.asError(error)))
       )
     )
   )
 
-export const firmwarePollStatus = action$ => {
+const aboutToFinishFwupPvsDisconnection =
+  'DISCONNECTED_FROM_PVS_WHEN_ABOUT_TO_FINISH_FWUP'
+
+export const firmwarePollStatus = (action$, state$) => {
   const stopPolling$ = action$.pipe(
     ofType(
       STOP_FIRMWARE_UPDATE_POLLING.getType(),
       FIRMWARE_UPDATE_ERROR.getType()
     )
   )
+
   return action$.pipe(
     ofType(START_FIRMWARE_UPDATE_POLLING.getType()),
-    exhaustMap(() =>
-      timer(0, 1500).pipe(
+    exhaustMap(() => {
+      const { lastSuccessfulStage } = state$.value.firmwareUpdate
+      const { model } = state$.value.pvs
+      const aboutToFinishPvs5Fwup =
+        isPvs5(model) && includes(lastSuccessfulStage, [1, 2])
+      const aboutToFinishPvs6Fwup =
+        !isPvs5(model) && includes(lastSuccessfulStage, [3, 4, 5])
+      const throwIfAboutToFinish =
+        aboutToFinishPvs5Fwup || aboutToFinishPvs6Fwup
+
+      return timer(0, 1500).pipe(
         takeUntil(stopPolling$),
         exhaustMap(() => from(sendCommandToPVS('GetFWUpgradeStatus'))),
         map(status =>
-          propOr('complete', 'STATE', status) === 'complete'
-            ? STOP_FIRMWARE_UPDATE_POLLING()
-            : POLL_FIRMWARE_UPDATE(pick(['STATE', 'PERCENT'], status))
+          POLL_FIRMWARE_UPDATE(pick(['STATE', 'PERCENT', 'DL_PERCENT'], status))
         ),
         retryWhen(
           genericRetryStrategy({
             maxRetryAttempts: 90,
-            shouldScaleTime: false
+            shouldScaleTime: false,
+            reThrow: throwIfAboutToFinish,
+            reThrowMessage: aboutToFinishFwupPvsDisconnection
           })
         ),
-        catchError(err => {
-          const message = err.message
-          err.message = 'Polling update error'
-          Sentry.addBreadcrumb({ message })
-          Sentry.captureException(err)
-          return of(STOP_FIRMWARE_UPDATE_POLLING())
+        catchError(error => {
+          if (error !== aboutToFinishFwupPvsDisconnection) {
+            const { message } = error
+
+            Sentry.addBreadcrumb({ message })
+            Sentry.captureException(error)
+          }
+
+          return error === aboutToFinishFwupPvsDisconnection
+            ? of(
+                STOP_FIRMWARE_UPDATE_POLLING(aboutToFinishFwupPvsDisconnection)
+              )
+            : of(STOP_FIRMWARE_UPDATE_POLLING())
         })
       )
-    )
+    })
   )
 }
 
@@ -136,25 +157,49 @@ const firmwareWaitForWifi = (action$, state$) =>
       STOP_FIRMWARE_UPDATE_POLLING.getType(),
       SET_CONNECTION_STATUS.getType()
     ),
-    exhaustMap(({ payload }) => {
-      if (
-        (state$.value.firmwareUpdate.status === stagesFromThePvs[3] ||
-          state$.value.firmwareUpdate.status === stagesFromThePvs[4]) &&
-        (payload === appConnectionStatus.NOT_CONNECTED_PVS ||
-          payload === appConnectionStatus.NOT_USING_WIFI)
-      ) {
-        return concat(
-          of(STOP_NETWORK_POLLING()),
-          of(WAIT_FOR_NETWORK_AFTER_FIRMWARE_UPDATE()),
-          from(waitFor(1000 * SECONDS_TO_WAIT_FOR_PVS_TO_REBOOT)).pipe(
-            map(() =>
-              PVS_CONNECTION_INIT_AFTER_REBOOT({
-                ssid: state$.value.network.SSID,
-                password: state$.value.network.password
-              })
-            )
+    exhaustMap(({ type, payload }) => {
+      const { lastSuccessfulStage } = state$.value.firmwareUpdate
+      const { model } = state$.value.pvs
+
+      const aboutToFinishPvs5Fwup =
+        isPvs5(model) && includes(lastSuccessfulStage, [1, 2])
+      const aboutToFinishPvs6Fwup =
+        !isPvs5(model) && includes(lastSuccessfulStage, [3, 4, 5])
+      const disconnectedFromPvs =
+        includes(payload, [
+          appConnectionStatus.NOT_CONNECTED_PVS,
+          appConnectionStatus.NOT_USING_WIFI
+        ]) || payload === aboutToFinishFwupPvsDisconnection
+
+      console.warn({
+        action: { type, payload },
+        pvsModel: model,
+        stage: lastSuccessfulStage,
+        aboutToFinishPvsFwup: aboutToFinishPvs5Fwup || aboutToFinishPvs6Fwup,
+        disconnectedFromPvs
+      })
+
+      const waitForPvsToReboot = concat(
+        of(STOP_NETWORK_POLLING()),
+        of(WAIT_FOR_NETWORK_AFTER_FIRMWARE_UPDATE()),
+        from(waitFor(1000 * SECONDS_TO_WAIT_FOR_PVS_TO_REBOOT)).pipe(
+          map(() =>
+            PVS_CONNECTION_INIT_AFTER_REBOOT({
+              ssid: state$.value.network.SSID,
+              password: state$.value.network.password
+            })
           )
         )
+      )
+
+      if (isPvs5(state$) && aboutToFinishPvs5Fwup && disconnectedFromPvs) {
+        console.warn('Waiting for PVS5 to reboot')
+        return waitForPvsToReboot
+      }
+
+      if (aboutToFinishPvs6Fwup && disconnectedFromPvs) {
+        console.warn('Waiting for PVS6 to reboot')
+        return waitForPvsToReboot
       }
 
       return EMPTY
@@ -174,7 +219,10 @@ const firmwareUpdateSuccessEpic = (action$, state$) => {
     ofType(WAIT_FOR_NETWORK_AFTER_FIRMWARE_UPDATE.getType()),
     exhaustMap(() =>
       action$.pipe(
-        ofType(PVS_CONNECTION_SUCCESS_AFTER_REBOOT.getType()),
+        ofType(
+          PVS_CONNECTION_SUCCESS_AFTER_REBOOT.getType(),
+          PVS_CONNECTION_SUCCESS.getType()
+        ),
         take(1),
         exhaustMap(() => {
           stopWebserver()
@@ -192,7 +240,7 @@ const firmwareUpdateSuccessEpic = (action$, state$) => {
   )
 }
 
-const forceStorageAfterPVSFWUPEpic = (action$, state$) =>
+const forceStorageAfterPVSFWUPEpic = action$ =>
   action$.pipe(
     ofType(FIRMWARE_UPDATE_COMPLETE.getType()),
     exhaustMap(() => {

@@ -10,7 +10,10 @@ import paths from 'routes/paths'
 import { useI18n } from 'shared/i18n'
 import { renameKeys, either } from 'shared/utils'
 import { FETCH_MODELS_INIT } from 'state/actions/devices'
-import { PVS_FIRMWARE_DOWNLOAD_INIT } from 'state/actions/fileDownloader'
+import {
+  PVS5_FW_DOWNLOAD_INIT,
+  PVS_FIRMWARE_DOWNLOAD_INIT
+} from 'state/actions/fileDownloader'
 import {
   CHECK_APP_UPDATE_INIT,
   CHECK_SSL_CERTS,
@@ -64,8 +67,10 @@ function Home() {
   useEffect(() => {
     dispatch(CHECK_BLUETOOTH_STATUS_INIT())
     dispatch(PVS_FIRMWARE_DOWNLOAD_INIT())
+    dispatch(PVS5_FW_DOWNLOAD_INIT())
     dispatch(PVS6_GRID_PROFILE_DOWNLOAD_INIT())
     dispatch(PVS5_GRID_PROFILE_DOWNLOAD_INIT())
+    dispatch(CHECK_SSL_CERTS())
     dispatch(CHECK_APP_UPDATE_INIT())
     dispatch(FETCH_MODELS_INIT())
     dispatch(FETCH_STATUS_MESSAGES())
@@ -78,10 +83,6 @@ function Home() {
     setOption(value)
     dispatch(GET_SITES_FILTERING({ value }))
   }
-
-  useEffect(() => {
-    dispatch(CHECK_SSL_CERTS())
-  }, [dispatch])
 
   const { statusMessages } = useSelector(state => state.global)
   const longList = length(sites) > 3

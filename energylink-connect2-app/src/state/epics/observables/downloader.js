@@ -3,9 +3,10 @@ import { Observable } from 'rxjs'
 
 import {
   createFile,
+  deleteDirectoryFiles,
   deleteFile,
   fileExists,
-  deleteFilesDirectory
+  getPathDir
 } from 'shared/fileSystem'
 
 const createHeadersObj = headers => {
@@ -50,14 +51,20 @@ const fileTransferObservable = ({
       })
 
     fileExists(path).then(async entry => {
-      if (retry) await deleteFile(path)
+      const pathDir = getPathDir(path)
+
+      if (retry) {
+        await deleteFile(path)
+      }
+
       if (!entry) {
         if (Array.isArray(fileExtensions)) {
           for (const fileExtension of fileExtensions) {
-            await deleteFilesDirectory(path, fileExtension)
+            await deleteDirectoryFiles(pathDir, fileExtension)
           }
         }
       }
+
       if (!entry || retry) {
         const xhr = new XMLHttpRequest()
         const timeoutMiliseconds = url.includes('gridprofiles')
@@ -73,13 +80,18 @@ const fileTransferObservable = ({
           pragma: 'no-cache',
           'debug-header': new Date().getTime()
         }
+
         for (const [key, value] of Object.entries(requestHeaders)) {
           if (value === undefined) continue
           xhr.setRequestHeader(key, value)
         }
-        if (accessToken)
+
+        if (accessToken) {
           xhr.setRequestHeader('Authorization', `Bearer ${accessToken}`)
+        }
+
         let lastProgress = 0
+
         xhr.onprogress = ({ loaded, total }) => {
           if (fileSize === 0) fileSize = total
           const progress = ((loaded / total) * 100).toFixed(0)
@@ -88,6 +100,7 @@ const fileTransferObservable = ({
             subscriber.next({ progress, total, step: 'DOWNLOADING' })
           }
         }
+
         xhr.onload = function() {
           if (xhr.status !== 200)
             errorCallback(
@@ -104,6 +117,7 @@ const fileTransferObservable = ({
             fileEntry.createWriter(fileWritter => {
               let written = 0
               const BLOCK_SIZE = 1 * 1024 * 1024 // 1 MB Chunk
+
               function writeNext(cbFinish) {
                 const sz = Math.min(BLOCK_SIZE, blob.size - written)
                 const sub = blob.slice(written, written + sz)
@@ -136,7 +150,9 @@ const fileTransferObservable = ({
           function timeOutError(error = '') {
             this.error = error
           }
+
           timeOutError.prototype = new Error()
+
           const errorCode = 'REQUEST_TIMEOUT'
           const error = new timeOutError(errorCode)
 
@@ -154,8 +170,11 @@ const fileTransferObservable = ({
             createHeadersObj(xhr.getAllResponseHeaders())
           )
         }
+
         xhr.send()
-      } else successCallback(entry)
+      } else {
+        successCallback(entry)
+      }
     })
   })
 

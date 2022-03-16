@@ -11,7 +11,7 @@ import { ofType } from 'redux-observable'
 import { of, EMPTY } from 'rxjs'
 import { switchMap } from 'rxjs/operators'
 
-import { stagesFromThePvs } from 'shared/utils'
+import { pvs5FwupStages, pvs6FwupStages, isPvs5 } from 'shared/utils'
 import { SHOW_MODAL } from 'state/actions/modal'
 import { SET_CONNECTION_STATUS } from 'state/actions/network'
 import { appConnectionStatus } from 'state/reducers/network'
@@ -34,13 +34,22 @@ const notSelectingPVS = !isSelectingPVS(window)
 
 const isNotUpdating = state$ => state$.value.firmwareUpdate.upgrading === false
 
-const updateAlmostFinished = state$ =>
-  includes(state$.value.firmwareUpdate.status, [
-    stagesFromThePvs[3],
-    stagesFromThePvs[4],
-    stagesFromThePvs[5],
-    stagesFromThePvs[6]
-  ])
+const updateAlmostFinished = state$ => {
+  const { status } = state$.value.firmwareUpdate
+
+  return isPvs5(state$)
+    ? includes(status, [
+        pvs5FwupStages[1],
+        pvs5FwupStages[2],
+        pvs5FwupStages[3]
+      ])
+    : includes(status, [
+        pvs6FwupStages[3],
+        pvs6FwupStages[4],
+        pvs6FwupStages[5],
+        pvs6FwupStages[6]
+      ])
+}
 
 const showReconnectionModalOn = anyPass([
   noNetworkError,

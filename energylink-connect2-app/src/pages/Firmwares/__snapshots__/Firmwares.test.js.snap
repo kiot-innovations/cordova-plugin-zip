@@ -51,7 +51,7 @@ exports[`Firmwares Menu component render correctly 1`] = `
             downloadFile={[Function]}
             error=""
             expanded={true}
-            fileName="PVS_FIRMWARE"
+            fileName="PVS6_FIRMWARE"
             goToReleaseNotes={[Function]}
             isDownloading={false}
             progress={0}
@@ -65,7 +65,7 @@ exports[`Firmwares Menu component render correctly 1`] = `
                 />
               }
               expanded={true}
-              title="PVS_FIRMWARE"
+              title="PVS6_FIRMWARE"
             >
               <div
                 className="collapsible"
@@ -80,7 +80,247 @@ exports[`Firmwares Menu component render correctly 1`] = `
                     <span
                       className="has-text-weight-bold"
                     >
-                      PVS_FIRMWARE
+                      PVS6_FIRMWARE
+                    </span>
+                  </div>
+                  <div
+                    className="collapsible-actions"
+                  >
+                    <span
+                      className="is-size-4 sp-color-sun sp-download"
+                      onClick={[Function]}
+                    />
+                  </div>
+                  <div
+                    className="collapsible-trigger"
+                    onClick={[Function]}
+                  >
+                    <div
+                      className="chevron down"
+                    >
+                      <span
+                        className="sp-chevron-up"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div
+                  className="collapsible-content expanded"
+                >
+                  <section
+                    className="mb-5"
+                  >
+                    <span
+                      className="has-text-white"
+                    >
+                      <span
+                        className="has-text-white has-text-weight-bold"
+                      >
+                        CHECKING_LATEST_FIRMWARE_VERSION
+                      </span>
+                    </span>
+                  </section>
+                </div>
+              </div>
+            </Collapsible>
+          </FileCollapsible>
+          <Separator>
+            <div
+              className="mt-20"
+            />
+          </Separator>
+          <FileCollapsible
+            downloadFile={[Function]}
+            error={false}
+            expanded={true}
+            fileName="PVS5_FIRMWARE"
+            isDownloaded={false}
+            isDownloading={false}
+          >
+            <Collapsible
+              actions={
+                <span
+                  className="is-size-4 sp-color-sun sp-download"
+                  onClick={[Function]}
+                />
+              }
+              expanded={true}
+              title="PVS5_FIRMWARE"
+            >
+              <div
+                className="collapsible"
+              >
+                <div
+                  className="collapsible-header"
+                >
+                  <div
+                    className="collapsible-title"
+                  >
+                    <span />
+                    <span
+                      className="has-text-weight-bold"
+                    >
+                      PVS5_FIRMWARE
+                    </span>
+                  </div>
+                  <div
+                    className="collapsible-actions"
+                  >
+                    <span
+                      className="is-size-4 sp-color-sun sp-download"
+                      onClick={[Function]}
+                    />
+                  </div>
+                  <div
+                    className="collapsible-trigger"
+                    onClick={[Function]}
+                  >
+                    <div
+                      className="chevron down"
+                    >
+                      <span
+                        className="sp-chevron-up"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div
+                  className="collapsible-content expanded"
+                >
+                  <section
+                    className="mb-5"
+                  >
+                    <span
+                      className="has-text-white"
+                    >
+                      <span
+                        className="has-text-white has-text-weight-bold"
+                      >
+                        CHECKING_LATEST_FIRMWARE_VERSION
+                      </span>
+                    </span>
+                  </section>
+                </div>
+              </div>
+            </Collapsible>
+          </FileCollapsible>
+          <Separator>
+            <div
+              className="mt-20"
+            />
+          </Separator>
+          <FileCollapsible
+            downloadFile={[Function]}
+            error={false}
+            expanded={true}
+            fileName="PVS5_SCRIPTS"
+            isDownloaded={false}
+            isDownloading={false}
+          >
+            <Collapsible
+              actions={
+                <span
+                  className="is-size-4 sp-color-sun sp-download"
+                  onClick={[Function]}
+                />
+              }
+              expanded={true}
+              title="PVS5_SCRIPTS"
+            >
+              <div
+                className="collapsible"
+              >
+                <div
+                  className="collapsible-header"
+                >
+                  <div
+                    className="collapsible-title"
+                  >
+                    <span />
+                    <span
+                      className="has-text-weight-bold"
+                    >
+                      PVS5_SCRIPTS
+                    </span>
+                  </div>
+                  <div
+                    className="collapsible-actions"
+                  >
+                    <span
+                      className="is-size-4 sp-color-sun sp-download"
+                      onClick={[Function]}
+                    />
+                  </div>
+                  <div
+                    className="collapsible-trigger"
+                    onClick={[Function]}
+                  >
+                    <div
+                      className="chevron down"
+                    >
+                      <span
+                        className="sp-chevron-up"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div
+                  className="collapsible-content expanded"
+                >
+                  <section
+                    className="mb-5"
+                  >
+                    <span
+                      className="has-text-white"
+                    >
+                      <span
+                        className="has-text-white has-text-weight-bold"
+                      >
+                        CHECKING_LATEST_FIRMWARE_VERSION
+                      </span>
+                    </span>
+                  </section>
+                </div>
+              </div>
+            </Collapsible>
+          </FileCollapsible>
+          <Separator>
+            <div
+              className="mt-20"
+            />
+          </Separator>
+          <FileCollapsible
+            downloadFile={[Function]}
+            error={false}
+            expanded={true}
+            fileName="PVS5_KERNEL"
+            isDownloaded={false}
+            isDownloading={false}
+          >
+            <Collapsible
+              actions={
+                <span
+                  className="is-size-4 sp-color-sun sp-download"
+                  onClick={[Function]}
+                />
+              }
+              expanded={true}
+              title="PVS5_KERNEL"
+            >
+              <div
+                className="collapsible"
+              >
+                <div
+                  className="collapsible-header"
+                >
+                  <div
+                    className="collapsible-title"
+                  >
+                    <span />
+                    <span
+                      className="has-text-weight-bold"
+                    >
+                      PVS5_KERNEL
                     </span>
                   </div>
                   <div
@@ -457,7 +697,7 @@ exports[`Firmwares component render correctly 1`] = `
               downloadFile={[Function]}
               error=""
               expanded={false}
-              fileName="PVS_FIRMWARE"
+              fileName="PVS6_FIRMWARE"
               goToReleaseNotes={[Function]}
               isDownloading={false}
               progress={0}
@@ -471,7 +711,7 @@ exports[`Firmwares component render correctly 1`] = `
                   />
                 }
                 expanded={false}
-                title="PVS_FIRMWARE"
+                title="PVS6_FIRMWARE"
               >
                 <div
                   className="collapsible"
@@ -486,7 +726,241 @@ exports[`Firmwares component render correctly 1`] = `
                       <span
                         className="has-text-weight-bold"
                       >
-                        PVS_FIRMWARE
+                        PVS6_FIRMWARE
+                      </span>
+                    </div>
+                    <div
+                      className="collapsible-actions"
+                    >
+                      <span
+                        className="is-size-4 sp-color-sun sp-download"
+                        onClick={[Function]}
+                      />
+                    </div>
+                    <div
+                      className="collapsible-trigger"
+                      onClick={[Function]}
+                    >
+                      <div
+                        className="chevron"
+                      >
+                        <span
+                          className="sp-chevron-up"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    className="collapsible-content collapsed"
+                  >
+                    <section
+                      className="mb-5"
+                    >
+                      <span
+                        className="has-text-white"
+                      >
+                        <span
+                          className="has-text-white has-text-weight-bold"
+                        >
+                          CHECKING_LATEST_FIRMWARE_VERSION
+                        </span>
+                      </span>
+                    </section>
+                  </div>
+                </div>
+              </Collapsible>
+            </FileCollapsible>
+            <Separator>
+              <div
+                className="mt-20"
+              />
+            </Separator>
+            <FileCollapsible
+              downloadFile={[Function]}
+              error={true}
+              expanded={false}
+              fileName="PVS5_FIRMWARE"
+              isDownloaded={false}
+              isDownloading={false}
+              lastTimeDownloaded={0}
+              progress={0}
+              size={0}
+              step=""
+            >
+              <Collapsible
+                actions={
+                  <span
+                    className="is-size-4 sp-color-sun sp-download"
+                    onClick={[Function]}
+                  />
+                }
+                expanded={false}
+                title="PVS5_FIRMWARE"
+              >
+                <div
+                  className="collapsible"
+                >
+                  <div
+                    className="collapsible-header"
+                  >
+                    <div
+                      className="collapsible-title"
+                    >
+                      <span />
+                      <span
+                        className="has-text-weight-bold"
+                      >
+                        PVS5_FIRMWARE
+                      </span>
+                    </div>
+                    <div
+                      className="collapsible-actions"
+                    >
+                      <span
+                        className="is-size-4 sp-color-sun sp-download"
+                        onClick={[Function]}
+                      />
+                    </div>
+                    <div
+                      className="collapsible-trigger"
+                      onClick={[Function]}
+                    >
+                      <div
+                        className="chevron"
+                      >
+                        <span
+                          className="sp-chevron-up"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    className="collapsible-content collapsed"
+                  >
+                    <span>
+                      FIRMWARE_ERROR_FOUND
+                    </span>
+                  </div>
+                </div>
+              </Collapsible>
+            </FileCollapsible>
+            <Separator>
+              <div
+                className="mt-20"
+              />
+            </Separator>
+            <FileCollapsible
+              downloadFile={[Function]}
+              error={false}
+              expanded={false}
+              fileName="PVS5_SCRIPTS"
+              isDownloaded={false}
+              isDownloading={false}
+            >
+              <Collapsible
+                actions={
+                  <span
+                    className="is-size-4 sp-color-sun sp-download"
+                    onClick={[Function]}
+                  />
+                }
+                expanded={false}
+                title="PVS5_SCRIPTS"
+              >
+                <div
+                  className="collapsible"
+                >
+                  <div
+                    className="collapsible-header"
+                  >
+                    <div
+                      className="collapsible-title"
+                    >
+                      <span />
+                      <span
+                        className="has-text-weight-bold"
+                      >
+                        PVS5_SCRIPTS
+                      </span>
+                    </div>
+                    <div
+                      className="collapsible-actions"
+                    >
+                      <span
+                        className="is-size-4 sp-color-sun sp-download"
+                        onClick={[Function]}
+                      />
+                    </div>
+                    <div
+                      className="collapsible-trigger"
+                      onClick={[Function]}
+                    >
+                      <div
+                        className="chevron"
+                      >
+                        <span
+                          className="sp-chevron-up"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    className="collapsible-content collapsed"
+                  >
+                    <section
+                      className="mb-5"
+                    >
+                      <span
+                        className="has-text-white"
+                      >
+                        <span
+                          className="has-text-white has-text-weight-bold"
+                        >
+                          CHECKING_LATEST_FIRMWARE_VERSION
+                        </span>
+                      </span>
+                    </section>
+                  </div>
+                </div>
+              </Collapsible>
+            </FileCollapsible>
+            <Separator>
+              <div
+                className="mt-20"
+              />
+            </Separator>
+            <FileCollapsible
+              downloadFile={[Function]}
+              error={false}
+              expanded={false}
+              fileName="PVS5_KERNEL"
+              isDownloaded={false}
+              isDownloading={false}
+            >
+              <Collapsible
+                actions={
+                  <span
+                    className="is-size-4 sp-color-sun sp-download"
+                    onClick={[Function]}
+                  />
+                }
+                expanded={false}
+                title="PVS5_KERNEL"
+              >
+                <div
+                  className="collapsible"
+                >
+                  <div
+                    className="collapsible-header"
+                  >
+                    <div
+                      className="collapsible-title"
+                    >
+                      <span />
+                      <span
+                        className="has-text-weight-bold"
+                      >
+                        PVS5_KERNEL
                       </span>
                     </div>
                     <div

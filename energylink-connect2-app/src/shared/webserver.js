@@ -5,17 +5,19 @@ import { flipConcat, getLastIPOctet, isIos, padNumber } from 'shared/utils'
 
 const defaultPort = 8080
 
-const getLuaFullPath = curry((ipAddress, port) => {
+const getLuaFullPath = curry((ipAddress, port, isPvs5) => {
   const getLuaFileName = compose(padNumber, getLastIPOctet)
-  const baseUrl = `http://${ipAddress}:${port}/luaFiles/`
+  const baseUrl = `http://${ipAddress}:${port}/${
+    isPvs5 ? 'pvs5-luaFiles/' : 'luaFiles/'
+  }`
   const luaFileName = `fwup${getLuaFileName(ipAddress)}.lua`
   return concat(baseUrl, luaFileName)
 })
 
-export const getFirmwareUpgradePackageURL = (port = defaultPort) =>
+export const getFirmwareUpgradePackageURL = (isPvs5, port = defaultPort) =>
   new Promise((resolve, reject) => {
     window.networkinterface.getWiFiIPAddress(
-      ({ ip }) => resolve(getLuaFullPath(ip, port)),
+      ({ ip }) => resolve(getLuaFullPath(ip, port, isPvs5)),
       reject
     )
   })

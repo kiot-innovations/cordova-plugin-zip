@@ -12,8 +12,10 @@ import { useI18n } from 'shared/i18n'
 import {
   either,
   isError,
-  stagesFromThePvs,
-  SECONDS_TO_WAIT_FOR_PVS_TO_REBOOT
+  pvs5FwupStages,
+  pvs6FwupStages,
+  SECONDS_TO_WAIT_FOR_PVS_TO_REBOOT,
+  isPvs5
 } from 'shared/utils'
 import {
   INIT_FIRMWARE_UPDATE,
@@ -34,11 +36,15 @@ const UpdateScreen = () => {
   const firmwareDownload = useSelector(
     pathOr({}, ['fileDownloader', 'progress'])
   )
+  const pvsModel = useSelector(pathOr('', ['pvs', 'model']))
+  const isPvs6 = !isPvs5(pvsModel)
+  const pvsFwupStages = isPvs6 ? pvs6FwupStages : pvs5FwupStages
   const retryConnection = usePVSInitConnection()
   const [formattedTime, isTimerActive, activateTimer, , secondsLeft] = useTimer(
     SECONDS_TO_WAIT_FOR_PVS_TO_REBOOT,
     false
   )
+
   useEffect(() => {
     if (
       status === 'WAITING_FOR_NETWORK' &&
@@ -48,12 +54,16 @@ const UpdateScreen = () => {
       activateTimer()
     }
   }, [activateTimer, isTimerActive, secondsLeft, status])
+
   useEffect(() => {
-    const stepNumber = indexOf(status, stagesFromThePvs)
+    const stepNumber = indexOf(status, pvsFwupStages)
+
     if (stepNumber !== -1) {
+      console.warn('Dispatching FIRMWARE_SET_LAST_SUCCESSFUL_STAGE')
+      console.warn({ stepNumber, stage: pvsFwupStages[stepNumber] })
       dispatch(FIRMWARE_SET_LAST_SUCCESSFUL_STAGE(stepNumber))
     }
-  }, [status, dispatch])
+  }, [status, pvsFwupStages, dispatch])
 
   const { fwFileInfo } = useSelector(({ fileDownloader }) => ({
     fwFileInfo: fileDownloader.fileInfo
@@ -79,12 +89,13 @@ const UpdateScreen = () => {
   }, [errorUpdating, dispatch, upgrading])
 
   const getProgressForStage = stage => {
-    if (indexOf(stage, stagesFromThePvs) === lastSuccessfulStage) {
+    if (indexOf(stage, pvsFwupStages) === lastSuccessfulStage) {
       const progress = parseInt(percent)
 
       return isNaN(progress) ? 100 : progress
     }
-    return lastSuccessfulStage < indexOf(stage, stagesFromThePvs) ? 0 : 100
+
+    return lastSuccessfulStage < indexOf(stage, pvsFwupStages) ? 0 : 100
   }
 
   return (
@@ -134,18 +145,24 @@ const UpdateScreen = () => {
                       )}
                       waiting
                     />
-                    <UpdateFirmwareStage
-                      stage={t('STAGE_DECOMPRESSING')}
-                      percent={getProgressForStage('decompressing images')}
-                    />
+                    {either(
+                      isPvs6,
+                      <UpdateFirmwareStage
+                        stage={t('STAGE_DECOMPRESSING')}
+                        percent={getProgressForStage('decompressing images')}
+                      />
+                    )}
                     <UpdateFirmwareStage
                       stage={t('STAGE_FLASHING_IMAGES')}
                       percent={getProgressForStage('flashing images')}
                     />
-                    <UpdateFirmwareStage
-                      stage={t('STAGE_VERIFYING_IMAGES')}
-                      percent={getProgressForStage('verifying images')}
-                    />
+                    {either(
+                      isPvs6,
+                      <UpdateFirmwareStage
+                        stage={t('STAGE_VERIFYING_IMAGES')}
+                        percent={getProgressForStage('verifying images')}
+                      />
+                    )}
                     <UpdateFirmwareStage
                       stage={t('STAGE_FW_UPGRADE_SUCCESS')}
                       percent={status !== 'WAITING_FOR_NETWORK' ? 0 : 100}

@@ -28,6 +28,9 @@ const initialState = {
 const getState = prop('STATE')
 const getPercent = prop('PERCENT')
 
+// PVS5 GetFWUpgradeStatus response is different
+const getDlPercent = prop('DL_PERCENT')
+
 export const fwupStatus = {
   UPLOADING_FS: 'UPLOADING_FS',
   WAITING_FOR_NETWORK: 'WAITING_FOR_NETWORK',
@@ -52,7 +55,7 @@ export default createReducer(
     [POLL_FIRMWARE_UPDATE]: (state, payload) => ({
       ...state,
       status: getState(payload),
-      percent: getPercent(payload),
+      percent: getPercent(payload) || getDlPercent(payload),
       canContinue: false
     }),
     [WAIT_FOR_NETWORK_AFTER_FIRMWARE_UPDATE]: state => ({

@@ -29,6 +29,18 @@ describe('Firmwares component', () => {
   test('render correctly', () => {
     const { component } = mountWithProvider(<Firmwares />)({
       fileDownloader: {
+        pvs5Fw: {
+          status: 'error',
+          size: 0,
+          lastModified: 0,
+          error: '',
+          progress: 0,
+          name: '',
+          exists: false,
+          updateURL: '',
+          version: undefined,
+          step: ''
+        },
         progress: {
           progress: 0,
           lastProgress: 0,

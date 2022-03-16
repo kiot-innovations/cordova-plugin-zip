@@ -21,8 +21,8 @@ const ConnectionStatus = ({ status }) => {
       equals(appConnectionStatus.CONNECTED),
       always(
         <svg
-          width={36}
-          height={19}
+          width="36"
+          height="19"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
           id="status-connected"
@@ -39,8 +39,8 @@ const ConnectionStatus = ({ status }) => {
       equals(appConnectionStatus.NOT_USING_WIFI),
       always(
         <svg
-          width={33}
-          height={32}
+          width="33"
+          height="32"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
           id="status-notconnected"
@@ -57,8 +57,8 @@ const ConnectionStatus = ({ status }) => {
       equals(appConnectionStatus.NOT_CONNECTED_PVS),
       always(
         <svg
-          width={33}
-          height={32}
+          width="33"
+          height="32"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
           id="status-notconnected"

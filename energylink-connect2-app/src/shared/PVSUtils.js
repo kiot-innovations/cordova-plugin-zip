@@ -28,6 +28,27 @@ export const getFileSystemFromLuaFile = compose(
   split('/')
 )
 
+export const getPVS5FsUrlFromLuaFile = compose(
+  flipConcat('/rootfs.tgz'),
+  join('/'),
+  slice(0, -1),
+  split('/')
+)
+
+export const getPVS5ScriptsUrlFromLuaFile = compose(
+  flipConcat('/scripts.tgz'),
+  join('/'),
+  slice(0, -1),
+  split('/')
+)
+
+export const getPVS5KernelUrlFromLuaFile = compose(
+  flipConcat('/kernel.tgz'),
+  join('/'),
+  slice(0, -1),
+  split('/')
+)
+
 export async function isConnectedToPVS() {
   const promises = [getApiPVS(), sendCommandToPVS('GetSupervisorInformation')]
   return parsePromises(await allSettled(promises))

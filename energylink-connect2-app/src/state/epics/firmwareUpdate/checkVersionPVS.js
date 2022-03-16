@@ -1,27 +1,27 @@
-import { path, pathOr } from 'ramda'
+import { path } from 'ramda'
 import { ofType } from 'redux-observable'
 import { from, of } from 'rxjs'
 import { catchError, map, exhaustMap } from 'rxjs/operators'
 import * as Sentry from 'sentry-cordova'
 
-import { getFirmwareVersionData } from 'shared/fileSystem'
+import { getFirmwareVersionData, getPVS5FwVersionData } from 'shared/fileSystem'
 import { sendCommandToPVS } from 'shared/PVSUtils'
-import { getPVSVersionNumber } from 'shared/utils'
+import { getPVSVersionNumber, isPvs5 } from 'shared/utils'
 import {
   FIRMWARE_UPDATE_CHECK_FAILURE,
   NO_FIRMWARE_UPDATE_AVAILABLE,
   SHOW_FIRMWARE_UPDATE_MODAL,
   FIRMWARE_UPDATE_COMPLETE
 } from 'state/actions/firmwareUpdate'
-import { PVS_CONNECTION_SUCCESS } from 'state/actions/network'
+import { SET_PVS_MODEL } from 'state/actions/pvs'
 import { EMPTY_ACTION } from 'state/actions/share'
 
-export const getFirmwareUrlFromState = path([
-  'value',
-  'fileDownloader',
-  'fileInfo',
-  'updateURL'
-])
+const pvs6FwUrl = ['value', 'fileDownloader', 'fileInfo', 'updateURL']
+
+const pvs5FwUrl = ['value', 'fileDownloader', 'pvs5Fw', 'updateURL']
+
+export const getFirmwareUrlFromState = state$ =>
+  isPvs5(state$) ? path(pvs5FwUrl, state$) : path(pvs6FwUrl, state$)
 
 export const getDoNotUpdatePVSFromState = path([
   'value',
@@ -30,17 +30,22 @@ export const getDoNotUpdatePVSFromState = path([
   'doNotUpdatePVS'
 ])
 
-const checkIfNeedToUpdatePVSToLatestVersion = async (url, doNotUpdatePVS) => {
+const checkIfNeedToUpdatePVSToLatestVersion = async (
+  url,
+  isPvs5,
+  doNotUpdatePVS
+) => {
   try {
-    const { version: PVSToVersion } = getFirmwareVersionData(url)
-    const info = await sendCommandToPVS('GetSupervisorInformation')
-    const PVSFromVersion = getPVSVersionNumber(info) || '-1'
-    const model = pathOr('', ['supervisor', 'MODEL'], info)
-    // if doNotUpdatePVS is true, then we should not update
-    // else, use the logic we had in place already
-    const shouldUpdate = doNotUpdatePVS
-      ? false
-      : !model.startsWith('PVS5') && PVSToVersion > PVSFromVersion
+    const versionData = isPvs5
+      ? getPVS5FwVersionData(url)
+      : getFirmwareVersionData(url)
+    const { buildNumber: pvs5Version } = versionData
+    const { version: pvs6Version } = versionData
+    const PVSToVersion = isPvs5 ? pvs5Version : pvs6Version
+    const pvsInfo = await sendCommandToPVS('GetSupervisorInformation')
+    const PVSFromVersion = getPVSVersionNumber(pvsInfo) || '-1'
+    const shouldUpdate = doNotUpdatePVS ? false : PVSToVersion > PVSFromVersion
+
     return { shouldUpdate, PVSFromVersion, PVSToVersion }
   } catch (e) {
     return { shouldUpdate: false }
@@ -49,14 +54,12 @@ const checkIfNeedToUpdatePVSToLatestVersion = async (url, doNotUpdatePVS) => {
 
 const checkVersionPVS = (action$, state$) =>
   action$.pipe(
-    ofType(
-      PVS_CONNECTION_SUCCESS.getType(),
-      FIRMWARE_UPDATE_COMPLETE.getType()
-    ),
+    ofType(SET_PVS_MODEL.getType(), FIRMWARE_UPDATE_COMPLETE.getType()),
     exhaustMap(() =>
       from(
         checkIfNeedToUpdatePVSToLatestVersion(
           getFirmwareUrlFromState(state$),
+          isPvs5(state$),
           getDoNotUpdatePVSFromState(state$)
         )
       ).pipe(

@@ -1,12 +1,13 @@
 import { pathOr } from 'ramda'
 import { ofType } from 'redux-observable'
 import { combineLatest, from, of, ReplaySubject } from 'rxjs'
-import { catchError, exhaustMap, map, mergeMap } from 'rxjs/operators'
+import { catchError, exhaustMap, map, mergeMap, take } from 'rxjs/operators'
 import * as Sentry from 'sentry-cordova'
 
 import { DOWNLOAD_OS_INIT } from 'state/actions/ess'
 import {
   DOWNLOAD_URLS_UPDATED,
+  PVS5_FW_DOWNLOAD_INIT,
   PVS_FIRMWARE_DOWNLOAD_INIT
 } from 'state/actions/fileDownloader'
 import {
@@ -15,12 +16,13 @@ import {
 } from 'state/actions/gridProfileDownloader'
 
 export const pvsUpdateUrl$ = new ReplaySubject(1)
+export const pvs5UpdateUrl$ = new ReplaySubject(1)
 export const pvs6GridProfileUpdateUrl$ = new ReplaySubject(1)
 export const pvs5GridProfileUpdateUrl$ = new ReplaySubject(1)
 export const essUpdateUrl$ = new ReplaySubject(1)
 
 export const waitForObservable = observable$ =>
-  mergeMap(action => combineLatest([from([action]), observable$]))
+  mergeMap(action => combineLatest([from([action]), observable$.pipe(take(1))]))
 
 const getPvs6UpdateUrls = (action$, state$) =>
   action$.pipe(
@@ -89,7 +91,10 @@ const getPvs6UpdateUrls = (action$, state$) =>
 
 const getPvs5UpdateUrls = (action$, state$) =>
   action$.pipe(
-    ofType(PVS5_GRID_PROFILE_DOWNLOAD_INIT.getType()),
+    ofType(
+      PVS5_GRID_PROFILE_DOWNLOAD_INIT.getType(),
+      PVS5_FW_DOWNLOAD_INIT.getType()
+    ),
     exhaustMap(() =>
       from(
         fetch(process.env.REACT_APP_PVS5_HARDWARE_URLS).then(response =>
@@ -97,23 +102,26 @@ const getPvs5UpdateUrls = (action$, state$) =>
         )
       ).pipe(
         map(urls => {
-          const { gp } = urls
+          const { gp, pvs } = urls
 
           localStorage.setItem('pvs5-gp-url', gp)
+          localStorage.setItem('pvs5-pvs-url', pvs)
 
           pvs5GridProfileUpdateUrl$.next(gp)
+          pvs5UpdateUrl$.next(pvs)
 
           return DOWNLOAD_URLS_UPDATED('PVS5')
         }),
         catchError(error => {
           const gp = localStorage.getItem('pvs5-gp-url')
-
-          if (gp === null) {
+          const pvs = localStorage.getItem('pvs5-pvs-url')
+          if (gp === null || pvs === null) {
             Sentry.captureException(error)
             return of({ type: 'ERROR GETTING PVS5 UPDATE URLs' })
           }
 
           pvs5GridProfileUpdateUrl$.next(gp)
+          pvs5UpdateUrl$.next(pvs)
 
           return of(DOWNLOAD_URLS_UPDATED('PVS5'))
         })
