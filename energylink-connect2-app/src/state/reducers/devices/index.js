@@ -28,6 +28,8 @@ import { RESET_COMMISSIONING } from 'state/actions/global'
 import { START_DISCOVERY_INIT } from 'state/actions/pvs'
 
 const defaultModels = {
+  A: ['SPR-240E-WHT-U ACPV', 'SPR-245NE-WHT-U-240 ACPV'],
+  B: ['SPR-E20-245-B-AC', 'SPR-X20-250-BLK AC'],
   C: [
     'SPR-E19-320-C-AC',
     'SPR-E20-327-C-AC',
@@ -47,7 +49,8 @@ const defaultModels = {
     'SPR-X21-350-BLK-D-AC',
     'SPR-X22-360-D-AC',
     'SPR-X22-370-D-AC',
-    'SPR-240E-WHT-D AR'
+    'SPR-240E-WHT-D AR',
+    'SPR-E19-320-D-AC'
   ],
   E: [
     'SPR-E19-320-E-AC',
@@ -78,7 +81,19 @@ const defaultModels = {
     'SPR-A415-H-AC',
     'SPR-A420-H-AC',
     'SPR-A390-BLK-H-AC',
-    'SPR-A400-BLK-H-AC'
+    'SPR-A400-BLK-H-AC',
+    'SPR-M440-H-AC',
+    'SPR-M435-H-AC',
+    'SPR-M425-H-AC',
+    'SPR-M420-H-AC',
+    'SPR-M410-H-AC',
+    'SPR-M430-BLK-H-AC',
+    'SPR-M425-BLK-H-AC',
+    'SPR-M420-BLK-H-AC',
+    'SPR-M415-BLK-H-AC',
+    'SPR-M410-BLK-H-AC',
+    'SPR-M405-BLK-H-AC',
+    'SPR-M400-BLK-H-AC'
   ]
 }
 
