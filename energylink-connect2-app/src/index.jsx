@@ -1,4 +1,4 @@
-import 'unfetch/polyfill' // Fetch polyfill
+import 'unfetch/polyfill'
 import {
   Offline as OfflineIntegration,
   CaptureConsole as CaptureConsoleIntegration
@@ -32,7 +32,8 @@ const setupSentry = () => {
       new Integrations.BrowserTracing(),
       new OfflineIntegration({ maxStoredEvents: 100 }),
       new CaptureConsoleIntegration({ levels: ['error', 'warn'] })
-    ]
+    ],
+    ignoreErrors: ['Websocket']
   })
 }
 
