@@ -18,11 +18,11 @@ exports[`QuickstartGuides component renders correctly 1`] = `
       QUICKSTART_GUIDES
     </span>
   </div>
-  <ButtonLink
-    icon="sp-download"
-    onClick={[Function]}
-    size={5}
-    title="Equinox AC Modules"
+  <QuickstartGuideButton
+    title="EQUINOX_AC_MODULES"
+  />
+  <QuickstartGuideButton
+    title="SUNVAULT_COMMISSIONING"
   />
 </section>
 `;

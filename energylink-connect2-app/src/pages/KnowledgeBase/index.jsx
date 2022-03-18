@@ -14,6 +14,12 @@ function KnowledgeBase() {
 
   const { tutorialList } = useSelector(propOr([], 'knowledgeBase'))
 
+  const goToQuickStartGuides = () =>
+    history.push(paths.PROTECTED.QUICKSTART_GUIDES.path)
+
+  const goToTutorialVideos = () =>
+    history.push(paths.PROTECTED.TUTORIAL_VIDEOS_LIST.path)
+
   return (
     <section className="is-flex tile is-vertical section pt-0 fill-parent">
       <h1 className="has-text-centered is-uppercase has-text-weight-bold pb-20">
@@ -21,16 +27,11 @@ function KnowledgeBase() {
       </h1>
       <ButtonLink
         title={t('QUICKSTART_GUIDES')}
-        onClick={() => history.push(paths.PROTECTED.QUICKSTART_GUIDES.path)}
+        onClick={goToQuickStartGuides}
       />
       {either(
         !isEmpty(tutorialList),
-        <ButtonLink
-          title={t('TUTORIAL_VIDEOS')}
-          onClick={() =>
-            history.push(paths.PROTECTED.TUTORIAL_VIDEOS_LIST.path)
-          }
-        />
+        <ButtonLink title={t('TUTORIAL_VIDEOS')} onClick={goToTutorialVideos} />
       )}
     </section>
   )

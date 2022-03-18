@@ -1,9 +1,9 @@
 import React from 'react'
 import { useHistory } from 'react-router-dom'
 
-import { ButtonLink } from 'components/ButtonLink'
+import QuickstartGuideButton from './QuickstartGuideButton'
+
 import { useI18n } from 'shared/i18n'
-import { createExternalLinkHandler } from 'shared/routing'
 
 function QuickstartGuides() {
   const history = useHistory()
@@ -22,13 +22,13 @@ function QuickstartGuides() {
           {t('QUICKSTART_GUIDES')}
         </span>
       </div>
-      <ButtonLink
-        title="Equinox AC Modules"
-        icon="sp-download"
-        onClick={createExternalLinkHandler(
-          process.env.REACT_APP_EQUINOX_AC_MODULES
-        )}
-        size={5}
+      <QuickstartGuideButton
+        title={t('EQUINOX_AC_MODULES')}
+        link={process.env.REACT_APP_EQUINOX_AC_MODULES}
+      />
+      <QuickstartGuideButton
+        title={t('SUNVAULT_COMMISSIONING')}
+        link={process.env.REACT_APP_SUNVAULT_COMMISSIONING}
       />
     </section>
   )

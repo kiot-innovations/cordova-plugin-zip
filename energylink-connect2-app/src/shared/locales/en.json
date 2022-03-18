@@ -831,5 +831,7 @@
   "GET_ARTICLES": "Update Articles",
   "URGENT_ASSISTANCE": "If you have urgent issues, we recommend reaching out to our technical support hotline for real time assistance 855 977 7867.",
   "CT_CHECKS_FEEDBACK_TITLE": "What did you think of CT Checks?",
-  "CT_CHECKS_FEEDBACK_PLACEHOLDER": "Help us improve CT Checks. Tell us what's working and what's not. We want to improve your experience and your feedback is valuable!"
+  "CT_CHECKS_FEEDBACK_PLACEHOLDER": "Help us improve CT Checks. Tell us what's working and what's not. We want to improve your experience and your feedback is valuable!",
+  "EQUINOX_AC_MODULES": "Equinox AC Modules",
+  "SUNVAULT_COMMISSIONING": "SunVault Commissioning"
 }
