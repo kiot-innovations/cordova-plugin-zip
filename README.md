@@ -77,10 +77,10 @@ npm run build;
 Build Android for development
 
 ```
-
-# Use this if you want live reload
-npm run dev:android;
-
+cd ~/sunpower/energylink-connect2/
+cordova platform add android;
+cordova prepare android;
+cordova run android;
 ```
 
 Build iOS for development
@@ -88,8 +88,8 @@ Build iOS for development
 ```
 
 cd ~/sunpower/energylink-connect2/
-cordova platform add android;
 cordova platform add ios;
+cordova prepare ios;
 ```
 
 # For iOS only
@@ -112,7 +112,7 @@ npm run dev:ios; cordova prepare ios;
 # You only have to do this once (deprecated)
 
 > For the time being, we don't need to do this anymore, since we're using a fixed version
-of Scandit, which doesn't require pod installations.
+> of Scandit, which doesn't require pod installations.
 
 ```
 cd platforms/ios;
@@ -157,7 +157,6 @@ cd ~/sunpower/energylink-connect2/;
 nvm use;
 cordova emulate ios;
 ```
-
 
 # How to release a new version
 
@@ -241,13 +240,12 @@ fastlane match appstore;
 
 ## It'll ask you for the following information:
 
-_github url to the fast lane certificates:_ git@github.com:SunPower/firmware-mobile-certificates.git
+_github url to the fast lane certificates:_ git@github.com:sunpower/firmware-mobile-certificates.git
 _username:_ developer_support@sunpowercorp.com
 _password:_ ask Alvin or Fer for this password
 _Bundle IDs:_ com.sunpower.energylink.commissioning2.test,com.sunpower.energylink.commissioning2.prod,com.sunpower.energylink.commissioning2.training,com.sunpower.energylink.commissioning2
 
 Modify the bundle IDs to be whatever you need them to be, then update this readme with the latest app ids
-
 
 # Upgrading/Downgrading the PVS Firmware Version via USB
 
