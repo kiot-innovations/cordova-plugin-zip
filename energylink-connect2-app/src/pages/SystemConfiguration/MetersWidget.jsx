@@ -1,4 +1,4 @@
-import { path, compose, prop, find, propEq } from 'ramda'
+import { path, compose, prop, find, propEq, pathOr } from 'ramda'
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
@@ -20,11 +20,25 @@ function MetersWidget({ hasStorage = false }) {
   const t = useI18n()
   const dispatch = useDispatch()
 
-  const { consumptionCT, productionCT, ratedCurrent } = useSelector(
-    path(['systemConfiguration', 'meter'])
-  )
+  const {
+    consumptionCT,
+    productionCT,
+    ratedCurrent,
+    previousConfigsForPVS
+  } = useSelector(path(['systemConfiguration', 'meter']))
 
-  const { model } = useSelector(state => state.pvs)
+  const { serialNumber, model } = useSelector(state => state.pvs)
+
+  const consumptionForPVS = pathOr(
+    consumptionCT,
+    [serialNumber, 'consumptionCT'],
+    previousConfigsForPVS
+  )
+  const ratedCurrentForPVS = pathOr(
+    ratedCurrent,
+    [serialNumber, 'ratedCurrent'],
+    previousConfigsForPVS
+  )
 
   const CONSUMPTION_METER_TYPES = [
     {
@@ -116,7 +130,7 @@ function MetersWidget({ hasStorage = false }) {
                       'value',
                       hasStorage
                         ? METER.NET_CONSUMPTION_LOADSIDE
-                        : consumptionCT
+                        : consumptionForPVS
                     ),
                     CONSUMPTION_METER_TYPES
                   )}
@@ -140,7 +154,7 @@ function MetersWidget({ hasStorage = false }) {
                   type="number"
                   min="1"
                   step="1"
-                  value={ratedCurrent}
+                  value={ratedCurrentForPVS}
                   className="input has-background-dark"
                   onChange={compose(
                     dispatch,

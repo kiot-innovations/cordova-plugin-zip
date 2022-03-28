@@ -135,7 +135,12 @@ export const submitConfigObjectEpic = (action$, state$) => {
 
       return from(promise).pipe(
         map(prop('result')),
-        map(SUBMIT_COMMISSION_SUCCESS),
+        map(result =>
+          SUBMIT_COMMISSION_SUCCESS({
+            ...result,
+            serialNumber: state$.value.pvs.serialNumber
+          })
+        ),
         catchError(error => {
           const apiResult = pathOr({}, ['response', 'body', 'result'], error)
           const pvsSn = state$.value.pvs.serialNumber

@@ -1608,7 +1608,7 @@
     "in_use": true,
     "error_description": "PV Breaker May Have Tripped",
     "display": true,
-     "possible_causes": "Over the last 24 hours, there has been very low solar production. The PV breaker may have tripped and prevented solar production.\n",
+    "possible_causes": "Over the last 24 hours, there has been very low solar production. The PV breaker may have tripped and prevented solar production.\n",
     "recommended_actions": "Check the PV breakers to ensure they are open. If the problem persists, please contact SunPower."
   },
   {
