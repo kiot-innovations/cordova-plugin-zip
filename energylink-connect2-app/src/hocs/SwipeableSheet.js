@@ -1,7 +1,7 @@
 import React from 'react'
 import SwipeableBottomSheet from 'react-swipeable-bottom-sheet'
 
-const SwipeableSheet = ({ children, open, onChange = {}, ...props }) => {
+const SwipeableSheet = ({ children, open, onChange = () => {}, ...props }) => {
   const swipeableViewsProps = {
     className: 'swipeable'
   }
