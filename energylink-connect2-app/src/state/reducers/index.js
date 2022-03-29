@@ -19,6 +19,7 @@ import { languageReducer } from './language'
 import { storesVersions } from './migrations'
 import modal from './modal'
 import { networkReducer } from './network'
+import { pcsReducer } from './pcs'
 import permissionsReducer from './permissions'
 import { pltWizard } from './plt-wizard'
 import { pvsReducer } from './pvs'
@@ -149,6 +150,14 @@ export default combineReducers({
     },
     knowledgeBaseReducer
   ),
-  featureFeedback: featureFeedbackReducer
+  featureFeedback: featureFeedbackReducer,
+  pcs: persistReducer(
+    {
+      key: 'pcs',
+      storage,
+      blacklist: ['pcsApplied']
+    },
+    pcsReducer
+  )
   // Add reducers here
 })

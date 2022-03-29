@@ -38,6 +38,7 @@ import NearbyPVS from 'pages/NearbyPVS'
 import NotFound from 'pages/NotFound'
 import PanelLayoutTool from 'pages/PanelLayoutTool/AddingPanels'
 import PanelLayoutToolGroupPanels from 'pages/PanelLayoutTool/GroupPanels'
+import PCS from 'pages/PCS'
 import Permissions from 'pages/Permissions'
 import PreCommissioning from 'pages/PreCommissioning'
 import PrecommissioningConfigs from 'pages/PrecommissioningConfigs'
@@ -125,6 +126,7 @@ const mapComponents = {
   [paths.PROTECTED.TUTORIAL_VIDEO.path]: TutorialVideo,
   [paths.PROTECTED.QUICKSTART_GUIDES.path]: QuickstartGuides,
   [paths.PROTECTED.TROUBLESHOOTING_GUIDES.path]: TroubleshootingGuides,
+  [paths.PROTECTED.PCS.path]: PCS,
   [paths.UNPROTECTED.ANALYTICS_CONSENT.path]: AnalyticsConsent
 }
 

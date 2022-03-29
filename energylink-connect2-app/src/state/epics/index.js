@@ -16,6 +16,7 @@ import mobile from './mobile'
 import modalEpics from './modals/showModal'
 import networkPollingEpics from './network'
 import panelLayoutToolEpics from './panel-layout-tool'
+import pcsEpics from './pcs'
 import permissionsEpics from './permissions'
 import pvsEpics from './pvs'
 import rmaEpics from './rma'
@@ -59,5 +60,6 @@ export default combineEpics(
   ...wakelockEpics,
   ...featureFlagsEpics,
   ...systemChecksEpics,
+  ...pcsEpics,
   liveEnergyData
 )

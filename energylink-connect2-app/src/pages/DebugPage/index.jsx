@@ -26,6 +26,7 @@ import { MENU_HIDE } from 'state/actions/ui'
 import './DebugPage.scss'
 
 const debugPages = {
+  'PCS (PCS)': paths.PROTECTED.PCS.path,
   SystemChecks: paths.PROTECTED.SYSTEM_CHECKS.path,
   'Saving Configuration': paths.PROTECTED.SAVING_CONFIGURATION.path,
   'Live Data': paths.PROTECTED.DATA.path,

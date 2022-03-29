@@ -37,7 +37,7 @@ export const useI18nComponent = () => {
       if (typeof Component !== 'function') {
         throw new Error(`Component not found: ${path}`)
       }
-      return Component()
+      return Component
     },
     [locale]
   )

@@ -318,6 +318,12 @@ const paths = {
     TROUBLESHOOTING_GUIDES: {
       path: '/troubleshooting-guides',
       header: true
+    },
+    PCS: {
+      path: '/pcs',
+      header: true,
+      footer: true,
+      tab: TABS.INSTALL
     }
   },
   UNPROTECTED: {

@@ -25,6 +25,7 @@ import {
 } from 'state/actions/storage'
 import { SUBMIT_METERCONFIG } from 'state/actions/systemConfiguration'
 import { rmaModes } from 'state/reducers/rma'
+
 import './StoragePrediscovery.scss'
 
 function StoragePrediscovery() {

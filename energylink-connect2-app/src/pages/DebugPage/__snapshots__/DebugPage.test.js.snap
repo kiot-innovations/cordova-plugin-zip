@@ -2706,6 +2706,25 @@ exports[`Data page render correctly 1`] = `
                       className="route-name"
                     >
                       <span>
+                        PCS (PCS)
+                      </span>
+                    </div>
+                    <div
+                      className="arrow-right pt-2"
+                    >
+                      <span
+                        className="sp-chevron-right has-text-primary"
+                      />
+                    </div>
+                  </div>
+                  <div
+                    className="debug-route is-flex mb-10"
+                    onClick={[Function]}
+                  >
+                    <div
+                      className="route-name"
+                    >
+                      <span>
                         SystemChecks
                       </span>
                     </div>

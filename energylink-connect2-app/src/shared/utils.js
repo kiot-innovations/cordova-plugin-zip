@@ -54,7 +54,8 @@ import {
   toUpper,
   trim,
   values,
-  when
+  when,
+  identity
 } from 'ramda'
 
 import { appConnectionStatus } from 'state/reducers/network'
@@ -636,7 +637,8 @@ export const TAGS = {
     ESSFW: 'essFirmware',
     GRID_PROFILES: 'gridProfiles',
     SECURITY: 'security',
-    THIRD_PARTY_SERVICE: 'thirdPartyService'
+    THIRD_PARTY_SERVICE: 'thirdPartyService',
+    PCS: 'pcs'
   },
   VALUE: {
     CRASH: 'crash',
@@ -669,7 +671,8 @@ export const TAGS = {
     SITE_CREATION: 'siteCreation',
     SITE_SEARCH: 'siteSearch',
     FAILED_SECURITY_CERT: 'Failed SSL Certificate Check',
-    GET_ZENDESK_ARTICLES: 'Unable to fetch Zendesk Help Center Articles'
+    GET_ZENDESK_ARTICLES: 'Unable to fetch Zendesk Help Center Articles',
+    GET_PCS_SETTINGS_ERROR: 'Unable to fetch PCS config'
   }
 }
 
@@ -740,6 +743,28 @@ export const pvs6FwupStages = [
   'complete',
   'WAITING_FOR_NETWORK'
 ]
+
+export const generateRange = (
+  start = 0,
+  end = 2,
+  increments = 1,
+  transformValue = identity,
+  includeValuesInRange = []
+) => {
+  const r = []
+  for (let i = start; i <= end; i += increments) {
+    r.push(transformValue(i))
+  }
+  for (let i = 0; i < includeValuesInRange.length; i++) {
+    r.unshift(transformValue(includeValuesInRange[i]))
+  }
+  return r
+}
+
+export const toAmpLabel = (value = 0) => ({
+  label: `${value} A`,
+  value
+})
 
 export const pvs5FwupStages = [
   'downloading images',

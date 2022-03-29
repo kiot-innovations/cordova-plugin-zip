@@ -1,0 +1,36 @@
+@import '@sunpower/theme-dark/styles/_variables.scss';
+
+.nec2020 {
+  display: grid;
+  grid-template-rows: 30px 1fr 100px;
+
+  .mt--10 {
+    margin-top: -10px;
+  }
+
+  label {
+    font-weight: normal;
+  }
+
+  .checkbox.is-flex {
+    justify-content: space-between;
+  }
+
+  .with-top-margin {
+    overflow-y: scroll;
+  }
+
+  @media only screen
+  and (min-device-width: 320px)
+  and (max-device-width: 400px)
+  and (-webkit-min-device-pixel-ratio: 2)
+  and (orientation: portrait) {
+    .with-top-margin {
+      overflow-y: scroll;
+      margin-top: calc(env(safe-area-inset-top) + 60px);
+    }
+    .ReactSwipeableBottomSheet--open {
+      padding: 1rem;
+    }
+  }
+}

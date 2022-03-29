@@ -24,6 +24,7 @@ import { Loader } from 'components/Loader'
 import SwipeableSheet from 'hocs/SwipeableSheet'
 import '@szhsin/react-menu/dist/index.css'
 import paths from 'routes/paths'
+import { useFeatureFlag } from 'shared/featureFlags'
 import { useI18n } from 'shared/i18n'
 import { either, getMicroinverters, isESS, isPvs5 } from 'shared/utils'
 import { FETCH_DEVICES_LIST } from 'state/actions/devices'
@@ -93,6 +94,8 @@ function RMADevices() {
   const t = useI18n()
   const dispatch = useDispatch()
   const history = useHistory()
+
+  const shouldEnablePCS = useFeatureFlag({ page: 'pcs', text: 'pcs' })
 
   useEffect(() => {
     dispatch(ALLOW_COMMISSIONING())
@@ -179,8 +182,11 @@ function RMADevices() {
   )
 
   const goToStoragePrediscovery = useCallback(() => {
-    history.push(paths.PROTECTED.STORAGE_PREDISCOVERY.path)
-  }, [history])
+    const next = shouldEnablePCS
+      ? paths.PROTECTED.PCS.path
+      : paths.PROTECTED.STORAGE_PREDISCOVERY.path
+    history.push(next)
+  }, [history, shouldEnablePCS])
 
   const storageCommissioningOrRecommissioningHandler = () => {
     // If storage hasn't been commissioned before,
