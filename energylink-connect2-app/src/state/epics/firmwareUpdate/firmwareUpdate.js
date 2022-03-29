@@ -101,6 +101,7 @@ const aboutToFinishFwupPvsDisconnection =
 export const firmwarePollStatus = (action$, state$) => {
   const stopPolling$ = action$.pipe(
     ofType(
+      FIRMWARE_UPDATE_COMPLETE.getType(),
       STOP_FIRMWARE_UPDATE_POLLING.getType(),
       FIRMWARE_UPDATE_ERROR.getType()
     )

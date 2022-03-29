@@ -1,4 +1,4 @@
-import { includes, pathOr } from 'ramda'
+import { pathOr } from 'ramda'
 import { ofType } from 'redux-observable'
 import { EMPTY, from, of, timer } from 'rxjs'
 import { catchError, exhaustMap, switchMap, takeUntil } from 'rxjs/operators'
@@ -12,17 +12,13 @@ import {
 import { appConnectionStatus } from 'state/reducers/network'
 
 const fetchSSID = async ssid => {
-  const connectedInterface = window.navigator.connection.type
-  if (includes(connectedInterface, ['wifi', 'none'])) {
-    try {
-      const currentSSID = await window.WifiWizard2.getConnectedSSID()
-      if (currentSSID !== ssid) return appConnectionStatus.NOT_CONNECTED_PVS
-    } catch {
-      return appConnectionStatus.NOT_CONNECTED_PVS
-    }
-  } else {
-    return appConnectionStatus.NOT_USING_WIFI
+  try {
+    const currentSSID = await window.WifiWizard2.getConnectedSSID()
+    if (currentSSID !== ssid) return appConnectionStatus.NOT_CONNECTED_PVS
+  } catch {
+    return appConnectionStatus.NOT_CONNECTED_PVS
   }
+
   return appConnectionStatus.CONNECTED
 }
 

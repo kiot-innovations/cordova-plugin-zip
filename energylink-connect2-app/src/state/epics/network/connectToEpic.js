@@ -57,7 +57,7 @@ const connectToPVS = async (ssid, password) => {
     } else {
       //looks like wifiwizard works like this in android
       // I don't know why (ET)
-      await window.WifiWizard2.connect(ssid, false, password, WPA, false)
+      await window.WifiWizard2.connect(ssid, true, password, WPA, false)
     }
   } catch (err) {
     const normalizedError = err || 'UNKNOWN_ERROR'
