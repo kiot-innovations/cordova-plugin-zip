@@ -141,6 +141,7 @@ function PvsSelection() {
     setConnecting(true)
     const ssid = generateSSID(device.name)
     const password = generatePassword(device.name)
+    dispatch(SAVE_PVS_SN(device.name))
     dispatch(SET_SSID(ssid))
     dispatch(SET_AP_PWD(password))
     dispatch(CONNECT_PVS_VIA_BLE(device))
@@ -414,6 +415,7 @@ function PvsSelection() {
     const ssid = generateSSID(pvsSerialNumber)
     const password = generatePassword(pvsSerialNumber)
 
+    dispatch(SAVE_PVS_SN(pvsSerialNumber))
     dispatch(SET_SSID(ssid))
     dispatch(SET_AP_PWD(password))
 
