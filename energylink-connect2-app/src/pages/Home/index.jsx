@@ -26,6 +26,7 @@ import {
 } from 'state/actions/gridProfileDownloader'
 import { UPDATE_ARTICLES } from 'state/actions/knowledgeBase'
 import { CHECK_BLUETOOTH_STATUS_INIT } from 'state/actions/network'
+import { FETCH_RELEASE_NOTES } from 'state/actions/releaseNotes'
 import {
   HOME_SCREEN_CREATE_SITE,
   SET_SITE,
@@ -76,6 +77,7 @@ function Home() {
     dispatch(FETCH_STATUS_MESSAGES())
     dispatch(WAKELOCK_RELEASE())
     dispatch(UPDATE_ARTICLES())
+    dispatch(FETCH_RELEASE_NOTES())
   }, [dispatch])
 
   const filterSites = event => {

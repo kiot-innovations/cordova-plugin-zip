@@ -1,36 +1,22 @@
 import { isEmpty } from 'ramda'
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 
 import appVersion from '../../macros/appVersion.macro'
 
 import { Loader } from 'components/Loader'
 import ReleaseNotes from 'components/ReleaseNotes'
 
-let loadedRN = {}
-
 function VersionInformation({ currentVersion }) {
+  const releaseNotes = localStorage.getItem('releaseNotes')
+  const parsedNotes = JSON.parse(releaseNotes)
   const version = currentVersion ? currentVersion : appVersion()
-  const [json, setJSON] = useState({})
 
-  useEffect(() => {
-    const fetchNotes = async () => {
-      const rnModule = await import('./releaseNotes')
-      loadedRN = rnModule.default
-      setJSON(loadedRN)
-    }
-    if (isEmpty(loadedRN))
-      fetchNotes()
-        .then(console.info)
-        .catch(console.error)
-    else setJSON(loadedRN)
-  }, [])
-
-  return isEmpty(json) ? (
+  return isEmpty(parsedNotes) ? (
     <Loader />
   ) : (
     <ReleaseNotes
       title="PRO_CONNECT_VERSION_INFORMATION"
-      releaseNotes={json}
+      releaseNotes={parsedNotes}
       currentVersion={version}
     />
   )

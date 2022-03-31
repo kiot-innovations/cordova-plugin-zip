@@ -19,6 +19,7 @@ import panelLayoutToolEpics from './panel-layout-tool'
 import pcsEpics from './pcs'
 import permissionsEpics from './permissions'
 import pvsEpics from './pvs'
+import releaseNotesEpics from './releaseNotes'
 import rmaEpics from './rma'
 import scanditEpics from './scandit'
 import sentryEpics from './sentry'
@@ -49,6 +50,7 @@ export default combineEpics(
   ...panelLayoutToolEpics,
   ...permissionsEpics,
   ...pvsEpics,
+  ...releaseNotesEpics,
   ...rmaEpics,
   ...scanditEpics,
   ...sentryEpics,
